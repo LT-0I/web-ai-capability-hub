@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mock Web AI Console</title>
+</head>
+<body>
+  <header>
+    <button aria-label="Model selector">GPT-Mock 1.0</button>
+    <button aria-label="Tools menu">Tools</button>
+    <button aria-label="Generate image with Imagen">Image generation</button>
+    <button aria-label="Upload file">Upload</button>
+  </header>
+  <main>
+    <section aria-label="conversation">
+      <article class="assistant-response">
+        <h2>Assistant response</h2>
+        <p>This mock response demonstrates how generated output is read from the page.</p>
+        <a href="mock-output.txt" download="mock-output.txt">Download response</a>
+      </article>
+    </section>
+    <form aria-label="Prompt form">
+      <label for="prompt">Message prompt</label>
+      <textarea id="prompt" name="prompt" placeholder="Ask anything"></textarea>
+      <button type="submit" aria-label="Send message">Send</button>
+    </form>
+  </main>
+</body>
+</html>

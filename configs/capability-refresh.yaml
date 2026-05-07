@@ -1,0 +1,8 @@
+{
+  "manualByDefault": true,
+  "jobs": [
+    { "id": "gemini-weekly", "target": "gemini", "profile": "gemini", "enabled": false, "intervalMinutes": 10080 },
+    { "id": "chatgpt-weekly", "target": "chatgpt", "profile": "chatgpt", "enabled": false, "intervalMinutes": 10080 },
+    { "id": "claude-weekly", "target": "claude", "profile": "claude", "enabled": false, "intervalMinutes": 10080 }
+  ]
+}

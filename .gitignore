@@ -1,0 +1,40 @@
+﻿# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local runtime/configuration
+.env
+*.local.*
+**/*.DS_Store
+*.log
+.omx/
+
+# Data policy: ignore runtime, binary, credential-bearing, regenerated, and bulky artifacts by default.
+data/*
+!data/
+
+# Tracked curated Gemini/catalog assets
+!data/gemini_full_catalog.json
+!data/gemini_canvas_deepresearch_catalog.json
+!data/gemini_unexplored_catalog.json
+!data/gemini_remaining_catalog.json
+!data/gemini_manual_capabilities.json
+!data/t30_article.txt
+
+# Explicit runtime data exclusions
+data/downloads/
+data/screenshots/
+data/browser-profiles/
+data/browser-profile/
+data/capability-hub.sqlite
+data/gemini-scratch.sqlite
+data/tab-registry.json
+data/logs/
+data/site-maps/
+.gitconfig-codex
+.git/
+git-store/
+gitdb/
+.xdg/

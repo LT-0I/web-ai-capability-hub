@@ -1,0 +1,75 @@
+{
+  "id": "chatgpt",
+  "displayName": "ChatGPT Web",
+  "category": "web-ai",
+  "hosts": [
+    "chatgpt.com",
+    "chat.openai.com"
+  ],
+  "description": "Adapter template for reading ChatGPT web UI capabilities and operating visible controls only after user approval.",
+  "capabilityHints": [
+    "model selector",
+    "prompt composer",
+    "file upload",
+    "tools menu",
+    "project/workspace navigation",
+    "download/export controls where visible"
+  ],
+  "semanticTargets": [
+    {
+      "id": "promptBox",
+      "role": "textbox",
+      "namePatterns": [
+        "message",
+        "prompt",
+        "ask anything"
+      ],
+      "selectorHints": [
+        "textarea",
+        "[contenteditable=true]"
+      ],
+      "description": "Prompt composer"
+    },
+    {
+      "id": "sendButton",
+      "role": "button",
+      "namePatterns": [
+        "send",
+        "submit"
+      ],
+      "selectorHints": [
+        "button[aria-label*='Send' i]"
+      ]
+    },
+    {
+      "id": "modelSelector",
+      "role": "button",
+      "namePatterns": [
+        "model",
+        "GPT"
+      ],
+      "selectorHints": [
+        "button"
+      ]
+    },
+    {
+      "id": "upload",
+      "role": "button",
+      "namePatterns": [
+        "upload",
+        "attach",
+        "file"
+      ]
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "sendPrompt",
+      "upload",
+      "download",
+      "bulkExport"
+    ],
+    "note": "Do not send prompts, upload files, or export conversation data without explicit approval."
+  },
+  "notesFile": "configs/adapters/notes/chatgpt.md"
+}

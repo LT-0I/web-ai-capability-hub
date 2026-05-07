@@ -1,0 +1,63 @@
+{
+  "id": "claude",
+  "displayName": "Claude Web",
+  "category": "web-ai",
+  "hosts": [
+    "claude.ai"
+  ],
+  "description": "Adapter template for Claude web UI. Selectors are deliberately semantic because the UI changes frequently.",
+  "capabilityHints": [
+    "project selector",
+    "model selector",
+    "prompt composer",
+    "artifact area",
+    "file upload",
+    "download controls"
+  ],
+  "semanticTargets": [
+    {
+      "id": "promptBox",
+      "role": "textbox",
+      "namePatterns": [
+        "message",
+        "prompt",
+        "talk to Claude"
+      ],
+      "selectorHints": [
+        "textarea",
+        "[contenteditable=true]"
+      ]
+    },
+    {
+      "id": "sendButton",
+      "role": "button",
+      "namePatterns": [
+        "send"
+      ]
+    },
+    {
+      "id": "projectSelector",
+      "role": "button",
+      "namePatterns": [
+        "project",
+        "workspace"
+      ]
+    },
+    {
+      "id": "artifactPanel",
+      "role": "region",
+      "namePatterns": [
+        "artifact"
+      ]
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "sendPrompt",
+      "upload",
+      "download",
+      "projectChange"
+    ]
+  },
+  "notesFile": "configs/adapters/notes/claude.md"
+}

@@ -1,0 +1,10 @@
+id: research-database-search-dry-run
+target: cnki
+profile: research-default
+mode: assisted
+description: Dry-run example for authorized research database search.
+steps:
+  - use_capability: enter_search_query
+    input:
+      query: "machine learning literature review"
+  - use_capability: read_results_metadata

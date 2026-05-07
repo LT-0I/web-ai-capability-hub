@@ -1,0 +1,11 @@
+id: gemini-image-draft
+target: gemini
+profile: gemini
+mode: assisted
+description: Safe Gemini image-generation draft workflow. It may open image mode and type a draft, but it does not send.
+steps:
+  - use_capability: open_image_generation
+  - use_capability: enter_prompt
+    input:
+      text: "A clean futuristic laboratory notebook icon, blue and white, transparent background"
+  - use_capability: verify_draft

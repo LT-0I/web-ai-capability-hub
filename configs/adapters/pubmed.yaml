@@ -1,0 +1,75 @@
+{
+  "id": "pubmed",
+  "name": "PubMed",
+  "displayName": "PubMed",
+  "category": "research-database",
+  "hosts": [
+    "pubmed.ncbi.nlm.nih.gov"
+  ],
+  "base_url": "https://pubmed.ncbi.nlm.nih.gov/",
+  "search_url": "https://pubmed.ncbi.nlm.nih.gov/?term={query}",
+  "login_mode": "public",
+  "ip_login": false,
+  "description": "Public biomedical literature metadata source from NCBI.",
+  "capability_hints": {
+    "search_input": {
+      "selectors": [
+        "input[name='term']"
+      ]
+    },
+    "filter_panel": {
+      "selectors": []
+    },
+    "export_button": {
+      "selectors": []
+    }
+  },
+  "capabilityHints": [
+    "public search",
+    "biomedical literature",
+    "metadata",
+    "citation export"
+  ],
+  "semanticTargets": [
+    {
+      "id": "searchBox",
+      "role": "textbox",
+      "namePatterns": [
+        "search",
+        "term",
+        "query"
+      ],
+      "selectorHints": [
+        "input[name='term']"
+      ]
+    },
+    {
+      "id": "filterPanel",
+      "role": "group",
+      "namePatterns": [
+        "filter",
+        "results by year",
+        "article type"
+      ],
+      "selectorHints": []
+    },
+    {
+      "id": "exportButton",
+      "role": "button",
+      "namePatterns": [
+        "save",
+        "send to",
+        "citation"
+      ],
+      "selectorHints": []
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "download",
+      "export",
+      "bulkExport"
+    ],
+    "note": "Use public PubMed metadata and normal citation/export controls."
+  }
+}

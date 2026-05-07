@@ -1,0 +1,374 @@
+{
+  "recorded_at": "2026-05-06T01:44:00.2353213-07:00",
+  "canvas": {
+    "trigger_method": "Successful activation was Tools -> Canvas in a fresh chat, then sending the document prompt. The requested prompt containing 'Use Canvas mode' first produced a Google Workspace connection request instead of a Canvas artifact; no connection was made.",
+    "artifact_appeared": true,
+    "main_container": {
+      "selector_observed": "div[aria-label=\"Canvas editor\"]",
+      "visible_title": "The Benefits of Morning Routines",
+      "visible_document_heading": "The Power of a Morning Routine: Key Benefits"
+    },
+    "toolbar_controls": [
+      {
+        "label": "Close panel",
+        "icon": "chevron_left",
+        "data_test_id": "close-button",
+        "notes": "Closes the Canvas side panel."
+      },
+      {
+        "label": "More options",
+        "icon": "more_vert",
+        "data_test_id": "toolbar-overflow-trigger",
+        "notes": "Expanded the formatting toolbar row rather than opening a separate menu."
+      },
+      {
+        "label": "Cloud save/status",
+        "icon": "cloud_done",
+        "data_test_id": "cloud-done-button",
+        "visibility": "Visible in the expanded formatting toolbar row."
+      },
+      {
+        "label": "Previous version",
+        "icon": "undo",
+        "data_test_id": "undo-button",
+        "disabled": true
+      },
+      {
+        "label": "Next version",
+        "icon": "redo",
+        "data_test_id": "redo-button",
+        "disabled": true
+      },
+      {
+        "label": "Normal text",
+        "type": "text format selector",
+        "data_test_id": "select-text-format-button"
+      },
+      {
+        "label": "Bold",
+        "icon": "format_bold",
+        "data_test_id": "format-bold-button"
+      },
+      {
+        "label": "Italic",
+        "icon": "format_italic",
+        "data_test_id": "format-italic-button"
+      },
+      {
+        "label": "Bulleted list",
+        "icon": "format_list_bulleted",
+        "data_test_id": "format-list-bulleted-button"
+      },
+      {
+        "label": "Numbered list",
+        "icon": "format_list_numbered",
+        "data_test_id": "format-list-numbered-button"
+      },
+      {
+        "label": "Insert inline equation",
+        "data_test_id": "insert-inline-equation-button"
+      },
+      {
+        "label": "Insert block equation",
+        "data_test_id": "insert-block-equation-button"
+      },
+      {
+        "label": "Print",
+        "icon": "print",
+        "data_test_id": "print-button"
+      },
+      {
+        "label": "Share Canvas",
+        "icon": "share",
+        "data_test_id": "share-button"
+      },
+      {
+        "label": "Create",
+        "type": "dropdown",
+        "data_test_id": "canvas-create-task-menu",
+        "observed_options": [
+          "Web page",
+          "Infographic",
+          "Quiz",
+          "Flashcards",
+          "Audio Overview",
+          "Describe your own app"
+        ]
+      }
+    ],
+    "export_options": [
+      {
+        "label": "Share",
+        "data_test_id": "share-button"
+      },
+      {
+        "label": "Export to Docs",
+        "data_test_id": "export-to-docs-button",
+        "tooltip": "Export to Google Docs as a new document"
+      },
+      {
+        "label": "Copy",
+        "data_test_id": "copy-button"
+      }
+    ],
+    "editor_focused_controls": [
+      {
+        "state": "Editor focused",
+        "observation": "Clicking inside div[aria-label=\"Canvas editor\"] moved focus into the editor. No additional inline formatting toolbar, AI edit popover, or suggestion controls appeared from focus alone."
+      },
+      {
+        "state": "Toolbar after focus",
+        "observation": "The same Canvas top toolbar and expanded formatting toolbar controls remained visible."
+      }
+    ],
+    "notes": "Canvas appeared as a right-side editor/artifact panel. Share/export options were only opened for observation and closed with Escape. No document content was intentionally modified."
+  },
+  "deep_research": {
+    "activation_method": "Activated from a fresh chat via Tools -> Deep research. The mode picker near the input showed Fast, Thinking, and Pro only; Deep Research was not listed there in this session.",
+    "source_types": [
+      {
+        "label": "Search",
+        "role": "menuitemcheckbox",
+        "default_selected": true
+      },
+      {
+        "label": "Gmail",
+        "role": "menuitemcheckbox",
+        "default_selected": false
+      },
+      {
+        "label": "Drive",
+        "role": "menuitemcheckbox",
+        "default_selected": false
+      },
+      {
+        "label": "Chat",
+        "role": "menuitemcheckbox",
+        "default_selected": false
+      }
+    ],
+    "progress_ui": [
+      {
+        "label": "Selected Deep research chip",
+        "details": "Input area showed a 'Deep research' chip with aria label 'Deselect Deep research' and travel_explore icon."
+      },
+      {
+        "label": "Research prompt placeholder",
+        "details": "Prompt placeholder changed to 'What do you want to research?'."
+      },
+      {
+        "label": "Sources chip",
+        "details": "Sources chip appeared with aria label 'Sources, Google Search selected'."
+      },
+      {
+        "label": "Files chip",
+        "details": "Files attachment chip appeared beside Sources."
+      },
+      {
+        "label": "Research plan",
+        "details": "After the query, Gemini generated a plan titled 'Battery Technology Developments Overview' with steps 'Research Websites', 'Analyze Results', and 'Create Report'."
+      },
+      {
+        "label": "Plan controls",
+        "details": "Visible buttons were More, Edit plan, Start research, and Try again without Deep Research. A readiness estimate said 'Ready in a few mins'."
+      },
+      {
+        "label": "Generation controls",
+        "details": "After Start research, the input area showed Stop response. A research panel opened with Close panel and Toggle panel state controls."
+      },
+      {
+        "label": "Live progress headings",
+        "details": "Progress text included headings such as 'Establishing Research Frontiers', 'Evaluating Alternative Chemistries', 'Mapping Next Actions', and 'Researching websites...'."
+      },
+      {
+        "label": "Live source chips",
+        "details": "During research, browse-chip links appeared with source domain and title."
+      },
+      {
+        "label": "Completed report status",
+        "details": "The report panel showed 'Completed' and a timestamp of 'May 6, 1:37 AM'."
+      }
+    ],
+    "sources_panel_controls": [
+      {
+        "label": "Contents",
+        "data_test_id": "toc-menu-button",
+        "notes": "Table of contents menu in the completed report panel header."
+      },
+      {
+        "label": "Share & Export",
+        "data_test_id": "export-menu-button",
+        "notes": "Report export/share menu in the completed report panel header."
+      },
+      {
+        "label": "Create",
+        "data_test_id": "canvas-create-task-menu",
+        "notes": "Creation menu in the completed report panel header."
+      },
+      {
+        "label": "Close panel",
+        "data_test_id": "close-button"
+      },
+      {
+        "label": "Sources used in the report",
+        "type": "source group"
+      },
+      {
+        "label": "Sources read but not used in the report",
+        "type": "source group"
+      },
+      {
+        "label": "Source item format",
+        "details": "Source items appeared as browse-chip links with domain and title. URLs were present in the link href. No date was visible on the source chips."
+      },
+      {
+        "label": "Filter controls",
+        "details": "No filter control was visible."
+      },
+      {
+        "label": "Sort controls",
+        "details": "No sort control was visible."
+      },
+      {
+        "label": "Add source",
+        "details": "No add-source or manual source input was visible after completion."
+      },
+      {
+        "label": "Export source list",
+        "details": "No dedicated source-list export/save option was visible."
+      }
+    ],
+    "response_actions": [
+      {
+        "label": "Good response",
+        "data_test_id": "thumb-up-button"
+      },
+      {
+        "label": "Bad response",
+        "data_test_id": "thumb-down-button"
+      },
+      {
+        "label": "Copy",
+        "data_test_id": "copy-button"
+      },
+      {
+        "label": "Show more options",
+        "data_test_id": "more-menu-button"
+      },
+      {
+        "label": "Listen",
+        "type": "text-to-speech action"
+      },
+      {
+        "label": "Share & Export",
+        "data_test_id": "export-menu-button",
+        "observed_menu_options": [
+          "Share",
+          "Export to Docs",
+          "Copy contents"
+        ]
+      },
+      {
+        "label": "Create",
+        "data_test_id": "canvas-create-task-menu"
+      },
+      {
+        "label": "Contents",
+        "data_test_id": "toc-menu-button"
+      },
+      {
+        "label": "Export to Sheets",
+        "type": "table action"
+      },
+      {
+        "label": "Copy table",
+        "data_test_id": "copy-table-button",
+        "type": "table action"
+      },
+      {
+        "label": "Learn More",
+        "type": "inline citation/details control"
+      }
+    ],
+    "notes": "Deep Research produced a plan first and required clicking Start research to begin the actual report. The Sources chooser was opened only for observation and closed without selecting Gmail, Drive, or Chat. Example observed source domains included sciencedaily.com, news.gm.com, pv-magazine.com, batterytechonline.com, carnewschina.com, electrek.co, woodmac.com, formenergy.com, and azocleantech.com."
+  },
+  "guided_learning": {
+    "activation_method": "Activated in a fresh chat via Tools -> Guided learning. A zero-state chip labeled 'Help me learn' was also visible, but the successful observed activation path was the Tools menu.",
+    "activation_ui_changes": [
+      {
+        "label": "Selected Guided learning chip",
+        "details": "Input area showed a 'Guided learning' chip with aria label 'Deselect Guided learning' and auto_stories icon."
+      },
+      {
+        "label": "Learning prompt placeholder",
+        "details": "Prompt placeholder changed to 'What do you want to learn?'."
+      },
+      {
+        "label": "Model mode",
+        "details": "Mode picker remained set to Pro."
+      }
+    ],
+    "response_controls": [
+      {
+        "label": "Show thinking",
+        "data_test_id": "thoughts-header-button",
+        "notes": "Visible after completion."
+      },
+      {
+        "label": "Listen",
+        "type": "text-to-speech action"
+      },
+      {
+        "label": "Show me the visualization",
+        "data_test_id": "mini-app-opt-in-button",
+        "notes": "Interactive visualization opt-in button in the lesson response. Not clicked."
+      },
+      {
+        "label": "Good response",
+        "data_test_id": "thumb-up-button"
+      },
+      {
+        "label": "Bad response",
+        "data_test_id": "thumb-down-button"
+      },
+      {
+        "label": "Copy",
+        "data_test_id": "copy-button"
+      },
+      {
+        "label": "Show more options",
+        "data_test_id": "more-menu-button"
+      },
+      {
+        "label": "Copy prompt",
+        "data_test_id": "prompt-copy-button"
+      },
+      {
+        "label": "Edit prompt",
+        "data_test_id": "prompt-edit-button"
+      },
+      {
+        "label": "Suggested next topics",
+        "type": "ordered list",
+        "items": [
+          "The Light Reactions",
+          "The Calvin Cycle",
+          "Limiting Factors"
+        ],
+        "notes": "Rendered as list text in the observed DOM, not as separate buttons."
+      }
+    ],
+    "notes": "At 10 seconds the response was still generating and showed an 'Answer now' button plus Stop response. After waiting longer, the completed response showed a lesson, a visualization opt-in, and suggested next topics. No quiz widgets, explicit Next step/Continue buttons, progress indicators, I understand controls, comprehension check controls, or difficulty adjustment controls were visible without clicking the visualization opt-in or sending a follow-up."
+  },
+  "unexplored": [
+    "Canvas text format selector dropdown options were not opened separately.",
+    "Canvas Create menu options were recorded visually; none were selected.",
+    "Canvas Print was not clicked.",
+    "Canvas Share and Export to Docs options were not submitted.",
+    "Deep Research Gmail, Drive, and Chat sources were not selected or connected.",
+    "Deep Research Contents and Create menus were not opened after report completion.",
+    "Deep Research Share, Export to Docs, and Copy contents options were only observed in the menu and not executed.",
+    "Guided Learning visualization opt-in was not clicked, so simulator controls were not cataloged.",
+    "Guided Learning response more-options menu was not opened."
+  ]
+}

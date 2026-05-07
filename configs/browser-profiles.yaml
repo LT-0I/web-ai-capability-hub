@@ -1,0 +1,10 @@
+{
+  "profilesRoot": "data/browser-profiles",
+  "defaultProfile": "default",
+  "profiles": [
+    { "name": "chatgpt", "target": "chatgpt", "description": "Dedicated profile for ChatGPT web login state" },
+    { "name": "claude", "target": "claude", "description": "Dedicated profile for Claude web login state" },
+    { "name": "gemini", "target": "gemini", "description": "Dedicated profile for Gemini web login state" },
+    { "name": "research-default", "target": "research-database", "description": "Dedicated profile for IP/institutional research database access" }
+  ]
+}

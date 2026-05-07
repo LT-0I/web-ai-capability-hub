@@ -1,0 +1,62 @@
+{
+  "id": "research.generic-search",
+  "name": "Generic Authorized Research Database Search",
+  "adapter": "research-generic",
+  "description": "Open a database search page, enter a query, submit it, wait for results, and read metadata. Real sites require user authorization and subscription compliance.",
+  "inputs": [
+    {
+      "name": "url",
+      "required": true
+    },
+    {
+      "name": "query",
+      "required": true
+    },
+    {
+      "name": "filters",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "open",
+      "action": "open",
+      "url": "{{url}}"
+    },
+    {
+      "id": "read-search-page",
+      "action": "read"
+    },
+    {
+      "id": "enter-query",
+      "action": "type",
+      "target": {
+        "role": "textbox",
+        "name": "search"
+      },
+      "text": "{{query}}"
+    },
+    {
+      "id": "submit-query",
+      "action": "press",
+      "target": {
+        "role": "textbox",
+        "name": "search"
+      },
+      "key": "Enter",
+      "confirmed": true
+    },
+    {
+      "id": "wait-results",
+      "action": "wait",
+      "waitFor": "text",
+      "text": "results",
+      "timeoutMs": 15000
+    },
+    {
+      "id": "extract-results",
+      "action": "extract",
+      "extract": "snapshot"
+    }
+  ]
+}

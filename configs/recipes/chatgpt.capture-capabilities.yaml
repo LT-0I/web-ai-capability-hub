@@ -1,0 +1,33 @@
+{
+  "id": "chatgpt.capture-capabilities",
+  "name": "Capture ChatGPT Visible Capabilities",
+  "adapter": "chatgpt",
+  "description": "Open or read ChatGPT, then capture a structured site map so a user or code-side AI can plan approved workflows.",
+  "inputs": [
+    {
+      "name": "url",
+      "default": "https://chatgpt.com",
+      "description": "ChatGPT URL"
+    }
+  ],
+  "steps": [
+    {
+      "id": "open",
+      "action": "open",
+      "url": "{{url|https://chatgpt.com}}"
+    },
+    {
+      "id": "read-ui",
+      "action": "read"
+    },
+    {
+      "id": "screenshot",
+      "action": "screenshot"
+    },
+    {
+      "id": "site-map",
+      "action": "capture_site_map",
+      "site": "chatgpt"
+    }
+  ]
+}

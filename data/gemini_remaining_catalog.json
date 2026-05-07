@@ -1,0 +1,218 @@
+{
+  "recorded_at": "2026-05-06T03:43:29.4458628-07:00",
+  "personal_intelligence": {
+    "description": "Get more helpful responses and recommendations based on info about you and your world.",
+    "controls": [
+      "Enables or disables the use of personal Gemini context",
+      "Manage and delete",
+      "Learn more",
+      "Go to Connected Apps section",
+      "Go to Instructions for Gemini section"
+    ]
+  },
+  "import_memory": {
+    "supported_formats": [],
+    "upload_controls": [],
+    "description": "Saved import_memory.cli.json contained only a browser connection log; no import memory main-panel snapshot fields were available."
+  },
+  "activity": {
+    "description": "Activity page main-panel content was not captured in the saved CLI JSON set for this run.",
+    "controls": []
+  },
+  "public_links": {
+    "page_heading": "Your public links",
+    "shared_links_count": 0,
+    "item_controls": [],
+    "bulk_actions": []
+  },
+  "image_creation": {
+    "activation": "Tools -> Create image",
+    "controls": [
+      "Enter a prompt for Gemini",
+      "Open upload file menu",
+      "Tools",
+      "Create image",
+      "Open mode picker",
+      "Microphone",
+      "Send message",
+      "Copy prompt",
+      "Edit",
+      "Show thinking",
+      "Sources",
+      "Good response",
+      "Bad response",
+      "Redo",
+      "Show more options"
+    ],
+    "image_actions": [
+      "Share image",
+      "Copy image",
+      "Download full size image"
+    ]
+  },
+  "video_creation": {
+    "activation": "Tools -> Create video",
+    "controls": [
+      "Enter a prompt for Gemini",
+      "Open upload file menu",
+      "Tools",
+      "Create video",
+      "Open mode picker",
+      "Microphone",
+      "Send message",
+      "Copy prompt",
+      "Edit",
+      "Listen",
+      "Show thinking",
+      "Good response",
+      "Bad response",
+      "Redo",
+      "Show more options",
+      "Download video",
+      "Share video",
+      "Play video",
+      "Mute video",
+      "Seek slider"
+    ]
+  },
+  "music_creation": {
+    "activation": "Tools -> Create music",
+    "controls": [
+      "Enter a prompt for Gemini",
+      "Open upload file menu",
+      "Tools",
+      "Create music",
+      "Open mode picker",
+      "Microphone",
+      "Send message",
+      "Copy prompt",
+      "Edit",
+      "Listen",
+      "Show thinking",
+      "Good response",
+      "Bad response",
+      "Redo",
+      "Show more options",
+      "Download track",
+      "Share track",
+      "Play video",
+      "Mute track",
+      "Seek slider"
+    ]
+  },
+  "temporary_chat": {
+    "activation": "Sidebar Temporary chat button",
+    "banner_text": "Temporary chats don't appear in Recent Chats or Gemini Apps Activity and aren't used to train models or personalize your experience. To help respond to you and keep Gemini safe, temporary chats are saved for 72 hours.",
+    "disabled_features": [
+      "Extensions were not visible in the temporary chat Tools menu",
+      "Gems were not visible in the temporary chat main panel"
+    ],
+    "response_controls": [
+      "Listen",
+      "Redo",
+      "Copy",
+      "Show more options"
+    ]
+  },
+  "canvas_custom_app": {
+    "form_fields": [
+      {
+        "label": "Web page",
+        "input_type": "preset selector"
+      },
+      {
+        "label": "Infographic",
+        "input_type": "preset selector"
+      },
+      {
+        "label": "Quiz",
+        "input_type": "preset selector"
+      },
+      {
+        "label": "Flashcards",
+        "input_type": "preset selector"
+      },
+      {
+        "label": "Audio Overview",
+        "input_type": "preset selector"
+      },
+      {
+        "label": "Describe your own app",
+        "input_type": "textarea",
+        "notes": "Autosizing textarea, observed with one visible row and a four-row maximum."
+      }
+    ],
+    "notes": "The Canvas Create menu exposed preset type selectors and a custom app textarea. Generate and Cancel buttons were not visible without entering text, and no form was submitted."
+  },
+  "canvas_select_and_ask": {
+    "selection_toolbar": [
+      "Ask Gemini",
+      "Length",
+      "Tone",
+      "Suggest"
+    ]
+  },
+  "experiment_gems": [
+    {
+      "name": "Chess champ",
+      "badges": [
+        "Experiment"
+      ],
+      "description": "Play chess with a language model. Make your first move using chess notation to start your match.",
+      "sample_prompts": [
+        "Let's play chess! I start with e4.",
+        "I start with moving my knight to f3. Write a verse after every move.",
+        "My move is d4. Comment on the game as Sherlock Holmes.",
+        "How do I make a move?"
+      ],
+      "action_buttons": [
+        "Open menu for conversation actions.",
+        "Learn more about experimental Gems",
+        "Enter a prompt for Gemini",
+        "Open upload file menu",
+        "Open mode picker",
+        "Microphone",
+        "Send message"
+      ],
+      "detail_captured": true
+    },
+    {
+      "name": "Storybook",
+      "badges": [
+        "Experiment"
+      ],
+      "description": "Create a customized picture book, for either children or adults, given a topic, an optional target audience age, and an optional art style for the images.",
+      "sample_prompts": [],
+      "action_buttons": [],
+      "detail_captured": false
+    }
+  ],
+  "conversation_management": {
+    "hover_actions": [
+      "More options",
+      "Share conversation",
+      "Pin",
+      "Rename",
+      "Delete"
+    ],
+    "search_controls": [
+      {
+        "label": "Search for chats",
+        "type": "text input",
+        "placeholder": "Search for chats"
+      },
+      {
+        "label": "Recent results",
+        "type": "listbox",
+        "notes": "Result rows can show date labels; no filter chips or date range selectors were visible."
+      }
+    ]
+  },
+  "unexplored": [
+    "Import memory page snapshot was missing from the saved CLI JSON.",
+    "Activity page controls were not captured from a CLI JSON in this run.",
+    "Public links item controls were not visible because no public links were listed.",
+    "Canvas custom app Generate and Cancel controls were not visible without entering custom app text; the form was not submitted.",
+    "Only one Experiment Gem detail page was captured."
+  ]
+}

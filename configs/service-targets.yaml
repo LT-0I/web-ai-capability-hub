@@ -1,0 +1,8 @@
+{
+  "targets": [
+    { "id": "chatgpt", "kind": "web-ai", "baseUrl": "https://chatgpt.com/", "profile": "chatgpt" },
+    { "id": "claude", "kind": "web-ai", "baseUrl": "https://claude.ai/", "profile": "claude" },
+    { "id": "gemini", "kind": "web-ai", "baseUrl": "https://gemini.google.com/app", "profile": "gemini" },
+    { "id": "research-default", "kind": "research-database", "profile": "research-default" }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "research-generic",
+  "displayName": "Generic Research Database",
+  "category": "research-database",
+  "hosts": [
+    "example-database.test",
+    "localhost"
+  ],
+  "description": "Generic adapter for authorized research database search pages, advanced search forms, facets, result lists, and export controls.",
+  "capabilityHints": [
+    "simple search",
+    "advanced search",
+    "facets",
+    "filters",
+    "sort",
+    "result metadata",
+    "citation link",
+    "full text link",
+    "export/download"
+  ],
+  "semanticTargets": [
+    {
+      "id": "searchBox",
+      "role": "textbox",
+      "namePatterns": [
+        "search",
+        "query",
+        "keyword"
+      ],
+      "selectorHints": [
+        "input[type='search']",
+        "input[name='q']",
+        "textarea"
+      ]
+    },
+    {
+      "id": "advancedSearch",
+      "role": "link",
+      "namePatterns": [
+        "advanced search"
+      ]
+    },
+    {
+      "id": "filterPanel",
+      "role": "group",
+      "namePatterns": [
+        "filter",
+        "facet",
+        "refine"
+      ]
+    },
+    {
+      "id": "exportButton",
+      "role": "button",
+      "namePatterns": [
+        "export",
+        "download",
+        "save",
+        "citation"
+      ]
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "download",
+      "export",
+      "bulkExport",
+      "fullTextDownload"
+    ],
+    "note": "Database terms, institutional subscription limits, and export limits must be respected."
+  },
+  "notesFile": "configs/adapters/notes/research-generic.md"
+}

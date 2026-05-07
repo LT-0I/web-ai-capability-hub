@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mock Research Database</title>
+</head>
+<body>
+  <header><h1>Mock Research Database</h1></header>
+  <main>
+    <form id="search-form" aria-label="Database search" action="#results" method="get">
+      <label for="q">Search query</label>
+      <input id="q" type="search" name="q" placeholder="Search articles" />
+      <button type="submit">Search</button>
+      <a href="#advanced" role="link">Advanced search</a>
+    </form>
+    <aside aria-label="Filters and facets">
+      <label><input type="checkbox" name="year" value="2024" /> Year 2024</label>
+      <label><input type="checkbox" name="type" value="review" /> Review articles</label>
+      <select name="sort" aria-label="Sort results">
+        <option value="relevance">Relevance</option>
+        <option value="date">Newest first</option>
+      </select>
+    </aside>
+    <section id="results" aria-label="Results">
+      <p id="result-summary">3 results found for mock query.</p>
+      <table id="results-table">
+        <caption>Search results</caption>
+        <tr><th>Title</th><th>Authors</th><th>Year</th><th>Links</th></tr>
+        <tr><td>Machine Learning Review</td><td>A. Smith; B. Lee</td><td>2024</td><td><a href="/citation/1">Citation</a></td></tr>
+        <tr><td>AI Research Workflows</td><td>C. Garcia</td><td>2023</td><td><a href="/fulltext/2">Full text</a></td></tr>
+        <tr><td>Automation and Databases</td><td>D. Kumar</td><td>2022</td><td><a href="/citation/3">Citation</a></td></tr>
+      </table>
+      <a id="export" role="button" href="data:text/csv,title,year%0AMachine%20Learning%20Review,2024" download="mock-export.csv">Export results</a>
+    </section>
+  </main>
+  <script>
+    document.getElementById("search-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = document.getElementById("q").value || "mock query";
+      document.getElementById("result-summary").textContent = `3 results found for ${query}.`;
+      location.hash = "results";
+    });
+  </script>
+</body>
+</html>

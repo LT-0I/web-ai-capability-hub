@@ -1,0 +1,83 @@
+{
+  "id": "cnki",
+  "name": "CNKI",
+  "displayName": "CNKI",
+  "category": "research-database",
+  "hosts": [
+    "cnki.net"
+  ],
+  "base_url": "https://www.cnki.net/",
+  "search_url": "https://www.cnki.net/",
+  "login_mode": "licensed_ip_or_institutional",
+  "ip_login": true,
+  "description": "Institutional CNKI access with a Chinese interface and IP-login controls when required.",
+  "capability_hints": {
+    "search_input": {
+      "selectors": [
+        "textarea",
+        "input#txt_search",
+        "input[type='text']",
+        "input[name='txt_1_sel']"
+      ]
+    },
+    "filter_panel": {
+      "selectors": []
+    },
+    "export_button": {
+      "selectors": []
+    }
+  },
+  "capabilityHints": [
+    "institutional IP access",
+    "Chinese search interface",
+    "advanced search",
+    "filters",
+    "citation export"
+  ],
+  "semanticTargets": [
+    {
+      "id": "searchBox",
+      "role": "textbox",
+      "namePatterns": [
+        "search",
+        "query",
+        "keyword"
+      ],
+      "selectorHints": [
+        "textarea",
+        "input#txt_search",
+        "input[type='text']",
+        "input[name='txt_1_sel']"
+      ]
+    },
+    {
+      "id": "filterPanel",
+      "role": "group",
+      "namePatterns": [
+        "filter",
+        "facet",
+        "refine"
+      ],
+      "selectorHints": []
+    },
+    {
+      "id": "exportButton",
+      "role": "button",
+      "namePatterns": [
+        "export",
+        "download",
+        "citation"
+      ],
+      "selectorHints": []
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "download",
+      "export",
+      "bulkExport",
+      "fullTextDownload"
+    ],
+    "note": "Stop on abnormal download, blacklist, CAPTCHA, or access-denied warnings."
+  }
+}

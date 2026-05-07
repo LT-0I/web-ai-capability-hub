@@ -1,0 +1,59 @@
+{
+  "name": "web-ai-research-automation-hub",
+  "version": "0.2.0",
+  "description": "Local-first managed CDP browser capability database and workflow hub for AI agents, web AI services, and authorized research databases.",
+  "type": "commonjs",
+  "main": "dist/src/index.js",
+  "bin": {
+    "web-ai-research-automation-hub": "dist/src/cli.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "mcp": "node dist/src/cli.js mcp",
+    "browser:start": "node dist/src/cli.js browser:start",
+    "browser:open": "node dist/src/cli.js browser:open",
+    "browser:read": "node dist/src/cli.js browser:read",
+    "browser:screenshot": "node dist/src/cli.js browser:screenshot",
+    "recipe": "node dist/src/cli.js recipe",
+    "snapshot:capture": "node dist/src/cli.js snapshot:capture",
+    "snapshot:diff": "node dist/src/cli.js snapshot:diff",
+    "adapter:list": "node dist/src/cli.js adapter:list",
+    "browser:launch": "node dist/src/cli.js browser:launch",
+    "browser:status": "node dist/src/cli.js browser:status",
+    "capability:init-db": "node dist/src/cli.js capability:init-db",
+    "capability:update": "node dist/src/cli.js capability:update",
+    "capability:query": "node dist/src/cli.js capability:query",
+    "workflow:compile": "node dist/src/cli.js workflow:compile examples/workflows/gemini-image-draft.yaml",
+    "workflow:run": "node dist/src/cli.js workflow:run examples/workflows/gemini-image-draft.yaml --dry-run",
+    "site:registry:import": "node dist/src/cli.js site:registry:import fixtures/site_registry.sample.json",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "keywords": [
+    "browser-automation",
+    "playwright",
+    "mcp",
+    "research",
+    "ai-agents",
+    "local-first"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "commander": "^12.1.0",
+    "pino": "^9.4.0",
+    "playwright": "^1.48.2",
+    "yaml": "^2.5.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.3"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^11.9.1"
+  }
+}

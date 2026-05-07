@@ -1,0 +1,170 @@
+{
+  "recorded_at": "2026-05-06T02:53:34.1872989-07:00",
+  "canvas_create_outputs": {
+    "web_page": {
+      "controls": [
+        "Canvas panel toolbar: More options (toolbar-overflow-trigger)",
+        "Show console (show-console-button, displayed unread)",
+        "Refresh (refresh-button)",
+        "Code/Preview radio toggle buttons",
+        "Share and export canvas (share-button)",
+        "Close panel (close-button)",
+        "Add Gemini features (add-gemini-button)",
+        "Select and ask (select-and-ask-button)",
+        "Preview iframe tabs/buttons: Key Types, Benefits, Challenges"
+      ],
+      "output_type": "Interactive generated web page/app in an embedded live preview iframe with a separate Code/Preview view toggle.",
+      "notes": "Generated title: Renewable Energy Explorer. The preview rendered a polished HTML-style page with cards, charts/canvas graphics, and section tabs. It did not expose the Canvas Create dropdown while viewing the web page output; the source document could be reopened from the related canvas/document entry. Screenshot: data/screenshots/canvas_webpage.png."
+    },
+    "infographic": {
+      "controls": [
+        "Canvas panel toolbar: More options (toolbar-overflow-trigger)",
+        "Show console (show-console-button)",
+        "Refresh (refresh-button)",
+        "Code/Preview radio toggle buttons",
+        "Share and export canvas (share-button)",
+        "Close panel (close-button)",
+        "Add Gemini features (add-gemini-button)",
+        "Select and ask (select-and-ask-button)"
+      ],
+      "output_type": "Interactive generated infographic web app in an embedded preview iframe, not a native static image editor.",
+      "notes": "Generated title: Renewable Energy Infographic. The preview included infographic sections such as Key Types of Renewable Energy, Conceptual Energy Mix, Transformative Benefits, Current Challenges, and Hurdle Intensity Matrix, with chart-like canvas graphics. No separate native SVG/image editing controls were visible. Screenshot: data/screenshots/canvas_infographic.png."
+    },
+    "quiz": {
+      "controls": [
+        "Share Canvas (share-button)",
+        "Close panel (close-button)",
+        "Question progress step buttons 1 through 10",
+        "Progress status display (1 / 10)",
+        "Score container with incorrect and correct counts",
+        "Multiple-choice option buttons",
+        "Show hint button",
+        "Next button",
+        "Explanation panel after selecting an answer"
+      ],
+      "question_format": "Native 10-question multiple-choice quiz with four answer choices per question.",
+      "notes": "Generated title: Renewable Energy Overview Quiz. Selecting an answer immediately revealed correctness and an explanation; there was no separate Submit button on question 1. Previous was not visible on the first question. Screenshot: data/screenshots/canvas_quiz.png."
+    },
+    "flashcards": {
+      "controls": [
+        "Share Canvas (share-button)",
+        "Close panel (close-button)",
+        "Progress step buttons for cards 1 through 25",
+        "Flashcard container click target for flip",
+        "Shuffle button (flashcard-shuffle-button)",
+        "Previous button, disabled on card 1",
+        "Card counter (1 of 25)",
+        "Next button",
+        "Track learning switch"
+      ],
+      "notes": "Generated title: Renewable Energy Flashcards. The first card front showed Renewable Energy; clicking the card flipped to an Answer side with the definition. No separate flip button was visible. Screenshot: data/screenshots/canvas_flashcards.png."
+    },
+    "audio_overview": {
+      "controls": [
+        "Audio track progress seek range",
+        "Playback speed button (cycle-playback-speed-audio-button, default 1x)",
+        "Replay 10 seconds (replay-10-audio-button)",
+        "Play audio (play-audio-button)",
+        "Forward 10 seconds (forward-10-audio-button)",
+        "Audio more options (more-options-audio-button)",
+        "Audio more menu: Download audio",
+        "Audio more menu: Share audio track / Share Conversation",
+        "Response thumbs up/down",
+        "Redo",
+        "Copy",
+        "Response more menu"
+      ],
+      "notes": "Generated a podcast-style Gemini audio overview titled The Physical Reality of Renewable Energy, duration 5:24. During generation the panel showed Generating Audio Overview with a spinner; after completion it showed a player at 0:00 / 5:24. Play was not clicked. Screenshot saved at data/screenshots/canvas_audio.png."
+    }
+  },
+  "deep_research_post_report": {
+    "toc_controls": [
+      "Contents button (toc-menu-button)",
+      "TOC menu with clickable heading buttons / jump links",
+      "Heading: The Current State of Solid-State Battery Technology: A Comprehensive 2026 Analysis of Commercialization, Electrochemical Mechanics, and Market Dynamics",
+      "Heading: Executive Summary",
+      "Heading: Theoretical Foundations and Material Science Paradigms",
+      "Heading: The Micro-Mechanics of Failure: Dendrite Propagation and Interfacial Physics",
+      "Heading: Unraveling the Fracture Mechanism: Max Planck Institute Discoveries",
+      "Heading: Mechanical Mitigation and Pack-Level Engineering Pressures",
+      "Heading: Industrialization: Scaling Production and the Dry Electrode Convergence",
+      "Heading: The Integration of Dry Electrode Coating",
+      "Heading: Economic Trajectories and Capital Market Dynamics",
+      "Heading: Automotive Sector Integration and Strategic Alliances",
+      "Heading: The Asian Vanguard: Rapid Semi-Solid Deployment",
+      "Heading: Western OEM Partnerships and Fleet Testing",
+      "Heading: Consumer Electronics: The Immediate Adoption Frontier",
+      "Heading: The Necessity of Technical Validation: Navigating Industry Vaporware",
+      "Heading: Conclusion and Strategic Outlook",
+      "No collapse/expand controls were visible in the TOC menu"
+    ],
+    "create_menu_options": [
+      "Web page",
+      "Infographic",
+      "Quiz",
+      "Flashcards",
+      "Audio Overview",
+      "Describe your own app"
+    ],
+    "share_export_options": [
+      "Share report",
+      "Export to Docs",
+      "Copy contents"
+    ]
+  },
+  "guided_learning_visualization": {
+    "trigger_button": "Show me the visualization (mini-app-opt-in-button)",
+    "mini_app_controls": [
+      "Embedded visualization iframe / web preview",
+      "Time of Day slider",
+      "Time of Day numeric input",
+      "Global Temp slider",
+      "Global Temp numeric input",
+      "Reset Cycle button",
+      "Canvas-based water-cycle diagram with hover/click stage exploration",
+      "Readouts: PHASE, EVAP RATE, TEMPERATURE, ACTIVE STAGE",
+      "Post-visual feedback buttons: Yes and No"
+    ],
+    "more_options_menu": [
+      "Double-check response",
+      "Listen",
+      "Export to Docs",
+      "Draft in Gmail",
+      "Report legal issue",
+      "Model: 3.1 Pro"
+    ],
+    "notes": "The response displayed the trigger button and then opened a canvas-based mini-app titled The Natural Water Cycle. No DOM-visible play/pause/step buttons, label toggles, or zoom/pan controls were found; diagram interaction appeared to be hover/click hotspots inside the canvas. Screenshot: data/screenshots/guided_learning_viz.png."
+  },
+  "scheduled_actions": {
+    "form_fields": [
+      "Scheduled action dialog (live-prompt-edit-dialog)",
+      "Close button",
+      "Name textarea (scheduled-prompt-name-field), placeholder Example: News digest",
+      "Instructions textarea (prompt-input-field), placeholder Example: Send me a news digest",
+      "Schedule frequency combobox (frequency-unit-control)",
+      "Time of day combobox (time-of-day-control)",
+      "Weekly day combobox (by-day-control), appears when Weekly is selected",
+      "Monthly day combobox (by-month-day-control), appears when Monthly is selected",
+      "Cancel button",
+      "Create button (confirm-button), disabled while required fields are empty"
+    ],
+    "schedule_options": [
+      "Frequency options: Daily, Weekly, Monthly",
+      "Weekly day options: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+      "Monthly day options: Day 1 through Day 31",
+      "Time options: 96 quarter-hour increments from 12:00 AM through 11:45 PM",
+      "Default schedule shown: Daily at 9:00 AM",
+      "Helper text: Your prompt will run within an hour of the selected time"
+    ],
+    "notes": "Scheduled actions were accessible from Settings and help via Scheduled actions and from the scheduled actions manager page via New action. The page also showed templates: News digest, Explorations, What's for dinner?, and Morning motivation. No notification or delivery method control was visible in the empty New Action form. The dialog was canceled without saving."
+  },
+  "unexplored": [
+    "Canvas Create option Describe your own app was visible but not selected.",
+    "Canvas Web page/Infographic Code view internals were not deeply inspected beyond confirming the Code/Preview toggle.",
+    "Quiz later-question navigation, final score summary, and any end-of-quiz review state were not explored.",
+    "Flashcards Track learning behavior was not toggled.",
+    "Audio Overview was not played; playback pause behavior, audible narration content, and speed menu cycle values were not tested.",
+    "Deep Research Create menu options were recorded but not executed from the completed report.",
+    "Scheduled actions templates were recorded but not opened, and no scheduled action was saved."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "gemini",
+  "displayName": "Gemini Web",
+  "category": "web-ai",
+  "hosts": [
+    "gemini.google.com"
+  ],
+  "description": "Adapter template for Google Gemini visible web UI.",
+  "capabilityHints": [
+    "model selector",
+    "prompt composer",
+    "extensions/tools",
+    "upload",
+    "response actions"
+  ],
+  "semanticTargets": [
+    {
+      "id": "promptBox",
+      "role": "textbox",
+      "namePatterns": [
+        "enter a prompt",
+        "prompt",
+        "message"
+      ],
+      "selectorHints": [
+        "textarea",
+        "[contenteditable=true]"
+      ]
+    },
+    {
+      "id": "sendButton",
+      "role": "button",
+      "namePatterns": [
+        "send"
+      ]
+    },
+    {
+      "id": "modelSelector",
+      "role": "button",
+      "namePatterns": [
+        "model",
+        "Gemini"
+      ]
+    },
+    {
+      "id": "upload",
+      "role": "button",
+      "namePatterns": [
+        "upload",
+        "add",
+        "file"
+      ]
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "sendPrompt",
+      "upload",
+      "download"
+    ]
+  },
+  "notesFile": "configs/adapters/notes/gemini.md"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "webai.generic-prompt",
+  "name": "Generic Web AI Prompt with Confirmation",
+  "adapter": "generic-web-ai",
+  "description": "Read a web AI page, type a prompt into a semantic prompt field, and click send only when confirmed.",
+  "inputs": [
+    {
+      "name": "prompt",
+      "required": true
+    },
+    {
+      "name": "url",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "open-optional",
+      "action": "open",
+      "url": "{{url|about:blank}}"
+    },
+    {
+      "id": "read-before",
+      "action": "read"
+    },
+    {
+      "id": "type-prompt",
+      "action": "type",
+      "target": {
+        "role": "textbox",
+        "name": "prompt"
+      },
+      "text": "{{prompt}}",
+      "confirmed": true
+    },
+    {
+      "id": "send",
+      "action": "click",
+      "target": {
+        "role": "button",
+        "name": "send"
+      },
+      "riskyReason": "Sending prompts to a web AI service requires explicit approval.",
+      "confirmed": true
+    },
+    {
+      "id": "read-after",
+      "action": "read"
+    }
+  ]
+}

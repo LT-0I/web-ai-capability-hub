@@ -1,0 +1,827 @@
+{
+  "service_id": "gemini",
+  "profile_alias": "profile-10",
+  "recorded_at": "2026-05-06T08:07:59.322Z",
+  "areas": {
+    "chat_input": {
+      "buttons": [
+        {
+          "label": "Enter a prompt for Gemini",
+          "aria_label": "Enter a prompt for Gemini",
+          "role": "textbox",
+          "placeholder": "Ask Gemini",
+          "notes": "Temporary chat changes the placeholder to \"Ask questions in a temporary chat\"."
+        },
+        {
+          "label": "Open upload file menu",
+          "aria_label": "Open upload file menu",
+          "icon": "add_2",
+          "expanded_label": "Close upload file menu"
+        },
+        {
+          "label": "Tools",
+          "aria_label": "Tools",
+          "icon": "page_info",
+          "opens": "Tool mode menu"
+        },
+        {
+          "label": "Open mode picker",
+          "aria_label": "Open mode picker",
+          "icon": "keyboard_arrow_down",
+          "visible_text_examples": [
+            "Pro",
+            "Fast"
+          ]
+        },
+        {
+          "label": "Microphone",
+          "aria_label": "Microphone",
+          "icon": "mic",
+          "notes": "Visible. Not clicked because it can trigger a browser or OS microphone permission prompt."
+        },
+        {
+          "label": "Send message",
+          "aria_label": "Send message",
+          "icon": "send",
+          "disabled_when_input_empty": true,
+          "during_generation_label": "Stop response"
+        },
+        {
+          "label": "Create image",
+          "aria_label": "\ud83d\uddbc\ufe0f Create image, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Create music",
+          "aria_label": "\ud83c\udfb8 Create music, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Create video",
+          "aria_label": "Create video, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Help me learn",
+          "aria_label": "Help me learn, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Write anything",
+          "aria_label": "Write anything, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Boost my day",
+          "aria_label": "Boost my day, button, tap to use tool",
+          "type": "zero-state prompt/tool chip"
+        },
+        {
+          "label": "Hidden local image upload trigger",
+          "data_test_id": "hidden-local-image-upload-button",
+          "notes": "DOM-visible internal upload trigger with aria-hidden=true."
+        },
+        {
+          "label": "Hidden local file upload trigger",
+          "data_test_id": "hidden-local-file-upload-button",
+          "notes": "DOM-visible internal upload trigger with aria-hidden=true."
+        }
+      ],
+      "attachment_menu_items": [
+        {
+          "label": "Upload files",
+          "aria_label": "Upload files. Documents, data, code files",
+          "icon": "attach_file",
+          "opens": "file upload dialog"
+        },
+        {
+          "label": "Add from Drive",
+          "aria_label": "Add from Drive. Sheets, Docs, Slides",
+          "icon": "drive",
+          "opens": "Drive picker"
+        },
+        {
+          "label": "Photos",
+          "aria_label": "Google Photos",
+          "icon": "photos",
+          "opens": "Google Photos picker"
+        },
+        {
+          "label": "Import code",
+          "icon": "code",
+          "opens": "Import code dialog"
+        }
+      ],
+      "model_options": [
+        {
+          "label": "Fast",
+          "description": "Answers quickly",
+          "data_test_id": "bard-mode-option-fast"
+        },
+        {
+          "label": "Thinking",
+          "description": "Solves complex problems",
+          "data_test_id": "bard-mode-option-thinking"
+        },
+        {
+          "label": "Pro",
+          "description": "Advanced math and code with 3.1 Pro",
+          "data_test_id": "bard-mode-option-pro",
+          "selected_when_recorded": true
+        },
+        {
+          "label": "Upgrade",
+          "notes": "Upsell item shown in the mode picker."
+        }
+      ],
+      "response_actions": [
+        {
+          "label": "Show thinking",
+          "data_test_id": "thoughts-header-button",
+          "notes": "During generation this area showed a thought label and an \"Answer now\" button."
+        },
+        {
+          "label": "Listen",
+          "aria_label": "Listen",
+          "icon": "volume_up"
+        },
+        {
+          "label": "Good response",
+          "aria_label": "Good response",
+          "data_test_id": "thumb-up-button",
+          "icon": "thumb_up"
+        },
+        {
+          "label": "Bad response",
+          "aria_label": "Bad response",
+          "data_test_id": "thumb-down-button",
+          "icon": "thumb_down"
+        },
+        {
+          "label": "Redo",
+          "aria_label": "Redo",
+          "data_test_id": "regenerate-button",
+          "icon": "refresh"
+        },
+        {
+          "label": "Share & export",
+          "aria_label": "Share & export",
+          "data_test_id": "share-and-export-menu-button",
+          "icon": "share"
+        },
+        {
+          "label": "Copy",
+          "aria_label": "Copy",
+          "data_test_id": "copy-button",
+          "icon": "content_copy"
+        },
+        {
+          "label": "Show more options",
+          "aria_label": "Show more options",
+          "data_test_id": "more-menu-button",
+          "icon": "more_vert"
+        },
+        {
+          "label": "Copy prompt",
+          "aria_label": "Copy prompt",
+          "data_test_id": "prompt-copy-button",
+          "icon": "content_copy"
+        },
+        {
+          "label": "Edit prompt",
+          "aria_label": "Edit",
+          "data_test_id": "prompt-edit-button",
+          "icon": "edit"
+        },
+        {
+          "label": "Share conversation",
+          "aria_label": "Share conversation",
+          "data_test_id": "share-button",
+          "icon": "share",
+          "notes": "Recorded as visible but not opened where it could create or alter sharing."
+        }
+      ],
+      "response_overflow_menu": [
+        "Double-check response",
+        "Listen",
+        "Export to Docs",
+        "Draft in Gmail",
+        "Report legal issue",
+        "Model: 3.1 Pro"
+      ],
+      "share_export_menu": [
+        "Share conversation",
+        "Export to Docs",
+        "Draft in Gmail"
+      ],
+      "conversation_overflow_menu": [
+        "Pin",
+        "Rename",
+        "Delete"
+      ],
+      "import_code_dialog": {
+        "title": "Import code",
+        "fields": [
+          {
+            "label": "GitHub repository or branch URL",
+            "aria_label": "GitHub repository or branch URL",
+            "placeholder": "e.g: https://github.com/user/repo",
+            "data_test_id": "repo-url-input"
+          }
+        ],
+        "buttons": [
+          "Cancel code import",
+          "Import",
+          "Upload folder"
+        ],
+        "notice": "Clicking Import will enable GitHub."
+      },
+      "voice_input": {
+        "visible": true,
+        "label": "Microphone",
+        "aria_label": "Microphone",
+        "clicked": false
+      }
+    },
+    "sidebar": {
+      "nav_items": [
+        {
+          "label": "Main menu",
+          "aria_label": "Main menu",
+          "data_test_id": "side-nav-menu-button"
+        },
+        {
+          "label": "New chat",
+          "aria_label": "New chat",
+          "href": "/app"
+        },
+        {
+          "label": "Temporary chat",
+          "aria_label": "Temporary chat",
+          "data_test_id": "temp-chat-button"
+        },
+        {
+          "label": "Search for chats",
+          "opens": "/search",
+          "controls": [
+            "Back button",
+            "Search for chats input",
+            "Recent chat list"
+          ]
+        },
+        {
+          "label": "My stuff",
+          "href": "mystuff"
+        },
+        {
+          "label": "Notebooks",
+          "href": "/notebooks/view"
+        },
+        {
+          "label": "New notebook",
+          "notes": "Opens the Notebooks intro page when notebooks have not been initialized."
+        },
+        {
+          "label": "Gems",
+          "href": "/gems/view"
+        },
+        {
+          "label": "Chats",
+          "notes": "Recent conversation list with per-conversation More options buttons."
+        },
+        {
+          "label": "Settings & help",
+          "data_test_id": "mobile-settings-and-help-control"
+        }
+      ],
+      "sections": [
+        "Search/navigation",
+        "My stuff",
+        "Notebooks",
+        "Gems",
+        "Chats",
+        "Settings & help"
+      ],
+      "conversation_item_actions": [
+        "Share conversation",
+        "Pin",
+        "Rename",
+        "Delete"
+      ]
+    },
+    "gems": {
+      "categories": [
+        {
+          "label": "Premade by Google",
+          "items": [
+            "Chess champ",
+            "Storybook",
+            "Brainstormer",
+            "Career guide",
+            "Coding partner",
+            "Learning coach",
+            "Productivity planner",
+            "Writing editor"
+          ]
+        },
+        {
+          "label": "Experiment",
+          "notes": "Badge shown on Chess champ and Storybook."
+        },
+        {
+          "label": "My Gems",
+          "items_visible": [
+            "New Gem"
+          ]
+        }
+      ],
+      "premade_detail_fields": [
+        {
+          "gem": "Coding partner",
+          "creator": "LearnLM",
+          "description": "Level up your coding skills. Get the help you need to build your projects and learn as you go.",
+          "entry_point": "Start a new conversation with Gem: Coding partner",
+          "url": "/gem/coding-partner",
+          "sample_prompts": [
+            "Check my coding homework.",
+            "Help me update my website tracking code.",
+            "Build a simple app for my business.",
+            "How do I loop through a list of items in Python?"
+          ],
+          "visible_controls": [
+            "Prompt textbox",
+            "Open upload file menu",
+            "Tools",
+            "Open mode picker",
+            "Microphone",
+            "Send message"
+          ],
+          "premade_card_actions": [
+            "Pin",
+            "Make a copy"
+          ]
+        }
+      ],
+      "create_form_fields": [
+        {
+          "label": "Name",
+          "aria_label": "Input for a Gem name",
+          "placeholder": "Give your Gem a name"
+        },
+        {
+          "label": "Description",
+          "placeholder": "Describe your Gem and explain what it does",
+          "data_test_id": "description-input-field"
+        },
+        {
+          "label": "Instructions",
+          "aria_label": "Input for the actual Gem instruction",
+          "placeholder": "Example: You are a horticulturist with a background in natural lawns and native plants, and you help people plan low water gardens. Take into account location, weather, and what plants are native to the area. You are knowledgeable, casual, and friendly.",
+          "data_test_id": "instruction-rich-input-field"
+        },
+        {
+          "label": "Default tool",
+          "current_value": "No default tool"
+        },
+        {
+          "label": "Knowledge",
+          "control": "Open upload file menu for Gem knowledge section"
+        },
+        {
+          "label": "Disable Knowledge Citations",
+          "type": "checkbox",
+          "disabled_when_no_knowledge": true
+        }
+      ],
+      "create_form_controls": [
+        "Cancel edit or creation",
+        "Save Gem",
+        "Editor tab",
+        "Preview tab",
+        "Information about instructions",
+        "Undo instruction change",
+        "Redo instruction change",
+        "Power up",
+        "Information about default tool",
+        "Information about knowledge",
+        "More information on disabling knowledge citations",
+        "Got it",
+        "Learn more"
+      ],
+      "item_actions": [
+        {
+          "scope": "Premade Gem card",
+          "actions": [
+            "Pin",
+            "Make a copy"
+          ]
+        },
+        {
+          "scope": "My Gems",
+          "actions": [],
+          "notes": "No user-created Gems were visible during this pass."
+        }
+      ],
+      "notices": [
+        "Build AI apps, a new kind of Gem from Google Labs",
+        "Notice about shared Gems",
+        "Knowledge information: shared Gems may expose attached file titles; file contents require separate sharing prompt."
+      ]
+    },
+    "extensions": [
+      {
+        "section": "From Google",
+        "name": "Google Workspace",
+        "description": "Get personalized insights from your Workspace apps, and ask for info about your content.",
+        "state": "disabled",
+        "sub_settings": [
+          "Gmail",
+          "Google Calendar",
+          "Google Docs",
+          "Google Drive",
+          "Google Keep",
+          "Google Tasks"
+        ]
+      },
+      {
+        "section": "From Google",
+        "name": "Search services",
+        "description": "Get personalized insights using saved data from services like Search, Maps, Shopping, News, Google Flights and Hotels; public Search data can still be used when disconnected.",
+        "state": "disabled",
+        "example_prompt": "Show me hidden patterns in my Google searches"
+      },
+      {
+        "section": "From Google",
+        "name": "YouTube",
+        "description": "Get personalized insights based on YouTube data such as video and music recommendations; public YouTube info remains available when disconnected.",
+        "state": "disabled",
+        "example_prompt": "Recommend a film based on my YouTube history"
+      },
+      {
+        "section": "From Google",
+        "name": "YouTube Music",
+        "description": "Play, search, and discover songs, artists, playlists and more.",
+        "state": "disabled",
+        "example_prompt": "Play songs where Beyonce and Jay-Z feature together."
+      },
+      {
+        "section": "Other",
+        "name": "GitHub",
+        "description": "Import code from public or private repositories, and ask questions about it.",
+        "state": "disabled",
+        "example_prompt": "What external libraries are used in the attached code?"
+      },
+      {
+        "section": "Other",
+        "name": "OpenStax",
+        "description": "Retrieves passages from openly licensed textbooks from OpenStax.",
+        "state": "enabled",
+        "example_prompt": "@OpenStax definition of a Lewis acid"
+      },
+      {
+        "section": "Other",
+        "name": "SynthID",
+        "description": "Tool to verify if media are made with Google AI by detecting the SynthID watermark.",
+        "state": "enabled"
+      }
+    ],
+    "settings": {
+      "categories": [
+        "Activity",
+        "Personal Intelligence",
+        "Import memory to Gemini",
+        "Scheduled actions",
+        "Your public links",
+        "Theme",
+        "Manage subscription",
+        "Upgrade to Google AI Ultra",
+        "NotebookLM",
+        "Send feedback",
+        "Help",
+        "United States / Update location"
+      ],
+      "safe_to_modify": [
+        {
+          "label": "Theme",
+          "options": [
+            "System",
+            "Light",
+            "Dark"
+          ],
+          "notes": "Read-only observation; no theme option was selected."
+        },
+        {
+          "label": "Mode picker",
+          "options": [
+            "Fast",
+            "Thinking",
+            "Pro"
+          ]
+        },
+        {
+          "label": "Prompt tool modes",
+          "options": [
+            "Images",
+            "Videos",
+            "Music",
+            "Canvas",
+            "Deep research",
+            "Guided learning"
+          ]
+        }
+      ],
+      "account_level_skip": [
+        "Account avatar/name/email/profile picture",
+        "Activity / Keep Activity",
+        "Personal Intelligence settings",
+        "Import memory to Gemini",
+        "Your public links",
+        "Manage subscription",
+        "Upgrade to Google AI Ultra",
+        "Gemini Apps Privacy Hub / Privacy",
+        "Update location",
+        "Connected Apps switches were recorded but not changed",
+        "Personal Intelligence switch in Tools menu was recorded but not changed"
+      ]
+    },
+    "advanced_features": [
+      {
+        "name": "Images",
+        "entry_points": [
+          "Create image chip",
+          "Tools > Images"
+        ],
+        "description_observed": "Pick a style for your image",
+        "controls": [
+          "Deselect Create image chip",
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      },
+      {
+        "name": "Videos",
+        "entry_points": [
+          "Create video chip",
+          "Tools > Videos"
+        ],
+        "description_observed": "Pick a template to create a video",
+        "controls": [
+          "Deselect Create video chip",
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      },
+      {
+        "name": "Music",
+        "entry_points": [
+          "Create music chip",
+          "Tools > Music"
+        ],
+        "description_observed": "Pick a track to remix",
+        "controls": [
+          "Deselect Create music chip",
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      },
+      {
+        "name": "Canvas",
+        "entry_points": [
+          "Tools > Canvas"
+        ],
+        "description_observed": "Canvas composer mode",
+        "controls": [
+          "Deselect Canvas chip",
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      },
+      {
+        "name": "Deep research",
+        "entry_points": [
+          "Tools > Deep research"
+        ],
+        "description_observed": "Deep research composer mode with selectable sources and file input.",
+        "controls": [
+          "Deselect Deep research chip",
+          "Sources dropdown",
+          "Files",
+          "Prompt textbox",
+          "Upload menu",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ],
+        "sources_menu": [
+          {
+            "label": "Search",
+            "state": "selected"
+          },
+          {
+            "label": "Gmail",
+            "state": "not selected"
+          },
+          {
+            "label": "Drive",
+            "state": "not selected"
+          },
+          {
+            "label": "Chat",
+            "state": "not selected"
+          },
+          {
+            "label": "Done",
+            "type": "button"
+          }
+        ]
+      },
+      {
+        "name": "Guided learning",
+        "entry_points": [
+          "Tools > Guided learning"
+        ],
+        "description_observed": "Guided learning composer mode",
+        "controls": [
+          "Deselect Guided learning chip",
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      },
+      {
+        "name": "Personal Intelligence",
+        "entry_points": [
+          "Tools menu"
+        ],
+        "description_observed": "Personalize chat when helpful",
+        "state": "enabled",
+        "notes": "Privacy-adjacent switch was not toggled."
+      },
+      {
+        "name": "Temporary chat",
+        "entry_points": [
+          "Sidebar Temporary chat button"
+        ],
+        "description_observed": "Composer placeholder changes to \"Ask questions in a temporary chat\".",
+        "controls": [
+          "Prompt textbox",
+          "Upload menu",
+          "Tools",
+          "Mode picker",
+          "Microphone",
+          "Send"
+        ]
+      }
+    ],
+    "other_sections": [
+      {
+        "name": "Search for chats",
+        "url": "/search",
+        "features": [
+          "Search input with aria-label \"Search for chats\"",
+          "Back button",
+          "Recent chat groups",
+          "Conversation More options buttons"
+        ]
+      },
+      {
+        "name": "My stuff",
+        "url": "/mystuff",
+        "features": [
+          "Media section",
+          "Preview or open media item",
+          "Lightbox dialog"
+        ],
+        "lightbox_controls": [
+          "Close",
+          "Share image",
+          "Copy image",
+          "Download full size image",
+          "Go to chat"
+        ],
+        "notes": "Sample lightbox action buttons were disabled."
+      },
+      {
+        "name": "Notebooks",
+        "url": "/notebooks/view",
+        "features": [
+          "Introducing notebooks",
+          "Get started",
+          "Group chats by topic",
+          "Upload up to 300 sources",
+          "Set custom instructions",
+          "Learn more"
+        ],
+        "privacy_links_visible": [
+          "Keep Activity",
+          "Gemini Apps Privacy Notice"
+        ],
+        "notes": "Notebook creation was not completed."
+      },
+      {
+        "name": "Scheduled actions",
+        "url": "/scheduled",
+        "features": [
+          "Scheduled actions manager",
+          "Templates",
+          "Show more / Show less",
+          "Template add buttons",
+          "My actions",
+          "New action"
+        ],
+        "templates_visible": [
+          "News digest",
+          "Explorations",
+          "What's for dinner?",
+          "Morning motivation",
+          "Joke of the day",
+          "Writing inspo",
+          "On this day"
+        ],
+        "new_action_form": {
+          "fields": [
+            {
+              "label": "Name",
+              "aria_label": "Text area for scheduled action name",
+              "placeholder": "Example: News digest"
+            },
+            {
+              "label": "Instructions",
+              "aria_label": "Text area for instructions of a scheduled action",
+              "placeholder": "Example: Send me a news digest"
+            },
+            {
+              "label": "Schedule",
+              "default": "Daily"
+            },
+            {
+              "label": "Time",
+              "default": "9:00 AM"
+            }
+          ],
+          "buttons": [
+            "Close",
+            "Cancel",
+            "Create"
+          ],
+          "notes": "Create was disabled on the empty form; no scheduled action was created."
+        }
+      },
+      {
+        "name": "Help",
+        "features": [
+          "Help Center",
+          "Privacy"
+        ],
+        "notes": "Privacy link was not opened."
+      },
+      {
+        "name": "Theme",
+        "features": [
+          "System",
+          "Light",
+          "Dark"
+        ]
+      },
+      {
+        "name": "NotebookLM",
+        "type": "external link",
+        "notes": "Visible in Settings & help; not opened."
+      },
+      {
+        "name": "Send feedback",
+        "notes": "Visible in Settings & help; not opened because it can transmit feedback."
+      }
+    ]
+  },
+  "unexplored": [
+    "Microphone button was visible but not clicked because it can trigger a microphone permission prompt.",
+    "Account avatar, account name, account email, and profile picture were not clicked or recorded.",
+    "Activity / Keep Activity, Personal Intelligence settings, Import memory, public links, privacy hub, and location update were not opened due account/privacy/data-sharing boundaries.",
+    "Manage subscription and Upgrade to Google AI Ultra were not opened due billing/payment boundaries.",
+    "Share conversation/public-link creation was not opened beyond non-mutating menus due sharing-permission boundaries.",
+    "Connected Apps and Personal Intelligence switches were not toggled.",
+    "File/Drive/Photos pickers and upload-folder controls were not completed because they require selecting local or account files.",
+    "Notebook, Gem, and Scheduled action creation forms were opened only for field discovery; nothing was saved or submitted.",
+    "Help Center, Privacy, Learn more, and external NotebookLM links were recorded but not opened."
+  ]
+}

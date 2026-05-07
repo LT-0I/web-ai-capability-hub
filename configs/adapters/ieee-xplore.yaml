@@ -1,0 +1,78 @@
+{
+  "id": "ieee-xplore",
+  "name": "IEEE Xplore",
+  "displayName": "IEEE Xplore",
+  "category": "research-database",
+  "hosts": [
+    "ieeexplore.ieee.org"
+  ],
+  "base_url": "https://ieeexplore.ieee.org/",
+  "search_url": "https://ieeexplore.ieee.org/search/searchresult.jsp?queryText={query}",
+  "login_mode": "licensed_ip_or_institutional",
+  "ip_login": true,
+  "description": "Institutional IEEE Xplore access with search and official citation/export tools.",
+  "capability_hints": {
+    "search_input": {
+      "selectors": [
+        "input[type='text']",
+        "input[type='search']"
+      ]
+    },
+    "filter_panel": {
+      "selectors": []
+    },
+    "export_button": {
+      "selectors": []
+    }
+  },
+  "capabilityHints": [
+    "institutional access",
+    "document search",
+    "filters",
+    "citation export"
+  ],
+  "semanticTargets": [
+    {
+      "id": "searchBox",
+      "role": "textbox",
+      "namePatterns": [
+        "search",
+        "query",
+        "keyword"
+      ],
+      "selectorHints": [
+        "input[type='text']",
+        "input[type='search']"
+      ]
+    },
+    {
+      "id": "filterPanel",
+      "role": "group",
+      "namePatterns": [
+        "filter",
+        "facet",
+        "refine"
+      ],
+      "selectorHints": []
+    },
+    {
+      "id": "exportButton",
+      "role": "button",
+      "namePatterns": [
+        "export",
+        "download",
+        "citation"
+      ],
+      "selectorHints": []
+    }
+  ],
+  "confirmationPolicy": {
+    "requireFor": [
+      "download",
+      "export",
+      "bulkExport",
+      "fullTextDownload"
+    ],
+    "note": "Use IEEE Xplore within subscribed institutional access and official export limits."
+  }
+}

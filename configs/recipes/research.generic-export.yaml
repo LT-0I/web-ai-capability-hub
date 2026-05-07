@@ -1,0 +1,37 @@
+{
+  "id": "research.generic-export",
+  "name": "Generic Research Database Export Through Visible Controls",
+  "adapter": "research-generic",
+  "description": "Find and trigger a visible export/download control. Requires confirmation because exports may contain paid or licensed content.",
+  "inputs": [
+    {
+      "name": "url",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "open-optional",
+      "action": "open",
+      "url": "{{url|about:blank}}"
+    },
+    {
+      "id": "read-controls",
+      "action": "read"
+    },
+    {
+      "id": "download-export",
+      "action": "download",
+      "target": {
+        "role": "download",
+        "name": "export"
+      },
+      "riskyReason": "Research database export/download requires authorization and compliance with export limits.",
+      "confirmed": true
+    },
+    {
+      "id": "read-after",
+      "action": "read"
+    }
+  ]
+}
