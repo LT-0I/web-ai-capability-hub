@@ -14,6 +14,10 @@ dist/
 # Data policy: ignore runtime, binary, credential-bearing, regenerated, and bulky artifacts by default.
 data/*
 !data/
+!data/claude_*.json
+!data/chatgpt_*.json
+!data/gemini_*.json
+!data/locale_diff_report.json
 
 # Tracked curated Gemini/catalog assets
 !data/gemini_full_catalog.json
@@ -38,3 +42,10 @@ data/site-maps/
 git-store/
 gitdb/
 .xdg/
+data/artifacts/
+data/live_snapshots/
+data/capability-hub.sqlite-journal
+data/test-downloads/
+data/doc_fetch/
+.omc/
+.DS_Store

@@ -14,6 +14,21 @@ A local-first TypeScript package for cataloging, querying, and executing web AI 
 
 The package is designed for personal/local development and authorized research workflows. It does **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license restrictions, or service terms. Users authenticate manually in a normal visible browser profile; this project reuses that profile through Chrome DevTools Protocol (CDP) without exporting cookies or credentials.
 
+### v3.2 NoeticBraid first-phase scope (recorded 2026-05-12, δ demo day-0, Part 2.C #7)
+
+For NoeticBraid first-phase MUP (per `PROJECT_DEFINITION_v3.2.md` §5.2 / §10.4 and Codex II audit Part 2.C #7 + Part 5 #4), only one capability of this hub is in first-phase scope:
+
+- ✅ **4-end basic health-check** for Claude Code CLI / Codex CLI / Gemini CLI / Gemini Web (this is the reference implementation that SDD-D2-03 capability real health-check at `noeticbraid/packages/noeticbraid-backend/.../capability_registry.py` consumes — commit `f06b044`).
+
+The following hub features are **out of NoeticBraid first-phase scope** (paused / deferred to phase 2 or later):
+
+- ❌ Institutional research databases (CNKI / Web of Science / PubMed / Scopus / IEEE Xplore) — violates v3.2 §4 "External Reference Pool only stores AI meta-knowledge, not domain knowledge" (line 110-112).
+- ❌ Workflow executor / scheduled jobs — first phase only allows manual triggers (v3.2 §10.4 cron deferred).
+- ❌ ChatGPT Web adapter / Claude Web adapter — first MVP end set is Claude Code CLI / Codex CLI / Gemini CLI / Gemini Web only (v3.2 §5.2); ChatGPT Pro is on hold.
+- ❌ `WAH_AUTO_CONFIRM` automatic-confirmation flag for risky actions — first phase requires manual confirmation for any send / download / export / delete / share / publish / pay / account-change action (v3.2 §7.2 user-subject red line).
+
+These features remain in this hub repo for reference and future-phase work, but **must not** be wired into NoeticBraid first-phase code paths.
+
 ## Architecture
 
 ### Capability database
@@ -30,6 +45,10 @@ The package is designed for personal/local development and authorized research w
 - Launches or reuses project-managed persistent profiles under `data/browser-profiles/<profile>`.
 - Reads pages as structured snapshots: text, elements, forms, tables, lists, iframes, selector candidates, and optional screenshots/accessibility details.
 - Tracks tabs through a registry for parallel automation and multi-task workflows.
+
+### Lite snapshot mode
+
+`browser:read`, `browser:screenshot`, `capability:update`, and the snapshot capture path accept an opt-in `--mode=lite` flag (e.g. `node dist/src/cli.js browser:read --tab-id main --mode=lite --json`) that drops non-interactive text, accessibility tree, empty/default fields, and the screenshot payload. Reduces output bytes by ~76% on typical web AI landing pages with no loss of interactive element labels. The default mode is unchanged — lite is opt-in.
 
 ### MCP server
 
@@ -95,22 +114,33 @@ node dist/src/cli.js --help
 
 ### Browser commands
 
+- `browser:click --tab-id <id> --selector <sel> [--expect-download] [--ms <ms>] [--json]` — click an element; optionally capture a download triggered by the click
+- `browser:close --profile <name> --mode disconnect|close-process|leave-open [--json]` — disconnect from, preserve, or close a managed browser process.
+- `browser:download-url --url <url> [--filename <name>] [--tab-id <id>] [--json]` — fetch a direct URL through the tab's request context and save under `data/downloads/`
+- `browser:downloads [--profile <name>] [--limit <n>] [--json]` — list downloads tracked by the project's download manager
+- `browser:drag --selector <sel> [--from-offset x,y] [--to-offset x,y] [--from x,y] [--to x,y] [--steps <n>] [--hold-ms <ms>] [--json]` — real mouse-drag (mousedown→move→mouseup) for selection-triggered toolbars
+- `browser:hover --selector <sel> [--ms <ms>] [--json]` — hover over an element to surface tooltips and hover-revealed controls
 - `browser:launch --profile <name> [--url <url>] [--cdp-port <port>] [--json]` — launch or reuse a visible managed browser profile.
 - `browser:open <url> [--tab-id <id>] [--json]` — open a URL in the active browser/session or registered tab.
-- `browser:read [--url <url>] [--tab-id <id>] [--json]` — capture a structured snapshot of the active page.
-- `browser:screenshot [--url <url>] [--tab-id <id>] [--json]` — capture a page snapshot with screenshot output.
-- `browser:status --profile <name> [--json]` — inspect managed browser executable/profile/CDP state.
 - `browser:pages --profile <name> [--json]` — list browser pages/tabs visible through the managed CDP connection.
-- `browser:tab:alloc --profile <name> --url <url> --tab-id <id> [--json]` — allocate a named tab for parallel work.
-- `browser:tab:list --profile <name> [--json]` — list registered tab sessions.
-- `browser:tab:free --tab-id <id> [--json]` — release a registered tab.
-- `browser:close --profile <name> --mode disconnect|close-process|leave-open [--json]` — disconnect from, preserve, or close a managed browser process.
+- `browser:press --tab-id <id> --selector <sel> --key <key> [--json]` — press a keyboard key inside an element
 - `browser:profiles [--json]` — list stored profile metadata.
+- `browser:read [--url <url>] [--tab-id <id>] [--mode full|lite] [--json]` — capture a structured snapshot of the active page.
+- `browser:screenshot [--url <url>] [--tab-id <id>] [--mode full|lite] [--json]` — capture a page snapshot with screenshot output.
+- `browser:select --tab-id <id> --selector <sel> --value <value> [--json]` — choose a value in a `<select>`
+- `browser:select-text --selector <sel> [--start <int>] [--end <int>] [--json]` — programmatically select text inside an element via DOM Range API
+- `browser:status --profile <name> [--json]` — inspect managed browser executable/profile/CDP state.
+- `browser:tab:alloc --profile <name> --url <url> --tab-id <id> [--json]` — allocate a named tab for parallel work.
+- `browser:tab:free --tab-id <id> [--json]` — release a registered tab.
+- `browser:tab:list --profile <name> [--json]` — list registered tab sessions.
+- `browser:type --tab-id <id> --selector <sel> --text <text> [--json]` — type text into an element
+- `browser:upload --tab-id <id> --selector <sel> --file <path> [--file <path> ...] [--json]` — upload one or more files to an `<input type="file">`
+- `browser:wait --tab-id <id> [--selector <sel>] [--ms <ms>] [--state visible|hidden|attached|detached] [--json]` — wait for selector state or time
 
 ### Capability commands
 
 - `capability:init-db [--json]` — initialize the SQLite/JSON capability database.
-- `capability:update --target <id> --profile <name> [--kind web-ai|research-database] [--fixture <html>] [--tab-id <id>] [--json]` — discover capabilities from a live page or fixture and store them.
+- `capability:update --target <id> --profile <name> [--kind web-ai|research-database] [--fixture <html>] [--tab-id <id>] [--mode full|lite] [--json]` — discover capabilities from a live page or fixture and store them.
 - `capability:query --target <id> --text <query> [--category <category>] [--limit <n>] [--json]` — search capability records.
 - `capability:import <file.json> [--json]` — import capability database JSON.
 - `capability:export --target <id> --out <path> [--json]` — export database records, optionally filtered by target.
@@ -170,25 +200,38 @@ MCP resources include:
 - `browser-profiles://list`
 - `site-registry://sites`
 
-## Gemini capability database
+## Capability catalogs
 
-This repository includes a pre-cataloged Gemini capability set for migration and query workflows:
+This repository includes pre-cataloged capability sets for Gemini, Claude, and ChatGPT migration and query workflows. The catalogs are project deliverables and reproducibility anchors, even when they are too large for convenient day-to-day diffs.
+
+### Gemini
 
 - 612 Gemini capabilities are pre-cataloged.
 - 603 capabilities were manually explored across Gemini UI areas such as canvas, image generation, video generation, audio, Deep Research, guided learning, Gems, personalization, sharing/export, and related workflows.
 - 9 DOM-discovered capabilities include selector-backed records for automation and health checking.
 - Source: T6-T9 deep exploration sessions, with later T30 validation artifacts.
 
-Tracked catalog files:
+### Claude and ChatGPT
 
-- `data/gemini_full_catalog.json`
-- `data/gemini_canvas_deepresearch_catalog.json`
-- `data/gemini_unexplored_catalog.json`
-- `data/gemini_remaining_catalog.json`
-- `data/gemini_manual_capabilities.json`
+Claude and ChatGPT catalogs follow the same deliverable pattern with locale-paired JSON files for feature inventory, live feature tests, full/deep/remaining/unexplored catalogs, manual capability exports, and verification reports. Claude and ChatGPT keep parallel English-locale variants in `*.en.json`; ChatGPT's base `*.json` files are Chinese-locale captures, while Claude's base `*.json` files are English captures.
+
+Tracked catalog files include:
+
+- `data/gemini_*.json`
+- `data/claude_*.json`
+- `data/chatgpt_*.json`
+- `data/locale_diff_report.json`
 - `data/t30_article.txt`
 
 Ignored regenerated/runtime files include SQLite databases, browser profiles, screenshots, downloads, logs, site maps, tab runtime state, and other bulky data artifacts.
+
+If you do not need local catalog history while working on code, you can ask Git to ignore catalog working-tree changes locally without untracking them for everyone else:
+
+```bash
+git update-index --skip-worktree data/*.json
+```
+
+Use `git update-index --no-skip-worktree data/*.json` before intentionally refreshing catalog deliverables.
 
 ## Linux setup
 
