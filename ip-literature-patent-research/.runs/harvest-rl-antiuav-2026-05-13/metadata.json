@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-05-13T15:54:53.750854+00:00",
+  "topic": "强化学习在反无人机系统中的应用 / Reinforcement Learning in Counter-UAV Systems",
+  "parent_runs": [
+    "nuaa-2026-05-13-round2-headed",
+    "nuaa-2026-05-13-round3-exports",
+    "nuaa-2026-05-13-round4-reclass",
+    "nuaa-2026-05-13-round5-newdeep"
+  ],
+  "schema_version": "harvest-rl-antiuav-1.0",
+  "working_simple_search": [
+    "acm-dl",
+    "annals-of-mathematics-beec49f1",
+    "annual-reviews",
+    "arxiv",
+    "asce-c44fb45b",
+    "asme",
+    "cnki",
+    "ieee-xplore",
+    "incopat",
+    "proquest-csa",
+    "science-direct",
+    "scoap3",
+    "scopus",
+    "springer-link",
+    "wanfang",
+    "web-of-science"
+  ],
+  "selected_dbs": [
+    "arxiv",
+    "ieee-xplore",
+    "acm-dl",
+    "scopus",
+    "web-of-science",
+    "science-direct",
+    "springer-link",
+    "cnki",
+    "wanfang",
+    "incopat",
+    "proquest-csa",
+    "annual-reviews",
+    "asme",
+    "scoap3"
+  ],
+  "skipped": [
+    {
+      "db": "national-military-standards",
+      "reason": "not working simple_search or explicitly skipped by relevance/access"
+    }
+  ],
+  "export_note": "exports/ samples are normalized local metadata samples generated from captured result-list records; no full text/PDF bulk download was attempted."
+}

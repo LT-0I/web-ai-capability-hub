@@ -1,0 +1,14 @@
+- arxiv: 17 records; 16.5s; API harvest
+- ieee-xplore: 19 records; 38.5s; zero=0; blocked=0
+- acm-dl: 8 records; 34.2s; zero=1; blocked=0
+- scopus: 23 records; 45.3s; zero=0; blocked=0
+- web-of-science: 3 records; 44.9s; zero=1; blocked=0
+- science-direct: 28 records; 32.8s; zero=0; blocked=0
+- springer-link: 31 records; 31.4s; zero=0; blocked=0
+- cnki: 24 records; 55.6s; zero=1; blocked=0
+- wanfang: 0 records; 37.2s; zero=3; blocked=0
+- incopat: 0 records; 18.5s; zero=0; blocked=1
+- proquest-csa: 68 records; 59.0s; zero=0; blocked=0
+- annual-reviews: 0 records; 30.1s; zero=4; blocked=0
+- asme: 0 records; 27.2s; zero=4; blocked=0
+- scoap3: 0 records; 31.0s; zero=4; blocked=0
