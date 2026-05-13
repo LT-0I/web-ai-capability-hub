@@ -1,0 +1,1377 @@
+{
+  "service_id": "claude",
+  "profile_alias": "claude",
+  "recorded_at": "2026-05-13T05:17:03.762Z",
+  "derivative_controls": [
+    {
+      "id": "claude.console.roles.and.permissions",
+      "feature_name": "Claude Console roles and permissions",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "claude.enterprise.analytics.api.reference.guide",
+      "feature_name": "Claude Enterprise Analytics API reference guide",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "creating.and.managing.workspaces.in.the.claude.console",
+      "feature_name": "Creating and managing Workspaces in the Claude Console",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "does.anthropic.act.as.a.data.processor.or.controller",
+      "feature_name": "Does Anthropic Act as a Data Processor or Controller?",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "find.and.join.a.team.or.enterprise.organization",
+      "feature_name": "Find and join a Team or Enterprise organization",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "get.started.with.the.claude.enterprise.analytics.api",
+      "feature_name": "Get started with the Claude Enterprise Analytics API",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "inviting.members.to.the.claude.console",
+      "feature_name": "Inviting members to the Claude Console",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "manage.claude.cowork.plugins.for.your.organization",
+      "feature_name": "Manage Claude Cowork plugins for your organization",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an extension/add-in/client install surface; extension/app was not installed or activated."
+    },
+    {
+      "id": "migrate.your.organization.from.team.to.enterprise",
+      "feature_name": "Migrate your organization from Team to Enterprise",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "roles.and.permissions",
+      "feature_name": "Roles and permissions",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "set.organization.instructions",
+      "feature_name": "Set organization instructions",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "use.enterprise.search",
+      "feature_name": "Use enterprise search",
+      "status": "requires_paid_tier",
+      "derivative_controls": [
+        "Search",
+        "Projects"
+      ],
+      "notes": "Docs describe Team/Enterprise enterprise search across organization knowledge sources; current personal Max web UI did not expose an enterprise search project/admin configuration."
+    },
+    {
+      "id": "who.owns.and.manages.the.data.of.my.team",
+      "feature_name": "Who owns and manages the data of my team?",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "admin",
+      "feature_name": "Admin",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "skills.for.enterprise",
+      "feature_name": "Skills for enterprise",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "monitor.claude.cowork.activity.with.opentelemetry",
+      "feature_name": "Monitor Claude Cowork activity with OpenTelemetry",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "use.analytics.chat.to.ask.claude.about.usage",
+      "feature_name": "Use analytics chat to ask Claude about usage",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "about.the.development.partner.program",
+      "feature_name": "About the Development Partner Program",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "access.the.compliance.api",
+      "feature_name": "Access the Compliance API",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "adapting.to.new.model.personas.after.deprecations",
+      "feature_name": "Adapting to new model personas after deprecations",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Documentation exists, but no distinct activatable Claude web-chat UI control was reachable for this doc-only/API/Console/troubleshooting article in the current account."
+    },
+    {
+      "id": "anthropic.s.ai.for.science.program",
+      "feature_name": "Anthropic's AI for Science Program",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "api.key.best.practices.keeping.your.keys.safe.and.secur",
+      "feature_name": "API Key Best Practices: Keeping Your Keys Safe and Secure",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "can.i.use.the.claude.api.for.individual.use",
+      "feature_name": "Can I use the Claude API for individual use?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "claude.s.response.to.my.prompt.is.too.brief",
+      "feature_name": "Claude’s response to my prompt is too brief.",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "cost.and.usage.reporting.in.the.claude.console",
+      "feature_name": "Cost and Usage Reporting in the Claude Console",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "find.and.join.a.console.organization",
+      "feature_name": "Find and join a Console organization",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "how.can.i.access.the.claude.api",
+      "feature_name": "How can I access the Claude API?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "how.can.i.advance.my.claude.api.usage.to.tier.2",
+      "feature_name": "How can I advance my Claude API usage to Tier 2?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "how.can.i.check.connectivity.to.the.claude.api",
+      "feature_name": "How can I check connectivity to the Claude API?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "how.do.i.use.the.workbench",
+      "feature_name": "How do I use the Workbench?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "how.large.is.the.claude.api.s.context.window",
+      "feature_name": "How large is the Claude API’s context window?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "i.created.a.claude.console.organization.how.do.i.start.",
+      "feature_name": "I created a Claude Console organization - how do I start using the Claude API?",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "i.m.getting.an.api.connection.error.how.can.i.fix.it",
+      "feature_name": "I'm getting an API connection error. How can I fix it?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "let.claude.use.your.computer.in.cowork",
+      "feature_name": "Let Claude use your computer in Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "manage.user.feedback.settings.on.claude.console",
+      "feature_name": "Manage user feedback settings on Claude Console",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "my.prompt.isn.t.giving.me.a.helpful.answer",
+      "feature_name": "My prompt isn’t giving me a helpful answer.",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "sharing.prompts.in.the.claude.console",
+      "feature_name": "Sharing Prompts in the Claude Console",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "troubleshoot.claude.error.messages",
+      "feature_name": "Troubleshoot Claude error messages",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "what.is.the.external.researcher.access.program",
+      "feature_name": "What is the External Researcher Access Program?",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "what.should.i.do.if.i.suspect.my.api.key.has.been.compr",
+      "feature_name": "What should I do if I suspect my API key has been compromised?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "where.can.i.go.for.claude.api.support.and.assistance",
+      "feature_name": "Where can I go for Claude API support and assistance?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "where.is.the.claude.api.supported",
+      "feature_name": "Where is the Claude API supported?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "advisor.tool",
+      "feature_name": "Advisor tool",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "amazon.bedrock",
+      "feature_name": "Amazon Bedrock",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "amazon.bedrock.legacy",
+      "feature_name": "Amazon Bedrock (legacy)",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "api.reference",
+      "feature_name": "API reference",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "bash.tool",
+      "feature_name": "Bash tool",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "batch.processing",
+      "feature_name": "Batch processing",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "best.practices",
+      "feature_name": "Best practices",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "browse.the.features.overview",
+      "feature_name": "Browse the features overview",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "citations",
+      "feature_name": "Citations",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "claude.managed.agents.docs",
+      "feature_name": "Claude Managed Agents docs",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "claude.platform.on.aws",
+      "feature_name": "Claude Platform on AWS",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "compaction",
+      "feature_name": "Compaction",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "computer.use.tool",
+      "feature_name": "Computer use tool",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "context.editing",
+      "feature_name": "Context editing",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "context.windows",
+      "feature_name": "Context windows",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "define.tools",
+      "feature_name": "Define tools",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "develop.with.claude",
+      "feature_name": "Develop with Claude",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "effort",
+      "feature_name": "Effort",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "embeddings",
+      "feature_name": "Embeddings",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "fast.mode.beta.research.preview",
+      "feature_name": "Fast mode (beta: research preview)",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "features.overview",
+      "feature_name": "Features overview",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "fine.grained.tool.streaming",
+      "feature_name": "Fine-grained tool streaming",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "go.to.the.quickstart",
+      "feature_name": "Go to the quickstart",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "handle.tool.calls",
+      "feature_name": "Handle tool calls",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "handling.stop.reasons",
+      "feature_name": "Handling stop reasons",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "how.tool.use.works",
+      "feature_name": "How tool use works",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "intro.to.claude",
+      "feature_name": "Intro to Claude",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "key.capabilities",
+      "feature_name": "Key capabilities",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "manage.tool.context",
+      "feature_name": "Manage tool context",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "managed.agents",
+      "feature_name": "Managed Agents",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "messages",
+      "feature_name": "Messages",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Confirmed as API/Console/platform documentation rather than a distinct Claude web-chat UI feature; no clear web activation gate in this profile."
+    },
+    {
+      "id": "messages.api.docs",
+      "feature_name": "Messages API docs",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "multilingual.support",
+      "feature_name": "Multilingual support",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "overview",
+      "feature_name": "Overview",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "overview.2",
+      "feature_name": "Overview",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "parallel.tool.use",
+      "feature_name": "Parallel tool use",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "programmatic.tool.calling",
+      "feature_name": "Programmatic tool calling",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "prompt.caching",
+      "feature_name": "Prompt caching",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "quickstart",
+      "feature_name": "Quickstart",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "quickstart.2",
+      "feature_name": "Quickstart",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "read.the.messages.api.guide",
+      "feature_name": "Read the Messages API guide",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "recommended.path.for.new.developers",
+      "feature_name": "Recommended path for new developers",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "search.results",
+      "feature_name": "Search results",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "see.the.models.overview",
+      "feature_name": "See the models overview",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "server.tools",
+      "feature_name": "Server tools",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "skills.in.the.api",
+      "feature_name": "Skills in the API",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "streaming.messages",
+      "feature_name": "Streaming Messages",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "streaming.refusals",
+      "feature_name": "Streaming refusals",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "strict.tool.use",
+      "feature_name": "Strict tool use",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "structured.outputs",
+      "feature_name": "Structured outputs",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "task.budgets.beta",
+      "feature_name": "Task budgets (beta)",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "text.editor.tool",
+      "feature_name": "Text editor tool",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "token.counting",
+      "feature_name": "Token counting",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tool.combinations",
+      "feature_name": "Tool combinations",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tool.reference",
+      "feature_name": "Tool reference",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tool.runner.sdk",
+      "feature_name": "Tool Runner (SDK)",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tool.search",
+      "feature_name": "Tool search",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tool.use.with.prompt.caching",
+      "feature_name": "Tool use with prompt caching",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "troubleshooting",
+      "feature_name": "Troubleshooting",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "tutorial.build.a.tool.using.agent",
+      "feature_name": "Tutorial: Build a tool-using agent",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "using.the.messages.api",
+      "feature_name": "Using the Messages API",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "vertex.ai",
+      "feature_name": "Vertex AI",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "web.fetch.tool",
+      "feature_name": "Web fetch tool",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "claude.code.in.chrome",
+      "feature_name": "Claude Code in Chrome",
+      "status": "partial",
+      "derivative_controls": [
+        "Actions menu: Take a screenshot (disabled before page context), Add an image",
+        "Menu: Convert to task, Settings, Language",
+        "Model menu: Opus 4.7, Sonnet 4.6, Haiku 4.5",
+        "Permission menu entry: Ask before acting",
+        "Footer safety link"
+      ],
+      "notes": "Re-attempted with WAH_AUTO_CONFIRM=true. The CLI safety-classifier no longer blocked browser:click on Send message; click returned ok. However, in the direct sidepanel tab the prompt cleared/returned to idle without a user message, response, or page action, and Ctrl+E on a live Wikipedia page did not expose an actionable sidepanel target to browser:* snapshots. Kept partial for extension-context limitation rather than CLI confirmation block."
+    },
+    {
+      "id": "claude.cowork.desktop.architecture.overview",
+      "feature_name": "Claude Cowork desktop architecture overview",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "configure.a.custom.opentelemetry.collector.for.office.a",
+      "feature_name": "Configure a custom OpenTelemetry collector for Office agents",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "customizing.your.console.appearance.settings",
+      "feature_name": "Customizing your Console appearance settings",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "our.approach.to.rate.limits.for.the.claude.api",
+      "feature_name": "Our approach to rate limits for the Claude API",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "use.claude.for.outlook",
+      "feature_name": "Use Claude for Outlook",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "use.claude.for.word",
+      "feature_name": "Use Claude for Word",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "use.dictation.in.office.agents",
+      "feature_name": "Use dictation in Office agents",
+      "status": "requires_voice",
+      "derivative_controls": [],
+      "notes": "Microphone/voice activation is off-limits."
+    },
+    {
+      "id": "voice.dictation",
+      "feature_name": "Voice/dictation",
+      "status": "requires_voice",
+      "derivative_controls": [],
+      "notes": "Microphone/voice activation is off-limits."
+    },
+    {
+      "id": "what.happens.to.a.user.s.data.when.they.are.removed.fro",
+      "feature_name": "What happens to a user's data when they are removed from a Team or Enterprise organization?",
+      "status": "requires_admin",
+      "derivative_controls": [],
+      "notes": "Team/Enterprise user removal/data retention is an organization admin surface; not activated."
+    },
+    {
+      "id": "where.can.i.find.full.receipts.and.invoices.for.my.clau",
+      "feature_name": "Where can I find full receipts and invoices for my Claude API and Console payments?",
+      "status": "requires_voice",
+      "derivative_controls": [],
+      "notes": "Microphone/voice activation is off-limits."
+    },
+    {
+      "id": "provision.and.manage.skills.for.your.organization",
+      "feature_name": "Provision and manage Skills for your organization",
+      "status": "requires_admin",
+      "derivative_controls": [],
+      "notes": "Organization-provisioned Skills require admin/owner controls; personal Customize page only exposed personal Skills/Create new skills."
+    },
+    {
+      "id": "release.notes",
+      "feature_name": "Release notes",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Documentation exists, but no distinct activatable Claude web-chat UI control was reachable for this doc-only/API/Console/troubleshooting article in the current account."
+    },
+    {
+      "id": "use.claude.for.excel",
+      "feature_name": "Use Claude for Excel",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "where.can.i.find.your.api.documentation",
+      "feature_name": "Where can I find your API documentation?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "api.referenceexplore.the.full.claude.api.and.client.sdk",
+      "feature_name": "API ReferenceExplore the full Claude API and client SDK documentation.",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "files.api",
+      "feature_name": "Files API",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "images.and.vision",
+      "feature_name": "Images and vision",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient after WAH_AUTO_CONFIRM rerun/review: no distinct safe Claude web UI activation was reachable in this profile."
+    },
+    {
+      "id": "assign.tasks.from.anywhere.in.claude.cowork",
+      "feature_name": "Assign tasks from anywhere in Claude Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "extend.claude.cowork.with.third.party.platforms",
+      "feature_name": "Extend Claude Cowork with third-party platforms",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "get.started.with.claude.cowork",
+      "feature_name": "Get started with Claude Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "install.and.configure.claude.cowork.with.third.party.pl",
+      "feature_name": "Install and configure Claude Cowork with third-party platforms",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "install.financial.services.plugins.for.cowork",
+      "feature_name": "Install financial services plugins for Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "schedule.recurring.tasks.in.claude.cowork",
+      "feature_name": "Schedule recurring tasks in Claude Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "use.claude.cowork.safely",
+      "feature_name": "Use Claude Cowork safely",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "use.claude.cowork.with.third.party.platforms",
+      "feature_name": "Use Claude Cowork with third-party platforms",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cowork/client extension install required"
+      ],
+      "notes": "Claude Cowork feature requires the separate Cowork/client/app/extension surface; install or OAuth grant was not activated."
+    },
+    {
+      "id": "use.claude.for.powerpoint",
+      "feature_name": "Use Claude for PowerPoint",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "use.plugins.in.claude.cowork",
+      "feature_name": "Use plugins in Claude Cowork",
+      "status": "requires_extension_install",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Requires installing a client extension/add-in/app surface; install was not activated. Rerun live page was blocked by Cloudflare before in-app confirmation."
+    },
+    {
+      "id": "export.your.organization.s.data",
+      "feature_name": "Export your organization's data",
+      "status": "requires_admin",
+      "derivative_controls": [
+        "Cloudflare security verification",
+        "Enable JavaScript and cookies to continue",
+        "Ray ID: 9faaca0f58edd567",
+        "Cloudflare",
+        "Privacy"
+      ],
+      "notes": "Documentation describes an admin/owner/organization/Enterprise control; current personal profile does not have that admin surface."
+    },
+    {
+      "id": "how.up.to.date.is.claude.s.training.data",
+      "feature_name": "How up-to-date is Claude's training data?",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Doc exists, but current account/session has no clear activation path and no visible gate reason; live attempt blocked by Cloudflare security verification."
+    },
+    {
+      "id": "claude.is.providing.incorrect.or.misleading.responses.w",
+      "feature_name": "Claude is providing incorrect or misleading responses. What’s going on?",
+      "status": "inaccessible",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Documentation exists, but no distinct activatable Claude web-chat UI control was reachable for this doc-only/API/Console/troubleshooting article in the current account."
+    },
+    {
+      "id": "i.m.encountering.429.errors.and.i.m.worried.my.rate.lim",
+      "feature_name": "I’m encountering 429 errors, and I’m worried my rate limit is too low. What should I do?",
+      "status": "requires_api_console",
+      "derivative_controls": [
+        "no matching safe web UI control found after variant route checks"
+      ],
+      "notes": "Reclassified from cli_insufficient: this is API/Console/platform documentation rather than a distinct Claude web-chat or Claude Design UI action; WAH_AUTO_CONFIRM does not create a safe in-product web UI surface for it in the signed-in Claude profile."
+    },
+    {
+      "id": "claude_in_chrome.summarize_page",
+      "feature_name": "Claude in Chrome summarize page",
+      "status": "partial",
+      "derivative_controls": [
+        "Actions menu: Take a screenshot (disabled before page context), Add an image",
+        "Menu: Convert to task, Settings, Language",
+        "Model menu: Opus 4.7, Sonnet 4.6, Haiku 4.5",
+        "Permission menu entry: Ask before acting",
+        "Footer safety link"
+      ],
+      "notes": "Re-attempted with WAH_AUTO_CONFIRM=true. The CLI safety-classifier no longer blocked browser:click on Send message; click returned ok. However, in the direct sidepanel tab the prompt cleared/returned to idle without a user message, response, or page action, and Ctrl+E on a live Wikipedia page did not expose an actionable sidepanel target to browser:* snapshots. Kept partial for extension-context limitation rather than CLI confirmation block."
+    },
+    {
+      "id": "claude_in_chrome.agentic_navigation",
+      "feature_name": "Claude in Chrome agentic navigation/click",
+      "status": "partial",
+      "derivative_controls": [
+        "No response/action history available because send was blocked"
+      ],
+      "notes": "Re-attempted with WAH_AUTO_CONFIRM=true. The CLI safety-classifier no longer blocked browser:click on Send message; click returned ok. However, in the direct sidepanel tab the prompt cleared/returned to idle without a user message, response, or page action, and Ctrl+E on a live Wikipedia page did not expose an actionable sidepanel target to browser:* snapshots. Kept partial for extension-context limitation rather than CLI confirmation block."
+    }
+  ]
+}

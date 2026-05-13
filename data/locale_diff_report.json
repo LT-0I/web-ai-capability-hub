@@ -1,0 +1,19 @@
+{
+  "locale": "en",
+  "captured_at": "2026-05-13T07:09:25.036Z",
+  "source": "post-language-switch English UI re-capture",
+  "claude": {
+    "shared_features": 74,
+    "label_match_pct": 89.2,
+    "structural_match_pct": 100,
+    "notable_drift": [],
+    "heuristic": "label_match_pct = shared tested_ok features whose leading captured application controls are English UI labels (user-generated sidebar titles ignored); structural_match_pct = both locale records have non-empty control structures."
+  },
+  "chatgpt": {
+    "shared_features": 56,
+    "label_match_pct": 100,
+    "structural_match_pct": 89.3,
+    "notable_drift": [],
+    "heuristic": "label_match_pct = shared tested_ok features whose leading captured application controls are English UI labels (user-generated sidebar titles ignored); structural_match_pct = both locale records have non-empty control structures."
+  }
+}

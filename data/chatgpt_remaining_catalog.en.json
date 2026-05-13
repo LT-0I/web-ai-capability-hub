@@ -1,0 +1,752 @@
+{
+  "locale": "en",
+  "captured_at": "2026-05-13T07:09:25.036Z",
+  "source": "post-language-switch English UI re-capture",
+  "recorded_at": "2026-05-13T07:09:25.036Z",
+  "target": "chatgpt",
+  "remaining_count": 17,
+  "entries": {
+    "archive_chat": {
+      "feature_name": "Archive chat",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt",
+      "pre_output_controls": [
+        "conversation option buttons visible in sidebar"
+      ],
+      "derivative_controls": [
+        "archive/delete controls not clicked"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Conversation option buttons were visible in sidebar, but archive/delete were not clicked to avoid deleting or modifying prior content."
+        ],
+        "policy_classifier_hits": [
+          {
+            "surface": "archive_chat",
+            "action": "Cataloged controls only; no prior content deleted/archived."
+          }
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-08-26-259Z-Catalog-probe-ok.png",
+      "status": "partial",
+      "error_or_skip_reason": "Control visible but action skipped to avoid modifying prior content.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Conversation option buttons were visible in sidebar, but archive/delete were not clicked to avoid deleting or modifying prior content."
+        ],
+        "policy_classifier_hits": [
+          {
+            "surface": "archive_chat",
+            "action": "Cataloged controls only; no prior content deleted/archived."
+          }
+        ]
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Control visible but action skipped to avoid modifying prior content.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "delete_chat": {
+      "feature_name": "Delete chat",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt",
+      "pre_output_controls": [
+        "conversation option buttons visible in sidebar"
+      ],
+      "derivative_controls": [
+        "archive/delete controls not clicked"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Conversation option buttons were visible in sidebar, but archive/delete were not clicked to avoid deleting or modifying prior content."
+        ],
+        "policy_classifier_hits": [
+          {
+            "surface": "delete_chat",
+            "action": "Cataloged controls only; no prior content deleted/archived."
+          }
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-08-26-259Z-Catalog-probe-ok.png",
+      "status": "partial",
+      "error_or_skip_reason": "Control visible but action skipped to avoid modifying prior content.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Conversation option buttons were visible in sidebar, but archive/delete were not clicked to avoid deleting or modifying prior content."
+        ],
+        "policy_classifier_hits": [
+          {
+            "surface": "delete_chat",
+            "action": "Cataloged controls only; no prior content deleted/archived."
+          }
+        ]
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Control visible but action skipped to avoid modifying prior content.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "canvas_inline_feedback": {
+      "feature_name": "Canvas inline feedback",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "pre_output_controls": [
+        "Document Canvas open",
+        "editable document text container: div[contenteditable=\"true\"]:not(#prompt-textarea)",
+        "browser:select-text available",
+        "browser:drag command verified in CLI help",
+        "fresh ChatGPT tab drag-resolve",
+        "real text-selection drag on chat markdown"
+      ],
+      "derivative_controls": [
+        "normal chat text selection toolbar: Ask ChatGPT"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "browser:select-text selected text in the canvas body using div[contenteditable=\"true\"]:not(#prompt-textarea) with selectedText=\"Morning \".",
+          "Immediate browser:read after selection showed no Comment/Suggest/Ask/Edit-selection toolbar or popover.",
+          "Alternate 95-character and .ProseMirror selections also did not surface an inline toolbar."
+        ],
+        "selection_attempts": [
+          {
+            "selector": "div[contenteditable=\"true\"]:not(#prompt-textarea)",
+            "start": 0,
+            "end": 8,
+            "selected_text": "Morning ",
+            "result": "selection succeeded; no inline feedback toolbar/popover exposed in browser:read"
+          },
+          {
+            "selector": "div[contenteditable=\"true\"]:not(#prompt-textarea)",
+            "start": 25,
+            "end": 120,
+            "selected_text": "",
+            "result": "range did not retain selected text; no inline feedback toolbar/popover exposed in browser:read"
+          },
+          {
+            "selector": ".ProseMirror:not(#prompt-textarea)",
+            "start": 10,
+            "end": 50,
+            "selected_text": "",
+            "result": "selector hit but no retained selected text; no inline feedback toolbar/popover exposed"
+          }
+        ],
+        "refreshed_at": "2026-05-13T05:36:00.000Z",
+        "drag_resolve": {
+          "attempted_at": "2026-05-13T05:52:30.000Z",
+          "command_surface": "Allowed browser actions only: node dist/src/cli.js browser:tab:alloc/type/press/wait/read/drag/screenshot and capability:update/export; no custom Playwright scripts.",
+          "profile": "chatgpt",
+          "cdp_endpoint": "http://127.0.0.1:9223",
+          "tab_id": "drag-resolve",
+          "prompt": "Create a 200-word essay about morning routines in Canvas. Use document/text format, not code.",
+          "selector_attempts": [
+            "div[contenteditable=\"true\"]:not(#prompt-textarea)",
+            ".ProseMirror / #prompt-textarea excluded",
+            "main",
+            ".markdown >> nth=1"
+          ],
+          "drag_attempts": [
+            {
+              "selector": "main",
+              "from_offset": [
+                20,
+                300
+              ],
+              "to_offset": [
+                220,
+                300
+              ],
+              "result": "Real mouse drag executed; selection toolbar surfaced for normal chat text, not Canvas.",
+              "observed_controls": [
+                "询问 ChatGPT / Ask ChatGPT"
+              ]
+            },
+            {
+              "selector": ".markdown >> nth=1",
+              "from_offset": [
+                20,
+                30
+              ],
+              "to_offset": [
+                200,
+                30
+              ],
+              "result": "Real mouse drag executed on assistant markdown; same single Ask ChatGPT selection control surfaced."
+            }
+          ],
+          "canvas_result": "Fresh prompt did not open a Canvas side panel; ChatGPT returned inline text and claimed a Canvas document existed, but browser:read did not expose a Canvas container or contenteditable document body.",
+          "toolbar_controls_captured": [
+            "Ask ChatGPT (normal chat text-selection toolbar only)"
+          ],
+          "canvas_toolbar_controls_captured": [],
+          "screenshot_path": "data/screenshots/chatgpt_canvas_inline_toolbar.png",
+          "secondary_panels": [],
+          "status": "partial"
+        }
+      },
+      "screenshot_path": "data/screenshots/chatgpt_canvas_inline_toolbar.png",
+      "status": "partial",
+      "error_or_skip_reason": "browser:drag is available and real drags executed, but the fresh prompt did not open a Canvas side panel; drag on visible chat text surfaced only the normal Ask ChatGPT selection toolbar, not Canvas inline Comment/Suggest/Edit controls.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "command_surface": "Allowed browser actions only: node dist/src/cli.js browser:tab:alloc/type/press/wait/read/drag/screenshot and capability:update/export; no custom Playwright scripts.",
+        "profile": "chatgpt",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "tab_id": "drag-resolve",
+        "prompt": "Create a 200-word essay about morning routines in Canvas. Use document/text format, not code.",
+        "selector_attempts": [
+          "div[contenteditable=\"true\"]:not(#prompt-textarea)",
+          ".ProseMirror / #prompt-textarea excluded",
+          "main",
+          ".markdown >> nth=1"
+        ],
+        "drag_attempts": [
+          {
+            "selector": "main",
+            "from_offset": [
+              20,
+              300
+            ],
+            "to_offset": [
+              220,
+              300
+            ],
+            "result": "Real mouse drag executed; selection toolbar surfaced for normal chat text, not Canvas.",
+            "observed_controls": [
+              "询问 ChatGPT / Ask ChatGPT"
+            ]
+          },
+          {
+            "selector": ".markdown >> nth=1",
+            "from_offset": [
+              20,
+              30
+            ],
+            "to_offset": [
+              200,
+              30
+            ],
+            "result": "Real mouse drag executed on assistant markdown; same single Ask ChatGPT selection control surfaced."
+          }
+        ],
+        "canvas_result": "Fresh prompt did not open a Canvas side panel; ChatGPT returned inline text and claimed a Canvas document existed, but browser:read did not expose a Canvas container or contenteditable document body.",
+        "toolbar_controls_captured": [
+          "Ask ChatGPT (normal chat text-selection toolbar only)"
+        ],
+        "canvas_toolbar_controls_captured": [],
+        "screenshot_path": "data/screenshots/chatgpt_canvas_inline_toolbar.png",
+        "secondary_panels": [],
+        "status": "partial"
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z"
+    },
+    "code_interpreter": {
+      "feature_name": "Code Interpreter / Advanced Data Analysis",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8437071",
+      "pre_output_controls": [
+        "uploaded package.json tile",
+        "file-aware response"
+      ],
+      "derivative_controls": [
+        "source chip",
+        "copy response"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "File upload and document analysis worked; no generated ZIP/download artifact was requested in this pass, so code-interpreter download controls remain unverified."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-13-48-233Z-Package-Name-and-Scripts.png",
+      "status": "partial",
+      "error_or_skip_reason": "File-aware analysis completed, but ZIP/download artifact controls were not exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "File upload and document analysis worked; no generated ZIP/download artifact was requested in this pass, so code-interpreter download controls remain unverified."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "File-aware analysis completed, but ZIP/download artifact controls were not exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "image_generation": {
+      "feature_name": "ChatGPT Images generation",
+      "activation": "Prompt sent: Create an image: a single red dot on white.",
+      "pre_output_controls": [
+        "main composer available",
+        "existing generated image/library entries visible"
+      ],
+      "derivative_controls": [
+        "library save/detail controls"
+      ],
+      "generated_output_metadata": {
+        "conversation_title": "Image Request Red Dot",
+        "evidence": [
+          "Existing generated images were visible in Library; new image generation/variation was not run in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-20-429Z-ChatGPT.png",
+      "status": "partial",
+      "error_or_skip_reason": "Existing generated image surfaces verified; new generation not completed.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Existing generated images were visible in Library; new image generation/variation was not run in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Existing generated image surfaces verified; new generation not completed.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "image_editing": {
+      "feature_name": "Image editing",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/11084440-chatgpt-images-faq",
+      "pre_output_controls": [
+        "existing library image detail",
+        "download/delete controls"
+      ],
+      "derivative_controls": [
+        "no edit/variation controls found in Library detail"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Opened a stored image detail; current Library detail exposed Download/Delete but not Edit/Variation controls."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-10-07-629Z-ChatGPT.png",
+      "status": "partial",
+      "error_or_skip_reason": "Stored image detail did not expose edit/variation controls through allowed snapshot.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Opened a stored image detail; current Library detail exposed Download/Delete but not Edit/Variation controls."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Stored image detail did not expose edit/variation controls through allowed snapshot.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_conversation_starters": {
+      "feature_name": "GPT conversation starters",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554407-gpts",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_knowledge": {
+      "feature_name": "GPT knowledge files",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_capabilities": {
+      "feature_name": "GPT capabilities toggles",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_apps": {
+      "feature_name": "GPT apps",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_actions": {
+      "feature_name": "GPT actions",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_preview": {
+      "feature_name": "GPT preview/test",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_version_history": {
+      "feature_name": "GPT version/update flow",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "gpt_sharing": {
+      "feature_name": "GPT sharing levels",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/8798878",
+      "pre_output_controls": [
+        "GPT Store Explore and Create GPT entry point"
+      ],
+      "derivative_controls": [
+        "creator/editor entry available but not opened to avoid private GPT publishing/sharing risks"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-09-08-197Z-Explore-GPTs.png",
+      "status": "partial",
+      "error_or_skip_reason": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "GPT Store was verified; GPT builder/editor-specific controls were not exercised beyond Create entry point in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "GPT Explore was verified; builder/editor-specific controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "project_files": {
+      "feature_name": "Project files/knowledge",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "pre_output_controls": [
+        "Projects listed in sidebar",
+        "New Project control"
+      ],
+      "derivative_controls": [
+        "project links visible"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Projects sidebar and New Project control were visible; package.json upload into a project was not completed in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-08-26-259Z-Catalog-probe-ok.png",
+      "status": "partial",
+      "error_or_skip_reason": "Project knowledge upload not completed.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Projects sidebar and New Project control were visible; package.json upload into a project was not completed in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Project knowledge upload not completed.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "project_instructions": {
+      "feature_name": "Project custom instructions",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "pre_output_controls": [
+        "Projects listed in sidebar",
+        "project options buttons"
+      ],
+      "derivative_controls": [
+        "project-specific settings likely available from project pages"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Project surfaces were visible in sidebar, but project custom instructions were not modified/restored in this pass."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-08-26-259Z-Catalog-probe-ok.png",
+      "status": "partial",
+      "error_or_skip_reason": "Project custom instructions not modified/restored.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Project surfaces were visible in sidebar, but project custom instructions were not modified/restored in this pass."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Project custom instructions not modified/restored.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    },
+    "project_sharing": {
+      "feature_name": "Shared projects",
+      "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "pre_output_controls": [
+        "project links visible",
+        "project options controls"
+      ],
+      "derivative_controls": [
+        "sharing controls not opened"
+      ],
+      "generated_output_metadata": {
+        "evidence": [
+          "Project entries were visible; sharing controls not opened to avoid private sharing risk."
+        ],
+        "refreshed_at": "2026-05-13T05:13:00.000Z"
+      },
+      "screenshot_path": "data/screenshots/2026-05-13T05-08-26-259Z-Catalog-probe-ok.png",
+      "status": "partial",
+      "error_or_skip_reason": "Project sharing controls not fully exercised.",
+      "rerun_attempt": {
+        "attempted_at": "2026-05-13T05:13:00.000Z",
+        "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+        "cdp_endpoint": "http://127.0.0.1:9223",
+        "profile": "chatgpt",
+        "evidence": [
+          "Project entries were visible; sharing controls not opened to avoid private sharing risk."
+        ],
+        "policy_classifier_hits": []
+      },
+      "last_swept_at": "2026-05-13T05:52:30.000Z",
+      "drag_resolve_sweep": {
+        "attempted_at": "2026-05-13T05:52:30.000Z",
+        "reason_inspected": "Project sharing controls not fully exercised.",
+        "outcome": "Reason did not mention selection/hover/drag/context-menu; retained prior partial classification."
+      }
+    }
+  }
+}

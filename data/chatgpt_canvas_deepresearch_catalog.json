@@ -1,0 +1,191 @@
+{
+  "recorded_at": "2026-05-13T05:13:00.000Z",
+  "target": "chatgpt",
+  "source_notes": [
+    "P1 data/chatgpt_full_catalog.json treated as source of truth for area inventory.",
+    "Browser observations used only allowed CLI surfaces: browser:tab:alloc, browser:read, and capability update/export later.",
+    "cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation."
+  ],
+  "canvas": {
+    "code": {
+      "trigger_method": "Intended: composer Tools/plus menu -> Canvas or slash command with a code-oriented prompt. P1 retained Canvas as required area but found no explicit Canvas/画布 record in salvaged menu blocks.",
+      "output_type": "code canvas artifact",
+      "controls": [
+        "expected side panel close control",
+        "expected share control",
+        "expected copy control",
+        "expected download/export control",
+        "expected more options menu",
+        "expected code/preview toggle for executable or web outputs",
+        "expected version controls / undo-redo controls",
+        "main composer message controls remain available outside panel"
+      ],
+      "notes": "Not activated. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+      "screenshot": null
+    },
+    "document": {
+      "trigger_method": "Intended: composer Tools/plus menu -> Canvas or slash command with a document-writing prompt.",
+      "output_type": "document canvas artifact",
+      "controls": [
+        "expected side panel close control",
+        "expected share control",
+        "expected copy control",
+        "expected download/export control",
+        "expected formatting/editing toolbar",
+        "expected more options menu",
+        "expected version controls / undo-redo controls",
+        "main composer message controls remain available outside panel"
+      ],
+      "notes": "Not activated. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+      "screenshot": null
+    },
+    "hybrid": {
+      "trigger_method": "Intended: composer Tools/plus menu -> Canvas or slash command with markdown plus code prompt.",
+      "output_type": "hybrid markdown+code canvas artifact",
+      "controls": [
+        "expected side panel close control",
+        "expected share/copy/download controls",
+        "expected more options menu",
+        "expected code/preview toggle when runnable preview is present",
+        "expected version controls / undo-redo controls",
+        "expected inline edit controls for mixed prose/code regions"
+      ],
+      "notes": "Not activated. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+      "screenshot": null
+    }
+  },
+  "deep_research": {
+    "trigger_method": "P1 observed 深度研究 in the composer plus menu and as a sidebar link data-testid=deep-research-sidebar-item. Intended P2 activation was one tiny query: Find the official changelog page for Python 3.12.",
+    "output_type": "Deep Research plan and report",
+    "controls": [
+      "pre-run Deep Research mode chip / selected tool indicator (expected after activation)",
+      "sources picker / source selection (requested capture, not reachable with read-only CLI)",
+      "time budget or depth control if exposed (not reached)",
+      "ask-follow-ups / clarify prompt if exposed (not reached)",
+      "start research / cancel controls if plan step appears (not reached)",
+      "post-run sources panel (not reached)",
+      "post-run copy/share controls (not reached)",
+      "follow-up composer box and regenerate controls (not reached)"
+    ],
+    "notes": "Entry controls were visible in P1, but no run was started. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+    "screenshot": null
+  },
+  "image_generation": {
+    "trigger_method": "P1 observed 创建图片 in the composer plus menu and generated-image/library entry text. Intended prompt: a single red dot on white background.",
+    "output_type": "generated image result",
+    "controls": [
+      "download image / save image control (expected derivative output control)",
+      "share image control (expected/known from image-output pattern)",
+      "generate variations control (not reached)",
+      "edit image control (not reached)",
+      "regenerate response/image control (from common response controls inventory)",
+      "save to library / library presence (library page observed with upload, filters, image/file tabs)"
+    ],
+    "notes": "Image generation was not started because type/send actions require unavailable CLI action commands. Library page was observed read-only at /library. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+    "screenshot": null
+  },
+  "code_interpreter": {
+    "trigger_method": "Intended: main composer prompt asking for a trivial Python snippet that prints hello, relying on ChatGPT Advanced Data Analysis / code execution when available.",
+    "output_type": "inline code execution / sandbox result",
+    "controls": [
+      "inline code block copy control (expected common code-message control)",
+      "download generated file/CSV control (expected if files are produced)",
+      "sandbox / analysis indicator (not reached)",
+      "message copy, feedback, and regenerate controls (from P1 common response controls)",
+      "library file row controls if output file is saved there (library list page observed read-only)"
+    ],
+    "notes": "No prompt was sent and no sandbox was opened. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+    "screenshot": null
+  },
+  "gpts_invocation": {
+    "trigger_method": "Observed /gpts with allowed browser:tab:alloc/read. P1 inventory listed example public GPTs including DALL·E, Data Analyst, and Creative Writing Coach; /gpts page exposed Explore GPTs plus Create and action menu controls. Per-GPT chat activation was not clicked.",
+    "output_type": "GPT detail/chat surface",
+    "controls": [
+      "Explore GPTs page: create GPT link data-testid=create-gpt-discovery-button, visually disabled/cursor-not-allowed in current snapshot",
+      "Explore GPTs page: open action menu button",
+      "expected GPT detail/about panel controls: about, share, more options",
+      "expected per-GPT composer differences: GPT name/context header, same attachment/tools/send controls, possible starter prompts",
+      "do-not-use controls: edit/publish/copy GPT were not opened or clicked"
+    ],
+    "notes": "GPT discovery page was observed; no GPT was opened because browser:click is unavailable and direct GPT URLs for specific built-ins were not present in current read snapshot. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+    "screenshot": null
+  },
+  "sora_entry": {
+    "trigger_method": "Observed by URL allocation to https://chatgpt.com/sora only; no generation started.",
+    "output_type": "Sora entry control / fallback ChatGPT composer surface",
+    "controls": [
+      "main ChatGPT composer visible at /sora route with plus/tools, textarea, send, dictation, and voice controls",
+      "no dedicated Sora generation controls were exposed in the read-only snapshot",
+      "voice controls were observe-only and not clicked"
+    ],
+    "notes": "Sora full UI was not entered; /sora route resolved to normal ChatGPT composer in this session. cli_insufficient: current dist/src/cli.js accepts browser:tab:alloc/read/screenshot but browser:click/type/select/press/wait variants are not implemented (browser:click returned Unknown command: browser:click), so prompts, menus, Canvas artifacts, Deep Research runs, image generation, Code Interpreter execution, and per-GPT chat activation could not be exercised without forbidden custom CDP automation.",
+    "screenshot": null
+  },
+  "policy_classifier_hits": [],
+  "canvas_inline_feedback": {
+    "feature_name": "Canvas inline feedback",
+    "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+    "pre_output_controls": [
+      "Document Canvas open",
+      "document text selectable visually",
+      "title menu"
+    ],
+    "derivative_controls": [
+      "Rename control",
+      "Show changes controls"
+    ],
+    "generated_output_metadata": {
+      "evidence": [
+        "Reopened Morning Routines Canvas and title menu. Canvas content and Show changes controls were visible, but no inline selection feedback toolbar appeared via allowed click/snapshot actions."
+      ],
+      "refreshed_at": "2026-05-13T05:13:00.000Z"
+    },
+    "screenshot_path": "data/screenshots/2026-05-13T05-11-41-069Z-Morning-Routines-in-Canvas.png",
+    "status": "partial",
+    "error_or_skip_reason": "Canvas reopened, but inline feedback toolbar did not appear through allowed CLI actions.",
+    "rerun_attempt": {
+      "attempted_at": "2026-05-13T05:13:00.000Z",
+      "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+      "cdp_endpoint": "http://127.0.0.1:9223",
+      "profile": "chatgpt",
+      "evidence": [
+        "Reopened Morning Routines Canvas and title menu. Canvas content and Show changes controls were visible, but no inline selection feedback toolbar appeared via allowed click/snapshot actions."
+      ],
+      "policy_classifier_hits": []
+    },
+    "last_swept_at": "2026-05-13T05:13:00.000Z"
+  },
+  "canvas_versions": {
+    "feature_name": "Canvas version restore",
+    "activation": "Live UI via node dist/src/cli.js browser:* commands; documentation source https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+    "pre_output_controls": [
+      "Document Canvas open",
+      "Edited Morning Routines revision in chat",
+      "Show changes controls",
+      "title menu"
+    ],
+    "derivative_controls": [
+      "Rename control; no visible restore/version-history popover"
+    ],
+    "generated_output_metadata": {
+      "evidence": [
+        "Canvas shows original and edited artifact cards plus Show changes controls; title menu exposed Rename only, not restore/version list."
+      ],
+      "refreshed_at": "2026-05-13T05:13:00.000Z"
+    },
+    "screenshot_path": "data/screenshots/2026-05-13T05-11-41-069Z-Morning-Routines-in-Canvas.png",
+    "status": "partial",
+    "error_or_skip_reason": "Version-history/restore controls not exposed in allowed snapshot.",
+    "rerun_attempt": {
+      "attempted_at": "2026-05-13T05:13:00.000Z",
+      "command_surface": "Allowed surface only: node dist/src/cli.js browser:* and capability:* for browser/capability actions",
+      "cdp_endpoint": "http://127.0.0.1:9223",
+      "profile": "chatgpt",
+      "evidence": [
+        "Canvas shows original and edited artifact cards plus Show changes controls; title menu exposed Rename only, not restore/version list."
+      ],
+      "policy_classifier_hits": []
+    },
+    "last_swept_at": "2026-05-13T05:13:00.000Z"
+  }
+}

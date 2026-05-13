@@ -1,0 +1,825 @@
+{
+  "service": "chatgpt",
+  "built_at": "2026-05-13T05:13:00.000Z",
+  "features": [
+    {
+      "id": "core_chat",
+      "feature_name": "Conversational chat",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "analysis",
+      "summary": "Ask questions, draft, summarize, reason, translate, code, and iterate with follow-up context.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "new_chat",
+      "feature_name": "New chat",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "analysis",
+      "summary": "Start a fresh conversation from the sidebar or composer.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "chat_context",
+      "feature_name": "Within-chat context",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "personalization",
+      "summary": "ChatGPT remembers prior turns inside a conversation and adapts replies to the local context.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "model_picker",
+      "feature_name": "Model picker",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "analysis",
+      "summary": "Paid users can choose among available foundational models and modes.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "reasoning_model",
+      "feature_name": "Reasoning model mode",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "analysis",
+      "summary": "Reasoning models can run more complex analysis, regressions, simulations, and tool use.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "share_conversation",
+      "feature_name": "Share conversation link",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "library",
+      "summary": "Create a read-only link to a conversation for others to view.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "copy_response",
+      "feature_name": "Copy response",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "library",
+      "summary": "Message-level copy control for generated text or code.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "regenerate_response",
+      "feature_name": "Regenerate/retry response",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "analysis",
+      "summary": "Retry or regenerate an assistant answer from message controls.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "edit_user_message",
+      "feature_name": "Edit submitted prompt",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "creation",
+      "summary": "Revise a prior user message to branch or improve a conversation.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "feedback_controls",
+      "feature_name": "Thumbs up/down feedback",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "account_settings",
+      "summary": "Provide response feedback for quality and safety.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "archive_chat",
+      "feature_name": "Archive chat",
+      "doc_url": "https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt",
+      "category": "library",
+      "summary": "Hide a chat without deleting it; archived chats follow standard retention.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "delete_chat",
+      "feature_name": "Delete chat",
+      "doc_url": "https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt",
+      "category": "library",
+      "summary": "Remove a chat from visible history and schedule deletion, subject to retention exceptions.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "chat_search",
+      "feature_name": "Search chat history",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "library",
+      "summary": "Find prior conversations from the history/search surface.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "web_search",
+      "feature_name": "ChatGPT Search / web browsing",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "research",
+      "summary": "Look up recent or real-time information and cite sources.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "slash_search",
+      "feature_name": "/Search shortcut",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "research",
+      "summary": "Invoke web search from supported composer shortcut experiences.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "deep_research",
+      "feature_name": "Deep research task",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Plan, research, and synthesize complex questions into cited structured reports.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "deep_research_source_picker",
+      "feature_name": "Deep research source picker",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Choose public web, uploaded files, specific websites, or connected apps before a run.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "deep_research_plan_review",
+      "feature_name": "Deep research plan review",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Review, edit, and approve ChatGPT’s proposed research plan before execution.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "deep_research_progress",
+      "feature_name": "Deep research progress/interrupt",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Follow progress in real time and interrupt to refine scope or sources.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "deep_research_report",
+      "feature_name": "Deep research report view",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Review fullscreen reports with table of contents, citations, sources, and activity history.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "deep_research_download",
+      "feature_name": "Deep research report download",
+      "doc_url": "https://help.openai.com/en/articles/10500283-deep-research-faq",
+      "category": "research",
+      "summary": "Download reports in Markdown, Word, or PDF formats.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "canvas",
+      "feature_name": "Canvas workspace",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Side-by-side workspace for writing and coding projects that need editing and revisions.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "canvas_blank",
+      "feature_name": "Blank canvas",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Start a blank writing or coding canvas from prompts, slash command, or tools menu.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "canvas_inline_feedback",
+      "feature_name": "Canvas inline feedback",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Highlight sections for targeted feedback and suggestions with whole-project context.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "canvas_direct_edit",
+      "feature_name": "Canvas direct editing",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Directly edit text or code in the canvas surface.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "canvas_versions",
+      "feature_name": "Canvas version restore",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Restore previous versions using canvas history/back controls.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "canvas_shortcuts",
+      "feature_name": "Canvas writing/code shortcuts",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Use shortcuts such as adjust length or debug code.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "canvas_code_render",
+      "feature_name": "Canvas React/HTML rendering",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "creation",
+      "summary": "Render React/HTML in a sandbox; npm packages and many JS libraries work.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "canvas_code_network_toggle",
+      "feature_name": "Canvas code/network controls",
+      "doc_url": "https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it",
+      "category": "account_settings",
+      "summary": "Enterprise admins can control code execution and canvas network access behavior.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "file_upload",
+      "feature_name": "File upload",
+      "doc_url": "https://help.openai.com/en/articles/8555545-code-interpreter",
+      "category": "analysis",
+      "summary": "Upload documents, spreadsheets, images, and code files for analysis or transformation.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "document_analysis",
+      "feature_name": "Document analysis",
+      "doc_url": "https://help.openai.com/en/articles/8555545-code-interpreter",
+      "category": "analysis",
+      "summary": "Summarize, compare, extract, and synthesize from PDFs, Word docs, presentations, or text.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "spreadsheet_analysis",
+      "feature_name": "Spreadsheet/CSV analysis",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "analysis",
+      "summary": "Analyze CSV/XLSX files, create tables, charts, and summaries.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "interactive_tables",
+      "feature_name": "Interactive table view",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "analysis",
+      "summary": "ChatGPT can present uploaded data in scrollable interactive tables.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "chart_generation",
+      "feature_name": "Chart generation",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "analysis",
+      "summary": "Generate supported chart types from data and customize graphics.",
+      "source": "openai-help",
+      "status": "observed_only"
+    },
+    {
+      "id": "code_interpreter",
+      "feature_name": "Code Interpreter / Advanced Data Analysis",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "analysis",
+      "summary": "Run code in a secure environment to compute, analyze, visualize, and create files.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "generated_file_download",
+      "feature_name": "Generated file downloads",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "creation",
+      "summary": "Download files produced by data analysis/code execution, including archives.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "zip_multi_file_generation",
+      "feature_name": "Multi-file ZIP generation",
+      "doc_url": "https://help.openai.com/en/articles/8437071",
+      "category": "creation",
+      "summary": "Use code execution to create multiple files and package them into a downloadable zip.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "image_input",
+      "feature_name": "Image input understanding",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "multimodal",
+      "summary": "Analyze uploaded images, diagrams, screenshots, or charts.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "image_generation",
+      "feature_name": "ChatGPT Images generation",
+      "doc_url": "https://help.openai.com/en/articles/11084440-chatgpt-images-faq",
+      "category": "multimodal",
+      "summary": "Create images from text prompts in ChatGPT Images.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "image_editing",
+      "feature_name": "Image editing",
+      "doc_url": "https://help.openai.com/en/articles/11084440-chatgpt-images-faq",
+      "category": "multimodal",
+      "summary": "Upload or select generated images and request natural-language edits.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "image_controls",
+      "feature_name": "Image copy/save/share controls",
+      "doc_url": "https://help.openai.com/en/articles/11084440-chatgpt-images-faq",
+      "category": "multimodal",
+      "summary": "Open image controls to copy, save/download, or share generated images.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "image_library",
+      "feature_name": "Images saved to Images/Library",
+      "doc_url": "https://help.openai.com/en/articles/11084440-chatgpt-images-faq",
+      "category": "library",
+      "summary": "Generated images are automatically saved under Images and reusable later.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "gpts",
+      "feature_name": "GPTs / custom GPTs",
+      "doc_url": "https://help.openai.com/en/articles/8554407-gpts",
+      "category": "gpts",
+      "summary": "Use specialized versions of ChatGPT configured for specific purposes.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "explore_gpts",
+      "feature_name": "Explore GPTs",
+      "doc_url": "https://help.openai.com/en/articles/8554407-gpts",
+      "category": "gpts",
+      "summary": "Browse public, shared, or workspace GPTs from the GPTs area.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "gpt_store",
+      "feature_name": "GPT Store",
+      "doc_url": "https://help.openai.com/en/articles/8798878",
+      "category": "gpts",
+      "summary": "Browse/use/publish task-specific assistants in the public directory when eligible.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "gpt_conversation_starters",
+      "feature_name": "GPT conversation starters",
+      "doc_url": "https://help.openai.com/en/articles/8554407-gpts",
+      "category": "gpts",
+      "summary": "GPTs can present example prompts to help users begin.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_knowledge",
+      "feature_name": "GPT knowledge files",
+      "doc_url": "https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "category": "gpts",
+      "summary": "Attach files as GPT knowledge sources for reference during GPT chats.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_capabilities",
+      "feature_name": "GPT capabilities toggles",
+      "doc_url": "https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "category": "gpts",
+      "summary": "Choose GPT tools such as web search, image generation, canvas, or data analysis.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_apps",
+      "feature_name": "GPT apps",
+      "doc_url": "https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "category": "gpts",
+      "summary": "Allow a GPT to use apps/connectors available to the user.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_actions",
+      "feature_name": "GPT actions",
+      "doc_url": "https://help.openai.com/en/articles/9442513-gpt-actions-domain-settings-chatgpt-enterprise",
+      "category": "gpts",
+      "summary": "Define external API actions with schemas, auth, and domain restrictions.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_preview",
+      "feature_name": "GPT preview/test",
+      "doc_url": "https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "category": "gpts",
+      "summary": "Test a GPT in preview before saving or sharing.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_version_history",
+      "feature_name": "GPT version/update flow",
+      "doc_url": "https://help.openai.com/en/articles/8554397-creating-a-gpt",
+      "category": "gpts",
+      "summary": "Save drafts, update live GPTs, and maintain editing workflow.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "gpt_sharing",
+      "feature_name": "GPT sharing levels",
+      "doc_url": "https://help.openai.com/en/articles/8798878",
+      "category": "gpts",
+      "summary": "Share GPTs privately, to workspace, by link, or to GPT Store when eligible.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "memory",
+      "feature_name": "Memory",
+      "doc_url": "https://help.openai.com/en/articles/8983136-what-is-memory",
+      "category": "personalization",
+      "summary": "Remember saved facts and chat-history context to personalize future responses.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "saved_memories",
+      "feature_name": "Saved memories",
+      "doc_url": "https://help.openai.com/en/articles/8983136-what-is-memory",
+      "category": "personalization",
+      "summary": "Explicit or automatically saved details such as preferences and goals.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "reference_chat_history",
+      "feature_name": "Reference chat history",
+      "doc_url": "https://help.openai.com/en/articles/8983136-what-is-memory",
+      "category": "personalization",
+      "summary": "Use prior conversations for personalization even when not saved as exact memories.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "manage_memories",
+      "feature_name": "Manage memories",
+      "doc_url": "https://help.openai.com/en/articles/8983136-what-is-memory",
+      "category": "personalization",
+      "summary": "View, delete, reset, or turn off memories in Settings > Personalization.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "custom_instructions",
+      "feature_name": "Custom instructions",
+      "doc_url": "https://help.openai.com/en/articles/8590148-memory-faq",
+      "category": "personalization",
+      "summary": "Guide ChatGPT’s behavior with persistent user-provided instructions.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "style_tone",
+      "feature_name": "Style and tone settings",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "personalization",
+      "summary": "Set default style/tone traits for ChatGPT replies.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "temporary_chat",
+      "feature_name": "Temporary Chat",
+      "doc_url": "https://help.openai.com/en/articles/8914046-temporary-chat-faq",
+      "category": "personalization",
+      "summary": "Start private chats that do not appear in history, use/create memories, or train models.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "connectors",
+      "feature_name": "Apps / Connectors",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Connect third-party apps so ChatGPT can search, reference, and preview data in chat.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "connector_chat_use",
+      "feature_name": "Use connectors in chat",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Select apps from Tools/Use connectors for everyday connected-data tasks.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "connector_deep_research",
+      "feature_name": "Connectors in Deep Research",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Use connected apps as sources for deep research reports with citations.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "synced_connectors",
+      "feature_name": "Synced connectors/apps",
+      "doc_url": "https://help.openai.com/en/articles/10847137-chatgpt-synced-connectors",
+      "category": "connectors",
+      "summary": "Index selected knowledge sources in advance for faster answers and suggestions.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "connector_auto_use",
+      "feature_name": "Automatic connector use",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Certain Google apps can be used automatically in GPT-5 chat when connected.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "connector_settings",
+      "feature_name": "Connector settings",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Manage app connection, automatic use, proactive activity, and disconnect controls.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "custom_connectors",
+      "feature_name": "Custom connectors / MCP apps",
+      "doc_url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "category": "connectors",
+      "summary": "Business/Enterprise users may upload custom MCP-enabled connectors.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "projects",
+      "feature_name": "Projects",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Organize chats, files, and instructions under a shared objective.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "project_chats",
+      "feature_name": "Project chats",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Create and revisit chats scoped to a project.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "project_files",
+      "feature_name": "Project files/knowledge",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Add files to project context for ongoing work.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "project_instructions",
+      "feature_name": "Project custom instructions",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Set project-specific instructions that shape responses inside a project.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "project_sharing",
+      "feature_name": "Shared projects",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Invite members or share projects according to plan/workspace controls.",
+      "source": "openai-help",
+      "status": "partial"
+    },
+    {
+      "id": "project_settings",
+      "feature_name": "Project settings/delete",
+      "doc_url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "category": "library",
+      "summary": "Modify project name, icon, members, instructions, and delete the project.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library",
+      "feature_name": "File storage and Library",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Find and reuse uploaded and generated files saved to Library.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library_search",
+      "feature_name": "Library search/filter",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Search and filter by uploaded/generated files and file type.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library_storage",
+      "feature_name": "Library storage meter",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Check total usage, remaining storage, and limits.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library_add_to_chat",
+      "feature_name": "Add from Library",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Attach a saved Library file to a new chat from composer menu.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library_download",
+      "feature_name": "Library download",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Download selected files from Library.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "library_delete",
+      "feature_name": "Library delete",
+      "doc_url": "https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt",
+      "category": "library",
+      "summary": "Delete saved files from Library.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "tasks",
+      "feature_name": "Scheduled Tasks",
+      "doc_url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt",
+      "category": "personalization",
+      "summary": "Ask ChatGPT to run prompts later, one-time or recurring, and notify you.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "tasks_manage",
+      "feature_name": "Manage tasks",
+      "doc_url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt",
+      "category": "personalization",
+      "summary": "View, edit, pause, delete, and manage schedules from chat or settings.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "notifications",
+      "feature_name": "Notifications settings",
+      "doc_url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt",
+      "category": "account_settings",
+      "summary": "Configure push/email notifications and browser permissions for task updates.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "voice_mode",
+      "feature_name": "Voice Mode",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "multimodal",
+      "summary": "Speak naturally with ChatGPT and hear spoken responses. Off-limits for this run.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "advanced_voice",
+      "feature_name": "Advanced Voice",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "multimodal",
+      "summary": "Hands-free conversational voice experience. Off-limits for this run.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "dictation",
+      "feature_name": "Dictation/microphone input",
+      "doc_url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "category": "multimodal",
+      "summary": "Composer microphone/dictation input. Off-limits for this run.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "sora",
+      "feature_name": "Sora entry / video generation",
+      "doc_url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "category": "multimodal",
+      "summary": "Sora/video-generation entry or related surfaces if available; generation not started pending paywall/availability.",
+      "source": "openai-help",
+      "status": "observed_ok"
+    },
+    {
+      "id": "data_controls",
+      "feature_name": "Data controls",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "account_settings",
+      "summary": "Export data and manage training/privacy controls from settings.",
+      "source": "openai-help",
+      "status": "tested_ok"
+    },
+    {
+      "id": "export_data",
+      "feature_name": "Export ChatGPT data",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "account_settings",
+      "summary": "Request an account data export from Settings/Data Controls.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "account_security",
+      "feature_name": "Advanced account security",
+      "doc_url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "category": "account_settings",
+      "summary": "Optional stronger sign-in/account safeguards; account changes off-limits.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "subscription",
+      "feature_name": "Plan/subscription controls",
+      "doc_url": "https://help.openai.com/en/articles/12677804",
+      "category": "account_settings",
+      "summary": "Plan and purchase flows in subscription settings; billing actions off-limits.",
+      "source": "openai-help",
+      "status": "skipped_off_limits"
+    },
+    {
+      "id": "chatgpt-codex",
+      "feature_name": "ChatGPT Codex",
+      "doc_url": "https://chatgpt.com/codex",
+      "category": "developer",
+      "summary": "Developer/code-focused Codex surface with marketing, cloud onboarding, CLI/IDE/app options, GitHub repository connection, and code review setup.",
+      "source": "live-ui-targeted-rerun",
+      "status": "tested_ok"
+    }
+  ]
+}

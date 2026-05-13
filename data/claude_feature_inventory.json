@@ -1,0 +1,2430 @@
+{
+  "service": "claude",
+  "built_at": "2026-05-13T05:17:03.762Z",
+  "features": [
+    {
+      "id": "account.management.faqs",
+      "feature_name": "Account management FAQs",
+      "doc_url": "https://support.claude.com/en/articles/13325567-account-management-faqs",
+      "category": "account_security",
+      "summary": "Account management FAQs | Claude Help Center Skip to main content Account management FAQs March 16, 2026 Table of contents How do I change my team name? Owners can update the team name on their plan by navigating to Organization settings > Organization and clicking \"Update\" under the current team name.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "can.i.have.a.claude.account.and.a.console.account",
+      "feature_name": "Can I have a Claude account and a Console account?",
+      "doc_url": "https://support.claude.com/en/articles/8987223-can-i-have-a-claude-account-and-a-console-account",
+      "category": "account_security",
+      "summary": "Claude Help Center article for Can I have a Claude account and a Console account?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claim.and.migrate.accounts.on.your.domain",
+      "feature_name": "Claim and migrate accounts on your domain",
+      "doc_url": "https://support.claude.com/en/articles/14625619-claim-and-migrate-accounts-on-your-domain",
+      "category": "account_security",
+      "summary": "Claim and migrate accounts on your domain | Claude Help Center Skip to main content Claim and migrate accounts on your domain Updated over 2 weeks ago Table of contents Domain claiming lets Enterprise admins discover, claim, and migrate existing personal Claude accounts (Free, Pro, and Max) on a verified company domain into their Enterprise workspace. This gives your organization a clean path to consolidate accounts on day one of an Enterprise deployment, and allows people using Claude on person",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.4.invite.contest",
+      "feature_name": "Claude 4 Invite Contest",
+      "doc_url": "https://support.claude.com/en/articles/11408405-claude-4-invite-contest",
+      "category": "account_security",
+      "summary": "Claude 4 Invite Contest | Claude Help Center Skip to main content Claude 4 Invite Contest March 16, 2026 Table of contents The Claude 4 Invite Contest is a chance to win four months of Max plan for Claude by inviting friends and family to try Claude 4, our newest and most powerful AI model. What are the rewards?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.is.producing.links.that.don.t.work.and.falsely.c",
+      "feature_name": "Claude is producing links that don’t work and falsely claiming that it has sent emails or produced external documents. What’s going on?",
+      "doc_url": "https://support.claude.com/en/articles/8241188-claude-is-producing-links-that-don-t-work-and-falsely-claiming-that-it-has-sent-emails-or-produced-external-documents-what-s-going-on",
+      "category": "account_security",
+      "summary": "Claude is producing links that don’t work and falsely claiming that it has sent emails or produced external documents. | Claude Help Center Skip to main content Claude is producing links that don’t work and falsely claiming that it has sent emails or produced external documents.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "configuring.session.security.settings",
+      "feature_name": "Configuring session security settings",
+      "doc_url": "https://support.claude.com/en/articles/13163631-configuring-session-security-settings",
+      "category": "account_security",
+      "summary": "Configuring session security settings | Claude Help Center Skip to main content Configuring session security settings Updated this week Table of contents This feature is available to Admins and Owners of Enterprise plans and Console Admins. Session duration controls allow Enterprise and Console Admins to set a maximum session length for all users in their organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.access.the.personal.information.that.anthropi",
+      "feature_name": "How can I access the personal information that Anthropic has on my account?",
+      "doc_url": "https://support.claude.com/en/articles/9267387-how-can-i-access-the-personal-information-that-anthropic-has-on-my-account",
+      "category": "account_security",
+      "summary": "How can I access the personal information that Anthropic has on my account? | Claude Help Center Skip to main content How can I access the personal information that Anthropic has on my account?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.delete.my.claude.account",
+      "feature_name": "How can I delete my Claude account?",
+      "doc_url": "https://support.claude.com/en/articles/9028421-how-can-i-delete-my-claude-account",
+      "category": "account_security",
+      "summary": "How can I delete my Claude account? | Claude Help Center Skip to main content How can I delete my Claude account?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.delete.my.claude.console.account",
+      "feature_name": "How can I delete my Claude Console account?",
+      "doc_url": "https://support.claude.com/en/articles/10366376-how-can-i-delete-my-claude-console-account",
+      "category": "account_security",
+      "summary": "Claude Help Center article for How can I delete my Claude Console account?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.delete.or.rename.a.conversation",
+      "feature_name": "How can I delete or rename a conversation?",
+      "doc_url": "https://support.claude.com/en/articles/8230524-how-can-i-delete-or-rename-a-conversation",
+      "category": "account_security",
+      "summary": "How can I delete or rename a conversation? | Claude Help Center Skip to main content How can I delete or rename a conversation?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.export.my.claude.data",
+      "feature_name": "How can I export my Claude data?",
+      "doc_url": "https://support.claude.com/en/articles/9450526-how-can-i-export-my-claude-data",
+      "category": "account_security",
+      "summary": "How can I export my Claude data? | Claude Help Center Skip to main content How can I export my Claude data?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.change.the.email.address.associated.with.my.ac",
+      "feature_name": "How do I change the email address associated with my account?",
+      "doc_url": "https://support.claude.com/en/articles/8452276-how-do-i-change-the-email-address-associated-with-my-account",
+      "category": "account_security",
+      "summary": "How do I change the email address associated with my account? | Claude Help Center Skip to main content How do I change the email address associated with my account?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.log.out.of.all.active.sessions",
+      "feature_name": "How do I log out of all active sessions?",
+      "doc_url": "https://support.claude.com/en/articles/10310342-how-do-i-log-out-of-all-active-sessions",
+      "category": "account_security",
+      "summary": "How do I log out of all active sessions? | Claude Help Center Skip to main content How do I log out of all active sessions?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.get.support",
+      "feature_name": "How to get support",
+      "doc_url": "https://support.claude.com/en/articles/9015913-how-to-get-support",
+      "category": "account_security",
+      "summary": "How to get support | Claude Help Center Skip to main content How to get support March 16, 2026 Table of contents This guide explains how to get support for your Claude or Console account. Different support options are available depending on your plan.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.get.support.for.claude.for.government",
+      "feature_name": "How to get support for Claude for Government",
+      "doc_url": "https://support.claude.com/en/articles/13047024-how-to-get-support-for-claude-for-government",
+      "category": "account_security",
+      "summary": "How to get support for Claude for Government | Claude Help Center Skip to main content How to get support for Claude for Government March 16, 2026 Table of contents Please note: This page is hosted outside of Claude for Government's FedRAMP boundary. This article explains how Claude for Government Owners and Primary Owners can contact Anthropic Support.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.would.like.to.input.sensitive.data.into.my.chats.with",
+      "feature_name": "I would like to input sensitive data into my chats with Claude. Who can view my conversations?",
+      "doc_url": "https://support.claude.com/en/articles/8325621-i-would-like-to-input-sensitive-data-into-my-chats-with-claude-who-can-view-my-conversations",
+      "category": "account_security",
+      "summary": "I would like to input sensitive data into my chats with Claude. Who can view my conversations?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "logging.in.to.your.claude.account",
+      "feature_name": "Logging in to your Claude account",
+      "doc_url": "https://support.claude.com/en/articles/13189465-logging-in-to-your-claude-account",
+      "category": "account_security",
+      "summary": "Logging in to your Claude account | Claude Help Center Skip to main content Logging in to your Claude account Updated over 2 weeks ago Table of contents When you open Claude on a web browser ( claude.ai ), the desktop app, or a mobile app, you will see two different options for logging in to your Claude account. Continue with Google Click “Continue with Google” if you want to use your Google account credentials to log in to Claude.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "logging.in.to.your.console.account",
+      "feature_name": "Logging in to your Console account",
+      "doc_url": "https://support.claude.com/en/articles/13371040-logging-in-to-your-console-account",
+      "category": "account_security",
+      "summary": "Logging in to your Console account | Claude Help Center Skip to main content Logging in to your Console account March 18, 2026 Table of contents When you navigate to the Claude Console , you will see two different options for logging in to your Console account. Continue with Google Click \"Continue with Google\" if you want to use your Google account credentials to log in to the Console.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "managing.your.active.sessions",
+      "feature_name": "Managing your active sessions",
+      "doc_url": "https://support.claude.com/en/articles/13124001-managing-your-active-sessions",
+      "category": "account_security",
+      "summary": "Managing your active sessions | Claude Help Center Skip to main content Managing your active sessions March 16, 2026 Table of contents Claude lets you view and manage all the devices and browsers where you're currently logged in. This helps you stay in control of your account security — if you notice a session you don't recognize, or you want to log out of a device you no longer use, you can terminate that session directly.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "move.your.personal.claude.account.to.a.team.or.enterpri",
+      "feature_name": "Move your personal Claude account to a Team or Enterprise organization",
+      "doc_url": "https://support.claude.com/en/articles/9267400-move-your-personal-claude-account-to-a-team-or-enterprise-organization",
+      "category": "account_security",
+      "summary": "Move your personal Claude account to a Team or Enterprise organization | Claude Help Center Skip to main content Move your personal Claude account to a Team or Enterprise organization Updated over 2 weeks ago Table of contents If you're using Claude with a personal account (Free, Pro, or Max) tied to your work email, your organization may be able to bring that account into their Enterprise workspace. How this works depends on which plan your organization uses.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "public.sector.faqs",
+      "feature_name": "Public Sector FAQs",
+      "doc_url": "https://support.claude.com/en/articles/13756069-public-sector-faqs",
+      "category": "account_security",
+      "summary": "Public Sector FAQs | Claude Help Center Skip to main content Public Sector FAQs March 25, 2026 Table of contents 1. Products and features What products are available to Public Sector customers?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "respond.to.an.enterprise.domain.claim.on.your.claude.ac",
+      "feature_name": "Respond to an Enterprise domain claim on your Claude account",
+      "doc_url": "https://support.claude.com/en/articles/14625626-respond-to-an-enterprise-domain-claim-on-your-claude-account",
+      "category": "account_security",
+      "summary": "Respond to an Enterprise domain claim on your Claude account | Claude Help Center Skip to main content Respond to an Enterprise domain claim on your Claude account Updated over 2 weeks ago Table of contents If your organization has set up Claude Enterprise, they may claim your existing personal Claude account (Free, Pro, or Max) and move it into their workspace. This article explains what to expect and what your options are.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "verifying.your.phone.number",
+      "feature_name": "Verifying your phone number",
+      "doc_url": "https://support.claude.com/en/articles/8287232-verifying-your-phone-number",
+      "category": "account_security",
+      "summary": "Verifying your phone number | Claude Help Center Skip to main content Verifying your phone number March 16, 2026 Table of contents When you first create a Claude account, you’ll be asked to enter your phone number from a supported location to receive a verification code via text message: Once you receive the text message with the code, type it into the box and click “Verify code.” This will complete the verification and account creation process and allow you to start chatting with Claude. Why do",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "why.is.a.coupon.or.promotion.not.available.for.my.accou",
+      "feature_name": "Why is a coupon or promotion not available for my account?",
+      "doc_url": "https://support.claude.com/en/articles/11107691-why-is-a-coupon-or-promotion-not-available-for-my-account",
+      "category": "account_security",
+      "summary": "Why is a coupon or promotion not available for my account? | Claude Help Center Skip to main content Why is a coupon or promotion not available for my account?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.console.roles.and.permissions",
+      "feature_name": "Claude Console roles and permissions",
+      "doc_url": "https://support.claude.com/en/articles/10186004-claude-console-roles-and-permissions",
+      "category": "admin",
+      "summary": "Claude Console roles and permissions | Claude Help Center Skip to main content Claude Console roles and permissions Updated this week Table of contents The Claude Console uses a role-based access system with six distinct roles: User, Claude Code User, Limited Developer, Developer, Billing, and Admin. Each role has specific permissions and capabilities designed to help teams manage their API access securely.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.enterprise.analytics.api.reference.guide",
+      "feature_name": "Claude Enterprise Analytics API reference guide",
+      "doc_url": "https://support.claude.com/en/articles/13703965-claude-enterprise-analytics-api-reference-guide",
+      "category": "admin",
+      "summary": "Claude Enterprise Analytics API reference guide | Claude Help Center Skip to main content Claude Enterprise Analytics API reference guide Updated this week Table of contents Overview The Claude Enterprise Analytics API gives your organization programmatic access to engagement, adoption, usage, and cost data across Claude surfaces within your Enterprise organization. Whether you're building internal dashboards for user activity, tracking adoption of projects, reconciling spend against your monthl",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "creating.and.managing.workspaces.in.the.claude.console",
+      "feature_name": "Creating and managing Workspaces in the Claude Console",
+      "doc_url": "https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces-in-the-claude-console",
+      "category": "admin",
+      "summary": "Creating and managing Workspaces in the Claude Console | Claude Help Center Skip to main content Creating and managing Workspaces in the Claude Console March 16, 2026 Table of contents This guide will walk you through the process of creating, editing, and managing Workspaces in your Claude Console organization. Workspaces are collaborative spaces within Console organizations where teams can separate API resources by use case.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "does.anthropic.act.as.a.data.processor.or.controller",
+      "feature_name": "Does Anthropic Act as a Data Processor or Controller?",
+      "doc_url": "https://support.claude.com/en/articles/9267385-does-anthropic-act-as-a-data-processor-or-controller",
+      "category": "admin",
+      "summary": "Does Anthropic Act as a Data Processor or Controller? | Claude Help Center Skip to main content Does Anthropic Act as a Data Processor or Controller?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "find.and.join.a.team.or.enterprise.organization",
+      "feature_name": "Find and join a Team or Enterprise organization",
+      "doc_url": "https://support.claude.com/en/articles/13566435-find-and-join-a-team-or-enterprise-organization",
+      "category": "admin",
+      "summary": "Find and join a Team or Enterprise organization | Claude Help Center Skip to main content Find and join a Team or Enterprise organization Updated over a week ago Table of contents Organization discovery allows you to find and join your company's existing Team or Enterprise plan organization when you start the sign-up flow with a business email address. Instead of creating a separate personal account, you can request to join—or be added automatically—depending on your organization's configuration",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "get.started.with.the.claude.enterprise.analytics.api",
+      "feature_name": "Get started with the Claude Enterprise Analytics API",
+      "doc_url": "https://support.claude.com/en/articles/13694757-get-started-with-the-claude-enterprise-analytics-api",
+      "category": "admin",
+      "summary": "Get started with the Claude Enterprise Analytics API | Claude Help Center Skip to main content Get started with the Claude Enterprise Analytics API Updated this week Table of contents The Analytics API gives Enterprise plan Primary Owners programmatic access to engagement, adoption, usage, and cost data for their organization. Use it to build internal dashboards, track adoption trends, reconcile spend against your monthly bill, and feed Claude data into your existing reporting tools.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "inviting.members.to.the.claude.console",
+      "feature_name": "Inviting members to the Claude Console",
+      "doc_url": "https://support.claude.com/en/articles/13443764-inviting-members-to-the-claude-console",
+      "category": "admin",
+      "summary": "Inviting members to the Claude Console | Claude Help Center Skip to main content Inviting members to the Claude Console March 16, 2026 Table of contents The instructions in this article apply to your overall Console organization. If you are working within a specific Console Workspace, see this article: Creating and managing Workspaces in the Claude Console .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.claude.cowork.plugins.for.your.organization",
+      "feature_name": "Manage Claude Cowork plugins for your organization",
+      "doc_url": "https://support.claude.com/en/articles/13837433-manage-claude-cowork-plugins-for-your-organization",
+      "category": "admin",
+      "summary": "Manage Claude Cowork plugins for your organization | Claude Help Center Skip to main content Manage Claude Cowork plugins for your organization Updated over a week ago Table of contents Plugin marketplaces allow Team and Enterprise plan owners to distribute curated plugins to everyone in their organization through Claude Cowork. You create a marketplace, add plugins to it, and control exactly which plugins your team members can see and use.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "migrate.your.organization.from.team.to.enterprise",
+      "feature_name": "Migrate your organization from Team to Enterprise",
+      "doc_url": "https://support.claude.com/en/articles/13779868-migrate-your-organization-from-team-to-enterprise",
+      "category": "admin",
+      "summary": "Migrate your organization from Team to Enterprise | Claude Help Center Skip to main content Migrate your organization from Team to Enterprise Updated this week Table of contents When upgrading from a Team plan to an Enterprise plan, we recommend you keep the same Team organization and follow the upgrade path to change it to Enterprise. This will allow you to preserve your data (memberships/roles, conversations and projects) and some of the settings from your Team plan organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "roles.and.permissions",
+      "feature_name": "Roles and permissions",
+      "doc_url": "https://support.claude.com/en/articles/9267276-roles-and-permissions",
+      "category": "admin",
+      "summary": "Roles and permissions | Claude Help Center Skip to main content Roles and permissions Roles and permissions that can be set for members of your plan Updated over 3 weeks ago Table of contents What an individual can see and do in their Team or Enterprise plan account is dictated by their role. Roles are provisioned with the following permissions.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "set.organization.instructions",
+      "feature_name": "Set organization instructions",
+      "doc_url": "https://support.claude.com/en/articles/14546867-set-organization-instructions",
+      "category": "admin",
+      "summary": "Set organization instructions | Claude Help Center Skip to main content Set organization instructions Updated over a week ago Table of contents Organization instructions let Admins and above on Team and Enterprise plans set custom instructions that Claude follows in every conversation across your organization. Use them to apply communication standards, formatting requirements, compliance guidance, or domain-specific context that should show up everywhere your team works with Claude.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.enterprise.search",
+      "feature_name": "Use enterprise search",
+      "doc_url": "https://support.claude.com/en/articles/12489464-use-enterprise-search",
+      "category": "admin",
+      "summary": "Use enterprise search | Claude Help Center Skip to main content Use enterprise search Updated over 2 weeks ago Table of contents Enterprise search capabilities are available for users on Team and Enterprise plans. Enterprise search adds a dedicated project for searching across your organization's knowledge sources with optimized instructions and seamless connector integrations.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "who.owns.and.manages.the.data.of.my.team",
+      "feature_name": "Who owns and manages the data of my team?",
+      "doc_url": "https://support.claude.com/en/articles/9265372-who-owns-and-manages-the-data-of-my-team",
+      "category": "admin",
+      "summary": "Who owns and manages the data of my team? | Claude Help Center Skip to main content Who owns and manages the data of my team?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "admin",
+      "feature_name": "Admin",
+      "doc_url": "https://docs.claude.com/docs/en/manage-claude/admin-api",
+      "category": "admin",
+      "summary": "Claude technical documentation for Admin.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "skills.for.enterprise",
+      "feature_name": "Skills for enterprise",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/agent-skills/enterprise",
+      "category": "admin",
+      "summary": "Claude technical documentation for Skills for enterprise.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "monitor.claude.cowork.activity.with.opentelemetry",
+      "feature_name": "Monitor Claude Cowork activity with OpenTelemetry",
+      "doc_url": "https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry",
+      "category": "analytics_and_usage",
+      "summary": "Monitor Claude Cowork activity with OpenTelemetry | Claude Help Center Skip to main content Monitor Claude Cowork activity with OpenTelemetry Updated over 3 weeks ago Table of contents This article explains how to use OpenTelemetry (OTel) to monitor Claude Cowork activity across your organization. With OTel, your security and operations teams can stream Cowork events into the observability tools you already use to track usage, investigate incidents, and analyze performance.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.analytics.chat.to.ask.claude.about.usage",
+      "feature_name": "Use analytics chat to ask Claude about usage",
+      "doc_url": "https://support.claude.com/en/articles/14729354-use-analytics-chat-to-ask-claude-about-usage",
+      "category": "analytics_and_usage",
+      "summary": "Use analytics chat to ask Claude about usage | Claude Help Center Skip to main content Use analytics chat to ask Claude about usage Updated over 2 weeks ago Table of contents Analytics chat lets you ask Claude questions about your organization’s usage in plain language. Instead of clicking through dashboard tabs or exporting data, type a question.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "about.the.development.partner.program",
+      "feature_name": "About the Development Partner Program",
+      "doc_url": "https://support.claude.com/en/articles/11174108-about-the-development-partner-program",
+      "category": "api_platform",
+      "summary": "About the Development Partner Program | Claude Help Center Skip to main content About the Development Partner Program March 16, 2026 The Development Partner Program is an optional, transparent way for organizations to help shape the future of Claude while maintaining control over their data. By default, Anthropic doesn’t train our models on the data you generate when using our commercial products (e.g.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "access.the.compliance.api",
+      "feature_name": "Access the Compliance API",
+      "doc_url": "https://support.claude.com/en/articles/13015708-access-the-compliance-api",
+      "category": "api_platform",
+      "summary": "Access the Compliance API | Claude Help Center Skip to main content Access the Compliance API Updated this week Table of contents The Compliance API is generally available to Enterprise plans, excluding Public Sector organizations. Enterprise plan Primary Owners can enable the Compliance API by navigating to Organization settings > Data and privacy and clicking \"Enable\" under Compliance API .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "adapting.to.new.model.personas.after.deprecations",
+      "feature_name": "Adapting to new model personas after deprecations",
+      "doc_url": "https://support.claude.com/en/articles/12738598-adapting-to-new-model-personas-after-deprecations",
+      "category": "api_platform",
+      "summary": "Adapting to new model personas after deprecations | Claude Help Center Skip to main content Adapting to new model personas after deprecations Updated this week Table of contents Model deprecations and retirements are routine parts of the model lifecycle. While we would like to keep past models publicly available as we continue to advance the frontier of safety and capabilities, maintenance overhead and capacity constraints do not currently allow this.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "anthropic.s.ai.for.science.program",
+      "feature_name": "Anthropic's AI for Science Program",
+      "doc_url": "https://support.claude.com/en/articles/11199177-anthropic-s-ai-for-science-program",
+      "category": "api_platform",
+      "summary": "Anthropic's AI for Science Program | Claude Help Center Skip to main content Anthropic's AI for Science Program March 16, 2026 Table of contents Our AI for Science Program is specifically designed to support researchers working on high-impact scientific projects, with a particular focus on biology and life sciences applications, by providing free API credits. If you are a researcher working on applying Generative AI to scientific research and are interested in receiving free API credits, you mig",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "api.key.best.practices.keeping.your.keys.safe.and.secur",
+      "feature_name": "API Key Best Practices: Keeping Your Keys Safe and Secure",
+      "doc_url": "https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for API Key Best Practices: Keeping Your Keys Safe and Secure.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "can.i.use.the.claude.api.for.individual.use",
+      "feature_name": "Can I use the Claude API for individual use?",
+      "doc_url": "https://support.claude.com/en/articles/8987200-can-i-use-the-claude-api-for-individual-use",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for Can I use the Claude API for individual use?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.s.response.to.my.prompt.is.too.brief",
+      "feature_name": "Claude’s response to my prompt is too brief.",
+      "doc_url": "https://support.claude.com/en/articles/8114518-claude-s-response-to-my-prompt-is-too-brief",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for Claude’s response to my prompt is too brief..",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "cost.and.usage.reporting.in.the.claude.console",
+      "feature_name": "Cost and Usage Reporting in the Claude Console",
+      "doc_url": "https://support.claude.com/en/articles/9534590-cost-and-usage-reporting-in-the-claude-console",
+      "category": "api_platform",
+      "summary": "Cost and Usage Reporting in the Claude Console | Claude Help Center Skip to main content Cost and Usage Reporting in the Claude Console March 16, 2026 Table of contents Note: Usage and Cost reporting is visible to the following user roles: Developer, Billing, and Admin . See Claude Console Roles and Permissions for more information.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "find.and.join.a.console.organization",
+      "feature_name": "Find and join a Console organization",
+      "doc_url": "https://support.claude.com/en/articles/14793921-find-and-join-a-console-organization",
+      "category": "api_platform",
+      "summary": "Find and join a Console organization | Claude Help Center Skip to main content Find and join a Console organization Updated over a week ago Table of contents Organization discovery lets you find and join your company’s existing Console organization when you start the sign-up flow with a business email address. Instead of creating a personal account, you can request to join—or be added automatically—depending on your organization’s configuration.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.access.the.claude.api",
+      "feature_name": "How can I access the Claude API?",
+      "doc_url": "https://support.claude.com/en/articles/8114521-how-can-i-access-the-claude-api",
+      "category": "api_platform",
+      "summary": "How can I access the Claude API? | Claude Help Center Skip to main content How can I access the Claude API?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.advance.my.claude.api.usage.to.tier.2",
+      "feature_name": "How can I advance my Claude API usage to Tier 2?",
+      "doc_url": "https://support.claude.com/en/articles/10366389-how-can-i-advance-my-claude-api-usage-to-tier-2",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for How can I advance my Claude API usage to Tier 2?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.check.connectivity.to.the.claude.api",
+      "feature_name": "How can I check connectivity to the Claude API?",
+      "doc_url": "https://support.claude.com/en/articles/13403291-how-can-i-check-connectivity-to-the-claude-api",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for How can I check connectivity to the Claude API?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.use.the.workbench",
+      "feature_name": "How do I use the Workbench?",
+      "doc_url": "https://support.claude.com/en/articles/8606378-how-do-i-use-the-workbench",
+      "category": "api_platform",
+      "summary": "How do I use the Workbench? | Claude Help Center Skip to main content How do I use the Workbench?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.large.is.the.claude.api.s.context.window",
+      "feature_name": "How large is the Claude API’s context window?",
+      "doc_url": "https://support.claude.com/en/articles/8606395-how-large-is-the-claude-api-s-context-window",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for How large is the Claude API’s context window?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.created.a.claude.console.organization.how.do.i.start.",
+      "feature_name": "I created a Claude Console organization - how do I start using the Claude API?",
+      "doc_url": "https://support.claude.com/en/articles/8114531-i-created-a-claude-console-organization-how-do-i-start-using-the-claude-api",
+      "category": "api_platform",
+      "summary": "I created a Claude Console organization - how do I start using the Claude API? | Claude Help Center Skip to main content I created a Claude Console organization - how do I start using the Claude API?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.m.getting.an.api.connection.error.how.can.i.fix.it",
+      "feature_name": "I'm getting an API connection error. How can I fix it?",
+      "doc_url": "https://support.claude.com/en/articles/10366432-i-m-getting-an-api-connection-error-how-can-i-fix-it",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for I'm getting an API connection error. How can I fix it?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "introduction.to.prompt.design",
+      "feature_name": "Introduction to prompt design",
+      "doc_url": "https://support.claude.com/en/articles/7996853-introduction-to-prompt-design",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for Introduction to prompt design.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "let.claude.use.your.computer.in.cowork",
+      "feature_name": "Let Claude use your computer in Cowork",
+      "doc_url": "https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork",
+      "category": "api_platform",
+      "summary": "Let Claude use your computer in Cowork | Claude Help Center Skip to main content Let Claude use your computer in Cowork Updated over 2 weeks ago Table of contents Claude can now use your computer to complete tasks in Cowork and Claude Code (refer to our Claude Code Docs for more information about this). When Claude doesn't have a connector or tool for what you need, it navigates your screen directly—clicking, typing, and opening apps just like you would.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.user.feedback.settings.on.claude.console",
+      "feature_name": "Manage user feedback settings on Claude Console",
+      "doc_url": "https://support.claude.com/en/articles/10504853-manage-user-feedback-settings-on-claude-console",
+      "category": "api_platform",
+      "summary": "Manage user feedback settings on Claude Console | Claude Help Center Skip to main content Manage user feedback settings on Claude Console March 16, 2026 As an Admin of your Claude Console account, you can manage the ability for members of your organization to submit feedback to Anthropic via thumbs up / thumbs down. To manage feedback for your Console organization: Navigate to Settings > Privacy controls .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "my.prompt.isn.t.giving.me.a.helpful.answer",
+      "feature_name": "My prompt isn’t giving me a helpful answer.",
+      "doc_url": "https://support.claude.com/en/articles/7996857-my-prompt-isn-t-giving-me-a-helpful-answer",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for My prompt isn’t giving me a helpful answer..",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "sharing.prompts.in.the.claude.console",
+      "feature_name": "Sharing Prompts in the Claude Console",
+      "doc_url": "https://support.claude.com/en/articles/10722177-sharing-prompts-in-the-claude-console",
+      "category": "api_platform",
+      "summary": "Sharing Prompts in the Claude Console | Claude Help Center Skip to main content Sharing Prompts in the Claude Console March 16, 2026 Table of contents The prompt sharing feature enables teams to collaborate on prompt development within the Claude Console. This feature allows workspace members to share, edit, and iterate on prompts together, maintaining a clear revision history attributed to the specific contributors.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "troubleshoot.claude.error.messages",
+      "feature_name": "Troubleshoot Claude error messages",
+      "doc_url": "https://support.claude.com/en/articles/12466728-troubleshoot-claude-error-messages",
+      "category": "api_platform",
+      "summary": "Troubleshoot Claude error messages | Claude Help Center Skip to main content Troubleshoot Claude error messages March 16, 2026 Table of contents This article explains common error messages and warnings you may encounter when using Claude and provides guidance on how to address them. Usage limit warnings and errors Usage limit warnings appear when you're approaching your plan’s limit within a five-hour session: “Approaching 5-hour limit.” If you hit your plan’s limit after the warning appears, yo",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.is.the.external.researcher.access.program",
+      "feature_name": "What is the External Researcher Access Program?",
+      "doc_url": "https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for What is the External Researcher Access Program?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.should.i.do.if.i.suspect.my.api.key.has.been.compr",
+      "feature_name": "What should I do if I suspect my API key has been compromised?",
+      "doc_url": "https://support.claude.com/en/articles/8384961-what-should-i-do-if-i-suspect-my-api-key-has-been-compromised",
+      "category": "api_platform",
+      "summary": "What should I do if I suspect my API key has been compromised? | Claude Help Center Skip to main content What should I do if I suspect my API key has been compromised?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "where.can.i.go.for.claude.api.support.and.assistance",
+      "feature_name": "Where can I go for Claude API support and assistance?",
+      "doc_url": "https://support.claude.com/en/articles/8114535-where-can-i-go-for-claude-api-support-and-assistance",
+      "category": "api_platform",
+      "summary": "Claude Help Center article for Where can I go for Claude API support and assistance?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "where.is.the.claude.api.supported",
+      "feature_name": "Where is the Claude API supported?",
+      "doc_url": "https://support.claude.com/en/articles/8116515-where-is-the-claude-api-supported",
+      "category": "api_platform",
+      "summary": "Where is the Claude API supported? | Claude Help Center Skip to main content Where is the Claude API supported?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "advisor.tool",
+      "feature_name": "Advisor tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Advisor tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "amazon.bedrock",
+      "feature_name": "Amazon Bedrock",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Amazon Bedrock.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "amazon.bedrock.legacy",
+      "feature_name": "Amazon Bedrock (legacy)",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Amazon Bedrock (legacy).",
+      "source": "claude-docs"
+    },
+    {
+      "id": "api.reference",
+      "feature_name": "API reference",
+      "doc_url": "https://docs.claude.com/docs/en/api/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for API reference.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "bash.tool",
+      "feature_name": "Bash tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/bash-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Bash tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "batch.processing",
+      "feature_name": "Batch processing",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/batch-processing",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Batch processing.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "best.practices",
+      "feature_name": "Best practices",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Best practices.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "browse.the.features.overview",
+      "feature_name": "Browse the features overview",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Browse the features overview.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "citations",
+      "feature_name": "Citations",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/citations",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Citations.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "claude.managed.agents.docs",
+      "feature_name": "Claude Managed Agents docs",
+      "doc_url": "https://docs.claude.com/docs/en/managed-agents/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Claude Managed Agents docs.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "claude.platform.on.aws",
+      "feature_name": "Claude Platform on AWS",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Claude Platform on AWS.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "compaction",
+      "feature_name": "Compaction",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/compaction",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Compaction.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "computer.use.tool",
+      "feature_name": "Computer use tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Computer use tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "context.editing",
+      "feature_name": "Context editing",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/context-editing",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Context editing.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "context.windows",
+      "feature_name": "Context windows",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/context-windows",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Context windows.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "define.tools",
+      "feature_name": "Define tools",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Define tools.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "develop.with.claude",
+      "feature_name": "Develop with Claude",
+      "doc_url": "https://docs.claude.com/en/docs/",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Develop with Claude.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "effort",
+      "feature_name": "Effort",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/effort",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Effort.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "embeddings",
+      "feature_name": "Embeddings",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/embeddings",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Embeddings.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "fast.mode.beta.research.preview",
+      "feature_name": "Fast mode (beta: research preview)",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/fast-mode",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Fast mode (beta: research preview).",
+      "source": "claude-docs"
+    },
+    {
+      "id": "features.overview",
+      "feature_name": "Features overview",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Features overview.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "fine.grained.tool.streaming",
+      "feature_name": "Fine-grained tool streaming",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Fine-grained tool streaming.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "go.to.the.quickstart",
+      "feature_name": "Go to the quickstart",
+      "doc_url": "https://docs.claude.com/docs/en/get-started",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Go to the quickstart.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "handle.tool.calls",
+      "feature_name": "Handle tool calls",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Handle tool calls.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "handling.stop.reasons",
+      "feature_name": "Handling stop reasons",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Handling stop reasons.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "how.tool.use.works",
+      "feature_name": "How tool use works",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for How tool use works.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "intro.to.claude",
+      "feature_name": "Intro to Claude",
+      "doc_url": "https://docs.claude.com/docs/en/intro",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Intro to Claude.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "key.capabilities",
+      "feature_name": "Key capabilities",
+      "doc_url": "https://docs.claude.com/en/docs/",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Key capabilities.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "manage.tool.context",
+      "feature_name": "Manage tool context",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Manage tool context.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "managed.agents",
+      "feature_name": "Managed Agents",
+      "doc_url": "https://docs.claude.com/docs/en/managed-agents/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Managed Agents.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "messages",
+      "feature_name": "Messages",
+      "doc_url": "https://docs.claude.com/docs/en/intro",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Messages.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "messages.api.docs",
+      "feature_name": "Messages API docs",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/working-with-messages",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Messages API docs.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "multilingual.support",
+      "feature_name": "Multilingual support",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/multilingual-support",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Multilingual support.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "overview",
+      "feature_name": "Overview",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Overview.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "overview.2",
+      "feature_name": "Overview",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Overview.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "parallel.tool.use",
+      "feature_name": "Parallel tool use",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Parallel tool use.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "programmatic.tool.calling",
+      "feature_name": "Programmatic tool calling",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Programmatic tool calling.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "prompt.caching",
+      "feature_name": "Prompt caching",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/prompt-caching",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Prompt caching.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "quickstart",
+      "feature_name": "Quickstart",
+      "doc_url": "https://docs.claude.com/docs/en/get-started",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Quickstart.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "quickstart.2",
+      "feature_name": "Quickstart",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/agent-skills/quickstart",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Quickstart.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "read.the.messages.api.guide",
+      "feature_name": "Read the Messages API guide",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/working-with-messages",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Read the Messages API guide.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "recommended.path.for.new.developers",
+      "feature_name": "Recommended path for new developers",
+      "doc_url": "https://docs.claude.com/en/docs/",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Recommended path for new developers.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "search.results",
+      "feature_name": "Search results",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/search-results",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Search results.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "see.the.models.overview",
+      "feature_name": "See the models overview",
+      "doc_url": "https://docs.claude.com/docs/en/about-claude/models/overview",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for See the models overview.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "server.tools",
+      "feature_name": "Server tools",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/server-tools",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Server tools.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "skills.in.the.api",
+      "feature_name": "Skills in the API",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/skills-guide",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Skills in the API.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "streaming.messages",
+      "feature_name": "Streaming Messages",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/streaming",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Streaming Messages.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "streaming.refusals",
+      "feature_name": "Streaming refusals",
+      "doc_url": "https://docs.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Streaming refusals.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "strict.tool.use",
+      "feature_name": "Strict tool use",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Strict tool use.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "structured.outputs",
+      "feature_name": "Structured outputs",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/structured-outputs",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Structured outputs.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "task.budgets.beta",
+      "feature_name": "Task budgets (beta)",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/task-budgets",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Task budgets (beta).",
+      "source": "claude-docs"
+    },
+    {
+      "id": "text.editor.tool",
+      "feature_name": "Text editor tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Text editor tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "token.counting",
+      "feature_name": "Token counting",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/token-counting",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Token counting.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tool.combinations",
+      "feature_name": "Tool combinations",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tool combinations.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tool.reference",
+      "feature_name": "Tool reference",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/tool-reference",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tool reference.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tool.runner.sdk",
+      "feature_name": "Tool Runner (SDK)",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/tool-runner",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tool Runner (SDK).",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tool.search",
+      "feature_name": "Tool search",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tool search.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tool.use.with.prompt.caching",
+      "feature_name": "Tool use with prompt caching",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tool use with prompt caching.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "troubleshooting",
+      "feature_name": "Troubleshooting",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Troubleshooting.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "tutorial.build.a.tool.using.agent",
+      "feature_name": "Tutorial: Build a tool-using agent",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Tutorial: Build a tool-using agent.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "using.the.messages.api",
+      "feature_name": "Using the Messages API",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/working-with-messages",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Using the Messages API.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "vertex.ai",
+      "feature_name": "Vertex AI",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Vertex AI.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "web.fetch.tool",
+      "feature_name": "Web fetch tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Web fetch tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "web.search.tool",
+      "feature_name": "Web search tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "category": "api_platform",
+      "summary": "Claude technical documentation for Web search tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "claude.code.in.chrome",
+      "feature_name": "Claude Code in Chrome",
+      "doc_url": "https://support.claude.com/en/collections/18031491-claude-in-chrome",
+      "category": "apps_integrations",
+      "summary": "Claude in Chrome brings Claude Code assistance into the browser extension context.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.cowork.desktop.architecture.overview",
+      "feature_name": "Claude Cowork desktop architecture overview",
+      "doc_url": "https://support.claude.com/en/articles/14479288-claude-cowork-desktop-architecture-overview",
+      "category": "apps_integrations",
+      "summary": "Claude Cowork desktop architecture overview | Claude Help Center Skip to main content Claude Cowork desktop architecture overview Updated over 2 weeks ago Table of contents This article explains how Claude Cowork runs on member devices and the admin controls available for restricting its scope on managed devices. This article is for Enterprise admins.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "configure.a.custom.opentelemetry.collector.for.office.a",
+      "feature_name": "Configure a custom OpenTelemetry collector for Office agents",
+      "doc_url": "https://support.claude.com/en/articles/14447276-configure-a-custom-opentelemetry-collector-for-office-agents",
+      "category": "apps_integrations",
+      "summary": "Configure a custom OpenTelemetry collector for Office agents | Claude Help Center Skip to main content Configure a custom OpenTelemetry collector for Office agents Updated this week Table of contents You can route full audit telemetry from Office agents to your own OpenTelemetry (OTEL) collector. This gives your organization complete control over retention, encryption, and integration with your SIEM or observability platform.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "customizing.your.appearance.settings",
+      "feature_name": "Customizing your appearance settings",
+      "doc_url": "https://support.claude.com/en/articles/8887527-customizing-your-appearance-settings",
+      "category": "apps_integrations",
+      "summary": "Customizing your appearance settings | Claude Help Center Skip to main content Customizing your appearance settings March 16, 2026 Table of contents How to switch between light and dark mode Log in to your account and click your initials or name in the lower left corner. Navigate to Settings > Appearance .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "customizing.your.console.appearance.settings",
+      "feature_name": "Customizing your Console appearance settings",
+      "doc_url": "https://support.claude.com/en/articles/13346458-customizing-your-console-appearance-settings",
+      "category": "apps_integrations",
+      "summary": "Customizing your Console appearance settings | Claude Help Center Skip to main content Customizing your Console appearance settings March 16, 2026 Table of contents How to change your Console color mode Log in to your Console account. Navigate to Settings > Appearance .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "our.approach.to.rate.limits.for.the.claude.api",
+      "feature_name": "Our approach to rate limits for the Claude API",
+      "doc_url": "https://support.claude.com/en/articles/8243635-our-approach-to-rate-limits-for-the-claude-api",
+      "category": "apps_integrations",
+      "summary": "Our approach to rate limits for the Claude API | Claude Help Center Skip to main content Our approach to rate limits for the Claude API March 16, 2026 Your rate limit depends on your usage tier, and is currently measured in three key metrics: Requests per minute (RPM) Input tokens per minute (ITPM) Output tokens per minute (OTPM) If you exceed any of these rate limits, you will get a 429 error describing which rate limit was exceeded, along with a retry-after header indicating how long to wait. ",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.for.outlook",
+      "feature_name": "Use Claude for Outlook",
+      "doc_url": "https://support.claude.com/en/articles/14855664-use-claude-for-outlook",
+      "category": "apps_integrations",
+      "summary": "Use Claude for Outlook | Claude Help Center Skip to main content Use Claude for Outlook Updated this week Table of contents Claude for Outlook is an add-in that integrates Claude into your Outlook inbox and calendar. It’s designed for professionals who live in email, including private equity and investment banking associates managing deal flow, in-house legal teams running counterparty negotiations, and consultants juggling client threads.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.for.word",
+      "feature_name": "Use Claude for Word",
+      "doc_url": "https://support.claude.com/en/articles/14465370-use-claude-for-word",
+      "category": "apps_integrations",
+      "summary": "Use Claude for Word | Claude Help Center Skip to main content Use Claude for Word Updated this week Table of contents Claude for Word is an add-in that integrates Claude into your Word workflow. It’s designed for professionals who work extensively with documents, particularly in legal review, financial memo drafting, and iterative editing.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.dictation.in.office.agents",
+      "feature_name": "Use dictation in Office agents",
+      "doc_url": "https://support.claude.com/en/articles/14479591-use-dictation-in-office-agents",
+      "category": "apps_integrations",
+      "summary": "Use dictation in Office agents | Claude Help Center Skip to main content Use dictation in Office agents April 7, 2026 Table of contents Dictation lets you speak your prompts instead of typing them when using Office agents. Click the microphone icon in the chat input, speak, and your words appear in the composer as you talk.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "using.claude.in.xcode",
+      "feature_name": "Using Claude in Xcode",
+      "doc_url": "https://support.claude.com/en/articles/12293051-using-claude-in-xcode",
+      "category": "apps_integrations",
+      "summary": "Using Claude in Xcode | Claude Help Center Skip to main content Using Claude in Xcode March 16, 2026 Table of contents Claude in Xcode is available for individuals with Pro and Max plans, and users with premium seats on Team and Enterprise plans. Claude Sonnet 4 is now available in Xcode 26, bringing AI-powered coding assistance directly to Apple's integrated development environment (IDE).",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "voice.dictation",
+      "feature_name": "Voice/dictation",
+      "doc_url": "https://support.claude.com/en/articles/14479591-use-dictation-in-office-agents",
+      "category": "apps_integrations",
+      "summary": "Claude documentation describes dictation or voice input in selected clients.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.happens.to.a.user.s.data.when.they.are.removed.fro",
+      "feature_name": "What happens to a user's data when they are removed from a Team or Enterprise organization?",
+      "doc_url": "https://support.claude.com/en/articles/12053672-what-happens-to-a-user-s-data-when-they-are-removed-from-a-team-or-enterprise-organization",
+      "category": "apps_integrations",
+      "summary": "What happens to a user's data when they are removed from a Team or Enterprise organization? | Claude Help Center Skip to main content What happens to a user's data when they are removed from a Team or Enterprise organization?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "code.execution.tool",
+      "feature_name": "Code execution tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool",
+      "category": "apps_integrations",
+      "summary": "Claude technical documentation for Code execution tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "text.and.code.generationsummarize.text.answer.questions",
+      "feature_name": "Text and code generationSummarize text, answer questions, extract data, translate text, and explain and generate code.",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/overview",
+      "category": "apps_integrations",
+      "summary": "Claude technical documentation for Text and code generationSummarize text, answer questions, extract data, translate text, and explain and generate code..",
+      "source": "claude-docs"
+    },
+    {
+      "id": "add.or.update.your.claude.console.organization.s.tax.or",
+      "feature_name": "Add or update your Claude Console organization's tax or VAT ID",
+      "doc_url": "https://support.claude.com/en/articles/9889428-add-or-update-your-claude-console-organization-s-tax-or-vat-id",
+      "category": "billing_plan",
+      "summary": "Claude Help Center article for Add or update your Claude Console organization's tax or VAT ID.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "add.or.update.your.paid.claude.account.s.tax.or.vat.id",
+      "feature_name": "Add or update your paid Claude account’s tax or VAT ID",
+      "doc_url": "https://support.claude.com/en/articles/9889408-add-or-update-your-paid-claude-account-s-tax-or-vat-id",
+      "category": "billing_plan",
+      "summary": "Add or update your paid Claude account’s tax or VAT ID | Claude Help Center Skip to main content Add or update your paid Claude account’s tax or VAT ID March 16, 2026 Table of contents Add your tax or VAT ID during signup When you sign up for a Pro or Max subscription, you may have the option to enter your Tax or VAT ID depending on your location: During the sign-up process, enter your address information. If your address is eligible for tax purposes, an optional field for your Tax or VAT ID wil",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "add.or.update.your.team.plan.s.tax.or.vat.id",
+      "feature_name": "Add or update your Team plan's tax or VAT ID",
+      "doc_url": "https://support.claude.com/en/articles/9927624-add-or-update-your-team-plan-s-tax-or-vat-id",
+      "category": "billing_plan",
+      "summary": "Add or update your Team plan's tax or VAT ID | Claude Help Center Skip to main content Add or update your Team plan's tax or VAT ID March 16, 2026 Table of contents Add your tax or VAT ID during signup When you sign up for a Team plan, you may have the option to enter your Tax or VAT ID depending on your location: During the signup process, enter your address information. If your address is eligible for tax purposes, an optional field for your Tax or VAT ID will appear.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "buy.usage.bundles",
+      "feature_name": "Buy usage bundles",
+      "doc_url": "https://support.claude.com/en/articles/14246112-buy-usage-bundles",
+      "category": "billing_plan",
+      "summary": "Buy usage bundles | Claude Help Center Skip to main content Buy usage bundles April 7, 2026 Table of contents You can pre-purchase extra usage in bundles and save up to 30% compared to standard extra usage rates. Larger bundles come with bigger discounts, and your balance works across Claude, Claude Code, Claude Cowork, and third-party products.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "can.you.delete.data.that.i.sent.via.team.and.enterprise",
+      "feature_name": "Can you delete data that I sent via Team and Enterprise plans?",
+      "doc_url": "https://support.claude.com/en/articles/9796617-can-you-delete-data-that-i-sent-via-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Can you delete data that I sent via Team and Enterprise plans? | Claude Help Center Skip to main content Can you delete data that I sent via Team and Enterprise plans?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "cancel.your.organization.s.team.plan.subscription",
+      "feature_name": "Cancel your organization's Team plan subscription",
+      "doc_url": "https://support.claude.com/en/articles/9267323-cancel-your-organization-s-team-plan-subscription",
+      "category": "billing_plan",
+      "summary": "Cancel your organization's Team plan subscription | Claude Help Center Skip to main content Cancel your organization's Team plan subscription March 16, 2026 An Owner or Primary Owner can cancel Team plan access by navigating to Organization settings > Billing . Canceling your Team plan subscription means that your organization won't be charged for the next billing cycle.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "change.your.team.plan.from.monthly.to.annual.billing",
+      "feature_name": "Change your Team plan from monthly to annual billing",
+      "doc_url": "https://support.claude.com/en/articles/12083917-change-your-team-plan-from-monthly-to-annual-billing",
+      "category": "billing_plan",
+      "summary": "Change your Team plan from monthly to annual billing | Claude Help Center Skip to main content Change your Team plan from monthly to annual billing March 16, 2026 Owners and Primary Owners of Team plans with monthly subscriptions can switch from the monthly plan to an annual plan by following these steps: Navigate to Organization settings > Billing or claude.ai/upgrade . You’ll see a banner confirming your current monthly plan in your Billing settings; click the “Switch to Annual” button.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "choosing.a.claude.plan",
+      "feature_name": "Choosing a Claude plan",
+      "doc_url": "https://support.claude.com/en/articles/11049762-choosing-a-claude-plan",
+      "category": "billing_plan",
+      "summary": "Choosing a Claude plan | Claude Help Center Skip to main content Choosing a Claude plan March 16, 2026 Use the following guide to determine which plan is right for you. Plan Price Billing Interval Usage Capacity Best For Free $0 N/A Limited Occasional use Pro $20/month $200/year Monthly or annual Standard Regular use Max 5x $100 Monthly 5x Pro capacity per session Frequent users who work with Claude on a variety of tasks Max 20x $200 Monthly 20x Pro capacity per session Daily users who collabora",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.design.admin.guide.for.team.and.enterprise.plans",
+      "feature_name": "Claude Design admin guide for Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/14604406-claude-design-admin-guide-for-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Claude Design admin guide for Team and Enterprise plans | Claude Help Center Skip to main content Claude Design admin guide for Team and Enterprise plans Updated over 3 weeks ago Table of contents Claude Design by Anthropic Labs lets your team create on-brand designs, prototypes, presentations, and interactive microsites through conversation with Claude. Claude Design by Anthropic Labs is available in research preview to Pro, Max, Team, and Enterprise plans.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.design.subscription.usage.and.pricing",
+      "feature_name": "Claude Design subscription usage and pricing",
+      "doc_url": "https://support.claude.com/en/articles/14667344-claude-design-subscription-usage-and-pricing",
+      "category": "billing_plan",
+      "summary": "Claude Design subscription usage and pricing | Claude Help Center Skip to main content Claude Design subscription usage and pricing Updated over 3 weeks ago Table of contents Claude Design is priced and metered independently from the rest of Claude. It has its own usage tracking, its own allowances, and—for subscription plans—its own weekly limits that sit alongside (not inside) your existing chat or Claude Code limits.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "configure.custom.data.retention.controls.for.enterprise",
+      "feature_name": "Configure custom data retention controls for Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/10440198-configure-custom-data-retention-controls-for-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Configure custom data retention controls for Enterprise plans | Claude Help Center Skip to main content Configure custom data retention controls for Enterprise plans March 16, 2026 Table of contents This feature is available to Enterprise plan customers. To set custom retention periods for your organization, you must have either a Primary Owner or Owner role.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "get.started.with.the.team.plan",
+      "feature_name": "Get started with the Team plan",
+      "doc_url": "https://support.claude.com/en/articles/9267247-get-started-with-the-team-plan",
+      "category": "billing_plan",
+      "summary": "Get started with the Team plan | Claude Help Center Skip to main content Get started with the Team plan March 16, 2026 Table of contents Requirements to sign up for a Team plan The account creator must use a business email address. Public domains like @gmail.com, @yahoo.com, and @hotmail.com aren't allowed—but you can add them as permitted domains for other members of your organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "hipaa.ready.enterprise.plans",
+      "feature_name": "HIPAA-ready Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13296973-hipaa-ready-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "HIPAA-ready Enterprise plans | Claude Help Center Skip to main content HIPAA-ready Enterprise plans Updated this week Table of contents This feature is available for Enterprise plans only. We now offer a HIPAA-ready version of Claude that is available for organizations with Enterprise plans that choose to process protected health information (PHI) through Claude.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.am.i.billed.for.my.enterprise.plan",
+      "feature_name": "How am I billed for my Enterprise plan?",
+      "doc_url": "https://support.claude.com/en/articles/11526368-how-am-i-billed-for-my-enterprise-plan",
+      "category": "billing_plan",
+      "summary": "How am I billed for my Enterprise plan? | Claude Help Center Skip to main content How am I billed for my Enterprise plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.learn.more.about.claude.api.pricing",
+      "feature_name": "How can I learn more about Claude API pricing?",
+      "doc_url": "https://support.claude.com/en/articles/8114523-how-can-i-learn-more-about-claude-api-pricing",
+      "category": "billing_plan",
+      "summary": "Claude Help Center article for How can I learn more about Claude API pricing?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.cancel.my.paid.claude.subscription",
+      "feature_name": "How do I cancel my paid Claude subscription?",
+      "doc_url": "https://support.claude.com/en/articles/8325617-how-do-i-cancel-my-paid-claude-subscription",
+      "category": "billing_plan",
+      "summary": "How do I cancel my paid Claude subscription? | Claude Help Center Skip to main content How do I cancel my paid Claude subscription?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.pay.for.my.claude.api.usage",
+      "feature_name": "How do I pay for my Claude API usage?",
+      "doc_url": "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-claude-api-usage",
+      "category": "billing_plan",
+      "summary": "Claude Help Center article for How do I pay for my Claude API usage?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.sign.up.for.the.max.plan",
+      "feature_name": "How do I sign up for the Max plan?",
+      "doc_url": "https://support.claude.com/en/articles/11049752-how-do-i-sign-up-for-the-max-plan",
+      "category": "billing_plan",
+      "summary": "How do I sign up for the Max plan? | Claude Help Center Skip to main content How do I sign up for the Max plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.i.sign.up.for.the.pro.plan",
+      "feature_name": "How do I sign up for the Pro plan?",
+      "doc_url": "https://support.claude.com/en/articles/8325609-how-do-i-sign-up-for-the-pro-plan",
+      "category": "billing_plan",
+      "summary": "How do I sign up for the Pro plan? | Claude Help Center Skip to main content How do I sign up for the Pro plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.is.my.team.plan.bill.calculated",
+      "feature_name": "How is my Team plan bill calculated?",
+      "doc_url": "https://support.claude.com/en/articles/9267289-how-is-my-team-plan-bill-calculated",
+      "category": "billing_plan",
+      "summary": "How is my Team plan bill calculated? | Claude Help Center Skip to main content How is my Team plan bill calculated?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.large.is.the.context.window.on.paid.claude.plans",
+      "feature_name": "How large is the context window on paid Claude plans?",
+      "doc_url": "https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans",
+      "category": "billing_plan",
+      "summary": "How large is the context window on paid Claude plans? | Claude Help Center Skip to main content How large is the context window on paid Claude plans?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.change.your.pro.plan.from.monthly.to.annual.bill",
+      "feature_name": "How to change your Pro plan from monthly to annual billing",
+      "doc_url": "https://support.claude.com/en/articles/10185996-how-to-change-your-pro-plan-from-monthly-to-annual-billing",
+      "category": "billing_plan",
+      "summary": "How to change your Pro plan from monthly to annual billing | Claude Help Center Skip to main content How to change your Pro plan from monthly to annual billing March 16, 2026 Table of contents Save on your Pro plan subscription by switching from monthly to annual billing. When you upgrade, any remaining time on your current monthly subscription will be credited to your new annual plan invoice.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.gift.a.claude.subscription",
+      "feature_name": "How to gift a Claude subscription",
+      "doc_url": "https://support.claude.com/en/articles/12938627-how-to-gift-a-claude-subscription",
+      "category": "billing_plan",
+      "summary": "How to gift a Claude subscription | Claude Help Center Skip to main content How to gift a Claude subscription Updated over a week ago Table of contents Give the gift of Claude to friends, family, or colleagues. Gift subscriptions include full access to all features of the selected plan.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.redeem.a.claude.gift.subscription",
+      "feature_name": "How to redeem a Claude gift subscription",
+      "doc_url": "https://support.claude.com/en/articles/12938695-how-to-redeem-a-claude-gift-subscription",
+      "category": "billing_plan",
+      "summary": "How to redeem a Claude gift subscription | Claude Help Center Skip to main content How to redeem a Claude gift subscription March 16, 2026 Table of contents Someone sent you a Claude gift subscription—here's how to redeem it and start using Claude. How to redeem your gift Open the gift email or link you received.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.will.i.be.billed.for.claude.api.use",
+      "feature_name": "How will I be billed for Claude API use?",
+      "doc_url": "https://support.claude.com/en/articles/8114526-how-will-i-be-billed-for-claude-api-use",
+      "category": "billing_plan",
+      "summary": "Claude Help Center article for How will I be billed for Claude API use?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.have.a.paid.claude.subscription.pro.max.team.or.enter",
+      "feature_name": "I have a paid Claude subscription (Pro, Max, Team, or Enterprise plans). Why do I have to pay separately to use the Claude API and Console?",
+      "doc_url": "https://support.claude.com/en/articles/9876003-i-have-a-paid-claude-subscription-pro-max-team-or-enterprise-plans-why-do-i-have-to-pay-separately-to-use-the-claude-api-and-console",
+      "category": "billing_plan",
+      "summary": "I have a paid Claude subscription (Pro, Max, Team, or Enterprise plans). Why do I have to pay separately to use the Claude API and Console?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.m.planning.to.launch.a.product.using.the.claude.api.w",
+      "feature_name": "I’m planning to launch a product using the Claude API. What steps should I take to ensure I’m not violating Anthropic’s Usage Policy?",
+      "doc_url": "https://support.claude.com/en/articles/8241216-i-m-planning-to-launch-a-product-using-the-claude-api-what-steps-should-i-take-to-ensure-i-m-not-violating-anthropic-s-usage-policy",
+      "category": "billing_plan",
+      "summary": "I’m planning to launch a product using the Claude API. What steps should I take to ensure I’m not violating Anthropic’s Usage Policy?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.custom.roles.on.enterprise.plans",
+      "feature_name": "Manage custom roles on Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13930452-manage-custom-roles-on-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Manage custom roles on Enterprise plans | Claude Help Center Skip to main content Manage custom roles on Enterprise plans Updated today Table of contents Custom roles are available for Enterprise plan organizations. Owners and Primary Owners can manage custom roles in Organization settings > Custom roles .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.extra.usage.for.paid.claude.plans",
+      "feature_name": "Manage extra usage for paid Claude plans",
+      "doc_url": "https://support.claude.com/en/articles/12429409-manage-extra-usage-for-paid-claude-plans",
+      "category": "billing_plan",
+      "summary": "Manage extra usage for paid Claude plans | Claude Help Center Skip to main content Manage extra usage for paid Claude plans Updated this week Table of contents This article explains how to enable and use extra usage on your paid Claude plan (Pro, Max 5x, or Max 20x), allowing you to continue working with Claude after reaching your plan’s usage limits by switching to pay-as-you-go pricing. Extra usage allows individuals subscribed to paid Claude plans (Pro, Max 5x, and Max 20x) to continue using ",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.extra.usage.for.team.and.seat.based.enterprise.p",
+      "feature_name": "Manage extra usage for Team and seat-based Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/12005970-manage-extra-usage-for-team-and-seat-based-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Manage extra usage for Team and seat-based Enterprise plans | Claude Help Center Skip to main content Manage extra usage for Team and seat-based Enterprise plans Updated over 3 weeks ago Table of contents This article explains how Team and seat-based Enterprise plan Owners and Primary Owners can purchase extra usage, allowing members to continue using Claude, Cowork, and Claude Code after reaching usage limits for their assigned seat. Enabling extra usage allows Team and seat-based Enterprise pl",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.groups.and.group.spend.limits.on.enterprise.plan",
+      "feature_name": "Manage groups and group spend limits on Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13799932-manage-groups-and-group-spend-limits-on-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Manage groups and group spend limits on Enterprise plans | Claude Help Center Skip to main content Manage groups and group spend limits on Enterprise plans Updated over 2 weeks ago Table of contents Groups and group spend limits are available for Enterprise plan organizations. Owners and Primary Owners can manage groups in Organization settings > Groups and group spend limits in Organization settings > Usage .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.members.on.team.and.enterprise.plans",
+      "feature_name": "Manage members on Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13133750-manage-members-on-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Manage members on Team and Enterprise plans | Claude Help Center Skip to main content Manage members on Team and Enterprise plans Updated over 2 weeks ago Table of contents This guide covers how to add, remove, and manage the people on your Team or Enterprise plan. Permissions note: Organization Admins can manage members in Organization settings > Members , but only Owners and Primary Owners can access Organization settings > Billing .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.user.feedback.settings.on.team.and.enterprise.pl",
+      "feature_name": "Manage user feedback settings on Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/10504844-manage-user-feedback-settings-on-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Manage user feedback settings on Team and Enterprise plans | Claude Help Center Skip to main content Manage user feedback settings on Team and Enterprise plans March 16, 2026 As a Primary Owner or Owner of a Team or Enterprise plan, you can manage the ability for members of your organization to submit feedback to Anthropic via thumbs up / thumbs down. Navigate to Organization settings > Data and Privacy .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "notice.regarding.consumption.tax.jct.for.japanese.custo",
+      "feature_name": "Notice regarding consumption tax (JCT) for Japanese customers",
+      "doc_url": "https://support.claude.com/en/articles/14051822-notice-regarding-consumption-tax-jct-for-japanese-customers",
+      "category": "billing_plan",
+      "summary": "Notice regarding consumption tax (JCT) for Japanese customers | Claude Help Center Skip to main content Notice regarding consumption tax (JCT) for Japanese customers March 16, 2026 Table of contents Consumption tax Effective April 1, 2026, Anthropic will be levying a separate consumption tax (JCT) of 10% on services provided to Japanese customers in accordance with Japanese consumption tax law. Anthropic has completed registration as a qualified invoice issuing business.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "paid.plan.billing.faqs",
+      "feature_name": "Paid Plan Billing FAQs",
+      "doc_url": "https://support.claude.com/en/articles/8325618-paid-plan-billing-faqs",
+      "category": "billing_plan",
+      "summary": "Paid Plan Billing FAQs | Claude Help Center Skip to main content Paid Plan Billing FAQs March 16, 2026 Table of contents Where can I find the invoice or receipt for my Pro or Max plan payment? If you are subscribed to a paid plan (Pro or Max), follow these steps to access your invoices: Click on your initials or name in the lower left corner and select “Settings” from the menu.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "purchase.and.manage.seats.on.enterprise.plans",
+      "feature_name": "Purchase and manage seats on Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13393991-purchase-and-manage-seats-on-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Purchase and manage seats on Enterprise plans | Claude Help Center Skip to main content Purchase and manage seats on Enterprise plans March 27, 2026 Table of contents This article covers how to add seats, manage your seat allocation, and handle member access on Enterprise plans. For pricing and billing details, see How am I billed for my Enterprise plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "purchase.and.manage.seats.on.team.plans",
+      "feature_name": "Purchase and manage seats on Team plans",
+      "doc_url": "https://support.claude.com/en/articles/12004354-purchase-and-manage-seats-on-team-plans",
+      "category": "billing_plan",
+      "summary": "Purchase and manage seats on Team plans | Claude Help Center Skip to main content Purchase and manage seats on Team plans March 16, 2026 Table of contents Seat management allows Team plan owners to control their organization's seat allocation, assign users to different seat types, and manage billing. For pricing and billing details, see How is my Team plan bill calculated?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "requesting.a.refund.for.a.paid.claude.plan",
+      "feature_name": "Requesting a refund for a paid Claude plan",
+      "doc_url": "https://support.claude.com/en/articles/12386328-requesting-a-refund-for-a-paid-claude-plan",
+      "category": "billing_plan",
+      "summary": "Requesting a refund for a paid Claude plan | Claude Help Center Skip to main content Requesting a refund for a paid Claude plan Updated this week Table of contents Important: Except as expressly provided in our Consumer Terms of Service or where required by law, all payments are non-refundable. To request a refund for a payment defined as refundable in our Terms of Service, follow these instructions: Log in to your account and click on your initials or name in the lower left corner.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "set.up.role.based.permissions.on.enterprise.plans",
+      "feature_name": "Set up role-based permissions on Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13930458-set-up-role-based-permissions-on-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Set up role-based permissions on Enterprise plans | Claude Help Center Skip to main content Set up role-based permissions on Enterprise plans Updated over 2 weeks ago Table of contents This guide walks you through setting up role-based permissions for your Enterprise organization. This lets you control which features specific teams or groups of members can access, rather than giving everyone the same permissions.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "team.plan.billing.faqs",
+      "feature_name": "Team plan billing FAQs",
+      "doc_url": "https://support.claude.com/en/articles/12997503-team-plan-billing-faqs",
+      "category": "billing_plan",
+      "summary": "Team plan billing FAQs | Claude Help Center Skip to main content Team plan billing FAQs March 16, 2026 Table of contents What payment methods can I use to pay for the Team plan? Accepted payment methods are credit, debit, or prepaid cards.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "understanding.your.billing.address.and.tax.calculation",
+      "feature_name": "Understanding your billing address and tax calculation",
+      "doc_url": "https://support.claude.com/en/articles/12997130-understanding-your-billing-address-and-tax-calculation",
+      "category": "billing_plan",
+      "summary": "Understanding your billing address and tax calculation | Claude Help Center Skip to main content Understanding your billing address and tax calculation March 16, 2026 Table of contents Your billing address determines how taxes are calculated on your Claude purchases. This address should represent the primary place of business receiving the product.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.cowork.on.team.and.enterprise.plans",
+      "feature_name": "Use Claude Cowork on Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13455879-use-claude-cowork-on-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Use Claude Cowork on Team and Enterprise plans | Claude Help Center Skip to main content Use Claude Cowork on Team and Enterprise plans Updated over 2 weeks ago Table of contents This article explains important limitations and considerations for Team and Enterprise organizations using Claude Cowork. Availability Claude Cowork is available as a research preview for paid plans (Pro, Max, Team, Enterprise) on: Claude Desktop for macOS Click here to download Claude Desktop for Windows Windows users:",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.visual.and.interactive.content.on.team.and.enterpri",
+      "feature_name": "Use visual and interactive content on Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/13663666-use-visual-and-interactive-content-on-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "Use visual and interactive content on Team and Enterprise plans | Claude Help Center Skip to main content Use visual and interactive content on Team and Enterprise plans March 16, 2026 Table of contents Maps and image search results are enabled by default on Team plans. On Enterprise plans, these features are off by default — an Owner or Primary Owner can enable them in Organization settings > Capabilities .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "view.usage.analytics.for.team.and.enterprise.plans",
+      "feature_name": "View usage analytics for Team and Enterprise plans",
+      "doc_url": "https://support.claude.com/en/articles/12883420-view-usage-analytics-for-team-and-enterprise-plans",
+      "category": "billing_plan",
+      "summary": "View usage analytics for Team and Enterprise plans | Claude Help Center Skip to main content View usage analytics for Team and Enterprise plans Updated over 2 weeks ago Table of contents This article explains how to view and export usage analytics for your organization. Usage analytics are available to Team plan Owners and Primary Owners, and Enterprise plan Owners, Primary Owners, and Admins.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.is.the.enterprise.plan",
+      "feature_name": "What is the Enterprise plan?",
+      "doc_url": "https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan",
+      "category": "billing_plan",
+      "summary": "What is the Enterprise plan? | Claude Help Center Skip to main content What is the Enterprise plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.is.the.max.plan",
+      "feature_name": "What is the Max plan?",
+      "doc_url": "https://support.claude.com/en/articles/11049741-what-is-the-max-plan",
+      "category": "billing_plan",
+      "summary": "What is the Max plan? | Claude Help Center Skip to main content What is the Max plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.is.the.pro.plan",
+      "feature_name": "What is the Pro plan?",
+      "doc_url": "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan",
+      "category": "billing_plan",
+      "summary": "What is the Pro plan? | Claude Help Center Skip to main content What is the Pro plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.is.the.team.plan",
+      "feature_name": "What is the Team plan?",
+      "doc_url": "https://support.claude.com/en/articles/9266767-what-is-the-team-plan",
+      "category": "billing_plan",
+      "summary": "What is the Team plan? | Claude Help Center Skip to main content What is the Team plan?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "where.can.i.find.full.receipts.and.invoices.for.my.clau",
+      "feature_name": "Where can I find full receipts and invoices for my Claude API and Console payments?",
+      "doc_url": "https://support.claude.com/en/articles/10366473-where-can-i-find-full-receipts-and-invoices-for-my-claude-api-and-console-payments",
+      "category": "billing_plan",
+      "summary": "Claude Help Center article for Where can I find full receipts and invoices for my Claude API and Console payments?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "why.am.i.being.asked.to.verify.my.payment.method",
+      "feature_name": "Why am I being asked to verify my payment method?",
+      "doc_url": "https://support.claude.com/en/articles/11818288-why-am-i-being-asked-to-verify-my-payment-method",
+      "category": "billing_plan",
+      "summary": "Why am I being asked to verify my payment method? | Claude Help Center Skip to main content Why am I being asked to verify my payment method?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "provision.and.manage.skills.for.your.organization",
+      "feature_name": "Provision and manage Skills for your organization",
+      "doc_url": "https://support.claude.com/en/articles/13119606-provision-and-manage-skills-for-your-organization",
+      "category": "capabilities",
+      "summary": "Provision and manage Skills for your organization | Claude Help Center Skip to main content Provision and manage Skills for your organization April 9, 2026 Table of contents This article explains how organization owners can provision skills for all users in their organization. Provisioning skills to your team allows you to distribute approved workflows and capabilities across your entire organization from a central location.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "release.notes",
+      "feature_name": "Release notes",
+      "doc_url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "category": "claude",
+      "summary": "Release notes | Claude Help Center Skip to main content Release notes Updated over 3 weeks ago Table of contents April 2026 April 17, 2026 Claude Design by Anthropic Labs With Opus 4.7, we also launched Claude Design, a new Anthropic Labs product that lets you collaborate with Claude to create visual outputs like designs, prototypes, slides, and one-pagers. For more information, see Get started with Claude Design .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "browse.skills.connectors.and.plugins.in.one.directory",
+      "feature_name": "Browse skills, connectors, and plugins in one directory",
+      "doc_url": "https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory",
+      "category": "connectors",
+      "summary": "Browse skills, connectors, and plugins in one directory | Claude Help Center Skip to main content Browse skills, connectors, and plugins in one directory March 31, 2026 Table of contents Our unified directory brings skills, connectors, and plugins together in one place so you can find and install everything that customizes Claude without switching between separate menus. On Team and Enterprise plans, the directory is also where skills shared across your organization appear.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "github.connector",
+      "feature_name": "GitHub connector",
+      "doc_url": "https://support.claude.com/en/articles/11175166-github-integration",
+      "category": "connectors",
+      "summary": "Claude can connect to GitHub repositories through an approved connector.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "gmail.connector",
+      "feature_name": "Gmail connector",
+      "doc_url": "https://support.claude.com/en/articles/13641943-visual-and-interactive-content",
+      "category": "connectors",
+      "summary": "Claude connectors may expose Gmail or workspace content when configured.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "google.drive.connector",
+      "feature_name": "Google Drive connector",
+      "doc_url": "https://support.claude.com/en/articles/10553538-google-drive-integration",
+      "category": "connectors",
+      "summary": "Claude can connect to Google Drive to search and reference documents.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "mcp.connectors",
+      "feature_name": "MCP connectors",
+      "doc_url": "https://support.claude.com/en/collections/15399129-connectors",
+      "category": "connectors",
+      "summary": "Claude supports MCP connectors for external tools and data sources.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "notion.connector",
+      "feature_name": "Notion connector",
+      "doc_url": "https://support.claude.com/en/articles/11175168-notion-integration",
+      "category": "connectors",
+      "summary": "Claude can connect to Notion pages through an approved connector.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "slack.connector",
+      "feature_name": "Slack connector",
+      "doc_url": "https://support.claude.com/en/articles/11175167-slack-integration",
+      "category": "connectors",
+      "summary": "Claude can connect to Slack workspaces through an approved connector.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.for.microsoft.365.with.third.party.platforms",
+      "feature_name": "Use Claude for Microsoft 365 with third-party platforms",
+      "doc_url": "https://support.claude.com/en/articles/13945233-use-claude-for-microsoft-365-with-third-party-platforms",
+      "category": "connectors",
+      "summary": "Use Claude for Microsoft 365 with third-party platforms | Claude Help Center Skip to main content Use Claude for Microsoft 365 with third-party platforms Updated this week Table of contents If your organization uses AWS Bedrock, Google Cloud Vertex AI, or an LLM gateway to access Claude, you can use the Claude for Excel, Claude for PowerPoint, Claude for Word, and Claude for Outlook add-ins without a Claude account. The add-in connects through your organization's infrastructure, so your prompts ",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.in.microsoft.foundry",
+      "feature_name": "Use Claude in Microsoft Foundry",
+      "doc_url": "https://support.claude.com/en/articles/12864745-use-claude-in-microsoft-foundry",
+      "category": "connectors",
+      "summary": "Use Claude in Microsoft Foundry | Claude Help Center Skip to main content Use Claude in Microsoft Foundry Updated this week Claude Haiku 4.5, Sonnet 4.5, and Opus 4.1 models are available in public preview in Microsoft Foundry, where Azure customers can build production applications and enterprise agents. This integration enables developers to: Start building immediately: Deploy Claude through Foundry's APIs, tools, and workflows.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "web.search",
+      "feature_name": "Web search",
+      "doc_url": "https://support.claude.com/en/articles/11145838-using-web-search-on-claude-ai",
+      "category": "connectors",
+      "summary": "Claude can search the web when enabled and cite sources in answers.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "work.across.microsoft.365.apps",
+      "feature_name": "Work across Microsoft 365 apps",
+      "doc_url": "https://support.claude.com/en/articles/13892150-work-across-microsoft-365-apps",
+      "category": "connectors",
+      "summary": "Work across Microsoft 365 apps | Claude Help Center Skip to main content Work across Microsoft 365 apps Updated this week Table of contents Claude can now work across Microsoft 365 apps to coordinate between the Excel, PowerPoint, Word, and Outlook add-ins. Instead of switching between apps and providing context each time, Claude can read from one app and make changes in another.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "mcp.connector",
+      "feature_name": "MCP connector",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/mcp-connector",
+      "category": "connectors",
+      "summary": "Claude technical documentation for MCP connector.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "microsoft.foundry",
+      "feature_name": "Microsoft Foundry",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry",
+      "category": "connectors",
+      "summary": "Claude technical documentation for Microsoft Foundry.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "remote.mcp.servers",
+      "feature_name": "Remote MCP servers",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/remote-mcp-servers",
+      "category": "connectors",
+      "summary": "Claude technical documentation for Remote MCP servers.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "sharing.and.unsharing.chats",
+      "feature_name": "Sharing and Unsharing Chats",
+      "doc_url": "https://support.claude.com/en/articles/10593882-sharing-and-unsharing-chats",
+      "category": "conversation_management",
+      "summary": "Sharing and Unsharing Chats | Claude Help Center Skip to main content Sharing and Unsharing Chats March 16, 2026 Table of contents Learn how to create shareable links to your chats with Claude. While chats are always private by default, you can easily create snapshots of your conversations to share via direct link.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "using.incognito.chats",
+      "feature_name": "Using incognito chats",
+      "doc_url": "https://support.claude.com/en/articles/12260368-using-incognito-chats",
+      "category": "conversation_management",
+      "summary": "Using incognito chats | Claude Help Center Skip to main content Using incognito chats April 9, 2026 Table of contents Incognito chats are available to all Claude users (Free, Pro, Max, Team, and Enterprise plans). What are incognito chats?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "analysis.tool",
+      "feature_name": "Analysis tool",
+      "doc_url": "https://support.claude.com/en/articles/8430822-data-analysis-with-claude",
+      "category": "creation",
+      "summary": "Claude can use an analysis tool for calculations, charts, and data work.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.code",
+      "feature_name": "Artifacts (code)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display code outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.document.markdown",
+      "feature_name": "Artifacts (document/markdown)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display document/markdown outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.html",
+      "feature_name": "Artifacts (HTML)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display HTML outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.mermaid.diagram",
+      "feature_name": "Artifacts (Mermaid diagram)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display Mermaid diagram outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.react.component",
+      "feature_name": "Artifacts (React component)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display React component outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.svg",
+      "feature_name": "Artifacts (SVG)",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display SVG outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "artifacts.actions.menu",
+      "feature_name": "Artifacts actions menu",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "Claude Artifacts can generate and display Artifacts actions menu outputs in a dedicated workspace with follow-up controls.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "can.claude.produce.images",
+      "feature_name": "Can Claude produce images?",
+      "doc_url": "https://support.claude.com/en/articles/9002504-can-claude-produce-images",
+      "category": "creation",
+      "summary": "Can Claude produce images? | Claude Help Center Skip to main content Can Claude produce images?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "create.and.edit.files.with.claude",
+      "feature_name": "Create and edit files with Claude",
+      "doc_url": "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude",
+      "category": "creation",
+      "summary": "Create and edit files with Claude | Claude Help Center Skip to main content Create and edit files with Claude Updated over a week ago Table of contents Claude can execute code to create and work with files directly in your conversations. Prompt Claude using natural language to generate Excel spreadsheets, PowerPoint presentations, Word documents, and PDF files that you can download and use immediately.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "csv.and.spreadsheet.analysis",
+      "feature_name": "CSV and spreadsheet analysis",
+      "doc_url": "https://support.claude.com/en/articles/8430822-data-analysis-with-claude",
+      "category": "creation",
+      "summary": "Claude can analyze tabular files and datasets in chat.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "custom.visuals.in.chat.and.cowork",
+      "feature_name": "Custom visuals in chat and Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13979539-custom-visuals-in-chat-and-cowork",
+      "category": "creation",
+      "summary": "Custom visuals in chat and Cowork | Claude Help Center Skip to main content Custom visuals in chat and Cowork Updated over 2 weeks ago Table of contents Claude can generate custom diagrams, charts, and interactive visuals directly in your conversation. When a visual would explain something better than text, Claude builds one from scratch—shaped to your specific question, rendered inline as part of the response.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "file.uploads.in.chat",
+      "feature_name": "File uploads in chat",
+      "doc_url": "https://support.claude.com/en/articles/8241126-how-can-i-attach-files-to-my-conversation",
+      "category": "creation",
+      "summary": "Claude supports attaching local files to conversations for analysis.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "publishing.and.sharing.artifacts",
+      "feature_name": "Publishing and sharing artifacts",
+      "doc_url": "https://support.claude.com/en/articles/9547008-publishing-and-sharing-artifacts",
+      "category": "creation",
+      "summary": "Publishing and sharing artifacts | Claude Help Center Skip to main content Publishing and sharing artifacts March 26, 2026 Table of contents Artifacts are a powerful way to create content within Claude. You can take your creations further by sharing them so others can engage with and customize them.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "upload.files.to.claude",
+      "feature_name": "Upload files to Claude",
+      "doc_url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude",
+      "category": "creation",
+      "summary": "Upload files to Claude | Claude Help Center Skip to main content Upload files to Claude Updated over 2 weeks ago Table of contents This article explains how to upload documents and images to Claude, including supported file types, size limits, and how to get started. Supported file types Documents Claude can work with the following document types: PDF DOCX CSV TXT HTML ODT RTF EPUB JSON XLSX* Note: You must enable code execution and file creation in your account to upload XLSX files.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.for.excel",
+      "feature_name": "Use Claude for Excel",
+      "doc_url": "https://support.claude.com/en/articles/12650343-use-claude-for-excel",
+      "category": "creation",
+      "summary": "Use Claude for Excel | Claude Help Center Skip to main content Use Claude for Excel Updated this week Table of contents Claude for Excel is available to Pro, Max, Team, and Enterprise plans. Claude for Excel is an add-in that integrates Claude into your Excel workflow.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.live.artifacts.in.claude.cowork",
+      "feature_name": "Use live artifacts in Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/14729249-use-live-artifacts-in-claude-cowork",
+      "category": "creation",
+      "summary": "Use live artifacts in Claude Cowork | Claude Help Center Skip to main content Use live artifacts in Claude Cowork Updated over 2 weeks ago Table of contents This article explains how to use live artifacts in Claude Cowork —persistent, interactive HTML dashboards that Claude builds for you. Live artifacts refresh with current data from your connected apps and live in their own tab across tasks.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "visual.and.interactive.content",
+      "feature_name": "Visual and interactive content",
+      "doc_url": "https://support.claude.com/en/articles/13641943-visual-and-interactive-content",
+      "category": "creation",
+      "summary": "Visual and interactive content | Claude Help Center Skip to main content Visual and interactive content March 16, 2026 Table of contents Claude can respond with visual content when it’s clearer than plain text. Some visuals display real-world data—like weather and recipes.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.are.artifacts.and.how.do.i.use.them",
+      "feature_name": "What are artifacts and how do I use them?",
+      "doc_url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "category": "creation",
+      "summary": "What are artifacts and how do I use them? | Claude Help Center Skip to main content What are artifacts and how do I use them?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "where.can.i.find.your.api.documentation",
+      "feature_name": "Where can I find your API documentation?",
+      "doc_url": "https://support.claude.com/en/articles/8114490-where-can-i-find-your-api-documentation",
+      "category": "creation",
+      "summary": "Claude Help Center article for Where can I find your API documentation?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "api.referenceexplore.the.full.claude.api.and.client.sdk",
+      "feature_name": "API ReferenceExplore the full Claude API and client SDK documentation.",
+      "doc_url": "https://docs.claude.com/docs/en/api/overview",
+      "category": "creation",
+      "summary": "Claude technical documentation for API ReferenceExplore the full Claude API and client SDK documentation..",
+      "source": "claude-docs"
+    },
+    {
+      "id": "files.api",
+      "feature_name": "Files API",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/files",
+      "category": "creation",
+      "summary": "Claude technical documentation for Files API.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "images.and.vision",
+      "feature_name": "Images and vision",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/vision",
+      "category": "creation",
+      "summary": "Claude technical documentation for Images and vision.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "pdf.support",
+      "feature_name": "PDF support",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/pdf-support",
+      "category": "creation",
+      "summary": "Claude technical documentation for PDF support.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "visionprocess.and.analyze.visual.input.and.generate.tex",
+      "feature_name": "VisionProcess and analyze visual input and generate text and code from images.",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/vision",
+      "category": "creation",
+      "summary": "Claude technical documentation for VisionProcess and analyze visual input and generate text and code from images..",
+      "source": "claude-docs"
+    },
+    {
+      "id": "assign.tasks.from.anywhere.in.claude.cowork",
+      "feature_name": "Assign tasks from anywhere in Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13947068-assign-tasks-from-anywhere-in-claude-cowork",
+      "category": "features_and_capabilities",
+      "summary": "Assign tasks from anywhere in Claude Cowork | Claude Help Center Skip to main content Assign tasks from anywhere in Claude Cowork Updated over 2 weeks ago Table of contents Claude Cowork gives you one continuous conversation with Claude that you can reach from your phone or your desktop. Assign Claude a task, go do something else, and come back to the finished work.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "available.beta.and.research.preview.features",
+      "feature_name": "Available beta and research preview features",
+      "doc_url": "https://support.claude.com/en/articles/14503520-available-beta-and-research-preview-features",
+      "category": "features_and_capabilities",
+      "summary": "Available beta and research preview features | Claude Help Center Skip to main content Available beta and research preview features Updated over 2 weeks ago Table of contents Claude offers some features in beta or research preview before they become generally available. This article explains what those labels mean, which features they apply to, and what to expect when you use them.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "enabling.and.using.web.search",
+      "feature_name": "Enabling and using web search",
+      "doc_url": "https://support.claude.com/en/articles/10684626-enabling-and-using-web-search",
+      "category": "features_and_capabilities",
+      "summary": "Enabling and using web search | Claude Help Center Skip to main content Enabling and using web search Updated this week Table of contents You can have Claude search the internet to provide you with up-to-date information and insights when using the following models: Opus 4.7 Sonnet 4.6 Opus 4.6 Opus 4.5 Haiku 4.5 Sonnet 4.5 Note: Sonnet 4.5 will be retired and removed from the model selector on May 15, 2026. For more information, see Adapting to new model personas after deprecations .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "extend.claude.cowork.with.third.party.platforms",
+      "feature_name": "Extend Claude Cowork with third-party platforms",
+      "doc_url": "https://support.claude.com/en/articles/14680753-extend-claude-cowork-with-third-party-platforms",
+      "category": "features_and_capabilities",
+      "summary": "Extend Claude Cowork with third-party platforms | Claude Help Center Skip to main content Extend Claude Cowork with third-party platforms Updated over 3 weeks ago Table of contents When Claude Cowork is deployed on Amazon Bedrock, Google Cloud Vertex AI, Azure AI Foundry, or an LLM gateway, MCP connectors, plugins, and skills work differently than they do on Claude Enterprise. Everything is controlled via MDM and local filesystem mounts, with a local setup interface and configuration pushed via ",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "get.started.with.claude.cowork",
+      "feature_name": "Get started with Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",
+      "category": "features_and_capabilities",
+      "summary": "Get started with Claude Cowork | Claude Help Center Skip to main content Get started with Claude Cowork Updated over 2 weeks ago Table of contents This article explains how to use Claude Cowork , which brings Claude Code's agentic capabilities to Claude Desktop for knowledge work beyond coding. Availability Claude Cowork is available for paid plans (Pro, Max, Team, Enterprise) on: Claude Desktop for macOS Click here to download Claude Desktop for Windows Cowork requires the latest version of Cla",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "get.started.with.claude.design",
+      "feature_name": "Get started with Claude Design",
+      "doc_url": "https://support.claude.com/en/articles/14604416-get-started-with-claude-design",
+      "category": "features_and_capabilities",
+      "summary": "Get started with Claude Design | Claude Help Center Skip to main content Get started with Claude Design Updated over 3 weeks ago Table of contents Claude Design by Anthropic Labs lets you create designs, interactive prototypes, presentations, and more by having a conversation with Claude. This guide walks you through creating your first project, iterating on designs, and getting the most out of the tool.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.does.claude.handle.mathematical.equations.and.calcu",
+      "feature_name": "How does Claude handle mathematical equations and calculations?",
+      "doc_url": "https://support.claude.com/en/articles/10366421-how-does-claude-handle-mathematical-equations-and-calculations",
+      "category": "features_and_capabilities",
+      "summary": "How does Claude handle mathematical equations and calculations? | Claude Help Center Skip to main content How does Claude handle mathematical equations and calculations?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.create.custom.skills",
+      "feature_name": "How to create custom Skills",
+      "doc_url": "https://support.claude.com/en/articles/12512198-how-to-create-custom-skills",
+      "category": "features_and_capabilities",
+      "summary": "How to create custom Skills | Claude Help Center Skip to main content How to create custom Skills March 16, 2026 Table of contents Skills are available for users on free, Pro, Max, Team, and Enterprise plans. This feature requires code execution to be enabled .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "install.and.configure.claude.cowork.with.third.party.pl",
+      "feature_name": "Install and configure Claude Cowork with third-party platforms",
+      "doc_url": "https://support.claude.com/en/articles/14680741-install-and-configure-claude-cowork-with-third-party-platforms",
+      "category": "features_and_capabilities",
+      "summary": "Install and configure Claude Cowork with third-party platforms | Claude Help Center Skip to main content Install and configure Claude Cowork with third-party platforms Updated over 3 weeks ago Table of contents This guide walks IT admins through deploying Claude Cowork on Amazon Bedrock, Google Cloud Vertex AI, Azure AI Foundry, or an LLM gateway. It covers download, MDM configuration for macOS and Windows, provider-specific setup, and the full MDM key reference.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "install.financial.services.plugins.for.cowork",
+      "feature_name": "Install financial services plugins for Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork",
+      "category": "features_and_capabilities",
+      "summary": "Install financial services plugins for Cowork | Claude Help Center Skip to main content Install financial services plugins for Cowork March 16, 2026 Table of contents We offer a set of open-source plugins that extend Cowork with specialized capabilities for financial services workflows, including financial modeling, equity research, investment banking, private equity, and wealth management. These plugins are available in a public GitHub repository that you can add as a marketplace in Cowork.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "schedule.recurring.tasks.in.claude.cowork",
+      "feature_name": "Schedule recurring tasks in Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork",
+      "category": "features_and_capabilities",
+      "summary": "Schedule recurring tasks in Claude Cowork | Claude Help Center Skip to main content Schedule recurring tasks in Claude Cowork April 9, 2026 Table of contents Scheduled tasks allow you to delegate work to Claude Cowork by creating tasks that run automatically on a recurring basis, or on demand. Instead of starting each task from scratch, you describe it once and Claude handles it on your schedule—delivering finished outputs like reports, briefings, and summaries every time.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "set.up.your.design.system.in.claude.design",
+      "feature_name": "Set up your design system in Claude Design",
+      "doc_url": "https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design",
+      "category": "features_and_capabilities",
+      "summary": "Set up your design system in Claude Design | Claude Help Center Skip to main content Set up your design system in Claude Design Updated over 3 weeks ago Table of contents Creating a design system allows Claude Design to produce outputs that fit your specifications. It extracts reusable components, colors, typography, and patterns from the assets you provide—codebases, slide decks, or other design references—and uses them as the foundation for every project created within your account.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.cowork.safely",
+      "feature_name": "Use Claude Cowork safely",
+      "doc_url": "https://support.claude.com/en/articles/13364135-use-claude-cowork-safely",
+      "category": "features_and_capabilities",
+      "summary": "Use Claude Cowork safely | Claude Help Center Skip to main content Use Claude Cowork safely Updated over 2 weeks ago Table of contents Cowork lets Claude work on your computer with access to your files, browser, connected services, and apps. That capability comes with risks worth understanding.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.cowork.with.third.party.platforms",
+      "feature_name": "Use Claude Cowork with third-party platforms",
+      "doc_url": "https://support.claude.com/en/articles/14680729-use-claude-cowork-with-third-party-platforms",
+      "category": "features_and_capabilities",
+      "summary": "Use Claude Cowork with third-party platforms | Claude Help Center Skip to main content Use Claude Cowork with third-party platforms Updated over 3 weeks ago Table of contents If your organization uses Amazon Bedrock, Google Cloud Vertex AI, Azure AI Foundry, or an LLM gateway to access Claude, you can deploy Claude Cowork to run on the same infrastructure. Prompts and completions route through your inference provider, so Anthropic never sees them, while users get the same Cowork experience: dele",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.for.powerpoint",
+      "feature_name": "Use Claude for PowerPoint",
+      "doc_url": "https://support.claude.com/en/articles/13521390-use-claude-for-powerpoint",
+      "category": "features_and_capabilities",
+      "summary": "Use Claude for PowerPoint | Claude Help Center Skip to main content Use Claude for PowerPoint Updated this week Table of contents Claude for PowerPoint is available to Pro, Max, Team, and Enterprise plans. Claude for PowerPoint is an add-in that integrates Claude into your PowerPoint workflow.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.security",
+      "feature_name": "Use Claude Security",
+      "doc_url": "https://support.claude.com/en/articles/14661296-use-claude-security",
+      "category": "features_and_capabilities",
+      "summary": "Use Claude Security | Claude Help Center Skip to main content Use Claude Security Updated over a week ago Table of contents Overview Claude Security is a capability built into Claude.ai that scans codebases for security vulnerabilities and suggests targeted patches for human review. It helps teams find and fix issues that traditional methods often miss.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.plugins.in.claude.cowork",
+      "feature_name": "Use plugins in Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude-cowork",
+      "category": "features_and_capabilities",
+      "summary": "Use plugins in Claude Cowork | Claude Help Center Skip to main content Use plugins in Claude Cowork April 9, 2026 Table of contents Plugins are available to all Claude Cowork users on paid plans (Pro, Max, Team, Enterprise). Plugins customize how Claude works for your role, team, and company in Cowork.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.skills.in.claude",
+      "feature_name": "Use Skills in Claude",
+      "doc_url": "https://support.claude.com/en/articles/12512180-use-skills-in-claude",
+      "category": "features_and_capabilities",
+      "summary": "Use Skills in Claude | Claude Help Center Skip to main content Use Skills in Claude Updated over a month ago Table of contents Skills are available for users on Free, Pro, Max, Team, and Enterprise plans. This feature requires code execution to be enabled .",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "using.research.on.claude",
+      "feature_name": "Using Research on Claude",
+      "doc_url": "https://support.claude.com/en/articles/11088861-using-research-on-claude",
+      "category": "features_and_capabilities",
+      "summary": "Using Research on Claude | Claude Help Center Skip to main content Using Research on Claude March 16, 2026 Table of contents Research is available for users with paid Claude plans (Pro, Max, Team, or Enterprise) using Claude on the web, Claude Desktop, or Claude Mobile. Research transforms how Claude finds and analyzes information.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.are.skills",
+      "feature_name": "What are Skills?",
+      "doc_url": "https://support.claude.com/en/articles/12512176-what-are-skills",
+      "category": "features_and_capabilities",
+      "summary": "| Claude Help Center Skip to main content What are Skills? March 31, 2026 Table of contents Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "holiday.2025.usage.promotion",
+      "feature_name": "Holiday 2025 Usage Promotion",
+      "doc_url": "https://support.claude.com/en/articles/13163666-holiday-2025-usage-promotion",
+      "category": "general",
+      "summary": "Holiday 2025 Usage Promotion | Claude Help Center Skip to main content Holiday 2025 Usage Promotion March 16, 2026 Table of contents We’re giving Pro and Max subscribers a holiday gift—2x usage limits from December 25 through December 31. During this period, your plan’s usage limits will be doubled, giving you more room to explore Claude’s capabilities as you plan for the new year.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "why.was.my.card.declined",
+      "feature_name": "Why was my card declined?",
+      "doc_url": "https://support.claude.com/en/articles/9402418-why-was-my-card-declined",
+      "category": "general",
+      "summary": "Why was my card declined? | Claude Help Center Skip to main content Why was my card declined?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "join.an.organization.via.invite.link",
+      "feature_name": "Join an organization via invite link",
+      "doc_url": "https://support.claude.com/en/articles/13776697-join-an-organization-via-invite-link",
+      "category": "get_started",
+      "summary": "Join an organization via invite link | Claude Help Center Skip to main content Join an organization via invite link March 16, 2026 Table of contents Admins on Team and Enterprise plans can share an invite link that lets teammates join the organization directly—without requiring individual email invitations. For admins: Set up and share an invite link Who can manage invite links Admins and above can generate, copy, disable, and regenerate the invite link for their organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "get.started.with.claude",
+      "feature_name": "Get started with Claude",
+      "doc_url": "https://support.claude.com/en/articles/8114491-get-started-with-claude",
+      "category": "get_started_with_claude",
+      "summary": "Get started with Claude | Claude Help Center Skip to main content Get started with Claude Updated today Table of contents What is Claude? Claude is a large language model (LLM) built by Anthropic.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.are.some.things.i.can.use.claude.for",
+      "feature_name": "What are some things I can use Claude for?",
+      "doc_url": "https://support.claude.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for",
+      "category": "get_started_with_claude",
+      "summary": "What are some things I can use Claude for? | Claude Help Center Skip to main content What are some things I can use Claude for?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.interfaces.can.i.use.to.access.claude",
+      "feature_name": "What interfaces can I use to access Claude?",
+      "doc_url": "https://support.claude.com/en/articles/8114487-what-interfaces-can-i-use-to-access-claude",
+      "category": "get_started_with_claude",
+      "summary": "What interfaces can I use to access Claude? | Claude Help Center Skip to main content What interfaces can I use to access Claude?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "where.can.i.access.claude",
+      "feature_name": "Where can I access Claude?",
+      "doc_url": "https://support.claude.com/en/articles/8461763-where-can-i-access-claude",
+      "category": "get_started_with_claude",
+      "summary": "Where can I access Claude? | Claude Help Center Skip to main content Where can I access Claude?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "appearance.settings",
+      "feature_name": "Appearance settings",
+      "doc_url": "https://support.claude.com/en/articles/8887527-customizing-your-appearance-settings",
+      "category": "personalization",
+      "summary": "Claude supports appearance customization such as theme settings.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "choose.model",
+      "feature_name": "Choose model",
+      "doc_url": "https://support.claude.com/en/articles/8664678-how-can-i-change-the-model-version-that-i-m-chatting-with",
+      "category": "personalization",
+      "summary": "Claude web lets users choose the model version used in chat.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "configure.and.use.styles",
+      "feature_name": "Configure and use styles",
+      "doc_url": "https://support.claude.com/en/articles/10181068-configure-and-use-styles",
+      "category": "personalization",
+      "summary": "Configure and use styles | Claude Help Center Skip to main content Configure and use styles March 16, 2026 Table of contents Styles allow you to customize how Claude communicates, helping you achieve more while working in a way that feels natural to you. Using preset styles Selecting a style Click the \"Search and tools\" menu in the lower left corner of the chat interface.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "customize.styles",
+      "feature_name": "Customize styles",
+      "doc_url": "https://support.claude.com/en/articles/10181068-configure-and-use-styles",
+      "category": "personalization",
+      "summary": "Styles let users change the tone and format of Claude responses.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "extended.thinking.in.claude.ui",
+      "feature_name": "Extended thinking in Claude UI",
+      "doc_url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "category": "personalization",
+      "summary": "Claude supports visible or configurable thinking modes for some models.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.change.the.model.version.that.i.m.chatting.wi",
+      "feature_name": "How can I change the model version that I’m chatting with?",
+      "doc_url": "https://support.claude.com/en/articles/8664678-how-can-i-change-the-model-version-that-i-m-chatting-with",
+      "category": "personalization",
+      "summary": "How can I change the model version that I’m chatting with? | Claude Help Center Skip to main content How can I change the model version that I’m chatting with?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.to.use.claude.in.your.preferred.language",
+      "feature_name": "How to use Claude in your preferred language",
+      "doc_url": "https://support.claude.com/en/articles/10769299-how-to-use-claude-in-your-preferred-language",
+      "category": "personalization",
+      "summary": "How to use Claude in your preferred language | Claude Help Center Skip to main content How to use Claude in your preferred language March 16, 2026 Table of contents Claude is available in multiple languages on web and desktop applications. Supported Languages English French German Hindi Indonesian Italian Japanese Korean Portuguese (Brazilian) Spanish (Latin America) Spanish (Spain) Changing your language setting On Web and Desktop Click your profile icon in the lower left corner.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "import.and.export.your.memory.from.claude",
+      "feature_name": "Import and export your memory from Claude",
+      "doc_url": "https://support.claude.com/en/articles/12123587-import-and-export-your-memory-from-claude",
+      "category": "personalization",
+      "summary": "Import and export your memory from Claude | Claude Help Center Skip to main content Import and export your memory from Claude March 16, 2026 Table of contents Memory imports are available for free, Pro, and Max plans on the web and Claude Desktop. You can transfer your memory between Claude and other AI providers.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.ve.been.using.other.large.language.models.llms.to.pow",
+      "feature_name": "I’ve been using other large language models (LLMs) to power my product. How should I alter my prompts when switching to Claude?",
+      "doc_url": "https://support.claude.com/en/articles/8114533-i-ve-been-using-other-large-language-models-llms-to-power-my-product-how-should-i-alter-my-prompts-when-switching-to-claude",
+      "category": "personalization",
+      "summary": "Claude Help Center article for I’ve been using other large language models (LLMs) to power my product. How should I alter my prompts when switching to Claude?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "language.preference",
+      "feature_name": "Language preference",
+      "doc_url": "https://support.claude.com/en/articles/10769299-how-to-use-claude-in-your-preferred-language",
+      "category": "personalization",
+      "summary": "Claude can be used in preferred languages and configured for language behavior.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "memory",
+      "feature_name": "Memory",
+      "doc_url": "https://support.claude.com/en/articles/12123587-import-and-export-your-memory-from-claude",
+      "category": "personalization",
+      "summary": "Claude memory lets users persist and import/export personalization context.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "understanding.claude.s.personalization.features",
+      "feature_name": "Understanding Claude's personalization features",
+      "doc_url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features",
+      "category": "personalization",
+      "summary": "Understanding Claude's personalization features | Claude Help Center Skip to main content Understanding Claude's personalization features Updated over a week ago Table of contents Claude offers several ways to personalize your experience: profile instructions, project instructions, and styles. Each serves a different purpose in helping Claude better understand and meet your needs.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "use.claude.s.chat.search.and.memory.to.build.on.previou",
+      "feature_name": "Use Claude’s chat search and memory to build on previous context",
+      "doc_url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context",
+      "category": "personalization",
+      "summary": "Use Claude’s chat search and memory to build on previous context | Claude Help Center Skip to main content Use Claude’s chat search and memory to build on previous context March 16, 2026 Table of contents You can now prompt Claude to search through your previous conversations to find and reference relevant information in new chats. Additionally, Claude can remember context from previous chats, creating continuity across your conversations.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "using.extended.thinking",
+      "feature_name": "Using extended thinking",
+      "doc_url": "https://support.claude.com/en/articles/10574485-using-extended-thinking",
+      "category": "personalization",
+      "summary": "Using extended thinking | Claude Help Center Skip to main content Using extended thinking March 16, 2026 Table of contents Extended thinking mode allows Claude (Claude 4 models and Claude 3.7 Sonnet) to spend more time breaking down problems, planning solutions, and exploring different approaches before responding. This article explains how to use this feature and when it's most beneficial.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "when.should.i.use.web.search.extended.thinking.and.rese",
+      "feature_name": "When should I use web search, extended thinking, and Research?",
+      "doc_url": "https://support.claude.com/en/articles/11095361-when-should-i-use-web-search-extended-thinking-and-research",
+      "category": "personalization",
+      "summary": "When should I use web search, extended thinking, and Research? | Claude Help Center Skip to main content When should I use web search, extended thinking, and Research?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "adaptive.thinking",
+      "feature_name": "Adaptive thinking",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/adaptive-thinking",
+      "category": "personalization",
+      "summary": "Claude technical documentation for Adaptive thinking.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "extended.thinking",
+      "feature_name": "Extended thinking",
+      "doc_url": "https://docs.claude.com/docs/en/build-with-claude/extended-thinking",
+      "category": "personalization",
+      "summary": "Claude technical documentation for Extended thinking.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "memory.tool",
+      "feature_name": "Memory tool",
+      "doc_url": "https://docs.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+      "category": "personalization",
+      "summary": "Claude technical documentation for Memory tool.",
+      "source": "claude-docs"
+    },
+    {
+      "id": "export.your.organization.s.data",
+      "feature_name": "Export your organization's data",
+      "doc_url": "https://support.claude.com/en/articles/13346720-export-your-organization-s-data",
+      "category": "privacy_safety",
+      "summary": "Export your organization's data | Claude Help Center Skip to main content Export your organization's data March 16, 2026 Organization data exports are only available to Team and Enterprise plan Primary Owners. Data exports include conversation data and the user data for your account.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.up.to.date.is.claude.s.training.data",
+      "feature_name": "How up-to-date is Claude's training data?",
+      "doc_url": "https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data",
+      "category": "privacy_safety",
+      "summary": "How up-to-date is Claude's training data? | Claude Help Center Skip to main content How up-to-date is Claude's training data?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "create.and.manage.projects",
+      "feature_name": "Create and manage Projects",
+      "doc_url": "https://support.claude.com/en/articles/9517075-what-are-projects",
+      "category": "projects",
+      "summary": "Claude Projects support dedicated workspaces with chats, context, and knowledge.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "disable.public.projects.for.your.organization",
+      "feature_name": "Disable public projects for your organization",
+      "doc_url": "https://support.claude.com/en/articles/9927533-disable-public-projects-for-your-organization",
+      "category": "projects",
+      "summary": "Disable public projects for your organization | Claude Help Center Skip to main content Disable public projects for your organization March 16, 2026 Table of contents This feature is available to Primary Owners and Owners on Team and Enterprise plans. Disabling the public project feature allows Team and Enterprise owners to restrict the creation of public projects across their organization while maintaining internal sharing capabilities.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "examples.of.projects.you.can.create",
+      "feature_name": "Examples of projects you can create",
+      "doc_url": "https://support.claude.com/en/articles/9529781-examples-of-projects-you-can-create",
+      "category": "projects",
+      "summary": "Examples of projects you can create | Claude Help Center Skip to main content Examples of projects you can create March 16, 2026 Table of contents Projects are available to all users, including those with free Claude accounts. Free users can create a maximum of five projects.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.can.i.create.and.manage.projects",
+      "feature_name": "How can I create and manage projects?",
+      "doc_url": "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects",
+      "category": "projects",
+      "summary": "How can I create and manage projects? | Claude Help Center Skip to main content How can I create and manage projects?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "manage.project.visibility.and.sharing",
+      "feature_name": "Manage project visibility and sharing",
+      "doc_url": "https://support.claude.com/en/articles/9519189-manage-project-visibility-and-sharing",
+      "category": "projects",
+      "summary": "Manage project visibility and sharing | Claude Help Center Skip to main content Manage project visibility and sharing March 16, 2026 Table of contents Project visibility and sharing features are available to users on Team or Enterprise plans. This article assumes that public projects are enabled for your organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "organize.your.tasks.with.projects.in.claude.cowork",
+      "feature_name": "Organize your tasks with projects in Claude Cowork",
+      "doc_url": "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork",
+      "category": "projects",
+      "summary": "Organize your tasks with projects in Claude Cowork | Claude Help Center Skip to main content Organize your tasks with projects in Claude Cowork April 9, 2026 Table of contents Projects in Claude Cowork let you group related tasks into dedicated workspaces with their own files, context, instructions, and memory. If you use projects on Claude, Cowork projects work similarly, but they live locally on your desktop and are built around the tasks you run through Cowork.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "projects.knowledge.base",
+      "feature_name": "Projects knowledge base",
+      "doc_url": "https://support.claude.com/en/articles/9517075-what-are-projects",
+      "category": "projects",
+      "summary": "Projects let users organize chats and add project knowledge for context.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "retrieval.augmented.generation.rag.for.projects",
+      "feature_name": "Retrieval augmented generation (RAG) for projects",
+      "doc_url": "https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects",
+      "category": "projects",
+      "summary": "Retrieval augmented generation (RAG) for projects | Claude Help Center Skip to main content Retrieval augmented generation (RAG) for projects March 16, 2026 Table of contents RAG for projects is available for all Claude plans (free, Pro, Max, Team, and Enterprise). Projects can now handle much more content without running into limits, giving Claude better context to help you.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "what.are.projects",
+      "feature_name": "What are projects?",
+      "doc_url": "https://support.claude.com/en/articles/9517075-what-are-projects",
+      "category": "projects",
+      "summary": "| Claude Help Center Skip to main content What are projects? March 16, 2026 Table of contents Projects are available to all users, including those with free Claude accounts.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "access.audit.logs",
+      "feature_name": "Access audit logs",
+      "doc_url": "https://support.claude.com/en/articles/9970975-access-audit-logs",
+      "category": "security_and_compliance",
+      "summary": "Access audit logs | Claude Help Center Skip to main content Access audit logs March 16, 2026 Table of contents Audit logs are available for Enterprise organizations only. Organization Owners and Primary Owners can export data within Organization settings > Data and Privacy and clicking the \"Export logs\" button.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "enforce.network.level.access.control.with.tenant.restri",
+      "feature_name": "Enforce network-level access control with Tenant Restrictions",
+      "doc_url": "https://support.claude.com/en/articles/13198485-enforce-network-level-access-control-with-tenant-restrictions",
+      "category": "security_and_compliance",
+      "summary": "Enforce network-level access control with Tenant Restrictions | Claude Help Center Skip to main content Enforce network-level access control with Tenant Restrictions March 16, 2026 Table of contents Tenant Restrictions are available for members of Enterprise plans and Console organizations. Tenant Restrictions enable IT administrators on Enterprise plans to enforce network-level access control for Claude.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "restrict.access.to.claude.with.ip.allowlisting",
+      "feature_name": "Restrict access to Claude with IP allowlisting",
+      "doc_url": "https://support.claude.com/en/articles/13200993-restrict-access-to-claude-with-ip-allowlisting",
+      "category": "security_and_compliance",
+      "summary": "Restrict access to Claude with IP allowlisting | Claude Help Center Skip to main content Restrict access to Claude with IP allowlisting March 16, 2026 Table of contents IP allowlisting is available for Enterprise plans only. IP allowlisting enables Enterprise plan administrators to control which IP addresses can access Claude through their organization.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.is.providing.incorrect.or.misleading.responses.w",
+      "feature_name": "Claude is providing incorrect or misleading responses. What’s going on?",
+      "doc_url": "https://support.claude.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on",
+      "category": "troubleshooting",
+      "summary": "Claude is providing incorrect or misleading responses. | Claude Help Center Skip to main content Claude is providing incorrect or misleading responses.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "i.m.encountering.429.errors.and.i.m.worried.my.rate.lim",
+      "feature_name": "I’m encountering 429 errors, and I’m worried my rate limit is too low. What should I do?",
+      "doc_url": "https://support.claude.com/en/articles/8114527-i-m-encountering-429-errors-and-i-m-worried-my-rate-limit-is-too-low-what-should-i-do",
+      "category": "troubleshooting",
+      "summary": "Claude Help Center article for I’m encountering 429 errors, and I’m worried my rate limit is too low. What should I do?.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.march.2026.usage.promotion",
+      "feature_name": "Claude March 2026 usage promotion",
+      "doc_url": "https://support.claude.com/en/articles/14063676-claude-march-2026-usage-promotion",
+      "category": "usage_and_limits",
+      "summary": "Claude March 2026 usage promotion | Claude Help Center Skip to main content Claude March 2026 usage promotion March 16, 2026 Table of contents We're offering a limited-time promotion that doubles usage limits for Claude users outside 8 AM-2 PM ET / 5-11 AM PT / 12-6 PM GMT on weekdays. This promotion is available for Free, Pro, Max, and Team plans.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "how.do.usage.and.length.limits.work",
+      "feature_name": "How do usage and length limits work?",
+      "doc_url": "https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work",
+      "category": "usage_and_limits",
+      "summary": "How do usage and length limits work? | Claude Help Center Skip to main content How do usage and length limits work?",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "usage.limit.best.practices",
+      "feature_name": "Usage limit best practices",
+      "doc_url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices",
+      "category": "usage_and_limits",
+      "summary": "Usage limit best practices | Claude Help Center Skip to main content Usage limit best practices March 16, 2026 Table of contents The number of messages you can send will vary based on your Claude plan. For more information on your plan’s usage, refer to the following resources.",
+      "source": "anthropic-help"
+    },
+    {
+      "id": "claude.design",
+      "feature_name": "Claude Design",
+      "doc_url": "https://support.claude.com/en/articles/14604416-get-started-with-claude-design",
+      "category": "features_and_capabilities",
+      "summary": "Claude Design research preview for creating design files, prototypes, slide decks, wireframes, high-fidelity designs, design systems, and generated previews from prompts.",
+      "source": "live-claude-ui"
+    }
+  ]
+}

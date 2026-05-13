@@ -1,0 +1,274 @@
+{
+  "recorded_at": "2026-05-12T14:08:18.909Z",
+  "artifacts": {
+    "html_page": {
+      "trigger_method": "Existing P1 chat opened at https://claude.ai/chat/6325dfe2-bc1c-4027-92c2-57328e621e8c after the prompt “Show me a hello-world HTML artifact in 5 lines”.",
+      "output_type": "HTML page / interactive app artifact",
+      "controls": [
+        {
+          "label": "Artifact iframe / preview",
+          "aria_label": "visualize: Hello world 5 lines",
+          "data_test_id": null,
+          "notes": "Rendered in sandboxed claudemcpcontent.com iframe; frame DOM not accessible from browser:read."
+        },
+        {
+          "label": "View request/response",
+          "aria_label": "View request/response",
+          "data_test_id": null,
+          "notes": "Visible button beside artifact block; expands implementation/request details."
+        },
+        {
+          "label": "Copy",
+          "aria_label": "Copy",
+          "data_test_id": "action-bar-copy",
+          "notes": "Message/artifact copy action visible."
+        },
+        {
+          "label": "Retry",
+          "aria_label": "Retry",
+          "data_test_id": "action-bar-retry",
+          "notes": "Response retry action visible after artifact render."
+        },
+        {
+          "label": "Edit",
+          "aria_label": "Edit",
+          "data_test_id": null,
+          "notes": "Prompt/message edit action visible."
+        },
+        {
+          "label": "Give positive feedback",
+          "aria_label": "Give positive feedback",
+          "data_test_id": null,
+          "notes": "Feedback action visible."
+        },
+        {
+          "label": "Give negative feedback",
+          "aria_label": "Give negative feedback",
+          "data_test_id": null,
+          "notes": "Feedback action visible."
+        },
+        {
+          "label": "Share",
+          "aria_label": null,
+          "data_test_id": "wiggle-controls-actions-share",
+          "notes": "Conversation share button visible; not opened to avoid changing public-link state."
+        },
+        {
+          "label": "More options for artifact chat",
+          "aria_label": "More options for Hello world HTML artifact",
+          "data_test_id": null,
+          "notes": "Sidebar chat overflow trigger visible; not opened because browser:click is unavailable."
+        },
+        {
+          "label": "Close/fullscreen panel",
+          "aria_label": "Close fullscreen",
+          "data_test_id": null,
+          "notes": "Observed in P1 Claude catalog artifact panel controls; fullscreen side-panel state not re-opened because click/type CLI is unavailable."
+        },
+        {
+          "label": "Code/preview or request/response toggle",
+          "aria_label": "View request/response",
+          "data_test_id": null,
+          "notes": "Claude exposed request/response toggle for the HTML app; no separate code/preview tabs were accessible from current read."
+        },
+        {
+          "label": "Download",
+          "aria_label": null,
+          "data_test_id": null,
+          "notes": "Not visible in current rendered snapshot; may be behind artifact action menu/fullscreen panel."
+        },
+        {
+          "label": "Versions",
+          "aria_label": null,
+          "data_test_id": null,
+          "notes": "No version selector visible in current rendered snapshot; likely behind artifact menu or unavailable for this small app."
+        }
+      ],
+      "notes": "Artifact rendered as an embedded sandbox iframe with visible message-level actions. Screenshot captured through browser:screenshot. Opening action menus/fullscreen/code panel required click support unavailable in this build.",
+      "screenshot": "data/screenshots/2026-05-12T14-06-09-881Z-Hello-world-HTML-artifact---Claude.png"
+    },
+    "code": {
+      "trigger_method": "Would prompt: “Create a tiny Python code artifact that prints hello.”",
+      "output_type": "code",
+      "controls": [],
+      "notes": "cli_insufficient: browser:type/browser:press/browser:click variants are not implemented in this built CLI (browser:click returned Unknown command), so this output type was not actively generated in this dispatch without direct CDP automation."
+    },
+    "react_component": {
+      "trigger_method": "Would prompt: “Create a tiny React counter component artifact.”",
+      "output_type": "react_component",
+      "controls": [],
+      "notes": "cli_insufficient: browser:type/browser:press/browser:click variants are not implemented in this built CLI (browser:click returned Unknown command), so this output type was not actively generated in this dispatch without direct CDP automation."
+    },
+    "mermaid_diagram": {
+      "trigger_method": "Would prompt: “Create a Mermaid flowchart artifact with three nodes.”",
+      "output_type": "mermaid_diagram",
+      "controls": [],
+      "notes": "cli_insufficient: browser:type/browser:press/browser:click variants are not implemented in this built CLI (browser:click returned Unknown command), so this output type was not actively generated in this dispatch without direct CDP automation."
+    },
+    "document": {
+      "trigger_method": "Would prompt: “Create a short markdown document artifact titled Test Note.”",
+      "output_type": "document",
+      "controls": [],
+      "notes": "cli_insufficient: browser:type/browser:press/browser:click variants are not implemented in this built CLI (browser:click returned Unknown command), so this output type was not actively generated in this dispatch without direct CDP automation."
+    },
+    "svg": {
+      "trigger_method": "Would prompt: “Create a simple SVG circle artifact.”",
+      "output_type": "svg",
+      "controls": [],
+      "notes": "cli_insufficient: browser:type/browser:press/browser:click variants are not implemented in this built CLI (browser:click returned Unknown command), so this output type was not actively generated in this dispatch without direct CDP automation."
+    }
+  },
+  "projects": {
+    "trigger_method": "Opened https://claude.ai/projects via browser:open and used P1 project-list evidence from data/claude_full_catalog.json.",
+    "output_type": "Projects list and project detail surface",
+    "controls": [
+      {
+        "label": "Projects",
+        "aria_label": "Projects",
+        "data_test_id": null,
+        "notes": "Sidebar link to projects."
+      },
+      {
+        "label": "Sort projects",
+        "aria_label": "Sort projects",
+        "data_test_id": null,
+        "notes": "P1 observed projects list sort button/menu."
+      },
+      {
+        "label": "Search projects",
+        "aria_label": "Search projects",
+        "data_test_id": null,
+        "notes": "P1 observed project searchbox."
+      },
+      {
+        "label": "New project",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Visible creation control; not clicked/created."
+      },
+      {
+        "label": "Project card / existing project",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "No safe existing project detail was opened; P1 did not identify a non-user-content project card."
+      },
+      {
+        "label": "Custom instructions",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Not captured; requires existing project detail or project creation, neither safely available from current read."
+      },
+      {
+        "label": "Knowledge upload area",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Not captured; expected in project detail but not reached."
+      },
+      {
+        "label": "Members",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Not captured; expected in project detail/settings but not reached."
+      },
+      {
+        "label": "Project settings",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Not captured; expected in project detail but not reached."
+      },
+      {
+        "label": "Project chat composer",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Not captured; expected in project detail but not reached."
+      }
+    ],
+    "notes": "Direct browser:open to /projects briefly returned a projects URL but subsequent read/update snapshots landed on /new-like content in this session. Existing P1 records provide list-level controls only. cli_insufficient: browser:click is unavailable to open project cards or menus."
+  },
+  "extended_thinking": {
+    "trigger_method": "Model picker exposes “Adaptive thinking” for Opus 4.7 Adaptive in P1; active toggle exercise would require opening model picker and toggling via click.",
+    "output_type": "reasoning / thinking trace",
+    "controls": [
+      {
+        "label": "Model: Opus 4.7 Adaptive",
+        "aria_label": "Model: Opus 4.7 Adaptive",
+        "data_test_id": "model-selector-dropdown",
+        "notes": "Model picker trigger."
+      },
+      {
+        "label": "Adaptive thinking",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "P1 observed switch in model picker."
+      },
+      {
+        "label": "Thinking trace summary",
+        "aria_label": "Devised concise HTML structure for hello-world demonstration",
+        "data_test_id": null,
+        "notes": "Rendered artifact response showed collapsible thought/status row with aria-expanded=false."
+      },
+      {
+        "label": "View request/response",
+        "aria_label": "View request/response",
+        "data_test_id": null,
+        "notes": "Visible adjacent artifact/request-response control."
+      },
+      {
+        "label": "Copy trace",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "No separate copy-trace control visible in current read; may appear after expanding trace."
+      }
+    ],
+    "notes": "Toggle was not changed in P2 because click support is unavailable and direct CDP automation is forbidden. The rendered response did expose a collapsed thinking/status row."
+  },
+  "styles": {
+    "trigger_method": "P1 opened attachment/tools menu -> Use style. P2 could not re-open picker because browser:click is not implemented.",
+    "output_type": "built-in response style picker",
+    "controls": [
+      {
+        "label": "Use style",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Attachment/tools menu entry."
+      },
+      {
+        "label": "Normal",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Built-in style option observed in P1."
+      },
+      {
+        "label": "Concise",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Built-in style option observed in P1."
+      },
+      {
+        "label": "Explanatory",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Built-in style option observed in P1."
+      },
+      {
+        "label": "Formal",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Built-in style option observed in P1."
+      },
+      {
+        "label": "Create & edit styles",
+        "aria_label": null,
+        "data_test_id": null,
+        "notes": "Custom style management entry visible; not activated."
+      }
+    ],
+    "notes": "Per-style tiny prompts were not sent in P2 due missing type/press/click CLI surfaces. Existing style labels/roles mirror P1 observations."
+  },
+  "citations_sources_panel": {
+    "trigger_method": "Checked rendered artifact chat and P1 catalog areas for source/citation surfaces.",
+    "output_type": "citations / sources panel",
+    "controls": [],
+    "notes": "No citations or sources panel appeared for the artifact/project/style observations in this dispatch."
+  }
+}

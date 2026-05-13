@@ -1,0 +1,26 @@
+{
+  "created_resources": [
+    {
+      "type": "project",
+      "name": "WAH catalog probe DELETE OK",
+      "deleted": true
+    },
+    {
+      "type": "chat",
+      "name": "Catalog probe test",
+      "deleted": true
+    },
+    {
+      "type": "chat",
+      "name": "HTML artifact with red square",
+      "deleted": true
+    }
+  ],
+  "cli_insufficient_count": 5,
+  "policy_classifier_hits": [
+    "Human confirmation required before click: Target or content looks sensitive: button[aria-label=\"Send message\"] ",
+    "Human confirmation required before type: Target or content looks sensitive: #whatAreYouWorkingOn__r_3k_ WAH catalog probe — DELETE OK ",
+    "Human confirmation required before type: Target or content looks sensitive: #whatAreYouTryingToAchieve__r_3l_ Temporary project for catalog probing; delete after test. ",
+    "Human confirmation required before click: Target or content looks sensitive: button[aria-label=\"More options for WAH catalog probe DELETE OK\"] "
+  ]
+}

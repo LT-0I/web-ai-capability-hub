@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-05-12T16:30:48.260Z",
+  "previous_status_distribution": {
+    "observed_only": 52,
+    "observed_ok": 9,
+    "partial": 10,
+    "tested_ok": 13,
+    "skipped_off_limits": 6
+  },
+  "new_status_distribution": {
+    "observed_only": 52,
+    "observed_ok": 9,
+    "cli_insufficient": 11,
+    "tested_ok": 13,
+    "skipped_off_limits": 6
+  },
+  "partial_keys_reclassified": [
+    "deep_research_plan_review",
+    "deep_research_progress",
+    "deep_research_report",
+    "deep_research_download",
+    "canvas_blank",
+    "canvas_inline_feedback",
+    "canvas_direct_edit",
+    "canvas_versions",
+    "canvas_shortcuts",
+    "canvas_code_network_toggle"
+  ],
+  "browserEvidence": {
+    "attempted_at": "2026-05-12T16:30:48.260Z",
+    "command_surface": "node dist/src/cli.js browser:* only",
+    "cdp_endpoint": "http://127.0.0.1:9223",
+    "evidence": [
+      "Initial browser:status for profile chatgpt returned connected=false with lastError connect ECONNREFUSED 127.0.0.1:9223.",
+      "Headed browser:launch could not initialize because the execution pane has no X server / DISPLAY.",
+      "Headless wrapper launch connected to CDP 9223, but chatgpt.com and chatgpt.com/codex rendered Cloudflare interstitial text: \"Enable JavaScript and cookies to continue\".",
+      "No CAPTCHA, bot-defense bypass, credential, account, billing, OAuth grant, deletion, voice, or private-GPT publishing action was attempted."
+    ],
+    "policy_classifier_hits": [
+      {
+        "surface": "Cloudflare/challenge interstitial",
+        "action": "recorded and stopped; no bypass attempted"
+      },
+      {
+        "surface": "Codex GitHub repo connection",
+        "action": "not attempted because new GitHub/OAuth grants are off-limits"
+      },
+      {
+        "surface": "account/billing/voice/private sharing/deletion",
+        "action": "not attempted per off-limits list"
+      }
+    ]
+  },
+  "c1": "cli_insufficient",
+  "c2": "cli_insufficient",
+  "c3": "cli_insufficient",
+  "resources_created": [],
+  "resources_deleted": []
+}
