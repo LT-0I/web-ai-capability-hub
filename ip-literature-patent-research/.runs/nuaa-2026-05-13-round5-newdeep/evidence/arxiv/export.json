@@ -1,0 +1,18 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "export",
+  "activation_steps": [
+    "open export/citation menu or official metadata endpoint"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "BibTeX endpoint /bibtex/<arxiv_id>"
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/export.png",
+  "sample_export_path": "evidence/arxiv/exports/arxiv_sample_bibtex.bib",
+  "status": "tested_ok",
+  "note": "Official arXiv BibTeX metadata endpoint captured for one record.",
+  "captured_at": "2026-05-13T15:40:48.056322+00:00",
+  "page_title": "400 Bad Request | arXiv e-print repository",
+  "url_redacted": "https://arxiv.org/search/?<redacted-query>"
+}

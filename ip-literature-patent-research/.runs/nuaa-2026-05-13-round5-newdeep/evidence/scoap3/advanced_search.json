@@ -1,0 +1,468 @@
+{
+  "resource_id": "scoap3",
+  "feature_id": "advanced_search",
+  "activation_steps": [
+    "open advanced_search_url"
+  ],
+  "selectors": {
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "Home SCOAP3 project Partners About Help Documentation Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Home",
+        "label": "Home",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 project",
+        "label": "SCOAP3 project",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Partners",
+        "label": "Partners",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/partners"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Documentation",
+        "label": "Documentation",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/SCOAP3/scoap3/wiki"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/admin/login/?next=/404"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Home",
+        "label": "Home",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 project",
+        "label": "SCOAP3 project",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Partners",
+        "label": "Partners",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/partners"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Documentation",
+        "label": "Documentation",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/SCOAP3/scoap3/wiki"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/admin/login/?next=/404"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 website",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About the repository",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Search help",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/advancedsearch?ln=en#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CC-BY",
+        "label": "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://creativecommons.org/licenses/by/3.0/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CC0",
+        "label": "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "repo.admin@scoap3.org",
+        "label": "Repository contact: repo.admin@scoap3.org",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "mailto:repo.admin@scoap3.org"
+      }
+    ],
+    "syntax_patterns": [
+      "repository p=<query>",
+      "fielded advanced search if available: title/author/abstract/DOI/year"
+    ]
+  },
+  "observed_labels": [
+    "Home SCOAP3 project Partners About Help Documentation Login   https://repo.scoap3.org/",
+    "Home Home  https://repo.scoap3.org/",
+    "SCOAP3 project SCOAP3 project  https://scoap3.org/",
+    "Partners Partners  https://repo.scoap3.org/partners",
+    "About About  https://scoap3.org/scoap3-repository",
+    "Help Help  https://scoap3.org/scoap3-repository",
+    "Login Login  https://repo.scoap3.org/admin/login/?next=/404",
+    "SCOAP3 website | About the repository | Search help SCOAP3 website  https://scoap3.org/",
+    "SCOAP3 website | About the repository | Search help About the repository  https://scoap3.org/scoap3-repository/",
+    "SCOAP3 website | About the repository | Search help Search help  https://repo.scoap3.org/advancedsearch?ln=en#",
+    "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver. CC-BY  https://creativecommons.org/licenses/by/3.0/",
+    "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver. CC0  https://creativecommons.org/publicdomain/zero/1.0/",
+    "Repository contact: repo.admin@scoap3.org repo.admin@scoap3.org  mailto:repo.admin@scoap3.org"
+  ],
+  "screenshot_path": "evidence/scoap3/screenshots/advanced_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Captured 21 advanced/interactive controls; syntax patterns=2.",
+  "captured_at": "2026-05-13T15:43:46.717677+00:00",
+  "page_title": "SCOAP3 Repository",
+  "url_redacted": "https://repo.scoap3.org/advancedsearch?<redacted-query>",
+  "result_evidence": {
+    "text_sample": "Home\nSCOAP3 project\nPartners\nAbout\nHelp\nDocumentation\nLogin\nHome\nSCOAP3 project\nPartners\nAbout\nHelp\nDocumentation\nLogin\nPage not found\n\nThe page you are looking for could not be found.\n\nSCOAP3 website | About the repository | Search help\nArticles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver.\nRepository contact: repo.admin@scoap3.org\n\nSCOAP3",
+    "results_count": "",
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "Home SCOAP3 project Partners About Help Documentation Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Home",
+        "label": "Home",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 project",
+        "label": "SCOAP3 project",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Partners",
+        "label": "Partners",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/partners"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Documentation",
+        "label": "Documentation",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/SCOAP3/scoap3/wiki"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/admin/login/?next=/404"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Home",
+        "label": "Home",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 project",
+        "label": "SCOAP3 project",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Partners",
+        "label": "Partners",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/partners"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Documentation",
+        "label": "Documentation",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/SCOAP3/scoap3/wiki"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/admin/login/?next=/404"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "SCOAP3 website",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About the repository",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://scoap3.org/scoap3-repository/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Search help",
+        "label": "SCOAP3 website | About the repository | Search help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://repo.scoap3.org/advancedsearch?ln=en#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CC-BY",
+        "label": "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://creativecommons.org/licenses/by/3.0/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CC0",
+        "label": "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "repo.admin@scoap3.org",
+        "label": "Repository contact: repo.admin@scoap3.org",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "mailto:repo.admin@scoap3.org"
+      }
+    ],
+    "result_labels": [
+      "Login Login  https://repo.scoap3.org/admin/login/?next=/404",
+      "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver. CC-BY  https://creativecommons.org/licenses/by/3.0/",
+      "Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are provided by the corresponding publishers and released under the a CC0 waiver. CC0  https://creativecommons.org/publicdomain/zero/1.0/"
+    ]
+  }
+}

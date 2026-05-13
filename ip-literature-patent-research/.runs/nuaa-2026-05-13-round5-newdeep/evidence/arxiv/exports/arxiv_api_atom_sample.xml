@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/O8XTSCcijLT7vNalpvebCwdo2Es</id>
+  <title>arXiv Query: search_query=all:UAV OR all:path OR all:planning OR all:reinforcement OR all:learning&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-05-13T15:40:52Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:UAV+OR+(all:path+OR+(all:planning+OR+(all:reinforcement+OR+all:learning)))&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>572637</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2106.03129v1</id>
+    <title>3D UAV Trajectory and Data Collection Optimisation via Deep Reinforcement Learning</title>
+    <updated>2021-06-06T14:08:41Z</updated>
+    <link href="https://arxiv.org/abs/2106.03129v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.03129v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Unmanned aerial vehicles (UAVs) are now beginning to be deployed for enhancing the network performance and coverage in wireless communication. However, due to the limitation of their on-board power and flight time, it is challenging to obtain an optimal resource allocation scheme for the UAV-assisted Internet of Things (IoT). In this paper, we design a new UAV-assisted IoT systems relying on the shortest flight path of the UAVs while maximising the amount of data collected from IoT devices. Then, a deep reinforcement learning-based technique is conceived for finding the optimal trajectory and throughput in a specific coverage area. After training, the UAV has the ability to autonomously collect all the data from user nodes at a significant total sum-rate improvement while minimising the associated resources used. Numerical results are provided to highlight how our techniques strike a balance between the throughput attained, trajectory, and the time spent. More explicitly, we characterise the attainable performance in terms of the UAV trajectory, the expected reward and the total sum-rate.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-06T14:08:41Z</published>
+    <arxiv:comment>30 pages, UAV-assisted wireless network, trajectory, data collection, and deep reinforcement learning</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Khoi Khac Nguyen</name>
+    </author>
+    <author>
+      <name>Trung Q. Duong</name>
+    </author>
+    <author>
+      <name>Tan Do-Duy</name>
+    </author>
+    <author>
+      <name>Holger Claussen</name>
+    </author>
+    <author>
+      <name>and Lajos Hanzo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2108.02889v1</id>
+    <title>RIS-assisted UAV Communications for IoT with Wireless Power Transfer Using Deep Reinforcement Learning</title>
+    <updated>2021-08-05T23:55:44Z</updated>
+    <link href="https://arxiv.org/abs/2108.02889v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2108.02889v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many of the devices used in Internet-of-Things (IoT) applications are energy-limited, and thus supplying energy while maintaining seamless connectivity for IoT devices is of considerable importance. In this context, we propose a simultaneous wireless power transfer and information transmission scheme for IoT devices with support from reconfigurable intelligent surface (RIS)-aided unmanned aerial vehicle (UAV) communications. In particular, in a first phase, IoT devices harvest energy from the UAV through wireless power transfer; and then in a second phase, the UAV collects data from the IoT devices through information transmission. To characterise the agility of the UAV, we consider two scenarios: a hovering UAV and a mobile UAV. Aiming at maximizing the total network sum-rate, we jointly optimize the trajectory of the UAV, the energy harvesting scheduling of IoT devices, and the phaseshift matrix of the RIS. We formulate a Markov decision process and propose two deep reinforcement learning algorithms to solve the optimization problem of maximizing the total network sum-rate. Numerical results illustrate the effectiveness of the UAV's flying path optimization and the network's throughput of our proposed techniques compared with other benchmark schemes. Given the strict requirements of the RIS and UAV, the significant improvement in processing time and throughput performance demonstrates that our proposed scheme is well applicable for practical IoT applications.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-08-05T23:55:44Z</published>
+    <arxiv:comment>9 pages, Internet-of-Things (IoT), UAV, RIS, deep reinforcement learning, wireless power transfer</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Khoi Khac Nguyen</name>
+    </author>
+    <author>
+      <name>Antonino Masaracchia</name>
+    </author>
+    <author>
+      <name>Tan Do-Duy</name>
+    </author>
+    <author>
+      <name>H. Vincent Poor</name>
+    </author>
+    <author>
+      <name>Trung Q. Duong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.12375v1</id>
+    <title>Value Bonuses using Ensemble Errors for Exploration in Reinforcement Learning</title>
+    <updated>2026-02-12T20:12:17Z</updated>
+    <link href="https://arxiv.org/abs/2602.12375v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.12375v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Optimistic value estimates provide one mechanism for directed exploration in reinforcement learning (RL). The agent acts greedily with respect to an estimate of the value plus what can be seen as a value bonus. The value bonus can be learned by estimating a value function on reward bonuses, propagating local uncertainties around rewards. However, this approach only increases the value bonus for an action retroactively, after seeing a higher reward bonus from that state and action. Such an approach does not encourage the agent to visit a state and action for the first time. In this work, we introduce an algorithm for exploration called Value Bonuses with Ensemble errors (VBE), that maintains an ensemble of random action-value functions (RQFs). VBE uses the errors in the estimation of these RQFs to design value bonuses that provide first-visit optimism and deep exploration. The key idea is to design the rewards for these RQFs in such a way that the value bonus can decrease to zero. We show that VBE outperforms Bootstrap DQN and two reward bonus approaches (RND and ACB) on several classic environments used to test exploration and provide demonstrative experiments that it can scale easily to more complex environments like Atari.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-12T20:12:17Z</published>
+    <arxiv:comment>Accepted at Reinforcement Learning Conference (RLC) 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Reinforcement Learning Journal, vol. 6, 2025, pp. 1894-1915</arxiv:journal_ref>
+    <author>
+      <name>Abdul Wahab</name>
+    </author>
+    <author>
+      <name>Raksha Kumaraswamy</name>
+    </author>
+    <author>
+      <name>Martha White</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.01562v1</id>
+    <title>A New View on Planning in Online Reinforcement Learning</title>
+    <updated>2024-06-03T17:45:19Z</updated>
+    <link href="https://arxiv.org/abs/2406.01562v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.01562v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates a new approach to model-based reinforcement learning using background planning: mixing (approximate) dynamic programming updates and model-free updates, similar to the Dyna architecture. Background planning with learned models is often worse than model-free alternatives, such as Double DQN, even though the former uses significantly more memory and computation. The fundamental problem is that learned models can be inaccurate and often generate invalid states, especially when iterated many steps. In this paper, we avoid this limitation by constraining background planning to a set of (abstract) subgoals and learning only local, subgoal-conditioned models. This goal-space planning (GSP) approach is more computationally efficient, naturally incorporates temporal abstraction for faster long-horizon planning and avoids learning the transition dynamics entirely. We show that our GSP algorithm can propagate value from an abstract space in a manner that helps a variety of base learners learn significantly faster in different domains.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-03T17:45:19Z</published>
+    <arxiv:comment>Published in the Planning and Reinforcement Learning Workshop at ICAPS 2024. arXiv admin note: text overlap with arXiv:2206.02902</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Kevin Roice</name>
+    </author>
+    <author>
+      <name>Parham Mohammad Panahi</name>
+    </author>
+    <author>
+      <name>Scott M. Jordan</name>
+    </author>
+    <author>
+      <name>Adam White</name>
+    </author>
+    <author>
+      <name>Martha White</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2010.07068v1</id>
+    <title>UAV Trajectory and Communication Co-design: Flexible Path Discretization and Path Compression</title>
+    <updated>2020-10-14T13:17:01Z</updated>
+    <link href="https://arxiv.org/abs/2010.07068v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2010.07068v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The performance optimization of UAV communication systems requires the joint design of UAV trajectory and communication efficiently. To tackle the challenge of infinite design variables arising from the continuous-time UAV trajectory optimization, a commonly adopted approach is by approximating the UAV trajectory with piecewise-linear path segments in three-dimensional (3D) space. However, this approach may still incur prohibitive computational complexity in practice when the UAV flight period/distance becomes long, as the distance between consecutive waypoints needs to be kept sufficiently small to retain high approximation accuracy. To resolve this fundamental issue, we propose in this paper a new and general framework for UAV trajectory and communication co-design. First, we propose a flexible path discretization scheme that optimizes only a number of selected waypoints (designable waypoints) along the UAV path for complexity reduction, while all the designable and non-designable waypoints are used in calculating the approximated communication utility along the UAV trajectory for ensuring high trajectory discretization accuracy. Next, given any number of designable waypoints, we propose a novel path compression scheme where the UAV 3D path is first decomposed into three one-dimensional (1D) sub-paths and each sub-path is then approximated by superimposing a number of selected basis paths weighted by their corresponding path coefficients, thus further reducing the path design complexity. Finally, we provide a case study on UAV trajectory design for aerial data harvesting from distributed ground sensors, and numerically show that the proposed schemes can significantly reduce the UAV trajectory design complexity yet achieve favorable rate performance as compared to conventional path/time discretization schemes.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-10-14T13:17:01Z</published>
+    <arxiv:comment>30 pages. This paper proposed a novel UAV trajectory design framework with flexible path discretization and path compression to significantly reduce the design complexity based on conventional path/time discretization schemes</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Yijun Guo</name>
+    </author>
+    <author>
+      <name>Changsheng You</name>
+    </author>
+    <author>
+      <name>Changchuan Yin</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+  </entry>
+</feed>

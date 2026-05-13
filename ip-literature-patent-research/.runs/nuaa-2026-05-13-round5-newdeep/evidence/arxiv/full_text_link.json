@@ -1,0 +1,20 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "full_text_link",
+  "activation_steps": [
+    "click/resolve one full-text/PDF/landing link; no bulk save"
+  ],
+  "selectors": {
+    "fulltext_url_pattern": "https://arxiv.org/pdf/<arxiv_id>"
+  },
+  "observed_labels": [
+    "arXiv PDF link /pdf/<id>"
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/full_text_link.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "One arXiv PDF URL resolved; PDF not downloaded.",
+  "captured_at": "2026-05-13T15:40:51.182686+00:00",
+  "page_title": "",
+  "url_redacted": "https://arxiv.org/pdf/2401.00001"
+}

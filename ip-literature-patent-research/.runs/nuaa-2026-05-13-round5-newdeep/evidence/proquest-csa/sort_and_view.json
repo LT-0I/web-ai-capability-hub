@@ -1,0 +1,474 @@
+{
+  "resource_id": "proquest-csa",
+  "feature_id": "sort_and_view",
+  "activation_steps": [
+    "change or inspect sort/view/results-per-page controls"
+  ],
+  "selectors": {
+    "changed": [],
+    "result_evidence": {
+      "text_sample": "跳转至主要内容\nProQuest 主菜单\nProQuest\n访问权限提供者：\nNANJING UNIVERSITY OF AERONAUTICS AND ASTRONAUTICS\n近期检索\n所选条目\n“我的检索”和“语言选择”\nProQuest 基本检索页面\n您正在检索 6 数据库\n基本检索高级检索出版物浏览更改数据库\n检索 ProQuest\n所有\n学术期刊\n书籍\nNews Sources\n学位论文\n所有来源类型\n输入您的检索词\n输入检索词...\n检索\n\t\n注意: 运行检索操作前，您可能想对检索操作进行限制。您可在此说明下方的“检索”按钮后面，或在结果页面中找到限制选项。\n全文文献同行评审\n检索技巧\n当您键入时文本字段下面将会显示自动完成建议。要选择这些建议并让屏幕阅读器软件朗读它们，请按向下箭头键。\n需要一些帮助或指导？\n对搜索词加引号，以搜索确切短语\npd( )\n搜索特定日期或日期范围，例如，pd(2010-2015)\n访问我们的产品教育页面 了解有关“基本检索”页面的更多信息和 ProQuest 平台的其他功能\n< 3 mins\nVideo: How do I use outside sources in my paper?\n按主题领域检索\n\n检索主题领域 或查阅按主题划分的数据库列表。\n\nProQuest, part of Clarivate\n关于 ProQuest联系我们条款与条件隐私政策Cookie 隐私管理 cookie 首选项辅助功能\n版权所有 © 2026 ProQuest LLC。\n我们使用 Cookie 以允许我们网站的正常工作、个性化设计内容和广告、提供社交媒体功能并分析流量。我们还同社交媒体、广告和分析合作伙伴分享有关您使用我们网站的信息。\n管理 cookie 首选项 接受所有 Cookie\n隐私偏好中心\n您的隐私\n绝对必要的 Cookie\n功能 Cookie\n定向 Cookie\n社交媒体 Cookie\n性能 Cookie\n您的隐私\n\n您访问任何网站时，网站都可能在您的浏览器上存储或检索信息，大多数是以 Cookie 的形式进行。此信息可能与您、您的偏好、您的设备相关，或者该信息被用于使网站按照您期望的方式工作。这些信息通常不会直接识别您，但它可为您提供更多个性化的 Web 体验。您可以选择不允许使用某些类型的 Cookie。单击不同类别标题以了解更多信息并更改默认设置。但是，您应该知道，阻止某些类型的 Cookie 可能会影响您的网站体验和我们能够提供的服务。\n更多信息\n\n确认我的选择\n全部允许\n×\n快速检索\n\n让我们了解下基本检索和功能，这些功能可以帮助您查找您的检索的最相关结果。\n\n稍后提醒我\n开始",
+      "results_count": "",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "跳转至主要内容",
+          "label": "跳转至主要内容",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#start"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "ProQuest 主菜单",
+          "label": "ProQuest 主菜单 ProQuest",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "ProQuest",
+          "label": "ProQuest",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "近期检索",
+          "label": "近期检索",
+          "selector": "#gaRecentSearches",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/recentsearches?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "所选条目",
+          "label": "所选条目",
+          "selector": "#gaSelectedItems_link",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/selecteditems?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "“我的检索”和“语言选择”",
+          "label": "“我的检索”和“语言选择”",
+          "selector": "#mrDropdown",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "基本检索",
+          "label": "基本检索",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "高级检索",
+          "label": "高级检索",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/advanced?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "出版物",
+          "label": "检索并浏览全文文献出版物",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/index.homepagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "浏览",
+          "label": "浏览主题和特色内容",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/index.homepagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "更改数据库",
+          "label": "查看并更改您的检索中涵盖的数据库",
+          "selector": "#databasepagelink_0_0",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/databases/index?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "所有",
+          "label": "在检索中包含所有来源类型",
+          "selector": "#all_sType",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#_all"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "学术期刊",
+          "label": "学术期刊",
+          "selector": "#sType_0",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#_0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "书籍",
+          "label": "书籍",
+          "selector": "#sType_1",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#_1"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "News Sources",
+          "label": "News Sources",
+          "selector": "#sType_2",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#_2"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "学位论文",
+          "label": "学位论文",
+          "selector": "#sType_3",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#_3"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "所有来源类型",
+          "label": "所有来源类型",
+          "selector": "#sourceTypeDropdown",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#"
+        },
+        {
+          "tag": "textarea",
+          "type": "",
+          "text": "",
+          "label": "输入检索词...",
+          "selector": "#searchTerm",
+          "placeholder": "输入检索词... ",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索",
+          "label": "检索",
+          "selector": "#expandedSearch",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "全文文献",
+          "selector": "#fullTextLimit",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "同行评审",
+          "selector": "#peerReviewLimit",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "同行评审 信息",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索技巧",
+          "label": "literal:Search tips",
+          "selector": "#searchtips",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "访问我们的产品教育页面",
+          "label": "访问我们的产品教育页面 了解有关“基本检索”页面的更多信息和 ProQuest 平台的其他功能",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://proquest.libguides.com/proquestplatform"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "< 3 mins",
+          "label": "Video: How do I use outside sources in my paper? - 单击观看视频",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/info/pqrcvideos?video=3.0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Video: How do I use outside sources in my paper?",
+          "label": "Video: How do I use outside sources in my paper? - 单击观看视频",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/info/pqrcvideos?video=3.0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索主题领域",
+          "label": "检索主题领域 或查阅按主题划分的数据库列表。",
+          "selector": "#databasepagelink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.proquest.com/subjects/index?accountid=16605"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "关于 ProQuest",
+          "label": "关于 ProQuest",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "联系我们",
+          "label": "联系我们",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/go/contactus"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "条款与条件",
+          "label": "条款与条件",
+          "selector": "#termsConditionsFooterLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/go/termsandconditions"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "隐私政策",
+          "label": "隐私政策",
+          "selector": "#privacyPolicyFooterLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/go/privacy"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Cookie 隐私",
+          "label": "Cookie 隐私",
+          "selector": "#cookiePolicyFooterLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/go/cookie"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "管理 cookie 首选项",
+          "label": "Manage cookie preferences",
+          "selector": "#cookieSettingsFooterLink",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0);"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "辅助功能",
+          "label": "辅助功能",
+          "selector": "#accessibilityFooterLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://about.proquest.com/go/accessibility-platform"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "管理 cookie 首选项",
+          "label": "管理 cookie 首选项 接受所有 Cookie",
+          "selector": "#onetrust-pc-btn-handler",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "接受所有 Cookie",
+          "label": "管理 cookie 首选项 接受所有 Cookie",
+          "selector": "#onetrust-accept-btn-handler",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "关闭",
+          "selector": "#close-pc-btn-handler",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "更多信息",
+          "label": "有关您的隐私的更多信息, 在新窗口中打开",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://cookiepedia.co.uk/giving-consent-to-cookies"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "确认我的选择",
+          "label": "确认我的选择 全部允许",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "全部允许",
+          "label": "全部允许",
+          "selector": "#accept-recommended-btn-handler",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Powered by OneTrust 在新窗口中打开",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.onetrust.com/products/cookie-consent/"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "×",
+          "label": "关闭此演示",
+          "selector": "#pendo-close-guide-f0dbee3b",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "稍后提醒我",
+          "label": "稍晚一些再查看此指南",
+          "selector": "#pendo-button-d19bb0e6",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开始",
+          "label": "开始指南",
+          "selector": "#pendo-button-43e0c0c0",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        }
+      ],
+      "result_labels": [
+        "检索并浏览全文文献出版物 出版物  https://www.proquest.com/index.homepagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+        "浏览主题和特色内容 浏览  https://www.proquest.com/index.homepagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+        "学术期刊 学术期刊  https://www.proquest.com/#_0",
+        "学位论文 学位论文  https://www.proquest.com/#_3"
+      ]
+    }
+  },
+  "observed_labels": [
+    "检索并浏览全文文献出版物 出版物  https://www.proquest.com/index.homepagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+    "浏览主题和特色内容 浏览  https://www.proquest.com/index.homepagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+    "检索主题领域 或查阅按主题划分的数据库列表。 检索主题领域  https://www.proquest.com/subjects/index?accountid=16605"
+  ],
+  "screenshot_path": "evidence/proquest-csa/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "changed=[]",
+  "captured_at": "2026-05-13T15:43:19.751522+00:00",
+  "page_title": "基本检索 - ProQuest",
+  "url_redacted": "https://www.proquest.com/"
+}

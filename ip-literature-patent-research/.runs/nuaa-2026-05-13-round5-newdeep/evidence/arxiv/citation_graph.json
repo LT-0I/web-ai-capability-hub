@@ -1,0 +1,23 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "citation_graph",
+  "activation_steps": [
+    "open/inspect cited-by/references/related controls where visible"
+  ],
+  "selectors": {
+    "related_surfaces": [
+      "record page: references not native; related via subject/cross-listing/search by id",
+      "INSPIRE/Semantic Scholar may cite arXiv but outside arXiv native UI"
+    ]
+  },
+  "observed_labels": [
+    "Subjects/cross-listing; no native cited-by graph"
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/citation_graph.png",
+  "sample_export_path": "",
+  "status": "partial",
+  "note": "arXiv has cross-listing/subject relatedness but no native citation graph in search UI.",
+  "captured_at": "2026-05-13T15:40:48.169457+00:00",
+  "page_title": "400 Bad Request | arXiv e-print repository",
+  "url_redacted": "https://arxiv.org/search/?<redacted-query>"
+}

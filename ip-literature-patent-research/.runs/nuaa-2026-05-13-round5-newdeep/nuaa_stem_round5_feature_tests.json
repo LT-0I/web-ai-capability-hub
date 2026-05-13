@@ -1,0 +1,247 @@
+{
+  "captured_at": "2026-05-13T15:44:48.955238+00:00",
+  "round": 5,
+  "scope": "deep-explore arxiv + proquest-csa + national-military-standards + scoap3",
+  "parent_run": "nuaa-2026-05-13-round2-headed",
+  "schema_version": "nuaa-stem-round5-newdeep-1.0",
+  "source": "NUAA library/headed CDP warm profile where applicable; public OA where applicable",
+  "policy": "ip-literature-patent-research/references/database-access-policy.md",
+  "redactions_applied": [
+    "nav_url_query",
+    "institutional_markers",
+    "personal_account_ids"
+  ],
+  "test_count": 32,
+  "tests": [
+    {
+      "resource_id": "arxiv",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=not parsed",
+      "evidence_path": "evidence/arxiv/simple_search.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 53 advanced/interactive controls; syntax patterns=4.",
+      "evidence_path": "evidence/arxiv/advanced_search.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=[]",
+      "evidence_path": "evidence/arxiv/sort_and_view.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "export",
+      "status": "tested_ok",
+      "note": "Official arXiv BibTeX metadata endpoint captured for one record.",
+      "evidence_path": "evidence/arxiv/export.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "citation_graph",
+      "status": "partial",
+      "note": "arXiv has cross-listing/subject relatedness but no native citation graph in search UI.",
+      "evidence_path": "evidence/arxiv/citation_graph.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "alerts_and_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed.",
+      "evidence_path": "evidence/arxiv/alerts_and_saved.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "full_text_link",
+      "status": "tested_ok",
+      "note": "One arXiv PDF URL resolved; PDF not downloaded.",
+      "evidence_path": "evidence/arxiv/full_text_link.json"
+    },
+    {
+      "resource_id": "arxiv",
+      "feature_id": "api_or_openurl",
+      "status": "tested_ok",
+      "note": "Official API sampled <=5 records: evidence/arxiv/exports/arxiv_api_atom_sample.xml",
+      "evidence_path": "evidence/arxiv/api_or_openurl.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=not parsed",
+      "evidence_path": "evidence/proquest-csa/simple_search.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 256 advanced/interactive controls; syntax patterns=0.",
+      "evidence_path": "evidence/proquest-csa/advanced_search.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=[]",
+      "evidence_path": "evidence/proquest-csa/sort_and_view.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "export",
+      "status": "not_applicable",
+      "note": "No visible export/citation metadata control.",
+      "evidence_path": "evidence/proquest-csa/export.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "citation_graph",
+      "status": "partial",
+      "note": "Citation controls observed but click did not reach a verifiable list.",
+      "evidence_path": "evidence/proquest-csa/citation_graph.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "alerts_and_saved",
+      "status": "partial",
+      "note": "Alert/saved-search controls observed; not persisted because it would create an account/notification side effect.",
+      "evidence_path": "evidence/proquest-csa/alerts_and_saved.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "full_text_link",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve.",
+      "evidence_path": "evidence/proquest-csa/full_text_link.json"
+    },
+    {
+      "resource_id": "proquest-csa",
+      "feature_id": "api_or_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence.",
+      "evidence_path": "evidence/proquest-csa/api_or_openurl.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "simple_search",
+      "status": "blocked",
+      "note": "Configured registry home_url http://www.gjbbz.com/ returned Chrome DNS_PROBE_FINISHED_NXDOMAIN; no retry/bypass attempted.",
+      "evidence_path": "evidence/national-military-standards/simple_search.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "advanced_search",
+      "status": "not_applicable",
+      "note": "Captured 1 advanced/interactive controls; syntax patterns=0.",
+      "evidence_path": "evidence/national-military-standards/advanced_search.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "sort_and_view",
+      "status": "not_applicable",
+      "note": "changed=[]",
+      "evidence_path": "evidence/national-military-standards/sort_and_view.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "export",
+      "status": "not_applicable",
+      "note": "No visible export/citation metadata control.",
+      "evidence_path": "evidence/national-military-standards/export.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "citation_graph",
+      "status": "not_applicable",
+      "note": "No cited-by/reference/related controls observed.",
+      "evidence_path": "evidence/national-military-standards/citation_graph.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "alerts_and_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed.",
+      "evidence_path": "evidence/national-military-standards/alerts_and_saved.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "full_text_link",
+      "status": "not_applicable",
+      "note": "No PDF/full-text/landing-page link observed.",
+      "evidence_path": "evidence/national-military-standards/full_text_link.json"
+    },
+    {
+      "resource_id": "national-military-standards",
+      "feature_id": "api_or_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence.",
+      "evidence_path": "evidence/national-military-standards/api_or_openurl.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=83269 results",
+      "evidence_path": "evidence/scoap3/simple_search.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 21 advanced/interactive controls; syntax patterns=2.",
+      "evidence_path": "evidence/scoap3/advanced_search.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['50|100|每页|per page']",
+      "evidence_path": "evidence/scoap3/sort_and_view.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "export",
+      "status": "tested_ok",
+      "note": "Official SCOAP3 repository page metadata captured as parseable JSON sample; a publisher PDF was also incidentally downloaded by the UI export/full-text path but metadata JSON is the canonical sample export.",
+      "evidence_path": "evidence/scoap3/export.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "citation_graph",
+      "status": "not_applicable",
+      "note": "No cited-by/reference/related controls observed.",
+      "evidence_path": "evidence/scoap3/citation_graph.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "alerts_and_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed.",
+      "evidence_path": "evidence/scoap3/alerts_and_saved.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "full_text_link",
+      "status": "tested_ok",
+      "note": "Full-text/PDF link resolved to preview or landing page; no bulk full-text saved.",
+      "evidence_path": "evidence/scoap3/full_text_link.json"
+    },
+    {
+      "resource_id": "scoap3",
+      "feature_id": "api_or_openurl",
+      "status": "tested_ok",
+      "note": "OpenURL/API/DOI pattern observed; endpoint not bulk exercised.",
+      "evidence_path": "evidence/scoap3/api_or_openurl.json"
+    }
+  ],
+  "status_counts": {
+    "tested_ok": 15,
+    "partial": 4,
+    "not_applicable": 12,
+    "blocked": 1
+  }
+}

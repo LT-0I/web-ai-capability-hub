@@ -1,0 +1,3851 @@
+{
+  "resource_id": "proquest-csa",
+  "feature_id": "advanced_search",
+  "activation_steps": [
+    "open advanced_search_url"
+  ],
+  "selectors": {
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "跳转至主要内容",
+        "label": "跳转至主要内容",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#start"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "text": "ProQuest 主菜单",
+        "label": "ProQuest 主菜单 ProQuest",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "ProQuest",
+        "label": "ProQuest",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "近期检索",
+        "label": "近期检索",
+        "selector": "#gaRecentSearches",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/recentsearches?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "所选条目",
+        "label": "所选条目",
+        "selector": "#gaSelectedItems_link",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/selecteditems?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "“我的检索”和“语言选择”",
+        "label": "“我的检索”和“语言选择”",
+        "selector": "#mrDropdown",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "基本检索",
+        "label": "基本检索",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "高级检索",
+        "label": "高级检索",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "出版物",
+        "label": "检索并浏览全文文献出版物",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced.pagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "浏览",
+        "label": "浏览主题和特色内容",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced.pagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "更改数据库",
+        "label": "查看并更改您的检索中涵盖的数据库",
+        "selector": "#databasepagelink_0",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/databases/advanced?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "命令行",
+        "label": "命令行",
+        "selector": "#cmdLine",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/commandline?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "词库",
+        "label": "词库",
+        "selector": "#thesaurusLink",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/thesaurus/browse/$N/queryTermField/false/false/false?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "字段代码",
+        "label": "字段代码",
+        "selector": "#help_0",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:newPopup('/help/academic/View_Field_Codes.html');"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索技巧",
+        "label": "Search tips",
+        "selector": "#searchtips",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "textarea",
+        "type": "",
+        "text": "",
+        "label": "输入您的检索词。",
+        "selector": "#queryTermField",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC",
+        "label": "搜索范围",
+        "selector": "#fieldsSelect",
+        "placeholder": "",
+        "options": [
+          "所有字段",
+          "所有字段（不含全文） — NOFT",
+          "出版物名称 — PUBLICATION°",
+          "所有摘要和摘要文本 — SUMMARY",
+          "所有主题和索引 — SUBJECT",
+          "主题词 — MAINSUBJECT",
+          "地点 — LOCATION",
+          "公司/组织 — COMPANY",
+          "人名 — PERSON",
+          "文档标题 — TITLE",
+          "文档全文 — FULLTEXT°",
+          "摘要 — ABSTRACT",
+          "作者 — AUTHOR",
+          "参考文献 — REFERENCE°",
+          "图像说明 — CAP°",
+          "章节 — SEC°"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "AND OR NOT",
+        "label": "选择一个布尔运算符",
+        "selector": "#opsSelect",
+        "placeholder": "",
+        "options": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "textarea",
+        "type": "",
+        "text": "",
+        "label": "输入第 2 行检索词。",
+        "selector": "#queryTermField_0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC",
+        "label": "搜索范围",
+        "selector": "#fieldsSelect_0",
+        "placeholder": "",
+        "options": [
+          "所有字段",
+          "所有字段（不含全文） — NOFT",
+          "出版物名称 — PUBLICATION°",
+          "所有摘要和摘要文本 — SUMMARY",
+          "所有主题和索引 — SUBJECT",
+          "主题词 — MAINSUBJECT",
+          "地点 — LOCATION",
+          "公司/组织 — COMPANY",
+          "人名 — PERSON",
+          "文档标题 — TITLE",
+          "文档全文 — FULLTEXT°",
+          "摘要 — ABSTRACT",
+          "作者 — AUTHOR",
+          "参考文献 — REFERENCE°",
+          "图像说明 — CAP°",
+          "章节 — SEC°"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "添加一行 此链接将额外添加一行检索字段。",
+        "label": "添加一行 此链接将额外添加一行检索字段。",
+        "selector": "#addRowLink",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全文文献",
+        "selector": "#fullTextLimit",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "同行评审",
+        "selector": "#peerReviewLimit",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "同行评审 信息",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有日期 最近 7 天 最近 30 天 最近 3 月 最近 12 月 最近 3 年 在此日期... 在此日期之后... 在此日期之前... 特定日期范围...",
+        "label": "出版日期:",
+        "selector": "#select_multiDateRange",
+        "placeholder": "",
+        "options": [
+          "所有日期",
+          "最近 7 天",
+          "最近 30 天",
+          "最近 3 月",
+          "最近 12 月",
+          "最近 3 年",
+          "在此日期...",
+          "在此日期之后...",
+          "在此日期之前...",
+          "特定日期范围..."
+        ],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索",
+        "label": "检索",
+        "selector": "#searchToResultPage",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "清空检索表格",
+        "label": "清空检索表格",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced:reset?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 出版物类型",
+        "selector": "#selectAll_SourceType",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "Topic Pages",
+        "selector": "#SourceType_Topic_Pages",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "百科全书和参考工具书",
+        "selector": "#SourceType_Encyclopedias___Reference_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报告",
+        "selector": "#SourceType_Reports",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报纸",
+        "selector": "#SourceType_Newspapers",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标准与实践指南",
+        "selector": "#SourceType_Standards___Practice_Guidelines",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "博客、播客和网站",
+        "selector": "#SourceType_Blogs,_Podcasts,___Websites",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "公司新闻",
+        "selector": "#SourceType_Wire_Feeds",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议论文及记录",
+        "selector": "#SourceType_Conference_Papers___Proceedings",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "其他来源",
+        "selector": "#SourceType_Other_Sources",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍",
+        "selector": "#SourceType_Books",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "行业杂志",
+        "selector": "#SourceType_Trade_Journals",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学术期刊",
+        "selector": "#SourceType_Scholarly_Journals",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学位论文",
+        "selector": "#SourceType_Dissertations___Theses",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "研究手稿",
+        "selector": "#SourceType_Working_Papers",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "演讲稿和演示文稿",
+        "selector": "#SourceType_Speeches___Presentations",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "艺术和美学作品",
+        "selector": "#SourceType_Artistic___Aesthetic_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频和视频作品",
+        "selector": "#SourceType_Audio___Video_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "杂志",
+        "selector": "#SourceType_Magazines",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "政府与官方出版物",
+        "selector": "#SourceType_Government___Official_Publications",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 文档类型",
+        "selector": "#selectAll_DocumentType",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "ProQuest UN Sustainable Development Goals Topic Page",
+        "selector": "#DocumentType_ProQuest_UN_Sustainable_Development_Goals_Topic_Page",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报告",
+        "selector": "#DocumentType_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标题版/封面故事",
+        "selector": "#DocumentType_Front_Page/Cover_Story",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标准",
+        "selector": "#DocumentType_Standard",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "播放",
+        "selector": "#DocumentType_Play",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "博客",
+        "selector": "#DocumentType_Blog",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "采访",
+        "selector": "#DocumentType_Interview",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "菜谱",
+        "selector": "#DocumentType_Recipe",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "参考书目",
+        "selector": "#DocumentType_Bibliography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "参考文件",
+        "selector": "#DocumentType_Reference_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "插图",
+        "selector": "#DocumentType_Illustration",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "唱片分类目录/电影作品年表",
+        "selector": "#DocumentType_Discography/Filmography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "传记",
+        "selector": "#DocumentType_Biography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "电影",
+        "selector": "#DocumentType_Film",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "短文",
+        "selector": "#DocumentType_Essay",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "法律资料",
+        "selector": "#DocumentType_Legal_Materials",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "翻译",
+        "selector": "#DocumentType_Translation",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "讣告",
+        "selector": "#DocumentType_Obituary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "附属资料",
+        "selector": "#DocumentType_Back_Matter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "个案研究",
+        "selector": "#DocumentType_Case_Study",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "更正/撤回",
+        "selector": "#DocumentType_Correction/Retraction",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "工作文件/预印本",
+        "selector": "#DocumentType_Working_Paper/Pre-Print",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "公司简介",
+        "selector": "#DocumentType_Company_Profile",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "广告",
+        "selector": "#DocumentType_Advertisement",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "国家/地区报告",
+        "selector": "#DocumentType_Country_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "回忆录/个人文档",
+        "selector": "#DocumentType_Memoir/Personal_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会计及税务标准",
+        "selector": "#DocumentType_Accounting___Tax_Standard",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议",
+        "selector": "#DocumentType_Conference",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议记录",
+        "selector": "#DocumentType_Conference_Proceeding",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议论文",
+        "selector": "#DocumentType_Conference_Paper",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "基金/奖学金/助学金/奖项",
+        "selector": "#DocumentType_Fund/Grant/Fellowship/Award",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "技术报告",
+        "selector": "#DocumentType_Technical_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "金融资料",
+        "selector": "#DocumentType_Financial_Materials",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "目录",
+        "selector": "#DocumentType_Table_Of_Contents",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "年表",
+        "selector": "#DocumentType_Chronology",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "年度报告",
+        "selector": "#DocumentType_Annual_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "评论",
+        "selector": "#DocumentType_Review",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "前页",
+        "selector": "#DocumentType_Front_Matter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "散文",
+        "selector": "#DocumentType_Prose",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "商业案例",
+        "selector": "#DocumentType_Business_Case",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "商业计划",
+        "selector": "#DocumentType_Business_Plan",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "社论",
+        "selector": "#DocumentType_Editorial",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "社论漫画",
+        "selector": "#DocumentType_Editorial_Cartoon/Comic",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "诗歌",
+        "selector": "#DocumentType_Poem",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "时评",
+        "selector": "#DocumentType_Commentary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "市场报告",
+        "selector": "#DocumentType_Market_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "市场调研",
+        "selector": "#DocumentType_Market_Research",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍",
+        "selector": "#DocumentType_Book",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍章节",
+        "selector": "#DocumentType_Book_Chapter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "通信",
+        "selector": "#DocumentType_Correspondence",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "统计/数据报告",
+        "selector": "#DocumentType_Statistics/Data_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "图像/照片",
+        "selector": "#DocumentType_Image/Photograph",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "网站/网络广播",
+        "selector": "#DocumentType_Website/Webcast",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "未确定",
+        "selector": "#DocumentType_Undefined",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "文献评论",
+        "selector": "#DocumentType_Literature_Review",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "文章",
+        "selector": "#DocumentType_Article",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小册子/短期刊物",
+        "selector": "#DocumentType_Pamphlet/Ephemera",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小说",
+        "selector": "#DocumentType_Fiction",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小组讨论",
+        "selector": "#DocumentType_Panel_Discussion",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "新闻",
+        "selector": "#DocumentType_News",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "信用/确认",
+        "selector": "#DocumentType_Credit/Acknowledgement",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "行业报告",
+        "selector": "#DocumentType_Industry_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学位论文",
+        "selector": "#DocumentType_Dissertation/Thesis",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "循证卫生保健",
+        "selector": "#DocumentType_Evidence_Based_Healthcare",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "研究主题",
+        "selector": "#DocumentType_Research_Topic",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "演说/讲演",
+        "selector": "#DocumentType_Speech/Lecture",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "一般信息",
+        "selector": "#DocumentType_General_Information",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频/视频剪辑",
+        "selector": "#DocumentType_Audio/Video_Clip",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频文稿",
+        "selector": "#DocumentType_Transcript",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "政府及官方文档",
+        "selector": "#DocumentType_Government___Official_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "指导材料/指南",
+        "selector": "#DocumentType_Instructional_Material/Guideline",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "致编辑的信",
+        "selector": "#DocumentType_Letter_To_The_Editor",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "专利",
+        "selector": "#DocumentType_Patent",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "专题文章",
+        "selector": "#DocumentType_Feature",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "字典/词汇",
+        "selector": "#DocumentType_Dictionary/Glossary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 语言",
+        "selector": "#selectAll_Language",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿尔巴尼亚语",
+        "selector": "#Language_ALB",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿法尔语",
+        "selector": "#Language_AAR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿拉伯语",
+        "selector": "#Language_ARA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿留申语",
+        "selector": "#Language_ALE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿姆哈拉语",
+        "selector": "#Language_AMH",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿塞拜疆语",
+        "selector": "#Language_AZE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "埃菲克语",
+        "selector": "#Language_EFI",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "爱尔兰语",
+        "selector": "#Language_GLE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "爱沙尼亚语",
+        "selector": "#Language_EST",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "巴斯克语",
+        "selector": "#Language_BAQ",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "白俄罗斯语",
+        "selector": "#Language_BEL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "保加利亚语",
+        "selector": "#Language_BUL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "北美印第安语",
+        "selector": "#Language_NAI",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "北索托语",
+        "selector": "#Language_NSO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "贝姆巴语(赞比亚)",
+        "selector": "#Language_BEM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "冰岛语",
+        "selector": "#Language_ICE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波兰语",
+        "selector": "#Language_POL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波斯尼亚语",
+        "selector": "#Language_BOS",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波斯语",
+        "selector": "#Language_PER",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "布尔语",
+        "selector": "#Language_AFR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "朝鲜语",
+        "selector": "#Language_KOR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "茨瓦纳语",
+        "selector": "#Language_TSN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "聪加语",
+        "selector": "#Language_TSO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "丹麦语",
+        "selector": "#Language_DAN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "德语",
+        "selector": "#Language_GER",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "多种语言",
+        "selector": "#Language_MUL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "俄语",
+        "selector": "#Language_RUS",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "法罗语",
+        "selector": "#Language_FAO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "法语",
+        "selector": "#Language_FRE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "芬兰语",
+        "selector": "#Language_FIN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "盖丘亚语",
+        "selector": "#Language_QUE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "高棉语",
+        "selector": "#Language_KHM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "格鲁吉亚语",
+        "selector": "#Language_GEO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "古吉拉特语",
+        "selector": "#Language_GUJ",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "古叙利亚语",
+        "selector": "#Language_SYR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "瓜拉尼语",
+        "selector": "#Language_GRN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "哈萨克语",
+        "selector": "#Language_KAZ",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "海地法语",
+        "selector": "#Language_HAT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "豪撒语",
+        "selector": "#Language_HAU",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "荷兰语",
+        "selector": "#Language_DUT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "吉尔吉斯语",
+        "selector": "#Language_KIR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "加利西亚语",
+        "selector": "#Language_GLG",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "加泰罗尼亚语",
+        "selector": "#Language_CAT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "捷克语",
+        "selector": "#Language_CZE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "卡纳达语",
+        "selector": "#Language_KAN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "科萨语",
+        "selector": "#Language_XHO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "科西嘉语",
+        "selector": "#Language_COS",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "克罗地亚语",
+        "selector": "#Language_HRV",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "拉丁语",
+        "selector": "#Language_LAT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "拉脱维亚语",
+        "selector": "#Language_LAV",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "老挝语",
+        "selector": "#Language_LAO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "立陶宛语",
+        "selector": "#Language_LIT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "林加拉语",
+        "selector": "#Language_LIN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "隆迪语",
+        "selector": "#Language_RUN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "卢干达语",
+        "selector": "#Language_LUG",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "罗马尼亚语",
+        "selector": "#Language_RUM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马耳他语",
+        "selector": "#Language_MLT",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马尔加什语",
+        "selector": "#Language_MLG",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马拉地语",
+        "selector": "#Language_MAR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马拉雅拉姆语",
+        "selector": "#Language_MAL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马来语",
+        "selector": "#Language_MAY",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "马其顿语",
+        "selector": "#Language_MAC",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "毛利语",
+        "selector": "#Language_MAO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "蒙古语",
+        "selector": "#Language_MON",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "孟加拉语",
+        "selector": "#Language_BEN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "缅甸语",
+        "selector": "#Language_BUR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "苗语",
+        "selector": "#Language_HMN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "尼泊尔语",
+        "selector": "#Language_NEW",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "挪威语",
+        "selector": "#Language_NOR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "旁遮普语",
+        "selector": "#Language_PAN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "葡萄牙语",
+        "selector": "#Language_POR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "普什图语",
+        "selector": "#Language_PUS",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "日语",
+        "selector": "#Language_JPN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "瑞典语",
+        "selector": "#Language_SWE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "萨摩亚语",
+        "selector": "#Language_SMO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "塞尔维亚语",
+        "selector": "#Language_SRP",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "僧伽罗语",
+        "selector": "#Language_SIN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "世界语",
+        "selector": "#Language_EPO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "斯拉夫语",
+        "selector": "#Language_SLA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "斯洛伐克语",
+        "selector": "#Language_SLO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "斯洛文尼亚语",
+        "selector": "#Language_SLV",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "斯瓦蒂语",
+        "selector": "#Language_SSW",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "斯瓦希利语",
+        "selector": "#Language_SWA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "苏格兰盖尔语",
+        "selector": "#Language_GLA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "索马里语",
+        "selector": "#Language_SOM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "塔加拉语",
+        "selector": "#Language_TGL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "泰国语",
+        "selector": "#Language_THA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "泰卢固语",
+        "selector": "#Language_TEL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "泰米尔语",
+        "selector": "#Language_TAM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "土耳其语",
+        "selector": "#Language_TUR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "土库曼语",
+        "selector": "#Language_TUK",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "威尔士语",
+        "selector": "#Language_WEL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "文达语",
+        "selector": "#Language_VEN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "沃洛夫语",
+        "selector": "#Language_WOL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "乌尔都语",
+        "selector": "#Language_URD",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "乌克兰语",
+        "selector": "#Language_UKR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      }
+    ],
+    "syntax_patterns": []
+  },
+  "observed_labels": [
+    "浏览主题和特色内容 浏览  https://www.proquest.com/advanced.pagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+    "命令行 命令行  https://www.proquest.com/commandline?accountid=16605",
+    "词库 词库  https://www.proquest.com/thesaurus/browse/$N/queryTermField/false/false/false?accountid=16605",
+    "字段代码 字段代码  javascript:newPopup('/help/academic/View_Field_Codes.html');",
+    "搜索范围 所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC   ['所有字段', '所有字段（不含全文） — NOFT', '出",
+    "选择一个布尔运算符 AND OR NOT   ['AND', 'OR', 'NOT']",
+    "研究主题 on  ",
+    "条款与条件 条款与条件  https://about.proquest.com/go/termsandconditions",
+    "辅助功能 辅助功能  https://about.proquest.com/go/accessibility-platform"
+  ],
+  "screenshot_path": "evidence/proquest-csa/screenshots/advanced_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Captured 256 advanced/interactive controls; syntax patterns=0.",
+  "captured_at": "2026-05-13T15:41:08.938058+00:00",
+  "page_title": "高级检索 - ProQuest",
+  "url_redacted": "https://www.proquest.com/advanced",
+  "result_evidence": {
+    "text_sample": "跳转至主要内容\nProQuest 主菜单\nProQuest\n访问权限提供者：\nNANJING UNIVERSITY OF AERONAUTICS AND ASTRONAUTICS\n近期检索\n所选条目\n“我的检索”和“语言选择”\n基本检索\n高级检索\n出版物\n浏览\n更改数据库\n高级检索\n命令行词库字段代码检索技巧\n输入您的检索词。\n于\n所有字段\n所有字段（不含全文） — NOFT\n出版物名称 — PUBLICATION°\n所有摘要和摘要文本 — SUMMARY\n所有主题和索引 — SUBJECT\n     主题词 — MAINSUBJECT\n     地点 — LOCATION\n     公司/组织 — COMPANY\n     人名 — PERSON\n文档标题 — TITLE\n文档全文 — FULLTEXT°\n摘要 — ABSTRACT\n作者 — AUTHOR\n参考文献 — REFERENCE°\n图像说明 — CAP°\n章节 — SEC°\n输入第 2 行检索词。\nAND\nOR\nNOT\n于\n所有字段\n所有字段（不含全文） — NOFT\n出版物名称 — PUBLICATION°\n所有摘要和摘要文本 — SUMMARY\n所有主题和索引 — SUBJECT\n     主题词 — MAINSUBJECT\n     地点 — LOCATION\n     公司/组织 — COMPANY\n     人名 — PERSON\n文档标题 — TITLE\n文档全文 — FULLTEXT°\n摘要 — ABSTRACT\n作者 — AUTHOR\n参考文献 — REFERENCE°\n图像说明 — CAP°\n章节 — SEC°\n添加一行\n此链接将额外添加一行检索字段。\n\n重要说明: 检索按钮之后有更多的检索选项和限制，具体内容遵循本说明。在该页底部显示选项的后面还提供了一个检索按钮和清空检索表格的链接。\n\n限定条件:\n全文文献同行评审\n出版日期:\n所有日期\n最近 7 天\n最近 30 天\n最近 3 月\n最近 12 月\n最近 3 年\n在此日期...\n在此日期之后...\n在此日期之前...\n特定日期范围...\n检索\n清空检索表格\n出版物类型:\n全选\n出版物类型\nTopic Pages\n百科全书和参考工具书\n报告\n报纸\n标准与实践指南\n博客、播客和网站\n公司新闻\n会议论文及记录\n其他来源\n书籍\n行业杂志\n学术期刊\n学位论文\n研究手稿\n演讲稿和演示文稿\n艺术和美学作品\n音频和视频作品\n杂志\n政府与官方出版物\n文档类型:\n全选\n文档类型\nProQuest UN Sustainable Development Goals Topic Page\n报告\n标题版/封面故事\n标准\n播放\n博客\n采访\n菜谱\n参考书目\n参考文件\n插图\n唱片分类目录/电影作品年表\n传记\n电影\n短文\n法律资料\n翻译\n讣告\n附属资料\n个案研究\n更正/撤回\n工作文件/预印本\n公司简介\n广告\n国家/地区报告\n回忆录/个人文档\n会计及税务标准\n会议\n会议记录\n会议论文\n基金/奖学金/助学金/奖项\n技术报告\n金融资料\n目录\n年表\n年度报告\n评论\n前页\n散文\n商业案例\n商业计划\n社论\n社论漫画\n诗歌\n时评\n市场报告\n市场调研\n书籍\n书籍章节\n通信\n统计/数据报告\n图像/照片\n网站/网络广播\n未确定\n文献评论\n文章\n小册子/短期刊物\n小说\n小组讨论\n新闻\n信用/确认\n行业报告\n学位论文\n循证卫生保健\n研究主题\n演说/讲演\n一般信息\n音频/视频剪辑\n音频文稿\n政府及官方文档\n指导材料/指南\n致编辑的信\n专利\n专题文章\n字典/词汇\n语言:\n全选\n语言\n阿尔巴尼亚语\n阿法尔语\n阿拉伯语\n阿留申语\n阿姆哈拉语\n阿塞拜疆语\n埃菲克语\n爱尔兰语\n爱沙尼亚语\n巴斯克语\n白俄罗斯语\n保加利亚语\n北美印第安语\n北索托语\n贝姆巴语(赞比亚)\n冰岛语\n波兰语\n",
+    "results_count": "",
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "跳转至主要内容",
+        "label": "跳转至主要内容",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#start"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "text": "ProQuest 主菜单",
+        "label": "ProQuest 主菜单 ProQuest",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "ProQuest",
+        "label": "ProQuest",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "近期检索",
+        "label": "近期检索",
+        "selector": "#gaRecentSearches",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/recentsearches?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "所选条目",
+        "label": "所选条目",
+        "selector": "#gaSelectedItems_link",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/selecteditems?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "“我的检索”和“语言选择”",
+        "label": "“我的检索”和“语言选择”",
+        "selector": "#mrDropdown",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "基本检索",
+        "label": "基本检索",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "高级检索",
+        "label": "高级检索",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "出版物",
+        "label": "检索并浏览全文文献出版物",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced.pagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "浏览",
+        "label": "浏览主题和特色内容",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced.pagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "更改数据库",
+        "label": "查看并更改您的检索中涵盖的数据库",
+        "selector": "#databasepagelink_0",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/databases/advanced?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "命令行",
+        "label": "命令行",
+        "selector": "#cmdLine",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/commandline?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "词库",
+        "label": "词库",
+        "selector": "#thesaurusLink",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/thesaurus/browse/$N/queryTermField/false/false/false?accountid=16605"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "字段代码",
+        "label": "字段代码",
+        "selector": "#help_0",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:newPopup('/help/academic/View_Field_Codes.html');"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索技巧",
+        "label": "Search tips",
+        "selector": "#searchtips",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "textarea",
+        "type": "",
+        "text": "",
+        "label": "输入您的检索词。",
+        "selector": "#queryTermField",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC",
+        "label": "搜索范围",
+        "selector": "#fieldsSelect",
+        "placeholder": "",
+        "options": [
+          "所有字段",
+          "所有字段（不含全文） — NOFT",
+          "出版物名称 — PUBLICATION°",
+          "所有摘要和摘要文本 — SUMMARY",
+          "所有主题和索引 — SUBJECT",
+          "主题词 — MAINSUBJECT",
+          "地点 — LOCATION",
+          "公司/组织 — COMPANY",
+          "人名 — PERSON",
+          "文档标题 — TITLE",
+          "文档全文 — FULLTEXT°",
+          "摘要 — ABSTRACT",
+          "作者 — AUTHOR",
+          "参考文献 — REFERENCE°",
+          "图像说明 — CAP°",
+          "章节 — SEC°"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "AND OR NOT",
+        "label": "选择一个布尔运算符",
+        "selector": "#opsSelect",
+        "placeholder": "",
+        "options": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "textarea",
+        "type": "",
+        "text": "",
+        "label": "输入第 2 行检索词。",
+        "selector": "#queryTermField_0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC",
+        "label": "搜索范围",
+        "selector": "#fieldsSelect_0",
+        "placeholder": "",
+        "options": [
+          "所有字段",
+          "所有字段（不含全文） — NOFT",
+          "出版物名称 — PUBLICATION°",
+          "所有摘要和摘要文本 — SUMMARY",
+          "所有主题和索引 — SUBJECT",
+          "主题词 — MAINSUBJECT",
+          "地点 — LOCATION",
+          "公司/组织 — COMPANY",
+          "人名 — PERSON",
+          "文档标题 — TITLE",
+          "文档全文 — FULLTEXT°",
+          "摘要 — ABSTRACT",
+          "作者 — AUTHOR",
+          "参考文献 — REFERENCE°",
+          "图像说明 — CAP°",
+          "章节 — SEC°"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "添加一行 此链接将额外添加一行检索字段。",
+        "label": "添加一行 此链接将额外添加一行检索字段。",
+        "selector": "#addRowLink",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全文文献",
+        "selector": "#fullTextLimit",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "同行评审",
+        "selector": "#peerReviewLimit",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "同行评审 信息",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "所有日期 最近 7 天 最近 30 天 最近 3 月 最近 12 月 最近 3 年 在此日期... 在此日期之后... 在此日期之前... 特定日期范围...",
+        "label": "出版日期:",
+        "selector": "#select_multiDateRange",
+        "placeholder": "",
+        "options": [
+          "所有日期",
+          "最近 7 天",
+          "最近 30 天",
+          "最近 3 月",
+          "最近 12 月",
+          "最近 3 年",
+          "在此日期...",
+          "在此日期之后...",
+          "在此日期之前...",
+          "特定日期范围..."
+        ],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索",
+        "label": "检索",
+        "selector": "#searchToResultPage",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced#"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "清空检索表格",
+        "label": "清空检索表格",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.proquest.com/advanced:reset?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 出版物类型",
+        "selector": "#selectAll_SourceType",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "Topic Pages",
+        "selector": "#SourceType_Topic_Pages",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "百科全书和参考工具书",
+        "selector": "#SourceType_Encyclopedias___Reference_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报告",
+        "selector": "#SourceType_Reports",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报纸",
+        "selector": "#SourceType_Newspapers",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标准与实践指南",
+        "selector": "#SourceType_Standards___Practice_Guidelines",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "博客、播客和网站",
+        "selector": "#SourceType_Blogs,_Podcasts,___Websites",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "公司新闻",
+        "selector": "#SourceType_Wire_Feeds",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议论文及记录",
+        "selector": "#SourceType_Conference_Papers___Proceedings",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "其他来源",
+        "selector": "#SourceType_Other_Sources",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍",
+        "selector": "#SourceType_Books",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "行业杂志",
+        "selector": "#SourceType_Trade_Journals",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学术期刊",
+        "selector": "#SourceType_Scholarly_Journals",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学位论文",
+        "selector": "#SourceType_Dissertations___Theses",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "研究手稿",
+        "selector": "#SourceType_Working_Papers",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "演讲稿和演示文稿",
+        "selector": "#SourceType_Speeches___Presentations",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "艺术和美学作品",
+        "selector": "#SourceType_Artistic___Aesthetic_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频和视频作品",
+        "selector": "#SourceType_Audio___Video_Works",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "杂志",
+        "selector": "#SourceType_Magazines",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "政府与官方出版物",
+        "selector": "#SourceType_Government___Official_Publications",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 文档类型",
+        "selector": "#selectAll_DocumentType",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "ProQuest UN Sustainable Development Goals Topic Page",
+        "selector": "#DocumentType_ProQuest_UN_Sustainable_Development_Goals_Topic_Page",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "报告",
+        "selector": "#DocumentType_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标题版/封面故事",
+        "selector": "#DocumentType_Front_Page/Cover_Story",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "标准",
+        "selector": "#DocumentType_Standard",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "播放",
+        "selector": "#DocumentType_Play",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "博客",
+        "selector": "#DocumentType_Blog",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "采访",
+        "selector": "#DocumentType_Interview",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "菜谱",
+        "selector": "#DocumentType_Recipe",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "参考书目",
+        "selector": "#DocumentType_Bibliography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "参考文件",
+        "selector": "#DocumentType_Reference_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "插图",
+        "selector": "#DocumentType_Illustration",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "唱片分类目录/电影作品年表",
+        "selector": "#DocumentType_Discography/Filmography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "传记",
+        "selector": "#DocumentType_Biography",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "电影",
+        "selector": "#DocumentType_Film",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "短文",
+        "selector": "#DocumentType_Essay",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "法律资料",
+        "selector": "#DocumentType_Legal_Materials",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "翻译",
+        "selector": "#DocumentType_Translation",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "讣告",
+        "selector": "#DocumentType_Obituary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "附属资料",
+        "selector": "#DocumentType_Back_Matter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "个案研究",
+        "selector": "#DocumentType_Case_Study",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "更正/撤回",
+        "selector": "#DocumentType_Correction/Retraction",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "工作文件/预印本",
+        "selector": "#DocumentType_Working_Paper/Pre-Print",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "公司简介",
+        "selector": "#DocumentType_Company_Profile",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "广告",
+        "selector": "#DocumentType_Advertisement",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "国家/地区报告",
+        "selector": "#DocumentType_Country_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "回忆录/个人文档",
+        "selector": "#DocumentType_Memoir/Personal_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会计及税务标准",
+        "selector": "#DocumentType_Accounting___Tax_Standard",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议",
+        "selector": "#DocumentType_Conference",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议记录",
+        "selector": "#DocumentType_Conference_Proceeding",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "会议论文",
+        "selector": "#DocumentType_Conference_Paper",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "基金/奖学金/助学金/奖项",
+        "selector": "#DocumentType_Fund/Grant/Fellowship/Award",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "技术报告",
+        "selector": "#DocumentType_Technical_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "金融资料",
+        "selector": "#DocumentType_Financial_Materials",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "目录",
+        "selector": "#DocumentType_Table_Of_Contents",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "年表",
+        "selector": "#DocumentType_Chronology",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "年度报告",
+        "selector": "#DocumentType_Annual_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "评论",
+        "selector": "#DocumentType_Review",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "前页",
+        "selector": "#DocumentType_Front_Matter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "散文",
+        "selector": "#DocumentType_Prose",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "商业案例",
+        "selector": "#DocumentType_Business_Case",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "商业计划",
+        "selector": "#DocumentType_Business_Plan",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "社论",
+        "selector": "#DocumentType_Editorial",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "社论漫画",
+        "selector": "#DocumentType_Editorial_Cartoon/Comic",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "诗歌",
+        "selector": "#DocumentType_Poem",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "时评",
+        "selector": "#DocumentType_Commentary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "市场报告",
+        "selector": "#DocumentType_Market_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "市场调研",
+        "selector": "#DocumentType_Market_Research",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍",
+        "selector": "#DocumentType_Book",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "书籍章节",
+        "selector": "#DocumentType_Book_Chapter",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "通信",
+        "selector": "#DocumentType_Correspondence",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "统计/数据报告",
+        "selector": "#DocumentType_Statistics/Data_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "图像/照片",
+        "selector": "#DocumentType_Image/Photograph",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "网站/网络广播",
+        "selector": "#DocumentType_Website/Webcast",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "未确定",
+        "selector": "#DocumentType_Undefined",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "文献评论",
+        "selector": "#DocumentType_Literature_Review",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "文章",
+        "selector": "#DocumentType_Article",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小册子/短期刊物",
+        "selector": "#DocumentType_Pamphlet/Ephemera",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小说",
+        "selector": "#DocumentType_Fiction",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "小组讨论",
+        "selector": "#DocumentType_Panel_Discussion",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "新闻",
+        "selector": "#DocumentType_News",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "信用/确认",
+        "selector": "#DocumentType_Credit/Acknowledgement",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "行业报告",
+        "selector": "#DocumentType_Industry_Report",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "学位论文",
+        "selector": "#DocumentType_Dissertation/Thesis",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "循证卫生保健",
+        "selector": "#DocumentType_Evidence_Based_Healthcare",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "研究主题",
+        "selector": "#DocumentType_Research_Topic",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "演说/讲演",
+        "selector": "#DocumentType_Speech/Lecture",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "一般信息",
+        "selector": "#DocumentType_General_Information",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频/视频剪辑",
+        "selector": "#DocumentType_Audio/Video_Clip",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "音频文稿",
+        "selector": "#DocumentType_Transcript",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "政府及官方文档",
+        "selector": "#DocumentType_Government___Official_Document",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "指导材料/指南",
+        "selector": "#DocumentType_Instructional_Material/Guideline",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "致编辑的信",
+        "selector": "#DocumentType_Letter_To_The_Editor",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "专利",
+        "selector": "#DocumentType_Patent",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "专题文章",
+        "selector": "#DocumentType_Feature",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "字典/词汇",
+        "selector": "#DocumentType_Dictionary/Glossary",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "全选 语言",
+        "selector": "#selectAll_Language",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿尔巴尼亚语",
+        "selector": "#Language_ALB",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿法尔语",
+        "selector": "#Language_AAR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿拉伯语",
+        "selector": "#Language_ARA",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿留申语",
+        "selector": "#Language_ALE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿姆哈拉语",
+        "selector": "#Language_AMH",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "阿塞拜疆语",
+        "selector": "#Language_AZE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "埃菲克语",
+        "selector": "#Language_EFI",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "爱尔兰语",
+        "selector": "#Language_GLE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "爱沙尼亚语",
+        "selector": "#Language_EST",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "巴斯克语",
+        "selector": "#Language_BAQ",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "白俄罗斯语",
+        "selector": "#Language_BEL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "保加利亚语",
+        "selector": "#Language_BUL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "北美印第安语",
+        "selector": "#Language_NAI",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "北索托语",
+        "selector": "#Language_NSO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "贝姆巴语(赞比亚)",
+        "selector": "#Language_BEM",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "冰岛语",
+        "selector": "#Language_ICE",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波兰语",
+        "selector": "#Language_POL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波斯尼亚语",
+        "selector": "#Language_BOS",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "波斯语",
+        "selector": "#Language_PER",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "布尔语",
+        "selector": "#Language_AFR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "朝鲜语",
+        "selector": "#Language_KOR",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "茨瓦纳语",
+        "selector": "#Language_TSN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "聪加语",
+        "selector": "#Language_TSO",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "丹麦语",
+        "selector": "#Language_DAN",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "德语",
+        "selector": "#Language_GER",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "on",
+        "label": "多种语言",
+        "selector": "#Language_MUL",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      }
+    ],
+    "result_labels": [
+      "检索并浏览全文文献出版物 出版物  https://www.proquest.com/advanced.pagelayout:publication?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+      "浏览主题和特色内容 浏览  https://www.proquest.com/advanced.pagelayout:browse?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb",
+      "字段代码 字段代码  javascript:newPopup('/help/academic/View_Field_Codes.html');",
+      "搜索范围 所有字段 所有字段（不含全文） — NOFT 出版物名称 — PUBLICATION° 所有摘要和摘要文本 — SUMMARY 所有主题和索引 — SUBJECT主题词 — MAINSUBJECT地点 — LOCATION公司/组织 — COMPANY人名 — PERSON 文档标题 — TITLE 文档全文 — FULLTEXT° 摘要 — ABSTRAC   ['所有字段', '所有字段（不含全文） — NOFT', '出",
+      "Topic Pages on  ",
+      "标准与实践指南 on  ",
+      "会议论文及记录 on  ",
+      "学术期刊 on  ",
+      "学位论文 on  ",
+      "ProQuest UN Sustainable Development Goals Topic Page on  ",
+      "标准 on  ",
+      "会计及税务标准 on  ",
+      "会议论文 on  ",
+      "小册子/短期刊物 on  ",
+      "检索结果页面选项 检索结果页面选项  https://www.proquest.com/advanced.showresultpageoptions?_csrf=9faf212c-8bf1-4a20-83bf-2e7fac31eabb"
+    ]
+  }
+}

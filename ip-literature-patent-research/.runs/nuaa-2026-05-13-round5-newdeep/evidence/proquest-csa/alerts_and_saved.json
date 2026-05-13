@@ -1,0 +1,18 @@
+{
+  "resource_id": "proquest-csa",
+  "feature_id": "alerts_and_saved",
+  "activation_steps": [
+    "inspect alert/saved-search controls; do not create account objects"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "稍晚一些再查看此指南 稍后提醒我  "
+  ],
+  "screenshot_path": "evidence/proquest-csa/screenshots/alerts_and_saved.png",
+  "sample_export_path": "",
+  "status": "partial",
+  "note": "Alert/saved-search controls observed; not persisted because it would create an account/notification side effect.",
+  "captured_at": "2026-05-13T15:43:20.847765+00:00",
+  "page_title": "基本检索 - ProQuest",
+  "url_redacted": "https://www.proquest.com/"
+}

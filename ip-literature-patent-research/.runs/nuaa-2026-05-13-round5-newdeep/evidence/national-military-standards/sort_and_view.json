@@ -1,0 +1,35 @@
+{
+  "resource_id": "national-military-standards",
+  "feature_id": "sort_and_view",
+  "activation_steps": [
+    "change or inspect sort/view/results-per-page controls"
+  ],
+  "selectors": {
+    "changed": [],
+    "result_evidence": {
+      "text_sample": "无法访问此网站\n\n检查 www.gjbbz.com 中是否有拼写错误。\n\nDNS_PROBE_FINISHED_NXDOMAIN\n重新加载",
+      "results_count": "",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "",
+          "text": "重新加载",
+          "label": "重新加载",
+          "selector": "#reload-button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        }
+      ],
+      "result_labels": []
+    }
+  },
+  "observed_labels": [],
+  "screenshot_path": "evidence/national-military-standards/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "not_applicable",
+  "note": "changed=[]",
+  "captured_at": "2026-05-13T15:43:33.243621+00:00",
+  "page_title": "www.gjbbz.com",
+  "url_redacted": "chrome-error://chromewebdata/"
+}

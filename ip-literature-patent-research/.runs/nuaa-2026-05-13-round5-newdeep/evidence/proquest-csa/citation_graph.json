@@ -1,0 +1,18 @@
+{
+  "resource_id": "proquest-csa",
+  "feature_id": "citation_graph",
+  "activation_steps": [
+    "open/inspect cited-by/references/related controls where visible"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Manage cookie preferences 管理 cookie 首选项  javascript:void(0);"
+  ],
+  "screenshot_path": "evidence/proquest-csa/screenshots/citation_graph.png",
+  "sample_export_path": "",
+  "status": "partial",
+  "note": "Citation controls observed but click did not reach a verifiable list.",
+  "captured_at": "2026-05-13T15:43:20.491598+00:00",
+  "page_title": "基本检索 - ProQuest",
+  "url_redacted": "https://www.proquest.com/"
+}

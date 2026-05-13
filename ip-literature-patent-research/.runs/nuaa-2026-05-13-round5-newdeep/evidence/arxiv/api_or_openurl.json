@@ -1,0 +1,21 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "api_or_openurl",
+  "activation_steps": [
+    "inspect UI/API/OpenURL/DOI patterns; sample only official low-volume API where public"
+  ],
+  "selectors": {
+    "api_url_pattern": "http://export.arxiv.org/api/query?search_query=all:<query>&start=0&max_results=5"
+  },
+  "observed_labels": [
+    "arXiv API Atom",
+    "max_results=5"
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/api_or_openurl.png",
+  "sample_export_path": "evidence/arxiv/exports/arxiv_api_atom_sample.xml",
+  "status": "tested_ok",
+  "note": "Official API sampled <=5 records: evidence/arxiv/exports/arxiv_api_atom_sample.xml",
+  "captured_at": "2026-05-13T15:40:53.142111+00:00",
+  "page_title": "",
+  "url_redacted": "https://arxiv.org/pdf/2401.00001"
+}

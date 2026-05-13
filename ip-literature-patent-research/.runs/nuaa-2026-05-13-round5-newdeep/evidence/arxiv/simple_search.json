@@ -1,0 +1,278 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "simple_search",
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "route": "search_url_template",
+    "template": "https://arxiv.org/search/?<redacted-query>"
+  },
+  "observed_labels": [
+    "Field to search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text   ['All fields', 'Title', 'A",
+    "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC Search  "
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=UAV path planning reinforcement learning; results_count=not parsed",
+  "captured_at": "2026-05-13T15:40:37.049016+00:00",
+  "page_title": "400 Bad Request | arXiv e-print repository",
+  "url_redacted": "https://arxiv.org/search/?<redacted-query>",
+  "result_evidence": {
+    "text_sample": "Skip to main content\n\nWe gratefully acknowledge support from\nthe Simons Foundation, member institutions, and all contributors. Donate\n\nHelp | Advanced Search\n\nAll fields\nTitle\nAuthor\nAbstract\nComments\nJournal reference\nACM classification\nMSC classification\nReport number\narXiv identifier\nDOI\nORCID\narXiv author ID\nHelp pages\nFull text\nSearch\nLogin\nBad Request\n4\n\nIt looks like there's something odd about your search request. Please try starting over.\n\nIf the error persists, please contact arXiv support at help@arxiv.org.\n\nAbout\nHelp\nContact\nSubscribe\nCopyright\nPrivacy Policy\nWeb Accessibility Assistance\n\narXiv Operational Status \nGet status notifications via email or slack",
+    "results_count": "",
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Skip to main content",
+        "label": "Skip to main content We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate Help | Advanced Search A",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/?query=UAV+path+planning+reinforcement+learning&searchtype=all&abstracts=show&order=-announced_date_first&size=10#main-container"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://cornell.edu/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "member institutions",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/ourmembers.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Donate",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/donate.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "arxiv-logo",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Search term or terms",
+        "selector": "input[name=\"query\"]",
+        "placeholder": "Search...",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Advanced Search",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/advanced"
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text",
+        "label": "Field to search",
+        "selector": "select[name=\"searchtype\"]",
+        "placeholder": "",
+        "options": [
+          "All fields",
+          "Title",
+          "Author",
+          "Abstract",
+          "Comments",
+          "Journal reference",
+          "ACM classification",
+          "MSC classification",
+          "Report number",
+          "arXiv identifier",
+          "DOI",
+          "ORCID",
+          "arXiv author ID",
+          "Help pages",
+          "Full text"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/login"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "starting over",
+        "label": "It looks like there's something odd about your search request. Please try starting over.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "help@arxiv.org",
+        "label": "If the error persists, please contact arXiv support at help@arxiv.org.",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "mailto:help@arxiv.org"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Contact",
+        "label": "Contact",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/contact.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Subscribe",
+        "label": "Subscribe",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/subscribe"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Copyright",
+        "label": "Copyright",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/license/index.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Privacy Policy",
+        "label": "Privacy Policy",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/policies/privacy_policy.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Web Accessibility Assistance",
+        "label": "Web Accessibility Assistance",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/web_accessibility.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "arXiv Operational Status",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://status.arxiv.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "email",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/email/new"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "slack",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/slack/new"
+      }
+    ],
+    "result_labels": [
+      "Field to search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text   ['All fields', 'Title', 'A",
+      "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC Search  "
+    ]
+  }
+}

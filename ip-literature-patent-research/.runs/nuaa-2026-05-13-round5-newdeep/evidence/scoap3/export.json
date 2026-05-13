@@ -1,0 +1,21 @@
+{
+  "resource_id": "scoap3",
+  "feature_id": "export",
+  "activation_steps": [
+    "open export/citation menu or official metadata endpoint"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Cite this article Cite this article  https://link.springer.com/article/10.1140/epjc/s10052-026-15770-5#citeas",
+    "Y. Dirian, S. Foffa, M. Kunz, M. Maggiore, V. Pettorino, Non-local gravity and comparison with observational datasets. JCAP 04, 044 (2015). https://doi.org/10.1088/1475-7516/2015/04/044 . arXiv:1411.7692 37  https://link",
+    "T.-T. Sui, X.-Y. Wang, The characteristics of circular motion and quasiperiodic oscillations around accelerating black hole. Eur. Phys. J. C 85, 1112 (2025). https://doi.org/10.1140/epjc/s10052-025-14857-9 . arXiv:2509.2",
+    "The spatial separation between these characteristic radii also induces a time delay Δ 𝑡 between the corresponding signals. For simplicity, we neglect the eff 14  https://link.springer.com/article/10.1140/epjc/s10052-026-"
+  ],
+  "screenshot_path": "evidence/scoap3/screenshots/export.png",
+  "sample_export_path": "evidence/scoap3/exports/scoap3_repo_metadata_sample.json",
+  "status": "tested_ok",
+  "note": "Official SCOAP3 repository page metadata captured as parseable JSON sample; a publisher PDF was also incidentally downloaded by the UI export/full-text path but metadata JSON is the canonical sample export.",
+  "captured_at": "2026-05-13T15:44:23.077798+00:00",
+  "page_title": "The properties and predictions of quasi-periodic oscillations around a black hole in nonlocal gravity | The European Physical Journal C | Springer Nature Link",
+  "url_redacted": "https://link.springer.com/article/10.1140/epjc/s10052-026-15770-5"
+}

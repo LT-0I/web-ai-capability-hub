@@ -1,0 +1,1240 @@
+{
+  "resource_id": "arxiv",
+  "feature_id": "advanced_search",
+  "activation_steps": [
+    "open advanced_search_url"
+  ],
+  "selectors": {
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Skip to main content",
+        "label": "Skip to main content We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate Help | Advanced Search A",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/advanced#main-container"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://cornell.edu/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "member institutions",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/ourmembers.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Donate",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/donate.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "arxiv-logo",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Search term or terms",
+        "selector": "input[name=\"query\"]",
+        "placeholder": "Search...",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Advanced Search",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/advanced"
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text",
+        "label": "Field to search",
+        "selector": "select[name=\"searchtype\"]",
+        "placeholder": "",
+        "options": [
+          "All fields",
+          "Title",
+          "Author",
+          "Abstract",
+          "Comments",
+          "Journal reference",
+          "ACM classification",
+          "MSC classification",
+          "Report number",
+          "arXiv identifier",
+          "DOI",
+          "ORCID",
+          "arXiv author ID",
+          "Help pages",
+          "Full text"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/login"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Search v0.5.6 released 2020-02-24",
+        "label": "Search v0.5.6 released 2020-02-24",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/arXiv/arxiv-search/releases"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Simple Search",
+        "label": "Simple Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/?order=-announced_date_first&size=50"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Search term...",
+        "selector": "#terms-0-term",
+        "placeholder": "Search term...",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier Cross-list category DOI ORCID arXiv author ID All fields",
+        "label": "Field to search",
+        "selector": "#terms-0-field",
+        "placeholder": "",
+        "options": [
+          "Title",
+          "Author(s)",
+          "Abstract",
+          "Comments",
+          "Journal reference",
+          "ACM classification",
+          "MSC classification",
+          "Report number",
+          "arXiv identifier",
+          "Cross-list category",
+          "DOI",
+          "ORCID",
+          "arXiv author ID",
+          "All fields"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "text": "Add another term +",
+        "label": "Add another term + Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Add another term + Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Computer Science (cs)",
+        "selector": "#classification-computer_science",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Economics (econ)",
+        "selector": "#classification-economics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Electrical Engineering and Systems Science (eess)",
+        "selector": "#classification-eess",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Mathematics (math)",
+        "selector": "#classification-mathematics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Physics",
+        "selector": "#classification-physics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "all astro-ph cond-mat gr-qc hep-ex hep-lat hep-ph hep-th math-ph nlin nucl-ex nucl-th physics quant-ph",
+        "label": "Subtopic within physics",
+        "selector": "#classification-physics_archives",
+        "placeholder": "",
+        "options": [
+          "all",
+          "astro-ph",
+          "cond-mat",
+          "gr-qc",
+          "hep-ex",
+          "hep-lat",
+          "hep-ph",
+          "hep-th",
+          "math-ph",
+          "nlin",
+          "nucl-ex",
+          "nucl-th",
+          "physics",
+          "quant-ph"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Quantitative Biology (q-bio)",
+        "selector": "#classification-q_biology",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Quantitative Finance (q-fin)",
+        "selector": "#classification-q_finance",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Statistics (stat)",
+        "selector": "#classification-statistics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "include",
+        "label": "Include cross-listed papers",
+        "selector": "#classification-include_cross_list-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "exclude",
+        "label": "Exclude cross-listed papers",
+        "selector": "#classification-include_cross_list-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "all_dates",
+        "label": "All dates",
+        "selector": "#date-filter_by-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "past_12",
+        "label": "Past 12 months",
+        "selector": "#date-filter_by-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "specific_year",
+        "label": "Specific year",
+        "selector": "#date-filter_by-2",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY",
+        "selector": "#date-year",
+        "placeholder": "YYYY",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "date_range",
+        "label": "Date range",
+        "selector": "#date-filter_by-3",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY[-MM[-DD]]",
+        "selector": "#date-from_date",
+        "placeholder": "YYYY[-MM[-DD]]",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY[-MM[-DD]]",
+        "selector": "#date-to_date",
+        "placeholder": "YYYY[-MM[-DD]]",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "submitted_date",
+        "label": "Submission date (most recent)",
+        "selector": "#date-date_type-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "submitted_date_first",
+        "label": "Submission date (original)",
+        "selector": "#date-date_type-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "announced_date_first",
+        "label": "Announcement date",
+        "selector": "#date-date_type-2",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "show",
+        "label": "Show abstracts",
+        "selector": "#abstracts-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "hide",
+        "label": "Hide abstracts",
+        "selector": "#abstracts-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "25 50 100 200",
+        "label": "results per page",
+        "selector": "#size",
+        "placeholder": "",
+        "options": [
+          "25",
+          "50",
+          "100",
+          "200"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Include older versions of papers",
+        "selector": "#include_older_versions",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Show abstracts Hide abstracts 25 50 100 200 results per page Include older versions of papers Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Contact",
+        "label": "Contact",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/contact.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Subscribe",
+        "label": "Subscribe",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/subscribe"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Copyright",
+        "label": "Copyright",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/license/index.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Privacy Policy",
+        "label": "Privacy Policy",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/policies/privacy_policy.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Web Accessibility Assistance",
+        "label": "Web Accessibility Assistance",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/web_accessibility.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "arXiv Operational Status",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://status.arxiv.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "email",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/email/new"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "slack",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/slack/new"
+      }
+    ],
+    "syntax_patterns": [
+      "all:UAV AND abs:\"reinforcement learning\"",
+      "ti:\"path planning\" AND cat:cs.RO",
+      "au:<author> OR abs:<term>",
+      "date filters via advanced form"
+    ]
+  },
+  "observed_labels": [
+    "Skip to main content We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate Help | Advanced Search A Skip to main content  https://arxiv.org/search/advanced#main-c",
+    "   https://cornell.edu/",
+    "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate member institutions  https://info.arxiv.org/about/ourmembers.html",
+    "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate Donate  https://info.arxiv.org/about/donate.html",
+    "arxiv-logo   https://arxiv.org/",
+    "Search term or terms  Search... ",
+    "Help | Advanced Search Help  https://info.arxiv.org/help",
+    "Help | Advanced Search Advanced Search  https://arxiv.org/search/advanced",
+    "Field to search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text   ['All fields', 'Title', 'A",
+    "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC Search  ",
+    "Login Login  https://arxiv.org/login",
+    "Simple Search Simple Search  https://arxiv.org/search/?order=-announced_date_first&size=50",
+    "Field to search Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier Cross-list category DOI ORCID arXiv author ID All fields   ['Title', 'Author(s)', '",
+    "Add another term + Search Add another term +  ",
+    "Add another term + Search Search  ",
+    "Electrical Engineering and Systems Science (eess) y  ",
+    "All dates all_dates  ",
+    "Specific year specific_year  ",
+    "Date range date_range  ",
+    "Submission date (most recent) submitted_date  ",
+    "Submission date (original) submitted_date_first  ",
+    "Announcement date announced_date_first  ",
+    "Show abstracts show  ",
+    "Hide abstracts hide  ",
+    "Show abstracts Hide abstracts 25 50 100 200 results per page Include older versions of papers Search Search  ",
+    "About About  https://info.arxiv.org/about",
+    "Help Help  https://info.arxiv.org/help",
+    "Contact Contact  https://info.arxiv.org/help/contact.html",
+    "Subscribe Subscribe  https://info.arxiv.org/help/subscribe",
+    "Copyright Copyright  https://info.arxiv.org/help/license/index.html",
+    "Privacy Policy Privacy Policy  https://info.arxiv.org/help/policies/privacy_policy.html",
+    "Web Accessibility Assistance Web Accessibility Assistance  https://info.arxiv.org/help/web_accessibility.html",
+    "arXiv Operational Status Get status notifications via email or slack arXiv Operational Status  https://status.arxiv.org/",
+    "arXiv Operational Status Get status notifications via email or slack email  https://subscribe.sorryapp.com/24846f03/email/new",
+    "arXiv Operational Status Get status notifications via email or slack slack  https://subscribe.sorryapp.com/24846f03/slack/new",
+    "all:UAV AND abs:\"reinforcement learning\"",
+    "ti:\"path planning\" AND cat:cs.RO",
+    "au:<author> OR abs:<term>",
+    "date filters via advanced form"
+  ],
+  "screenshot_path": "evidence/arxiv/screenshots/advanced_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Captured 53 advanced/interactive controls; syntax patterns=4.",
+  "captured_at": "2026-05-13T15:40:41.379776+00:00",
+  "page_title": "Advanced Search | arXiv e-print repository",
+  "url_redacted": "https://arxiv.org/search/advanced",
+  "result_evidence": {
+    "text_sample": "Skip to main content\n\nWe gratefully acknowledge support from\nthe Simons Foundation, member institutions, and all contributors. Donate\n\nHelp | Advanced Search\n\nAll fields\nTitle\nAuthor\nAbstract\nComments\nJournal reference\nACM classification\nMSC classification\nReport number\narXiv identifier\nDOI\nORCID\narXiv author ID\nHelp pages\nFull text\nSearch\nLogin\nAdvanced Search\nSearch v0.5.6 released 2020-02-24  \nSimple Search\nSearch term(s)\nSearch term\nField to search\nTitle\nAuthor(s)\nAbstract\nComments\nJournal reference\nACM classification\nMSC classification\nReport number\narXiv identifier\nCross-list category\nDOI\nORCID\narXiv author ID\nAll fields\nAdd another term\n+ Search\nSubject\nAll classifications will be included by default.\n Computer Science (cs)\n Economics (econ)\n Electrical Engineering and Systems Science (eess)\n Mathematics (math)\n Physics\nSubtopic within physics\nall\nastro-ph\ncond-mat\ngr-qc\nhep-ex\nhep-lat\nhep-ph\nhep-th\nmath-ph\nnlin\nnucl-ex\nnucl-th\nphysics\nquant-ph\n Quantitative Biology (q-bio)\n Quantitative Finance (q-fin)\n Statistics (stat)\n Include cross-listed papers  Exclude cross-listed papers\nDate\n All dates\n Past 12 months\n Specific year\nEnter four digit year\n Date range\nFrom\nto\nWhen limiting by date range, the lower bound of the \"from\" date and the upper bound of the \"to\" date are used.\nFor example, searching with From: 2012-02 and To: 2013 will search for papers submitted from 2012-02-01 to 2013-12-31.\n Submission date (most recent)  Submission date (original)  Announcement date\n\nYou may filter on either submission date or announcement date. Note that announcement date supports",
+    "results_count": "25\n50\n100\n200\nresults",
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Skip to main content",
+        "label": "Skip to main content We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate Help | Advanced Search A",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/advanced#main-container"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://cornell.edu/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "member institutions",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/ourmembers.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Donate",
+        "label": "We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors. Donate",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about/donate.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "arxiv-logo",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Search term or terms",
+        "selector": "input[name=\"query\"]",
+        "placeholder": "Search...",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Advanced Search",
+        "label": "Help | Advanced Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/advanced"
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text",
+        "label": "Field to search",
+        "selector": "select[name=\"searchtype\"]",
+        "placeholder": "",
+        "options": [
+          "All fields",
+          "Title",
+          "Author",
+          "Abstract",
+          "Comments",
+          "Journal reference",
+          "ACM classification",
+          "MSC classification",
+          "Report number",
+          "arXiv identifier",
+          "DOI",
+          "ORCID",
+          "arXiv author ID",
+          "Help pages",
+          "Full text"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Login",
+        "label": "Login",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/login"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Search v0.5.6 released 2020-02-24",
+        "label": "Search v0.5.6 released 2020-02-24",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://github.com/arXiv/arxiv-search/releases"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Simple Search",
+        "label": "Simple Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://arxiv.org/search/?order=-announced_date_first&size=50"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Search term...",
+        "selector": "#terms-0-term",
+        "placeholder": "Search term...",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier Cross-list category DOI ORCID arXiv author ID All fields",
+        "label": "Field to search",
+        "selector": "#terms-0-field",
+        "placeholder": "",
+        "options": [
+          "Title",
+          "Author(s)",
+          "Abstract",
+          "Comments",
+          "Journal reference",
+          "ACM classification",
+          "MSC classification",
+          "Report number",
+          "arXiv identifier",
+          "Cross-list category",
+          "DOI",
+          "ORCID",
+          "arXiv author ID",
+          "All fields"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "text": "Add another term +",
+        "label": "Add another term + Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Add another term + Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Computer Science (cs)",
+        "selector": "#classification-computer_science",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Economics (econ)",
+        "selector": "#classification-economics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Electrical Engineering and Systems Science (eess)",
+        "selector": "#classification-eess",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Mathematics (math)",
+        "selector": "#classification-mathematics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Physics",
+        "selector": "#classification-physics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "all astro-ph cond-mat gr-qc hep-ex hep-lat hep-ph hep-th math-ph nlin nucl-ex nucl-th physics quant-ph",
+        "label": "Subtopic within physics",
+        "selector": "#classification-physics_archives",
+        "placeholder": "",
+        "options": [
+          "all",
+          "astro-ph",
+          "cond-mat",
+          "gr-qc",
+          "hep-ex",
+          "hep-lat",
+          "hep-ph",
+          "hep-th",
+          "math-ph",
+          "nlin",
+          "nucl-ex",
+          "nucl-th",
+          "physics",
+          "quant-ph"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Quantitative Biology (q-bio)",
+        "selector": "#classification-q_biology",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Quantitative Finance (q-fin)",
+        "selector": "#classification-q_finance",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Statistics (stat)",
+        "selector": "#classification-statistics",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "include",
+        "label": "Include cross-listed papers",
+        "selector": "#classification-include_cross_list-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "exclude",
+        "label": "Exclude cross-listed papers",
+        "selector": "#classification-include_cross_list-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "all_dates",
+        "label": "All dates",
+        "selector": "#date-filter_by-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "past_12",
+        "label": "Past 12 months",
+        "selector": "#date-filter_by-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "specific_year",
+        "label": "Specific year",
+        "selector": "#date-filter_by-2",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY",
+        "selector": "#date-year",
+        "placeholder": "YYYY",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "date_range",
+        "label": "Date range",
+        "selector": "#date-filter_by-3",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY[-MM[-DD]]",
+        "selector": "#date-from_date",
+        "placeholder": "YYYY[-MM[-DD]]",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "YYYY[-MM[-DD]]",
+        "selector": "#date-to_date",
+        "placeholder": "YYYY[-MM[-DD]]",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "submitted_date",
+        "label": "Submission date (most recent)",
+        "selector": "#date-date_type-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "submitted_date_first",
+        "label": "Submission date (original)",
+        "selector": "#date-date_type-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "announced_date_first",
+        "label": "Announcement date",
+        "selector": "#date-date_type-2",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "show",
+        "label": "Show abstracts",
+        "selector": "#abstracts-0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "hide",
+        "label": "Hide abstracts",
+        "selector": "#abstracts-1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "select",
+        "type": "",
+        "text": "25 50 100 200",
+        "label": "results per page",
+        "selector": "#size",
+        "placeholder": "",
+        "options": [
+          "25",
+          "50",
+          "100",
+          "200"
+        ],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "y",
+        "label": "Include older versions of papers",
+        "selector": "#include_older_versions",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Search",
+        "label": "Show abstracts Hide abstracts 25 50 100 200 results per page Include older versions of papers Search",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "About",
+        "label": "About",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/about"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help",
+        "label": "Help",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Contact",
+        "label": "Contact",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/contact.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Subscribe",
+        "label": "Subscribe",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/subscribe"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Copyright",
+        "label": "Copyright",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/license/index.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Privacy Policy",
+        "label": "Privacy Policy",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/policies/privacy_policy.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Web Accessibility Assistance",
+        "label": "Web Accessibility Assistance",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://info.arxiv.org/help/web_accessibility.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "arXiv Operational Status",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://status.arxiv.org/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "email",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/email/new"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "slack",
+        "label": "arXiv Operational Status Get status notifications via email or slack",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://subscribe.sorryapp.com/24846f03/slack/new"
+      }
+    ],
+    "result_labels": [
+      "Field to search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text   ['All fields', 'Title', 'A",
+      "Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORC Search  ",
+      "Field to search Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier Cross-list category DOI ORCID arXiv author ID All fields   ['Title', 'Author(s)', '",
+      "results per page 25 50 100 200   ['25', '50', '100', '200']",
+      "Show abstracts Hide abstracts 25 50 100 200 results per page Include older versions of papers Search Search  "
+    ]
+  }
+}
