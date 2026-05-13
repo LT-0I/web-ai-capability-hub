@@ -21,7 +21,11 @@
       "namePatterns": [
         "message",
         "prompt",
-        "talk to Claude"
+        "talk to Claude",
+        "消息",
+        "提示词",
+        "和 Claude 对话",
+        "输入提示"
       ],
       "selectorHints": [
         "textarea",
@@ -32,7 +36,9 @@
       "id": "sendButton",
       "role": "button",
       "namePatterns": [
-        "send"
+        "send",
+        "发送",
+        "提交"
       ]
     },
     {
@@ -40,14 +46,27 @@
       "role": "button",
       "namePatterns": [
         "project",
-        "workspace"
+        "workspace",
+        "项目",
+        "工作区"
       ]
     },
     {
       "id": "artifactPanel",
       "role": "region",
       "namePatterns": [
-        "artifact"
+        "artifact",
+        "工件",
+        "产物",
+        "Artifact"
+      ]
+    },
+    {
+      "id": "close",
+      "role": "button",
+      "namePatterns": [
+        "close",
+        "关闭"
       ]
     }
   ],

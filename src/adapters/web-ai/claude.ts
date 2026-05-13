@@ -10,10 +10,11 @@ export const claudeAdapter: WebAiAdapter = {
   defaultDiscoveryPaths: ["https://claude.ai/"],
   knownCapabilityCategories: ["chat", "files", "workspace", "mode-selection", "download", "navigation"],
   semanticAnchors: [
-    { id: "promptBox", role: "textbox", names: ["message", "prompt", "talk to Claude"], selectors: ["textarea", "[contenteditable='true']"] },
-    { id: "sendButton", role: "button", names: ["send"] },
-    { id: "projectSelector", role: "button", names: ["project", "workspace"] },
-    { id: "artifactPanel", role: "region", names: ["artifact"] }
+    { id: "promptBox", role: "textbox", names: ["message", "prompt", "talk to Claude", "消息", "提示词", "和 Claude 对话", "输入提示"], selectors: ["textarea", "[contenteditable='true']"] },
+    { id: "sendButton", role: "button", names: ["send", "发送", "提交"] },
+    { id: "projectSelector", role: "button", names: ["project", "workspace", "项目", "工作区"] },
+    { id: "artifactPanel", role: "region", names: ["artifact", "工件", "产物", "Artifact"] },
+    { id: "close", role: "button", names: ["close", "关闭"] }
   ],
   safeDraftActions: ["read page", "open project menu", "type draft without sending", "clear draft"]
 };

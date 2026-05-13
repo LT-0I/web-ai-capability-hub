@@ -22,7 +22,11 @@
       "namePatterns": [
         "message",
         "prompt",
-        "ask anything"
+        "ask anything",
+        "消息",
+        "提问",
+        "询问 ChatGPT",
+        "向 ChatGPT 提问"
       ],
       "selectorHints": [
         "textarea",
@@ -35,7 +39,10 @@
       "role": "button",
       "namePatterns": [
         "send",
-        "submit"
+        "submit",
+        "发送",
+        "发送消息",
+        "提交"
       ],
       "selectorHints": [
         "button[aria-label*='Send' i]"
@@ -46,7 +53,9 @@
       "role": "button",
       "namePatterns": [
         "model",
-        "GPT"
+        "GPT",
+        "模型",
+        "切换模型"
       ],
       "selectorHints": [
         "button"
@@ -58,7 +67,28 @@
       "namePatterns": [
         "upload",
         "attach",
-        "file"
+        "file",
+        "上传",
+        "附加",
+        "文件",
+        "添加文件"
+      ]
+    },
+    {
+      "id": "cancel",
+      "role": "button",
+      "namePatterns": [
+        "cancel",
+        "取消"
+      ]
+    },
+    {
+      "id": "close",
+      "role": "button",
+      "namePatterns": [
+        "close",
+        "关闭",
+        "×"
       ]
     }
   ],
