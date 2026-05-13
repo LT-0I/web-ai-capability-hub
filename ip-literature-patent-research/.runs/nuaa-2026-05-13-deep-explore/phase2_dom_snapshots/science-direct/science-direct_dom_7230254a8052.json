@@ -1,0 +1,372 @@
+{
+  "generated_at": "2026-05-13T04:26:44-0700",
+  "site_id": "science-direct",
+  "site_name": "ScienceDirect",
+  "url": "https://www.sciencedirect.com/user/institution/login?targetURL=%2F",
+  "title": "ScienceDirect",
+  "state": {
+    "status": "searched_or_reachable",
+    "access_markers_found": [
+      "ScienceDirect",
+      "Elsevier"
+    ],
+    "login_markers_found": [],
+    "stop_markers_found": []
+  },
+  "actions": [
+    {
+      "action": "goto",
+      "url": "https://www.sciencedirect.com/search?qs=aerospace+engineering",
+      "direct_query": true
+    },
+    {
+      "action": "click_ip_access",
+      "text": "Remote access",
+      "status": "clicked"
+    }
+  ],
+  "artifacts": {
+    "html": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/science-direct/science-direct_dom_7230254a8052.html",
+    "text": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/science-direct/science-direct_dom_7230254a8052.txt",
+    "screenshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/science-direct/science-direct_dom_7230254a8052.png"
+  },
+  "selector_suggestions": {
+    "site_id": "science-direct",
+    "search_box_selectors": [],
+    "ip_login_selectors": [
+      "a#els-footer-remote-access",
+      "html > body > div > div > footer"
+    ],
+    "export_selectors": [],
+    "result_link_selectors": []
+  },
+  "interactive_elements": [
+    {
+      "index": 0,
+      "tag": "a",
+      "selector": "a#gh-branding",
+      "text": "ScienceDirect",
+      "aria_label": "ScienceDirect home page",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "gh-branding",
+      "name": "",
+      "type": "",
+      "href": "https://www.sciencedirect.com/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 32,
+        "y": 8,
+        "width": 185,
+        "height": 40
+      }
+    },
+    {
+      "index": 1,
+      "tag": "svg",
+      "selector": "div > header > div > a > svg",
+      "text": "ScienceDirect",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "img",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 93,
+        "y": 23,
+        "width": 124,
+        "height": 15
+      }
+    },
+    {
+      "index": 2,
+      "tag": "input",
+      "selector": "input[type=\"hidden\"]",
+      "text": "",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "",
+      "name": "",
+      "type": "hidden",
+      "href": "",
+      "contenteditable": false,
+      "visible": false,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "index": 3,
+      "tag": "button",
+      "selector": "button[type=\"button\"]",
+      "text": "Help",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "",
+      "name": "",
+      "type": "button",
+      "href": "",
+      "contenteditable": false,
+      "visible": false,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "index": 4,
+      "tag": "a",
+      "selector": "div > div:nth-of-type(1) > div > p > a",
+      "text": "contact our support team",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "https://service.elsevier.com/app/answers/detail/a_id/10117/supporthub/sciencedirect/kw/IP+blocked/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 433,
+        "y": 211,
+        "width": 190,
+        "height": 18
+      }
+    },
+    {
+      "index": 5,
+      "tag": "footer",
+      "selector": "html > body > div > div > footer",
+      "text": "About ScienceDirect Remote access Contact and support Terms and conditions Privacy policy Cookie settings All content on this site: Copyright © 2026 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those fo",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "contentinfo",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 0,
+        "y": 861,
+        "width": 1440,
+        "height": 139
+      }
+    },
+    {
+      "index": 6,
+      "tag": "a",
+      "selector": "a[aria-label=\"Elsevier home page (opens in a new tab)\"]",
+      "text": "",
+      "aria_label": "Elsevier home page (opens in a new tab)",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "https://www.elsevier.com/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 32,
+        "y": 894,
+        "width": 58,
+        "height": 64
+      }
+    },
+    {
+      "index": 7,
+      "tag": "a",
+      "selector": "a#els-footer-about-science-direct",
+      "text": "About ScienceDirect",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-about-science-direct",
+      "name": "",
+      "type": "",
+      "href": "https://www.elsevier.com/solutions/sciencedirect",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 122,
+        "y": 894,
+        "width": 130,
+        "height": 22
+      }
+    },
+    {
+      "index": 8,
+      "tag": "a",
+      "selector": "a#els-footer-remote-access",
+      "text": "Remote access",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-remote-access",
+      "name": "",
+      "type": "",
+      "href": "https://www.sciencedirect.com/user/institution/login?targetURL=%2F",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 284,
+        "y": 894,
+        "width": 88,
+        "height": 22
+      }
+    },
+    {
+      "index": 9,
+      "tag": "a",
+      "selector": "a#els-footer-contact-support",
+      "text": "Contact and support",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-contact-support",
+      "name": "",
+      "type": "",
+      "href": "https://service.elsevier.com/app/contact/supporthub/sciencedirect/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 404,
+        "y": 894,
+        "width": 136,
+        "height": 22
+      }
+    },
+    {
+      "index": 10,
+      "tag": "a",
+      "selector": "a#els-footer-terms-condition",
+      "text": "Terms and conditions",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-terms-condition",
+      "name": "",
+      "type": "",
+      "href": "https://www.elsevier.com/legal/elsevier-website-terms-and-conditions",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 572,
+        "y": 894,
+        "width": 139,
+        "height": 22
+      }
+    },
+    {
+      "index": 11,
+      "tag": "a",
+      "selector": "a#els-footer-privacy-policy",
+      "text": "Privacy policy",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-privacy-policy",
+      "name": "",
+      "type": "",
+      "href": "https://www.elsevier.com/legal/privacy-policy",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 743,
+        "y": 894,
+        "width": 92,
+        "height": 22
+      }
+    },
+    {
+      "index": 12,
+      "tag": "button",
+      "selector": "button#ot-sdk-btn",
+      "text": "Cookie settings",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "ot-sdk-btn",
+      "name": "",
+      "type": "button",
+      "href": "",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 867,
+        "y": 894,
+        "width": 90,
+        "height": 22
+      }
+    },
+    {
+      "index": 13,
+      "tag": "a",
+      "selector": "a#els-footer-relx",
+      "text": "",
+      "aria_label": "RELX home page (opens in a new tab)",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "els-footer-relx",
+      "name": "",
+      "type": "",
+      "href": "https://www.relx.com/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 1315,
+        "y": 894,
+        "width": 93,
+        "height": 20
+      }
+    }
+  ],
+  "registry_update_hint": {
+    "site_id": "science-direct",
+    "fields_to_review": [
+      "search_box_selectors",
+      "ip_login_selectors",
+      "export_selectors",
+      "result_link_selectors"
+    ],
+    "suggested_values": {
+      "site_id": "science-direct",
+      "search_box_selectors": [],
+      "ip_login_selectors": [
+        "a#els-footer-remote-access",
+        "html > body > div > div > footer"
+      ],
+      "export_selectors": [],
+      "result_link_selectors": []
+    }
+  }
+}

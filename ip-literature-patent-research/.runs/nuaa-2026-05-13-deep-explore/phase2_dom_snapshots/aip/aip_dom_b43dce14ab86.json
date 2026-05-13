@@ -1,0 +1,164 @@
+{
+  "generated_at": "2026-05-13T04:27:58-0700",
+  "site_id": "aip",
+  "site_name": "AIP Publishing",
+  "url": "https://pubs.aip.org/search-results?page=1&q=aerospace+engineering",
+  "title": "请稍候…",
+  "state": {
+    "status": "unknown_page_state",
+    "access_markers_found": [],
+    "login_markers_found": [],
+    "stop_markers_found": []
+  },
+  "actions": [
+    {
+      "action": "goto",
+      "url": "https://pubs.aip.org/search-results?page=1&q=aerospace+engineering",
+      "direct_query": true
+    },
+    {
+      "action": "click_ip_access",
+      "status": "not_found"
+    }
+  ],
+  "artifacts": {
+    "html": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/aip/aip_dom_b43dce14ab86.html",
+    "text": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/aip/aip_dom_b43dce14ab86.txt",
+    "screenshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/aip/aip_dom_b43dce14ab86.png"
+  },
+  "selector_suggestions": {
+    "site_id": "aip",
+    "search_box_selectors": [],
+    "ip_login_selectors": [],
+    "export_selectors": [],
+    "result_link_selectors": []
+  },
+  "interactive_elements": [
+    {
+      "index": 0,
+      "tag": "div",
+      "selector": "html > body > div:nth-of-type(1)",
+      "text": "pubs.aip.org 正在进行安全验证 本网站使用安全服务防护恶意自动程序。在验证您不是自动程序期间，将显示此页面。",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "main",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 931
+      }
+    },
+    {
+      "index": 1,
+      "tag": "input",
+      "selector": "input#cf-chl-widget-5b9pn_response",
+      "text": "",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "cf-chl-widget-5b9pn_response",
+      "name": "cf-turnstile-response",
+      "type": "hidden",
+      "href": "",
+      "contenteditable": false,
+      "visible": false,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "index": 2,
+      "tag": "div",
+      "selector": "html > body > div:nth-of-type(2)",
+      "text": "Ray ID: 9fb150bb5a3ddd59 由 Cloudflare 提供的性能和安全服务 隐私",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "contentinfo",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 240,
+        "y": 931,
+        "width": 960,
+        "height": 69
+      }
+    },
+    {
+      "index": 3,
+      "tag": "a",
+      "selector": "a[href=\"https://www.cloudflare.com?utm_source=challenge&utm_campaign=m\"]",
+      "text": "Cloudflare",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "",
+      "name": "",
+      "type": "",
+      "href": "https://www.cloudflare.com/?utm_source=challenge&utm_campaign=m",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 616,
+        "y": 966,
+        "width": 58,
+        "height": 18
+      }
+    },
+    {
+      "index": 4,
+      "tag": "a",
+      "selector": "a#privacy-link",
+      "text": "隐私",
+      "aria_label": "",
+      "placeholder": "",
+      "title": "",
+      "role": "",
+      "id": "privacy-link",
+      "name": "",
+      "type": "",
+      "href": "https://www.cloudflare.com/zh-cn/privacypolicy/",
+      "contenteditable": false,
+      "visible": true,
+      "box": {
+        "x": 815,
+        "y": 966,
+        "width": 24,
+        "height": 18
+      }
+    }
+  ],
+  "registry_update_hint": {
+    "site_id": "aip",
+    "fields_to_review": [
+      "search_box_selectors",
+      "ip_login_selectors",
+      "export_selectors",
+      "result_link_selectors"
+    ],
+    "suggested_values": {
+      "site_id": "aip",
+      "search_box_selectors": [],
+      "ip_login_selectors": [],
+      "export_selectors": [],
+      "result_link_selectors": []
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "activation_steps": [
+    "goto",
+    "click_ip_access"
+  ],
+  "selectors": {
+    "export": []
+  },
+  "observed_labels": [
+    "pubs.acs.org 正在进行安全验证 本网站使用安全服务防护恶意自动程序。在验证您不是自动程序期间，将显示此页面。",
+    "Ray ID: 9fb15199b8a12af5 由 Cloudflare 提供的性能和安全服务 隐私",
+    "Cloudflare",
+    "隐私"
+  ],
+  "screenshot_path": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/acs/acs_dom_0689d7bfa4a6.png",
+  "status": "cli_insufficient",
+  "note": "No export clicked; no bulk/metadata export performed in partial run."
+}

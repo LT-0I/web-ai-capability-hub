@@ -1,0 +1,153 @@
+{
+  "status": "written",
+  "cdp_endpoint": null,
+  "sites": [
+    {
+      "site_id": "science-direct",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/science-direct/science-direct_dom_7230254a8052.json",
+      "suggestions": {
+        "site_id": "science-direct",
+        "search_box_selectors": [],
+        "ip_login_selectors": [
+          "a#els-footer-remote-access",
+          "html > body > div > div > footer"
+        ],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "searched_or_reachable",
+        "access_markers_found": [
+          "ScienceDirect",
+          "Elsevier"
+        ],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "acm-dl",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/acm-dl/acm-dl_dom_2f9216481616.json",
+      "suggestions": {
+        "site_id": "acm-dl",
+        "search_box_selectors": [
+          "input#range-slider-end",
+          "input#range-slider-start",
+          "input#AllField697a7ce6-595d-4b54-a917-005bb365ed5e",
+          "input#AllFieldf73847c0-d936-48ec-9bf9-139b3828507f",
+          "input#AllFieldf73847c0-d936-48ec-9bf9-139b3828507f-cloned",
+          "input[name=\"AllField\"]"
+        ],
+        "ip_login_selectors": [
+          "nav#global-menu",
+          "div[aria-label=\"Filters (Premium feature)\"]",
+          "a[href=\"/institutions\"]",
+          "a[title=\"Institutions\"]"
+        ],
+        "export_selectors": [
+          "a[title=\"Dimitri N Mavris\"]"
+        ],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "searched_or_reachable",
+        "access_markers_found": [
+          "ACM Digital Library",
+          "ACM"
+        ],
+        "login_markers_found": [
+          "Sign in",
+          "sign in"
+        ],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "asme",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/asme/asme_dom_45d13242e131.json",
+      "suggestions": {
+        "site_id": "asme",
+        "search_box_selectors": [],
+        "ip_login_selectors": [],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "unknown_page_state",
+        "access_markers_found": [],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "asce",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/asce/asce_dom_ea5873e02743.json",
+      "suggestions": {
+        "site_id": "asce",
+        "search_box_selectors": [],
+        "ip_login_selectors": [],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "unknown_page_state",
+        "access_markers_found": [],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "aip",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/aip/aip_dom_b43dce14ab86.json",
+      "suggestions": {
+        "site_id": "aip",
+        "search_box_selectors": [],
+        "ip_login_selectors": [],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "unknown_page_state",
+        "access_markers_found": [],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "aiaa",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/aiaa/aiaa_dom_ea8af9508ff9.json",
+      "suggestions": {
+        "site_id": "aiaa",
+        "search_box_selectors": [],
+        "ip_login_selectors": [],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "searched_or_reachable",
+        "access_markers_found": [
+          "AIAA"
+        ],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    },
+    {
+      "site_id": "acs",
+      "snapshot": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/acs/acs_dom_0689d7bfa4a6.json",
+      "suggestions": {
+        "site_id": "acs",
+        "search_box_selectors": [],
+        "ip_login_selectors": [],
+        "export_selectors": [],
+        "result_link_selectors": []
+      },
+      "state": {
+        "status": "unknown_page_state",
+        "access_markers_found": [],
+        "login_markers_found": [],
+        "stop_markers_found": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "activation_steps": [
+    "goto",
+    "click_ip_access"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "ScienceDirect",
+    "Help",
+    "contact our support team",
+    "About ScienceDirect Remote access Contact and support Terms and conditions Privacy policy Cookie settings All content on",
+    "Elsevier home page (opens in a new tab)",
+    "About ScienceDirect",
+    "Remote access",
+    "Contact and support",
+    "Terms and conditions",
+    "Privacy policy",
+    "Cookie settings",
+    "RELX home page (opens in a new tab)"
+  ],
+  "screenshot_path": ".runs/nuaa-2026-05-13-deep-explore/phase2_dom_snapshots/science-direct/science-direct_dom_7230254a8052.png",
+  "status": "cli_insufficient",
+  "note": "Control labels observed only; not exercised."
+}
