@@ -18,6 +18,7 @@ import { WorkflowExecutor } from "../workflows/executor";
 import { SiteRegistryImporter } from "../adapters/research/siteRegistryImporter";
 import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
+import { consumerHealth } from "../consumer/health";
 import {
   browserActionInput,
   browserLaunchInput,
@@ -28,6 +29,7 @@ import {
   capabilityExportInput,
   capabilityQueryInput,
   capabilityUpdateInput,
+  consumerHealthInput,
   notesInput,
   recipeRunInput,
   siteCaptureMapInput,
@@ -194,6 +196,12 @@ async function runWorkflowPlanInManagedPage(args: WorkflowExecuteArgs, runtime: 
 }
 
 export const toolSpecs: ToolSpec[] = [
+  {
+    name: "consumer_health",
+    description: "Return a consumer-safe health summary without CDP endpoints, profile paths, page URLs, snapshots, cookies, or tokens.",
+    schema: consumerHealthInput,
+    handler: async (args, runtime) => consumerHealth({ target: args.target, profile: args.profile, launcher: runtime.launcher })
+  },
   {
     name: "browser_launch",
     description: "Launch or reuse a project-managed visible Chrome/Edge browser profile through CDP.",

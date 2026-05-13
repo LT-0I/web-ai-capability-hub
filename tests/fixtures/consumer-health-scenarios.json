@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-05-13T08:29:20.508Z",
+  "scenarios": [
+    {
+      "name": "connected-chatgpt-page",
+      "input": { "target": "chatgpt", "profile": "chatgpt" },
+      "status": {
+        "profile": "chatgpt",
+        "executablePath": "/private/bin/google-chrome",
+        "profileDir": "/private/data/browser-profiles/chatgpt",
+        "cdpEndpoint": "http://127.0.0.1:9222",
+        "cdpPort": 9222,
+        "connected": true,
+        "launchedByPackage": true,
+        "processId": 1234,
+        "browser": "MockChrome/1",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/browser/mock",
+        "accountEmail": "alice@example.test",
+        "cookies": [{ "name": "session", "value": "secret-cookie" }],
+        "pages": [
+          {
+            "id": "page-1",
+            "type": "page",
+            "title": "ChatGPT",
+            "url": "https://chatgpt.com/c/mock-thread?account=alice@example.test",
+            "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/page-1"
+          },
+          {
+            "id": "page-2",
+            "type": "page",
+            "title": "Private notes",
+            "url": "https://example.test/private"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "connected": true,
+        "pageCount": 2,
+        "loginLikeState": "healthy",
+        "status": "ok",
+        "errorCode": null
+      },
+      "forbiddenSentinels": ["/private/bin/google-chrome", "/private/data/browser-profiles/chatgpt", "http://127.0.0.1:9222", "ws://127.0.0.1", "alice@example.test", "secret-cookie", "https://chatgpt.com/c/mock-thread", "Private notes"]
+    },
+    {
+      "name": "connected-no-chatgpt-page",
+      "input": { "target": "chatgpt", "profile": "chatgpt" },
+      "status": {
+        "profile": "chatgpt",
+        "executablePath": "/private/bin/google-chrome",
+        "profileDir": "/private/data/browser-profiles/chatgpt",
+        "cdpEndpoint": "http://127.0.0.1:9444",
+        "cdpPort": 9444,
+        "connected": true,
+        "launchedByPackage": false,
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9444/devtools/browser/mock",
+        "pages": [
+          { "id": "page-1", "type": "page", "title": "Example", "url": "https://example.test/dashboard", "webSocketDebuggerUrl": "ws://127.0.0.1:9444/devtools/page/page-1" }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "connected": true,
+        "pageCount": 1,
+        "loginLikeState": "not_implemented",
+        "status": "missing",
+        "errorCode": "TARGET_PAGE_MISSING"
+      },
+      "forbiddenSentinels": ["/private/bin/google-chrome", "/private/data/browser-profiles/chatgpt", "http://127.0.0.1:9444", "ws://127.0.0.1", "https://example.test/dashboard", "Example"]
+    },
+    {
+      "name": "disconnected",
+      "input": { "target": "chatgpt", "profile": "chatgpt" },
+      "status": {
+        "profile": "chatgpt",
+        "executablePath": "/private/bin/google-chrome",
+        "profileDir": "/private/data/browser-profiles/chatgpt",
+        "cdpEndpoint": "http://127.0.0.1:9555",
+        "cdpPort": 9555,
+        "connected": false,
+        "launchedByPackage": false,
+        "lastError": "ECONNREFUSED http://127.0.0.1:9555",
+        "pages": []
+      },
+      "expected": {
+        "ok": false,
+        "connected": false,
+        "pageCount": 0,
+        "loginLikeState": "not_implemented",
+        "status": "missing",
+        "errorCode": "BROWSER_NOT_LAUNCHED"
+      },
+      "forbiddenSentinels": ["/private/bin/google-chrome", "/private/data/browser-profiles/chatgpt", "http://127.0.0.1:9555", "ECONNREFUSED"]
+    },
+    {
+      "name": "command-timeout",
+      "input": { "target": "chatgpt", "profile": "chatgpt" },
+      "timeout": true,
+      "expected": {
+        "ok": false,
+        "connected": false,
+        "pageCount": 0,
+        "loginLikeState": "not_implemented",
+        "status": "needs_review",
+        "errorCode": "COMMAND_TIMEOUT"
+      },
+      "forbiddenSentinels": ["/private/bin/google-chrome", "/private/data/browser-profiles/chatgpt", "http://127.0.0.1:9666", "ws://127.0.0.1"]
+    }
+  ]
+}

@@ -16,6 +16,7 @@ export * from "./observe/redaction";
 export * from "./observe/ip-login-detect";
 export * from "./actions/executor";
 export * from "./actions/confirmationPolicy";
+export * from "./consumer";
 export type {
   BrowserProfileDbRecord,
   CapabilityDatabaseExport,

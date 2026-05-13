@@ -1,0 +1,295 @@
+{
+  "package_version": "0.2.0",
+  "contract_version": "consumer-contract-1.0.0",
+  "commands": [
+    {
+      "cli_name": "consumer:health",
+      "mcp_name": "consumer_health",
+      "ts_export": "consumerHealth",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": ["target", "profile"],
+      "output_keys": {
+        "always_present": ["ok", "target", "profile", "connected", "pageCount", "loginLikeState", "status", "errorCode", "message", "checkedAt"],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "browser:status",
+      "mcp_name": "browser_status",
+      "ts_export": "ManagedBrowserLauncher.status",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": ["profile", "profileDir", "cdpEndpoint", "cdpPort", "connected", "launchedByPackage"],
+        "optional": ["executablePath", "processId", "pages", "browser", "webSocketDebuggerUrl", "lastError"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:pages",
+      "mcp_name": "browser_pages",
+      "ts_export": "ManagedBrowserLauncher.pages",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["id", "type", "title", "url", "webSocketDebuggerUrl"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "capability:query",
+      "mcp_name": "capability_query",
+      "ts_export": "CapabilityDatabase.queryCapabilities",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["id", "target_id", "category", "name", "description", "inputs", "outputs", "preconditions", "selectors", "status", "confidence", "evidence", "updated_at"]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "capability:export",
+      "mcp_name": "capability_export",
+      "ts_export": "CapabilityDatabase.exportJson",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["service_targets", "browser_profiles", "page_captures", "ui_elements", "capabilities", "capability_versions", "workflow_definitions", "workflow_runs", "run_events", "artifacts", "policy_events", "site_registry_entries", "scheduled_jobs", "exportedAt"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "capability:update",
+      "mcp_name": "capability_update",
+      "ts_export": "CapabilityUpdater.updateFromSnapshot",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": ["target"],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["target", "captureId", "capabilities", "uiElements"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "workflow:compile",
+      "mcp_name": "workflow_compile",
+      "ts_export": "WorkflowCompiler.compileFile",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": ["file"],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["id", "target", "profile", "mode", "compiledAt", "warnings", "actions", "result"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "workflow:run",
+      "mcp_name": "workflow_run",
+      "ts_export": "WorkflowExecutor.runFile",
+      "maturity": "experimental",
+      "safety_class": "risky",
+      "required_args": ["file"],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["ok", "dryRun", "plan", "results", "finalResult", "approvalGates"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:read",
+      "mcp_name": "browser_read",
+      "ts_export": "readPageSnapshot",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["url", "title", "timestamp", "visibleText", "elements", "forms", "tables", "lists", "iframes", "accessibility", "screenshotPath", "warnings"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:screenshot",
+      "mcp_name": "browser_screenshot",
+      "ts_export": "readPageSnapshot",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["screenshotPath", "url", "title", "timestamp", "warnings"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:launch",
+      "mcp_name": "browser_launch",
+      "ts_export": "ManagedBrowserLauncher.launch",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["profile", "profileDir", "cdpEndpoint", "cdpPort", "connected", "launchedByPackage", "processId", "browser", "webSocketDebuggerUrl"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:open",
+      "mcp_name": "browser_open",
+      "ts_export": "BrowserSessionManager.open",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": ["url"],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["ok", "opened", "url", "pages"]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "mcp:tools",
+      "mcp_name": null,
+      "ts_export": "listMcpTools",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["name", "description", "inputSchema"]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "mcp:resources",
+      "mcp_name": null,
+      "ts_export": "listMcpResources",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": ["uri", "name", "description", "mimeType"]
+      },
+      "may_contain_sensitive_local_fields": false
+    }
+  ],
+  "resources": [
+    {
+      "uri": "capabilities://targets",
+      "mcp_name": "capabilities://targets",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": { "always_present": [], "optional": ["target_id", "display_name", "kind", "base_url"] },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "uri": "capabilities://target/{targetId}",
+      "mcp_name": "capabilities://target/{targetId}",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": ["targetId"],
+      "output_keys": { "always_present": [], "optional": ["id", "target_id", "category", "name", "description", "selectors", "status"] },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "uri": "capabilities://target/{targetId}/latest",
+      "mcp_name": "capabilities://target/{targetId}/latest",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": ["targetId"],
+      "output_keys": { "always_present": [], "optional": ["id", "target_id", "url", "title", "captured_at", "artifact_refs"] },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "uri": "workflows://definitions",
+      "mcp_name": "workflows://definitions",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": { "always_present": [], "optional": ["id", "target_id", "name", "definition", "created_at"] },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "uri": "workflows://runs",
+      "mcp_name": "workflows://runs",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": { "always_present": [], "optional": ["id", "workflow_id", "status", "started_at", "finished_at"] },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "uri": "browser-profiles://list",
+      "mcp_name": "browser-profiles://list",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": { "always_present": [], "optional": ["profileName", "browserType", "profileDir", "executablePath", "cdpEndpoint", "cdpPort", "processId", "lastStatus"] },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "uri": "site-registry://sites",
+      "mcp_name": "site-registry://sites",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": { "always_present": [], "optional": ["site_id", "display_name", "kind", "base_url"] },
+      "may_contain_sensitive_local_fields": false
+    }
+  ],
+  "forbidden_output_fields": [
+    "cdpEndpoint",
+    "webSocketDebuggerUrl",
+    "profileDir",
+    "profile_dir",
+    "executablePath",
+    "executable_path",
+    "cookies",
+    "cookie",
+    "tokens",
+    "token",
+    "Authorization",
+    "authorization",
+    "accountEmail",
+    "account_email",
+    "email",
+    "dom",
+    "html",
+    "screenshot",
+    "screenshotPath",
+    "rawSnapshot",
+    "snapshot"
+  ],
+  "error_codes": [
+    "HUB_NOT_BUILT",
+    "BROWSER_NOT_LAUNCHED",
+    "PROFILE_NOT_FOUND",
+    "TARGET_PAGE_MISSING",
+    "LOGIN_REQUIRED",
+    "CAPABILITY_DB_NOT_INIT",
+    "COMMAND_TIMEOUT",
+    "INVALID_JSON",
+    "POLICY_APPROVAL_REQUIRED",
+    "UNKNOWN"
+  ]
+}

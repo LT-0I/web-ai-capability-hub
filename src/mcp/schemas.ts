@@ -77,6 +77,11 @@ export const browserLaunchInput = objectSchema<{ profile?: string; url?: string;
 
 export const browserStatusInput = objectSchema<{ profile?: string }>({ profile: scalar.string("Managed browser profile name") });
 
+export const consumerHealthInput = objectSchema<{ target: string; profile: string }>({
+  target: scalar.string("Target id such as chatgpt/gemini/claude"),
+  profile: scalar.string("Managed browser profile name")
+}, ["target", "profile"]);
+
 export const capabilityUpdateInput = objectSchema<{ target: string; kind?: string; profile?: string; fixture?: string; url?: string } >({
   target: scalar.string("Target id such as gemini/chatgpt/claude/cnki"),
   kind: scalar.string("Target kind"),

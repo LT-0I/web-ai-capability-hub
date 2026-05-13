@@ -32,6 +32,7 @@ import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
 import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
+import { consumerHealth } from "./consumer/health";
 
 type CliOptionValue = string | boolean | Array<string | boolean>;
 interface ParsedArgs { options: Record<string, CliOptionValue>; positionals: string[]; }
@@ -347,6 +348,8 @@ function help(): string {
 ${policyNotice()}
 
 Core commands:
+  consumer:health --target <id> --profile <name> [--json]
+
   browser:launch --profile <name> [--url <url>] [--cdp-port <port>] [--json]
   browser:status --profile <name> [--json]
   browser:pages --profile <name> [--json]
@@ -398,6 +401,11 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   if (command === "adapter:list") { output(listAdapters(), options); return; }
   if (command === "web-ai:adapters") { output(listWebAiAdapters(), options); return; }
   if (command === "recipe:list") { output(listRecipes().map((recipe) => ({ id: recipe.id, name: recipe.name, adapter: recipe.adapter })), options); return; }
+
+  if (command === "consumer:health") {
+    output(await consumerHealth({ target: asString(options.target) || "", profile: asString(options.profile) || "" }), options);
+    return;
+  }
 
   if (command === "browser:launch") {
     const launcher = new ManagedBrowserLauncher();
