@@ -8,6 +8,8 @@ dist/
 .env
 *.local.*
 **/.venv/
+**/__pycache__/
+**/cdp-profile/
 **/*.DS_Store
 *.log
 .omx/
