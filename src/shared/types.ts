@@ -128,6 +128,9 @@ export type BrowserActionType =
   | "type"
   | "press"
   | "select"
+  | "hover"
+  | "select-text"
+  | "drag"
   | "upload"
   | "wait"
   | "scroll"
@@ -143,15 +146,26 @@ export interface BrowserAction {
   text?: string;
   key?: string;
   option?: string;
+  start?: number;
+  end?: number;
+  from?: [number, number];
+  to?: [number, number];
+  fromOffset?: [number, number];
+  toOffset?: [number, number];
+  steps?: number;
+  holdMs?: number;
+  /** Local file paths used by upload actions. */
   files?: string[];
   waitFor?: "text" | "selector" | "navigation" | "download" | "timeout";
   timeoutMs?: number;
+  state?: "visible" | "hidden" | "attached" | "detached";
   direction?: "up" | "down";
   amount?: number;
   extract?: "table" | "list" | "text" | "snapshot";
   dryRun?: boolean;
   confirmed?: boolean;
   riskyReason?: string;
+  expectDownload?: boolean;
 }
 
 export interface ActionResult {
@@ -179,11 +193,18 @@ export interface WorkflowApprovalResponse {
 
 export interface DownloadRecord {
   id: string;
+  profile?: string;
+  tabId?: string;
   url?: string;
   suggestedFilename: string;
   savedPath: string;
+  sizeBytes?: number;
+  mimeType?: string;
+  createdAt?: string;
+  sourceUrl?: string;
   timestamp: string;
   failure?: string | null;
+  artifactId?: string;
 }
 
 export interface ArtifactRecord {

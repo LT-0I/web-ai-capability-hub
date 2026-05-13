@@ -11,6 +11,9 @@ import { TabRegistry } from "./browser/tabRegistry";
 import { getStoragePaths } from "./utils/paths";
 import { readHtmlSnapshotFromFile, readPageSnapshot } from "./reader/snapshot";
 import { ActionExecutor } from "./actions/executor";
+import { ArtifactStore } from "./artifacts/store";
+import { assertActionPermitted, defaultConfirmationPolicy } from "./actions/confirmationPolicy";
+import { BrowserAction } from "./shared/types";
 import { loadRecipeById, listRecipes } from "./recipes/loader";
 import { RecipeEngine } from "./recipes/engine";
 import { listAdapters } from "./adapters/adapterLoader";
@@ -30,32 +33,111 @@ import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
 
-interface ParsedArgs { options: Record<string, string | boolean>; positionals: string[]; }
+type CliOptionValue = string | boolean | Array<string | boolean>;
+interface ParsedArgs { options: Record<string, CliOptionValue>; positionals: string[]; }
 
 function parseArgs(args: string[]): ParsedArgs {
-  const options: Record<string, string | boolean> = {};
+  const options: Record<string, CliOptionValue> = {};
   const positionals: string[] = [];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--") { positionals.push(...args.slice(i + 1)); break; }
     if (arg.startsWith("--")) {
       const eq = arg.indexOf("=");
-      if (eq > 2) { options[arg.slice(2, eq)] = arg.slice(eq + 1); continue; }
+      if (eq > 2) { addOption(options, arg.slice(2, eq), arg.slice(eq + 1)); continue; }
       const key = arg.slice(2);
       const next = args[i + 1];
-      if (!next || next.startsWith("--")) options[key] = true;
-      else { options[key] = next; i++; }
+      if (!next || next.startsWith("--")) addOption(options, key, true);
+      else { addOption(options, key, next); i++; }
     } else positionals.push(arg);
   }
   return { options, positionals };
 }
 
-function asString(value: string | boolean | undefined, fallback?: string): string | undefined { return typeof value === "string" ? value : fallback; }
-function asNumber(value: string | boolean | undefined): number | undefined { return typeof value === "string" ? Number(value) : undefined; }
-function wantJson(options: Record<string, string | boolean>): boolean { return options.json === true || options.json === "true"; }
-function output(value: unknown, options: Record<string, string | boolean> = {}): void { console.log(wantJson(options) ? JSON.stringify(value, null, 2) : typeof value === "string" ? value : JSON.stringify(value, null, 2)); }
+function addOption(options: Record<string, CliOptionValue>, key: string, value: string | boolean): void {
+  const current = options[key];
+  if (current === undefined) options[key] = value;
+  else if (Array.isArray(current)) current.push(value);
+  else options[key] = [current, value];
+}
 
-async function withSession(fn: (session: BrowserSessionManager) => Promise<unknown>, options: Record<string, string | boolean> = {}): Promise<unknown> {
+function asString(value: CliOptionValue | undefined, fallback?: string): string | undefined {
+  if (Array.isArray(value)) return asString(value[value.length - 1], fallback);
+  return typeof value === "string" ? value : fallback;
+}
+function asNumber(value: CliOptionValue | undefined): number | undefined {
+  if (Array.isArray(value)) return asNumber(value[value.length - 1]);
+  return typeof value === "string" ? Number(value) : undefined;
+}
+function asPoint(value: CliOptionValue | undefined, flag: string): [number, number] | undefined {
+  const raw = asString(value);
+  if (raw === undefined) return undefined;
+  const parts = raw.split(",").map((item) => Number(item.trim()));
+  if (parts.length !== 2 || parts.some((item) => !Number.isFinite(item))) throw new Error(`${flag} must be in x,y format`);
+  return [parts[0], parts[1]];
+}
+function wantJson(options: Record<string, CliOptionValue>): boolean { return options.json === true || options.json === "true" || (Array.isArray(options.json) && options.json.some((value) => value === true || value === "true")); }
+function output(value: unknown, options: Record<string, CliOptionValue> = {}): void { console.log(wantJson(options) ? JSON.stringify(value, null, 2) : typeof value === "string" ? value : JSON.stringify(value, null, 2)); }
+function downloadManager(): DownloadManager { return new DownloadManager(getStoragePaths().downloadDir); }
+
+function formatDownloadRecords(records: any[]): any[] {
+  return records.map((record) => ({
+    id: record.id,
+    profile: record.profile,
+    ...(record.tabId ? { tabId: record.tabId } : {}),
+    suggestedFilename: record.suggestedFilename,
+    savedPath: record.savedPath,
+    sizeBytes: record.sizeBytes ?? 0,
+    ...(record.mimeType ? { mimeType: record.mimeType } : {}),
+    createdAt: record.createdAt || record.timestamp,
+    ...(record.sourceUrl || record.url ? { sourceUrl: record.sourceUrl || record.url } : {})
+  }));
+}
+
+function filenameFromUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    const base = path.basename(parsed.pathname);
+    return base && base !== "/" ? base : `download-${Date.now()}`;
+  } catch {
+    return `download-${Date.now()}`;
+  }
+}
+
+function contentDispositionFilename(header: string | null | undefined): string | undefined {
+  if (!header) return undefined;
+  const utf = /filename\*=UTF-8''([^;]+)/i.exec(header);
+  if (utf) return decodeURIComponent(utf[1].replace(/\"/g, ""));
+  const plain = /filename=\"?([^\";]+)\"?/i.exec(header);
+  return plain?.[1];
+}
+
+function asBoolean(value: CliOptionValue | undefined): boolean | undefined {
+  if (Array.isArray(value)) return asBoolean(value[value.length - 1]);
+  if (value === true || value === "true") return true;
+  if (value === false || value === "false") return false;
+  return undefined;
+}
+
+function asStringList(value: CliOptionValue | undefined): string[] {
+  const values = Array.isArray(value) ? value : value === undefined ? [] : [value];
+  return values
+    .filter((item): item is string => typeof item === "string")
+    .flatMap((item) => item.split(","))
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function existingFilePaths(value: CliOptionValue | undefined): string[] {
+  const files = asStringList(value);
+  if (!files.length) throw new Error("browser:upload requires --file <path>");
+  const resolved = files.map((file) => path.resolve(file));
+  const missing = resolved.filter((file) => !fs.existsSync(file));
+  if (missing.length) throw new Error(`browser:upload file(s) not found: ${missing.join(", ")}`);
+  return resolved;
+}
+
+async function withSession(fn: (session: BrowserSessionManager) => Promise<unknown>, options: Record<string, CliOptionValue> = {}): Promise<unknown> {
   const targetId = asString(options.target) || asString(options.site);
   const session = new BrowserSessionManager({ cdpEndpoint: asString(options.cdp), headless: options.headless === true, targetId });
   session.setDatabase(new CapabilityDatabase());
@@ -96,7 +178,7 @@ function formatHealthCheckReport(report: HealthCheckReport): string {
   return lines.join("\n");
 }
 
-async function withManagedPage(fn: (page: any) => Promise<unknown>, options: Record<string, string | boolean> = {}, targetUrl?: string): Promise<unknown> {
+async function withManagedPage(fn: (page: any) => Promise<unknown>, options: Record<string, CliOptionValue> = {}, targetUrl?: string): Promise<unknown> {
   const profile = asString(options.profile) || process.env.WAH_DEFAULT_PROFILE || "default";
   const tabId = asString(options["tab-id"] || options.tabId);
   const launcher = new ManagedBrowserLauncher();
@@ -114,6 +196,142 @@ async function withManagedPage(fn: (page: any) => Promise<unknown>, options: Rec
   } finally {
     await browser.close?.().catch(() => undefined);
   }
+}
+
+
+function browserActionFromCli(command: string, options: Record<string, CliOptionValue>): BrowserAction {
+  const confirmed = asBoolean(options.confirmed);
+  const base = confirmed === undefined ? {} : { confirmed };
+  if (command === "browser:click") {
+    const selector = asString(options.selector);
+    if (!selector) throw new Error("browser:click requires --selector <css-or-xpath>");
+    const timeoutMs = asNumber(options.ms);
+    const expectDownload = asBoolean(options["expect-download"] || options.expectDownload);
+    return { ...base, type: "click", selector, ...(timeoutMs === undefined ? {} : { timeoutMs }), ...(expectDownload ? { expectDownload: true } : {}) };
+  }
+  if (command === "browser:type") {
+    const selector = asString(options.selector);
+    const text = asString(options.text);
+    if (!selector) throw new Error("browser:type requires --selector <css-or-xpath>");
+    if (text === undefined) throw new Error("browser:type requires --text <text>");
+    return { ...base, type: "type", selector, text };
+  }
+  if (command === "browser:select") {
+    const selector = asString(options.selector);
+    const value = asString(options.value);
+    if (!selector) throw new Error("browser:select requires --selector <css-or-xpath>");
+    if (value === undefined) throw new Error("browser:select requires --value <value>");
+    return { ...base, type: "select", selector, option: value };
+  }
+  if (command === "browser:upload") {
+    const selector = asString(options.selector);
+    if (!selector) throw new Error("browser:upload requires --selector <css-or-xpath>");
+    return { ...base, type: "upload", selector, files: existingFilePaths(options.file) };
+  }
+  if (command === "browser:hover") {
+    const selector = asString(options.selector);
+    if (!selector) throw new Error("browser:hover requires --selector <css-or-xpath>");
+    const timeoutMs = asNumber(options.ms);
+    return { ...base, type: "hover", selector, ...(timeoutMs === undefined ? {} : { timeoutMs }) };
+  }
+  if (command === "browser:select-text") {
+    const selector = asString(options.selector);
+    if (!selector) throw new Error("browser:select-text requires --selector <css-or-xpath>");
+    const start = asNumber(options.start);
+    const end = asNumber(options.end);
+    if ((start === undefined) !== (end === undefined)) throw new Error("browser:select-text requires both --start and --end when selecting by offsets");
+    return { ...base, type: "select-text", selector, ...(start === undefined ? {} : { start, end }) };
+  }
+  if (command === "browser:drag") {
+    const selector = asString(options.selector);
+    const from = asPoint(options.from, "--from");
+    const to = asPoint(options.to, "--to");
+    const fromOffset = asPoint(options["from-offset"] || options.fromOffset, "--from-offset");
+    const toOffset = asPoint(options["to-offset"] || options.toOffset, "--to-offset");
+    const steps = asNumber(options.steps);
+    const holdMs = asNumber(options["hold-ms"] || options.holdMs);
+    if (selector && (from || to)) throw new Error("browser:drag accepts either --selector offsets or --from/--to, not both");
+    if (!selector && (!from || !to)) throw new Error("browser:drag requires --selector <css-or-xpath> or both --from <x,y> and --to <x,y>");
+    if ((from === undefined) !== (to === undefined)) throw new Error("browser:drag requires both --from and --to in absolute pixel mode");
+    if (!selector && (fromOffset || toOffset)) throw new Error("browser:drag --from-offset/--to-offset require --selector");
+    if (steps !== undefined && (!Number.isInteger(steps) || steps < 1)) throw new Error("browser:drag --steps must be a positive integer");
+    if (holdMs !== undefined && (!Number.isInteger(holdMs) || holdMs < 0)) throw new Error("browser:drag --hold-ms must be a non-negative integer");
+    return {
+      ...base,
+      type: "drag",
+      ...(selector ? { selector } : { from, to }),
+      ...(fromOffset ? { fromOffset } : {}),
+      ...(toOffset ? { toOffset } : {}),
+      steps: steps ?? 10,
+      holdMs: holdMs ?? 0
+    } as BrowserAction;
+  }
+  if (command === "browser:press") {
+    const key = asString(options.key);
+    if (!key) throw new Error("browser:press requires --key <keystroke>");
+    const selector = asString(options.selector);
+    return { ...base, type: "press", key, ...(selector ? { selector } : {}) };
+  }
+  if (command === "browser:wait") {
+    const selector = asString(options.selector);
+    const timeoutMs = asNumber(options.ms);
+    const state = asString(options.state);
+    if (state && !["visible", "hidden", "attached", "detached"].includes(state)) throw new Error("browser:wait --state must be one of visible|hidden|attached|detached");
+    return {
+      ...base,
+      type: "wait",
+      ...(selector ? { selector } : {}),
+      waitFor: selector ? "selector" : "timeout",
+      ...(timeoutMs === undefined ? {} : { timeoutMs }),
+      ...(state ? { state } : {})
+    } as BrowserAction;
+  }
+  throw new Error(`Unsupported browser action command: ${command}`);
+}
+
+async function runManagedBrowserAction(command: string, options: Record<string, CliOptionValue>): Promise<unknown> {
+  const action = browserActionFromCli(command, options);
+  return withManagedPage(async (page) => {
+    const downloads = downloadManager();
+    return new ActionExecutor({
+      getActivePage: () => page,
+      openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; },
+      downloads,
+      profile: asString(options.profile) || process.env.WAH_DEFAULT_PROFILE || "default",
+      tabId: asString(options["tab-id"] || options.tabId),
+      artifacts: new ArtifactStore()
+    }).execute(action);
+  }, options, asString(options.url));
+}
+
+async function runBrowserDownloadUrl(options: Record<string, CliOptionValue>): Promise<unknown> {
+  const url = asString(options.url);
+  if (!url) throw new Error("browser:download-url requires --url <absolute-url>");
+  let parsed: URL;
+  try { parsed = new URL(url); } catch { throw new Error("browser:download-url requires --url <absolute-url>"); }
+  if (!/^https?:$/i.test(parsed.protocol)) throw new Error("browser:download-url supports only http(s) URLs");
+
+  const action: BrowserAction = { type: "download", selector: url, confirmed: asBoolean(options.confirmed), riskyReason: `Direct URL download: ${url}` };
+  assertActionPermitted(action, defaultConfirmationPolicy());
+
+  return withManagedPage(async (page) => {
+    const response = await page.request.get(url);
+    if (!response.ok?.()) throw new Error(`download failed: HTTP ${response.status?.() ?? "unknown"}`);
+    const headers = response.headers?.() || {};
+    const filename = asString(options.filename) || contentDispositionFilename(headers["content-disposition"]) || filenameFromUrl(url);
+    const body = await response.body();
+    const manager = downloadManager();
+    const record = await manager.saveBuffer({
+      filename,
+      bytes: Buffer.from(body),
+      mimeType: headers["content-type"],
+      sourceUrl: url,
+      profile: asString(options.profile) || process.env.WAH_DEFAULT_PROFILE || "default",
+      tabId: asString(options["tab-id"] || options.tabId)
+    });
+    const artifact = new ArtifactStore().recordFile("download", record.savedPath, { suggestedFilename: record.suggestedFilename, sourceUrl: url });
+    return { ok: true, action: "browser:download-url", data: { savedPath: record.savedPath, suggestedFilename: record.suggestedFilename, mimeType: record.mimeType, bytes: record.sizeBytes, artifactId: artifact.path } };
+  }, options);
 }
 
 function help(): string {
@@ -154,13 +372,16 @@ MCP and compatibility commands:
   web-ai:adapters [--json]
   recipe:list [--json]
   browser:start|browser:open|browser:read|browser:screenshot [--tab-id <id>]
+  browser:click|browser:type|browser:select|browser:press|browser:wait|browser:upload|browser:hover|browser:select-text|browser:drag [--tab-id <id>] [--json]
+  browser:downloads [--profile <name>] [--limit <n>] [--json]
+  browser:download-url --url <absolute-url> [--filename <name>] [--tab-id <id>] [--json]
   recipe <id> --key value
   snapshot:capture --site <site> [--url <url>] [--tab-id <id>]
   snapshot:diff --site <site> --previous <path> --current <path>`;
 }
 
-async function main(): Promise<void> {
-  const [command, ...rest] = process.argv.slice(2);
+export async function main(argv: string[] = process.argv.slice(2)): Promise<void> {
+  const [command, ...rest] = argv;
   const { options, positionals } = parseArgs(rest);
   if (!command || command === "help" || command === "--help" || command === "-h") { console.log(help()); return; }
 
@@ -213,6 +434,19 @@ async function main(): Promise<void> {
   }
   if (command === "browser:profiles") {
     output(new BrowserProfileStore().list(), options);
+    return;
+  }
+  if (command === "browser:downloads") {
+    output(formatDownloadRecords(downloadManager().list({ profile: asString(options.profile), limit: asNumber(options.limit) || 50 })), options);
+    return;
+  }
+  if (command === "browser:download-url") {
+    output(await runBrowserDownloadUrl(options), options);
+    return;
+  }
+
+  if (["browser:click", "browser:type", "browser:select", "browser:press", "browser:wait", "browser:upload", "browser:hover", "browser:select-text", "browser:drag"].includes(command)) {
+    output(await runManagedBrowserAction(command, options), options);
     return;
   }
 
@@ -418,10 +652,12 @@ async function main(): Promise<void> {
   throw new Error(`Unknown command: ${command}`);
 }
 
-main().catch((error) => {
-  const parsed = parseArgs(process.argv.slice(3));
-  const message = error instanceof Error ? error.message : String(error);
-  if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, error: message }, null, 2));
-  else console.error(message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((error) => {
+    const parsed = parseArgs(process.argv.slice(3));
+    const message = error instanceof Error ? error.message : String(error);
+    if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, error: message }, null, 2));
+    else console.error(message);
+    process.exitCode = 1;
+  });
+}

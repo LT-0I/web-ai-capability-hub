@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 import { DownloadRecord } from "../shared/types";
 import { logger } from "../utils/logger";
-import { ensureDir, safeFilename, timestampForFilename } from "../utils/paths";
+import { ensureDir, safeFilename } from "../utils/paths";
 
 function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -14,19 +14,66 @@ function combineFailure(current: string | null, error: unknown): string | null {
   return current ? `${current}; ${next}` : next;
 }
 
+function uniquePath(dir: string, suggestedFilename: string): string {
+  const parsed = path.parse(safeFilename(suggestedFilename));
+  const base = parsed.name || "download";
+  const ext = parsed.ext || "";
+  let candidate = path.join(dir, `${base}${ext}`);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${base}(${index})${ext}`);
+    index += 1;
+  }
+  return candidate;
+}
+
+function statSize(filePath: string): number | undefined {
+  try { return fs.existsSync(filePath) ? fs.statSync(filePath).size : undefined; } catch { return undefined; }
+}
+
+function readJsonFile(filePath: string): any[] {
+  try {
+    if (!fs.existsSync(filePath)) return [];
+    const parsed = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export interface SaveDownloadOptions {
+  profile?: string;
+  tabId?: string;
+  mimeType?: string;
+  sourceUrl?: string;
+}
+
+export interface SaveBufferOptions extends SaveDownloadOptions {
+  filename: string;
+  bytes: Buffer;
+}
+
 export class DownloadManager {
   private records: DownloadRecord[] = [];
+  private manifestPath: string;
 
   constructor(private downloadDir: string) {
     ensureDir(downloadDir);
+    this.manifestPath = path.join(downloadDir, ".downloads.json");
+    this.records = readJsonFile(this.manifestPath) as DownloadRecord[];
   }
 
-  list(): DownloadRecord[] {
-    return [...this.records];
+  list(options: { profile?: string; limit?: number } = {}): DownloadRecord[] {
+    const limit = options.limit ?? 50;
+    return this.records
+      .filter((record) => !options.profile || record.profile === options.profile)
+      .slice(-limit)
+      .reverse()
+      .map((record) => ({ ...record }));
   }
 
-  async saveDownload(download: any, suggestedName?: string): Promise<DownloadRecord> {
-    const id = `download-${this.records.length + 1}`;
+  async saveDownload(download: any, suggestedName?: string, options: SaveDownloadOptions = {}): Promise<DownloadRecord> {
+    const id = `download-${Date.now()}-${this.records.length + 1}`;
     let suggestedFilename = suggestedName || `download-${Date.now()}`;
     let failure: string | null = null;
 
@@ -39,8 +86,7 @@ export class DownloadManager {
       logger.warn({ suggestedFilename, failure }, "Download suggested filename could not be read");
     }
 
-    const fileName = `${timestampForFilename()}-${safeFilename(suggestedFilename)}`;
-    let savedPath = path.join(this.downloadDir, fileName);
+    let savedPath = uniquePath(this.downloadDir, suggestedFilename);
 
     try {
       ensureDir(this.downloadDir);
@@ -104,23 +150,64 @@ export class DownloadManager {
       logger.warn({ suggestedFilename, failure }, "Download failure status could not be read");
     }
 
-    let url: string | undefined;
+    let url = options.sourceUrl;
     try {
-      url = download && typeof download.url === "function" ? download.url() : undefined;
+      url = url || (download && typeof download.url === "function" ? download.url() : undefined);
     } catch (error) {
       failure = combineFailure(failure, error);
       logger.warn({ suggestedFilename, failure }, "Download URL could not be read");
     }
 
+    const createdAt = new Date().toISOString();
     const record: DownloadRecord = {
       id,
+      profile: options.profile,
+      tabId: options.tabId,
       suggestedFilename,
       savedPath,
+      sizeBytes: statSize(savedPath) ?? 0,
+      mimeType: options.mimeType,
+      createdAt,
+      sourceUrl: url,
       url,
-      timestamp: new Date().toISOString(),
+      timestamp: createdAt,
       failure
     };
     this.records.push(record);
+    this.persist();
     return record;
+  }
+
+  async saveBuffer(options: SaveBufferOptions): Promise<DownloadRecord> {
+    ensureDir(this.downloadDir);
+    const savedPath = uniquePath(this.downloadDir, options.filename);
+    fs.writeFileSync(savedPath, options.bytes);
+    const createdAt = new Date().toISOString();
+    const record: DownloadRecord = {
+      id: `download-${Date.now()}-${this.records.length + 1}`,
+      profile: options.profile,
+      tabId: options.tabId,
+      suggestedFilename: path.basename(savedPath),
+      savedPath,
+      sizeBytes: options.bytes.length,
+      mimeType: options.mimeType,
+      createdAt,
+      sourceUrl: options.sourceUrl,
+      url: options.sourceUrl,
+      timestamp: createdAt,
+      failure: null
+    };
+    this.records.push(record);
+    this.persist();
+    return record;
+  }
+
+  private persist(): void {
+    try {
+      ensureDir(this.downloadDir);
+      fs.writeFileSync(this.manifestPath, JSON.stringify(this.records, null, 2), "utf-8");
+    } catch (error) {
+      logger.warn({ error: errorMessage(error), manifestPath: this.manifestPath }, "Download manifest could not be written");
+    }
   }
 }

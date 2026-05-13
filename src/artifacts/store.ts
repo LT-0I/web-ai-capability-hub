@@ -26,4 +26,12 @@ export class ArtifactStore {
     fs.writeFileSync(filePath, JSON.stringify(value, null, 2), "utf-8");
     return { kind, path: filePath, createdAt, metadata };
   }
+
+  recordFile(kind: string, filePath: string, metadata?: Record<string, unknown>): StoredArtifact {
+    const createdAt = new Date().toISOString();
+    const name = `${timestampForFilename(new Date(createdAt))}-${safeFilename(path.basename(filePath))}.json`;
+    const artifactPath = path.join(this.root, name);
+    fs.writeFileSync(artifactPath, JSON.stringify({ kind, path: filePath, createdAt, metadata }, null, 2), "utf-8");
+    return { kind, path: artifactPath, createdAt, metadata: { ...metadata, filePath } };
+  }
 }
