@@ -54,7 +54,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
       pageCount: 0,
       loginLikeState: "not_implemented",
       status: "needs_review",
-      errorCode: ConsumerErrorCodes.INVALID_JSON,
+      errorCode: ConsumerErrorCodes.INVALID_ARGS,
       message: "Missing required target or profile."
     });
   }

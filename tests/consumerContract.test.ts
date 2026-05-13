@@ -128,7 +128,7 @@ test("consumer contract manifest is internally consistent", async () => {
   assert.equal(manifest.package_version, packageJson.version);
   assert.equal(manifest.contract_version, "consumer-contract-1.0.0");
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
-  assert.equal(manifest.error_codes.length, 10);
+  assert.equal(manifest.error_codes.length, 11);
 
   for (const command of manifest.commands) {
     assert.ok(cliSource.includes(`"${command.cli_name}"`), `${command.cli_name} does not resolve in CLI source`);
