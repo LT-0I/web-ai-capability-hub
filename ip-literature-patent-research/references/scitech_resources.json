@@ -1,0 +1,2981 @@
+{
+  "source": "C:\\Users\\13080\\Downloads\\Phone Link\\数字资源导航",
+  "record_count": 158,
+  "science_engineering_count": 109,
+  "subjects": [
+    [
+      "材料科学",
+      38
+    ],
+    [
+      "能源",
+      37
+    ],
+    [
+      "动力工程",
+      37
+    ],
+    [
+      "数学",
+      37
+    ],
+    [
+      "物理",
+      35
+    ],
+    [
+      "计算机科学",
+      35
+    ],
+    [
+      "航空航天民航",
+      35
+    ],
+    [
+      "化学",
+      32
+    ],
+    [
+      "化工",
+      32
+    ],
+    [
+      "信息与通信工程",
+      31
+    ],
+    [
+      "电子电气",
+      30
+    ],
+    [
+      "机械",
+      27
+    ],
+    [
+      "光学",
+      23
+    ],
+    [
+      "土木工程",
+      21
+    ]
+  ],
+  "workflow_groups": [
+    [
+      "reports-books",
+      48
+    ],
+    [
+      "chemistry-materials",
+      44
+    ],
+    [
+      "aerospace-mechanical-civil",
+      42
+    ],
+    [
+      "publisher-fulltext",
+      16
+    ],
+    [
+      "computer-communication",
+      10
+    ],
+    [
+      "open-discovery",
+      9
+    ],
+    [
+      "specialist-resource",
+      7
+    ],
+    [
+      "patent-novelty",
+      6
+    ],
+    [
+      "citation-index",
+      6
+    ]
+  ],
+  "records": [
+    {
+      "title": "SCOAP3 高能物理开放获取期刊",
+      "subject": "物理",
+      "resource_type": "期刊",
+      "source_row": 1,
+      "science_engineering": true,
+      "matched_subjects": [
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "open-discovery"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "欧洲专利局数据库",
+      "subject": "综合",
+      "resource_type": "专利",
+      "source_row": 2,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "专利"
+      ],
+      "workflow_groups": [
+        "patent-novelty"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "美国专利与商标局",
+      "subject": "综合",
+      "resource_type": "专利",
+      "source_row": 3,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "专利"
+      ],
+      "workflow_groups": [
+        "patent-novelty"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "DataBase Systems and Logic Programming（DBLP）",
+      "subject": "计算机科学",
+      "resource_type": "期刊/会议论文",
+      "source_row": 4,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "computer-communication",
+        "open-discovery"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "INSPIRE高能物理学术信息平台",
+      "subject": "物理/数学/光学/能源/动力工程/航空航天民航/材料科学/化学/化工/信息与通信工程/计算机科学/土木工程/机械/电子电气/其它",
+      "resource_type": "期刊/会议论文/其它",
+      "source_row": 5,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "open-discovery"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "OpenSign公益性学术资源服务平台",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/综合/法学/其它/语言/文学/马克思主义",
+      "resource_type": "期刊",
+      "source_row": 6,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "open-discovery"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "中国科技论文在线",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/综合/法学/其它/语言/文学/马克思主义",
+      "resource_type": "期刊",
+      "source_row": 7,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "open-discovery"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "中国科学院PubScholar公益学术平台",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/法学/语言/文学/马克思主义/综合/其它",
+      "resource_type": "期刊/学位论文/图书/其它/会议论文",
+      "source_row": 8,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文",
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "open-discovery",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "PQDT Global数据库",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 9,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "科学导航（Science Navigator）",
+      "subject": "其它",
+      "resource_type": "整合检索工具",
+      "source_row": 10,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [],
+      "priority": 1
+    },
+    {
+      "title": "科学文库",
+      "subject": "综合",
+      "resource_type": "图书",
+      "source_row": 11,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "工程科技数字图书馆",
+      "subject": "综合",
+      "resource_type": "图书",
+      "source_row": 12,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "清华大学出版社文泉学堂电子书",
+      "subject": "综合",
+      "resource_type": "图书",
+      "source_row": 13,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "古扬外文学术资源整合服务系统",
+      "subject": "综合",
+      "resource_type": "期刊/会议论文/学位论文/其它",
+      "source_row": 14,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 2
+    },
+    {
+      "title": "万方产业科技创新服务平台",
+      "subject": "计算机科学/信息与通信工程/航空航天民航/能源/动力工程/社会科学/综合/其它",
+      "resource_type": "其它/整合检索工具/科技报告",
+      "source_row": 15,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "航空航天民航",
+        "能源",
+        "动力工程"
+      ],
+      "matched_resource_types": [
+        "科技报告",
+        "整合检索工具"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "reports-books"
+      ],
+      "priority": 5
+    },
+    {
+      "title": "畅想之星电子书平台",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/综合/法学/其它/语言/文学/马克思主义",
+      "resource_type": "图书",
+      "source_row": 16,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "可知电子书平台",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/综合/法学/其它/语言/文学/马克思主义",
+      "resource_type": "图书",
+      "source_row": 17,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Theses Canada",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 18,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "MIT Theses",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 19,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "EBSCO Open Dissertations",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 20,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "OECD经济合作发展组织在线图书馆",
+      "subject": "能源/动力工程/管理学/经济/法学",
+      "resource_type": "期刊/图书/其它",
+      "source_row": 21,
+      "science_engineering": true,
+      "matched_subjects": [
+        "能源",
+        "动力工程"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "全球科学出版社(Global Science Press)数学电子期刊库",
+      "subject": "计算机科学/化学/化工/材料科学/数学/物理",
+      "resource_type": "期刊",
+      "source_row": 22,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "化学",
+        "化工",
+        "材料科学",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "课程知识图谱与检索研究型数据集",
+      "subject": "综合/其它",
+      "resource_type": "音视频/其它",
+      "source_row": 23,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Cell Press数据库",
+      "subject": "化学/化工/材料科学/能源/动力工程/物理",
+      "resource_type": "期刊",
+      "source_row": 24,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "艺术美育数字图书馆（橙艺）",
+      "subject": "其它",
+      "resource_type": "音视频/其它",
+      "source_row": 25,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Artlib世界艺术鉴赏库",
+      "subject": "其它",
+      "resource_type": "其它",
+      "source_row": 26,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "CUP电子图书数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/数学/物理",
+      "resource_type": "图书",
+      "source_row": 27,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "publisher-fulltext",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "IHS ESDU数据库",
+      "subject": "化学/化工/航空航天民航/机械",
+      "resource_type": "其它",
+      "source_row": 28,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "航空航天民航",
+        "机械"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "航空发动机知识库",
+      "subject": "航空航天民航",
+      "resource_type": "期刊/会议论文/学位论文/其它/科技报告/专利",
+      "source_row": 30,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文",
+        "科技报告",
+        "专利"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "patent-novelty",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "试用AIAA Video Library美国航空航天学会视频图书馆",
+      "subject": "航空航天民航",
+      "resource_type": "音视频",
+      "source_row": 31,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "reports-books"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "全球智库发现系统",
+      "subject": "其它",
+      "resource_type": "其它/信息资讯",
+      "source_row": 32,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "国外军用标准全文服务系统",
+      "subject": "航空航天民航/其它",
+      "resource_type": "标准",
+      "source_row": 33,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "Web of Science™ 核心合集数据库",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 34,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "citation-index"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "尚唯科技报告资源服务系统",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学/管理学/经济/综合/法学/其它/语言/文学/马克思主义",
+      "resource_type": "科技报告",
+      "source_row": 35,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "中文社会科学引文索引",
+      "subject": "社会科学/管理学/经济/其它/语言/文学/马克思主义",
+      "resource_type": "其它",
+      "source_row": 36,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "中科院文献情报中心（国家科学图书馆）",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 37,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "中国知网(CNKI)",
+      "subject": "综合",
+      "resource_type": "期刊/会议论文/标准/学位论文/其它/专利",
+      "source_row": 38,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文",
+        "标准",
+        "专利"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "patent-novelty"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "中国科学引文数据库CSCD数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/其它",
+      "resource_type": "其它",
+      "source_row": 39,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "中国光学期刊网",
+      "subject": "光学/物理",
+      "resource_type": "期刊",
+      "source_row": 40,
+      "science_engineering": true,
+      "matched_subjects": [
+        "光学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "中国共产党思想理论资源数据库",
+      "subject": "社会科学/其它/马克思主义",
+      "resource_type": "图书",
+      "source_row": 41,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "万方数据",
+      "subject": "综合",
+      "resource_type": "期刊/会议论文/学位论文/其它",
+      "source_row": 42,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 2
+    },
+    {
+      "title": "维普中文科技期刊数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 43,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "运筹学和管理学研究协会期刊INFORMSOnlineJournals",
+      "subject": "数学/管理学",
+      "resource_type": "期刊",
+      "source_row": 44,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "知识视界videolibrary视频教育资源库",
+      "subject": "综合",
+      "resource_type": "音视频",
+      "source_row": 45,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Tech Science Press",
+      "subject": "计算机科学/其它",
+      "resource_type": "期刊/图书",
+      "source_row": 46,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "英国皇家学会期刊The Royal Society Online Journals",
+      "subject": "数学/物理/其它",
+      "resource_type": "期刊",
+      "source_row": 47,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "computer-communication",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "英国工程技术学会电子期刊回溯库IDL(IETDigitalLibrary)",
+      "subject": "计算机科学/信息与通信工程/材料科学/能源/动力工程/电子电气",
+      "resource_type": "期刊",
+      "source_row": 48,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials",
+        "computer-communication",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "英国Maney出版公司期刊ManeyPublishingOnlineJournals",
+      "subject": "材料科学/物理/社会科学",
+      "resource_type": "期刊",
+      "source_row": 49,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "知领特色产品数据库",
+      "subject": "综合",
+      "resource_type": "音视频/其它/信息资讯",
+      "source_row": 50,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "悦读•悦学电子书及多媒体资源库",
+      "subject": "综合",
+      "resource_type": "图书/音视频",
+      "source_row": 51,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "壹专利数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "专利",
+      "source_row": 52,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "专利"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "patent-novelty"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "新东方多媒体学习系统",
+      "subject": "语言/文学",
+      "resource_type": "音视频",
+      "source_row": 53,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "特种文献数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "科技报告",
+      "source_row": 54,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "随书资源数据库",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 55,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "日本国立材料科学研究所：材料数据库",
+      "subject": "材料科学",
+      "resource_type": "期刊",
+      "source_row": 56,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "人大复印报刊资料全文数据库",
+      "subject": "社会科学/管理学/经济/其它/语言/文学/马克思主义",
+      "resource_type": "期刊",
+      "source_row": 57,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "青塔全景云数据平台",
+      "subject": "综合",
+      "resource_type": "整合检索工具",
+      "source_row": 58,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [],
+      "priority": 1
+    },
+    {
+      "title": "欧洲数学协会",
+      "subject": "数学",
+      "resource_type": "图书/期刊/音视频",
+      "source_row": 59,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "牛津期刊过刊回溯库（OUP）",
+      "subject": "数学/物理/社会科学/法学",
+      "resource_type": "期刊",
+      "source_row": 60,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "institution直升机特色数据库",
+      "subject": "航空航天民航",
+      "resource_type": "期刊/会议论文/学位论文/其它",
+      "source_row": 61,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "institution会议论文",
+      "subject": "综合",
+      "resource_type": "会议论文",
+      "source_row": 62,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "会议论文"
+      ],
+      "workflow_groups": [],
+      "priority": 2
+    },
+    {
+      "title": "institution硕博士学位论文",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 63,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "美国伯克利电子出版社期刊The Berkeley Electronic Press Journal",
+      "subject": "计算机科学/化学/化工/能源/动力工程/数学",
+      "resource_type": "期刊",
+      "source_row": 64,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "化学",
+        "化工",
+        "能源",
+        "动力工程",
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "龙源期刊报纸数据库",
+      "subject": "社会科学/管理学/经济/其它/语言/文学/马克思主义",
+      "resource_type": "期刊/报纸",
+      "source_row": 65,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "库客音乐数据库",
+      "subject": "其它",
+      "resource_type": "音视频",
+      "source_row": 66,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "抗日战争与近代中日关系文献数据平台",
+      "subject": "社会科学/其它/马克思主义",
+      "resource_type": "期刊/图书/报纸/音视频",
+      "source_row": 67,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "教图Open Access电子期刊",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 68,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "华艺-中国台湾地区学术文献数据库",
+      "subject": "综合",
+      "resource_type": "期刊/学位论文",
+      "source_row": 69,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "航空行业标准全文数据库",
+      "subject": "航空航天民航",
+      "resource_type": "标准",
+      "source_row": 70,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "国研网经济系列数据库",
+      "subject": "管理学/经济",
+      "resource_type": "其它/信息资讯",
+      "source_row": 71,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "国家自然科学基金大数据知识管理服务门户",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/能源/动力工程/数学/物理/管理学/其它",
+      "resource_type": "期刊/会议论文",
+      "source_row": 72,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "国家哲学社会科学文献中心",
+      "subject": "社会科学",
+      "resource_type": "期刊/学位论文",
+      "source_row": 73,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "国家图书馆免费开放数字资源",
+      "subject": "综合",
+      "resource_type": "图书/期刊/报纸/学位论文/会议论文/其它",
+      "source_row": 74,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "国家军用标准全文服务系统",
+      "subject": "信息与通信工程/化学/化工/航空航天民航/能源/动力工程/机械/电子电气",
+      "resource_type": "标准",
+      "source_row": 75,
+      "science_engineering": true,
+      "matched_subjects": [
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "馆藏中文电子图书数据库",
+      "subject": "综合",
+      "resource_type": "图书",
+      "source_row": 76,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "泛研网数据库",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 77,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "读秀学术搜索",
+      "subject": "综合",
+      "resource_type": "图书/整合检索工具",
+      "source_row": 78,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书",
+        "整合检索工具"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 3
+    },
+    {
+      "title": "德国数学文摘",
+      "subject": "数学",
+      "resource_type": "其它",
+      "source_row": 79,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "超星数字图书馆",
+      "subject": "综合",
+      "resource_type": "图书",
+      "source_row": 80,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "超星期刊数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 81,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "超星发现",
+      "subject": "综合",
+      "resource_type": "整合检索工具",
+      "source_row": 82,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [],
+      "priority": 1
+    },
+    {
+      "title": "博学易知资源库",
+      "subject": "综合",
+      "resource_type": "音视频/其它",
+      "source_row": 83,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "北大法宝数据库",
+      "subject": "法学",
+      "resource_type": "期刊/其它",
+      "source_row": 84,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "百链云图书馆",
+      "subject": "综合",
+      "resource_type": "整合检索工具",
+      "source_row": 85,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 3
+    },
+    {
+      "title": "WSN电子期刊数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 86,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Woodhead Publishing电子图书数据库",
+      "subject": "材料科学/航空航天民航/能源/动力工程/机械",
+      "resource_type": "图书",
+      "source_row": 87,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "机械"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Wiley-Blackwell在线图书合集",
+      "subject": "化学/化工/材料科学/能源/动力工程/机械/电子电气/语言/文学",
+      "resource_type": "图书",
+      "source_row": 88,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "publisher-fulltext",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Wiley电子期刊数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 89,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "CPCI",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 90,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "citation-index"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Taylor & Francis科技期刊专辑数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "期刊",
+      "source_row": 91,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Summon资源发现系统",
+      "subject": "综合",
+      "resource_type": "整合检索工具",
+      "source_row": 92,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [],
+      "priority": 1
+    },
+    {
+      "title": "SSCI社会科学引文索引数据库",
+      "subject": "社会科学/管理学/经济",
+      "resource_type": "其它",
+      "source_row": 93,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "SpringerLink综合类学术数据库",
+      "subject": "综合",
+      "resource_type": "期刊/图书",
+      "source_row": 94,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "SPIE 国际光学工程学会数字图书馆",
+      "subject": "计算机科学/信息与通信工程/材料科学/航空航天民航/能源/动力工程/光学/电子电气",
+      "resource_type": "期刊/会议论文",
+      "source_row": 95,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "SIAM 工业和应用数学学会",
+      "subject": "数学",
+      "resource_type": "期刊/图书",
+      "source_row": 96,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Scopus文摘和引文数据库",
+      "subject": "综合",
+      "resource_type": "期刊/图书",
+      "source_row": 97,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "citation-index",
+        "reports-books"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "ScienceOnline科学在线",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 98,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "SCIELO",
+      "subject": "能源/动力工程/计算机科学/信息与通信工程/电子电气/机械/材料科学/化学/化工/物理/数学/土木工程/光学/航空航天民航",
+      "resource_type": "期刊",
+      "source_row": 99,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "computer-communication",
+        "open-discovery",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "SAGE数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 100,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "SAE国际自动机工程师学会",
+      "subject": "计算机科学/信息与通信工程/材料科学/航空航天民航/能源/动力工程/机械/电子电气",
+      "resource_type": "期刊/图书/标准/科技报告",
+      "source_row": 101,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书",
+        "标准",
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "RTCA航空无线电委员会数据库",
+      "subject": "航空航天民航",
+      "resource_type": "标准",
+      "source_row": 102,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "RSC英国皇家化学学会数据库",
+      "subject": "化学/化工/材料科学",
+      "resource_type": "期刊/图书",
+      "source_row": 103,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "材料科学"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Pure and Applied Chemistry",
+      "subject": "化学/化工",
+      "resource_type": "期刊",
+      "source_row": 104,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Proquest学科专辑数据库（原CSA剑桥科学文摘）",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "期刊/其它/科技报告",
+      "source_row": 105,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "Project Euclid",
+      "subject": "数学",
+      "resource_type": "期刊",
+      "source_row": 106,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "PQDT博硕士论文全文库",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 107,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "PNAS美国科学院院报",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 108,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "OPTICA 美国光学出版集团",
+      "subject": "材料科学/光学/物理/电子电气",
+      "resource_type": "期刊/会议论文",
+      "source_row": 109,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学",
+        "光学",
+        "物理",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "Open Access Library (OALib)",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 110,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "NSTL提供的系列数据库",
+      "subject": "综合",
+      "resource_type": "期刊/图书",
+      "source_row": 111,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "NDLTD学位论文数据库",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 112,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Nature系列期刊",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 113,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "MeTeL国外高校多媒体教学资源库",
+      "subject": "综合",
+      "resource_type": "音视频",
+      "source_row": 114,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "JSTOR数据库",
+      "subject": "数学/管理学/经济/法学/其它/语言/文学",
+      "resource_type": "期刊",
+      "source_row": 115,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "J-Stage",
+      "subject": "综合",
+      "resource_type": "期刊/会议论文/学位论文/科技报告",
+      "source_row": 116,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "学位论文",
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "Journal of the IEST环境科学与技术学会志电子期刊",
+      "subject": "其它",
+      "resource_type": "期刊",
+      "source_row": 117,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "JournalsforFree",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 118,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "JCR",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 119,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "IOP英国物理学会",
+      "subject": "计算机科学/信息与通信工程/材料科学/光学/数学/物理",
+      "resource_type": "期刊",
+      "source_row": 120,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "材料科学",
+        "光学",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "IOP（英国物理学会）电子图书数据库",
+      "subject": "计算机科学/信息与通信工程/材料科学/能源/动力工程/数学/物理/电子电气",
+      "resource_type": "图书",
+      "source_row": 121,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "数学",
+        "物理",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Inspec",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 122,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "citation-index",
+        "computer-communication"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "IncoPat专利数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "专利",
+      "source_row": 123,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "专利"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "patent-novelty"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "InCites科研评价数据库",
+      "subject": "综合",
+      "resource_type": "其它",
+      "source_row": 124,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "citation-index"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "IET（英国工程技术学会）电子图书数据库",
+      "subject": "计算机科学/信息与通信工程/航空航天民航/能源/动力工程/物理/土木工程/机械/电子电气",
+      "resource_type": "会议论文/图书/科技报告",
+      "source_row": 125,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "会议论文",
+        "图书",
+        "科技报告"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "computer-communication",
+        "reports-books"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "IEL电子图书（包含IEEE-WILEY、Artech House、MIT、RIVER、PUP、FnT出版社）",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/机械/电子电气",
+      "resource_type": "图书",
+      "source_row": 126,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "computer-communication",
+        "publisher-fulltext",
+        "reports-books"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "IEEE Electronic Library（IEL）数据库",
+      "subject": "计算机科学/信息与通信工程/电子电气",
+      "resource_type": "期刊/会议论文/标准",
+      "source_row": 127,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "computer-communication",
+        "reports-books"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "IMechE现刊库",
+      "subject": "机械",
+      "resource_type": "期刊",
+      "source_row": 128,
+      "science_engineering": true,
+      "matched_subjects": [
+        "机械"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Hrčak-Portal of scientific journals of Croatia",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 129,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Hindawi网络开放资源",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 130,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "HighWire Press电子期刊",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 131,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "HeinOnline法学全文期刊数据库",
+      "subject": "法学",
+      "resource_type": "期刊/图书/其它",
+      "source_row": 132,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "GoOA",
+      "subject": "社会科学",
+      "resource_type": "整合检索工具",
+      "source_row": 133,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "整合检索工具"
+      ],
+      "workflow_groups": [],
+      "priority": 1
+    },
+    {
+      "title": "Frontiers高教社期刊数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/管理学/经济/法学",
+      "resource_type": "期刊",
+      "source_row": 134,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "EThOS",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 135,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Emerald电子期刊数据库",
+      "subject": "社会科学/管理学/经济",
+      "resource_type": "期刊",
+      "source_row": 136,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Emerald回溯内容全国在线",
+      "subject": "社会科学/管理学/经济",
+      "resource_type": "期刊",
+      "source_row": 137,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Elsevier ScienceDirect 数据库",
+      "subject": "综合",
+      "resource_type": "期刊/图书",
+      "source_row": 138,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "图书"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext",
+        "reports-books"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "E-LIS",
+      "subject": "管理学",
+      "resource_type": "期刊",
+      "source_row": 139,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "Ei Village工程索引",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "其它",
+      "source_row": 140,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "citation-index"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "ECS电化学学会期刊",
+      "subject": "化学/化工",
+      "resource_type": "其它",
+      "source_row": 141,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "EBSCO学术期刊、商业信息数据库",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 142,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "DOAJ",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 143,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "open-discovery"
+      ],
+      "priority": 0
+    },
+    {
+      "title": "DART-EuropeE-thesesPortal(欧洲学位论文库)",
+      "subject": "综合",
+      "resource_type": "学位论文",
+      "source_row": 144,
+      "science_engineering": false,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "学位论文"
+      ],
+      "workflow_groups": [],
+      "priority": 0
+    },
+    {
+      "title": "CUP剑桥期刊在线",
+      "subject": "综合",
+      "resource_type": "期刊",
+      "source_row": 145,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "CRC电子图书数据库",
+      "subject": "材料科学/能源/动力工程/数学/土木工程/电子电气/经济",
+      "resource_type": "图书",
+      "source_row": 146,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学",
+        "能源",
+        "动力工程",
+        "数学",
+        "土木工程",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "图书"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "CADAL大学数字图书馆国际合作计划",
+      "subject": "综合",
+      "resource_type": "期刊/图书/报纸/学位论文/音视频",
+      "source_row": 147,
+      "science_engineering": true,
+      "matched_subjects": [],
+      "matched_resource_types": [
+        "期刊",
+        "学位论文",
+        "图书"
+      ],
+      "workflow_groups": [
+        "reports-books"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "ASTM标准数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气",
+      "resource_type": "标准",
+      "source_row": 148,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "ASME美国机械工程师学会",
+      "subject": "材料科学/能源/动力工程/机械/电子电气",
+      "resource_type": "期刊/会议论文",
+      "source_row": 149,
+      "science_engineering": true,
+      "matched_subjects": [
+        "材料科学",
+        "能源",
+        "动力工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "ASCE美国土木工程学会",
+      "subject": "土木工程",
+      "resource_type": "期刊/会议论文",
+      "source_row": 150,
+      "science_engineering": true,
+      "matched_subjects": [
+        "土木工程"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "arXiv.org--预印本文献库",
+      "subject": "计算机科学/物理/数学/管理学/经济/其它",
+      "resource_type": "其它",
+      "source_row": 151,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [],
+      "workflow_groups": [
+        "computer-communication",
+        "open-discovery"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "APS美国物理学会",
+      "subject": "物理",
+      "resource_type": "期刊",
+      "source_row": 152,
+      "science_engineering": true,
+      "matched_subjects": [
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Annual Reviews综述类期刊数据库",
+      "subject": "计算机科学/信息与通信工程/化学/化工/材料科学/航空航天民航/能源/动力工程/光学/数学/物理/土木工程/机械/电子电气/社会科学",
+      "resource_type": "期刊/其它",
+      "source_row": 153,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程",
+        "化学",
+        "化工",
+        "材料科学",
+        "航空航天民航",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理",
+        "土木工程",
+        "机械",
+        "电子电气"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "chemistry-materials",
+        "publisher-fulltext"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Annals of Mathematics（数学纪事）电子期刊",
+      "subject": "数学",
+      "resource_type": "期刊",
+      "source_row": 154,
+      "science_engineering": true,
+      "matched_subjects": [
+        "数学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "specialist-resource"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "AIP美国物理联合会",
+      "subject": "化学/化工/材料科学/能源/动力工程/光学/数学/物理",
+      "resource_type": "期刊",
+      "source_row": 155,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "材料科学",
+        "能源",
+        "动力工程",
+        "光学",
+        "数学",
+        "物理"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "AIAA美国航空航天学会",
+      "subject": "航空航天民航/能源/动力工程",
+      "resource_type": "期刊/会议论文/图书/标准",
+      "source_row": 156,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航",
+        "能源",
+        "动力工程"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文",
+        "图书",
+        "标准"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil",
+        "reports-books"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "AHS美国直升机学会会刊",
+      "subject": "航空航天民航",
+      "resource_type": "期刊",
+      "source_row": 157,
+      "science_engineering": true,
+      "matched_subjects": [
+        "航空航天民航"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "aerospace-mechanical-civil"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "ACS美国化学会",
+      "subject": "化学/化工/材料科学",
+      "resource_type": "期刊",
+      "source_row": 158,
+      "science_engineering": true,
+      "matched_subjects": [
+        "化学",
+        "化工",
+        "材料科学"
+      ],
+      "matched_resource_types": [
+        "期刊"
+      ],
+      "workflow_groups": [
+        "chemistry-materials"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "ACM美国计算机协会数据库",
+      "subject": "计算机科学/信息与通信工程",
+      "resource_type": "期刊/会议论文",
+      "source_row": 159,
+      "science_engineering": true,
+      "matched_subjects": [
+        "计算机科学",
+        "信息与通信工程"
+      ],
+      "matched_resource_types": [
+        "期刊",
+        "会议论文"
+      ],
+      "workflow_groups": [
+        "computer-communication"
+      ],
+      "priority": 8
+    }
+  ]
+}
