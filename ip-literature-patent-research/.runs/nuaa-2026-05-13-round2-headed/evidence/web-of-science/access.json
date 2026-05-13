@@ -1,0 +1,15 @@
+{
+  "activation_steps": [
+    "open home_url",
+    "try visible IP/institutional login"
+  ],
+  "selectors": {},
+  "observed_labels": [],
+  "screenshot_path": "evidence/web-of-science/screenshots/access.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Home opened through warm CDP; IP/institution login clicked=False.",
+  "captured_at": "2026-05-13T11:55:45.996072+00:00",
+  "page_title": "Smart Search - Web of Science Core Collection",
+  "url_redacted": "https://www.webofscience.com/wos/woscc/smart-search"
+}

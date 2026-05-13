@@ -1,0 +1,21 @@
+{
+  "activation_steps": [
+    "inspect UI links for OpenURL/API/DOI; do not exercise APIs"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Cao Z, Chen G (2025) Enhanced deep reinforcement learning for integrated navigation in multi-UAV systems. Chin J Aeronaut. https://doi.org/10.1016/j.cja.2025.103497 9 ",
+    "Jiang J et al (2025) Path planning in dynamic structured environments using transformer-enabled twin delayed deep deterministic policy gradient for mobile robots in simulation. Int",
+    "Cao Z, Chen G (2025) Enhanced deep reinforcement learning for integrated navigation in multi-UAV systems. Chin J Aeronau https://doi.org/10.1016/j.cja.2025.103497 ",
+    "Jiang J et al (2025) Path planning in dynamic structured environments using transformer-enabled twin delayed deep determ https://doi.org/10.1007/s11370-025-00620-2 ",
+    "Farid G et al (2025) A reinforcement learning approach for multi-goal motion planning of autonomous ground vehicles in c https://doi.org/10.1007/s11370-025-00622-0 ",
+    "Rocha LGS et al (2025) Dynamic Q-planning for online UAV path planning in unknown and complex environments. Int J Intell https://doi.org/10.1007/s41315-025-00457-z "
+  ],
+  "screenshot_path": "evidence/springer-link/screenshots/api_openurl.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "OpenURL/API/DOI pattern observed; endpoint not exercised.",
+  "captured_at": "2026-05-13T12:02:35.603806+00:00",
+  "page_title": "A modified double DQN for UAV path planning: dynamic reward shaping and heuristic-guided tie-breaking | Intelligent Service Robotics | Springer Nature Link",
+  "url_redacted": "https://link.springer.com/article/10.1007/s11370-026-00712-7"
+}

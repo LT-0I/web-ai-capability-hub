@@ -1,0 +1,1226 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [],
+    "result_evidence": {
+      "text_sample": " 总库 检索 CNKI AI 出版来源 我的CNKI\n  充值 会员 \n 南京航空航天大学 个人登录\n主题 \n×\n结果中检索\n检索设置\n总库\n1274\n中文\n外文\n学术期刊\n333\n学位论文\n926\n会议\n10\n报纸\n0\n年鉴\n图书\n0\n专利\n标准\n0\n法律法规\n主题\n主要主题\n次要主题\n 无人机 (697)\n 路径规划 (368)\n 深度强化学习 (139)\n 强化学习 (134)\n 多无人机 (110)\n 算法研究 (79)\n 方法研究 (62)\n 无人机集群 (53)\n 航迹规划 (42)\n 策略研究 (38)\n来源类别\n 北大核心 (204)\n WJCI (200)\n CSCD (176)\n EI (95)\n学科\n年度\n时间文献量\n研究层次\n文献类型\n文献来源\n作者\n文献量H指数\n机构\n基金\nOA出版\n推广 X\n\t\n检索范围： 总库 主题：无人机 路径规划 强化学习 主题定制 检索历史\n共找到 1,274 条结果 1/64 >>\n全选 已选 0 清除\n批量操作\n导出与分析\n \n显示 \n20 \n排序：\n相关度 发表时间 被引 下载 综合\n\t题名\t作者\t来源\t发表时间\t数据库\t被引\t下载\t操作\n1\t基于多智能体强化学习的无人机集群协同综述 网络首发\t方伟;田源;徐涛;付宇鹏\t\n\n计算机工程与应用\n\n\t2026-05-13 14:09\t期刊\t\t\t\n下载 \nHTML阅读 \n \n \nCNKI AI阅读\n2\t强化学习在无人机辅助通信抗干扰中的研究与应用综述 网络首发\t黄绣娟;张一闻;王皓宇\t\n\n计算机工程与应用\n\n\t2026-05-13 13:53\t期刊\t\t\t\n下载 \nHTML阅读 \n \n \nCNKI AI阅读\n3\t面向铁路双无人机协同巡检轨迹优化的多智能体强化学习方法 网络首发\t黄高勇;宋俊;方旭明;闫莉;何蓉\t\n\n电子与信息学报\n\n\t2026-05-11 18:40\t期刊\t\t\n21\n\t\n下载 \n原版阅读 \n \n \nCNKI AI阅读\n4\t基于双层强化学习的异构多无人机任务规划 网络首发\t付星桐;吴亚辉;马武彬;周浩浩;戴超凡\t\n\n计算机科学\n\n\t2026-04-28 16:48\t期刊\t\t\n195\n\t\n下载 \nHTML阅读 \n \n \nCNKI AI阅读\n5\t融合图神经网络与课程学习的DRL多无人机路径规划实验 网络首发\t傅明建;陈文涛;卓晓鑫;陈恒升;陈飞\t\n\n实验技术与管理\n\n\t2026-04-28 08:49\t期刊\t\t\n123\n\t\n下载 \nHTML阅读 \n \n \nCNKI AI阅读\n6\t无人机物流配送虚拟仿真实验平台建设 网络首发\t刘思璐;何宗兴;张则强\t\n\n实验技术与管理\n\n\t2026-04-27 13:37\t期刊\t\t\n167\n\t\n下载 \nHTML阅读 \n \n \nCNKI AI阅读\n7\t面向低空应急救援的多维态势感知与无人机集群智能协同管控技术研究\t张恩",
+      "results_count": "1,274 条",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "总库 检索 CNKI AI 出版来源 我的CNKI 充值 会员 南京航空航天大学 个人登录",
+          "selector": "#cnki-logo",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.cnki.net/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "总库",
+          "label": "总库",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/starter/index"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索",
+          "label": "检索",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kns8s/search"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CNKI AI",
+          "label": "CNKI AI",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ai.cnki.net/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "出版来源",
+          "label": "出版来源",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://navi.cnki.net/knavi/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "我的CNKI",
+          "label": "我的CNKI",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/myspace/collect"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "会员",
+          "label": "会员",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://member.cnki.net/"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "无人机 路径规划 强化学习",
+          "label": "中文文献、外文文献",
+          "selector": "#txt_search",
+          "placeholder": "中文文献、外文文献",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "button",
+          "text": "",
+          "label": "主题 ×",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "结果中检索",
+          "label": "主题 × 结果中检索 检索设置",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索设置",
+          "label": "主题 × 结果中检索 检索设置",
+          "selector": "#searchset",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "总库 1274",
+          "label": "总库 1274 中文 外文",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "中文",
+          "label": "中文 外文",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "外文",
+          "label": "中文 外文",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "学术期刊 333",
+          "label": "学术期刊 333",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "学位论文 926",
+          "label": "学位论文 926",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "会议 10",
+          "label": "会议 10",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "报纸 0",
+          "label": "报纸 0",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "年鉴",
+          "label": "年鉴",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "图书 0",
+          "label": "图书 0",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "专利",
+          "label": "专利",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "标准 0",
+          "label": "标准 0",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "法律法规",
+          "label": "法律法规",
+          "selector": "a[name=\"classify\"]",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "更多资源",
+          "selector": "#more",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0);"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "主题 主要主题 次要主题 无人机 (697) 路径规划 (368) 深度强化学习 (139) 强化学习 (134) 多无人机 (110) 算法研究 (79) 方法研究 (62) 无人机集群 (53) 航迹规划 (42)",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "主要主题",
+          "label": "只对前4万条记录分组",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "次要主题",
+          "label": "只对前4万条记录分组",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "无人机",
+          "label": "无人机",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "无人机",
+          "label": "无人机",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "路径规划",
+          "label": "路径规划",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "路径规划",
+          "label": "路径规划",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "深度强化学习",
+          "label": "深度强化学习",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "深度强化学习",
+          "label": "深度强化学习",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "强化学习",
+          "label": "强化学习",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "强化学习",
+          "label": "强化学习",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "多无人机",
+          "label": "多无人机",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "多无人机",
+          "label": "多无人机",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "算法研究",
+          "label": "算法研究",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "算法研究",
+          "label": "算法研究",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "方法研究",
+          "label": "方法研究",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "方法研究",
+          "label": "方法研究",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "无人机集群",
+          "label": "无人机集群",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "无人机集群",
+          "label": "无人机集群",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "航迹规划",
+          "label": "航迹规划",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "航迹规划",
+          "label": "航迹规划",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "策略研究",
+          "label": "策略研究",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "策略研究",
+          "label": "策略研究",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "无人机 (697) 路径规划 (368) 深度强化学习 (139) 强化学习 (134) 多无人机 (110) 算法研究 (79) 方法研究 (62) 无人机集群 (53) 航迹规划 (42) 策略研究 (38)",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "P01",
+          "label": "北大核心",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "北大核心",
+          "label": "北大核心",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "P12",
+          "label": "WJCI",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "WJCI",
+          "label": "WJCI",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "P0210",
+          "label": "CSCD",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CSCD",
+          "label": "CSCD",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "P0202",
+          "label": "EI",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "EI",
+          "label": "EI",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "推广 X",
+          "label": "关闭",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://a.cnki.net/gw/api/get/pdf/ads/v1/pdf/2025/7/4fb7a81d01a2455d855f0d24e8d91306.pdf"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=mV2q5OJ_OLyNTtdERpquCECIs13Ekvq2dBsXEhTypJIBwE7j7Guixx0I9nyIWTzICGQk1Jk044vm70m4_OA-6bnZ8rbRAegmCN7I9I3_6Q4jIDyTXTL4UzUUCiXfT2YF6PeCwG5DK5fsSd8rnXkfQEkCrDyS096BgC3SDTpsL8Qr96cWSQc-WA==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "主题：无人机 路径规划 强化学习",
+          "label": "主题：无人机 路径规划 强化学习",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "主题定制",
+          "label": "检索范围： 总库 主题：无人机 路径规划 强化学习 主题定制 检索历史",
+          "selector": "#btnSubscribe",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索历史",
+          "label": "检索范围： 总库 主题：无人机 路径规划 强化学习 主题定制 检索历史",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": ">>",
+          "label": "键盘的“← →”可以实现快速翻页",
+          "selector": "#Page_next_top",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "全选",
+          "selector": "#selectCheckAll1",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "清除",
+          "label": "全选 已选 0 清除",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:$(this).filenameClear();"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "批量操作",
+          "label": "批量操作",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "导出与分析",
+          "label": "导出与分析",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgicUBT9HeNn7ksSVpEnKWHZ8XMdyAy0C5KQrpBP4A5p0VQaBrY7S9XkpoIwjfAktEnKX8H-zThafoXFu3hRPWoVX",
+          "label": "1",
+          "selector": "input[name=\"CookieName\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "基于多智能体强化学习的无人机集群协同综述",
+          "label": "基于多智能体强化学习的无人机集群协同综述 网络首发",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAhvWo9VknwXbDuABCD4FJZTaEkjURmsblys8qMZt-dhUwQtdoGWK1Dp2ebMB37kBCXB2j5SfU8rJQbWCO_2uL7fhGMvCCfgLXTZLK-x3BsXze1UfRl9qWfXgRqSfKPh37y0tTka63mLKeLUfPWrLwxAu2lamjl8d680eGZcfJ1oTA==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "方伟",
+          "label": "方伟;田源;徐涛;付宇鹏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhvWo9VknwXbLjEeFwa2f7dBbpCyQYA66ObniM_t6S4CU2no9oUbmpT1Uq_C9LxLmtlF5Mck4nXxrDcUBL9xo0X6Ytj1nKMfv6gs3BdmLxD_g==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "田源",
+          "label": "方伟;田源;徐涛;付宇鹏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhvWo9VknwXbLjEeFwa2f7dYabtgOoWyM4457MI4vyZnYWf2kOIGcGhSg-pK8zR_KERUwpHBJMVOBB1QpsjXV3DXRRhtGao6CgSRj5Qc_Y8cw==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "徐涛",
+          "label": "方伟;田源;徐涛;付宇鹏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhvWo9VknwXbLjEeFwa2f7dmsiAbbzPXTZwTlKyQ6fBOG9DKyMlyHvgT0eH4TggzGKn1Yg5DrUtL-5ET1NhHcNueoQcKQFlY8JhfzKp4aTkTA==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "付宇鹏",
+          "label": "方伟;田源;徐涛;付宇鹏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhvWo9VknwXbLjEeFwa2f7dnu3EOt_4pHdzh23C-I0x1S1YRoydTUK60iieySF7M6xkDwp52WK-ll1dnSs4DQ_yuc1RW5uSmacQjEjneQGG-KuxGrBxW1Ta&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "计算机工程与应用",
+          "label": "计算机工程与应用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb41LmkOgjVFR2zJY1uCKc8feFrO307gV34MKdftp9qx11HLRzHvtDkgaArTlS9yj47BkNwr5TUgC3nZ92uqwNu3ZjtHjVj2hrw=&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "下载",
+          "label": "下载",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvvwZkb%2Fr%2FGzWXNmyJA%2By52fDBchzJmSc54p7jIQBX704nxxzYx1LyAbLeiN2wV1JlYaSLSaYS7l2NeXPGxMEYKn108bZxJjxE8eLyrWccWztddf4X0FJRE7GpN0BSoEjI01GOtvuhabc8H%2BYsVzSAKEUoRZK8ajwE5MtpquVRMyBgcYKzdxdLJ8Zh%2FQa10Mge9mgOfULjE7dEwWiatrq%2BZCPrNqMJKpFPk2AUb0HByGXIZ6rcYF%2Bc4XCA%2FG1bpUMG%2F8UiLQtH%2Fsty2tz4so8aAg%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "HTML阅读",
+          "label": "HTML阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvvwZkb%2Fr%2FGzWXNmyJA%2By52fDBchzJmSc54p7jIQBX704nxxzYx1LyAbLeiN2wV1JlWw21r6Lja4snF400uvHfvskYtjA6tzYQsRv3YDLcraokQ430CZHm50fdpAYRtLtUAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BDMzAGKk%2FAwoNng4ymlONpH%2Bvlr6P8oFdLzuS4K8VPXopYy1H%2FyYpGUFgKxgqeWkfnrb7gGdfNflDJ4i8No3F8QdbSaZKvySRRHlDqDd2cdj&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "收藏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "引用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CNKI AI阅读",
+          "label": "CNKI AI阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ai.cnki.net/study?cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgicUBT9HeNn7ksSVpEnKWHZ8XMdyAy0C5KQrpBP4A5p0VQaBrY7S9XkpoIwjfAktEnKX8H-zThafoXFu3hRPWoVX&mimetype=XML&language=CHS"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgicUBT9HeNn7ksSVpEnKWHZ8SN2jM1uX4T3PlGV3jh-lRgaBrY7S9XkpoIwjfAktEnKX8H-zThafoXFu3hRPWoVX",
+          "label": "2",
+          "selector": "input[name=\"CookieName\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "强化学习在无人机辅助通信抗干扰中的研究与应用综述",
+          "label": "强化学习在无人机辅助通信抗干扰中的研究与应用综述 网络首发",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAhAb6H9cP-HZ6e76iBhZmK9h6soMK0z9xjv0u9YBN89BqdADwWwyAfVBAY8sXB8OIrLOgcJLY8luDsYG-Ww1vh-FVBb4mLjST3_x7LBV_f0hBLbtZGWkmYOzB2AQVihX_4LOfe61QOF9M9ttldDL9DzX38PZy6mzZQxsClHJ_Jhgg==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "黄绣娟",
+          "label": "黄绣娟;张一闻;王皓宇",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhAb6H9cP-HZzGvlnExa5RMY7Xoz61G_enPHLUqPLh-9voXCmbgK1mWnVE9Fmbre61xFi6l1Ex-H1AdQ3y_aAFwfep82lmHLfg8jH_xLnZq7X-DXNqSBjtt&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "张一闻",
+          "label": "黄绣娟;张一闻;王皓宇",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhAb6H9cP-HZzGvlnExa5RMnR9qc3FYcAuUNC0SoUwAmGacr0J_IrpUxFjwfPFJvxYa5KZt_Tdai6QYgAKaQzkXO6spgGfwa7gF7EdfJdNKHqOvf4u_KgI0&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "王皓宇",
+          "label": "黄绣娟;张一闻;王皓宇",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhAb6H9cP-HZzGvlnExa5RMTiHjJtX-eT6QuL9d1qQJ7yWTxVZ0msHJRNBAYU7D4ONvdmT7FCGqywScVejEanR3Ihfn_2oDDMzFJHDmq9GfwgghjY4LoNvW&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "计算机工程与应用",
+          "label": "计算机工程与应用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb7N4KwroOSGKB_ewSedqPSDA9_MqBYqAqfZqBY4H6fX33oB0mzGTRIG23xPW_i75qv4td_HqNTCJFI4NqkfFiHsV7E2mV5Gzyg=&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "下载",
+          "label": "下载",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvvwZkb%2Fr%2FGzWXNmyJA%2By52fDBchzJmSc54p7jIQBX704nxxzYx1LyAbLeiN2wV1JlQ5j5DulecjcFGiXP%2BAxEFb108bZxJjxE8eLyrWccWztddf4X0FJRE7GpN0BSoEjI01GOtvuhabc8H%2BYsVzSAKEUoRZK8ajwE5MtpquVRMyBgcYKzdxdLJ8Zh%2FQa10Mge9mgOfULjE7dEwWiatrq%2BZCPrNqMJKpFPk2AUb0HByGXIZ6rcYF%2Bc4XCA%2FG1bpUMG%2F8UiLQtH%2Fsty2tz4so8aAg%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "HTML阅读",
+          "label": "HTML阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvvwZkb%2Fr%2FGzWXNmyJA%2By52fDBchzJmSc54p7jIQBX704nxxzYx1LyAbLeiN2wV1JlcT8NsVkNPUDZDEoLA5WBZ0kYtjA6tzYQsRv3YDLcraokQ430CZHm50fdpAYRtLtUAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BDMzAGKk%2FAwoNng4ymlONpH%2Bvlr6P8oFdLzuS4K8VPXopYy1H%2FyYpGUFgKxgqeWkfnrb7gGdfNflDJ4i8No3F8QdbSaZKvySRRHlDqDd2cdj&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "收藏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "引用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CNKI AI阅读",
+          "label": "CNKI AI阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ai.cnki.net/study?cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgicUBT9HeNn7ksSVpEnKWHZ8SN2jM1uX4T3PlGV3jh-lRgaBrY7S9XkpoIwjfAktEnKX8H-zThafoXFu3hRPWoVX&mimetype=XML&language=CHS"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgie9zPwi7YdOvaVdZk59TxBM3XuJbN30iZYlilMFXJliuf15U4RVk_tCm67MCfzPBes!",
+          "label": "3",
+          "selector": "input[name=\"CookieName\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "面向铁路双无人机协同巡检轨迹优化的多智能体强化学习方法",
+          "label": "面向铁路双无人机协同巡检轨迹优化的多智能体强化学习方法 网络首发",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAiPpzxDPz49qJfP_AUWZpHwpfsy1zAEoqybtpyo1ILyyp7d3RM7CKsU1Ql1Ci5-AEEgAK1vVSXvkz3mCe6Vq-58tSim213RxtXviadCKP5QmPgSsRA2gTYl3H9gwWxgeTktw5_fq3P5hhhcFPyfT8llTLQLJD55QVcR5ynmAw_9-g==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "黄高勇",
+          "label": "黄高勇;宋俊;方旭明;闫莉;何蓉",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4oKw-LRzUs1KRmNu4bdM-qoSsQ89Aj41WUpZrjy4nkdl4aPslkYzilD7ZhHX4YFJT9g9UeZJMEjLkr_4M3FM9ZFmo3a6Bhxtw&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "宋俊",
+          "label": "黄高勇;宋俊;方旭明;闫莉;何蓉",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4Vt3upQaSQjwJccxSV_e3ZcI5xzKyvu8SC2SkMvEqFIcLMU12p-lTS5R6jzFTI2qz3dBcpAO80hOKcRpRLDau8Q==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "方旭明",
+          "label": "黄高勇;宋俊;方旭明;闫莉;何蓉",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4Ug9rhj04J8K_VjqYlAUKNSzCULiAQ4EF7pLd7jvqMdskvWz8q-bkyba67CP5jvzMWY1qRJzqqPEZu2-88SHhuoASZCC3knxc&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "闫莉",
+          "label": "黄高勇;宋俊;方旭明;闫莉;何蓉",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG40URis5gnmjfbLQCKlbSCyv8mYZNvkH6eKfeSwkiY57RSBd9a1VjFDJdXU4IOU3Ud7EDXBHyqhS07g-26H3oQJA==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "何蓉",
+          "label": "黄高勇;宋俊;方旭明;闫莉;何蓉",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4YOCtIIpkdbJ8_FOoflWWlrMcGFVd9XMtSMsnqHmL49NzGOkbm8HF_zMrsUCFsdd6WkZiyniYF_eMJhDUGWX0cw==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "电子与信息学报",
+          "label": "电子与信息学报",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb5Q9tR5RRIF70wVUFLUanBhqIWP26zcmzgczHn8L7xEB9s-DCA0YSdqnYD_DRUaDDIYyEqLNJdWUmiZalL8ZTBvf0f5JwjO1AI=&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "21",
+          "label": "21",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0);"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "下载",
+          "label": "下载",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXTFhocgqvkJD%2BP6q86c8HSpcvneTav29NasPIXPbeMmvw7Umt9nDzwy31%2BirqzzeUyG0GXHRF7B1SqLFn5ESzMbR%2B7uf%2FUq5onmDkPfYmN%2FzIRUHBpmYiWZCdd8rlvRr0temyntYlIwQNke5uJ8l9TgKrAkbRmPo%2B9DN1UCqlfHX6XsUhLsVyd1vJG94nr%2FeXiA7cODlm1RWFCfYtMPpK5Z07Hz2mrAJlVEnT09Lh1Nc%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "原版阅读",
+          "label": "原版阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXTFhocgqvkJD%2BP6q86c8HSs1xi49u5d75uuuJ7e5ElsJMzZWlMph9uYCAdD7dBNl1Tx9iFkWJMKeDp8pM33mgWloI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP7PI5ONZ70NTlzcffqWBX3mqT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "收藏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "引用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CNKI AI阅读",
+          "label": "CNKI AI阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ai.cnki.net/study?cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgie9zPwi7YdOvaVdZk59TxBM3XuJbN30iZYlilMFXJliuf15U4RVk_tCm67MCfzPBes!&mimetype=PDF&language=CHS"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgieEJm9sbpW-_7_URKftxUIFhP_6AoFHrp1AT_izoUWkWf15U4RVk_tCm67MCfzPBes!",
+          "label": "4",
+          "selector": "input[name=\"CookieName\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "基于双层强化学习的异构多无人机任务规划",
+          "label": "基于双层强化学习的异构多无人机任务规划 网络首发",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAgHdm0cJhHL9Kd-gSab8viNc9p9_uhYo96-FpIApCrMHwXozc7xkw8v-zDxxDWPqb4EW9vbMNvs9lo6P9nc7REhfuiPals9sHfWyUseqnJHrq-oo0uXJ8ctuoBaQu5qDMB4CQUw4V_y7ibkzzVIdlwjkZrJEEFOjt1xv64hrOb3jw==&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "付星桐",
+          "label": "付星桐;吴亚辉;马武彬;周浩浩;戴超凡",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4tTbsSExLKdUJmD6lUYR1jXq1V3TgmEUBmiDKb-hchneOVFq4wn19VFxgTtDrxFZBSbPcavHd0qqx87RkmDzuMNxRyIGzNBuy&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "吴亚辉",
+          "label": "付星桐;吴亚辉;马武彬;周浩浩;戴超凡",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4c3xKCtwjh-n3Uizt0EpihjnUnhpOH5FaQKorwF9WJs3lYCB88lg1EpZ4nlqjnEBzkEc4e7VXCgl1kTpiILHw-H4BSnXDbq88&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "马武彬",
+          "label": "付星桐;吴亚辉;马武彬;周浩浩;戴超凡",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG49RgSvRyM8WuEi08wV0NlCZGyL8IIYDeRAAtkxplEmOkmSacMXpp0Ziel3qh0kEYWxbX0PizdihiIF0JPCDqkTs3WzBcgZ2fG&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "周浩浩",
+          "label": "付星桐;吴亚辉;马武彬;周浩浩;戴超凡",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG42ortF5JRE-y41o__SBlZRjCebG89YpTBvxLHragBbD2Zgw3yByXMZYxUR-j2BA2hQexQTxEowQ1xab40jAbfkEkn0YbjToi-&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "戴超凡",
+          "label": "付星桐;吴亚辉;马武彬;周浩浩;戴超凡",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAiPpzxDPz49qGqZFd81QXG4Ntc-gtwKfo30TG_ozUMUUOjYJ85NC_EZwHSXQdxqrWsWVe461YwNQynzLwg5M6Op3Ntyj20TCn7KdyiudzK8kZhe2fQ_sbYI&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "计算机科学",
+          "label": "计算机科学",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb4HQbXL32sUIx25kTzk8Y2HgdTdMtXM5-CZStxF-F-0bgLEAGzi2ToniGO9wKA-tX_l6roxJufkVJEtbA9KzBbtC0QK5pdUBLQ=&uniplatform=NZKPT&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "195",
+          "label": "195",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0);"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "下载",
+          "label": "下载",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXuxYH%2BJJMUmLR7FwjoXowuNjCYZ9ylMnQG8t1TOShIkLw7Umt9nDzwy31%2BirqzzeUyG0GXHRF7B1SqLFn5ESzMbR%2B7uf%2FUq5onmDkPfYmN%2FzIRUHBpmYiWZCdd8rlvRr0temyntYlIwQNke5uJ8l9Thqt8PY1ACwyJj7uIdm6qRz6XsUhLsVyd1vJG94nr%2FeXiA7cODlm1RWFCfYtMPpK5Z07Hz2mrAJlVEnT09Lh1Nc%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "HTML阅读",
+          "label": "HTML阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXuxYH%2BJJMUmLR7FwjoXowuBXaqNiDfiNcqcUhzO4uNfqOhQ%2FdQlGhf27cmUY4mvFw%2BOnoTFIfY%2F2SwjfB05b4u35Ty4NWPQW7DsbkwrQYomVkRqaapKH5IslUaOzv%2BNve4lZFB%2BJpWQyPSZLOS8E7Xy3sroAJ7nbdqO6f2bVzK0KLsQ5RHPdYnn%2BvflKXUwus%2FZYk0PPQvqK0kifQHgs2k2NXf%2BXfGvtydB%2F1ou8NOGM%3D&language=CHS"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "收藏",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "引用",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "CNKI AI阅读",
+          "label": "CNKI AI阅读",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ai.cnki.net/study?cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgieEJm9sbpW-_7_URKftxUIFhP_6AoFHrp1AT_izoUWkWf15U4RVk_tCm67MCfzPBes!&mimetype=XML&language=CHS"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgif0Ya1yjS3Oy_yVHpzL9C-YhxDUp59Npw7zrPbbJkkv1P15U4RVk_tCm67MCfzPBes!",
+          "label": "5",
+          "selector": "input[name=\"CookieName\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "融合图神经网络与课程学习的DRL多无人机路径规划实验",
+          "label": "融合图神经网络与课程学习的DRL多无人机路径规划实验 网络首发",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAgHdm0cJhHL9Kd-gSab8viNc9p9_uhYo95xQ-V5E1fjF5O8AxFR_pvz39p27ra9zlzOkh2_4YF5-mYxXW3qulDX_7uYQycxudSVufn5BA0TsyB0gKiGUhS6pI40VREvPjB9_c_mY4WXCoDlOSD50xQ4PYDnVoCFsXHuE4PbhCbgHg==&uniplatform=NZKPT&language=CHS"
+        }
+      ],
+      "result_labels": [
+        "学术期刊 333 学术期刊 333 ",
+        "学位论文 926 学位论文 926 "
+      ]
+    }
+  },
+  "observed_labels": [],
+  "screenshot_path": "evidence/cnki/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "not_applicable",
+  "note": "changed=[]",
+  "captured_at": "2026-05-13T11:54:37.314301+00:00",
+  "page_title": "检索-中国知网",
+  "url_redacted": "https://kns.cnki.net/kns8s/defaultresult/index?<redacted-query>"
+}

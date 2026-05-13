@@ -1,0 +1,1890 @@
+{
+  "activation_steps": [
+    "open advanced_search_url"
+  ],
+  "selectors": {
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "总库 检索 CNKI AI 出版来源 我的CNKI 充值 会员 南京航空航天大学 个人登录",
+        "selector": "#cnki-logo",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "总库",
+        "label": "总库",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/starter/index"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索",
+        "label": "检索",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kns8s/search"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CNKI AI",
+        "label": "CNKI AI",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://ai.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "出版来源",
+        "label": "出版来源",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "我的CNKI",
+        "label": "我的CNKI",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/myspace/collect"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "会员",
+        "label": "会员",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://member.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "检索设置",
+        "label": "检索设置",
+        "selector": "#searchset",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "文献分类",
+        "label": "文献分类 文献分类 全选 清除 基础科学 工程科技Ⅰ辑 工程科技Ⅱ辑 农业科技 医药卫生科技 哲学与人文科学 社会科学Ⅰ辑 社会科学Ⅱ辑 信息科技 经济与管理科学",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "全选",
+        "label": "全选 清除",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "清除",
+        "label": "全选 清除",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "主题 精确 ∨",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "作者 精确 ∨",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "-",
+        "label": "AND ∨ 作者 精确 ∨ -",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "+",
+        "label": "+",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "文献来源 精确 ∨",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "-",
+        "label": "AND ∨ 文献来源 精确 ∨ -",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "OA=1",
+        "label": "OA出版",
+        "selector": "input[name=\"OA出版\"]",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "WLSF=2 || NOT!WXZT=2",
+        "label": "网络首发",
+        "selector": "input[name=\"网络首发\"]",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "NPM=ZQ",
+        "label": "增强出版",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "JJWX=Y",
+        "label": "基金文献",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "1",
+        "label": "中英文扩展",
+        "selector": "input[name=\"onlyChecked\"]",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "checkbox",
+        "text": "2",
+        "label": "同义词扩展",
+        "selector": "input[name=\"onlyChecked\"]",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "发表时间 --",
+        "selector": "#datebox0",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "发表时间 --",
+        "selector": "#datebox1",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "重置条件",
+        "label": "重置条件",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0);"
+      },
+      {
+        "tag": "input",
+        "type": "button",
+        "text": "检索",
+        "label": "重置条件",
+        "selector": "input",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": ">>",
+        "label": "查看详细说明",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://piccache.cnki.net/index/helper/manuals.html#frame2-1-2"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "总库",
+        "label": "总库 中文 外文",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "中文",
+        "label": "中文 外文",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "外文",
+        "label": "中文 外文",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "学术期刊",
+        "label": "学术期刊",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "学位论文",
+        "label": "学位论文",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "会议",
+        "label": "会议",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "报纸",
+        "label": "报纸",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "年鉴",
+        "label": "年鉴",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "图书",
+        "label": "图书",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "专利",
+        "label": "专利",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "标准",
+        "label": "标准",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "法律法规",
+        "label": "法律法规",
+        "selector": "a[name=\"classify\"]",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "更多资源",
+        "selector": "#more",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0);"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "热门荐文",
+        "label": "热门荐文",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "最新荐文",
+        "label": "最新荐文",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "热障涂层材料与技术发展综述",
+        "label": "热障涂层材料与技术发展综述",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAj5F7tRS6MhPA2BRq_1WBnJjqYWMg0N4RKxU1LECbcciXOTiMFcSkDKNU66yOQsa31dMl_ZMlM71BXa55k7JcXKJ4cslBXrbblK_J3mrNzVJyHJVcYoM1RelFBy8pSXL5YCJHV9ghiNH_wB8ZRC-6mj69-_2TwMtymi9kd9QAVRWfs41CAziTPH&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "潘伟",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRd380ACk6sYrod9ag4lsDzZyYJZ14S9XNl_UZhhEIzHDTYZMF14o2x34CEa7pvZjGyeRIRl7W9gtdbhfMfx5Zqw==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "刘广华",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRU5CuIINXj5nXl_yNytmAkoSsDV4wKNzjxhzw7VQE6qZdvPyjK2driJbsyVgD52rHgygf7WUqD2fV-JrqBJtqMPlTxnnzS9uh&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王炫力",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRWLu8uTb_5_xpjEjNTe8hNOYJK8sUz-pQ9H_JGUCu3IBr8IkBPBKZl4AAJSGxiwrl82ONwzl9cDt-MYCgV15KVtNIG0kVIj6B&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "赵蒙",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRresZNnt5j2VXeVpSVipeOb7P2fq9Rr7ctQe4PJzk_Sy17-LY-gXhzKI-ZfTkpfTmu8wvPDD6sZpECQGDhCXoPA==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "赵长浩",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRmBfxfaYlXxdv2KdfrCF87OIolnXhhfX3XZ_AaaPzcUCmm2NxTBFMv-BVCP3bVNvlMoba1txHv6Meo79Pr_SuNAECeTZ1ZcXg&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "任小瑞",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRBdBh9mSf3-hcu4RnFsjBTkZvF5g-P5rkNhUaY2-2Wbf0OwIsgr06mJ7_gyHm4GPtopud-AWPBBcue1Dn3Lpoj99MFHJEutxd&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王子媛",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRCBT9jRKIMW_pNZlipJjSNKu1yQku8U7_vVlJ10LJMCSH637DHR8QB7BXOR1rsZYjFIBlhvYpCMK8krRJB6xmA_78kNRJjnTk&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "郑怡欣",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRWLu8uTb_5_z6kS0EXSgi3wYzf7ew5as5OnRUOFvRGhUQnsXMw_0EulBzYFTJOWzpz-71DnL0qrE0-hj0V7bLn3cy2hj5OhfL&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "杨军",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRGcmaikuMgK6RycTfKjdfPGmlmVoPw0mimp2z5JO9cr5Bxnm0t1tlC6fiJon65IZuzvVOIGnu9ZZ58VBPSosnGg==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "万春磊",
+        "label": "潘伟;刘广华;王炫力;赵蒙;赵长浩;任小瑞;王子媛;郑怡欣;杨军;万春磊",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAj5F7tRS6MhPF_KYnHBFSVRcVZ6GxtcyOJC83xBNxEv5GlONufj4Ca0uBzvvWGHeasm8jjeTeatjrdcLr2szGnHWngYNJjg92A1WLCfl2Jg-eJDJyTUmhTS&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "热喷涂技术",
+        "label": "热喷涂技术",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb4Cg6roRFrhmqARCXdXGeaAqHfqY_DDP05juD-pFfSgxoL84SJs0BZRTu3iXiIo3tC7CXEfSQwR9v0j5AtQqltbHmOi9AgEpKM=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2025年 01期",
+        "label": "2025年 01期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSDYS4NtzuP4oUQ4tJC7a12MYB%2ByzVc5ruHAEu%2BB8Luwp7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk79M8vM%2FUAIVlusg3e%2FZEIdxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSDYS4NtzuP4oUQ4tJC7a12KyGRyNS8okA29BIlsPGfmeL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsXcyOsNIK6BfWW7qZ05BNy3R4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "X射线光电子能谱（XPS）分析方法中的数据处理",
+        "label": "X射线光电子能谱（XPS）分析方法中的数据处理",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAgSr9A8_zdMYtTB-GR6tb_yIEUsd_yZZqEax5kyxCW9Ut7Qwo5AFPOrlzZZXWDz6HAe2cOFhbZqHQHfzHNYfqT893XO5nL8ATRtIRlf9Np1CLtdVzoUH0n-3Rj7ADapM_3cU7PunPhlYU0AUJ05iW0keZnh19ZK_zVPRezaMaHwBMoe5l775dCl&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "潘燕芳",
+        "label": "潘燕芳;李晓静;廖华平;李东;林晓倩",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgSr9A8_zdMYmDLbafeXtfmCbnmKdJVE5KUwyYiOXvNzYmJfNgR9AO3OlFf8tWgaAUW-n0je3FNuZFBoBEtEBfvedrf6gTKK_jikGFA8WKQLHo9ub5_5452&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "李晓静",
+        "label": "潘燕芳;李晓静;廖华平;李东;林晓倩",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgSr9A8_zdMYmDLbafeXtfmf0qv64mKqqp7MDucWdZOUMj0Yg70qg6fL6X0CoR2l5UJboNtlf8B3zL8ITO73WH-VsScYTL7FKIQZh5ljVrwrJ2HA2KsvzST&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "廖华平",
+        "label": "潘燕芳;李晓静;廖华平;李东;林晓倩",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgSr9A8_zdMYmDLbafeXtfmI9mzh3hGzHrEE9OQvyPfuxrwU8JuZiLhi7PQD19zx3qUIxX_KcqMB-3c9EukyWsaxhmQ1rKK_KJ_HnbyoeIpwCqh62DzDz9z&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "李东",
+        "label": "潘燕芳;李晓静;廖华平;李东;林晓倩",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgSr9A8_zdMYmDLbafeXtfmI9mzh3hGzHrtVrHI6FMIDXMgvF81O_yc3r_vT8vzqNSd8w-mKStUKnXhFvGJYJXozKXElxZ2Y8GuDbCx9UqEcw==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "林晓倩",
+        "label": "潘燕芳;李晓静;廖华平;李东;林晓倩",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgSr9A8_zdMYmDLbafeXtfmuGiEPPoI6O3jkBh3wACGTBCDfhqot3nmY0-xOriAKuNBsYT9pEu-xVct9KjotDTQi_B2dXRRFWu8OUD_ajOfQ9Mr4EgyaPFB&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "中国无机分析化学",
+        "label": "中国无机分析化学",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb6_t3b9qMd8p9yb3qRNilvwCUT59zSlCgG7oi0NEAeNPBrg7LaT1dBaaXnYwrLDz8UJVOFCgvOADAUfoBGmwBqKmFpCTXKhaMQ=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2025年 08期",
+        "label": "2025年 08期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSwUESrYRBdNSBhBuU6wL3AOptjhs9SQVc8fvsHnsANkt7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2BmWu0c9AvvInGgbT176YJtxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSwUESrYRBdNSBhBuU6wL3AKbHj7DomJ%2FCG4HsQi43NVCL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsUzqEI8XWU2elB03jpqAqQuR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "无人机实时摄影测量技术的应用研究与展望",
+        "label": "无人机实时摄影测量技术的应用研究与展望",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAjmGlnSwg4Ji5FYN_bgTW6gVlt_pTMFwG4z9TzNessl-HPylgJE9hWqRpqWh7iT8iokB-ajKwlOxJ_L6W_ZdemOeraI076f4NidWo-BhqIaLHZ6j6DnB2CEmq2TKQz5DwNkhkyjS5ARp8E35uF7Nmgg4zW2fSNP_pLCaG6DGBrD7WUmxM2IOVni&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "黄立鑫",
+        "label": "黄立鑫;苏建龙;李小军;郭瑞霞",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjmGlnSwg4Ji8s7ULabzS3VdQElXYR3Z7J3aAjfaEsPIimKcOxXW8OXWaaQaHRQqd7VolHGgG0TgT7dLMHmMFWOuK-myS9JWBbQpwcLyAd4t-NZoYq3Qaxx&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "苏建龙",
+        "label": "黄立鑫;苏建龙;李小军;郭瑞霞",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjmGlnSwg4Ji8s7ULabzS3VtvpF3Ye1e29gsAZQQveqFZdtjTDYSDqXG_Fg66Q3npYDIbQGO3mPDicmobWAbJ4ntwdn6qSm9beJPDHYj4ehKsWaFh1mPdOB&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "李小军",
+        "label": "黄立鑫;苏建龙;李小军;郭瑞霞",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjmGlnSwg4Ji8s7ULabzS3VtvpF3Ye1e2-p1Mng9LBUSO9uEokXsUd-BW5J0mtBhXV63QlsCopueY6doGCLnL9tlmH5WeyKXM4mxMj4Htw6MYd1AZroBX80&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "郭瑞霞",
+        "label": "黄立鑫;苏建龙;李小军;郭瑞霞",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjmGlnSwg4Ji8s7ULabzS3VtvpF3Ye1e28-dLV4hqwO9LEOc9AAfPBzchl9Umk6lg4GWHGF3c7neXstsJufCx2ZhxGSHeaCp9YCaTXB77DP4mhpzvuJ2TUB&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "有色金属(矿山部分)",
+        "label": "有色金属(矿山部分)",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb6_QrlaZELAZM-OJTCflp45eqlctl_fzG5-MZKhvGBGVeTmmsBB9vTWPk2CBYb_nvSmOMwyusuThOBKgqvbBWaCCAfrnmjQRcI=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2024年 03期",
+        "label": "2024年 03期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0Ktd8hKa9%2F%2BmH1Efy18FvO7G8WCCy4PyU0T3U02Svc1gV7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk9%2Fa9H%2BtRu2Qkgxo4VwOj15xluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0Ktd8hKa9%2F%2BmH1Efy18FvO7CpvgLt1tZpHbmPuhoBLpIqL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsWOSPNnbndV3LMYmTFqdzguR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "稀土掺杂上转换发光材料的研究进展",
+        "label": "稀土掺杂上转换发光材料的研究进展",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAisYiUiMo3S9fCEq-xfcV7-Wa_wFskEu6zKNS-neaBbUyP9jmbWMkhoRrGXUksEHwLKfl8TQ_l-WuJkCoMLaxpFfBccoECo1MRxg1Tzhu1s0K7I58uQ49HcCvEn-pzLFwCuKjtQbZnga3ROE7NSTLewxq4b1Q54DP9zPhQ0B5yoB1L--fZ2mW_d&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "贾松",
+        "label": "贾松;王雪飞;史祎诗",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmYKevoHgGcFdX1NYec65c762NnxWTPrULsoHf-hWmraxdBt3bOnDHGx-3mRnBxMBwJFUttDnEHWNWEco7jsaamZ3b9zsUUEnalOfMFhhraA==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王雪飞",
+        "label": "贾松;王雪飞;史祎诗",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmYKevoHgGcFdX1NYec65c98HUnACcQ6gS2_Tl90z_Z2OQbHggYhAScTTjIH0EIstZn7LTt-OPxhbN_ORQ_z5sIWr7-uVRKjwIqfkbVlAxvEhUGsZn3vTp&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "史祎诗",
+        "label": "贾松;王雪飞;史祎诗",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmYKevoHgGcFdX1NYec65c3YbE0CpHIB_5NUHuifbryMxq7LzBEiKFyUin7uQMc2m-544Gmi3JYudwIlYjsNl1HLLrFi2aqIsDvKo55WB1N3IerJmy8MkP&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "工程研究——跨学科视野中的工程",
+        "label": "工程研究——跨学科视野中的工程",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb77fiFsM7Q5miAr81qL9FnQN5K5HL71Gu4EuOULZP_0ek0EXw6hZBnmqZRyChjF3TgI57QX1Yi-XukakhevgOL9QfCOL64GsYQ=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2024年 02期",
+        "label": "2024年 02期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0K%2FRKHqh8ekqhoc3ATL0bA1IIe33iKnu%2BqwUkktwx40Wx7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk3MlIAlsYSdOMKqKSCabuHNxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0K%2FRKHqh8ekqhoc3ATL0bA1ADaybA5s3aKiS4UbvXWQxuL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsWePRUwEkXIy4guYtxdLJq%2FR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "中国低空经济现状及标准化发展探析",
+        "label": "中国低空经济现状及标准化发展探析",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAjHSIyqlt3lJc-EM_AhHJG8IjP4J2PObhRWQiTJIA7WsODUG2-FPThs_5xChMvqj3ivS-pjJoiPDTS7Go2_vRwlv5KyPi7CL6Qv2PuYD-_Xe5fdaEF7ER7akQeKyzal5Emcus0_kUxlLd_yUPE-Mg0ui5hMHaDkM0Tu_DMWNOeIet6y1faqC8Qj&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "万福军",
+        "label": "万福军;周幸窈;陶赞;王巧慧",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhnc-2-Dsytvbf806R281mPAiOkVre7DG7_NFUaTGrgw_oROZfowImuc_blTAv3wGwoOL8jz7-x9FtRuSqPncCZNZ528jlGLXsMMslpEb80oS4qxxC5JTd6&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "周幸窈",
+        "label": "万福军;周幸窈;陶赞;王巧慧",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhnc-2-Dsytvbf806R281mP1p06PuRp5KDe-3iDY7WpFf6RiLFCjpVR6VEhk_BHKv9NMm6-2JpX2yKEtk26oHP2FWR0vdgep2rc3jwHljVy-IssbCQsYdia&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "陶赞",
+        "label": "万福军;周幸窈;陶赞;王巧慧",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhnc-2-Dsytvbf806R281mPHHFaQSQMGggubmbCf_rmOzzozhj1h3zBUJvutkh8R5U-N3_SXU-nGDX8dbxva9Q4a533gObOxWoGKT_Bgg-tYg==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王巧慧",
+        "label": "万福军;周幸窈;陶赞;王巧慧",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhnc-2-Dsytvbf806R281mPfY5N4bXjumsYsa-4soZ0YOeGKpQ7JCZ4BY_WnOYMkOmGVQg_7ftGv0rvB6qn74zCwBuQQNUcxd_sc84r2M7JHgKvRgQce6U0&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "标准科学",
+        "label": "标准科学",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb74HM-G9u-sJ-8YjYIlhJKMlyIdn7D_-GDr3E7lBs5Fi09rBAHiw28vaE4_2wY-EBSB2eHzQqnQ1g5IBSPAxJEfWOWLBBKNYBI=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2025年 12期",
+        "label": "2025年 12期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGAoFW0kO6UL%2FDc9WZVitxRW4TNbBstmYzAtRYuDi%2Fznt7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk18Hut4jHEP0g1tkCAyvAYBxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGAoFW0kO6UL%2FDc9WZVitxRcnYirSlvQt%2FTogn8krCdBSL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRx4QwPznuRee%2FjtMLgM6M0O6uTdFRAwGi2sLNK9fySOR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "盐湖原卤提锂研究进展",
+        "label": "盐湖原卤提锂研究进展",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAhMt8tNwlKK7CqYjHiPVCqs9DRQSKgGgslpP-Lfl5MajOzI_PiMo-t0q6MF5glEfLObdfUGIFdU5OJbF9LE_Oi83O_kI9xcRZFpLQKrR7zBozV49N-Ax_UAAS8xLhAYgO7zkMMDJW-KIta-jLoeHHbEiUz8RwoKDROQ-4RcQRoxPTwdu5S-D1V4&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "黄小卫",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pML7yokQxFPmQXQYBMdoPwJ0jO3ROZ8m4kWmqtUQMqSP6GQbW_nyXaf8CUOgfn5ix5jId3Hf_n67Gpk2KJH2H3Roldyq5Bmdfo&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "李铮",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pM6ExUMztoKjOCWGH4Iah2-Q071TYyuyMPcL6SV3MnRgusj2vhREB26FR8pEVqcl8T4wQOcnfs280YuzZgc42dVw==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "张正钦",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pMkERdDErG25kJ5q0FUXAQCHRtbTsULZdw6sqMJqwiazVxvSo1JHOrWzlsZ3dAj1LiL73JNkZy0UQKg9rpIkXnA8RUbG9_knVj&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王诗嘉",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pMIZNF3BLrMRAek5ShZlCSgskDOQhS2pwMi2PTmeKLQw6PC0j0c0Fbhg-f-0BO4Z6XxhpHrkhEpStYVhjT5ytEp3n4eIpFc3L5&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "赵龙胜",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pMkt9-LV-XLPe9n7bLWvnMPgUNoQfdMrPrs1Qp1-gYxYRB0fH1LfZssb9dT97_IUnb-as7hhbMqqyW9-2QwiZ8PV97IF0GlBNr&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "冯宗玉",
+        "label": "黄小卫;李铮;张正钦;王诗嘉;赵龙胜;冯宗玉",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAhMt8tNwlKK7BI4Xhmxp6pMuBwS5xwyseIrWtrJCeXUjsfGP-AK60Wt3FoGq3bNpHE6TTX8S929X0l43m2gdBfMgSxO1sBq28lAx8XdHDCGDK6ZCMJr8YnL&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "有色金属工程",
+        "label": "有色金属工程",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb6rbAMTFf7lJ2g_5EXQqjhIQi9ylE0rQksoMJSM72ATzY3W7pCpsjHGgc-imy2PJJ6W4EdwGdcegRAqvXwdcrDMT-27LR25n7Y=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2024年 11期",
+        "label": "2024年 11期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BS%2FuDmb9OmfJ9%2BSn7QXHZ1KLufO2zwCAEWWWv2PBxxwOd7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2BJh0ZdFdUOjUW5bQGM%2F2rJxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BS%2FuDmb9OmfJ9%2BSn7QXHZ1KPlF9%2FOXu3BKhpAGn4PR%2BpmL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsX1fs4iheqXGejVmqoCIWDbR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "固态锂电池用高镍正极材料研究进展",
+        "label": "固态锂电池用高镍正极材料研究进展",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAgzU78WG_Nr_eTnx9NZDPT8GBz60fYomNIFF5HcOcwrecb2OdlK-EILPaO8kDv8p3rr5P2yuiBcZhtEIemNPyGnlgtwH9ebNQSffqbAe3rgL5ByECP8J-Xa3A8vtVMJH_kZpxvg7nGjnKrtRoriAV67-0vBf6DjQp6qTfDYOgfpdR7pjJbjxCq1&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "叶宇宁",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYktD319AFiKORkQ8SaSryHjJ36PEGVUzKTX5Axqk0Uuf6t8yjoZnNPBjHpW8Q97_v4tzt9rBmDtl5KzhkuHsvOnprBJzpvombgB&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "邵宗普",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYktwMXvytZUCT_Ng_f4luxah69nehqfL3dcHs4G2fLeWH_omBwpRwPqEg2_h24HvotMgji1dOcstFGd81VAydS-Eq31PSs1QuIN&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "刘亚飞",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYkt-q1GTcNK6GBHTDKcd5OayPm6wePsQkC2sOf998NZPqhePIVZXnQEvPLQKxPx9s8f4wHNoXnV5hJ0Kn3tyW-AkdVrUSRJY7yK&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "张学全",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYktMCMCcK8xhnt_mqEQ5fhVk-y6QFXVY3n0scBRp1ixefdnU9kNDzDqoc1c8XHm3pEHW_4v5RakbSrxpj8IZ70o058L0Z8owLqP&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "连芳",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYktj3L87vHIHNKMiW4ekdJ5JlUKfMuQ0eL-owfK3Fu_REffoWhFU7zXAHCtdrBhgRH-tmEbYLpshS5N04110GKE9g==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "陈彦彬",
+        "label": "叶宇宁;邵宗普;刘亚飞;张学全;连芳;陈彦彬",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgzU78WG_Nr_QVd-rZDpYktkVpMVFnP76F_Sei4TkOKX1TatDiS-9w7JDjIq363GfyFRBEsje8-Ul7FFnQnKW9joOcRXV5yOWBpI7fNiptU-tFL2mIRjUjI&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "有色金属(中英文)",
+        "label": "有色金属(中英文)",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb7jIAKVY3s4J9nhJiX6fqapASe4pF7W0lqdIj4mTXDdQ4Gz0E1_nI2oYdntYd_-wS9PH84Ei4rh1p-v3kAlbW92R09sntGmltk=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2025年 11期",
+        "label": "2025年 11期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG%2FuDmb9OmfJ9%2BSn7QXHZ1KPzW1aCjWNTnntQxiaGL8tB7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk7UYKOGcCX77iHh15ExBXKRxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG%2FuDmb9OmfJ9%2BSn7QXHZ1KKI%2Bj4MvTyv8JsnhmNJK7wuL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRx4QwPznuRee%2FjtMLgM6M2ePRUwEkXIy4guYtxdLJq%2FR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "论欧盟《人工智能法案》中的标准化模式及对我国启示",
+        "label": "论欧盟《人工智能法案》中的标准化模式及对我国启示",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAjjGB1MijJO6hrDsdAlvS7tKiHUOiI3XDxWQuzyu4wopF1QObmbNoEZr2Z6xctdPAVt2D2IJGgWLuY5yl0iho561GI9MqaHxaEKQ9sfjlFOOLKzSC-U_NmiNdopsJSZeqXkBRleQ-VSdRNJnBDkMw6GQmJa7vqMr2watiVCX0iIf7Vz4j41V49U&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "张辛鑫",
+        "label": "张辛鑫;冀瑜",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjjGB1MijJO6oTBjBpIYJCRQseIt5A3E1BTxIGc-Nayu5bLKnhrsiYNEOzomUAVFZUS4uj5qsd_eTFp4dtu-5kui_2GCon6LO7GaBShiiKl8dGb2KAbpXV0&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "冀瑜",
+        "label": "张辛鑫;冀瑜",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAjjGB1MijJO6oTBjBpIYJCRZI8G2RlClbXqW0nkh99ZGQCrVpmrqgK3T3P-PWQStOIhJwfyGqQ148ldRUwWUGidYIlN0-57JIja5EmZ2HdBeg==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "标准科学",
+        "label": "标准科学",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb5hHFxB485OgVf8WC2BPXXAlIRTcA3LErE6hVID5-hpHEfl7Bwq4xvPsUUQPhyVh04A3ixEBrI4gIfOjz4mgratHZ4s7uSXNig=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2024年 05期",
+        "label": "2024年 05期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0KAoFW0kO6UL%2FDc9WZVitxRQ7ouuhIwi%2Bm6olA5P2AM6p7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkwf1LMVFTwl7e65LSvuADwhxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdrCpOSDrTKNGQdBiFAHwa0KAoFW0kO6UL%2FDc9WZVitxRQRkGSr4A9DWwlmi0mMWdf2L6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGWymFtnBib6%2FAsKwcRHLDsXTREL%2BA%2FyJwEZyi2g84QvIR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "退役锂离子电池有价组分回收利用技术研究进展",
+        "label": "退役锂离子电池有价组分回收利用技术研究进展",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAhU9TU0Q04awrVX2yBAYlbMNzQaEp9msU9s9GLt9jyU8WvYDjKWk-_AZ-nFRqVKVE7V5dJXYzeVVgTnoaKIhHvpn_1AI2YKhl4Y0zvXo4Pb3H0ME6ZsS5A_7pKke7QNTwu8gC_BMTlQmZmhFZ9AjR8zHqm9st-YaKjF2ADu1dD5xLsSLgq7k_2-&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "谷夏标",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiO_TBS8Ld-uangXEESW3w-UFynCFeMyCWLBGlK9sGQrdjCH8I2mq88qYJn0h8S17uVFvSJpjC-3F9Ut3VcXxVvGN9hWDd9sO5&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "夏明月",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiO_TBS8Ld-uae14xK9mqGTqvzLl6rw38kPmyyB3NuO5BXTV7FSzmRBndyi3We3rqnOqtRE8gUjkH3NfYwyUuQwdWdiG3ChoAP&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "周双",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8Fi2JTZJqKepSv4ovmBaDFBQCAIm5a6dT9gFpK7lVTA5B__jEqzqPk_KcGH8F7Yf7W2zUCslbXoQvY_sOuu3uFHoA==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "管青军",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiZO8dF0Y25tejfXjrmqCKiM6ICpM7G8tTe3vJKAh4ngWBKv0_rQPwckzyqpOGL9ZdtFtb4gksAEh_3DPprbvgBwgASAeJ1ZcO&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "王卫军",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiGGnRzqzQeJbkoMcyiEmf0kqtLy2aFgcibS7Lua4rL-IUyavDIqc90nGFxi2SeidPOHWiYr_ehn4n5oqEDUGZjRnQWof3hEXV&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "葛鹏",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8Fibp6OBAsFJZeDdXLKTBwUyA4JW13wTpSRRmwaFgUE-3cherF9zFg3TtABTDQjgX_Wr-aTGj2OrOlO7PNoo5v0UA==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "杨越",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiQ-vuO_pHSxwtGhPa864TvU7ySKJgzz38YLif2fN3tQnYf49VFAYU5EULiO1q-kX5qPS4bgim8BWLIBhCBmTh7Q==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "卜勇杰",
+        "label": "谷夏标;夏明月;周双;管青军;王卫军;葛鹏;杨越;卜勇杰",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgmHVe6LG3tSDqJlOamk8FiUqdUCzpKD54wR9HCuqPVF16nK8s5MHqAl8Cg1iXCfAglC3nMPLs9wX8LqPoYgiq9-1iPES_L08pNHxeZYkhgMCT3tgguDJc3&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "有色金属(中英文)",
+        "label": "有色金属(中英文)",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb40jhjr2pj5DqCBAQstBt2GQHY6m9xcnaX6tbRaJVhvyE6AzhWNQOLLOj0fKQ_UKtPsy2QFkC0YOfLM49DG-YOuHbXIJkIiTFU=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2025年 11期",
+        "label": "2025年 11期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG%2FuDmb9OmfJ9%2BSn7QXHZ1KIJ%2B9KyuVyA9FYL8TlFZEeJ7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk7VlW65ubibzmoNgGMUbAeBxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG%2FuDmb9OmfJ9%2BSn7QXHZ1KAbCsjoI%2BoGNtO3ZUxe1IueL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRx4QwPznuRee%2FjtMLgM6M2OSPNnbndV3LMYmTFqdzguR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "人工智能技术在高通量数据分析中的研究进展和应用现状",
+        "label": "人工智能技术在高通量数据分析中的研究进展和应用现状",
+        "selector": "#title",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/article/abstract?v=j0ZbOfXgIAg0Ig8RFdffcV4VNgq1DMJ9Mr8Vq2E1hvbnyJzy5cpbAWQ6R_d2s_A4eBVzcXmz-qoz4GuiVc4rIcRQm10ERSvinJ_RrELTJeAFTC223fFN3BL2RnD9Te9ZZcLX6AAomnp9FiAVI0Da4VNIUMOmSYuKteCgmZoALDzEazeaLEz-VoB2oO1Wt-KM&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "段潮舒",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42__gcDHlbL9nkjCPLZD2B4ki6An1Dig673rSWsoLgKhsYjO7hhJwn93Sgl__gHyT5J02UPihaHzeWhYXofYgoltEdms-VYJyO_&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "尹辉",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_bGPrgCTtP43w7rVRgzSTU0sWYOyayRd3CJIN7KBLsyTHxKdQmGUwGfULiwcELl1Fki0Ov3Yqfc5AuYCHq7mldA==&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "吴妃锋",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_9QHI720ubbxp2z3FrwMtcHoyHHKQXwwtUzJUZ6HFS4EtMPFShb9JdCMTbkkOJKeJl57x-CWcPRoLxgSyqcB7txzTY5EsBD07&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "唐若晨",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_Zn6Vziq91TWbf_jor1GlxZzhhCONcGMXwHVvsZSW3mT-xQJMieP79A2VtjybQRJpdzpOp2kIlmjQ8Tsap8R8a6NXgmpyOzKo&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "赵子龙",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42__gcDHlbL9nlRHfm-UQY3A8QHhpXy_P_uQLG6h1fkpNszAOOXmn0R3WD6bRh3bkbXJC6c1eIXRWry5sxppbM2ISHA7um7UY9b&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "安正源",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_8Owpf90KAIKSguF-VW1PzONRLlzC5luTUyoXIP3JfmtWgU3J3eoHIy9T9r5dVLF8xBMKnCuAJ7tuaAOSMB4Xwnual_YG0gN3&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "黄建国",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_bGPrgCTtP42Gt1rcP35qhZRYGCLKaqfsLENgUny6hYa4RpeXLEVF-rJQEwWTkcSw-4J_Y4eCrascAZBtByzSx-maosKol1VZ&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "张爱敏",
+        "label": "段潮舒;尹辉;吴妃锋;唐若晨;赵子龙;安正源;黄建国;张爱敏",
+        "selector": "#author",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kns.cnki.net/kcms2/author/detail?v=j0ZbOfXgIAgspDJlA5yRgH7v_Mb2j42_nzTxZ67Uv1rqYYObKaNls7hkdrG0XFmxEz37E0zxPxXZPekgyU4Vdoje1u45y_qFxbnEqFctbE5tIvufZHM9zs1pjSwnkEU9&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "中国无机分析化学",
+        "label": "中国无机分析化学",
+        "selector": "#journal",
+        "placeholder": "",
+        "options": [],
+        "href": "https://navi.cnki.net/knavi/detail?p=s03MyRzzeb7Ox_LucOaJr7pzbKeF43Z84Vr1fEwPbITlRjtR_8shz7Bnx_nx_x-VufsqKvOsj2dPwyZiovf08htJHaC72xpvPGi5S8EQVCE=&uniplatform=NZKPT&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "2026年 02期",
+        "label": "2026年 02期",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载",
+        "label": "下载",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGwUESrYRBdNSBhBuU6wL3AIrb6EOS25y8mpqfBZ88wyF7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkwyUUbJ%2BbTE1HHrWzotnH%2F5xluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "HTML阅读",
+        "label": "HTML阅读",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGwUESrYRBdNSBhBuU6wL3ADXo3oRywfN5JKD0Bsk9A4uL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRx4QwPznuRee%2FjtMLgM6M3K3%2F%2FWE0smiHtbCUITH5dhR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "收藏",
+        "label": "收藏",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "购买知网卡",
+        "label": "读者服务 购买知网卡 充值中心 我的CNKI 帮助中心",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://vipcard.cnki.net/ec/skwd/skwd.htm"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "充值中心",
+        "label": "读者服务 购买知网卡 充值中心 我的CNKI 帮助中心",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://zhifu.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "我的CNKI",
+        "label": "读者服务 购买知网卡 充值中心 我的CNKI 帮助中心",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://my.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "帮助中心",
+        "label": "读者服务 购买知网卡 充值中心 我的CNKI 帮助中心",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://service.cnki.net/helpcenter/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CAJViewer浏览器",
+        "label": "CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://cajviewer.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "知网研学（原E-Study）",
+        "label": "CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://estudy.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "下载中心",
+        "label": "CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.cnki.net/software/xzydq.htm"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "标准阅读器",
+        "label": "CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://piccache.cnki.net/2022/kdn/software/standardreader.exe"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "手机知网",
+        "label": "特色服务 手机知网 杂志订阅 数字出版物订阅 广告服务",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://wap.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "杂志订阅",
+        "label": "特色服务 手机知网 杂志订阅 数字出版物订阅 广告服务",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://wuxizazhi.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "数字出版物订阅",
+        "label": "特色服务 手机知网 杂志订阅 数字出版物订阅 广告服务",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://mall.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "广告服务",
+        "label": "特色服务 手机知网 杂志订阅 数字出版物订阅 广告服务",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://a.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "service.cnki.net",
+        "label": "在线咨询：service.cnki.net",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://service.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "help@cnki.net",
+        "label": "邮件咨询：help@cnki.net",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "mailto:help@cnki.net"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "新浪微博客服",
+        "label": "新浪微博客服 官方微信",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://e.weibo.com/u/3059308095"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "官方微信",
+        "label": "新浪微博客服 官方微信",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:void(0)"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "关于我们",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://cnki.net/gycnki/gycnki.htm"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "CNKI 荣誉",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://www.cnki.net/other/gonggao/gongsirongyu.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "版权公告",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://www.cnki.net/other/gonggao/bqsm.htm"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "客服中心",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://service.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "用户建议",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://service.cnki.net/home?flag=1"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "知网招聘",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://piccache.cnki.net/index/CNKIRecruit/index.html"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "知网推广",
+        "label": "关于我们 CNKI 荣誉 版权公告 客服中心 用户建议 知网招聘 知网推广",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "http://a.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "",
+        "selector": "#___szfw_logo___",
+        "placeholder": "",
+        "options": [],
+        "href": "https://ss.knet.cn/verifyseal.dll?sn=e13111111010043364isll000000&a=1&pa=0.08881110103584755"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "网络出版服务许可证网出证(京)字第416号",
+        "label": "京 ICP 证 040431 号网络出版服务许可证网出证(京)字第416号 京公网安备 11010802020460 号",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://piccache.cnki.net/index/images/gb/416.jpg"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "在线咨询",
+        "label": "在线咨询 用户反馈",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://service.cnki.net/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "用户反馈",
+        "label": "在线咨询 用户反馈",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://kefu.cnki.net/im/goLeavemsg.html?appid=01xds8&isLogin=true&skill=ff8080818906901e018909b8eda90057"
+      }
+    ],
+    "boolean_tests": [
+      {
+        "query": "无人机 AND 路径规划",
+        "selector": "input:visible"
+      }
+    ]
+  },
+  "observed_labels": [
+    "主题 精确 ∨  ",
+    "作者 精确 ∨  ",
+    "AND ∨ 作者 精确 ∨ - - ",
+    "文献来源 精确 ∨  ",
+    "AND ∨ 文献来源 精确 ∨ - - ",
+    "网络首发 WLSF=2 || NOT!WXZT=2 "
+  ],
+  "screenshot_path": "evidence/cnki/screenshots/advanced_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Captured 186 advanced/interactive controls; boolean tests sampled=1.",
+  "captured_at": "2026-05-13T11:54:26.811262+00:00",
+  "page_title": "高级检索-中国知网",
+  "url_redacted": "https://kns.cnki.net/kns8s/AdvSearch"
+}

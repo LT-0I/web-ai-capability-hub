@@ -1,0 +1,19 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "query_input": "textarea"
+  },
+  "observed_labels": [
+    "学术期刊 333 学术期刊 333 ",
+    "学位论文 926 学位论文 926 "
+  ],
+  "screenshot_path": "evidence/cnki/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=无人机 路径规划 强化学习; results_count=1,274 条",
+  "captured_at": "2026-05-13T11:54:17.835125+00:00",
+  "page_title": "检索-中国知网",
+  "url_redacted": "https://kns.cnki.net/kns8s/defaultresult/index?<redacted-query>"
+}

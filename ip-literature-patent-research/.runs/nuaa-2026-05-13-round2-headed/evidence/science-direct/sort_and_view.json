@@ -1,0 +1,1277 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [
+      "Title|题名"
+    ],
+    "result_evidence": {
+      "text_sample": "Skip to main content\nSkip to results\nJournals & Books\nHelp\nMy account\nNanjing University of Aeronautics and Astronautics\nQuick search form field\nFind articles with these terms\nWhen autosuggest results are available use up and down arrows to review and enter to select.\nSearch form fields\nIn this journal or book title\nWhen autosuggest results are available use up and down arrows to review and enter to select.\nYear(s)\nAuthor(s)\nAuthor affiliation\nVolume(s)\nIssue(s)\nPage(s)\nTitle, abstract or author-specified keywords\nTitle\nReferences\nISSN or ISBN\nAdvanced search\nSkip to results\n3,756 results\nSet search alert\nRefine by:\nSubscribed journals\nYears\n2026 (1,011)\n2025 (1,087)\n2024 (644)\nShow more\nArticle type\nReview articles (756)\nResearch articles (2,635)\nEncyclopedia (16)\nBook chapters (113)\nShow more\nPublication title\nComputer Networks (170)\nExpert Systems with Applications (148)\nEngineering Applications of Artificial Intelligence (127)\nAd Hoc Networks (126)\nOcean Engineering (111)\nAutomation in Construction (95)\nRobotics and Autonomous Systems (91)\nAerospace Science and Technology (87)\nPhysical Communication (86)\nIFAC-PapersOnLine (85)\nChinese Journal of Aeronautics (78)\nVehicular Commu",
+      "results_count": "3,756 results",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "ScienceDirect home page",
+          "selector": "#gh-branding",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Journals & Books",
+          "label": "Journals & Books",
+          "selector": "#gh-journals-books-link",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/browse/journals-and-books"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Help",
+          "label": "Help",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "My account",
+          "label": "My account",
+          "selector": "#gh-myaccount-btn",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/user/login?targetURL=%2Fsearch%3Fqs%3DUAV%2520path%2520planning%2520reinforcement%2520learning&from=globalheader"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Nanjing University of Aeronautics and Astronautics",
+          "label": "Nanjing University of Aeronautics and Astronautics Institutional Access",
+          "selector": "#gh-inst-icon-btn",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "UAV path planning reinforcement learning",
+          "label": "Find articles with these terms",
+          "selector": "#qs",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "",
+          "label": "Submit quick search",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "In this journal or book title",
+          "selector": "#pub",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Year(s) e.g., 1995 or 1995-2017",
+          "selector": "#date",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Author(s)",
+          "selector": "#authors",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Author affiliation e.g., Harvard",
+          "selector": "#affiliations",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Volume(s) e.g., 5 or 7-11",
+          "selector": "#volume",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Issue(s) e.g., 1 or 1-3",
+          "selector": "#issue",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Page(s) e.g., 55 or 1-9",
+          "selector": "#page",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "textarea",
+          "type": "",
+          "text": "",
+          "label": "Title, abstract or author-specified keywords",
+          "selector": "#tak",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Title",
+          "selector": "#title",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "References",
+          "selector": "#references",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "ISSN or ISBN",
+          "selector": "#docId",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Advanced search",
+          "label": "Open Advanced Search",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Skip to results",
+          "label": "Advanced search Skip to results",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/search?qs=UAV+path+planning+reinforcement+learning#results-content"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Set search alert",
+          "label": "Set search alert",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Subscribed journals",
+          "selector": "#subscribedJournalsToggle",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2026 (1,011)",
+          "selector": "#years-2026",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2025 (1,087)",
+          "selector": "#years-2025",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2024 (644)",
+          "selector": "#years-2024",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Show more",
+          "label": "Show more years filters",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "What types of articles are available in ScienceDirect?",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://service.elsevier.com/app/answers/detail/a_id/27955/supporthub/sciencedirect/"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Review articles (756)",
+          "selector": "#articleTypes-REV",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Research articles (2,635)",
+          "selector": "#articleTypes-FLA",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Encyclopedia (16)",
+          "selector": "#articleTypes-EN",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Book chapters (113)",
+          "selector": "#articleTypes-CH",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Show more",
+          "label": "Show more articleTypes filters",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computer Networks (170)",
+          "selector": "#publicationTitles-271990",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Expert Systems with Applications (148)",
+          "selector": "#publicationTitles-271506",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Engineering Applications of Artificial Intelligence (127)",
+          "selector": "#publicationTitles-271095",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Ad Hoc Networks (126)",
+          "selector": "#publicationTitles-272922",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Ocean Engineering (111)",
+          "selector": "#publicationTitles-271462",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Automation in Construction (95)",
+          "selector": "#publicationTitles-271427",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Robotics and Autonomous Systems (91)",
+          "selector": "#publicationTitles-271599",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Aerospace Science and Technology (87)",
+          "selector": "#publicationTitles-271985",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Physical Communication (86)",
+          "selector": "#publicationTitles-276924",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "IFAC-PapersOnLine (85)",
+          "selector": "#publicationTitles-313346",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Chinese Journal of Aeronautics (78)",
+          "selector": "#publicationTitles-274151",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Vehicular Communications (78)",
+          "selector": "#publicationTitles-287272",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Applied Soft Computing (77)",
+          "selector": "#publicationTitles-272229",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computer Communications (71)",
+          "selector": "#publicationTitles-271515",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Journal of Network and Computer Applications (71)",
+          "selector": "#publicationTitles-272436",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Neurocomputing (68)",
+          "selector": "#publicationTitles-271597",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Procedia Computer Science (63)",
+          "selector": "#publicationTitles-280203",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computers, Materials and Continua (59)",
+          "selector": "#publicationTitles-786861",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Knowledge-Based Systems (54)",
+          "selector": "#publicationTitles-271505",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computers and Electronics in Agriculture (51)",
+          "selector": "#publicationTitles-271304",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Results in Engineering (46)",
+          "selector": "#publicationTitles-320278",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Advanced Engineering Informatics (45)",
+          "selector": "#publicationTitles-272292",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Internet of Things (45)",
+          "selector": "#publicationTitles-318491",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computers and Electrical Engineering (42)",
+          "selector": "#publicationTitles-271419",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Future Generation Computer Systems (39)",
+          "selector": "#publicationTitles-271521",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Show less",
+          "label": "Show less publicationTitles filters",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Engineering (2,354)",
+          "selector": "#subjectAreas-2200",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Computer Science (1,819)",
+          "selector": "#subjectAreas-1700",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Decision Sciences (331)",
+          "selector": "#subjectAreas-1800",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Show more",
+          "label": "Show more subjectAreas filters",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Open access & Open archive (1,145)",
+          "selector": "#accessTypes-openaccess",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select all articles for download",
+          "selector": "#select-all-results",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Download selected articles",
+          "label": "Download selected articles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "date",
+          "label": "Sort by date",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/search?qs=UAV%20path%20planning%20reinforcement%20learning&sortBy=date"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 1",
+          "selector": "#S0950705126005897",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Manifold-aware triple cooperative multi-population differential evolution with reinforcement learning for irregular 3D UAV path planning",
+          "label": "Manifold-aware triple cooperative multi-population differential evolution with reinforcement learning for irregular 3D U",
+          "selector": "#title-S0950705126005897",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S0950705126005897"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Knowledge-Based Systems",
+          "label": "Knowledge-Based Systems",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/09507051"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S0950705126005897/pdfft?pid=1-s2.0-S0950705126005897-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 2",
+          "selector": "#S2210650226000489",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A reinforcement learning-based artificial bee colony algorithm for resolving the UAV logistics path planning problem in a 3D space",
+          "label": "A reinforcement learning-based artificial bee colony algorithm for resolving the UAV logistics path planning problem in",
+          "selector": "#title-S2210650226000489",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S2210650226000489"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Swarm and Evolutionary Computation",
+          "label": "Swarm and Evolutionary Computation",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/22106502"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S2210650226000489/pdfft?pid=1-s2.0-S2210650226000489-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "more registration benefits",
+          "label": "Recommendations, reading history, search & journals alerts, and more registration benefits.",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://service.elsevier.com/app/answers/detail/a_id/27714/supporthub/sciencedirect/kw/register/"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Personalize",
+          "label": "Personalize",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 3",
+          "selector": "#S0031320325015754",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A reinforcement learning framework for energy-optimal UAV path planning in wind fields",
+          "label": "A reinforcement learning framework for energy-optimal UAV path planning in wind fields",
+          "selector": "#title-S0031320325015754",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S0031320325015754"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Pattern Recognition",
+          "label": "Pattern Recognition",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/00313203"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S0031320325015754/pdfft?pid=1-s2.0-S0031320325015754-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 4",
+          "selector": "#S1084804525002334",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "3D UAV path planning based on an improved TD3 deep reinforcement learning for data collection in an urban environment",
+          "label": "3D UAV path planning based on an improved TD3 deep reinforcement learning for data collection in an urban environment",
+          "selector": "#title-S1084804525002334",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S1084804525002334"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Journal of Network and Computer Applications",
+          "label": "Journal of Network and Computer Applications",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/10848045"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S1084804525002334/pdfft?pid=1-s2.0-S1084804525002334-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 5",
+          "selector": "#S092188902500260X",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Multi-Agent Reinforcement Learning for Zero-Shot Coverage Path Planning with Dynamic UAV Networks",
+          "label": "Multi-Agent Reinforcement Learning for Zero-Shot Coverage Path Planning with Dynamic UAV Networks",
+          "selector": "#title-S092188902500260X",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S092188902500260X"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Robotics and Autonomous Systems",
+          "label": "Robotics and Autonomous Systems",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/09218890"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S092188902500260X/pdfft?pid=1-s2.0-S092188902500260X-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 6",
+          "selector": "#S1570870525001763",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Path planning for multi-UAV-assisted mobile edge computing framework using reinforcement learning in urban environment disaster scenarios",
+          "label": "Path planning for multi-UAV-assisted mobile edge computing framework using reinforcement learning in urban environment d",
+          "selector": "#title-S1570870525001763",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S1570870525001763"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Ad Hoc Networks",
+          "label": "Ad Hoc Networks",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/15708705"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "View PDF",
+          "label": "View PDF",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S1570870525001763/pdfft?pid=1-s2.0-S1570870525001763-main.pdf"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Abstract",
+          "label": "Abstract",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Extracts",
+          "label": "Extracts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Figures",
+          "label": "Figures",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Export",
+          "label": "Export",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select result number 7",
+          "selector": "#S0168169925007574",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "UAV-based path planning for efficient localization of non-uniformly distributed weeds using prior knowledge: A reinforcement-learning approach",
+          "label": "UAV-based path planning for efficient localization of non-uniformly distributed weeds using prior knowledge: A reinforce",
+          "selector": "#title-S0168169925007574",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/article/pii/S0168169925007574"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Computers and Electronics in Agriculture",
+          "label": "Computers and Electronics in Agriculture",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.sciencedirect.com/science/journal/01681699"
+        }
+      ],
+      "result_labels": [
+        "ScienceDirect home page  ",
+        "Find articles with these terms UAV path planning reinforcement learning ",
+        "In this journal or book title  ",
+        "Page(s) e.g., 55 or 1-9  ",
+        "Title, abstract or author-specified keywords  ",
+        "Title  ",
+        "Advanced search Skip to results Skip to results ",
+        "What types of articles are available in ScienceDirect?  ",
+        "Review articles (756) on ",
+        "Research articles (2,635) on ",
+        "Show more articleTypes filters Show more ",
+        "Results in Engineering (46) on ",
+        "Show less publicationTitles filters Show less ",
+        "Select all articles for download on ",
+        "Download selected articles Download selected articles ",
+        "Sort by date date ",
+        "Select result number 1 on ",
+        "View PDF View PDF ",
+        "Select result number 2 on ",
+        "Select result number 3 on ",
+        "Select result number 4 on ",
+        "Select result number 5 on ",
+        "Select result number 6 on ",
+        "Select result number 7 on ",
+        "Select result number 8 on ",
+        "Select result number 9 on ",
+        "Select result number 10 on ",
+        "Select result number 11 on ",
+        "Select result number 12 on ",
+        "Select result number 13 on ",
+        "Select result number 14 on ",
+        "Select result number 15 on ",
+        "Select result number 16 on ",
+        "Select result number 17 on ",
+        "Select result number 18 on ",
+        "Select result number 19 on ",
+        "Select result number 20 on ",
+        "Select result number 21 on ",
+        "Select result number 22 on ",
+        "Select result number 23 on "
+      ]
+    }
+  },
+  "observed_labels": [
+    "ScienceDirect home page  ",
+    "In this journal or book title  ",
+    "Page(s) e.g., 55 or 1-9  ",
+    "Title, abstract or author-specified keywords  ",
+    "Title  ",
+    "Review articles (756) on ",
+    "Show more publicationTitles filters Show more ",
+    "Sort by date date ",
+    "View PDF View PDF ",
+    "Elsevier home page (opens in a new tab)  "
+  ],
+  "screenshot_path": "evidence/science-direct/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "changed=['Title|题名']",
+  "captured_at": "2026-05-13T11:57:56.034064+00:00",
+  "page_title": "UAV path planning reinforcement learning - Search | ScienceDirect.com",
+  "url_redacted": "https://www.sciencedirect.com/search?<redacted-query>"
+}

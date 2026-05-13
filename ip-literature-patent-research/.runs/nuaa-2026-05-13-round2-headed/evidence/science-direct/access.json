@@ -1,0 +1,15 @@
+{
+  "activation_steps": [
+    "open home_url",
+    "try visible IP/institutional login"
+  ],
+  "selectors": {},
+  "observed_labels": [],
+  "screenshot_path": "evidence/science-direct/screenshots/access.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Home opened through warm CDP; IP/institution login clicked=True.",
+  "captured_at": "2026-05-13T11:57:36.562004+00:00",
+  "page_title": "ScienceDirect.com | Science, health and medical journals, full text articles and books.",
+  "url_redacted": "https://www.sciencedirect.com/"
+}

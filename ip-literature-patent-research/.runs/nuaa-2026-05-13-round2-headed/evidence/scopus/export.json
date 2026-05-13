@@ -1,0 +1,21 @@
+{
+  "activation_steps": [
+    "open export/citation menu or batch export after selecting visible records"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Refine search To focus on the results area press Control + Shift + Y. Filters . To focus on the results area press Contr Export filter counts ",
+    "All Export Download Citation overview Please correct your selection to see the citation overview More Export ",
+    "Download Citation overview Please correct your selection to see the citation overview More Citation overview Please correct your selection to see the citation overview ",
+    "Sort by Date (newest) Date (oldest) Cited by (highest) Cited by (lowest) Relevance First Author (A-Z) First Author (Z-A) Source Title (A-Z) Source Title (Z-A) Date (newest) Date (o",
+    "Cited by: 2 2 ",
+    "Cited by: 8 8 "
+  ],
+  "screenshot_path": "evidence/scopus/screenshots/export.png",
+  "sample_export_path": "evidence/scopus/exports/Scopus_exported_refine_values.csv",
+  "status": "tested_ok",
+  "note": "Official export/download captured and saved.",
+  "captured_at": "2026-05-13T11:57:12.963901+00:00",
+  "page_title": "Scopus - Documents Search",
+  "url_redacted": "https://www.scopus.com/pages/search/publications?<redacted-query>"
+}

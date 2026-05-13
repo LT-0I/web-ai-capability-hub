@@ -1,0 +1,18 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "query_input": "textarea"
+  },
+  "observed_labels": [
+    "incoPat具备很强大的检索分析功能，界面友好，使用上手快，检索方式多样化，支持中英文互检。支持专利著录项目的批量导出，支持PDF全文批量导出。合享的售后服务好，响应速度快，获得了业务人员的好评。 杨雪珠 中国第一汽车集团公司  "
+  ],
+  "screenshot_path": "evidence/incopat/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=无人机 路径规划 强化学习; results_count=56,863,688条",
+  "captured_at": "2026-05-13T12:02:50.754227+00:00",
+  "page_title": "incoPat 可信好用的全球专利数据库 专利检索 专利分析 知识产权 合享智慧",
+  "url_redacted": "https://www.incopat.com/"
+}

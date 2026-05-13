@@ -1,0 +1,36 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "query_input": "input[placeholder*=Search]"
+  },
+  "observed_labels": [
+    "Web of Science header logo. Click to return to home page Web of Science™ ",
+    "Analyze Results Analyze Results ",
+    "Enter a search term to search within results  Search within results...",
+    "Review Article. 11 matching records in current search. DT.REVIEW ",
+    "Enriched Cited References. 299 matching records in current search. ECR.Y ",
+    "Article. 433 matching records in current search. DT.ARTICLE ",
+    "Publication Titles Publication Titles ",
+    "Conference Titles Conference Titles ",
+    "Book Series Titles Book Series Titles ",
+    "For more options, use Analyze Results Analyze Results ",
+    "Sort by Relevance Relevance ",
+    "Top Prev Page  ",
+    "Top Page Number 1 1 ",
+    "Top Next Page  ",
+    "Enriched Cited References Enriched Cited References ",
+    "Page size, 50 Page size 50 ",
+    "Bottom Prev Page  ",
+    "Bottom Page Number 1 1 ",
+    "Bottom Next Page  "
+  ],
+  "screenshot_path": "evidence/web-of-science/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=UAV path planning reinforcement learning; results_count=657 results",
+  "captured_at": "2026-05-13T11:55:52.587282+00:00",
+  "page_title": "UAV path planning reinforcement learning – 657 – Web of Science Core Collection",
+  "url_redacted": "https://www.webofscience.com/wos/woscc/summary/75e79947-68ca-40fb-9e15-8150aeb7cd67-01b313040c/ade142a2-3973-4b1b-8a25-76f382b3c7f5-01b31303cd/relevance/1"
+}

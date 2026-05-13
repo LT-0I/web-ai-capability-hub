@@ -1,0 +1,15 @@
+{
+  "activation_steps": [
+    "open home_url",
+    "try visible IP/institutional login"
+  ],
+  "selectors": {},
+  "observed_labels": [],
+  "screenshot_path": "evidence/wanfang/screenshots/access.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Home opened through warm CDP; IP/institution login clicked=False.",
+  "captured_at": "2026-05-13T11:55:06.505197+00:00",
+  "page_title": "万方数据知识服务平台-科研学习全流程支持服务平台",
+  "url_redacted": "https://www.wanfangdata.com.cn/"
+}

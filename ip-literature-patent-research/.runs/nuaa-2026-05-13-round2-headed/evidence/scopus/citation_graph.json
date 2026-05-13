@@ -1,0 +1,25 @@
+{
+  "activation_steps": [
+    "open cited-by/references/related controls where visible"
+  ],
+  "selectors": {
+    "references": "https://www.scopus.com/pages/search/publications?<redacted-query>",
+    "related": "https://www.scopus.com/pages/search/publications?<redacted-query>"
+  },
+  "observed_labels": [
+    "Search within All fields Article title, Abstract, Keywords Authors First author Source title Article title Abstract Keywords Affiliation Affiliation name Affiliation city Affiliati",
+    "Sort by Date (newest) Date (oldest) Cited by (highest) Cited by (lowest) Relevance First Author (A-Z) First Author (Z-A) Source Title (A-Z) Source Title (Z-A) Date (newest) Date (o",
+    "Show abstract View at Publisher Opens in a new tab. Related documents Show abstract ",
+    "View at Publisher Opens in a new tab. Related documents Related documents ",
+    "Cited by: 2 2 ",
+    "Cited by: 8 8 ",
+    "Terms and conditions View the terms and conditions of Elsevier (opens in a new window) Privacy policy View the privacy p Cookies settings View the Cookie setting preferences "
+  ],
+  "screenshot_path": "evidence/scopus/screenshots/citation_graph.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Citation surface URL pattern(s) captured.",
+  "captured_at": "2026-05-13T11:57:27.816743+00:00",
+  "page_title": "Scopus - Documents Search",
+  "url_redacted": "https://www.scopus.com/pages/search/publications?<redacted-query>"
+}

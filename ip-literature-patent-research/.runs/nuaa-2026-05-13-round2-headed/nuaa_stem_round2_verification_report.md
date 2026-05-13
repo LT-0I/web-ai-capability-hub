@@ -1,0 +1,79 @@
+# NUAA STEM Round 2 Verification Report
+
+- Captured: 2026-05-13T12:03:47.158740+00:00
+- Round-1 insufficient/error/partial/observed_only/missing rows now tested_ok: 30
+
+| resource | feature | round 1 | round 2 |
+|---|---:|---:|---:|
+| cnki | simple_search | missing | tested_ok |
+| cnki | advanced_search | missing | tested_ok |
+| cnki | sort_and_view | missing | not_applicable |
+| cnki | export | missing | partial |
+| cnki | citation_graph | missing | not_applicable |
+| cnki | alerts_saved | missing | requires_account |
+| cnki | full_text | missing | not_applicable |
+| cnki | api_openurl | missing | not_applicable |
+| wanfang | simple_search | missing | tested_ok |
+| wanfang | advanced_search | missing | tested_ok |
+| wanfang | sort_and_view | missing | not_applicable |
+| wanfang | export | missing | not_applicable |
+| wanfang | citation_graph | missing | not_applicable |
+| wanfang | alerts_saved | missing | not_applicable |
+| wanfang | full_text | missing | partial |
+| wanfang | api_openurl | missing | not_applicable |
+| web-of-science | simple_search | missing | tested_ok |
+| web-of-science | advanced_search | missing | partial |
+| web-of-science | sort_and_view | missing | tested_ok |
+| web-of-science | export | missing | partial |
+| web-of-science | citation_graph | missing | tested_ok |
+| web-of-science | alerts_saved | missing | partial |
+| web-of-science | full_text | missing | partial |
+| web-of-science | api_openurl | missing | not_applicable |
+| scopus | simple_search | missing | tested_ok |
+| scopus | advanced_search | missing | partial |
+| scopus | sort_and_view | missing | partial |
+| scopus | export | missing | tested_ok |
+| scopus | citation_graph | missing | tested_ok |
+| scopus | alerts_saved | missing | requires_account |
+| scopus | full_text | missing | not_applicable |
+| scopus | api_openurl | missing | tested_ok |
+| science-direct | simple_search | missing | tested_ok |
+| science-direct | advanced_search | missing | tested_ok |
+| science-direct | sort_and_view | missing | tested_ok |
+| science-direct | export | missing | partial |
+| science-direct | citation_graph | missing | partial |
+| science-direct | alerts_saved | missing | partial |
+| science-direct | full_text | missing | partial |
+| science-direct | api_openurl | missing | not_applicable |
+| ieee-xplore | simple_search | missing | tested_ok |
+| ieee-xplore | advanced_search | missing | tested_ok |
+| ieee-xplore | sort_and_view | missing | tested_ok |
+| ieee-xplore | export | missing | partial |
+| ieee-xplore | citation_graph | missing | partial |
+| ieee-xplore | alerts_saved | missing | requires_account |
+| ieee-xplore | full_text | missing | partial |
+| ieee-xplore | api_openurl | missing | not_applicable |
+| acm-dl | simple_search | missing | tested_ok |
+| acm-dl | advanced_search | missing | partial |
+| acm-dl | sort_and_view | missing | tested_ok |
+| acm-dl | export | missing | partial |
+| acm-dl | citation_graph | missing | tested_ok |
+| acm-dl | alerts_saved | missing | not_applicable |
+| acm-dl | full_text | missing | not_applicable |
+| acm-dl | api_openurl | missing | tested_ok |
+| springer-link | simple_search | missing | tested_ok |
+| springer-link | advanced_search | missing | tested_ok |
+| springer-link | sort_and_view | missing | tested_ok |
+| springer-link | export | missing | partial |
+| springer-link | citation_graph | missing | tested_ok |
+| springer-link | alerts_saved | missing | not_applicable |
+| springer-link | full_text | missing | tested_ok |
+| springer-link | api_openurl | missing | tested_ok |
+| incopat | simple_search | missing | tested_ok |
+| incopat | advanced_search | missing | tested_ok |
+| incopat | sort_and_view | missing | tested_ok |
+| incopat | export | missing | partial |
+| incopat | citation_graph | missing | not_applicable |
+| incopat | alerts_saved | missing | not_applicable |
+| incopat | full_text | missing | partial |
+| incopat | api_openurl | missing | not_applicable |

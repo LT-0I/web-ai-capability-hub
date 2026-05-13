@@ -1,0 +1,41 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "query_input": "input:visible"
+  },
+  "observed_labels": [
+    "Search within All fields Article title, Abstract, Keywords Authors First author Source title Article title Abstract Keywords Affiliation Affiliation name Affiliation city Affiliati",
+    "Analyze results Analyze results Analyze results Analyze results ",
+    "Search within results  Search within results",
+    "Article 529 on ",
+    "Article 529 Conference paper 453 Conference review 68 Review 12 Book chapter 7 Show all Show all ",
+    "Refine search To focus on the results area press Control + Shift + Y. Filters . To focus on the results area press Contr Export filter counts ",
+    "Sort by Date (newest) Date (oldest) Cited by (highest) Cited by (lowest) Relevance First Author (A-Z) First Author (Z-A) Source Title (A-Z) Source Title (Z-A) Date (newest) Date (o",
+    "Select result 1 on ",
+    "Select result 2 on ",
+    "Select result 3 on ",
+    "Select result 4 on ",
+    "Select result 5 on ",
+    "Select result 6 on ",
+    "Select result 7 on ",
+    "Select result 8 on ",
+    "Cited by: 2 2 ",
+    "Select result 9 on ",
+    "Select result 10 on ",
+    "Cited by: 8 8 ",
+    "Previous Cannot select previous page, you are already browsing the first. Previous Cannot select previous page, you are already browsing the first. ",
+    "Next Next ",
+    "Display 10 results 20 results 50 results 100 results 200 results 10 results 20 results 50 results 100 results 200 results ",
+    "Privacy matters View privacy matters page (opens in a new window) Privacy matters View privacy matters page (opens in a new window) ",
+    "Go to RELX Group Homepage (Opens in a new window) Go to RELX Group Homepage (Opens in a new window) "
+  ],
+  "screenshot_path": "evidence/scopus/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=UAV path planning reinforcement learning; results_count=1073 results",
+  "captured_at": "2026-05-13T11:56:54.732173+00:00",
+  "page_title": "Scopus - Documents Search",
+  "url_redacted": "https://www.scopus.com/pages/search/publications?<redacted-query>"
+}

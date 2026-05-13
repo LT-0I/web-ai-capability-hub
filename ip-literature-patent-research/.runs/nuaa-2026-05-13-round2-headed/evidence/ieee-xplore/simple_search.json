@@ -1,0 +1,32 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "route": "search_url_template"
+  },
+  "observed_labels": [
+    "search within results  Search within results",
+    "Download PDFs Download PDFs ",
+    "Items Per Page Items Per Page ",
+    "Early Access Articles (35) on ",
+    "All Results All Results ",
+    "All Results on ",
+    "Publication Title Publication Title ",
+    "Select All on Page on ",
+    "Sort By Relevance Relevance ",
+    "Select search result on ",
+    "2020 Chinese Automation Congress (CAC) Year: 2020 | Conference Paper | Publisher: IEEE Cited by: Papers (7) 2020 Chinese Automation Congress (CAC) ",
+    "PDF  ",
+    "2021 China Automation Congress (CAC) Year: 2021 | Conference Paper | Publisher: IEEE Cited by: Papers (7) 2021 China Automation Congress (CAC) ",
+    "2022 IEEE International Conference on Unmanned Systems (ICUS) Year: 2022 | Conference Paper | Publisher: IEEE Cited by: 2022 IEEE International Conference on Unmanned Systems (ICUS",
+    "2024 36th Chinese Control and Decision Conference (CCDC) Year: 2024 | Conference Paper | Publisher: IEEE Cited by: Paper 2024 36th Chinese Control and Decision Conference (CCDC) "
+  ],
+  "screenshot_path": "evidence/ieee-xplore/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=UAV path planning reinforcement learning; results_count=1,031 results",
+  "captured_at": "2026-05-13T11:58:48.562738+00:00",
+  "page_title": "IEEE Xplore Search Results",
+  "url_redacted": "https://ieeexplore.ieee.org/search/searchresult.jsp?<redacted-query>"
+}

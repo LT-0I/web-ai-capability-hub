@@ -1,0 +1,1269 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [
+      "Cited|被引"
+    ],
+    "result_evidence": {
+      "text_sample": "WOS Top Header\nexpand_more\nSkip navigation menu\nskipToNav\nEnglish\napps\nProducts\nWeb of Science™\nSmart Search\nAdvanced Search\n Research Assistant\nSign In\nRegister\nMENU\nSmart Search\nkeyboard_arrow_right\nResults for UAV path planning reinforcement learning\nkeyboard_arrow_right\nResults for UAV path planning reinforcement learning\n657 results from Web of Science Core Collection for:\nlink\nCopy query link\n to clipboard\nadd\nAdd Keywords\nQuick add keywords:\nkeyboard_arrow_left\nadd\n  path planning\nadd\n  multi-uav path planning\nadd\n  uav path planning\nadd\n  multi-uav\nadd\n  coverage path planning cpp\nadd\n  deep reinforcement learning\nadd\n  autonomous aerial vehicles\nadd\n  uav obstacle avoidance\nadd\n  uav coordination\nadd\n  uav navigation\nkeyboard_arrow_right\nSee how we processed your query\narrow_drop_up\n657\n \nDocuments\n100\n \nResearchers\nAnalyze Results\nCitation Report\nCreate Alert\nRefine results\nExport Refine\n\"Refine\" and \"Exclude\" buttons have appeared after each filter section.\nQuick Filters\nReview Article\n11\nEarly Access\n10\nOpen Access\n250\nEnriched Cited References\n299\nExclude\nRefine\nPublication Years\nPublication Years\nShow Final Publication Year\n2026\n66\n2025\n200\n2024\n147\n2023\n88\n2022\n64\nSe",
+      "results_count": "657 results",
+      "controls": [
+        {
+          "tag": "div",
+          "type": "",
+          "text": "",
+          "label": "Clarivate",
+          "selector": "div",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "English",
+          "label": "Language dropdown. English selected",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "apps Products",
+          "label": "Web of Science products dropdown",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Web of Science™",
+          "label": "Web of Science header logo. Click to return to home page",
+          "selector": "#headerLogo",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Smart Search",
+          "label": "Smart Search Advanced Search Research Assistant",
+          "selector": "#snHeaderLinkNavigation",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/smart-search"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Advanced Search",
+          "label": "Smart Search Advanced Search Research Assistant",
+          "selector": "#snAdvancedLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/basic-search"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Sign In",
+          "label": "Sign in",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Register",
+          "label": "Register",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "MENU",
+          "label": "Open Menu",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Marked List",
+          "selector": "#navigateToMlPage",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "View your search history",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Researcher Profile",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Saved Searches and Alerts",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Smart Search",
+          "label": "Smart Search keyboard_arrow_right",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/smart-search"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Results for UAV path planning reinforcement learning",
+          "label": "Results for UAV path planning reinforcement learning keyboard_arrow_right",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/summary/75e79947-68ca-40fb-9e15-8150aeb7cd67-01b313040c/ade142a2-3973-4b1b-8a25-76f382b3c7f5-01b31303cd/relevance/1"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "UAV path planning reinforcement learning",
+          "label": "Search documents, researchers, affiliations, and more",
+          "selector": "#composeQuerySmartSearch",
+          "placeholder": "Search documents, researchers, affiliations, and more",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "",
+          "label": "Search",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "link Copy query link to clipboard",
+          "label": "link Copy query link to clipboard",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add Add Keywords",
+          "label": "add Add Keywords",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "keyboard_arrow_left",
+          "label": "Scroll left",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add path planning",
+          "label": "Add Keyword path planning, keyword 1 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add multi-uav path planning",
+          "label": "Add Keyword multi-uav path planning, keyword 2 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add uav path planning",
+          "label": "Add Keyword uav path planning, keyword 3 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add multi-uav",
+          "label": "Add Keyword multi-uav, keyword 4 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add coverage path planning cpp",
+          "label": "Add Keyword coverage path planning cpp, keyword 5 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add deep reinforcement learning",
+          "label": "Add Keyword deep reinforcement learning, keyword 6 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add autonomous aerial vehicles",
+          "label": "Add Keyword autonomous aerial vehicles, keyword 7 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add uav obstacle avoidance",
+          "label": "Add Keyword uav obstacle avoidance, keyword 8 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add uav coordination",
+          "label": "Add Keyword uav coordination, keyword 9 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "add uav navigation",
+          "label": "Add Keyword uav navigation, keyword 10 of 10",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "keyboard_arrow_right",
+          "label": "Scroll right",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "657 Documents",
+          "label": "657 Documents 100 Researchers",
+          "selector": "#parent-summary-link",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "100 Researchers",
+          "label": "657 Documents 100 Researchers",
+          "selector": "#author-summary-link",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Analyze Results",
+          "label": "Analyze Results",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Citation Report",
+          "label": "Citation Report",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Create Alert",
+          "label": "Create Alert",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Export Refine",
+          "label": "Export Refine",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "Enter a search term to search within results",
+          "selector": "input[name=\"search-box\"]",
+          "placeholder": "Search within results...",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.REVIEW",
+          "label": "Review Article. 11 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-1-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.EARLY ACCESS",
+          "label": "Early Access. 10 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-2-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "OA.OPEN ACCESS",
+          "label": "Open Access. 250 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-3-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "ECR.Y",
+          "label": "Enriched Cited References. 299 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-4-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Exclude",
+          "label": "Exclude button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Refine",
+          "label": "Refine button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Publication Years",
+          "label": "Publication Years",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Publication Years more information tooltip",
+          "selector": "#_pendo-badge_FZlun5-IM1mM_1bqlhz4GoapSJs",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Show Final Publication Year",
+          "selector": "#mat-mdc-slide-toggle-1-button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "PY.2026",
+          "label": "2026. 66 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-5-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "PY.2025",
+          "label": "2025. 200 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-6-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "PY.2024",
+          "label": "2024. 147 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-7-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "PY.2023",
+          "label": "2023. 88 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-8-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "PY.2022",
+          "label": "2022. 64 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-9-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "See all >",
+          "label": "See all Publication Years",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Exclude",
+          "label": "Exclude button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Refine",
+          "label": "Refine button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Document Types",
+          "label": "Document Types",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.ARTICLE",
+          "label": "Article. 433 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-10-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.PROCEEDINGS PAPER",
+          "label": "Proceeding Paper. 212 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-11-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.REVIEW",
+          "label": "Review Article. 11 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-12-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.EARLY ACCESS",
+          "label": "Early Access. 10 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-13-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DT.RETRACTED PUBLICATION",
+          "label": "Retracted Publication. 2 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-14-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "See all >",
+          "label": "See all Document Types",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Exclude",
+          "label": "Exclude button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Refine",
+          "label": "Refine button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Researcher Profiles",
+          "label": "Researcher Profiles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Show Researcher Profiles",
+          "selector": "#mat-mdc-slide-toggle-2-button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DX2NG.1096301",
+          "label": "Wang, Xueyuan. 6 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-15-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Wang, Xueyuan",
+          "label": "Researcher Profiles: Wang, Xueyuan",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DX2NG.22403280",
+          "label": "Gursoy, M. Cenk. 6 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-16-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Gursoy, M. Cenk",
+          "label": "Researcher Profiles: Gursoy, M. Cenk",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DX2NG.2154230",
+          "label": "Erbad, Aiman. 5 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-17-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Erbad, Aiman",
+          "label": "Researcher Profiles: Erbad, Aiman",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DX2NG.67676823",
+          "label": "Zhang, Baochang. 5 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-18-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Zhang, Baochang",
+          "label": "Researcher Profiles: Zhang, Baochang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "DX2NG.1034196",
+          "label": "Wang, Jingjing. 4 matching records in current search.",
+          "selector": "#mat-mdc-checkbox-19-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Wang, Jingjing",
+          "label": "Researcher Profiles: Wang, Jingjing",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "See all >",
+          "label": "See all Researcher Profiles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Exclude",
+          "label": "Exclude button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Refine",
+          "label": "Refine button. Click to filter search with selected refines.",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Web of Science Categories",
+          "label": "Web of Science Categories",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Citation Topics Meso",
+          "label": "Citation Topics Meso",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Meso Level Citation Topics information",
+          "selector": "#_pendo-badge_pCb5mtY5SkAwDyCDNtY0N7YvJKw",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Citation Topics Micro",
+          "label": "Citation Topics Micro",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Micro Level Citation Topics information",
+          "selector": "#_pendo-badge_XdfMmyWG_FMaKQvm1ibjVBUwMew",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Sustainable Development Goals i",
+          "label": "Sustainable Development Goals i",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "i",
+          "label": "Sustainable Development Goals information",
+          "selector": "#_pendo-badge_i29EBtL0_2xuhZozSA3BMhjaPKU",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Web of Science Index",
+          "label": "Web of Science Index",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Affiliations",
+          "label": "Affiliations",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Affiliation with Department",
+          "label": "Affiliation with Department",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Publication Titles",
+          "label": "Publication Titles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Languages",
+          "label": "Languages",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Countries/Regions",
+          "label": "Countries/Regions",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Publishers",
+          "label": "Publishers",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Research Areas",
+          "label": "Research Areas",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Open Access",
+          "label": "Open Access",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Show types of Open Access",
+          "selector": "#_pendo-badge_HkMGltpbgJ1Q7lKwKPL6h1pVLwE",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Filter by Marked List",
+          "label": "Filter by Marked List",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Funding Agencies",
+          "label": "Funding Agencies",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Conference Titles",
+          "label": "Conference Titles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Group Authors",
+          "label": "Group Authors",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Book Series Titles",
+          "label": "Book Series Titles",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Editors",
+          "label": "Editors",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Editorial Notices",
+          "label": "Editorial Notices",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Analyze Results",
+          "label": "For more options, use Analyze Results",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/analyze-results/93a5a7db-f4b9-4a64-806e-07e752cd7cb7-01b31306e1"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select all records, 0 of 657",
+          "selector": "#mat-mdc-checkbox-20-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Add To Marked List",
+          "label": "Add To Marked List - Click Add To Marked List Option",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Export expand_more",
+          "label": "Export expand_more",
+          "selector": "#export-trigger-btn",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Combined Semantic and Boolean",
+          "label": "Combined Semantic and Boolean Search",
+          "selector": "#Select search results",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Relevance",
+          "label": "Sort by Relevance",
+          "selector": "#selectSortOption",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Top Prev Page",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "number",
+          "text": "1",
+          "label": "Top Page Number 1",
+          "selector": "#snNextPageTop",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "Top Next Page",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Select record Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning",
+          "selector": "#mat-mdc-checkbox-22-input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning",
+          "label": "View full record For (Multi-UAV Path Planning...)",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/woscc/full-record/WOS:001148957800001"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Zhao, XR",
+          "label": "Zhao, XR; Yang, RN; (...); Hou, ZW",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/author/record/60061898"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yang, RN",
+          "label": "Zhao, XR; Yang, RN; (...); Hou, ZW",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/author/record/18020397"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Hou, ZW",
+          "label": "Zhao, XR; Yang, RN; (...); Hou, ZW",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.webofscience.com/wos/author/record/51164884"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "DRONESarrow_drop_down",
+          "label": "DRONES",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:void(0)"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Enriched Cited References",
+          "label": "Enriched Cited References",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Show more expand_more",
+          "label": "Show more - Expand abstract for this record Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        }
+      ],
+      "result_labels": [
+        "Web of Science header logo. Click to return to home page Web of Science™ ",
+        "Results for UAV path planning reinforcement learning keyboard_arrow_right Results for UAV path planning reinforcement learning ",
+        "Analyze Results Analyze Results ",
+        "Enter a search term to search within results  Search within results...",
+        "Review Article. 11 matching records in current search. DT.REVIEW ",
+        "Enriched Cited References. 299 matching records in current search. ECR.Y ",
+        "Article. 433 matching records in current search. DT.ARTICLE ",
+        "Publication Titles Publication Titles ",
+        "Conference Titles Conference Titles ",
+        "Book Series Titles Book Series Titles ",
+        "For more options, use Analyze Results Analyze Results ",
+        "Sort by Relevance Relevance ",
+        "Top Prev Page  ",
+        "Top Page Number 1 1 ",
+        "Top Next Page  ",
+        "Enriched Cited References Enriched Cited References ",
+        "Page size, 50 Page size 50 ",
+        "Bottom Prev Page  ",
+        "Bottom Page Number 1 1 ",
+        "Bottom Next Page  "
+      ]
+    }
+  },
+  "observed_labels": [
+    "Web of Science header logo. Click to return to home page Web of Science™ ",
+    "View your search history  ",
+    "Review Article. 11 matching records in current search. DT.REVIEW ",
+    "Enriched Cited References. 299 matching records in current search. ECR.Y ",
+    "Publication Titles Publication Titles ",
+    "Conference Titles Conference Titles ",
+    "Book Series Titles Book Series Titles ",
+    "Sort by Relevance Relevance ",
+    "Top Prev Page  ",
+    "Top Page Number 1 1 ",
+    "Top Next Page  ",
+    "View full record For (Multi-UAV Path Planning...) Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning ",
+    "Enriched Cited References Enriched Cited References ",
+    "Free Full Text From Publisher for Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning View Free Full Text From Publisher for Multi-UAV Path Planning a",
+    "Free Full Text From Publisher for Multi-UAV Path Planning and Following Based on Multi-Agent Reinforcement Learning View View Full Text on ProQuest for Multi-UAV Path Planning and ",
+    "View full record For (Improve exploration in...) Improve exploration in deep reinforcement learning for UAV path planning using state and action entropy ",
+    "View full record For (Dynamic Charging and...) Dynamic Charging and Path Planning for UAV-Powered Rechargeable WSNs Using Multi-Agent Deep Reinforcement Learning ",
+    "View full text for Dynamic Charging and Path Planning for UAV-Powered Rechargeable WSNs Using Multi-Agent Deep Reinforce View full text for Dynamic Charging and Path Planning for U",
+    "Page size, 50 Page size 50 ",
+    "Bottom Prev Page  ",
+    "Bottom Page Number 1 1 ",
+    "Bottom Next Page  "
+  ],
+  "screenshot_path": "evidence/web-of-science/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "changed=['Cited|被引']",
+  "captured_at": "2026-05-13T11:56:07.385580+00:00",
+  "page_title": "UAV path planning reinforcement learning – 657 – Web of Science Core Collection",
+  "url_redacted": "https://www.webofscience.com/wos/woscc/summary/93a5a7db-f4b9-4a64-806e-07e752cd7cb7-01b31306e1/0c99e6e5-aaa5-4f0e-afb1-95eba70f9069-01b31306d7/relevance/1"
+}

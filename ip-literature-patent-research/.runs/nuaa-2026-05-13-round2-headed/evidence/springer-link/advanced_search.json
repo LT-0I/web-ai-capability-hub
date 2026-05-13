@@ -1,0 +1,517 @@
+{
+  "activation_steps": [
+    "click visible Advanced Search"
+  ],
+  "selectors": {
+    "controls": [
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Skip to main content",
+        "label": "Skip to main content Log in Find a journal Publish with us Track your research Search Saved research Cart Home Advanc",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/advanced-search?query=UAV+path+planning+reinforcement+learning&sortBy=relevance&advanced-search=true#main"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Log in",
+        "label": "Log in",
+        "selector": "#identity-account-widget",
+        "placeholder": "",
+        "options": [],
+        "href": "https://idp.springer.com/auth/personal/springernature?redirect_uri=https://link.springer.com/advanced-search?query=UAV+path+planning+reinforcement+learning&sortBy=relevance&advanced-search=true"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Find a journal",
+        "label": "Find a journal Publish with us Track your research",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/journals/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Publish with us",
+        "label": "Find a journal Publish with us Track your research",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/authors"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Track your research",
+        "label": "Find a journal Publish with us Track your research",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springernature.com/home/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Search",
+        "label": "Search",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "javascript:;"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Saved research",
+        "label": "Saved research",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/saved-research"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Cart",
+        "label": "Cart",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://order.springer.com/public/cart"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Home",
+        "label": "Home",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Learn more",
+        "label": "You can refine your search with the operators AND, OR, NOT, ( ), \" \". Learn more",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://support.springernature.com/en/support/solutions/articles/6000271990-search-options-on-springerlink"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "UAV path planning reinforcement learning",
+        "label": "Keywords",
+        "selector": "#query",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Title",
+        "selector": "#advanced-search-title-hint",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Author(s) or Editor(s)",
+        "selector": "#advanced-search-authors-hint",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "In journal(s)",
+        "selector": "#advanced-search-journals-hint",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "m3",
+        "label": "Last 3 months",
+        "selector": "#date-m3",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "m6",
+        "label": "Last 6 months",
+        "selector": "#date-m6",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "m12",
+        "label": "Last 12 months",
+        "selector": "#date-m12",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "m24",
+        "label": "Last 24 months",
+        "selector": "#date-m24",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "radio",
+        "text": "custom",
+        "label": "Custom dates",
+        "selector": "#date-custom",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "Start year",
+        "selector": "#date-from",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "text": "",
+        "label": "End year",
+        "selector": "#date-to",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "text": "Search",
+        "label": "Search",
+        "selector": "#search-submit",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Journals A-Z",
+        "label": "Journals A-Z",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/journals/a/1"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Books A-Z",
+        "label": "Books A-Z",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/books/a/1"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Journal finder",
+        "label": "Journal finder",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/journals"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Publish your research",
+        "label": "Publish your research",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/authors"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Language editing",
+        "label": "Language editing",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://authorservices.springernature.com/go/sn/?utm_source=SNLinkfooter&utm_medium=Web&utm_campaign=SNReferral"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Open access publishing",
+        "label": "Open access publishing",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Our products",
+        "label": "Our products",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/products"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Librarians",
+        "label": "Librarians",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/librarians"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Societies",
+        "label": "Societies",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/societies"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Partners and advertisers",
+        "label": "Partners and advertisers",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/partners"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Springer",
+        "label": "Springer",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/brands/springer"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Nature Portfolio",
+        "label": "Nature Portfolio",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.nature.com/"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "BMC",
+        "label": "BMC",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/brands/bmc"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Palgrave Macmillan",
+        "label": "Palgrave Macmillan",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/brands/palgrave"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Apress",
+        "label": "Apress",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/brands/apress"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Discover",
+        "label": "Discover",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/brands/discover"
+      },
+      {
+        "tag": "button",
+        "type": "",
+        "text": "Your privacy choices/Manage cookies",
+        "label": "Your privacy choices/Manage cookies",
+        "selector": "button",
+        "placeholder": "",
+        "options": [],
+        "href": ""
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Your US state privacy rights",
+        "label": "Your US state privacy rights",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/gp/legal/ccpa"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Accessibility statement",
+        "label": "Accessibility statement",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/accessibility"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Terms and conditions",
+        "label": "Terms and conditions",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/termsandconditions"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Privacy policy",
+        "label": "Privacy policy",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/privacystatement"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Help and support",
+        "label": "Help and support",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://support.springernature.com/en/support/home"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Legal notice",
+        "label": "Legal notice",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://link.springer.com/legal-notice"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "Cancel contracts here",
+        "label": "Cancel contracts here",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://support.springernature.com/en/support/solutions/articles/6000255911-subscription-cancellations"
+      },
+      {
+        "tag": "a",
+        "type": "",
+        "text": "",
+        "label": "210.245.152.143 LID 4548 - SpringerLink Jiangsu eBo Consortium 2006-9 copyright (3001144869) - SpringerLink Jiangsu eBo",
+        "selector": "a",
+        "placeholder": "",
+        "options": [],
+        "href": "https://www.springernature.com/"
+      }
+    ],
+    "boolean_tests": [
+      {
+        "query": "UAV AND reinforcement learning",
+        "selector": "input:visible"
+      }
+    ]
+  },
+  "observed_labels": [
+    "You can refine your search with the operators AND, OR, NOT, ( ), \" \". Learn more Learn more ",
+    "Keywords UAV path planning reinforcement learning ",
+    "Title  ",
+    "Author(s) or Editor(s)  ",
+    "Custom dates custom ",
+    "Start year  ",
+    "End year  ",
+    "Partners and advertisers Partners and advertisers ",
+    "Nature Portfolio Nature Portfolio ",
+    "Terms and conditions Terms and conditions ",
+    "Help and support Help and support ",
+    "Legal notice Legal notice ",
+    "210.245.152.143 LID 4548 - SpringerLink Jiangsu eBo Consortium 2006-9 copyright (3001144869) - SpringerLink Jiangsu eBo  "
+  ],
+  "screenshot_path": "evidence/springer-link/screenshots/advanced_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Captured 48 advanced/interactive controls; boolean tests sampled=1.",
+  "captured_at": "2026-05-13T12:01:18.036222+00:00",
+  "page_title": "Search research articles and books | Springer Nature Link",
+  "url_redacted": "https://link.springer.com/search?<redacted-query>"
+}

@@ -1,0 +1,678 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [],
+    "result_evidence": {
+      "text_sample": "学术导航  智研平台\n南京航空航天大学图书馆\n登录 / 注册\n简  繁\n万方智搜\n全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 \n 检索\n高级检索 \n检索历史 \n找到925条文献\n获取范围\n机构已购\n只看核心\n有全文\n(903)\n开放获取\n(35)\n资源类型\n专利\n(446)\n学位论文\n(289)\n期刊论文\n(188)\n年份\n2026\n(98)\n2025\n(297)\n2024\n(216)\n语种\n中文\n(923)\n英文\n(1)\n其他\n(1)\n来源数据库\n作者\n机构\n|\n|\n|\n|\n 结果中检索\n国内外文献保障服务>>\n已选择0条\n清除\n批量引用\n批量下载\n排序：\n相关度\n出版时间\n被引频次\n每页 20 条\n1 / 47\n>\n1.一种模型辅助的联邦强化学习多无人机路径规划方法\n[期刊论文]陆音刘金志张珉-《电子与信息学报》CSTPCD北大核心EICSCD2025年5期\n摘要：针对多无人机在环境监测传感器网络、灾害应急通信节点等设备位置部分未知场景下的数据收集需求,该文提出一种模型辅助的联邦强化学习多无人机路径规划方法.在联邦学习框架下,通过结合最大熵强化学习与单调价值函数分解机制,引入动态熵温度参数和注意力机制,优化了多无人机协作的探索效率与策略稳定性.此外,设计了一种基于信道建模与位置估计的混合模拟环境构建方法,利用改进的粒子群算法快速估计未知设备位置,显著降低了\n无人机路径规划强化学习联邦学习模型辅助\n在线阅读下载全文快报引用\n收藏评审材料\n被引：3下载：88\n2.基于分层深度强化学习的无人机混合路径规划\n[期刊论文]吕超李慕宸欧家骏-《北京航空航天大学学报》CSTPCD北大核心EICSCD2025年10期\n摘要：无人机应用中需要在非净空环境中实现自主安全飞行,其中障碍物存在部分已知、部分未知的特点,需在基于已知障碍物进行全局路径规划的同时,开展针对未知障碍物的自主避障.为实现障碍物半已知环境下的安全飞行,提出基于分层深度强化学习的混合路径规划方法.该方法将自主感知避障和趋向全局路径规划航迹点飞行 2个无人机自主飞行中需要执行的子任务,利用分层模型有机结合,实现功能的有效复合.分层深度强化学习模型中,避障\n无人机路径规划自主避障深度强化学习分层模型\n在线阅读\n下载引用\n收藏评审材料\n被引：6下载：35\n3.基于深度强化学习的多无人机协同路径规划算法研究\n[期刊论文]李柳张洪峰-《消费电子》2026年8期\n摘要：多无人机协同路径规划是无人机集群智能化作业的关键技术,在军事侦察、灾害救援、物流配送等领域应用前景广阔.然而,传统的路径规划算法在动态复杂的环境下实时性差、适应性弱,难以满足多机协同作业的需求.深度强化学习依靠智能体同环境相互作用来学习,在高维状态空间里可以做到自主决策并加以改进,为解决多无人机协同路径规划问题提供了新想",
+      "results_count": "925条",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "学术导航 智研平台",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/index.html?index=true"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "智研平台",
+          "label": "学术导航 智研平台",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://zhiyan.wanfangdata.com.cn/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "登录 / 注册",
+          "label": "登录 / 注册",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "万方智搜",
+          "label": "万方智搜 全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 检索 高级检索 检索历史",
+          "selector": "#anxs-logoName_sns",
+          "placeholder": "",
+          "options": [],
+          "href": "https://s.wanfangdata.com.cn/recommends/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "更多",
+          "label": "全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://s.wanfangdata.com.cn/nav-page"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "无人机 路径规划 强化学习",
+          "label": "海量资源，等你发现",
+          "selector": "input",
+          "placeholder": "海量资源，等你发现",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "检索历史",
+          "label": "高级检索 检索历史",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://s.wanfangdata.com.cn/history/"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "机构已购",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "只看核心",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "有全文 (903)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "开放获取 (35)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "专利 (446)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "学位论文 (289)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "期刊论文 (188)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2026 (98)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2025 (297)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "2024 (216)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "中文 (923)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "英文 (1)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "其他 (1)",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "题名",
+          "selector": "input",
+          "placeholder": "题名",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "作者",
+          "selector": "input",
+          "placeholder": "作者",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "关键词",
+          "selector": "input",
+          "placeholder": "关键词",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "起始年",
+          "selector": "input",
+          "placeholder": "起始年",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "结束年",
+          "selector": "input",
+          "placeholder": "结束年",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "",
+          "selector": "input",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "帮助",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/Help"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "客户服务",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/Customer"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "问卷调查",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wjx.top/jq/23244564.aspx"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "关于我们",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/About"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "公司首页",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "http://www.wanfang.com.cn/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "加入我们",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://wanfangdata1.zhiye.com/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "网站地图",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/sitemap"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "官方店铺",
+          "label": "帮助 客户服务 问卷调查 关于我们 公司首页 加入我们 网站地图 官方店铺",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://login.wanfangdata.com.cn/notice/shop"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "网络出版服务许可证：(署)网出证(京)字第072号",
+          "label": "网络出版服务许可证：(署)网出证(京)字第072号",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ad.wanfangdata.com.cn/images/hlwcb.jpg"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "药品医疗器械网络信息服务备案：(京)网药械信息备字（2023）第 00470 号",
+          "label": "药品医疗器械网络信息服务备案：(京)网药械信息备字（2023）第 00470 号",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ad.wanfangdata.com.cn/images/zhengshu_2.jpg"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "信息网络传播视听节目许可证 许可证号：0108284",
+          "label": "信息网络传播视听节目许可证 许可证号：0108284",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ad.wanfangdata.com.cn/images/stjmxkz3.jpg"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "万方数据学术资源发现获取服务系统[简称：万方智搜] V3.0 证书号：软著登字第11363462号",
+          "label": "万方数据学术资源发现获取服务系统[简称：万方智搜] V3.0 证书号：软著登字第11363462号",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.wanfangdata.com.cn/www/file/wfdatazs.pdf"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "京ICP证：010071",
+          "label": "京ICP证：010071",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ad.wanfangdata.com.cn/images/icp.jpg"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "营业执照",
+          "label": "营业执照",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://ad.wanfangdata.com.cn/images/yyzz.png"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "京公网安备11010802020237号",
+          "label": "京公网安备11010802020237号",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802020237"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "京ICP备08100800号-1",
+          "label": "京ICP备08100800号-1",
+          "selector": "#icpbei",
+          "placeholder": "",
+          "options": [],
+          "href": "https://beian.miit.gov.cn/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "客服邮箱：service@wanfangdata.com.cn",
+          "label": "客服邮箱：service@wanfangdata.com.cn",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "mailto:service@wanfangdata.com.cn"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "举报专区：https://www.12377.cn/",
+          "label": "举报专区：https://www.12377.cn/",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.12377.cn/"
+        }
+      ],
+      "result_labels": [
+        "万方智搜 全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 检索 高级检索 检索历史 万方智搜 ",
+        "全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 更多 ",
+        "学位论文 (289) on ",
+        "期刊论文 (188) on "
+      ]
+    }
+  },
+  "observed_labels": [],
+  "screenshot_path": "evidence/wanfang/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "not_applicable",
+  "note": "changed=[]",
+  "captured_at": "2026-05-13T11:55:32.482479+00:00",
+  "page_title": "万方数据知识服务平台",
+  "url_redacted": "https://s.wanfangdata.com.cn/paper?<redacted-query>"
+}

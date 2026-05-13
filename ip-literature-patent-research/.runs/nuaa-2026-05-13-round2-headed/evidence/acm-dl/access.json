@@ -1,0 +1,15 @@
+{
+  "activation_steps": [
+    "open home_url",
+    "try visible IP/institutional login"
+  ],
+  "selectors": {},
+  "observed_labels": [],
+  "screenshot_path": "evidence/acm-dl/screenshots/access.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Home opened through warm CDP; IP/institution login clicked=True.",
+  "captured_at": "2026-05-13T11:59:53.924008+00:00",
+  "page_title": "Institutions : ACM Digital Library",
+  "url_redacted": "https://dl.acm.org/institutions"
+}

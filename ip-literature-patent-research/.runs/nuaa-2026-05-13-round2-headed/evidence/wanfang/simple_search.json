@@ -1,0 +1,21 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "query_input": "input:visible"
+  },
+  "observed_labels": [
+    "万方智搜 全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 检索 高级检索 检索历史 万方智搜 ",
+    "全部 期刊 学位 会议 专利 科技报告 成果 标准 法规 地方志 视频 更多 更多 ",
+    "学位论文 (289) on ",
+    "期刊论文 (188) on "
+  ],
+  "screenshot_path": "evidence/wanfang/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=无人机 路径规划 强化学习; results_count=925条",
+  "captured_at": "2026-05-13T11:55:13.530673+00:00",
+  "page_title": "万方数据知识服务平台",
+  "url_redacted": "https://s.wanfangdata.com.cn/paper?<redacted-query>"
+}

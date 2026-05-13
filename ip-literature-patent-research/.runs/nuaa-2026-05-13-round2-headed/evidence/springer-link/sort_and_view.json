@@ -1,0 +1,1248 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [
+      "50|每页"
+    ],
+    "result_evidence": {
+      "text_sample": "Skip to main content\nLog in\nFind a journal\nPublish with us\nTrack your research\nSearch\n Saved research\n Cart\nSearch\nSearch for articles, journals, books, authors, videos\nSearch\nAdvanced search Search help\nShowing 1-20 of 2,251 results\nContent type\nArticle (1,410)\nResearch article (1,162)\nChapter (841)\nConference paper (552)\nReview article (231)\nReference work entry (20)\nNews article (1)\nPublishing model\nOpen access (487)\nDate published\nLast 3 months\nLast 6 months\nLast 12 months\nLast 24 months\nCustom dates\nStart year\n(Y​Y​Y​Y)\nEnd year\n(Y​Y​Y​Y)\nLanguages\nEnglish (2,250)\nGerman (1)\nSubjects\nUav communication and network optimization (490)\nRobotics (477)\nStochastic learning and adaptive control (425)\nDiscrete optimization (387)\nRobotic engineering (360)\nContinuous optimization (355)\nOptimization (349)\nArtificial intelligence (341)\nShow more\nDisciplines\nEngineering (1,232)\nComputer science (686)\nScience, humanities and social sciences, multidisciplinary (127)\nBusiness and management (42)\nEarth sciences (25)\nMathematics (21)\nEnvironment (20)\nPhysics (19)\nShow more\nSubdisciplines\nArtificial intelligence (848)\nControl, robotics, mechatronics (547)\nComputational intelligence (375)\nCommunic",
+      "results_count": "2,251 results",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Skip to main content",
+          "label": "Skip to main content Log in Find a journal Publish with us Track your research Search Saved research Cart Search Searc",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/search?query=UAV+path+planning+reinforcement+learning#main"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Log in",
+          "label": "Log in",
+          "selector": "#identity-account-widget",
+          "placeholder": "",
+          "options": [],
+          "href": "https://idp.springer.com/auth/personal/springernature?redirect_uri=https://link.springer.com/search?query=UAV+path+planning+reinforcement+learning"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Find a journal",
+          "label": "Find a journal Publish with us Track your research",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journals/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Publish with us",
+          "label": "Find a journal Publish with us Track your research",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/authors"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Track your research",
+          "label": "Find a journal Publish with us Track your research",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springernature.com/home/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Search",
+          "label": "Search",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "javascript:;"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Saved research",
+          "label": "Saved research",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/saved-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Cart",
+          "label": "Cart",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://order.springer.com/public/cart"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "UAV path planning reinforcement learning",
+          "label": "Search for articles, journals, books, authors, videos",
+          "selector": "#search-springerlink",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Search",
+          "label": "Search",
+          "selector": "#search-submit",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Advanced search",
+          "label": "Advanced search",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/advanced-search?query=UAV+path+planning+reinforcement+learning&sortBy=relevance&advanced-search=true"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Search help",
+          "label": "Search help",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://support.springernature.com/en/support/solutions/articles/6000271990-search-options-on-springerlink"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Article",
+          "label": "Article (1,410)",
+          "selector": "#content-type-Article",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Research",
+          "label": "Research article (1,162)",
+          "selector": "#content-type-Research",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Chapter",
+          "label": "Chapter (841)",
+          "selector": "#content-type-Chapter",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Conference Paper",
+          "label": "Conference paper (552)",
+          "selector": "#content-type-Conference Paper",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Review",
+          "label": "Review article (231)",
+          "selector": "#content-type-Review",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "Reference Work Entry",
+          "label": "Reference work entry (20)",
+          "selector": "#content-type-Reference Work Entry",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "News",
+          "label": "News article (1)",
+          "selector": "#content-type-News",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "true",
+          "label": "Open access (487)",
+          "selector": "#publishing-model-open access",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "m3",
+          "label": "Last 3 months",
+          "selector": "#date-m3",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "m6",
+          "label": "Last 6 months",
+          "selector": "#date-m6",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "m12",
+          "label": "Last 12 months",
+          "selector": "#date-m12",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "m24",
+          "label": "Last 24 months",
+          "selector": "#date-m24",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "custom",
+          "label": "Custom dates",
+          "selector": "#date-custom",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "Start year (Y​Y​Y​Y)",
+          "selector": "#date-from",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "End year (Y​Y​Y​Y)",
+          "selector": "#date-to",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "En",
+          "label": "English (2,250)",
+          "selector": "#language-En",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "De",
+          "label": "German (1)",
+          "selector": "#language-De",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"UAV Communication and Network Optimization\"",
+          "label": "Uav communication and network optimization (490)",
+          "selector": "#taxonomy-UAV+Communication+and+Network+Optimization",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Robotics\"",
+          "label": "Robotics (477)",
+          "selector": "#taxonomy-Robotics",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Stochastic Learning and Adaptive Control\"",
+          "label": "Stochastic learning and adaptive control (425)",
+          "selector": "#taxonomy-Stochastic+Learning+and+Adaptive+Control",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Discrete Optimization\"",
+          "label": "Discrete optimization (387)",
+          "selector": "#taxonomy-Discrete+Optimization",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Robotic Engineering\"",
+          "label": "Robotic engineering (360)",
+          "selector": "#taxonomy-Robotic+Engineering",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Continuous Optimization\"",
+          "label": "Continuous optimization (355)",
+          "selector": "#taxonomy-Continuous+Optimization",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Optimization\"",
+          "label": "Optimization (349)",
+          "selector": "#taxonomy-Optimization",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Artificial Intelligence\"",
+          "label": "Artificial intelligence (341)",
+          "selector": "#taxonomy-Artificial+Intelligence",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Show more",
+          "label": "Uav communication and network optimization (490) Robotics (477) Stochastic learning and adaptive control (425) Discrete",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Engineering\"",
+          "label": "Engineering (1,232)",
+          "selector": "#discipline-Engineering",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Computer Science\"",
+          "label": "Computer science (686)",
+          "selector": "#discipline-Computer+Science",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Science, Humanities and Social Sciences, multidisciplinary\"",
+          "label": "Science, humanities and social sciences, multidisciplinary (127)",
+          "selector": "#discipline-Science%2C+Humanities+and+Social+Sciences%2C+multidisciplinary",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Business and Management\"",
+          "label": "Business and management (42)",
+          "selector": "#discipline-Business+and+Management",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Earth Sciences\"",
+          "label": "Earth sciences (25)",
+          "selector": "#discipline-Earth+Sciences",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Mathematics\"",
+          "label": "Mathematics (21)",
+          "selector": "#discipline-Mathematics",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Environment\"",
+          "label": "Environment (20)",
+          "selector": "#discipline-Environment",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Physics\"",
+          "label": "Physics (19)",
+          "selector": "#discipline-Physics",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Show more",
+          "label": "Engineering (1,232) Computer science (686) Science, humanities and social sciences, multidisciplinary (127) Business and",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Artificial Intelligence\"",
+          "label": "Artificial intelligence (848)",
+          "selector": "#sub-discipline-Artificial+Intelligence",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Control, Robotics, Mechatronics\"",
+          "label": "Control, robotics, mechatronics (547)",
+          "selector": "#sub-discipline-Control%2C+Robotics%2C+Mechatronics",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Computational Intelligence\"",
+          "label": "Computational intelligence (375)",
+          "selector": "#sub-discipline-Computational+Intelligence",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Communications Engineering, Networks\"",
+          "label": "Communications engineering, networks (360)",
+          "selector": "#sub-discipline-Communications+Engineering%2C+Networks",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Computer Communication Networks\"",
+          "label": "Computer communication networks (337)",
+          "selector": "#sub-discipline-Computer+Communication+Networks",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Mechanical Engineering\"",
+          "label": "Mechanical engineering (270)",
+          "selector": "#sub-discipline-Mechanical+Engineering",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Electrical Engineering\"",
+          "label": "Electrical engineering (268)",
+          "selector": "#sub-discipline-Electrical+Engineering",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Computer Science, general\"",
+          "label": "Computer science, general (181)",
+          "selector": "#sub-discipline-Computer+Science%2C+general",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Show more",
+          "label": "Artificial intelligence (848) Control, robotics, mechatronics (547) Computational intelligence (375) Communications engi",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Learn more about Springer Nature's SDG Programme",
+          "label": "Learn more about Springer Nature's SDG Programme",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/researchers/sdg-programme"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Affordable and clean energy\"",
+          "label": "Affordable and clean energy (398)",
+          "selector": "#sustainable-development-goal-Affordable+and+clean+energy",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Sustainable cities and communities\"",
+          "label": "Sustainable cities and communities (66)",
+          "selector": "#sustainable-development-goal-Sustainable+cities+and+communities",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Industry, innovation and infrastructure\"",
+          "label": "Industry, innovation and infrastructure (62)",
+          "selector": "#sustainable-development-goal-Industry%2C+innovation+and+infrastructure",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Zero hunger\"",
+          "label": "Zero hunger (39)",
+          "selector": "#sustainable-development-goal-Zero+hunger",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Life below water\"",
+          "label": "Life below water (38)",
+          "selector": "#sustainable-development-goal-Life+below+water",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Good health and well-being\"",
+          "label": "Good health and well-being (29)",
+          "selector": "#sustainable-development-goal-Good+health+and+well-being",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Climate action\"",
+          "label": "Climate action (28)",
+          "selector": "#sustainable-development-goal-Climate+action",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "\"Life on land\"",
+          "label": "Life on land (16)",
+          "selector": "#sustainable-development-goal-Life+on+land",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Show more",
+          "label": "Learn more about Springer Nature's SDG Programme Affordable and clean energy (398) Sustainable cities and communities (6",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Clear selected",
+          "label": "Clear selected Update results",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Update results",
+          "label": "Clear selected Update results",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Download results (.csv)",
+          "label": "Download results (.csv)",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/search/csv?query=UAV+path+planning+reinforcement+learning&sortBy=relevance"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "RSS feed",
+          "label": "RSS feed",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/search.rss?query=UAV+path+planning+reinforcement+learning&sortBy=relevance"
+        },
+        {
+          "tag": "select",
+          "type": "",
+          "text": "Relevance Date published (new to old) Date published (old to new)",
+          "label": "Sort by (updates page)",
+          "selector": "#search-select",
+          "placeholder": "",
+          "options": [
+            "Relevance",
+            "Date published (new to old)",
+            "Date published (old to new)"
+          ],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Application of Deep Reinforcement Learning-Enhanced Whale Optimization Algorithm in 3D UAV Path Planning",
+          "label": "Application of Deep Reinforcement Learning-Enhanced Whale Optimization Algorithm in 3D UAV Path Planning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s13369-025-11048-2"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Arabian Journal for Science and Engineering",
+          "label": "Xuefeng Deng, Yadong Wang in Arabian Journal for Science and Engineering",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/13369"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "In-station UAV path planning based on multi-agent reinforcement learning and dynamic environment modeling",
+          "label": "In-station UAV path planning based on multi-agent reinforcement learning and dynamic environment modeling",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s44163-026-00882-4"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Discover Artificial Intelligence",
+          "label": "Xinyi Zhang, Chenxuan Li, Mingli Zhao in Discover Artificial Intelligence",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/44163"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Open access",
+          "label": "Open access",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Motion Planning of Quadrotor UAV via Reinforcement Learning in Unknown Obstacle Environment",
+          "label": "Motion Planning of Quadrotor UAV via Reinforcement Learning in Unknown Obstacle Environment",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s12555-025-0014-9"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "International Journal of Control, Automation and Systems",
+          "label": "Jongho Park, Suwon Lee, Junsoo Lee in International Journal of Control, Automation and Systems",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/12555"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A Q-learning-based hybrid search algorithm integrating PRM and ACO for 3D UAV path planning",
+          "label": "A Q-learning-based hybrid search algorithm integrating PRM and ACO for 3D UAV path planning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1038/s41598-025-34880-w"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Scientific Reports",
+          "label": "Siya Liu, Yibing Cui, ... Wei Hu in Scientific Reports",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/41598"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Open access",
+          "label": "Open access",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "UAV swarm safe coverage path planning with deep reinforcement learning",
+          "label": "UAV swarm safe coverage path planning with deep reinforcement learning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s10791-026-10052-w"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Discover Computing",
+          "label": "Lei Gao, Xin Xiang, ... Yuanai Xie in Discover Computing",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/10791"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Open access",
+          "label": "Open access",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Energy-Aware Adaptive Obstacle Avoidance Based on Meta-Reinforcement Learning with Segmentation for UAV Trajectory Planning",
+          "label": "Energy-Aware Adaptive Obstacle Avoidance Based on Meta-Reinforcement Learning with Segmentation for UAV Trajectory Plann",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s42405-025-00950-6"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "International Journal of Aeronautical and Space Sciences",
+          "label": "T. Archana, T. Aravind, ... C. T. Kalaivani in International Journal of Aeronautical and Space Sciences",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/42405"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Intelligent Path Planning for UAV Swarms via Deep Reinforcement Learning",
+          "label": "Intelligent Path Planning for UAV Swarms via Deep Reinforcement Learning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/chapter/10.1007/978-3-032-20440-0_5"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Verification and Evaluation of Computer and Communication Systems",
+          "label": "Hafedh Jouini, Hamza Gharsellaoui, Mohamed Khalgui in Verification and Evaluation of Computer and Communication Systems",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/book/10.1007/978-3-032-20440-0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "UAV Path Planning and Trajectory Optimization: A Comprehensive Survey",
+          "label": "UAV Path Planning and Trajectory Optimization: A Comprehensive Survey",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s13369-025-10971-8"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Arabian Journal for Science and Engineering",
+          "label": "Tarek Sheltami, Gamil Ahmed, ... Ashraf Mahmoud in Arabian Journal for Science and Engineering",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/13369"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "An adaptive Q-learning based particle swarm optimization for multi-UAV path planning",
+          "label": "An adaptive Q-learning based particle swarm optimization for multi-UAV path planning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s00500-024-09691-2"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Soft Computing",
+          "label": "Li Tan, Hongtao Zhang, ... Ziliang Shang in Soft Computing",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/500"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A modified double DQN for UAV path planning: dynamic reward shaping and heuristic-guided tie-breaking",
+          "label": "A modified double DQN for UAV path planning: dynamic reward shaping and heuristic-guided tie-breaking",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s11370-026-00712-7"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Intelligent Service Robotics",
+          "label": "Ghulam Farid, Lanyong Zhang, ... Talha Younas in Intelligent Service Robotics",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/11370"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Improved deep Q-network-based UAV path planning in partially observable environments",
+          "label": "Improved deep Q-network-based UAV path planning in partially observable environments",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s10586-025-05718-x"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Cluster Computing",
+          "label": "Raja Jarray, Soufiene Bouallègue in Cluster Computing",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/10586"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Dynamic Q-planning for online UAV path planning in unknown and complex environments",
+          "label": "Dynamic Q-planning for online UAV path planning in unknown and complex environments",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s41315-025-00457-z"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "International Journal of Intelligent Robotics and Applications",
+          "label": "Lidia G. S. Rocha, Kenny A. Q. Caldas, ... Kelen C. Teixeira Vivaldini in International Journal of Intelligent Robotics",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/41315"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Multi-UAV path planning considering multiple energy consumptions via an improved bee foraging learning particle swarm optimization algorithm",
+          "label": "Multi-UAV path planning considering multiple energy consumptions via an improved bee foraging learning particle swarm op",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1038/s41598-025-99001-z"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Scientific Reports",
+          "label": "Yuanhang Qi, Haoran Jiang, ... Yunjian Xu in Scientific Reports",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/41598"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Open access",
+          "label": "Open access",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Deep reinforcement learning for UAV attitude control via adaptive gain optimization",
+          "label": "Deep reinforcement learning for UAV attitude control via adaptive gain optimization",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s10489-025-06978-1"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Applied Intelligence",
+          "label": "Muhammad Zorain, Fawad Salam Khan, ... Jahan Zeb Gul in Applied Intelligence",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/10489"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Costmap A* Guided Reinforcement Learning Path Planning Method for Complex Environments Navigation",
+          "label": "Costmap A* Guided Reinforcement Learning Path Planning Method for Complex Environments Navigation",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s12204-024-2755-7"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Journal of Shanghai Jiaotong University (Science)",
+          "label": "Yixuan Wang, Bin Shen, ... Wei Tao in Journal of Shanghai Jiaotong University (Science)",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/12204"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Police UAV path planning method based on improved PSO using AFS and HJS",
+          "label": "Police UAV path planning method based on improved PSO using AFS and HJS",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1038/s41598-026-40670-9"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Scientific Reports",
+          "label": "Dongxing Wang, Xiaoxiao Qian in Scientific Reports",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/41598"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Open access",
+          "label": "Open access",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.springernature.com/gp/open-science/about/the-fundamentals-of-open-access-and-open-research"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Uav path planning and flight control based on Mamba and dual-channel attention mechanism under wind field disturbance",
+          "label": "Uav path planning and flight control based on Mamba and dual-channel attention mechanism under wind field disturbance",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s13042-026-03071-y"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "International Journal of Machine Learning and Cybernetics",
+          "label": "Jianxin Feng, Song Jiang, ... Yuanming Ding in International Journal of Machine Learning and Cybernetics",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/13042"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Exponential-trigonometric optimization algorithm with multi-strategy fusion for UAV three-dimensional path planning",
+          "label": "Exponential-trigonometric optimization algorithm with multi-strategy fusion for UAV three-dimensional path planning",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/article/10.1007/s11227-025-07335-2"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "The Journal of Supercomputing",
+          "label": "Tao Xu, Chaoyue Chen, ... Dongdong Ma in The Journal of Supercomputing",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/journal/11227"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Deep Reinforcement Learning-Based Local Path Planning with Memory-Guided",
+          "label": "Deep Reinforcement Learning-Based Local Path Planning with Memory-Guided",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/chapter/10.1007/978-981-96-2216-0_35"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Advances in Guidance, Navigation and Control",
+          "label": "Xu Wang, Xiaobin Xu, ... Chengyu Gu in Advances in Guidance, Navigation and Control",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/book/10.1007/978-981-96-2216-0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Optimizing UAV Path Planning and Energy Management Using Reinforcement-Learning and Digital Twins Simulation",
+          "label": "Optimizing UAV Path Planning and Energy Management Using Reinforcement-Learning and Digital Twins Simulation",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/chapter/10.1007/978-3-031-87781-0_39"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Advanced Information Networking and Applications",
+          "label": "Nesrine Maatouk, Asma Ben Letaifa, Abderrezak Rachedi in Advanced Information Networking and Applications",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/book/10.1007/978-3-031-87781-0"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Share feedback",
+          "label": "Did you find what you were looking for? Share feedback.",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.surveymonkey.com/r/FRTQNGW?smquery=UAV+path+planning+reinforcement+learning&smappliedfilter="
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "2",
+          "label": "2",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/search?query=UAV+path+planning+reinforcement+learning&sortBy=relevance&page=2"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "3",
+          "label": "3",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://link.springer.com/search?query=UAV+path+planning+reinforcement+learning&sortBy=relevance&page=3"
+        }
+      ],
+      "result_labels": [
+        "Search for articles, journals, books, authors, videos UAV path planning reinforcement learning ",
+        "Article (1,410) Article ",
+        "Research article (1,162) Research ",
+        "Review article (231) Review ",
+        "News article (1) News ",
+        "Clear selected Update results Clear selected ",
+        "Clear selected Update results Update results ",
+        "Download results (.csv) Download results (.csv) ",
+        "Sort by (updates page) Relevance Date published (new to old) Date published (old to new) ",
+        "An adaptive Q-learning based particle swarm optimization for multi-UAV path planning An adaptive Q-learning based particle swarm optimization for multi-UAV path planning ",
+        "Multi-UAV path planning considering multiple energy consumptions via an improved bee foraging learning particle swarm op Multi-UAV path planning considering multiple energy consump",
+        "Next page Next page ",
+        "210.245.152.143 LID 4548 - SpringerLink Jiangsu eBo Consortium 2006-9 copyright (3001144869) - SpringerLink Jiangsu eBo  "
+      ]
+    }
+  },
+  "observed_labels": [
+    "Review article (231) Review ",
+    "Sort by (updates page) Relevance Date published (new to old) Date published (old to new) ",
+    "Next page Next page ",
+    "210.245.152.143 LID 4548 - SpringerLink Jiangsu eBo Consortium 2006-9 copyright (3001144869) - SpringerLink Jiangsu eBo  "
+  ],
+  "screenshot_path": "evidence/springer-link/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "changed=['50|每页']",
+  "captured_at": "2026-05-13T12:01:25.732651+00:00",
+  "page_title": "Search research articles and books | Springer Nature Link",
+  "url_redacted": "https://link.springer.com/search?<redacted-query>"
+}

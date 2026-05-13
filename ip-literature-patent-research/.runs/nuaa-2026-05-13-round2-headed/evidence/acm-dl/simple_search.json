@@ -1,0 +1,16 @@
+{
+  "activation_steps": [
+    "submit representative query"
+  ],
+  "selectors": {
+    "route": "search_url_template"
+  },
+  "observed_labels": [],
+  "screenshot_path": "evidence/acm-dl/screenshots/simple_search.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "query=UAV path planning reinforcement learning; results_count=not parsed",
+  "captured_at": "2026-05-13T12:00:03.559759+00:00",
+  "page_title": "TAAS: Just Accepted",
+  "url_redacted": "https://dl.acm.org/toc/taas/justaccepted"
+}

@@ -1,0 +1,15 @@
+{
+  "activation_steps": [
+    "open home_url",
+    "try visible IP/institutional login"
+  ],
+  "selectors": {},
+  "observed_labels": [],
+  "screenshot_path": "evidence/ieee-xplore/screenshots/access.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "Home opened through warm CDP; IP/institution login clicked=False.",
+  "captured_at": "2026-05-13T11:58:42.079492+00:00",
+  "page_title": "IEEE Xplore",
+  "url_redacted": "https://ieeexplore.ieee.org/Xplore/home.jsp"
+}

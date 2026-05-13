@@ -1,0 +1,16 @@
+{
+  "activation_steps": [
+    "inspect UI links for OpenURL/API/DOI; do not exercise APIs"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Scopus API Learn more about Scopus API's (opens in a new window) Scopus API Learn more about Scopus API's (opens in a new window) "
+  ],
+  "screenshot_path": "evidence/scopus/screenshots/api_openurl.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "OpenURL/API/DOI pattern observed; endpoint not exercised.",
+  "captured_at": "2026-05-13T11:57:28.495208+00:00",
+  "page_title": "Scopus - Documents Search",
+  "url_redacted": "https://www.scopus.com/pages/search/publications?<redacted-query>"
+}

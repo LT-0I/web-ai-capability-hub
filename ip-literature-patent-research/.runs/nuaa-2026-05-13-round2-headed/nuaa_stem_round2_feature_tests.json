@@ -1,0 +1,507 @@
+{
+  "source": "NUAA library, headed CDP, warm campus proxy session",
+  "campus_network": true,
+  "schema_version": "nuaa-stem-round2-headed-1.0",
+  "round": 2,
+  "redactions_applied": [
+    "nav_url",
+    "institutional_markers",
+    "personal_account_ids"
+  ],
+  "captured_at": "2026-05-13T12:03:47.158740+00:00",
+  "test_count": 81,
+  "tests": [
+    {
+      "resource_id": "cnki",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=无人机 路径规划 强化学习; results_count=1,274 条"
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 186 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "sort_and_view",
+      "status": "not_applicable",
+      "note": "changed=[]"
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "citation_graph",
+      "status": "not_applicable",
+      "note": "No cited-by/reference/related controls observed."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "alerts_saved",
+      "status": "requires_account",
+      "note": "Alert/saved-search surface indicates personal account login is required."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "full_text",
+      "status": "not_applicable",
+      "note": "No PDF/full-text/landing-page link observed."
+    },
+    {
+      "resource_id": "cnki",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=无人机 路径规划 强化学习; results_count=925条"
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 25 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "sort_and_view",
+      "status": "not_applicable",
+      "note": "changed=[]"
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "export",
+      "status": "not_applicable",
+      "note": "No visible export/citation metadata control."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "citation_graph",
+      "status": "not_applicable",
+      "note": "No cited-by/reference/related controls observed."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "alerts_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "full_text",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve."
+    },
+    {
+      "resource_id": "wanfang",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=657 results"
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "advanced_search",
+      "status": "partial",
+      "note": "Captured 173 advanced/interactive controls; boolean tests sampled=0."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['Cited|被引']"
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "citation_graph",
+      "status": "tested_ok",
+      "note": "Citation surface URL pattern(s) captured."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "alerts_saved",
+      "status": "partial",
+      "note": "Alert/saved-search controls observed; not persisted because account state/notification side effect was not appropriate."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "full_text",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve."
+    },
+    {
+      "resource_id": "web-of-science",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=1073 results"
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "advanced_search",
+      "status": "partial",
+      "note": "Captured 196 advanced/interactive controls; boolean tests sampled=0."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "sort_and_view",
+      "status": "partial",
+      "note": "changed=[]"
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "export",
+      "status": "tested_ok",
+      "note": "Official export/download captured and saved."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "citation_graph",
+      "status": "tested_ok",
+      "note": "Citation surface URL pattern(s) captured."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "alerts_saved",
+      "status": "requires_account",
+      "note": "Alert/saved-search surface indicates personal account login is required."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "full_text",
+      "status": "not_applicable",
+      "note": "No PDF/full-text/landing-page link observed."
+    },
+    {
+      "resource_id": "scopus",
+      "feature_id": "api_openurl",
+      "status": "tested_ok",
+      "note": "OpenURL/API/DOI pattern observed; endpoint not exercised."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=True."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=3,756 results"
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 33 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['Title|题名']"
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "citation_graph",
+      "status": "partial",
+      "note": "Citation controls observed but click did not reach a verifiable list."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "alerts_saved",
+      "status": "partial",
+      "note": "Alert/saved-search controls observed; not persisted because account state/notification side effect was not appropriate."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "full_text",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve."
+    },
+    {
+      "resource_id": "science-direct",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=1,031 results"
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 79 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['Title|题名']"
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "citation_graph",
+      "status": "partial",
+      "note": "Citation controls observed but click did not reach a verifiable list."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "alerts_saved",
+      "status": "requires_account",
+      "note": "Alert/saved-search surface indicates personal account login is required."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "full_text",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve."
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=True."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=not parsed"
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "advanced_search",
+      "status": "partial",
+      "note": "Captured 400 advanced/interactive controls; boolean tests sampled=0."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['Cited|被引']"
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "citation_graph",
+      "status": "tested_ok",
+      "note": "Citation surface URL pattern(s) captured."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "alerts_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "full_text",
+      "status": "not_applicable",
+      "note": "No PDF/full-text/landing-page link observed."
+    },
+    {
+      "resource_id": "acm-dl",
+      "feature_id": "api_openurl",
+      "status": "tested_ok",
+      "note": "OpenURL/API/DOI pattern observed; endpoint not exercised."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=UAV path planning reinforcement learning; results_count=2,251 results"
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 48 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['50|每页']"
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "citation_graph",
+      "status": "tested_ok",
+      "note": "Citation surface URL pattern(s) captured."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "alerts_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "full_text",
+      "status": "tested_ok",
+      "note": "Full-text/PDF link resolved to preview or landing page; no bulk full-text saved."
+    },
+    {
+      "resource_id": "springer-link",
+      "feature_id": "api_openurl",
+      "status": "tested_ok",
+      "note": "OpenURL/API/DOI pattern observed; endpoint not exercised."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "access",
+      "status": "tested_ok",
+      "note": "Home opened through warm CDP; IP/institution login clicked=False."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "simple_search",
+      "status": "tested_ok",
+      "note": "query=无人机 路径规划 强化学习; results_count=56,863,688条"
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "advanced_search",
+      "status": "tested_ok",
+      "note": "Captured 103 advanced/interactive controls; boolean tests sampled=1."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "sort_and_view",
+      "status": "tested_ok",
+      "note": "changed=['50|每页']"
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "export",
+      "status": "partial",
+      "note": "Export/citation control observed but no file download completed without extra account/dialog steps."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "citation_graph",
+      "status": "not_applicable",
+      "note": "No cited-by/reference/related controls observed."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "alerts_saved",
+      "status": "not_applicable",
+      "note": "No alert/saved-search controls observed."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "full_text",
+      "status": "partial",
+      "note": "Full-text control observed but click did not resolve."
+    },
+    {
+      "resource_id": "incopat",
+      "feature_id": "api_openurl",
+      "status": "not_applicable",
+      "note": "No OpenURL/API endpoint surfaced in UI evidence."
+    }
+  ],
+  "status_counts": {
+    "tested_ok": 39,
+    "not_applicable": 19,
+    "partial": 20,
+    "requires_account": 3
+  }
+}

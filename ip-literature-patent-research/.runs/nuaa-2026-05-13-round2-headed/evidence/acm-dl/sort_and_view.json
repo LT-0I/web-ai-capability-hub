@@ -1,0 +1,1229 @@
+{
+  "activation_steps": [
+    "change sort/view/page-size where present"
+  ],
+  "selectors": {
+    "changed": [
+      "Cited|被引"
+    ],
+    "result_evidence": {
+      "text_sample": "This website uses cookies\n\nWe occasionally run membership recruitment campaigns on social media channels and use cookies to track post-clicks. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services. Use the check boxes below to choose the types of cookies you consent to have stored on your device.\n\n\nConsent Selection\nNecessary\nPreferences\nStatistics\nMarketing\nShow details\nAllow all cookies\nAllow selected cookies\nUse necessary cookies only\nskip to main content\nSign in\nRegister\nJournals\nMagazines\nProceedings\nBooks\nSIGs\nConferences\nInstitutions\nPeople\nSearch ACM Digital Library\n \nAdvanced Search\nJournal Home\nJust Accepted\nLatest Issue\n \nArchive\nAuthors\nEditors\nReviewers\nAbout\nContact Us\nACM Transactions on Autonomous and Adaptive Systems\nSearch within TAAS\nHomeACM JournalsACM Transactions on Autonomous and Adaptive SystemsJust Accepted\nACM Transactions on Autonomous and Adaptive SystemsJust Accepted\n\t\nThe below articles have been recently accepted to the journal and are currently in the production proce",
+      "results_count": "",
+      "controls": [
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Cookiebot by Usercentrics - opens in a new window",
+          "selector": "#CybotCookiebotDialogPoweredbyCybot",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.cookiebot.com/en/what-is-behind-powered-by-cookiebot/?utm_source=banner_cb&utm_medium=referral&utm_content=v2"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Necessary",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonNecessary",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Preferences",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonPreferences",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Statistics",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonStatistics",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "Marketing",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonMarketing",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Show details",
+          "label": "Show details",
+          "selector": "#CybotCookiebotDialogBodyEdgeMoreDetailsLink",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/justaccepted#"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Allow all cookies",
+          "label": "Allow all cookies Allow selected cookies Use necessary cookies only",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Allow selected cookies",
+          "label": "Allow all cookies Allow selected cookies Use necessary cookies only",
+          "selector": "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "Use necessary cookies only",
+          "label": "Allow all cookies Allow selected cookies Use necessary cookies only",
+          "selector": "#CybotCookiebotDialogBodyButtonDecline",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "skip to main content",
+          "label": "This website uses cookies We occasionally run membership recruitment campaigns on social media channels and use cookies",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/justaccepted#skip-to-main-content"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "external site link",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://www.acm.org/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Basic Edition, Upgrade",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/premium"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Sign in",
+          "label": "Sign in",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/action/showLogin?redirectUri=%2Ftoc%2Ftaas%2Fjustaccepted"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Register",
+          "label": "Register",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://accounts.acm.org/?redirectUri=%2Ftoc%2Ftaas%2Fjustaccepted"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Journals",
+          "label": "Journals",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journals"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Magazines",
+          "label": "Magazines",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/magazines"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Proceedings",
+          "label": "Proceedings",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/proceedings"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Books",
+          "label": "Books",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/acmbooks"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "SIGs",
+          "label": "SIGs",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/sigs"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Conferences",
+          "label": "Conferences",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/conferences"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Institutions",
+          "label": "Institutions",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/institutions"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "People",
+          "label": "People",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/people"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Search ACM Digital Library",
+          "selector": "#AllFieldf73847c0-d936-48ec-9bf9-139b3828507f",
+          "placeholder": "Search ACM Digital Library",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "",
+          "label": "Search",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Advanced Search",
+          "label": "link to Advanced Search form",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/justaccepted#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Journal Home",
+          "label": "Journal Home",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Just Accepted",
+          "label": "Just Accepted",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/justaccepted"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Latest Issue",
+          "label": "Latest Issue",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/current"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Archive",
+          "label": "Archive",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/loi/taas"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Authors",
+          "label": "Authors",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Editors",
+          "label": "Editors",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Reviewers",
+          "label": "Reviewers",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "About",
+          "label": "About",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas#"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Contact Us",
+          "label": "Contact Us",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas/author-guidelines#contact-us"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "",
+          "label": "Search within TAAS",
+          "selector": "#AllField697a7ce6-595d-4b54-a917-005bb365ed5e",
+          "placeholder": "Search within TAAS",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "",
+          "label": "Search",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Home",
+          "label": "Home",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "ACM Journals",
+          "label": "ACM Journals",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journals"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "ACM Transactions on Autonomous and Adaptive Systems",
+          "label": "ACM Transactions on Autonomous and Adaptive Systems",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/journal/taas"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Just Accepted",
+          "label": "Just Accepted",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/toc/taas/justaccepted"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Rami Bahsoon",
+          "label": "Rami Bahsoon",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81100645896"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "markall",
+          "selector": "input[name=\"markall\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3808044\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Introduction to the SEAMS 2024 Special Issue.",
+          "label": "Introduction to the SEAMS 2024 Special Issue.",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3808044"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Liliana Pasquale",
+          "label": "Liliana Pasquale",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81338490570"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Xiaoxing Ma",
+          "label": "Xiaoxing Ma",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81328489535"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3808044",
+          "label": "https://doi.org/10.1145/3808044",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3808044"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3808044"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3807775\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "FlePo: GPU Multi-task Scheduling Optimization Framework for Dynamic Scenes",
+          "label": "FlePo: GPU Multi-task Scheduling Optimization Framework for Dynamic Scenes",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3807775"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Huanghuang Liang",
+          "label": "Huanghuang Liang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660702743"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Xin Yang",
+          "label": "Xin Yang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661862482"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Rui Ge",
+          "label": "Rui Ge",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661864666"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yaqi Xia",
+          "label": "Yaqi Xia",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660971845"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Chuang Hu",
+          "label": "Chuang Hu",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99659258581"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Xiaobo Zhou",
+          "label": "Xiaobo Zhou",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661353310"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Dazhao Cheng",
+          "label": "Dazhao Cheng",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661317689"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3807775",
+          "label": "https://doi.org/10.1145/3807775",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3807775"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Abstract",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/abs/10.1145/3807775"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3807775"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3807453\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Who’s Who? LLM-assisted Software Traceability with Architecture Entity Recognition",
+          "label": "Who’s Who? LLM-assisted Software Traceability with Architecture Entity Recognition",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3807453"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Dominik Fuchß",
+          "label": "Dominik Fuchß",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660043343"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Haoyu Liu",
+          "label": "Haoyu Liu",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661684630"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Sophie Corallo",
+          "label": "Sophie Corallo",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660521687"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Tobias Hey",
+          "label": "Tobias Hey",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/88159176657"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Jan Keim",
+          "label": "Jan Keim",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99658972521"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Johannes von Geisau",
+          "label": "Johannes von Geisau",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661855354"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Anne Koziolek",
+          "label": "Anne Koziolek",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661509984"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3807453",
+          "label": "https://doi.org/10.1145/3807453",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3807453"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Abstract",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/abs/10.1145/3807453"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3807453"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3788288\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A Novel Physics-Informed Federated Learning Framework for Robust Bearing Fault Diagnosis",
+          "label": "A Novel Physics-Informed Federated Learning Framework for Robust Bearing Fault Diagnosis",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3788288"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Jiaqi Chen",
+          "label": "Jiaqi Chen",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661854752"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Jie Wang",
+          "label": "Jie Wang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661673573"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yongquan Jiang",
+          "label": "Yongquan Jiang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81474691183"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "ZhengHong Wang",
+          "label": "ZhengHong Wang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661854834"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Fan Zhang",
+          "label": "Fan Zhang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660246424"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yan Yang",
+          "label": "Yan Yang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81490671803"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3788288",
+          "label": "https://doi.org/10.1145/3788288",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3788288"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Abstract",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/abs/10.1145/3788288"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3788288"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3803416\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Efficient Resource Allocation for DRL-NOMA Enabled TSIN in Industry 5.0",
+          "label": "Efficient Resource Allocation for DRL-NOMA Enabled TSIN in Industry 5.0",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3803416"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yu Cong",
+          "label": "Yu Cong",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661854602"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Haijun Zhang",
+          "label": "Haijun Zhang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661330168"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Jianquan Wang",
+          "label": "Jianquan Wang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660868910"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Xu Ma",
+          "label": "Xu Ma",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661854134"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yan Liang",
+          "label": "Yan Liang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660505409"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yuzheng Ren",
+          "label": "Yuzheng Ren",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661330572"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3803416",
+          "label": "https://doi.org/10.1145/3803416",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3803416"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Abstract",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/abs/10.1145/3803416"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3803416"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3805991\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "A Unified Framework for Noisy Image Super-Resolution",
+          "label": "A Unified Framework for Noisy Image Super-Resolution",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3805991"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Ziang Wu",
+          "label": "Ziang Wu",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99661854085"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Qi Zhang",
+          "label": "Qi Zhang",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660933695"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Xiaoli Sun",
+          "label": "Xiaoli Sun",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81484646648"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Yonglin Tian",
+          "label": "Yonglin Tian",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660357529"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Qi Zhu",
+          "label": "Qi Zhu",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/81558121056"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Chunwei Tian",
+          "label": "Chunwei Tian",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/profile/99660165379"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "https://doi.org/10.1145/3805991",
+          "label": "https://doi.org/10.1145/3805991",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://doi.org/10.1145/3805991"
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Export Citation",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "button",
+          "type": "",
+          "text": "",
+          "label": "Save to Binder",
+          "selector": "button",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "Abstract",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/abs/10.1145/3805991"
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "",
+          "label": "View online with eReader",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/epdf/10.1145/3805991"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "on",
+          "label": "issueItem",
+          "selector": "input[name=\"10.1145/3805703\"]",
+          "placeholder": "",
+          "options": [],
+          "href": ""
+        },
+        {
+          "tag": "a",
+          "type": "",
+          "text": "Physics-Constrained Adversarial Attack Generation and Active Defense for the Hybrid Deep Reinforcement Learning-Based Load Frequency Control",
+          "label": "Physics-Constrained Adversarial Attack Generation and Active Defense for the Hybrid Deep Reinforcement Learning-Based Lo",
+          "selector": "a",
+          "placeholder": "",
+          "options": [],
+          "href": "https://dl.acm.org/doi/10.1145/3805703"
+        }
+      ],
+      "result_labels": []
+    }
+  },
+  "observed_labels": [
+    "Reviewers Reviewers ",
+    "View online with eReader  ",
+    "View other 3 authors + 3 "
+  ],
+  "screenshot_path": "evidence/acm-dl/screenshots/sort_and_view.png",
+  "sample_export_path": "",
+  "status": "tested_ok",
+  "note": "changed=['Cited|被引']",
+  "captured_at": "2026-05-13T12:00:26.199363+00:00",
+  "page_title": "TAAS: Just Accepted",
+  "url_redacted": "https://dl.acm.org/toc/taas/justaccepted"
+}
