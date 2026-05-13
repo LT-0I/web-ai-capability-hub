@@ -13,6 +13,17 @@ test("page snapshot extraction reads mock web AI controls", () => {
   assert.ok(snapshot.elements.some((element) => element.role === "download" && /download response/i.test(element.name)));
 });
 
+test("lite page snapshot keeps interactive labels while dropping non-interactive text bloat", () => {
+  const snapshot = readHtmlSnapshotFromFile(path.resolve(process.cwd(), "fixtures/mock-web-ai.html"), undefined, { mode: "lite" });
+  const text = JSON.stringify(snapshot);
+  assert.ok(text.includes("Message prompt"));
+  assert.ok(text.includes("Send message"));
+  assert.ok(text.includes("Tools menu"));
+  assert.ok(!snapshot.visibleText.includes("This mock response demonstrates how generated output is read from the page."));
+  assert.equal(snapshot.accessibility, undefined);
+  assert.ok(snapshot.elements.every((element) => !element.attributes));
+});
+
 test("page snapshot extraction reads mock research database tables and filters", () => {
   const snapshot = readHtmlSnapshotFromFile(path.resolve(process.cwd(), "fixtures/mock-research-database.html"));
   assert.ok(snapshot.forms.length >= 1);

@@ -112,6 +112,13 @@ function contentDispositionFilename(header: string | null | undefined): string |
   return plain?.[1];
 }
 
+function snapshotMode(options: Record<string, CliOptionValue>): "full" | "lite" | undefined {
+  const mode = asString(options.mode);
+  if (!mode) return undefined;
+  if (mode === "full" || mode === "lite") return mode;
+  throw new Error("--mode must be one of full|lite");
+}
+
 function asBoolean(value: CliOptionValue | undefined): boolean | undefined {
   if (Array.isArray(value)) return asBoolean(value[value.length - 1]);
   if (value === true || value === "true") return true;
@@ -371,7 +378,7 @@ MCP and compatibility commands:
   adapter:list [--json]
   web-ai:adapters [--json]
   recipe:list [--json]
-  browser:start|browser:open|browser:read|browser:screenshot [--tab-id <id>]
+  browser:start|browser:open|browser:read|browser:screenshot [--tab-id <id>] [--mode full|lite]
   browser:click|browser:type|browser:select|browser:press|browser:wait|browser:upload|browser:hover|browser:select-text|browser:drag [--tab-id <id>] [--json]
   browser:downloads [--profile <name>] [--limit <n>] [--json]
   browser:download-url --url <absolute-url> [--filename <name>] [--tab-id <id>] [--json]
@@ -459,9 +466,10 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     if (!target) throw new Error("capability:update requires --target <id>");
     const fixture = asString(options.fixture);
     const targetUrl = asString(options.url) || targetBaseUrl(target);
+    const mode = snapshotMode(options);
     const snapshot = fixture
-      ? readHtmlSnapshotFromFile(path.resolve(fixture))
-      : await withManagedPage(async (page) => readPageSnapshot(page, { includeAccessibility: true, screenshot: options.screenshot === true }), options, targetUrl) as any;
+      ? readHtmlSnapshotFromFile(path.resolve(fixture), undefined, { mode })
+      : await withManagedPage(async (page) => readPageSnapshot(page, { mode, includeAccessibility: mode !== "lite", screenshot: options.screenshot === true }), options, targetUrl) as any;
     output(new CapabilityUpdater(new CapabilityDatabase()).updateFromSnapshot({ target, kind: asString(options.kind), profile: asString(options.profile), snapshot }), options);
     return;
   }
@@ -589,13 +597,14 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     return;
   }
   if (command === "browser:read" || command === "browser:screenshot") {
+    const mode = snapshotMode(options);
     if (asString(options["tab-id"] || options.tabId)) {
-      output(await withManagedPage(async (page) => readPageSnapshot(page, { screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: true }), options, asString(options.url)), options);
+      output(await withManagedPage(async (page) => readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite" }), options, asString(options.url)), options);
       return;
     }
     output(await withSession(async (session) => {
       const page = session.activePage() || await session.newPage();
-      return readPageSnapshot(page, { screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: true });
+      return readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite" });
     }, options), options);
     return;
   }
@@ -616,7 +625,7 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     if (asString(options["tab-id"] || options.tabId)) {
       output(await withManagedPage(async (page) => {
         if (typeof options.url === "string") await page.goto(options.url, { waitUntil: "domcontentloaded" });
-        const snapshot = await readPageSnapshot(page, { includeAccessibility: true });
+        const snapshot = await readPageSnapshot(page, { mode: snapshotMode(options), includeAccessibility: snapshotMode(options) !== "lite" });
         const siteMap = captureSiteMapForSnapshot(site, snapshot);
         const saved = saveSiteMap(siteMap);
         return { saved, siteMap };

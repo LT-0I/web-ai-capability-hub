@@ -1,6 +1,12 @@
 const fs = require("node:fs");
 import { PageSnapshot, SnapshotElement, SnapshotForm, SnapshotIframe, SnapshotList, SnapshotTable } from "../shared/types";
 
+export type SnapshotMode = "full" | "lite";
+
+export interface SnapshotExtractOptions {
+  mode?: SnapshotMode;
+}
+
 function decodeEntities(value: string): string {
   return value
     .replace(/&nbsp;/g, " ")
@@ -124,6 +130,87 @@ function extractElementsFromHtml(html: string): SnapshotElement[] {
   return elements;
 }
 
+function elementKey(element: SnapshotElement): string {
+  return [
+    element.selector || "",
+    element.role || "",
+    (element.name || "").toLowerCase(),
+    (element.text || "").toLowerCase(),
+    element.tagName || ""
+  ].join("\u0000");
+}
+
+function dedupeElements(elements: SnapshotElement[]): SnapshotElement[] {
+  const seen = new Set<string>();
+  const deduped: SnapshotElement[] = [];
+  for (const element of elements) {
+    const key = elementKey(element);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push({ ...element, ref: `e${deduped.length + 1}` });
+  }
+  return deduped;
+}
+
+function compactElement(element: SnapshotElement): SnapshotElement {
+  const out: SnapshotElement = {
+    ref: element.ref,
+    role: element.role,
+    name: element.name
+  };
+  if (element.text && element.text !== element.name) out.text = element.text;
+  if (element.selector) out.selector = element.selector;
+  if (element.tagName) out.tagName = element.tagName;
+  if (element.value) out.value = element.value;
+  if (element.checked) out.checked = element.checked;
+  if (element.disabled) out.disabled = element.disabled;
+  if (element.visible === false) out.visible = element.visible;
+  const selectorCandidates = (element.selectorCandidates || []).filter((candidate, index, all) => candidate && all.indexOf(candidate) === index);
+  if (selectorCandidates.length > 1) out.selectorCandidates = selectorCandidates;
+  return out;
+}
+
+function compactForms(forms: SnapshotForm[], elements: SnapshotElement[]): SnapshotForm[] {
+  if (!forms.length) return [];
+  const bySelector = new Map(elements.map((element) => [element.selector, element]));
+  return forms.map((form, index) => ({
+    ref: `f${index + 1}`,
+    ...(form.name ? { name: form.name } : {}),
+    ...(form.selector ? { selector: form.selector } : {}),
+    ...(form.method ? { method: form.method } : {}),
+    ...(form.action ? { action: form.action } : {}),
+    fields: form.fields
+      .map((field) => (field.selector ? bySelector.get(field.selector) || field : field))
+      .map(compactElement)
+  })).filter((form) => form.fields.length);
+}
+
+function compactSnapshot(snapshot: PageSnapshot): PageSnapshot {
+  const elements = dedupeElements(snapshot.elements).map(compactElement);
+  const visibleText = elements
+    .flatMap((element) => [element.name, element.text].filter(Boolean) as string[])
+    .filter((value, index, all) => value && all.indexOf(value) === index)
+    .join(" ")
+    .slice(0, 4000);
+  return {
+    url: snapshot.url,
+    title: snapshot.title,
+    timestamp: snapshot.timestamp,
+    visibleText,
+    elements,
+    forms: compactForms(snapshot.forms, elements),
+    tables: snapshot.tables.filter((table) => table.headers.length || table.rows.length),
+    lists: snapshot.lists.filter((list) => list.items.length),
+    iframes: snapshot.iframes.map((frame, index) => ({
+      ref: `i${index + 1}`,
+      ...(frame.title ? { title: frame.title } : {}),
+      ...(frame.selector ? { selector: frame.selector } : {}),
+      accessible: frame.accessible
+    })),
+    warnings: snapshot.warnings
+  };
+}
+
 function extractTables(html: string): SnapshotTable[] {
   const tables: SnapshotTable[] = [];
   const tableRe = /<table\b([^>]*)>([\s\S]*?)<\/table>/gi;
@@ -197,25 +284,27 @@ function extractIframes(html: string): SnapshotIframe[] {
   return frames;
 }
 
-export function extractSnapshotFromHtml(html: string, url = "about:fixture", title?: string): PageSnapshot {
+export function extractSnapshotFromHtml(html: string, url = "about:fixture", title?: string, options: SnapshotExtractOptions = {}): PageSnapshot {
   const titleMatch = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
   const resolvedTitle = title || (titleMatch ? stripTags(titleMatch[1]) : "Fixture Page");
-  const elements = extractElementsFromHtml(html);
+  const elements = dedupeElements(extractElementsFromHtml(html));
   const tables = extractTables(html);
   const lists = extractLists(html);
   const forms = extractForms(html, elements);
   const iframes = extractIframes(html);
   const visibleText = stripTags(html).slice(0, 16000);
-  return { url, title: resolvedTitle, timestamp: new Date().toISOString(), visibleText, elements, forms, tables, lists, iframes, warnings: [] };
+  const snapshot = { url, title: resolvedTitle, timestamp: new Date().toISOString(), visibleText, elements, forms, tables, lists, iframes, warnings: [] };
+  return options.mode === "lite" ? compactSnapshot(snapshot) : snapshot;
 }
 
-export function extractSnapshotFromFile(filePath: string, url = `file://${filePath}`): PageSnapshot {
+export function extractSnapshotFromFile(filePath: string, url = `file://${filePath}`, options: SnapshotExtractOptions = {}): PageSnapshot {
   const html = fs.readFileSync(filePath, "utf-8");
-  return extractSnapshotFromHtml(html, url);
+  return extractSnapshotFromHtml(html, url, undefined, options);
 }
 
-export async function extractSnapshotFromPage(page: any): Promise<PageSnapshot> {
-  const data = await page.evaluate(() => {
+export async function extractSnapshotFromPage(page: any, options: SnapshotExtractOptions = {}): Promise<PageSnapshot> {
+  const lite = options.mode === "lite";
+  const data = await page.evaluate((liteMode: boolean) => {
     const isVisible = (el: Element): boolean => {
       const style = window.getComputedStyle(el as HTMLElement);
       const rect = (el as HTMLElement).getBoundingClientRect();
@@ -267,7 +356,7 @@ export async function extractSnapshotFromPage(page: any): Promise<PageSnapshot> 
     const elements = candidates.filter(isVisible).slice(0, 250).map((el, index) => {
       const selector = selectorFor(el);
       const attributes: Record<string, string> = {};
-      for (const attr of Array.from(el.attributes || [])) attributes[attr.name] = attr.value;
+      if (!liteMode) for (const attr of Array.from(el.attributes || [])) attributes[attr.name] = attr.value;
       return {
         ref: `e${index + 1}`,
         role: roleFor(el),
@@ -279,7 +368,7 @@ export async function extractSnapshotFromPage(page: any): Promise<PageSnapshot> 
         checked: (el as HTMLInputElement).checked,
         disabled: (el as HTMLInputElement).disabled || el.getAttribute("aria-disabled") === "true",
         visible: true,
-        attributes,
+        attributes: liteMode ? undefined : attributes,
         selectorCandidates: [selector]
       };
     });
@@ -291,12 +380,12 @@ export async function extractSnapshotFromPage(page: any): Promise<PageSnapshot> 
       action: form.getAttribute("action") || undefined,
       fields: elements.filter((element) => ["textbox", "textarea", "select", "checkbox", "radio"].includes(element.role))
     }));
-    const tables = Array.from(document.querySelectorAll("table")).slice(0, 40).map((table, index) => {
+    const tables = liteMode ? [] : Array.from(document.querySelectorAll("table")).slice(0, 40).map((table, index) => {
       const rows = Array.from(table.querySelectorAll("tr")).slice(0, 100).map((row) => Array.from(row.querySelectorAll("th,td")).map((cell) => text(cell)));
       const headers = rows[0] || [];
       return { ref: `t${index + 1}`, caption: table.querySelector("caption")?.textContent?.trim(), selector: selectorFor(table), headers, rows: rows.slice(headers.length ? 1 : 0) };
     });
-    const lists = Array.from(document.querySelectorAll("ul,ol")).slice(0, 60).map((list, index) => ({
+    const lists = liteMode ? [] : Array.from(document.querySelectorAll("ul,ol")).slice(0, 60).map((list, index) => ({
       ref: `l${index + 1}`,
       selector: selectorFor(list),
       ordered: list.tagName.toLowerCase() === "ol",
@@ -310,18 +399,19 @@ export async function extractSnapshotFromPage(page: any): Promise<PageSnapshot> 
       accessible: false,
       summary: "Iframe DOM requires frame-level access."
     }));
-    return { visibleText: (document.body?.innerText || "").replace(/\s+/g, " ").trim().slice(0, 16000), elements, forms, tables, lists, iframes };
-  });
-  return {
+    return { visibleText: liteMode ? "" : (document.body?.innerText || "").replace(/\s+/g, " ").trim().slice(0, 16000), elements, forms, tables, lists, iframes };
+  }, lite);
+  const snapshot = {
     url: typeof page.url === "function" ? page.url() : "about:blank",
     title: typeof page.title === "function" ? await page.title() : "Untitled",
     timestamp: new Date().toISOString(),
-    visibleText: data.visibleText,
-    elements: data.elements,
+    visibleText: lite ? "" : data.visibleText,
+    elements: dedupeElements(data.elements),
     forms: data.forms,
-    tables: data.tables,
-    lists: data.lists,
+    tables: lite ? [] : data.tables,
+    lists: lite ? [] : data.lists,
     iframes: data.iframes,
     warnings: []
   };
+  return lite ? compactSnapshot(snapshot) : snapshot;
 }
