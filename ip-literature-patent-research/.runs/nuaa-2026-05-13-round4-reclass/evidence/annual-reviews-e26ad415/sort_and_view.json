@@ -1,0 +1,27 @@
+{
+  "activation_steps": [
+    "open home: https://www.annualreviews.org/",
+    "clicked visible IP/institutional access control",
+    "returned to simple results",
+    "click:Publication Date|Most Recent|Newest|日期|最新"
+  ],
+  "selectors": {},
+  "observed_labels": [
+    "Publication Dates Publication Dates",
+    "Annual Reviews Directory Annual Reviews Directory",
+    "Annual Reviews YouTube Channel",
+    "The current volumes of all journals have been converted from gated to open access through Subscribe to Open (S2O). Subscribe to Open",
+    "Journals A-Z Journals A-Z",
+    "Article Collections Article Collections",
+    "Article Preparation and Submission Article Preparation and Submission",
+    "Article Proposals Article Proposals"
+  ],
+  "screenshot_path": "evidence/annual-reviews-e26ad415/screenshots/sort_and_view.png",
+  "status": "tested_ok",
+  "note": "Sort/view controls observed or changed on result list.",
+  "captured_at": "2026-05-13T13:23:43.638297+00:00",
+  "page_title": "Page Not Found | Annual Reviews",
+  "url_redacted": "https://www.annualreviews.org/content/journals/pubdates",
+  "before_url_redacted": "https://www.annualreviews.org/action/doSearch?<redacted-query>",
+  "after_url_redacted": "https://www.annualreviews.org/content/journals/pubdates"
+}

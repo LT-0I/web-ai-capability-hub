@@ -1,0 +1,29 @@
+{
+  "activation_steps": [
+    "open home: https://ascelibrary.org/",
+    "no visible IP/institutional access control clicked",
+    "query: UAV trajectory"
+  ],
+  "selectors": {
+    "route": "search_url_template",
+    "search_url_redacted": "https://ascelibrary.org/action/doSearch?<redacted-query>"
+  },
+  "observed_labels": [
+    "Skip to main content Shopping cart with 0 item Skip main navigation OPEN DRAWER MENU Search Results Search term(s) SEARC Skip to main content",
+    "Journal of Aerospace Engineering Journal of Aerospace Engineering 248",
+    "Journal of Transportation Engineering, Part A: Systems Journal of Transportation Engineering, Part A: Systems 41",
+    "Journal of Computing in Civil Engineering Journal of Computing in Civil Engineering 39",
+    "Journal of Construction Engineering and Management Journal of Construction Engineering and Management 22",
+    "Proceedings 259 Journal of Aerospace Engineering 248 Journal of Transportation Engineering, Part A: Systems 41 Journal o More (18)",
+    "Articles/Chapters results Articles/Chapters",
+    "Site Information results Site Information",
+    "actions list of selected results Please Select Export Citations Show/Hide Abstracts Add to Favorites Recommend  bulkActions actionsList"
+  ],
+  "screenshot_path": "evidence/asce-c44fb45b/screenshots/simple_search.png",
+  "status": "tested_ok",
+  "note": "Simple search result list rendered.",
+  "captured_at": "2026-05-13T13:22:46.419328+00:00",
+  "page_title": "Search Result | ASCE Library",
+  "url_redacted": "https://ascelibrary.org/action/doSearch?<redacted-query>",
+  "text_sample": "Skip to main content\nShopping cart with\n0\nitem\nSkip main navigation\nOPEN DRAWER MENU\nSearch Results\nSearch term(s)\nSEARCH\nADVANCED SEARCH\nARTICLE TYPE\nTechnical Paper\n384\nChapters/Proceedings Papers\n248\nFront Matter\n21\nState of the Art Review\n12\nCase Study\n11\nMore\n(1)\nAUTHOR\nDu, Jing\n9\nJebelli, Houtan\n9\nGolparvar-Fard, Mani\n8\nChen, Yanyan\n6\nGu, Xin\n5\nMore\n(20)\nPUBLICATION\nProceedings\n259\nJournal of Aerospace Engineering\n248\nJournal of Transportation Engineering, Part A: Systems\n41\nJournal of Computing in Civil Engineering\n39\nJournal of Construction Engineering and Management\n22\nMore\n(18)\nPUBLICATION DATE\nPublication Date\nPublication Date\nFrom year\nTo year\nAPPLY\nTECHNICAL TOPICS\nEngineering fundamentals\n1010\nAerospace engineering\n305\nPractice and Profession\n113\nEngineering mechanics\n110\nStructural engineering\n85\nMore\n(9)\nGEOGRAPHIC TOPICS\nContinents, regions, and countries\n66\n1 - 20of686result forUAV trajectory\nSave search\nRSS\nRefine Search\nSort by:\nRelevance\nArticles/Chapters\nSite Information\nSelect all\nFor selected items:\nPlease Select\nExport Citations\nShow/Hide Abstracts\nAdd to Favorites\nRecommend\nFULL ACCESS\nUAV Path Planning for Buildings of Various Geometries\n\nAEI 2025: Delive"
+}

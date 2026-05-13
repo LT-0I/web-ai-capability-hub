@@ -1,0 +1,42 @@
+{
+  "activation_steps": [
+    "open home: https://asmedigitalcollection.asme.org/",
+    "clicked visible IP/institutional access control",
+    "query: UAV trajectory"
+  ],
+  "selectors": {
+    "route": "search_url_template",
+    "search_url_redacted": "https://asmedigitalcollection.asme.org/search-results?<redacted-query>"
+  },
+  "observed_labels": [
+    "Skip to Main Content Cart 0 Institutional Accounts Open Menu Sign In Open Menu Journals Open Menu Conference Proceedin Skip to Main Content",
+    "Journals Open Menu Journals Open Menu",
+    "Expand Journal citation Expand Journal citation",
+    "Journal Articles (329) true  format--Journal_Articles-chk-0-0 format--Journal_Articles-chk-0-0",
+    "Journal of Dynamic Systems, Measurement, and Control (155) true  journal--Journal_of_Dynamic_Systems__Measurement__and_Control-chk-0-0 journal--Journal_of_Dynamic_Systems__Measurem",
+    "Journal of Mechanisms and Robotics (47) true  journal--Journal_of_Mechanisms_and_Robotics-chk-0-1 journal--Journal_of_Mechanisms_and_Robotics-chk-0-1",
+    "Journal of Computing and Information Science in Engineering (19) true  journal--Journal_of_Computing_and_Information_Science_in_Engineering-chk-0-2 journal--Journal_of_Computing_an",
+    "Journal of Mechanical Design (18) true  journal--Journal_of_Mechanical_Design-chk-0-3 journal--Journal_of_Mechanical_Design-chk-0-3",
+    "Journal of Autonomous Vehicles and Systems (16) true  journal--Journal_of_Autonomous_Vehicles_and_Systems-chk-0-4 journal--Journal_of_Autonomous_Vehicles_and_Systems-chk-0-4",
+    "Proceedings Article (533) true  article-type--Proceedings_Article-chk-0-0 article-type--Proceedings_Article-chk-0-0",
+    "Research-Article (144) true  article-type--Research-Article-chk-0-1 article-type--Research-Article-chk-0-1",
+    "Research Papers (135) true  article-type--Research_Papers-chk-0-2 article-type--Research_Papers-chk-0-2",
+    "Technical Briefs (19) true  article-type--Technical_Briefs-chk-0-3 article-type--Technical_Briefs-chk-0-3",
+    "Review Articles (9) true  article-type--Review_Articles-chk-0-4 article-type--Review_Articles-chk-0-4",
+    "Journal: Journal of Dynamic Systems, Measurement, and Control Journal of Dynamic Systems, Measurement, and Control",
+    "View Article titled, Partial Differential Equation-Based Trajectory Planning for Multiple Unmanned Air Vehicles in Dynam View Article titled, Partial Differential Equation-Based Tr",
+    "View Article titled, Periodic Control of Unmanned Aerial Vehicles Based on Differential Flatness View Article titled, Periodic Control of Unmanned Aerial Vehicles Based on Differen",
+    "View Article titled, A Two-Step Optimization-Based Iterative Learning Control for Quadrotor Unmanned Aerial Vehicles View Article titled, A Two-Step Optimization-Based Iterative Le",
+    "in Efficient Planning for Scalable and Load-Balanced Area Coverage by Multiple Unmanned Aerial Vehicles > Journal of Com Efficient Planning for Scalable and Load-Balanced Area Cove",
+    "in Efficient Planning for Scalable and Load-Balanced Area Coverage by Multiple Unmanned Aerial Vehicles > Journal of Com Journal of Computing and Information Science in Engineering",
+    "in Ground Target Tracking Guidance Law for Fixed-Wing Unmanned Aerial Vehicle: A Search and Capture Approach > Journal o Ground Target Tracking Guidance Law for Fixed-Wing Unmanned",
+    "in Ground Target Tracking Guidance Law for Fixed-Wing Unmanned Aerial Vehicle: A Search and Capture Approach > Journal o Journal of Dynamic Systems, Measurement, and Control"
+  ],
+  "screenshot_path": "evidence/asme-0e1b238e/screenshots/simple_search.png",
+  "status": "tested_ok",
+  "note": "Simple search result list rendered.",
+  "captured_at": "2026-05-13T13:22:11.105701+00:00",
+  "page_title": "UAV trajectory | Page 1 | Search Results | ASME Digital Collection",
+  "url_redacted": "https://asmedigitalcollection.asme.org/search-results?<redacted-query>",
+  "text_sample": "Skip to Main Content\nCart\n0\nInstitutional Accounts \nOpen Menu\nSign In \nOpen Menu\nJournals\nOpen Menu\nConference Proceedings\nOpen Menu\neBooks\nStandards\nOpen External Link\nTopic Collections\nResources\nOpen Menu\nSearch Dropdown Menu\nUpdate Search\nQuerybuilder input 1\nQuerybuilder input\nFilter \n \nExpand\nJournal citation\nFormat\nFilter by format\nJournal Articles (329)\neBook (16)\neBook Chapter (7)\nProceedings Papers (533)\nImage (26)\nPublisher\nFilter by publisher\nAmerican Society of Mechanical Engineers (533)\nASME (357)\nASME Press (20)\nISTE-Wiley (1)\nSubjects\nFilter by subjects\nDesign & Manufacturing (7)\nEmerging Technologies (11)\nEnergy and Power (1)\nPipeline Engineering (3)\nRisk and Remediation (1)\nJournal\nFilter by journal\nJournal of Dynamic Systems, Measurement, and Control (155)\nJournal of Mechanisms and Robotics (47)\nJournal of Computing and Information Science in Engineering (19)\nJournal of Mechanical Design (18)\nJournal of Autonomous Vehicles and Systems (16)\nShow more\neBook Series\nFilter by ebook-series\nASME Press Select Proceedings (12)\nArticle Type\nFilter by article-type\nProceedings Article (533)\nResearch-Article (144)\nResearch Papers (135)\nTechnical Briefs (19)\nReview Articles (9"
+}

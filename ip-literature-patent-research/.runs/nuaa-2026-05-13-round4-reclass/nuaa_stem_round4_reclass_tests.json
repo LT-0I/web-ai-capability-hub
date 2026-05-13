@@ -1,0 +1,115 @@
+{
+  "captured_at": "2026-05-13T13:24:43.215752+00:00",
+  "round": 4,
+  "scope": "reclassify 10 round-1 unknowns",
+  "parent_run": "nuaa-2026-05-13-round2-headed",
+  "schema_version": "nuaa-stem-round4-reclass-1.0",
+  "results": [
+    {
+      "resource_id": "aiaa-6dcbe1b3",
+      "title": "AIAA 美国航空航天学会",
+      "round1_status": "unknown",
+      "round4_status": "blocked",
+      "features_tested": [
+        "access"
+      ],
+      "note": "Persistent challenge / anti-bot or access-denied marker observed."
+    },
+    {
+      "resource_id": "asme-0e1b238e",
+      "title": "ASME 美国机械工程师学会",
+      "round1_status": "unknown",
+      "round4_status": "ip_login_button_ok",
+      "features_tested": [
+        "simple_search",
+        "advanced_search",
+        "sort_and_view"
+      ],
+      "note": "Flipped from round-1 unknown; simple search result list rendered under warm headed CDP profile."
+    },
+    {
+      "resource_id": "asce-c44fb45b",
+      "title": "ASCE 美国土木工程学会",
+      "round1_status": "unknown",
+      "round4_status": "auto_ip_ok",
+      "features_tested": [
+        "simple_search",
+        "advanced_search",
+        "sort_and_view"
+      ],
+      "note": "Flipped from round-1 unknown; simple search result list rendered under warm headed CDP profile."
+    },
+    {
+      "resource_id": "aip-cae6db23",
+      "title": "AIP 美国物理联合会",
+      "round1_status": "unknown",
+      "round4_status": "blocked",
+      "features_tested": [
+        "access"
+      ],
+      "note": "Persistent challenge / anti-bot or access-denied marker observed."
+    },
+    {
+      "resource_id": "acs-5f505783",
+      "title": "ACS 美国化学学会",
+      "round1_status": "unknown",
+      "round4_status": "blocked",
+      "features_tested": [
+        "access"
+      ],
+      "note": "Persistent challenge / anti-bot or access-denied marker observed."
+    },
+    {
+      "resource_id": "annual-reviews-e26ad415",
+      "title": "Annual Reviews 综述类期刊",
+      "round1_status": "unknown",
+      "round4_status": "ip_login_button_ok",
+      "features_tested": [
+        "simple_search",
+        "advanced_search",
+        "sort_and_view"
+      ],
+      "note": "Flipped from round-1 unknown; simple search result list rendered under warm headed CDP profile."
+    },
+    {
+      "resource_id": "elsevier-sciencedirect-ee38095f",
+      "title": "Elsevier ScienceDirect (alt entry)",
+      "round1_status": "unknown",
+      "round4_status": "duplicate_of:science-direct",
+      "features_tested": [],
+      "note": "Duplicate of science-direct entry already explored in round 2; smoke skipped."
+    },
+    {
+      "resource_id": "project-euclid-cdef7b59",
+      "title": "Project Euclid",
+      "round1_status": "unknown",
+      "round4_status": "unreachable",
+      "features_tested": [
+        "access"
+      ],
+      "note": "No visible page title/body after homepage load."
+    },
+    {
+      "resource_id": "annals-of-mathematics-beec49f1",
+      "title": "Annals of Mathematics",
+      "round1_status": "unknown",
+      "round4_status": "auto_ip_ok",
+      "features_tested": [
+        "simple_search",
+        "advanced_search",
+        "sort_and_view"
+      ],
+      "note": "Flipped from round-1 unknown; simple search result list rendered under warm headed CDP profile."
+    },
+    {
+      "resource_id": "ahs-1247f19a",
+      "title": "AHS 美国直升机学会",
+      "round1_status": "unknown",
+      "round4_status": "blocked",
+      "features_tested": [
+        "access"
+      ],
+      "note": "Persistent challenge / anti-bot or access-denied marker observed."
+    }
+  ]
+}

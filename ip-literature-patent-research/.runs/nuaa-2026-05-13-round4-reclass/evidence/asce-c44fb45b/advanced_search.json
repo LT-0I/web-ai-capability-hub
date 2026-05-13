@@ -1,0 +1,28 @@
+{
+  "activation_steps": [
+    "open home: https://ascelibrary.org/",
+    "no visible IP/institutional access control clicked",
+    "click visible advanced search"
+  ],
+  "selectors": {
+    "advanced_url": ""
+  },
+  "observed_labels": [
+    "Skip to main content Shopping cart with 0 item Skip main navigation OPEN DRAWER MENU Advanced Search ADVANCED SEARCH CIT Skip to main content",
+    "Search",
+    "ADVANCED SEARCH ADVANCED SEARCH   pane-advsearchtabs01con",
+    "CITATION SEARCH CITATION SEARCH   pane-advsearchtabs11con",
+    "RECENT SEARCHES RECENT SEARCHES   pane-advsearchtabs21con",
+    "SAVED SEARCHES SAVED SEARCHES   pane-advsearchtabs31con",
+    "Context for search term 1 All Content Title Author Keywords Abstract Affiliation  field1 searchArea1",
+    "Enter Search term  Enter Search term text1 text1",
+    "Add search field",
+    "Context for search term 1 All Content Title Author Keywords Abstract Affiliation Search term 1 Topic Published in Public SEARCH   advanced-search-btn"
+  ],
+  "screenshot_path": "evidence/asce-c44fb45b/screenshots/advanced_search.png",
+  "status": "tested_ok",
+  "note": "Advanced search form loaded.",
+  "captured_at": "2026-05-13T13:22:49.871319+00:00",
+  "page_title": "Search | ASCE Library",
+  "url_redacted": "https://ascelibrary.org/search/advanced"
+}

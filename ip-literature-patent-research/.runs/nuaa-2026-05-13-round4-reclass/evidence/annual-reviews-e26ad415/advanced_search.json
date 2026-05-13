@@ -1,0 +1,19 @@
+{
+  "activation_steps": [
+    "open home: https://www.annualreviews.org/",
+    "clicked visible IP/institutional access control",
+    "open advanced_search_url"
+  ],
+  "selectors": {
+    "advanced_url": "https://www.annualreviews.org/action/doSearch"
+  },
+  "observed_labels": [
+    "open site search search"
+  ],
+  "screenshot_path": "evidence/annual-reviews-e26ad415/screenshots/advanced_search.png",
+  "status": "tested_ok",
+  "note": "Advanced search form loaded.",
+  "captured_at": "2026-05-13T13:23:34.389540+00:00",
+  "page_title": "Page Not Found | Annual Reviews",
+  "url_redacted": "https://www.annualreviews.org/action/doSearch"
+}

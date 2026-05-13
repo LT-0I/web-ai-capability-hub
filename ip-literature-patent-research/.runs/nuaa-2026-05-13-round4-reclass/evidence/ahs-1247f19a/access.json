@@ -1,0 +1,16 @@
+{
+  "activation_steps": [
+    "open home: https://www.ingentaconnect.com/content/ahs/jahs"
+  ],
+  "selectors": {
+    "adapter": "registry/direct"
+  },
+  "observed_labels": [],
+  "screenshot_path": "evidence/ahs-1247f19a/screenshots/access.png",
+  "status": "blocked",
+  "note": "Persistent challenge / anti-bot or access-denied marker observed.",
+  "captured_at": "2026-05-13T13:24:43.184806+00:00",
+  "page_title": "请稍候…",
+  "url_redacted": "https://www.ingentaconnect.com/content/ahs/jahs",
+  "text_sample": "www.ingentaconnect.com\n正在进行安全验证\n\n本网站使用安全服务防护恶意自动程序。在验证您不是自动程序期间，将显示此页面。\n\nRay ID: 9fb1fc098a2dcc64\n由 Cloudflare 提供的性能和安全服务\n隐私"
+}

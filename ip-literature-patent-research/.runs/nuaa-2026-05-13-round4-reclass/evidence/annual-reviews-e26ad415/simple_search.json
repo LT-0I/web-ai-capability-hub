@@ -1,0 +1,25 @@
+{
+  "activation_steps": [
+    "open home: https://www.annualreviews.org/",
+    "clicked visible IP/institutional access control",
+    "query: UAV trajectory"
+  ],
+  "selectors": {
+    "route": "search_url_template",
+    "search_url_redacted": "https://www.annualreviews.org/action/doSearch?<redacted-query>"
+  },
+  "observed_labels": [
+    "The current volumes of all journals have been converted from gated to open access through Subscribe to Open (S2O). Subscribe to Open",
+    "Journals A-Z Journals A-Z",
+    "Article Collections Article Collections",
+    "Article Preparation and Submission Article Preparation and Submission",
+    "Article Proposals Article Proposals"
+  ],
+  "screenshot_path": "evidence/annual-reviews-e26ad415/screenshots/simple_search.png",
+  "status": "tested_ok",
+  "note": "Simple search result list rendered.",
+  "captured_at": "2026-05-13T13:23:28.220878+00:00",
+  "page_title": "Page Not Found | Annual Reviews",
+  "url_redacted": "https://www.annualreviews.org/action/doSearch?<redacted-query>",
+  "text_sample": "search\n \n0\n \nHome  Page Not Found\nThe page you have requested is not available.\nPlease check the link that you have followed or go to the home page to continue browsing this site.\n\nFrom Knowable Magazine:\n\n\n\n\n\n\n\nSubscribe to Open\n\nThe current volumes of all journals have been converted from gated to open access through Subscribe to Open (S2O).\n\nAbout Annual Reviews:\n\nWhat We Do\nPress and News\nCareers\nContact Us\nFAQ\nHelp\n\nDiscover Content:\n\nJournals A-Z\nImpact Factor Rankings\nPublication Dates\nOnline Events\nArticle Collections\nKnowable Magazine\nKatina Magazine\nAgainst the Grain\n\nLibraries and Institutions:\n\nSubscribe to Open (S2O)\nLibrarian Resource Center\nInstitutional Account Administration\nInstitutional Pricing\nUsage Statistics\nCharleston Hub\nKatina | Librarianship Elevated\nCharleston Advisor (Archive)\nAgainst the Grain\n\n\n\n\nAuthor Resources:\n\nArticle Preparation and Submission\nEditorial Principles and Policies\nContact Us\nCopyright and Permissions\nArticle Proposals\n© Copyright 2026Contact UsEmail PreferencesAnnual Reviews DirectoryMultimediaSupplemental MaterialsFAQsPrivacy PolicyCookie Settings\n \n \n \n \n \n \n \n \n\nWe use cookies to track usage and preferences.I Understand"
+}
