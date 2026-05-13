@@ -1,0 +1,89 @@
+{
+  "captured_at": "2026-05-13T12:49:09.335459+00:00",
+  "round": 3,
+  "scope": "export-file capture for round-2 partial DBs",
+  "parent_run": "nuaa-2026-05-13-round2-headed",
+  "schema_version": "nuaa-stem-round3-exports-1.0",
+  "tests": [
+    {
+      "resource_id": "cnki",
+      "format_attempted": "unknown",
+      "status": "still_partial",
+      "file_path": "",
+      "file_bytes": 0,
+      "parse_ok": false,
+      "note": "export/citation controls were visible but second attempt still produced no final file; no abuse warning observed",
+      "wall_clock_seconds": 118.1
+    },
+    {
+      "resource_id": "wanfang",
+      "format_attempted": "unknown",
+      "status": "still_partial",
+      "file_path": "",
+      "file_bytes": 0,
+      "parse_ok": false,
+      "note": "homepage/search flow did not expose a working export/citation metadata control before timeout",
+      "wall_clock_seconds": 72.5
+    },
+    {
+      "resource_id": "web-of-science",
+      "format_attempted": "ris",
+      "status": "still_partial",
+      "file_path": "",
+      "file_bytes": 0,
+      "parse_ok": false,
+      "note": "RIS export menu and final modal reached (#exportToRisButton/#exportButton), but no download event/file landed",
+      "wall_clock_seconds": 180.7
+    },
+    {
+      "resource_id": "science-direct",
+      "format_attempted": "ris",
+      "status": "tested_ok",
+      "file_path": "evidence/science-direct/ris_sample.ris",
+      "file_bytes": 2369,
+      "parse_ok": true,
+      "note": "individual result Export → Export citation to RIS captured via Playwright download",
+      "wall_clock_seconds": 37.6
+    },
+    {
+      "resource_id": "ieee-xplore",
+      "format_attempted": "csv",
+      "status": "tested_ok",
+      "file_path": "evidence/ieee-xplore/csv_sample.csv",
+      "file_bytes": 2438872,
+      "parse_ok": true,
+      "note": "selected visible result rows, Export → Download Results produced CSV metadata export",
+      "wall_clock_seconds": 124.3
+    },
+    {
+      "resource_id": "acm-dl",
+      "format_attempted": "ris",
+      "status": "tested_ok",
+      "file_path": "evidence/acm-dl/ris_sample.ris",
+      "file_bytes": 548,
+      "parse_ok": true,
+      "note": "official ACM downloadCitation RIS endpoint captured for first result DOI after export-control discovery",
+      "wall_clock_seconds": 154.5
+    },
+    {
+      "resource_id": "springer-link",
+      "format_attempted": "ris",
+      "status": "tested_ok",
+      "file_path": "evidence/springer-link/ris_sample.ris",
+      "file_bytes": 1651,
+      "parse_ok": true,
+      "note": "article Download citation link captured from official citation-needed Springer endpoint",
+      "wall_clock_seconds": 29.4
+    },
+    {
+      "resource_id": "incopat",
+      "format_attempted": "unknown",
+      "status": "blocked",
+      "file_path": "",
+      "file_bytes": 0,
+      "parse_ok": false,
+      "note": "stopped after CAPTCHA marker appeared during search/access probe",
+      "wall_clock_seconds": 25.8
+    }
+  ]
+}

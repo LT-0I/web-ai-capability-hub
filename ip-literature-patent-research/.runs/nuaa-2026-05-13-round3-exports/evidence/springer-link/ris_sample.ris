@@ -1,0 +1,13 @@
+TY  - JOUR
+AU  - Deng, Xuefeng
+AU  - Wang, Yadong
+PY  - 2026
+DA  - 2026/02/09
+TI  - Application of Deep Reinforcement Learning-Enhanced Whale Optimization Algorithm in 3D UAV Path Planning
+JO  - Arabian Journal for Science and Engineering
+AB  - To address the challenges of premature convergence and insufficient exploration in traditional metaheuristic algorithms for multi-objective UAV path planning, this paper proposes a Deep Reinforcement Learning-Enhanced Whale Optimization Algorithm (DRLMOWOA). Firstly, the DDPG agent adaptively adjusts the key control parameters $$r_1$$and $$r_2$$of the Whale Optimization Algorithm, guiding parameter adaptation based on reward feedback. Secondly, a logistic chaotic mechanism is embedded to generate perturbation values that introduce controlled perturbations, enhancing population diversity and improving the algorithm’s ability to escape local optima. Thirdly, the Pareto archive is updated using non-dominated sorting and crowding distance, ensuring convergence and diversity of the Pareto front throughout iterations. The results demonstrate that the proposed DRLMOWOA achieves superior performance, with hypervolume (0.1586 ± 0.0050), inverted generational distance (0.0022 ± 0.0009), and spacing (0.0012 ± 0.0005) metrics significantly surpassing comparative algorithms. The method obtains an optimal balance between path length (123.73) and safety distance (7.0711), confirming the effectiveness of integrating deep reinforcement learning with chaotic perturbation.
+SN  - 2191-4281
+UR  - https://doi.org/10.1007/s13369-025-11048-2
+DO  - 10.1007/s13369-025-11048-2
+ID  - Deng2026
+ER  - 

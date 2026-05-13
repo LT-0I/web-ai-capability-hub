@@ -1,0 +1,26 @@
+TY  - JOUR
+T1  - Manifold-aware triple cooperative multi-population differential evolution with reinforcement learning for irregular 3D UAV path planning
+AU  - Zhang, Yunhui
+AU  - Du, Guanglong
+AU  - Tang, Hao
+AU  - Wang, Ziwei
+AU  - Wang, Xueqian
+AU  - Du, Cuifeng
+AU  - Guan, Quanlong
+AU  - Qiu, Xiaojian
+JO  - Knowledge-Based Systems
+VL  - 341
+SP  - 115863
+PY  - 2026
+DA  - 2026/05/23/
+SN  - 0950-7051
+DO  - https://doi.org/10.1016/j.knosys.2026.115863
+UR  - https://www.sciencedirect.com/science/article/pii/S0950705126005897
+KW  - UAV path planning
+KW  - Differential evolution
+KW  - Multi-population cooperative optimization
+KW  - Manifold-aware search
+KW  - Reinforcement learning
+KW  - Irregular 3D environments
+AB  - This study proposes a manifold-aware triple cooperative multi-population differential evolution algorithm with reinforcement learning (MTCMDE) for UAV path planning in irregular three-dimensional environments with obstacle constraints and wind disturbances. The method aims to enhance both global exploration and local refinement, enabling more reliable identification of feasible low-cost paths in cluttered environments. MTCMDE adopts a three-subpopulation co-evolution framework consisting of Scout, Developer, and Balancer. These subgroups exchange information through elite migration, which helps balance exploration and exploitation during the search process. In addition, a manifold-aware perturbation operator is introduced to leverage local topological cues, reducing the risk of premature convergence and improving search efficiency in narrow passages. Furthermore, a reinforcement learning–driven multi-operator scheme based on a bandit model is employed to adaptively allocate mutation strategies, thereby improving convergence accuracy while maintaining population diversity. Experiments were conducted on six wind-affected irregular test cases, including a large-scale, ultra-high-density urban scenario, using a six-dimensional path cost function. The results show that MTCMDE achieves better path feasibility, lower cost, and faster convergence than the compared algorithms. Comprehensive statistical evaluations confirm the robustness and extreme scalability of these improvements. Overall, MTCMDE provides an effective and scalable solution for UAV path planning in irregular 3D environments with wind disturbances.
+ER  - 
