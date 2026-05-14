@@ -338,3 +338,16 @@ test("pollDownload abort: follow-up failure emits one JSON CLI error", () => {
   assert.deepEqual(JSON.parse(lines[0]), { ok: false, errorCode: "ELEMENT_NOT_FOUND", error: "No element matched --follow-up-selector", evidence: { selector: "button.missing" } });
   assert.equal(result.stdout.trim(), "");
 });
+
+test("browser:artifact-click JSON CLI error redacts sensitive evidence", () => {
+  const dir = tempDir();
+  const cli = path.resolve(__dirname, "../src/cli.js");
+  const sensitive = "https://chatgpt.com/c/abcdef1234567890abcdef12[";
+  const result = spawnSync(process.execPath, [cli, "browser:artifact-click", "--profile", "chatgpt", "--button-selector", "button", "--download-dir", dir, "--follow-up-text-regex", sensitive, "--output-json"], { encoding: "utf8" });
+  assert.equal(result.status, 1);
+  const parsed = JSON.parse(result.stderr.trim());
+  assert.equal(parsed.errorCode, "INVALID_ARGS");
+  assert.equal(JSON.stringify(parsed).includes("abcdef1234567890abcdef12"), false);
+  assert.equal(parsed.evidence.followUpTextRegex, "https://chatgpt.com/c/<conversation-id>[");
+  fs.rmSync(dir, { recursive: true, force: true });
+});

@@ -33,6 +33,7 @@ export interface WorkflowStepDefinition {
   untilContentRegex?: string;
   untilStableMs?: number;
   untilTimeoutMs?: number;
+  idempotent?: boolean;
 }
 
 export interface WorkflowDefinition {
@@ -52,6 +53,7 @@ export interface CompiledWorkflowAction {
   requiresApproval: boolean;
   reason?: string;
   resolvedSelectors?: string[];
+  idempotent?: boolean;
 }
 
 export interface WorkflowActionPlan {
@@ -71,4 +73,5 @@ export interface WorkflowRunResult {
   plan: WorkflowActionPlan;
   results: Array<{ stepId: string; ok: boolean; message: string; data?: unknown; downloadPath?: string; screenshotPath?: string }>;
   finalResult?: WorkflowFinalResult;
+  runId?: string;
 }

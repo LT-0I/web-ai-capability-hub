@@ -96,7 +96,26 @@ export const SQLITE_MIGRATIONS = [
   step_id TEXT,
   event_type TEXT NOT NULL,
   timestamp TEXT NOT NULL,
-  payload TEXT
+  payload TEXT,
+  status TEXT,
+  started_at TEXT,
+  finished_at TEXT,
+  inputs_hash TEXT,
+  output_artifact_ids TEXT,
+  error_code TEXT,
+  evidence TEXT,
+  idempotency_key TEXT
+);`,
+`CREATE TABLE IF NOT EXISTS profile_leases (
+  id TEXT PRIMARY KEY,
+  profile_id TEXT NOT NULL,
+  run_id TEXT,
+  owner_pid INTEGER NOT NULL,
+  acquired_at TEXT NOT NULL,
+  last_heartbeat_at TEXT NOT NULL,
+  chrome_process_pid INTEGER,
+  user_data_dir TEXT NOT NULL,
+  released_at TEXT
 );`,
 `CREATE TABLE IF NOT EXISTS artifacts (
   id TEXT PRIMARY KEY,

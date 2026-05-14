@@ -39,7 +39,8 @@ export class WorkflowCompiler {
         action,
         requiresApproval: !!reason,
         reason,
-        resolvedSelectors: capability?.selectors || action.selector ? [action.selector!].filter(Boolean) : []
+        resolvedSelectors: capability?.selectors || action.selector ? [action.selector!].filter(Boolean) : [],
+        idempotent: step.idempotent ?? defaultIdempotent(action.type, step.action || capabilityName)
       });
     });
     if (result) this.appendFinalResultAction(actions, result);
@@ -69,7 +70,8 @@ export class WorkflowCompiler {
       stepId: `final-${result.type}`,
       action,
       requiresApproval: false,
-      resolvedSelectors: []
+      resolvedSelectors: [],
+      idempotent: defaultIdempotent(action.type, result.type)
     });
   }
 
@@ -103,6 +105,11 @@ export class WorkflowCompiler {
         return { type: "extract", extract: "snapshot", confirmed: true };
     }
   }
+}
+
+function defaultIdempotent(actionType: BrowserAction["type"], stepKind?: string): boolean {
+  if (stepKind === "verify" || stepKind === "artifact-click") return true;
+  return actionType === "wait" || actionType === "download";
 }
 
 export function listWorkflowFiles(root = process.cwd()): string[] {

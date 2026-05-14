@@ -106,6 +106,26 @@ export interface RunEventRecord {
   event_type: string;
   timestamp: string;
   payload?: Record<string, unknown>;
+  status?: "started" | "succeeded" | "failed" | string;
+  started_at?: string;
+  finished_at?: string;
+  inputs_hash?: string;
+  output_artifact_ids?: string[];
+  error_code?: string;
+  evidence?: Record<string, unknown>;
+  idempotency_key?: string;
+}
+
+export interface ProfileLeaseRecord {
+  id: string;
+  profile_id: string;
+  run_id?: string;
+  owner_pid: number;
+  acquired_at: string;
+  last_heartbeat_at: string;
+  chrome_process_pid?: number;
+  user_data_dir: string;
+  released_at?: string;
 }
 
 export interface ArtifactRecord {
@@ -160,6 +180,7 @@ export interface CapabilityDatabaseExport {
   workflow_definitions: WorkflowDefinitionRecord[];
   workflow_runs: WorkflowRunRecord[];
   run_events: RunEventRecord[];
+  profile_leases: ProfileLeaseRecord[];
   artifacts: ArtifactRecord[];
   site_registry_entries: SiteRegistryEntryRecord[];
   scheduled_jobs: ScheduledJobRecord[];

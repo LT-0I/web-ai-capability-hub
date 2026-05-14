@@ -13,6 +13,7 @@ import {
   CapabilityVersionRecord,
   PageCaptureRecord,
   PolicyEventRecord,
+  ProfileLeaseRecord,
   RunEventRecord,
   ScheduledJobRecord,
   ServiceTargetRecord,
@@ -41,6 +42,7 @@ const TABLES: TableName[] = [
   "workflow_definitions",
   "workflow_runs",
   "run_events",
+  "profile_leases",
   "artifacts",
   "site_registry_entries",
   "scheduled_jobs",
@@ -67,6 +69,7 @@ function emptyStore(): StoreData {
     workflow_definitions: [],
     workflow_runs: [],
     run_events: [],
+    profile_leases: [],
     artifacts: [],
     site_registry_entries: [],
     scheduled_jobs: [],
@@ -94,6 +97,7 @@ export class CapabilityDatabase {
     ensureDir(path.dirname(this.dbPath));
     if (this.sqliteAvailable) {
       for (const migration of SQLITE_MIGRATIONS) this.sqlite.exec(migration);
+      this.ensureSqliteColumns();
     } else if (!fs.existsSync(this.dbPath)) {
       this.writeStore(emptyStore());
     } else {
@@ -314,18 +318,63 @@ export class CapabilityDatabase {
 
   addWorkflowRun(record: WorkflowRunRecord): WorkflowRunRecord {
     this.init();
-    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO workflow_runs (id, workflow_id, target_id, profile, mode, status, started_at, finished_at, plan, result) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO workflow_runs (id, workflow_id, target_id, profile, mode, status, started_at, finished_at, plan, result) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET target_id=excluded.target_id, profile=excluded.profile, mode=excluded.mode, status=excluded.status, finished_at=excluded.finished_at, plan=coalesce(excluded.plan, workflow_runs.plan), result=excluded.result`)
       .run(record.id, record.workflow_id, record.target_id || null, record.profile || null, record.mode || null, record.status, record.started_at, record.finished_at || null, json(record.plan), json(record.result));
-    else this.pushJson("workflow_runs", record);
+    else this.upsertJson("workflow_runs", record, (row) => row.id === record.id);
     return record;
   }
 
   addRunEvent(record: RunEventRecord): RunEventRecord {
     this.init();
-    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO run_events (id, run_id, step_id, event_type, timestamp, payload) VALUES (?, ?, ?, ?, ?, ?)`)
-      .run(record.id, record.run_id, record.step_id || null, record.event_type, record.timestamp, json(record.payload));
+    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO run_events (id, run_id, step_id, event_type, timestamp, payload, status, started_at, finished_at, inputs_hash, output_artifact_ids, error_code, evidence, idempotency_key) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET event_type=excluded.event_type, timestamp=excluded.timestamp, payload=excluded.payload, status=excluded.status, started_at=excluded.started_at, finished_at=excluded.finished_at, inputs_hash=excluded.inputs_hash, output_artifact_ids=excluded.output_artifact_ids, error_code=excluded.error_code, evidence=excluded.evidence, idempotency_key=excluded.idempotency_key`)
+      .run(record.id, record.run_id, record.step_id || null, record.event_type, record.timestamp, json(record.payload), record.status || null, record.started_at || null, record.finished_at || null, record.inputs_hash || null, json(record.output_artifact_ids || []), record.error_code || null, json(record.evidence), record.idempotency_key || null);
     else this.pushJson("run_events", record);
     return record;
+  }
+
+  getWorkflowRun(runId: string): WorkflowRunRecord | undefined {
+    this.init();
+    if (this.sqliteAvailable) {
+      const row = this.sqlite.prepare(`SELECT * FROM workflow_runs WHERE id=?`).get(runId);
+      return row ? { ...row, plan: parseJson(row.plan, undefined), result: parseJson(row.result, undefined) } : undefined;
+    }
+    return this.readStore().workflow_runs.find((row) => row.id === runId);
+  }
+
+  listRunEvents(runId: string): RunEventRecord[] {
+    this.init();
+    const parseMaybeJson = <T>(value: unknown, fallback: T): T => typeof value === "string" || value === null || value === undefined ? parseJson(value as any, fallback) : value as T;
+    const normalize = (row: any): RunEventRecord => ({
+      ...row,
+      payload: parseMaybeJson(row.payload, undefined),
+      output_artifact_ids: parseMaybeJson(row.output_artifact_ids, row.output_artifact_ids || []),
+      evidence: parseMaybeJson(row.evidence, undefined)
+    });
+    if (this.sqliteAvailable) return this.sqlite.prepare(`SELECT * FROM run_events WHERE run_id=? ORDER BY timestamp, id`).all(runId).map(normalize);
+    return this.readStore().run_events.filter((row) => row.run_id === runId);
+  }
+
+  upsertProfileLease(record: ProfileLeaseRecord): ProfileLeaseRecord {
+    this.init();
+    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO profile_leases (id, profile_id, run_id, owner_pid, acquired_at, last_heartbeat_at, chrome_process_pid, user_data_dir, released_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET run_id=excluded.run_id, owner_pid=excluded.owner_pid, last_heartbeat_at=excluded.last_heartbeat_at, chrome_process_pid=excluded.chrome_process_pid, user_data_dir=excluded.user_data_dir, released_at=excluded.released_at`)
+      .run(record.id, record.profile_id, record.run_id || null, record.owner_pid, record.acquired_at, record.last_heartbeat_at, record.chrome_process_pid || null, record.user_data_dir, record.released_at || null);
+    else this.upsertJson("profile_leases", record, (row) => row.id === record.id);
+    return record;
+  }
+
+  getActiveProfileLease(profileId: string): ProfileLeaseRecord | undefined {
+    this.init();
+    if (this.sqliteAvailable) {
+      const row = this.sqlite.prepare(`SELECT * FROM profile_leases WHERE profile_id=? AND released_at IS NULL ORDER BY acquired_at DESC LIMIT 1`).get(profileId);
+      return row ? { ...row } : undefined;
+    }
+    return this.readStore().profile_leases.filter((row) => row.profile_id === profileId && !row.released_at).sort((a, b) => b.acquired_at.localeCompare(a.acquired_at))[0];
+  }
+
+  listProfileLeases(profileId?: string): ProfileLeaseRecord[] {
+    this.init();
+    if (this.sqliteAvailable) return this.sqlite.prepare(`SELECT * FROM profile_leases WHERE (? IS NULL OR profile_id=?) ORDER BY acquired_at DESC`).all(profileId || null, profileId || null);
+    return this.readStore().profile_leases.filter((row) => !profileId || row.profile_id === profileId).sort((a, b) => b.acquired_at.localeCompare(a.acquired_at));
   }
 
   addPolicyEvent(record: Omit<PolicyEventRecord, "id" | "timestamp"> & { id?: string; timestamp?: string }): PolicyEventRecord {
@@ -353,7 +402,8 @@ export class CapabilityDatabase {
     out.capability_versions = out.capability_versions.map((row: any) => ({ ...row, diff: parseJson(row.diff, {}), record: parseJson(row.record, {}) }));
     out.workflow_definitions = out.workflow_definitions.map((row: any) => ({ ...row, definition: parseJson(row.definition, {}) }));
     out.workflow_runs = out.workflow_runs.map((row: any) => ({ ...row, plan: parseJson(row.plan, undefined), result: parseJson(row.result, undefined) }));
-    out.run_events = out.run_events.map((row: any) => ({ ...row, payload: parseJson(row.payload, undefined) }));
+    out.run_events = out.run_events.map((row: any) => ({ ...row, payload: parseJson(row.payload, undefined), output_artifact_ids: parseJson(row.output_artifact_ids, []), evidence: parseJson(row.evidence, undefined) }));
+    out.profile_leases = out.profile_leases.map((row: any) => ({ ...row }));
     out.artifacts = out.artifacts.map((row: any) => ({ ...row, metadata: parseJson(row.metadata, undefined) }));
     out.site_registry_entries = out.site_registry_entries.map((row: any) => ({ ...row, raw: parseJson(row.raw, {}) }));
     out.scheduled_jobs = out.scheduled_jobs.map((row: any) => ({ ...row, enabled: !!row.enabled, options: parseJson(row.options, undefined) }));
@@ -426,6 +476,20 @@ export class CapabilityDatabase {
     const record = makeVersion(row, version, diff);
     this.sqlite.prepare(`INSERT INTO capability_versions (id, capability_id, target_id, version, changed_at, diff, record) VALUES (?, ?, ?, ?, ?, ?, ?)`)
       .run(record.id, record.capability_id, record.target_id, record.version, record.changed_at, json(record.diff), json(record.record));
+  }
+
+  private ensureSqliteColumns(): void {
+    const columns = (table: string) => new Set(this.sqlite.prepare(`PRAGMA table_info(${table})`).all().map((row: any) => row.name));
+    const runEventColumns = columns("run_events");
+    const addRunEventColumn = (name: string, type: string) => { if (!runEventColumns.has(name)) this.sqlite.exec(`ALTER TABLE run_events ADD COLUMN ${name} ${type}`); };
+    addRunEventColumn("status", "TEXT");
+    addRunEventColumn("started_at", "TEXT");
+    addRunEventColumn("finished_at", "TEXT");
+    addRunEventColumn("inputs_hash", "TEXT");
+    addRunEventColumn("output_artifact_ids", "TEXT");
+    addRunEventColumn("error_code", "TEXT");
+    addRunEventColumn("evidence", "TEXT");
+    addRunEventColumn("idempotency_key", "TEXT");
   }
 
   private sqliteRowToCapability(row: any): CapabilityRecord {
