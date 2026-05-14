@@ -6,6 +6,7 @@ import { ManagedBrowserLauncher, BrowserCloseMode } from "./browser/managedLaunc
 import { BrowserProfileStore } from "./browser/profileStore";
 import { DownloadManager } from "./browser/downloads";
 import { activeManagedPage } from "./browser/managedPageRouting";
+import { runArtifactClick } from "./browser/artifactClick";
 import { allocateSession, freeSession, listSessions } from "./browser/sessionPool";
 import { TabRegistry } from "./browser/tabRegistry";
 import { getStoragePaths } from "./utils/paths";
@@ -77,7 +78,7 @@ function asPoint(value: CliOptionValue | undefined, flag: string): [number, numb
   if (parts.length !== 2 || parts.some((item) => !Number.isFinite(item))) throw new Error(`${flag} must be in x,y format`);
   return [parts[0], parts[1]];
 }
-function wantJson(options: Record<string, CliOptionValue>): boolean { return options.json === true || options.json === "true" || (Array.isArray(options.json) && options.json.some((value) => value === true || value === "true")); }
+function wantJson(options: Record<string, CliOptionValue>): boolean { return options.json === true || options.json === "true" || options["output-json"] === true || options.outputJson === true || (Array.isArray(options.json) && options.json.some((value) => value === true || value === "true")); }
 function output(value: unknown, options: Record<string, CliOptionValue> = {}): void { console.log(wantJson(options) ? JSON.stringify(value, null, 2) : typeof value === "string" ? value : JSON.stringify(value, null, 2)); }
 function downloadManager(): DownloadManager { return new DownloadManager(getStoragePaths().downloadDir); }
 
@@ -207,6 +208,52 @@ async function withManagedPage(fn: (page: any) => Promise<unknown>, options: Rec
 }
 
 
+function postconditionFromCli(options: Record<string, CliOptionValue>): Partial<BrowserAction> {
+  const untilDownload = options["until-download"] === true || options.untilDownload === true;
+  const until = (untilDownload ? "download" : asString(options.until)) as BrowserAction["until"] | undefined;
+  if (!until) return {};
+  if (!["visible", "enabled", "stable", "download", "contentRegex"].includes(until)) throw new Error("--until must be one of visible|enabled|stable|download|contentRegex");
+  const untilSelector = asString(options["until-selector"] || options.untilSelector);
+  const untilContentRegex = asString(options["until-content-regex"] || options.untilContentRegex);
+  if (["visible", "enabled", "stable", "contentRegex"].includes(until) && !untilSelector) throw new Error(`--until-selector is required when --until=${until}`);
+  if (until === "contentRegex" && !untilContentRegex) throw new Error("--until-content-regex is required when --until=contentRegex");
+  return {
+    until,
+    ...(untilSelector ? { untilSelector } : {}),
+    ...(untilContentRegex ? { untilContentRegex } : {}),
+    untilStableMs: asNumber(options["until-stable-ms"] || options.untilStableMs) ?? 1000,
+    untilTimeoutMs: asNumber(options["until-timeout-ms"] || options.untilTimeoutMs) ?? 15000
+  };
+}
+
+function artifactClickOptionsFromCli(options: Record<string, CliOptionValue>): any {
+  return {
+    profile: asString(options.profile) || "",
+    url: asString(options.url),
+    tabUrlContains: asString(options["tab-url-contains"] || options.tabUrlContains),
+    buttonSelector: asString(options["button-selector"] || options.buttonSelector) || "",
+    buttonAncestorText: asString(options["button-ancestor-text"] || options.buttonAncestorText),
+    scrollIntoView: asString(options["scroll-into-view"] || options.scrollIntoView, "auto"),
+    followUpSelector: asString(options["follow-up-selector"] || options.followUpSelector),
+    followUpTextRegex: asString(options["follow-up-text-regex"] || options.followUpTextRegex),
+    followUpAncestorText: asString(options["follow-up-ancestor-text"] || options.followUpAncestorText),
+    frameTextFilter: asString(options["frame-text-filter"] || options.frameTextFilter),
+    downloadDir: asString(options["download-dir"] || options.downloadDir) || "",
+    filenamePattern: asString(options["filename-pattern"] || options.filenamePattern),
+    renameTo: asString(options["rename-to"] || options.renameTo),
+    verifyMinBytes: asNumber(options["verify-min-bytes"] || options.verifyMinBytes),
+    timeoutMs: asNumber(options["timeout-ms"] || options.timeoutMs) ?? 60000,
+    locateTimeoutMs: asNumber(options["locate-timeout-ms"] || options.locateTimeoutMs) ?? 8000,
+    frameMinCount: asNumber(options["frame-min-count"] || options.frameMinCount) ?? 1,
+    viewportWidth: asNumber(options["viewport-width"] || options.viewportWidth),
+    viewportHeight: asNumber(options["viewport-height"] || options.viewportHeight),
+    prerenderWaitMs: asNumber(options["prerender-wait-ms"] || options.prerenderWaitMs) ?? 0,
+    scrollMainToY: asNumber(options["scroll-main-to-y"] || options.scrollMainToY),
+    scrollMainWaitMs: asNumber(options["scroll-main-wait-ms"] || options.scrollMainWaitMs) ?? 1000,
+    noDisconnect: options["no-disconnect"] === true || options.noDisconnect === true
+  };
+}
+
 function browserActionFromCli(command: string, options: Record<string, CliOptionValue>): BrowserAction {
   const confirmed = asBoolean(options.confirmed);
   const base = confirmed === undefined ? {} : { confirmed };
@@ -215,7 +262,7 @@ function browserActionFromCli(command: string, options: Record<string, CliOption
     if (!selector) throw new Error("browser:click requires --selector <css-or-xpath>");
     const timeoutMs = asNumber(options.ms);
     const expectDownload = asBoolean(options["expect-download"] || options.expectDownload);
-    return { ...base, type: "click", selector, ...(timeoutMs === undefined ? {} : { timeoutMs }), ...(expectDownload ? { expectDownload: true } : {}) };
+    return { ...base, type: "click", selector, ...(timeoutMs === undefined ? {} : { timeoutMs }), ...(expectDownload ? { expectDownload: true } : {}), ...postconditionFromCli(options) };
   }
   if (command === "browser:type") {
     const selector = asString(options.selector);
@@ -234,7 +281,7 @@ function browserActionFromCli(command: string, options: Record<string, CliOption
   if (command === "browser:upload") {
     const selector = asString(options.selector);
     if (!selector) throw new Error("browser:upload requires --selector <css-or-xpath>");
-    return { ...base, type: "upload", selector, files: existingFilePaths(options.file) };
+    return { ...base, type: "upload", selector, files: existingFilePaths(options.file), ...postconditionFromCli(options) };
   }
   if (command === "browser:hover") {
     const selector = asString(options.selector);
@@ -291,7 +338,8 @@ function browserActionFromCli(command: string, options: Record<string, CliOption
       ...(selector ? { selector } : {}),
       waitFor: selector ? "selector" : "timeout",
       ...(timeoutMs === undefined ? {} : { timeoutMs }),
-      ...(state ? { state } : {})
+      ...(state ? { state } : {}),
+      ...postconditionFromCli(options)
     } as BrowserAction;
   }
   throw new Error(`Unsupported browser action command: ${command}`);
@@ -385,6 +433,7 @@ MCP and compatibility commands:
   browser:click|browser:type|browser:select|browser:press|browser:wait|browser:upload|browser:hover|browser:select-text|browser:drag [--tab-id <id>] [--json]
   browser:downloads [--profile <name>] [--limit <n>] [--json]
   browser:download-url --url <absolute-url> [--filename <name>] [--tab-id <id>] [--json]
+  browser:artifact-click --profile <name> (--url <url>|--tab-url-contains <substr>) --button-selector <css> --download-dir <abs-path> [--follow-up-selector <css>|--follow-up-text-regex <regex>] [--locate-timeout-ms <ms>] [--frame-min-count <n>] [--viewport-width <px>] [--viewport-height <px>] [--prerender-wait-ms <ms>] [--scroll-main-to-y <y>] [--scroll-main-wait-ms <ms>] [--output-json]
   recipe <id> --key value
   snapshot:capture --site <site> [--url <url>] [--tab-id <id>]
   snapshot:diff --site <site> --previous <path> --current <path>`;
@@ -457,6 +506,10 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   }
   if (command === "browser:download-url") {
     output(await runBrowserDownloadUrl(options), options);
+    return;
+  }
+  if (command === "browser:artifact-click") {
+    output(await runArtifactClick(artifactClickOptionsFromCli(options)), options);
     return;
   }
 
@@ -673,8 +726,10 @@ if (require.main === module) {
   main().catch((error) => {
     const parsed = parseArgs(process.argv.slice(3));
     const message = error instanceof Error ? error.message : String(error);
-    if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, error: message }, null, 2));
+    const errorCode = (error as any)?.errorCode || (message.startsWith("INVALID_ARGS:") ? "INVALID_ARGS" : undefined);
+    const evidence = (error as any)?.evidence;
+    if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, ...(errorCode ? { errorCode } : {}), error: message, ...(evidence ? { evidence } : {}) }));
     else console.error(message);
-    process.exitCode = 1;
+    process.exitCode = errorCode === "POSTCONDITION_TIMEOUT" ? 12 : 1;
   });
 }

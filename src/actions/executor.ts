@@ -5,6 +5,7 @@ import { ConfirmationPolicy, assertActionPermitted, defaultConfirmationPolicy } 
 import { describeSemanticTarget, getLocator } from "./semanticTargets";
 import { DownloadManager } from "../browser/downloads";
 import { ArtifactStore } from "../artifacts/store";
+import { beginDownloadPostcondition, PostconditionTimeoutError, waitForPostcondition } from "../browser/postconditions";
 
 export interface ActionExecutorContext {
   getActivePage(): any | undefined;
@@ -73,6 +74,7 @@ export class ActionExecutor {
       if (action.holdMs !== undefined && (!Number.isInteger(action.holdMs) || action.holdMs < 0)) throw new Error("Drag action requires holdMs to be a non-negative integer");
     }
     if (action.type === "upload" && (!action.files || !action.files.length)) throw new Error("Upload action requires files");
+    if (action.until && !["visible", "enabled", "stable", "download", "contentRegex"].includes(action.until)) throw new Error("Action until must be one of visible|enabled|stable|download|contentRegex");
   }
 
   private activePage(): any {
@@ -87,6 +89,36 @@ export class ActionExecutor {
     return `${action.type} ${describeSemanticTarget(action.target, action.selector)}`;
   }
 
+  private postcondition(action: BrowserAction): any | undefined {
+    if (!action.until) return undefined;
+    return {
+      until: action.until,
+      selector: action.untilSelector,
+      contentRegex: action.untilContentRegex,
+      stableMs: action.untilStableMs,
+      timeoutMs: action.untilTimeoutMs
+    };
+  }
+
+  private async runPostcondition(action: BrowserAction, pendingDownload?: Promise<Record<string, unknown>>): Promise<Record<string, unknown> | undefined> {
+    const postcondition = this.postcondition(action);
+    if (!postcondition) return undefined;
+    try {
+      return await waitForPostcondition(this.activePage(), postcondition, pendingDownload);
+    } catch (error) {
+      if (error instanceof PostconditionTimeoutError) {
+        return { ok: false, errorCode: error.errorCode, evidence: error.evidence };
+      }
+      throw error;
+    }
+  }
+
+  private withPostcondition(result: ActionResult, postcondition: Record<string, unknown> | undefined): ActionResult {
+    if (!postcondition) return result;
+    if ((postcondition as any).ok === false) return { ...result, ok: false, message: `${result.message}; postcondition timed out`, data: { ...((result.data as any) || {}), postcondition } };
+    return { ...result, data: { ...((result.data as any) || {}), postcondition } };
+  }
+
   private async open(action: BrowserAction): Promise<ActionResult> {
     const page = this.context.openUrl ? await this.context.openUrl(action.url!) : this.activePage();
     if (!this.context.openUrl) await page.goto(action.url, { waitUntil: "domcontentloaded" });
@@ -96,9 +128,11 @@ export class ActionExecutor {
   private async click(action: BrowserAction): Promise<ActionResult> {
     const page = this.activePage();
     const locator = getLocator(page, action.target, action.selector);
+    const pendingPostconditionDownload = action.until === "download" ? beginDownloadPostcondition(page) : undefined;
     if (!action.expectDownload) {
       await locator.click();
-      return { ok: true, action, message: `Clicked ${describeSemanticTarget(action.target, action.selector)}` };
+      const postcondition = await this.runPostcondition(action, pendingPostconditionDownload);
+      return this.withPostcondition({ ok: true, action, message: `Clicked ${describeSemanticTarget(action.target, action.selector)}` }, postcondition);
     }
 
     const timeout = action.timeoutMs || 30000;
@@ -120,7 +154,8 @@ export class ActionExecutor {
       sourceUrl: (record as any).sourceUrl || (record as any).url || null
     });
     (record as any).artifactId = artifact.path;
-    return {
+    const postcondition = await this.runPostcondition(action, pendingPostconditionDownload);
+    return this.withPostcondition({
       ok: true,
       action,
       message: `Downloaded ${record.suggestedFilename}`,
@@ -132,7 +167,7 @@ export class ActionExecutor {
         artifactId: artifact.path
       },
       downloadPath: record.savedPath
-    };
+    }, postcondition);
   }
 
   private async type(action: BrowserAction): Promise<ActionResult> {
@@ -233,26 +268,31 @@ export class ActionExecutor {
   }
 
   private async upload(action: BrowserAction): Promise<ActionResult> {
+    const page = this.activePage();
+    const pendingPostconditionDownload = action.until === "download" ? beginDownloadPostcondition(page) : undefined;
     const target = describeSemanticTarget(action.target, action.selector);
-    const locator = getLocator(this.activePage(), action.target, action.selector);
+    const locator = getLocator(page, action.target, action.selector);
     try {
       await locator.setInputFiles(action.files);
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
       throw new Error(`Failed to upload file(s) to ${target}: target must be an <input type="file"> element. ${detail}`);
     }
-    return { ok: true, action, message: `Uploaded ${action.files!.length} file(s) to ${target}` };
+    const postcondition = await this.runPostcondition(action, pendingPostconditionDownload);
+    return this.withPostcondition({ ok: true, action, message: `Uploaded ${action.files!.length} file(s) to ${target}` }, postcondition);
   }
 
   private async wait(action: BrowserAction): Promise<ActionResult> {
     const page = this.activePage();
+    const pendingPostconditionDownload = action.until === "download" ? beginDownloadPostcondition(page) : undefined;
     const timeout = action.timeoutMs || 15000;
     if (action.waitFor === "text" && action.text) await page.getByText(new RegExp(action.text, "i")).first().waitFor({ timeout });
     else if (action.waitFor === "selector" && action.selector) await page.waitForSelector(action.selector, { timeout, ...(action.state ? { state: action.state } : {}) });
     else if (action.waitFor === "navigation") await page.waitForLoadState("domcontentloaded", { timeout });
     else if (action.waitFor === "timeout") await new Promise((resolve) => setTimeout(resolve, timeout));
     else await page.waitForTimeout?.(timeout);
-    return { ok: true, action, message: `Waited for ${action.waitFor || "timeout"}` };
+    const postcondition = await this.runPostcondition(action, pendingPostconditionDownload);
+    return this.withPostcondition({ ok: true, action, message: `Waited for ${action.waitFor || "timeout"}` }, postcondition);
   }
 
   private async scroll(action: BrowserAction): Promise<ActionResult> {

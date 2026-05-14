@@ -75,7 +75,7 @@ export class WorkflowCompiler {
 
   private actionForStep(workflow: WorkflowDefinition, step: WorkflowStepDefinition, capability: CapabilityRecord | undefined, warnings: string[]): BrowserAction {
     if (step.action && !["observe", "read", "clear_draft"].includes(step.action)) {
-      return { type: step.action as BrowserAction["type"], target: step.target as any, selector: step.selector || capability?.selectors?.[0], text: scalar(step.text || step.input?.text), files: step.files || (Array.isArray(step.input?.files) ? step.input?.files as string[] : undefined), waitFor: step.waitFor, timeoutMs: step.timeoutMs, confirmed: step.confirmed, riskyReason: step.riskyReason };
+      return { type: step.action as BrowserAction["type"], target: step.target as any, selector: step.selector || capability?.selectors?.[0], text: scalar(step.text || step.input?.text), files: step.files || (Array.isArray(step.input?.files) ? step.input?.files as string[] : undefined), waitFor: step.waitFor, timeoutMs: step.timeoutMs, confirmed: step.confirmed, riskyReason: step.riskyReason, until: step.until, untilSelector: step.untilSelector, untilContentRegex: step.untilContentRegex, untilStableMs: step.untilStableMs, untilTimeoutMs: step.untilTimeoutMs };
     }
     const name = step.use_capability || step.capability || step.action || "observe";
     const selector = capability?.selectors?.[0];

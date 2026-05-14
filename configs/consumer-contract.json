@@ -1,6 +1,6 @@
 {
-  "package_version": "0.2.0",
-  "contract_version": "consumer-contract-1.0.0",
+  "package_version": "0.3.0",
+  "contract_version": "consumer-contract-1.1.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -8,9 +8,23 @@
       "ts_export": "consumerHealth",
       "maturity": "stable",
       "safety_class": "read",
-      "required_args": ["target", "profile"],
+      "required_args": [
+        "target",
+        "profile"
+      ],
       "output_keys": {
-        "always_present": ["ok", "target", "profile", "connected", "pageCount", "loginLikeState", "status", "errorCode", "message", "checkedAt"],
+        "always_present": [
+          "ok",
+          "target",
+          "profile",
+          "connected",
+          "pageCount",
+          "loginLikeState",
+          "status",
+          "errorCode",
+          "message",
+          "checkedAt"
+        ],
         "optional": []
       },
       "may_contain_sensitive_local_fields": false
@@ -23,8 +37,22 @@
       "safety_class": "read",
       "required_args": [],
       "output_keys": {
-        "always_present": ["profile", "profileDir", "cdpEndpoint", "cdpPort", "connected", "launchedByPackage"],
-        "optional": ["executablePath", "processId", "pages", "browser", "webSocketDebuggerUrl", "lastError"]
+        "always_present": [
+          "profile",
+          "profileDir",
+          "cdpEndpoint",
+          "cdpPort",
+          "connected",
+          "launchedByPackage"
+        ],
+        "optional": [
+          "executablePath",
+          "processId",
+          "pages",
+          "browser",
+          "webSocketDebuggerUrl",
+          "lastError"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -37,7 +65,13 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["id", "type", "title", "url", "webSocketDebuggerUrl"]
+        "optional": [
+          "id",
+          "type",
+          "title",
+          "url",
+          "webSocketDebuggerUrl"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -50,7 +84,21 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["id", "target_id", "category", "name", "description", "inputs", "outputs", "preconditions", "selectors", "status", "confidence", "evidence", "updated_at"]
+        "optional": [
+          "id",
+          "target_id",
+          "category",
+          "name",
+          "description",
+          "inputs",
+          "outputs",
+          "preconditions",
+          "selectors",
+          "status",
+          "confidence",
+          "evidence",
+          "updated_at"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -63,7 +111,22 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["service_targets", "browser_profiles", "page_captures", "ui_elements", "capabilities", "capability_versions", "workflow_definitions", "workflow_runs", "run_events", "artifacts", "policy_events", "site_registry_entries", "scheduled_jobs", "exportedAt"]
+        "optional": [
+          "service_targets",
+          "browser_profiles",
+          "page_captures",
+          "ui_elements",
+          "capabilities",
+          "capability_versions",
+          "workflow_definitions",
+          "workflow_runs",
+          "run_events",
+          "artifacts",
+          "policy_events",
+          "site_registry_entries",
+          "scheduled_jobs",
+          "exportedAt"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -73,10 +136,17 @@
       "ts_export": "CapabilityUpdater.updateFromSnapshot",
       "maturity": "experimental",
       "safety_class": "mutate",
-      "required_args": ["target"],
+      "required_args": [
+        "target"
+      ],
       "output_keys": {
         "always_present": [],
-        "optional": ["target", "captureId", "capabilities", "uiElements"]
+        "optional": [
+          "target",
+          "captureId",
+          "capabilities",
+          "uiElements"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -86,10 +156,21 @@
       "ts_export": "WorkflowCompiler.compileFile",
       "maturity": "experimental",
       "safety_class": "read",
-      "required_args": ["file"],
+      "required_args": [
+        "file"
+      ],
       "output_keys": {
         "always_present": [],
-        "optional": ["id", "target", "profile", "mode", "compiledAt", "warnings", "actions", "result"]
+        "optional": [
+          "id",
+          "target",
+          "profile",
+          "mode",
+          "compiledAt",
+          "warnings",
+          "actions",
+          "result"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -99,10 +180,19 @@
       "ts_export": "WorkflowExecutor.runFile",
       "maturity": "experimental",
       "safety_class": "risky",
-      "required_args": ["file"],
+      "required_args": [
+        "file"
+      ],
       "output_keys": {
         "always_present": [],
-        "optional": ["ok", "dryRun", "plan", "results", "finalResult", "approvalGates"]
+        "optional": [
+          "ok",
+          "dryRun",
+          "plan",
+          "results",
+          "finalResult",
+          "approvalGates"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -115,7 +205,20 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["url", "title", "timestamp", "visibleText", "elements", "forms", "tables", "lists", "iframes", "accessibility", "screenshotPath", "warnings"]
+        "optional": [
+          "url",
+          "title",
+          "timestamp",
+          "visibleText",
+          "elements",
+          "forms",
+          "tables",
+          "lists",
+          "iframes",
+          "accessibility",
+          "screenshotPath",
+          "warnings"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -128,7 +231,13 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["screenshotPath", "url", "title", "timestamp", "warnings"]
+        "optional": [
+          "screenshotPath",
+          "url",
+          "title",
+          "timestamp",
+          "warnings"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -141,7 +250,17 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["profile", "profileDir", "cdpEndpoint", "cdpPort", "connected", "launchedByPackage", "processId", "browser", "webSocketDebuggerUrl"]
+        "optional": [
+          "profile",
+          "profileDir",
+          "cdpEndpoint",
+          "cdpPort",
+          "connected",
+          "launchedByPackage",
+          "processId",
+          "browser",
+          "webSocketDebuggerUrl"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -151,10 +270,17 @@
       "ts_export": "BrowserSessionManager.open",
       "maturity": "experimental",
       "safety_class": "mutate",
-      "required_args": ["url"],
+      "required_args": [
+        "url"
+      ],
       "output_keys": {
         "always_present": [],
-        "optional": ["ok", "opened", "url", "pages"]
+        "optional": [
+          "ok",
+          "opened",
+          "url",
+          "pages"
+        ]
       },
       "may_contain_sensitive_local_fields": true
     },
@@ -167,7 +293,11 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["name", "description", "inputSchema"]
+        "optional": [
+          "name",
+          "description",
+          "inputSchema"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -180,9 +310,142 @@
       "required_args": [],
       "output_keys": {
         "always_present": [],
-        "optional": ["uri", "name", "description", "mimeType"]
+        "optional": [
+          "uri",
+          "name",
+          "description",
+          "mimeType"
+        ]
       },
       "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "browser:click",
+      "mcp_name": null,
+      "ts_export": "ActionExecutor.execute({type:'click'})",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "selector"
+      ],
+      "flags": [
+        "until",
+        "until-selector",
+        "until-content-regex",
+        "until-stable-ms",
+        "until-download",
+        "until-timeout-ms"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "action",
+          "message"
+        ],
+        "optional": [
+          "data",
+          "downloadPath"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:upload",
+      "mcp_name": null,
+      "ts_export": "ActionExecutor.execute({type:'upload'})",
+      "maturity": "experimental",
+      "safety_class": "risky",
+      "required_args": [
+        "selector",
+        "file"
+      ],
+      "flags": [
+        "until",
+        "until-selector",
+        "until-content-regex",
+        "until-stable-ms",
+        "until-download",
+        "until-timeout-ms"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "action",
+          "message"
+        ],
+        "optional": [
+          "data"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:wait",
+      "mcp_name": null,
+      "ts_export": "ActionExecutor.execute({type:'wait'})",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "flags": [
+        "until",
+        "until-selector",
+        "until-content-regex",
+        "until-stable-ms",
+        "until-download",
+        "until-timeout-ms"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "action",
+          "message"
+        ],
+        "optional": [
+          "data"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:artifact-click",
+      "mcp_name": null,
+      "ts_export": "runArtifactClick",
+      "maturity": "experimental",
+      "safety_class": "risky",
+      "required_args": [
+        "profile",
+        "button-selector",
+        "download-dir"
+      ],
+      "flags": [
+        "url",
+        "button-ancestor-text",
+        "scroll-into-view",
+        "follow-up-selector",
+        "follow-up-ancestor-text",
+        "frame-text-filter",
+        "filename-pattern",
+        "rename-to",
+        "verify-min-bytes",
+        "timeout-ms",
+        "no-disconnect",
+        "output-json"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "size",
+          "downloadGuid",
+          "bbox",
+          "elapsedMs"
+        ],
+        "optional": [
+          "suggestedFilename",
+          "frameUrl"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
     }
   ],
   "resources": [
@@ -193,7 +456,15 @@
       "maturity": "experimental",
       "safety_class": "read",
       "required_args": [],
-      "output_keys": { "always_present": [], "optional": ["target_id", "display_name", "kind", "base_url"] },
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "target_id",
+          "display_name",
+          "kind",
+          "base_url"
+        ]
+      },
       "may_contain_sensitive_local_fields": false
     },
     {
@@ -202,8 +473,21 @@
       "ts_export": "readMcpResource",
       "maturity": "experimental",
       "safety_class": "read",
-      "required_args": ["targetId"],
-      "output_keys": { "always_present": [], "optional": ["id", "target_id", "category", "name", "description", "selectors", "status"] },
+      "required_args": [
+        "targetId"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "id",
+          "target_id",
+          "category",
+          "name",
+          "description",
+          "selectors",
+          "status"
+        ]
+      },
       "may_contain_sensitive_local_fields": false
     },
     {
@@ -212,8 +496,20 @@
       "ts_export": "readMcpResource",
       "maturity": "experimental",
       "safety_class": "read",
-      "required_args": ["targetId"],
-      "output_keys": { "always_present": [], "optional": ["id", "target_id", "url", "title", "captured_at", "artifact_refs"] },
+      "required_args": [
+        "targetId"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "id",
+          "target_id",
+          "url",
+          "title",
+          "captured_at",
+          "artifact_refs"
+        ]
+      },
       "may_contain_sensitive_local_fields": true
     },
     {
@@ -223,7 +519,16 @@
       "maturity": "experimental",
       "safety_class": "read",
       "required_args": [],
-      "output_keys": { "always_present": [], "optional": ["id", "target_id", "name", "definition", "created_at"] },
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "id",
+          "target_id",
+          "name",
+          "definition",
+          "created_at"
+        ]
+      },
       "may_contain_sensitive_local_fields": true
     },
     {
@@ -233,7 +538,16 @@
       "maturity": "experimental",
       "safety_class": "read",
       "required_args": [],
-      "output_keys": { "always_present": [], "optional": ["id", "workflow_id", "status", "started_at", "finished_at"] },
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "id",
+          "workflow_id",
+          "status",
+          "started_at",
+          "finished_at"
+        ]
+      },
       "may_contain_sensitive_local_fields": true
     },
     {
@@ -243,7 +557,19 @@
       "maturity": "experimental",
       "safety_class": "read",
       "required_args": [],
-      "output_keys": { "always_present": [], "optional": ["profileName", "browserType", "profileDir", "executablePath", "cdpEndpoint", "cdpPort", "processId", "lastStatus"] },
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "profileName",
+          "browserType",
+          "profileDir",
+          "executablePath",
+          "cdpEndpoint",
+          "cdpPort",
+          "processId",
+          "lastStatus"
+        ]
+      },
       "may_contain_sensitive_local_fields": true
     },
     {
@@ -253,7 +579,15 @@
       "maturity": "experimental",
       "safety_class": "read",
       "required_args": [],
-      "output_keys": { "always_present": [], "optional": ["site_id", "display_name", "kind", "base_url"] },
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "site_id",
+          "display_name",
+          "kind",
+          "base_url"
+        ]
+      },
       "may_contain_sensitive_local_fields": false
     }
   ],
@@ -291,6 +625,20 @@
     "INVALID_ARGS",
     "INVALID_JSON",
     "POLICY_APPROVAL_REQUIRED",
+    "IFRAME_NOT_FOUND",
+    "ELEMENT_NOT_FOUND",
+    "ELEMENT_OUT_OF_VIEWPORT",
+    "ARTIFACT_DOWNLOAD_TIMEOUT",
+    "ARTIFACT_VERIFICATION_FAILED",
+    "POSTCONDITION_TIMEOUT",
+    "MODE_UNCERTAIN",
+    "HUMAN_HANDOFF_REQUIRED",
     "UNKNOWN"
-  ]
+  ],
+  "sensitive_fields": {
+    "artifact_click.path": "Local filesystem path; treat as sensitive local metadata.",
+    "artifact_click.sha256": "Content fingerprint; acceptable to log when artifact logging is allowed.",
+    "artifact_click.frameUrl": "May contain conversation IDs or tenant-specific URLs; treat as sensitive.",
+    "profile-id": "Opaque browser profile identifier; do not expose outside trusted local logs."
+  }
 }

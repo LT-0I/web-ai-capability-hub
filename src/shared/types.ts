@@ -166,6 +166,11 @@ export interface BrowserAction {
   confirmed?: boolean;
   riskyReason?: string;
   expectDownload?: boolean;
+  until?: "visible" | "enabled" | "stable" | "download" | "contentRegex";
+  untilSelector?: string;
+  untilContentRegex?: string;
+  untilStableMs?: number;
+  untilTimeoutMs?: number;
 }
 
 export interface ActionResult {

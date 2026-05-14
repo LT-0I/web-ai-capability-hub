@@ -28,7 +28,7 @@ export async function startMcpServer(): Promise<void> {
   const { StdioServerTransport } = sdkStdio;
   const { ListToolsRequestSchema, CallToolRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } = sdkTypes;
   const runtime = { session: new BrowserSessionManager(), launcher: new ManagedBrowserLauncher(), database: new CapabilityDatabase() };
-  const server = new Server({ name: "web-ai-research-automation-hub", version: "0.2.0" }, { capabilities: { tools: {}, resources: {} } });
+  const server = new Server({ name: "web-ai-research-automation-hub", version: "0.3.0" }, { capabilities: { tools: {}, resources: {} } });
   server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: listMcpTools() }));
   server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
     let result: unknown;

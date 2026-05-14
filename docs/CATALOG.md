@@ -182,3 +182,8 @@ To re-run from a clean checkout, see the README setup section, then:
 Runtime files such as browser profiles, screenshots, downloads, SQLite journals,
 logs, and site maps stay ignored. Catalog JSON files remain tracked because they
 are the portable output of the cataloging process.
+
+
+## 5. Browser artifact primitive
+
+`browser:artifact-click` is the Phase 1 Chromium-CDP primitive for exporting files from volatile web-AI UIs. It locates a button across frames, optionally filters by frame and ancestor text, raw-clicks by viewport coordinates, captures browser-level download events, validates filename/size, computes sha256, and may rename the artifact. Use it for iframe-backed export affordances where page-scoped Playwright downloads are insufficient.

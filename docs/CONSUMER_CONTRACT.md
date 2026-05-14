@@ -1,7 +1,7 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v0.2.0  
-Contract: `consumer-contract-1.0.0`
+Package: `web-ai-research-automation-hub` v0.3.0  
+Contract: `consumer-contract-1.1.0`
 
 This document is the versioned public integration contract for packages that consume the hub as a dependency. It adds a small consumer-safe layer without changing the existing safety policy, manual-login boundary, confirmation policy, or any existing CLI/MCP tool behavior.
 
@@ -62,6 +62,10 @@ Stable JSON keys are exactly:
 | `browser:screenshot` | `browser_screenshot` | `readPageSnapshot({ screenshot: true })` | experimental | read | yes |
 | `browser:launch` | `browser_launch` | `ManagedBrowserLauncher.launch` | experimental | mutate | yes |
 | `browser:open` | `browser_open` | `BrowserSessionManager.open` | experimental | mutate | yes |
+| `browser:click` | n/a | `ActionExecutor.execute({type:"click"})` | experimental | mutate | yes |
+| `browser:upload` | n/a | `ActionExecutor.execute({type:"upload"})` | experimental | risky | yes |
+| `browser:wait` | n/a | `ActionExecutor.execute({type:"wait"})` | experimental | read | yes |
+| `browser:artifact-click` | n/a | `runArtifactClick` | experimental | risky | yes |
 | `mcp:tools` | n/a | `listMcpTools` | stable | read | no |
 | `mcp:resources` | n/a | `listMcpResources` | stable | read | no |
 
@@ -94,6 +98,13 @@ Returns an array. Page entries may contain `id`, `type`, `title`, `url`, and `we
 ### `mcp:tools` and `mcp:resources`
 
 Return MCP tool/resource definitions for introspection. These definitions do not include runtime browser secrets.
+
+
+### `browser:artifact-click` and action postconditions
+
+Contract 1.1.0 adds the CLI primitive `browser:artifact-click` for Chromium-CDP artifact capture and extends `browser:click`, `browser:upload`, and `browser:wait` with postcondition flags: `--until`, `--until-selector`, `--until-content-regex`, `--until-stable-ms`, `--until-download`, and `--until-timeout-ms`.
+
+`browser:artifact-click` returns local artifact metadata including `path`, `sha256`, `size`, `suggestedFilename`, `downloadGuid`, `frameUrl`, `bbox`, and `elapsedMs`. Safe consumers must treat `path`, `frameUrl`, and `profile-id` as sensitive local fields. `sha256` is a fingerprint and is generally acceptable to log when artifact logging is allowed.
 
 ## Forbidden output fields for safe consumers
 
@@ -137,6 +148,14 @@ Consumer-stable error codes are:
 - `INVALID_ARGS`
 - `INVALID_JSON`
 - `POLICY_APPROVAL_REQUIRED`
+- `IFRAME_NOT_FOUND`
+- `ELEMENT_NOT_FOUND`
+- `ELEMENT_OUT_OF_VIEWPORT`
+- `ARTIFACT_DOWNLOAD_TIMEOUT`
+- `ARTIFACT_VERIFICATION_FAILED`
+- `POSTCONDITION_TIMEOUT`
+- `MODE_UNCERTAIN`
+- `HUMAN_HANDOFF_REQUIRED`
 - `UNKNOWN`
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.

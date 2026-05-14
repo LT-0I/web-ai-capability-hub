@@ -1,4 +1,4 @@
-# Python consumer example for `consumer-contract-1.0.0`
+# Python consumer example for `consumer-contract-1.1.0`
 
 This example shows the smallest dependency-free Python pattern for calling the hub's consumer-safe health probe. It still re-sanitizes output defensively before logging or returning data.
 
@@ -12,7 +12,7 @@ from typing import Any
 
 HUB_DIR = Path("/absolute/path/to/web-ai-capability-hub")
 HUB_CLI = HUB_DIR / "dist" / "src" / "cli.js"
-CONTRACT_VERSION = "consumer-contract-1.0.0"
+CONTRACT_VERSION = "consumer-contract-1.1.0"
 
 ERROR_CODES = {
     "HUB_NOT_BUILT",
@@ -25,6 +25,14 @@ ERROR_CODES = {
     "INVALID_ARGS",
     "INVALID_JSON",
     "POLICY_APPROVAL_REQUIRED",
+    "HUMAN_HANDOFF_REQUIRED",
+    "MODE_UNCERTAIN",
+    "POSTCONDITION_TIMEOUT",
+    "ARTIFACT_VERIFICATION_FAILED",
+    "ARTIFACT_DOWNLOAD_TIMEOUT",
+    "ELEMENT_OUT_OF_VIEWPORT",
+    "ELEMENT_NOT_FOUND",
+    "IFRAME_NOT_FOUND",
     "UNKNOWN",
 }
 

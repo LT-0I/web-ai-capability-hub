@@ -28,6 +28,11 @@ export interface WorkflowStepDefinition {
   timeoutMs?: number;
   confirmed?: boolean;
   riskyReason?: string;
+  until?: BrowserAction["until"];
+  untilSelector?: string;
+  untilContentRegex?: string;
+  untilStableMs?: number;
+  untilTimeoutMs?: number;
 }
 
 export interface WorkflowDefinition {
