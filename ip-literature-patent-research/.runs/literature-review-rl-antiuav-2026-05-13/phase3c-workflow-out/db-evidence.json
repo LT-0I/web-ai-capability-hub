@@ -1,0 +1,186 @@
+{
+  "workflowRun": {
+    "id": "run_2f295602261c19e4",
+    "workflow_id": "chatgpt_deep_research_export_docx",
+    "target_id": "chatgpt",
+    "profile": "chatgpt",
+    "mode": "assisted",
+    "status": "running",
+    "started_at": "2026-05-14T11:35:52.584Z",
+    "finished_at": null,
+    "plan": {
+      "id": "chatgpt_deep_research_export_docx",
+      "target": "chatgpt",
+      "profile": "chatgpt",
+      "mode": "assisted",
+      "compiledAt": "2026-05-14T11:35:52.584Z",
+      "actions": [
+        {
+          "stepId": "capture_docx",
+          "action": {
+            "type": "artifactClick",
+            "target": {
+              "command": "browser:artifact-click",
+              "profile": "chatgpt",
+              "url": "{{inputs.conversationUrl}}",
+              "buttonSelector": "button[aria-label=\"导出\"]",
+              "followUpTextRegex": "(下载\\s*DOCX|DOCX|Word|导出.*Word)",
+              "viewportWidth": 1500,
+              "viewportHeight": 1000,
+              "prerenderWaitMs": 15000,
+              "scrollMainToY": 900,
+              "scrollMainWaitMs": 1000,
+              "locateTimeoutMs": 12000,
+              "timeoutMs": 90000,
+              "downloadDir": "{{inputs.outputDir}}",
+              "filenamePattern": "*.docx",
+              "verifyMinBytes": 20000,
+              "noDisconnect": false
+            },
+            "confirmed": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false
+        },
+        {
+          "stepId": "verify_docx",
+          "action": {
+            "type": "verifyDocxMin",
+            "target": {
+              "command": "verify:docx-min",
+              "path": "{{steps.capture_docx.path}}",
+              "minParagraphs": 50,
+              "minChars": 5000,
+              "topicRegex": "{{inputs.topicRegex}}",
+              "recordSha256": true
+            },
+            "confirmed": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": true
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt_deep_research_export_docx",
+        "version": "1.0.0",
+        "target": "chatgpt",
+        "profile": "chatgpt",
+        "mode": "assisted",
+        "description": "Export an already-complete ChatGPT Deep Research report to DOCX and verify minimum content quality.",
+        "inputs": {
+          "conversationUrl": {
+            "type": "string",
+            "required": true
+          },
+          "outputDir": {
+            "type": "path",
+            "required": true
+          },
+          "topicRegex": {
+            "type": "string",
+            "default": "强化学习|RL"
+          },
+          "runDir": {
+            "type": "path",
+            "required": false
+          }
+        },
+        "outputs": {
+          "docxPath": "{{steps.capture_docx.path}}",
+          "sha256": "{{steps.verify_docx.sha256}}",
+          "paragraphs": "{{steps.verify_docx.paragraphs}}",
+          "chars": "{{steps.verify_docx.chars}}"
+        },
+        "steps": [
+          {
+            "id": "capture_docx",
+            "action": "artifactClick",
+            "target": {
+              "command": "browser:artifact-click",
+              "profile": "chatgpt",
+              "url": "{{inputs.conversationUrl}}",
+              "buttonSelector": "button[aria-label=\"导出\"]",
+              "followUpTextRegex": "(下载\\s*DOCX|DOCX|Word|导出.*Word)",
+              "viewportWidth": 1500,
+              "viewportHeight": 1000,
+              "prerenderWaitMs": 15000,
+              "scrollMainToY": 900,
+              "scrollMainWaitMs": 1000,
+              "locateTimeoutMs": 12000,
+              "timeoutMs": 90000,
+              "downloadDir": "{{inputs.outputDir}}",
+              "filenamePattern": "*.docx",
+              "verifyMinBytes": 20000,
+              "noDisconnect": false
+            },
+            "confirmed": true
+          },
+          {
+            "id": "verify_docx",
+            "action": "verifyDocxMin",
+            "target": {
+              "command": "verify:docx-min",
+              "path": "{{steps.capture_docx.path}}",
+              "minParagraphs": 50,
+              "minChars": 5000,
+              "topicRegex": "{{inputs.topicRegex}}",
+              "recordSha256": true
+            },
+            "confirmed": true
+          }
+        ],
+        "teardown": {
+          "browser": "leave-connected"
+        },
+        "notes": {
+          "schema_gap": "Current workflow schema accepts extra metadata but does not yet type inputs, outputs, teardown, artifactClick, verifyDocxMin, or inter-step bindings."
+        }
+      }
+    }
+  },
+  "runEvents": [
+    {
+      "id": "event_8e6e16efdf537091",
+      "run_id": "run_2f295602261c19e4",
+      "step_id": "capture_docx",
+      "event_type": "started",
+      "timestamp": "2026-05-14T11:35:52.619Z",
+      "payload": {
+        "action": {
+          "type": "artifactClick",
+          "target": {
+            "command": "browser:artifact-click",
+            "profile": "<profile>",
+            "url": "{{inputs.conversationUrl}}",
+            "buttonSelector": "button[aria-label=\"导出\"]",
+            "followUpTextRegex": "(下载\\s*DOCX|DOCX|Word|导出.*Word)",
+            "viewportWidth": 1500,
+            "viewportHeight": 1000,
+            "prerenderWaitMs": 15000,
+            "scrollMainToY": 900,
+            "scrollMainWaitMs": 1000,
+            "locateTimeoutMs": 12000,
+            "timeoutMs": 90000,
+            "downloadDir": "{{inputs.outputDir}}",
+            "filenamePattern": "*.docx",
+            "verifyMinBytes": 20000,
+            "noDisconnect": false
+          },
+          "confirmed": true
+        },
+        "approvalRequired": false,
+        "idempotent": false
+      },
+      "status": "started",
+      "started_at": "2026-05-14T11:35:52.619Z",
+      "finished_at": null,
+      "inputs_hash": "aa354e67d443ace9e121b405dac1893f45861a6ded5fa1582c5f677322e59a3e",
+      "output_artifact_ids": [],
+      "error_code": null,
+      "idempotency_key": null
+    }
+  ]
+}
