@@ -50,5 +50,9 @@ data/live_snapshots/
 data/capability-hub.sqlite-journal
 data/test-downloads/
 data/doc_fetch/
-.omc/
+.omc/*
+!.omc/skills/
+.omc/skills/*
+!.omc/skills/web-ai-*/
+!.omc/skills/web-ai-*/**
 .DS_Store
