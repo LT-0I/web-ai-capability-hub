@@ -33,6 +33,7 @@ export interface ArtifactClickOptions {
   scrollMainToY?: number;
   scrollMainWaitMs?: number;
   noDisconnect?: boolean;
+  maxViewportY?: number;
   /** Internal: readiness evidence collected before locate/click. */
   pageReadyEvidence?: Record<string, unknown>;
 }
@@ -91,7 +92,7 @@ async function candidateBox(handle: any, scrollIntoView: string = "auto"): Promi
   }
   return await handle.boundingBox?.();
 }
-function inViewport(box: any): boolean { return !!box && Number.isFinite(box.y) && box.y >= 0 && box.y <= 1000; }
+function inViewport(box: any, maxY = 1000): boolean { return !!box && Number.isFinite(box.y) && box.y >= 0 && box.y <= maxY; }
 async function rawClick(cdp: any, box: any): Promise<void> {
   const x = box.x + box.width / 2;
   const y = box.y + box.height / 2;
@@ -117,7 +118,7 @@ function ensureArgs(options: ArtifactClickOptions): void {
 interface TriedFrameEvidence { url: string; hadSelectorMatch: boolean; hadFrameTextFilterMatch?: boolean }
 interface CandidateResult { frame: any; handle: any; box: any; frameUrl?: string; matchedAnyElement: boolean; matchedAnyFrame: boolean; outOfViewport: number; pageUrl: string; frameCount: number; triedFrames: TriedFrameEvidence[] }
 
-async function walkCandidateFrames(page: any, selector: string, ancestorText?: string, frameTextFilter?: string, scrollIntoView: string = "auto"): Promise<CandidateResult> {
+async function walkCandidateFrames(page: any, selector: string, ancestorText?: string, frameTextFilter?: string, scrollIntoView: string = "auto", maxViewportY = 1000): Promise<CandidateResult> {
   let matchedAnyElement = false;
   let matchedAnyFrame = !frameTextFilter;
   let outOfViewport = 0;
@@ -139,7 +140,7 @@ async function walkCandidateFrames(page: any, selector: string, ancestorText?: s
       matchedAnyElement = true;
       if (ancestorText && !(await elementContextText(handle)).includes(ancestorText)) continue;
       const box = await candidateBox(handle, scrollIntoView);
-      if (!inViewport(box)) { outOfViewport++; continue; }
+      if (!inViewport(box, maxViewportY)) { outOfViewport++; continue; }
       return { frame, handle, box, frameUrl: frameUrl(frame), matchedAnyElement, matchedAnyFrame, outOfViewport, pageUrl: pageUrl(page), frameCount: frames.length, triedFrames: triedFrames.slice(0, 20) };
     }
   }
@@ -158,7 +159,7 @@ async function elementCombinedText(handle: any): Promise<string> {
   } catch { return ""; }
 }
 
-async function walkFollowUpTextRegexFrames(page: any, pattern: string): Promise<CandidateResult> {
+async function walkFollowUpTextRegexFrames(page: any, pattern: string, maxViewportY = 1000): Promise<CandidateResult> {
   const regex = new RegExp(pattern, "i");
   let matchedAnyElement = false;
   let outOfViewport = 0;
@@ -174,30 +175,34 @@ async function walkFollowUpTextRegexFrames(page: any, pattern: string): Promise<
       const text = await elementCombinedText(handle);
       if (!regex.test(text)) continue;
       matchedAnyElement = true;
-      const box = await candidateBox(handle, "none");
-      if (!inViewport(box)) { outOfViewport++; continue; }
+      let box = await candidateBox(handle, "none");
+      if (!inViewport(box, maxViewportY)) {
+        try { await handle.scrollIntoViewIfNeeded?.({ timeout: 1500 }); } catch {}
+        box = await handle.boundingBox?.();
+      }
+      if (!inViewport(box, maxViewportY)) { outOfViewport++; continue; }
       return { frame, handle, box, frameUrl: frameUrl(frame), matchedAnyElement, matchedAnyFrame: true, outOfViewport, pageUrl: pageUrl(page), frameCount: frames.length, triedFrames: triedFrames.slice(0, 20) };
     }
   }
   return { frame: undefined, handle: undefined, box: undefined, matchedAnyElement, matchedAnyFrame: true, outOfViewport, pageUrl: pageUrl(page), frameCount: frames.length, triedFrames: triedFrames.slice(0, 20) };
 }
 
-async function findFollowUpTextRegex(page: any, pattern: string, locateTimeoutMs = 8000): Promise<CandidateResult> {
+async function findFollowUpTextRegex(page: any, pattern: string, locateTimeoutMs = 8000, maxViewportY = 1000): Promise<CandidateResult> {
   const deadline = now() + Math.max(0, locateTimeoutMs);
-  let last = await walkFollowUpTextRegexFrames(page, pattern);
+  let last = await walkFollowUpTextRegexFrames(page, pattern, maxViewportY);
   while (!last.matchedAnyElement && now() < deadline) {
     await sleep(Math.min(500, Math.max(0, deadline - now())));
-    last = await walkFollowUpTextRegexFrames(page, pattern);
+    last = await walkFollowUpTextRegexFrames(page, pattern, maxViewportY);
   }
   return last;
 }
 
-async function findCandidate(page: any, selector: string, ancestorText?: string, frameTextFilter?: string, scrollIntoView: string = "auto", locateTimeoutMs = 8000): Promise<CandidateResult> {
+async function findCandidate(page: any, selector: string, ancestorText?: string, frameTextFilter?: string, scrollIntoView: string = "auto", locateTimeoutMs = 8000, maxViewportY = 1000): Promise<CandidateResult> {
   const deadline = now() + Math.max(0, locateTimeoutMs);
-  let last = await walkCandidateFrames(page, selector, ancestorText, frameTextFilter, scrollIntoView);
+  let last = await walkCandidateFrames(page, selector, ancestorText, frameTextFilter, scrollIntoView, maxViewportY);
   while (!last.matchedAnyElement && now() < deadline) {
     await sleep(Math.min(500, Math.max(0, deadline - now())));
-    last = await walkCandidateFrames(page, selector, ancestorText, frameTextFilter, scrollIntoView);
+    last = await walkCandidateFrames(page, selector, ancestorText, frameTextFilter, scrollIntoView, maxViewportY);
   }
   return last;
 }
@@ -252,10 +257,11 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   const cdp = await page.context?.()?.newCDPSession?.(page) || await page.context?.()?.new_cdp_session?.(page);
   if (!cdp?.send) throw new ArtifactClickError("INVALID_ARGS", "Page CDP session is required for raw Input.dispatchMouseEvent");
 
-  const candidate = await findCandidate(page, options.buttonSelector, options.buttonAncestorText, options.frameTextFilter, options.scrollIntoView || "auto", options.locateTimeoutMs ?? 8000);
+  const maxViewportY = options.maxViewportY ?? options.viewportHeight ?? 1000;
+  const candidate = await findCandidate(page, options.buttonSelector, options.buttonAncestorText, options.frameTextFilter, options.scrollIntoView || "auto", options.locateTimeoutMs ?? 8000, maxViewportY);
   if (options.frameTextFilter && !candidate.matchedAnyFrame) throw new ArtifactClickError("IFRAME_NOT_FOUND", "No frame matched --frame-text-filter", notFoundEvidence(candidate, { ...options.pageReadyEvidence, frameTextFilter: options.frameTextFilter }));
   if (!candidate.matchedAnyElement) throw new ArtifactClickError("ELEMENT_NOT_FOUND", "No element matched --button-selector", notFoundEvidence(candidate, { ...options.pageReadyEvidence, selector: options.buttonSelector }));
-  if (!candidate.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", "All matching elements were outside viewport y range [0,1000]", { ...options.pageReadyEvidence, selector: options.buttonSelector, outOfViewport: candidate.outOfViewport });
+  if (!candidate.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", `All matching elements were outside viewport y range [0,${maxViewportY}]`, { ...options.pageReadyEvidence, selector: options.buttonSelector, outOfViewport: candidate.outOfViewport, maxViewportY });
 
   const abortDownloads = new AbortController();
   const downloadPromise = pollDownload(browser, path.resolve(options.downloadDir), options.timeoutMs || 60000, abortDownloads.signal)
@@ -267,14 +273,14 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
       const describeFollowUp = options.followUpTextRegex ? "--follow-up-text-regex" : "--follow-up-selector";
       const followValue = options.followUpTextRegex || options.followUpSelector || "";
       const locate = () => options.followUpTextRegex
-        ? findFollowUpTextRegex(page, options.followUpTextRegex, options.locateTimeoutMs ?? 8000)
-        : findCandidate(page, options.followUpSelector as string, options.followUpAncestorText, undefined, "auto", options.locateTimeoutMs ?? 8000);
+        ? findFollowUpTextRegex(page, options.followUpTextRegex, options.locateTimeoutMs ?? 8000, maxViewportY)
+        : findCandidate(page, options.followUpSelector as string, options.followUpAncestorText, undefined, "auto", options.locateTimeoutMs ?? 8000, maxViewportY);
       const follow = await locate();
       const until = now() + 3000;
       let found = follow;
       while (found.matchedAnyElement && !found.box && found.outOfViewport === 0 && now() < until) { await sleep(100); found = await locate(); }
       if (!found.matchedAnyElement) throw new ArtifactClickError("ELEMENT_NOT_FOUND", `No element matched ${describeFollowUp}`, notFoundEvidence(found, { ...options.pageReadyEvidence, selector: followValue }));
-      if (!found.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", "Follow-up element was outside viewport y range [0,1000]", { ...options.pageReadyEvidence, selector: followValue });
+      if (!found.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", `Follow-up element was outside viewport y range [0,${maxViewportY}]`, { ...options.pageReadyEvidence, selector: followValue, maxViewportY });
       await rawClick(cdp, found.box);
     } catch (error) {
       abortDownloads.abort();
@@ -378,7 +384,8 @@ export async function runArtifactClick(options: ArtifactClickOptions): Promise<A
     const context = browser.contexts()[0] || await browser.newContext?.({ acceptDownloads: true });
     const page = await selectArtifactClickPage(context, options);
     const pageReadyEvidence = await waitForArtifactPageReady(page, options);
-    return await artifactClickOnPage(browser, page, { ...options, url: undefined, pageReadyEvidence });
+    const maxViewportY = options.viewportHeight ?? 1000;
+    return await artifactClickOnPage(browser, page, { ...options, url: undefined, pageReadyEvidence, maxViewportY });
   } finally {
     if (!options.noDisconnect) await browser.close?.().catch(() => undefined);
   }

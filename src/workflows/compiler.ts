@@ -44,7 +44,7 @@ export class WorkflowCompiler {
       });
     });
     if (result) this.appendFinalResultAction(actions, result);
-    return { id: workflow.id, target: workflow.target, profile: workflow.profile, mode: workflow.mode, compiledAt: now(), actions, warnings, result };
+    return { id: workflow.id, target: workflow.target, profile: workflow.profile, mode: workflow.mode, compiledAt: now(), actions, warnings, result, definition: workflow } as any;
   }
 
   private validate(input: any, source: string): WorkflowDefinition {
@@ -77,7 +77,7 @@ export class WorkflowCompiler {
 
   private actionForStep(workflow: WorkflowDefinition, step: WorkflowStepDefinition, capability: CapabilityRecord | undefined, warnings: string[]): BrowserAction {
     if (step.action && !["observe", "read", "clear_draft"].includes(step.action)) {
-      return { type: step.action as BrowserAction["type"], target: step.target as any, selector: step.selector || capability?.selectors?.[0], text: scalar(step.text || step.input?.text), files: step.files || (Array.isArray(step.input?.files) ? step.input?.files as string[] : undefined), waitFor: step.waitFor, timeoutMs: step.timeoutMs, confirmed: step.confirmed, riskyReason: step.riskyReason, until: step.until, untilSelector: step.untilSelector, untilContentRegex: step.untilContentRegex, untilStableMs: step.untilStableMs, untilTimeoutMs: step.untilTimeoutMs };
+      return { type: step.action as BrowserAction["type"], target: (step.target || step.args) as any, args: step.args as any, selector: step.selector || capability?.selectors?.[0], text: scalar(step.text || step.input?.text), files: step.files || (Array.isArray(step.input?.files) ? step.input?.files as string[] : undefined), waitFor: step.waitFor, timeoutMs: step.timeoutMs, confirmed: step.confirmed, riskyReason: step.riskyReason, until: step.until, untilSelector: step.untilSelector, untilContentRegex: step.untilContentRegex, untilStableMs: step.untilStableMs, untilTimeoutMs: step.untilTimeoutMs } as any;
     }
     const name = step.use_capability || step.capability || step.action || "observe";
     const selector = capability?.selectors?.[0];
@@ -108,7 +108,7 @@ export class WorkflowCompiler {
 }
 
 function defaultIdempotent(actionType: BrowserAction["type"], stepKind?: string): boolean {
-  if (stepKind === "verify" || stepKind === "artifact-click") return true;
+  if (stepKind === "verify" || stepKind === "artifact-click" || stepKind === "verifyDocxMin") return true;
   return actionType === "wait" || actionType === "download";
 }
 

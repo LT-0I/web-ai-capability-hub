@@ -17,7 +17,8 @@ export interface WorkflowFinalResult {
 export interface WorkflowStepDefinition {
   id?: string;
   use_capability?: string;
-  action?: BrowserAction["type"] | "observe" | "read" | "clear_draft";
+  action?: BrowserAction["type"] | "artifactClick" | "verifyDocxMin" | "observe" | "read" | "clear_draft";
+  args?: Record<string, unknown>;
   capability?: string;
   input?: Record<string, unknown>;
   target?: Record<string, unknown>;
@@ -43,6 +44,8 @@ export interface WorkflowDefinition {
   mode?: WorkflowMode;
   description?: string;
   result?: WorkflowResultSpec;
+  inputs?: Record<string, { type?: string; required?: boolean; default?: unknown }>;
+  outputs?: Record<string, unknown>;
   steps: WorkflowStepDefinition[];
 }
 

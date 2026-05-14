@@ -351,3 +351,58 @@ test("browser:artifact-click JSON CLI error redacts sensitive evidence", () => {
   assert.equal(parsed.evidence.followUpTextRegex, "https://chatgpt.com/c/<conversation-id>[");
   fs.rmSync(dir, { recursive: true, force: true });
 });
+
+test("followUpTextRegex at y=1050 passes when viewportHeight raises max viewport y", async () => {
+  const dir = tempDir();
+  const body = Buffer.from("regex tall viewport fixture");
+  const bcdp = new FakeCDP();
+  const button = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "export");
+  const follow = new FakeElement({ x: 20, y: 1050, width: 40, height: 10 }, "下载 DOCX", () => {
+    fs.writeFileSync(path.join(dir, "guid-regex-tall"), body);
+    bcdp.emit("Browser.downloadWillBegin", { guid: "guid-regex-tall", suggestedFilename: "tall.docx" });
+    bcdp.emit("Browser.downloadProgress", { guid: "guid-regex-tall", state: "completed", suggestedFilename: "tall.docx" });
+  });
+  const frame = new FakeFrame("f", { "button.export": [button], '[role="menuitem"], button, a, [role="button"], li': [follow] }, "text");
+  const page = new FakePage([frame], new CoordinatePageCDP([button, follow]));
+  const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.export", followUpTextRegex: "DOCX", downloadDir: dir, viewportHeight: 1500, timeoutMs: 1000 });
+  assert.equal(result.size, body.length);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("followUpTextRegex at y=1050 fails by default and reports maxViewportY evidence", async () => {
+  const dir = tempDir();
+  const button = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "export");
+  const follow = new FakeElement({ x: 20, y: 1050, width: 40, height: 10 }, "下载 DOCX");
+  const frame = new FakeFrame("f", { "button.export": [button], '[role="menuitem"], button, a, [role="button"], li': [follow] }, "text");
+  const page = new FakePage([frame], new FakePageCDP(button));
+  await assert.rejects(
+    () => artifactClickOnPage(fakeBrowser(new FakeCDP()), page, { profile: "p", buttonSelector: "button.export", followUpTextRegex: "DOCX", downloadDir: dir, timeoutMs: 1000, locateTimeoutMs: 10 }),
+    (error: any) => {
+      assert.ok(error instanceof ArtifactClickError);
+      assert.equal(error.errorCode, "ELEMENT_OUT_OF_VIEWPORT");
+      assert.equal(error.evidence.maxViewportY, 1000);
+      return true;
+    }
+  );
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("followUpTextRegex scrolls an initially below-viewport item before rejecting it", async () => {
+  const dir = tempDir();
+  const body = Buffer.from("regex scroll recovery fixture");
+  const bcdp = new FakeCDP();
+  const button = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "export");
+  const follow = new FakeElement({ x: 20, y: 1500, width: 40, height: 10 }, "下载 DOCX", () => {
+    fs.writeFileSync(path.join(dir, "guid-regex-scroll"), body);
+    bcdp.emit("Browser.downloadWillBegin", { guid: "guid-regex-scroll", suggestedFilename: "scroll.docx" });
+    bcdp.emit("Browser.downloadProgress", { guid: "guid-regex-scroll", state: "completed", suggestedFilename: "scroll.docx" });
+  });
+  let scrolls = 0;
+  follow.scrollIntoViewIfNeeded = async () => { scrolls++; follow.box = { x: 20, y: 200, width: 40, height: 10 }; };
+  const frame = new FakeFrame("f", { "button.export": [button], '[role="menuitem"], button, a, [role="button"], li': [follow] }, "text");
+  const page = new FakePage([frame], new CoordinatePageCDP([button, follow]));
+  const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.export", followUpTextRegex: "DOCX", downloadDir: dir, timeoutMs: 1000 });
+  assert.equal(result.size, body.length);
+  assert.equal(scrolls, 1);
+  fs.rmSync(dir, { recursive: true, force: true });
+});

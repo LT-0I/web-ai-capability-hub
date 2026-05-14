@@ -144,6 +144,18 @@ function asStringList(value: CliOptionValue | undefined): string[] {
     .filter(Boolean);
 }
 
+function workflowInputsFromCli(value: CliOptionValue | undefined): Record<string, unknown> {
+  const entries = Array.isArray(value) ? value : value === undefined ? [] : [value];
+  const inputs: Record<string, unknown> = {};
+  for (const entry of entries) {
+    if (typeof entry !== "string") continue;
+    const eq = entry.indexOf("=");
+    if (eq < 1) throw new Error("workflow:run --input must use key=value");
+    inputs[entry.slice(0, eq)] = entry.slice(eq + 1);
+  }
+  return inputs;
+}
+
 function existingFilePaths(value: CliOptionValue | undefined): string[] {
   const files = asStringList(value);
   if (!files.length) throw new Error("browser:upload requires --file <path>");
@@ -647,7 +659,8 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     const file = positionals[0] || asString(options.file);
     if (!file && !resumeRunId) throw new Error("workflow:run requires a workflow YAML/JSON file or --resume <run-id>");
     const dryRun = options["dry-run"] === true || options.dryRun === true;
-    if (dryRun) output(await new WorkflowExecutor({ database: new CapabilityDatabase() }).runFile(file as string, { dryRun: true, redaction }), options);
+    const inputs = workflowInputsFromCli(options.input);
+    if (dryRun) output(await new WorkflowExecutor({ database: new CapabilityDatabase() }).runFile(file as string, { dryRun: true, redaction, inputs }), options);
     else {
       const db = new CapabilityDatabase();
       const workflow = file ? readConfigFile(path.resolve(file)) : db.getWorkflowRun(resumeRunId as string)?.plan;
@@ -658,8 +671,8 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
         const downloads = new DownloadManager(path.join(process.cwd(), "data", "downloads"));
         const executor = new WorkflowExecutor({ database: db, actionExecutor: new ActionExecutor({ getActivePage: () => page, openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; }, downloads }) });
         return resumeRunId
-          ? executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction })
-          : executor.runFile(file as string, { dryRun: false, redaction });
+          ? executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction, inputs })
+          : executor.runFile(file as string, { dryRun: false, redaction, inputs });
       }, workflowOptions, workflowUrl);
       output(redactForCli(result, options), options);
     }
