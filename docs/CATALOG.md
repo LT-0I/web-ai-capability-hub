@@ -187,3 +187,13 @@ are the portable output of the cataloging process.
 ## 5. Browser artifact primitive
 
 `browser:artifact-click` is the Phase 1 Chromium-CDP primitive for exporting files from volatile web-AI UIs. It locates a button across frames, optionally filters by frame and ancestor text, raw-clicks by viewport coordinates, captures browser-level download events, validates filename/size, computes sha256, and may rename the artifact. Use it for iframe-backed export affordances where page-scoped Playwright downloads are insufficient.
+
+## Phase 3 reference workflow
+
+`configs/workflows/chatgpt-deep-research-docx.yaml` is the first ChatGPT Deep
+Research reference workflow. It captures a completed report through
+`browser:artifact-click` using the Round-3 DOCX export recipe and wires the result
+to `verify:docx-min` for minimum DOCX quality checks: parseable
+`word/document.xml`, paragraph count, text character count, topic-regex match,
+and SHA-256 recording. See `docs/WORKFLOW_CHATGPT_DR_DOCX.md` for inputs,
+outputs, dry-run command, and limitations.

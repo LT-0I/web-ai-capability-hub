@@ -126,14 +126,14 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.1.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.2.0");
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
-  assert.equal(manifest.error_codes.length, 19);
+  assert.equal(manifest.error_codes.length, 24);
 
-  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED"]) {
+  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED"]) {
     assert.ok(manifest.error_codes.includes(code), `missing error code ${code}`);
   }
-  for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait"]) {
+  for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait", "workflow:run", "browser:audit", "verify:docx-min"]) {
     assert.ok(manifest.commands.find((command: any) => command.cli_name === cliName), `missing command row ${cliName}`);
   }
   assert.ok(manifest.sensitive_fields["artifact_click.path"]);

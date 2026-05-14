@@ -4,6 +4,7 @@ const path = require("node:path");
 import { BrowserSessionManager } from "./browser/sessionManager";
 import { ManagedBrowserLauncher, BrowserCloseMode } from "./browser/managedLauncher";
 import { BrowserProfileStore } from "./browser/profileStore";
+import { auditProfiles, releaseLeaseAndCleanLocks } from "./browser/profileLease";
 import { DownloadManager } from "./browser/downloads";
 import { activeManagedPage } from "./browser/managedPageRouting";
 import { runArtifactClick } from "./browser/artifactClick";
@@ -34,6 +35,8 @@ import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
 import { consumerHealth } from "./consumer/health";
+import { redactValue } from "./trace/redact";
+import { verifyDocxMin } from "./verifiers/docxMin";
 
 type CliOptionValue = string | boolean | Array<string | boolean>;
 interface ParsedArgs { options: Record<string, CliOptionValue>; positionals: string[]; }
@@ -80,6 +83,10 @@ function asPoint(value: CliOptionValue | undefined, flag: string): [number, numb
 }
 function wantJson(options: Record<string, CliOptionValue>): boolean { return options.json === true || options.json === "true" || options["output-json"] === true || options.outputJson === true || (Array.isArray(options.json) && options.json.some((value) => value === true || value === "true")); }
 function output(value: unknown, options: Record<string, CliOptionValue> = {}): void { console.log(wantJson(options) ? JSON.stringify(value, null, 2) : typeof value === "string" ? value : JSON.stringify(value, null, 2)); }
+function redactForCli(value: unknown, options: Record<string, CliOptionValue> = {}): unknown {
+  if (options["no-redact"] === true || options.noRedact === true) return value;
+  return redactValue(value, { mode: "default" });
+}
 function downloadManager(): DownloadManager { return new DownloadManager(getStoragePaths().downloadDir); }
 
 function formatDownloadRecords(records: any[]): any[] {
@@ -404,8 +411,9 @@ Core commands:
   browser:tab:alloc --profile <name> --url <url> --tab-id <id> [--json]
   browser:tab:list --profile <name> [--json]
   browser:tab:free --tab-id <id> [--json]
-  browser:close --profile <name> --mode disconnect|close-process|leave-open [--json]
+  browser:close --profile <name> --mode disconnect|close-process|leave-open [--release-lease] [--force] [--json]
   browser:profiles [--json]
+  browser:audit [--output-json]
 
   capability:init-db [--json]
   capability:update --target <id> --profile <name> [--kind web-ai|research-database] [--fixture <html>] [--tab-id <id>] [--json]
@@ -416,7 +424,8 @@ Core commands:
   workflow:list [--json]
   workflow:compile <workflow.yaml|json> [--json]
   workflow:test <workflow.yaml|json> [--json]
-  workflow:run <workflow.yaml|json> [--dry-run] [--json]
+  workflow:run <workflow.yaml|json> [--dry-run] [--resume <run-id>] [--confirm-replay] [--no-redact] [--json]
+  verify:docx-min --path <abs> [--min-paragraphs N] [--min-chars N] [--topic-regex <pattern>] [--no-sha256] [--output-json]
 
   site:registry:import <site_registry.json> [--json]
   site:capture-map --site <id> [--profile research-default] [--fixture <html>] [--json]
@@ -434,6 +443,7 @@ MCP and compatibility commands:
   browser:downloads [--profile <name>] [--limit <n>] [--json]
   browser:download-url --url <absolute-url> [--filename <name>] [--tab-id <id>] [--json]
   browser:artifact-click --profile <name> (--url <url>|--tab-url-contains <substr>) --button-selector <css> --download-dir <abs-path> [--follow-up-selector <css>|--follow-up-text-regex <regex>] [--locate-timeout-ms <ms>] [--frame-min-count <n>] [--viewport-width <px>] [--viewport-height <px>] [--prerender-wait-ms <ms>] [--scroll-main-to-y <y>] [--scroll-main-wait-ms <ms>] [--output-json]
+  verify:docx-min --path <abs> [--min-paragraphs N] [--min-chars N] [--topic-regex <pattern>] [--no-sha256] [--output-json]
   recipe <id> --key value
   snapshot:capture --site <site> [--url <url>] [--tab-id <id>]
   snapshot:diff --site <site> --previous <path> --current <path>`;
@@ -450,6 +460,21 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   if (command === "adapter:list") { output(listAdapters(), options); return; }
   if (command === "web-ai:adapters") { output(listWebAiAdapters(), options); return; }
   if (command === "recipe:list") { output(listRecipes().map((recipe) => ({ id: recipe.id, name: recipe.name, adapter: recipe.adapter })), options); return; }
+  if (command === "verify:docx-min") {
+    const docxPath = asString(options.path) || positionals[0];
+    if (!docxPath) throw new Error("verify:docx-min requires --path <abs>");
+    if (!path.isAbsolute(docxPath)) throw new Error("verify:docx-min --path must be absolute");
+    const topicPattern = asString(options["topic-regex"] || options.topicRegex);
+    const result = verifyDocxMin(docxPath, {
+      minParagraphs: asNumber(options["min-paragraphs"] || options.minParagraphs) ?? 50,
+      minChars: asNumber(options["min-chars"] || options.minChars) ?? 5000,
+      topicRegex: topicPattern ? new RegExp(topicPattern) : undefined,
+      recordSha256: options.sha256 === false || options.sha256 === "false" || options["no-sha256"] === true ? false : true
+    });
+    output(result, options);
+    if (!result.ok) process.exitCode = 1;
+    return;
+  }
 
   if (command === "consumer:health") {
     output(await consumerHealth({ target: asString(options.target) || "", profile: asString(options.profile) || "" }), options);
@@ -462,7 +487,8 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     return;
   }
   if (command === "browser:status") {
-    output(await new ManagedBrowserLauncher().status(asString(options.profile)), options);
+    const status = await new ManagedBrowserLauncher().status(asString(options.profile));
+    output({ ...status, lease: new CapabilityDatabase().getActiveProfileLease(status.profile) }, options);
     return;
   }
   if (command === "browser:pages") {
@@ -493,11 +519,27 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   }
   if (command === "browser:close") {
     const mode = (asString(options.mode, "disconnect") || "disconnect") as BrowserCloseMode;
-    output(await new ManagedBrowserLauncher().close(asString(options.profile), mode), options);
+    const profile = asString(options.profile) || process.env.WAH_DEFAULT_PROFILE || "default";
+    if (options["release-lease"] === true || options.releaseLease === true) {
+      const release = releaseLeaseAndCleanLocks(profile, { force: options.force === true });
+      if (!release.ok) {
+        const error: any = new Error(release.message || "Profile lease is busy");
+        error.errorCode = release.errorCode || "PROFILE_LEASE_BUSY";
+        error.evidence = release;
+        throw error;
+      }
+      output(release, options);
+      return;
+    }
+    output(await new ManagedBrowserLauncher().close(profile, mode), options);
     return;
   }
   if (command === "browser:profiles") {
     output(new BrowserProfileStore().list(), options);
+    return;
+  }
+  if (command === "browser:audit") {
+    output(auditProfiles(), options);
     return;
   }
   if (command === "browser:downloads") {
@@ -509,7 +551,7 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     return;
   }
   if (command === "browser:artifact-click") {
-    output(await runArtifactClick(artifactClickOptionsFromCli(options)), options);
+    output(redactForCli(await runArtifactClick(artifactClickOptionsFromCli(options)), options), options);
     return;
   }
 
@@ -598,19 +640,28 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     return;
   }
   if (command === "workflow:run") {
+    const resumeRunId = asString(options.resume);
+    const confirmReplay = options["confirm-replay"] === true || options.confirmReplay === true;
+    const redaction = (options["no-redact"] === true || options.noRedact === true) ? { mode: "off" as const } : { mode: "default" as const };
+    if (resumeRunId && (options["no-redact"] === true || options.noRedact === true)) console.error("WARNING: --no-redact may expose local paths, profile ids, and conversation URLs in trace output.");
     const file = positionals[0] || asString(options.file);
-    if (!file) throw new Error("workflow:run requires a workflow YAML/JSON file");
+    if (!file && !resumeRunId) throw new Error("workflow:run requires a workflow YAML/JSON file or --resume <run-id>");
     const dryRun = options["dry-run"] === true || options.dryRun === true;
-    if (dryRun) output(await new WorkflowExecutor({ database: new CapabilityDatabase() }).runFile(file, { dryRun: true }), options);
+    if (dryRun) output(await new WorkflowExecutor({ database: new CapabilityDatabase() }).runFile(file as string, { dryRun: true, redaction }), options);
     else {
-      const workflow = readConfigFile(path.resolve(file));
+      const db = new CapabilityDatabase();
+      const workflow = file ? readConfigFile(path.resolve(file)) : db.getWorkflowRun(resumeRunId as string)?.plan;
+      if (!workflow) throw new Error(`workflow:run --resume could not find stored run ${resumeRunId}`);
       const workflowOptions = { ...options, profile: asString(options.profile) || workflow.profile || workflow.target };
       const workflowUrl = asString(options.url) || targetBaseUrl(workflow.target);
       const result = await withManagedPage(async (page) => {
         const downloads = new DownloadManager(path.join(process.cwd(), "data", "downloads"));
-        return new WorkflowExecutor({ database: new CapabilityDatabase(), actionExecutor: new ActionExecutor({ getActivePage: () => page, openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; }, downloads }) }).runFile(file, { dryRun: false });
+        const executor = new WorkflowExecutor({ database: db, actionExecutor: new ActionExecutor({ getActivePage: () => page, openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; }, downloads }) });
+        return resumeRunId
+          ? executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction })
+          : executor.runFile(file as string, { dryRun: false, redaction });
       }, workflowOptions, workflowUrl);
-      output(result, options);
+      output(redactForCli(result, options), options);
     }
     return;
   }
@@ -728,7 +779,8 @@ if (require.main === module) {
     const message = error instanceof Error ? error.message : String(error);
     const errorCode = (error as any)?.errorCode || (message.startsWith("INVALID_ARGS:") ? "INVALID_ARGS" : undefined);
     const evidence = (error as any)?.evidence;
-    if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, ...(errorCode ? { errorCode } : {}), error: message, ...(evidence ? { evidence } : {}) }));
+    const redactedEvidence = evidence ? redactForCli(evidence, parsed.options) : undefined;
+    if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, ...(errorCode ? { errorCode } : {}), error: message, ...(redactedEvidence ? { evidence: redactedEvidence } : {}) }));
     else console.error(message);
     process.exitCode = errorCode === "POSTCONDITION_TIMEOUT" ? 12 : 1;
   });

@@ -1,7 +1,7 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v0.3.0  
-Contract: `consumer-contract-1.1.0`
+Contract: `consumer-contract-1.2.0`
 
 This document is the versioned public integration contract for packages that consume the hub as a dependency. It adds a small consumer-safe layer without changing the existing safety policy, manual-login boundary, confirmation policy, or any existing CLI/MCP tool behavior.
 
@@ -58,6 +58,7 @@ Stable JSON keys are exactly:
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
+| `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 | `browser:read` | `browser_read` | `readPageSnapshot` | experimental | read | yes |
 | `browser:screenshot` | `browser_screenshot` | `readPageSnapshot({ screenshot: true })` | experimental | read | yes |
 | `browser:launch` | `browser_launch` | `ManagedBrowserLauncher.launch` | experimental | mutate | yes |
@@ -105,6 +106,13 @@ Return MCP tool/resource definitions for introspection. These definitions do not
 Contract 1.1.0 adds the CLI primitive `browser:artifact-click` for Chromium-CDP artifact capture and extends `browser:click`, `browser:upload`, and `browser:wait` with postcondition flags: `--until`, `--until-selector`, `--until-content-regex`, `--until-stable-ms`, `--until-download`, and `--until-timeout-ms`.
 
 `browser:artifact-click` returns local artifact metadata including `path`, `sha256`, `size`, `suggestedFilename`, `downloadGuid`, `frameUrl`, `bbox`, and `elapsedMs`. Safe consumers must treat `path`, `frameUrl`, and `profile-id` as sensitive local fields. `sha256` is a fingerprint and is generally acceptable to log when artifact logging is allowed.
+
+
+### Contract 1.2.0 resumability, profile leases, and redaction
+
+Contract 1.2.0 adds `workflow:run --resume <run-id>` with `--confirm-replay` for non-idempotent replay risk, `browser:close --release-lease [--force]`, `browser:audit --output-json`, and default redaction for persisted run-event evidence and CLI JSON error evidence. `--no-redact` is a trusted-local debugging opt-out and may expose profile ids, conversation URLs, and absolute paths.
+
+`browser:audit` returns an array of profile lifecycle entries with `profileId`, `profileDir`, `chromePid`, `chromeAlive`, `cacheSizeBytes`, `lastUsedAt`, `staleLockFiles`, and optional `lease`. Safe consumers must treat `profileDir`, lease `user_data_dir`, process IDs, and page URLs as local-sensitive fields.
 
 ## Forbidden output fields for safe consumers
 
@@ -156,6 +164,10 @@ Consumer-stable error codes are:
 - `POSTCONDITION_TIMEOUT`
 - `MODE_UNCERTAIN`
 - `HUMAN_HANDOFF_REQUIRED`
+- `RESUME_REQUIRES_CONFIRMATION`
+- `IDEMPOTENCY_MISMATCH`
+- `PROFILE_LOCKED`
+- `PROFILE_LEASE_BUSY`
 - `UNKNOWN`
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.

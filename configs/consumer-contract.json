@@ -1,6 +1,6 @@
 {
-  "package_version": "0.3.0",
-  "contract_version": "consumer-contract-1.1.0",
+  "package_version": "0.4.0",
+  "contract_version": "consumer-contract-1.2.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -51,7 +51,8 @@
           "pages",
           "browser",
           "webSocketDebuggerUrl",
-          "lastError"
+          "lastError",
+          "lease"
         ]
       },
       "may_contain_sensitive_local_fields": true
@@ -191,10 +192,16 @@
           "plan",
           "results",
           "finalResult",
-          "approvalGates"
+          "approvalGates",
+          "runId"
         ]
       },
-      "may_contain_sensitive_local_fields": true
+      "may_contain_sensitive_local_fields": true,
+      "flags": [
+        "resume",
+        "confirm-replay",
+        "no-redact"
+      ]
     },
     {
       "cli_name": "browser:read",
@@ -429,7 +436,8 @@
         "verify-min-bytes",
         "timeout-ms",
         "no-disconnect",
-        "output-json"
+        "output-json",
+        "no-redact"
       ],
       "output_keys": {
         "always_present": [
@@ -443,6 +451,63 @@
         "optional": [
           "suggestedFilename",
           "frameUrl"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "verify:docx-min",
+      "mcp_name": null,
+      "ts_export": "verifyDocxMin",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "path"
+      ],
+      "flags": [
+        "min-paragraphs",
+        "min-chars",
+        "topic-regex",
+        "no-sha256",
+        "output-json"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "path",
+          "size",
+          "paragraphs",
+          "chars",
+          "failures"
+        ],
+        "optional": [
+          "sha256",
+          "topicMatched"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "browser:audit",
+      "mcp_name": null,
+      "ts_export": "auditProfiles",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "flags": [
+        "output-json"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "profileId",
+          "profileDir",
+          "chromePid",
+          "chromeAlive",
+          "cacheSizeBytes",
+          "lastUsedAt",
+          "staleLockFiles",
+          "lease"
         ]
       },
       "may_contain_sensitive_local_fields": true
@@ -630,7 +695,12 @@
     "ELEMENT_OUT_OF_VIEWPORT",
     "ARTIFACT_DOWNLOAD_TIMEOUT",
     "ARTIFACT_VERIFICATION_FAILED",
+    "DOCX_VERIFICATION_FAILED",
     "POSTCONDITION_TIMEOUT",
+    "RESUME_REQUIRES_CONFIRMATION",
+    "IDEMPOTENCY_MISMATCH",
+    "PROFILE_LOCKED",
+    "PROFILE_LEASE_BUSY",
     "MODE_UNCERTAIN",
     "HUMAN_HANDOFF_REQUIRED",
     "UNKNOWN"
@@ -639,6 +709,8 @@
     "artifact_click.path": "Local filesystem path; treat as sensitive local metadata.",
     "artifact_click.sha256": "Content fingerprint; acceptable to log when artifact logging is allowed.",
     "artifact_click.frameUrl": "May contain conversation IDs or tenant-specific URLs; treat as sensitive.",
-    "profile-id": "Opaque browser profile identifier; do not expose outside trusted local logs."
+    "profile-id": "Opaque browser profile identifier; do not expose outside trusted local logs.",
+    "run_events.evidence": "Redacted by default; use --no-redact only for trusted local debugging.",
+    "profile_lease.user_data_dir": "Local browser profile path; treat as sensitive local metadata."
   }
 }
