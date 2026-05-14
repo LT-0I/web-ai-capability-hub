@@ -1,0 +1,59 @@
+id: chatgpt_deep_research_export_docx
+version: 1.0.0
+target: chatgpt
+profile: chatgpt
+mode: assisted
+description: Export an already-complete ChatGPT Deep Research report to DOCX and verify minimum content quality.
+inputs:
+  conversationUrl:
+    type: string
+    required: true
+  outputDir:
+    type: path
+    required: true
+  topicRegex:
+    type: string
+    default: "强化学习|RL"
+  runDir:
+    type: path
+    required: false
+outputs:
+  docxPath: "{{steps.capture_docx.path}}"
+  sha256: "{{steps.verify_docx.sha256}}"
+  paragraphs: "{{steps.verify_docx.paragraphs}}"
+  chars: "{{steps.verify_docx.chars}}"
+steps:
+  - id: capture_docx
+    action: artifactClick
+    target:
+      command: browser:artifact-click
+      profile: chatgpt
+      url: "{{inputs.conversationUrl}}"
+      buttonSelector: "button[aria-label=\"导出\"]"
+      followUpTextRegex: "(下载\\s*DOCX|DOCX|Word|导出.*Word)"
+      viewportWidth: 1500
+      viewportHeight: 1000
+      prerenderWaitMs: 15000
+      scrollMainToY: 900
+      scrollMainWaitMs: 1000
+      locateTimeoutMs: 12000
+      timeoutMs: 90000
+      downloadDir: "{{inputs.outputDir}}"
+      filenamePattern: "*.docx"
+      verifyMinBytes: 20000
+      noDisconnect: false
+    confirmed: true
+  - id: verify_docx
+    action: verifyDocxMin
+    target:
+      command: verify:docx-min
+      path: "{{steps.capture_docx.path}}"
+      minParagraphs: 50
+      minChars: 5000
+      topicRegex: "{{inputs.topicRegex}}"
+      recordSha256: true
+    confirmed: true
+teardown:
+  browser: leave-connected
+notes:
+  schema_gap: Current workflow schema accepts extra metadata but does not yet type inputs, outputs, teardown, artifactClick, verifyDocxMin, or inter-step bindings.
