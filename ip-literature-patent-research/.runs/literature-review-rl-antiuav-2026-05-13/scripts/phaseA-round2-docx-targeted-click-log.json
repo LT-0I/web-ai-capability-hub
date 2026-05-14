@@ -1,0 +1,170 @@
+[
+  {
+    "frame": 0,
+    "url": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+    "snippet": "跳至内容\n历史聊天记录\nChatGPT\n新聊天\nSearch chats\nCodex\n更多\n项目\n新项目\nRL0511\n1浏览器自动化（读取+操作）\n3Radar\n2notebooklm自动化\n最近\n强化学习在反无人机应用\nPPTX下载和内容总结\nGemini 使用问题解析\nClaude -p 解析\nLinux 监视Codex tokens\nCSV Files Generation\nPackage Name and Scripts\nCatalog probe ok\nPython 3.12 Changelog\nMorning Routines in Canvas\nPython 3.12 Changelog URL\nPython Canvas Script\nCreate tiny red dot\n刷国行平板美版系统\n简历翻译与PDF生成\n查看Linux剪贴板历史\n项目链接与名称输出\n问候交流\nFile download ready\n根据聊天描述用户\n欢迎使用 ChatGPT\nShark\nPro\n分享\nmaster_records.bib\n文件\nMaster Records\n我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM DL、Scopus、Web of Science、ScienceDirect、SpringerLink、CNKI、ProQuest CSA 等）针对「强化学习在反无人机系统中的应用」专题采集到的 221 条去重后的文献元数据。\n\n请基于这 221 条参考文献并补充你能查到的最新研究，撰写一篇结构完整、内容深入的中文文献综述，主题为「强化学习在反无人机系统中的应用」。\n\n综述需要包含：\n1. 引言与背"
+  },
+  {
+    "trying_sel": "a:has-text(\"下载 DOCX\")",
+    "count": 0,
+    "frame": 0
+  },
+  {
+    "trying_sel": "a:has-text(\".docx\")",
+    "count": 0,
+    "frame": 0
+  },
+  {
+    "trying_sel": "button[aria-label=\"导出\"]",
+    "count": 0,
+    "frame": 0
+  },
+  {
+    "trying_sel": "button[aria-label*=\"导出\"]",
+    "count": 0,
+    "frame": 0
+  },
+  {
+    "frame": 1,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 2,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 3,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 4,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 5,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 6,
+    "url": "about:blank",
+    "snippet": "我将根据您的要求，更新研究计划并继续深入整合与撰写，生成完整综述全文，结构清晰，便于后续导出。\n研究完成情况：26m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n强化学习在反无人机系统中的应用\n强化学习在反无人机系统中的应用\n引言与背景\n\n反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。\n1\n\n传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱"
+  },
+  {
+    "trying_sel": "a:has-text(\"下载 DOCX\")",
+    "count": 0,
+    "frame": 6
+  },
+  {
+    "trying_sel": "a:has-text(\".docx\")",
+    "count": 0,
+    "frame": 6
+  },
+  {
+    "trying_sel": "button[aria-label=\"导出\"]",
+    "count": 1,
+    "frame": 6
+  },
+  {
+    "sel_failed": "button[aria-label=\"导出\"]",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "trying_sel": "button[aria-label*=\"导出\"]",
+    "count": 1,
+    "frame": 6
+  },
+  {
+    "sel_failed": "button[aria-label*=\"导出\"]",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "frame": 7,
+    "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+    "snippet": ""
+  },
+  {
+    "frame": 8,
+    "url": "about:blank",
+    "snippet": "计划已编辑…\n读取并解析用户上传的 master_records.bib 与 master_records.csv。\n检索并补充近三年相关强化学习与反无人机最新文献。\n整合文献并撰写结构化中文综述草稿。\n生成可用于导出为.docx 与.pptx 的 Markdown 与参考文献清单。\n导出最终文档并校验格式与引用完整性。"
+  },
+  {
+    "frame": 9,
+    "url": "about:blank",
+    "snippet": "I am updating the research plan to focus on generating the requested DOCX and PPTX files using the current final review content, following your detailed formatting and output instructions.\n计划已编辑…\n从会话中提取用户已确认的中文综述全文。\n使用 python-docx 将全文渲染为符合学术格式的 DOCX。\n使用 python-pptx 基于综述生成 18–25 张的 PPTX。\n保存文件到工作目录并输出绝对路径与字节数。\n将两个文件作为附件链接返回给用户并确认元信息。"
+  },
+  {
+    "frame": 10,
+    "url": "about:blank",
+    "snippet": "我将根据您的要求，更新研究计划，立即停止新的研究检索与补充，仅用当前综述内容生成所需的 docx 和 pptx 文件，并直接执行 Python 脚本。\n研究完成情况：29m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n深度研究报告\n\n已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验：\n\n文献综述 DOCX\n下载 强化学习在反无人机系统中的应用-文献综述.docx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx\n文件大小：80,171 bytes\n\n组会汇报 PPTX\n下载 强化学习在反无人机系统中的应用-组会汇报.pptx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx\n文件大小：59,848 bytes\n\n最终确认：\n\nDOCX 标题：《强化学习在反无人机系统中的应用》\nPPT 标题：《强化学习在反无人机系统中的应用》\nPPT 幻灯片数：22 张\n文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes\n\n开放说明：\n\n本轮最终校验已确认两份文件成功生成并可下载。\nDOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 "
+  },
+  {
+    "trying_sel": "a:has-text(\"下载 DOCX\")",
+    "count": 0,
+    "frame": 10
+  },
+  {
+    "trying_sel": "a:has-text(\".docx\")",
+    "count": 1,
+    "frame": 10
+  },
+  {
+    "sel_failed": "a:has-text(\".docx\")",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "trying_sel": "button[aria-label=\"导出\"]",
+    "count": 1,
+    "frame": 10
+  },
+  {
+    "sel_failed": "button[aria-label=\"导出\"]",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "trying_sel": "button[aria-label*=\"导出\"]",
+    "count": 1,
+    "frame": 10
+  },
+  {
+    "sel_failed": "button[aria-label*=\"导出\"]",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "frame": 11,
+    "url": "about:blank",
+    "snippet": "研究完成情况：<1m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n下载文件\n\n已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。\n\n下载文件\n下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx\n下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx\n生成结果回显\n文献综述 DOCX\n文件名：强化学习在反无人机系统中的应用-文献综述.docx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx\n文件大小：80171 bytes\n组会汇报 PPTX\n文件名：强化学习在反无人机系统中的应用-组会汇报.pptx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx\n文件大小：59848 bytes\n幻灯片数：22\n文件内容确认\nDOCX\n\n已包含以下结构与要素：\n\n封面页：题目、作者占位、日期 2026-05-13\n目录页：基于 H1/H2 的自动目录域\n全部正文：按综述章节映射到 Heading 1–3\n正文排版：1.5 倍行距、首行缩进 2 字符\n参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目\n列表、引用、代码样式已做对应映射\n"
+  },
+  {
+    "trying_sel": "a:has-text(\"下载 DOCX\")",
+    "count": 1,
+    "frame": 11
+  },
+  {
+    "sel_failed": "a:has-text(\"下载 DOCX\")",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "trying_sel": "a:has-text(\".docx\")",
+    "count": 1,
+    "frame": 11
+  },
+  {
+    "sel_failed": "a:has-text(\".docx\")",
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============================================================')"
+  },
+  {
+    "trying_sel": "button[aria-label=\"导出\"]",
+    "count": 0,
+    "frame": 11
+  },
+  {
+    "trying_sel": "button[aria-label*=\"导出\"]",
+    "count": 0,
+    "frame": 11
+  }
+]

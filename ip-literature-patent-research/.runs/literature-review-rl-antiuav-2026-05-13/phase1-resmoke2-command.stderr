@@ -1,0 +1,68 @@
+{
+  "ok": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "error": "No element matched --follow-up-selector",
+  "evidence": {
+    "scroll": {
+      "ranScroll": true,
+      "candidates": 3,
+      "scrolledTo": 900
+    },
+    "selector": "div[role=\"menuitem\"]:has-text(\"导出到 Word\")",
+    "pageUrl": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+    "frameCount": 10,
+    "triedFrames": [
+      {
+        "url": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "about:blank",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "about:blank",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+        "hadSelectorMatch": false
+      },
+      {
+        "url": "about:blank",
+        "hadSelectorMatch": false
+      }
+    ]
+  }
+}
+/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/artifactClick.js:182
+        throw new ArtifactClickError("ARTIFACT_DOWNLOAD_TIMEOUT", "No Browser.downloadWillBegin event was observed", { timeoutMs });
+              ^
+
+ArtifactClickError: No Browser.downloadWillBegin event was observed
+    at pollDownload (/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/artifactClick.js:182:15) {
+  errorCode: 'ARTIFACT_DOWNLOAD_TIMEOUT',
+  evidence: { timeoutMs: 60000 }
+}
+
+Node.js v24.14.0

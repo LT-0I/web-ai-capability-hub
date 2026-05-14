@@ -1,0 +1,164 @@
+{
+  "started": "2026-05-13T23:57:49",
+  "manual_sha256": "a19cc0436af9b42886852faab3154b80b12b840cedad553da1daa39161385ff8",
+  "target": {
+    "frame": 11,
+    "nth": 0,
+    "ctx": "强化学习在反无人机系统中的应用强化学习在反无人机系统中的应用\n强化学习在反无人机系统中的应用\n引言与背景\n\n反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。\n1\n\n传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分博弈和最优控制方法在复杂环境、非线性系统和高不确定对手行为下会明显吃力，而强化学习之所以受到重视，恰恰在于其能够通过交互与反馈在线修正策略。\n2\n\n从你上传的 221 条去重文献可以看出，这一主题并非只是在“把 RL 套到无人机上”，而是在反无人机的关键痛点上逐步形成了三条更明确的研究线索：其一，强化学习被用于拦截、包围、任务分配等决策层问题；其二，多智能体强化",
+    "bbox": {
+      "x": 1186,
+      "y": 176,
+      "width": 32,
+      "height": 32
+    }
+  },
+  "click": {
+    "x": 1202.0,
+    "y": 192.0
+  },
+  "menu_items": [
+    {
+      "frame": 0,
+      "nth": 67,
+      "text": "Download apps",
+      "bbox": {
+        "x": 212,
+        "y": 949.4296875,
+        "width": 36,
+        "height": 36
+      }
+    },
+    {
+      "frame": 11,
+      "nth": 0,
+      "text": "导出",
+      "bbox": {
+        "x": 1186,
+        "y": 176,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "frame": 11,
+      "nth": 2,
+      "text": "导出到 Markdown",
+      "bbox": {
+        "x": 1030,
+        "y": 252,
+        "width": 184,
+        "height": 36
+      }
+    },
+    {
+      "frame": 11,
+      "nth": 3,
+      "text": "导出到 Word",
+      "bbox": {
+        "x": 1030,
+        "y": 288,
+        "width": 184,
+        "height": 36
+      }
+    },
+    {
+      "frame": 11,
+      "nth": 4,
+      "text": "导出到 PDF",
+      "bbox": {
+        "x": 1030,
+        "y": 324,
+        "width": 184,
+        "height": 36
+      }
+    }
+  ],
+  "menu_click": {
+    "x": 1122.0,
+    "y": 306.0
+  },
+  "src": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/ip-literature-patent-research/.runs/literature-review-rl-antiuav-2026-05-13/round3-raw-downloads/7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+  "verify": {
+    "exists": true,
+    "size": 31520,
+    "sha256": "58b0cb05eeb225c0af890c56f09ae7a6d7bc405aeffe7d7715f787578e1d0882",
+    "manual_sha256": "a19cc0436af9b42886852faab3154b80b12b840cedad553da1daa39161385ff8",
+    "byte_identical_to_manual": false,
+    "paragraphs": 171,
+    "chars": 17798,
+    "valid_docx": true,
+    "substantive": true
+  },
+  "canonical_overwritten": true,
+  "events": [
+    {
+      "frameId": "3145F4EB13FAEF41E9D587D81C2B9640",
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "url": "blob:https://chatgpt.com/baf414a1-9027-4543-b766-122030d30644",
+      "suggestedFilename": "强化学习在反无人机系统中的应用.docx",
+      "event": "will",
+      "ts": 1778741891.754602
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 0,
+      "state": "inProgress",
+      "event": "progress",
+      "ts": 1778741891.754997
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 31520,
+      "state": "inProgress",
+      "event": "progress",
+      "ts": 1778741891.7554674
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 31520,
+      "state": "inProgress",
+      "event": "progress",
+      "ts": 1778741891.7558758
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 31520,
+      "state": "inProgress",
+      "event": "progress",
+      "ts": 1778741891.7597568
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 31520,
+      "state": "inProgress",
+      "event": "progress",
+      "ts": 1778741891.7599795
+    },
+    {
+      "guid": "7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "totalBytes": 31520,
+      "receivedBytes": 31520,
+      "state": "completed",
+      "filePath": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/ip-literature-patent-research/.runs/literature-review-rl-antiuav-2026-05-13/round3-raw-downloads/7cb1f897-cd7e-42af-9e21-7bb5430b95e4",
+      "event": "progress",
+      "ts": 1778741891.7603958
+    }
+  ],
+  "suspicious": [],
+  "final_verify": {
+    "exists": true,
+    "size": 31520,
+    "sha256": "58b0cb05eeb225c0af890c56f09ae7a6d7bc405aeffe7d7715f787578e1d0882",
+    "manual_sha256": "a19cc0436af9b42886852faab3154b80b12b840cedad553da1daa39161385ff8",
+    "byte_identical_to_manual": false,
+    "paragraphs": 171,
+    "chars": 17798,
+    "valid_docx": true,
+    "substantive": true
+  }
+}

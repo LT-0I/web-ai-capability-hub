@@ -1,0 +1,3135 @@
+{
+  "url": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+  "title": "强化学习在反无人机应用",
+  "frames": [
+    {
+      "frame_index": 0,
+      "url": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+      "snippet": "跳至内容\n历史聊天记录\nChatGPT\n新聊天\nSearch chats\nCodex\n更多\n项目\n新项目\nRL0511\n1浏览器自动化（读取+操作）\n3Radar\n2notebooklm自动化\n最近\n强化学习在反无人机应用\nPPTX下载和内容总结\nGemini 使用问题解析\nClaude -p 解析\nLinux 监视Codex tokens\nCSV Files Generation\nPackage Name and Scripts\nCatalog probe ok\nPython 3.12 Changelog\nMorning Routines in Canvas\nPython 3.12 Changelog URL\nPython Canvas Script\nCreate tiny red dot\n刷国行平板美版系统\n简历翻译与PDF生成\n查看Linux剪贴板历史\n项目链接与名称输出\n问候交流\nFile download ready\n根据聊天描述用户\n欢迎使用 ChatGPT\nShark\nPro\n分享\nmaster_records.bib\n文件\nMaster Records\n我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM DL、Scopus、Web of Science、ScienceDirect、SpringerLink、CNKI、ProQuest CSA 等）针对「强化学习在反无人机系统中的应用」专题采集到的 221 条去重后的文献元数据。\n\n请基于这 221 条参考文献并补充你能查到的最新研究，撰写一篇结构完整、内容深入的中文文献综述，主题为「强化学习在反无人机系统中的应用」。\n\n综述需要包含：\n1. 引言与背景（反无人机问题的研究意义、传统方法的局限、为什么需要强化学习）。\n2. 强化学习方法分类与综述（值函数方法、策略梯度方法、深度强化学习、多智能体强化学习、分层与层级强化学习等），并在每一类中引用具体文献。\n3. 反无人机系统的典型任务划分（探测/识别、决策/拦截、协同/对抗博弈、电子干扰等），分别讨论 RL 的应用方式。\n4. 关键技术与建模：状态/动作空间设计、奖励工程、仿真环境（如 AirSim、UE、自研平台）、Sim2Real。\n5. 当前研究的代表性工作（在每个 subsection 引用我提供的文献，使用 [作者年份] 风格或编号格式都可以）。\n6. 局限与挑战（样本效率、可迁移性、对抗鲁棒性、实战部署、伦理与法规）。\n7. 未来研究方向与开放问题。\n8. 结论。\n9. 参考文献列表（基于上传的 .bib，可保留原始条目）。\n\n写作要求：\n- 中文学术风格，逻辑清晰，段落连贯",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "a",
+          "text": "跳至内容",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "#main",
+          "box": {
+            "x": -48.5,
+            "y": -1,
+            "w": 96.0078125,
+            "h": 16
+          },
+          "context": "跳至内容 || 跳至内容 || 跳至内容 历史聊天记录 ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro 分享 master_records.bib 文件 Master Records 我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM D || 跳至内容 历史聊天记录 ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro 分享 master_records.bib 文件 Master Records 我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM D || "
+        },
+        {
+          "idx": 1,
+          "tag": "button",
+          "text": "",
+          "aria": "打开边栏",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 8,
+            "y": 8,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 2,
+          "tag": "a",
+          "text": "新聊天",
+          "aria": "",
+          "title": "",
+          "testid": "create-new-chat-button",
+          "href": "/",
+          "box": {
+            "x": 6,
+            "y": 60,
+            "w": 40,
+            "h": 36
+          },
+          "context": "新聊天 || 新聊天 || 新聊天Search chats最近聊天 || 新聊天Search chats最近聊天 || "
+        },
+        {
+          "idx": 3,
+          "tag": "button",
+          "text": "Search chats",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 6,
+            "y": 96,
+            "w": 40,
+            "h": 36
+          },
+          "context": "Search chats || Search chats || 新聊天Search chats最近聊天 || 新聊天Search chats最近聊天 || "
+        },
+        {
+          "idx": 4,
+          "tag": "button",
+          "text": "最近聊天",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 6,
+            "y": 132,
+            "w": 40,
+            "h": 36
+          },
+          "context": "最近聊天 || 最近聊天 || 新聊天Search chats最近聊天 || 新聊天Search chats最近聊天 || "
+        },
+        {
+          "idx": 5,
+          "tag": "div",
+          "text": "",
+          "aria": "打开“个人资料”菜单",
+          "title": "",
+          "testid": "accounts-profile-button",
+          "href": "",
+          "box": {
+            "x": 8,
+            "y": 950,
+            "w": 38,
+            "h": 40
+          },
+          "context": " ||  ||  || 新聊天Search chats最近聊天 || "
+        },
+        {
+          "idx": 6,
+          "tag": "a",
+          "text": "ChatGPT",
+          "aria": "主页",
+          "title": "",
+          "testid": "",
+          "href": "/",
+          "box": {
+            "x": 8,
+            "y": 8,
+            "w": 95.2265625,
+            "h": 36
+          },
+          "context": "ChatGPT || ChatGPT || ChatGPT || ChatGPT || "
+        },
+        {
+          "idx": 7,
+          "tag": "button",
+          "text": "",
+          "aria": "关闭边栏",
+          "title": "",
+          "testid": "close-sidebar-button",
+          "href": "",
+          "box": {
+            "x": 201,
+            "y": 8,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  || ChatGPT || ChatGPT || "
+        },
+        {
+          "idx": 8,
+          "tag": "a",
+          "text": "新聊天",
+          "aria": "",
+          "title": "",
+          "testid": "create-new-chat-button",
+          "href": "/",
+          "box": {
+            "x": 6,
+            "y": 60,
+            "w": 233,
+            "h": 36
+          },
+          "context": "新聊天 || 新聊天 || 新聊天 Search chats || 新聊天 Search chats || "
+        },
+        {
+          "idx": 9,
+          "tag": "button",
+          "text": "Search chats",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 6,
+            "y": 96,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Search chats || Search chats || 新聊天 Search chats || 新聊天 Search chats || "
+        },
+        {
+          "idx": 10,
+          "tag": "a",
+          "text": "Codex",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "/codex/cloud",
+          "box": {
+            "x": 6,
+            "y": 132,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Codex || ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro || 历史聊天记录 ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro || "
+        },
+        {
+          "idx": 11,
+          "tag": "button",
+          "text": "项目",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 0,
+            "y": 216,
+            "w": 239,
+            "h": 32
+          },
+          "context": "项目 || 项目 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 12,
+          "tag": "button",
+          "text": "新项目",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 6,
+            "y": 248,
+            "w": 233,
+            "h": 36
+          },
+          "context": "新项目 || 新项目 || 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || "
+        },
+        {
+          "idx": 13,
+          "tag": "a",
+          "text": "RL0511",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "/g/g-p-6a01e68580a48191bae1691b494a74b2-rl0511/project",
+          "box": {
+            "x": 6,
+            "y": 284,
+            "w": 233,
+            "h": 36
+          },
+          "context": "RL0511 || RL0511 || 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || "
+        },
+        {
+          "idx": 14,
+          "tag": "button",
+          "text": "",
+          "aria": "显示聊天",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 16,
+            "y": 291.5,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  || RL0511 || RL0511 || "
+        },
+        {
+          "idx": 15,
+          "tag": "button",
+          "text": "",
+          "aria": "打开 RL0511 的项目选项",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 281,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  || RL0511 || RL0511 || "
+        },
+        {
+          "idx": 16,
+          "tag": "a",
+          "text": "1浏览器自动化（读取+操作）",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "/g/g-p-69f9b8079e248191b8a4f091aee92bca-1liu-lan-qi-zi-dong-hua-du-qu-cao-zuo/project",
+          "box": {
+            "x": 6,
+            "y": 320,
+            "w": 233,
+            "h": 36
+          },
+          "context": "1浏览器自动化（读取+操作） || 1浏览器自动化（读取+操作） || 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || "
+        },
+        {
+          "idx": 17,
+          "tag": "button",
+          "text": "",
+          "aria": "显示聊天",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 16,
+            "y": 327.5,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  || 1浏览器自动化（读取+操作） || 1浏览器自动化（读取+操作） || "
+        },
+        {
+          "idx": 18,
+          "tag": "button",
+          "text": "",
+          "aria": "打开 1浏览器自动化（读取+操作） 的项目选项",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 317,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  || 1浏览器自动化（读取+操作） || 1浏览器自动化（读取+操作） || "
+        },
+        {
+          "idx": 19,
+          "tag": "a",
+          "text": "3Radar",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "/g/g-p-69f9cd5705bc81918351a216bd03d093-3radar/project",
+          "box": {
+            "x": 6,
+            "y": 356,
+            "w": 233,
+            "h": 36
+          },
+          "context": "3Radar || 3Radar || 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || "
+        },
+        {
+          "idx": 20,
+          "tag": "button",
+          "text": "",
+          "aria": "显示聊天",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 16,
+            "y": 363.5,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  || 3Radar || 3Radar || "
+        },
+        {
+          "idx": 21,
+          "tag": "button",
+          "text": "",
+          "aria": "打开 3Radar 的项目选项",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 353,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  || 3Radar || 3Radar || "
+        },
+        {
+          "idx": 22,
+          "tag": "a",
+          "text": "2notebooklm自动化",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "/g/g-p-69f9c1b670548191bbd9aa45efd8a8ea-2notebooklmzi-dong-hua/project",
+          "box": {
+            "x": 6,
+            "y": 392,
+            "w": 233,
+            "h": 36
+          },
+          "context": "2notebooklm自动化 || 2notebooklm自动化 || 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 || "
+        },
+        {
+          "idx": 23,
+          "tag": "button",
+          "text": "",
+          "aria": "显示聊天",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 16,
+            "y": 399.5,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  || 2notebooklm自动化 || 2notebooklm自动化 || "
+        },
+        {
+          "idx": 24,
+          "tag": "button",
+          "text": "",
+          "aria": "打开 2notebooklm自动化 的项目选项",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 389,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  || 2notebooklm自动化 || 2notebooklm自动化 || "
+        },
+        {
+          "idx": 25,
+          "tag": "button",
+          "text": "最近",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 0,
+            "y": 448,
+            "w": 239,
+            "h": 32
+          },
+          "context": "最近 || 最近 || 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 26,
+          "tag": "a",
+          "text": "强化学习在反无人机应用",
+          "aria": "强化学习在反无人机应用",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+          "box": {
+            "x": 6,
+            "y": 480,
+            "w": 233,
+            "h": 36
+          },
+          "context": "强化学习在反无人机应用 || 强化学习在反无人机应用 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 27,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“强化学习在反无人机应用”的对话选项",
+          "title": "",
+          "testid": "history-item-0-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 467.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 强化学习在反无人机应用 || "
+        },
+        {
+          "idx": 28,
+          "tag": "a",
+          "text": "PPTX下载和内容总结",
+          "aria": "PPTX下载和内容总结（未读）",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a055a9b-7f0c-83e8-a558-898911b65109",
+          "box": {
+            "x": 6,
+            "y": 516,
+            "w": 233,
+            "h": 36
+          },
+          "context": "PPTX下载和内容总结 || PPTX下载和内容总结 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 29,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“PPTX下载和内容总结”的对话选项",
+          "title": "",
+          "testid": "history-item-1-options",
+          "href": "",
+          "box": {
+            "x": 213.5,
+            "y": 503.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 30,
+          "tag": "a",
+          "text": "Gemini 使用问题解析",
+          "aria": "Gemini 使用问题解析",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a042609-62dc-83e8-98f5-dfa1001a14b8",
+          "box": {
+            "x": 6,
+            "y": 552,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Gemini 使用问题解析 || Gemini 使用问题解析 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 31,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Gemini 使用问题解析”的对话选项",
+          "title": "",
+          "testid": "history-item-2-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 539.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Gemini 使用问题解析 || "
+        },
+        {
+          "idx": 32,
+          "tag": "a",
+          "text": "Claude -p 解析",
+          "aria": "Claude -p 解析",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a0526bf-113c-83e8-a868-6b12eeaf3121",
+          "box": {
+            "x": 6,
+            "y": 588,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Claude -p 解析 || Claude -p 解析 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 33,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Claude -p 解析”的对话选项",
+          "title": "",
+          "testid": "history-item-3-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 575.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Claude -p 解析 || "
+        },
+        {
+          "idx": 34,
+          "tag": "a",
+          "text": "Linux 监视Codex tokens",
+          "aria": "Linux 监视Codex tokens",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a043910-d758-83e8-918a-c720c8196282",
+          "box": {
+            "x": 6,
+            "y": 624,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Linux 监视Codex tokens || Linux 监视Codex tokens || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 35,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Linux 监视Codex tokens”的对话选项",
+          "title": "",
+          "testid": "history-item-4-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 611.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Linux 监视Codex tokens || "
+        },
+        {
+          "idx": 36,
+          "tag": "a",
+          "text": "CSV Files Generation",
+          "aria": "CSV Files Generation",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a042c5f-861c-83e8-bfc8-8db14ecc633a",
+          "box": {
+            "x": 6,
+            "y": 660,
+            "w": 233,
+            "h": 36
+          },
+          "context": "CSV Files Generation || CSV Files Generation || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 37,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“CSV Files Generation”的对话选项",
+          "title": "",
+          "testid": "history-item-5-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 647.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || CSV Files Generation || "
+        },
+        {
+          "idx": 38,
+          "tag": "a",
+          "text": "Package Name and Scripts",
+          "aria": "Package Name and Scripts",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a04087b-7a00-83e8-bac3-98f88489d695",
+          "box": {
+            "x": 6,
+            "y": 696,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Package Name and Scripts || Package Name and Scripts || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 39,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Package Name and Scripts”的对话选项",
+          "title": "",
+          "testid": "history-item-6-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 683.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Package Name and Scripts || "
+        },
+        {
+          "idx": 40,
+          "tag": "a",
+          "text": "Catalog probe ok",
+          "aria": "Catalog probe ok",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a04073f-32fc-83e8-932c-38eb20fec2a5",
+          "box": {
+            "x": 6,
+            "y": 732,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Catalog probe ok || Catalog probe ok || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 41,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Catalog probe ok”的对话选项",
+          "title": "",
+          "testid": "history-item-7-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 719.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Catalog probe ok || "
+        },
+        {
+          "idx": 42,
+          "tag": "a",
+          "text": "Python 3.12 Changelog",
+          "aria": "Python 3.12 Changelog",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a03ff22-e334-83e8-9109-6d3d6fc23906",
+          "box": {
+            "x": 6,
+            "y": 768,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Python 3.12 Changelog || Python 3.12 Changelog || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 43,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Python 3.12 Changelog”的对话选项",
+          "title": "",
+          "testid": "history-item-8-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 755.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Python 3.12 Changelog || "
+        },
+        {
+          "idx": 44,
+          "tag": "a",
+          "text": "Morning Routines in Canvas",
+          "aria": "Morning Routines in Canvas",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a03fe9c-ccc4-83e8-a0d0-e42cf349e522",
+          "box": {
+            "x": 6,
+            "y": 804,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Morning Routines in Canvas || Morning Routines in Canvas || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 45,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Morning Routines in Canvas”的对话选项",
+          "title": "",
+          "testid": "history-item-9-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 791.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Morning Routines in Canvas || "
+        },
+        {
+          "idx": 46,
+          "tag": "a",
+          "text": "Python 3.12 Changelog URL",
+          "aria": "Python 3.12 Changelog URL",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a033823-707c-83e8-9679-55c8a95e202a",
+          "box": {
+            "x": 6,
+            "y": 840,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Python 3.12 Changelog URL || Python 3.12 Changelog URL || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 47,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Python 3.12 Changelog URL”的对话选项",
+          "title": "",
+          "testid": "history-item-10-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 827.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Python 3.12 Changelog URL || "
+        },
+        {
+          "idx": 48,
+          "tag": "a",
+          "text": "Python Canvas Script",
+          "aria": "Python Canvas Script",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a03376f-7e04-83e8-8277-aa36ada48b56",
+          "box": {
+            "x": 6,
+            "y": 876,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Python Canvas Script || Python Canvas Script || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 49,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Python Canvas Script”的对话选项",
+          "title": "",
+          "testid": "history-item-11-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 863.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Python Canvas Script || "
+        },
+        {
+          "idx": 50,
+          "tag": "a",
+          "text": "Create tiny red dot",
+          "aria": "Create tiny red dot",
+          "title": "",
+          "testid": "",
+          "href": "/c/6a0336f4-1c1c-83e8-9aa0-b8043ed4a26e",
+          "box": {
+            "x": 6,
+            "y": 912,
+            "w": 233,
+            "h": 36
+          },
+          "context": "Create tiny red dot || Create tiny red dot || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 51,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“Create tiny red dot”的对话选项",
+          "title": "",
+          "testid": "history-item-12-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 899.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || Create tiny red dot || "
+        },
+        {
+          "idx": 52,
+          "tag": "a",
+          "text": "刷国行平板美版系统",
+          "aria": "刷国行平板美版系统",
+          "title": "",
+          "testid": "",
+          "href": "/c/69fe0072-ff60-83e8-b53f-dc9f3cb48874",
+          "box": {
+            "x": 6,
+            "y": 948,
+            "w": 233,
+            "h": 36
+          },
+          "context": "刷国行平板美版系统 || 刷国行平板美版系统 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 53,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“刷国行平板美版系统”的对话选项",
+          "title": "",
+          "testid": "history-item-13-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 935.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 刷国行平板美版系统 || "
+        },
+        {
+          "idx": 54,
+          "tag": "a",
+          "text": "简历翻译与PDF生成",
+          "aria": "简历翻译与PDF生成",
+          "title": "",
+          "testid": "",
+          "href": "/c/69fd2f57-87d8-83e8-bb94-393160da1d74",
+          "box": {
+            "x": 6,
+            "y": 984,
+            "w": 233,
+            "h": 36
+          },
+          "context": "简历翻译与PDF生成 || 简历翻译与PDF生成 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 55,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“简历翻译与PDF生成”的对话选项",
+          "title": "",
+          "testid": "history-item-14-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 971.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 简历翻译与PDF生成 || "
+        },
+        {
+          "idx": 56,
+          "tag": "a",
+          "text": "查看Linux剪贴板历史",
+          "aria": "查看Linux剪贴板历史",
+          "title": "",
+          "testid": "",
+          "href": "/c/69fc5768-db58-83e8-a46e-9da1b6a2865c",
+          "box": {
+            "x": 6,
+            "y": 1020,
+            "w": 233,
+            "h": 36
+          },
+          "context": "查看Linux剪贴板历史 || 查看Linux剪贴板历史 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 57,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“查看Linux剪贴板历史”的对话选项",
+          "title": "",
+          "testid": "history-item-15-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1007.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 查看Linux剪贴板历史 || "
+        },
+        {
+          "idx": 58,
+          "tag": "a",
+          "text": "项目链接与名称输出",
+          "aria": "项目链接与名称输出",
+          "title": "",
+          "testid": "",
+          "href": "/c/69f9bc87-2450-83e8-a717-1f5db273ef49",
+          "box": {
+            "x": 6,
+            "y": 1056,
+            "w": 233,
+            "h": 36
+          },
+          "context": "项目链接与名称输出 || 项目链接与名称输出 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 59,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“项目链接与名称输出”的对话选项",
+          "title": "",
+          "testid": "history-item-16-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1043.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 项目链接与名称输出 || "
+        },
+        {
+          "idx": 60,
+          "tag": "a",
+          "text": "问候交流",
+          "aria": "问候交流",
+          "title": "",
+          "testid": "",
+          "href": "/c/69facf36-7f18-83e8-8e23-825dd860bd73",
+          "box": {
+            "x": 6,
+            "y": 1092,
+            "w": 233,
+            "h": 36
+          },
+          "context": "问候交流 || 问候交流 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 61,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“问候交流”的对话选项",
+          "title": "",
+          "testid": "history-item-17-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1079.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 问候交流 || "
+        },
+        {
+          "idx": 62,
+          "tag": "a",
+          "text": "File download ready",
+          "aria": "File download ready",
+          "title": "",
+          "testid": "",
+          "href": "/c/69f9dc41-3668-83e8-b1c5-b9f3653ce2bb",
+          "box": {
+            "x": 6,
+            "y": 1128,
+            "w": 233,
+            "h": 36
+          },
+          "context": "File download ready || File download ready || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 63,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“File download ready”的对话选项",
+          "title": "",
+          "testid": "history-item-18-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1115.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || File download ready || "
+        },
+        {
+          "idx": 64,
+          "tag": "a",
+          "text": "根据聊天描述用户",
+          "aria": "根据聊天描述用户",
+          "title": "",
+          "testid": "",
+          "href": "/c/69f77a64-4c70-83e8-b811-61500c053148",
+          "box": {
+            "x": 6,
+            "y": 1164,
+            "w": 233,
+            "h": 36
+          },
+          "context": "根据聊天描述用户 || 根据聊天描述用户 || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 65,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“根据聊天描述用户”的对话选项",
+          "title": "",
+          "testid": "history-item-19-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1151.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 根据聊天描述用户 || "
+        },
+        {
+          "idx": 66,
+          "tag": "a",
+          "text": "欢迎使用 ChatGPT",
+          "aria": "欢迎使用 ChatGPT",
+          "title": "",
+          "testid": "",
+          "href": "/c/69f567d8-fd70-83e8-9441-d37a460e10e6",
+          "box": {
+            "x": 6,
+            "y": 1200,
+            "w": 233,
+            "h": 36
+          },
+          "context": "欢迎使用 ChatGPT || 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 67,
+          "tag": "button",
+          "text": "",
+          "aria": "打开“欢迎使用 ChatGPT”的对话选项",
+          "title": "",
+          "testid": "history-item-20-options",
+          "href": "",
+          "box": {
+            "x": -0.5,
+            "y": 1187.5,
+            "w": 38,
+            "h": 36
+          },
+          "context": " ||  ||  || 欢迎使用 ChatGPT || "
+        },
+        {
+          "idx": 68,
+          "tag": "div",
+          "text": "Shark Pro",
+          "aria": "Shark Pro，打开“个人资料”菜单",
+          "title": "",
+          "testid": "accounts-profile-button",
+          "href": "",
+          "box": {
+            "x": 8,
+            "y": 941.859375,
+            "w": 246,
+            "h": 52.140625
+          },
+          "context": "Shark Pro || Shark Pro || Shark Pro || ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 RL0511 1浏览器自动化（读取+操作） 3Radar 2notebooklm自动化 最近 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro || "
+        },
+        {
+          "idx": 69,
+          "tag": "button",
+          "text": "",
+          "aria": "Download apps",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 212,
+            "y": 949.4296875,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  ||  || Shark Pro || "
+        },
+        {
+          "idx": 70,
+          "tag": "button",
+          "text": "分享",
+          "aria": "分享",
+          "title": "",
+          "testid": "share-chat-button",
+          "href": "",
+          "box": {
+            "x": 1362.9921875,
+            "y": 8,
+            "w": 78.0078125,
+            "h": 36
+          },
+          "context": "分享 || 分享 || 分享 || 分享 || "
+        },
+        {
+          "idx": 71,
+          "tag": "button",
+          "text": "",
+          "aria": "打开对话选项",
+          "title": "",
+          "testid": "conversation-options-button",
+          "href": "",
+          "box": {
+            "x": 1441,
+            "y": 8,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  ||  || 分享 || "
+        },
+        {
+          "idx": 72,
+          "tag": "button",
+          "text": "",
+          "aria": "master_records.bib",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 840,
+            "y": -56,
+            "w": 320,
+            "h": 56
+          },
+          "context": " ||  ||  || master_records.bib 文件 || "
+        },
+        {
+          "idx": 73,
+          "tag": "button",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1091,
+            "y": 19,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  ||  || Master Records || "
+        },
+        {
+          "idx": 74,
+          "tag": "button",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1123,
+            "y": 19,
+            "w": 20,
+            "h": 20
+          },
+          "context": " ||  ||  || Master Records || "
+        },
+        {
+          "idx": 75,
+          "tag": "button",
+          "text": "",
+          "aria": "复制消息",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 1096,
+            "y": 678,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || master_records.bib 文件 Master Records 我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM DL、Scopus、Web of Science、ScienceDirect、SpringerLink、CNKI、ProQuest CSA 等）针对「强化学习在反无人机系统中的应用」专题采集到的 221 条去重后的文献元数据。 请基于这 221 条参考文献并补充你能查到的最新研究，撰写一篇结构完整、内容深入的中文文献综述，主题为「强化学习在反无人机系统中的应用」。 综述需要包含： 1. 引言与背景（反无人机问题的研究意义、传统方法的局限、为什么需要强化学习）。 2. 强化学习方法分类与综述（值函数方法、策略梯度方法、深度强化学习、多智能体强化学习、分层与层级强化学习等），并在每一类中引用具体文献。 3. 反无人机系统的典型任务划分（探测/识别、决策/拦截、协同/对抗博弈、电子干扰等），分别讨论 RL 的应用方式。 4. 关键技术与建模：状态/动作空间设计、奖励工程、仿真环境（如 AirSim、UE、自研平台）、Sim2Real。 5. 当前研究的代表性工作（在每个 subsection 引用我提供的 || "
+        },
+        {
+          "idx": 76,
+          "tag": "button",
+          "text": "",
+          "aria": "编辑消息",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1128,
+            "y": 678,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || master_records.bib 文件 Master Records 我已经上传了 master_records.bib（BibTeX）和 master_records.csv 两份文件，这是从南京航空航天大学图书馆 16 个理工科数据库（arXiv、IEEE Xplore、ACM DL、Scopus、Web of Science、ScienceDirect、SpringerLink、CNKI、ProQuest CSA 等）针对「强化学习在反无人机系统中的应用」专题采集到的 221 条去重后的文献元数据。 请基于这 221 条参考文献并补充你能查到的最新研究，撰写一篇结构完整、内容深入的中文文献综述，主题为「强化学习在反无人机系统中的应用」。 综述需要包含： 1. 引言与背景（反无人机问题的研究意义、传统方法的局限、为什么需要强化学习）。 2. 强化学习方法分类与综述（值函数方法、策略梯度方法、深度强化学习、多智能体强化学习、分层与层级强化学习等），并在每一类中引用具体文献。 3. 反无人机系统的典型任务划分（探测/识别、决策/拦截、协同/对抗博弈、电子干扰等），分别讨论 RL 的应用方式。 4. 关键技术与建模：状态/动作空间设计、奖励工程、仿真环境（如 AirSim、UE、自研平台）、Sim2Real。 5. 当前研究的代表性工作（在每个 subsection 引用我提供的 || "
+        },
+        {
+          "idx": 77,
+          "tag": "button",
+          "text": "",
+          "aria": "复制消息",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 1096,
+            "y": 1084,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 同意按这个计划开始详细研究，请直接生成完整综述。 || "
+        },
+        {
+          "idx": 78,
+          "tag": "button",
+          "text": "",
+          "aria": "编辑消息",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1128,
+            "y": 1084,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 同意按这个计划开始详细研究，请直接生成完整综述。 || "
+        },
+        {
+          "idx": 79,
+          "tag": "button",
+          "text": "",
+          "aria": "复制回复",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 386,
+            "y": 1649,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 80,
+          "tag": "button",
+          "text": "",
+          "aria": "分享",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 418,
+            "y": 1649,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 81,
+          "tag": "button",
+          "text": "",
+          "aria": "切换模型",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 450,
+            "y": 1649.25,
+            "w": 32,
+            "h": 30
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 82,
+          "tag": "button",
+          "text": "",
+          "aria": "更多操作",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 482,
+            "y": 1649,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 83,
+          "tag": "button",
+          "text": "",
+          "aria": "复制消息",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 1096,
+            "y": 2058,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 很好，谢谢你的综述。请在同一个会话内继续两件事，请使用 Code Interpreter（Python）严格按以下步骤完成，每一步都要把脚本打印的产物文件名和大小回显给我： 1. 把上一条回复中你给出的整篇中文文献综述 Markdown 完整地保存为一个 Python 字符串变量（不要省略，不要截断），然后用 python-docx 渲染为符合学术格式的 .docx： - 文件名：强化学习在反无人机系统中的应用-文献综述.docx - 字体：正文宋体（FangSong/SimSun，Code Interpreter 容器内可用的 CJK 字体即可，找一个能渲染中文的字体），西文 Times New Roman；标题黑体或加粗 Heading 1-3。 - 字号：标题三号、二级标题小三、三级标题四号、正文小四，行距 1.5；段落首行缩进 2 字符。 - 自动生成目录页（基于 H1/H2），封面页（题目 + 作者占位 + 日期 2026-05-13）。 - 把所有 Markdown 标题、列表、代码块、引用都正确映射到对应的 docx 样式。 - 在末尾追加完整参考文献章节（保留来源 .bib 风格）。 - 文件直接生成在容器工作目录下，并 print 出绝对路径与字节数。 2. 基于这份综述生成一份对应的组会汇报 PPT（python-pptx）： - 文件名：强化学习在反无人机系统 || "
+        },
+        {
+          "idx": 84,
+          "tag": "button",
+          "text": "",
+          "aria": "编辑消息",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1128,
+            "y": 2058,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 很好，谢谢你的综述。请在同一个会话内继续两件事，请使用 Code Interpreter（Python）严格按以下步骤完成，每一步都要把脚本打印的产物文件名和大小回显给我： 1. 把上一条回复中你给出的整篇中文文献综述 Markdown 完整地保存为一个 Python 字符串变量（不要省略，不要截断），然后用 python-docx 渲染为符合学术格式的 .docx： - 文件名：强化学习在反无人机系统中的应用-文献综述.docx - 字体：正文宋体（FangSong/SimSun，Code Interpreter 容器内可用的 CJK 字体即可，找一个能渲染中文的字体），西文 Times New Roman；标题黑体或加粗 Heading 1-3。 - 字号：标题三号、二级标题小三、三级标题四号、正文小四，行距 1.5；段落首行缩进 2 字符。 - 自动生成目录页（基于 H1/H2），封面页（题目 + 作者占位 + 日期 2026-05-13）。 - 把所有 Markdown 标题、列表、代码块、引用都正确映射到对应的 docx 样式。 - 在末尾追加完整参考文献章节（保留来源 .bib 风格）。 - 文件直接生成在容器工作目录下，并 print 出绝对路径与字节数。 2. 基于这份综述生成一份对应的组会汇报 PPT（python-pptx）： - 文件名：强化学习在反无人机系统 || "
+        },
+        {
+          "idx": 85,
+          "tag": "button",
+          "text": "",
+          "aria": "复制消息",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 1096,
+            "y": 2988,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 同意，请按这个计划立即执行。 || "
+        },
+        {
+          "idx": 86,
+          "tag": "button",
+          "text": "",
+          "aria": "编辑消息",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1128,
+            "y": 2988,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 同意，请按这个计划立即执行。 || "
+        },
+        {
+          "idx": 87,
+          "tag": "button",
+          "text": "",
+          "aria": "复制回复",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 386,
+            "y": 3577,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 88,
+          "tag": "button",
+          "text": "",
+          "aria": "分享",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 418,
+            "y": 3577,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 89,
+          "tag": "button",
+          "text": "",
+          "aria": "切换模型",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 450,
+            "y": 3577.25,
+            "w": 32,
+            "h": 30
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 90,
+          "tag": "button",
+          "text": "",
+          "aria": "更多操作",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 482,
+            "y": 3577,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 91,
+          "tag": "button",
+          "text": "",
+          "aria": "复制消息",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 1096,
+            "y": 3858,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 请把刚才在 /mnt/data/ 下生成的两个文件 (强化学习在反无人机系统中的应用-文献综述.docx 和 强化学习在反无人机系统中的应用-组会汇报.pptx) 作为常规附件直接发给我——也就是说，请在你下一条回复里用 ChatGPT 标准的附件 / 文件下载形式把它们贴出来（不要放在\"深度研究报告\"卡片里）。每个文件都要在回复正文中以可点击的下载链接或文件卡片形式出现。同时再 print 一遍两个文件的绝对路径与字节数确认无误。 || "
+        },
+        {
+          "idx": 92,
+          "tag": "button",
+          "text": "",
+          "aria": "编辑消息",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1128,
+            "y": 3858,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 请把刚才在 /mnt/data/ 下生成的两个文件 (强化学习在反无人机系统中的应用-文献综述.docx 和 强化学习在反无人机系统中的应用-组会汇报.pptx) 作为常规附件直接发给我——也就是说，请在你下一条回复里用 ChatGPT 标准的附件 / 文件下载形式把它们贴出来（不要放在\"深度研究报告\"卡片里）。每个文件都要在回复正文中以可点击的下载链接或文件卡片形式出现。同时再 print 一遍两个文件的绝对路径与字节数确认无误。 || "
+        },
+        {
+          "idx": 93,
+          "tag": "button",
+          "text": "",
+          "aria": "复制回复",
+          "title": "",
+          "testid": "copy-turn-action-button",
+          "href": "",
+          "box": {
+            "x": 386,
+            "y": 3923,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 94,
+          "tag": "button",
+          "text": "",
+          "aria": "分享",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 418,
+            "y": 3923,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 95,
+          "tag": "button",
+          "text": "",
+          "aria": "切换模型",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 450,
+            "y": 3923.25,
+            "w": 32,
+            "h": 30
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 96,
+          "tag": "button",
+          "text": "",
+          "aria": "更多操作",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 482,
+            "y": 3923,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 97,
+          "tag": "button",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 759,
+            "y": 784,
+            "w": 34,
+            "h": 34
+          },
+          "context": " ||  ||  || 深度研究 应用 站点 Pro ChatGPT 也可能会犯错。请核查重要信息。查看 你的隐私选择。⁠ || "
+        },
+        {
+          "idx": 98,
+          "tag": "button",
+          "text": "",
+          "aria": "添加文件等",
+          "title": "",
+          "testid": "composer-plus-btn",
+          "href": "",
+          "box": {
+            "x": 402,
+            "y": 922,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  ||  || 深度研究 应用 站点 Pro || "
+        },
+        {
+          "idx": 99,
+          "tag": "button",
+          "text": "深度研究",
+          "aria": "深度研究，点击以重试",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 438,
+            "y": 922,
+            "w": 102.0078125,
+            "h": 36
+          },
+          "context": "深度研究 || 深度研究 || 深度研究 || 深度研究 应用 站点 || "
+        },
+        {
+          "idx": 100,
+          "tag": "button",
+          "text": "应用",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 540.0078125,
+            "y": 922,
+            "w": 92.0078125,
+            "h": 36
+          },
+          "context": "应用 || 深度研究 应用 站点 || 深度研究 应用 站点 || 深度研究 应用 站点 Pro || "
+        },
+        {
+          "idx": 101,
+          "tag": "button",
+          "text": "站点",
+          "aria": "Sites, search the web, no sites saved",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 632.015625,
+            "y": 922,
+            "w": 92.0078125,
+            "h": 36
+          },
+          "context": "站点 || 深度研究 应用 站点 || 深度研究 应用 站点 || 深度研究 应用 站点 Pro || "
+        },
+        {
+          "idx": 102,
+          "tag": "button",
+          "text": "Pro",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1006.140625,
+            "y": 922,
+            "w": 65.859375,
+            "h": 36
+          },
+          "context": "Pro || Pro || Pro || Pro || "
+        },
+        {
+          "idx": 103,
+          "tag": "button",
+          "text": "",
+          "aria": "开始听写",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1072,
+            "y": 922,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  || Pro || 深度研究 应用 站点 Pro || "
+        },
+        {
+          "idx": 104,
+          "tag": "button",
+          "text": "",
+          "aria": "启动语音功能",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 1114,
+            "y": 922,
+            "w": 36,
+            "h": 36
+          },
+          "context": " ||  ||  ||  || "
+        },
+        {
+          "idx": 105,
+          "tag": "a",
+          "text": "你的隐私选择",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 847.203125,
+            "y": 976.5,
+            "w": 72,
+            "h": 14.5
+          },
+          "context": "你的隐私选择 || ChatGPT 也可能会犯错。请核查重要信息。查看 你的隐私选择。⁠ || ChatGPT 也可能会犯错。请核查重要信息。查看 你的隐私选择。⁠ || ChatGPT 也可能会犯错。请核查重要信息。查看 你的隐私选择。⁠ || "
+        }
+      ]
+    },
+    {
+      "frame_index": 1,
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "snippet": "",
+      "elements": []
+    },
+    {
+      "frame_index": 2,
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "snippet": "",
+      "elements": []
+    },
+    {
+      "frame_index": 3,
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "snippet": "",
+      "elements": []
+    },
+    {
+      "frame_index": 4,
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "snippet": "",
+      "elements": []
+    },
+    {
+      "frame_index": 5,
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "snippet": "",
+      "elements": []
+    },
+    {
+      "frame_index": 6,
+      "url": "about:blank",
+      "snippet": "我将根据您的要求，更新研究计划并继续深入整合与撰写，生成完整综述全文，结构清晰，便于后续导出。\n研究完成情况：26m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n强化学习在反无人机系统中的应用\n强化学习在反无人机系统中的应用\n引言与背景\n\n反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。\n1\n\n传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分博弈和最优控制方法在复杂环境、非线性系统和高不确定对手行为下会明显吃力，而强化学习之所以受到重视，恰恰在于其能够通过交互与反馈在线修正策略。\n2\n\n从你上传的 221 条去重文献可以看出，这一主题并非只是在“把 RL 套到无人机上”，而是在反无人机的关键痛点上逐步形成了三条更明确的研究线索：其一，强化学习被用于拦截、包围、任务分配等决策层问题；其二，多智能体强化学习开始进入集群围捕、群体压制和资源协同分配；其三",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "button",
+          "text": "",
+          "aria": "导出",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 690,
+            "y": 82,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 强化学习在反无人机系统中的应用 || "
+        },
+        {
+          "idx": 1,
+          "tag": "button",
+          "text": "",
+          "aria": "展开",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 726,
+            "y": 82,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  || 强化学习在反无人机系统中的应用 || 强化学习在反无人机系统中的应用 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang  || "
+        },
+        {
+          "idx": 2,
+          "tag": "div",
+          "text": "强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分博弈和最优控制方法在复杂环境、非线性系统和高不确定对手行为下会明显吃力，而强化学习之所以受到重视，恰恰在于其能够通过交互与反馈在线修正策略。 2 从你上传的 221 条去重文献可以看出，这一主题并非只是在“把 RL 套到无人机上”，而是在反无人机的关键痛点上逐步形成了三条更明确的研究线索：其一，强化学习被用于拦截、包围、任务分配等决策层问题；其二，多智能体强化学习开始进入集群围捕、群体压制和资源协同分配；其三，电子对抗与软杀伤方向逐步把频谱博弈、GNSS 欺骗和协同干扰写成 Markov 决策过程或 Markov 博弈。换言之，强化学习在反无人机场景中的价值，不在于替代全部传统模块，而在于把“难以显式建模、但又必须闭环决策”的部分，从规则驱动转向数据驱动和交互驱动。 2 本节要点 反无人机已从“感知问题”演化为“感知—决策—行动—合规”的系统问题。 3 传统方法的瓶颈，集中在非线性、部分可观测、强对抗和多主体耦合。 2 强化学习最有价值的切入点，是闭环决策、自适应博弈与资源协同，而不是简单替代所有感知模块。 2 强化学习方法分类与综述 值函数方法 值函数方法在反无人机研究中最早落地，也最容易与离散资源分配、几何围捕和规则增强型控制结合。你提供的语料中，《基于DQN的多类型拦截装备复合式反无人机任务分配方法》（2021）就代表了一个典型方向：把拦截装备选择与任务指派离散化，交由 DQN 类方法近似求解。与此类似，《Research on UAV Anti-Multi-type Interferences Strategy Based on Improved Q-Learning》（2021）则体现了 Q-learning 在抗干扰策略选择上的早期应用。到了 2025 年，Bai、Zhou、He 提出的 Q-learning-cover 算法已把三追一拦截写成三维空间中的区域覆盖问题，并在数值仿真与硬件在环实验中验证了三对一围捕的可行性，说明值函数方法仍然在几何结构较强、动作可离散化的追逃任务中具有生命力。 4 不过，值函数方法在反无人机系统里的边界也很清楚：一旦动作空间转为连续控制，一旦状态中纳入姿态、速度、通信拓扑、威胁等级与时窗等高维变量，纯 Q-learning/DQN 往往会遇到维度爆炸、探索效率低和收敛不稳的问题。因此，值函数方法更适合被理解为“基础骨架”而不是“终局形式”：它适合低维、离散、规则嵌入丰富的场景，也适合在分层框架中承担高层离散决策。 4 策略梯度与演员—评论家方法 当任务从“选哪个目标”转向“如何连续机动、何时转向、以多大过载进行围捕或规避”时，策略梯度和演员—评论家方法就更自然。Liu 等在《Task assignment in ground-to-air confrontation based on multiagent deep reinforcement learning》中提出 OGMN 多智能体架构与 PPO-TAGNA 算法，并通过多头注意力和阶段奖励机制改善训练效率，把地空对抗任务分配推进到数字战场环境下的 DRL 框架。Zhuang 等在 2024 年关于高速固定翼无人机突防的研究中，则把拦截器轨迹预测与 PPO 结合，给出了在不完全拦截信息下仍可在线优化突防决策的思路。 5 同一类方法在拦截控制中也发展很快。Giral、Gomez 与 Le Clainche 在 2025 年比较了 DreamerV3、TQC 与 SAC 在固定翼追击空域中拦截动态逃逸目标的表现，结果显示 DreamerV3 在未见逃逸策略、风扰动与传感器噪声条件下具备更好的泛化与鲁棒性。这里的重要启示不是“某个算法赢了”，而是模型型 RL 在反无人机拦截中开始显示出相对于纯模型自由方法的样本利用率与泛化优势。 6 深度强化学习与逆强化学习 深度强化学习在反无人机语境中的一个重要分支，是把专家机动、战术意图或交战经验转入策略学习。Wang、Liu、Zhou 在 2022 年提出的《Autonomous UAV Interception via Augmented Adversarial Inverse Reinforcement Learning》就是这一思路的早期代表：作者用 GAIL 学习拦截策略，并通过专家数据增强和语义条件提高学习效率，避免完全依赖人工手工奖励。对于反无人机应用而言，这种方法尤其适合“有经验、难公式化”的战术知识迁移。 7 你提供的语料中，《Reinforcement Learning-Based Countermeasures Against Attacking UAV Swarms》（2023）和《Deep Reinforcement Learning Applied for Threat Engagement by Loyal Wingmen Drones》（2024）则代表了 DRL 向更复杂战术交互迈进的趋势：前者把来袭无人机群的处置视作连续对抗策略问题，后者表明“忠诚僚机”式伴飞拦截已经开始借助 DRL 进行威胁接触决策。与此同时，Tovarnov 与 Bykov 对无人机控制任务奖励函数的讨论提醒我们：在 UAV/反无人机场景里，算法性能往往并不由“DQN 还是 PPO”单独决定，而更受奖励塑形是否与飞行几何、时间到达和能耗/风险折中一致所支配。 8 多智能体强化学习与分层强化学习 反无人机真正体现强化学习优势的地方，往往不是单机控制，而是多主体协同。Jiang、Zhuang、Xie 在《Anti-drone Policy Learning Based on Self-attention Multi-agent Deterministic Policy Gradient》中将自注意力引入 MADDPG，以适应敌我数量动态变化的反无人机对抗场景，这是非常典型的 MARL 早期工作。Feng 等 2023 年提出的 ETMAPPO，则把反无人机干扰写成部分可观测 Markov 博弈，通过事件触发通信与 Beta 策略减少无效信息传输并逼近 Nash 均衡，说明“多智能体 + 博弈 + 通信受限”已经成为反无人机 RL 的核心范式之一。 9 2024—2025 年间，这一路线快速深化。GLIDE 把动态军事环境中的无人机群协同控制分为中心化与去中心化两种组织方式，并在自建 UAV SIM 中验证连续时间 PPO 的群体控制能力；Chen 等 2025 年在《A Multi-agent Reinforcement Learning Framework for Coordinated Multi-UAV Interception Strategies》中用 TD3 构建了集中训练、分布执行的协同拦截框架；Ren 等 2025 年进一步引入双向循环神经网络通信机制，在 3-vs-1 和 5-vs-2 追击场景中实现至少 90% 的成功率，并相对规则基线缩短至少 19% 的平均捕获时间。 10 更值得注意的是分层强化学习的兴起。Pang 等 2025 年提出 Leader-Follower MAPPO 三层结构，把宏观战局评估、动作角生成和底层控制命令分离，并报告了相较传统方法近乎 2 倍的奖励增益；Huang 等 2025 年提出 HFRL-IA，把动态任务分配与分布式路径规划放在统一层级 MDP 里，上层用 seq2seq + GNN 做动态图匹配，下层用带优先经验回放与课程学习的 PER-MADDPG 处理复杂机动拦截。这类工作与上传语料中的《基于分层策略优化与多约束惩罚的反无人机任务分配算法》（2026）形成呼应，说明分层与分工机制已经从“提高训练稳定性”的技巧，转向“组织复杂反无人机系统”的主框架。 11 本节要点 值函数方法适合离散任务分配与几何围捕；连续控制后，PPO、SAC、TD3 等演员—评论家框架更具优势。 5 MARL 已成为反无人机协同、博弈与群体压制的主流路线。 9 分层强化学习正在把“任务分配—航迹规划—底层控制”整合到统一框架。 11 反无人机系统的任务划分与强化学习应用 探测与识别 在感知层，强化学习并不主要替代 CNN/Transformer 检测器本身，而更常用于主动感知与感知资源调度。Dong 等的反无人机综述明确指出，多模态融合、强化学习和实时控制正在成为新趋势；AlKhonaini 等 2024 年则直接以《UAV Detection Using Reinforcement Learning》说明 RL 可以用于检测过程本身的策略优化。不过从现有文献看，RL 在探测/识别层更现实的角色，是负责阈值、自适应扫视、视角切换、传感器开闭、跟踪丢失恢复等“感知控制”问题，而非直接替代高性能视觉检测网络。 1 这种趋势在跟踪任务中更明显。Wisniewski 等 2024 年的 PTZ 相机工作把无人机跟踪表述为相机控制问题：策略网络不是判断“有没有无人机”，而是学习如何控制 pan-tilt-zoom 使目标在视野中保持可观测。换言之，RL 在反无人机感知链中的强项，是把感知设备本身变成“会机动、会选择、会补偿”的主动体。 12 决策、拦截与任务分配 决策/拦截是 RL 介入最充分的层级。你上传语料中，《基于DQN的多类型拦截装备复合式反无人机任务分配方法》与《基于多智能体深度强化学习的高炮反无人机算法》都说明国内研究首先将 RL 用于火力/装备指派；Liu 等 2023 年则把多智能体 PPO 推入地空对抗任务分配；Dong 的《Reinforcement Learning based Anti-UAV Three-dimensional Pursuit-evasion Game for Substation Security》（2024）把变电站防护写成三维追逃博弈；Cai 等 2024 年和 Giral 等 2025 年则分别对应“多拦截体协同围捕”和“固定翼自主空域拦截”两类代表路径。 5 这类任务之所以适合 RL，是因为它们共同具备三个特征：目标机动具有策略性；拦截动作具有连续性；成功/失败具有明显长期回报。也正因此，单步最优或静态分配往往不足，而策略学习可以更好地处理“先围后堵”“诱饵—主攻”“距离—角度—剩余能量”之间的耦合关系。最新在线发表的 DPE-PER 工作则进一步表明，研究已开始正面处理“部分可观测拦截”这一更接近实战的情形，用方向预测误差和不确定性驱动经验回放优先级。 13 协同、对抗与博弈 当目标从单机入侵扩展到多机群袭扰时，问题结构就从 MDP 转向多智能体 Markov 博弈。Feng 等的 ETMAPPO 针对的就是无人机干扰机与地面用户之间的动态竞争；Simonjan 等和 Chen 等的工作则表明，抵御攻击无人机群、实施多拦截机协同围捕，实质上都需要在合作与竞争同时存在的场景中学习策略。Ren 等 2025 年进一步强调，通信机制本身就是协同质量的决定因素：通信感知不足时，再强的单机策略也会失效。 14 因此，反无人机 MARL 的真正研究对象，不只是“多个 agent 一起学”，而是如何在受限通信、局部观测、角色异构与动态敌情下稳定地产生协同行为。Leader-Follower、注意力机制、图神经网络编码、事件触发通信和共享/差异化奖励，都是为了解决这个系统级问题，而不仅是为了让曲线更好看。 11 电子干扰与软杀伤 与“硬拦截”相比，电子干扰、射频压制与 GNSS 欺骗更适合 RL 的一个重要原因，是其状态转移天然具有不确定性和博弈性。Chae 等 2024 年提出的 RL-GNSS 欺骗系统，利用雷达给出的目标位置和速度，学习如何把固定翼入侵机诱导到指定位置，并通过仿真和飞行测试验证两类固定翼平台均可被重定向；Feng 等 2023 年将反无人机干扰表述为部分可观测 Markov 博弈；Yang 等 2025 年的反干扰综述则把“感知—决策—动作”闭环、博弈建模和 RL 适应策略明确列为该方向的核心。 15 这一方向的一个重要研究判断是：电子对抗不是感知层的附属品，而是可独立优化的策略层。也就是说，频点选择、功率分配、欺骗时机、协同压制形态，以及“压制成功但不误伤友邻通信”的约束折中，都更适合表述为长期回报最大化问题，而不是固定规则触发。多 rogue drones 协同压制被推进到 IEEE TMC 的事实，也说明“多目标电子压制”已从概念验证迈向更系统的算法研究。 16 本节要点 在感知层，RL 更像“主动感知控制器”，而不是单纯替代检测器。 12 在决策/拦截层，RL 的优势最明显，尤其适用于连续机动、长期回报和不完全信息。 5 在电子对抗层，RL 与博弈论结合紧密，适合处理欺骗、压制和频谱资源自适应。 15 关键技术与建模 状态、动作与观测空间设计 反无人机 RL 成败的第一关键，不是网络结构，而是状态与动作空间是否与任务物理结构一致。现有代表性工作显示，状态设计大体围绕五类信息展开：相对几何关系（距离、方位、闭合速度、姿态）、平台资源（剩余能量、弹药、功率、可用拦截体）、任务语义（威胁等级、目标类型、时窗、区域约束）、协同信息（邻机观测、通信消息、角色标识）以及传感器置信度。动作空间则从离散任务指派、目标选择，扩展到连续转向角、机动过载、期望航迹、干扰功率或欺骗参数。Liu 等的 PPO-TAGNA、Ren 等的通信感知追捕框架、Hong Chen 等的 TD3 协同拦截和 GLIDE 的群体控制，都体现了这种“几何—资源—协同”混合编码方式。 5 奖励工程 奖励设计在反无人机场景中尤其敏感，因为很多任务都存在显著的稀疏回报：真正成功往往只在“完成围捕/拦截/压制”那一刻出现。如果奖励只在终局触发，训练几乎必然低效。现有研究的解决思路主要有四类。第一类是阶段奖励，例如 PPO-TAGNA 的阶段奖励机制；第二类是几何势函数或时间到达近似，Tovarnov 与 Bykov 用三阶 Bézier 曲线估计到达目标的时间，从而构造可跨二维/三维任务共享的奖励；第三类是探索增强与经验回放改造，Cai 等在 EA-MADDPG 中加入额外奖励、动作过滤器和最优回放池；第四类是层级分解和内在奖励，HFRL-IA 与 MADDPG-IA 一类工作都试图用任务分解、注意力压缩和内在奖励缓解稀疏回报。 5 仿真环境与实验平台 从文献看，反无人机 RL 研究高度依赖仿真，但仿真并不等于低保真。Jiang 等早期工作使用简化 2D 对抗环境；Liu 等在数字战场中进行任务分配实验；GLIDE 自建 UAV SIM 模拟带地雷和动态目标的军事环境；Giral 等则明确采用高保真飞行动力学仿真比较 DreamerV3、TQC 与 SAC。更一般的 UAV RL 文献和仿真器综述表明，AirSim、基于 Unreal Engine 的高保真环境以及支持 PX4/ROS 的开放平台，仍是无人机强化学习研究中最常见的训练与验证基础设施。Chan 等对无人机 RL 仿真器的综述特别指出，AirSim 基于 Unreal Engine，兼具物理和视觉仿真，并支持主流飞控接口；Memlikai 与 Tsintotas 2026 年的综述则进一步强调，仿真器选择直接影响训练效率以及 sim-to-real 的可行性。 9 Sim2Real 与部署路径 反无人机 RL 的第二关键问题，是如何从仿真走向实机。现有文献可归纳出三条较清晰的路径。第一条是误差注入：Chae 等在 GNSS 欺骗工作中显式建模了两类固定翼平台与真实雷达误差，再把训练好的 agent 应用于飞行测试。第二条是课程式迁移：先在简化、自定义、可高速采样的环境中完成策略预训练，再迁移到 AirSim 或高保真环境做微调与鲁棒验证。第三条是硬件在环或混合验证，Bai 等的 Q-learning-cover 与多个近年 UAV RL 工作都开始引入硬件在环实验，试图缩小“纯软件胜利”与“可部署策略”之间的鸿沟。更广义的 UAV RL 部署研究也反复指出，策略在传感器噪声、延迟、未见目标机动和通信丢包下是否仍稳定，才是真正决定工程价值的标准。 17 本节要点 成功的反无人机 RL 建模，核心在于把几何关系、资源约束、角色协同与观测不确定统一进状态空间。 5 奖励工程不是“调参细节”，而是决定训练是否可行的主技术。 18 高保真仿真、误差注入、课程迁移和硬件在环，是当前最现实的 sim-to-real 路径。 19 代表性工作与综合评述 如果把现有研究按发展阶段来观察，第一阶段大致是 2021—2022 年的“方法可行性验证”。这一时期的代表工作包括《基于DQN的多类型拦截装备复合式反无人机任务分配方法》、Jiang 等的自注意力 MADDPG 反无人机策略学习、Wang 等的 GAIL 拦截，以及《Research on UAV Anti-Multi-type Interferences Strategy Based on Improved Q-Learning》。这些工作共同证明了一点：反无人机确实可以写成 RL 问题，而且多智能体协同和逆强化学习都不是“概念空转”。但这一阶段的普遍局限也很突出：环境多为简化二维或低维动力学，评估指标相对单一，真实感知误差和复杂对手策略考虑不足。 9 第二阶段大致是 2023—2024 年的“任务深化与框架扩展”。一方面，Liu 等把 PPO 推入地空对抗任务分配，Feng 等把反无人机干扰提升为 Markov 博弈求解；另一方面，Dong 的变电站三维追逃、Cai 等的 EA-MADDPG、多 rogue drones 协同压制以及 Chae 等的 GNSS 欺骗，都表明反无人机 RL 已经从“能不能学”转向“学什么任务更值钱”。同一时期，AlKhonaini 的 RL 检测与 Wisniewski 的 PTZ 跟踪也带来一个重要修正：感知层中真正适合 RL 的常常不是目标识别本身，而是主动感知控制与设备调度。 5 第三阶段则是 2025—2026 年开始显现的“系统化与层级化”。Pang 的 LFMAPPO、Ren 的通信感知 MARL、Hong Chen 的 TD3 协同拦截、Huang 的 HFRL-IA，以及 Giral 对 DreamerV3/TQC/SAC 的系统比较，都说明研究重心正在从单一算法性能比较，转向系统组织方式：角色如何分层、通信怎样建模、任务分配与底层控制如何解耦、世界模型能否提升泛化。最新在线发表的 DPE-PER 则提示，部分可观测、经验优先级和动作选择机制正在成为新一轮方法创新的焦点。 11 综合来看，当前最有代表性的反无人机 RL 工作大致满足三个条件：第一，不只解决“飞行控制”，而是显式面向反无人机任务；第二，不只关注单机，而是纳入多机协同、对手博弈或电子对抗；第三，不只在理想模拟器中得分，而是开始考虑高保真动力学、真实误差或硬件验证。以此标准衡量，任务分配类（Liu 2023）、自适应干扰类（Feng 2023、Chae 2024）、协同追捕类（Ren 2025、Cai 2024）、层级拦截类（Pang 2025、Huang 2025）和模型型拦截控制类（Giral 2025）构成了当前最值得重点跟进的五个子方向。 5 本节要点 2021—2022 年是“可行性证明期”，2023—2024 年是“任务深化期”，2025—2026 年进入“系统化组织期”。 9 最有价值的工作，不是单纯更高 reward，而是更贴近反无人机真实任务链。 3 当前主线已从单机控制转向多智能体、层级决策、通信建模与高保真验证。 20 局限与挑战 第一，样本效率仍然是根本瓶颈。反无人机任务通常具有高维状态、稀疏回报和强策略耦合，训练一次就可能需要大量场景采样，而真实世界又不可能开放式试错。DreamerV3 之类模型型方法显示出一定优势，但这并不意味着问题已经解决；相反，它提示研究者必须更重视模型学习、离线数据利用和先验知识注入。 6 第二，可迁移性与泛化不足。Dong 等的综述明确指出，反无人机在实时性能、隐蔽目标和集群场景上仍存在明显缺口；其数据集分析也显示，不同数据源、标签格式、测试条件和对抗真实性差异，正在阻碍标准化评价。许多 RL 工作在单一自建环境中成绩很好，但更换地图、风场、目标机型、感知噪声分布后能否维持性能，往往缺乏充分证据。 1 第三，对抗鲁棒性问题比一般机器人场景更尖锐。反无人机系统面对的不是静态障碍物，而是会规避、会欺骗、会压制、甚至会攻击决策模块本身的对手。Dong 等综述把对抗鲁棒性明确列为开放问题；Yang 等的抗干扰综述也强调了博弈建模和工程落地挑战。你上传语料中的《Robust Adversarial Attacks Detection based on Explainable Deep Reinforcement Learning For UAV Guidance and Planning》（2022）亦说明，研究社区已经意识到“策略会被攻击”本身就是问题的一部分。 1 第四，工程部署与法规伦理约束不可回避。Wandelt 等提出的 DRONEWALLS 框架专门将“行动/合规”单独列为一阶段，包含中和、法律/伦理遵循与责任问题。这一点对反无人机尤其关键：射频压制是否合规、欺骗会否误伤民用通信、硬杀伤是否会带来附带损害、自治拦截是否允许完全脱离人类授权，这些问题都不是算法指标能替代的。 3 本节要点 训练成本高、泛化差、对抗脆弱，是 RL 反无人机研究的三大技术短板。 6 许多成果仍停留在“仿真可用”，距离“实战可部署”尚有明显距离。 1 反无人机最终受制于系统工程与合规边界，而不只受制于算法。 3 未来研究方向与结论 未来研究方向与开放问题 未来几年，最值得关注的不是“再换一个 RL 算法”，而是以下几类更结构性的进展。 其一，向部分可观测与信念状态决策推进。最新拦截研究已经开始显式处理 POMDP、循环记忆与不确定性驱动经验回放；这意味着反无人机 RL 将从“看见就决策”走向“基于不完整证据做风险控制”。 13 其二，向任务—路径—控制一体化的分层框架推进。现有最强工作已经不再把任务分配、航迹规划和底层控制分立处理，而是用分层 MDP、角色分工和图结构编码进行统一建模。下一步的关键，不是层数更多，而是层间接口更可解释、更可验证。 11 其三，向感知—决策一体化推进。当前感知层与决策层仍然常被分离优化，但反无人机是真正需要“闭环主动感知”的场景。PTZ 跟踪、主动传感器开关、多模态权重自适应，都是把 RL 从“末端控制器”推进为“系统级调度器”的候选路径。 12 其四，向数字孪生、课程迁移与硬件在环验证推进。高保真仿真、误差注入和 staged transfer 已经成为部署前必经之路。未来真正有影响力的论文，很可能不再只报告仿真胜率，而会同时报告跨场景泛化、失效模式和实机/半实物转化率。 15 其五，向安全强化学习和人机协同授权推进。反无人机是高风险应用，未来更现实的路线不是“全自动开火”，而是约束强化学习、可审计策略、人类在环授权和基于规则的安全包线。只有在这一层面补足，RL 才可能真正从研究原型变成可部署能力。 3 结论 总体来看，强化学习在反无人机系统中的价值已从“局部算法尝试”逐步成长为“系统决策核心候选”。它最适合承担的任务，不是静态探测或单纯分类，而是那些同时具有长期回报、连续控制、多主体耦合和对手适应性的环节：任务分配、协同围捕、电子压制、主动感知和层级交战决策。现有研究已经沿着值函数、演员—评论家、MARL 和 HRL 四条路线形成较清晰谱系；其中，多智能体与分层强化学习最有可能成为未来反无人机系统的主干框架。 2 但必须强调，反无人机 RL 仍远未到“可直接替换传统系统”的阶段。现阶段更合理的定位，是把 RL 视作决策层与行动层的自适应模块，与传统感知、博弈推演、规则约束和安全机制共同构成混合式系统。谁能先解决样本效率、对抗鲁棒性、通信受限协同和 sim-to-real 这四个瓶颈，谁就更可能把强化学习真正推入反无人机工程体系。 6 本节要点 未来重点不在“新算法名词”，而在 POMDP、层级一体化、主动感知与部署验证。 13 反无人机 RL 的合理定位，是混合系统中的自适应决策模块。 3 真正决定其工程前景的，是鲁棒性、合规性和 sim-to-real 能力。 3 参考文献 受单条消息长度限制，以下先列出正文显式讨论的代表性文献与新增公开文献。你上传的 master_records.bib 中 221 条原始条目已作为本文基础语料；若需严格“全文附后”的 BibTeX 版参考文献，更适合在下一步导出文档时作为附录原样拼接，以避免当前消息超长而影响可读性。 用户上传语料中在正文重点讨论的条目 《基于DQN的多类型拦截装备复合式反无人机任务分配方法》, 2021. Research on UAV Anti-Multi-type Interferences Strategy Based on Improved Q-Learning, 2021. Anti-drone Policy Learning Based on Self-attention Multi-agent Deterministic Policy Gradient, 2022. Autonomous UAV Interception via Augmented Adversarial Inverse Reinforcement Learning, 2022. Task assignment in ground-to-air confrontation based on multiagent deep reinforcement learning, 2023. Approximating Nash equilibrium for anti-UAV jamming Markov game using a novel event-triggered multi-agent reinforcement learning, 2023. Reinforcement Learning-Based Countermeasures Against Attacking UAV Swarms, 2023. Reinforcement Learning based Anti-UAV Three-dimensional Pursuit-evasion Game for Substation Security, 2024. Reinforcement Learning-Based Counter Fixed-Wing Drone System Using GNSS Deception, 2024. Towards Fully Autonomous Drone Tracking by a Reinforcement Learning Agent Controlling a Pan–Tilt–Zoom Camera, 2024. Interception of a Single Intruding Unmanned Aerial Vehicle by Multiple Missiles Using the Novel EA-MADDPG Training Algorithm, 2024. GLIDE: Multi-Agent Deep Reinforcement Learning for Coordinated UAV Control in Dynamic Military Environments, 2024. A Multi-agent Reinforcement Learning Framework for Coordinated Multi-UAV Interception Strategies, 2025. Multi-UAV Cooperative Pursuit Planning via Communication-Aware Multi-Agent Reinforcement Learning, 2025. A hierarchical reinforcement learning framework for multi-UAV combat using leader–follower strategy, 2025. A Hierarchical Reinforcement Learning Framework for Multi-Agent Cooperative Maneuver Interception in Dynamic Environments, 2025. Intercepting unauthorized aerial robots in controlled airspace using reinforcement learning, 2025. Pursuit-Interception Strategy in Differential Games Based on Q-Learning-Cover Algorithm, 2025. 《基于多智能体深度强化学习的高炮反无人机算法》, 2025. 《基于分层策略优化与多约束惩罚的反无人机任务分配算法》, 2026. 本文补充检索的公开学术资料 Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Sensors, 2024. 21 Tovarnov, M. S., Bykov, N. V. Reinforcement learning reward function in unmanned aerial vehicle control tasks. arXiv / Journal of Physics: Conference Series, 2022. 18 Chan, J. H., et al. Reinforcement learning-based drone simulators: survey, comparison, and challenges. Artificial Intelligence Review, 2024. 22 Memlikai, G., Tsintotas, K. A. Reinforcement Learning for UAV Control: From Algorithms to Deployment Readiness. Machines, 2026. 23 Jonnarth, A., et al. Sim-to-Real Transfer of Deep Reinforcement Learning Agents for Online Coverage Path Planning. 2025. 24 Valianti, P., Malialis, K., Kolios, P., Ellinas, G. Cooperative Multi-Agent Jamming of Multiple Rogue Drones Using Reinforcement Learning. IEEE Transactions on Mobile Computing, 2024. 16 Srisomboon, I., Lee, S. Direction Prediction Error-Prioritized Experience Replay for Adversarial UAV Interception under Partial Observability. IEEE Internet of Things Journal, 2026 online first. 13 说明 本文在方法分类、任务划分和代表性工作中，已尽量把你提供语料中的中文题录与新增公开论文并置讨论。由于部分上传条目仅提供题名级元数据、缺少可公开访问摘要，文中对这类文献的论述严格控制在题名可直接支持的范围内；涉及具体算法结构、实验场景与性能结论的部分，则优先依据可公开访问的论文摘要、出版社页面或开放获取综述进行援引。",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 2,
+            "y": 122,
+            "w": 764,
+            "h": 400
+          },
+          "context": "强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || 强化学习在反无人机系统中的应用 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang  || 研究完成情况：26m · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 次引用 · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 个搜索 强化学习在反无人机系统中的应用 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wa || "
+        },
+        {
+          "idx": 3,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 182.744873046875,
+            "y": 382.3208923339844,
+            "w": 16.852935791015625,
+            "h": 14.980377197265625
+          },
+          "context": "1 || 1 || 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 4,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 372.85980224609375,
+            "y": 545.978759765625,
+            "w": 16.852935791015625,
+            "h": 14.9803466796875
+          },
+          "context": "2 || 2 || 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分博弈和最优控制方法在复杂环境、非线性系统和高不确定对手行为下会明显吃力，而强化学习之所以受到重视，恰恰在于其能够通过交互与反馈在线修正策略。 2 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 5,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 695.8526000976562,
+            "y": 665.0172729492188,
+            "w": 16.8529052734375,
+            "h": 14.98040771484375
+          },
+          "context": "2 || 2 || 从你上传的 221 条去重文献可以看出，这一主题并非只是在“把 RL 套到无人机上”，而是在反无人机的关键痛点上逐步形成了三条更明确的研究线索：其一，强化学习被用于拦截、包围、任务分配等决策层问题；其二，多智能体强化学习开始进入集群围捕、群体压制和资源协同分配；其三，电子对抗与软杀伤方向逐步把频谱博弈、GNSS 欺骗和协同干扰写成 Markov 决策过程或 Markov 博弈。换言之，强化学习在反无人机场景中的价值，不在于替代全部传统模块，而在于把“难以显式建模、但又必须闭环决策”的部分，从规则驱动转向数据驱动和交互驱动。 2 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 6,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 509.190185546875,
+            "y": 724.6170043945312,
+            "w": 16.8529052734375,
+            "h": 14.98040771484375
+          },
+          "context": "3 || 3 || 反无人机已从“感知问题”演化为“感知—决策—行动—合规”的系统问题。 3 || 反无人机已从“感知问题”演化为“感知—决策—行动—合规”的系统问题。 3 传统方法的瓶颈，集中在非线性、部分可观测、强对抗和多主体耦合。 2 强化学习最有价值的切入点，是闭环决策、自适应博弈与资源协同，而不是简单替代所有感知模块。 2 || "
+        },
+        {
+          "idx": 7,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 501.6268310546875,
+            "y": 754.4168701171875,
+            "w": 16.8529052734375,
+            "h": 14.98040771484375
+          },
+          "context": "2 || 2 || 传统方法的瓶颈，集中在非线性、部分可观测、强对抗和多主体耦合。 2 || 反无人机已从“感知问题”演化为“感知—决策—行动—合规”的系统问题。 3 传统方法的瓶颈，集中在非线性、部分可观测、强对抗和多主体耦合。 2 强化学习最有价值的切入点，是闭环决策、自适应博弈与资源协同，而不是简单替代所有感知模块。 2 || "
+        },
+        {
+          "idx": 8,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 678.158447265625,
+            "y": 784.2167358398438,
+            "w": 16.85296630859375,
+            "h": 14.98040771484375
+          },
+          "context": "2 || 2 || 强化学习最有价值的切入点，是闭环决策、自适应博弈与资源协同，而不是简单替代所有感知模块。 2 || 反无人机已从“感知问题”演化为“感知—决策—行动—合规”的系统问题。 3 传统方法的瓶颈，集中在非线性、部分可观测、强对抗和多主体耦合。 2 强化学习最有价值的切入点，是闭环决策、自适应博弈与资源协同，而不是简单替代所有感知模块。 2 || "
+        },
+        {
+          "idx": 9,
+          "tag": "sup",
+          "text": "4",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 264.2226867675781,
+            "y": 1041.4801025390625,
+            "w": 16.85296630859375,
+            "h": 14.9803466796875
+          },
+          "context": "4 || 4 || 值函数方法在反无人机研究中最早落地，也最容易与离散资源分配、几何围捕和规则增强型控制结合。你提供的语料中，《基于DQN的多类型拦截装备复合式反无人机任务分配方法》（2021）就代表了一个典型方向：把拦截装备选择与任务指派离散化，交由 DQN 类方法近似求解。与此类似，《Research on UAV Anti-Multi-type Interferences Strategy Based on Improved Q-Learning》（2021）则体现了 Q-learning 在抗干扰策略选择上的早期应用。到了 2025 年，Bai、Zhou、He 提出的 Q-learning-cover 算法已把三追一拦截写成三维空间中的区域覆盖问题，并在数值仿真与硬件在环实验中验证了三对一围捕的可行性，说明值函数方法仍然在几何结构较强、动作可离散化的追逃任务中具有生命力。 4 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 10,
+          "tag": "sup",
+          "text": "4",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 318.541259765625,
+            "y": 1138.208984375,
+            "w": 16.852935791015625,
+            "h": 14.9803466796875
+          },
+          "context": "4 || 4 || 不过，值函数方法在反无人机系统里的边界也很清楚：一旦动作空间转为连续控制，一旦状态中纳入姿态、速度、通信拓扑、威胁等级与时窗等高维变量，纯 Q-learning/DQN 往往会遇到维度爆炸、探索效率低和收敛不稳的问题。因此，值函数方法更适合被理解为“基础骨架”而不是“终局形式”：它适合低维、离散、规则嵌入丰富的场景，也适合在分层框架中承担高层离散决策。 4 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 11,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 46.94117736816406,
+            "y": 1319.7364501953125,
+            "w": 16.852943420410156,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 当任务从“选哪个目标”转向“如何连续机动、何时转向、以多大过载进行围捕或规避”时，策略梯度和演员—评论家方法就更自然。Liu 等在《Task assignment in ground-to-air confrontation based on multiagent deep reinforcement learning》中提出 OGMN 多智能体架构与 PPO-TAGNA 算法，并通过多头注意力和阶段奖励机制改善训练效率，把地空对抗任务分配推进到数字战场环境下的 DRL 框架。Zhuang 等在 2024 年关于高速固定翼无人机突防的研究中，则把拦截器轨迹预测与 PPO 结合，给出了在不完全拦截信息下仍可在线优化突防决策的思路。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 12,
+          "tag": "sup",
+          "text": "6",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 345.7005310058594,
+            "y": 1416.46533203125,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "6 || 6 || 同一类方法在拦截控制中也发展很快。Giral、Gomez 与 Le Clainche 在 2025 年比较了 DreamerV3、TQC 与 SAC 在固定翼追击空域中拦截动态逃逸目标的表现，结果显示 DreamerV3 在未见逃逸策略、风扰动与传感器噪声条件下具备更好的泛化与鲁棒性。这里的重要启示不是“某个算法赢了”，而是模型型 RL 在反无人机拦截中开始显示出相对于纯模型自由方法的样本利用率与泛化优势。 6 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 13,
+          "tag": "sup",
+          "text": "7",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 74.1077651977539,
+            "y": 1575.6832275390625,
+            "w": 16.852943420410156,
+            "h": 14.9803466796875
+          },
+          "context": "7 || 7 || 深度强化学习在反无人机语境中的一个重要分支，是把专家机动、战术意图或交战经验转入策略学习。Wang、Liu、Zhou 在 2022 年提出的《Autonomous UAV Interception via Augmented Adversarial Inverse Reinforcement Learning》就是这一思路的早期代表：作者用 GAIL 学习拦截策略，并通过专家数据增强和语义条件提高学习效率，避免完全依赖人工手工奖励。对于反无人机应用而言，这种方法尤其适合“有经验、难公式化”的战术知识迁移。 7 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 14,
+          "tag": "sup",
+          "text": "8",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 364.18463134765625,
+            "y": 1717.031494140625,
+            "w": 16.852935791015625,
+            "h": 14.9803466796875
+          },
+          "context": "8 || 8 || 你提供的语料中，《Reinforcement Learning-Based Countermeasures Against Attacking UAV Swarms》（2023）和《Deep Reinforcement Learning Applied for Threat Engagement by Loyal Wingmen Drones》（2024）则代表了 DRL 向更复杂战术交互迈进的趋势：前者把来袭无人机群的处置视作连续对抗策略问题，后者表明“忠诚僚机”式伴飞拦截已经开始借助 DRL 进行威胁接触决策。与此同时，Tovarnov 与 Bykov 对无人机控制任务奖励函数的讨论提醒我们：在 UAV/反无人机场景里，算法性能往往并不由“DQN 还是 PPO”单独决定，而更受奖励塑形是否与飞行几何、时间到达和能耗/风险折中一致所支配。 8 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 15,
+          "tag": "sup",
+          "text": "9",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 630.9277954101562,
+            "y": 1876.249267578125,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "9 || 9 || 反无人机真正体现强化学习优势的地方，往往不是单机控制，而是多主体协同。Jiang、Zhuang、Xie 在《Anti-drone Policy Learning Based on Self-attention Multi-agent Deterministic Policy Gradient》中将自注意力引入 MADDPG，以适应敌我数量动态变化的反无人机对抗场景，这是非常典型的 MARL 早期工作。Feng 等 2023 年提出的 ETMAPPO，则把反无人机干扰写成部分可观测 Markov 博弈，通过事件触发通信与 Beta 策略减少无效信息传输并逼近 Nash 均衡，说明“多智能体 + 博弈 + 通信受限”已经成为反无人机 RL 的核心范式之一。 9 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 16,
+          "tag": "sup",
+          "text": "10",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 546.64111328125,
+            "y": 1995.287841796875,
+            "w": 16.85296630859375,
+            "h": 14.9803466796875
+          },
+          "context": "10 || 10 || 2024—2025 年间，这一路线快速深化。GLIDE 把动态军事环境中的无人机群协同控制分为中心化与去中心化两种组织方式，并在自建 UAV SIM 中验证连续时间 PPO 的群体控制能力；Chen 等 2025 年在《A Multi-agent Reinforcement Learning Framework for Coordinated Multi-UAV Interception Strategies》中用 TD3 构建了集中训练、分布执行的协同拦截框架；Ren 等 2025 年进一步引入双向循环神经网络通信机制，在 3-vs-1 和 5-vs-2 追击场景中实现至少 90% 的成功率，并相对规则基线缩短至少 19% 的平均捕获时间。 10 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 17,
+          "tag": "sup",
+          "text": "11",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 288.45611572265625,
+            "y": 2136.635986328125,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "11 || 11 || 更值得注意的是分层强化学习的兴起。Pang 等 2025 年提出 Leader-Follower MAPPO 三层结构，把宏观战局评估、动作角生成和底层控制命令分离，并报告了相较传统方法近乎 2 倍的奖励增益；Huang 等 2025 年提出 HFRL-IA，把动态任务分配与分布式路径规划放在统一层级 MDP 里，上层用 seq2seq + GNN 做动态图匹配，下层用带优先经验回放与课程学习的 PER-MADDPG 处理复杂机动拦截。这类工作与上传语料中的《基于分层策略优化与多约束惩罚的反无人机任务分配算法》（2026）形成呼应，说明分层与分工机制已经从“提高训练稳定性”的技巧，转向“组织复杂反无人机系统”的主框架。 11 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 18,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 80.64706420898438,
+            "y": 2218.54541015625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 值函数方法适合离散任务分配与几何围捕；连续控制后，PPO、SAC、TD3 等演员—评论家框架更具优势。 5 || 值函数方法适合离散任务分配与几何围捕；连续控制后，PPO、SAC、TD3 等演员—评论家框架更具优势。 5 MARL 已成为反无人机协同、博弈与群体压制的主流路线。 9 分层强化学习正在把“任务分配—航迹规划—底层控制”整合到统一框架。 11 || "
+        },
+        {
+          "idx": 19,
+          "tag": "sup",
+          "text": "9",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 431.79388427734375,
+            "y": 2248.34521484375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "9 || 9 || MARL 已成为反无人机协同、博弈与群体压制的主流路线。 9 || 值函数方法适合离散任务分配与几何围捕；连续控制后，PPO、SAC、TD3 等演员—评论家框架更具优势。 5 MARL 已成为反无人机协同、博弈与群体压制的主流路线。 9 分层强化学习正在把“任务分配—航迹规划—底层控制”整合到统一框架。 11 || "
+        },
+        {
+          "idx": 20,
+          "tag": "sup",
+          "text": "11",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 512.167236328125,
+            "y": 2278.145263671875,
+            "w": 16.8529052734375,
+            "h": 14.980224609375
+          },
+          "context": "11 || 11 || 分层强化学习正在把“任务分配—航迹规划—底层控制”整合到统一框架。 11 || 值函数方法适合离散任务分配与几何围捕；连续控制后，PPO、SAC、TD3 等演员—评论家框架更具优势。 5 MARL 已成为反无人机协同、博弈与群体压制的主流路线。 9 分层强化学习正在把“任务分配—航迹规划—底层控制”整合到统一框架。 11 || "
+        },
+        {
+          "idx": 21,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 351.0256042480469,
+            "y": 2490.789306640625,
+            "w": 16.852935791015625,
+            "h": 14.980224609375
+          },
+          "context": "1 || 1 || 在感知层，强化学习并不主要替代 CNN/Transformer 检测器本身，而更常用于主动感知与感知资源调度。Dong 等的反无人机综述明确指出，多模态融合、强化学习和实时控制正在成为新趋势；AlKhonaini 等 2024 年则直接以《UAV Detection Using Reinforcement Learning》说明 RL 可以用于检测过程本身的策略优化。不过从现有文献看，RL 在探测/识别层更现实的角色，是负责阈值、自适应扫视、视角切换、传感器开闭、跟踪丢失恢复等“感知控制”问题，而非直接替代高性能视觉检测网络。 1 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 22,
+          "tag": "sup",
+          "text": "12",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 546.472900390625,
+            "y": 2565.20849609375,
+            "w": 16.85296630859375,
+            "h": 14.980224609375
+          },
+          "context": "12 || 12 || 这种趋势在跟踪任务中更明显。Wisniewski 等 2024 年的 PTZ 相机工作把无人机跟踪表述为相机控制问题：策略网络不是判断“有没有无人机”，而是学习如何控制 pan-tilt-zoom 使目标在视野中保持可观测。换言之，RL 在反无人机感知链中的强项，是把感知设备本身变成“会机动、会选择、会补偿”的主动体。 12 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 23,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 633.224609375,
+            "y": 2724.42626953125,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 决策/拦截是 RL 介入最充分的层级。你上传语料中，《基于DQN的多类型拦截装备复合式反无人机任务分配方法》与《基于多智能体深度强化学习的高炮反无人机算法》都说明国内研究首先将 RL 用于火力/装备指派；Liu 等 2023 年则把多智能体 PPO 推入地空对抗任务分配；Dong 的《Reinforcement Learning based Anti-UAV Three-dimensional Pursuit-evasion Game for Substation Security》（2024）把变电站防护写成三维追逃博弈；Cai 等 2024 年和 Giral 等 2025 年则分别对应“多拦截体协同围捕”和“固定翼自主空域拦截”两类代表路径。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 24,
+          "tag": "sup",
+          "text": "13",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 614.374755859375,
+            "y": 2821.155029296875,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "13 || 13 || 这类任务之所以适合 RL，是因为它们共同具备三个特征：目标机动具有策略性；拦截动作具有连续性；成功/失败具有明显长期回报。也正因此，单步最优或静态分配往往不足，而策略学习可以更好地处理“先围后堵”“诱饵—主攻”“距离—角度—剩余能量”之间的耦合关系。最新在线发表的 DPE-PER 工作则进一步表明，研究已开始正面处理“部分可观测拦截”这一更接近实战的情形，用方向预测误差和不确定性驱动经验回放优先级。 13 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 25,
+          "tag": "sup",
+          "text": "14",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 590.134033203125,
+            "y": 2958.063232421875,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "14 || 14 || 当目标从单机入侵扩展到多机群袭扰时，问题结构就从 MDP 转向多智能体 Markov 博弈。Feng 等的 ETMAPPO 针对的就是无人机干扰机与地面用户之间的动态竞争；Simonjan 等和 Chen 等的工作则表明，抵御攻击无人机群、实施多拦截机协同围捕，实质上都需要在合作与竞争同时存在的场景中学习策略。Ren 等 2025 年进一步强调，通信机制本身就是协同质量的决定因素：通信感知不足时，再强的单机策略也会失效。 14 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 26,
+          "tag": "sup",
+          "text": "11",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 481.4969177246094,
+            "y": 3032.482421875,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "11 || 11 || 因此，反无人机 MARL 的真正研究对象，不只是“多个 agent 一起学”，而是如何在受限通信、局部观测、角色异构与动态敌情下稳定地产生协同行为。Leader-Follower、注意力机制、图神经网络编码、事件触发通信和共享/差异化奖励，都是为了解决这个系统级问题，而不仅是为了让曲线更好看。 11 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 27,
+          "tag": "sup",
+          "text": "15",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 237.06341552734375,
+            "y": 3191.700439453125,
+            "w": 16.85296630859375,
+            "h": 14.980224609375
+          },
+          "context": "15 || 15 || 与“硬拦截”相比，电子干扰、射频压制与 GNSS 欺骗更适合 RL 的一个重要原因，是其状态转移天然具有不确定性和博弈性。Chae 等 2024 年提出的 RL-GNSS 欺骗系统，利用雷达给出的目标位置和速度，学习如何把固定翼入侵机诱导到指定位置，并通过仿真和飞行测试验证两类固定翼平台均可被重定向；Feng 等 2023 年将反无人机干扰表述为部分可观测 Markov 博弈；Yang 等 2025 年的反干扰综述则把“感知—决策—动作”闭环、博弈建模和 RL 适应策略明确列为该方向的核心。 15 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 28,
+          "tag": "sup",
+          "text": "16",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 323.8663024902344,
+            "y": 3288.42919921875,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "16 || 16 || 这一方向的一个重要研究判断是：电子对抗不是感知层的附属品，而是可独立优化的策略层。也就是说，频点选择、功率分配、欺骗时机、协同压制形态，以及“压制成功但不误伤友邻通信”的约束折中，都更适合表述为长期回报最大化问题，而不是固定规则触发。多 rogue drones 协同压制被推进到 IEEE TMC 的事实，也说明“多目标电子压制”已从概念验证迈向更系统的算法研究。 16 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 29,
+          "tag": "sup",
+          "text": "12",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 462.6324462890625,
+            "y": 3348.029052734375,
+            "w": 16.852935791015625,
+            "h": 14.980224609375
+          },
+          "context": "12 || 12 || 在感知层，RL 更像“主动感知控制器”，而不是单纯替代检测器。 12 || 在感知层，RL 更像“主动感知控制器”，而不是单纯替代检测器。 12 在决策/拦截层，RL 的优势最明显，尤其适用于连续机动、长期回报和不完全信息。 5 在电子对抗层，RL 与博弈论结合紧密，适合处理欺骗、压制和频谱资源自适应。 15 || "
+        },
+        {
+          "idx": 30,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 579.09619140625,
+            "y": 3377.828857421875,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 在决策/拦截层，RL 的优势最明显，尤其适用于连续机动、长期回报和不完全信息。 5 || 在感知层，RL 更像“主动感知控制器”，而不是单纯替代检测器。 12 在决策/拦截层，RL 的优势最明显，尤其适用于连续机动、长期回报和不完全信息。 5 在电子对抗层，RL 与博弈论结合紧密，适合处理欺骗、压制和频谱资源自适应。 15 || "
+        },
+        {
+          "idx": 31,
+          "tag": "sup",
+          "text": "15",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 560.6121215820312,
+            "y": 3407.628662109375,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "15 || 15 || 在电子对抗层，RL 与博弈论结合紧密，适合处理欺骗、压制和频谱资源自适应。 15 || 在感知层，RL 更像“主动感知控制器”，而不是单纯替代检测器。 12 在决策/拦截层，RL 的优势最明显，尤其适用于连续机动、长期回报和不完全信息。 5 在电子对抗层，RL 与博弈论结合紧密，适合处理欺骗、压制和频谱资源自适应。 15 || "
+        },
+        {
+          "idx": 32,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 493.54412841796875,
+            "y": 3642.58251953125,
+            "w": 16.85296630859375,
+            "h": 14.980224609375
+          },
+          "context": "5 || 5 || 反无人机 RL 成败的第一关键，不是网络结构，而是状态与动作空间是否与任务物理结构一致。现有代表性工作显示，状态设计大体围绕五类信息展开：相对几何关系（距离、方位、闭合速度、姿态）、平台资源（剩余能量、弹药、功率、可用拦截体）、任务语义（威胁等级、目标类型、时窗、区域约束）、协同信息（邻机观测、通信消息、角色标识）以及传感器置信度。动作空间则从离散任务指派、目标选择，扩展到连续转向角、机动过载、期望航迹、干扰功率或欺骗参数。Liu 等的 PPO-TAGNA、Ren 等的通信感知追捕框架、Hong Chen 等的 TD3 协同拦截和 GLIDE 的群体控制，都体现了这种“几何—资源—协同”混合编码方式。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 33,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 529.9710693359375,
+            "y": 3824.10986328125,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 奖励设计在反无人机场景中尤其敏感，因为很多任务都存在显著的稀疏回报：真正成功往往只在“完成围捕/拦截/压制”那一刻出现。如果奖励只在终局触发，训练几乎必然低效。现有研究的解决思路主要有四类。第一类是阶段奖励，例如 PPO-TAGNA 的阶段奖励机制；第二类是几何势函数或时间到达近似，Tovarnov 与 Bykov 用三阶 Bézier 曲线估计到达目标的时间，从而构造可跨二维/三维任务共享的奖励；第三类是探索增强与经验回放改造，Cai 等在 EA-MADDPG 中加入额外奖励、动作过滤器和最优回放池；第四类是层级分解和内在奖励，HFRL-IA 与 MADDPG-IA 一类工作都试图用任务分解、注意力压缩和内在奖励缓解稀疏回报。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 34,
+          "tag": "sup",
+          "text": "9",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 157.5971221923828,
+            "y": 4027.947265625,
+            "w": 16.852935791015625,
+            "h": 14.980224609375
+          },
+          "context": "9 || 9 || 从文献看，反无人机 RL 研究高度依赖仿真，但仿真并不等于低保真。Jiang 等早期工作使用简化 2D 对抗环境；Liu 等在数字战场中进行任务分配实验；GLIDE 自建 UAV SIM 模拟带地雷和动态目标的军事环境；Giral 等则明确采用高保真飞行动力学仿真比较 DreamerV3、TQC 与 SAC。更一般的 UAV RL 文献和仿真器综述表明，AirSim、基于 Unreal Engine 的高保真环境以及支持 PX4/ROS 的开放平台，仍是无人机强化学习研究中最常见的训练与验证基础设施。Chan 等对无人机 RL 仿真器的综述特别指出，AirSim 基于 Unreal Engine，兼具物理和视觉仿真，并支持主流飞控接口；Memlikai 与 Tsintotas 2026 年的综述则进一步强调，仿真器选择直接影响训练效率以及 sim-to-real 的可行性。 9 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 35,
+          "tag": "sup",
+          "text": "17",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 671.61181640625,
+            "y": 4209.474609375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "17 || 17 || 反无人机 RL 的第二关键问题，是如何从仿真走向实机。现有文献可归纳出三条较清晰的路径。第一条是误差注入：Chae 等在 GNSS 欺骗工作中显式建模了两类固定翼平台与真实雷达误差，再把训练好的 agent 应用于飞行测试。第二条是课程式迁移：先在简化、自定义、可高速采样的环境中完成策略预训练，再迁移到 AirSim 或高保真环境做微调与鲁棒验证。第三条是硬件在环或混合验证，Bai 等的 Q-learning-cover 与多个近年 UAV RL 工作都开始引入硬件在环实验，试图缩小“纯软件胜利”与“可部署策略”之间的鸿沟。更广义的 UAV RL 部署研究也反复指出，策略在传感器噪声、延迟、未见目标机动和通信丢包下是否仍稳定，才是真正决定工程价值的标准。 17 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 36,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 685.82421875,
+            "y": 4269.07421875,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 成功的反无人机 RL 建模，核心在于把几何关系、资源约束、角色协同与观测不确定统一进状态空间。 5 || 成功的反无人机 RL 建模，核心在于把几何关系、资源约束、角色协同与观测不确定统一进状态空间。 5 奖励工程不是“调参细节”，而是决定训练是否可行的主技术。 18 高保真仿真、误差注入、课程迁移和硬件在环，是当前最现实的 sim-to-real 路径。 19 || "
+        },
+        {
+          "idx": 37,
+          "tag": "sup",
+          "text": "18",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 444.38238525390625,
+            "y": 4298.87451171875,
+            "w": 16.85296630859375,
+            "h": 14.97998046875
+          },
+          "context": "18 || 18 || 奖励工程不是“调参细节”，而是决定训练是否可行的主技术。 18 || 成功的反无人机 RL 建模，核心在于把几何关系、资源约束、角色协同与观测不确定统一进状态空间。 5 奖励工程不是“调参细节”，而是决定训练是否可行的主技术。 18 高保真仿真、误差注入、课程迁移和硬件在环，是当前最现实的 sim-to-real 路径。 19 || "
+        },
+        {
+          "idx": 38,
+          "tag": "sup",
+          "text": "19",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 571.8839721679688,
+            "y": 4328.67431640625,
+            "w": 16.85296630859375,
+            "h": 14.97998046875
+          },
+          "context": "19 || 19 || 高保真仿真、误差注入、课程迁移和硬件在环，是当前最现实的 sim-to-real 路径。 19 || 成功的反无人机 RL 建模，核心在于把几何关系、资源约束、角色协同与观测不确定统一进状态空间。 5 奖励工程不是“调参细节”，而是决定训练是否可行的主技术。 18 高保真仿真、误差注入、课程迁移和硬件在环，是当前最现实的 sim-to-real 路径。 19 || "
+        },
+        {
+          "idx": 39,
+          "tag": "sup",
+          "text": "9",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 250.639404296875,
+            "y": 4523.44873046875,
+            "w": 16.852935791015625,
+            "h": 14.97998046875
+          },
+          "context": "9 || 9 || 如果把现有研究按发展阶段来观察，第一阶段大致是 2021—2022 年的“方法可行性验证”。这一时期的代表工作包括《基于DQN的多类型拦截装备复合式反无人机任务分配方法》、Jiang 等的自注意力 MADDPG 反无人机策略学习、Wang 等的 GAIL 拦截，以及《Research on UAV Anti-Multi-type Interferences Strategy Based on Improved Q-Learning》。这些工作共同证明了一点：反无人机确实可以写成 RL 问题，而且多智能体协同和逆强化学习都不是“概念空转”。但这一阶段的普遍局限也很突出：环境多为简化二维或低维动力学，评估指标相对单一，真实感知误差和复杂对手策略考虑不足。 9 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 40,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 386.435791015625,
+            "y": 4642.48681640625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 第二阶段大致是 2023—2024 年的“任务深化与框架扩展”。一方面，Liu 等把 PPO 推入地空对抗任务分配，Feng 等把反无人机干扰提升为 Markov 博弈求解；另一方面，Dong 的变电站三维追逃、Cai 等的 EA-MADDPG、多 rogue drones 协同压制以及 Chae 等的 GNSS 欺骗，都表明反无人机 RL 已经从“能不能学”转向“学什么任务更值钱”。同一时期，AlKhonaini 的 RL 检测与 Wisniewski 的 PTZ 跟踪也带来一个重要修正：感知层中真正适合 RL 的常常不是目标识别本身，而是主动感知控制与设备调度。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 41,
+          "tag": "sup",
+          "text": "11",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 169.1615753173828,
+            "y": 4761.525390625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "11 || 11 || 第三阶段则是 2025—2026 年开始显现的“系统化与层级化”。Pang 的 LFMAPPO、Ren 的通信感知 MARL、Hong Chen 的 TD3 协同拦截、Huang 的 HFRL-IA，以及 Giral 对 DreamerV3/TQC/SAC 的系统比较，都说明研究重心正在从单一算法性能比较，转向系统组织方式：角色如何分层、通信怎样建模、任务分配与底层控制如何解耦、世界模型能否提升泛化。最新在线发表的 DPE-PER 则提示，部分可观测、经验优先级和动作选择机制正在成为新一轮方法创新的焦点。 11 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 42,
+          "tag": "sup",
+          "text": "5",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 488.080078125,
+            "y": 4880.56396484375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "5 || 5 || 综合来看，当前最有代表性的反无人机 RL 工作大致满足三个条件：第一，不只解决“飞行控制”，而是显式面向反无人机任务；第二，不只关注单机，而是纳入多机协同、对手博弈或电子对抗；第三，不只在理想模拟器中得分，而是开始考虑高保真动力学、真实误差或硬件验证。以此标准衡量，任务分配类（Liu 2023）、自适应干扰类（Feng 2023、Chae 2024）、协同追捕类（Ren 2025、Cai 2024）、层级拦截类（Pang 2025、Huang 2025）和模型型拦截控制类（Giral 2025）构成了当前最值得重点跟进的五个子方向。 5 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 43,
+          "tag": "sup",
+          "text": "9",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 80.64706420898438,
+            "y": 4962.4736328125,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "9 || 9 || 2021—2022 年是“可行性证明期”，2023—2024 年是“任务深化期”，2025—2026 年进入“系统化组织期”。 9 || 2021—2022 年是“可行性证明期”，2023—2024 年是“任务深化期”，2025—2026 年进入“系统化组织期”。 9 最有价值的工作，不是单纯更高 reward，而是更贴近反无人机真实任务链。 3 当前主线已从单机控制转向多智能体、层级决策、通信建模与高保真验证。 20 || "
+        },
+        {
+          "idx": 44,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 533.8258666992188,
+            "y": 4992.2734375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "3 || 3 || 最有价值的工作，不是单纯更高 reward，而是更贴近反无人机真实任务链。 3 || 2021—2022 年是“可行性证明期”，2023—2024 年是“任务深化期”，2025—2026 年进入“系统化组织期”。 9 最有价值的工作，不是单纯更高 reward，而是更贴近反无人机真实任务链。 3 当前主线已从单机控制转向多智能体、层级决策、通信建模与高保真验证。 20 || "
+        },
+        {
+          "idx": 45,
+          "tag": "sup",
+          "text": "20",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 528.7860717773438,
+            "y": 5022.0732421875,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "20 || 20 || 当前主线已从单机控制转向多智能体、层级决策、通信建模与高保真验证。 20 || 2021—2022 年是“可行性证明期”，2023—2024 年是“任务深化期”，2025—2026 年进入“系统化组织期”。 9 最有价值的工作，不是单纯更高 reward，而是更贴近反无人机真实任务链。 3 当前主线已从单机控制转向多智能体、层级决策、通信建模与高保真验证。 20 || "
+        },
+        {
+          "idx": 46,
+          "tag": "sup",
+          "text": "6",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 603.71728515625,
+            "y": 5149.91845703125,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "6 || 6 || 第一，样本效率仍然是根本瓶颈。反无人机任务通常具有高维状态、稀疏回报和强策略耦合，训练一次就可能需要大量场景采样，而真实世界又不可能开放式试错。DreamerV3 之类模型型方法显示出一定优势，但这并不意味着问题已经解决；相反，它提示研究者必须更重视模型学习、离线数据利用和先验知识注入。 6 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 47,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 101.26704406738281,
+            "y": 5246.6474609375,
+            "w": 16.852951049804688,
+            "h": 14.98046875
+          },
+          "context": "1 || 1 || 第二，可迁移性与泛化不足。Dong 等的综述明确指出，反无人机在实时性能、隐蔽目标和集群场景上仍存在明显缺口；其数据集分析也显示，不同数据源、标签格式、测试条件和对抗真实性差异，正在阻碍标准化评价。许多 RL 工作在单一自建环境中成绩很好，但更换地图、风场、目标机型、感知噪声分布后能否维持性能，往往缺乏充分证据。 1 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 48,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 302.0393981933594,
+            "y": 5365.68603515625,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "1 || 1 || 第三，对抗鲁棒性问题比一般机器人场景更尖锐。反无人机系统面对的不是静态障碍物，而是会规避、会欺骗、会压制、甚至会攻击决策模块本身的对手。Dong 等综述把对抗鲁棒性明确列为开放问题；Yang 等的抗干扰综述也强调了博弈建模和工程落地挑战。你上传语料中的《Robust Adversarial Attacks Detection based on Explainable Deep Reinforcement Learning For UAV Guidance and Planning》（2022）亦说明，研究社区已经意识到“策略会被攻击”本身就是问题的一部分。 1 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 49,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 74.1077651977539,
+            "y": 5462.4150390625,
+            "w": 16.852943420410156,
+            "h": 14.97998046875
+          },
+          "context": "3 || 3 || 第四，工程部署与法规伦理约束不可回避。Wandelt 等提出的 DRONEWALLS 框架专门将“行动/合规”单独列为一阶段，包含中和、法律/伦理遵循与责任问题。这一点对反无人机尤其关键：射频压制是否合规、欺骗会否误伤民用通信、硬杀伤是否会带来附带损害、自治拦截是否允许完全脱离人类授权，这些问题都不是算法指标能替代的。 3 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 50,
+          "tag": "sup",
+          "text": "6",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 509.2852783203125,
+            "y": 5522.0146484375,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "6 || 6 || 训练成本高、泛化差、对抗脆弱，是 RL 反无人机研究的三大技术短板。 6 || 训练成本高、泛化差、对抗脆弱，是 RL 反无人机研究的三大技术短板。 6 许多成果仍停留在“仿真可用”，距离“实战可部署”尚有明显距离。 1 反无人机最终受制于系统工程与合规边界，而不只受制于算法。 3 || "
+        },
+        {
+          "idx": 51,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 468.6158142089844,
+            "y": 5551.814453125,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "1 || 1 || 许多成果仍停留在“仿真可用”，距离“实战可部署”尚有明显距离。 1 || 训练成本高、泛化差、对抗脆弱，是 RL 反无人机研究的三大技术短板。 6 许多成果仍停留在“仿真可用”，距离“实战可部署”尚有明显距离。 1 反无人机最终受制于系统工程与合规边界，而不只受制于算法。 3 || "
+        },
+        {
+          "idx": 52,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 460.8842468261719,
+            "y": 5581.6142578125,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "3 || 3 || 反无人机最终受制于系统工程与合规边界，而不只受制于算法。 3 || 训练成本高、泛化差、对抗脆弱，是 RL 反无人机研究的三大技术短板。 6 许多成果仍停留在“仿真可用”，距离“实战可部署”尚有明显距离。 1 反无人机最终受制于系统工程与合规边界，而不只受制于算法。 3 || "
+        },
+        {
+          "idx": 53,
+          "tag": "sup",
+          "text": "13",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 564.7960815429688,
+            "y": 5757.12939453125,
+            "w": 16.85296630859375,
+            "h": 14.97998046875
+          },
+          "context": "13 || 13 || 其一，向部分可观测与信念状态决策推进。最新拦截研究已经开始显式处理 POMDP、循环记忆与不确定性驱动经验回放；这意味着反无人机 RL 将从“看见就决策”走向“基于不完整证据做风险控制”。 13 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 54,
+          "tag": "sup",
+          "text": "11",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 182.744873046875,
+            "y": 5831.54833984375,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "11 || 11 || 其二，向任务—路径—控制一体化的分层框架推进。现有最强工作已经不再把任务分配、航迹规划和底层控制分立处理，而是用分层 MDP、角色分工和图结构编码进行统一建模。下一步的关键，不是层数更多，而是层间接口更可解释、更可验证。 11 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 55,
+          "tag": "sup",
+          "text": "12",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 114.843017578125,
+            "y": 5905.9677734375,
+            "w": 16.852951049804688,
+            "h": 14.97998046875
+          },
+          "context": "12 || 12 || 其三，向感知—决策一体化推进。当前感知层与决策层仍然常被分离优化，但反无人机是真正需要“闭环主动感知”的场景。PTZ 跟踪、主动传感器开关、多模态权重自适应，都是把 RL 从“末端控制器”推进为“系统级调度器”的候选路径。 12 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 56,
+          "tag": "sup",
+          "text": "15",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 128.42633056640625,
+            "y": 5980.38671875,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "15 || 15 || 其四，向数字孪生、课程迁移与硬件在环验证推进。高保真仿真、误差注入和 staged transfer 已经成为部署前必经之路。未来真正有影响力的论文，很可能不再只报告仿真胜率，而会同时报告跨场景泛化、失效模式和实机/半实物转化率。 15 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 57,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 196.3208465576172,
+            "y": 6054.80615234375,
+            "w": 16.852951049804688,
+            "h": 14.97998046875
+          },
+          "context": "3 || 3 || 其五，向安全强化学习和人机协同授权推进。反无人机是高风险应用，未来更现实的路线不是“全自动开火”，而是约束强化学习、可审计策略、人类在环授权和基于规则的安全包线。只有在这一层面补足，RL 才可能真正从研究原型变成可部署能力。 3 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 58,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 46.94117736816406,
+            "y": 6214.02392578125,
+            "w": 16.852943420410156,
+            "h": 14.98046875
+          },
+          "context": "2 || 2 || 总体来看，强化学习在反无人机系统中的价值已从“局部算法尝试”逐步成长为“系统决策核心候选”。它最适合承担的任务，不是静态探测或单纯分类，而是那些同时具有长期回报、连续控制、多主体耦合和对手适应性的环节：任务分配、协同围捕、电子压制、主动感知和层级交战决策。现有研究已经沿着值函数、演员—评论家、MARL 和 HRL 四条路线形成较清晰谱系；其中，多智能体与分层强化学习最有可能成为未来反无人机系统的主干框架。 2 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 59,
+          "tag": "sup",
+          "text": "6",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 46.94117736816406,
+            "y": 6310.7529296875,
+            "w": 16.852943420410156,
+            "h": 14.97998046875
+          },
+          "context": "6 || 6 || 但必须强调，反无人机 RL 仍远未到“可直接替换传统系统”的阶段。现阶段更合理的定位，是把 RL 视作决策层与行动层的自适应模块，与传统感知、博弈推演、规则约束和安全机制共同构成混合式系统。谁能先解决样本效率、对抗鲁棒性、通信受限协同和 sim-to-real 这四个瓶颈，谁就更可能把强化学习真正推入反无人机工程体系。 6 || 强化学习在反无人机系统中的应用 引言与背景 反无人机系统的技术目标，已经从早期“单点探测—人工处置”的线性流程，演化为“多源感知—威胁评估—任务分配—拦截/压制—合规处置”的闭环系统工程。近年的综述普遍认为，现代反无人机问题至少同时面对四类难点：目标小、机动强、传感器异构、对抗者策略持续变化；尤其在集群、小低慢目标、复杂地物与强电磁对抗场景下，单一模态、单阶段优化方法很难稳定工作。Dong 等在 2025 年的综述将反无人机研究概括为分类、探测与跟踪三条主线，并明确把强化学习列为新一代反无人机的重要技术方向之一；Wandelt 等则进一步把反无人机系统抽象为“探测—分析/决策—行动/合规”三阶段统一框架，强调决策层与行动层不能再被当作感知系统的附庸，而应被视作独立优化对象。 1 传统反无人机方法的核心优势在于可解释、可验证和工程成熟。例如，基于雷达、射频、声学、光电/红外的探测链条已经形成较稳定的技术谱系；在处置层，GNSS 欺骗、射频压制、激光毁伤、拦截网、伴飞压制等方法各有适用边界。问题在于，这些方法往往依赖较强先验：目标运动模型要相对固定、环境统计特性要相对平稳、传感器置信度要可校准、交战规则要可预编排。一旦进入非线性、部分可观测、对手会“学”的对抗场景，基于规则、启发式搜索或单次静态优化的方法就容易出现动作滞后、策略脆弱或组合爆炸。Yang 等对追逃博弈的综述指出，传统微分 || "
+        },
+        {
+          "idx": 60,
+          "tag": "sup",
+          "text": "13",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 563.2234497070312,
+            "y": 6370.3525390625,
+            "w": 16.8529052734375,
+            "h": 14.98046875
+          },
+          "context": "13 || 13 || 未来重点不在“新算法名词”，而在 POMDP、层级一体化、主动感知与部署验证。 13 || 未来重点不在“新算法名词”，而在 POMDP、层级一体化、主动感知与部署验证。 13 反无人机 RL 的合理定位，是混合系统中的自适应决策模块。 3 真正决定其工程前景的，是鲁棒性、合规性和 sim-to-real 能力。 3 || "
+        },
+        {
+          "idx": 61,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 441.3907165527344,
+            "y": 6400.15234375,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "3 || 3 || 反无人机 RL 的合理定位，是混合系统中的自适应决策模块。 3 || 未来重点不在“新算法名词”，而在 POMDP、层级一体化、主动感知与部署验证。 13 反无人机 RL 的合理定位，是混合系统中的自适应决策模块。 3 真正决定其工程前景的，是鲁棒性、合规性和 sim-to-real 能力。 3 || "
+        },
+        {
+          "idx": 62,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 463.23956298828125,
+            "y": 6429.9521484375,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "3 || 3 || 真正决定其工程前景的，是鲁棒性、合规性和 sim-to-real 能力。 3 || 未来重点不在“新算法名词”，而在 POMDP、层级一体化、主动感知与部署验证。 13 反无人机 RL 的合理定位，是混合系统中的自适应决策模块。 3 真正决定其工程前景的，是鲁棒性、合规性和 sim-to-real 能力。 3 || "
+        },
+        {
+          "idx": 63,
+          "tag": "sup",
+          "text": "1",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 412.4539794921875,
+            "y": 7442.591796875,
+            "w": 16.852935791015625,
+            "h": 14.97998046875
+          },
+          "context": "1 || 1 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 64,
+          "tag": "sup",
+          "text": "3",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 604.0537719726562,
+            "y": 7494.701171875,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "3 || 3 || Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 65,
+          "tag": "sup",
+          "text": "2",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 305.477294921875,
+            "y": 7546.810546875,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "2 || 2 || Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 66,
+          "tag": "sup",
+          "text": "21",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 117.24954223632812,
+            "y": 7598.919921875,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "21 || 21 || AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Sensors, 2024. 21 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 67,
+          "tag": "sup",
+          "text": "18",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 417.17193603515625,
+            "y": 7651.02978515625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "18 || 18 || Tovarnov, M. S., Bykov, N. V. Reinforcement learning reward function in unmanned aerial vehicle control tasks. arXiv / Journal of Physics: Conference Series, 2022. 18 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 68,
+          "tag": "sup",
+          "text": "22",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 290.3798828125,
+            "y": 7703.13916015625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "22 || 22 || Chan, J. H., et al. Reinforcement learning-based drone simulators: survey, comparison, and challenges. Artificial Intelligence Review, 2024. 22 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 69,
+          "tag": "sup",
+          "text": "23",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 243.59539794921875,
+            "y": 7755.24853515625,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "23 || 23 || Memlikai, G., Tsintotas, K. A. Reinforcement Learning for UAV Control: From Algorithms to Deployment Readiness. Machines, 2026. 23 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 70,
+          "tag": "sup",
+          "text": "24",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 175.24005126953125,
+            "y": 7807.3583984375,
+            "w": 16.852935791015625,
+            "h": 14.98046875
+          },
+          "context": "24 || 24 || Jonnarth, A., et al. Sim-to-Real Transfer of Deep Reinforcement Learning Agents for Online Coverage Path Planning. 2025. 24 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 71,
+          "tag": "sup",
+          "text": "16",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 536.2616577148438,
+            "y": 7859.4677734375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "16 || 16 || Valianti, P., Malialis, K., Kolios, P., Ellinas, G. Cooperative Multi-Agent Jamming of Multiple Rogue Drones Using Reinforcement Learning. IEEE Transactions on Mobile Computing, 2024. 16 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        },
+        {
+          "idx": 72,
+          "tag": "sup",
+          "text": "13",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 610.1541748046875,
+            "y": 7911.5771484375,
+            "w": 16.85296630859375,
+            "h": 14.98046875
+          },
+          "context": "13 || 13 || Srisomboon, I., Lee, S. Direction Prediction Error-Prioritized Experience Replay for Adversarial UAV Interception under Partial Observability. IEEE Internet of Things Journal, 2026 online first. 13 || Dong, Y., Wu, F., Zhang, S., et al. Securing the Skies: A Comprehensive Survey on Anti-UAV Methods, Benchmarking, and Future Directions. arXiv, 2025/2026. 1 Wandelt, S., Zhou, M., Song, S., Sun, X. On the construction of effective DRONEWALLS: Technologies and challenges for Counter-UAV systems. Journal of the Air Transport Research Society, 2025. 3 Yang, K., Shen, A., Xu, N., et al. A review of reinforcement learning approaches for pursuit-evasion games. Chinese Journal of Aeronautics, 2025. 2 AlKhonaini, A., Sheltami, T., Mahmoud, A., Imam, M. UAV Detection Using Reinforcement Learning. Senso || "
+        }
+      ]
+    },
+    {
+      "frame_index": 7,
+      "url": "about:blank",
+      "snippet": "I am updating the research plan to focus on generating the requested DOCX and PPTX files using the current final review content, following your detailed formatting and output instructions.\n计划已编辑…\n从会话中提取用户已确认的中文综述全文。\n使用 python-docx 将全文渲染为符合学术格式的 DOCX。\n使用 python-pptx 基于综述生成 18–25 张的 PPTX。\n保存文件到工作目录并输出绝对路径与字节数。\n将两个文件作为附件链接返回给用户并确认元信息。",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "button",
+          "text": "计划已编辑…",
+          "aria": "Hide plan",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 17,
+            "y": 81,
+            "w": 542,
+            "h": 24
+          },
+          "context": "计划已编辑… || 计划已编辑… 从会话中提取用户已确认的中文综述全文。 使用 python-docx 将全文渲染为符合学术格式的 DOCX。 使用 python-pptx 基于综述生成 18–25 张的 PPTX。 保存文件到工作目录并输出绝对路径与字节数。 将两个文件作为附件链接返回给用户并确认元信息。 || 计划已编辑… 从会话中提取用户已确认的中文综述全文。 使用 python-docx 将全文渲染为符合学术格式的 DOCX。 使用 python-pptx 基于综述生成 18–25 张的 PPTX。 保存文件到工作目录并输出绝对路径与字节数。 将两个文件作为附件链接返回给用户并确认元信息。 || I am updating the research plan to focus on generating the requested DOCX and PPTX files using the current final review content, following your detailed formatting and output instructions. 计划已编辑… 从会话中提取用户已确认的中文综述全文。 使用 python-docx 将全文渲染为符合学术格式的 DOCX。 使用 python-pptx 基于综述生成 18–25 张的 PPTX。 保存文件到工作目录并输出绝对路径与字节数。 将两个文件作为附件链接返回给用户并确认元信息。 || "
+        }
+      ]
+    },
+    {
+      "frame_index": 8,
+      "url": "about:blank",
+      "snippet": "我将根据您的要求，更新研究计划，立即停止新的研究检索与补充，仅用当前综述内容生成所需的 docx 和 pptx 文件，并直接执行 Python 脚本。\n研究完成情况：29m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n深度研究报告\n\n已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验：\n\n文献综述 DOCX\n下载 强化学习在反无人机系统中的应用-文献综述.docx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx\n文件大小：80,171 bytes\n\n组会汇报 PPTX\n下载 强化学习在反无人机系统中的应用-组会汇报.pptx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx\n文件大小：59,848 bytes\n\n最终确认：\n\nDOCX 标题：《强化学习在反无人机系统中的应用》\nPPT 标题：《强化学习在反无人机系统中的应用》\nPPT 幻灯片数：22 张\n文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes\n\n开放说明：\n\n本轮最终校验已确认两份文件成功生成并可下载。\nDOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "button",
+          "text": "",
+          "aria": "导出",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 690,
+            "y": 106,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 深度研究报告 || "
+        },
+        {
+          "idx": 1,
+          "tag": "button",
+          "text": "",
+          "aria": "展开",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 726,
+            "y": 106,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  || 深度研究报告 || 深度研究报告 已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes 开放说明： 本轮最终校验已确认两份文件成功生成并可下载。 DOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。 || "
+        },
+        {
+          "idx": 2,
+          "tag": "div",
+          "text": "已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes 开放说明： 本轮最终校验已确认两份文件成功生成并可下载。 DOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 2,
+            "y": 146,
+            "w": 764,
+            "h": 400
+          },
+          "context": "已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes 开放说明： 本轮最终校验已确认两份文件成功生成并可下载。 DOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。 || 已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes 开放说明： 本轮最终校验已确认两份文件成功生成并可下载。 DOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。 || 深度研究报告 已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59,848 bytes 开放说明： 本轮最终校验已确认两份文件成功生成并可下载。 DOCX 的精确页数没有在最后一次校验输出中重新回显；如果你下一步要我继续，我可以直接在这个会话里把它再精确统计，并继续为你生成 .pdf、美化版 .pptx，或按学校模板进一步排版。 || 研究完成情况：29m · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 次引用 · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 个搜索 深度研究报告 已按你的要求在容器中生成两个文件，并完成最终存在性与大小校验： 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes 最终确认： DOCX 标题：《强化学习在反无人机系统中的应用》 PPT 标题：《强化学习在反无人机系统中的应用》 PPT 幻灯片数：22 张 文件大小：DOCX 80,171 bytes；PPTX 59, || "
+        },
+        {
+          "idx": 3,
+          "tag": "a",
+          "text": "下载 强化学习在反无人机系统中的应用-文献综述.docx",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 80.64706420898438,
+            "y": 237.3379669189453,
+            "w": 334.3670349121094,
+            "h": 15.448532104492188
+          },
+          "context": "下载 强化学习在反无人机系统中的应用-文献综述.docx || 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes || 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes || 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes || "
+        },
+        {
+          "idx": 4,
+          "tag": "a",
+          "text": "下载 强化学习在反无人机系统中的应用-组会汇报.pptx",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 80.64706420898438,
+            "y": 334.3887023925781,
+            "w": 334.3670349121094,
+            "h": 15.448516845703125
+          },
+          "context": "下载 强化学习在反无人机系统中的应用-组会汇报.pptx || 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes || 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes || 文献综述 DOCX 下载 强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80,171 bytes 组会汇报 PPTX 下载 强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59,848 bytes || "
+        }
+      ]
+    },
+    {
+      "frame_index": 9,
+      "url": "about:blank",
+      "snippet": "研究完成情况：<1m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 次引用 · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n 个搜索\n下载文件\n\n已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。\n\n下载文件\n下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx\n下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx\n生成结果回显\n文献综述 DOCX\n文件名：强化学习在反无人机系统中的应用-文献综述.docx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx\n文件大小：80171 bytes\n组会汇报 PPTX\n文件名：强化学习在反无人机系统中的应用-组会汇报.pptx\n绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx\n文件大小：59848 bytes\n幻灯片数：22\n文件内容确认\nDOCX\n\n已包含以下结构与要素：\n\n封面页：题目、作者占位、日期 2026-05-13\n目录页：基于 H1/H2 的自动目录域\n全部正文：按综述章节映射到 Heading 1–3\n正文排版：1.5 倍行距、首行缩进 2 字符\n参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目\n列表、引用、代码样式已做对应映射\nPPTX\n\n已包含以下结构与要素：\n\n16:9 宽屏\n白底、深蓝标题、深灰正文的学术风格\n共 22 张幻灯片\n按综述章节组织：封面、路线图、背景、方法、任务、关键技术、代表性工作、局限挑战、未来方向、结论、答疑\n各章节首张幻灯片底部已标注对应综述章节编号\n使用说明\nDOCX 中的目录域已经写入；首次在 Word 或 LibreOffice 中打开时，如目录未自动刷新，可手动执行“更新目录”。\n字体采用容器内可用的中文字体方案进行渲染；不同本地环境中若缺少同名字体，显示效果可能会有轻微差异，但文件结构与内容完整可用。",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "button",
+          "text": "",
+          "aria": "导出",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 680,
+            "y": 42,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  ||  || 下载文件 || "
+        },
+        {
+          "idx": 1,
+          "tag": "button",
+          "text": "",
+          "aria": "展开",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 716,
+            "y": 42,
+            "w": 32,
+            "h": 32
+          },
+          "context": " ||  || 下载文件 || 下载文件 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、 || "
+        },
+        {
+          "idx": 2,
+          "tag": "div",
+          "text": "已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、方法、任务、关键技术、代表性工作、局限挑战、未来方向、结论、答疑 各章节首张幻灯片底部已标注对应综述章节编号 使用说明 DOCX 中的目录域已经写入；首次在 Word 或 LibreOffice 中打开时，如目录未自动刷新，可手动执行“更新目录”。 字体采用容器内可用的中文字体方案进行渲染；不同本地环境中若缺少同名字体，显示效果可能会有轻微差异，但文件结构与内容完整可用。",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 2,
+            "y": 82,
+            "w": 754,
+            "h": 400
+          },
+          "context": "已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、方法、任务 || 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、方法、任务 || 下载文件 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、 || 研究完成情况：<1m · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 次引用 · 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 个搜索 下载文件 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 b || "
+        },
+        {
+          "idx": 3,
+          "tag": "a",
+          "text": "下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 79.6176528930664,
+            "y": 224.86932373046875,
+            "w": 369.70892333984375,
+            "h": 15.246322631835938
+          },
+          "context": "下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx || 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx || 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx || 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、方法、任务 || "
+        },
+        {
+          "idx": 4,
+          "tag": "a",
+          "text": "下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx",
+          "aria": "",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 79.6176528930664,
+            "y": 254.2791290283203,
+            "w": 364.1431579589844,
+            "h": 15.246322631835938
+          },
+          "context": "下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx || 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx || 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx || 已按本会话中已有的中文综述文本生成并校验两份文件，下面附上下载链接与 Code Interpreter 回显的产物信息。 下载文件 下载 DOCX：强化学习在反无人机系统中的应用-文献综述.docx 下载 PPTX：强化学习在反无人机系统中的应用-组会汇报.pptx 生成结果回显 文献综述 DOCX 文件名：强化学习在反无人机系统中的应用-文献综述.docx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-文献综述.docx 文件大小：80171 bytes 组会汇报 PPTX 文件名：强化学习在反无人机系统中的应用-组会汇报.pptx 绝对路径：/mnt/data/强化学习在反无人机系统中的应用-组会汇报.pptx 文件大小：59848 bytes 幻灯片数：22 文件内容确认 DOCX 已包含以下结构与要素： 封面页：题目、作者占位、日期 2026-05-13 目录页：基于 H1/H2 的自动目录域 全部正文：按综述章节映射到 Heading 1–3 正文排版：1.5 倍行距、首行缩进 2 字符 参考文献：末尾追加 master_records.bib 的原始 BibTeX 条目 列表、引用、代码样式已做对应映射 PPTX 已包含以下结构与要素： 16:9 宽屏 白底、深蓝标题、深灰正文的学术风格 共 22 张幻灯片 按综述章节组织：封面、路线图、背景、方法、任务 || "
+        }
+      ]
+    },
+    {
+      "frame_index": 10,
+      "url": "about:blank",
+      "snippet": "计划已编辑…\n解析并整合用户上传的 master_records.bib 与 master_records.csv。\n检索并收集近三年内强化学习与反无人机相关的最新学术与会议论文。\n按方法与任务维度对文献进行分类并提取关键技术细节与实验设置。\n撰写结构化中文综述，包含引言、方法、任务、挑战与未来方向。\n生成完整参考文献列表并确保引用与用户提供的 .bib 条目一致。",
+      "elements": [
+        {
+          "idx": 0,
+          "tag": "button",
+          "text": "计划已编辑…",
+          "aria": "Hide plan",
+          "title": "",
+          "testid": "",
+          "href": "",
+          "box": {
+            "x": 17,
+            "y": 17,
+            "w": 542,
+            "h": 24
+          },
+          "context": "计划已编辑… || 计划已编辑… 解析并整合用户上传的 master_records.bib 与 master_records.csv。 检索并收集近三年内强化学习与反无人机相关的最新学术与会议论文。 按方法与任务维度对文献进行分类并提取关键技术细节与实验设置。 撰写结构化中文综述，包含引言、方法、任务、挑战与未来方向。 生成完整参考文献列表并确保引用与用户提供的 .bib 条目一致。 || 计划已编辑… 解析并整合用户上传的 master_records.bib 与 master_records.csv。 检索并收集近三年内强化学习与反无人机相关的最新学术与会议论文。 按方法与任务维度对文献进行分类并提取关键技术细节与实验设置。 撰写结构化中文综述，包含引言、方法、任务、挑战与未来方向。 生成完整参考文献列表并确保引用与用户提供的 .bib 条目一致。 || 计划已编辑… 解析并整合用户上传的 master_records.bib 与 master_records.csv。 检索并收集近三年内强化学习与反无人机相关的最新学术与会议论文。 按方法与任务维度对文献进行分类并提取关键技术细节与实验设置。 撰写结构化中文综述，包含引言、方法、任务、挑战与未来方向。 生成完整参考文献列表并确保引用与用户提供的 .bib 条目一致。 || "
+        }
+      ]
+    }
+  ],
+  "ts": "2026-05-13T22:55:33"
+}

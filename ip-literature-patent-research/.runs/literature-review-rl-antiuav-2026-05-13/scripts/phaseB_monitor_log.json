@@ -1,0 +1,43 @@
+[
+  {
+    "cand": "button[aria-label*=\"Download\" i]",
+    "i": 0,
+    "vis": true,
+    "txt": "",
+    "aria": "打开“File download ready”的对话选项"
+  },
+  {
+    "tryfail": "button[aria-label*=\"Download\" i]",
+    "i": 0,
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============="
+  },
+  {
+    "cand": "button[aria-label*=\"Download\" i]",
+    "i": 1,
+    "vis": true,
+    "txt": "",
+    "aria": "Download apps"
+  },
+  {
+    "tryfail": "button[aria-label*=\"Download\" i]",
+    "i": 1,
+    "err": "TimeoutError('Timeout 10000ms exceeded while waiting for event \"download\"\\n=========================== logs ===========================\\nwaiting for event \"download\"\\n============="
+  },
+  {
+    "cand": "button[aria-label*=\"下载\"]",
+    "i": 0,
+    "vis": true,
+    "txt": "",
+    "aria": "下载 3 个文件"
+  },
+  {
+    "downloaded": "prompt.md",
+    "selector": "button[aria-label*=\"下载\"]",
+    "i": 0
+  },
+  {
+    "elapsed": 32,
+    "ppt_exists": true,
+    "last_tail": "跳至内容\n历史聊天记录\nChatGPT\n新聊天\nSearch chats\nCodex\n更多\n项目\n新项目\nRL0511\n1浏览器自动化（读取+操作）\n3Radar\n2notebooklm自动化\n最近\nNew chat\n强化学习在反无人机应用\nGemini 使用问题解析\nClaude -p 解析\nLinux 监视Codex tokens\nCSV Files Generation\nPackage Name and Scripts\nCatalog probe ok\nPython 3.12 Changelog\nMorning Routines in Canvas\nPython 3.12 Changelog URL\nPython Canvas Script\nCreate tiny red dot\n刷国行平板美版系统\n简历翻译与PDF生成\n查看Linux剪贴板历史\n项目链接与名称输出\n问候交流\nFile download ready\n根据聊天描述用户\n欢迎使用 ChatGPT\nShark\nPro\n分享\n粘贴的文本 (1).txt\n文档\n\n我会把综述压缩成 12–18 页组会汇报结构，制作深色学术风格 PPT，并直接生成可下载的 .pptx 文件。重点保留方法谱系、代表工作对比、平台指标、开放问题和参考文献，而不是照搬正文。\n\nI need to create a PowerPoint presentation, either using python-pptx or pptxgenjs.\n\n进阶专业\nChatGPT 也可能会犯错。请核查重要信息。查看 你的隐私选择。⁠"
+  }
+]
