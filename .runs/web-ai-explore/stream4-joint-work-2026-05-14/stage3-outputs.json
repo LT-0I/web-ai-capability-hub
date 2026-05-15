@@ -1,0 +1,61 @@
+{
+  "stage": 3,
+  "service": "Gemini",
+  "profile": "gemini-9225",
+  "port": 9225,
+  "tab_alloc": {
+    "tabId": "jw-gemini-1",
+    "pageId": "BF14D1902575E05C3AA8E100E4379176",
+    "url": "https://gemini.google.com/",
+    "cdpEndpoint": "http://127.0.0.1:9225"
+  },
+  "model_check": {
+    "model_used": null,
+    "note": "Smoke report showed 'Gemini PRO' in header. MODEL_SELECTION_DRIFT concern — cannot confirm Flash/default. Continued per spec."
+  },
+  "send_prompt_attempt1": {
+    "response_text": "",
+    "elapsed_ms": 61641,
+    "wait_ms": 60000,
+    "completion_detected": false,
+    "errorCode": "COMMAND_TIMEOUT",
+    "error_code": "COMMAND_TIMEOUT",
+    "model_used": null,
+    "chat_url": "https://gemini.google.com/app/55540de4e5daa7b7"
+  },
+  "send_prompt_attempt2": {
+    "response_text": "",
+    "elapsed_ms": 121667,
+    "wait_ms": 120000,
+    "completion_detected": false,
+    "errorCode": "COMMAND_TIMEOUT",
+    "error_code": "COMMAND_TIMEOUT",
+    "model_used": null,
+    "chat_url": "https://gemini.google.com/app/55540de4e5daa7b7"
+  },
+  "upload_and_query": {
+    "ok": false,
+    "error": "page.setInputFiles: Timeout 10000ms exceeded. Waiting for locator('input[type=\"file\"]')",
+    "errorCode": "UPLOAD_TIMEOUT",
+    "note": "File input not found at Gemini app page — upload trigger button not clicked first"
+  },
+  "generate_image": {
+    "ok": false,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "error": "No element matched --button-selector",
+    "evidence": {
+      "selector": "button[aria-label=\"Download full size image\"]",
+      "pageUrl": "https://gemini.google.com/app/55540de4e5daa7b7",
+      "frameCount": 3,
+      "triedFrames": [
+        {"url": "https://gemini.google.com/app/55540de4e5daa7b7", "hadSelectorMatch": false},
+        {"url": "https://gemini.google.com/_/bscframe", "hadSelectorMatch": false},
+        {"url": "", "hadSelectorMatch": false}
+      ]
+    }
+  },
+  "png_artifact": null,
+  "forbidden_field_leak": "PASS",
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "Gemini response capture broken — COMMAND_TIMEOUT on send-prompt at both 60s and 120s (Bug #1 from smoke report unresolved for Gemini). upload-and-query failed because file input not accessible without triggering upload button. generate-image returned ELEMENT_NOT_FOUND (no image was generated). MODEL_SELECTION_DRIFT: 'Gemini PRO' visible in prior smoke report — model tier not confirmed as Flash/default."
+}

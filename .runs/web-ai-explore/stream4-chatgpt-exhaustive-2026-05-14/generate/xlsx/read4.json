@@ -1,0 +1,233 @@
+{
+  "url": "https://chatgpt.com/",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T16:31:26.151Z",
+  "visibleText": "Skip to content Open sidebar New chat Search chats Open profile menu Home ChatGPT Close sidebar Projects Codex Shark 7 Pro, open profile menu Shark 7 Pro Download apps Create the same 5-capital-cities dataset as a small XLSX file named capitals.xlsx with one sheet 'capitals' and columns city, country, population, area_km2. Save so I can download it. Instant ChatGPT can make mistakes. Check important info. See Your privacy choices.⁠ Your message actions Copy message Add files and more Chat with ChatGPT Instant Start dictation Stop answering Your privacy choices",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Skip to content",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Open profile menu",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Home",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "Close sidebar",
+      "selector": "button[aria-label=\"Close sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Projects",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Shark 7 Pro, open profile menu",
+      "text": "Shark 7 Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Download apps",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "presentation",
+      "name": "Create the same 5-capital-cities dataset as a small XLSX file named capitals.xlsx with one sheet 'capitals' and columns city, country, population, area_km2. Save so I can download it. Instant ChatGPT can make mistakes. Check important info. See Your privacy choices.⁠",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e13",
+      "role": "group",
+      "name": "Your message actions",
+      "selector": "div[aria-label=\"Your message actions\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Copy message",
+      "selector": "button[aria-label=\"Copy message\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e16",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-files",
+      "tagName": "input"
+    },
+    {
+      "ref": "e17",
+      "role": "button",
+      "name": "Add files and more",
+      "selector": "#composer-plus-btn",
+      "tagName": "button"
+    },
+    {
+      "ref": "e18",
+      "role": "textbox",
+      "name": "Chat with ChatGPT",
+      "selector": "#prompt-textarea",
+      "tagName": "div"
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "Instant",
+      "selector": "#radix-_r_20_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Start dictation",
+      "selector": "button[aria-label=\"Start dictation\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Stop answering",
+      "selector": "#composer-submit-button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e22",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-photos",
+      "tagName": "input"
+    },
+    {
+      "ref": "e23",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-camera",
+      "tagName": "input"
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "Your privacy choices",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "alert",
+      "name": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div"
+    },
+    {
+      "ref": "e26",
+      "role": "status",
+      "name": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div"
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Instant",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e16",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-files",
+          "tagName": "input"
+        },
+        {
+          "ref": "e18",
+          "role": "textbox",
+          "name": "Chat with ChatGPT",
+          "selector": "#prompt-textarea",
+          "tagName": "div"
+        },
+        {
+          "ref": "e22",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-photos",
+          "tagName": "input"
+        },
+        {
+          "ref": "e23",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-camera",
+          "tagName": "input"
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [],
+  "iframes": [],
+  "warnings": []
+}

@@ -1,0 +1,7 @@
+# Stream #4 Web-AI Exhaustive Exploration Briefing
+
+Stream #4 focuses on systematically exploring the full surface area of modern web-based AI products, especially the interactive features that are easy to miss in ordinary prompt testing. The goal is to move beyond simple chat completion checks and build a practical map of everything a user can do inside a web AI interface: file upload, image input, code execution, canvas-style editing, artifact generation, search, browsing, memory, voice, multimodal controls, sharing, exports, settings, account flows, and error recovery.
+
+This stream treats the web client itself as the product under test. Exploration should document entry points, hidden menus, modal dialogs, attachment behavior, permissions, rate-limit states, model switching, and cross-feature workflows. Each discovered capability should be recorded with its trigger path, expected behavior, observable outputs, edge cases, and any automation hooks or shortcuts.
+
+A useful test plan should combine breadth-first feature discovery with repeatable scenario testing. The first pass inventories every visible control. The second pass exercises realistic workflows, such as uploading files, generating artifacts, editing outputs, searching the web, and exporting results. The final pass converts discoveries into reusable playbooks, so web-AI functions can be invoked quickly and reliably later.

@@ -8,6 +8,7 @@ export interface RedactionOptions {
 const PROFILE_KEY_RE = /^(profileId|profile_id|profile)$/i;
 const SENSITIVE_KEY_RE = /(cf-chl-|csrf|session|bearer|cookie|token|authorization|password|secret)/i;
 const COOKIE_VALUE_RE = /(?:^|;\s*)[A-Za-z0-9_.-]+=[^;]+(?:;\s*[A-Za-z0-9_.-]+=[^;]+)+/;
+// Conversation ids in contracted chat_url fields are handles, not credentials; redact them only in non-chat_url strings.
 const CONVERSATION_URL_RE = /\/c\/[a-f0-9-]{20,}/ig;
 const HOME_PATH_RE = /\/home\/[^\s"'<>),;:]+/g;
 const PROFILE_VALUE_RE = /^chatgpt$|^claude$|^[a-z0-9-]+$/;
@@ -38,7 +39,7 @@ function isSensitiveKey(key: string | undefined, opts: RedactionOptions): boolea
 function redactString(input: string, key: string | undefined, opts: RedactionOptions): string {
   if (PROFILE_KEY_RE.test(key || "") && PROFILE_VALUE_RE.test(input)) return "<profile>";
   if (COOKIE_VALUE_RE.test(input)) return "<redacted>";
-  let out = input.replace(CONVERSATION_URL_RE, "/c/<conversation-id>");
+  let out = key === "chat_url" ? input : input.replace(CONVERSATION_URL_RE, "/c/<conversation-id>");
   out = out.replace(HOME_PATH_RE, (match) => match.replace(/^\/home\/[^/]+/, "<home>"));
   if (opts.mode === "strict" && /^https?:\/\//i.test(out)) out = out.replace(/([?&](?:token|session|csrf|key|code)=)[^&#]+/ig, "$1<redacted>");
   return out;

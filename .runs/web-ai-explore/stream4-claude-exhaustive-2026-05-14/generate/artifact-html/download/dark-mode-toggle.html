@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Mode Toggle</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+
+    :root[data-theme="light"] {
+      --bg:        #f5f0e8;
+      --surface:   #ede8de;
+      --border:    #c8bfab;
+      --text:      #1a1714;
+      --subtext:   #7a7060;
+      --accent:    #2d2520;
+      --btn-bg:    #1a1714;
+      --btn-text:  #f5f0e8;
+      --btn-hover: #3a2f28;
+      --glow:      rgba(26,23,20,0.12);
+      --icon-sun:  1;
+      --icon-moon: 0;
+    }
+
+    :root[data-theme="dark"] {
+      --bg:        #0f0d0b;
+      --surface:   #1c1916;
+      --border:    #2e2922;
+      --text:      #e8e0d0;
+      --subtext:   #7a7264;
+      --accent:    #e8e0d0;
+      --btn-bg:    #e8e0d0;
+      --btn-text:  #0f0d0b;
+      --btn-hover: #ffffff;
+      --glow:      rgba(232,224,208,0.1);
+      --icon-sun:  0;
+      --icon-moon: 1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      transition: background 0.5s ease, color 0.5s ease;
+      padding: 2rem;
+    }
+
+    /* Decorative grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 3rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+      box-shadow:
+        0 2px 4px var(--glow),
+        0 8px 32px var(--glow),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      transition: color 0.5s ease;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      transition: color 0.5s ease;
+    }
+
+    h1 em {
+      font-style: italic;
+      opacity: 0.6;
+    }
+
+    /* Orb visual */
+    .orb-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .orb {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] .orb {
+      background: radial-gradient(circle at 35% 35%, #fff8e1, #f9c74f 40%, #e8820c);
+      box-shadow:
+        0 0 0 8px rgba(249,199,79,0.15),
+        0 0 0 18px rgba(249,199,79,0.06),
+        0 0 40px rgba(232,130,12,0.4);
+    }
+
+    [data-theme="dark"] .orb {
+      background: radial-gradient(circle at 35% 35%, #d0c8e8, #a090c8 40%, #3d3060);
+      box-shadow:
+        0 0 0 8px rgba(160,144,200,0.15),
+        0 0 0 18px rgba(160,144,200,0.06),
+        0 0 40px rgba(61,48,96,0.6);
+    }
+
+    /* Rays */
+    .rays {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    [data-theme="light"] .rays {
+      opacity: 1;
+      transform: rotate(0deg);
+      animation: spin 20s linear infinite;
+    }
+
+    [data-theme="dark"] .rays {
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .ray {
+      position: absolute;
+      width: 3px;
+      border-radius: 2px;
+      background: rgba(249,199,79,0.7);
+      left: 50%;
+      transform-origin: bottom center;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 1px;
+      cursor: pointer;
+      transition:
+        background 0.5s ease,
+        color 0.5s ease,
+        transform 0.15s ease,
+        box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .toggle-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--btn-hover);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .toggle-btn:hover::after { opacity: 1; }
+    .toggle-btn:active { transform: scale(0.97); }
+
+    .toggle-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Status line */
+    .status {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--subtext);
+      text-transform: uppercase;
+      transition: color 0.5s ease;
+    }
+
+    .status::before {
+      content: '● ';
+      font-size: 0.5rem;
+    }
+
+    [data-theme="light"] .status::before { color: #e8820c; }
+    [data-theme="dark"] .status::before { color: #a090c8; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <p class="label">Appearance</p>
+    <h1>Light <em>&amp;</em> Dark</h1>
+  </div>
+
+  <div class="orb-wrap">
+    <!-- Rays generated by JS -->
+    <div class="rays" id="rays"></div>
+    <div class="orb"></div>
+  </div>
+
+  <button class="toggle-btn" id="toggleBtn" onclick="toggleTheme()">
+    <span id="btnLabel">Switch to Dark</span>
+  </button>
+
+  <p class="status" id="statusText">Light mode active</p>
+</div>
+
+<script>
+  // Build sun rays
+  const rays = document.getElementById('rays');
+  const RAY_COUNT = 12;
+  for (let i = 0; i < RAY_COUNT; i++) {
+    const ray = document.createElement('div');
+    ray.className = 'ray';
+    const angle = (360 / RAY_COUNT) * i;
+    const len = i % 2 === 0 ? 10 : 7;
+    const offset = 50 + 16; // orb radius + gap
+    ray.style.cssText = `
+      height: ${len}px;
+      bottom: calc(50% + ${offset - 16}px);
+      transform: rotate(${angle}deg) translateX(-50%);
+      transform-origin: bottom center;
+      left: 50%;
+    `;
+    rays.appendChild(ray);
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('btnLabel').textContent = isDark ? 'Switch to Dark' : 'Switch to Light';
+    document.getElementById('statusText').textContent = isDark ? 'Light mode active' : 'Dark mode active';
+  }
+
+  // Respect OS preference on first load
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('btnLabel').textContent = 'Switch to Light';
+    document.getElementById('statusText').textContent = 'Dark mode active';
+  }
+</script>
+</body>
+</html>

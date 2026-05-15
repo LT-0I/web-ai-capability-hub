@@ -1,6 +1,6 @@
 {
-  "package_version": "0.4.0",
-  "contract_version": "consumer-contract-1.2.0",
+  "package_version": "0.5.0",
+  "contract_version": "consumer-contract-1.3.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -293,7 +293,7 @@
     },
     {
       "cli_name": "mcp:tools",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "listMcpTools",
       "maturity": "stable",
       "safety_class": "read",
@@ -310,7 +310,7 @@
     },
     {
       "cli_name": "mcp:resources",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "listMcpResources",
       "maturity": "stable",
       "safety_class": "read",
@@ -328,7 +328,7 @@
     },
     {
       "cli_name": "browser:click",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "ActionExecutor.execute({type:'click'})",
       "maturity": "experimental",
       "safety_class": "mutate",
@@ -358,7 +358,7 @@
     },
     {
       "cli_name": "browser:upload",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "ActionExecutor.execute({type:'upload'})",
       "maturity": "experimental",
       "safety_class": "risky",
@@ -388,7 +388,7 @@
     },
     {
       "cli_name": "browser:wait",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "ActionExecutor.execute({type:'wait'})",
       "maturity": "experimental",
       "safety_class": "read",
@@ -415,7 +415,7 @@
     },
     {
       "cli_name": "browser:artifact-click",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "runArtifactClick",
       "maturity": "experimental",
       "safety_class": "risky",
@@ -457,7 +457,7 @@
     },
     {
       "cli_name": "verify:docx-min",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "verifyDocxMin",
       "maturity": "experimental",
       "safety_class": "read",
@@ -489,7 +489,7 @@
     },
     {
       "cli_name": "browser:audit",
-      "mcp_name": null,
+      "mcp_name": "",
       "ts_export": "auditProfiles",
       "maturity": "experimental",
       "safety_class": "read",
@@ -511,6 +511,320 @@
         ]
       },
       "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "webai:chatgpt:send-prompt",
+      "mcp_name": "webai_chatgpt_send_prompt",
+      "ts_export": "webAiChatgptSendPrompt",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "profile",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "conversation_id",
+          "chat_url",
+          "response_text",
+          "model_used",
+          "elapsed_ms",
+          "wait_ms",
+          "completion_detected",
+          "reuse_conversation",
+          "errorCode"
+        ],
+        "optional": [
+          "ok",
+          "service",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:send-prompt",
+      "mcp_name": "webai_claude_send_prompt",
+      "ts_export": "webAiClaudeSendPrompt",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "profile",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "conversation_id",
+          "chat_url",
+          "response_text",
+          "elapsed_ms",
+          "wait_ms",
+          "completion_detected",
+          "errorCode"
+        ],
+        "optional": [
+          "ok",
+          "service",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:send-prompt",
+      "mcp_name": "webai_gemini_send_prompt",
+      "ts_export": "webAiGeminiSendPrompt",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "profile",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "chat_url",
+          "response_text",
+          "model_used",
+          "elapsed_ms",
+          "wait_ms",
+          "completion_detected",
+          "errorCode"
+        ],
+        "optional": [
+          "ok",
+          "service",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:upload-and-query",
+      "mcp_name": "webai_chatgpt_upload_and_query",
+      "ts_export": "webAiChatgptUploadAndQuery",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "files",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "conversation_id",
+          "attachment_names",
+          "response_text",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:upload-and-query",
+      "mcp_name": "webai_claude_upload_and_query",
+      "ts_export": "webAiClaudeUploadAndQuery",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "files",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "files_uploaded_count",
+          "attachment_names",
+          "response_text",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:upload-and-query",
+      "mcp_name": "webai_gemini_upload_and_query",
+      "ts_export": "webAiGeminiUploadAndQuery",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "files",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "files_in_chip",
+          "response_text",
+          "chat_url",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:generate-file",
+      "mcp_name": "webai_chatgpt_generate_file",
+      "ts_export": "webAiChatgptGenerateFile",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "prompt",
+        "expected_extension",
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "size_bytes",
+          "suggested_filename",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:generate-file",
+      "mcp_name": "webai_claude_generate_file",
+      "ts_export": "webAiClaudeGenerateFile",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "prompt",
+        "artifact_class",
+        "expected_extension",
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "size_bytes",
+          "artifact_name",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:generate-image",
+      "mcp_name": "webai_chatgpt_generate_image",
+      "ts_export": "webAiChatgptGenerateImage",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "prompt",
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "size_bytes",
+          "dimensions",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:generate-image",
+      "mcp_name": "webai_gemini_generate_image",
+      "ts_export": "webAiGeminiGenerateImage",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "prompt",
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "size_bytes",
+          "dimensions",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:canvas-to-docs",
+      "mcp_name": "webai_gemini_canvas_to_docs",
+      "ts_export": "webAiGeminiCanvasToDocs",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "prompt"
+      ],
+      "output_keys": {
+        "always_present": [
+          "docs_url",
+          "docs_doc_id",
+          "title",
+          "errorCode"
+        ],
+        "optional": [
+          "cleanup_attempted"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:generate-video",
+      "mcp_name": "webai_gemini_generate_video",
+      "ts_export": "webAiGeminiGenerateVideo",
+      "maturity": "experimental",
+      "safety_class": "risky",
+      "required_args": [
+        "profile",
+        "prompt",
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "task_id",
+          "status",
+          "profile",
+          "lease_id",
+          "started_at"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:task-status",
+      "mcp_name": "webai_task_status",
+      "ts_export": "webAiTaskStatus",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "task_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status"
+        ],
+        "optional": [
+          "progress_label",
+          "result",
+          "errorCode"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
     }
   ],
   "resources": [
@@ -701,6 +1015,11 @@
     "IDEMPOTENCY_MISMATCH",
     "PROFILE_LOCKED",
     "PROFILE_LEASE_BUSY",
+    "SAFE_OUTPUT_REDACTION_REQUIRED",
+    "PLAN_OR_QUOTA_REQUIRED",
+    "MODEL_SELECTION_DRIFT",
+    "ARTIFACT_MODE_UNSUPPORTED",
+    "AUTO_PUBLISH_DETECTED",
     "MODE_UNCERTAIN",
     "HUMAN_HANDOFF_REQUIRED",
     "UNKNOWN"
@@ -712,5 +1031,6 @@
     "profile-id": "Opaque browser profile identifier; do not expose outside trusted local logs.",
     "run_events.evidence": "Redacted by default; use --no-redact only for trusted local debugging.",
     "profile_lease.user_data_dir": "Local browser profile path; treat as sensitive local metadata."
-  }
+  },
+  "release_notes": "v1.3.0 adds 13 experimental webai MCP tools (12 service tools plus webai.task_status), async Gemini video task metadata, and six new error codes. Design: .runs/web-ai-explore/stream4-mcp-design.md"
 }

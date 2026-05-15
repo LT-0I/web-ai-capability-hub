@@ -1,0 +1,2153 @@
+{
+  "url": "https://gemini.google.com/app/28272d31bde7dba6?hl=en",
+  "title": "Model Comparison Research Plan - Google Gemini",
+  "timestamp": "2026-05-14T16:32:29.078Z",
+  "visibleText": "Gemini Model Comparison Research Plan New chat Conversation with Gemini You said Summarize the difference between Gemini 3 Fast and Gemini 3 Pro models. Keep it concise (~150 words). Use 3 brief sources. Show thinking Gemini said I've put together a research plan. If you need to update it in any way, let me know. Gemini 3 Fast vs. Pro Comparison Research Websites (1) Search for official announcements or technical documentation regarding the release and specifications of Gemini 3 Fast and Gemini 3 Pro models. (2) Identify the core architectural differences, focusing on optimization for speed in the Fast model versus depth of reasoning in the Pro model. (3) Find performance benchmark data comparing the latency, context window capacity, and task accuracy for both models. (4) Look for documentation on the intended use cases, such as real-time chat or high-throughput tasks for Gemini 3 Fast, and complex analysis or creative reasoning for Gemini 3 Pro. (5) Research pricing tiers, API availability, and hardware requirements for deploying or accessing each model variant. (6) Identify three distinct and brief reliable sources that provide a comparison of these models to ensure the summary is well-supported. More Analyze Results Create Report Ready in a few mins Edit plan Start research You said Start research Gemini said I've completed your research. Feel free to ask me follow-up questions or request changes. Gemini 3 Fast vs. Pro Comparison Completed May 14, 9:31 AM Fast Sources Files Gemini is AI and can make mistakes. Gemini 3 Fast vs. Pro Comparison Contents Share & Export Create Architectural and Functional Stratification of the Gemini 3 Model Series: A Comprehensive Analysis of Fast and Pro Variants The advent of the Gemini 3 era, formally inaugurated by Google DeepMind in late 2025 and refined through the release of the 3.1 series in early 2026, represents a critical juncture in the evolution of large-scale multimodal models. This report provides an exhaustive examination of the structural, functional, and economic disparities between the two primary pillars of this ecosystem: Gemini 3 Fast (often synonymous with Gemini 3 Flash in technical contexts) and Gemini 3 Pro (inclusive of the 3.1 Pro iteration). These models are not merely scaled versions of a single architecture; rather, they are distinct configurations engineered to navigate the Pareto frontier of artificial intelligence, balancing the conflicting pressures of latency, reasoning depth, and computational cost. Historical Context and Systematic Rebranding The transition to the Gemini 3 series was accompanied by a fundamental shift in Google’s consumer-facing and developer-centric nomenclature. On February 12, 2026, the \"Gemini Advanced\" branding was retired, subsumed under the new \"Google AI Pro\" and \"Google AI Ultra\" subscription frameworks. This rebranding reflected the increasing integration of the Gemini models into a broader suite of professional tools, including NotebookLM, Flow, and the agentic development environment known as Google Antigravity. Underpinning this shift was the release of Gemini 3 Pro, characterized by state-of-the-art reasoning designed for \"vibe coding\" and complex multimodal synthesis. Shortly thereafter, the introduction of Gemini 3 Fast (Flash) aimed to provide \"Pro-grade\" intelligence at \"Flash-level\" speeds, effectively replacing previous generations as the default interaction model within the Gemini application and AI Search. Feature Gemini 3 Fast (Flash) Gemini 3 Pro (including 3.1) Primary Optimization Speed and Cost-Efficiency Reasoning Depth and Complexity Latency Profile Low-latency; up to 3x faster than 2.5 Pro High-latency; allocated for deep processing Context Window 1 Million Tokens 1 Million to 2 Million Tokens Default Access Free users (standard mode) Paid subscribers (AI Pro/Ultra) Agentic Focus Rapid multi-step task execution Long-horizon planning and autonomy Philosophical Divergence in Model Architecture The fundamental difference between the Fast and Pro variants lies in their treatment of cognitive load and computational effort. Gemini 3 Fast is architected to prioritize throughput and immediate response, utilizing a streamlined model that nevertheless incorporates advanced reasoning foundations. Conversely, Gemini 3 Pro is designed for maximum intelligence ceiling, often employing extended inference chains—a capability most pronounced in its \"Thinking\" or \"Deep Think\" modes. Modulated Thinking vs. Deep Inference A hallmark of the Gemini 3 generation is the introduction of modulated thinking. In the Fast model, this mechanism allows the system to adjust its processing time dynamically, \"thinking\" longer only for complex use cases while maintaining rapid responses for everyday tasks. This efficiency enables Gemini 3 Fast to use approximately 30% fewer tokens on average compared to Gemini 2.5 Pro while achieving higher performance. Gemini 3 Pro approaches reasoning through a more rigorous framework. The \"Thinking\" mode, accessible through the Pro model dropdown, allows the model to spend more time analyzing complex problems, identifying subtle clues in creative ideas, and untangling overlapping layers of difficult technical problems. This makes the Pro model less of a conversational chatbot and more of an autonomous research agent capable of deep document synthesis and \"pixel-precise\" spatial reasoning. Comparative Analysis of Technical Benchmarks Quantitative evaluation across a diverse range of benchmarks illuminates the performance gap between the two models. While Gemini 3 Fast often matches or exceeds previous flagship models, Gemini 3 Pro consistently demonstrates a superior intelligence ceiling, particularly in academic, scientific, and coding domains. Academic and Scientific Reasoning On benchmarks requiring graduate-level scientific knowledge and abstract pattern recognition, the Pro variant establishes a commanding lead. The GPQA Diamond benchmark, which tests PhD-level knowledge in physics, chemistry, and biology, serves as a primary point of comparison. Benchmark Gemini 3 Fast (Flash) Gemini 3 Pro Gemini 3.1 Pro (Thinking) GPQA Diamond (No tools) 90.4% 91.9% 94.3% Humanity's Last Exam (No tools) 33.7% 37.5% 44.4% ARC-AGI-2 (Abstract Reasoning) — 31.1% 77.1% MMMU-Pro (Multimodal Reasoning) 81.2% 81.0% 80.5% The delta in performance on \"Humanity's Last Exam\"—a benchmark designed to be exceptionally difficult for frontier AI—indicates that Gemini 3.1 Pro possesses a more robust internal logic for handling questions where simple data retrieval is insufficient. Notably, the specialized Gemini 3 Deep Think mode pushes these results even further, reaching 48.4% without tools on Humanity's Last Exam and a verified 84.6% on ARC-AGI-2. Mathematics and Algorithmic Logic In the mathematical domain, the distinction between \"innate intuition\" and \"tool-dependent logic\" becomes apparent. Gemini 3 Pro exhibits a high degree of innate mathematical intuition, as evidenced by its 95.0% score on the AIME 2025 benchmark without code execution. While both models can achieve a perfect 100% on AIME 2025 when equipped with code execution tools, the Pro model's superior baseline suggests it is better suited for theoretical mathematical exploration. The MathArena Apex benchmark, representing some of the hardest reasoning tasks currently available, shows Gemini 3 Pro scoring 23.4%, a massive jump compared to the 0.5% achieved by the 2.5 Pro model. This suggests that Gemini 3 Pro has successfully navigated a transition toward true mathematical problem formulation. Agentic Capabilities and Software Engineering The Gemini 3 series was developed with agentic workflows as a primary design goal, moving beyond simple text generation toward autonomous planning and execution in software environments. Coding Proficiency and SWE-bench Both models demonstrate competitive performance on software engineering benchmarks, yet they serve different roles in the developer's toolkit. Gemini 3 Fast is optimized for \"vibe coding\" and rapid prototyping—generating rich, interactive web interfaces from simple prompts with minimal latency. Its score of 78% on SWE-bench Verified indicates its effectiveness in high-frequency workflows where quick iteration is paramount. Gemini 3 Pro is better categorized as a \"long-horizon\" coding assistant. It excels at refactoring large codebases, maintaining state across extended operations, and resolving software engineering challenges with a measured, pragmatic pace. In early testing within VS Code, Gemini 3 Pro demonstrated 35% higher accuracy in resolving software engineering challenges than its predecessor, 2.5 Pro. Benchmark Gemini 3 Fast (Flash) Gemini 3 Pro Gemini 3.1 Pro (Thinking) SWE-Bench Verified 78.0% 76.2% 80.6% LiveCodeBench Pro (Elo) — 2,439 2,887 Terminal-Bench 2.0 — 54.2% 68.5% APEX-Agents (Long Horizon) — 18.4% 33.5% The superior Elo rating of Gemini 3 Pro on LiveCodeBench Pro (2,439 vs GPT-5.1's 2,243) highlights its dominance in algorithmic, from-scratch code generation. This makes it the preferred model for complex software architecture design, while Fast remains the workhorse for real-time bug fixing and UI generation. Agentic Reliability and Tool Use The practical utility of these models in autonomous environments is measured by benchmarks like Vending-Bench 2 and τ2-bench. Vending-Bench 2, which simulates long-horizon planning and decision-making over a virtual year, showed Gemini 3 Pro achieving a mean net worth of $5,478.16—a 272% higher result than GPT-5.1. This suggests a significantly higher degree of coherent decision-making and tool usage over time. In the τ2-bench evaluation, which focuses on retail and telecom agentic tool use, Gemini 3 Pro maintains high scores (85.3% in retail), although it is slightly outperformed by models like Sonnet 4.6 in certain specific retail categories. This indicates that while Gemini 3 Pro is a premier agentic model, competition remains tight in domain-specific tool integration. Multimodal and Spatial Reasoning Gemini 3 Pro’s architectural focus on depth is perhaps most visible in its \"pixel-precise pointing\" and screen understanding capabilities. Unlike the Fast model, which provides rapid multimodal analysis for interactive tasks, the Pro model is designed to \"see\" and interpret complex spatial data for robotic process automation (RPA) and advanced visual research. Screen Understanding and UI Interaction On the ScreenSpot-Pro benchmark, which evaluates a model’s ability to understand and navigate user interfaces, Gemini 3 Pro achieved a dominant score of 72.7%. This significantly outperforms competitor models like Claude 3.5 Sonnet (36.2%) and GPT-5.1 (3.5%), suggesting that Gemini 3 Pro is currently the most capable model for building agents that operate directly through graphical user interfaces. Deep Visual Analysis For data-intensive visual tasks, the Pro model demonstrates a clear advantage in synthesizing information from complex charts and academic diagrams. The CharXiv Reasoning benchmark shows Gemini 3 Pro at 81.4%, well above the 69.5% score of GPT-5.1. Similarly, in video understanding (Video-MMMU), the Pro model demonstrates an ability to understand cause-and-effect relationships in long clips rather than merely identifying static objects, scoring 87.6%. Context Window Dynamics and Retrieval Accuracy While both models feature a nominal 1-million token context window, the qualitative experience of working with large volumes of data differs significantly. Gemini 3 Pro is designed for \"massive context synthesis,\" making it ideal for developing strategies based on dozens of 100+ page PDFs or auditing vast internal policy documents. Needle-in-a-Haystack (MRCR v2) Retrieval accuracy within large contexts is measured by the MRCR v2 (8-needle) benchmark. Gemini 3 Pro demonstrates strong recall, scoring 77.0% on the 128k average test. Crucially, for 1-million token contexts, Gemini 3 Pro outpaces the previous 2.5 Pro model by nearly 10%, indicating continued improvements in \"needle-in-a-haystack\" performance. Hallucination Rates and Precision Research suggests a trade-off between the speed of the Fast model and the precision of the Pro model. Analysis of real-world document processing revealed that Gemini 3.1 Pro has a hallucination rate of approximately 23%—the second-lowest in the industry. In contrast, Gemini 3 Flash Thinking (a configuration of the Fast model) was reported to have a 44% hallucination rate in similar tasks, likely due to a tendency to make assumptions when logic-heavy verification is bypassed for speed. For financial audits or legal research where \"critical accuracy\" is paramount, the Pro or Thinking models are highly recommended over the Fast variant. The Pro model's 1.5M to 2M token context window allows it to hold an entire code base or library of research papers in \"memory\" without losing the thread of the conversation. Economic Stratification and API Economics The accessibility of Gemini 3 models is defined by a tiered pricing structure that distinguishes between high-volume, low-cost utility and high-value, deep reasoning. Consumer Subscription Models For individual users and professional practitioners, access is managed through the Google AI subscription tiers. Free Tier: Provides access to Gemini 3 Fast (Flash) as the default model. It is optimized for everyday tasks, general communication, and rapid brainstorming. Google AI Pro ($19.99/month): Formerly Gemini Advanced, this tier provides access to Gemini 3.1 Pro. It includes a 1M token context window, higher usage limits, and integration with professional creative tools like Veo 2 and Flow. Google AI Ultra ($124.99/month): Designed for scientists and engineers, this tier provides full access to the updated Gemini 3 Deep Think mode and higher-tier agentic tools like Project Mariner. API Pricing and Developer Integration The API pricing structure reflects the computational complexity inherent in the Pro model's reasoning capabilities. While the Fast model uses a flat-rate pricing model, the Pro model employs tiered pricing based on context length. Model Input Price (per 1M tokens) Output Price (per 1M tokens) Context Threshold Gemini 3 Fast (Flash) $0.50 $3.00 Flat rate Gemini 3.1 Pro $2.00 $12.00 ≤ 200k tokens Gemini 3.1 Pro $4.00 $18.00 > 200k tokens Gemini 3.1 Flash-Lite $0.25 $1.50 Flat rate The higher pricing for context windows exceeding 200k tokens reflects the \"attention tax\" required to maintain coherence across massive datasets. For asynchronous workloads, Google provides a Batch API discount of 50%, allowing enterprises to process large-scale data synthesis projects (like industry-wide sentiment analysis) for $1.00 per 1M input tokens on the Pro model. Deployment Strategy: Choosing Between Fast and Pro The optimal model choice is governed by the specific constraints of the task at hand: speed, reasoning complexity, and the volume of source material. When to Utilize Gemini 3 Fast Gemini 3 Fast is the recommended model for high-volume, low-cognitive-load tasks where immediate response is more valuable than deep nuance. Real-time Interaction: Live client negotiations, simultaneous translation, and in-game assistants benefit from the model’s near-instant multimodal analysis. Rapid Iteration: UI brainstorming, quick email drafting, and general communication tasks where the user can provide immediate feedback. Scalable Agents: Production-ready systems that must handle thousands of requests per second at the lowest possible inference cost. When to Utilize Gemini 3 Pro Gemini 3 Pro is the essential choice for high-value tasks requiring strategic planning, deep context, and maximum reasoning depth. Massive Data Synthesis: Building a go-to-market strategy from hundreds of competitor documents or summarizing years of industry transcripts. Rigorous Logic Application: Auditing financial records against complex rule-sets or detecting anomalies in large ",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "text": "",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "gb_C gb_5a gb_6",
+        "aria-expanded": "false",
+        "aria-label": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+        "href": "https://accounts.google.com/SignOutOptions?hl=en&continue=https://gemini.google.com/app%3Fhl%3Den&ec=GBRAkgU",
+        "tabindex": "0",
+        "role": "button"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "text": "",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c303525898": "",
+        "mat-icon-button": "",
+        "aria-label": "Main menu",
+        "data-test-id": "side-nav-menu-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger main-menu-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "204298;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-3",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Main menu\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "text": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2014502497": "",
+        "role": "img",
+        "class": "mat-icon notranslate gds-icon-l google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "menu",
+        "data-mat-icon-namespace": "",
+        "fonticon": "menu"
+      },
+      "selectorCandidates": [
+        "mat-icon"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "tooltipanchorposition": "below",
+        "role": "button",
+        "tabindex": "0",
+        "aria-label": "New chat",
+        "class": "bard-logo-container logo-only ng-star-inserted hide-on-mobile",
+        "href": "/app",
+        "aria-disabled": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Share conversation",
+      "text": "",
+      "selector": "button[aria-label=\"Share conversation\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4281317633": "",
+        "mat-icon-button": "",
+        "data-test-id": "share-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Share conversation",
+        "jslog": "301647;track:generic_click,impression"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Share conversation\"]"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open menu for conversation actions.",
+      "text": "",
+      "selector": "button[aria-label=\"Open menu for conversation actions.\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-icon-button": "",
+        "aria-label": "Open menu for conversation actions.",
+        "data-test-id": "conversation-actions-menu-icon-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "298422;track:generic_click,impression",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open menu for conversation actions.\"]"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c824153890": "",
+        "role": "navigation",
+        "_nghost-ng-c2130131422": "",
+        "class": "collapsed mystuff-side-nav-update disable-onload-animations ng-tns-c2130131422-3 ng-trigger ng-trigger-widthTransition",
+        "aria-label": "Side Navigation",
+        "jslog": "173918;track:impression,attention",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ3s4KahcKEwj2zaijmbmUAxUAAAAAHQAAAAAQAg",
+        "style": "width: var(--bard-sidenav-closed-width);"
+      },
+      "selectorCandidates": [
+        "bard-sidenav[aria-label=\"Side Navigation\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "group",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list top-action-list ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "href": "/app",
+        "aria-label": "New chat",
+        "aria-describedby": "cdk-describedby-message-ng-1-41",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "group",
+      "name": "",
+      "text": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list desktop-controls ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Settings & help",
+      "text": "",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Settings & help",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Settings & help\"]"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "Copy prompt",
+      "text": "",
+      "selector": "button[aria-label=\"Copy prompt\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Copy prompt",
+        "mattooltip": "Copy prompt",
+        "data-test-id": "prompt-copy-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-0",
+        "jslog": "273008;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,null,null,null,null,null,1,null,null,null,1]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy prompt\"]"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "heading",
+      "name": "You said Summarize the difference between Gemini 3 Fast and Gemini 3 Pro models. Keep it concise (~150 words). Use 3 brief sources.",
+      "text": "You said Summarize the difference between Gemini 3 Fast and Gemini 3 Pro models. Keep it concise (~150 words). Use 3 brief sources.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "role": "heading",
+        "aria-level": "2",
+        "class": "query-text gds-body-l",
+        "dir": "ltr"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Listen",
+      "text": "",
+      "selector": "button[aria-label=\"Listen\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger tts-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Listen",
+        "jslog": "184512;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,\"rc_8066f0414fa70452\",null,null,\"en\",null,1,null,null,1,0]];mutable:true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Listen\"]"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "menu",
+      "name": "",
+      "text": "",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "role": "menu",
+        "class": "mat-mdc-menu-trigger playback-speed-menu-trigger multi",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Show thinking",
+      "text": "Show thinking",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2753260543": "",
+        "mat-button": "",
+        "data-test-id": "thoughts-header-button",
+        "class": "mdc-button mat-mdc-button-base thoughts-header-button ng-tns-c2753260543-17 mat-mdc-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-controls": "",
+        "aria-expanded": "false",
+        "jslog": "247951;track:generic_click,impression"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "status",
+      "name": "Show thinking",
+      "text": "Show thinking",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2753260543": "",
+        "role": "status",
+        "class": "thoughts-header-button-label ng-tns-c2753260543-17"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "heading",
+      "name": "Gemini 3 Fast vs. Pro Comparison",
+      "text": "Gemini 3 Fast vs. Pro Comparison",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "role": "heading",
+        "aria-level": "3",
+        "data-test-id": "title",
+        "class": "gds-title-m"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "img",
+      "name": "The plan has 3 steps, 1st step",
+      "text": "",
+      "selector": "mat-icon[aria-label=\"The plan has 3 steps, 1st step\"]",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "role": "img",
+        "fonticon": "select_window_2",
+        "aria-label": "The plan has 3 steps, 1st step",
+        "class": "mat-icon notranslate icon google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "select_window_2"
+      },
+      "selectorCandidates": [
+        "mat-icon[aria-label=\"The plan has 3 steps, 1st step\"]"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "More research plan details",
+      "text": "More",
+      "selector": "button[aria-label=\"More research plan details\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "mat-button": "",
+        "aria-label": "More research plan details",
+        "data-test-id": "toggle-description-expansion-button",
+        "class": "mdc-button mat-mdc-button-base toggle-description-expansion-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "264375;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,null,null,null,null,null,1,null,null,null,1]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"More research plan details\"]"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "img",
+      "name": "2nd step",
+      "text": "",
+      "selector": "mat-icon[aria-label=\"2nd step\"]",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "role": "img",
+        "fonticon": "sort",
+        "aria-label": "2nd step",
+        "class": "mat-icon notranslate icon google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "sort"
+      },
+      "selectorCandidates": [
+        "mat-icon[aria-label=\"2nd step\"]"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "img",
+      "name": "3rd-step",
+      "text": "",
+      "selector": "mat-icon[aria-label=\"3rd-step\"]",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "role": "img",
+        "fonticon": "travel_explore",
+        "aria-label": "3rd-step",
+        "class": "mat-icon notranslate icon google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "travel_explore"
+      },
+      "selectorCandidates": [
+        "mat-icon[aria-label=\"3rd-step\"]"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "img",
+      "name": "estimated time",
+      "text": "",
+      "selector": "mat-icon[aria-label=\"estimated time\"]",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "role": "img",
+        "fonticon": "schedule",
+        "aria-label": "estimated time",
+        "class": "mat-icon notranslate icon google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "schedule"
+      },
+      "selectorCandidates": [
+        "mat-icon[aria-label=\"estimated time\"]"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "Edit the research plan",
+      "text": "Edit plan",
+      "selector": "button[aria-label=\"Edit the research plan\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "mat-stroked-button": "",
+        "color": "primary",
+        "data-test-id": "edit-button",
+        "class": "mdc-button mat-mdc-button-base edit-button mdc-button--outlined mat-mdc-outlined-button mat-primary mat-mdc-button-disabled ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "aria-label": "Edit the research plan",
+        "jslog": "264373;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,null,null,null,null,null,1,null,null,null,1]];mutable:true",
+        "disabled": "true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Edit the research plan\"]"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Start research",
+      "text": "Start research",
+      "selector": "button[aria-label=\"Start research\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3456516842": "",
+        "mat-flat-button": "",
+        "color": "primary",
+        "data-test-id": "confirm-button",
+        "class": "mdc-button mat-mdc-button-base confirm-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-disabled ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "aria-label": "Start research",
+        "jslog": "264374;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,null,null,null,null,null,1,null,null,null,1]];mutable:true",
+        "disabled": "true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Start research\"]"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "Good response",
+      "text": "",
+      "selector": "button[aria-label=\"Good response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1550161466": "",
+        "mat-icon-button": "",
+        "mattooltip": "Good response",
+        "aria-label": "Good response",
+        "data-test-id": "thumb-up-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173913;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,\"rc_8066f0414fa70452\",null,null,\"en\",null,1,null,null,1,1]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Good response\"]"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Bad response",
+      "text": "",
+      "selector": "button[aria-label=\"Bad response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3439315037": "",
+        "mat-icon-button": "",
+        "mattooltip": "Bad response",
+        "aria-label": "Bad response",
+        "data-test-id": "thumb-down-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173904;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,\"rc_8066f0414fa70452\",null,null,\"en\",null,1,null,null,1,1]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Bad response\"]"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "Copy",
+      "text": "",
+      "selector": "button[aria-label=\"Copy\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4206996302": "",
+        "mat-button": "",
+        "tabindex": "0",
+        "mattooltip": "Copy response",
+        "aria-label": "Copy",
+        "data-test-id": "copy-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "178035;track:generic_click,impression;BardVeMetadataKey:[[\"r_7931e55169ae0599\",\"c_28272d31bde7dba6\",null,\"rc_8066f0414fa70452\",null,null,\"en\",null,1,null,null,1,1]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-36",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy\"]"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Show more options",
+      "text": "",
+      "selector": "button[aria-label=\"Show more options\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1704719753": "",
+        "mat-button": "",
+        "mattooltip": "More",
+        "aria-label": "Show more options",
+        "tabindex": "0",
+        "data-test-id": "more-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger icon-button more-menu-button mat-mdc-button ng-tns-c1704719753-26 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-37",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Show more options\"]"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Edit",
+      "text": "",
+      "selector": "button[aria-label=\"Edit\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Edit",
+        "mattooltip": "Edit prompt",
+        "data-test-id": "prompt-edit-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-1",
+        "jslog": "173924;track:generic_click,impression;BardVeMetadataKey:[[\"r_50db5e347ebab971\",\"c_28272d31bde7dba6\",null,null,null,null,null,null,1,null,null,null,1]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-32",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Edit\"]"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "heading",
+      "name": "You said Start research",
+      "text": "You said Start research",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "role": "heading",
+        "aria-level": "2",
+        "class": "query-text gds-body-l",
+        "dir": "ltr"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "status",
+      "name": "Gemini 3 Fast vs. Pro Comparison Completed May 14, 9:31 AM",
+      "text": "Gemini 3 Fast vs. Pro Comparison Completed May 14, 9:31 AM",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2155229790": "",
+        "role": "status",
+        "aria-live": "polite",
+        "class": "text"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e33",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "text": "",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "ql-editor textarea new-input-ui ql-blank",
+        "data-gramm": "false",
+        "contenteditable": "true",
+        "role": "textbox",
+        "aria-multiline": "true",
+        "aria-label": "Enter a prompt for Gemini",
+        "data-placeholder": "What do you want to research?"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Enter a prompt for Gemini\"]"
+      ]
+    },
+    {
+      "ref": "e34",
+      "role": "button",
+      "name": "Open upload file menu",
+      "text": "",
+      "selector": "button[aria-label=\"Open upload file menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "mat-icon-button": "",
+        "color": "primary",
+        "aria-haspopup": "menu",
+        "aria-controls": "upload-file-menu",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger upload-card-button open mat-primary ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Open upload file menu",
+        "aria-expanded": "false",
+        "jslog": "188890;track:generic_click,impression,hover",
+        "aria-describedby": "cdk-describedby-message-ng-1-19",
+        "cdk-describedby-host": "ng-1",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ2sMLahcKEwj2zaijmbmUAxUAAAAAHQAAAAAQEA"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open upload file menu\"]"
+      ]
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "",
+      "text": "",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "tabindex": "-1",
+        "xapfileselectortrigger": "",
+        "aria-hidden": "true",
+        "data-test-id": "hidden-local-image-upload-button",
+        "class": "hidden-local-upload-button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e36",
+      "role": "button",
+      "name": "Deselect Deep research",
+      "text": "Deep research",
+      "selector": "button[aria-label=\"Deselect Deep research\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4251399043": "",
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base toolbox-drawer-item-deselect-button mat-mdc-button ng-tns-c4251399043-12 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-label": "Deselect Deep research",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Deselect Deep research\"]"
+      ]
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "mat-button": "",
+        "aria-label": "Open mode picker",
+        "data-test-id": "bard-mode-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger input-area-switch mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "206752;track:generic_click;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"56fdd199312815e2\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open mode picker\"]"
+      ]
+    },
+    {
+      "ref": "e38",
+      "role": "button",
+      "name": "Microphone",
+      "text": "",
+      "selector": "button[aria-label=\"Microphone\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c488515864": "",
+        "data-node-type": "speech_dictation_mic_button",
+        "maticonsuffix": "",
+        "mat-icon-button": "",
+        "mattooltip": "Use microphone",
+        "aria-label": "Microphone",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger speech_dictation_mic_button ng-tns-c488515864-7 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "175863;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-2",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Microphone\"]"
+      ]
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Send message",
+      "text": "",
+      "selector": "button[aria-label=\"Send message\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3511392904": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base send-button ng-tns-c3511392904-5 mat-unthemed ng-star-inserted submit",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Send message",
+        "jslog": "173899;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-disabled": "true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Send message\"]"
+      ]
+    },
+    {
+      "ref": "e40",
+      "role": "button",
+      "name": "Sources, Google Search selected",
+      "text": "Sources",
+      "selector": "button[aria-label=\"Sources, Google Search selected\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c251151886": "",
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger input-companion-chip-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "aria-label": "Sources, Google Search selected",
+        "jslog": "278129;track:generic_click,impression",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Sources, Google Search selected\"]"
+      ]
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Files",
+      "text": "Files",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1286237850": "",
+        "mat-button": "",
+        "xapfileselectortrigger": "",
+        "aria-hidden": "true",
+        "class": "mdc-button mat-mdc-button-base input-companion-chip-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": ""
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e42",
+      "role": "button",
+      "name": "Table of contents menu",
+      "text": "Contents",
+      "selector": "button[aria-label=\"Table of contents menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3347372934": "",
+        "mat-button": "",
+        "aria-label": "Table of contents menu",
+        "data-test-id": "toc-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger toc-menu-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "264376;track:generic_click,impression;mutable:true",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Table of contents menu\"]"
+      ]
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Share & Export",
+      "text": "Share & Export",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3617483822": "",
+        "mat-flat-button": "",
+        "data-test-id": "export-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger export-menu-button mdc-button--unelevated mat-mdc-unelevated-button ng-tns-c3617483822-24 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "262258;track:generic_click;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_28272d31bde7dba6_5466e18f-56fb-43e7-a619-e7588adf7b1d\",null,\"c_28272d31bde7dba6\",\"r_50db5e347ebab971\",\"rc_686d30c26890f7aa\"]];mutable:true",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e44",
+      "role": "button",
+      "name": "Create",
+      "text": "Create",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c315554291": "",
+        "mat-flat-button": "",
+        "color": "primary",
+        "data-test-id": "canvas-create-task-menu",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "jslog": "252206;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_28272d31bde7dba6_5466e18f-56fb-43e7-a619-e7588adf7b1d\",null,\"c_28272d31bde7dba6\",\"r_50db5e347ebab971\",\"rc_686d30c26890f7aa\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-40",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "Close panel",
+      "text": "",
+      "selector": "button[aria-label=\"Close panel\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2495802437": "",
+        "mat-icon-button": "",
+        "aria-label": "Close panel",
+        "mattooltip": "Close",
+        "mattooltipposition": "below",
+        "data-test-id": "close-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button close-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "262385;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"\",null,\"c_28272d31bde7dba6\",\"r_50db5e347ebab971\",\"rc_686d30c26890f7aa\"]]",
+        "aria-describedby": "cdk-describedby-message-ng-1-35",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Close panel\"]"
+      ]
+    },
+    {
+      "ref": "e46",
+      "role": "button",
+      "name": "Learn More",
+      "text": "",
+      "selector": "button[aria-label=\"Learn More\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1598288581": "",
+        "hide-from-message-actions": "",
+        "aria-label": "Learn More",
+        "aria-controls": "sources",
+        "class": "mat-mdc-tooltip-trigger button image-fade-on hide-from-message-actions",
+        "aria-expanded": "false",
+        "aria-describedby": "p-c_28272d31bde7dba6_5466e18f-56fb-43e7-a619-e7588adf7b1d-19 cdk-describedby-message-ng-1-39",
+        "jslog": "220646;track:generic_click,impression",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Learn More\"]"
+      ]
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Sources used in the report",
+      "text": "Sources used in the report",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger button mat-mdc-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-expanded": "true"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "blog.google A new era of intelligence with Gemini 3 - Google Blog Opens in a new window",
+      "text": "blog.google A new era of intelligence with Gemini 3 - Google Blog Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://blog.google/products-and-platforms/products/gemini/gemini-3/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e49",
+      "role": "presentation",
+      "name": "",
+      "text": "",
+      "selector": "img",
+      "tagName": "img",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "role": "presentation",
+        "class": "favicon",
+        "src": "https://t3.gstatic.com/faviconV2?url=https://blog.google/&client=BARD&type=FAVICON&size=256&fallback_opts=TYPE,SIZE,URL"
+      },
+      "selectorCandidates": [
+        "img"
+      ]
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "blog.roboflow.com Gemini 3 Pro Sets New Vision Benchmarks: Try It Here - Roboflow Blog Opens in a new window",
+      "text": "blog.roboflow.com Gemini 3 Pro Sets New Vision Benchmarks: Try It Here - Roboflow Blog Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://blog.roboflow.com/gemini-3-pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e51",
+      "role": "link",
+      "name": "reddit.com Gemini 3 flash in web app : r/Bard - Reddit Opens in a new window",
+      "text": "reddit.com Gemini 3 flash in web app : r/Bard - Reddit Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.reddit.com/r/Bard/comments/1posw4i/gemini_3_flash_in_web_app/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "uk.pcmag.com Google Gemini - Review 2026 - PCMag UK Opens in a new window",
+      "text": "uk.pcmag.com Google Gemini - Review 2026 - PCMag UK Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://uk.pcmag.com/ai/148146/google-bard"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e53",
+      "role": "link",
+      "name": "devoteam.com Fast, Thinking, and Pro: A Guide to Google's Gemini Models ... Opens in a new window",
+      "text": "devoteam.com Fast, Thinking, and Pro: A Guide to Google's Gemini Models ... Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.devoteam.com/expert-view/gemini-model-fast-vs-thinking-vs-pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "blog.google Introducing Gemini 3 Flash: Benchmarks, global availability Opens in a new window",
+      "text": "blog.google Introducing Gemini 3 Flash: Benchmarks, global availability Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e55",
+      "role": "link",
+      "name": "glbgpt.com Gemini 3 Flash vs Pro: Full Comparison of Speed, Price, and Reasoning - GlobalGPT Opens in a new window",
+      "text": "glbgpt.com Gemini 3 Flash vs Pro: Full Comparison of Speed, Price, and Reasoning - GlobalGPT Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.glbgpt.com/hub/gemini-3-flash-vs-pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "gemini.google ‎Gemini Apps' release updates & improvements Opens in a new window",
+      "text": "gemini.google ‎Gemini Apps' release updates & improvements Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://gemini.google/release-notes/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e57",
+      "role": "link",
+      "name": "deepmind.google Gemini 3 - Google DeepMind Opens in a new window",
+      "text": "deepmind.google Gemini 3 - Google DeepMind Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://deepmind.google/models/gemini/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e58",
+      "role": "link",
+      "name": "tech-now.io Gemini 3 vs Gemini Pro vs Gemini DeepThink: Key Differences Explained Opens in a new window",
+      "text": "tech-now.io Gemini 3 vs Gemini Pro vs Gemini DeepThink: Key Differences Explained Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://tech-now.io/en/blogs/gemini-3-vs-gemini-pro-vs-gemini-deepthink"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e59",
+      "role": "link",
+      "name": "ai.google.dev Gemini 3 Developer Guide - generateContent API Opens in a new window",
+      "text": "ai.google.dev Gemini 3 Developer Guide - generateContent API Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://ai.google.dev/gemini-api/docs/gemini-3"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e60",
+      "role": "link",
+      "name": "metacto.com Google Gemini API Pricing 2026: Complete Cost Guide per 1M Tokens - MetaCTO Opens in a new window",
+      "text": "metacto.com Google Gemini API Pricing 2026: Complete Cost Guide per 1M Tokens - MetaCTO Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.metacto.com/blogs/the-true-cost-of-google-gemini-a-guide-to-api-pricing-and-integration"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e61",
+      "role": "link",
+      "name": "deepmind.google Gemini 3.1 Pro — Google DeepMind Opens in a new window",
+      "text": "deepmind.google Gemini 3.1 Pro — Google DeepMind Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://deepmind.google/models/gemini/pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e62",
+      "role": "link",
+      "name": "blog.google Gemini 3 Deep Think: Advancing science, research and engineering - Google Blog Opens in a new window",
+      "text": "blog.google Gemini 3 Deep Think: Advancing science, research and engineering - Google Blog Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e63",
+      "role": "link",
+      "name": "medium.com ChatGPT 5.2 vs Gemini 3 vs Claude Opus 4.5: Everything You Need to Know - Medium Opens in a new window",
+      "text": "medium.com ChatGPT 5.2 vs Gemini 3 vs Claude Opus 4.5: Everything You Need to Know - Medium Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://medium.com/@kanerika/chatgpt-5-2-vs-gemini-3-vs-claude-opus-4-5-everything-you-need-to-know-696a200a7273"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e64",
+      "role": "link",
+      "name": "deepmind.google Gemini 3.1 Pro - Model Card - Google DeepMind Opens in a new window",
+      "text": "deepmind.google Gemini 3.1 Pro - Model Card - Google DeepMind Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://deepmind.google/models/model-cards/gemini-3-1-pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e65",
+      "role": "link",
+      "name": "vellum.ai Google Gemini 3 Benchmarks (Explained) - Vellum Opens in a new window",
+      "text": "vellum.ai Google Gemini 3 Benchmarks (Explained) - Vellum Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.vellum.ai/blog/google-gemini-3-benchmarks"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e66",
+      "role": "link",
+      "name": "reddit.com Gemini 3 is what gpt 5 should have been. It's mindblowingly good - Reddit Opens in a new window",
+      "text": "reddit.com Gemini 3 is what gpt 5 should have been. It's mindblowingly good - Reddit Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.reddit.com/r/ChatGPTPro/comments/1p0zisl/gemini_3_is_what_gpt_5_should_have_been_its/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e67",
+      "role": "link",
+      "name": "reddit.com How much worse is Thinking vs Pro? I keep hitting the Pro limits at work. : r/Bard - Reddit Opens in a new window",
+      "text": "reddit.com How much worse is Thinking vs Pro? I keep hitting the Pro limits at work. : r/Bard - Reddit Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.reddit.com/r/Bard/comments/1ronz8u/how_much_worse_is_thinking_vs_pro_i_keep_hitting/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e68",
+      "role": "link",
+      "name": "ai.google.dev Gemini Developer API pricing Opens in a new window",
+      "text": "ai.google.dev Gemini Developer API pricing Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://ai.google.dev/gemini-api/docs/pricing"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e69",
+      "role": "link",
+      "name": "openrouter.ai Gemini 3.1 Pro Preview - API Pricing & Benchmarks - OpenRouter Opens in a new window",
+      "text": "openrouter.ai Gemini 3.1 Pro Preview - API Pricing & Benchmarks - OpenRouter Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://openrouter.ai/google/gemini-3.1-pro-preview"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e70",
+      "role": "link",
+      "name": "reddit.com [FIXED] Difference Between Gemini 3.0 Pro and Gemini 3.1 Pro on MineBench (Spatial Reasoning Benchmark) : r/singularity - Reddit Opens in a new window",
+      "text": "reddit.com [FIXED] Difference Between Gemini 3.0 Pro and Gemini 3.1 Pro on MineBench (Spatial Reasoning Benchmark) : r/singularity - Reddit Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "0",
+        "href": "https://www.reddit.com/r/singularity/comments/1ra6x6n/fixed_difference_between_gemini_30_pro_and_gemini/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e71",
+      "role": "button",
+      "name": "Sources read but not used in the report",
+      "text": "Sources read but not used in the report",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger button mat-mdc-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e72",
+      "role": "link",
+      "name": "reddit.com Gemini 3.1 Pro one-shots a Windows 11-style web OS (early beta, prompt below) - Reddit Opens in a new window",
+      "text": "reddit.com Gemini 3.1 Pro one-shots a Windows 11-style web OS (early beta, prompt below) - Reddit Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "href": "https://www.reddit.com/r/singularity/comments/1r8wlhb/gemini_31_pro_oneshots_a_windows_11style_web_os/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e73",
+      "role": "link",
+      "name": "blog.google Official Gemini news and updates | Google Blog Opens in a new window",
+      "text": "blog.google Official Gemini news and updates | Google Blog Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "href": "https://blog.google/products-and-platforms/products/gemini/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e74",
+      "role": "link",
+      "name": "arxiv.org RetailBench: Evaluating Long-Horizon Autonomous Decision-Making and Strategy Stability of LLM Agents in Realistic Retail Environ - arXiv Opens in a new window",
+      "text": "arxiv.org RetailBench: Evaluating Long-Horizon Autonomous Decision-Making and Strategy Stability of LLM Agents in Realistic Retail Environ - arXiv Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "href": "https://arxiv.org/pdf/2603.16453"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e75",
+      "role": "link",
+      "name": "news.smol.ai new Gemini 3 Deep Think, Anthropic $30B @ $380B, GPT-5.3-Codex Spark, MiniMax M2.5 Opens in a new window",
+      "text": "news.smol.ai new Gemini 3 Deep Think, Anthropic $30B @ $380B, GPT-5.3-Codex Spark, MiniMax M2.5 Opens in a new window",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c506046051": "",
+        "target": "_blank",
+        "rel": "noopener",
+        "externallink": "",
+        "data-test-id": "browse-web-item-link",
+        "_nghost-ng-c2116618834": "",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "href": "https://news.smol.ai/issues/26-02-12-anthropic-gemini-deepthink/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e76",
+      "role": "button",
+      "name": "Thoughts",
+      "text": "Thoughts",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger button mat-mdc-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-38",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e77",
+      "role": "separator",
+      "name": "",
+      "text": "",
+      "selector": "mat-divider",
+      "tagName": "mat-divider",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3621165926": "",
+        "role": "separator",
+        "class": "mat-divider item-side-line ng-tns-c3621165926-30 is-first mat-divider-vertical",
+        "aria-orientation": "vertical"
+      },
+      "selectorCandidates": [
+        "mat-divider"
+      ]
+    },
+    {
+      "ref": "e78",
+      "role": "link",
+      "name": "gemini.google ‎Gemini Apps' release updates & improvements",
+      "text": "gemini.google ‎Gemini Apps' release updates & improvements",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2073890775": "",
+        "matripple": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "browse-chip-link",
+        "class": "mat-ripple browse-chip",
+        "href": "https://gemini.google/release-notes/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e79",
+      "role": "link",
+      "name": "devoteam.com Fast, Thinking, and Pro: A Guide to Google's Gemini Models | Devoteam",
+      "text": "devoteam.com Fast, Thinking, and Pro: A Guide to Google's Gemini Models | Devoteam",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2073890775": "",
+        "matripple": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "browse-chip-link",
+        "class": "mat-ripple browse-chip",
+        "href": "https://www.devoteam.com/expert-view/gemini-model-fast-vs-thinking-vs-pro/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e80",
+      "role": "link",
+      "name": "tech-now.io Gemini 3 vs Gemini Pro vs Gemini DeepThink: Key Differences Explained",
+      "text": "tech-now.io Gemini 3 vs Gemini Pro vs Gemini DeepThink: Key Differences Explained",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2073890775": "",
+        "matripple": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "browse-chip-link",
+        "class": "mat-ripple browse-chip",
+        "href": "https://tech-now.io/en/blogs/gemini-3-vs-gemini-pro-vs-gemini-deepthink"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e81",
+      "role": "link",
+      "name": "blog.google Gemini 3 Flash: frontier intelligence built for speed - Google Blog",
+      "text": "blog.google Gemini 3 Flash: frontier intelligence built for speed - Google Blog",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2073890775": "",
+        "matripple": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "browse-chip-link",
+        "class": "mat-ripple browse-chip",
+        "href": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e82",
+      "role": "link",
+      "name": "blog.google A new era of intelligence with Gemini 3 - Google Blog",
+      "text": "blog.google A new era of intelligence with Gemini 3 - Google Blog",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2073890775": "",
+        "matripple": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "browse-chip-link",
+        "class": "mat-ripple browse-chip",
+        "href": "https://blog.google/products-and-platforms/products/gemini/gemini-3/"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [
+    {
+      "ref": "t1",
+      "selector": "table",
+      "headers": [
+        "Feature",
+        "Gemini 3 Fast (Flash)",
+        "Gemini 3 Pro (including 3.1)"
+      ],
+      "rows": [
+        [
+          "Primary Optimization",
+          "Speed and Cost-Efficiency",
+          "Reasoning Depth and Complexity"
+        ],
+        [
+          "Latency Profile",
+          "Low-latency; up to 3x faster than 2.5 Pro",
+          "High-latency; allocated for deep processing"
+        ],
+        [
+          "Context Window",
+          "1 Million Tokens",
+          "1 Million to 2 Million Tokens"
+        ],
+        [
+          "Default Access",
+          "Free users (standard mode)",
+          "Paid subscribers (AI Pro/Ultra)"
+        ],
+        [
+          "Agentic Focus",
+          "Rapid multi-step task execution",
+          "Long-horizon planning and autonomy"
+        ]
+      ]
+    },
+    {
+      "ref": "t2",
+      "selector": "table",
+      "headers": [
+        "Benchmark",
+        "Gemini 3 Fast (Flash)",
+        "Gemini 3 Pro",
+        "Gemini 3.1 Pro (Thinking)"
+      ],
+      "rows": [
+        [
+          "GPQA Diamond (No tools)",
+          "90.4%",
+          "91.9%",
+          "94.3%"
+        ],
+        [
+          "Humanity's Last Exam (No tools)",
+          "33.7%",
+          "37.5%",
+          "44.4%"
+        ],
+        [
+          "ARC-AGI-2 (Abstract Reasoning)",
+          "—",
+          "31.1%",
+          "77.1%"
+        ],
+        [
+          "MMMU-Pro (Multimodal Reasoning)",
+          "81.2%",
+          "81.0%",
+          "80.5%"
+        ]
+      ]
+    },
+    {
+      "ref": "t3",
+      "selector": "table",
+      "headers": [
+        "Benchmark",
+        "Gemini 3 Fast (Flash)",
+        "Gemini 3 Pro",
+        "Gemini 3.1 Pro (Thinking)"
+      ],
+      "rows": [
+        [
+          "SWE-Bench Verified",
+          "78.0%",
+          "76.2%",
+          "80.6%"
+        ],
+        [
+          "LiveCodeBench Pro (Elo)",
+          "—",
+          "2,439",
+          "2,887"
+        ],
+        [
+          "Terminal-Bench 2.0",
+          "—",
+          "54.2%",
+          "68.5%"
+        ],
+        [
+          "APEX-Agents (Long Horizon)",
+          "—",
+          "18.4%",
+          "33.5%"
+        ]
+      ]
+    },
+    {
+      "ref": "t4",
+      "selector": "table",
+      "headers": [
+        "Model",
+        "Input Price (per 1M tokens)",
+        "Output Price (per 1M tokens)",
+        "Context Threshold"
+      ],
+      "rows": [
+        [
+          "Gemini 3 Fast (Flash)",
+          "$0.50",
+          "$3.00",
+          "Flat rate"
+        ],
+        [
+          "Gemini 3.1 Pro",
+          "$2.00",
+          "$12.00",
+          "≤ 200k tokens"
+        ],
+        [
+          "Gemini 3.1 Pro",
+          "$4.00",
+          "$18.00",
+          "> 200k tokens"
+        ],
+        [
+          "Gemini 3.1 Flash-Lite",
+          "$0.25",
+          "$1.50",
+          "Flat rate"
+        ]
+      ]
+    }
+  ],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Free Tier: Provides access to Gemini 3 Fast (Flash) as the default model. It is optimized for everyday tasks, general communication, and rapid brainstorming.",
+        "Google AI Pro ($19.99/month): Formerly Gemini Advanced, this tier provides access to Gemini 3.1 Pro. It includes a 1M token context window, higher usage limits, and integration with professional creative tools like Veo 2 and Flow.",
+        "Google AI Ultra ($124.99/month): Designed for scientists and engineers, this tier provides full access to the updated Gemini 3 Deep Think mode and higher-tier agentic tools like Project Mariner."
+      ]
+    },
+    {
+      "ref": "l2",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Real-time Interaction: Live client negotiations, simultaneous translation, and in-game assistants benefit from the model’s near-instant multimodal analysis.",
+        "Rapid Iteration: UI brainstorming, quick email drafting, and general communication tasks where the user can provide immediate feedback.",
+        "Scalable Agents: Production-ready systems that must handle thousands of requests per second at the lowest possible inference cost."
+      ]
+    },
+    {
+      "ref": "l3",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Massive Data Synthesis: Building a go-to-market strategy from hundreds of competitor documents or summarizing years of industry transcripts.",
+        "Rigorous Logic Application: Auditing financial records against complex rule-sets or detecting anomalies in large spreadsheets where assumptions must be avoided.",
+        "Complex Creative Execution: Turning a series of disparate sketches, prompts, and audio notes into a cohesive family cookbook or a detailed 3D visualization of the universe."
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "src": "/_/bscframe",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    },
+    {
+      "ref": "i2",
+      "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "selector": "#hfcr",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

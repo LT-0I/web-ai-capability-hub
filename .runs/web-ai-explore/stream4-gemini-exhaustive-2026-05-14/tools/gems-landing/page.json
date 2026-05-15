@@ -1,0 +1,265 @@
+{
+  "url": "https://gemini.google.com/gems/view?hl=en",
+  "title": "Gemini",
+  "timestamp": "2026-05-14T16:45:13.997Z",
+  "visibleText": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com) Main menu New chat Gemini PRO Side Navigation Settings & help Show more Gems premade by Google Show more Start a new conversation with Gem: Chess champ Experiment Chess champ Play chess with a language model. Make your first move using chess notation to start your match. More options for \"Chess champ\" Gem Start a new conversation with Gem: Storybook Experiment Storybook Create a customized picture book, for either children or adults, given a topic, an optional target audience age, and an optional art style for the images. More options for \"Storybook\" Gem Start a new conversation with Gem: Brainstormer Brainstormer Find inspiration easily. Fresh ideas for parties, gifts, businesses and more. More options for \"Brainstormer\" Gem Start a new conversation with Gem: Career guide Career guide Unlock your career potential. Get a detailed plan to refine your skills and achieve your career goals. More options for \"Career guide\" Gem Start a new conversation with Gem: Coding partner Coding partner Level up your coding skills. Get the help you need to build your projects and learn as you go. More options for \"Coding partner\" Gem Start a new conversation with Gem: Learning coach Learning coach Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started. More options for \"Learning coach\" Gem Start a new conversation with Gem: Productivity planner Productivity planner Stay on top of your work. Schedule tasks, daily updates, and weekly summaries from apps like Gmail, Calendar, and Drive to boost your productivity. More options for \"Productivity planner\" Gem Start a new conversation with Gem: Writing editor Writing editor Elevate your writing. Get clear, constructive feedback, from grammar to structure. More options for \"Writing editor\" Gem Notice about shared Gems New Gem Dismiss Learn more Opens in a new window",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "PRO",
+      "selector": "button",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e6",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav"
+    },
+    {
+      "ref": "e7",
+      "role": "group",
+      "name": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e9",
+      "role": "group",
+      "name": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Settings & help",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "iframe",
+      "name": "",
+      "selector": "iframe",
+      "tagName": "iframe"
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "Show more Gems premade by Google",
+      "text": "Show more",
+      "selector": "button[aria-label=\"Show more Gems premade by Google\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e13",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Chess champ",
+      "text": "Experiment Chess champ Play chess with a language model. Make your first move using chess notation to start your match.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Chess champ\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "More options for \"Chess champ\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Chess champ\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Storybook",
+      "text": "Experiment Storybook Create a customized picture book, for either children or adults, given a topic, an optional target audience age, and an optional art style for the images.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Storybook\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "More options for \"Storybook\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Storybook\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Brainstormer",
+      "text": "Brainstormer Find inspiration easily. Fresh ideas for parties, gifts, businesses and more.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Brainstormer\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "More options for \"Brainstormer\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Brainstormer\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Career guide",
+      "text": "Career guide Unlock your career potential. Get a detailed plan to refine your skills and achieve your career goals.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Career guide\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "More options for \"Career guide\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Career guide\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Coding partner",
+      "text": "Coding partner Level up your coding skills. Get the help you need to build your projects and learn as you go.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Coding partner\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "More options for \"Coding partner\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Coding partner\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e23",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Learning coach",
+      "text": "Learning coach Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Learning coach\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "More options for \"Learning coach\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Learning coach\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e25",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Productivity planner",
+      "text": "Productivity planner Stay on top of your work. Schedule tasks, daily updates, and weekly summaries from apps like Gmail, Calendar, and Drive to boost your productivity.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Productivity planner\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "More options for \"Productivity planner\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Productivity planner\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e27",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Writing editor",
+      "text": "Writing editor Elevate your writing. Get clear, constructive feedback, from grammar to structure.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Writing editor\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "More options for \"Writing editor\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Writing editor\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Notice about shared Gems",
+      "selector": "button[aria-label=\"Notice about shared Gems\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "New Gem",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Dismiss",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Learn more Opens in a new window",
+      "selector": "a",
+      "tagName": "a"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i2",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i3",
+      "selector": "#hfcr",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

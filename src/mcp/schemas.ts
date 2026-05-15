@@ -141,3 +141,82 @@ export const siteCaptureMapInput = objectSchema<{ site: string; profile?: string
   fixture: scalar.string("Optional local fixture"),
   url: scalar.string("Optional site URL to open or prefer")
 }, ["site"]);
+
+
+export const webAiSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Prompt text to send"),
+  model: scalar.string("Optional service-specific model hint"),
+  style: scalar.string("Optional Claude style hint"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000"),
+  reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
+}, ["profile", "prompt"]);
+
+
+export const webAiSendPromptOutputShape = {
+  response_text: scalar.string("Captured assistant response text; empty when completion_detected is false"),
+  elapsed_ms: scalar.number("Total command elapsed time in milliseconds"),
+  wait_ms: scalar.number("Milliseconds spent waiting for model response completion"),
+  completion_detected: scalar.boolean("True only when service-specific completion signals were observed before the response timeout"),
+  errorCode: scalar.string("Stable consumer error code or null at runtime"),
+  error_code: scalar.string("Stable consumer error code on structured failure responses"),
+  chat_url: scalar.string("Current conversation URL; ChatGPT conversation ids are not redacted"),
+  conversation_id: scalar.string("ChatGPT/Claude conversation id when available"),
+  model_used: scalar.string("Best-effort active model label when readable"),
+  reuse_conversation: scalar.boolean("ChatGPT only: whether an existing conversation was reused"),
+  ok: scalar.boolean("False on structured failure responses"),
+  service: scalar.string("Service id on structured failure responses")
+};
+
+export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; tab_url_contains?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed browser profile name"),
+  files: scalar.array(scalar.string("Local file path"), "Files to upload"),
+  prompt: scalar.string("Prompt text to send after upload"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["profile", "files", "prompt"]);
+
+export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: string; expected_extension: string; download_dir: string; model?: string; artifact_class?: string; tab_url_contains?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Prompt requesting a downloadable artifact"),
+  expected_extension: scalar.enum(["py", "md", "csv", "docx", "pdf", "svg", "xlsx", "pptx", "html", "mmd"], "Expected file extension"),
+  download_dir: scalar.string("Absolute directory for downloaded artifact"),
+  model: scalar.string("Optional model hint"),
+  artifact_class: scalar.enum(["code", "document"], "Claude artifact class"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["profile", "prompt", "expected_extension", "download_dir"]);
+
+export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; size?: string; tab_url_contains?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Image generation prompt"),
+  download_dir: scalar.string("Absolute directory for downloaded image"),
+  size: scalar.string("Optional image size hint"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["profile", "prompt", "download_dir"]);
+
+export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; title?: string; tab_url_contains?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Canvas prompt to export to Google Docs"),
+  title: scalar.string("Optional document title"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000"),
+  reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
+}, ["profile", "prompt"]);
+
+export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Video generation prompt"),
+  download_dir: scalar.string("Absolute directory for downloaded video"),
+  duration_seconds: scalar.number("Optional duration: 2, 4, or 8"),
+  timeout_ms: scalar.number("Maximum task runtime in milliseconds"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service")
+}, ["profile", "prompt", "download_dir"]);
+
+export const webAiTaskStatusInput = objectSchema<{ task_id: string }>({
+  task_id: scalar.string("Task id returned by an async webai tool")
+}, ["task_id"]);

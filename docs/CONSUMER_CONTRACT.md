@@ -1,7 +1,7 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v0.3.0  
-Contract: `consumer-contract-1.2.0`
+Package: `web-ai-research-automation-hub` v0.5.0
+Contract: `consumer-contract-1.3.0`
 
 This document is the versioned public integration contract for packages that consume the hub as a dependency. It adds a small consumer-safe layer without changing the existing safety policy, manual-login boundary, confirmation policy, or any existing CLI/MCP tool behavior.
 
@@ -69,6 +69,42 @@ Stable JSON keys are exactly:
 | `browser:artifact-click` | n/a | `runArtifactClick` | experimental | risky | yes |
 | `mcp:tools` | n/a | `listMcpTools` | stable | read | no |
 | `mcp:resources` | n/a | `listMcpResources` | stable | read | no |
+
+
+
+### Contract 1.3.0 webai MCP tools
+
+Contract 1.3.0 adds 13 experimental webai tools, implemented as service-specific CLI commands, MCP tools, and TypeScript exports. Design source: `.runs/web-ai-explore/stream4-mcp-design.md`.
+
+| CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
+| --- | --- | --- | --- | --- | --- |
+| `webai:chatgpt:send-prompt` | `webai_chatgpt_send_prompt` | `webAiChatgptSendPrompt` | experimental | read | no |
+| `webai:claude:send-prompt` | `webai_claude_send_prompt` | `webAiClaudeSendPrompt` | experimental | read | no |
+| `webai:gemini:send-prompt` | `webai_gemini_send_prompt` | `webAiGeminiSendPrompt` | experimental | read | no |
+| `webai:chatgpt:upload-and-query` | `webai_chatgpt_upload_and_query` | `webAiChatgptUploadAndQuery` | experimental | mutate | no |
+| `webai:claude:upload-and-query` | `webai_claude_upload_and_query` | `webAiClaudeUploadAndQuery` | experimental | mutate | no |
+| `webai:gemini:upload-and-query` | `webai_gemini_upload_and_query` | `webAiGeminiUploadAndQuery` | experimental | mutate | no |
+| `webai:chatgpt:generate-file` | `webai_chatgpt_generate_file` | `webAiChatgptGenerateFile` | experimental | mutate | no |
+| `webai:claude:generate-file` | `webai_claude_generate_file` | `webAiClaudeGenerateFile` | experimental | mutate | no |
+| `webai:chatgpt:generate-image` | `webai_chatgpt_generate_image` | `webAiChatgptGenerateImage` | experimental | mutate | no |
+| `webai:gemini:generate-image` | `webai_gemini_generate_image` | `webAiGeminiGenerateImage` | experimental | mutate | no |
+| `webai:gemini:canvas-to-docs` | `webai_gemini_canvas_to_docs` | `webAiGeminiCanvasToDocs` | experimental | mutate | no |
+| `webai:gemini:generate-video` | `webai_gemini_generate_video` | `webAiGeminiGenerateVideo` | experimental | risky | no |
+| `webai:task-status` | `webai_task_status` | `webAiTaskStatus` | experimental | read | no |
+
+`webai:gemini:generate-video` is asynchronous. It returns `{ task_id, status, profile, lease_id, started_at }` immediately; callers poll `webai:task-status --task-id <id>` / `webai_task_status({ task_id })` for `{ status, progress_label?, result?, errorCode? }`. The v1.3.0 registry is in-memory only: restarting the MCP server abandons in-flight task metadata. Mutating webai tools serialize per profile; a concurrent same-profile mutation returns `PROFILE_LEASE_BUSY`, while different profiles may proceed in parallel.
+
+Webai send-prompt outputs always include `wait_ms` and `completion_detected`; ChatGPT send-prompt also includes `reuse_conversation`. If `completion_detected` is false, callers must treat `errorCode`/`error_code` as authoritative and must not interpret `response_text` as a partial answer. Login prechecks return structured `LOGIN_REQUIRED` failures before prompt-input locator waits.
+
+Per-tool send-prompt output keys:
+
+| Tool | Always-present output keys | Structured-failure optional keys |
+| --- | --- | --- |
+| `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code` |
+| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code` |
+| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code` |
+
+Webai outputs are redacted by schema: they must not include account email, local browser profile paths, CDP/websocket endpoints, cookies/tokens, screenshot bytes/paths, raw DOM, raw HTML, or conversation URLs except the explicitly contracted `chat_url` fields. Prompt text requesting public publishing, collaborator invites, connector enablement, billing/account changes, or scheduled actions returns `POLICY_APPROVAL_REQUIRED`. Publish-class labels such as `Share conversation`, `Create public link`, `Publish`, `Make public`, and `Share Canvas` are denied before click with `AUTO_PUBLISH_DETECTED`. Gemini export-adjacent flows perform a post-export sharing scan and return `AUTO_PUBLISH_DETECTED` if a new public link is observed.
 
 ## MCP resources
 
@@ -169,6 +205,17 @@ Consumer-stable error codes are:
 - `PROFILE_LOCKED`
 - `PROFILE_LEASE_BUSY`
 - `UNKNOWN`
+
+
+
+New in contract 1.3.0:
+
+- `AUTO_PUBLISH_DETECTED` — refused a publish/share-public action or detected a new public link after an export-adjacent flow.
+- `ARTIFACT_MODE_UNSUPPORTED` — service returned or would return the wrong artifact mode for the requested file shape.
+- `MODEL_SELECTION_DRIFT` — observed model did not match the requested model hint.
+- `PLAN_OR_QUOTA_REQUIRED` — service feature is blocked by plan tier or quota exhaustion.
+- `SAFE_OUTPUT_REDACTION_REQUIRED` — a tool response would expose a forbidden safe-consumer field and must be fixed before returning.
+- `PROFILE_LEASE_BUSY` — a same-profile mutation lease is already active.
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.
 

@@ -1,0 +1,779 @@
+{
+  "url": "https://chatgpt.com/",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T16:55:59.779Z",
+  "visibleText": "Skip to content Open sidebar New chat Search chats Recents Open profile menu Home ChatGPT Close sidebar Codex Projects New project 1浏览器自动化（读取+操作） Show chats Open project options for 1浏览器自动化（读取+操作） RL0511 Open project options for RL0511 3Radar Open project options for 3Radar 2notebooklm自动化 Open project options for 2notebooklm自动化 SVG Circle Generation Open conversation options for SVG Circle Generation Web AI Exploration Open conversation options for Web AI Exploration Python sum request Open conversation options for Python sum request Populations Bar Chart Open conversation options for Populations Bar Chart Image generation request Open conversation options for Image generation request Stream #4 Brief PPTX Open conversation options for Stream #4 Brief PPTX Stream #4 PDF Request Open conversation options for Stream #4 PDF Request Stream #4 Stability Brief Open conversation options for Stream #4 Stability Brief Capital Cities CSV Download Open conversation options for Capital Cities CSV Download Stream #4 Briefing Open conversation options for Stream #4 Briefing Python Primes File Open conversation options for Python Primes File File Analysis Request Open conversation options for File Analysis Request PDF Title Request Open conversation options for PDF Title Request Image description request Open conversation options for Image description request Add function return Open conversation options for Add function return Largest Population City Open conversation options for Largest Population City File Summary Request Open conversation options for File Summary Request Stream #4 Documentation Pass Open conversation options for Stream #4 Documentation Pass Documentation Pass Acknowledgement Open conversation options for Documentation Pass Acknowledgement 强化学习在反无人机应用 Open conversation options for 强化学习在反无人机应用 PPTX下载和内容总结 Open conversation options for PPTX下载和内容总结 Gemini 使用问题解析 Open conversation options for Gemini 使用问题解析 Claude -p 解析 Open conversation options for Claude -p 解析 Linux 监视Codex tokens Open conversation options for Linux 监视Codex tokens CSV Files Generation Open conversation options for CSV Files Generation Package Name and Scripts Open conversation options for Package Name and Scripts Catalog probe ok Open conversation options for Catalog probe ok Shark Pro, open profile menu Shark Pro Download apps Start a group chat Turn on temporary chat Where should we begin? Thinking Add files and more Chat with ChatGPT Thinking Start dictation Start Voice Add photos & files Ctrl U Recent files Create image Deep research Web search More Projects Add photos & files Ctrl U Recent files Add photos & files Ctrl U Recent files Create image Deep research Web search More Create image Deep research Web search Create image Deep research Web search More Add files and more /",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Skip to content",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Recents",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open profile menu",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Home",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Close sidebar",
+      "selector": "button[aria-label=\"Close sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Projects",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "New project",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "1浏览器自动化（读取+操作）",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Show chats",
+      "selector": "button[aria-label=\"Show chats\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Open project options for 1浏览器自动化（读取+操作）",
+      "selector": "#radix-_r_a_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "RL0511",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Open project options for RL0511",
+      "selector": "#radix-_r_c_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "3Radar",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Open project options for 3Radar",
+      "selector": "#radix-_r_e_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "2notebooklm自动化",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Open project options for 2notebooklm自动化",
+      "selector": "#radix-_r_g_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Recents",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "SVG Circle Generation",
+      "selector": "a[aria-label=\"SVG Circle Generation\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Open conversation options for SVG Circle Generation",
+      "selector": "#radix-_r_pf_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "Web AI Exploration",
+      "selector": "a[aria-label=\"Web AI Exploration\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Open conversation options for Web AI Exploration",
+      "selector": "#radix-_r_ph_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "Python sum request",
+      "selector": "a[aria-label=\"Python sum request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open conversation options for Python sum request",
+      "selector": "#radix-_r_pj_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Populations Bar Chart",
+      "selector": "a[aria-label=\"Populations Bar Chart\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Open conversation options for Populations Bar Chart",
+      "selector": "#radix-_r_pl_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "Image generation request",
+      "selector": "a[aria-label=\"Image generation request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Open conversation options for Image generation request",
+      "selector": "#radix-_r_pn_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Stream #4 Brief PPTX",
+      "selector": "a[aria-label=\"Stream #4 Brief PPTX\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Open conversation options for Stream #4 Brief PPTX",
+      "selector": "#radix-_r_pp_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "Stream #4 PDF Request",
+      "selector": "a[aria-label=\"Stream #4 PDF Request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Open conversation options for Stream #4 PDF Request",
+      "selector": "#radix-_r_pr_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "Stream #4 Stability Brief",
+      "selector": "a[aria-label=\"Stream #4 Stability Brief\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Open conversation options for Stream #4 Stability Brief",
+      "selector": "#radix-_r_pt_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Capital Cities CSV Download",
+      "selector": "a[aria-label=\"Capital Cities CSV Download\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Open conversation options for Capital Cities CSV Download",
+      "selector": "#radix-_r_pv_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Stream #4 Briefing",
+      "selector": "a[aria-label=\"Stream #4 Briefing\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Open conversation options for Stream #4 Briefing",
+      "selector": "#radix-_r_q1_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Python Primes File",
+      "selector": "a[aria-label=\"Python Primes File\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Open conversation options for Python Primes File",
+      "selector": "#radix-_r_q3_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "File Analysis Request",
+      "selector": "a[aria-label=\"File Analysis Request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "Open conversation options for File Analysis Request",
+      "selector": "#radix-_r_q5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "PDF Title Request",
+      "selector": "a[aria-label=\"PDF Title Request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Open conversation options for PDF Title Request",
+      "selector": "#radix-_r_q7_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "Image description request",
+      "selector": "a[aria-label=\"Image description request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "Open conversation options for Image description request",
+      "selector": "#radix-_r_q9_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "Add function return",
+      "selector": "a[aria-label=\"Add function return\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e51",
+      "role": "button",
+      "name": "Open conversation options for Add function return",
+      "selector": "#radix-_r_qb_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "Largest Population City",
+      "selector": "a[aria-label=\"Largest Population City\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "Open conversation options for Largest Population City",
+      "selector": "#radix-_r_qd_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "File Summary Request",
+      "selector": "a[aria-label=\"File Summary Request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "Open conversation options for File Summary Request",
+      "selector": "#radix-_r_qf_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "Stream #4 Documentation Pass",
+      "selector": "a[aria-label=\"Stream #4 Documentation Pass\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e57",
+      "role": "button",
+      "name": "Open conversation options for Stream #4 Documentation Pass",
+      "selector": "#radix-_r_qh_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e58",
+      "role": "button",
+      "name": "Open conversation options for Image generation request",
+      "selector": "#radix-_r_qj_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e59",
+      "role": "link",
+      "name": "Documentation Pass Acknowledgement",
+      "selector": "a[aria-label=\"Documentation Pass Acknowledgement\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e60",
+      "role": "button",
+      "name": "Open conversation options for Documentation Pass Acknowledgement",
+      "selector": "#radix-_r_ql_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e61",
+      "role": "link",
+      "name": "强化学习在反无人机应用",
+      "selector": "a[aria-label=\"强化学习在反无人机应用\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e62",
+      "role": "button",
+      "name": "Open conversation options for 强化学习在反无人机应用",
+      "selector": "#radix-_r_qn_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e63",
+      "role": "link",
+      "name": "PPTX下载和内容总结",
+      "selector": "a[aria-label=\"PPTX下载和内容总结\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e64",
+      "role": "button",
+      "name": "Open conversation options for PPTX下载和内容总结",
+      "selector": "#radix-_r_qp_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e65",
+      "role": "link",
+      "name": "Gemini 使用问题解析",
+      "selector": "a[aria-label=\"Gemini 使用问题解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e66",
+      "role": "button",
+      "name": "Open conversation options for Gemini 使用问题解析",
+      "selector": "#radix-_r_qr_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e67",
+      "role": "link",
+      "name": "Claude -p 解析",
+      "selector": "a[aria-label=\"Claude -p 解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e68",
+      "role": "button",
+      "name": "Open conversation options for Claude -p 解析",
+      "selector": "#radix-_r_qt_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e69",
+      "role": "link",
+      "name": "Linux 监视Codex tokens",
+      "selector": "a[aria-label=\"Linux 监视Codex tokens\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e70",
+      "role": "button",
+      "name": "Open conversation options for Linux 监视Codex tokens",
+      "selector": "#radix-_r_qv_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e71",
+      "role": "link",
+      "name": "CSV Files Generation",
+      "selector": "a[aria-label=\"CSV Files Generation\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e72",
+      "role": "button",
+      "name": "Open conversation options for CSV Files Generation",
+      "selector": "#radix-_r_r1_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e73",
+      "role": "link",
+      "name": "Package Name and Scripts",
+      "selector": "a[aria-label=\"Package Name and Scripts\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e74",
+      "role": "button",
+      "name": "Open conversation options for Package Name and Scripts",
+      "selector": "#radix-_r_r3_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e75",
+      "role": "link",
+      "name": "Catalog probe ok",
+      "selector": "a[aria-label=\"Catalog probe ok\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e76",
+      "role": "button",
+      "name": "Open conversation options for Catalog probe ok",
+      "selector": "#radix-_r_r5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e77",
+      "role": "button",
+      "name": "Shark Pro, open profile menu",
+      "text": "Shark Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e78",
+      "role": "button",
+      "name": "Download apps",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e79",
+      "role": "button",
+      "name": "Start a group chat",
+      "selector": "button[aria-label=\"Start a group chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e80",
+      "role": "button",
+      "name": "Turn on temporary chat",
+      "selector": "button[aria-label=\"Turn on temporary chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e81",
+      "role": "presentation",
+      "name": "Where should we begin? Thinking",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e82",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-files",
+      "tagName": "input"
+    },
+    {
+      "ref": "e83",
+      "role": "button",
+      "name": "Add files and more",
+      "selector": "#composer-plus-btn",
+      "tagName": "button"
+    },
+    {
+      "ref": "e84",
+      "role": "textbox",
+      "name": "Chat with ChatGPT",
+      "selector": "#prompt-textarea",
+      "tagName": "div"
+    },
+    {
+      "ref": "e85",
+      "role": "button",
+      "name": "Thinking",
+      "selector": "#radix-_r_i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e86",
+      "role": "button",
+      "name": "Start dictation",
+      "selector": "button[aria-label=\"Start dictation\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e87",
+      "role": "button",
+      "name": "Start Voice",
+      "selector": "button[aria-label=\"Start Voice\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e88",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-photos",
+      "tagName": "input"
+    },
+    {
+      "ref": "e89",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-camera",
+      "tagName": "input"
+    },
+    {
+      "ref": "e90",
+      "role": "alert",
+      "name": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div"
+    },
+    {
+      "ref": "e91",
+      "role": "status",
+      "name": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div"
+    },
+    {
+      "ref": "e92",
+      "role": "menu",
+      "name": "Add photos & files Ctrl U Recent files Create image Deep research Web search More Projects",
+      "selector": "#radix-_R_9arj1n9il2kaumcdcc6796aicmH1_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e93",
+      "role": "group",
+      "name": "Add photos & files Ctrl U Recent files",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e94",
+      "role": "menuitem",
+      "name": "Add photos & files Ctrl U",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e95",
+      "role": "menuitem",
+      "name": "Recent files",
+      "selector": "#radix-_r_rp_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e96",
+      "role": "group",
+      "name": "Create image Deep research Web search More",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e97",
+      "role": "group",
+      "name": "Create image Deep research Web search",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e98",
+      "role": "menuitemradio",
+      "name": "Create image",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e99",
+      "role": "menuitemradio",
+      "name": "Deep research",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e100",
+      "role": "menuitemradio",
+      "name": "Web search",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e101",
+      "role": "menuitem",
+      "name": "More",
+      "selector": "#radix-_r_rv_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e102",
+      "role": "group",
+      "name": "Projects",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e103",
+      "role": "menuitem",
+      "name": "Projects",
+      "selector": "#radix-_r_s2_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e104",
+      "role": "tooltip",
+      "name": "Add files and more /",
+      "selector": "#radix-_R_1parj1n9il2kaumcdcc6796aicm_",
+      "tagName": "span"
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Thinking",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e82",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-files",
+          "tagName": "input"
+        },
+        {
+          "ref": "e84",
+          "role": "textbox",
+          "name": "Chat with ChatGPT",
+          "selector": "#prompt-textarea",
+          "tagName": "div"
+        },
+        {
+          "ref": "e88",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-photos",
+          "tagName": "input"
+        },
+        {
+          "ref": "e89",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-camera",
+          "tagName": "input"
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [],
+  "iframes": [],
+  "warnings": []
+}

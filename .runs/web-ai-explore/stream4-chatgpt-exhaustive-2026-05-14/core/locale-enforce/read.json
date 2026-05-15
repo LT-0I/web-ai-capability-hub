@@ -1,0 +1,795 @@
+{
+  "url": "https://chatgpt.com/#settings/General",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T16:03:36.390Z",
+  "visibleText": "Skip to content Open sidebar New chat Search chats Recents Open profile menu Home ChatGPT Close sidebar Codex Projects New project 1浏览器自动化（读取+操作） Show chats Open project options for 1浏览器自动化（读取+操作） RL0511 Open project options for RL0511 3Radar Open project options for 3Radar 2notebooklm自动化 Open project options for 2notebooklm自动化 Image generation request Open conversation options for Image generation request Documentation Pass Acknowledgement Open conversation options for Documentation Pass Acknowledgement 强化学习在反无人机应用 Open conversation options for 强化学习在反无人机应用 PPTX下载和内容总结 Open conversation options for PPTX下载和内容总结 Gemini 使用问题解析 Open conversation options for Gemini 使用问题解析 Claude -p 解析 Open conversation options for Claude -p 解析 Linux 监视Codex tokens Open conversation options for Linux 监视Codex tokens CSV Files Generation Open conversation options for CSV Files Generation Package Name and Scripts Open conversation options for Package Name and Scripts Catalog probe ok Open conversation options for Catalog probe ok Python 3.12 Changelog Open conversation options for Python 3.12 Changelog Morning Routines in Canvas Open conversation options for Morning Routines in Canvas Python 3.12 Changelog URL Open conversation options for Python 3.12 Changelog URL Python Canvas Script Open conversation options for Python Canvas Script Create tiny red dot Open conversation options for Create tiny red dot 刷国行平板美版系统 Open conversation options for 刷国行平板美版系统 简历翻译与PDF生成 Open conversation options for 简历翻译与PDF生成 查看Linux剪贴板历史 Open conversation options for 查看Linux剪贴板历史 项目链接与名称输出 Open conversation options for 项目链接与名称输出 问候交流 Open conversation options for 问候交流 File download ready Open conversation options for File download ready 根据聊天描述用户 Open conversation options for 根据聊天描述用户 欢迎使用 ChatGPT Open conversation options for 欢迎使用 ChatGPT Shark Pro, open profile menu Shark Pro Download apps Start a group chat Turn on temporary chat Ready when you are. Thinking Add files and more Chat with ChatGPT Thinking Start dictation Start Voice General General Notifications Personalization Apps Schedules Billing Data controls Storage Security Parental controls Account General Secure your account Add multi-factor authentication (MFA), like a text message or authenticator app, to help protect your account when logging in. Set up MFA Appearance System Contrast System Accent color Green Language English (US) Enable Dictation Use dictation in the chat composer. Spoken language Auto-detect For best results, select the language you mainly speak. If it's not listed, it may still be supported via auto-detection. Voice Play Vale Separate Voice Keep ChatGPT Voice in a separate full screen, without real time transcripts and visuals. Close General Notifications Personalization Apps Schedules Billing Data controls Storage Security Parental controls Account General Notifications Personalization Apps Schedules Billing Data controls Storage Security Parental controls Account General Secure your account Add multi-factor authentication (MFA), like a text message or authenticator app, to help protect your account when logging in. Set up MFA Appearance System Contrast System Accent color Green Language English (US) Enable Dictation Use dictation in the chat composer. Spoken language Auto-detect For best results, select the language you mainly speak. If it's not listed, it may still be supported via auto-detection. Voice Play Vale Separate Voice Keep ChatGPT Voice in a separate full screen, without real time transcripts and visuals. Dismiss Set up MFA System Green English (US) on Auto-detect Play Vale voice preview Play Vale",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Skip to content",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Recents",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open profile menu",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Home",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Close sidebar",
+      "selector": "button[aria-label=\"Close sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Projects",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "New project",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "1浏览器自动化（读取+操作）",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Show chats",
+      "selector": "button[aria-label=\"Show chats\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Open project options for 1浏览器自动化（读取+操作）",
+      "selector": "#radix-_r_8v_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "RL0511",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Open project options for RL0511",
+      "selector": "#radix-_r_91_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "3Radar",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Open project options for 3Radar",
+      "selector": "#radix-_r_93_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "2notebooklm自动化",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Open project options for 2notebooklm自动化",
+      "selector": "#radix-_r_95_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Recents",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Image generation request",
+      "selector": "a[aria-label=\"Image generation request\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Open conversation options for Image generation request",
+      "selector": "#radix-_r_97_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "Documentation Pass Acknowledgement",
+      "selector": "a[aria-label=\"Documentation Pass Acknowledgement\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Open conversation options for Documentation Pass Acknowledgement",
+      "selector": "#radix-_r_99_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "强化学习在反无人机应用",
+      "selector": "a[aria-label=\"强化学习在反无人机应用\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open conversation options for 强化学习在反无人机应用",
+      "selector": "#radix-_r_9b_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "PPTX下载和内容总结",
+      "selector": "a[aria-label=\"PPTX下载和内容总结\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Open conversation options for PPTX下载和内容总结",
+      "selector": "#radix-_r_9d_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "Gemini 使用问题解析",
+      "selector": "a[aria-label=\"Gemini 使用问题解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Open conversation options for Gemini 使用问题解析",
+      "selector": "#radix-_r_9f_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Claude -p 解析",
+      "selector": "a[aria-label=\"Claude -p 解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Open conversation options for Claude -p 解析",
+      "selector": "#radix-_r_9h_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "Linux 监视Codex tokens",
+      "selector": "a[aria-label=\"Linux 监视Codex tokens\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Open conversation options for Linux 监视Codex tokens",
+      "selector": "#radix-_r_9j_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "CSV Files Generation",
+      "selector": "a[aria-label=\"CSV Files Generation\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Open conversation options for CSV Files Generation",
+      "selector": "#radix-_r_9l_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Package Name and Scripts",
+      "selector": "a[aria-label=\"Package Name and Scripts\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Open conversation options for Package Name and Scripts",
+      "selector": "#radix-_r_9n_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Catalog probe ok",
+      "selector": "a[aria-label=\"Catalog probe ok\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Open conversation options for Catalog probe ok",
+      "selector": "#radix-_r_9p_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Python 3.12 Changelog",
+      "selector": "a[aria-label=\"Python 3.12 Changelog\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog",
+      "selector": "#radix-_r_9r_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Morning Routines in Canvas",
+      "selector": "a[aria-label=\"Morning Routines in Canvas\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "Open conversation options for Morning Routines in Canvas",
+      "selector": "#radix-_r_9t_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "Python 3.12 Changelog URL",
+      "selector": "a[aria-label=\"Python 3.12 Changelog URL\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog URL",
+      "selector": "#radix-_r_9v_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "Python Canvas Script",
+      "selector": "a[aria-label=\"Python Canvas Script\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "Open conversation options for Python Canvas Script",
+      "selector": "#radix-_r_a1_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "Create tiny red dot",
+      "selector": "a[aria-label=\"Create tiny red dot\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e51",
+      "role": "button",
+      "name": "Open conversation options for Create tiny red dot",
+      "selector": "#radix-_r_a3_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "刷国行平板美版系统",
+      "selector": "a[aria-label=\"刷国行平板美版系统\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "Open conversation options for 刷国行平板美版系统",
+      "selector": "#radix-_r_a5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "简历翻译与PDF生成",
+      "selector": "a[aria-label=\"简历翻译与PDF生成\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "Open conversation options for 简历翻译与PDF生成",
+      "selector": "#radix-_r_a7_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "查看Linux剪贴板历史",
+      "selector": "a[aria-label=\"查看Linux剪贴板历史\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e57",
+      "role": "button",
+      "name": "Open conversation options for 查看Linux剪贴板历史",
+      "selector": "#radix-_r_a9_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e58",
+      "role": "link",
+      "name": "项目链接与名称输出",
+      "selector": "a[aria-label=\"项目链接与名称输出\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e59",
+      "role": "button",
+      "name": "Open conversation options for 项目链接与名称输出",
+      "selector": "#radix-_r_ab_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e60",
+      "role": "link",
+      "name": "问候交流",
+      "selector": "a[aria-label=\"问候交流\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e61",
+      "role": "button",
+      "name": "Open conversation options for 问候交流",
+      "selector": "#radix-_r_ad_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e62",
+      "role": "link",
+      "name": "File download ready",
+      "selector": "a[aria-label=\"File download ready\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e63",
+      "role": "button",
+      "name": "Open conversation options for File download ready",
+      "selector": "#radix-_r_af_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e64",
+      "role": "link",
+      "name": "根据聊天描述用户",
+      "selector": "a[aria-label=\"根据聊天描述用户\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e65",
+      "role": "button",
+      "name": "Open conversation options for 根据聊天描述用户",
+      "selector": "#radix-_r_ah_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e66",
+      "role": "link",
+      "name": "欢迎使用 ChatGPT",
+      "selector": "a[aria-label=\"欢迎使用 ChatGPT\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e67",
+      "role": "button",
+      "name": "Open conversation options for 欢迎使用 ChatGPT",
+      "selector": "#radix-_r_aj_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e68",
+      "role": "button",
+      "name": "Shark Pro, open profile menu",
+      "text": "Shark Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e69",
+      "role": "button",
+      "name": "Download apps",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e70",
+      "role": "button",
+      "name": "Start a group chat",
+      "selector": "button[aria-label=\"Start a group chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e71",
+      "role": "button",
+      "name": "Turn on temporary chat",
+      "selector": "button[aria-label=\"Turn on temporary chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e72",
+      "role": "presentation",
+      "name": "Ready when you are. Thinking",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e73",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-files",
+      "tagName": "input"
+    },
+    {
+      "ref": "e74",
+      "role": "button",
+      "name": "Add files and more",
+      "selector": "#composer-plus-btn",
+      "tagName": "button"
+    },
+    {
+      "ref": "e75",
+      "role": "textbox",
+      "name": "Chat with ChatGPT",
+      "selector": "#prompt-textarea",
+      "tagName": "div"
+    },
+    {
+      "ref": "e76",
+      "role": "button",
+      "name": "Thinking",
+      "selector": "#radix-_r_0_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e77",
+      "role": "button",
+      "name": "Start dictation",
+      "selector": "button[aria-label=\"Start dictation\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e78",
+      "role": "button",
+      "name": "Start Voice",
+      "selector": "button[aria-label=\"Start Voice\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e79",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-photos",
+      "tagName": "input"
+    },
+    {
+      "ref": "e80",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-camera",
+      "tagName": "input"
+    },
+    {
+      "ref": "e81",
+      "role": "alert",
+      "name": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div"
+    },
+    {
+      "ref": "e82",
+      "role": "status",
+      "name": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div"
+    },
+    {
+      "ref": "e83",
+      "role": "dialog",
+      "name": "General General Notifications Personalization Apps Schedules Billing Data controls Storage Security Parental controls Account General Secure your account Add multi-factor authentication (MFA), like a text message or authenticator app, to help protect your account when logging in. Set up MFA Appearance System Contrast System Accent color Green Language English (US) Enable Dictation Use dictation in the chat composer. Spoken language Auto-detect For best results, select the language you mainly speak. If it's not listed, it may still be supported via auto-detection. Voice Play Vale Separate Voice Keep ChatGPT Voice in a separate full screen, without real time transcripts and visuals.",
+      "selector": "#radix-_r_am_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e84",
+      "role": "button",
+      "name": "Close",
+      "selector": "button[aria-label=\"Close\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e85",
+      "role": "tablist",
+      "name": "General Notifications Personalization Apps Schedules Billing Data controls Storage Security Parental controls Account",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e86",
+      "role": "tab",
+      "name": "General",
+      "selector": "#radix-_r_ap_-trigger-General",
+      "tagName": "button"
+    },
+    {
+      "ref": "e87",
+      "role": "tab",
+      "name": "Notifications",
+      "selector": "#radix-_r_ap_-trigger-Notifications",
+      "tagName": "button"
+    },
+    {
+      "ref": "e88",
+      "role": "tab",
+      "name": "Personalization",
+      "selector": "#radix-_r_ap_-trigger-Personalization",
+      "tagName": "button"
+    },
+    {
+      "ref": "e89",
+      "role": "tab",
+      "name": "Apps",
+      "selector": "#radix-_r_ap_-trigger-Connectors",
+      "tagName": "button"
+    },
+    {
+      "ref": "e90",
+      "role": "tab",
+      "name": "Schedules",
+      "selector": "#radix-_r_ap_-trigger-Schedules",
+      "tagName": "button"
+    },
+    {
+      "ref": "e91",
+      "role": "tab",
+      "name": "Billing",
+      "selector": "#radix-_r_ap_-trigger-Billing",
+      "tagName": "button"
+    },
+    {
+      "ref": "e92",
+      "role": "tab",
+      "name": "Data controls",
+      "selector": "#radix-_r_ap_-trigger-DataControls",
+      "tagName": "button"
+    },
+    {
+      "ref": "e93",
+      "role": "tab",
+      "name": "Storage",
+      "selector": "#radix-_r_ap_-trigger-Storage",
+      "tagName": "button"
+    },
+    {
+      "ref": "e94",
+      "role": "tab",
+      "name": "Security",
+      "selector": "#radix-_r_ap_-trigger-Security",
+      "tagName": "button"
+    },
+    {
+      "ref": "e95",
+      "role": "tab",
+      "name": "Parental controls",
+      "selector": "#radix-_r_ap_-trigger-ParentalControls",
+      "tagName": "button"
+    },
+    {
+      "ref": "e96",
+      "role": "tab",
+      "name": "Account",
+      "selector": "#radix-_r_ap_-trigger-Account",
+      "tagName": "button"
+    },
+    {
+      "ref": "e97",
+      "role": "tabpanel",
+      "name": "General Secure your account Add multi-factor authentication (MFA), like a text message or authenticator app, to help protect your account when logging in. Set up MFA Appearance System Contrast System Accent color Green Language English (US) Enable Dictation Use dictation in the chat composer. Spoken language Auto-detect For best results, select the language you mainly speak. If it's not listed, it may still be supported via auto-detection. Voice Play Vale Separate Voice Keep ChatGPT Voice in a separate full screen, without real time transcripts and visuals.",
+      "selector": "#radix-_r_ap_-content-General",
+      "tagName": "div"
+    },
+    {
+      "ref": "e98",
+      "role": "button",
+      "name": "Dismiss",
+      "selector": "button[aria-label=\"Dismiss\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e99",
+      "role": "button",
+      "name": "Set up MFA",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e100",
+      "role": "combobox",
+      "name": "System",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e101",
+      "role": "combobox",
+      "name": "Green",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e102",
+      "role": "combobox",
+      "name": "English (US)",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e103",
+      "role": "switch",
+      "name": "on",
+      "selector": "button",
+      "tagName": "button",
+      "value": "on"
+    },
+    {
+      "ref": "e104",
+      "role": "combobox",
+      "name": "Auto-detect",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e105",
+      "role": "button",
+      "name": "Play Vale voice preview",
+      "text": "Play",
+      "selector": "button[aria-label=\"Play Vale voice preview\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e106",
+      "role": "combobox",
+      "name": "Vale",
+      "selector": "button",
+      "tagName": "button"
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Thinking",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e73",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-files",
+          "tagName": "input"
+        },
+        {
+          "ref": "e75",
+          "role": "textbox",
+          "name": "Chat with ChatGPT",
+          "selector": "#prompt-textarea",
+          "tagName": "div"
+        },
+        {
+          "ref": "e79",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-photos",
+          "tagName": "input"
+        },
+        {
+          "ref": "e80",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-camera",
+          "tagName": "input"
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [],
+  "iframes": [],
+  "warnings": []
+}

@@ -1,0 +1,36 @@
+sequenceDiagram
+    autonumber
+
+    actor User
+    participant Orch as Orchestrator
+    participant GPT as ChatGPT
+    participant Claude as Claude
+    participant Gemini as Gemini
+
+    User->>Orch: Submit query
+
+    rect rgb(220, 235, 255)
+        note over Orch,Gemini: Parallel fan-out
+        par Send to ChatGPT
+            Orch->>GPT: Forward prompt
+        and Send to Claude
+            Orch->>Claude: Forward prompt
+        and Send to Gemini
+            Orch->>Gemini: Forward prompt
+        end
+    end
+
+    rect rgb(220, 255, 230)
+        note over GPT,Gemini: Independent inference
+        GPT-->>Orch: Response A
+        Claude-->>Orch: Response B
+        Gemini-->>Orch: Response C
+    end
+
+    rect rgb(255, 245, 220)
+        note over Orch: Synthesis
+        Orch->>Orch: Merge & reconcile responses
+        Orch->>Orch: Resolve conflicts / rank answers
+    end
+
+    Orch->>User: Final synthesized answer

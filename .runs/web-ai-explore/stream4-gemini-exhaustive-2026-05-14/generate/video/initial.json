@@ -1,0 +1,176 @@
+{
+  "url": "https://gemini.google.com/app/d1bd28ee0ea90d2e?hl=en",
+  "title": "Google Gemini",
+  "timestamp": "2026-05-14T16:32:12.177Z",
+  "visibleText": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com) Main menu New chat Gemini Open menu for conversation actions. Side Navigation Settings & help Copy prompt Edit You said A single red ball bouncing once on a white floor, 2 seconds, no sound. Enter a prompt for Gemini Open upload file menu Tools Deselect Create video Create video Open mode picker Fast Microphone Stop response",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Open menu for conversation actions.",
+      "selector": "button[aria-label=\"Open menu for conversation actions.\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e6",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav"
+    },
+    {
+      "ref": "e7",
+      "role": "group",
+      "name": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e9",
+      "role": "group",
+      "name": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Settings & help",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Copy prompt",
+      "selector": "button[aria-label=\"Copy prompt\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "Edit",
+      "selector": "button[aria-label=\"Edit\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e13",
+      "role": "heading",
+      "name": "You said A single red ball bouncing once on a white floor, 2 seconds, no sound.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e14",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "Open upload file menu",
+      "selector": "button[aria-label=\"Open upload file menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e17",
+      "role": "button",
+      "name": "Tools",
+      "selector": "button[aria-label=\"Tools\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Deselect Create video",
+      "text": "Create video",
+      "selector": "button[aria-label=\"Deselect Create video\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Microphone",
+      "selector": "button[aria-label=\"Microphone\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Stop response",
+      "selector": "button[aria-label=\"Stop response\"]",
+      "tagName": "button"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i2",
+      "selector": "#hfcr",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

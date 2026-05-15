@@ -1,0 +1,123 @@
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount((c) => c + 1);
+  const decrement = () => setCount((c) => c - 1);
+  const reset = () => setCount(0);
+
+  const isPositive = count > 0;
+  const isNegative = count < 0;
+
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: "320px",
+      gap: "2rem",
+      padding: "2rem 0",
+      fontFamily: "var(--font-sans)",
+    }}>
+      <h2 className="sr-only">Interactive counter</h2>
+
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "0.25rem",
+      }}>
+        <span style={{
+          fontSize: "13px",
+          color: "var(--color-text-secondary)",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+        }}>
+          count
+        </span>
+        <span style={{
+          fontSize: "80px",
+          fontWeight: 500,
+          lineHeight: 1,
+          color: isPositive
+            ? "var(--color-text-success)"
+            : isNegative
+            ? "var(--color-text-danger)"
+            : "var(--color-text-primary)",
+          transition: "color 0.2s ease",
+          minWidth: "160px",
+          textAlign: "center",
+        }}>
+          {count}
+        </span>
+      </div>
+
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <button
+          onClick={decrement}
+          aria-label="Decrement"
+          style={{
+            width: "52px",
+            height: "52px",
+            borderRadius: "var(--border-radius-lg)",
+            fontSize: "24px",
+            fontWeight: 500,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <i className="ti ti-minus" aria-hidden="true" style={{ fontSize: "20px" }} />
+        </button>
+
+        <button
+          onClick={reset}
+          aria-label="Reset to zero"
+          style={{
+            height: "36px",
+            padding: "0 16px",
+            fontSize: "13px",
+            borderRadius: "var(--border-radius-md)",
+            cursor: "pointer",
+            color: "var(--color-text-secondary)",
+          }}
+        >
+          reset
+        </button>
+
+        <button
+          onClick={increment}
+          aria-label="Increment"
+          style={{
+            width: "52px",
+            height: "52px",
+            borderRadius: "var(--border-radius-lg)",
+            fontSize: "24px",
+            fontWeight: 500,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <i className="ti ti-plus" aria-hidden="true" style={{ fontSize: "20px" }} />
+        </button>
+      </div>
+
+      <p style={{
+        fontSize: "13px",
+        color: "var(--color-text-tertiary)",
+        margin: 0,
+      }}>
+        {count === 0
+          ? "Start counting"
+          : count > 0
+          ? `${count} above zero`
+          : `${Math.abs(count)} below zero`}
+      </p>
+    </div>
+  );
+}

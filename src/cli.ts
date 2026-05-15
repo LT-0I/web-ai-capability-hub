@@ -23,7 +23,7 @@ import { listWebAiAdapters, getWebAiAdapter } from "./adapters/web-ai";
 import { captureSiteMapForSnapshot, saveSiteMap } from "./maintenance/captureSiteMap";
 import { diffSiteMapFiles, latestSiteMapPath } from "./maintenance/diffSiteMap";
 import { startMcpServer } from "./mcp/server";
-import { listMcpTools } from "./mcp/tools";
+import { callMcpTool, listMcpTools } from "./mcp/tools";
 import { listMcpResources } from "./mcp/resources";
 import { readConfigFile } from "./utils/yaml";
 import { policyNotice } from "./safety/policy";
@@ -142,6 +142,50 @@ function asStringList(value: CliOptionValue | undefined): string[] {
     .flatMap((item) => item.split(","))
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function webAiArgsFromCli(command: string, options: Record<string, CliOptionValue>): Record<string, unknown> {
+  const base: Record<string, unknown> = {
+    profile: asString(options.profile),
+    prompt: asString(options.prompt),
+    tab_url_contains: asString(options["tab-url-contains"] || options.tabUrlContains),
+    timeout_ms: asNumber(options["timeout-ms"] || options.timeoutMs),
+    response_timeout_ms: asNumber(options["response-timeout-ms"] || options.responseTimeoutMs),
+    reuse_conversation: asBoolean(options["reuse-conversation"] || options.reuseConversation),
+    model: asString(options.model),
+    style: asString(options.style),
+    download_dir: asString(options["download-dir"] || options.downloadDir),
+    expected_extension: asString(options["expected-extension"] || options.expectedExtension),
+    artifact_class: asString(options["artifact-class"] || options.artifactClass),
+    title: asString(options.title),
+    size: asString(options.size),
+    duration_seconds: asNumber(options["duration-seconds"] || options.durationSeconds),
+    task_id: asString(options["task-id"] || options.taskId)
+  };
+  const files = asStringList(options.file || options.files);
+  if (files.length) base.files = files;
+  for (const key of Object.keys(base)) if (base[key] === undefined) delete base[key];
+  if (command === "webai:task-status" && !base.task_id) throw new Error("webai:task-status requires --task-id <id>");
+  return base;
+}
+
+function webAiMcpNameFromCli(command: string): string | undefined {
+  const map: Record<string, string> = {
+    "webai:chatgpt:send-prompt": "webai_chatgpt_send_prompt",
+    "webai:claude:send-prompt": "webai_claude_send_prompt",
+    "webai:gemini:send-prompt": "webai_gemini_send_prompt",
+    "webai:chatgpt:upload-and-query": "webai_chatgpt_upload_and_query",
+    "webai:claude:upload-and-query": "webai_claude_upload_and_query",
+    "webai:gemini:upload-and-query": "webai_gemini_upload_and_query",
+    "webai:chatgpt:generate-file": "webai_chatgpt_generate_file",
+    "webai:claude:generate-file": "webai_claude_generate_file",
+    "webai:chatgpt:generate-image": "webai_chatgpt_generate_image",
+    "webai:gemini:generate-image": "webai_gemini_generate_image",
+    "webai:gemini:canvas-to-docs": "webai_gemini_canvas_to_docs",
+    "webai:gemini:generate-video": "webai_gemini_generate_video",
+    "webai:task-status": "webai_task_status"
+  };
+  return map[command];
 }
 
 function workflowInputsFromCli(value: CliOptionValue | undefined): Record<string, unknown> {
@@ -444,6 +488,13 @@ Core commands:
   scheduler:run --interval-minutes <n> [--json]
 
 MCP and compatibility commands:
+  webai:chatgpt:send-prompt|webai:claude:send-prompt|webai:gemini:send-prompt --profile <name> --prompt <text> [--response-timeout-ms <ms>] [--reuse-conversation] [--output-json]
+  webai:chatgpt:upload-and-query|webai:claude:upload-and-query|webai:gemini:upload-and-query --profile <name> --file <path> --prompt <text> [--output-json]
+  webai:chatgpt:generate-file|webai:claude:generate-file --profile <name> --prompt <text> --expected-extension <ext> --download-dir <abs> [--output-json]
+  webai:chatgpt:generate-image|webai:gemini:generate-image --profile <name> --prompt <text> --download-dir <abs> [--output-json]
+  webai:gemini:canvas-to-docs --profile <name> --prompt <text> [--title <title>] [--output-json]
+  webai:gemini:generate-video --profile <name> --prompt <text> --download-dir <abs> [--output-json]
+  webai:task-status --task-id <id> [--output-json]
   mcp
   mcp:tools [--json]
   mcp:resources [--json]
@@ -485,6 +536,13 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     });
     output(result, options);
     if (!result.ok) process.exitCode = 1;
+    return;
+  }
+
+
+  const webAiMcpName = webAiMcpNameFromCli(command);
+  if (webAiMcpName) {
+    output(redactForCli(await callMcpTool(webAiMcpName, webAiArgsFromCli(command, options)), options), options);
     return;
   }
 

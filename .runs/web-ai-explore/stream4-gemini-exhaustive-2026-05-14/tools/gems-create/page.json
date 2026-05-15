@@ -1,0 +1,314 @@
+{
+  "url": "https://gemini.google.com/gems/create?hl=en",
+  "title": "Gemini",
+  "timestamp": "2026-05-14T16:48:26.577Z",
+  "visibleText": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com) Main menu New chat Gemini PRO Side Navigation Loading Gems and Recent conversations Settings & help Editor Preview New Gem Name Your Gem requires a name to start testing. Description Instructions Default tool No default tool Knowledge Add files for your Gem to reference Disable Knowledge Citations Preview To preview your Gem start by giving it a name Conversation with Gemini Fast Save Cancel edit or creation Input for a Gem name Describe your Gem and explain what it does Information about the instructions of the Gem Enter a prompt for Gemini Button to undo Gem instruction change Button to redo Gem instruction change Power up Unable to re-write Information about default tool No default tool Information about the knowledges of the Gem Open upload file menu for Gem knowledge section Disable Knowledge Citations More information on disabling knowledge citations Open mode picker Fast Send message Save Gem Save learn more Opens in a new window responsibly Opens in a new window Knowledge information If you share this Gem, the titles of the Gem’s attached files will be visible. You’ll be prompted separately to share the attached file’s contents. Got it Learn more Got it Learn more Create your Gem Start by giving your Gem a name and instructions Got it",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "PRO",
+      "selector": "button",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e6",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav"
+    },
+    {
+      "ref": "e7",
+      "role": "group",
+      "name": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e9",
+      "role": "progressbar",
+      "name": "Loading Gems and Recent conversations",
+      "selector": "mat-progress-spinner[aria-label=\"Loading Gems and Recent conversations\"]",
+      "tagName": "mat-progress-spinner"
+    },
+    {
+      "ref": "e10",
+      "role": "group",
+      "name": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Settings & help",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "tab",
+      "name": "Editor",
+      "selector": "#mat-tab-link-0",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "tab",
+      "name": "Preview",
+      "selector": "#mat-tab-link-1",
+      "tagName": "a"
+    },
+    {
+      "ref": "e14",
+      "role": "tabpanel",
+      "name": "New Gem Name Your Gem requires a name to start testing. Description Instructions Default tool No default tool Knowledge Add files for your Gem to reference Disable Knowledge Citations Preview To preview your Gem start by giving it a name Conversation with Gemini Fast Save",
+      "selector": "#mat-tab-nav-panel-0",
+      "tagName": "mat-tab-nav-panel"
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "Cancel edit or creation",
+      "selector": "button[aria-label=\"Cancel edit or creation\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e16",
+      "role": "textbox",
+      "name": "Input for a Gem name",
+      "selector": "#gem-name-input",
+      "tagName": "input"
+    },
+    {
+      "ref": "e17",
+      "role": "textarea",
+      "name": "Describe your Gem and explain what it does",
+      "selector": "#gem-description-input",
+      "tagName": "textarea"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Information about the instructions of the Gem",
+      "selector": "button[aria-label=\"Information about the instructions of the Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Button to undo Gem instruction change",
+      "selector": "button[aria-label=\"Button to undo Gem instruction change\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Button to redo Gem instruction change",
+      "selector": "button[aria-label=\"Button to redo Gem instruction change\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "Power up",
+      "text": "Unable to re-write",
+      "selector": "button[aria-label=\"Power up\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Information about default tool",
+      "selector": "button[aria-label=\"Information about default tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "No default tool",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Information about the knowledges of the Gem",
+      "selector": "button[aria-label=\"Information about the knowledges of the Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "Open upload file menu for Gem knowledge section",
+      "selector": "button[aria-label=\"Open upload file menu for Gem knowledge section\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e28",
+      "role": "checkbox",
+      "name": "Disable Knowledge Citations",
+      "selector": "#mat-mdc-checkbox-0-input",
+      "tagName": "input",
+      "value": "on",
+      "disabled": true
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "More information on disabling knowledge citations",
+      "selector": "button[aria-label=\"More information on disabling knowledge citations\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Send message",
+      "selector": "button[aria-label=\"Send message\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e32",
+      "role": "status",
+      "name": "",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Save Gem",
+      "text": "Save",
+      "selector": "button[aria-label=\"Save Gem\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "learn more Opens in a new window",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e35",
+      "role": "link",
+      "name": "responsibly Opens in a new window",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e36",
+      "role": "dialog",
+      "name": "Knowledge information",
+      "text": "If you share this Gem, the titles of the Gem’s attached files will be visible. You’ll be prompted separately to share the attached file’s contents. Got it Learn more",
+      "selector": "xap-inline-dialog-container[aria-label=\"Knowledge information\"]",
+      "tagName": "xap-inline-dialog-container"
+    },
+    {
+      "ref": "e37",
+      "role": "dialog",
+      "name": "If you share this Gem, the titles of the Gem’s attached files will be visible. You’ll be prompted separately to share the attached file’s contents. Got it Learn more",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e38",
+      "role": "button",
+      "name": "Got it",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Learn more",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e40",
+      "role": "dialog",
+      "name": "Create your Gem Start by giving your Gem a name and instructions Got it",
+      "selector": "div",
+      "tagName": "div"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

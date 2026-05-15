@@ -1,0 +1,1062 @@
+{
+  "url": "https://gemini.google.com/app/0a9e05a775e2f01c?hl=en",
+  "title": "Web AI Automation Stability Brief - Google Gemini",
+  "timestamp": "2026-05-14T16:26:02.809Z",
+  "visibleText": "Gemini Web AI Automation Stability Brief New chat Conversation with Gemini You said Draft a short text document titled \"Stream 4 Stability Brief\" with 3 paragraphs about web AI automation reliability. Output as a Canvas document. Gemini said I've put together the stability brief regarding web AI automation reliability, focusing on the current challenges and the shift toward more resilient systems. Stream 4 Stability Brief May 14, 9:25 AM Try again without Canvas This brief outlines the evolution from brittle selectors to intent-based AI navigation. Would you like to add a section specifically addressing the security implications of these autonomous agents? Fast Gemini is AI and can make mistakes. Stream 4 Stability Brief Create Stream 4 Stability Brief: Web AI Automation Reliability The primary hurdle in achieving consistent web AI automation reliability stems from the inherently dynamic nature of the modern Document Object Model (DOM). Unlike static legacy systems, contemporary web applications frequently update their structures, class names, and element hierarchies through continuous integration and deployment cycles. This fluidity often results in \"brittle\" automation scripts that fail when encountered with minor UI changes, necessitating a shift toward more adaptive identification strategies that rely on semantic understanding rather than rigid CSS selectors or XPath expressions. To mitigate these disruptions, engineering teams are increasingly implementing robust error-handling frameworks and \"self-healing\" logic. By incorporating redundant selector strategies and intelligent retry mechanisms, automation agents can navigate temporary network latencies or minor layout shifts without manual intervention. Stability in Stream 4 is further enhanced by monitoring real-time performance metrics and establishing baseline behaviors; when an automated process deviates from these norms, the system can automatically roll back to a known stable state or alert developers before a critical failure occurs. Looking forward, the integration of Large Language Models (LLMs) into the automation pipeline represents a significant leap toward autonomous reliability. These models allow agents to interpret the intent of a webpage—understanding that a \"Checkout\" button remains a \"Checkout\" button even if its underlying code is completely rewritten. This transition from hardcoded scripts to intent-based navigation ensures that web AI can maintain high uptime across diverse and evolving digital environments, ultimately reducing the technical debt associated with constant script maintenance. Build on top of thisCreate something new based on this, like an Audio Overview, web app, or timeline Build on top of this Create something new based on this, like an Audio Overview, web app, or timeline Got it",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "text": "",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "gb_C gb_5a gb_6",
+        "aria-expanded": "false",
+        "aria-label": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+        "href": "https://accounts.google.com/SignOutOptions?hl=en&continue=https://gemini.google.com/app%3Fhl%3Den&ec=GBRAkgU",
+        "tabindex": "0",
+        "role": "button"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "text": "",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c303525898": "",
+        "mat-icon-button": "",
+        "aria-label": "Main menu",
+        "data-test-id": "side-nav-menu-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger main-menu-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "204298;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-23",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Main menu\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "text": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2014502497": "",
+        "role": "img",
+        "class": "mat-icon notranslate gds-icon-l google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "menu",
+        "data-mat-icon-namespace": "",
+        "fonticon": "menu"
+      },
+      "selectorCandidates": [
+        "mat-icon"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "tooltipanchorposition": "below",
+        "role": "button",
+        "tabindex": "0",
+        "aria-label": "New chat",
+        "class": "bard-logo-container logo-only ng-star-inserted hide-on-mobile",
+        "href": "/app",
+        "aria-disabled": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Share conversation",
+      "text": "",
+      "selector": "button[aria-label=\"Share conversation\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4281317633": "",
+        "mat-icon-button": "",
+        "data-test-id": "share-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Share conversation",
+        "jslog": "301647;track:generic_click,impression"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Share conversation\"]"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open menu for conversation actions.",
+      "text": "",
+      "selector": "button[aria-label=\"Open menu for conversation actions.\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-icon-button": "",
+        "aria-label": "Open menu for conversation actions.",
+        "data-test-id": "conversation-actions-menu-icon-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "298422;track:generic_click,impression",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open menu for conversation actions.\"]"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c824153890": "",
+        "role": "navigation",
+        "_nghost-ng-c2130131422": "",
+        "class": "mystuff-side-nav-update disable-onload-animations ng-tns-c2130131422-3 ng-trigger ng-trigger-widthTransition collapsed",
+        "aria-label": "Side Navigation",
+        "jslog": "173918;track:impression,attention",
+        "style": "width: var(--bard-sidenav-closed-width);",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ3s4KahcKEwiMtqOvmLmUAxUAAAAAHQAAAAAQAw"
+      },
+      "selectorCandidates": [
+        "bard-sidenav[aria-label=\"Side Navigation\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "group",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list top-action-list ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "href": "/app",
+        "aria-label": "New chat",
+        "aria-describedby": "cdk-describedby-message-ng-1-28",
+        "cdk-describedby-host": "ng-1",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "group",
+      "name": "",
+      "text": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list desktop-controls ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Settings & help",
+      "text": "",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Settings & help",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Settings & help\"]"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "Copy prompt",
+      "text": "",
+      "selector": "button[aria-label=\"Copy prompt\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Copy prompt",
+        "mattooltip": "Copy prompt",
+        "data-test-id": "prompt-copy-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-0",
+        "jslog": "273008;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy prompt\"]"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Edit",
+      "text": "",
+      "selector": "button[aria-label=\"Edit\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Edit",
+        "mattooltip": "Edit prompt",
+        "data-test-id": "prompt-edit-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-0",
+        "jslog": "173924;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-24",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Edit\"]"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "heading",
+      "name": "You said Draft a short text document titled \"Stream 4 Stability Brief\" with 3 paragraphs about web AI automation reliability. Output as a Canvas document.",
+      "text": "You said Draft a short text document titled \"Stream 4 Stability Brief\" with 3 paragraphs about web AI automation reliability. Output as a Canvas document.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "role": "heading",
+        "aria-level": "2",
+        "class": "query-text gds-body-l collapsed",
+        "dir": "ltr"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "Expand",
+      "text": "",
+      "selector": "button[aria-label=\"Expand\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Expand",
+        "mattooltip": "Expand text",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger expand-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "224552;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-27",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Expand\"]"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Listen",
+      "text": "",
+      "selector": "button[aria-label=\"Listen\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger tts-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Listen",
+        "jslog": "184512;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,\"rc_fb34a4085fc44865\",null,null,\"\",null,1,null,null,1,0]];mutable:true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Listen\"]"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "menu",
+      "name": "",
+      "text": "",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "role": "menu",
+        "class": "mat-mdc-menu-trigger playback-speed-menu-trigger multi",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Try again without Canvas",
+      "text": "Try again without Canvas",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c798693843": "",
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base retry-without-tool-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "253022;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "Good response",
+      "text": "",
+      "selector": "button[aria-label=\"Good response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1550161466": "",
+        "mat-icon-button": "",
+        "mattooltip": "Good response",
+        "aria-label": "Good response",
+        "data-test-id": "thumb-up-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173913;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,\"rc_fb34a4085fc44865\",null,null,\"\",null,1,null,null,1,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Good response\"]"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Bad response",
+      "text": "",
+      "selector": "button[aria-label=\"Bad response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3439315037": "",
+        "mat-icon-button": "",
+        "mattooltip": "Bad response",
+        "aria-label": "Bad response",
+        "data-test-id": "thumb-down-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173904;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,\"rc_fb34a4085fc44865\",null,null,\"\",null,1,null,null,1,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Bad response\"]"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Copy",
+      "text": "",
+      "selector": "button[aria-label=\"Copy\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4206996302": "",
+        "mat-button": "",
+        "tabindex": "0",
+        "mattooltip": "Copy response",
+        "aria-label": "Copy",
+        "data-test-id": "copy-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "178035;track:generic_click,impression;BardVeMetadataKey:[[\"r_ebfde749af96c356\",\"c_0a9e05a775e2f01c\",null,\"rc_fb34a4085fc44865\",null,null,\"\",null,1,null,null,1,0]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-44",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy\"]"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "Show more options",
+      "text": "",
+      "selector": "button[aria-label=\"Show more options\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1704719753": "",
+        "mat-button": "",
+        "mattooltip": "More",
+        "aria-label": "Show more options",
+        "tabindex": "0",
+        "data-test-id": "more-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger icon-button more-menu-button mat-mdc-button ng-tns-c1704719753-22 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-45",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Show more options\"]"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "text": "",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "ql-editor textarea new-input-ui ql-blank",
+        "data-gramm": "false",
+        "contenteditable": "true",
+        "role": "textbox",
+        "aria-multiline": "true",
+        "aria-label": "Enter a prompt for Gemini",
+        "data-placeholder": "Let's write or build together"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Enter a prompt for Gemini\"]"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "Open upload file menu",
+      "text": "",
+      "selector": "button[aria-label=\"Open upload file menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "mat-icon-button": "",
+        "color": "primary",
+        "aria-haspopup": "menu",
+        "aria-controls": "upload-file-menu",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger upload-card-button open mat-primary ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Open upload file menu",
+        "aria-expanded": "false",
+        "jslog": "188890;track:generic_click,impression,hover",
+        "aria-describedby": "cdk-describedby-message-ng-1-19",
+        "cdk-describedby-host": "ng-1",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ2sMLahcKEwiMtqOvmLmUAxUAAAAAHQAAAAAQEQ"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open upload file menu\"]"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "",
+      "text": "",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "tabindex": "-1",
+        "xapfileselectortrigger": "",
+        "aria-hidden": "true",
+        "data-test-id": "hidden-local-image-upload-button",
+        "class": "hidden-local-upload-button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "Deselect Canvas",
+      "text": "Canvas",
+      "selector": "button[aria-label=\"Deselect Canvas\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4251399043": "",
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base toolbox-drawer-item-deselect-button mat-mdc-button ng-tns-c4251399043-12 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-label": "Deselect Canvas",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Deselect Canvas\"]"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "mat-button": "",
+        "aria-label": "Open mode picker",
+        "data-test-id": "bard-mode-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger input-area-switch mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "206752;track:generic_click;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"56fdd199312815e2\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open mode picker\"]"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "Microphone",
+      "text": "",
+      "selector": "button[aria-label=\"Microphone\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c488515864": "",
+        "data-node-type": "speech_dictation_mic_button",
+        "maticonsuffix": "",
+        "mat-icon-button": "",
+        "mattooltip": "Use microphone",
+        "aria-label": "Microphone",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger speech_dictation_mic_button ng-tns-c488515864-7 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "175863;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-3",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Microphone\"]"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Send message",
+      "text": "",
+      "selector": "button[aria-label=\"Send message\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3511392904": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base send-button ng-tns-c3511392904-5 mat-unthemed ng-star-inserted submit",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Send message",
+        "jslog": "173899;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-disabled": "true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Send message\"]"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Previous version",
+      "text": "",
+      "selector": "button[aria-label=\"Previous version\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3077917336": "",
+        "mat-icon-button": "",
+        "mattooltip": "Previous version",
+        "aria-label": "Previous version",
+        "data-test-id": "undo-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button navigation-button mat-mdc-button-disabled mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "mat-ripple-loader-disabled": "",
+        "jslog": "250647;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]",
+        "disabled": "true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Previous version\"]"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Next version",
+      "text": "",
+      "selector": "button[aria-label=\"Next version\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3077917336": "",
+        "mat-icon-button": "",
+        "mattooltip": "Next version",
+        "aria-label": "Next version",
+        "data-test-id": "redo-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button navigation-button mat-mdc-button-disabled mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "mat-ripple-loader-disabled": "",
+        "jslog": "250645;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]",
+        "disabled": "true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Next version\"]"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "button",
+      "name": "More options",
+      "text": "",
+      "selector": "button[aria-label=\"More options\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2495802437": "",
+        "mat-icon-button": "",
+        "aria-label": "More options",
+        "mattooltip": "More options",
+        "data-test-id": "toolbar-overflow-trigger",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button toolbar-overflow-trigger mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": ""
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"More options\"]"
+      ]
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Print",
+      "text": "",
+      "selector": "button[aria-label=\"Print\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1715429660": "",
+        "mat-icon-button": "",
+        "mattooltipposition": "below",
+        "mattooltip": "Print",
+        "aria-label": "Print",
+        "data-test-id": "print-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "270021;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Print\"]"
+      ]
+    },
+    {
+      "ref": "e34",
+      "role": "button",
+      "name": "Share and export canvas",
+      "text": "",
+      "selector": "button[aria-label=\"Share and export canvas\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1145118402": "",
+        "mat-icon-button": "",
+        "mattooltipposition": "below",
+        "data-test-id": "share-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger icon-button share-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Share and export canvas",
+        "jslog": "250628;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-38",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Share and export canvas\"]"
+      ]
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Create",
+      "text": "Create",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c315554291": "",
+        "mat-flat-button": "",
+        "color": "primary",
+        "data-test-id": "canvas-create-task-menu",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "jslog": "252206;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-37",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e36",
+      "role": "button",
+      "name": "Close panel",
+      "text": "",
+      "selector": "button[aria-label=\"Close panel\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2495802437": "",
+        "mat-icon-button": "",
+        "aria-label": "Close panel",
+        "mattooltip": "Close",
+        "mattooltipposition": "below",
+        "data-test-id": "close-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button close-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "262385;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"c_0a9e05a775e2f01c_stability_brief.md\",null,\"c_0a9e05a775e2f01c\",\"r_ebfde749af96c356\",\"rc_fb34a4085fc44865\"]]",
+        "aria-describedby": "cdk-describedby-message-ng-1-36",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Close panel\"]"
+      ]
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Length",
+      "text": "",
+      "selector": "button[aria-label=\"Length\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2777341280": "",
+        "mattooltipposition": "before",
+        "class": "mat-mdc-tooltip-trigger quick-actions-fab-button",
+        "aria-label": "Length",
+        "aria-describedby": "cdk-describedby-message-ng-1-41",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Length\"]"
+      ]
+    },
+    {
+      "ref": "e38",
+      "role": "button",
+      "name": "Tone",
+      "text": "",
+      "selector": "button[aria-label=\"Tone\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2777341280": "",
+        "mattooltipposition": "before",
+        "class": "mat-mdc-tooltip-trigger quick-actions-fab-button",
+        "aria-label": "Tone",
+        "aria-describedby": "cdk-describedby-message-ng-1-42",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Tone\"]"
+      ]
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Suggest",
+      "text": "",
+      "selector": "button[aria-label=\"Suggest\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2777341280": "",
+        "mattooltipposition": "before",
+        "class": "mat-mdc-tooltip-trigger quick-actions-fab-button",
+        "aria-label": "Suggest",
+        "aria-describedby": "cdk-describedby-message-ng-1-43",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Suggest\"]"
+      ]
+    },
+    {
+      "ref": "e40",
+      "role": "dialog",
+      "name": "Build on top of this Create something new based on this, like an Audio Overview, web app, or timeline Got it",
+      "text": "Build on top of this Create something new based on this, like an Audio Overview, web app, or timeline Got it",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1227056409": "",
+        "role": "dialog",
+        "data-test-id": "tips-card-wrapper",
+        "class": "ng-tns-c1227056409-21 ng-trigger ng-trigger-dialogCardVisibility",
+        "style": "opacity: 1;"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Got it",
+      "text": "Got it",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1227056409": "",
+        "mat-button": "",
+        "color": "primary",
+        "class": "mdc-button mat-mdc-button-base tips-card-action-button mat-mdc-button ng-tns-c1227056409-21 mat-primary ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "src": "/_/bscframe",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    },
+    {
+      "ref": "i2",
+      "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "selector": "#hfcr",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}
