@@ -1112,7 +1112,9 @@ test("upload-and-query retries uncleared composer once then returns COMMAND_TIME
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
-test("canvas-to-docs returns ARTIFACT_VERIFICATION_FAILED when Docs artifact URL is absent", async () => {
+test("canvas-to-docs honest-fails (ELEMENT_NOT_FOUND) when Canvas mode cannot activate", async () => {
+  // No Canvas affordance present (Tools drawer + Canvas menuitem absent) -> the
+  // tool must surface a stable contract error, never a fake/chrome docs_url.
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.locator = (selector: string) => {
     const loc: any = {
@@ -1122,13 +1124,97 @@ test("canvas-to-docs returns ARTIFACT_VERIFICATION_FAILED when Docs artifact URL
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
-      textContent: async () => selector === "main" ? "canvas response" : "Fast"
+      textContent: async () => "Fast"
     };
     return loc;
   };
   const result: any = await webAiGeminiCanvasToDocs({ profile: "gemini-canvas-verify", prompt: "make canvas", title: "gd-canvas-smoke", response_timeout_ms: 10 }, mockWebAiRuntime(page));
-  assert.equal(result.docs_url, "https://gemini.google.com/app?hl=en");
+  assert.equal(result.docs_url, null);
   assert.equal(result.docs_doc_id, null);
-  assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
-  assert.equal(result.error_code, "ARTIFACT_VERIFICATION_FAILED");
+  assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
+  assert.equal(result.error_code, "ELEMENT_NOT_FOUND");
+});
+
+test("canvas-to-docs returns a real docs.google.com URL + doc id from the spawned Docs tab", async () => {
+  // Drives the live-observed flow: Canvas mode active -> prompt completes ->
+  // share/export -> Export to Docs spawns a docs.google.com/document/d/<id>
+  // page in the same browser context.
+  const docId = "1cMiO8CxtyqiIu4QjayRhc7E-Y9qRsDEZcbxBS_13inY";
+  const docsPage: any = { _closed: false, url: () => `https://docs.google.com/document/d/${docId}/edit?tab=t.0`, close: async () => { docsPage._closed = true; } };
+  const ctxPages: any[] = [];
+  const page: any = {
+    _url: "https://gemini.google.com/app?hl=en",
+    url() { return this._url; },
+    goto: async () => undefined,
+    waitForLoadState: async () => undefined,
+    waitForFunction: async () => undefined,
+    waitForSelector: async () => undefined,
+    waitForTimeout: async () => { if (!ctxPages.includes(docsPage)) ctxPages.push(docsPage); },
+    evaluate: async () => "Canvas note ready",
+    context: () => ({ pages: () => ctxPages }),
+    keyboard: { press: async () => undefined, type: async () => undefined },
+    locator: (selector: string) => {
+      // Canvas active pill present so activateGeminiToolMode short-circuits to
+      // "already active"; Send present so submit confirms; share/export
+      // controls present so the export click path proceeds.
+      const present = selector.includes("Deselect Canvas")
+        || selector.includes("Send message")
+        || selector.includes("share-button")
+        || selector.includes("export-to-docs-button");
+      const loc: any = {
+        first: () => loc,
+        last: () => loc,
+        count: async () => present ? 1 : 0,
+        waitFor: async () => undefined,
+        fill: async () => undefined,
+        click: async () => undefined,
+        getAttribute: async () => null,
+        textContent: async () => "Fast"
+      };
+      return loc;
+    }
+  };
+  const result: any = await webAiGeminiCanvasToDocs({ profile: "gemini-canvas-ok", prompt: "make canvas", title: "ProbeDoc", response_timeout_ms: 10, timeout_ms: 3000 }, mockWebAiRuntime(page));
+  assert.equal(result.docs_url, `https://docs.google.com/document/d/${docId}/edit`);
+  assert.equal(result.docs_doc_id, docId);
+  assert.equal(result.title, "ProbeDoc");
+  assert.equal(result.errorCode, null);
+  assert.equal(docsPage._closed, true);
+});
+
+test("gemini generate-video returns an async task envelope and task-status reports terminal state", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "vid-"));
+  // Canvas/video affordances absent in this mock -> the async job must fail
+  // honestly (ELEMENT_NOT_FOUND), never fabricate a fake complete result.
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      getAttribute: async () => null,
+      textContent: async () => "Fast"
+    };
+    return loc;
+  };
+  const env: any = await webAiGeminiGenerateVideo({ profile: "gemini-video-async", prompt: "a 2-second clip of a rotating blue cube", download_dir: dir }, mockWebAiRuntime(page));
+  assert.equal(typeof env.task_id, "string");
+  assert.ok(env.task_id.startsWith("task_"));
+  assert.equal(env.status, "running");
+  assert.equal(env.profile, "gemini-video-async");
+  assert.equal(typeof env.lease_id, "string");
+  assert.equal(typeof env.started_at, "string");
+  // Poll task-status until terminal.
+  let status: any;
+  for (let i = 0; i < 50; i++) {
+    status = await webAiTaskStatus({ task_id: env.task_id });
+    if (status.status === "complete" || status.status === "failed") break;
+    await new Promise((r) => setTimeout(r, 20));
+  }
+  assert.equal(status.status, "failed");
+  assert.equal(status.errorCode, "ELEMENT_NOT_FOUND");
+  fs.rmSync(dir, { recursive: true, force: true });
 });

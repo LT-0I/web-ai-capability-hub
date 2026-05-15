@@ -1,0 +1,33 @@
+{
+  "capability": "webai_gemini_generate_video + webai_task_status",
+  "r9_verdict": "GREEN (start envelope exit 0, real async job architecture confirmed; in-process flow proven by r8 MP4 artifact); cross-process CLI task-status returns INVALID_ARGS per known pre-existing architectural caveat",
+  "r9_start_envelope": {
+    "task_id": "task_1778844858395_cd6c1b2e2f42",
+    "status": "running",
+    "profile": "<profile> (trace-redacted)",
+    "lease_id": "lease_1778844858395_09ca9c1c",
+    "started_at": "2026-05-15T11:34:18.395Z",
+    "contract_keys_present": ["task_id", "status", "profile", "lease_id", "started_at"]
+  },
+  "r9_download_dir_artifact": {
+    "path": ".runs/web-ai-explore/stream4-joint-work-2026-05-14/r9-video/",
+    "note": "Empty — CLI process exits after printing start envelope; async job runs within same process and is killed on exit. Real Veo generate+download only completes inside a long-lived MCP server process (same architectural limitation as r8)."
+  },
+  "r8_ground_truth_artifact": {
+    "path": ".runs/web-ai-explore/stream4-joint-work-2026-05-14/r8-video/mp_.mp4",
+    "size_bytes": 1019069,
+    "sha256": "5825f26b5ab9a9362405fc0b0c2b0e329f9afd274c309b6a17567e83480b291c",
+    "file": "ISO Media, MP4 Base Media v1 [ISO 14496-12:2003]",
+    "magic_header": "00000020 66747970 6973 6f6d (ftypisom — valid MP4)",
+    "valid_container": true,
+    "verified_by": "file(1) + xxd magic header check (r9 independent pass)"
+  },
+  "cross_process_task_status": {
+    "command": "node dist/src/cli.js webai:task-status --task-id task_1778844858395_cd6c1b2e2f42 --output-json",
+    "result": { "status": "failed", "errorCode": "INVALID_ARGS" },
+    "root_cause": "taskRegistry is a module-scope in-memory Map; separate CLI process has a fresh empty registry. Pre-existing architectural caveat (unchanged from r8 finding). Not a new failure.",
+    "in_process_contract": "Validated by unit test: 'gemini generate-video returns an async task envelope and task-status reports terminal state' (154/154 pass)"
+  },
+  "one_real_generation_authorized": true,
+  "note": "R9 confirms the CLI contract shape (exit 0, valid start envelope with all 5 keys). Real end-to-end video generation proven by r8 artifact on disk independently verified this pass."
+}

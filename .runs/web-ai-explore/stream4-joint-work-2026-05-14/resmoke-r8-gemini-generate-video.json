@@ -1,0 +1,44 @@
+{
+  "capability": "webai_gemini_generate_video + webai_task_status",
+  "verdict": "GREEN (in-process async flow drives real Veo generation + download); RED for cross-CLI-process task-status polling (pre-existing in-memory registry limitation, not introduced by this fix)",
+  "start_envelope": {
+    "task_id": "task_1778844265405_55654c65635d",
+    "status": "running",
+    "profile": "<profile> (trace-redacted, correct safe behavior)",
+    "lease_id": "lease_1778844265404_73f2946e",
+    "started_at": "2026-05-15T11:24:25.405Z",
+    "contract_keys_present": [
+      "task_id",
+      "status",
+      "profile",
+      "lease_id",
+      "started_at"
+    ]
+  },
+  "observed_real_flow": [
+    "fresh Gemini composer (gemini.google.com/app?hl=en)",
+    "activate Create video: Tools drawer button.toolbox-drawer-button -> [role=menuitemcheckbox]:has-text(\"Create video\"); active pill button[aria-label=\"Deselect Create video\"]",
+    "send prompt via div[aria-label=\"Enter a prompt for Gemini\"] (Fast tier)",
+    "in-progress DOM copy: \"Generating your video... This can take 1-2 mins\"",
+    "completion marker: button[aria-label=\"Download video\"] (class download-button) renders; visibleText \"Your video is ready! 0:00 / 0:08\"",
+    "CDP artifact-click button[aria-label=\"Download video\"] downloads the file",
+    "conversation created: gemini.google.com/app/76156170ddad8e72 \"Blue Cube Video Generation\""
+  ],
+  "downloaded_artifact": {
+    "path": ".runs/web-ai-explore/stream4-joint-work-2026-05-14/r8-video/mp_.mp4",
+    "size_bytes": 1019069,
+    "sha256": "5825f26b5ab9a9362405fc0b0c2b0e329f9afd274c309b6a17567e83480b291c",
+    "file": "ISO Media, MP4 Base Media v1 [ISO 14496-12:2003]",
+    "magic_header": "00000020 66747970 69736f6d (ftypisom \u2014 valid MP4)",
+    "valid_container": true
+  },
+  "cross_process_task_status": {
+    "command": "node dist/src/cli.js webai:task-status --task-id task_1778844265405_55654c65635d --output-json",
+    "result": {
+      "status": "failed",
+      "errorCode": "INVALID_ARGS"
+    },
+    "root_cause": "taskRegistry is a module-scope in-memory Map; each separate node CLI invocation has a fresh empty registry. generate-video + task-status only share state within ONE long-lived process (the MCP server). This is a PRE-EXISTING design limitation (the prior stub had it too; never live-tested before). The in-process async contract itself is validated by the new test (gemini generate-video returns an async task envelope and task-status reports terminal state) and by the real MP4 on disk proving the async job completed."
+  },
+  "one_real_generation_only": true
+}

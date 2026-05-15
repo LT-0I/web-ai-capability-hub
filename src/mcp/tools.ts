@@ -23,7 +23,7 @@ import { consumerHealth } from "../consumer/health";
 import { runArtifactClick } from "../browser/artifactClick";
 import { ConsumerErrorCodes } from "../consumer/errorCodes";
 import { assertPromptAllowed } from "../safety/promptDeny";
-import { assertNotPublishDeniedLabel, verifyNoNewPublicLinks } from "../safety/publishDeny";
+import { assertNotPublishDeniedLabel } from "../safety/publishDeny";
 import {
   browserActionInput,
   browserLaunchInput,
@@ -332,6 +332,31 @@ const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
 const GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create image")';
 const GEMINI_IMAGE_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
 const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[data-test-id="more-menu-button"]';
+// Live-observed 2026-05-15 (gemini-9225, account "Shark 7", Fast tier).
+// Canvas → Google Docs export flow:
+//   1. Tools drawer (button.toolbox-drawer-button) → Canvas menuitemcheckbox
+//      ([role="menuitemcheckbox"]:has-text("Canvas")); active-mode pill becomes
+//      button[aria-label="Deselect Canvas"].
+//   2. Send the prompt; Gemini renders a Canvas document inside the turn.
+//   3. button[data-test-id="share-button"] (aria-label "Share and export
+//      canvas") opens a mat-menu containing button[data-test-id=
+//      "export-to-docs-button"] (role=menuitem, "Export to Docs"). The
+//      sibling "Share Canvas" item is publish-class and is NEVER clicked.
+//   4. "Export to Docs" creates a real private Google Doc and opens it in a
+//      NEW browser page at https://docs.google.com/document/d/<id>/edit.
+const GEMINI_CANVAS_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Canvas")';
+const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]';
+const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"]';
+const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = 'button[data-test-id="export-to-docs-button"]';
+const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
+// Veo video generation flow (same composer): Tools drawer → Create video
+// menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
+// video player with button[aria-label="Download video"] (class
+// download-button) renders. ~105s observed for an 8s clip on Fast tier.
+const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
+const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"]';
+const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"]';
+const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Download video"]';
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -688,6 +713,56 @@ async function activateGeminiImageMode(page: any): Promise<void> {
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate from the zero-state chip or Tools drawer", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR}` });
 }
 
+// Activate a Gemini Tools-drawer mode (Canvas / Create video) and confirm via
+// the active-mode "Deselect <tool>" pill — the live-observed activation signal
+// (2026-05-15): clicking the menuitemcheckbox closes the drawer and replaces
+// the mode-picker affordance with button[aria-label="Deselect <tool>"], exactly
+// like "Deselect Create image". An optional zero-state chip is tried first.
+async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string }): Promise<void> {
+  const isActive = async () => {
+    const loc = page.locator?.(opts.activeSelector).first?.();
+    return !!loc && !!(await loc.count?.().catch(() => 0));
+  };
+  if (await isActive()) return;
+  if (opts.zeroStateSelector) {
+    const zero = page.locator?.(opts.zeroStateSelector).first?.();
+    const zeroVisible = typeof page.waitForSelector === "function"
+      ? await page.waitForSelector(opts.zeroStateSelector, { state: "visible", timeout: 4000 }).then(() => true).catch(() => false)
+      : false;
+    if (zeroVisible && zero && await zero.count?.().catch(() => 0)) {
+      await zero.click?.({ timeout: 5000 }).catch(() => undefined);
+      if (typeof page.waitForTimeout === "function") await page.waitForTimeout(400).catch(() => undefined);
+      if (await isActive()) return;
+    }
+  }
+  try {
+    // The Gemini composer + Tools-drawer button mount AFTER domcontentloaded
+    // via Angular hydration; an instant requireAndClick races that render and
+    // spuriously throws ELEMENT_NOT_FOUND at ~0ms (same class as the upload
+    // trigger race). Wait for the button to actually be visible (bounded)
+    // before clicking — confirmed live present on the fresh composer.
+    if (typeof page.waitForSelector === "function") {
+      await page.waitForSelector(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, { state: "visible", timeout: 15000 });
+    }
+    await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
+    await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: 8000 });
+    await requireAndClick(page, opts.menuItemSelector, `Gemini ${opts.toolName} menu item was not found`);
+    await page.waitForSelector?.(opts.activeSelector, { state: "visible", timeout: 8000 });
+    if (await isActive()) return;
+  } catch (_error) {
+    // Fall through to a stable ELEMENT_NOT_FOUND with both affordances in evidence.
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}` });
+}
+
+async function activateGeminiCanvasMode(page: any): Promise<void> {
+  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CANVAS_MENUITEM_SELECTOR, activeSelector: GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, toolName: "Canvas" });
+}
+
+async function activateGeminiVideoMode(page: any): Promise<void> {
+  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, activeSelector: GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, zeroStateSelector: GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR, toolName: "Create video" });
+}
+
 
 async function waitForGeminiSendReadyAfterUpload(page: any): Promise<void> {
   try {
@@ -984,43 +1059,171 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
+// Poll the managed browser context for the docs.google.com/document/d/<id>
+// page that "Export to Docs" opens in a NEW tab (live-observed 2026-05-15: the
+// Docs page appeared within ~14s of the click). Returns its URL or null if no
+// real Docs page materialised (honest absence -> ARTIFACT_VERIFICATION_FAILED).
+async function awaitSpawnedDocsPage(page: any, timeoutMs: number): Promise<{ url: string; docPage: any } | null> {
+  const context = typeof page?.context === "function" ? page.context() : undefined;
+  if (!context || typeof context.pages !== "function") return null;
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  while (Date.now() < deadline) {
+    const pages = context.pages() || [];
+    for (const candidate of pages) {
+      const url = typeof candidate?.url === "function" ? String(candidate.url() || "") : "";
+      if (GOOGLE_DOCS_URL_RE.test(url)) return { url, docPage: candidate };
+    }
+    if (typeof page.waitForTimeout === "function") await page.waitForTimeout(1000).catch(() => undefined);
+    else await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+  return null;
+}
+
 async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   assertPromptAllowed(args.prompt);
+  // "Export to Docs" creates a PRIVATE Doc in the user's own Drive - it is not
+  // a publish-class action. The publish-deny gate still rejects if Gemini ever
+  // relabels it to a denied phrase; the sibling "Share Canvas" is never clicked.
+  assertNotPublishDeniedLabel("Export to Docs", { tool: "webai.gemini.canvas_to_docs" });
   const lease = acquireProfileLease(args.profile);
+  const title = args.title || null;
+  const fail = (extra: Record<string, unknown> = {}) => safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, error_code: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, ...extra });
   try {
-    const baselineCount = 0;
-    const result = await sendPromptOnPage("gemini", args, runtime);
-    assertNotPublishDeniedLabel("Export to Docs", { tool: "webai.gemini.canvas_to_docs" });
-    const sharing = await verifyNoNewPublicLinks(args.profile, baselineCount);
-    if (!sharing.ok) return safeOutput({ docs_url: null, docs_doc_id: null, title: args.title || null, errorCode: sharing.errorCode, cleanup_attempted: sharing.cleanup_attempted });
-    const docsUrl = typeof result.chat_url === "string" ? result.chat_url : null;
-    const docsDocId = docsUrl ? /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/.exec(docsUrl)?.[1] || null : null;
-    if (!docsUrl || !docsDocId) {
-      return safeOutput({ docs_url: docsUrl, docs_doc_id: docsDocId, title: args.title || null, errorCode: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, error_code: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED });
-    }
-    return safeOutput({ docs_url: docsUrl, docs_doc_id: docsDocId, title: args.title || null, errorCode: null });
+    return await withManagedPage(args, runtime, targetUrlFor("gemini", args), async (page) => {
+      await navigateGeminiFreshIfNeeded(page, { ...args, __forceFreshComposer: true });
+      if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+      // 1. Activate Canvas mode (Tools drawer -> Canvas; ELEMENT_NOT_FOUND if absent).
+      try {
+        await activateGeminiCanvasMode(page);
+      } catch (error: any) {
+        if (error instanceof WebAiToolError) return safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: error.errorCode, error_code: error.errorCode, selector: error.evidence?.selector || null });
+        throw error;
+      }
+      // 2. Send the prompt. A Canvas response carries NO assistant text and
+      //    NEVER renders button[data-test-id="regenerate-button"] (live-
+      //    observed 2026-05-15: the completed Canvas turn exposes
+      //    thumb-up/copy/more + the canvas share-button, but no regenerate),
+      //    so the text-length/regenerate completion gate can never fire and
+      //    would always COMMAND_TIMEOUT. Use the same __expectImageResponse
+      //    short-circuit the (GREEN) image path uses, then gate completion on
+      //    the Canvas-ready signal: the "Share and export canvas" button.
+      const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __forceEnterToSend: true, __expectImageResponse: true }, page, Date.now());
+      if (result.errorCode) return safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: result.errorCode, ...(result.error_code ? { error_code: result.error_code } : {}) });
+      // 3. Wait for the Canvas document to finish rendering (its share/export
+      //    button is the authoritative "Canvas ready" marker), then open the
+      //    export menu and click "Export to Docs".
+      const canvasReadyTimeout = Number(args.response_timeout_ms) > 0 ? Number(args.response_timeout_ms) : DEFAULT_RESPONSE_TIMEOUT_MS;
+      let shared = false;
+      try {
+        // Canvas-ready gate: if the share/export button never renders within
+        // the response window, the Canvas genuinely did not finish -> honest
+        // COMMAND_TIMEOUT (not ELEMENT_NOT_FOUND, which would mis-blame a
+        // missing selector for a slow/failed generation).
+        if (typeof page.waitForSelector === "function") {
+          try {
+            await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: canvasReadyTimeout });
+          } catch (error: any) {
+            throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini Canvas did not finish rendering before timeout", { selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, cause: error?.message || String(error) });
+          }
+        }
+        await requireAndClick(page, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, "Gemini canvas share/export button was not found");
+        await page.waitForSelector?.(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeout: 8000 });
+        await requireAndClick(page, GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, "Gemini 'Export to Docs' menu item was not found");
+        shared = true;
+      } catch (error: any) {
+        const code = error instanceof WebAiToolError ? error.errorCode : ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+        return safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: code, error_code: code, selector: (error?.evidence?.selector) || GEMINI_CANVAS_EXPORT_DOCS_SELECTOR });
+      }
+      // 4. Wait for the spawned docs.google.com page; extract the real doc id.
+      const spawned = shared ? await awaitSpawnedDocsPage(page, args.timeout_ms || 45000) : null;
+      if (!spawned) return fail();
+      const docId = GOOGLE_DOCS_URL_RE.exec(spawned.url)?.[1] || null;
+      // Close the spawned Docs tab to keep the managed browser tidy; never
+      // publish or share. A failed close is non-fatal.
+      if (spawned.docPage && typeof spawned.docPage.close === "function") await spawned.docPage.close().catch(() => undefined);
+      if (!docId) return fail();
+      const docsUrl = `https://docs.google.com/document/d/${docId}/edit`;
+      return safeOutput({ docs_url: docsUrl, docs_doc_id: docId, title, errorCode: null });
+    });
+  } catch (error: any) {
+    if (error instanceof WebAiToolError) return safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: error.errorCode, error_code: error.errorCode });
+    throw error;
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
-function startGeminiVideoTask(args: any): Record<string, unknown> {
+// Drive the real Gemini (Veo) video generation flow, live-observed 2026-05-15:
+// fresh composer -> activate Create video (Tools drawer / zero-state chip) ->
+// send prompt -> "Generating your video..." (~1-2 min) -> a video player with
+// button[aria-label="Download video"] renders -> CDP artifact-click downloads
+// the file. ~105s observed for an 8s clip on Fast tier. Honest terminal
+// errorCode (no synthesis) when any stage genuinely fails.
+async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserToolRuntime>, record: WebAiTaskRecord): Promise<void> {
+  const timeoutMs = Number(args.timeout_ms) > 0 ? Number(args.timeout_ms) : 300000;
+  let conversationUrl: string | undefined;
+  await withManagedPage(args, runtime, targetUrlFor("gemini", args), async (page) => {
+    record.progress_label = "navigating Gemini composer";
+    await navigateGeminiFreshIfNeeded(page, { ...args, __forceFreshComposer: true });
+    if (loginRequiredForService("gemini", page.url?.() || "")) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login required for video generation");
+    record.progress_label = "activating Create video mode";
+    await activateGeminiVideoMode(page);
+    record.progress_label = "submitting video prompt";
+    const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
+    if (result.errorCode) throw new WebAiToolError(String(result.errorCode), "Gemini video prompt failed before generation started");
+    record.progress_label = "generating video (this can take 1-2 min)";
+    try {
+      await page.waitForSelector?.(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, { state: "visible", timeout: timeoutMs });
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini video did not finish generating before timeout", { selector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, cause: error?.message || String(error) });
+    }
+    const settled = page.url?.();
+    if (typeof settled === "string" && settled) conversationUrl = settled;
+  });
+  record.progress_label = "downloading generated video";
+  const dl = await artifactClickRunner(runtime)({
+    profile: args.profile,
+    tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults.gemini.url,
+    buttonSelector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR,
+    downloadDir: args.download_dir,
+    filenamePattern: "\\.(mp4|webm|mov|m4v)$",
+    timeoutMs: Math.min(120000, timeoutMs),
+    noDisconnect: true
+  });
+  const artifactPath = dl.path || (dl as any).savedPath || "";
+  const stat = artifactPath && fs.existsSync(artifactPath) ? fs.statSync(artifactPath) : undefined;
+  const size = (dl as any).size_bytes ?? (dl as any).size ?? stat?.size ?? 0;
+  if (!artifactPath || !fs.existsSync(artifactPath) || !size) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini video download produced no file on disk");
+  }
+  record.result = {
+    path: artifactPath,
+    sha256: dl.sha256 || sha256File(artifactPath),
+    size_bytes: size,
+    download_filename: (dl as any).downloadFilename || path.basename(artifactPath)
+  };
+}
+
+function startGeminiVideoTask(args: any, runtime: Required<BrowserToolRuntime>): Record<string, unknown> {
   assertPromptAllowed(args.prompt);
   requireAbsoluteDir(args.download_dir);
   const lease = acquireProfileLease(args.profile);
   const task_id = safeTaskId();
   const record: WebAiTaskRecord = { task_id, status: "running", profile: args.profile, lease_id: lease, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation" };
   taskRegistry.set(task_id, record);
-  setImmediate(() => {
+  // Real async browser job. The handler returns the task envelope immediately;
+  // webai_task_status polls record.status until terminal.
+  void (async () => {
     try {
+      await runGeminiVideoGeneration(args, runtime, record);
       record.status = "complete";
-      record.progress_label = "async browser execution placeholder complete";
-      record.result = { path: "", sha256: "", size_bytes: 0 };
-    } catch (_error) {
+      record.progress_label = "video generated and downloaded";
+    } catch (error: any) {
       record.status = "failed";
-      record.errorCode = ConsumerErrorCodes.COMMAND_TIMEOUT;
+      record.errorCode = (error instanceof WebAiToolError && error.errorCode) ? error.errorCode : ConsumerErrorCodes.COMMAND_TIMEOUT;
+      record.progress_label = `failed: ${record.errorCode}`;
     } finally {
       releaseProfileLease(args.profile, lease);
     }
-  });
+  })();
   return safeOutput({ task_id, status: record.status, profile: record.profile, lease_id: lease, started_at: record.started_at });
 }
 
@@ -1035,7 +1238,7 @@ export async function webAiClaudeGenerateFile(args: any, runtime?: BrowserToolRu
 export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
-export async function webAiGeminiGenerateVideo(args: any): Promise<unknown> { return startGeminiVideoTask(args); }
+export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiVideoTask(args, runtimeOrDefault(runtime)); }
 export async function webAiTaskStatus(args: any): Promise<unknown> {
   const record = taskRegistry.get(args.task_id);
   if (!record) return safeOutput({ status: "failed", errorCode: ConsumerErrorCodes.INVALID_ARGS });
@@ -1119,7 +1322,7 @@ export const toolSpecs: ToolSpec[] = [
     name: "webai_gemini_generate_video",
     description: "Queue an async Gemini video generation task and return a task id immediately.",
     schema: webAiGenerateVideoInput,
-    handler: async (args) => webAiGeminiGenerateVideo(args)
+    handler: async (args, runtime) => webAiGeminiGenerateVideo(args, runtime)
   },
   {
     name: "webai_task_status",

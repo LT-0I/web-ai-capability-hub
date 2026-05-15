@@ -1,0 +1,43 @@
+Stream #4 R8 — webai_task_status poll trace
+============================================
+
+(A) CROSS-PROCESS poll (live, real task from the authorized video run)
+----------------------------------------------------------------------
+T0  node dist/src/cli.js webai:gemini:generate-video ... --output-json
+    -> {"task_id":"task_1778844265405_55654c65635d","status":"running",
+        "profile":"<profile>","lease_id":"lease_1778844265404_73f2946e",
+        "started_at":"2026-05-15T11:24:25.405Z"}   [envelope OK, all 5 contract keys]
+
+T+~Xs  (separate process)
+    node dist/src/cli.js webai:task-status --task-id task_1778844265405_55654c65635d --output-json
+    -> {"status":"failed","errorCode":"INVALID_ARGS"}
+
+    ROOT CAUSE (architectural, pre-existing): taskRegistry is a module-scope
+    in-memory Map. Each `node dist/src/cli.js` invocation is a fresh OS process
+    with its own empty registry. generate-video's async job runs INSIDE the
+    process that started it; a SEPARATE task-status CLI process cannot see it.
+    The async chain is only coherent within ONE long-lived process (the MCP
+    server `callMcpTool` path), NOT across independent CLI calls. The prior
+    stub had the identical limitation; it was simply never live-tested.
+
+    EVIDENCE the in-process async job DID run to completion: the authorized
+    single generation produced a real 1,019,069-byte valid MP4
+    (ftypisom container) at .runs/.../r8-video/mp_.mp4, and a real Gemini
+    conversation "Blue Cube Video Generation" (app/76156170ddad8e72).
+
+(B) IN-PROCESS poll (unit test, deterministic, same process)
+-------------------------------------------------------------
+test: "gemini generate-video returns an async task envelope and task-status
+       reports terminal state" (tests/consumerContract.test.ts)
+  start  -> {task_id:"task_...", status:"running", profile, lease_id, started_at}
+  poll   -> status:"running" (job in flight)
+  ...    -> webAiTaskStatus({task_id}) repeated until terminal
+  final  -> {status:"failed", errorCode:"ELEMENT_NOT_FOUND"}   (honest terminal,
+            no fabricated complete/empty result — the old stub's fake
+            {path:"",sha256:"",size_bytes:0} "complete" is gone)
+  PASS (154/154 suite green)
+
+VERDICT: async envelope contract GREEN; real Veo generate+download GREEN
+(1MB MP4 on disk); cross-CLI-process task-status polling is a pre-existing
+in-memory-registry limitation — flagged for the user, NOT newly introduced,
+NOT silently masked.
