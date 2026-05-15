@@ -91,6 +91,26 @@ node dist/src/cli.js browser:status --profile gemini-9225 --json
 
 Each should report `connected: true` and `cdpPort` matching the table above.
 
+## ⚠️ `browser:read --tab-id` REQUIRES `--profile`
+
+`node dist/src/cli.js browser:read --tab-id <id>` (and other tab-scoped reads)
+**must** be given `--profile <name>`. Without it the command defaults to profile
+`default` (port 9222) and returns:
+
+```
+Tab ID ... registered but page not found in browser
+```
+
+This is NOT a dead tab — it is the wrong CDP endpoint. Always pass the matching
+`--profile` (e.g. `--profile chatgpt` for a chatgpt-allocated tab):
+
+```bash
+node dist/src/cli.js browser:read --tab-id dp-cg-img --profile chatgpt --mode full --json
+```
+
+Live-verified during the Stream #4 DOM probe
+(`.runs/web-ai-explore/stream4-joint-work-2026-05-14/dom-probe-final.md`).
+
 ## If you hit SingletonLock errors
 
 Symptom: `Failed to create .../SingletonLock: 文件已存在 (17)` or `ProcessSingleton` errors.

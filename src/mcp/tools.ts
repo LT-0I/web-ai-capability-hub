@@ -296,8 +296,15 @@ const CHATGPT_FRESH_URL = "https://chatgpt.com/?model=gpt-4o";
 const GEMINI_FRESH_URL = "https://gemini.google.com/app";
 const GEMINI_RESPONSE_SELECTOR = 'message-content, [data-test-id="model-response"], .model-response-text, response-container, main [role="article"]';
 const GEMINI_UPLOAD_TRIGGER_SELECTOR = "button[aria-label=\"Open upload file menu\"]";
-const GEMINI_UPLOAD_FILES_SELECTOR = "button[aria-label=\"Upload files. Documents, data, code files\"], button[data-test-id=\"local-images-files-uploader-button\"]";
+const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
 const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
+const CHATGPT_IMAGE_MENU_BUTTON_SELECTOR = "#composer-plus-btn";
+const CHATGPT_CREATE_IMAGE_RADIO_SELECTOR = '[role="menuitemradio"]:has-text("Create image")';
+const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
+const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Edit image"] >> xpath=ancestor::*[contains(concat(" ", normalize-space(@class), " "), " pointer-events-auto ") and contains(concat(" ", normalize-space(@class), " "), " z-11 ")][1]//button[last()]';
+const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
+const GEMINI_IMAGE_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
+const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[data-test-id="more-menu-button"]';
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -473,9 +480,10 @@ async function pendingStateVisible(service: WebAiService, page: any, assistantCo
   return await assistantCount(service, page) > assistantCountBefore;
 }
 
-async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, box: any, prompt: string, assistantCountBefore: number): Promise<void> {
+async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, box: any, prompt: string, assistantCountBefore: number, forceEnterToSend = false): Promise<void> {
   const sendSelector = sendButtonSelector(service);
   const attemptSend = async () => {
+    if (forceEnterToSend) { await page.keyboard?.press("Enter"); return; }
     const sendButton = page.locator?.(sendSelector).first?.();
     if (sendButton && await sendButton.count?.().catch(() => 0)) await sendButton.click?.({ timeout: 3000 });
     else await page.keyboard?.press("Enter");
@@ -491,20 +499,11 @@ async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, b
 }
 
 async function waitForGeneratedImageRendered(service: "chatgpt" | "gemini", page: any, timeoutMs: number): Promise<void> {
-  const imageSelector = service === "chatgpt"
-    ? 'main [data-message-author-role="assistant"] img[src^="blob:"], main [data-message-author-role="assistant"] img[src*="oaiusercontent"], [data-message-author-role="assistant"] img[src^="blob:"], [data-message-author-role="assistant"] img[src*="oaiusercontent"]'
-    : 'img[alt="AI generated"], img[alt*="generated" i], message-content img, response-container img';
+  const imageSelector = service === "chatgpt" ? CHATGPT_IMAGE_RENDERED_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
   try {
-    await page.waitForFunction?.(
-      ({ imageSelector }: any) => {
-        const images = Array.from(document.querySelectorAll(imageSelector)) as HTMLImageElement[];
-        return images.some((img) => img.naturalWidth > 0 && img.naturalHeight > 0);
-      },
-      { imageSelector },
-      { timeout: Math.min(120000, timeoutMs || 120000) }
-    );
+    await page.waitForSelector?.(imageSelector, { state: "visible", timeout: Math.min(120000, timeoutMs || 120000) });
   } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} generated image did not render before timeout`, { selector: imageSelector, cause: error?.message || String(error) });
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} generated image toolbar did not render before timeout`, { selector: imageSelector, cause: error?.message || String(error) });
   }
 }
 
@@ -514,10 +513,36 @@ async function clickIfPresent(page: any, selector: string): Promise<void> {
   if (await loc.count?.().catch(() => 0)) await loc.click?.({ timeout: 1500 }).catch(() => undefined);
 }
 
-async function requireAndClick(page: any, selector: string, message: string): Promise<void> {
+async function requireAndClick(page: any, selector: string, message: string): Promise<any> {
   const loc = page.locator?.(selector).first?.();
   if (!loc || !(await loc.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector });
   await loc.click?.({ timeout: 5000 });
+  return loc;
+}
+
+async function activateChatgptImageMode(page: any): Promise<void> {
+  await requireAndClick(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, "ChatGPT composer image-mode menu button was not found");
+  const radio = page.locator?.(CHATGPT_CREATE_IMAGE_RADIO_SELECTOR).first?.();
+  if (!radio || !(await radio.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio was not found", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR });
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await radio.click?.({ timeout: 5000 });
+    if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
+    const checked = typeof radio.getAttribute === "function" ? await radio.getAttribute("aria-checked").catch(() => undefined) : undefined;
+    if (checked === "true") return;
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio did not become checked", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR });
+}
+
+async function activateGeminiImageMode(page: any): Promise<void> {
+  const button = page.locator?.(GEMINI_CREATE_IMAGE_BUTTON_SELECTOR).first?.();
+  if (!button || !(await button.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool button was not found", { selector: GEMINI_CREATE_IMAGE_BUTTON_SELECTOR });
+  const before = typeof button.getAttribute === "function" ? await button.getAttribute("aria-label").catch(() => "") : "";
+  if (typeof before === "string" && before.includes("Deselect Create image")) return;
+  await button.click?.({ timeout: 5000 });
+  if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
+  const after = typeof button.getAttribute === "function" ? await button.getAttribute("aria-label").catch(() => "") : "";
+  if (typeof after === "string" && after.includes("Deselect Create image")) return;
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool button did not activate", { selector: GEMINI_CREATE_IMAGE_BUTTON_SELECTOR });
 }
 
 
@@ -548,9 +573,20 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
   } catch (error: any) {
     throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menu item was not found after opening the upload menu", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: error?.message || String(error) });
   }
-  await requireAndClick(page, GEMINI_UPLOAD_FILES_SELECTOR, "Gemini upload-files menu item was not found");
-  await page.waitForSelector?.('input[type="file"]', { state: "attached", timeout: 10000 });
-  await page.setInputFiles('input[type="file"]', resolved, { timeout: 10000 });
+  let chooser: any;
+  try {
+    [chooser] = await Promise.all([
+      page.waitForEvent?.("filechooser", { timeout: 15000 }),
+      requireAndClick(page, GEMINI_UPLOAD_FILES_SELECTOR, "Gemini upload-files menu item was not found"),
+    ]);
+  } catch (error: any) {
+    if (error instanceof WebAiToolError) throw error;
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini upload did not open a file chooser", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: error?.message || String(error) });
+  }
+  if (!chooser || typeof chooser.setFiles !== "function") {
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini file chooser was not intercepted", { selector: GEMINI_UPLOAD_FILES_SELECTOR });
+  }
+  await chooser.setFiles(resolved);
   await page.locator?.(GEMINI_UPLOAD_CHIP_SELECTOR).first?.().waitFor?.({ state: "visible", timeout: 30000 });
   await waitForGeminiSendReadyAfterUpload(page);
 }
@@ -566,14 +602,14 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
   const model_used = await readModelUsed(service, page, args);
   const start_chat_url = page.url?.() || targetUrlFor(service, args);
   const assistantCountBefore = await assistantCount(service, page);
-  const selector = serviceDefaults[service].promptSelector;
+  const selector = args.__promptSelector || serviceDefaults[service].promptSelector;
   const box = page.locator(selector).first();
   await box.waitFor({ state: "visible", timeout: Math.min(timeout, 15000) });
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
   await box.fill?.(args.prompt).catch(async () => { await box.click(); await page.keyboard?.type(args.prompt); });
   const sentAt = Date.now();
   try {
-    await sendPromptAndConfirmSubmitted(service, page, box, args.prompt, assistantCountBefore);
+    await sendPromptAndConfirmSubmitted(service, page, box, args.prompt, assistantCountBefore, Boolean(args.__forceEnterToSend));
   } catch (error: any) {
     if (error instanceof WebAiToolError && error.errorCode === ConsumerErrorCodes.COMMAND_TIMEOUT) {
       const chat_url = page.url?.() || targetUrlFor(service, args);
@@ -718,13 +754,17 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
   assertNotPublishDeniedLabel("Download full size image", { tool: `webai.${service}.generate_image` });
   const lease = acquireProfileLease(args.profile);
   try {
-    const promptArgs = { ...args };
+    const promptArgs = { ...args, __forceEnterToSend: true };
     let conversationUrl: string | undefined;
     const promptResult = await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
-      if (service === "chatgpt") await navigateChatgptFreshIfNeeded(page, args);
+      if (service === "chatgpt") {
+        await navigateChatgptFreshIfNeeded(page, args);
+        await activateChatgptImageMode(page);
+      }
       if (service === "gemini") {
         await navigateGeminiFreshIfNeeded(page, args);
-        await clickIfPresent(page, 'button[aria-label="🖼️ Create image, button, tap to use tool"], button[aria-label="Create image, button, tap to use tool"], button:has-text("Create image")');
+        await activateGeminiImageMode(page);
+        promptArgs.__promptSelector = GEMINI_IMAGE_PROMPT_SELECTOR;
       }
       const result = await sendPromptInExistingPage(service, promptArgs, page, Date.now());
       if (result.errorCode) return result;
@@ -744,12 +784,12 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       });
     }
     conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
-    const expectedSelector = service === "chatgpt" ? 'main img[alt], main img[src^="blob:"], main img[src*="oaiusercontent"], main img' : 'button[data-test-id="more-menu-button"]';
+    const expectedSelector = service === "chatgpt" ? CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
       buttonSelector: expectedSelector,
-      followUpSelector: service === "chatgpt" ? 'button[aria-label="Save"]' : 'button[data-test-id="image-download-button"]',
+      followUpSelector: service === "chatgpt" ? undefined : 'button[data-test-id="image-download-button"]',
       downloadDir: args.download_dir,
       filenamePattern: "\\.(png|jpg|jpeg|webp)$",
       timeoutMs: args.timeout_ms || 90000,
@@ -761,7 +801,7 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT, error_code: ConsumerErrorCodes.COMMAND_TIMEOUT, message: error.message || "Generated image did not render before timeout" });
     }
     if (error?.errorCode === ConsumerErrorCodes.ELEMENT_NOT_FOUND || error?.errorCode === "ELEMENT_NOT_FOUND") {
-      return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND, error_code: ConsumerErrorCodes.ELEMENT_NOT_FOUND, expected_selector: error.evidence?.selector || (service === "gemini" ? 'button[data-test-id="more-menu-button"]' : 'button[aria-label="Save"]') });
+      return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND, error_code: ConsumerErrorCodes.ELEMENT_NOT_FOUND, expected_selector: error.evidence?.selector || (service === "gemini" ? GEMINI_IMAGE_RENDERED_SELECTOR : CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR) });
     }
     throw error;
   } finally { releaseProfileLease(args.profile, lease); }
