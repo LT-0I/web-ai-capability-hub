@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "action": {
+    "type": "wait",
+    "waitFor": "timeout",
+    "timeoutMs": 500
+  },
+  "message": "Waited for timeout"
+}

@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "action": {
+    "confirmed": true,
+    "type": "click",
+    "selector": "a:has-text(\"Gems\"), [role=\"link\"]:has-text(\"Gems\"), button:has-text(\"Gems\")"
+  },
+  "message": "Clicked a:has-text(\"Gems\"), [role=\"link\"]:has-text(\"Gems\"), button:has-text(\"Gems\")"
+}

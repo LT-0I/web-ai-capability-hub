@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "action": {
+    "type": "click",
+    "selector": "xpath=//*[@role='menuitem' or @role='menuitemradio'][normalize-space()='更多' or contains(., '更多')]"
+  },
+  "message": "Clicked xpath=//*[@role='menuitem' or @role='menuitemradio'][normalize-space()='更多' or contains(., '更多')]"
+}

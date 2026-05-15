@@ -1,0 +1,1 @@
+Opened the composer model/effort menu, observed options `Thinking` and `Pro • 进阶`, and selected the cheaper Thinking-tier option. The resulting visible model text was inferred as `5.5 Instant Thinking` from the menu/header snapshot.

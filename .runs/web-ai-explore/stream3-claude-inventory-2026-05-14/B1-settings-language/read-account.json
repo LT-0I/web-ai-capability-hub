@@ -1,0 +1,644 @@
+{
+  "url": "https://claude.ai/settings/general",
+  "title": "Claude",
+  "timestamp": "2026-05-14T14:30:35.180Z",
+  "visibleText": "Home Open sidebar New chat Search Chats Projects Code Customize Design More Recents Hide Red square on white background More options for Red square on white background Python hello world script More options for Python hello world script PDF title identification More options for PDF title identification Image description request More options for Image description request Add function return value More options for Add function return value Largest city by population More options for Largest city by population File summarization request More options for File summarization request Date acknowledgement request More options for Date acknowledgement request Documentation acknowledgement request More options for Documentation acknowledgement request 查询账户会员等级 More options for 查询账户会员等级 API gateway patterns explained More options for API gateway patterns explained Get apps and extensions Bb, Settings B Bb Max plan General Account Privacy Billing Usage Capabilities Connectors Claude Code Claude in Chrome Beta Avatar B  Randomize avatar B  Full name What should Claude call you? Display name What best describes your work? Select  Select  Anthropic's guidelines Learn more Instructions for Claude Appearance    Appearance    System  Light  Dark  auto Chat font Anthropic Serif  Anthropic Serif  Voice Buttery  Buttery  buttery Response completions Get notified when Claude has finished a response. Useful for long-running tasks. Response completions Code notifications Claude can choose to notify you about important updates from a Code session. Code notifications Code permission requests Get a push notification when Claude needs your approval to run a command in a Code session. Code permission requests Emails from Claude Code on the web Get an email when Claude Code on the web has finished building or needs your response. Emails from Claude Code on the web Dispatch messages Get a push notification on your phone when Claude messages you in Dispatch. Dispatch messages Notifications (F8)",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Home",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Search",
+      "selector": "a[aria-label=\"Search\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Chats",
+      "selector": "a[aria-label=\"Chats\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Projects",
+      "selector": "a[aria-label=\"Projects\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Code",
+      "selector": "a[aria-label=\"Code\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "Customize",
+      "selector": "a[aria-label=\"Customize\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Design",
+      "selector": "a[aria-label=\"Design\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "More",
+      "selector": "#radix-_r_b_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Recents Hide",
+      "selector": "h2",
+      "tagName": "h2"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "Red square on white background",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "More options for Red square on white background",
+      "selector": "#_r_53_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "Python hello world script",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "More options for Python hello world script",
+      "selector": "#_r_58_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e16",
+      "role": "link",
+      "name": "PDF title identification",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e17",
+      "role": "button",
+      "name": "More options for PDF title identification",
+      "selector": "#_r_5d_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e18",
+      "role": "link",
+      "name": "Image description request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "More options for Image description request",
+      "selector": "#_r_5i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e20",
+      "role": "link",
+      "name": "Add function return value",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "More options for Add function return value",
+      "selector": "#_r_5n_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Largest city by population",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "More options for Largest city by population",
+      "selector": "#_r_5s_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "File summarization request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "More options for File summarization request",
+      "selector": "#_r_61_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "Date acknowledgement request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "More options for Date acknowledgement request",
+      "selector": "#_r_66_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Documentation acknowledgement request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "More options for Documentation acknowledgement request",
+      "selector": "#_r_6b_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "查询账户会员等级",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "More options for 查询账户会员等级",
+      "selector": "#_r_i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "API gateway patterns explained",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "More options for API gateway patterns explained",
+      "selector": "#_r_n_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "Get apps and extensions",
+      "selector": "a[aria-label=\"Get apps and extensions\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Bb, Settings",
+      "text": "B Bb Max plan",
+      "selector": "#_r_r_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "General",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e37",
+      "role": "link",
+      "name": "Account",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Privacy",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e39",
+      "role": "link",
+      "name": "Billing",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Usage",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e41",
+      "role": "link",
+      "name": "Capabilities",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Connectors",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e43",
+      "role": "link",
+      "name": "Claude Code",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Claude in Chrome Beta",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e45",
+      "role": "group",
+      "name": "Avatar B ",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e46",
+      "role": "button",
+      "name": "Randomize avatar",
+      "text": "B ",
+      "selector": "button[aria-label=\"Randomize avatar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e47",
+      "role": "group",
+      "name": "Full name",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e48",
+      "role": "textbox",
+      "name": "Full name",
+      "selector": "input[aria-label=\"Full name\"]",
+      "tagName": "input",
+      "value": "Bb"
+    },
+    {
+      "ref": "e49",
+      "role": "group",
+      "name": "What should Claude call you?",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e50",
+      "role": "textbox",
+      "name": "Display name",
+      "selector": "input[aria-label=\"Display name\"]",
+      "tagName": "input",
+      "value": "Bb"
+    },
+    {
+      "ref": "e51",
+      "role": "group",
+      "name": "What best describes your work? Select ",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e52",
+      "role": "button",
+      "name": "Select ",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e53",
+      "role": "textbox",
+      "name": "",
+      "selector": "#base-ui-_r_3p_",
+      "tagName": "input"
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "Anthropic's guidelines",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e55",
+      "role": "link",
+      "name": "Learn more",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e56",
+      "role": "textarea",
+      "name": "Instructions for Claude",
+      "selector": "#conversation-preferences",
+      "tagName": "textarea"
+    },
+    {
+      "ref": "e57",
+      "role": "group",
+      "name": "Appearance   ",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e58",
+      "role": "radiogroup",
+      "name": "Appearance",
+      "text": "  ",
+      "selector": "div[aria-label=\"Appearance\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e59",
+      "role": "radio",
+      "name": "System",
+      "text": "",
+      "selector": "button[aria-label=\"System\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e60",
+      "role": "radio",
+      "name": "",
+      "selector": "#base-ui-_r_42_",
+      "tagName": "input",
+      "value": "on",
+      "checked": true
+    },
+    {
+      "ref": "e61",
+      "role": "radio",
+      "name": "Light",
+      "text": "",
+      "selector": "button[aria-label=\"Light\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e62",
+      "role": "radio",
+      "name": "",
+      "selector": "#base-ui-_r_44_",
+      "tagName": "input",
+      "value": "on"
+    },
+    {
+      "ref": "e63",
+      "role": "radio",
+      "name": "Dark",
+      "text": "",
+      "selector": "button[aria-label=\"Dark\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e64",
+      "role": "radio",
+      "name": "",
+      "selector": "#base-ui-_r_46_",
+      "tagName": "input",
+      "value": "on"
+    },
+    {
+      "ref": "e65",
+      "role": "textbox",
+      "name": "auto",
+      "selector": "#base-ui-_r_40_",
+      "tagName": "input",
+      "value": "auto"
+    },
+    {
+      "ref": "e66",
+      "role": "group",
+      "name": "Chat font Anthropic Serif ",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e67",
+      "role": "button",
+      "name": "Anthropic Serif ",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e68",
+      "role": "group",
+      "name": "Voice Buttery ",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e69",
+      "role": "button",
+      "name": "Buttery ",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e70",
+      "role": "textbox",
+      "name": "buttery",
+      "selector": "#base-ui-_r_4e_",
+      "tagName": "input",
+      "value": "buttery"
+    },
+    {
+      "ref": "e71",
+      "role": "group",
+      "name": "Response completions Get notified when Claude has finished a response. Useful for long-running tasks.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e72",
+      "role": "switch",
+      "name": "Response completions",
+      "selector": "#base-ui-_r_4i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e73",
+      "role": "checkbox",
+      "name": "",
+      "selector": "#base-ui-_r_4i_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true
+    },
+    {
+      "ref": "e74",
+      "role": "group",
+      "name": "Code notifications Claude can choose to notify you about important updates from a Code session.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e75",
+      "role": "switch",
+      "name": "Code notifications",
+      "selector": "#base-ui-_r_4l_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e76",
+      "role": "checkbox",
+      "name": "",
+      "selector": "#base-ui-_r_4l_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true
+    },
+    {
+      "ref": "e77",
+      "role": "group",
+      "name": "Code permission requests Get a push notification when Claude needs your approval to run a command in a Code session.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e78",
+      "role": "switch",
+      "name": "Code permission requests",
+      "selector": "#base-ui-_r_4o_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e79",
+      "role": "checkbox",
+      "name": "",
+      "selector": "#base-ui-_r_4o_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true
+    },
+    {
+      "ref": "e80",
+      "role": "group",
+      "name": "Emails from Claude Code on the web Get an email when Claude Code on the web has finished building or needs your response.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e81",
+      "role": "switch",
+      "name": "Emails from Claude Code on the web",
+      "selector": "#base-ui-_r_4r_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e82",
+      "role": "checkbox",
+      "name": "",
+      "selector": "#base-ui-_r_4r_-input",
+      "tagName": "input",
+      "value": "on"
+    },
+    {
+      "ref": "e83",
+      "role": "group",
+      "name": "Dispatch messages Get a push notification on your phone when Claude messages you in Dispatch.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e84",
+      "role": "switch",
+      "name": "Dispatch messages",
+      "selector": "#base-ui-_r_4u_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e85",
+      "role": "checkbox",
+      "name": "",
+      "selector": "#base-ui-_r_4u_-input",
+      "tagName": "input",
+      "value": "on"
+    },
+    {
+      "ref": "e86",
+      "role": "region",
+      "name": "Notifications (F8)",
+      "selector": "div[aria-label=\"Notifications (F8)\"]",
+      "tagName": "div"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "title": "Marketing analytics",
+      "selector": "iframe",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

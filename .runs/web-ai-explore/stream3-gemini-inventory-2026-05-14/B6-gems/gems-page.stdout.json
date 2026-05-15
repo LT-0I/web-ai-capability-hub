@@ -1,0 +1,391 @@
+{
+  "url": "https://gemini.google.com/gems/view?hl=en",
+  "title": "Gemini",
+  "timestamp": "2026-05-14T14:47:31.486Z",
+  "visibleText": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com) Main menu New chat Gemini PRO Side Navigation New chat My stuff Notebooks New notebook Gems Chats Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help Search Loading Gems and Recent conversations My stuff Notebooks New notebook Gems Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help Show more Gems premade by Google Show more Start a new conversation with Gem: Chess champ Experiment Chess champ Play chess with a language model. Make your first move using chess notation to start your match. More options for \"Chess champ\" Gem Start a new conversation with Gem: Storybook Experiment Storybook Create a customized picture book, for either children or adults, given a topic, an optional target audience age, and an optional art style for the images. More options for \"Storybook\" Gem Start a new conversation with Gem: Brainstormer Brainstormer Find inspiration easily. Fresh ideas for parties, gifts, businesses and more. More options for \"Brainstormer\" Gem Start a new conversation with Gem: Career guide Career guide Unlock your career potential. Get a detailed plan to refine your skills and achieve your career goals. More options for \"Career guide\" Gem Start a new conversation with Gem: Coding partner Coding partner Level up your coding skills. Get the help you need to build your projects and learn as you go. More options for \"Coding partner\" Gem Start a new conversation with Gem: Learning coach Learning coach Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started. More options for \"Learning coach\" Gem Start a new conversation with Gem: Productivity planner Productivity planner Stay on top of your work. Schedule tasks, daily updates, and weekly summaries from apps like Gmail, Calendar, and Drive to boost your productivity. More options for \"Productivity planner\" Gem Start a new conversation with Gem: Writing editor Writing editor Elevate your writing. Get clear, constructive feedback, from grammar to structure. More options for \"Writing editor\" Gem Notice about shared Gems New Gem Dismiss Learn more Opens in a new window",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "PRO",
+      "selector": "button",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e6",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat My stuff Notebooks New notebook Gems Chats Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav"
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "Search",
+      "selector": "button[aria-label=\"Search\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e8",
+      "role": "group",
+      "name": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "progressbar",
+      "name": "Loading Gems and Recent conversations",
+      "selector": "mat-progress-spinner[aria-label=\"Loading Gems and Recent conversations\"]",
+      "tagName": "mat-progress-spinner"
+    },
+    {
+      "ref": "e11",
+      "role": "link",
+      "name": "My stuff",
+      "selector": "a[aria-label=\"My stuff\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "Notebooks",
+      "selector": "a[aria-label=\"Notebooks\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "link",
+      "name": "New notebook",
+      "selector": "a[aria-label=\"New notebook\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "Gems",
+      "selector": "a[aria-label=\"Gems\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e15",
+      "role": "region",
+      "name": "",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e16",
+      "role": "region",
+      "name": "Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持",
+      "selector": "#conversations-list-0",
+      "tagName": "div"
+    },
+    {
+      "ref": "e17",
+      "role": "button",
+      "name": "Generate a small simple image: a red square on a white background.",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Python \"Hello World\" File Generation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "PDF Title Text Inquiry",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Red Square Image Description",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Add Function Calculation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "Shanghai's Population: Largest City",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "File Summary Request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "Date Acknowledgement And Request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Documentation Pass and Date Confirmation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "账户安全验证问题联系支持",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e27",
+      "role": "group",
+      "name": "Settings & help",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "Settings & help",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e29",
+      "role": "iframe",
+      "name": "",
+      "selector": "iframe",
+      "tagName": "iframe"
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Show more Gems premade by Google",
+      "text": "Show more",
+      "selector": "button[aria-label=\"Show more Gems premade by Google\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e31",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Chess champ",
+      "text": "Experiment Chess champ Play chess with a language model. Make your first move using chess notation to start your match.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Chess champ\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e32",
+      "role": "button",
+      "name": "More options for \"Chess champ\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Chess champ\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e33",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Storybook",
+      "text": "Experiment Storybook Create a customized picture book, for either children or adults, given a topic, an optional target audience age, and an optional art style for the images.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Storybook\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e34",
+      "role": "button",
+      "name": "More options for \"Storybook\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Storybook\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e35",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Brainstormer",
+      "text": "Brainstormer Find inspiration easily. Fresh ideas for parties, gifts, businesses and more.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Brainstormer\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e36",
+      "role": "button",
+      "name": "More options for \"Brainstormer\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Brainstormer\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e37",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Career guide",
+      "text": "Career guide Unlock your career potential. Get a detailed plan to refine your skills and achieve your career goals.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Career guide\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e38",
+      "role": "button",
+      "name": "More options for \"Career guide\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Career guide\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e39",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Coding partner",
+      "text": "Coding partner Level up your coding skills. Get the help you need to build your projects and learn as you go.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Coding partner\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e40",
+      "role": "button",
+      "name": "More options for \"Coding partner\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Coding partner\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e41",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Learning coach",
+      "text": "Learning coach Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Learning coach\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e42",
+      "role": "button",
+      "name": "More options for \"Learning coach\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Learning coach\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e43",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Productivity planner",
+      "text": "Productivity planner Stay on top of your work. Schedule tasks, daily updates, and weekly summaries from apps like Gmail, Calendar, and Drive to boost your productivity.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Productivity planner\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e44",
+      "role": "button",
+      "name": "More options for \"Productivity planner\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Productivity planner\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e45",
+      "role": "link",
+      "name": "Start a new conversation with Gem: Writing editor",
+      "text": "Writing editor Elevate your writing. Get clear, constructive feedback, from grammar to structure.",
+      "selector": "a[aria-label=\"Start a new conversation with Gem: Writing editor\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e46",
+      "role": "button",
+      "name": "More options for \"Writing editor\" Gem",
+      "selector": "button[aria-label=\"More options for \\\"Writing editor\\\" Gem\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Notice about shared Gems",
+      "selector": "button[aria-label=\"Notice about shared Gems\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e48",
+      "role": "button",
+      "name": "New Gem",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "Dismiss",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "Learn more Opens in a new window",
+      "selector": "a",
+      "tagName": "a"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i2",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i3",
+      "selector": "#hfcr",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "action": {
+    "type": "click",
+    "selector": "button:has-text(\"Upload files\"), [role=\"menuitem\"]:has-text(\"Upload files\")"
+  },
+  "message": "Clicked button:has-text(\"Upload files\"), [role=\"menuitem\"]:has-text(\"Upload files\")"
+}

@@ -1,0 +1,635 @@
+{
+  "url": "https://chatgpt.com/?temporary-chat=true",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T14:30:28.871Z",
+  "visibleText": "Skip to content Open sidebar New chat Search chats Recents Open profile menu Home ChatGPT Close sidebar Codex Projects New project 1浏览器自动化（读取+操作） Show chats Open project options for 1浏览器自动化（读取+操作） RL0511 Open project options for RL0511 3Radar Open project options for 3Radar 2notebooklm自动化 Open project options for 2notebooklm自动化 Documentation Pass Acknowledgement Open conversation options for Documentation Pass Acknowledgement 强化学习在反无人机应用 Open conversation options for 强化学习在反无人机应用 PPTX下载和内容总结 Open conversation options for PPTX下载和内容总结 Gemini 使用问题解析 Open conversation options for Gemini 使用问题解析 Claude -p 解析 Open conversation options for Claude -p 解析 Linux 监视Codex tokens Open conversation options for Linux 监视Codex tokens CSV Files Generation Open conversation options for CSV Files Generation Package Name and Scripts Open conversation options for Package Name and Scripts Catalog probe ok Open conversation options for Catalog probe ok Python 3.12 Changelog Open conversation options for Python 3.12 Changelog Morning Routines in Canvas Open conversation options for Morning Routines in Canvas Python 3.12 Changelog URL Open conversation options for Python 3.12 Changelog URL Python Canvas Script Open conversation options for Python Canvas Script Create tiny red dot Open conversation options for Create tiny red dot 刷国行平板美版系统 Open conversation options for 刷国行平板美版系统 简历翻译与PDF生成 Open conversation options for 简历翻译与PDF生成 查看Linux剪贴板历史 Open conversation options for 查看Linux剪贴板历史 项目链接与名称输出 Open conversation options for 项目链接与名称输出 问候交流 Open conversation options for 问候交流 File download ready Open conversation options for File download ready 根据聊天描述用户 Open conversation options for 根据聊天描述用户 欢迎使用 ChatGPT Open conversation options for 欢迎使用 ChatGPT Shark Pro, open profile menu Shark Pro Download apps Turn off temporary chat Continue Temporary Chat This chat won’t appear in your chat history, and won’t be used to train our models. Thinking smoke-text.txt Document For safety, we may keep a copy of this chat for up to 30 days. Add files and more Chat with ChatGPT Thinking Start dictation Send prompt smoke-text.txt smoke-text.txt Document Remove file 1: smoke-text.txt",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Skip to content",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Recents",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open profile menu",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Home",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Close sidebar",
+      "selector": "button[aria-label=\"Close sidebar\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Projects",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "New project",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "1浏览器自动化（读取+操作）",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Show chats",
+      "selector": "button[aria-label=\"Show chats\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Open project options for 1浏览器自动化（读取+操作）",
+      "selector": "#radix-_r_a_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "RL0511",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Open project options for RL0511",
+      "selector": "#radix-_r_c_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "3Radar",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Open project options for 3Radar",
+      "selector": "#radix-_r_e_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "2notebooklm自动化",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Open project options for 2notebooklm自动化",
+      "selector": "#radix-_r_g_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Recents",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Documentation Pass Acknowledgement",
+      "selector": "a[aria-label=\"Documentation Pass Acknowledgement\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Open conversation options for Documentation Pass Acknowledgement",
+      "selector": "#radix-_r_q_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "强化学习在反无人机应用",
+      "selector": "a[aria-label=\"强化学习在反无人机应用\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Open conversation options for 强化学习在反无人机应用",
+      "selector": "#radix-_r_s_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "PPTX下载和内容总结",
+      "selector": "a[aria-label=\"PPTX下载和内容总结\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open conversation options for PPTX下载和内容总结",
+      "selector": "#radix-_r_u_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Gemini 使用问题解析",
+      "selector": "a[aria-label=\"Gemini 使用问题解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Open conversation options for Gemini 使用问题解析",
+      "selector": "#radix-_r_10_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "Claude -p 解析",
+      "selector": "a[aria-label=\"Claude -p 解析\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Open conversation options for Claude -p 解析",
+      "selector": "#radix-_r_12_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Linux 监视Codex tokens",
+      "selector": "a[aria-label=\"Linux 监视Codex tokens\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Open conversation options for Linux 监视Codex tokens",
+      "selector": "#radix-_r_14_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "CSV Files Generation",
+      "selector": "a[aria-label=\"CSV Files Generation\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Open conversation options for CSV Files Generation",
+      "selector": "#radix-_r_16_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "Package Name and Scripts",
+      "selector": "a[aria-label=\"Package Name and Scripts\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Open conversation options for Package Name and Scripts",
+      "selector": "#radix-_r_18_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Catalog probe ok",
+      "selector": "a[aria-label=\"Catalog probe ok\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Open conversation options for Catalog probe ok",
+      "selector": "#radix-_r_1a_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Python 3.12 Changelog",
+      "selector": "a[aria-label=\"Python 3.12 Changelog\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog",
+      "selector": "#radix-_r_1c_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Morning Routines in Canvas",
+      "selector": "a[aria-label=\"Morning Routines in Canvas\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Open conversation options for Morning Routines in Canvas",
+      "selector": "#radix-_r_1e_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Python 3.12 Changelog URL",
+      "selector": "a[aria-label=\"Python 3.12 Changelog URL\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog URL",
+      "selector": "#radix-_r_1g_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "Python Canvas Script",
+      "selector": "a[aria-label=\"Python Canvas Script\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Open conversation options for Python Canvas Script",
+      "selector": "#radix-_r_1i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "Create tiny red dot",
+      "selector": "a[aria-label=\"Create tiny red dot\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "Open conversation options for Create tiny red dot",
+      "selector": "#radix-_r_1k_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "刷国行平板美版系统",
+      "selector": "a[aria-label=\"刷国行平板美版系统\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e51",
+      "role": "button",
+      "name": "Open conversation options for 刷国行平板美版系统",
+      "selector": "#radix-_r_o_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "简历翻译与PDF生成",
+      "selector": "a[aria-label=\"简历翻译与PDF生成\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "Open conversation options for 简历翻译与PDF生成",
+      "selector": "#radix-_r_1m_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "查看Linux剪贴板历史",
+      "selector": "a[aria-label=\"查看Linux剪贴板历史\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "Open conversation options for 查看Linux剪贴板历史",
+      "selector": "#radix-_r_1o_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "项目链接与名称输出",
+      "selector": "a[aria-label=\"项目链接与名称输出\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e57",
+      "role": "button",
+      "name": "Open conversation options for 项目链接与名称输出",
+      "selector": "#radix-_r_1q_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e58",
+      "role": "link",
+      "name": "问候交流",
+      "selector": "a[aria-label=\"问候交流\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e59",
+      "role": "button",
+      "name": "Open conversation options for 问候交流",
+      "selector": "#radix-_r_1s_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e60",
+      "role": "link",
+      "name": "File download ready",
+      "selector": "a[aria-label=\"File download ready\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e61",
+      "role": "button",
+      "name": "Open conversation options for File download ready",
+      "selector": "#radix-_r_1u_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e62",
+      "role": "link",
+      "name": "根据聊天描述用户",
+      "selector": "a[aria-label=\"根据聊天描述用户\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e63",
+      "role": "button",
+      "name": "Open conversation options for 根据聊天描述用户",
+      "selector": "#radix-_r_20_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e64",
+      "role": "link",
+      "name": "欢迎使用 ChatGPT",
+      "selector": "a[aria-label=\"欢迎使用 ChatGPT\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e65",
+      "role": "button",
+      "name": "Open conversation options for 欢迎使用 ChatGPT",
+      "selector": "#radix-_r_22_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e66",
+      "role": "button",
+      "name": "Shark Pro, open profile menu",
+      "text": "Shark Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div"
+    },
+    {
+      "ref": "e67",
+      "role": "button",
+      "name": "Download apps",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e68",
+      "role": "button",
+      "name": "Turn off temporary chat",
+      "selector": "button[aria-label=\"Turn off temporary chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e69",
+      "role": "button",
+      "name": "Continue",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e70",
+      "role": "presentation",
+      "name": "Temporary Chat This chat won’t appear in your chat history, and won’t be used to train our models. Thinking smoke-text.txt Document For safety, we may keep a copy of this chat for up to 30 days.",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e71",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-files",
+      "tagName": "input",
+      "value": "C:\\fakepath\\smoke-text.txt"
+    },
+    {
+      "ref": "e72",
+      "role": "button",
+      "name": "Add files and more",
+      "selector": "#composer-plus-btn",
+      "tagName": "button"
+    },
+    {
+      "ref": "e73",
+      "role": "textbox",
+      "name": "Chat with ChatGPT",
+      "selector": "#prompt-textarea",
+      "tagName": "div"
+    },
+    {
+      "ref": "e74",
+      "role": "button",
+      "name": "Thinking",
+      "selector": "#radix-_r_i_",
+      "tagName": "button"
+    },
+    {
+      "ref": "e75",
+      "role": "button",
+      "name": "Start dictation",
+      "selector": "button[aria-label=\"Start dictation\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e76",
+      "role": "button",
+      "name": "Send prompt",
+      "selector": "#composer-submit-button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e77",
+      "role": "group",
+      "name": "smoke-text.txt",
+      "text": "smoke-text.txt Document",
+      "selector": "div[aria-label=\"smoke-text.txt\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e78",
+      "role": "button",
+      "name": "smoke-text.txt",
+      "selector": "button[aria-label=\"smoke-text.txt\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e79",
+      "role": "button",
+      "name": "Remove file 1: smoke-text.txt",
+      "selector": "button[aria-label=\"Remove file 1: smoke-text.txt\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e80",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-photos",
+      "tagName": "input"
+    },
+    {
+      "ref": "e81",
+      "role": "textbox",
+      "name": "",
+      "selector": "#upload-camera",
+      "tagName": "input"
+    },
+    {
+      "ref": "e82",
+      "role": "alert",
+      "name": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div"
+    },
+    {
+      "ref": "e83",
+      "role": "status",
+      "name": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div"
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Thinking smoke-text.txt Document",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e71",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-files",
+          "tagName": "input",
+          "value": "C:\\fakepath\\smoke-text.txt"
+        },
+        {
+          "ref": "e73",
+          "role": "textbox",
+          "name": "Chat with ChatGPT",
+          "selector": "#prompt-textarea",
+          "tagName": "div"
+        },
+        {
+          "ref": "e80",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-photos",
+          "tagName": "input"
+        },
+        {
+          "ref": "e81",
+          "role": "textbox",
+          "name": "",
+          "selector": "#upload-camera",
+          "tagName": "input"
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [],
+  "iframes": [],
+  "warnings": []
+}

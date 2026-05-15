@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "action": {
+    "confirmed": true,
+    "type": "click",
+    "selector": "button:has-text(\"Personal Intelligence\"), [role=\"menuitem\"]:has-text(\"Personal Intelligence\")"
+  },
+  "message": "Clicked button:has-text(\"Personal Intelligence\"), [role=\"menuitem\"]:has-text(\"Personal Intelligence\")"
+}

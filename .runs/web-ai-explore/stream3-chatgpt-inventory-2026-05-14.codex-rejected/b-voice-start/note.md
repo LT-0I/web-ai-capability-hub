@@ -1,0 +1,1 @@
+Observed the desktop web composer voice controls: dictation and voice launch buttons are visible in the new-conversation snapshot. They were not clicked because audio/microphone interaction is out of scope.

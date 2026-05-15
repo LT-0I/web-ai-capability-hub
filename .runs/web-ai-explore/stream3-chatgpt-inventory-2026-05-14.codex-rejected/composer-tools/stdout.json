@@ -1,0 +1,2343 @@
+{
+  "url": "https://chatgpt.com/",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T13:57:45.239Z",
+  "visibleText": "跳至内容 历史聊天记录 ChatGPT 新聊天 Search chats Codex 更多 项目 新项目 1浏览器自动化（读取+操作） RL0511 3Radar 2notebooklm自动化 最近 Documentation Pass Acknowledgement 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro 你在忙什么？ Thinking 添加照片和文件 Ctrl U 近期文件 创建图片 深度研究 网页搜索 更多 项目 添加文件等 / 添加文件等 /",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "跳至内容",
+      "text": "跳至内容",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-skip-to-content": "",
+        "class": "interactive-bg-secondary behavior-btn interactive-label-secondary rounded-2xl px-4 py-2 text-base print:hidden",
+        "href": "#main"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "打开边栏",
+      "text": "",
+      "selector": "button[aria-label=\"打开边栏\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 mx-2 cursor-e-resize rtl:cursor-w-resize",
+        "aria-label": "打开边栏",
+        "aria-expanded": "false",
+        "aria-controls": "stage-slideover-sidebar"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"打开边栏\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "新聊天",
+      "text": "新聊天",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5",
+        "data-testid": "create-new-chat-button",
+        "data-sidebar-item": "true",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "text": "Search chats",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-item": "true",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "最近聊天",
+      "text": "最近聊天",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-keep-open": "true",
+        "type": "button",
+        "id": "radix-_R_2kqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_2kqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "打开“个人资料”菜单",
+      "text": "",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable gap-2 ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "打开“个人资料”菜单",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_sqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_sqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "主页",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"主页\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 touch:w-auto w-auto px-2.5",
+        "data-sidebar-item": "true",
+        "aria-label": "主页",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"主页\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "关闭边栏",
+      "text": "",
+      "selector": "button[aria-label=\"关闭边栏\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-tertiary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 no-draggable cursor-w-resize rtl:cursor-e-resize",
+        "aria-expanded": "true",
+        "aria-controls": "stage-slideover-sidebar",
+        "aria-label": "关闭边栏",
+        "data-testid": "close-sidebar-button",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"关闭边栏\"]"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "text": "Codex",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "rel": "noopener noreferrer",
+        "href": "/codex/cloud",
+        "target": "_blank",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "项目",
+      "text": "项目",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-expanded": "true",
+        "class": "text-token-text-tertiary flex w-full items-center justify-start gap-0.5 px-4 py-1.5"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "新项目",
+      "text": "新项目",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-item": "true",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "1浏览器自动化（读取+操作）",
+      "text": "1浏览器自动化（读取+操作）",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9b8079e248191b8a4f091aee92bca-1liu-lan-qi-zi-dong-hua-du-qu-cao-zuo/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "显示聊天",
+      "text": "",
+      "selector": "button[aria-label=\"显示聊天\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "aria-label": "显示聊天",
+        "class": "flex h-5 w-5 items-center justify-center",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"显示聊天\"]"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "打开 1浏览器自动化（读取+操作） 的项目选项",
+      "text": "",
+      "selector": "#radix-_r_k1_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "打开 1浏览器自动化（读取+操作） 的项目选项",
+        "type": "button",
+        "id": "radix-_r_k1_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_k1_"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "RL0511",
+      "text": "RL0511",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-6a01e68580a48191bae1691b494a74b2-rl0511/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "打开 RL0511 的项目选项",
+      "text": "",
+      "selector": "#radix-_r_k4_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "打开 RL0511 的项目选项",
+        "type": "button",
+        "id": "radix-_r_k4_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_k4_"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "3Radar",
+      "text": "3Radar",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9cd5705bc81918351a216bd03d093-3radar/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "打开 3Radar 的项目选项",
+      "text": "",
+      "selector": "#radix-_r_k7_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "打开 3Radar 的项目选项",
+        "type": "button",
+        "id": "radix-_r_k7_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_k7_"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "2notebooklm自动化",
+      "text": "2notebooklm自动化",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9c1b670548191bbd9aa45efd8a8ea-2notebooklmzi-dong-hua/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "打开 2notebooklm自动化 的项目选项",
+      "text": "",
+      "selector": "#radix-_r_ka_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "打开 2notebooklm自动化 的项目选项",
+        "type": "button",
+        "id": "radix-_r_ka_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ka_"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "最近",
+      "text": "最近",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-expanded": "true",
+        "class": "text-token-text-tertiary flex w-full items-center justify-start gap-0.5 px-4 py-1.5"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Documentation Pass Acknowledgement",
+      "text": "Documentation Pass Acknowledgement",
+      "selector": "a[aria-label=\"Documentation Pass Acknowledgement\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Documentation Pass Acknowledgement",
+        "data-sidebar-item": "true",
+        "href": "/c/6a05d2bd-ef94-83e8-b1e1-1eb23c9bdb08",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Documentation Pass Acknowledgement\"]"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "打开“Documentation Pass Acknowledgement”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_kc_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-0-options",
+        "data-conversation-options-trigger": "6a05d2bd-ef94-83e8-b1e1-1eb23c9bdb08",
+        "aria-label": "打开“Documentation Pass Acknowledgement”的对话选项",
+        "type": "button",
+        "id": "radix-_r_kc_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_kc_"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "强化学习在反无人机应用",
+      "text": "强化学习在反无人机应用",
+      "selector": "a[aria-label=\"强化学习在反无人机应用\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "强化学习在反无人机应用",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"强化学习在反无人机应用\"]"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "打开“强化学习在反无人机应用”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_ke_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-1-options",
+        "data-conversation-options-trigger": "6a04a213-5648-83e8-b9d0-6134aef56831",
+        "aria-label": "打开“强化学习在反无人机应用”的对话选项",
+        "type": "button",
+        "id": "radix-_r_ke_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ke_"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "PPTX下载和内容总结",
+      "text": "PPTX下载和内容总结",
+      "selector": "a[aria-label=\"PPTX下载和内容总结\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "PPTX下载和内容总结",
+        "data-sidebar-item": "true",
+        "href": "/c/6a055a9b-7f0c-83e8-a558-898911b65109",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"PPTX下载和内容总结\"]"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "打开“PPTX下载和内容总结”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_kg_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-2-options",
+        "data-conversation-options-trigger": "6a055a9b-7f0c-83e8-a558-898911b65109",
+        "aria-label": "打开“PPTX下载和内容总结”的对话选项",
+        "type": "button",
+        "id": "radix-_r_kg_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_kg_"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Gemini 使用问题解析",
+      "text": "Gemini 使用问题解析",
+      "selector": "a[aria-label=\"Gemini 使用问题解析\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Gemini 使用问题解析",
+        "data-sidebar-item": "true",
+        "href": "/c/6a042609-62dc-83e8-98f5-dfa1001a14b8",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Gemini 使用问题解析\"]"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "打开“Gemini 使用问题解析”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_ki_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-3-options",
+        "data-conversation-options-trigger": "6a042609-62dc-83e8-98f5-dfa1001a14b8",
+        "aria-label": "打开“Gemini 使用问题解析”的对话选项",
+        "type": "button",
+        "id": "radix-_r_ki_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ki_"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "Claude -p 解析",
+      "text": "Claude -p 解析",
+      "selector": "a[aria-label=\"Claude -p 解析\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Claude -p 解析",
+        "data-sidebar-item": "true",
+        "href": "/c/6a0526bf-113c-83e8-a868-6b12eeaf3121",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Claude -p 解析\"]"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "打开“Claude -p 解析”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_kk_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-4-options",
+        "data-conversation-options-trigger": "6a0526bf-113c-83e8-a868-6b12eeaf3121",
+        "aria-label": "打开“Claude -p 解析”的对话选项",
+        "type": "button",
+        "id": "radix-_r_kk_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_kk_"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Linux 监视Codex tokens",
+      "text": "Linux 监视Codex tokens",
+      "selector": "a[aria-label=\"Linux 监视Codex tokens\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Linux 监视Codex tokens",
+        "data-sidebar-item": "true",
+        "href": "/c/6a043910-d758-83e8-918a-c720c8196282",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Linux 监视Codex tokens\"]"
+      ]
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "打开“Linux 监视Codex tokens”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_km_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-5-options",
+        "data-conversation-options-trigger": "6a043910-d758-83e8-918a-c720c8196282",
+        "aria-label": "打开“Linux 监视Codex tokens”的对话选项",
+        "type": "button",
+        "id": "radix-_r_km_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_km_"
+      ]
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "CSV Files Generation",
+      "text": "CSV Files Generation",
+      "selector": "a[aria-label=\"CSV Files Generation\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "CSV Files Generation",
+        "data-sidebar-item": "true",
+        "href": "/c/6a042c5f-861c-83e8-bfc8-8db14ecc633a",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"CSV Files Generation\"]"
+      ]
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "打开“CSV Files Generation”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_ko_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-6-options",
+        "data-conversation-options-trigger": "6a042c5f-861c-83e8-bfc8-8db14ecc633a",
+        "aria-label": "打开“CSV Files Generation”的对话选项",
+        "type": "button",
+        "id": "radix-_r_ko_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ko_"
+      ]
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "Package Name and Scripts",
+      "text": "Package Name and Scripts",
+      "selector": "a[aria-label=\"Package Name and Scripts\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Package Name and Scripts",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04087b-7a00-83e8-bac3-98f88489d695",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Package Name and Scripts\"]"
+      ]
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "打开“Package Name and Scripts”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_kq_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-7-options",
+        "data-conversation-options-trigger": "6a04087b-7a00-83e8-bac3-98f88489d695",
+        "aria-label": "打开“Package Name and Scripts”的对话选项",
+        "type": "button",
+        "id": "radix-_r_kq_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_kq_"
+      ]
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Catalog probe ok",
+      "text": "Catalog probe ok",
+      "selector": "a[aria-label=\"Catalog probe ok\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Catalog probe ok",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04073f-32fc-83e8-932c-38eb20fec2a5",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Catalog probe ok\"]"
+      ]
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "打开“Catalog probe ok”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_ks_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-8-options",
+        "data-conversation-options-trigger": "6a04073f-32fc-83e8-932c-38eb20fec2a5",
+        "aria-label": "打开“Catalog probe ok”的对话选项",
+        "type": "button",
+        "id": "radix-_r_ks_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ks_"
+      ]
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Python 3.12 Changelog",
+      "text": "Python 3.12 Changelog",
+      "selector": "a[aria-label=\"Python 3.12 Changelog\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python 3.12 Changelog",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03ff22-e334-83e8-9109-6d3d6fc23906",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python 3.12 Changelog\"]"
+      ]
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "打开“Python 3.12 Changelog”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_ku_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-9-options",
+        "data-conversation-options-trigger": "6a03ff22-e334-83e8-9109-6d3d6fc23906",
+        "aria-label": "打开“Python 3.12 Changelog”的对话选项",
+        "type": "button",
+        "id": "radix-_r_ku_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_ku_"
+      ]
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Morning Routines in Canvas",
+      "text": "Morning Routines in Canvas",
+      "selector": "a[aria-label=\"Morning Routines in Canvas\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Morning Routines in Canvas",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03fe9c-ccc4-83e8-a0d0-e42cf349e522",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Morning Routines in Canvas\"]"
+      ]
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "打开“Morning Routines in Canvas”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_l0_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-10-options",
+        "data-conversation-options-trigger": "6a03fe9c-ccc4-83e8-a0d0-e42cf349e522",
+        "aria-label": "打开“Morning Routines in Canvas”的对话选项",
+        "type": "button",
+        "id": "radix-_r_l0_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_l0_"
+      ]
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Python 3.12 Changelog URL",
+      "text": "Python 3.12 Changelog URL",
+      "selector": "a[aria-label=\"Python 3.12 Changelog URL\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python 3.12 Changelog URL",
+        "data-sidebar-item": "true",
+        "href": "/c/6a033823-707c-83e8-9679-55c8a95e202a",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python 3.12 Changelog URL\"]"
+      ]
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "打开“Python 3.12 Changelog URL”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_l2_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-11-options",
+        "data-conversation-options-trigger": "6a033823-707c-83e8-9679-55c8a95e202a",
+        "aria-label": "打开“Python 3.12 Changelog URL”的对话选项",
+        "type": "button",
+        "id": "radix-_r_l2_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_l2_"
+      ]
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "Python Canvas Script",
+      "text": "Python Canvas Script",
+      "selector": "a[aria-label=\"Python Canvas Script\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python Canvas Script",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03376f-7e04-83e8-8277-aa36ada48b56",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python Canvas Script\"]"
+      ]
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "打开“Python Canvas Script”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_l4_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-12-options",
+        "data-conversation-options-trigger": "6a03376f-7e04-83e8-8277-aa36ada48b56",
+        "aria-label": "打开“Python Canvas Script”的对话选项",
+        "type": "button",
+        "id": "radix-_r_l4_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_l4_"
+      ]
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "Create tiny red dot",
+      "text": "Create tiny red dot",
+      "selector": "a[aria-label=\"Create tiny red dot\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Create tiny red dot",
+        "data-sidebar-item": "true",
+        "href": "/c/6a0336f4-1c1c-83e8-9aa0-b8043ed4a26e",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Create tiny red dot\"]"
+      ]
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "打开“Create tiny red dot”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_l6_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-13-options",
+        "data-conversation-options-trigger": "6a0336f4-1c1c-83e8-9aa0-b8043ed4a26e",
+        "aria-label": "打开“Create tiny red dot”的对话选项",
+        "type": "button",
+        "id": "radix-_r_l6_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_l6_"
+      ]
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "刷国行平板美版系统",
+      "text": "刷国行平板美版系统",
+      "selector": "a[aria-label=\"刷国行平板美版系统\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "刷国行平板美版系统",
+        "data-sidebar-item": "true",
+        "href": "/c/69fe0072-ff60-83e8-b53f-dc9f3cb48874",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"刷国行平板美版系统\"]"
+      ]
+    },
+    {
+      "ref": "e51",
+      "role": "button",
+      "name": "打开“刷国行平板美版系统”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_l8_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-14-options",
+        "data-conversation-options-trigger": "69fe0072-ff60-83e8-b53f-dc9f3cb48874",
+        "aria-label": "打开“刷国行平板美版系统”的对话选项",
+        "type": "button",
+        "id": "radix-_r_l8_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_l8_"
+      ]
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "简历翻译与PDF生成",
+      "text": "简历翻译与PDF生成",
+      "selector": "a[aria-label=\"简历翻译与PDF生成\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "简历翻译与PDF生成",
+        "data-sidebar-item": "true",
+        "href": "/c/69fd2f57-87d8-83e8-bb94-393160da1d74",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"简历翻译与PDF生成\"]"
+      ]
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "打开“简历翻译与PDF生成”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_la_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-15-options",
+        "data-conversation-options-trigger": "69fd2f57-87d8-83e8-bb94-393160da1d74",
+        "aria-label": "打开“简历翻译与PDF生成”的对话选项",
+        "type": "button",
+        "id": "radix-_r_la_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_la_"
+      ]
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "查看Linux剪贴板历史",
+      "text": "查看Linux剪贴板历史",
+      "selector": "a[aria-label=\"查看Linux剪贴板历史\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "查看Linux剪贴板历史",
+        "data-sidebar-item": "true",
+        "href": "/c/69fc5768-db58-83e8-a46e-9da1b6a2865c",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"查看Linux剪贴板历史\"]"
+      ]
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "打开“查看Linux剪贴板历史”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_lc_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-16-options",
+        "data-conversation-options-trigger": "69fc5768-db58-83e8-a46e-9da1b6a2865c",
+        "aria-label": "打开“查看Linux剪贴板历史”的对话选项",
+        "type": "button",
+        "id": "radix-_r_lc_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_lc_"
+      ]
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "项目链接与名称输出",
+      "text": "项目链接与名称输出",
+      "selector": "a[aria-label=\"项目链接与名称输出\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "项目链接与名称输出",
+        "data-sidebar-item": "true",
+        "href": "/c/69f9bc87-2450-83e8-a717-1f5db273ef49",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"项目链接与名称输出\"]"
+      ]
+    },
+    {
+      "ref": "e57",
+      "role": "button",
+      "name": "打开“项目链接与名称输出”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_le_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-17-options",
+        "data-conversation-options-trigger": "69f9bc87-2450-83e8-a717-1f5db273ef49",
+        "aria-label": "打开“项目链接与名称输出”的对话选项",
+        "type": "button",
+        "id": "radix-_r_le_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_le_"
+      ]
+    },
+    {
+      "ref": "e58",
+      "role": "link",
+      "name": "问候交流",
+      "text": "问候交流",
+      "selector": "a[aria-label=\"问候交流\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "问候交流",
+        "data-sidebar-item": "true",
+        "href": "/c/69facf36-7f18-83e8-8e23-825dd860bd73",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"问候交流\"]"
+      ]
+    },
+    {
+      "ref": "e59",
+      "role": "button",
+      "name": "打开“问候交流”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_lg_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-18-options",
+        "data-conversation-options-trigger": "69facf36-7f18-83e8-8e23-825dd860bd73",
+        "aria-label": "打开“问候交流”的对话选项",
+        "type": "button",
+        "id": "radix-_r_lg_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_lg_"
+      ]
+    },
+    {
+      "ref": "e60",
+      "role": "link",
+      "name": "File download ready",
+      "text": "File download ready",
+      "selector": "a[aria-label=\"File download ready\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "File download ready",
+        "data-sidebar-item": "true",
+        "href": "/c/69f9dc41-3668-83e8-b1c5-b9f3653ce2bb",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"File download ready\"]"
+      ]
+    },
+    {
+      "ref": "e61",
+      "role": "button",
+      "name": "打开“File download ready”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_li_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-19-options",
+        "data-conversation-options-trigger": "69f9dc41-3668-83e8-b1c5-b9f3653ce2bb",
+        "aria-label": "打开“File download ready”的对话选项",
+        "type": "button",
+        "id": "radix-_r_li_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_li_"
+      ]
+    },
+    {
+      "ref": "e62",
+      "role": "link",
+      "name": "根据聊天描述用户",
+      "text": "根据聊天描述用户",
+      "selector": "a[aria-label=\"根据聊天描述用户\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "根据聊天描述用户",
+        "data-sidebar-item": "true",
+        "href": "/c/69f77a64-4c70-83e8-b811-61500c053148",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"根据聊天描述用户\"]"
+      ]
+    },
+    {
+      "ref": "e63",
+      "role": "button",
+      "name": "打开“根据聊天描述用户”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_lk_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-20-options",
+        "data-conversation-options-trigger": "69f77a64-4c70-83e8-b811-61500c053148",
+        "aria-label": "打开“根据聊天描述用户”的对话选项",
+        "type": "button",
+        "id": "radix-_r_lk_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_lk_"
+      ]
+    },
+    {
+      "ref": "e64",
+      "role": "link",
+      "name": "欢迎使用 ChatGPT",
+      "text": "欢迎使用 ChatGPT",
+      "selector": "a[aria-label=\"欢迎使用 ChatGPT\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "欢迎使用 ChatGPT",
+        "data-sidebar-item": "true",
+        "href": "/c/69f567d8-fd70-83e8-9441-d37a460e10e6",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"欢迎使用 ChatGPT\"]"
+      ]
+    },
+    {
+      "ref": "e65",
+      "role": "button",
+      "name": "打开“欢迎使用 ChatGPT”的对话选项",
+      "text": "",
+      "selector": "#radix-_r_lm_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-21-options",
+        "data-conversation-options-trigger": "69f567d8-fd70-83e8-9441-d37a460e10e6",
+        "aria-label": "打开“欢迎使用 ChatGPT”的对话选项",
+        "type": "button",
+        "id": "radix-_r_lm_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_lm_"
+      ]
+    },
+    {
+      "ref": "e66",
+      "role": "button",
+      "name": "Shark Pro，打开“个人资料”菜单",
+      "text": "Shark Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "Shark Pro，打开“个人资料”菜单",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_qlalj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_qlalj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e67",
+      "role": "button",
+      "name": "Download apps",
+      "text": "",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&>div]:h-full [&>div]:w-full [&>div]:rounded-lg [&>div]:p-0!",
+        "aria-controls": "_R_kmqlalj3b31hq9ikj5_",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu",
+        "data-state": "closed",
+        "style": "anchor-name:--anchor-_R_kmqlalj3b31hq9ikj5_",
+        "aria-label": "Download apps",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Download apps\"]"
+      ]
+    },
+    {
+      "ref": "e68",
+      "role": "button",
+      "name": "开始群聊",
+      "text": "",
+      "selector": "button[aria-label=\"开始群聊\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 me-1 rounded-full!",
+        "aria-label": "开始群聊",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"开始群聊\"]"
+      ]
+    },
+    {
+      "ref": "e69",
+      "role": "button",
+      "name": "开启临时聊天",
+      "text": "",
+      "selector": "button[aria-label=\"开启临时聊天\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 rounded-full!",
+        "aria-label": "开启临时聊天"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"开启临时聊天\"]"
+      ]
+    },
+    {
+      "ref": "e70",
+      "role": "presentation",
+      "name": "你在忙什么？ Thinking",
+      "text": "你在忙什么？ Thinking",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "presentation",
+        "class": "composer-parent flex flex-1 flex-col focus-visible:outline-0"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e71",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-files",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "multiple": "",
+        "type": "file",
+        "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+        "tabindex": "-1",
+        "id": "upload-files"
+      },
+      "selectorCandidates": [
+        "#upload-files"
+      ]
+    },
+    {
+      "ref": "e72",
+      "role": "button",
+      "name": "添加文件等",
+      "text": "",
+      "selector": "#composer-plus-btn",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "composer-btn",
+        "data-testid": "composer-plus-btn",
+        "aria-label": "添加文件等",
+        "id": "composer-plus-btn",
+        "aria-haspopup": "menu",
+        "aria-expanded": "true",
+        "data-state": "open",
+        "aria-controls": "radix-_R_9arj1n9il2kaumcdcc6796aicmH1_",
+        "aria-describedby": "radix-_R_1parj1n9il2kaumcdcc6796aicm_"
+      },
+      "selectorCandidates": [
+        "#composer-plus-btn"
+      ]
+    },
+    {
+      "ref": "e73",
+      "role": "textbox",
+      "name": "与 ChatGPT 聊天",
+      "text": "",
+      "selector": "#prompt-textarea",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "contenteditable": "true",
+        "translate": "no",
+        "class": "ProseMirror",
+        "id": "prompt-textarea",
+        "data-virtualkeyboard": "true",
+        "role": "textbox",
+        "aria-multiline": "true",
+        "aria-label": "与 ChatGPT 聊天"
+      },
+      "selectorCandidates": [
+        "#prompt-textarea"
+      ]
+    },
+    {
+      "ref": "e74",
+      "role": "button",
+      "name": "Thinking",
+      "text": "Thinking",
+      "selector": "#radix-_r_0_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "__composer-pill __composer-pill--neutral group/pill",
+        "data-tone": "neutral",
+        "id": "radix-_r_0_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_0_"
+      ]
+    },
+    {
+      "ref": "e75",
+      "role": "button",
+      "name": "开始听写",
+      "text": "",
+      "selector": "button[aria-label=\"开始听写\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "开始听写",
+        "type": "button",
+        "class": "composer-btn h-9 min-h-9 w-9 min-w-9",
+        "aria-describedby": "_r_3_",
+        "interestfor": "_r_3_",
+        "style": "anchor-name: --anchor-_r_3_;"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"开始听写\"]"
+      ]
+    },
+    {
+      "ref": "e76",
+      "role": "button",
+      "name": "启动语音功能",
+      "text": "",
+      "selector": "button[aria-label=\"启动语音功能\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-describedby": "_r_4_",
+        "interestfor": "_r_4_",
+        "type": "button",
+        "aria-label": "启动语音功能",
+        "class": "composer-submit-button-color text-submit-btn-text keyboard-focused:focus-ring relative flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:opacity-70 disabled:text-[#f4f4f4] disabled:opacity-30",
+        "style": "anchor-name: --anchor-_r_4_; view-transition-name: var(--vt-composer-speech-button);"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"启动语音功能\"]"
+      ]
+    },
+    {
+      "ref": "e77",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-photos",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-photos",
+        "accept": "image/*",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-photos"
+      ]
+    },
+    {
+      "ref": "e78",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-camera",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-camera",
+        "accept": "image/*",
+        "capture": "environment",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-camera"
+      ]
+    },
+    {
+      "ref": "e79",
+      "role": "alert",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "assertive",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-assertive",
+        "role": "alert"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-assertive"
+      ]
+    },
+    {
+      "ref": "e80",
+      "role": "status",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "polite",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-polite",
+        "role": "status"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-polite"
+      ]
+    },
+    {
+      "ref": "e81",
+      "role": "menu",
+      "name": "添加照片和文件 Ctrl U 近期文件 创建图片 深度研究 网页搜索 更多 项目",
+      "text": "添加照片和文件 Ctrl U 近期文件 创建图片 深度研究 网页搜索 更多 项目",
+      "selector": "#radix-_R_9arj1n9il2kaumcdcc6796aicmH1_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-side": "bottom",
+        "data-align": "start",
+        "role": "menu",
+        "aria-orientation": "vertical",
+        "data-state": "open",
+        "data-radix-menu-content": "",
+        "dir": "ltr",
+        "id": "radix-_R_9arj1n9il2kaumcdcc6796aicmH1_",
+        "aria-labelledby": "radix-_R_9arj1n9il2kaumcdcc6796aicm_",
+        "class": "z-50 max-w-xs rounded-2xl popover bg-token-main-surface-primary dark:bg-[#353535] shadow-long py-1.5 data-[unbound-width]:min-w-[unset] data-[custom-padding]:py-0 MA-gxq_content [--trigger-width:calc(var(--radix-dropdown-menu-trigger-width)-2*var(--radix-align-offset))] min-w-(--trigger-width) max-h-[var(--radix-dropdown-menu-content-available-height)] overflow-y-auto select-none content-sheet-section:flex content-sheet-section:flex-col content-sheet-section:gap-3",
+        "tabindex": "-1",
+        "data-orientation": "vertical",
+        "style": "outline: none; --radix-align-offset: -7px; --min-items: 5.8; --radix-dropdown-menu-content-transform-origin: var(--radix-popper-transform-origin); --radix-dropdown-menu-content-available-width: var(--radix-popper-available-width); --radix-dropdown-menu-content-available-height: var(--radix-popper-available-height); --radix-dropdown-menu-trigger-width: var(--radix-popper-anchor-width); --radix-dropdown-menu-trigger-height: var(--radix-popper-anchor-height);"
+      },
+      "selectorCandidates": [
+        "#radix-_R_9arj1n9il2kaumcdcc6796aicmH1_"
+      ]
+    },
+    {
+      "ref": "e82",
+      "role": "group",
+      "name": "添加照片和文件 Ctrl U 近期文件",
+      "text": "添加照片和文件 Ctrl U 近期文件",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "class": "empty:hidden [:not(:has(div:not([role=group])))]:hidden before:bg-token-border-default content-sheet:before:my-3 content-sheet:before:mx-6 before:mx-4 before:my-1 before:block before:h-px first:before:hidden [&:nth-child(1_of_:has(div:not([role=group])))]:before:hidden content-sheet:content-sheet-inset-section"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e83",
+      "role": "menuitem",
+      "name": "添加照片和文件 Ctrl U",
+      "text": "添加照片和文件 Ctrl U",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitem",
+        "tabindex": "0",
+        "class": "group __menu-item",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e84",
+      "role": "menuitem",
+      "name": "近期文件",
+      "text": "近期文件",
+      "selector": "#radix-_r_mi_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitem",
+        "id": "radix-_r_mi_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-controls": "radix-_r_mh_",
+        "data-state": "closed",
+        "tabindex": "0",
+        "data-has-submenu": "",
+        "class": "group __menu-item",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "#radix-_r_mi_"
+      ]
+    },
+    {
+      "ref": "e85",
+      "role": "group",
+      "name": "创建图片 深度研究 网页搜索 更多",
+      "text": "创建图片 深度研究 网页搜索 更多",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "class": "empty:hidden [:not(:has(div:not([role=group])))]:hidden before:bg-token-border-default content-sheet:before:my-3 content-sheet:before:mx-6 before:mx-4 before:my-1 before:block before:h-px first:before:hidden [&:nth-child(1_of_:has(div:not([role=group])))]:before:hidden"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e86",
+      "role": "group",
+      "name": "创建图片 深度研究 网页搜索",
+      "text": "创建图片 深度研究 网页搜索",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e87",
+      "role": "menuitemradio",
+      "name": "创建图片",
+      "text": "创建图片",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitemradio",
+        "aria-checked": "false",
+        "tabindex": "0",
+        "class": "group __menu-item",
+        "data-state": "unchecked",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e88",
+      "role": "menuitemradio",
+      "name": "深度研究",
+      "text": "深度研究",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitemradio",
+        "aria-checked": "false",
+        "tabindex": "0",
+        "class": "group __menu-item",
+        "data-state": "unchecked",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e89",
+      "role": "menuitemradio",
+      "name": "网页搜索",
+      "text": "网页搜索",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitemradio",
+        "aria-checked": "false",
+        "tabindex": "0",
+        "class": "group __menu-item",
+        "data-state": "unchecked",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e90",
+      "role": "menuitem",
+      "name": "更多",
+      "text": "更多",
+      "selector": "#radix-_r_mo_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitem",
+        "id": "radix-_r_mo_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-controls": "radix-_r_mn_",
+        "data-state": "closed",
+        "tabindex": "0",
+        "data-has-submenu": "",
+        "class": "group __menu-item",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "#radix-_r_mo_"
+      ]
+    },
+    {
+      "ref": "e91",
+      "role": "group",
+      "name": "项目",
+      "text": "项目",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "class": "empty:hidden [:not(:has(div:not([role=group])))]:hidden before:bg-token-border-default content-sheet:before:my-3 content-sheet:before:mx-6 before:mx-4 before:my-1 before:block before:h-px first:before:hidden [&:nth-child(1_of_:has(div:not([role=group])))]:before:hidden"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e92",
+      "role": "menuitem",
+      "name": "项目",
+      "text": "项目",
+      "selector": "#radix-_r_mr_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "menuitem",
+        "id": "radix-_r_mr_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-controls": "radix-_r_mq_",
+        "data-state": "closed",
+        "tabindex": "0",
+        "data-has-submenu": "",
+        "class": "group __menu-item",
+        "data-orientation": "vertical",
+        "data-radix-collection-item": ""
+      },
+      "selectorCandidates": [
+        "#radix-_r_mr_"
+      ]
+    },
+    {
+      "ref": "e93",
+      "role": "tooltip",
+      "name": "添加文件等 /",
+      "text": "添加文件等 /",
+      "selector": "#radix-_R_1parj1n9il2kaumcdcc6796aicm_",
+      "tagName": "span",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "radix-_R_1parj1n9il2kaumcdcc6796aicm_",
+        "role": "tooltip",
+        "style": "position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
+      },
+      "selectorCandidates": [
+        "#radix-_R_1parj1n9il2kaumcdcc6796aicm_"
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Thinking",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e76",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-files",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "multiple": "",
+            "type": "file",
+            "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+            "tabindex": "-1",
+            "id": "upload-files"
+          },
+          "selectorCandidates": [
+            "#upload-files"
+          ]
+        },
+        {
+          "ref": "e78",
+          "role": "textbox",
+          "name": "与 ChatGPT 聊天",
+          "text": "",
+          "selector": "#prompt-textarea",
+          "tagName": "div",
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "contenteditable": "true",
+            "translate": "no",
+            "class": "ProseMirror",
+            "id": "prompt-textarea",
+            "data-virtualkeyboard": "true",
+            "role": "textbox",
+            "aria-multiline": "true",
+            "aria-label": "与 ChatGPT 聊天"
+          },
+          "selectorCandidates": [
+            "#prompt-textarea"
+          ]
+        },
+        {
+          "ref": "e82",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-photos",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-photos",
+            "accept": "image/*",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-photos"
+          ]
+        },
+        {
+          "ref": "e83",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-camera",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-camera",
+            "accept": "image/*",
+            "capture": "environment",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-camera"
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "新聊天",
+        "Search chats"
+      ]
+    },
+    {
+      "ref": "l2",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "新项目",
+        "1浏览器自动化（读取+操作）",
+        "RL0511",
+        "3Radar",
+        "2notebooklm自动化"
+      ]
+    },
+    {
+      "ref": "l3",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Documentation Pass Acknowledgement",
+        "强化学习在反无人机应用",
+        "PPTX下载和内容总结",
+        "Gemini 使用问题解析",
+        "Claude -p 解析",
+        "Linux 监视Codex tokens",
+        "CSV Files Generation",
+        "Package Name and Scripts",
+        "Catalog probe ok",
+        "Python 3.12 Changelog",
+        "Morning Routines in Canvas",
+        "Python 3.12 Changelog URL",
+        "Python Canvas Script",
+        "Create tiny red dot",
+        "刷国行平板美版系统",
+        "简历翻译与PDF生成",
+        "查看Linux剪贴板历史",
+        "项目链接与名称输出",
+        "问候交流",
+        "File download ready",
+        "根据聊天描述用户",
+        "欢迎使用 ChatGPT"
+      ]
+    }
+  ],
+  "iframes": [],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

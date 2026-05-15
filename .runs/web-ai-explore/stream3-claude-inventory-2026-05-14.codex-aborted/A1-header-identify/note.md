@@ -1,0 +1,1 @@
+Header snapshot shows the signed-in Claude shell, sidebar navigation, account/settings button, plan tier label `Max plan`, and active model `unknown`. The visible account identifier was stored separately at evidence/user-identifier.txt and is intentionally not quoted in the report.

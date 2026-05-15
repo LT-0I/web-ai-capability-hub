@@ -1,0 +1,1 @@
+Header snapshot shows a logged-in ChatGPT page with the account identifier saved separately at evidence/user-identifier.txt. The visible header title/model text includes `ChatGPT`; no login form was present.

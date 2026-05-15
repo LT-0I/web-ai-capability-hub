@@ -1,0 +1,372 @@
+{
+  "url": "https://gemini.google.com/app",
+  "title": "Google Gemini",
+  "timestamp": "2026-05-14T14:55:32.532Z",
+  "visibleText": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com) Main menu New chat Gemini Temporary chat PRO Side Navigation New chat My stuff Notebooks New notebook Gems Chats Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help Search Loading Gems and Recent conversations My stuff Notebooks New notebook Gems Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request More options for Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help 🖼️ Create image, button, tap to use tool 🖼️ Create image 🎸 Create music, button, tap to use tool 🎸 Create music Help me learn, button, tap to use tool Help me learn Boost my day, button, tap to use tool Boost my day Write anything, button, tap to use tool Write anything Create video, button, tap to use tool Create video Enter a prompt for Gemini Open upload file menu Tools Open mode picker Fast Microphone Send message Share conversation Pin Rename Delete Share conversation Pin Rename Delete",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon"
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": true
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Temporary chat",
+      "selector": "button[aria-label=\"Temporary chat\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "PRO",
+      "selector": "button",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e7",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat My stuff Notebooks New notebook Gems Chats Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持 Settings & help",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Search",
+      "selector": "button[aria-label=\"Search\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e9",
+      "role": "group",
+      "name": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e10",
+      "role": "link",
+      "name": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e11",
+      "role": "progressbar",
+      "name": "Loading Gems and Recent conversations",
+      "selector": "mat-progress-spinner[aria-label=\"Loading Gems and Recent conversations\"]",
+      "tagName": "mat-progress-spinner"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "My stuff",
+      "selector": "a[aria-label=\"My stuff\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e13",
+      "role": "link",
+      "name": "Notebooks",
+      "selector": "a[aria-label=\"Notebooks\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "New notebook",
+      "selector": "a[aria-label=\"New notebook\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "Gems",
+      "selector": "a[aria-label=\"Gems\"]",
+      "tagName": "a"
+    },
+    {
+      "ref": "e16",
+      "role": "region",
+      "name": "",
+      "selector": "div",
+      "tagName": "div"
+    },
+    {
+      "ref": "e17",
+      "role": "region",
+      "name": "Generate a small simple image: a red square on a white background. Python \"Hello World\" File Generation PDF Title Text Inquiry Red Square Image Description Add Function Calculation Shanghai's Population: Largest City File Summary Request Date Acknowledgement And Request Documentation Pass and Date Confirmation 账户安全验证问题联系支持",
+      "selector": "#conversations-list-0",
+      "tagName": "div"
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Generate a small simple image: a red square on a white background.",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "Python \"Hello World\" File Generation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "PDF Title Text Inquiry",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Red Square Image Description",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "Add Function Calculation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Shanghai's Population: Largest City",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "File Summary Request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Date Acknowledgement And Request",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e26",
+      "role": "button",
+      "name": "More options for Date Acknowledgement And Request",
+      "selector": "button[aria-label=\"More options for Date Acknowledgement And Request\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Documentation Pass and Date Confirmation",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "账户安全验证问题联系支持",
+      "selector": "a",
+      "tagName": "a"
+    },
+    {
+      "ref": "e29",
+      "role": "group",
+      "name": "Settings & help",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list"
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Settings & help",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "🖼️ Create image, button, tap to use tool",
+      "text": "🖼️ Create image",
+      "selector": "button[aria-label=\"🖼️ Create image, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e32",
+      "role": "button",
+      "name": "🎸 Create music, button, tap to use tool",
+      "text": "🎸 Create music",
+      "selector": "button[aria-label=\"🎸 Create music, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Help me learn, button, tap to use tool",
+      "text": "Help me learn",
+      "selector": "button[aria-label=\"Help me learn, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e34",
+      "role": "button",
+      "name": "Boost my day, button, tap to use tool",
+      "text": "Boost my day",
+      "selector": "button[aria-label=\"Boost my day, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Write anything, button, tap to use tool",
+      "text": "Write anything",
+      "selector": "button[aria-label=\"Write anything, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e36",
+      "role": "button",
+      "name": "Create video, button, tap to use tool",
+      "text": "Create video",
+      "selector": "button[aria-label=\"Create video, button, tap to use tool\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e37",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div"
+    },
+    {
+      "ref": "e38",
+      "role": "button",
+      "name": "Open upload file menu",
+      "selector": "button[aria-label=\"Open upload file menu\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e40",
+      "role": "button",
+      "name": "Tools",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e42",
+      "role": "button",
+      "name": "Microphone",
+      "selector": "button[aria-label=\"Microphone\"]",
+      "tagName": "button"
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Send message",
+      "selector": "button[aria-label=\"Send message\"]",
+      "tagName": "button",
+      "disabled": true
+    },
+    {
+      "ref": "e44",
+      "role": "menu",
+      "name": "Share conversation Pin Rename Delete",
+      "selector": "#mat-menu-panel-25",
+      "tagName": "div"
+    },
+    {
+      "ref": "e45",
+      "role": "menuitem",
+      "name": "Share conversation",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e46",
+      "role": "menuitem",
+      "name": "Pin",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e47",
+      "role": "menuitem",
+      "name": "Rename",
+      "selector": "button",
+      "tagName": "button"
+    },
+    {
+      "ref": "e48",
+      "role": "menuitem",
+      "name": "Delete",
+      "selector": "button",
+      "tagName": "button"
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false
+    },
+    {
+      "ref": "i2",
+      "selector": "#hfcr",
+      "accessible": false
+    }
+  ],
+  "warnings": []
+}

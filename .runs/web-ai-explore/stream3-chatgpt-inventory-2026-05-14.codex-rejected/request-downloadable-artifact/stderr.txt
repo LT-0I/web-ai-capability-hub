@@ -1,0 +1,4 @@
+{"ok":false,"error":"Human confirmation required before type: Target or content looks sensitive: #prompt-textarea Generate a small Python file demonstrating a hello-world Flask app and present it so I can download it."}
+{"ok":false,"error":"locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#composer-submit-button')\u001b[22m\n"}
+{"ok":false,"errorCode":"INVALID_ARGS","error":"browser:artifact-click --download-dir must be an absolute path","evidence":{}}
+{"ok":false,"errorCode":"ARTIFACT_DOWNLOAD_TIMEOUT","error":"No Browser.downloadWillBegin event was observed","evidence":{"timeoutMs":30000}}

@@ -1,0 +1,1629 @@
+{
+  "url": "https://claude.ai/settings/capabilities",
+  "title": "Claude",
+  "timestamp": "2026-05-14T14:32:11.589Z",
+  "visibleText": "New chat Search Chats Projects Code Customize Design More Recents Hide Red square on white background Python hello world script PDF title identification Image description request Add function return value Largest city by population File summarization request Date acknowledgement request Documentation acknowledgement request 查询账户会员等级 API gateway patterns explained B Bb Max plan Settings General Account Privacy Billing Usage Capabilities Connectors Claude Code Claude in Chrome Beta Memory Search and reference chats Allow Claude to search for relevant details in past chats. Learn more. Generate memory from chat history Allow Claude to remember relevant context from your chats. Memory includes your entire chat history with Claude. Learn more. Import memory from other AI providers Bring relevant context and data from another AI provider to Claude. We'll provide a prompt you can use to fetch the memory from your other account. Learn more Start import General Tool access mode Controls how connector tools are loaded in new conversations. Load tools when needed  Connector discovery Let Claude surface connectors from the directory that may be relevant to your conversation. Visuals Artifacts Generate code, documents, and designs in a dedicated window alongside your conversation. AI-powered artifacts Build apps and interactive documents that use Claude inside the artifact. Inline visualizations Allow Claude to generate interactive visualizations, charts, and diagrams directly in the conversation. Code execution and file creation Code execution and file creation Claude can execute code and create and edit docs, spreadsheets, presentations, PDFs, and data reports. Required for skills. Allow network egress Give Claude network access to install packages and libraries in order to perform advanced data analysis, custom visualizations, and specialized file processing. Monitor chats closely as this comes with security risks  (opens in new tab) . Skills Skills have moved to Customize.",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Home",
+      "text": "",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/new",
+        "class": "flex flex-col justify-start items-top",
+        "aria-label": "Home",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Home\"]"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "text": "",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md group _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "data-testid": "pin-sidebar-toggle",
+        "aria-label": "Open sidebar",
+        "aria-pressed": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open sidebar\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/new",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "New chat",
+        "data-dd-action-name": "sidebar-new-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Search",
+      "text": "Search",
+      "selector": "a[aria-label=\"Search\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "#",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Search",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Search\"]"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Chats",
+      "text": "Chats",
+      "selector": "a[aria-label=\"Chats\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/recents",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Chats",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Chats\"]"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Projects",
+      "text": "Projects",
+      "selector": "a[aria-label=\"Projects\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/projects",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Projects",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Projects\"]"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Code",
+      "text": "Code",
+      "selector": "a[aria-label=\"Code\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/code",
+        "target": "_blank",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Code",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Code\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "Customize",
+      "text": "Customize",
+      "selector": "a[aria-label=\"Customize\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/customize",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Customize",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Customize\"]"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Design",
+      "text": "Design",
+      "selector": "a[aria-label=\"Design\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/design",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Design",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Design\"]"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "More",
+      "text": "More",
+      "selector": "#radix-_r_b_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group cursor-default py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden text-left active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-expanded": "false",
+        "aria-label": "More",
+        "id": "radix-_r_b_",
+        "aria-haspopup": "menu",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_b_"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Recents Hide",
+      "text": "Recents Hide",
+      "selector": "h2",
+      "tagName": "h2",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-hidden": "true",
+        "role": "button",
+        "aria-expanded": "true",
+        "class": "text-text-500 pb-2 mt-1 text-xs select-none pl-2 pr-2 pointer-events-none group/header cursor-pointer flex items-center justify-between gap-2"
+      },
+      "selectorCandidates": [
+        "h2"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "Red square on white background",
+      "text": "Red square on white background",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/5bed66fd-0b98-494a-b2e8-dff63e7ed506",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "More options for Red square on white background",
+      "text": "",
+      "selector": "#_r_3q_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Red square on white background",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_3q_"
+      },
+      "selectorCandidates": [
+        "#_r_3q_"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "Python hello world script",
+      "text": "Python hello world script",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/58b0aa16-c421-4629-a88e-98a3c3870c6e",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "More options for Python hello world script",
+      "text": "",
+      "selector": "#_r_3v_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Python hello world script",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_3v_"
+      },
+      "selectorCandidates": [
+        "#_r_3v_"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "link",
+      "name": "PDF title identification",
+      "text": "PDF title identification",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/23926806-89af-4f94-9b3a-b053e3459652",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "button",
+      "name": "More options for PDF title identification",
+      "text": "",
+      "selector": "#_r_44_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for PDF title identification",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_44_"
+      },
+      "selectorCandidates": [
+        "#_r_44_"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "link",
+      "name": "Image description request",
+      "text": "Image description request",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/d72254b4-e969-4e34-84b9-9de51db539b3",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "More options for Image description request",
+      "text": "",
+      "selector": "#_r_49_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Image description request",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_49_"
+      },
+      "selectorCandidates": [
+        "#_r_49_"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "link",
+      "name": "Add function return value",
+      "text": "Add function return value",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/70e139e9-273a-4b9d-b606-00d96e477a60",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "More options for Add function return value",
+      "text": "",
+      "selector": "#_r_4e_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Add function return value",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_4e_"
+      },
+      "selectorCandidates": [
+        "#_r_4e_"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Largest city by population",
+      "text": "Largest city by population",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/12587a27-995f-4ed3-9ecc-44ba2e2356e0",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "More options for Largest city by population",
+      "text": "",
+      "selector": "#_r_4j_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Largest city by population",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_4j_"
+      },
+      "selectorCandidates": [
+        "#_r_4j_"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "File summarization request",
+      "text": "File summarization request",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/32b98e13-956f-42f8-8c07-89a72d30e558",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "More options for File summarization request",
+      "text": "",
+      "selector": "#_r_4o_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for File summarization request",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_4o_"
+      },
+      "selectorCandidates": [
+        "#_r_4o_"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "Date acknowledgement request",
+      "text": "Date acknowledgement request",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/712ef6ea-b42e-4f8c-9a78-a62acfa11bfe",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "More options for Date acknowledgement request",
+      "text": "",
+      "selector": "#_r_4t_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Date acknowledgement request",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_4t_"
+      },
+      "selectorCandidates": [
+        "#_r_4t_"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Documentation acknowledgement request",
+      "text": "Documentation acknowledgement request",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/b335d561-f5b9-409b-87ce-346c3756e847",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "More options for Documentation acknowledgement request",
+      "text": "",
+      "selector": "#_r_52_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for Documentation acknowledgement request",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_52_"
+      },
+      "selectorCandidates": [
+        "#_r_52_"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "查询账户会员等级",
+      "text": "查询账户会员等级",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/72fabed2-1d33-40c5-942d-72efc92de640",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "More options for 查询账户会员等级",
+      "text": "",
+      "selector": "#_r_i_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for 查询账户会员等级",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_i_"
+      },
+      "selectorCandidates": [
+        "#_r_i_"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "API gateway patterns explained",
+      "text": "API gateway patterns explained",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/chat/22de63e7-13da-435c-8b58-6414910db6ae",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "data-dd-action-name": "sidebar-chat-item"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "More options for API gateway patterns explained",
+      "text": "",
+      "selector": "#_r_n_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 w-8 rounded-md active:!scale-100 aria-expanded:!bg-bg-400 !transition-none before:!transition-none _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "aria-label": "More options for API gateway patterns explained",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_n_"
+      },
+      "selectorCandidates": [
+        "#_r_n_"
+      ]
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "Get apps and extensions",
+      "text": "",
+      "selector": "a[aria-label=\"Get apps and extensions\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/downloads",
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-md px-3 min-w-[4rem] whitespace-nowrap !text-xs w-full !min-w-0 group py-1.5 rounded-lg px-4 !transition-none before:!transition-none !-outline-offset-2 overflow-hidden active:bg-bg-300 active:scale-[1.0] _fill_10ocf_9 _ghost_10ocf_96",
+        "aria-label": "Get apps and extensions",
+        "data-dd-action-name": "sidebar-nav-item"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Get apps and extensions\"]"
+      ]
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Bb, Settings",
+      "text": "B Bb Max plan",
+      "selector": "#_r_r_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "inline-flex\n  items-center\n  justify-center\n  relative\n  isolate\n  shrink-0\n  can-focus\n  select-none\n  disabled:pointer-events-none\n  disabled:opacity-50\n  disabled:shadow-none\n  disabled:drop-shadow-none border-transparent\n          transition\n          font-base\n          duration-300\n          ease-[cubic-bezier(0.165,0.85,0.45,1)] h-9 px-4 py-2 rounded-lg min-w-[5rem] whitespace-nowrap !scale-100 flex-row !min-w-0 w-full rounded-none group px-2 !-outline-offset-2 transition-[gap] duration-150 ease-out gap-0 !bg-transparent !py-6 my-2 [&:has(.downloads-link:hover)]:!bg-transparent _fill_10ocf_9 _ghost_10ocf_96",
+        "type": "button",
+        "data-testid": "user-menu-button",
+        "aria-label": "Bb, Settings",
+        "tabindex": "0",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "id": "_r_r_"
+      },
+      "selectorCandidates": [
+        "#_r_r_"
+      ]
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "General",
+      "text": "General",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/general",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e37",
+      "role": "link",
+      "name": "Account",
+      "text": "Account",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/account",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Privacy",
+      "text": "Privacy",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/data-privacy-controls",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e39",
+      "role": "link",
+      "name": "Billing",
+      "text": "Billing",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/billing",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Usage",
+      "text": "Usage",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/usage",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e41",
+      "role": "link",
+      "name": "Capabilities",
+      "text": "Capabilities",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/capabilities",
+        "aria-current": "page",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center bg-bg-300"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Connectors",
+      "text": "Connectors",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/connectors",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e43",
+      "role": "link",
+      "name": "Claude Code",
+      "text": "Claude Code",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/claude-code",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Claude in Chrome Beta",
+      "text": "Claude in Chrome Beta",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "/settings/browser-extension",
+        "class": "font-base block whitespace-nowrap transition-colors ease-in-out rounded-lg px-3 h-9 line-clamp-1 flex gap-3 items-center hover:bg-bg-200"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e45",
+      "role": "group",
+      "name": "Search and reference chats Allow Claude to search for relevant details in past chats. Learn more.",
+      "text": "Search and reference chats Allow Claude to search for relevant details in past chats. Learn more.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_22_",
+        "aria-describedby": "_r_23_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "Learn more",
+      "text": "Learn more",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-cds": "TextLink",
+        "href": "https://support.claude.com/en/articles/11817273-using-claude-s-chat-search-and-memory-to-build-on-previous-context",
+        "target": "_blank",
+        "class": "cds-reset inline underline underline-offset-[3px] decoration-[color-mix(in_srgb,currentColor,transparent_60%)] transition duration-fast text-accent outline-none hover:decoration-current focus-visible:decoration-current focus-visible:shadow-focus rounded-[2px] cursor-pointer "
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e47",
+      "role": "switch",
+      "name": "Search and reference chats",
+      "text": "",
+      "selector": "#_r_21_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-unchecked": "",
+        "tabindex": "0",
+        "id": "_r_21_",
+        "role": "switch",
+        "aria-checked": "false",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_21_"
+      ]
+    },
+    {
+      "ref": "e48",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_21_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "_r_21_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_21_-input"
+      ]
+    },
+    {
+      "ref": "e49",
+      "role": "group",
+      "name": "Generate memory from chat history Allow Claude to remember relevant context from your chats. Memory includes your entire chat history with Claude. Learn more.",
+      "text": "Generate memory from chat history Allow Claude to remember relevant context from your chats. Memory includes your entire chat history with Claude. Learn more.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_25_",
+        "aria-describedby": "_r_26_",
+        "class": "flex items-center justify-between gap-lg py-md  group"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e50",
+      "role": "switch",
+      "name": "",
+      "text": "",
+      "selector": "#base-ui-_r_28_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-unchecked": "",
+        "tabindex": "0",
+        "id": "base-ui-_r_28_",
+        "role": "switch",
+        "aria-checked": "false",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#base-ui-_r_28_"
+      ]
+    },
+    {
+      "ref": "e51",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#base-ui-_r_28_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "base-ui-_r_28_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#base-ui-_r_28_-input"
+      ]
+    },
+    {
+      "ref": "e52",
+      "role": "group",
+      "name": "Import memory from other AI providers Bring relevant context and data from another AI provider to Claude. We'll provide a prompt you can use to fetch the memory from your other account. Learn more Start import",
+      "text": "Import memory from other AI providers Bring relevant context and data from another AI provider to Claude. We'll provide a prompt you can use to fetch the memory from your other account. Learn more Start import",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_29_",
+        "aria-describedby": "_r_2a_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "Start import",
+      "text": "Start import",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-cds": "Button",
+        "class": "cds-reset group/btn relative isolate inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap select-none border-0 outline-none rounded h-control text-body font-medium [&:disabled:not([aria-busy])]:opacity-50 disabled:pointer-events-none transition-shadow duration-fast focus-visible:shadow-focus text-primary backdrop-blur-sm aria-pressed:text-accent px-md  "
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e54",
+      "role": "group",
+      "name": "Tool access mode Controls how connector tools are loaded in new conversations. Load tools when needed ",
+      "text": "Tool access mode Controls how connector tools are loaded in new conversations. Load tools when needed ",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_2d_",
+        "aria-describedby": "_r_2e_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "Load tools when needed ",
+      "text": "Load tools when needed ",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "tabindex": "0",
+        "aria-expanded": "false",
+        "aria-haspopup": "dialog",
+        "class": "cds-reset flex min-w-0 flex-1 items-center gap-1.5 self-stretch pl-sm text-left border-0 bg-transparent p-0 outline-none"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e56",
+      "role": "textbox",
+      "name": "on",
+      "text": "",
+      "selector": "#base-ui-_r_2g_",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "base-ui-_r_2g_",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "value": "on",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#base-ui-_r_2g_"
+      ]
+    },
+    {
+      "ref": "e57",
+      "role": "group",
+      "name": "Connector discovery Let Claude surface connectors from the directory that may be relevant to your conversation.",
+      "text": "Connector discovery Let Claude surface connectors from the directory that may be relevant to your conversation.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_2j_",
+        "aria-describedby": "_r_2k_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e58",
+      "role": "switch",
+      "name": "Connector discovery",
+      "text": "",
+      "selector": "#_r_2i_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-unchecked": "",
+        "tabindex": "0",
+        "id": "_r_2i_",
+        "role": "switch",
+        "aria-checked": "false",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_2i_"
+      ]
+    },
+    {
+      "ref": "e59",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_2i_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "_r_2i_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_2i_-input"
+      ]
+    },
+    {
+      "ref": "e60",
+      "role": "group",
+      "name": "Artifacts Generate code, documents, and designs in a dedicated window alongside your conversation.",
+      "text": "Artifacts Generate code, documents, and designs in a dedicated window alongside your conversation.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_2p_",
+        "aria-describedby": "_r_2q_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e61",
+      "role": "switch",
+      "name": "Artifacts",
+      "text": "",
+      "selector": "#_r_2m_",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-disabled": "",
+        "data-checked": "",
+        "tabindex": "0",
+        "disabled": "",
+        "id": "_r_2m_",
+        "role": "switch",
+        "aria-checked": "true",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_2m_"
+      ]
+    },
+    {
+      "ref": "e62",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_2m_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true,
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "disabled": "",
+        "id": "_r_2m_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "checked": "",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_2m_-input"
+      ]
+    },
+    {
+      "ref": "e63",
+      "role": "group",
+      "name": "AI-powered artifacts Build apps and interactive documents that use Claude inside the artifact.",
+      "text": "AI-powered artifacts Build apps and interactive documents that use Claude inside the artifact.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_2t_",
+        "aria-describedby": "_r_2u_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e64",
+      "role": "switch",
+      "name": "AI-powered artifacts",
+      "text": "",
+      "selector": "#_r_2n_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-unchecked": "",
+        "tabindex": "0",
+        "id": "_r_2n_",
+        "role": "switch",
+        "aria-checked": "false",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_2n_"
+      ]
+    },
+    {
+      "ref": "e65",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_2n_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "_r_2n_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_2n_-input"
+      ]
+    },
+    {
+      "ref": "e66",
+      "role": "group",
+      "name": "Inline visualizations Allow Claude to generate interactive visualizations, charts, and diagrams directly in the conversation.",
+      "text": "Inline visualizations Allow Claude to generate interactive visualizations, charts, and diagrams directly in the conversation.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_30_",
+        "aria-describedby": "_r_31_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e67",
+      "role": "switch",
+      "name": "Inline visualizations",
+      "text": "",
+      "selector": "#_r_2o_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-checked": "",
+        "tabindex": "0",
+        "id": "_r_2o_",
+        "role": "switch",
+        "aria-checked": "true",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_2o_"
+      ]
+    },
+    {
+      "ref": "e68",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_2o_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "_r_2o_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "checked": "",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_2o_-input"
+      ]
+    },
+    {
+      "ref": "e69",
+      "role": "group",
+      "name": "Code execution and file creation Claude can execute code and create and edit docs, spreadsheets, presentations, PDFs, and data reports. Required for skills.",
+      "text": "Code execution and file creation Claude can execute code and create and edit docs, spreadsheets, presentations, PDFs, and data reports. Required for skills.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_35_",
+        "aria-describedby": "_r_36_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e70",
+      "role": "switch",
+      "name": "Code execution and file creation",
+      "text": "",
+      "selector": "#_r_34_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-checked": "",
+        "tabindex": "0",
+        "id": "_r_34_",
+        "role": "switch",
+        "aria-checked": "true",
+        "data-cds": "Switch",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#_r_34_"
+      ]
+    },
+    {
+      "ref": "e71",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#_r_34_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": true,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "_r_34_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "checked": "",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#_r_34_-input"
+      ]
+    },
+    {
+      "ref": "e72",
+      "role": "group",
+      "name": "Allow network egress Give Claude network access to install packages and libraries in order to perform advanced data analysis, custom visualizations, and specialized file processing. Monitor chats closely as this comes with security risks  (opens in new tab) .",
+      "text": "Allow network egress Give Claude network access to install packages and libraries in order to perform advanced data analysis, custom visualizations, and specialized file processing. Monitor chats closely as this comes with security risks  (opens in new tab) .",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "group",
+        "aria-labelledby": "_r_39_",
+        "aria-describedby": "_r_3a_",
+        "class": "flex items-center justify-between gap-lg py-md  "
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e73",
+      "role": "link",
+      "name": "security risks  (opens in new tab)",
+      "text": "security risks  (opens in new tab)",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-cds": "TextLink",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "href": "https://support.anthropic.com/en/articles/12111783-create-and-edit-files-with-claude#h_0ee9d698a1",
+        "class": "cds-reset group/tl inline-flex items-baseline gap-0 no-underline text-accent outline-none focus-visible:shadow-focus rounded-[2px] cursor-pointer "
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e74",
+      "role": "switch",
+      "name": "",
+      "text": "",
+      "selector": "#base-ui-_r_3b_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "data-unchecked": "",
+        "tabindex": "0",
+        "id": "base-ui-_r_3b_",
+        "role": "switch",
+        "aria-checked": "false",
+        "aria-labelledby": "_r_39_",
+        "data-cds": "Switch",
+        "aria-describedby": "_r_3a_",
+        "class": "cds-reset relative inline-flex shrink-0 rounded-full border-0 outline-none bg-switch-track hover:bg-switch-track-hover data-[checked]:bg-fill-accent data-[checked]:hover:bg-fill-accent-hover disabled:opacity-50 disabled:hover:bg-switch-track focus-visible:shadow-focus h-switch w-[calc(var(--cds-switch-h,20px)*1.8)] p-[2px] "
+      },
+      "selectorCandidates": [
+        "#base-ui-_r_3b_"
+      ]
+    },
+    {
+      "ref": "e75",
+      "role": "checkbox",
+      "name": "",
+      "text": "",
+      "selector": "#base-ui-_r_3b_-input",
+      "tagName": "input",
+      "value": "on",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "base-ui-_r_3b_-input",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "type": "checkbox",
+        "style": "clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px;"
+      },
+      "selectorCandidates": [
+        "#base-ui-_r_3b_-input"
+      ]
+    },
+    {
+      "ref": "e76",
+      "role": "link",
+      "name": "Customize",
+      "text": "Customize",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-cds": "TextLink",
+        "href": "/customize/skills",
+        "class": "cds-reset inline underline underline-offset-[3px] decoration-[color-mix(in_srgb,currentColor,transparent_60%)] transition duration-fast text-accent outline-none hover:decoration-current focus-visible:decoration-current focus-visible:shadow-focus rounded-[2px] cursor-pointer "
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e77",
+      "role": "region",
+      "name": "Notifications (F8)",
+      "text": "",
+      "selector": "div[aria-label=\"Notifications (F8)\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "region",
+        "aria-label": "Notifications (F8)",
+        "tabindex": "-1",
+        "style": "pointer-events: none;"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Notifications (F8)\"]"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Red square on white background",
+        "Python hello world script",
+        "PDF title identification",
+        "Image description request",
+        "Add function return value",
+        "Largest city by population",
+        "File summarization request",
+        "Date acknowledgement request",
+        "Documentation acknowledgement request",
+        "查询账户会员等级",
+        "API gateway patterns explained"
+      ]
+    },
+    {
+      "ref": "l2",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "General",
+        "Account",
+        "Privacy",
+        "Billing",
+        "Usage",
+        "Capabilities",
+        "Connectors",
+        "Claude Code",
+        "Claude in Chrome Beta"
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "title": "Marketing analytics",
+      "src": "https://a.claude.ai/isolated-segment.html?v=49e8070c61",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ],
+  "screenshotPath": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/screenshots/2026-05-14T14-32-11-591Z-Claude.png"
+}

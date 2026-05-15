@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "action": {
+    "type": "click",
+    "selector": "button:has-text(\"Not now\")"
+  },
+  "message": "Clicked button:has-text(\"Not now\")"
+}

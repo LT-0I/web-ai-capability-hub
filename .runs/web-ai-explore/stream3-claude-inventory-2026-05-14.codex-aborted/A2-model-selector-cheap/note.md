@@ -1,0 +1,1 @@
+Model selector opened and listed Opus 4.7, Sonnet 4.6, Haiku 4.5, Adaptive thinking, and More models. Selected the standard Sonnet variant; the post-selection model button reads `Sonnet 4.6 Adaptive`.

@@ -1,0 +1,138 @@
+--- /json/version ---
+{
+   "Browser": "Chrome/148.0.7778.167",
+--- browser:status ---
+{
+  "profile": "chatgpt",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt",
+  "cdpEndpoint": "http://127.0.0.1:9223",
+  "cdpPort": 9223,
+  "connected": true,
+  "launchedByPackage": true,
+  "processId": 1210627,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/92692E7D746FDEF6DE451D9AADED83AA",
+      "faviconUrl": "https://claude.ai/favicon.ico",
+      "id": "92692E7D746FDEF6DE451D9AADED83AA",
+      "title": "Claude",
+      "type": "page",
+      "url": "https://claude.ai/new",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/92692E7D746FDEF6DE451D9AADED83AA"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/7DF373F303CB860DCAFB2A45BBAFA339",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "7DF373F303CB860DCAFB2A45BBAFA339",
+      "title": "Google Gemini",
+      "type": "page",
+      "url": "https://gemini.google.com/app",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/7DF373F303CB860DCAFB2A45BBAFA339"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/945F39443658EE583C6137242B48EDF2",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "945F39443658EE583C6137242B48EDF2",
+      "parentId": "7DF373F303CB860DCAFB2A45BBAFA339",
+      "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+      "type": "iframe",
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/945F39443658EE583C6137242B48EDF2"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/0EFE0CAD6E3F578A634CE5C802A24C00",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "强化学习在反无人机应用",
+      "type": "page",
+      "url": "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/0EFE0CAD6E3F578A634CE5C802A24C00"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/691F1DFA01C1485093C12EEED365A2BC",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "691F1DFA01C1485093C12EEED365A2BC",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/691F1DFA01C1485093C12EEED365A2BC"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/00F90C774AE15845057DACB6E9DF90CC",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "00F90C774AE15845057DACB6E9DF90CC",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/00F90C774AE15845057DACB6E9DF90CC"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/39870BE85DCB5D340EED9D739D0A79B8",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "39870BE85DCB5D340EED9D739D0A79B8",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/39870BE85DCB5D340EED9D739D0A79B8"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/BD82E3D90BBF2D31E20A508D2B4FE9AA",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "BD82E3D90BBF2D31E20A508D2B4FE9AA",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/BD82E3D90BBF2D31E20A508D2B4FE9AA"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/752E538E66B7456970C94E2A13AE4115",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "752E538E66B7456970C94E2A13AE4115",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/752E538E66B7456970C94E2A13AE4115"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/A4022A80FB4CA6EA3136507E49E5AEB2",
+      "faviconUrl": "https://chatgpt.com/favicon.ico",
+      "id": "A4022A80FB4CA6EA3136507E49E5AEB2",
+      "parentId": "0EFE0CAD6E3F578A634CE5C802A24C00",
+      "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;locale=zh-CN&amp;deviceType=desktop",
+      "type": "iframe",
+      "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&locale=zh-CN&deviceType=desktop",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/page/A4022A80FB4CA6EA3136507E49E5AEB2"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9223/devtools/browser/579a76ec-5354-490f-8be2-b4619d37c50a",
+  "lease": {
+    "id": "lease_03bf8dcd78ed0416",
+    "profile_id": "chatgpt",
+    "run_id": "run_2f295602261c19e4",
+    "owner_pid": 821695,
+    "acquired_at": "2026-05-14T11:35:52.605Z",
+    "last_heartbeat_at": "2026-05-14T11:35:52.605Z",
+    "chrome_process_pid": 1210627,
+    "user_data_dir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt",
+    "released_at": null
+  }
+}
+--- dist artifact ---
+dist/src/cli.js

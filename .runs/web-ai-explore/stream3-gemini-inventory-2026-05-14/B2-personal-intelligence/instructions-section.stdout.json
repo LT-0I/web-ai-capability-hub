@@ -1,0 +1,357 @@
+{
+  "url": "https://gemini.google.com/saved-info",
+  "title": "Personal context",
+  "timestamp": "2026-05-14T14:43:54.036Z",
+  "visibleText": "Gemini PRO New chat Your instructions for Gemini Customize how Gemini responds to you by giving it instructions. Learn more Examples: Start responses with a TL;DR summary Use bullet points for long paragraphs Add You haven't asked Gemini to save anything about you yet Your premium content Gemini prioritizes your paid subscriptions to generate better answers for you. Here you can control which sources are included in the related responses. Manage subscriptions linked to your Google Account",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "text": "",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "gb_C gb_5a gb_6",
+        "aria-expanded": "false",
+        "aria-label": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+        "href": "https://accounts.google.com/SignOutOptions?hl=en&continue=https://gemini.google.com/app&ec=GBRAkgU",
+        "tabindex": "0",
+        "role": "button"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "text": "",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c303525898": "",
+        "mat-icon-button": "",
+        "aria-label": "Main menu",
+        "data-test-id": "side-nav-menu-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger main-menu-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "204298;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-2",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Main menu\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "text": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2014502497": "",
+        "role": "img",
+        "class": "mat-icon notranslate gds-icon-l google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "menu",
+        "data-mat-icon-namespace": "",
+        "fonticon": "menu"
+      },
+      "selectorCandidates": [
+        "mat-icon"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "tooltipanchorposition": "below",
+        "role": "button",
+        "tabindex": "0",
+        "aria-label": "New chat",
+        "class": "bard-logo-container logo-only ng-star-inserted",
+        "href": "/app",
+        "aria-disabled": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "PRO",
+      "text": "PRO",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4281317633": "",
+        "mat-flat-button": "",
+        "class": "mdc-button mat-mdc-button-base gds-pillbox-button pillbox-btn mdc-button--unelevated mat-mdc-unelevated-button mat-mdc-button-disabled mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-disabled": "",
+        "disabled": "true"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c824153890": "",
+        "role": "navigation",
+        "_nghost-ng-c2130131422": "",
+        "class": "collapsed mystuff-side-nav-update disable-onload-animations ng-tns-c2130131422-3 ng-trigger ng-trigger-widthTransition",
+        "aria-label": "Side Navigation",
+        "jslog": "173918;track:impression,attention",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ3s4KahcKEwjlo5bTgbmUAxUAAAAAHQAAAAAQAg",
+        "style": "width: var(--bard-sidenav-closed-width);"
+      },
+      "selectorCandidates": [
+        "bard-sidenav[aria-label=\"Side Navigation\"]"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "group",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list top-action-list ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "href": "/app",
+        "aria-label": "New chat",
+        "aria-describedby": "cdk-describedby-message-ng-1-18",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "group",
+      "name": "",
+      "text": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list desktop-controls ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Settings & help",
+      "text": "",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Settings & help",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Settings & help\"]"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "switch",
+      "name": "Enables or disables the saved info feature",
+      "text": "",
+      "selector": "#mat-mdc-slide-toggle-1-button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "switch",
+        "type": "button",
+        "class": "mdc-switch mdc-switch--selected mdc-switch--checked",
+        "tabindex": "0",
+        "id": "mat-mdc-slide-toggle-1-button",
+        "aria-label": "Enables or disables the saved info feature",
+        "aria-checked": "true"
+      },
+      "selectorCandidates": [
+        "#mat-mdc-slide-toggle-1-button"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "Learn more",
+      "text": "Learn more",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1676488878": "",
+        "href": "https://support.google.com/gemini?p=saved_info_instructions"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Add",
+      "text": "Add",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1676488878": "",
+        "mat-flat-button": "",
+        "color": "primary",
+        "class": "mdc-button mat-mdc-button-base create-memory-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "Manage subscriptions linked to your Google Account",
+      "text": "Manage subscriptions linked to your Google Account",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1676488878": "",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "data-test-id": "premium-content-link",
+        "class": "pcontext-source-title gds-body-s",
+        "href": "https://myaccount.google.com/subscriptions?utm_source=gemini"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Start responses with a TL;DR summary",
+        "Use bullet points for long paragraphs"
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "src": "/_/bscframe",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    },
+    {
+      "ref": "i2",
+      "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "selector": "#hfcr",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

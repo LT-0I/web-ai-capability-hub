@@ -1,0 +1,2288 @@
+{
+  "url": "https://chatgpt.com/?temporary-chat=true",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T14:43:41.889Z",
+  "visibleText": "Skip to content Chat history ChatGPT New chat Search chats Codex More Projects New project 1浏览器自动化（读取+操作） RL0511 3Radar 2notebooklm自动化 Recents Documentation Pass Acknowledgement 强化学习在反无人机应用 PPTX下载和内容总结 Gemini 使用问题解析 Claude -p 解析 Linux 监视Codex tokens CSV Files Generation Package Name and Scripts Catalog probe ok Python 3.12 Changelog Morning Routines in Canvas Python 3.12 Changelog URL Python Canvas Script Create tiny red dot 刷国行平板美版系统 简历翻译与PDF生成 查看Linux剪贴板历史 项目链接与名称输出 问候交流 File download ready 根据聊天描述用户 欢迎使用 ChatGPT Shark Pro Temporary Chat Generate a small Python file that prints hello world; produce it as a downloadable file. Thought for a second Done: Download hello_world.py Thinking ChatGPT can make mistakes. Check important info. See Your privacy choices.⁠",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Skip to content",
+      "text": "Skip to content",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-skip-to-content": "",
+        "class": "interactive-bg-secondary behavior-btn interactive-label-secondary rounded-2xl px-4 py-2 text-base print:hidden",
+        "href": "#main"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Open sidebar",
+      "text": "",
+      "selector": "button[aria-label=\"Open sidebar\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 mx-2 cursor-e-resize rtl:cursor-w-resize",
+        "aria-label": "Open sidebar",
+        "aria-expanded": "false",
+        "aria-controls": "stage-slideover-sidebar"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open sidebar\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5",
+        "data-testid": "create-new-chat-button",
+        "data-sidebar-item": "true",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "text": "Search chats",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-item": "true",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Recents",
+      "text": "Recents",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-keep-open": "true",
+        "type": "button",
+        "id": "radix-_R_2kqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_2kqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open profile menu",
+      "text": "",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable gap-2 ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "Open profile menu",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_sqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_sqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Home",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"Home\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 touch:w-auto w-auto px-2.5",
+        "data-sidebar-item": "true",
+        "aria-label": "Home",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Home\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Close sidebar",
+      "text": "",
+      "selector": "button[aria-label=\"Close sidebar\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-tertiary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 no-draggable cursor-w-resize rtl:cursor-e-resize",
+        "aria-expanded": "true",
+        "aria-controls": "stage-slideover-sidebar",
+        "aria-label": "Close sidebar",
+        "data-testid": "close-sidebar-button",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Close sidebar\"]"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "text": "Codex",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "rel": "noopener noreferrer",
+        "href": "/codex/cloud",
+        "target": "_blank",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Projects",
+      "text": "Projects",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-expanded": "true",
+        "class": "text-token-text-tertiary flex w-full items-center justify-start gap-0.5 px-4 py-1.5"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "New project",
+      "text": "New project",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-item": "true",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "1浏览器自动化（读取+操作）",
+      "text": "1浏览器自动化（读取+操作）",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9b8079e248191b8a4f091aee92bca-1liu-lan-qi-zi-dong-hua-du-qu-cao-zuo/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Show chats",
+      "text": "",
+      "selector": "button[aria-label=\"Show chats\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "aria-label": "Show chats",
+        "class": "flex h-5 w-5 items-center justify-center",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Show chats\"]"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Open project options for 1浏览器自动化（读取+操作）",
+      "text": "",
+      "selector": "#radix-_r_a_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "Open project options for 1浏览器自动化（读取+操作）",
+        "type": "button",
+        "id": "radix-_r_a_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_a_"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "RL0511",
+      "text": "RL0511",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-6a01e68580a48191bae1691b494a74b2-rl0511/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Open project options for RL0511",
+      "text": "",
+      "selector": "#radix-_r_c_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "Open project options for RL0511",
+        "type": "button",
+        "id": "radix-_r_c_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_c_"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "3Radar",
+      "text": "3Radar",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9cd5705bc81918351a216bd03d093-3radar/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Open project options for 3Radar",
+      "text": "",
+      "selector": "#radix-_r_e_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "Open project options for 3Radar",
+        "type": "button",
+        "id": "radix-_r_e_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_e_"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "link",
+      "name": "2notebooklm自动化",
+      "text": "2notebooklm自动化",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "href": "/g/g-p-69f9c1b670548191bbd9aa45efd8a8ea-2notebooklmzi-dong-hua/project",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Open project options for 2notebooklm自动化",
+      "text": "",
+      "selector": "#radix-_r_g_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "aria-label": "Open project options for 2notebooklm自动化",
+        "type": "button",
+        "id": "radix-_r_g_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_g_"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Recents",
+      "text": "Recents",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-expanded": "true",
+        "class": "text-token-text-tertiary flex w-full items-center justify-start gap-0.5 px-4 py-1.5"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "link",
+      "name": "Documentation Pass Acknowledgement",
+      "text": "Documentation Pass Acknowledgement",
+      "selector": "a[aria-label=\"Documentation Pass Acknowledgement\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Documentation Pass Acknowledgement",
+        "data-sidebar-item": "true",
+        "href": "/c/6a05d2bd-ef94-83e8-b1e1-1eb23c9bdb08",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Documentation Pass Acknowledgement\"]"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Open conversation options for Documentation Pass Acknowledgement",
+      "text": "",
+      "selector": "#radix-_r_1n_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-0-options",
+        "data-conversation-options-trigger": "6a05d2bd-ef94-83e8-b1e1-1eb23c9bdb08",
+        "aria-label": "Open conversation options for Documentation Pass Acknowledgement",
+        "type": "button",
+        "id": "radix-_r_1n_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_1n_"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "link",
+      "name": "强化学习在反无人机应用",
+      "text": "强化学习在反无人机应用",
+      "selector": "a[aria-label=\"强化学习在反无人机应用\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "强化学习在反无人机应用",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04a213-5648-83e8-b9d0-6134aef56831",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"强化学习在反无人机应用\"]"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Open conversation options for 强化学习在反无人机应用",
+      "text": "",
+      "selector": "#radix-_r_1p_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-1-options",
+        "data-conversation-options-trigger": "6a04a213-5648-83e8-b9d0-6134aef56831",
+        "aria-label": "Open conversation options for 强化学习在反无人机应用",
+        "type": "button",
+        "id": "radix-_r_1p_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_1p_"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "link",
+      "name": "PPTX下载和内容总结",
+      "text": "PPTX下载和内容总结",
+      "selector": "a[aria-label=\"PPTX下载和内容总结\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "PPTX下载和内容总结",
+        "data-sidebar-item": "true",
+        "href": "/c/6a055a9b-7f0c-83e8-a558-898911b65109",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"PPTX下载和内容总结\"]"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open conversation options for PPTX下载和内容总结",
+      "text": "",
+      "selector": "#radix-_r_1r_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-2-options",
+        "data-conversation-options-trigger": "6a055a9b-7f0c-83e8-a558-898911b65109",
+        "aria-label": "Open conversation options for PPTX下载和内容总结",
+        "type": "button",
+        "id": "radix-_r_1r_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_1r_"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "link",
+      "name": "Gemini 使用问题解析",
+      "text": "Gemini 使用问题解析",
+      "selector": "a[aria-label=\"Gemini 使用问题解析\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Gemini 使用问题解析",
+        "data-sidebar-item": "true",
+        "href": "/c/6a042609-62dc-83e8-98f5-dfa1001a14b8",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Gemini 使用问题解析\"]"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Open conversation options for Gemini 使用问题解析",
+      "text": "",
+      "selector": "#radix-_r_1t_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-3-options",
+        "data-conversation-options-trigger": "6a042609-62dc-83e8-98f5-dfa1001a14b8",
+        "aria-label": "Open conversation options for Gemini 使用问题解析",
+        "type": "button",
+        "id": "radix-_r_1t_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_1t_"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "link",
+      "name": "Claude -p 解析",
+      "text": "Claude -p 解析",
+      "selector": "a[aria-label=\"Claude -p 解析\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Claude -p 解析",
+        "data-sidebar-item": "true",
+        "href": "/c/6a0526bf-113c-83e8-a868-6b12eeaf3121",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Claude -p 解析\"]"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Open conversation options for Claude -p 解析",
+      "text": "",
+      "selector": "#radix-_r_1v_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-4-options",
+        "data-conversation-options-trigger": "6a0526bf-113c-83e8-a868-6b12eeaf3121",
+        "aria-label": "Open conversation options for Claude -p 解析",
+        "type": "button",
+        "id": "radix-_r_1v_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_1v_"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "link",
+      "name": "Linux 监视Codex tokens",
+      "text": "Linux 监视Codex tokens",
+      "selector": "a[aria-label=\"Linux 监视Codex tokens\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Linux 监视Codex tokens",
+        "data-sidebar-item": "true",
+        "href": "/c/6a043910-d758-83e8-918a-c720c8196282",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Linux 监视Codex tokens\"]"
+      ]
+    },
+    {
+      "ref": "e33",
+      "role": "button",
+      "name": "Open conversation options for Linux 监视Codex tokens",
+      "text": "",
+      "selector": "#radix-_r_21_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-5-options",
+        "data-conversation-options-trigger": "6a043910-d758-83e8-918a-c720c8196282",
+        "aria-label": "Open conversation options for Linux 监视Codex tokens",
+        "type": "button",
+        "id": "radix-_r_21_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_21_"
+      ]
+    },
+    {
+      "ref": "e34",
+      "role": "link",
+      "name": "CSV Files Generation",
+      "text": "CSV Files Generation",
+      "selector": "a[aria-label=\"CSV Files Generation\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "CSV Files Generation",
+        "data-sidebar-item": "true",
+        "href": "/c/6a042c5f-861c-83e8-bfc8-8db14ecc633a",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"CSV Files Generation\"]"
+      ]
+    },
+    {
+      "ref": "e35",
+      "role": "button",
+      "name": "Open conversation options for CSV Files Generation",
+      "text": "",
+      "selector": "#radix-_r_23_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-6-options",
+        "data-conversation-options-trigger": "6a042c5f-861c-83e8-bfc8-8db14ecc633a",
+        "aria-label": "Open conversation options for CSV Files Generation",
+        "type": "button",
+        "id": "radix-_r_23_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_23_"
+      ]
+    },
+    {
+      "ref": "e36",
+      "role": "link",
+      "name": "Package Name and Scripts",
+      "text": "Package Name and Scripts",
+      "selector": "a[aria-label=\"Package Name and Scripts\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Package Name and Scripts",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04087b-7a00-83e8-bac3-98f88489d695",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Package Name and Scripts\"]"
+      ]
+    },
+    {
+      "ref": "e37",
+      "role": "button",
+      "name": "Open conversation options for Package Name and Scripts",
+      "text": "",
+      "selector": "#radix-_r_25_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-7-options",
+        "data-conversation-options-trigger": "6a04087b-7a00-83e8-bac3-98f88489d695",
+        "aria-label": "Open conversation options for Package Name and Scripts",
+        "type": "button",
+        "id": "radix-_r_25_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_25_"
+      ]
+    },
+    {
+      "ref": "e38",
+      "role": "link",
+      "name": "Catalog probe ok",
+      "text": "Catalog probe ok",
+      "selector": "a[aria-label=\"Catalog probe ok\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Catalog probe ok",
+        "data-sidebar-item": "true",
+        "href": "/c/6a04073f-32fc-83e8-932c-38eb20fec2a5",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Catalog probe ok\"]"
+      ]
+    },
+    {
+      "ref": "e39",
+      "role": "button",
+      "name": "Open conversation options for Catalog probe ok",
+      "text": "",
+      "selector": "#radix-_r_27_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-8-options",
+        "data-conversation-options-trigger": "6a04073f-32fc-83e8-932c-38eb20fec2a5",
+        "aria-label": "Open conversation options for Catalog probe ok",
+        "type": "button",
+        "id": "radix-_r_27_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_27_"
+      ]
+    },
+    {
+      "ref": "e40",
+      "role": "link",
+      "name": "Python 3.12 Changelog",
+      "text": "Python 3.12 Changelog",
+      "selector": "a[aria-label=\"Python 3.12 Changelog\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python 3.12 Changelog",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03ff22-e334-83e8-9109-6d3d6fc23906",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python 3.12 Changelog\"]"
+      ]
+    },
+    {
+      "ref": "e41",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog",
+      "text": "",
+      "selector": "#radix-_r_29_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-9-options",
+        "data-conversation-options-trigger": "6a03ff22-e334-83e8-9109-6d3d6fc23906",
+        "aria-label": "Open conversation options for Python 3.12 Changelog",
+        "type": "button",
+        "id": "radix-_r_29_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_29_"
+      ]
+    },
+    {
+      "ref": "e42",
+      "role": "link",
+      "name": "Morning Routines in Canvas",
+      "text": "Morning Routines in Canvas",
+      "selector": "a[aria-label=\"Morning Routines in Canvas\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Morning Routines in Canvas",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03fe9c-ccc4-83e8-a0d0-e42cf349e522",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Morning Routines in Canvas\"]"
+      ]
+    },
+    {
+      "ref": "e43",
+      "role": "button",
+      "name": "Open conversation options for Morning Routines in Canvas",
+      "text": "",
+      "selector": "#radix-_r_2b_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-10-options",
+        "data-conversation-options-trigger": "6a03fe9c-ccc4-83e8-a0d0-e42cf349e522",
+        "aria-label": "Open conversation options for Morning Routines in Canvas",
+        "type": "button",
+        "id": "radix-_r_2b_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2b_"
+      ]
+    },
+    {
+      "ref": "e44",
+      "role": "link",
+      "name": "Python 3.12 Changelog URL",
+      "text": "Python 3.12 Changelog URL",
+      "selector": "a[aria-label=\"Python 3.12 Changelog URL\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python 3.12 Changelog URL",
+        "data-sidebar-item": "true",
+        "href": "/c/6a033823-707c-83e8-9679-55c8a95e202a",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python 3.12 Changelog URL\"]"
+      ]
+    },
+    {
+      "ref": "e45",
+      "role": "button",
+      "name": "Open conversation options for Python 3.12 Changelog URL",
+      "text": "",
+      "selector": "#radix-_r_2d_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-11-options",
+        "data-conversation-options-trigger": "6a033823-707c-83e8-9679-55c8a95e202a",
+        "aria-label": "Open conversation options for Python 3.12 Changelog URL",
+        "type": "button",
+        "id": "radix-_r_2d_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2d_"
+      ]
+    },
+    {
+      "ref": "e46",
+      "role": "link",
+      "name": "Python Canvas Script",
+      "text": "Python Canvas Script",
+      "selector": "a[aria-label=\"Python Canvas Script\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Python Canvas Script",
+        "data-sidebar-item": "true",
+        "href": "/c/6a03376f-7e04-83e8-8277-aa36ada48b56",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Python Canvas Script\"]"
+      ]
+    },
+    {
+      "ref": "e47",
+      "role": "button",
+      "name": "Open conversation options for Python Canvas Script",
+      "text": "",
+      "selector": "#radix-_r_2f_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-12-options",
+        "data-conversation-options-trigger": "6a03376f-7e04-83e8-8277-aa36ada48b56",
+        "aria-label": "Open conversation options for Python Canvas Script",
+        "type": "button",
+        "id": "radix-_r_2f_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2f_"
+      ]
+    },
+    {
+      "ref": "e48",
+      "role": "link",
+      "name": "Create tiny red dot",
+      "text": "Create tiny red dot",
+      "selector": "a[aria-label=\"Create tiny red dot\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "Create tiny red dot",
+        "data-sidebar-item": "true",
+        "href": "/c/6a0336f4-1c1c-83e8-9aa0-b8043ed4a26e",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Create tiny red dot\"]"
+      ]
+    },
+    {
+      "ref": "e49",
+      "role": "button",
+      "name": "Open conversation options for Create tiny red dot",
+      "text": "",
+      "selector": "#radix-_r_2h_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-13-options",
+        "data-conversation-options-trigger": "6a0336f4-1c1c-83e8-9aa0-b8043ed4a26e",
+        "aria-label": "Open conversation options for Create tiny red dot",
+        "type": "button",
+        "id": "radix-_r_2h_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2h_"
+      ]
+    },
+    {
+      "ref": "e50",
+      "role": "link",
+      "name": "刷国行平板美版系统",
+      "text": "刷国行平板美版系统",
+      "selector": "a[aria-label=\"刷国行平板美版系统\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "刷国行平板美版系统",
+        "data-sidebar-item": "true",
+        "href": "/c/69fe0072-ff60-83e8-b53f-dc9f3cb48874",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"刷国行平板美版系统\"]"
+      ]
+    },
+    {
+      "ref": "e51",
+      "role": "button",
+      "name": "Open conversation options for 刷国行平板美版系统",
+      "text": "",
+      "selector": "#radix-_r_2j_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-14-options",
+        "data-conversation-options-trigger": "69fe0072-ff60-83e8-b53f-dc9f3cb48874",
+        "aria-label": "Open conversation options for 刷国行平板美版系统",
+        "type": "button",
+        "id": "radix-_r_2j_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2j_"
+      ]
+    },
+    {
+      "ref": "e52",
+      "role": "link",
+      "name": "简历翻译与PDF生成",
+      "text": "简历翻译与PDF生成",
+      "selector": "a[aria-label=\"简历翻译与PDF生成\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "简历翻译与PDF生成",
+        "data-sidebar-item": "true",
+        "href": "/c/69fd2f57-87d8-83e8-bb94-393160da1d74",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"简历翻译与PDF生成\"]"
+      ]
+    },
+    {
+      "ref": "e53",
+      "role": "button",
+      "name": "Open conversation options for 简历翻译与PDF生成",
+      "text": "",
+      "selector": "#radix-_r_2l_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-15-options",
+        "data-conversation-options-trigger": "69fd2f57-87d8-83e8-bb94-393160da1d74",
+        "aria-label": "Open conversation options for 简历翻译与PDF生成",
+        "type": "button",
+        "id": "radix-_r_2l_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2l_"
+      ]
+    },
+    {
+      "ref": "e54",
+      "role": "link",
+      "name": "查看Linux剪贴板历史",
+      "text": "查看Linux剪贴板历史",
+      "selector": "a[aria-label=\"查看Linux剪贴板历史\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "查看Linux剪贴板历史",
+        "data-sidebar-item": "true",
+        "href": "/c/69fc5768-db58-83e8-a46e-9da1b6a2865c",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"查看Linux剪贴板历史\"]"
+      ]
+    },
+    {
+      "ref": "e55",
+      "role": "button",
+      "name": "Open conversation options for 查看Linux剪贴板历史",
+      "text": "",
+      "selector": "#radix-_r_2n_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-16-options",
+        "data-conversation-options-trigger": "69fc5768-db58-83e8-a46e-9da1b6a2865c",
+        "aria-label": "Open conversation options for 查看Linux剪贴板历史",
+        "type": "button",
+        "id": "radix-_r_2n_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2n_"
+      ]
+    },
+    {
+      "ref": "e56",
+      "role": "link",
+      "name": "项目链接与名称输出",
+      "text": "项目链接与名称输出",
+      "selector": "a[aria-label=\"项目链接与名称输出\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "项目链接与名称输出",
+        "data-sidebar-item": "true",
+        "href": "/c/69f9bc87-2450-83e8-a717-1f5db273ef49",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"项目链接与名称输出\"]"
+      ]
+    },
+    {
+      "ref": "e57",
+      "role": "button",
+      "name": "Open conversation options for 项目链接与名称输出",
+      "text": "",
+      "selector": "#radix-_r_2p_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-17-options",
+        "data-conversation-options-trigger": "69f9bc87-2450-83e8-a717-1f5db273ef49",
+        "aria-label": "Open conversation options for 项目链接与名称输出",
+        "type": "button",
+        "id": "radix-_r_2p_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2p_"
+      ]
+    },
+    {
+      "ref": "e58",
+      "role": "link",
+      "name": "问候交流",
+      "text": "问候交流",
+      "selector": "a[aria-label=\"问候交流\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "问候交流",
+        "data-sidebar-item": "true",
+        "href": "/c/69facf36-7f18-83e8-8e23-825dd860bd73",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"问候交流\"]"
+      ]
+    },
+    {
+      "ref": "e59",
+      "role": "button",
+      "name": "Open conversation options for 问候交流",
+      "text": "",
+      "selector": "#radix-_r_2r_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-18-options",
+        "data-conversation-options-trigger": "69facf36-7f18-83e8-8e23-825dd860bd73",
+        "aria-label": "Open conversation options for 问候交流",
+        "type": "button",
+        "id": "radix-_r_2r_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2r_"
+      ]
+    },
+    {
+      "ref": "e60",
+      "role": "link",
+      "name": "File download ready",
+      "text": "File download ready",
+      "selector": "a[aria-label=\"File download ready\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "File download ready",
+        "data-sidebar-item": "true",
+        "href": "/c/69f9dc41-3668-83e8-b1c5-b9f3653ce2bb",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"File download ready\"]"
+      ]
+    },
+    {
+      "ref": "e61",
+      "role": "button",
+      "name": "Open conversation options for File download ready",
+      "text": "",
+      "selector": "#radix-_r_2t_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-19-options",
+        "data-conversation-options-trigger": "69f9dc41-3668-83e8-b1c5-b9f3653ce2bb",
+        "aria-label": "Open conversation options for File download ready",
+        "type": "button",
+        "id": "radix-_r_2t_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2t_"
+      ]
+    },
+    {
+      "ref": "e62",
+      "role": "link",
+      "name": "根据聊天描述用户",
+      "text": "根据聊天描述用户",
+      "selector": "a[aria-label=\"根据聊天描述用户\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "根据聊天描述用户",
+        "data-sidebar-item": "true",
+        "href": "/c/69f77a64-4c70-83e8-b811-61500c053148",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"根据聊天描述用户\"]"
+      ]
+    },
+    {
+      "ref": "e63",
+      "role": "button",
+      "name": "Open conversation options for 根据聊天描述用户",
+      "text": "",
+      "selector": "#radix-_r_2v_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-20-options",
+        "data-conversation-options-trigger": "69f77a64-4c70-83e8-b811-61500c053148",
+        "aria-label": "Open conversation options for 根据聊天描述用户",
+        "type": "button",
+        "id": "radix-_r_2v_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_2v_"
+      ]
+    },
+    {
+      "ref": "e64",
+      "role": "link",
+      "name": "欢迎使用 ChatGPT",
+      "text": "欢迎使用 ChatGPT",
+      "selector": "a[aria-label=\"欢迎使用 ChatGPT\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable transition-opacity duration-150",
+        "draggable": "true",
+        "aria-label": "欢迎使用 ChatGPT",
+        "data-sidebar-item": "true",
+        "href": "/c/69f567d8-fd70-83e8-9441-d37a460e10e6",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"欢迎使用 ChatGPT\"]"
+      ]
+    },
+    {
+      "ref": "e65",
+      "role": "button",
+      "name": "Open conversation options for 欢迎使用 ChatGPT",
+      "text": "",
+      "selector": "#radix-_r_31_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn",
+        "data-testid": "history-item-21-options",
+        "data-conversation-options-trigger": "69f567d8-fd70-83e8-9441-d37a460e10e6",
+        "aria-label": "Open conversation options for 欢迎使用 ChatGPT",
+        "type": "button",
+        "id": "radix-_r_31_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_31_"
+      ]
+    },
+    {
+      "ref": "e66",
+      "role": "button",
+      "name": "Shark Pro, open profile menu",
+      "text": "Shark Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "Shark Pro, open profile menu",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_qlalj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_qlalj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e67",
+      "role": "button",
+      "name": "Download apps",
+      "text": "",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&>div]:h-full [&>div]:w-full [&>div]:rounded-lg [&>div]:p-0!",
+        "aria-controls": "_R_kmqlalj3b31hq9ikj5_",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu",
+        "data-state": "closed",
+        "style": "anchor-name:--anchor-_R_kmqlalj3b31hq9ikj5_",
+        "aria-label": "Download apps",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Download apps\"]"
+      ]
+    },
+    {
+      "ref": "e68",
+      "role": "button",
+      "name": "Open conversation options",
+      "text": "",
+      "selector": "button[aria-label=\"Open conversation options\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "Open conversation options",
+        "data-testid": "conversation-options-button",
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open conversation options\"]"
+      ]
+    },
+    {
+      "ref": "e69",
+      "role": "presentation",
+      "name": "Generate a small Python file that prints hello world; produce it as a downloadable file. Thought for a second Done: Download hello_world.py Thinking ChatGPT can make mistakes. Check important info. See Your privacy choices.⁠",
+      "text": "Generate a small Python file that prints hello world; produce it as a downloadable file. Thought for a second Done: Download hello_world.py Thinking ChatGPT can make mistakes. Check important info. See Your privacy choices.⁠",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "presentation",
+        "class": "composer-parent flex flex-1 flex-col focus-visible:outline-0"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e70",
+      "role": "group",
+      "name": "Your message actions",
+      "text": "",
+      "selector": "div[aria-label=\"Your message actions\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "Your message actions",
+        "class": "touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1 flex flex-wrap items-center gap-y-4 p-1 select-none focus-within:transition-none hover:transition-none touch:pointer-events-auto touch:opacity-100 duration-300 group-hover/turn-messages:delay-300 pointer-events-none opacity-0 motion-safe:transition-opacity group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:opacity-100 group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:opacity-100 has-data-[state=open]:pointer-events-auto has-data-[state=open]:opacity-100",
+        "role": "group",
+        "tabindex": "-1",
+        "style": "mask-position: 0% 0%;"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Your message actions\"]"
+      ]
+    },
+    {
+      "ref": "e71",
+      "role": "button",
+      "name": "Copy message",
+      "text": "",
+      "selector": "button[aria-label=\"Copy message\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+        "aria-label": "Copy message",
+        "data-testid": "copy-turn-action-button",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy message\"]"
+      ]
+    },
+    {
+      "ref": "e72",
+      "role": "button",
+      "name": "Edit message",
+      "text": "",
+      "selector": "button[aria-label=\"Edit message\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+        "aria-label": "Edit message",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Edit message\"]"
+      ]
+    },
+    {
+      "ref": "e73",
+      "role": "button",
+      "name": "Thought for a second",
+      "text": "Thought for a second",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "text-token-text-tertiary hover:text-token-text-primary dark:hover:text-token-text-primary flex items-center gap-0.5 text-start dark:text-(--interactive-label-tertiary-default)"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e74",
+      "role": "button",
+      "name": "Download hello_world.py",
+      "text": "Download hello_world.py",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "behavior-btn hover:entity-accent focus-visible:focus-ring entity-underline inline cursor-pointer appearance-none border-0 bg-transparent p-0 text-start align-baseline text-inherit",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e75",
+      "role": "button",
+      "name": "Coding Citation",
+      "text": "",
+      "selector": "button[aria-label=\"Coding Citation\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "Coding Citation",
+        "class": "rounded-xl px-1 text-token-text-secondary bg-token-bg-tertiary hover:text-token-text-primary hover:bg-token-interactive-bg-secondary-selected"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Coding Citation\"]"
+      ]
+    },
+    {
+      "ref": "e76",
+      "role": "group",
+      "name": "Response actions",
+      "text": "",
+      "selector": "div[aria-label=\"Response actions\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "Response actions",
+        "class": "touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1 flex flex-wrap items-center gap-y-4 p-1 select-none touch:w-[calc(100%+--spacing(3.5))] -mt-1 w-[calc(100%+--spacing(2.5))] duration-[1.5s] focus-within:transition-none hover:transition-none touch:pointer-events-auto pointer-events-none [mask-image:linear-gradient(to_right,black_33%,transparent_66%)] [mask-size:300%_100%] [mask-position:100%_0%] motion-safe:transition-[mask-position] group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:[mask-position:0_0] group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:[mask-position:0_0] has-data-[state=open]:pointer-events-auto has-data-[state=open]:[mask-position:0_0]",
+        "role": "group",
+        "tabindex": "-1",
+        "style": "mask-position: 0% 0%;"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Response actions\"]"
+      ]
+    },
+    {
+      "ref": "e77",
+      "role": "button",
+      "name": "Copy response",
+      "text": "",
+      "selector": "button[aria-label=\"Copy response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+        "aria-label": "Copy response",
+        "data-testid": "copy-turn-action-button",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy response\"]"
+      ]
+    },
+    {
+      "ref": "e78",
+      "role": "button",
+      "name": "Switch model",
+      "text": "",
+      "selector": "#radix-_r_7c_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "id": "radix-_r_7c_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "class": "cursor-pointer touch:px-2.5 text-token-text-secondary hover:bg-token-bg-secondary h-[30px] rounded-md px-1.5",
+        "aria-label": "Switch model"
+      },
+      "selectorCandidates": [
+        "#radix-_r_7c_"
+      ]
+    },
+    {
+      "ref": "e79",
+      "role": "button",
+      "name": "More actions",
+      "text": "",
+      "selector": "#radix-_r_7f_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-secondary hover:bg-token-bg-secondary touch:w-10 flex h-8 w-8 items-center justify-center rounded-lg",
+        "aria-label": "More actions",
+        "type": "button",
+        "id": "radix-_r_7f_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_7f_"
+      ]
+    },
+    {
+      "ref": "e80",
+      "role": "button",
+      "name": "",
+      "text": "",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-hidden": "true",
+        "tabindex": "-1",
+        "class": "relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-hidden select-none btn-secondary bg-token-bg-primary/65! hover:bg-token-main-surface-secondary/75! shadow-short box-content backdrop-blur-[2px] backdrop-filter sm:shadow-md dark:shadow-none! group-data-stream-active/scroll-root:squircle *:absolute *:inset-0 *:m-auto group-data-stream-active/scroll-root:w-10 motion-safe:transition-[width] motion-safe:duration-120 motion-safe:ease-out *:motion-safe:transition-opacity *:motion-safe:duration-120 *:motion-safe:ease-out absolute start-1/2 z-10 -translate-x-1/2 bottom-[calc(100%+6*var(--spacing)+var(--thread-scroll-to-bottom-banner-offset,0px))]"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e81",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-files",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "multiple": "",
+        "type": "file",
+        "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+        "tabindex": "-1",
+        "id": "upload-files"
+      },
+      "selectorCandidates": [
+        "#upload-files"
+      ]
+    },
+    {
+      "ref": "e82",
+      "role": "button",
+      "name": "Add files and more",
+      "text": "",
+      "selector": "#composer-plus-btn",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "composer-btn",
+        "data-testid": "composer-plus-btn",
+        "aria-label": "Add files and more",
+        "id": "composer-plus-btn",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#composer-plus-btn"
+      ]
+    },
+    {
+      "ref": "e83",
+      "role": "textbox",
+      "name": "Chat with ChatGPT",
+      "text": "",
+      "selector": "#prompt-textarea",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "contenteditable": "true",
+        "translate": "no",
+        "class": "ProseMirror",
+        "id": "prompt-textarea",
+        "data-virtualkeyboard": "true",
+        "role": "textbox",
+        "aria-multiline": "true",
+        "aria-label": "Chat with ChatGPT"
+      },
+      "selectorCandidates": [
+        "#prompt-textarea"
+      ]
+    },
+    {
+      "ref": "e84",
+      "role": "button",
+      "name": "Thinking",
+      "text": "Thinking",
+      "selector": "#radix-_r_i_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "__composer-pill __composer-pill--neutral group/pill",
+        "data-tone": "neutral",
+        "id": "radix-_r_i_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#radix-_r_i_"
+      ]
+    },
+    {
+      "ref": "e85",
+      "role": "button",
+      "name": "Start dictation",
+      "text": "",
+      "selector": "button[aria-label=\"Start dictation\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-label": "Start dictation",
+        "type": "button",
+        "class": "composer-btn h-9 min-h-9 w-9 min-w-9",
+        "aria-describedby": "_r_l_",
+        "interestfor": "_r_l_",
+        "style": "anchor-name: --anchor-_r_l_;"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Start dictation\"]"
+      ]
+    },
+    {
+      "ref": "e86",
+      "role": "button",
+      "name": "Start Voice",
+      "text": "",
+      "selector": "button[aria-label=\"Start Voice\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-describedby": "_r_7i_",
+        "interestfor": "_r_7i_",
+        "type": "button",
+        "aria-label": "Start Voice",
+        "class": "composer-submit-button-color text-submit-btn-text keyboard-focused:focus-ring relative flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:opacity-70 disabled:text-[#f4f4f4] disabled:opacity-30",
+        "style": "anchor-name: --anchor-_r_7i_; view-transition-name: var(--vt-composer-speech-button);"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Start Voice\"]"
+      ]
+    },
+    {
+      "ref": "e87",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-photos",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-photos",
+        "accept": "image/*",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-photos"
+      ]
+    },
+    {
+      "ref": "e88",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-camera",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-camera",
+        "accept": "image/*",
+        "capture": "environment",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-camera"
+      ]
+    },
+    {
+      "ref": "e89",
+      "role": "link",
+      "name": "Your privacy choices",
+      "text": "Your privacy choices",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-secondary decoration-token-text-secondary dark-oled:text-token-text-tertiary dark-oled:decoration-token-text-tertiary cursor-pointer underline"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e90",
+      "role": "alert",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "assertive",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-assertive",
+        "role": "alert"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-assertive"
+      ]
+    },
+    {
+      "ref": "e91",
+      "role": "status",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "polite",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-polite",
+        "role": "status"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-polite"
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "Thinking",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e86",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-files",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "multiple": "",
+            "type": "file",
+            "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+            "tabindex": "-1",
+            "id": "upload-files"
+          },
+          "selectorCandidates": [
+            "#upload-files"
+          ]
+        },
+        {
+          "ref": "e88",
+          "role": "textbox",
+          "name": "Chat with ChatGPT",
+          "text": "",
+          "selector": "#prompt-textarea",
+          "tagName": "div",
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "contenteditable": "true",
+            "translate": "no",
+            "class": "ProseMirror",
+            "id": "prompt-textarea",
+            "data-virtualkeyboard": "true",
+            "role": "textbox",
+            "aria-multiline": "true",
+            "aria-label": "Chat with ChatGPT"
+          },
+          "selectorCandidates": [
+            "#prompt-textarea"
+          ]
+        },
+        {
+          "ref": "e92",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-photos",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-photos",
+            "accept": "image/*",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-photos"
+          ]
+        },
+        {
+          "ref": "e93",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-camera",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-camera",
+            "accept": "image/*",
+            "capture": "environment",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-camera"
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "New chat",
+        "Search chats"
+      ]
+    },
+    {
+      "ref": "l2",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "New project",
+        "1浏览器自动化（读取+操作）",
+        "RL0511",
+        "3Radar",
+        "2notebooklm自动化"
+      ]
+    },
+    {
+      "ref": "l3",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Documentation Pass Acknowledgement",
+        "强化学习在反无人机应用",
+        "PPTX下载和内容总结",
+        "Gemini 使用问题解析",
+        "Claude -p 解析",
+        "Linux 监视Codex tokens",
+        "CSV Files Generation",
+        "Package Name and Scripts",
+        "Catalog probe ok",
+        "Python 3.12 Changelog",
+        "Morning Routines in Canvas",
+        "Python 3.12 Changelog URL",
+        "Python Canvas Script",
+        "Create tiny red dot",
+        "刷国行平板美版系统",
+        "简历翻译与PDF生成",
+        "查看Linux剪贴板历史",
+        "项目链接与名称输出",
+        "问候交流",
+        "File download ready",
+        "根据聊天描述用户",
+        "欢迎使用 ChatGPT"
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "src": "https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

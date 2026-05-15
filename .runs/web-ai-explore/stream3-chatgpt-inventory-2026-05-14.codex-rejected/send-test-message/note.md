@@ -1,0 +1,1 @@
+Sent the required documentation prompt in a new conversation using the CLI confirmed click and waited 30 seconds for streaming to settle. Resulting URL: https://chatgpt.com/c/6a05d2bd-ef94-83e8-b1e1-1eb23c9bdb08; the response text is captured in stdout.json.

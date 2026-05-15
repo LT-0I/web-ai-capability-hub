@@ -1,0 +1,1 @@
+Uploaded data/test-fixtures/smoke-text.txt through the hidden #upload-files composer input. The snapshot shows the composer accepted the upload when the filename or attachment control appears; absence is noted in stdout.json.

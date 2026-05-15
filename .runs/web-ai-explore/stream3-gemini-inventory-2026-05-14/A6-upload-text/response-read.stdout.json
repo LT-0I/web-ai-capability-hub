@@ -1,0 +1,835 @@
+{
+  "url": "https://gemini.google.com/app/8f86f11afcee29cb",
+  "title": "File Summary Request - Google Gemini",
+  "timestamp": "2026-05-14T14:22:49.622Z",
+  "visibleText": "Gemini File Summary Request New chat Conversation with Gemini smoke-text TXT You said Summarize this file in one sentence. Analysis Query successful Gemini said This document is a test fixture designed to verify file upload capabilities for web AI surfaces, containing fifty lines of placeholder text and associated source tags. +1 Sources Gemini is still catching up on your past chats. You'll get a more personalized experience soon. Tools Fast Gemini is AI and can make mistakes.",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "button",
+      "name": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+      "text": "",
+      "selector": "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "gb_C gb_5a gb_6",
+        "aria-expanded": "false",
+        "aria-label": "Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)",
+        "href": "https://accounts.google.com/SignOutOptions?hl=en&continue=https://gemini.google.com/app&ec=GBRAkgU",
+        "tabindex": "0",
+        "role": "button"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"Google Account: Shark 7  \n(cherrypie85arrow@gmail.com)\"]"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "Main menu",
+      "text": "",
+      "selector": "button[aria-label=\"Main menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c303525898": "",
+        "mat-icon-button": "",
+        "aria-label": "Main menu",
+        "data-test-id": "side-nav-menu-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger main-menu-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "204298;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-2",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Main menu\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "",
+      "text": "",
+      "selector": "mat-icon",
+      "tagName": "mat-icon",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2014502497": "",
+        "role": "img",
+        "class": "mat-icon notranslate gds-icon-l google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted",
+        "aria-hidden": "true",
+        "data-mat-icon-type": "font",
+        "data-mat-icon-name": "menu",
+        "data-mat-icon-namespace": "",
+        "fonticon": "menu"
+      },
+      "selectorCandidates": [
+        "mat-icon"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "New chat",
+      "text": "Gemini",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "tooltipanchorposition": "below",
+        "role": "button",
+        "tabindex": "0",
+        "aria-label": "New chat",
+        "class": "bard-logo-container logo-only ng-star-inserted hide-on-mobile",
+        "href": "/app",
+        "aria-disabled": "false",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Share conversation",
+      "text": "",
+      "selector": "button[aria-label=\"Share conversation\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4281317633": "",
+        "mat-icon-button": "",
+        "data-test-id": "share-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Share conversation",
+        "jslog": "301647;track:generic_click,impression"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Share conversation\"]"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Open menu for conversation actions.",
+      "text": "",
+      "selector": "button[aria-label=\"Open menu for conversation actions.\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "mat-icon-button": "",
+        "aria-label": "Open menu for conversation actions.",
+        "data-test-id": "conversation-actions-menu-icon-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "jslog": "298422;track:generic_click,impression",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open menu for conversation actions.\"]"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "navigation",
+      "name": "Side Navigation",
+      "text": "New chat",
+      "selector": "bard-sidenav[aria-label=\"Side Navigation\"]",
+      "tagName": "bard-sidenav",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c824153890": "",
+        "role": "navigation",
+        "_nghost-ng-c2130131422": "",
+        "class": "collapsed mystuff-side-nav-update disable-onload-animations ng-tns-c2130131422-3 ng-trigger ng-trigger-widthTransition",
+        "aria-label": "Side Navigation",
+        "jslog": "173918;track:impression,attention",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ3s4KahcKEwjuqoq7_LiUAxUAAAAAHQAAAAAQAg",
+        "style": "width: var(--bard-sidenav-closed-width);"
+      },
+      "selectorCandidates": [
+        "bard-sidenav[aria-label=\"Side Navigation\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "group",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list top-action-list ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "New chat",
+      "text": "New chat",
+      "selector": "a[aria-label=\"New chat\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "href": "/app",
+        "aria-label": "New chat",
+        "aria-describedby": "cdk-describedby-message-ng-1-7",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"New chat\"]"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "group",
+      "name": "",
+      "text": "",
+      "selector": "mat-action-list",
+      "tagName": "mat-action-list",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c756655118": "",
+        "role": "group",
+        "class": "mat-mdc-action-list mat-mdc-list-base mdc-list desktop-controls ng-star-inserted",
+        "aria-disabled": "false"
+      },
+      "selectorCandidates": [
+        "mat-action-list"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Settings & help",
+      "text": "",
+      "selector": "button[aria-label=\"Settings & help\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1323933209": "",
+        "mat-icon-button": "",
+        "matripple": "",
+        "mattooltipposition": "right",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-ripple mat-mdc-tooltip-trigger side-nav-action-collapsed-button explicit-gmat-override mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Settings & help",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Settings & help\"]"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "smoke-text.txt",
+      "text": "smoke-text TXT",
+      "selector": "button[aria-label=\"smoke-text.txt\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1399938466": "",
+        "class": "mat-mdc-tooltip-trigger new-file-preview-file clickable ng-star-inserted",
+        "aria-label": "smoke-text.txt",
+        "jslog": "191296;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,null,null,null,null,null,1,null,null,null,0]]"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"smoke-text.txt\"]"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "Copy prompt",
+      "text": "",
+      "selector": "button[aria-label=\"Copy prompt\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Copy prompt",
+        "mattooltip": "Copy prompt",
+        "data-test-id": "prompt-copy-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-0",
+        "jslog": "273008;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy prompt\"]"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Edit",
+      "text": "",
+      "selector": "button[aria-label=\"Edit\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "mat-icon-button": "",
+        "aria-label": "Edit",
+        "mattooltip": "Edit prompt",
+        "data-test-id": "prompt-edit-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger action-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-controls": "user-query-content-0",
+        "jslog": "173924;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-16",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Edit\"]"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "heading",
+      "name": "You said Summarize this file in one sentence.",
+      "text": "You said Summarize this file in one sentence.",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4279288872": "",
+        "role": "heading",
+        "aria-level": "2",
+        "class": "query-text gds-body-l",
+        "dir": "ltr"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "Listen",
+      "text": "",
+      "selector": "button[aria-label=\"Listen\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger tts-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Listen",
+        "jslog": "184512;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,\"rc_e4cd4f10609e0fae\",null,null,\"en\",null,1,null,null,1,0]];mutable:true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Listen\"]"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "menu",
+      "name": "",
+      "text": "",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2925205589": "",
+        "role": "menu",
+        "class": "mat-mdc-menu-trigger playback-speed-menu-trigger multi",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "Analysis",
+      "text": "Analysis",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c717729077": "",
+        "mat-button": "",
+        "class": "mdc-button mat-mdc-button-base processing-state_button ng-tns-c717729077-17 mat-mdc-button mat-unthemed",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-expanded": "false",
+        "aria-controls": "processing-state-0-summary"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "button",
+      "name": "View source details. Opens side panel.",
+      "text": "+1",
+      "selector": "button[aria-label=\"View source details. Opens side panel.\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2968773137": "",
+        "cdkoverlayorigin": "",
+        "class": "button multiple-button ng-star-inserted",
+        "aria-label": "View source details. Opens side panel.",
+        "jslog": "262206;track:generic_click"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"View source details. Opens side panel.\"]"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "button",
+      "name": "Sources",
+      "text": "Sources",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c941521835": "",
+        "mat-stroked-button": "",
+        "class": "mdc-button mat-mdc-button-base legacy-sources-sidebar-button mdc-button--outlined mat-mdc-outlined-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "262207;track:generic_click,impression,attention",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQv4AQahcKEwjuqoq7_LiUAxUAAAAAHQAAAAAQNA"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "button",
+      "name": "Good response",
+      "text": "",
+      "selector": "button[aria-label=\"Good response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1550161466": "",
+        "mat-icon-button": "",
+        "mattooltip": "Good response",
+        "aria-label": "Good response",
+        "data-test-id": "thumb-up-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173913;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,\"rc_e4cd4f10609e0fae\",null,null,\"en\",null,1,null,null,1,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Good response\"]"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "button",
+      "name": "Bad response",
+      "text": "",
+      "selector": "button[aria-label=\"Bad response\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3439315037": "",
+        "mat-icon-button": "",
+        "mattooltip": "Bad response",
+        "aria-label": "Bad response",
+        "data-test-id": "thumb-down-button",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "173904;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,\"rc_e4cd4f10609e0fae\",null,null,\"en\",null,1,null,null,1,0]];mutable:true"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Bad response\"]"
+      ]
+    },
+    {
+      "ref": "e23",
+      "role": "button",
+      "name": "Redo",
+      "text": "",
+      "selector": "button[aria-label=\"Redo\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2502004002": "",
+        "mat-icon-button": "",
+        "aria-label": "Redo",
+        "mattooltip": "Redo",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger icon-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "data-test-id": "regenerate-button",
+        "jslog": "173911;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,null,null,null,null,null,1,null,null,null,0]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Redo\"]"
+      ]
+    },
+    {
+      "ref": "e24",
+      "role": "button",
+      "name": "Copy",
+      "text": "",
+      "selector": "button[aria-label=\"Copy\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4206996302": "",
+        "mat-button": "",
+        "tabindex": "0",
+        "mattooltip": "Copy response",
+        "aria-label": "Copy",
+        "data-test-id": "copy-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger icon-button mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "178035;track:generic_click,impression;BardVeMetadataKey:[[\"r_1654a8843d720d15\",\"c_8f86f11afcee29cb\",null,\"rc_e4cd4f10609e0fae\",null,null,\"en\",null,1,null,null,1,0]];mutable:true",
+        "aria-describedby": "cdk-describedby-message-ng-1-19",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Copy\"]"
+      ]
+    },
+    {
+      "ref": "e25",
+      "role": "button",
+      "name": "Show more options",
+      "text": "",
+      "selector": "button[aria-label=\"Show more options\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c1704719753": "",
+        "mat-button": "",
+        "mattooltip": "More",
+        "aria-label": "Show more options",
+        "tabindex": "0",
+        "data-test-id": "more-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger mat-mdc-tooltip-trigger icon-button more-menu-button mat-mdc-button ng-tns-c1704719753-19 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "aria-describedby": "cdk-describedby-message-ng-1-20",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Show more options\"]"
+      ]
+    },
+    {
+      "ref": "e26",
+      "role": "textbox",
+      "name": "Enter a prompt for Gemini",
+      "text": "",
+      "selector": "div[aria-label=\"Enter a prompt for Gemini\"]",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "ql-editor textarea new-input-ui ql-blank",
+        "data-gramm": "false",
+        "contenteditable": "true",
+        "role": "textbox",
+        "aria-multiline": "true",
+        "aria-label": "Enter a prompt for Gemini",
+        "data-placeholder": "Ask Gemini",
+        "style": "--uploader-height: 80px;"
+      },
+      "selectorCandidates": [
+        "div[aria-label=\"Enter a prompt for Gemini\"]"
+      ]
+    },
+    {
+      "ref": "e27",
+      "role": "button",
+      "name": "Open upload file menu",
+      "text": "",
+      "selector": "button[aria-label=\"Open upload file menu\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "mat-icon-button": "",
+        "color": "primary",
+        "aria-haspopup": "menu",
+        "aria-controls": "upload-file-menu",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger upload-card-button open mat-primary ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Open upload file menu",
+        "aria-expanded": "false",
+        "jslog": "188890;track:generic_click,impression,hover",
+        "data-hveid": "0",
+        "decode-data-ved": "1",
+        "data-ved": "0CAAQ2sMLahcKEwjuqoq7_LiUAxUAAAAAHQAAAAAQHg",
+        "aria-describedby": "cdk-describedby-message-ng-1-11",
+        "cdk-describedby-host": "ng-1",
+        "style": ""
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open upload file menu\"]"
+      ]
+    },
+    {
+      "ref": "e28",
+      "role": "button",
+      "name": "",
+      "text": "",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c2466892161": "",
+        "tabindex": "-1",
+        "xapfileselectortrigger": "",
+        "aria-hidden": "true",
+        "data-test-id": "hidden-local-image-upload-button",
+        "class": "hidden-local-upload-button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e29",
+      "role": "button",
+      "name": "Tools",
+      "text": "Tools",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c4251399043": "",
+        "mat-button": "",
+        "aria-haspopup": "menu",
+        "class": "mdc-button mat-mdc-button-base toolbox-drawer-button toolbox-drawer-button-with-label mat-mdc-button ng-tns-c4251399043-12 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "aria-expanded": "false",
+        "jslog": "304974;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[0]]"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e30",
+      "role": "button",
+      "name": "Open mode picker",
+      "text": "Fast",
+      "selector": "button[aria-label=\"Open mode picker\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c681231691": "",
+        "mat-button": "",
+        "aria-label": "Open mode picker",
+        "data-test-id": "bard-mode-menu-button",
+        "class": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger input-area-switch mat-mdc-button mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "jslog": "206752;track:generic_click;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[\"56fdd199312815e2\"]]",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Open mode picker\"]"
+      ]
+    },
+    {
+      "ref": "e31",
+      "role": "button",
+      "name": "Microphone",
+      "text": "",
+      "selector": "button[aria-label=\"Microphone\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c488515864": "",
+        "data-node-type": "speech_dictation_mic_button",
+        "maticonsuffix": "",
+        "mat-icon-button": "",
+        "mattooltip": "Use microphone",
+        "aria-label": "Microphone",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger speech_dictation_mic_button ng-tns-c488515864-7 mat-unthemed ng-star-inserted",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-pressed": "false",
+        "jslog": "175863;track:generic_click,impression",
+        "aria-describedby": "cdk-describedby-message-ng-1-3",
+        "cdk-describedby-host": "ng-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Microphone\"]"
+      ]
+    },
+    {
+      "ref": "e32",
+      "role": "button",
+      "name": "Send message",
+      "text": "",
+      "selector": "button[aria-label=\"Send message\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "_ngcontent-ng-c3511392904": "",
+        "mat-icon-button": "",
+        "class": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base send-button ng-tns-c3511392904-5 mat-unthemed ng-star-inserted submit",
+        "mat-ripple-loader-uninitialized": "",
+        "mat-ripple-loader-class-name": "mat-mdc-button-ripple",
+        "mat-ripple-loader-centered": "",
+        "aria-label": "Send message",
+        "jslog": "173899;track:generic_click,impression;BardVeMetadataKey:[[null,null,null,null,null,null,null,null,1,null,null,null,0]];mutable:true",
+        "aria-disabled": "true",
+        "tabindex": "-1"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Send message\"]"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "Query successful"
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "src": "/_/bscframe",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    },
+    {
+      "ref": "i2",
+      "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "selector": "#hfcr",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

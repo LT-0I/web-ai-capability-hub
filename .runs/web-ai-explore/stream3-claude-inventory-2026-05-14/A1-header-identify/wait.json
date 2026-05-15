@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "action": {
+    "type": "wait",
+    "selector": "div[contenteditable=\"true\"]",
+    "waitFor": "selector"
+  },
+  "message": "Waited for selector"
+}

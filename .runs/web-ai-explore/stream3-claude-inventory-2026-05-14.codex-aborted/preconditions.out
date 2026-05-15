@@ -1,0 +1,29 @@
+--- curl version ---
+{
+   "Browser": "Chrome/148.0.7778.167",
+--- status ---
+{
+  "profile": "claude-9224",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/claude-9224",
+  "cdpEndpoint": "http://127.0.0.1:9224",
+  "cdpPort": 9224,
+  "connected": true,
+  "launchedByPackage": false,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/94C7B8E54CC6203C21F914A8FA26EBC0",
+      "faviconUrl": "https://claude.ai/favicon.ico",
+      "id": "94C7B8E54CC6203C21F914A8FA26EBC0",
+      "title": "Claude",
+      "type": "page",
+      "url": "https://claude.ai/new",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9224/devtools/page/94C7B8E54CC6203C21F914A8FA26EBC0"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9224/devtools/browser/3c38bac3-f022-45b6-82e7-10d883317855"
+}
+--- cli exists ---
+dist/src/cli.js

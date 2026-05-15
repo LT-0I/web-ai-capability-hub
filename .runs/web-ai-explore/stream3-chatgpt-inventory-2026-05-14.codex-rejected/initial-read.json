@@ -1,0 +1,624 @@
+{
+  "url": "https://chatgpt.com/",
+  "title": "ChatGPT",
+  "timestamp": "2026-05-14T13:46:20.660Z",
+  "visibleText": "跳至内容 历史聊天记录 ChatGPT 新聊天 Search chats Codex 更多 Shark 7 Pro 准备好了，随时开始",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "跳至内容",
+      "text": "跳至内容",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "data-skip-to-content": "",
+        "class": "interactive-bg-secondary behavior-btn interactive-label-secondary rounded-2xl px-4 py-2 text-base print:hidden",
+        "href": "#main"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "button",
+      "name": "打开边栏",
+      "text": "",
+      "selector": "button[aria-label=\"打开边栏\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 mx-2 cursor-e-resize rtl:cursor-w-resize",
+        "aria-label": "打开边栏",
+        "aria-expanded": "false",
+        "aria-controls": "stage-slideover-sidebar"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"打开边栏\"]"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "新聊天",
+      "text": "新聊天",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5",
+        "data-testid": "create-new-chat-button",
+        "data-sidebar-item": "true",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e4",
+      "role": "button",
+      "name": "Search chats",
+      "text": "Search chats",
+      "selector": "button",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-item": "true",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button"
+      ]
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "最近聊天",
+      "text": "最近聊天",
+      "selector": "#radix-_R_2kqlj3b31hq9ikj5_",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable gap-1.5 w-full",
+        "data-sidebar-keep-open": "true",
+        "type": "button",
+        "id": "radix-_R_2kqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_2kqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "打开“个人资料”菜单",
+      "text": "",
+      "selector": "#radix-_R_sqlj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable gap-2 ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "打开“个人资料”菜单",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_sqlj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_sqlj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "主页",
+      "text": "ChatGPT",
+      "selector": "a[aria-label=\"主页\"]",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 touch:w-auto w-auto px-2.5",
+        "data-sidebar-item": "true",
+        "aria-label": "主页",
+        "href": "/",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a[aria-label=\"主页\"]"
+      ]
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "关闭边栏",
+      "text": "",
+      "selector": "button[aria-label=\"关闭边栏\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-tertiary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 no-draggable cursor-w-resize rtl:cursor-e-resize",
+        "aria-expanded": "true",
+        "aria-controls": "stage-slideover-sidebar",
+        "aria-label": "关闭边栏",
+        "data-testid": "close-sidebar-button",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"关闭边栏\"]"
+      ]
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Codex",
+      "text": "Codex",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "class": "group __menu-item hoverable",
+        "data-sidebar-item": "true",
+        "rel": "noopener noreferrer",
+        "href": "/codex/cloud",
+        "target": "_blank",
+        "data-discover": "true"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Shark 7 Pro，打开“个人资料”菜单",
+      "text": "Shark 7 Pro",
+      "selector": "#radix-_R_qlalj3b31hq9ikj5_",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-fill": "",
+        "data-size": "large",
+        "class": "group __menu-item hoverable ms-2 me-1.5 gap-2! pe-1.5 data-fill:max-w-full [&>div:first-child]:gap-2!",
+        "data-testid": "accounts-profile-button",
+        "aria-label": "Shark 7 Pro，打开“个人资料”菜单",
+        "role": "button",
+        "type": "button",
+        "id": "radix-_R_qlalj3b31hq9ikj5_",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed",
+        "data-sidebar-item": "true"
+      },
+      "selectorCandidates": [
+        "#radix-_R_qlalj3b31hq9ikj5_"
+      ]
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Download apps",
+      "text": "",
+      "selector": "button[aria-label=\"Download apps\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "tabindex": "0",
+        "data-trailing-button": "",
+        "class": "__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&>div]:h-full [&>div]:w-full [&>div]:rounded-lg [&>div]:p-0!",
+        "aria-controls": "_R_kmqlalj3b31hq9ikj5_",
+        "aria-expanded": "false",
+        "aria-haspopup": "menu",
+        "data-state": "closed",
+        "style": "anchor-name:--anchor-_R_kmqlalj3b31hq9ikj5_",
+        "aria-label": "Download apps",
+        "type": "button"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"Download apps\"]"
+      ]
+    },
+    {
+      "ref": "e12",
+      "role": "button",
+      "name": "开始群聊",
+      "text": "",
+      "selector": "button[aria-label=\"开始群聊\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 me-1 rounded-full!",
+        "aria-label": "开始群聊",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"开始群聊\"]"
+      ]
+    },
+    {
+      "ref": "e13",
+      "role": "button",
+      "name": "开启临时聊天",
+      "text": "",
+      "selector": "button[aria-label=\"开启临时聊天\"]",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 rounded-full!",
+        "aria-label": "开启临时聊天"
+      },
+      "selectorCandidates": [
+        "button[aria-label=\"开启临时聊天\"]"
+      ]
+    },
+    {
+      "ref": "e14",
+      "role": "presentation",
+      "name": "准备好了，随时开始",
+      "text": "准备好了，随时开始",
+      "selector": "div",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "role": "presentation",
+        "class": "composer-parent flex flex-1 flex-col focus-visible:outline-0"
+      },
+      "selectorCandidates": [
+        "div"
+      ]
+    },
+    {
+      "ref": "e15",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-files",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "multiple": "",
+        "type": "file",
+        "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+        "tabindex": "-1",
+        "id": "upload-files"
+      },
+      "selectorCandidates": [
+        "#upload-files"
+      ]
+    },
+    {
+      "ref": "e16",
+      "role": "button",
+      "name": "添加文件等",
+      "text": "",
+      "selector": "#composer-plus-btn",
+      "tagName": "button",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "type": "button",
+        "class": "composer-btn",
+        "data-testid": "composer-plus-btn",
+        "aria-label": "添加文件等",
+        "id": "composer-plus-btn",
+        "aria-haspopup": "menu",
+        "aria-expanded": "false",
+        "data-state": "closed"
+      },
+      "selectorCandidates": [
+        "#composer-plus-btn"
+      ]
+    },
+    {
+      "ref": "e17",
+      "role": "textarea",
+      "name": "与 ChatGPT 聊天",
+      "text": "",
+      "selector": "textarea[name=\"prompt-textarea\"]",
+      "tagName": "textarea",
+      "value": "",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "wcDTda_fallbackTextarea",
+        "name": "prompt-textarea",
+        "autofocus": "",
+        "placeholder": "有问题，尽管问",
+        "aria-label": "与 ChatGPT 聊天",
+        "data-virtualkeyboard": "true"
+      },
+      "selectorCandidates": [
+        "textarea[name=\"prompt-textarea\"]"
+      ]
+    },
+    {
+      "ref": "e18",
+      "role": "button",
+      "name": "发送提示",
+      "text": "",
+      "selector": "#composer-submit-button",
+      "tagName": "button",
+      "value": "",
+      "disabled": true,
+      "visible": true,
+      "attributes": {
+        "aria-describedby": "_R_5ammsodqcl8l2nlj3b31hq9ikj5_",
+        "interestfor": "_R_5ammsodqcl8l2nlj3b31hq9ikj5_",
+        "disabled": "",
+        "id": "composer-submit-button",
+        "aria-label": "发送提示",
+        "data-testid": "send-button",
+        "class": "composer-submit-btn composer-submit-button-color h-9 w-9",
+        "style": "anchor-name:--anchor-_R_5ammsodqcl8l2nlj3b31hq9ikj5_"
+      },
+      "selectorCandidates": [
+        "#composer-submit-button"
+      ]
+    },
+    {
+      "ref": "e19",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-photos",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-photos",
+        "accept": "image/*",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-photos"
+      ]
+    },
+    {
+      "ref": "e20",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "selector": "#upload-camera",
+      "tagName": "input",
+      "value": "",
+      "checked": false,
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "class": "sr-only select-none",
+        "type": "file",
+        "tabindex": "-1",
+        "aria-hidden": "true",
+        "id": "upload-camera",
+        "accept": "image/*",
+        "capture": "environment",
+        "multiple": ""
+      },
+      "selectorCandidates": [
+        "#upload-camera"
+      ]
+    },
+    {
+      "ref": "e21",
+      "role": "alert",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-assertive",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "assertive",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-assertive",
+        "role": "alert"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-assertive"
+      ]
+    },
+    {
+      "ref": "e22",
+      "role": "status",
+      "name": "",
+      "text": "",
+      "selector": "#aria-notify-live-region-polite",
+      "tagName": "div",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "aria-live": "polite",
+        "aria-atomic": "true",
+        "aria-relevant": "additions text",
+        "class": "sr-only",
+        "id": "aria-notify-live-region-polite",
+        "role": "status"
+      },
+      "selectorCandidates": [
+        "#aria-notify-live-region-polite"
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "ref": "f1",
+      "name": "window.__oai_logHTML?window.__oai_logHTML():window.__oai_SSR_HTML=window.__oai_SSR_HTML||Date.now();requestAnimationFrame((function(){window.__oai_logTTI?window.__oai_logTTI():window.__oai_SSR_TTI=window.__oai_SSR_TTI||Date.now()}))",
+      "selector": "form",
+      "fields": [
+        {
+          "ref": "e17",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-files",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "multiple": "",
+            "type": "file",
+            "style": "border:0;clip:rect(0, 0, 0, 0);clip-path:inset(50%);height:1px;margin:0 -1px -1px 0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap",
+            "tabindex": "-1",
+            "id": "upload-files"
+          },
+          "selectorCandidates": [
+            "#upload-files"
+          ]
+        },
+        {
+          "ref": "e19",
+          "role": "textarea",
+          "name": "与 ChatGPT 聊天",
+          "text": "",
+          "selector": "textarea[name=\"prompt-textarea\"]",
+          "tagName": "textarea",
+          "value": "",
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "wcDTda_fallbackTextarea",
+            "name": "prompt-textarea",
+            "autofocus": "",
+            "placeholder": "有问题，尽管问",
+            "aria-label": "与 ChatGPT 聊天",
+            "data-virtualkeyboard": "true"
+          },
+          "selectorCandidates": [
+            "textarea[name=\"prompt-textarea\"]"
+          ]
+        },
+        {
+          "ref": "e21",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-photos",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-photos",
+            "accept": "image/*",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-photos"
+          ]
+        },
+        {
+          "ref": "e22",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "selector": "#upload-camera",
+          "tagName": "input",
+          "value": "",
+          "checked": false,
+          "disabled": false,
+          "visible": true,
+          "attributes": {
+            "class": "sr-only select-none",
+            "type": "file",
+            "tabindex": "-1",
+            "aria-hidden": "true",
+            "id": "upload-camera",
+            "accept": "image/*",
+            "capture": "environment",
+            "multiple": ""
+          },
+          "selectorCandidates": [
+            "#upload-camera"
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [],
+  "lists": [
+    {
+      "ref": "l1",
+      "selector": "ul",
+      "ordered": false,
+      "items": [
+        "新聊天",
+        "Search chats"
+      ]
+    }
+  ],
+  "iframes": [
+    {
+      "ref": "i1",
+      "selector": "iframe",
+      "accessible": false,
+      "summary": "Iframe DOM requires frame-level access."
+    }
+  ],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}

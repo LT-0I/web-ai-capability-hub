@@ -1,0 +1,66 @@
+{
+  "url": "https://gemini.google.com/shared-links",
+  "title": "Error 404 (未找到)!!1",
+  "timestamp": "2026-05-14T14:49:25.457Z",
+  "visibleText": "404. 出现错误。 在此服务器上找不到请求的网址。 这是我们知道的全部信息。",
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "main",
+      "name": "404. 出现错误。 在此服务器上找不到请求的网址。 这是我们知道的全部信息。",
+      "text": "404. 出现错误。 在此服务器上找不到请求的网址。 这是我们知道的全部信息。",
+      "selector": "#af-error-container",
+      "tagName": "main",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "af-error-container",
+        "role": "main"
+      },
+      "selectorCandidates": [
+        "#af-error-container"
+      ]
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "",
+      "text": "",
+      "selector": "a",
+      "tagName": "a",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "href": "//www.google.com"
+      },
+      "selectorCandidates": [
+        "a"
+      ]
+    },
+    {
+      "ref": "e3",
+      "role": "img",
+      "name": "Google",
+      "text": "",
+      "selector": "#logo",
+      "tagName": "span",
+      "disabled": false,
+      "visible": true,
+      "attributes": {
+        "id": "logo",
+        "aria-label": "Google",
+        "role": "img"
+      },
+      "selectorCandidates": [
+        "#logo"
+      ]
+    }
+  ],
+  "forms": [],
+  "tables": [],
+  "lists": [],
+  "iframes": [],
+  "warnings": [
+    "Accessibility snapshot unavailable; DOM extraction was used."
+  ]
+}
