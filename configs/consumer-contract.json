@@ -588,7 +588,8 @@
           "elapsed_ms",
           "wait_ms",
           "completion_detected",
-          "errorCode"
+          "errorCode",
+          "reuse_conversation"
         ],
         "optional": [
           "ok",
@@ -660,7 +661,12 @@
           "chat_url",
           "errorCode"
         ],
-        "optional": []
+        "optional": [
+          "ok",
+          "error_code",
+          "selector",
+          "expected_selector"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -682,9 +688,12 @@
           "sha256",
           "size_bytes",
           "suggested_filename",
-          "errorCode"
+          "errorCode",
+          "download_filename"
         ],
-        "optional": []
+        "optional": [
+          "WARN"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -707,9 +716,12 @@
           "sha256",
           "size_bytes",
           "artifact_name",
-          "errorCode"
+          "errorCode",
+          "download_filename"
         ],
-        "optional": []
+        "optional": [
+          "WARN"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -730,7 +742,8 @@
           "sha256",
           "size_bytes",
           "dimensions",
-          "errorCode"
+          "errorCode",
+          "download_filename"
         ],
         "optional": []
       },
@@ -753,9 +766,13 @@
           "sha256",
           "size_bytes",
           "dimensions",
-          "errorCode"
+          "errorCode",
+          "download_filename"
         ],
-        "optional": []
+        "optional": [
+          "error_code",
+          "expected_selector"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },

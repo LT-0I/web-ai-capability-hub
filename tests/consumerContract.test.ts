@@ -312,3 +312,124 @@ test("webai:chatgpt:send-prompt navigates away from stale conversation unless re
   await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", reuse_conversation: true, response_timeout_ms: 10 }, mockWebAiRuntime(reusePage));
   assert.equal(reusePage.calls.goto.length, 0);
 });
+
+function installGeminiDom(stopVisible: boolean, sendDisabled: boolean): void {
+  const stop = { offsetWidth: stopVisible ? 1 : 0, offsetHeight: 0, getClientRects: () => stopVisible ? [{ width: 1 }] : [] };
+  const send = { disabled: false, getAttribute: (name: string) => name === "aria-disabled" ? String(sendDisabled) : null };
+  (globalThis as any).document = {
+    querySelectorAll: (selector: string) => selector === 'button[aria-label="Stop response"]' ? [stop] : [],
+    querySelector: (selector: string) => selector === 'button[aria-label="Send message"]' ? send : null
+  };
+}
+
+function cleanupGeminiDom(): void {
+  delete (globalThis as any).document;
+}
+
+test("gemini send.prompt completion polling uses Stop response and Send message selectors", async () => {
+  const seen: string[] = [];
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.waitForFunction = async (fn: any, arg: any) => {
+    seen.push(String(fn));
+    assert.deepEqual(arg, {});
+  };
+  page.locator = (selector: string) => {
+    seen.push(selector);
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector === "main" ? "gemini response" : "Fast"
+    };
+    return loc;
+  };
+  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.completion_detected, true);
+  assert.equal(result.response_text, "gemini response");
+  assert.match(seen.join("\n"), /button\[aria-label="Stop response"\]/);
+  assert.match(seen.join("\n"), /button\[aria-label="Send message"\]/);
+});
+
+test("gemini completion polling follows stop-visible/send-disabled to stop-gone/send-enabled transition", async () => {
+  const transitions: boolean[] = [];
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.waitForFunction = async (fn: any) => {
+    try {
+      installGeminiDom(true, true);
+      transitions.push(fn());
+      installGeminiDom(false, false);
+      transitions.push(fn());
+    } finally {
+      cleanupGeminiDom();
+    }
+  };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector === "main" ? "gemini response" : "Fast"
+    };
+    return loc;
+  };
+  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.deepEqual(transitions, [false, true]);
+  assert.equal(result.completion_detected, true);
+});
+
+test("gemini upload-and-query clicks upload trigger before setInputFiles", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "gemini-upload-"));
+  const file = path.join(dir, "fixture.csv");
+  fs.writeFileSync(file, "a,b\n1,2\n");
+  const calls: string[] = [];
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.setInputFiles = async (selector: string) => { calls.push(`setInputFiles:${selector}`); };
+  page.waitForSelector = async (selector: string) => { calls.push(`waitForSelector:${selector}`); };
+  page.waitForFunction = async (_fn: any, _arg: any, options: any) => { calls.push(`waitForFunction:${options?.timeout}`); };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Open upload file menu") || selector.includes("Upload files") || selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => { calls.push(`waitFor:${selector}`); },
+      fill: async () => { calls.push(`fill:${selector}`); },
+      click: async () => { calls.push(`click:${selector}`); },
+      textContent: async () => "uploaded response"
+    };
+    return loc;
+  };
+  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-9225", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, null);
+  assert.ok(calls.findIndex((c) => c.includes("Open upload file menu")) < calls.findIndex((c) => c.startsWith("setInputFiles")), calls.join("\n"));
+  assert.ok(calls.find((c) => c.includes("Upload files. Documents, data, code files")), calls.join("\n"));
+  assert.ok(calls.find((c) => c === "waitForFunction:15000"), calls.join("\n"));
+  assert.ok(calls.findIndex((c) => c === "waitForFunction:15000") < calls.findIndex((c) => c === 'click:button[aria-label="Send message"]'), calls.join("\n"));
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("gemini generate-image starts fresh chat unless reuse-conversation", async () => {
+  const page = mockSendPromptPage("https://gemini.google.com/app/stale123?hl=en");
+  const clicks: string[] = [];
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => { clicks.push(selector); if (selector.includes("New chat")) page._url = "https://gemini.google.com/app?hl=en"; },
+      textContent: async () => "image response"
+    };
+    return loc;
+  };
+  const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => ({ path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }) } as any;
+  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-9225", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  assert.equal(result.download_filename, "out.png");
+  assert.ok(clicks.some((selector) => selector.includes("New chat")), clicks.join("\n"));
+});

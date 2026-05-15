@@ -406,3 +406,39 @@ test("followUpTextRegex scrolls an initially below-viewport item before rejectin
   assert.equal(scrolls, 1);
   fs.rmSync(dir, { recursive: true, force: true });
 });
+
+test("generate-file artifact click uses suggestedFilename instead of browser GUID", async () => {
+  const dir = tempDir();
+  const body = Buffer.from("docx-ish fixture");
+  const bcdp = new FakeCDP();
+  const button = new FakeElement({ x: 0, y: 10, width: 10, height: 10 }, "ctx", () => {
+    fs.writeFileSync(path.join(dir, "guid-docx"), body);
+    bcdp.emit("Browser.downloadWillBegin", { guid: "guid-docx", suggestedFilename: "report.docx" });
+    bcdp.emit("Browser.downloadProgress", { guid: "guid-docx", state: "completed", suggestedFilename: "report.docx" });
+  });
+  const page = new FakePage([new FakeFrame("f", { button: [button] }, "text")], new FakePageCDP(button));
+  const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button", downloadDir: dir, filenamePattern: "\\.docx$", timeoutMs: 500 });
+  assert.equal(result.path, path.join(dir, "report.docx"));
+  assert.equal(result.downloadFilename, "report.docx");
+  assert.equal(result.suggestedFilename, "report.docx");
+  assert.ok(!fs.existsSync(path.join(dir, "guid-docx")));
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("generate-file artifact click falls back when suggested filename is missing", async () => {
+  const dir = tempDir();
+  const body = Buffer.from("fallback fixture");
+  const digest = require("node:crypto").createHash("sha256").update(body).digest("hex").slice(0, 12);
+  const bcdp = new FakeCDP();
+  const button = new FakeElement({ x: 0, y: 10, width: 10, height: 10 }, "ctx", () => {
+    fs.writeFileSync(path.join(dir, "guid-missing"), body);
+    bcdp.emit("Browser.downloadWillBegin", { guid: "guid-missing" });
+    bcdp.emit("Browser.downloadProgress", { guid: "guid-missing", state: "completed" });
+  });
+  const page = new FakePage([new FakeFrame("f", { button: [button] }, "text")], new FakePageCDP(button));
+  const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button", downloadDir: dir, filenamePattern: "\\.docx$", timeoutMs: 500 });
+  assert.equal(result.downloadFilename, `download-${digest}.docx`);
+  assert.equal(result.path, path.join(dir, `download-${digest}.docx`));
+  assert.match(result.warn || "", /suggestedFilename/);
+  fs.rmSync(dir, { recursive: true, force: true });
+});

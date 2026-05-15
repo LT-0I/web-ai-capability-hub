@@ -1,0 +1,7 @@
+{
+  "ok": false,
+  "error": "locator.click: Timeout 3000ms exceeded — Send message button not enabled after file upload",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "columns_echoed": false,
+  "note": "Send button (aria-disabled=true) never became enabled after setInputFiles. Different failure mode from original (input[type=file] timeout); upload trigger may now work but submit stays disabled."
+}

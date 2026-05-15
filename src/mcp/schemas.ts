@@ -189,13 +189,14 @@ export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: st
   timeout_ms: scalar.number("Timeout in milliseconds")
 }, ["profile", "prompt", "expected_extension", "download_dir"]);
 
-export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; size?: string; tab_url_contains?: string; timeout_ms?: number }>({
+export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Image generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded image"),
   size: scalar.string("Optional image size hint"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
-  timeout_ms: scalar.number("Timeout in milliseconds")
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt", "download_dir"]);
 
 export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; title?: string; tab_url_contains?: string; timeout_ms?: number }>({

@@ -43,6 +43,8 @@ export interface ArtifactClickResult {
   sha256: string;
   size: number;
   suggestedFilename?: string;
+  downloadFilename?: string;
+  warn?: string;
   downloadGuid: string;
   frameUrl?: string;
   bbox: { x: number; y: number; width: number; height: number };
@@ -104,7 +106,20 @@ function globToRegExp(glob: string): RegExp {
   const escaped = glob.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*").replace(/\?/g, ".");
   return new RegExp(`^${escaped}$`);
 }
+function filenameMatchesPattern(name: string, pattern: string): boolean {
+  if (globToRegExp(pattern).test(name)) return true;
+  try { return new RegExp(pattern).test(name); } catch { return false; }
+}
 function sha256(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeDownloadBasename(name: string): string {
+  return path.basename(String(name || "")).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_").trim();
+}
+function fallbackNameFromPattern(filePath: string, filenamePattern?: string): string {
+  const digest = sha256(filePath).slice(0, 12);
+  const normalized = (filenamePattern || "").replace(/\\/g, "");
+  const ext = /\.([A-Za-z0-9]+)\$?$/.exec(normalized)?.[1] || "bin";
+  return `download-${digest}.${ext}`;
+}
 function ensureArgs(options: ArtifactClickOptions): void {
   if (!options.profile || !options.buttonSelector || !options.downloadDir) throw new ArtifactClickError("INVALID_ARGS", "browser:artifact-click requires --profile, --button-selector, and --download-dir");
   if (options.followUpTextRegex) {
@@ -297,17 +312,32 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
     if (files.length) finalPath = files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
   }
   const suggested = downloaded.suggestedFilename || path.basename(finalPath);
-  if (options.filenamePattern && !globToRegExp(options.filenamePattern).test(suggested) && !globToRegExp(options.filenamePattern).test(path.basename(finalPath))) {
+  if (options.filenamePattern && downloaded.suggestedFilename && !filenameMatchesPattern(suggested, options.filenamePattern)) {
     throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: suggested, filenamePattern: options.filenamePattern });
+  }
+  let warn: string | undefined;
+  if (!options.renameTo) {
+    const safeSuggested = safeDownloadBasename(downloaded.suggestedFilename || "");
+    const targetName = safeSuggested || fallbackNameFromPattern(finalPath, options.filenamePattern);
+    if (!safeSuggested) warn = "WARN: Browser.downloadWillBegin did not include suggestedFilename; used deterministic fallback download filename.";
+    const targetPath = path.join(options.downloadDir, targetName);
+    if (path.resolve(targetPath) !== path.resolve(finalPath)) {
+      if (fs.existsSync(targetPath)) fs.rmSync(targetPath, { force: true });
+      fs.renameSync(finalPath, targetPath);
+      finalPath = targetPath;
+    }
   }
   if (options.renameTo) {
     const renamed = path.join(options.downloadDir, options.renameTo);
     fs.renameSync(finalPath, renamed);
     finalPath = renamed;
   }
+  if (options.filenamePattern && !filenameMatchesPattern(path.basename(finalPath), options.filenamePattern)) {
+    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: suggested, filenamePattern: options.filenamePattern });
+  }
   const size = fs.statSync(finalPath).size;
   if (options.verifyMinBytes !== undefined && size < options.verifyMinBytes) throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded file is smaller than --verify-min-bytes", { size, verifyMinBytes: options.verifyMinBytes });
-  return { path: finalPath, sha256: sha256(finalPath), size, suggestedFilename: suggested, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
+  return { path: finalPath, sha256: sha256(finalPath), size, suggestedFilename: downloaded.suggestedFilename, downloadFilename: path.basename(finalPath), warn, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
 }
 
 function matchesUrlTarget(current: string, target: string): boolean {

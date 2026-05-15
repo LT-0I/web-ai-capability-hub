@@ -94,7 +94,7 @@ Contract 1.3.0 adds 13 experimental webai tools, implemented as service-specific
 
 `webai:gemini:generate-video` is asynchronous. It returns `{ task_id, status, profile, lease_id, started_at }` immediately; callers poll `webai:task-status --task-id <id>` / `webai_task_status({ task_id })` for `{ status, progress_label?, result?, errorCode? }`. The v1.3.0 registry is in-memory only: restarting the MCP server abandons in-flight task metadata. Mutating webai tools serialize per profile; a concurrent same-profile mutation returns `PROFILE_LEASE_BUSY`, while different profiles may proceed in parallel.
 
-Webai send-prompt outputs always include `wait_ms` and `completion_detected`; ChatGPT send-prompt also includes `reuse_conversation`. If `completion_detected` is false, callers must treat `errorCode`/`error_code` as authoritative and must not interpret `response_text` as a partial answer. Login prechecks return structured `LOGIN_REQUIRED` failures before prompt-input locator waits.
+Webai send-prompt outputs always include `wait_ms` and `completion_detected`; ChatGPT and Gemini send-prompt also include `reuse_conversation`. Gemini completion is detected from Gemini response containers plus streaming-indicator disappearance, not ChatGPT DOM selectors. If `completion_detected` is false, callers must treat `errorCode`/`error_code` as authoritative and must not interpret `response_text` as a partial answer. Login prechecks return structured `LOGIN_REQUIRED` failures before prompt-input locator waits.
 
 Per-tool send-prompt output keys:
 
@@ -102,7 +102,9 @@ Per-tool send-prompt output keys:
 | --- | --- | --- |
 | `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code` |
 | `webai:claude:send-prompt` / `webai_claude_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code` |
-| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code` |
+| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code` |
+
+Artifact download outputs now include `download_filename` when the browser suggested filename is materialized on disk. If Chrome omits `suggestedFilename`, generate-file paths use `download-<sha256[:12]>.<expected-ext>` and include a `WARN` field. Gemini upload selector failures include `selector` / `expected_selector`; Gemini image download failures include `expected_selector`.
 
 Webai outputs are redacted by schema: they must not include account email, local browser profile paths, CDP/websocket endpoints, cookies/tokens, screenshot bytes/paths, raw DOM, raw HTML, or conversation URLs except the explicitly contracted `chat_url` fields. Prompt text requesting public publishing, collaborator invites, connector enablement, billing/account changes, or scheduled actions returns `POLICY_APPROVAL_REQUIRED`. Publish-class labels such as `Share conversation`, `Create public link`, `Publish`, `Make public`, and `Share Canvas` are denied before click with `AUTO_PUBLISH_DETECTED`. Gemini export-adjacent flows perform a post-export sharing scan and return `AUTO_PUBLISH_DETECTED` if a new public link is observed.
 
