@@ -615,9 +615,13 @@
           "conversation_id",
           "attachment_names",
           "response_text",
+          "wait_ms",
+          "completion_detected",
           "errorCode"
         ],
-        "optional": []
+        "optional": [
+          "error_code"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -637,9 +641,13 @@
           "files_uploaded_count",
           "attachment_names",
           "response_text",
+          "wait_ms",
+          "completion_detected",
           "errorCode"
         ],
-        "optional": []
+        "optional": [
+          "error_code"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -659,6 +667,8 @@
           "files_in_chip",
           "response_text",
           "chat_url",
+          "wait_ms",
+          "completion_detected",
           "errorCode"
         ],
         "optional": [

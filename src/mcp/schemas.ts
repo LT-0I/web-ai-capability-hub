@@ -170,12 +170,13 @@ export const webAiSendPromptOutputShape = {
   service: scalar.string("Service id on structured failure responses")
 };
 
-export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; tab_url_contains?: string; timeout_ms?: number }>({
+export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number }>({
   profile: scalar.string("Managed browser profile name"),
   files: scalar.array(scalar.string("Local file path"), "Files to upload"),
   prompt: scalar.string("Prompt text to send after upload"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
-  timeout_ms: scalar.number("Timeout in milliseconds")
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000")
 }, ["profile", "files", "prompt"]);
 
 export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: string; expected_extension: string; download_dir: string; model?: string; artifact_class?: string; tab_url_contains?: string; timeout_ms?: number }>({
@@ -199,7 +200,7 @@ export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: s
   reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt", "download_dir"]);
 
-export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; title?: string; tab_url_contains?: string; timeout_ms?: number }>({
+export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; title?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Canvas prompt to export to Google Docs"),
   title: scalar.string("Optional document title"),

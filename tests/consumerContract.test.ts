@@ -407,6 +407,10 @@ test("gemini upload-and-query clicks upload trigger before setInputFiles", async
   const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-9225", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.ok(calls.findIndex((c) => c.includes("Open upload file menu")) < calls.findIndex((c) => c.startsWith("setInputFiles")), calls.join("\n"));
+  const menuWaitIndex = calls.findIndex((c) => c.startsWith('waitForSelector:button[aria-label="Upload files. Documents, data, code files"], button[data-test-id="local-images-files-uploader-button"]'));
+  const menuClickIndex = calls.findIndex((c) => c.startsWith('click:button[aria-label="Upload files. Documents, data, code files"], button[data-test-id="local-images-files-uploader-button"]'));
+  assert.ok(menuWaitIndex >= 0, calls.join("\n"));
+  assert.ok(menuClickIndex > menuWaitIndex, calls.join("\n"));
   assert.ok(calls.find((c) => c.includes("Upload files. Documents, data, code files")), calls.join("\n"));
   assert.ok(calls.find((c) => c === "waitForFunction:15000"), calls.join("\n"));
   assert.ok(calls.findIndex((c) => c === "waitForFunction:15000") < calls.findIndex((c) => c === 'click:button[aria-label="Send message"]'), calls.join("\n"));
@@ -432,4 +436,139 @@ test("gemini generate-image starts fresh chat unless reuse-conversation", async 
   const result: any = await webAiGeminiGenerateImage({ profile: "gemini-9225", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "out.png");
   assert.ok(clicks.some((selector) => selector.includes("New chat")), clicks.join("\n"));
+});
+
+test("upload-and-query completion fields round-trip through schema and contract", () => {
+  const manifest = contract();
+  const { webAiUploadAndQueryInput } = require("../src/mcp/schemas");
+  const inputSchema: any = webAiUploadAndQueryInput.toJsonSchema();
+  assert.ok(inputSchema.properties.response_timeout_ms, "upload_and_query response_timeout_ms input schema missing");
+  for (const cli of ["webai:chatgpt:upload-and-query", "webai:claude:upload-and-query", "webai:gemini:upload-and-query"]) {
+    const row = manifest.commands.find((command: any) => command.cli_name === cli);
+    assert.ok(row.output_keys.always_present.includes("wait_ms"), `${cli} wait_ms missing`);
+    assert.ok(row.output_keys.always_present.includes("completion_detected"), `${cli} completion_detected missing`);
+  }
+});
+
+test("chatgpt upload-and-query reads response before managed page closes", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "chatgpt-upload-"));
+  const file = path.join(dir, "fixture.csv");
+  fs.writeFileSync(file, "a,b\n1,2\n");
+  let closed = false;
+  let responseReadWhileOpen = false;
+  const page = mockSendPromptPage("https://chatgpt.com/");
+  page.setInputFiles = async () => undefined;
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("assistant") || selector.includes("main") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => {
+        assert.equal(closed, false, "responseText must be read before browser close");
+        responseReadWhileOpen = true;
+        return "real assistant answer";
+      }
+    };
+    return loc;
+  };
+  const context = { pages: () => [page], newPage: async () => page };
+  const browser = { contexts: () => [context], close: async () => { closed = true; } };
+  const runtime = { launcher: { launch: async () => ({}), connectOverCdp: async () => browser } } as any;
+  const result: any = await webAiChatgptUploadAndQuery({ profile: "chatgpt-upload-open", files: [file], prompt: "read it", response_timeout_ms: 10 }, runtime);
+  assert.equal(result.response_text, "real assistant answer");
+  assert.equal(result.completion_detected, true);
+  assert.equal(typeof result.wait_ms, "number");
+  assert.equal(responseReadWhileOpen, true);
+  assert.equal(closed, true);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("upload-and-query timeout returns COMMAND_TIMEOUT with empty response text", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-upload-timeout-"));
+  const file = path.join(dir, "fixture.txt");
+  fs.writeFileSync(file, "hello\n");
+  const page = mockSendPromptPage("https://claude.ai/new");
+  page.setInputFiles = async () => undefined;
+  page.waitForFunction = async () => { throw new Error("timeout"); };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => 1,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector.includes("assistant") || selector.includes("main") ? "garbled homepage DOM" : "Claude"
+    };
+    return loc;
+  };
+  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-upload-timeout", files: [file], prompt: "read it", response_timeout_ms: 1 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, "COMMAND_TIMEOUT");
+  assert.equal(result.error_code, "COMMAND_TIMEOUT");
+  assert.equal(result.completion_detected, false);
+  assert.equal(result.response_text, "");
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("generate-file passes captured conversation URL to artifactClickRunner", async () => {
+  const calls: any[] = [];
+  const page = mockSendPromptPage("https://claude.ai/chat/conversation-123");
+  const runtime = {
+    ...mockWebAiRuntime(page),
+    artifactClick: async (options: any) => {
+      calls.push(options);
+      return { path: path.join(process.cwd(), "artifact.md"), sha256: "abc", size: 12, downloadFilename: "artifact.md", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
+    }
+  } as any;
+  const result: any = await webAiClaudeGenerateFile({ profile: "claude-generate-file", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  assert.equal(result.artifact_name, "artifact.md");
+  assert.equal(calls[0].tabUrlContains, "https://claude.ai/chat/conversation-123");
+  assert.notEqual(calls[0].tabUrlContains, "https://claude.ai");
+});
+
+test("gemini generate-image uses more-menu-button then image-download-button chain", async () => {
+  const page = mockSendPromptPage("https://gemini.google.com/app/stale456?hl=en");
+  page.waitForSelector = async () => undefined;
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => { if (selector.includes("New chat")) page._url = "https://gemini.google.com/app/conversation-456?hl=en"; },
+      textContent: async () => selector === "main" ? "image response" : "Fast"
+    };
+    return loc;
+  };
+  const calls: any[] = [];
+  const runtime = { ...mockWebAiRuntime(page), artifactClick: async (options: any) => { calls.push(options); return { path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }; } } as any;
+  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-chain", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  assert.equal(result.download_filename, "out.png");
+  assert.equal(calls[0].buttonSelector, 'button[data-test-id="more-menu-button"]');
+  assert.equal(calls[0].followUpSelector, 'button[data-test-id="image-download-button"]');
+});
+
+test("canvas-to-docs returns ARTIFACT_VERIFICATION_FAILED when Docs artifact URL is absent", async () => {
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector === "main" ? "canvas response" : "Fast"
+    };
+    return loc;
+  };
+  const result: any = await webAiGeminiCanvasToDocs({ profile: "gemini-canvas-verify", prompt: "make canvas", title: "gd-canvas-smoke", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.docs_url, "https://gemini.google.com/app?hl=en");
+  assert.equal(result.docs_doc_id, null);
+  assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
+  assert.equal(result.error_code, "ARTIFACT_VERIFICATION_FAILED");
 });

@@ -296,7 +296,7 @@ const CHATGPT_FRESH_URL = "https://chatgpt.com/?model=gpt-4o";
 const GEMINI_FRESH_URL = "https://gemini.google.com/app";
 const GEMINI_RESPONSE_SELECTOR = "main";
 const GEMINI_UPLOAD_TRIGGER_SELECTOR = "button[aria-label=\"Open upload file menu\"]";
-const GEMINI_UPLOAD_FILES_SELECTOR = "button[aria-label=\"Upload files. Documents, data, code files\"], button:has-text(\"Upload files\"), [role=\"menuitem\"]:has-text(\"Upload files\")";
+const GEMINI_UPLOAD_FILES_SELECTOR = "button[aria-label=\"Upload files. Documents, data, code files\"], button[data-test-id=\"local-images-files-uploader-button\"]";
 const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
 
 function responseTimeoutMs(args: any): number {
@@ -451,6 +451,11 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
     return;
   }
   await requireAndClick(page, GEMINI_UPLOAD_TRIGGER_SELECTOR, "Gemini upload trigger button was not found");
+  try {
+    await page.waitForSelector?.(GEMINI_UPLOAD_FILES_SELECTOR, { state: "visible", timeout: 10000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menu item was not found after opening the upload menu", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: error?.message || String(error) });
+  }
   await requireAndClick(page, GEMINI_UPLOAD_FILES_SELECTOR, "Gemini upload-files menu item was not found");
   await page.waitForSelector?.('input[type="file"]', { state: "attached", timeout: 10000 });
   await page.setInputFiles('input[type="file"]', resolved, { timeout: 10000 });
@@ -530,14 +535,21 @@ async function uploadAndQueryOnPage(service: WebAiService, args: any, runtime: R
       try {
         await uploadFilesInExistingPage(service, page, resolved);
       } catch (error: any) {
-        if (error instanceof WebAiToolError) return safeOutput({ ok: false, files_in_chip: [], errorCode: error.errorCode, error_code: error.errorCode, selector: error.evidence?.selector || null, expected_selector: error.evidence?.selector || null, response_text: "", chat_url: page.url?.() || null });
+        if (error instanceof WebAiToolError) return safeOutput({ ok: false, files_in_chip: [], errorCode: error.errorCode, error_code: error.errorCode, selector: error.evidence?.selector || null, expected_selector: error.evidence?.selector || null, response_text: "", wait_ms: 0, completion_detected: false, chat_url: page.url?.() || null });
         throw error;
       }
       const response = await sendPromptInExistingPage(service, args, page, Date.now());
       const names = resolved.map((file: string) => path.basename(file));
-      if (service === "chatgpt") return safeOutput({ conversation_id: response.conversation_id || null, attachment_names: names, response_text: response.response_text || "", errorCode: response.errorCode || null });
-      if (service === "claude") return safeOutput({ files_uploaded_count: names.length, attachment_names: names, response_text: response.response_text || "", errorCode: response.errorCode || null });
-      return safeOutput({ files_in_chip: names, response_text: response.response_text || "", chat_url: response.chat_url || null, errorCode: response.errorCode || null });
+      const completion = {
+        response_text: response.response_text || "",
+        wait_ms: Number(response.wait_ms || 0),
+        completion_detected: Boolean(response.completion_detected),
+        errorCode: response.errorCode || null,
+        ...(response.error_code ? { error_code: response.error_code } : {})
+      };
+      if (service === "chatgpt") return safeOutput({ conversation_id: response.conversation_id || null, attachment_names: names, ...completion });
+      if (service === "claude") return safeOutput({ files_uploaded_count: names.length, attachment_names: names, ...completion });
+      return safeOutput({ files_in_chip: names, chat_url: response.chat_url || null, ...completion });
     });
   } finally { releaseProfileLease(args.profile, lease); }
 }
@@ -562,7 +574,8 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
   assertNotPublishDeniedLabel("Download", { tool: `webai.${service}.generate_file` });
   const lease = acquireProfileLease(args.profile);
   try {
-    await sendPromptOnPage(service, args, runtime);
+    const promptResult = await sendPromptOnPage(service, args, runtime);
+    const conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     const buttonSelector = service === "chatgpt"
       ? "button.behavior-btn"
       : args.artifact_class === "document"
@@ -570,7 +583,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
         : `button[aria-label^="Download"]`;
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
-      tabUrlContains: args.tab_url_contains || serviceDefaults[service].url,
+      tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
       buttonSelector,
       downloadDir: args.download_dir,
       filenamePattern: `\\.${args.expected_extension}$`,
@@ -588,21 +601,26 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
   const lease = acquireProfileLease(args.profile);
   try {
     const promptArgs = { ...args };
+    let conversationUrl: string | undefined;
     if (service === "gemini") {
-      await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
+      const promptResult = await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
         await navigateGeminiFreshIfNeeded(page, args);
         await clickIfPresent(page, 'button[aria-label="🖼️ Create image, button, tap to use tool"], button[aria-label="Create image, button, tap to use tool"], button:has-text("Create image")');
-        await sendPromptInExistingPage("gemini", promptArgs, page, Date.now());
+        const result = await sendPromptInExistingPage("gemini", promptArgs, page, Date.now());
+        await page.waitForSelector?.('img[alt="AI generated"], img[alt*="generated" i]', { state: "visible", timeout: Math.min(args.timeout_ms || 90000, 30000) }).catch(() => undefined);
+        return result;
       });
+      conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     } else {
-      await sendPromptOnPage(service, promptArgs, runtime);
+      const promptResult = await sendPromptOnPage(service, promptArgs, runtime);
+      conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     }
-    const expectedSelector = service === "chatgpt" ? "img" : 'button[aria-label="Download full size image"]';
+    const expectedSelector = service === "chatgpt" ? 'main img[alt], main img[src^="blob:"], main img[src*="oaiusercontent"], main img' : 'button[data-test-id="more-menu-button"]';
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
-      tabUrlContains: args.tab_url_contains || serviceDefaults[service].url,
+      tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
       buttonSelector: expectedSelector,
-      followUpSelector: service === "chatgpt" ? 'button[aria-label="Save"]' : undefined,
+      followUpSelector: service === "chatgpt" ? 'button[aria-label="Save"]' : 'button[data-test-id="image-download-button"]',
       downloadDir: args.download_dir,
       filenamePattern: "\\.(png|jpg|jpeg|webp)$",
       timeoutMs: args.timeout_ms || 90000,
@@ -611,7 +629,7 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
     return artifactClickResultToSafeOutput(result, { dimensions: null, download_filename: path.basename(result.path || "") });
   } catch (error: any) {
     if (error?.errorCode === ConsumerErrorCodes.ELEMENT_NOT_FOUND || error?.errorCode === "ELEMENT_NOT_FOUND") {
-      return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND, error_code: ConsumerErrorCodes.ELEMENT_NOT_FOUND, expected_selector: error.evidence?.selector || 'button[aria-label="Download full size image"]' });
+      return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND, error_code: ConsumerErrorCodes.ELEMENT_NOT_FOUND, expected_selector: error.evidence?.selector || (service === "gemini" ? 'button[data-test-id="more-menu-button"]' : 'button[aria-label="Save"]') });
     }
     throw error;
   } finally { releaseProfileLease(args.profile, lease); }
@@ -626,7 +644,12 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
     assertNotPublishDeniedLabel("Export to Docs", { tool: "webai.gemini.canvas_to_docs" });
     const sharing = await verifyNoNewPublicLinks(args.profile, baselineCount);
     if (!sharing.ok) return safeOutput({ docs_url: null, docs_doc_id: null, title: args.title || null, errorCode: sharing.errorCode, cleanup_attempted: sharing.cleanup_attempted });
-    return safeOutput({ docs_url: result.chat_url || null, docs_doc_id: null, title: args.title || null, errorCode: null });
+    const docsUrl = typeof result.chat_url === "string" ? result.chat_url : null;
+    const docsDocId = docsUrl ? /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/.exec(docsUrl)?.[1] || null : null;
+    if (!docsUrl || !docsDocId) {
+      return safeOutput({ docs_url: docsUrl, docs_doc_id: docsDocId, title: args.title || null, errorCode: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, error_code: ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED });
+    }
+    return safeOutput({ docs_url: docsUrl, docs_doc_id: docsDocId, title: args.title || null, errorCode: null });
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
