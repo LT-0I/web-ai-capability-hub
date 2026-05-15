@@ -18,6 +18,7 @@ import {
   ScheduledJobRecord,
   ServiceTargetRecord,
   SiteRegistryEntryRecord,
+  WebAiTaskRecord,
   UiElementRecord,
   WorkflowDefinitionRecord,
   WorkflowRunRecord
@@ -46,6 +47,7 @@ const TABLES: TableName[] = [
   "artifacts",
   "site_registry_entries",
   "scheduled_jobs",
+  "web_ai_tasks",
   "policy_events"
 ];
 
@@ -73,6 +75,7 @@ function emptyStore(): StoreData {
     artifacts: [],
     site_registry_entries: [],
     scheduled_jobs: [],
+    web_ai_tasks: [],
     policy_events: []
   };
 }
@@ -377,6 +380,33 @@ export class CapabilityDatabase {
     return this.readStore().profile_leases.filter((row) => !profileId || row.profile_id === profileId).sort((a, b) => b.acquired_at.localeCompare(a.acquired_at));
   }
 
+  upsertWebAiTask(record: WebAiTaskRecord): WebAiTaskRecord {
+    this.init();
+    const row: WebAiTaskRecord = { ...record, updated_at: record.updated_at || now() };
+    if (this.sqliteAvailable) this.sqlite.prepare(`INSERT INTO web_ai_tasks (task_id, status, profile, lease_id, started_at, progress_label, result, error_code, timeout_ms, worker_pid, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(task_id) DO UPDATE SET status=excluded.status, profile=excluded.profile, lease_id=excluded.lease_id, started_at=excluded.started_at, progress_label=excluded.progress_label, result=excluded.result, error_code=excluded.error_code, timeout_ms=excluded.timeout_ms, worker_pid=excluded.worker_pid, updated_at=excluded.updated_at`)
+      .run(row.task_id, row.status, row.profile, row.lease_id, row.started_at, row.progress_label || null, json(row.result), row.errorCode || null, row.timeout_ms || null, row.worker_pid || null, row.updated_at);
+    else this.upsertJson("web_ai_tasks", row, (existing) => existing.task_id === row.task_id);
+    return row;
+  }
+
+  getWebAiTask(taskId: string): WebAiTaskRecord | undefined {
+    this.init();
+    if (this.sqliteAvailable) {
+      const row = this.sqlite.prepare(`SELECT * FROM web_ai_tasks WHERE task_id=?`).get(taskId);
+      return row ? this.sqliteRowToWebAiTask(row) : undefined;
+    }
+    return this.readStore().web_ai_tasks.find((row) => row.task_id === taskId);
+  }
+
+  getActiveWebAiTaskForProfile(profile: string): WebAiTaskRecord | undefined {
+    this.init();
+    if (this.sqliteAvailable) {
+      const row = this.sqlite.prepare(`SELECT * FROM web_ai_tasks WHERE profile=? AND status IN ('queued','running') ORDER BY started_at DESC LIMIT 1`).get(profile);
+      return row ? this.sqliteRowToWebAiTask(row) : undefined;
+    }
+    return this.readStore().web_ai_tasks.filter((row) => row.profile === profile && ["queued", "running"].includes(row.status)).sort((a, b) => b.started_at.localeCompare(a.started_at))[0];
+  }
+
   addPolicyEvent(record: Omit<PolicyEventRecord, "id" | "timestamp"> & { id?: string; timestamp?: string }): PolicyEventRecord {
     const row: PolicyEventRecord = { id: record.id || id("policy"), timestamp: record.timestamp || now(), ...record };
     this.init();
@@ -407,6 +437,7 @@ export class CapabilityDatabase {
     out.artifacts = out.artifacts.map((row: any) => ({ ...row, metadata: parseJson(row.metadata, undefined) }));
     out.site_registry_entries = out.site_registry_entries.map((row: any) => ({ ...row, raw: parseJson(row.raw, {}) }));
     out.scheduled_jobs = out.scheduled_jobs.map((row: any) => ({ ...row, enabled: !!row.enabled, options: parseJson(row.options, undefined) }));
+    out.web_ai_tasks = out.web_ai_tasks.map((row: any) => this.sqliteRowToWebAiTask(row));
     out.policy_events = out.policy_events.map((row: any) => ({ ...row, evidence: parseJson(row.evidence, undefined) }));
     return target ? { ...filterExportByTarget(out, target), exportedAt: out.exportedAt } : out;
   }
@@ -492,6 +523,22 @@ export class CapabilityDatabase {
     addRunEventColumn("idempotency_key", "TEXT");
   }
 
+  private sqliteRowToWebAiTask(row: any): WebAiTaskRecord {
+    return {
+      task_id: row.task_id,
+      status: row.status,
+      profile: row.profile,
+      lease_id: row.lease_id,
+      started_at: row.started_at,
+      progress_label: row.progress_label || undefined,
+      result: typeof row.result === "string" || row.result === null || row.result === undefined ? parseJson(row.result, undefined) : row.result,
+      errorCode: row.error_code || row.errorCode || undefined,
+      timeout_ms: row.timeout_ms === null || row.timeout_ms === undefined ? undefined : Number(row.timeout_ms),
+      worker_pid: row.worker_pid === null || row.worker_pid === undefined ? undefined : Number(row.worker_pid),
+      updated_at: row.updated_at || undefined
+    };
+  }
+
   private sqliteRowToCapability(row: any): CapabilityRecord {
     return {
       id: row.id,
@@ -543,6 +590,7 @@ function filterExportByTarget(data: StoreData, target: string): StoreData {
     capability_versions: data.capability_versions.filter((row) => row.target_id === target),
     artifacts: data.artifacts.filter((row) => row.target_id === target),
     scheduled_jobs: data.scheduled_jobs.filter((row) => row.target_id === target),
+    web_ai_tasks: data.web_ai_tasks.filter((row) => row.profile === target),
     policy_events: data.policy_events.filter((row) => row.target_id === target),
     site_registry_entries: data.site_registry_entries.filter((row) => row.site_id === target)
   };

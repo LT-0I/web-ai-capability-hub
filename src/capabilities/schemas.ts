@@ -158,6 +158,22 @@ export interface ScheduledJobRecord {
   options?: Record<string, unknown>;
 }
 
+export type WebAiTaskStatus = "queued" | "running" | "done" | "complete" | "failed";
+
+export interface WebAiTaskRecord {
+  task_id: string;
+  status: WebAiTaskStatus;
+  profile: string;
+  lease_id: string;
+  started_at: string;
+  progress_label?: string;
+  result?: Record<string, unknown>;
+  errorCode?: string;
+  timeout_ms?: number;
+  worker_pid?: number;
+  updated_at?: string;
+}
+
 export interface PolicyEventRecord {
   id: string;
   target_id?: string;
@@ -184,6 +200,7 @@ export interface CapabilityDatabaseExport {
   artifacts: ArtifactRecord[];
   site_registry_entries: SiteRegistryEntryRecord[];
   scheduled_jobs: ScheduledJobRecord[];
+  web_ai_tasks: WebAiTaskRecord[];
   policy_events: PolicyEventRecord[];
 }
 

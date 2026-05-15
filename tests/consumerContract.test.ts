@@ -6,6 +6,7 @@ import { consumerHealth, ConsumerHealthResult } from "../src/consumer/health";
 import { CONSUMER_ERROR_CODES } from "../src/consumer/errorCodes";
 import { ManagedBrowserLauncher, ManagedBrowserStatus } from "../src/browser/managedLauncher";
 import { main } from "../src/cli";
+import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
 import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiTaskStatus } from "../src/mcp/tools";
 
@@ -24,6 +25,11 @@ function readJson(file: string): any {
 
 function contract(): any { return readJson("configs/consumer-contract.json"); }
 function fixtures(): { checkedAt: string; scenarios: Scenario[] } { return readJson("tests/fixtures/consumer-health-scenarios.json"); }
+
+function tempCapabilityDb(): CapabilityDatabase {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "wah-task-db-"));
+  return new CapabilityDatabase({ dbPath: path.join(dir, "capability.json"), preferSqlite: false });
+}
 
 function launcherForScenario(scenario: Scenario): any {
   if (scenario.timeout) return { status: async () => new Promise(() => undefined) };
@@ -1182,10 +1188,9 @@ test("canvas-to-docs returns a real docs.google.com URL + doc id from the spawne
   assert.equal(docsPage._closed, true);
 });
 
-test("gemini generate-video returns an async task envelope and task-status reports terminal state", async () => {
+test("gemini generate-video returns an async task envelope and persists a running task row", async () => {
   const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "vid-"));
-  // Canvas/video affordances absent in this mock -> the async job must fail
-  // honestly (ELEMENT_NOT_FOUND), never fabricate a fake complete result.
+  const db = tempCapabilityDb();
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.locator = (selector: string) => {
     const loc: any = {
@@ -1200,21 +1205,90 @@ test("gemini generate-video returns an async task envelope and task-status repor
     };
     return loc;
   };
-  const env: any = await webAiGeminiGenerateVideo({ profile: "gemini-video-async", prompt: "a 2-second clip of a rotating blue cube", download_dir: dir }, mockWebAiRuntime(page));
+  let spawnedTaskId = "";
+  const env: any = await webAiGeminiGenerateVideo(
+    { profile: "gemini-video-async", prompt: "a 2-second clip of a rotating blue cube", download_dir: dir },
+    { ...mockWebAiRuntime(page), database: db, spawnVideoWorker: (taskId: string) => { spawnedTaskId = taskId; return { pid: process.pid }; } } as any
+  );
   assert.equal(typeof env.task_id, "string");
   assert.ok(env.task_id.startsWith("task_"));
   assert.equal(env.status, "running");
   assert.equal(env.profile, "gemini-video-async");
   assert.equal(typeof env.lease_id, "string");
   assert.equal(typeof env.started_at, "string");
-  // Poll task-status until terminal.
-  let status: any;
-  for (let i = 0; i < 50; i++) {
-    status = await webAiTaskStatus({ task_id: env.task_id });
-    if (status.status === "complete" || status.status === "failed") break;
-    await new Promise((r) => setTimeout(r, 20));
-  }
-  assert.equal(status.status, "failed");
-  assert.equal(status.errorCode, "ELEMENT_NOT_FOUND");
+  assert.equal(spawnedTaskId, env.task_id);
+  const persisted = db.getWebAiTask(env.task_id);
+  assert.equal(persisted?.status, "running");
+  assert.equal(persisted?.profile, "gemini-video-async");
   fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("webai task status reads durable task rows through a fresh database handle", async () => {
+  const db = tempCapabilityDb();
+  db.upsertWebAiTask({
+    task_id: "task_cross_process",
+    status: "done",
+    profile: "gemini-cross-process",
+    lease_id: "lease_cross",
+    started_at: new Date().toISOString(),
+    progress_label: "video generated and downloaded",
+    result: { path: "/tmp/video.mp4", sha256: "abc", size_bytes: 12, download_filename: "video.mp4" }
+  });
+  const fresh = new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false });
+  const status: any = await webAiTaskStatus({ task_id: "task_cross_process" }, { database: fresh });
+  assert.equal(status.status, "done");
+  assert.equal(status.progress_label, "video generated and downloaded");
+  assert.deepEqual(status.result, { path: "/tmp/video.mp4", sha256: "abc", size_bytes: 12, download_filename: "video.mp4" });
+  assert.equal(status.errorCode, undefined);
+  assert.deepEqual(await webAiTaskStatus({ task_id: "missing" }, { database: fresh }), { status: "failed", errorCode: "INVALID_ARGS" });
+});
+
+test("gemini generate-video detached-worker contract reflects worker terminal result from a fresh store", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "vid-done-"));
+  const artifactPath = path.join(dir, "done.mp4");
+  fs.writeFileSync(artifactPath, Buffer.concat([Buffer.from([0, 0, 0, 24]), Buffer.from("ftypisom", "ascii"), Buffer.alloc(32)]));
+  const db = tempCapabilityDb();
+  const runtime = {
+    ...mockWebAiRuntime(mockSendPromptPage("https://gemini.google.com/app?hl=en")),
+    database: db,
+    spawnVideoWorker: (taskId: string, _args: any, database: CapabilityDatabase) => {
+      const row = database.getWebAiTask(taskId)!;
+      database.upsertWebAiTask({
+        ...row,
+        status: "done",
+        progress_label: "video generated and downloaded",
+        result: { path: artifactPath, sha256: "sha", size_bytes: fs.statSync(artifactPath).size, download_filename: "done.mp4" },
+        worker_pid: process.pid
+      });
+      return { pid: process.pid };
+    }
+  } as any;
+  const env: any = await webAiGeminiGenerateVideo({ profile: "gemini-video-detached", prompt: "make video", download_dir: dir }, runtime);
+  assert.deepEqual(Object.keys(env), ["task_id", "status", "profile", "lease_id", "started_at"]);
+  const fresh = new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false });
+  const status: any = await webAiTaskStatus({ task_id: env.task_id }, { database: fresh });
+  assert.equal(status.status, "done");
+  assert.equal(status.result.path, artifactPath);
+  assert.equal(status.result.size_bytes > 0, true);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("webai task status marks abandoned stale running video task as COMMAND_TIMEOUT", async () => {
+  const db = tempCapabilityDb();
+  db.upsertWebAiTask({
+    task_id: "task_stale",
+    status: "running",
+    profile: "gemini-stale",
+    lease_id: "lease_stale",
+    started_at: new Date(Date.now() - 10_000).toISOString(),
+    progress_label: "generating video",
+    timeout_ms: 1,
+    worker_pid: 99999999
+  });
+  const status: any = await webAiTaskStatus({ task_id: "task_stale" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
+  assert.equal(status.status, "failed");
+  assert.equal(status.errorCode, "COMMAND_TIMEOUT");
+  const persisted = db.getWebAiTask("task_stale");
+  assert.equal(persisted?.status, "failed");
+  assert.equal(persisted?.errorCode, "COMMAND_TIMEOUT");
 });

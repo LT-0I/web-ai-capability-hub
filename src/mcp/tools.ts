@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const childProcess = require("node:child_process");
 import { BrowserSessionManager } from "../browser/sessionManager";
 import { ManagedBrowserLauncher } from "../browser/managedLauncher";
 import { DownloadManager } from "../browser/downloads";
@@ -52,6 +53,7 @@ import {
   webAiTaskStatusInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
+import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 
 export interface McpToolDefinition {
   name: string;
@@ -63,6 +65,7 @@ export interface BrowserToolRuntime {
   session?: BrowserSessionManager;
   launcher?: ManagedBrowserLauncher;
   database?: CapabilityDatabase;
+  spawnVideoWorker?: (taskId: string, args: any, database: CapabilityDatabase) => { pid?: number };
 }
 
 interface ToolSpec {
@@ -212,19 +215,6 @@ async function runWorkflowPlanInManagedPage(args: WorkflowExecuteArgs, runtime: 
 }
 
 type WebAiService = "chatgpt" | "claude" | "gemini";
-type WebAiTaskStatus = "queued" | "running" | "complete" | "failed";
-
-interface WebAiTaskRecord {
-  task_id: string;
-  status: WebAiTaskStatus;
-  profile: string;
-  lease_id: string;
-  started_at: string;
-  progress_label?: string;
-  result?: Record<string, unknown>;
-  errorCode?: string;
-}
-
 const serviceDefaults: Record<WebAiService, { url: string; promptSelector: string }> = {
   chatgpt: { url: "https://chatgpt.com/", promptSelector: "#prompt-textarea" },
   claude: { url: "https://claude.ai/new", promptSelector: '[contenteditable="true"], #prompt-textarea' },
@@ -232,7 +222,6 @@ const serviceDefaults: Record<WebAiService, { url: string; promptSelector: strin
 };
 
 const profileLeases = new Map<string, string>();
-const taskRegistry = new Map<string, WebAiTaskRecord>();
 const forbiddenOutputFields = new Set(["cdpEndpoint", "webSocketDebuggerUrl", "profileDir", "profile_dir", "executablePath", "executable_path", "cookies", "cookie", "tokens", "token", "Authorization", "authorization", "accountEmail", "account_email", "email", "dom", "html", "screenshot", "screenshotPath", "rawSnapshot", "snapshot"]);
 
 class WebAiToolError extends Error {
@@ -1191,8 +1180,8 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
   const artifactPath = dl.path || (dl as any).savedPath || "";
   const stat = artifactPath && fs.existsSync(artifactPath) ? fs.statSync(artifactPath) : undefined;
   const size = (dl as any).size_bytes ?? (dl as any).size ?? stat?.size ?? 0;
-  if (!artifactPath || !fs.existsSync(artifactPath) || !size) {
-    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini video download produced no file on disk");
+  if (!artifactPath || !fs.existsSync(artifactPath) || !size || !isValidMp4Ftyp(artifactPath)) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini video download produced no valid MP4 file on disk");
   }
   record.result = {
     path: artifactPath,
@@ -1202,29 +1191,108 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
   };
 }
 
+function videoTaskTimeoutMs(args: any): number {
+  const value = Number(args.timeout_ms ?? args.timeoutMs ?? 300000);
+  return Number.isFinite(value) && value > 0 ? value : 300000;
+}
+
+function isPidAlive(pid?: number): boolean {
+  if (!pid || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isValidMp4Ftyp(filePath: string): boolean {
+  try {
+    const fd = fs.openSync(filePath, "r");
+    try {
+      const buffer = Buffer.alloc(12);
+      const bytes = fs.readSync(fd, buffer, 0, buffer.length, 0);
+      return bytes >= 8 && buffer.toString("ascii", 4, 8) === "ftyp";
+    } finally {
+      fs.closeSync(fd);
+    }
+  } catch {
+    return false;
+  }
+}
+
+function persistVideoTask(database: CapabilityDatabase, record: WebAiTaskRecord): WebAiTaskRecord {
+  return database.upsertWebAiTask(record);
+}
+
+function maybeMarkStaleVideoTask(database: CapabilityDatabase, record: WebAiTaskRecord): WebAiTaskRecord {
+  if (!["queued", "running"].includes(record.status)) return record;
+  const timeoutMs = Number(record.timeout_ms || 300000);
+  const started = Date.parse(record.started_at);
+  const budgetExceeded = Number.isFinite(started) && Date.now() - started > timeoutMs;
+  if (!budgetExceeded || isPidAlive(record.worker_pid)) return record;
+  const stale: WebAiTaskRecord = {
+    ...record,
+    status: "failed",
+    errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT,
+    progress_label: `failed: ${ConsumerErrorCodes.COMMAND_TIMEOUT}`
+  };
+  return persistVideoTask(database, stale);
+}
+
+function spawnDetachedGeminiVideoWorker(taskId: string, args: any, database: CapabilityDatabase): { pid?: number } {
+  const workerPath = path.join(__dirname, "videoWorker.js");
+  const encodedArgs = Buffer.from(JSON.stringify(args), "utf-8").toString("base64url");
+  const child = childProcess.spawn(process.execPath, [workerPath, "--task-id", taskId, "--db-path", database.dbPath, "--args-b64", encodedArgs], {
+    detached: true,
+    stdio: "ignore",
+    windowsHide: true,
+    env: { ...process.env, WAH_SQLITE_PATH: database.dbPath }
+  });
+  child.unref();
+  return { pid: child.pid };
+}
+
 function startGeminiVideoTask(args: any, runtime: Required<BrowserToolRuntime>): Record<string, unknown> {
   assertPromptAllowed(args.prompt);
   requireAbsoluteDir(args.download_dir);
-  const lease = acquireProfileLease(args.profile);
+  const active = runtime.database.getActiveWebAiTaskForProfile(args.profile);
+  if (active) {
+    const current = maybeMarkStaleVideoTask(runtime.database, active);
+    if (["queued", "running"].includes(current.status)) throw new WebAiToolError(ConsumerErrorCodes.PROFILE_LEASE_BUSY, `profile ${args.profile} already has an active webai mutation lease`, { profile: args.profile, lease_id: active.lease_id });
+  }
   const task_id = safeTaskId();
-  const record: WebAiTaskRecord = { task_id, status: "running", profile: args.profile, lease_id: lease, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation" };
-  taskRegistry.set(task_id, record);
-  // Real async browser job. The handler returns the task envelope immediately;
-  // webai_task_status polls record.status until terminal.
-  void (async () => {
-    try {
-      await runGeminiVideoGeneration(args, runtime, record);
-      record.status = "complete";
-      record.progress_label = "video generated and downloaded";
-    } catch (error: any) {
-      record.status = "failed";
-      record.errorCode = (error instanceof WebAiToolError && error.errorCode) ? error.errorCode : ConsumerErrorCodes.COMMAND_TIMEOUT;
-      record.progress_label = `failed: ${record.errorCode}`;
-    } finally {
-      releaseProfileLease(args.profile, lease);
+  const lease = `lease_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`;
+  let record: WebAiTaskRecord = { task_id, status: "running", profile: args.profile, lease_id: lease, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation", timeout_ms: videoTaskTimeoutMs(args) };
+  record = persistVideoTask(runtime.database, record);
+  try {
+    const spawned = (runtime as any).spawnVideoWorker ? (runtime as any).spawnVideoWorker(task_id, args, runtime.database) : spawnDetachedGeminiVideoWorker(task_id, args, runtime.database);
+    if (spawned?.pid) {
+      const latest = runtime.database.getWebAiTask(task_id) || record;
+      persistVideoTask(runtime.database, { ...latest, worker_pid: spawned.pid });
     }
-  })();
+  } catch (error: any) {
+    persistVideoTask(runtime.database, { ...record, status: "failed", errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT, progress_label: `failed: ${ConsumerErrorCodes.COMMAND_TIMEOUT}` });
+  }
   return safeOutput({ task_id, status: record.status, profile: record.profile, lease_id: lease, started_at: record.started_at });
+}
+
+export async function runGeminiVideoTaskWorker(taskId: string, args: any, database = new CapabilityDatabase()): Promise<void> {
+  const runtime = runtimeOrDefault({ database });
+  let record = database.getWebAiTask(taskId);
+  if (!record) {
+    record = { task_id: taskId, status: "running", profile: args.profile, lease_id: `lease_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation", timeout_ms: videoTaskTimeoutMs(args), worker_pid: process.pid };
+  } else {
+    record = { ...record, status: "running", worker_pid: process.pid };
+  }
+  persistVideoTask(database, record);
+  try {
+    await runGeminiVideoGeneration(args, runtime, record);
+    persistVideoTask(database, { ...record, status: "done", progress_label: "video generated and downloaded" });
+  } catch (error: any) {
+    const errorCode = (error instanceof WebAiToolError && error.errorCode) ? error.errorCode : ConsumerErrorCodes.COMMAND_TIMEOUT;
+    persistVideoTask(database, { ...record, status: "failed", errorCode, progress_label: `failed: ${errorCode}` });
+  }
 }
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
@@ -1239,10 +1307,12 @@ export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserTool
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiVideoTask(args, runtimeOrDefault(runtime)); }
-export async function webAiTaskStatus(args: any): Promise<unknown> {
-  const record = taskRegistry.get(args.task_id);
+export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const database = runtime?.database || new CapabilityDatabase();
+  const record = database.getWebAiTask(args.task_id);
   if (!record) return safeOutput({ status: "failed", errorCode: ConsumerErrorCodes.INVALID_ARGS });
-  return safeOutput({ status: record.status, progress_label: record.progress_label, result: record.result, errorCode: record.errorCode });
+  const current = maybeMarkStaleVideoTask(database, record);
+  return safeOutput({ status: current.status, progress_label: current.progress_label, result: current.result, errorCode: current.errorCode });
 }
 
 export const toolSpecs: ToolSpec[] = [
@@ -1328,7 +1398,7 @@ export const toolSpecs: ToolSpec[] = [
     name: "webai_task_status",
     description: "Return status/result metadata for an async webai task.",
     schema: webAiTaskStatusInput,
-    handler: async (args) => webAiTaskStatus(args)
+    handler: async (args, runtime) => webAiTaskStatus(args, runtime)
   },
   {
     name: "browser_launch",

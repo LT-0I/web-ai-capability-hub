@@ -1,0 +1,47 @@
+=== Cross-process poll trace: task_1778846439993_a154a1223dd7 ===
+Poll start: 2026-05-15T12:00:51Z
+
+[2026-05-15T12:00:51Z] poll#1 status=running
+{
+  "status": "running",
+  "progress_label": "queued Gemini video generation"
+}
+---
+[2026-05-15T12:01:06Z] poll#2 status=running
+{
+  "status": "running",
+  "progress_label": "queued Gemini video generation"
+}
+---
+[2026-05-15T12:01:21Z] poll#3 status=running
+{
+  "status": "running",
+  "progress_label": "queued Gemini video generation"
+}
+---
+[2026-05-15T12:01:37Z] poll#4 status=running
+{
+  "status": "running",
+  "progress_label": "queued Gemini video generation"
+}
+---
+[2026-05-15T12:01:52Z] poll#5 status=running
+{
+  "status": "running",
+  "progress_label": "queued Gemini video generation"
+}
+---
+[2026-05-15T12:02:07Z] poll#6 status=done
+{
+  "status": "done",
+  "progress_label": "video generated and downloaded",
+  "result": {
+    "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/web-ai-explore/stream4-joint-work-2026-05-14/r10-video/mp_.mp4",
+    "sha256": "5c0045ee13aa498e881908dbb29bb3b9f4d0e5a639dc1f328533c2e41b449825",
+    "size_bytes": 2029376,
+    "download_filename": "mp_.mp4"
+  }
+}
+---
+=== TERMINAL at poll#6 ===
+Poll end: 2026-05-15T12:02:07Z

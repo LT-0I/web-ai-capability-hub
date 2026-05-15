@@ -144,6 +144,19 @@ export const SQLITE_MIGRATIONS = [
   next_run_at TEXT,
   options TEXT
 );`,
+`CREATE TABLE IF NOT EXISTS web_ai_tasks (
+  task_id TEXT PRIMARY KEY,
+  status TEXT NOT NULL,
+  profile TEXT NOT NULL,
+  lease_id TEXT NOT NULL,
+  started_at TEXT NOT NULL,
+  progress_label TEXT,
+  result TEXT,
+  error_code TEXT,
+  timeout_ms INTEGER,
+  worker_pid INTEGER,
+  updated_at TEXT NOT NULL
+);`,
 `CREATE TABLE IF NOT EXISTS policy_events (
   id TEXT PRIMARY KEY,
   target_id TEXT,
