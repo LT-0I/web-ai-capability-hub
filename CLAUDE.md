@@ -124,6 +124,10 @@ streams** the project will run next.
 - **Interactive web AI exploration** → `.omc/skills/web-ai-interactive-explore/SKILL.md`
   → **Stream #3 entry point** (live UI exercise: login check, model selection,
   send message, upload file, download artifact, catalog observed gaps)
+- **Launch the three web-AI Chrome instances** → `.omc/skills/web-ai-launch-browsers/SKILL.md`
+  → Mandatory before any `webai:*` command. Brings up ChatGPT/Claude/Gemini chromes on
+  CDP ports 9223/9224/9225 with the right per-service profiles. **Use `browser:launch`,
+  never `browser:start`.**
 
 See `docs/WORKFLOW_OMC_OMX_INTEGRATION.md` §F for the full Stream #2 / #3
 runbooks and how the skills above compose.
@@ -158,6 +162,21 @@ These have been tried, have failed, or have been explicitly forbidden by the use
 
 - **"Just let me write the TS code myself."** Wrong. Dispatch to Codex via `omx exec`.
   The orchestrator does not edit `src/` / `tests/` / `configs/` directly.
+- **`browser:start --profile <name>` to launch a managed chrome.** Wrong. `browser:start`
+  is a v0 legacy command that silently ignores `--profile`, launches the bundled
+  playwright Chromium with `--remote-debugging-pipe` to the default singular
+  `data/browser-profile` dir — the CDP port never listens. Use
+  `browser:launch --profile <name> --cdp-port <port>` (routed through
+  `ManagedBrowserLauncher`). See `.omc/skills/web-ai-launch-browsers/SKILL.md` and
+  user-memory `feedback_browser_launch_command.md`.
+- **`--profile claude` for the Claude lane.** Wrong. That profile (port 9222) is a
+  deprecated logged-out remnant whose Cookies only contain `sessionKeyLC` (a logout
+  marker). The active Claude session is in **`claude-9224`** (port 9224). All
+  `webai:claude:*` invocations must use `--profile claude-9224`. See user-memory
+  `project_claude_profile_9224.md`.
+- **Launching the three web-AI chromes in parallel.** Wrong. They race on the global
+  `SingletonLock` in the default profile dir. Always serialize the three
+  `browser:launch` calls.
 - **"Add a graceful fallback so it doesn't fail."** Wrong. Surface a stable error
   code from the contract taxonomy. Graceful fallback hides the bug we need to fix.
 - **Page-level Playwright `download.click()` for sandbox iframes.** Wrong. The
