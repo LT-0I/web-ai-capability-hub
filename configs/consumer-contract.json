@@ -755,7 +755,11 @@
           "errorCode",
           "download_filename"
         ],
-        "optional": []
+        "optional": [
+          "error_code",
+          "expected_selector",
+          "message"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -781,7 +785,8 @@
         ],
         "optional": [
           "error_code",
-          "expected_selector"
+          "expected_selector",
+          "message"
         ]
       },
       "may_contain_sensitive_local_fields": false

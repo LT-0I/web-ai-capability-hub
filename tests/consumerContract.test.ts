@@ -313,28 +313,37 @@ test("webai:chatgpt:send-prompt navigates away from stale conversation unless re
   assert.equal(reusePage.calls.goto.length, 0);
 });
 
-function installGeminiDom(stopVisible: boolean, sendDisabled: boolean): void {
-  const stop = { offsetWidth: stopVisible ? 1 : 0, offsetHeight: 0, getClientRects: () => stopVisible ? [{ width: 1 }] : [] };
-  const send = { disabled: false, getAttribute: (name: string) => name === "aria-disabled" ? String(sendDisabled) : null };
+function installCompletionDom(options: { stopVisible?: boolean; sendDisabled?: boolean; assistantTexts?: string[]; renderedImage?: boolean } = {}): void {
+  const stop = { offsetWidth: options.stopVisible ? 1 : 0, offsetHeight: 0, getClientRects: () => options.stopVisible ? [{ width: 1 }] : [] };
+  const send = { disabled: Boolean(options.sendDisabled), getAttribute: (name: string) => name === "aria-disabled" ? String(Boolean(options.sendDisabled)) : null };
+  const assistants = (options.assistantTexts || []).map((text) => ({ textContent: text }));
+  const image = { naturalWidth: options.renderedImage ? 64 : 0, naturalHeight: options.renderedImage ? 64 : 0 };
+  (globalThis as any).window = (globalThis as any).window || {};
   (globalThis as any).document = {
-    querySelectorAll: (selector: string) => selector === 'button[aria-label="Stop response"]' ? [stop] : [],
-    querySelector: (selector: string) => selector === 'button[aria-label="Send message"]' ? send : null
+    querySelectorAll: (selector: string) => {
+      if (selector.includes("Stop response") || selector.includes("stop-button") || selector.includes("Stop")) return options.stopVisible ? [stop] : [];
+      if (selector.includes("message-content") || selector.includes("model-response") || selector.includes("response-container") || selector.includes("assistant")) return assistants;
+      if (selector.includes("AI generated") || selector.includes("img")) return [image];
+      return [];
+    },
+    querySelector: (selector: string) => selector.includes("Send message") ? send : null
   };
 }
 
-function cleanupGeminiDom(): void {
+function cleanupCompletionDom(): void {
   delete (globalThis as any).document;
+  delete (globalThis as any).window;
 }
 
-test("gemini send.prompt completion polling uses Stop response and Send message selectors", async () => {
-  const seen: string[] = [];
+test("waitForPromptCompletion phase A times out when generation never starts", async () => {
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
-  page.waitForFunction = async (fn: any, arg: any) => {
-    seen.push(String(fn));
-    assert.deepEqual(arg, {});
+  let waitCalls = 0;
+  page.waitForFunction = async (_fn: any, _arg: any, options: any) => {
+    waitCalls++;
+    assert.equal(options.timeout, 25);
+    throw new Error("phase a timeout");
   };
   page.locator = (selector: string) => {
-    seen.push(selector);
     const loc: any = {
       first: () => loc,
       last: () => loc,
@@ -342,28 +351,37 @@ test("gemini send.prompt completion polling uses Stop response and Send message 
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
-      textContent: async () => selector === "main" ? "gemini response" : "Fast"
+      textContent: async () => selector.includes("message-content") ? "should not be read" : "Fast"
     };
     return loc;
   };
-  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
-  assert.equal(result.completion_detected, true);
-  assert.equal(result.response_text, "gemini response");
-  assert.match(seen.join("\n"), /button\[aria-label="Stop response"\]/);
-  assert.match(seen.join("\n"), /button\[aria-label="Send message"\]/);
+  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 25 }, mockWebAiRuntime(page));
+  assert.equal(waitCalls, 1, "Phase B must not run when generation never starts");
+  assert.equal(result.completion_detected, false);
+  assert.equal(result.errorCode, "COMMAND_TIMEOUT");
+  assert.equal(result.response_text, "");
 });
 
-test("gemini completion polling follows stop-visible/send-disabled to stop-gone/send-enabled transition", async () => {
-  const transitions: boolean[] = [];
+test("waitForPromptCompletion returns true only after Phase A start then Phase B completion and stable content", async () => {
+  const phases: string[] = [];
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
-  page.waitForFunction = async (fn: any) => {
+  page.waitForFunction = async (fn: any, arg: any) => {
     try {
-      installGeminiDom(true, true);
-      transitions.push(fn());
-      installGeminiDom(false, false);
-      transitions.push(fn());
+      if (arg.assistantCountBefore !== undefined) {
+        phases.push("phase-a");
+        installCompletionDom({ stopVisible: false, sendDisabled: false, assistantTexts: [] });
+        assert.equal(fn(arg), false);
+        installCompletionDom({ stopVisible: true, sendDisabled: true, assistantTexts: [] });
+        assert.equal(fn(arg), true);
+        return;
+      }
+      phases.push("phase-b");
+      installCompletionDom({ stopVisible: false, sendDisabled: false, assistantTexts: ["final answer"] });
+      assert.equal(fn(arg), false);
+      (globalThis as any).window.__webAiCompletionStable.since -= 1600;
+      assert.equal(fn(arg), true);
     } finally {
-      cleanupGeminiDom();
+      cleanupCompletionDom();
     }
   };
   page.locator = (selector: string) => {
@@ -374,13 +392,39 @@ test("gemini completion polling follows stop-visible/send-disabled to stop-gone/
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
-      textContent: async () => selector === "main" ? "gemini response" : "Fast"
+      textContent: async () => selector.includes("message-content") ? "final answer" : "Fast"
+    };
+    return loc;
+  };
+  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
+  assert.deepEqual(phases, ["phase-a", "phase-b"]);
+  assert.equal(result.completion_detected, true);
+  assert.equal(result.response_text, "final answer");
+});
+
+test("gemini send.prompt completion polling uses generation-started gate and Stop response/Send message selectors", async () => {
+  const seen: string[] = [];
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.waitForFunction = async (_fn: any, arg: any) => { seen.push(JSON.stringify(arg)); };
+  page.locator = (selector: string) => {
+    seen.push(selector);
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector.includes("message-content") ? "gemini response" : "Fast"
     };
     return loc;
   };
   const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
-  assert.deepEqual(transitions, [false, true]);
   assert.equal(result.completion_detected, true);
+  assert.equal(result.response_text, "gemini response");
+  assert.match(seen.join("\n"), /button\[aria-label="Stop response"\]/);
+  assert.match(seen.join("\n"), /button\[aria-label="Send message"\]/);
+  assert.match(seen.join("\n"), /assistantCountBefore/);
 });
 
 test("gemini upload-and-query clicks upload trigger before setInputFiles", async () => {
@@ -550,6 +594,87 @@ test("gemini generate-image uses more-menu-button then image-download-button cha
   assert.equal(result.download_filename, "out.png");
   assert.equal(calls[0].buttonSelector, 'button[data-test-id="more-menu-button"]');
   assert.equal(calls[0].followUpSelector, 'button[data-test-id="image-download-button"]');
+});
+
+
+test("generateImageOnPage waits for naturalWidth image before artifact-click", async () => {
+  const events: string[] = [];
+  const page = mockSendPromptPage("https://gemini.google.com/app/stale789?hl=en");
+  page.waitForFunction = async (_fn: any, arg: any) => {
+    if (arg?.imageSelector) events.push("render-poll-naturalWidth");
+  };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => { if (selector.includes("New chat")) page._url = "https://gemini.google.com/app/conversation-789?hl=en"; },
+      textContent: async () => selector.includes("message-content") ? "image ready" : "Fast"
+    };
+    return loc;
+  };
+  const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => { events.push("artifact-click"); return { path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png" }; } } as any;
+  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-render-order", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  assert.equal(result.download_filename, "out.png");
+  assert.deepEqual(events, ["render-poll-naturalWidth", "artifact-click"]);
+});
+
+test("generateImageOnPage returns COMMAND_TIMEOUT when generated image never renders", async () => {
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.waitForFunction = async (_fn: any, arg: any) => {
+    if (arg?.imageSelector) throw new Error("image never rendered");
+  };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("Create image") || selector.includes("Send message") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector.includes("message-content") ? "image pending" : "Fast"
+    };
+    return loc;
+  };
+  let artifactClicked = false;
+  const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => { artifactClicked = true; throw new Error("must not click artifact"); } } as any;
+  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-render-timeout", prompt: "make image", download_dir: process.cwd(), timeout_ms: 50, response_timeout_ms: 10 }, runtime);
+  assert.equal(result.errorCode, "COMMAND_TIMEOUT");
+  assert.equal(result.error_code, "COMMAND_TIMEOUT");
+  assert.equal(result.download_filename, "");
+  assert.equal(artifactClicked, false);
+});
+
+test("upload-and-query retries uncleared composer once then returns COMMAND_TIMEOUT", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "chatgpt-upload-send-confirm-"));
+  const file = path.join(dir, "fixture.csv");
+  fs.writeFileSync(file, "a,b\n1,2\n");
+  let sendClicks = 0;
+  const page = mockSendPromptPage("https://chatgpt.com/");
+  page.setInputFiles = async () => undefined;
+  page.locator = (selector: string) => {
+    const isPrompt = selector.includes("ProseMirror") || selector.includes("textarea") || selector.includes("prompt-textarea");
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("send-button") || selector.includes("Send") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => { if (selector.includes("send-button") || selector.includes("Send")) sendClicks++; },
+      inputValue: async () => isPrompt ? "read it" : "",
+      textContent: async () => isPrompt ? "read it" : "GPT"
+    };
+    return loc;
+  };
+  const result: any = await webAiChatgptUploadAndQuery({ profile: "chatgpt-upload-send-confirm", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(sendClicks, 2);
+  assert.equal(result.errorCode, "COMMAND_TIMEOUT");
+  assert.equal(result.error_code, "COMMAND_TIMEOUT");
+  assert.equal(result.completion_detected, false);
+  assert.equal(result.response_text, "");
+  fs.rmSync(dir, { recursive: true, force: true });
 });
 
 test("canvas-to-docs returns ARTIFACT_VERIFICATION_FAILED when Docs artifact URL is absent", async () => {

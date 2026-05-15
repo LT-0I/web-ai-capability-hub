@@ -294,7 +294,7 @@ function targetUrlFor(service: WebAiService, args: any): string {
 const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
 const CHATGPT_FRESH_URL = "https://chatgpt.com/?model=gpt-4o";
 const GEMINI_FRESH_URL = "https://gemini.google.com/app";
-const GEMINI_RESPONSE_SELECTOR = "main";
+const GEMINI_RESPONSE_SELECTOR = 'message-content, [data-test-id="model-response"], .model-response-text, response-container, main [role="article"]';
 const GEMINI_UPLOAD_TRIGGER_SELECTOR = "button[aria-label=\"Open upload file menu\"]";
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[aria-label=\"Upload files. Documents, data, code files\"], button[data-test-id=\"local-images-files-uploader-button\"]";
 const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
@@ -370,50 +370,142 @@ async function readModelUsed(service: WebAiService, page: any, args: any): Promi
   return null;
 }
 
+function assistantMessageSelector(service: WebAiService): string {
+  if (service === "chatgpt") return '[data-message-author-role="assistant"]';
+  if (service === "claude") return '[data-testid*="message" i]:has([aria-label*="Claude" i]), [data-is-streaming="false"], .font-claude-message, main [data-testid*="chat-message" i]';
+  return GEMINI_RESPONSE_SELECTOR;
+}
+
+function stopButtonSelector(service: WebAiService): string {
+  if (service === "gemini") return 'button[aria-label="Stop response"]';
+  if (service === "chatgpt") return 'button[data-testid="stop-button"], button[aria-label*="Stop" i]';
+  return '[aria-label*="Stop" i]';
+}
+
+function sendButtonSelector(service: WebAiService): string {
+  if (service === "gemini") return 'button[aria-label="Send message"]';
+  if (service === "chatgpt") return 'button[data-testid="send-button"], button[aria-label*="Send" i]';
+  return '[aria-label*="Send" i]';
+}
+
 async function waitForPromptCompletion(service: WebAiService, page: any, sentAt: number, assistantCountBefore: number, timeoutMs: number): Promise<{ completion_detected: boolean; wait_ms: number }> {
+  void sentAt;
   const started = Date.now();
   const elapsed = () => Date.now() - started;
+  const phaseATimeout = Math.min(20000, timeoutMs);
+  const stopSelector = stopButtonSelector(service);
+  const sendSelector = sendButtonSelector(service);
+  const assistantSelector = assistantMessageSelector(service);
   try {
-    if (service === "chatgpt" || service === "claude") {
-      const stopSelector = service === "chatgpt" ? 'button[data-testid="stop-button"], button[aria-label*="Stop" i]' : '[aria-label*="Stop" i]';
-      const sendSelector = service === "chatgpt" ? 'button[data-testid="send-button"], button[aria-label*="Send" i]' : '[aria-label*="Send" i]';
-      await page.waitForFunction?.(
-        ({ stopSelector, sendSelector }: any) => {
-          const stops = Array.from(document.querySelectorAll(stopSelector)) as HTMLElement[];
-          const stopVisible = stops.some((el) => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
-          const sends = Array.from(document.querySelectorAll(sendSelector)) as HTMLButtonElement[];
-          const sendReady = sends.length === 0 || sends.some((el: any) => !el.disabled && el.getAttribute("aria-disabled") !== "true");
-          return !stopVisible && sendReady;
-        },
-        { stopSelector, sendSelector },
-        { timeout: timeoutMs }
-      );
-    } else {
-      await page.waitForFunction?.(
-        () => {
-          const stops = Array.from(document.querySelectorAll('button[aria-label="Stop response"]')) as HTMLElement[];
-          const stopVisible = stops.some((el) => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
-          const send = document.querySelector('button[aria-label="Send message"]') as HTMLButtonElement | null;
-          const sendReady = !!send && send.getAttribute("aria-disabled") !== "true" && !send.disabled;
-          return !stopVisible && sendReady;
-        },
-        {},
-        { timeout: timeoutMs }
-      );
-    }
+    // Phase A / generation-started gate: never treat "stop absent + send enabled"
+    // as completion until we first observe a real generation start.
+    await page.waitForFunction?.(
+      ({ stopSelector, assistantSelector, assistantCountBefore }: any) => {
+        const visible = (el: Element) => !!((el as HTMLElement).offsetWidth || (el as HTMLElement).offsetHeight || (el as HTMLElement).getClientRects().length);
+        const stopVisible = Array.from(document.querySelectorAll(stopSelector)).some(visible);
+        const assistantCount = document.querySelectorAll(assistantSelector).length;
+        return stopVisible || assistantCount > assistantCountBefore;
+      },
+      { stopSelector, assistantSelector, assistantCountBefore },
+      { timeout: phaseATimeout }
+    );
+  } catch (_error) {
+    return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
+  }
+
+  const remaining = Math.max(1, timeoutMs - elapsed());
+  try {
+    await page.waitForFunction?.(
+      ({ stopSelector, sendSelector, assistantSelector }: any) => {
+        const visible = (el: Element) => !!((el as HTMLElement).offsetWidth || (el as HTMLElement).offsetHeight || (el as HTMLElement).getClientRects().length);
+        const stops = Array.from(document.querySelectorAll(stopSelector));
+        const stopVisible = stops.some(visible);
+        const sends = Array.from(document.querySelectorAll(sendSelector)) as HTMLButtonElement[];
+        const sendReady = sends.length === 0 || sends.some((el: any) => !el.disabled && el.getAttribute("aria-disabled") !== "true");
+        const completeUi = !stopVisible && sendReady;
+        const messages = Array.from(document.querySelectorAll(assistantSelector));
+        const latest = messages[messages.length - 1] as HTMLElement | undefined;
+        const textLength = latest?.textContent?.length || 0;
+        const state = (window as any).__webAiCompletionStable || ((window as any).__webAiCompletionStable = { length: -1, since: Date.now() });
+        if (state.length !== textLength) {
+          state.length = textLength;
+          state.since = Date.now();
+        }
+        return completeUi && textLength > 0 && Date.now() - state.since >= 1500;
+      },
+      { stopSelector, sendSelector, assistantSelector },
+      { timeout: remaining }
+    );
     return { completion_detected: true, wait_ms: elapsed() };
   } catch (_error) {
     return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
   }
 }
 
-async function assistantCount(page: any): Promise<number> {
-  return await page.locator?.(GEMINI_RESPONSE_SELECTOR).count?.().catch(() => 0) || 0;
+async function assistantCount(serviceOrPage: WebAiService | any, maybePage?: any): Promise<number> {
+  const service: WebAiService = maybePage ? serviceOrPage : "gemini";
+  const page = maybePage || serviceOrPage;
+  return await page.locator?.(assistantMessageSelector(service)).count?.().catch(() => 0) || 0;
 }
 
 async function responseText(service: WebAiService, page: any): Promise<string> {
-  const selector = service === "gemini" ? GEMINI_RESPONSE_SELECTOR : '[data-message-author-role="assistant"], main';
-  return await page.locator?.(selector).last?.().textContent?.({ timeout: 2000 }).catch(() => "") || "";
+  return await page.locator?.(assistantMessageSelector(service)).last?.().textContent?.({ timeout: 2000 }).catch(() => "") || "";
+}
+
+async function composerText(box: any): Promise<string | undefined> {
+  if (!box) return undefined;
+  const value = await box.inputValue?.({ timeout: 500 }).catch(() => undefined);
+  if (typeof value === "string") return value;
+  const text = await box.textContent?.({ timeout: 500 }).catch(() => undefined);
+  return typeof text === "string" ? text : undefined;
+}
+
+async function promptStillPresent(box: any, prompt: string): Promise<boolean | undefined> {
+  const text = await composerText(box);
+  if (typeof text !== "string") return undefined;
+  return text.replace(/\s+/g, " ").includes(prompt.replace(/\s+/g, " ").trim());
+}
+
+async function pendingStateVisible(service: WebAiService, page: any, assistantCountBefore: number): Promise<boolean> {
+  const stopSelector = stopButtonSelector(service);
+  const stopCount = await page.locator?.(stopSelector).count?.().catch(() => 0) || 0;
+  if (stopCount > 0) return true;
+  return await assistantCount(service, page) > assistantCountBefore;
+}
+
+async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, box: any, prompt: string, assistantCountBefore: number): Promise<void> {
+  const sendSelector = sendButtonSelector(service);
+  const attemptSend = async () => {
+    const sendButton = page.locator?.(sendSelector).first?.();
+    if (sendButton && await sendButton.count?.().catch(() => 0)) await sendButton.click?.({ timeout: 3000 });
+    else await page.keyboard?.press("Enter");
+  };
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await attemptSend();
+    await page.waitForTimeout?.(250).catch(() => undefined);
+    if (await pendingStateVisible(service, page, assistantCountBefore)) return;
+    const stillPresent = await promptStillPresent(box, prompt);
+    if (stillPresent === false || stillPresent === undefined) return;
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Prompt did not submit: composer still contained prompt text after retry", { selector: sendSelector });
+}
+
+async function waitForGeneratedImageRendered(service: "chatgpt" | "gemini", page: any, timeoutMs: number): Promise<void> {
+  const imageSelector = service === "chatgpt"
+    ? 'main [data-message-author-role="assistant"] img[src^="blob:"], main [data-message-author-role="assistant"] img[src*="oaiusercontent"], [data-message-author-role="assistant"] img[src^="blob:"], [data-message-author-role="assistant"] img[src*="oaiusercontent"]'
+    : 'img[alt="AI generated"], img[alt*="generated" i], message-content img, response-container img';
+  try {
+    await page.waitForFunction?.(
+      ({ imageSelector }: any) => {
+        const images = Array.from(document.querySelectorAll(imageSelector)) as HTMLImageElement[];
+        return images.some((img) => img.naturalWidth > 0 && img.naturalHeight > 0);
+      },
+      { imageSelector },
+      { timeout: Math.min(120000, timeoutMs || 120000) }
+    );
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} generated image did not render before timeout`, { selector: imageSelector, cause: error?.message || String(error) });
+  }
 }
 
 async function clickIfPresent(page: any, selector: string): Promise<void> {
@@ -473,16 +565,30 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
   const model_used = await readModelUsed(service, page, args);
   const start_chat_url = page.url?.() || targetUrlFor(service, args);
-  const assistantCountBefore = await assistantCount(page);
+  const assistantCountBefore = await assistantCount(service, page);
   const selector = serviceDefaults[service].promptSelector;
   const box = page.locator(selector).first();
   await box.waitFor({ state: "visible", timeout: Math.min(timeout, 15000) });
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
   await box.fill?.(args.prompt).catch(async () => { await box.click(); await page.keyboard?.type(args.prompt); });
   const sentAt = Date.now();
-  const sendButton = service === "gemini" ? page.locator?.('button[aria-label="Send message"]').first?.() : undefined;
-  if (sendButton && await sendButton.count?.().catch(() => 0)) await sendButton.click?.({ timeout: 3000 });
-  else await page.keyboard?.press("Enter");
+  try {
+    await sendPromptAndConfirmSubmitted(service, page, box, args.prompt, assistantCountBefore);
+  } catch (error: any) {
+    if (error instanceof WebAiToolError && error.errorCode === ConsumerErrorCodes.COMMAND_TIMEOUT) {
+      const chat_url = page.url?.() || targetUrlFor(service, args);
+      return safeOutput(sendPromptBase(service, chat_url, started, {
+        response_text: "",
+        wait_ms: Date.now() - sentAt,
+        completion_detected: false,
+        errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT,
+        error_code: ConsumerErrorCodes.COMMAND_TIMEOUT,
+        model_used,
+        reuse_conversation: Boolean(args.reuse_conversation)
+      }));
+    }
+    throw error;
+  }
   const wait = await waitForPromptCompletion(service, page, sentAt, assistantCountBefore, completionTimeout);
   const chat_url = page.url?.() || targetUrlFor(service, args);
   if (!wait.completion_detected) {
@@ -496,8 +602,20 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
       reuse_conversation: Boolean(args.reuse_conversation)
     }));
   }
+  const finalText = await responseText(service, page);
+  if (!finalText.trim()) {
+    return safeOutput(sendPromptBase(service, chat_url, started, {
+      response_text: "",
+      wait_ms: wait.wait_ms,
+      completion_detected: false,
+      errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT,
+      error_code: ConsumerErrorCodes.COMMAND_TIMEOUT,
+      model_used,
+      reuse_conversation: Boolean(args.reuse_conversation)
+    }));
+  }
   const base = sendPromptBase(service, chat_url, started, {
-    response_text: await responseText(service, page),
+    response_text: finalText,
     wait_ms: wait.wait_ms,
     completion_detected: true,
     errorCode: null,
@@ -602,19 +720,30 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
   try {
     const promptArgs = { ...args };
     let conversationUrl: string | undefined;
-    if (service === "gemini") {
-      const promptResult = await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
+    const promptResult = await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
+      if (service === "chatgpt") await navigateChatgptFreshIfNeeded(page, args);
+      if (service === "gemini") {
         await navigateGeminiFreshIfNeeded(page, args);
         await clickIfPresent(page, 'button[aria-label="🖼️ Create image, button, tap to use tool"], button[aria-label="Create image, button, tap to use tool"], button:has-text("Create image")');
-        const result = await sendPromptInExistingPage("gemini", promptArgs, page, Date.now());
-        await page.waitForSelector?.('img[alt="AI generated"], img[alt*="generated" i]', { state: "visible", timeout: Math.min(args.timeout_ms || 90000, 30000) }).catch(() => undefined);
-        return result;
+      }
+      const result = await sendPromptInExistingPage(service, promptArgs, page, Date.now());
+      if (result.errorCode) return result;
+      await waitForGeneratedImageRendered(service, page, args.timeout_ms || 120000);
+      return result;
+    });
+    if (promptResult.errorCode) {
+      return safeOutput({
+        path: "",
+        sha256: "",
+        size_bytes: 0,
+        dimensions: null,
+        download_filename: "",
+        errorCode: promptResult.errorCode,
+        ...(promptResult.error_code ? { error_code: promptResult.error_code } : {}),
+        message: promptResult.errorCode === ConsumerErrorCodes.COMMAND_TIMEOUT ? "Image generation did not complete before timeout" : "Image generation prompt failed before download"
       });
-      conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
-    } else {
-      const promptResult = await sendPromptOnPage(service, promptArgs, runtime);
-      conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     }
+    conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     const expectedSelector = service === "chatgpt" ? 'main img[alt], main img[src^="blob:"], main img[src*="oaiusercontent"], main img' : 'button[data-test-id="more-menu-button"]';
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
@@ -628,6 +757,9 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
     });
     return artifactClickResultToSafeOutput(result, { dimensions: null, download_filename: path.basename(result.path || "") });
   } catch (error: any) {
+    if (error?.errorCode === ConsumerErrorCodes.COMMAND_TIMEOUT || error?.errorCode === "COMMAND_TIMEOUT") {
+      return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT, error_code: ConsumerErrorCodes.COMMAND_TIMEOUT, message: error.message || "Generated image did not render before timeout" });
+    }
     if (error?.errorCode === ConsumerErrorCodes.ELEMENT_NOT_FOUND || error?.errorCode === "ELEMENT_NOT_FOUND") {
       return safeOutput({ path: "", sha256: "", size_bytes: 0, dimensions: null, download_filename: "", errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND, error_code: ConsumerErrorCodes.ELEMENT_NOT_FOUND, expected_selector: error.evidence?.selector || (service === "gemini" ? 'button[data-test-id="more-menu-button"]' : 'button[aria-label="Save"]') });
     }
