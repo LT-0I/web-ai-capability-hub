@@ -1,8 +1,11 @@
 # Stream #4 implementation report — joint 3-AI exercise + RED-tool convergence
 
 Date: 2026-05-15
-Status: **COMPLETE** — all targeted RED `webai_*` tools GREEN,
-independently clean-rebuild verified, shipped to `origin/main`.
+Status: **COMPLETE** — all 12 `webai_*` capability tools GREEN
+(incl. previously-stub `gemini_canvas_to_docs` and the async
+`gemini_generate_video`/`task_status` chain), independently
+clean-rebuild + different-model verified, shipped to `origin/main`.
+See the Addendum for the post-RED capability-closure work.
 
 ## Scope
 
@@ -95,3 +98,82 @@ fixed every remaining RED tool. Contract held at
   coverage with a recorded DOM fixture for regression hardening.
 - Optional: fold the Stream #4 selectors into a recorded green trace
   (per v2 plan §C record-and-replay) for drift resilience.
+
+---
+
+## Addendum (2026-05-15) — full capability closure
+
+After the 3 RED image/upload tools went GREEN, the two remaining
+non-working capabilities were cracked with the same proven method
+(Opus 4.7 max-effort interactive observe-first → different-model
+verification → user-provided manual flow when blocked). Sora was
+dropped (feature retired by OpenAI).
+
+### `webai_gemini_canvas_to_docs` — GREEN (was permanent HONEST-FAIL)
+
+Old code only sent a prompt and read the Gemini chat URL. Real flow
+discovered live: Tools drawer → `menuitemcheckbox "Canvas"` → send →
+`share-button` → `export-to-docs-button` → Gemini spawns a
+`docs.google.com/document/d/<id>/edit` tab (visible only via raw CDP
+`/json/list`; the project extractor filters spawned tabs). Tool now
+drives this end-to-end and returns a true Docs URL + doc id. Two
+source-grounded sub-fixes: Tools-drawer hydration race (bounded
+`waitForSelector`); Canvas turns never render `regenerate-button` so
+completion gates on the share-button. Opus run produced doc
+`1ouVlS8...`; independent Sonnet run produced a *different* fresh doc
+`1VsoKcSMG...` (proves fresh private Doc per run, not cached).
+Commit `8d2f891`.
+
+### `webai_gemini_generate_video` + `webai_task_status` — GREEN (was a fake stub)
+
+Old code was a `setImmediate` fake-complete with empty result. Real
+Veo flow: Tools drawer → Create video → ~105 s → `Download video` →
+CDP artifact-click. First real generation = valid ~1 MB MP4
+(`ftypisom`). Surfaced (not masked) a real architectural limitation:
+the in-memory per-process task registry + process-bound job meant the
+async chain only completed inside one long-lived process.
+
+Per user decision, this was fixed properly (`abd832f`): durable
+`web_ai_tasks` rows in the existing `CapabilityDatabase` (new
+migration + schema) + a detached `child_process` worker
+(`{detached:true}.unref()`) that runs the unchanged Veo flow and
+outlives the starting CLI process. Per-profile `PROFILE_LEASE_BUSY`
+serialization preserved; abandoned tasks become terminal
+`COMMAND_TIMEOUT`; terminal success requires a real MP4. Live
+cross-process e2e (Sonnet, r10): Process A returns the 5-key envelope
+and exits <1 s; a *separate* Process B polls `webai:task-status` and
+observes `running → done`; real 2.0 MB `ftypisom` MP4 on disk; a
+fresh process also reads `done`. The cross-process `INVALID_ARGS`
+limitation is fully resolved.
+
+### Final capability matrix (12/12 GREEN)
+
+| Service | Tools GREEN |
+|---|---|
+| ChatGPT | send_prompt, upload_and_query, generate_file, generate_image |
+| Claude | send_prompt, upload_and_query, generate_file |
+| Gemini | send_prompt, upload_and_query, generate_image, canvas_to_docs, generate_video (+ task_status async helper) |
+
+All clean-rebuild verified (`rm -rf dist && npm run build`),
+different-model re-verified, `consumer-contract-1.3.0` unchanged
+(durability is internal; only the docs durability sentence changed),
+no regressions. Method retro and durable lessons captured to project
+memory (clean-build-before-resmoke; Opus-max for hard subagents;
+ask-user-for-manual-flow-when-stuck).
+
+### Method validation
+
+The Opus-interactive-observe-first → different-model-verify →
+ask-user-for-manual-flow loop converged every capability that 5
+rounds of blind prompt-only codex dispatch could not. Deterministic
+backend work (the durable registry + detached worker) was correctly
+routed to codex via `omx exec` and converged in one round, since that
+class of work does not need live-browser observation.
+
+### Remaining exploration frontier (new capabilities, not regressions)
+
+Not built (out of Stream #4 scope; candidates for a future stream):
+ChatGPT Canvas export, Claude Artifacts export (the largest per-service
+asymmetry — Claude has only 3 tools), Deep Research as a first-class
+cross-service `webai_` tool, explicit model/tier selection, and
+conversation management. Sora is retired and excluded.
