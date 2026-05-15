@@ -38,12 +38,25 @@ Brings up persistent system google-chrome instances for the three web AI profile
 
 ## Canonical launch incantation
 
+**Prefer the wrapper scripts** — they encode the serial launch, lock cleanup, DISPLAY env, post-launch verification, and tab allocation in one place:
+
 ```bash
 cd /home/l1u/workspace/noeticmind/web-ai-capability-hub
 
-# Each launch is a foreground call that returns when chrome is ready
-# (it does NOT block — managedLauncher waits for /json/version then prints the JSON record).
+# Bring up all three web AIs with their homepages opened
+scripts/launch-web-ais.sh                     # default subcommand is `launch`
+scripts/launch-web-ais.sh status              # just probe the three CDP ports
+scripts/launch-web-ais.sh close               # close all three managed chromes
 
+# Swap the active Claude account between local profiles
+scripts/switch-claude-profile.sh --list       # show sessionKey state per claude profile
+scripts/switch-claude-profile.sh claude-9224  # refuse if target lacks live sessionKey
+scripts/switch-claude-profile.sh claude --force   # override the safety check
+```
+
+Raw CLI calls (only when you need a single profile, not all three):
+
+```bash
 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
   node dist/src/cli.js browser:launch --profile chatgpt --cdp-port 9223 --json
 
@@ -54,7 +67,7 @@ DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
   node dist/src/cli.js browser:launch --profile gemini-9225 --cdp-port 9225 --json
 ```
 
-Run them **serially** (one after another, never in parallel). Parallel launches race on the global `SingletonLock` file in the default profile dir.
+Run them **serially** (one after another, never in parallel). Parallel launches race on the global `SingletonLock` file in the default profile dir. `scripts/launch-web-ais.sh` already serializes them.
 
 ## Why `DISPLAY` / `XAUTHORITY` matter
 

@@ -55,4 +55,8 @@ data/doc_fetch/
 .omc/skills/*
 !.omc/skills/web-ai-*/
 !.omc/skills/web-ai-*/**
+
+# Claude Code per-project state (worktree handles, scheduled-task locks, etc.)
+.claude/
+
 .DS_Store
