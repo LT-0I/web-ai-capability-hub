@@ -298,13 +298,35 @@ const GEMINI_FRESH_COMPOSER_URL = "https://gemini.google.com/app?hl=en";
 const GEMINI_RESPONSE_SELECTOR = "main";
 const GEMINI_TURN_SELECTOR = 'main [role="article"], main article, main [class*="turn" i], main [class*="response" i]';
 const GEMINI_REGENERATE_BUTTON_SELECTOR = 'button[data-test-id="regenerate-button"]';
+// The latest Gemini assistant turn is the LAST <model-response> element. Reading
+// the whole <main> (the old GEMINI_RESPONSE_SELECTOR target) pulls in the left
+// nav sidebar ("New chat / My stuff / Notebooks / Gems / Chats"), the
+// cross-conversation history list, and every prior turn — the CLAUDE.md
+// "return homepage/composer DOM as response_text" anti-pattern. The clean
+// answer body inside the latest model-response is, in order of preference:
+// .model-response-text → message-content → .markdown (all observed live
+// 2026-05-15 to carry ONLY the answer text, no "Gemini said" wrapper, no
+// chrome; the bare <model-response> textContent carries a leading "Gemini said").
+const GEMINI_LATEST_RESPONSE_SELECTOR = "model-response";
+const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-content", ".markdown"];
 const GEMINI_UPLOAD_TRIGGER_SELECTOR = "button[aria-label=\"Open upload file menu\"]";
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
 const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
 const CHATGPT_IMAGE_MENU_BUTTON_SELECTOR = "#composer-plus-btn";
 const CHATGPT_CREATE_IMAGE_RADIO_SELECTOR = '[role="menuitemradio"]:has-text("Create image")';
+// After selecting "Create image" the Radix menu closes and the menuitemradio is
+// REMOVED from the DOM (it never flips aria-checked while mounted). The reliable
+// "image mode active" signal is the composer pill that replaces it.
+const CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR = 'button[aria-label="Image, click to remove"], button[aria-label*="image aspect ratio" i]';
 const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
-const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Edit image"] >> xpath=ancestor::*[contains(concat(" ", normalize-space(@class), " "), " pointer-events-auto ") and contains(concat(" ", normalize-space(@class), " "), " z-11 ")][1]//button[last()]';
+// Observed live 2026-05-15 (this Extended Pro account): the inline image-hover
+// toolbar has ONLY "Edit image" + "Share this image" — NO download there. The
+// real download path is: click the generated image itself → ChatGPT opens a
+// full-screen viewer ([role="dialog"], z-[120] absolute inset-0) whose toolbar
+// contains a direct (no aria-haspopup) button[aria-label="Save"]. Two-step
+// CDP artifact-click: open the viewer (image), then click Save.
+const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i]';
+const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = '[role="dialog"] button[aria-label="Save"]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
 const GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create image")';
@@ -433,11 +455,14 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
     const remaining = Math.max(1, timeoutMs - elapsed());
     try {
       await page.waitForFunction?.(
-        ({ stopSelector, sendSelector, regenerateSelector }: any) => {
+        ({ stopSelector, regenerateSelector }: any) => {
           const visible = (el: Element) => !!((el as HTMLElement).offsetWidth || (el as HTMLElement).offsetHeight || (el as HTMLElement).getClientRects().length);
           const stopVisible = Array.from(document.querySelectorAll(stopSelector)).some(visible);
-          const sends = Array.from(document.querySelectorAll(sendSelector)) as HTMLButtonElement[];
-          const sendReady = sends.some((el: any) => !el.disabled && el.getAttribute("aria-disabled") !== "true");
+          // NOTE: do NOT gate on the Send button being enabled. After a Gemini
+          // response the composer is empty, so Send is aria-disabled="true"
+          // indefinitely; requiring it never converges. The regenerate-button
+          // (response-action toolbar) + no Stop + stable text is the reliable,
+          // sufficient completion signal (dom-probe-r2 §C, confirmed live r6).
           const regeneratePresent = Array.from(document.querySelectorAll(regenerateSelector)).some(visible);
           const stableTarget = document.querySelector("main") as HTMLElement | null;
           const textLength = stableTarget?.textContent?.length || 0;
@@ -446,7 +471,7 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
             state.length = textLength;
             state.since = Date.now();
           }
-          return regeneratePresent && sendReady && !stopVisible && Date.now() - state.since >= 1500;
+          return regeneratePresent && !stopVisible && Date.now() - state.since >= 1500;
         },
         { stopSelector, sendSelector, regenerateSelector: GEMINI_REGENERATE_BUTTON_SELECTOR },
         { timeout: remaining }
@@ -510,6 +535,37 @@ async function assistantCount(serviceOrPage: WebAiService | any, maybePage?: any
 }
 
 async function responseText(service: WebAiService, page: any): Promise<string> {
+  if (service === "gemini") {
+    // Scope to the LATEST <model-response> turn, then read its clean answer
+    // body — NOT the whole <main> (which includes nav sidebar + conversation
+    // list + all prior turns). Honest empty string on true absence (caller
+    // converts that to COMMAND_TIMEOUT); never a chrome-polluted fallback.
+    const text = await page.evaluate?.(
+      ({ latestSelector, innerSelectors }: any) => {
+        const turns = Array.from(document.querySelectorAll(latestSelector));
+        const latest = turns[turns.length - 1] as HTMLElement | undefined;
+        if (!latest) return "";
+        for (const sel of innerSelectors) {
+          const node = latest.querySelector(sel) as HTMLElement | null;
+          const t = node?.textContent?.trim();
+          if (t) return t;
+        }
+        // Last resort within the scoped turn only: the model-response text
+        // itself. Observed live 2026-05-15 the bare textContent carries a
+        // leading "Show thinking" and/or "Gemini said" wrapper and a trailing
+        // "Sources" affordance label — strip those, but stay scoped to this
+        // single turn (never the nav/sidebar chrome).
+        const raw = (latest.textContent || "").trim();
+        return raw
+          .replace(/^\s*Show thinking\s*/i, "")
+          .replace(/^\s*Gemini said\s*/i, "")
+          .replace(/\s*Sources\s*$/i, "")
+          .trim();
+      },
+      { latestSelector: GEMINI_LATEST_RESPONSE_SELECTOR, innerSelectors: GEMINI_RESPONSE_TEXT_INNER_SELECTORS }
+    ).catch(() => "");
+    return typeof text === "string" ? text : "";
+  }
   return await page.locator?.(assistantMessageSelector(service)).last?.().textContent?.({ timeout: 2000 }).catch(() => "") || "";
 }
 
@@ -583,13 +639,19 @@ async function activateChatgptImageMode(page: any): Promise<void> {
   }
   const radio = page.locator?.(CHATGPT_CREATE_IMAGE_RADIO_SELECTOR).first?.();
   if (!radio || !(await radio.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio was not found", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR });
-  for (let attempt = 0; attempt < 2; attempt++) {
-    await radio.click?.({ timeout: 15000 });
-    if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
-    const checked = typeof radio.getAttribute === "function" ? await radio.getAttribute("aria-checked").catch(() => undefined) : undefined;
-    if (checked === "true") return;
+  // Selecting the radio closes the Radix menu and detaches the menuitemradio.
+  // Verify activation via the composer image-mode pill, not the (now-detached)
+  // radio's aria-checked. Wrap the click so a raw Playwright timeout cannot leak.
+  try {
+    await radio.click?.({ timeout: 8000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio could not be clicked", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, cause: error?.message || String(error) });
   }
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio did not become checked", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR });
+  try {
+    await page.waitForSelector?.(CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: 8000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT image mode did not activate after selecting Create image", { selector: CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR, cause: error?.message || String(error) });
+  }
 }
 
 async function activateGeminiImageMode(page: any): Promise<void> {
@@ -648,6 +710,15 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
     await page.setInputFiles(uploadSelector, resolved, { timeout: 10000 });
     return;
   }
+  // The Gemini composer (and its upload-trigger button) mounts AFTER
+  // domcontentloaded via Angular; an instant count() check races the render
+  // and spuriously throws ELEMENT_NOT_FOUND at wait_ms=0. Wait for the button
+  // to actually be present/visible first (bounded), then click.
+  try {
+    await page.waitForSelector?.(GEMINI_UPLOAD_TRIGGER_SELECTOR, { state: "visible", timeout: 15000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload trigger button was not found", { selector: GEMINI_UPLOAD_TRIGGER_SELECTOR, cause: error?.message || String(error) });
+  }
   await requireAndClick(page, GEMINI_UPLOAD_TRIGGER_SELECTOR, "Gemini upload trigger button was not found");
   try {
     await page.waitForSelector?.(GEMINI_UPLOAD_FILES_SELECTOR, { state: "visible", timeout: 10000 });
@@ -705,6 +776,22 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
       }));
     }
     throw error;
+  }
+  if (args.__expectImageResponse) {
+    // Image responses carry NO assistant text, so the text-length-gated
+    // completion check never fires (the assistant turn even drops out of
+    // [data-message-author-role="assistant"] during image render). The
+    // authoritative completion signal for image generation is the rendered
+    // image toolbar, handled by waitForGeneratedImageRendered in the caller.
+    const chat_url = page.url?.() || targetUrlFor(service, args);
+    return safeOutput(sendPromptBase(service, chat_url, started, {
+      response_text: "",
+      wait_ms: Date.now() - sentAt,
+      completion_detected: true,
+      errorCode: null,
+      model_used,
+      reuse_conversation: Boolean(args.reuse_conversation)
+    }));
   }
   const wait = await waitForPromptCompletion(service, page, sentAt, assistantCountBefore, completionTimeout);
   const chat_url = page.url?.() || targetUrlFor(service, args);
@@ -835,7 +922,7 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
   assertNotPublishDeniedLabel("Download full size image", { tool: `webai.${service}.generate_image` });
   const lease = acquireProfileLease(args.profile);
   try {
-    const promptArgs = { ...args, __forceEnterToSend: true };
+    const promptArgs = { ...args, __forceEnterToSend: true, __expectImageResponse: true };
     let conversationUrl: string | undefined;
     const promptResult = await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
       if (service === "chatgpt") {
@@ -850,6 +937,11 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       const result = await sendPromptInExistingPage(service, promptArgs, page, Date.now());
       if (result.errorCode) return result;
       await waitForGeneratedImageRendered(service, page, args.timeout_ms || 120000);
+      // The conversation URL only settles AFTER the image renders (Gemini/ChatGPT
+      // navigate from the fresh-composer URL to /app/<id> once the turn lands).
+      // Re-read it here so the artifact-click stage targets the correct tab.
+      const settledUrl = page.url?.();
+      if (typeof settledUrl === "string" && settledUrl) result.chat_url = settledUrl;
       return result;
     });
     if (promptResult.errorCode) {
@@ -865,12 +957,16 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       });
     }
     conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
-    const expectedSelector = service === "chatgpt" ? CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
+    // Both services need a two-step CDP artifact-click: open an affordance,
+    // then click the actual download control. ChatGPT: click the generated
+    // image → full-screen viewer → Save. Gemini: more-menu → image-download.
+    const openSelector = service === "chatgpt" ? CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
+    const downloadSelector = service === "chatgpt" ? CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR : 'button[data-test-id="image-download-button"]';
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
-      buttonSelector: expectedSelector,
-      followUpSelector: service === "chatgpt" ? undefined : 'button[data-test-id="image-download-button"]',
+      buttonSelector: openSelector,
+      followUpSelector: downloadSelector,
       downloadDir: args.download_dir,
       filenamePattern: "\\.(png|jpg|jpeg|webp)$",
       timeoutMs: args.timeout_ms || 90000,

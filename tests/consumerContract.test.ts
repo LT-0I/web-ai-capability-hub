@@ -243,6 +243,10 @@ function mockSendPromptPage(initialUrl: string): any {
     goto: async (url: string) => { calls.goto.push(url); page._url = url; },
     waitForLoadState: async () => undefined,
     waitForFunction: async () => undefined,
+    // Gemini responseText() scopes to the latest <model-response> via
+    // page.evaluate (NOT locator("main")). Default mock returns the clean
+    // scoped answer; tests that need to assert scoping override this.
+    evaluate: async () => "scoped gemini answer",
     keyboard: { press: async () => undefined, type: async () => undefined },
     locator: (_selector: string) => {
       const loc: any = {
@@ -392,6 +396,9 @@ test("waitForPromptCompletion returns true only after Phase A start then Phase B
       cleanupCompletionDom();
     }
   };
+  // Gemini responseText() reads the latest <model-response> via page.evaluate
+  // (scoped clean answer), NOT locator("main") (chrome-polluted).
+  page.evaluate = async () => "final answer";
   page.locator = (selector: string) => {
     const loc: any = {
       first: () => loc,
@@ -400,7 +407,7 @@ test("waitForPromptCompletion returns true only after Phase A start then Phase B
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
-      textContent: async () => selector === "main" ? "final answer" : "Fast"
+      textContent: async () => selector === "main" ? "MAIN should not be the response source" : "Fast"
     };
     return loc;
   };
@@ -414,6 +421,10 @@ test("gemini send.prompt completion polling uses extractor-visible Stop response
   const seen: string[] = [];
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.waitForFunction = async (_fn: any, arg: any) => { seen.push(JSON.stringify(arg)); };
+  // The whole <main> is polluted with nav chrome + cross-conversation titles.
+  // response_text MUST NOT be sourced from it (CLAUDE.md anti-pattern).
+  const POLLUTED_MAIN = "Gemini New chat My stuff Notebooks Gems Chats Other Convo Title You said q Gemini said the clean answer is 42.";
+  page.evaluate = async () => "the clean answer is 42.";
   page.locator = (selector: string) => {
     seen.push(selector);
     const loc: any = {
@@ -423,17 +434,40 @@ test("gemini send.prompt completion polling uses extractor-visible Stop response
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
-      textContent: async () => selector === "main" ? "gemini response" : "Fast"
+      textContent: async () => selector === "main" ? POLLUTED_MAIN : "Fast"
     };
     return loc;
   };
   const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.completion_detected, true);
-  assert.equal(result.response_text, "gemini response");
+  // Scoped to the latest model-response answer body — NOT the chrome-polluted <main>.
+  assert.equal(result.response_text, "the clean answer is 42.");
+  assert.equal(result.response_text.includes("New chat"), false);
+  assert.equal(result.response_text.includes("My stuff"), false);
+  assert.equal(result.response_text.includes("Other Convo Title"), false);
+  assert.notEqual(result.response_text, POLLUTED_MAIN);
   assert.match(seen.join("\n"), /button\[aria-label="Stop response"\]/);
   assert.match(seen.join("\n"), /button\[aria-label="Send message"\]/);
   assert.match(seen.join("\n"), /regenerate-button/);
   assert.match(seen.join("\n"), /assistantCountBefore/);
+});
+
+test("gemini responseText scopes to latest model-response, not the chrome-polluted main", () => {
+  const source = fs.readFileSync(path.join(process.cwd(), "src/mcp/tools.ts"), "utf-8");
+  const fn = source.slice(source.indexOf("async function responseText("), source.indexOf("async function composerText("));
+  // Gemini branch must use page.evaluate scoped to model-response, never
+  // locator("main")/assistantMessageSelector for the returned text.
+  assert.match(fn, /service === "gemini"/);
+  assert.match(fn, /GEMINI_LATEST_RESPONSE_SELECTOR/);
+  assert.match(fn, /GEMINI_RESPONSE_TEXT_INNER_SELECTORS/);
+  assert.match(fn, /page\.evaluate/);
+  const geminiBranch = fn.slice(0, fn.indexOf("return await page.locator"));
+  assert.equal(/assistantMessageSelector\(service\)/.test(geminiBranch), false);
+  // The model-response inner targets are the live-observed clean answer nodes.
+  const constLine = source.match(/const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = .*;/)?.[0] || "";
+  assert.match(constLine, /model-response-text/);
+  assert.match(constLine, /message-content/);
+  assert.match(constLine, /markdown/);
 });
 
 test("gemini upload-and-query intercepts filechooser before clicking upload-files item", async () => {
@@ -513,6 +547,9 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
       cleanupCompletionDom();
     }
   };
+  // responseText() reads the scoped latest <model-response> via page.evaluate,
+  // not locator("main") (which is chrome-polluted on real Gemini).
+  page.evaluate = async () => "uploaded answer";
   page.locator = (selector: string) => {
     const loc: any = {
       first: () => loc,
@@ -522,7 +559,7 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
       fill: async () => undefined,
       click: async () => undefined,
       inputValue: async () => "",
-      textContent: async () => selector === "main" ? "uploaded answer" : "Fast"
+      textContent: async () => selector === "main" ? "MAIN should not be the response source" : "Fast"
     };
     return loc;
   };
@@ -897,10 +934,10 @@ test("generateImageOnPage returns COMMAND_TIMEOUT when generated image never ren
 
 test("chatgpt generate-image enters image mode before typing prompt", async () => {
   const events: string[] = [];
-  let radioChecked = "false";
   const page = mockSendPromptPage("https://chatgpt.com/c/stale");
   page.waitForSelector = async (selector: string, options: any) => {
     if (selector.includes('menuitemradio')) events.push(`waitForSelector:${selector}:${options?.state}:${options?.timeout}`);
+    if (selector.includes("Image, click to remove")) events.push(`waitForSelector:image-mode-active:${options?.state}:${options?.timeout}`);
     if (selector.includes("Edit image")) events.push(`render:${selector}`);
   };
   page.waitForTimeout = async () => undefined;
@@ -910,10 +947,10 @@ test("chatgpt generate-image enters image mode before typing prompt", async () =
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes("composer-plus-btn") || selector.includes("menuitemradio") || selector.includes("prompt-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => name === "aria-checked" && selector.includes("menuitemradio") ? radioChecked : "",
+      getAttribute: async () => "",
       waitFor: async () => { events.push(`wait:${selector}`); },
       fill: async () => { events.push(`fill:${selector}`); },
-      click: async (options: any) => { events.push(`click:${selector}:${options?.timeout}`); if (selector.includes("menuitemradio")) radioChecked = "true"; },
+      click: async (options: any) => { events.push(`click:${selector}:${options?.timeout}`); },
       textContent: async () => selector.includes("prompt-textarea") ? "" : "image response"
     };
     return loc;
@@ -924,13 +961,18 @@ test("chatgpt generate-image enters image mode before typing prompt", async () =
   assert.equal(result.download_filename, "cg.png");
   const plus = events.findIndex((e) => e === "click:#composer-plus-btn:5000");
   const waitRadio = events.findIndex((e) => e === 'waitForSelector:[role="menuitemradio"]:has-text("Create image"):visible:8000');
-  const radio = events.findIndex((e) => e === 'click:[role="menuitemradio"]:has-text("Create image"):15000');
+  const radio = events.findIndex((e) => e === 'click:[role="menuitemradio"]:has-text("Create image"):8000');
+  const waitActive = events.findIndex((e) => e === 'waitForSelector:image-mode-active:visible:8000');
   const fill = events.findIndex((e) => e === "fill:#prompt-textarea");
-  assert.ok(plus >= 0 && plus < waitRadio && waitRadio < radio && radio < fill, events.join("\n"));
+  assert.ok(plus >= 0 && plus < waitRadio && waitRadio < radio && radio < waitActive && waitActive < fill, events.join("\n"));
   assert.ok(events.includes("press:Enter"), events.join("\n"));
-  assert.equal(calls[0].buttonSelector.includes('button[aria-label="Edit image"] >> xpath=ancestor::*'), true);
-  assert.equal(calls[0].buttonSelector.includes("//button[last()]"), true);
-  assert.equal(calls[0].followUpSelector, undefined);
+  // Live-verified 2026-05-15 (Extended Pro account): the inline image-hover
+  // toolbar has NO download button. The real download path is: click the
+  // generated image -> a full-screen [role="dialog"] (z-[120] absolute
+  // inset-0) opens whose toolbar has a direct button[aria-label="Save"].
+  // Two-step CDP artifact-click: open viewer (image) then click Save.
+  assert.equal(calls[0].buttonSelector, 'img[alt^="Generated image" i]');
+  assert.equal(calls[0].followUpSelector, '[role="dialog"] button[aria-label="Save"]');
 });
 
 test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio wait expires", async () => {
@@ -957,12 +999,20 @@ test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio w
   assert.equal(result.expected_selector, '[role="menuitemradio"]:has-text("Create image")');
 });
 
-test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio never becomes checked", async () => {
+test("chatgpt generate-image returns ELEMENT_NOT_FOUND when image mode does not activate after selecting Create image", async () => {
   const clicks: any[] = [];
   const page = mockSendPromptPage("https://chatgpt.com/");
   page.waitForSelector = async (selector: string, options: any) => {
-    assert.equal(selector, '[role="menuitemradio"]:has-text("Create image")');
-    assert.deepEqual(options, { state: "visible", timeout: 8000 });
+    if (selector.includes("menuitemradio")) {
+      assert.deepEqual(options, { state: "visible", timeout: 8000 });
+      return;
+    }
+    if (selector.includes("Image, click to remove")) {
+      // Radix removed the radio on selection but the composer image-mode pill
+      // never appears -> activation genuinely failed.
+      assert.deepEqual(options, { state: "visible", timeout: 8000 });
+      throw new Error("image mode pill did not render");
+    }
   };
   page.waitForTimeout = async () => undefined;
   page.locator = (selector: string) => {
@@ -973,15 +1023,16 @@ test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio n
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async (options: any) => { clicks.push({ selector, timeout: options?.timeout }); },
-      getAttribute: async (name: string) => name === "aria-checked" && selector.includes("menuitemradio") ? "false" : "",
+      getAttribute: async () => "",
       textContent: async () => ""
     };
     return loc;
   };
-  const result: any = await webAiChatgptGenerateImage({ profile: "chatgpt-image-radio-never-checked", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptGenerateImage({ profile: "chatgpt-image-mode-no-activate", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
-  assert.equal(result.expected_selector, '[role="menuitemradio"]:has-text("Create image")');
-  assert.deepEqual(clicks.filter((entry) => entry.selector === '[role="menuitemradio"]:has-text("Create image")').map((entry) => entry.timeout), [15000, 15000]);
+  assert.equal(result.expected_selector, 'button[aria-label="Image, click to remove"], button[aria-label*="image aspect ratio" i]');
+  // The radio is clicked exactly once (no detached-element retry loop).
+  assert.deepEqual(clicks.filter((entry) => entry.selector === '[role="menuitemradio"]:has-text("Create image")').map((entry) => entry.timeout), [8000]);
 });
 
 test("gemini generate-image activates Create image and sends from ql-editor with Enter", async () => {
@@ -1020,7 +1071,12 @@ test("gemini generate-image activates Create image and sends from ql-editor with
 
 test("tools.ts does not retain stale image/upload selectors", () => {
   const source = fs.readFileSync(path.join(process.cwd(), "src/mcp/tools.ts"), "utf-8");
-  assert.equal(source.includes('aria-label="Save"'), false);
+  // The old speculative xpath-ancestor download hack must be gone; the live-
+  // verified path is: open the generated image -> [role="dialog"] viewer ->
+  // its direct button[aria-label="Save"] (confirmed live 2026-05-15).
+  assert.equal(source.includes('xpath=ancestor::*[contains(concat'), false);
+  assert.equal(source.includes('CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR'), true);
+  assert.equal(source.includes('[role="dialog"] button[aria-label="Save"]'), true);
   assert.equal(source.includes(':has-text("Upload files")'), false);
   assert.equal(source.includes('main img[alt], main img[src^="blob:"], main img[src*="oaiusercontent"], main img'), false);
   assert.equal(source.includes('local-images-files-uploader-button'), true);
