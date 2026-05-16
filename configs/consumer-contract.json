@@ -2581,6 +2581,73 @@
       "may_contain_sensitive_local_fields": false
     },
     {
+      "cli_name": "research:wanfang:search",
+      "mcp_name": "research_wanfang_search",
+      "ts_export": "researchWanfangSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "results_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wanfang:filter",
+      "mcp_name": "research_wanfang_filter",
+      "ts_export": "researchWanfangFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count",
+          "resource_type",
+          "resource_label"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wanfang:export",
+      "mcp_name": "research_wanfang_export",
+      "ts_export": "researchWanfangExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url",
+          "resource_type",
+          "resource_label"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "capability:update",
       "mcp_name": "capability_update",
       "ts_export": "CapabilityUpdater.updateFromSnapshot",
@@ -4780,7 +4847,20 @@
     "incopat.artifact_path": "IncoPat local PDF artifact path written by the export workflow.",
     "incopat.bytes": "IncoPat local PDF artifact byte count.",
     "incopat.sha256": "IncoPat local PDF artifact SHA-256 digest.",
-    "incopat.format": "IncoPat export format selected for the research database workflow."
+    "incopat.format": "IncoPat export format selected for the research database workflow.",
+    "wanfang.result_count": "Wanfang Data public search/result count; safe bibliographic metadata.",
+    "wanfang.items": "Wanfang Data public bibliographic result summaries; publication metadata only.",
+    "wanfang.query_url": "Wanfang Data paper search URL; may encode submitted query terms.",
+    "wanfang.results_url": "Wanfang Data results URL after query/export navigation; may encode query/facet state.",
+    "wanfang.refined_url": "Wanfang Data refined results URL containing applied facet state; treat as query/facet metadata.",
+    "wanfang.confirm_title": "Wanfang Data browser page title confirming query/refinement; safe bibliographic metadata.",
+    "wanfang.unfiltered_count": "Wanfang Data public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "wanfang.resource_type": "Wanfang Data resource Type facet code applied by the refinement/export workflow; safe facet metadata.",
+    "wanfang.resource_label": "Wanfang Data visible resource Type facet label applied by the refinement/export workflow; safe facet metadata.",
+    "wanfang.artifact_path": "Wanfang Data local TXT citation artifact path written by the export workflow.",
+    "wanfang.bytes": "Wanfang Data local TXT citation artifact byte count.",
+    "wanfang.sha256": "Wanfang Data local TXT citation artifact SHA-256 digest.",
+    "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
     "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

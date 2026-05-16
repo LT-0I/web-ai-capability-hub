@@ -173,6 +173,9 @@ Stable JSON keys are exactly:
 | `research:incopat:search` | `research_incopat_search` | `researchIncopatSearch` | experimental | read | no |
 | `research:incopat:filter` | `research_incopat_filter` | `researchIncopatFilter` | experimental | read | no |
 | `research:incopat:export` | `research_incopat_export` | `researchIncopatExport` | experimental | mutate | no |
+| `research:wanfang:search` | `research_wanfang_search` | `researchWanfangSearch` | experimental | read | no |
+| `research:wanfang:filter` | `research_wanfang_filter` | `researchWanfangFilter` | experimental | read | no |
+| `research:wanfang:export` | `research_wanfang_export` | `researchWanfangExport` | experimental | mutate | no |
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
@@ -565,3 +568,11 @@ SCOAP3, DBLP, SciELO, INSPIRE-HEP, and PubScholar keep their module-owned `Consu
 - `research:incopat:export` / `research_incopat_export`: always returns `artifact_path`, `bytes`, `sha256`, `format`, `result_count`, `results_url` and may include `country`; it preserves the verified trusted-CDP IncoPat per-row `a.pdf` artifact-click PDF path and does not synthesize artifacts.
 
 IncoPat keeps its module-owned `ConsumerErrorCodes` behavior (`LOGIN_REQUIRED`, `PLAN_OR_QUOTA_REQUIRED`, `ELEMENT_NOT_FOUND`, `ARTIFACT_DOWNLOAD_TIMEOUT`, `ARTIFACT_VERIFICATION_FAILED`, `MODE_UNCERTAIN`, `INVALID_ARGS`, `COMMAND_TIMEOUT`): live blockers and artifact-verification failures surface honestly instead of falling back or fabricating success.
+
+### Wanfang research database tools
+
+- `research:wanfang:search` / `research_wanfang_search`: always returns `result_count`, `items`, `query_url`, `results_url`.
+- `research:wanfang:filter` / `research_wanfang_filter`: always returns `result_count`, `items`, `refined_url`, `confirm_title`, `unfiltered_count`, `resource_type`, `resource_label`.
+- `research:wanfang:export` / `research_wanfang_export`: always returns `artifact_path`, `bytes`, `sha256`, `format`, `result_count`, `results_url`, `resource_type`, `resource_label`; it preserves the verified NUAA institutional-IP Wanfang trusted-CDP facet apply plus per-row selection, 批量引用 new-tab, and CDP artifact-click TXT citation path and does not synthesize artifacts.
+
+Wanfang keeps its module-owned `ConsumerErrorCodes` behavior (`ELEMENT_NOT_FOUND`, `ARTIFACT_DOWNLOAD_TIMEOUT`, `ARTIFACT_VERIFICATION_FAILED`, `MODE_UNCERTAIN`, `PLAN_OR_QUOTA_REQUIRED`, `COMMAND_TIMEOUT`, `INVALID_ARGS`): live blockers and artifact-verification failures surface honestly instead of falling back or fabricating success.

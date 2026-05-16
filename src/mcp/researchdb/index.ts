@@ -39,3 +39,4 @@ export * from "./crc/tools";
 export * from "./cellpress/tools";
 export * from "./iest/tools";
 export * from "./incopat/tools";
+export * from "./wanfang/tools";

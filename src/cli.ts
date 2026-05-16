@@ -32,7 +32,7 @@ import { runHealthCheck } from "./capabilities/healthCheck";
 import { CapabilityUpdater } from "./capabilities/updater";
 import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
 import { CapabilityLibraryImporter } from "./adapters/research/capabilityLibraryImporter";
-import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport } from "./mcp/researchdb";
+import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "./mcp/researchdb";
 import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
@@ -652,6 +652,9 @@ Core commands:
   research:incopat:search <query>|--query <query> [--page-size N] [--json]
   research:incopat:filter <query>|--query <query> [--country CN|US|KR|WO|EP] [--page-size N] [--json]
   research:incopat:export <query>|--query <query> [--country <code>] [--format pdf] [--download-dir <abs>] --confirmed [--json]
+  research:wanfang:search <query>|--query <query> [--page-size N] [--json]
+  research:wanfang:filter <query>|--query <query> [--resource-type Thesis|Periodical|Conference|Patent] [--resource-label <label>] [--page-size N] [--json]
+  research:wanfang:export <query>|--query <query> [--resource-type Thesis|Periodical|Conference|Patent] [--resource-label <label>] [--format txt] [--download-dir <abs>] [--row-index N] --confirmed [--json]
 
   workflow:list [--json]
   workflow:compile <workflow.yaml|json> [--json]
@@ -778,6 +781,9 @@ Core commands:
   research:incopat:search <query>|--query <query> [--page-size N] [--json]
   research:incopat:filter <query>|--query <query> [--country CN|US|KR|WO|EP] [--page-size N] [--json]
   research:incopat:export <query>|--query <query> [--country <code>] [--format pdf] [--download-dir <abs>] --confirmed [--json]
+  research:wanfang:search <query>|--query <query> [--page-size N] [--json]
+  research:wanfang:filter <query>|--query <query> [--resource-type Thesis|Periodical|Conference|Patent] [--resource-label <label>] [--page-size N] [--json]
+  research:wanfang:export <query>|--query <query> [--resource-type Thesis|Periodical|Conference|Patent] [--resource-label <label>] [--format txt] [--download-dir <abs>] [--row-index N] --confirmed [--json]
   capability:library:import [docs/capability-library.json] [--json]
   site:capture-map --site <id> [--profile research-default] [--fixture <html>] [--json]
   scheduler:run --interval-minutes <n> [--json]
@@ -1683,6 +1689,22 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     if (asBoolean(options.confirmed) !== true) throw new Error("research:incopat:export requires --confirmed because it writes a browser-downloaded artifact");
     const query = asString(options.query) || positionals[0];
     output(await researchIncopatExport({ query: query || "", country: asString(options.country), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wanfang:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWanfangSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wanfang:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWanfangFilter({ query: query || "", resource_type: asString(options["resource-type"] || options.resourceType), resource_label: asString(options["resource-label"] || options.resourceLabel), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wanfang:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:wanfang:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchWanfangExport({ query: query || "", resource_type: asString(options["resource-type"] || options.resourceType), resource_label: asString(options["resource-label"] || options.resourceLabel), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), row_index: asNumber(options["row-index"] || options.rowIndex), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
     return;
   }
   if (command === "capability:library:import") {
