@@ -3,6 +3,8 @@ node_modules/
 
 # Build output
 dist/
+# Phase-A parallel-build private outDirs (e.g. dist-acm, dist-asce) — regenerable
+dist-*/
 
 # Local runtime/configuration
 .env
