@@ -18,6 +18,8 @@ import {
   ScheduledJobRecord,
   ServiceTargetRecord,
   SiteRegistryEntryRecord,
+  IntegrationRegistryRecord,
+  IntegrationRegistryStatus,
   WebAiTaskRecord,
   UiElementRecord,
   WorkflowDefinitionRecord,
@@ -46,6 +48,7 @@ const TABLES: TableName[] = [
   "profile_leases",
   "artifacts",
   "site_registry_entries",
+  "integration_registry",
   "scheduled_jobs",
   "web_ai_tasks",
   "policy_events"
@@ -58,6 +61,11 @@ function artifactId(targetId: string, kind: string, artifactPath: string): strin
 function json<T>(value: T | undefined): string | null { return value === undefined ? null : JSON.stringify(value); }
 function parseJson<T>(value: string | null | undefined, fallback: T): T { if (!value) return fallback; try { return JSON.parse(value); } catch { return fallback; } }
 function textForCapability(capability: CapabilityRecord): string { return [capability.name, capability.category, capability.description, JSON.stringify(capability.inputs || {}), JSON.stringify(capability.outputs || {}), JSON.stringify(capability.evidence || {})].join(" "); }
+
+const INTEGRATION_REGISTRY_STATUSES = new Set(["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE"]);
+function validateIntegrationStatus(status: string): void {
+  if (!INTEGRATION_REGISTRY_STATUSES.has(status)) throw new Error(`Invalid integration registry status: ${status}`);
+}
 
 function emptyStore(): StoreData {
   return {
@@ -74,6 +82,7 @@ function emptyStore(): StoreData {
     profile_leases: [],
     artifacts: [],
     site_registry_entries: [],
+    integration_registry: [],
     scheduled_jobs: [],
     web_ai_tasks: [],
     policy_events: []
@@ -310,6 +319,45 @@ export class CapabilityDatabase {
     return { imported: entries.length, sites: entries.map((entry) => entry.site_id) };
   }
 
+  importIntegrationRegistry(entries: IntegrationRegistryRecord[]): { imported: number; features: string[] } {
+    this.init();
+    for (const entry of entries) validateIntegrationStatus(entry.status);
+    if (this.sqliteAvailable) {
+      const stmt = this.sqlite.prepare(`INSERT INTO integration_registry (feature_id, service, name, status, mcp_tool, raw, imported_at) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(feature_id) DO UPDATE SET service=excluded.service, name=excluded.name, status=excluded.status, mcp_tool=excluded.mcp_tool, raw=excluded.raw, imported_at=excluded.imported_at`);
+      const tx = this.sqlite.transaction((rows: IntegrationRegistryRecord[]) => {
+        for (const row of rows) stmt.run(row.feature_id, row.service, row.name, row.status, row.mcp_tool || null, json(row.raw), row.imported_at);
+      });
+      tx(entries);
+    } else {
+      const store = this.readStore();
+      for (const entry of entries) {
+        const index = store.integration_registry.findIndex((row) => row.feature_id === entry.feature_id);
+        if (index >= 0) store.integration_registry[index] = entry; else store.integration_registry.push(entry);
+      }
+      this.writeStore(store);
+    }
+    return { imported: entries.length, features: entries.map((entry) => entry.feature_id) };
+  }
+
+  listIntegrationRegistry(status?: IntegrationRegistryStatus | string): IntegrationRegistryRecord[] {
+    this.init();
+    if (status) validateIntegrationStatus(status);
+    const normalize = (row: any): IntegrationRegistryRecord => ({ ...row, raw: typeof row.raw === "string" ? parseJson(row.raw, {}) : row.raw, mcp_tool: row.mcp_tool || undefined });
+    if (this.sqliteAvailable) {
+      const rows = status
+        ? this.sqlite.prepare(`SELECT * FROM integration_registry WHERE status=? ORDER BY service, feature_id`).all(status)
+        : this.sqlite.prepare(`SELECT * FROM integration_registry ORDER BY service, feature_id`).all();
+      return rows.map(normalize);
+    }
+    return this.readStore().integration_registry
+      .filter((row) => !status || row.status === status)
+      .sort((a, b) => a.service.localeCompare(b.service) || a.feature_id.localeCompare(b.feature_id));
+  }
+
+  queryIntegrationRegistry(status?: IntegrationRegistryStatus | string): IntegrationRegistryRecord[] {
+    return this.listIntegrationRegistry(status);
+  }
+
   addWorkflowDefinition(record: WorkflowDefinitionRecord): WorkflowDefinitionRecord {
     this.init();
     if (this.sqliteAvailable) {
@@ -436,6 +484,7 @@ export class CapabilityDatabase {
     out.profile_leases = out.profile_leases.map((row: any) => ({ ...row }));
     out.artifacts = out.artifacts.map((row: any) => ({ ...row, metadata: parseJson(row.metadata, undefined) }));
     out.site_registry_entries = out.site_registry_entries.map((row: any) => ({ ...row, raw: parseJson(row.raw, {}) }));
+    out.integration_registry = out.integration_registry.map((row: any) => ({ ...row, raw: parseJson(row.raw, {}), mcp_tool: row.mcp_tool || undefined }));
     out.scheduled_jobs = out.scheduled_jobs.map((row: any) => ({ ...row, enabled: !!row.enabled, options: parseJson(row.options, undefined) }));
     out.web_ai_tasks = out.web_ai_tasks.map((row: any) => this.sqliteRowToWebAiTask(row));
     out.policy_events = out.policy_events.map((row: any) => ({ ...row, evidence: parseJson(row.evidence, undefined) }));
@@ -592,7 +641,8 @@ function filterExportByTarget(data: StoreData, target: string): StoreData {
     scheduled_jobs: data.scheduled_jobs.filter((row) => row.target_id === target),
     web_ai_tasks: data.web_ai_tasks.filter((row) => row.profile === target),
     policy_events: data.policy_events.filter((row) => row.target_id === target),
-    site_registry_entries: data.site_registry_entries.filter((row) => row.site_id === target)
+    site_registry_entries: data.site_registry_entries.filter((row) => row.site_id === target),
+    integration_registry: data.integration_registry.filter((row) => row.service === target || row.feature_id === target)
   };
 }
 

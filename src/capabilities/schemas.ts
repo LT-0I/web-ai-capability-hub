@@ -147,6 +147,18 @@ export interface SiteRegistryEntryRecord {
   imported_at: string;
 }
 
+export type IntegrationRegistryStatus = "IMPLEMENTED_GREEN" | "EXPLORED_PATH_KNOWN" | "UNEXPLORED" | "IN_PROGRESS" | "BLOCKED_NEEDS_USER" | "OUT_OF_SCOPE";
+
+export interface IntegrationRegistryRecord {
+  feature_id: string;
+  service: string;
+  name: string;
+  status: IntegrationRegistryStatus;
+  mcp_tool?: string;
+  raw: Record<string, unknown>;
+  imported_at: string;
+}
+
 export interface ScheduledJobRecord {
   id: string;
   target_id: string;
@@ -199,6 +211,7 @@ export interface CapabilityDatabaseExport {
   profile_leases: ProfileLeaseRecord[];
   artifacts: ArtifactRecord[];
   site_registry_entries: SiteRegistryEntryRecord[];
+  integration_registry: IntegrationRegistryRecord[];
   scheduled_jobs: ScheduledJobRecord[];
   web_ai_tasks: WebAiTaskRecord[];
   policy_events: PolicyEventRecord[];

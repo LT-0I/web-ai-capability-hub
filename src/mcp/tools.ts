@@ -18,6 +18,7 @@ import { CapabilityUpdater } from "../capabilities/updater";
 import { WorkflowCompiler } from "../workflows/compiler";
 import { WorkflowExecutor } from "../workflows/executor";
 import { SiteRegistryImporter } from "../adapters/research/siteRegistryImporter";
+import { CapabilityLibraryImporter } from "../adapters/research/capabilityLibraryImporter";
 import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
 import { consumerHealth } from "../consumer/health";
@@ -33,6 +34,7 @@ import {
   browserStartInput,
   browserStatusInput,
   capabilityExportInput,
+  capabilityLibraryImportInput,
   capabilityQueryInput,
   capabilityUpdateInput,
   consumerHealthInput,
@@ -2547,6 +2549,12 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Import paid research database site registry entries into the local capability database.",
     schema: siteRegistryImportInput,
     handler: async (args, runtime) => new SiteRegistryImporter(runtime.database).importFile(args.path)
+  },
+  {
+    name: "capability_library_import",
+    description: "Import the editable capability library seed into the authoritative integration registry table.",
+    schema: capabilityLibraryImportInput,
+    handler: async (args, runtime) => new CapabilityLibraryImporter(runtime.database).importFile(args.path)
   },
   {
     name: "site_capture_map",

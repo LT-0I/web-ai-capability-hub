@@ -1,4 +1,4 @@
-export const CAPABILITY_DB_SCHEMA_VERSION = 1;
+export const CAPABILITY_DB_SCHEMA_VERSION = 2;
 
 export const SQLITE_MIGRATIONS = [
 `CREATE TABLE IF NOT EXISTS browser_profiles (
@@ -133,6 +133,16 @@ export const SQLITE_MIGRATIONS = [
   base_url TEXT,
   raw TEXT NOT NULL,
   imported_at TEXT NOT NULL
+);`,
+`CREATE TABLE IF NOT EXISTS integration_registry (
+  feature_id TEXT PRIMARY KEY,
+  service TEXT NOT NULL,
+  name TEXT NOT NULL,
+  status TEXT NOT NULL,
+  mcp_tool TEXT,
+  raw TEXT NOT NULL,
+  imported_at TEXT NOT NULL,
+  CHECK(status IN ('IMPLEMENTED_GREEN','EXPLORED_PATH_KNOWN','UNEXPLORED','IN_PROGRESS','BLOCKED_NEEDS_USER','OUT_OF_SCOPE'))
 );`,
 `CREATE TABLE IF NOT EXISTS scheduled_jobs (
   id TEXT PRIMARY KEY,

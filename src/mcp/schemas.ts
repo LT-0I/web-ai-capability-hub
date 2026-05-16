@@ -136,6 +136,8 @@ export const workflowExecuteInput = objectSchema<{
 
 export const siteRegistryImportInput = objectSchema<{ path: string }>({ path: scalar.string("site_registry.json path") }, ["path"]);
 
+export const capabilityLibraryImportInput = objectSchema<{ path?: string }>({ path: scalar.string("capability-library.json path; defaults to docs/capability-library.json") }, []);
+
 export const siteCaptureMapInput = objectSchema<{ site: string; profile?: string; fixture?: string; url?: string }>({
   site: scalar.string("Site id"),
   profile: scalar.string("Browser profile"),

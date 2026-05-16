@@ -31,6 +31,7 @@ import { CapabilityDatabase } from "./capabilities/database";
 import { runHealthCheck } from "./capabilities/healthCheck";
 import { CapabilityUpdater } from "./capabilities/updater";
 import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
+import { CapabilityLibraryImporter } from "./adapters/research/capabilityLibraryImporter";
 import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
@@ -531,6 +532,7 @@ Core commands:
   capability:health-check --target <id> --profile <name> [--url <url>] [--apply] [--json]
   capability:query --target <id> --text <query> [--json]
   capability:export --target <id> --out <path> [--json]
+  capability:library:import [docs/capability-library.json] [--json]
 
   workflow:list [--json]
   workflow:compile <workflow.yaml|json> [--json]
@@ -539,6 +541,7 @@ Core commands:
   verify:docx-min --path <abs> [--min-paragraphs N] [--min-chars N] [--topic-regex <pattern>] [--no-sha256] [--output-json]
 
   site:registry:import <site_registry.json> [--json]
+  capability:library:import [docs/capability-library.json] [--json]
   site:capture-map --site <id> [--profile research-default] [--fixture <html>] [--json]
   scheduler:run --interval-minutes <n> [--json]
 
@@ -817,6 +820,11 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     const file = positionals[0] || asString(options.file);
     if (!file) throw new Error("site:registry:import requires a site_registry.json file path");
     output(new SiteRegistryImporter(new CapabilityDatabase()).importFile(file), options);
+    return;
+  }
+  if (command === "capability:library:import") {
+    const file = positionals[0] || asString(options.file) || path.resolve(process.cwd(), "docs/capability-library.json");
+    output(new CapabilityLibraryImporter(new CapabilityDatabase()).importFile(file), options);
     return;
   }
   if (command === "site:capture-map") {

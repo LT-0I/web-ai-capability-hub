@@ -61,6 +61,7 @@ Stable JSON keys are exactly:
 | `browser:pages` | `browser_pages` | `ManagedBrowserLauncher.pages` | stable | read | yes |
 | `capability:query` | `capability_query` | `CapabilityDatabase.queryCapabilities` | experimental | read | no |
 | `capability:export` | `capability_export` | `CapabilityDatabase.exportJson` | experimental | read | yes |
+| `capability:library:import` | `capability_library_import` | `CapabilityLibraryImporter.importFile` | experimental | mutate | no |
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
@@ -188,6 +189,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `workflows://runs` | `readMcpResource` | experimental | read | yes | _(none)_ | `id`, `workflow_id`, `status`, `started_at`, `finished_at` |
 | `browser-profiles://list` | `readMcpResource` | experimental | read | yes | _(none)_ | `profileName`, `browserType`, `profileDir`, `executablePath`, `cdpEndpoint`, `cdpPort`, `processId`, `lastStatus` |
 | `site-registry://sites` | `readMcpResource` | experimental | read | no | _(none)_ | `site_id`, `display_name`, `kind`, `base_url` |
+| `capability-library://features` | `readMcpResource` | experimental | read | no | _(none)_ | `feature_id`, `service`, `name`, `status`, `mcp_tool`, `raw`, `imported_at` |
 
 ## Stable JSON output guarantees
 
@@ -296,3 +298,8 @@ Within contract major version `1.x`, stable command/tool/resource schemas will n
 `browser:hover` keeps its existing instantaneous Playwright hover unless `--dwell-ms` or `--settle-selector` is provided. With those flags it dispatches raw CDP `Input.dispatchMouseEvent` `mouseMoved` steps toward the target, dwells for the requested duration (default 450ms when the dwell path is selected), and optionally requires `--settle-selector` to appear; missing targets or unrevealed submenus surface existing `ELEMENT_NOT_FOUND`/`MODE_UNCERTAIN`-style failures rather than success.
 
 `browser:read --include-portals` is opt-in and includes body-level Radix/command-palette portal roots such as `[data-radix-popper-content-wrapper]`, `[role="menu"]`, `[role="dialog"]`, and `[role="listbox"]`. The default read path remains portal-excluding for compatibility. The MCP `browser_read` tool exposes the same option as `includePortals`; no new MCP/webai tool is added.
+
+
+## Integration registry surface
+
+`docs/capability-library.json` is the editable seed. `capability:library:import` loads that seed into SQLite `integration_registry`, and `capability-library://features` exposes the authoritative imported rows. Public fields `feature_id`, `service`, `name`, `status`, and `mcp_tool` are classified as safe governance metadata; no forbidden fields are introduced.

@@ -125,11 +125,29 @@
           "artifacts",
           "policy_events",
           "site_registry_entries",
+          "integration_registry",
           "scheduled_jobs",
           "exportedAt"
         ]
       },
       "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "capability:library:import",
+      "mcp_name": "capability_library_import",
+      "ts_export": "CapabilityLibraryImporter.importFile",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "imported",
+          "features",
+          "path"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
     },
     {
       "cli_name": "capability:update",
@@ -1763,6 +1781,27 @@
         ]
       },
       "may_contain_sensitive_local_fields": false
+    },
+    {
+      "uri": "capability-library://features",
+      "mcp_name": "capability-library://features",
+      "ts_export": "readMcpResource",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "feature_id",
+          "service",
+          "name",
+          "status",
+          "mcp_tool",
+          "raw",
+          "imported_at"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
     }
   ],
   "forbidden_output_fields": [
@@ -1839,7 +1878,12 @@
     "pulse.onboarded": "Boolean account-state outcome; safe but indicates durable onboarding state.",
     "pulse.news_topic_selected": "Boolean Quick news recap selection outcome; safe preference metadata.",
     "pulse.final_status": "Pulse status after onboarding; safe non-content feature state.",
-    "chatgpt_codex.diff_text": "Unified code diff returned by get-diff; treat as code/content output, not local metadata."
+    "chatgpt_codex.diff_text": "Unified code diff returned by get-diff; treat as code/content output, not local metadata.",
+    "integration_registry.feature_id": "Public capability-library feature identifier; safe governance metadata.",
+    "integration_registry.service": "Public service name; safe governance metadata.",
+    "integration_registry.name": "Public feature name; safe governance metadata.",
+    "integration_registry.status": "Public integration campaign status; safe governance metadata.",
+    "integration_registry.mcp_tool": "Public MCP tool name; safe governance metadata."
   },
   "release_notes": [
     "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

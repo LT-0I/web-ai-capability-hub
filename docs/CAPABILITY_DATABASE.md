@@ -13,6 +13,7 @@
 - `run_events`
 - `artifacts`
 - `site_registry_entries`
+- `integration_registry`
 - `scheduled_jobs`
 - `policy_events`
 
@@ -28,4 +29,9 @@ node dist/src/cli.js capability:export --target gemini --out data/exports/gemini
 
 ## JSON export/import
 
-Exports include schema version, targets, captures, UI elements, capabilities, versions, workflow runs/events, artifacts, site registry entries, jobs, and policy events. Other local systems can read the exported JSON without linking against SQLite.
+Exports include schema version, targets, captures, UI elements, capabilities, versions, workflow runs/events, artifacts, site registry entries, integration registry rows, jobs, and policy events. Other local systems can read the exported JSON without linking against SQLite.
+
+
+## Runtime capabilities vs integration registry
+
+One store, two tables, two views: runtime auto-extracted capabilities live in the `capabilities` table and are owned by the extractor/updater pipeline. Integration and exploration governance lives in the sibling `integration_registry` table, seeded from `docs/capability-library.json` via `capability:library:import`. Do not merge governance rows into `capabilities`; the runtime schema and health-status enum are intentionally separate from campaign status values.

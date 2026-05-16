@@ -228,10 +228,10 @@ These 4 features cannot be resolved by engineering alone. Items 1,3,5,6 (voice/a
 
 ## Maintenance
 
-- **Source of truth:** `docs/capability-library.json` — machine-readable, one record per feature.
+- **Editable seed:** `docs/capability-library.json` — machine-readable, one record per feature. Import it with `capability:library:import`; the SQLite `integration_registry` table is the source of truth for consumers.
 - **Campaign plan:** `docs/plans/web-ai-automation-v2.md`
 - **Integration blueprint:** `docs/plans/stream5-integration-blueprint.md`
 - **Consumer contract:** `configs/consumer-contract.json` (consumer-contract-1.4.0)
 - **Contract tests:** `tests/consumerContract.test.ts`
 
-Future sessions: do **not** re-explore IMPLEMENTED_GREEN features. Treat `docs/capability-library.json` as the authoritative map. Use `docs/plans/stream5-integration-blueprint.md` for the batch dispatch runbook (B0–B8) if extending the surface further.
+Future sessions: do **not** re-explore IMPLEMENTED_GREEN features. Treat the imported SQLite `integration_registry` table as the authoritative map; edit `docs/capability-library.json` only as the seed and re-import it. Use `docs/plans/stream5-integration-blueprint.md` for the batch dispatch runbook (B0–B8) if extending the surface further.
