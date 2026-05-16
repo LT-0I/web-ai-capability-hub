@@ -167,6 +167,2352 @@
       "may_contain_sensitive_local_fields": false
     },
     {
+      "cli_name": "research:aiaa:search",
+      "mcp_name": "research_aiaa_search",
+      "ts_export": "researchAiaaSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aiaa:filter",
+      "mcp_name": "research_aiaa_filter",
+      "ts_export": "researchAiaaFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aiaa:export",
+      "mcp_name": "research_aiaa_export",
+      "ts_export": "researchAiaaExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wos:search",
+      "mcp_name": "research_wos_search",
+      "ts_export": "researchWosSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wos:filter",
+      "mcp_name": "research_wos_filter",
+      "ts_export": "researchWosFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "active_refine"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wos:export",
+      "mcp_name": "research_wos_export",
+      "ts_export": "researchWosExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acm:search",
+      "mcp_name": "research_acm_search",
+      "ts_export": "researchAcmSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acm:filter",
+      "mcp_name": "research_acm_filter",
+      "ts_export": "researchAcmFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acm:export",
+      "mcp_name": "research_acm_export",
+      "ts_export": "researchAcmExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:ieee:search",
+      "mcp_name": "research_ieee_search",
+      "ts_export": "researchIeeeSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:ieee:filter",
+      "mcp_name": "research_ieee_filter",
+      "ts_export": "researchIeeeFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:ieee:export",
+      "mcp_name": "research_ieee_export",
+      "ts_export": "researchIeeeExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acs:search",
+      "mcp_name": "research_acs_search",
+      "ts_export": "researchAcsSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acs:filter",
+      "mcp_name": "research_acs_filter",
+      "ts_export": "researchAcsFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:acs:export",
+      "mcp_name": "research_acs_export",
+      "ts_export": "researchAcsExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asme:search",
+      "mcp_name": "research_asme_search",
+      "ts_export": "researchAsmeSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asme:filter",
+      "mcp_name": "research_asme_filter",
+      "ts_export": "researchAsmeFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asme:export",
+      "mcp_name": "research_asme_export",
+      "ts_export": "researchAsmeExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "resource_id"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:rsc:search",
+      "mcp_name": "research_rsc_search",
+      "ts_export": "researchRscSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:rsc:filter",
+      "mcp_name": "research_rsc_filter",
+      "ts_export": "researchRscFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:rsc:export",
+      "mcp_name": "research_rsc_export",
+      "ts_export": "researchRscExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wiley:search",
+      "mcp_name": "research_wiley_search",
+      "ts_export": "researchWileySearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wiley:filter",
+      "mcp_name": "research_wiley_filter",
+      "ts_export": "researchWileyFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:wiley:export",
+      "mcp_name": "research_wiley_export",
+      "ts_export": "researchWileyExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asce:search",
+      "mcp_name": "research_asce_search",
+      "ts_export": "researchAsceSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asce:filter",
+      "mcp_name": "research_asce_filter",
+      "ts_export": "researchAsceFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:asce:export",
+      "mcp_name": "research_asce_export",
+      "ts_export": "researchAsceExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iop:search",
+      "mcp_name": "research_iop_search",
+      "ts_export": "researchIopSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iop:filter",
+      "mcp_name": "research_iop_filter",
+      "ts_export": "researchIopFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iop:export",
+      "mcp_name": "research_iop_export",
+      "ts_export": "researchIopExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "export_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:tandf:search",
+      "mcp_name": "research_tandf_search",
+      "ts_export": "researchTandfSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:tandf:filter",
+      "mcp_name": "research_tandf_filter",
+      "ts_export": "researchTandfFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:tandf:export",
+      "mcp_name": "research_tandf_export",
+      "ts_export": "researchTandfExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sae:search",
+      "mcp_name": "research_sae_search",
+      "ts_export": "researchSaeSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sae:filter",
+      "mcp_name": "research_sae_filter",
+      "ts_export": "researchSaeFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sae:export",
+      "mcp_name": "research_sae_export",
+      "ts_export": "researchSaeExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "query",
+          "result_count"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sciencedirect:search",
+      "mcp_name": "research_sciencedirect_search",
+      "ts_export": "researchScienceDirectSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sciencedirect:filter",
+      "mcp_name": "research_sciencedirect_filter",
+      "ts_export": "researchScienceDirectFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:sciencedirect:export",
+      "mcp_name": "research_sciencedirect_export",
+      "ts_export": "researchScienceDirectExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aps:search",
+      "mcp_name": "research_aps_search",
+      "ts_export": "researchApsSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aps:filter",
+      "mcp_name": "research_aps_filter",
+      "ts_export": "researchApsFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aps:export",
+      "mcp_name": "research_aps_export",
+      "ts_export": "researchApsExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:emerald:search",
+      "mcp_name": "research_emerald_search",
+      "ts_export": "researchEmeraldSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:emerald:filter",
+      "mcp_name": "research_emerald_filter",
+      "ts_export": "researchEmeraldFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:emerald:export",
+      "mcp_name": "research_emerald_export",
+      "ts_export": "researchEmeraldExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "resource_id",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cambridge:search",
+      "mcp_name": "research_cambridge_search",
+      "ts_export": "researchCambridgeSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cambridge:filter",
+      "mcp_name": "research_cambridge_filter",
+      "ts_export": "researchCambridgeFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cambridge:export",
+      "mcp_name": "research_cambridge_export",
+      "ts_export": "researchCambridgeExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "product_id"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:springer:search",
+      "mcp_name": "research_springer_search",
+      "ts_export": "researchSpringerSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:springer:filter",
+      "mcp_name": "research_springer_filter",
+      "ts_export": "researchSpringerFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title",
+          "applied_filters"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:springer:export",
+      "mcp_name": "research_springer_export",
+      "ts_export": "researchSpringerExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:nature:search",
+      "mcp_name": "research_nature_search",
+      "ts_export": "researchNatureSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:nature:filter",
+      "mcp_name": "research_nature_filter",
+      "ts_export": "researchNatureFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "facet_param",
+          "facet_value",
+          "facet_checked"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:nature:export",
+      "mcp_name": "research_nature_export",
+      "ts_export": "researchNatureExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "article_url",
+          "citation_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iet:search",
+      "mcp_name": "research_iet_search",
+      "ts_export": "researchIetSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iet:filter",
+      "mcp_name": "research_iet_filter",
+      "ts_export": "researchIetFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iet:export",
+      "mcp_name": "research_iet_export",
+      "ts_export": "researchIetExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aip:search",
+      "mcp_name": "research_aip_search",
+      "ts_export": "researchAipSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aip:filter",
+      "mcp_name": "research_aip_filter",
+      "ts_export": "researchAipFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:aip:export",
+      "mcp_name": "research_aip_export",
+      "ts_export": "researchAipExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "resource_id",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:mdpi:search",
+      "mcp_name": "research_mdpi_search",
+      "ts_export": "researchMdpiSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:mdpi:filter",
+      "mcp_name": "research_mdpi_filter",
+      "ts_export": "researchMdpiFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:mdpi:export",
+      "mcp_name": "research_mdpi_export",
+      "ts_export": "researchMdpiExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "article_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:optica:search",
+      "mcp_name": "research_optica_search",
+      "ts_export": "researchOpticaSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "total_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:optica:filter",
+      "mcp_name": "research_optica_filter",
+      "ts_export": "researchOpticaFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "total_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:optica:export",
+      "mcp_name": "research_optica_export",
+      "ts_export": "researchOpticaExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query",
+        "article_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "article_id"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:proquest:search",
+      "mcp_name": "research_proquest_search",
+      "ts_export": "researchProquestSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "results_url",
+          "title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:proquest:filter",
+      "mcp_name": "research_proquest_filter",
+      "ts_export": "researchProquestFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count",
+          "unfiltered_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:proquest:export",
+      "mcp_name": "research_proquest_export",
+      "ts_export": "researchProquestExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:frontiers:search",
+      "mcp_name": "research_frontiers_search",
+      "ts_export": "researchFrontiersSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:frontiers:filter",
+      "mcp_name": "research_frontiers_filter",
+      "ts_export": "researchFrontiersFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query",
+        "group",
+        "option_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "group",
+          "selected_label"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:frontiers:export",
+      "mcp_name": "research_frontiers_export",
+      "ts_export": "researchFrontiersExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:arxiv:search",
+      "mcp_name": "research_arxiv_search",
+      "ts_export": "researchArxivSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:arxiv:filter",
+      "mcp_name": "research_arxiv_filter",
+      "ts_export": "researchArxivFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:arxiv:export",
+      "mcp_name": "research_arxiv_export",
+      "ts_export": "researchArxivExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "id",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:siam:search",
+      "mcp_name": "research_siam_search",
+      "ts_export": "researchSiamSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:siam:filter",
+      "mcp_name": "research_siam_filter",
+      "ts_export": "researchSiamFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:siam:export",
+      "mcp_name": "research_siam_export",
+      "ts_export": "researchSiamExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "content_type",
+          "content_disposition"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:degruyter:search",
+      "mcp_name": "research_degruyter_search",
+      "ts_export": "researchDegruyterSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:degruyter:filter",
+      "mcp_name": "research_degruyter_filter",
+      "ts_export": "researchDegruyterFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:degruyter:export",
+      "mcp_name": "research_degruyter_export",
+      "ts_export": "researchDegruyterExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:worldsci:search",
+      "mcp_name": "research_worldsci_search",
+      "ts_export": "researchWorldsciSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "cf_interstitial_observed"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:worldsci:filter",
+      "mcp_name": "research_worldsci_filter",
+      "ts_export": "researchWorldsciFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "cf_interstitial_observed"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:worldsci:export",
+      "mcp_name": "research_worldsci_export",
+      "ts_export": "researchWorldsciExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doi"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "cf_interstitial_observed"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:royalsoc:search",
+      "mcp_name": "research_royalsoc_search",
+      "ts_export": "researchRoyalSocSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:royalsoc:filter",
+      "mcp_name": "research_royalsoc_filter",
+      "ts_export": "researchRoyalSocFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title",
+          "filter_confirmed"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:royalsoc:export",
+      "mcp_name": "research_royalsoc_export",
+      "ts_export": "researchRoyalSocExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "doi",
+          "resource_id",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scoap3:search",
+      "mcp_name": "research_scoap3_search",
+      "ts_export": "researchScoap3Search",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_url",
+          "export_href"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scoap3:filter",
+      "mcp_name": "research_scoap3_filter",
+      "ts_export": "researchScoap3Filter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "export_href"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scoap3:export",
+      "mcp_name": "research_scoap3_export",
+      "ts_export": "researchScoap3Export",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:dblp:search",
+      "mcp_name": "research_dblp_search",
+      "ts_export": "researchDblpSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_title",
+          "facets"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:dblp:filter",
+      "mcp_name": "research_dblp_filter",
+      "ts_export": "researchDblpFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title",
+          "facets"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:dblp:export",
+      "mcp_name": "research_dblp_export",
+      "ts_export": "researchDblpExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "source_url",
+          "mime_type"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scielo:search",
+      "mcp_name": "research_scielo_search",
+      "ts_export": "researchScieloSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scielo:filter",
+      "mcp_name": "research_scielo_filter",
+      "ts_export": "researchScieloFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title",
+          "selected_filters"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:scielo:export",
+      "mcp_name": "research_scielo_export",
+      "ts_export": "researchScieloExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "source_url",
+          "result_count"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:inspirehep:search",
+      "mcp_name": "research_inspirehep_search",
+      "ts_export": "researchInspirehepSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:inspirehep:filter",
+      "mcp_name": "research_inspirehep_filter",
+      "ts_export": "researchInspirehepFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_url",
+          "confirm_title",
+          "applied_filters"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:inspirehep:export",
+      "mcp_name": "research_inspirehep_export",
+      "ts_export": "researchInspirehepExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "source_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:pubscholar:search",
+      "mcp_name": "research_pubscholar_search",
+      "ts_export": "researchPubscholarSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "selected_count",
+          "items",
+          "query_url",
+          "results_url",
+          "title",
+          "breadcrumb"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:pubscholar:filter",
+      "mcp_name": "research_pubscholar_filter",
+      "ts_export": "researchPubscholarFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "selected_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "breadcrumb",
+          "unfiltered_count",
+          "unfiltered_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:pubscholar:export",
+      "mcp_name": "research_pubscholar_export",
+      "ts_export": "researchPubscholarExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url",
+          "breadcrumb",
+          "structural_tags"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:opticsjournal:search",
+      "mcp_name": "research_opticsjournal_search",
+      "ts_export": "researchOpticsjournalSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "query_url",
+          "results_url",
+          "title",
+          "note"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:opticsjournal:filter",
+      "mcp_name": "research_opticsjournal_filter",
+      "ts_export": "researchOpticsjournalFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:opticsjournal:export",
+      "mcp_name": "research_opticsjournal_export",
+      "ts_export": "researchOpticsjournalExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url",
+          "records"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:crc:search",
+      "mcp_name": "research_crc_search",
+      "ts_export": "researchCrcSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "results_url",
+          "title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:crc:filter",
+      "mcp_name": "research_crc_filter",
+      "ts_export": "researchCrcFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count",
+          "unfiltered_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:crc:export",
+      "mcp_name": "research_crc_export",
+      "ts_export": "researchCrcExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url",
+          "columns",
+          "rows"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cellpress:search",
+      "mcp_name": "research_cellpress_search",
+      "ts_export": "researchCellpressSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "confirm_title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cellpress:filter",
+      "mcp_name": "research_cellpress_filter",
+      "ts_export": "researchCellpressFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "base_result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "refine_mode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:cellpress:export",
+      "mcp_name": "research_cellpress_export",
+      "ts_export": "researchCellpressExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "pii"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "pii",
+          "doi",
+          "source_url",
+          "mime_type"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iest:search",
+      "mcp_name": "research_iest_search",
+      "ts_export": "researchIestSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "query_url",
+          "results_url",
+          "title"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iest:filter",
+      "mcp_name": "research_iest_filter",
+      "ts_export": "researchIestFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "item_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count",
+          "unfiltered_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:iest:export",
+      "mcp_name": "research_iest_export",
+      "ts_export": "researchIestExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "article_url"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "capability:update",
       "mcp_name": "capability_update",
       "ts_export": "CapabilityUpdater.updateFromSnapshot",
@@ -1904,7 +4250,455 @@
     "integration_registry.status": "Public integration campaign status; safe governance metadata.",
     "integration_registry.mcp_tool": "Public MCP tool name; safe governance metadata.",
     "site_registry.classification.science_engineering": "Public STEM/non-STEM classification flag; safe governance metadata.",
-    "site_registry.classification.matched_subjects": "Public matched STEM subject labels; safe governance metadata."
+    "site_registry.classification.matched_subjects": "Public matched STEM subject labels; safe governance metadata.",
+    "aiaa.result_count": "Public AIAA search result count; safe bibliographic metadata.",
+    "aiaa.items": "Public AIAA bibliographic result summaries; publication metadata only.",
+    "aiaa.query_url": "AIAA public search URL containing the submitted query and facets; treat as user query metadata.",
+    "aiaa.refined_url": "AIAA public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "aiaa.confirm_title": "AIAA page title confirming query/facet expression; safe bibliographic metadata.",
+    "aiaa.artifact_path": "Local path to downloaded AIAA citation artifact; generated under caller-selected download directory.",
+    "aiaa.bytes": "Downloaded AIAA citation artifact byte size; safe artifact metadata.",
+    "aiaa.sha256": "Downloaded AIAA citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "aiaa.format": "Requested citation export format; safe artifact metadata.",
+    "aiaa.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "wos.result_count": "Public Web of Science search result count; safe bibliographic metadata.",
+    "wos.items": "Public Web of Science bibliographic result summaries; publication metadata only.",
+    "wos.query_url": "Web of Science public search URL containing the submitted query and facets; treat as user query metadata.",
+    "wos.refined_url": "Web of Science public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "wos.confirm_title": "Web of Science page title confirming query/facet expression; safe bibliographic metadata.",
+    "wos.active_refine": "Web of Science active refine label; safe bibliographic metadata.",
+    "wos.artifact_path": "Local path to downloaded Web of Science citation artifact; generated under caller-selected download directory.",
+    "wos.bytes": "Downloaded Web of Science citation artifact byte size; safe artifact metadata.",
+    "wos.sha256": "Downloaded Web of Science citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "wos.format": "Requested Web of Science citation export format; safe artifact metadata.",
+    "acm.result_count": "Public ACM search result count; safe bibliographic metadata.",
+    "acm.items": "Public ACM bibliographic result summaries; publication metadata only.",
+    "acm.query_url": "ACM public search URL containing the submitted query and facets; treat as user query metadata.",
+    "acm.refined_url": "ACM public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "acm.confirm_title": "ACM page title confirming query/facet expression; safe bibliographic metadata.",
+    "acm.artifact_path": "Local path to downloaded ACM citation artifact; generated under caller-selected download directory.",
+    "acm.bytes": "Downloaded ACM citation artifact byte size; safe artifact metadata.",
+    "acm.sha256": "Downloaded ACM citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "acm.format": "Requested ACM citation export format; safe artifact metadata.",
+    "acm.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "ieee.result_count": "Public IEEE Xplore search result count; safe bibliographic metadata.",
+    "ieee.items": "Public IEEE Xplore bibliographic result summaries; publication metadata only.",
+    "ieee.query_url": "IEEE Xplore public search URL containing the submitted query and facets; treat as user query metadata.",
+    "ieee.refined_url": "IEEE Xplore public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "ieee.confirm_title": "IEEE Xplore page title confirming query/facet expression; safe bibliographic metadata.",
+    "ieee.artifact_path": "Local path to downloaded IEEE Xplore citation artifact when export is unblocked; generated under caller-selected download directory.",
+    "ieee.bytes": "Downloaded IEEE Xplore citation artifact byte size; safe artifact metadata.",
+    "ieee.sha256": "Downloaded IEEE Xplore citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "ieee.format": "Requested IEEE Xplore citation export format; safe artifact metadata.",
+    "acs.result_count": "Public ACS Publications search result count; safe bibliographic metadata.",
+    "acs.items": "Public ACS Publications bibliographic result summaries; publication metadata only.",
+    "acs.query_url": "ACS Publications public search URL containing the submitted query and facets; treat as user query metadata.",
+    "acs.refined_url": "ACS Publications public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "acs.confirm_title": "ACS Publications page title confirming query/facet expression; safe bibliographic metadata.",
+    "acs.artifact_path": "Local path to downloaded ACS Publications citation artifact; generated under caller-selected download directory.",
+    "acs.bytes": "Downloaded ACS Publications citation artifact byte size; safe artifact metadata.",
+    "acs.sha256": "Downloaded ACS Publications citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "acs.format": "Requested ACS Publications citation export format; safe artifact metadata.",
+    "acs.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "asme.result_count": "Public ASME Digital Collection search result count; safe bibliographic metadata.",
+    "asme.items": "Public ASME Digital Collection bibliographic result summaries; publication metadata only.",
+    "asme.query_url": "ASME Digital Collection public search URL containing the submitted query and facets; treat as user query metadata.",
+    "asme.refined_url": "ASME Digital Collection public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "asme.confirm_title": "ASME Digital Collection page title confirming query/facet expression; safe bibliographic metadata.",
+    "asme.artifact_path": "Local path to downloaded ASME Digital Collection citation artifact; generated under caller-selected download directory.",
+    "asme.bytes": "Downloaded ASME Digital Collection citation artifact byte size; safe artifact metadata.",
+    "asme.sha256": "Downloaded ASME Digital Collection citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "asme.format": "Requested ASME Digital Collection citation export format; safe artifact metadata.",
+    "asme.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "rsc.result_count": "Public Royal Society of Chemistry search result count; safe bibliographic metadata.",
+    "rsc.items": "Public Royal Society of Chemistry bibliographic result summaries; publication metadata only.",
+    "rsc.query_url": "Royal Society of Chemistry public search URL containing the submitted query and facets; treat as user query metadata.",
+    "rsc.refined_url": "Royal Society of Chemistry public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "rsc.confirm_title": "Royal Society of Chemistry page title confirming query/facet expression; safe bibliographic metadata.",
+    "rsc.artifact_path": "Local path to downloaded Royal Society of Chemistry citation artifact; generated under caller-selected download directory.",
+    "rsc.bytes": "Downloaded Royal Society of Chemistry citation artifact byte size; safe artifact metadata.",
+    "rsc.sha256": "Downloaded Royal Society of Chemistry citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "rsc.format": "Requested Royal Society of Chemistry citation export format; safe artifact metadata.",
+    "rsc.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "wiley.result_count": "Public Wiley Online Library search result count; safe bibliographic metadata.",
+    "wiley.items": "Public Wiley Online Library bibliographic result summaries; publication metadata only.",
+    "wiley.query_url": "Wiley Online Library public search URL containing the submitted query and facets; treat as user query metadata.",
+    "wiley.refined_url": "Wiley Online Library public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "wiley.confirm_title": "Wiley Online Library page title confirming query/facet expression; safe bibliographic metadata.",
+    "wiley.artifact_path": "Local path to downloaded Wiley Online Library citation artifact; generated under caller-selected download directory.",
+    "wiley.bytes": "Downloaded Wiley Online Library citation artifact byte size; safe artifact metadata.",
+    "wiley.sha256": "Downloaded Wiley Online Library citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "wiley.format": "Requested Wiley Online Library citation export format; safe artifact metadata.",
+    "wiley.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "asce.result_count": "Public ASCE Library search result count; safe bibliographic metadata.",
+    "asce.items": "Public ASCE Library bibliographic result summaries; publication metadata only.",
+    "asce.query_url": "ASCE Library public search URL containing the submitted query and facets; treat as user query metadata.",
+    "asce.refined_url": "ASCE Library public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "asce.confirm_title": "ASCE Library page title confirming query/facet expression; safe bibliographic metadata.",
+    "asce.artifact_path": "Local path to downloaded ASCE Library citation artifact; generated under caller-selected download directory.",
+    "asce.bytes": "Downloaded ASCE Library citation artifact byte size; safe artifact metadata.",
+    "asce.sha256": "Downloaded ASCE Library citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "asce.format": "Requested ASCE Library citation export format; safe artifact metadata.",
+    "asce.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "asme.resource_id": "ASME Silverchair resource identifier used by the citation download endpoint; safe publication metadata.",
+    "iop.result_count": "Public IOPscience search result count; safe bibliographic metadata.",
+    "iop.items": "Public IOPscience bibliographic result summaries; publication metadata only.",
+    "iop.query_url": "IOPscience public search URL containing the submitted query and facets; treat as user query metadata.",
+    "iop.refined_url": "IOPscience public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "iop.confirm_title": "IOPscience page title confirming query/facet expression; safe bibliographic metadata.",
+    "iop.artifact_path": "Local path to downloaded IOPscience citation artifact; generated under caller-selected download directory.",
+    "iop.bytes": "Downloaded IOPscience citation artifact byte size; safe artifact metadata.",
+    "iop.sha256": "Downloaded IOPscience citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "iop.format": "Requested IOPscience citation export format; safe artifact metadata.",
+    "iop.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "iop.export_url": "IOPscience citation export URL containing public DOI and requested format; safe bibliographic metadata.",
+    "tandf.result_count": "Public Taylor & Francis Online search result count; safe bibliographic metadata.",
+    "tandf.items": "Public Taylor & Francis Online bibliographic result summaries; publication metadata only.",
+    "tandf.query_url": "Taylor & Francis Online public search URL containing the submitted query and facets; treat as user query metadata.",
+    "tandf.refined_url": "Taylor & Francis Online public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "tandf.confirm_title": "Taylor & Francis Online page title confirming query/facet expression; safe bibliographic metadata.",
+    "tandf.artifact_path": "Local path to downloaded Taylor & Francis Online citation artifact; generated under caller-selected download directory.",
+    "tandf.bytes": "Downloaded Taylor & Francis Online citation artifact byte size; safe artifact metadata.",
+    "tandf.sha256": "Downloaded Taylor & Francis Online citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "tandf.format": "Requested Taylor & Francis Online citation export format; safe artifact metadata.",
+    "tandf.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "sae.result_count": "Public SAE Mobilus search/result-set count; safe bibliographic metadata.",
+    "sae.items": "Public SAE Mobilus bibliographic result summaries; publication metadata only.",
+    "sae.query_url": "SAE Mobilus public search URL containing the submitted query and facets; treat as user query metadata.",
+    "sae.refined_url": "SAE Mobilus public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "sae.confirm_title": "SAE Mobilus page title confirming query/facet expression; safe bibliographic metadata.",
+    "sae.artifact_path": "Local path to downloaded SAE Mobilus citation artifact; generated under caller-selected download directory.",
+    "sae.bytes": "Downloaded SAE Mobilus citation artifact byte size; safe artifact metadata.",
+    "sae.sha256": "Downloaded SAE Mobilus citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "sae.format": "Requested SAE Mobilus citation export format; safe artifact metadata.",
+    "sae.query": "SAE Mobilus submitted export query; treat as user query metadata.",
+    "sciencedirect.result_count": "Public result-count metadata from the research database response.",
+    "sciencedirect.items": "Public bibliographic search-result metadata returned by the research database.",
+    "sciencedirect.query_url": "Research database query URL; may encode local query terms.",
+    "sciencedirect.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "sciencedirect.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "sciencedirect.artifact_path": "Local citation artifact path written by the export workflow.",
+    "sciencedirect.bytes": "Local citation artifact byte count.",
+    "sciencedirect.sha256": "Local citation artifact SHA-256 digest.",
+    "sciencedirect.format": "Citation export format selected for the research database workflow.",
+    "sciencedirect.record_count": "ScienceDirect citation record count observed in the exported artifact.",
+    "sciencedirect.facet_input_id": "ScienceDirect facet input identifier used for refinement.",
+    "sciencedirect.facet_checked": "ScienceDirect facet checkbox state observed after refinement.",
+    "aps.result_count": "Public result-count metadata from the research database response.",
+    "aps.items": "Public bibliographic search-result metadata returned by the research database.",
+    "aps.query_url": "Research database query URL; may encode local query terms.",
+    "aps.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "aps.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "aps.artifact_path": "Local citation artifact path written by the export workflow.",
+    "aps.bytes": "Local citation artifact byte count.",
+    "aps.sha256": "Local citation artifact SHA-256 digest.",
+    "aps.format": "Citation export format selected for the research database workflow.",
+    "aps.doi": "Public DOI used by the research database export workflow.",
+    "emerald.result_count": "Public result-count metadata from the research database response.",
+    "emerald.items": "Public bibliographic search-result metadata returned by the research database.",
+    "emerald.query_url": "Research database query URL; may encode local query terms.",
+    "emerald.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "emerald.confirm_url": "Browser URL confirming the applied research database refinement.",
+    "emerald.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "emerald.artifact_path": "Local citation artifact path written by the export workflow.",
+    "emerald.bytes": "Local citation artifact byte count.",
+    "emerald.sha256": "Local citation artifact SHA-256 digest.",
+    "emerald.format": "Citation export format selected for the research database workflow.",
+    "emerald.doi": "Public DOI used by the research database export workflow.",
+    "emerald.resource_id": "Publisher resource identifier used by the citation export workflow.",
+    "emerald.source_url": "Publisher citation download URL used by the citation export workflow.",
+    "cambridge.result_count": "Public result-count metadata from the research database response.",
+    "cambridge.items": "Public bibliographic search-result metadata returned by the research database.",
+    "cambridge.query_url": "Research database query URL; may encode local query terms.",
+    "cambridge.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "cambridge.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "cambridge.applied_filter": "Cambridge Core filter value applied by the refinement workflow.",
+    "cambridge.artifact_path": "Local citation artifact path written by the export workflow.",
+    "cambridge.bytes": "Local citation artifact byte count.",
+    "cambridge.sha256": "Local citation artifact SHA-256 digest.",
+    "cambridge.format": "Citation export format selected for the research database workflow.",
+    "cambridge.product_id": "Cambridge Core product identifier used by the citation export workflow.",
+    "springer.result_count": "Public SpringerLink search result count; safe bibliographic metadata.",
+    "springer.items": "Public SpringerLink bibliographic result summaries; publication metadata only.",
+    "springer.query_url": "SpringerLink public search URL containing the submitted query and facets; treat as user query metadata.",
+    "springer.refined_url": "SpringerLink public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "springer.confirm_title": "SpringerLink page title confirming query/facet expression; safe bibliographic metadata.",
+    "springer.artifact_path": "Local path to downloaded SpringerLink citation artifact; generated under caller-selected download directory.",
+    "springer.bytes": "Downloaded SpringerLink citation artifact byte size; safe artifact metadata.",
+    "springer.sha256": "Downloaded SpringerLink citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "springer.format": "Requested SpringerLink citation export format; safe artifact metadata.",
+    "springer.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "nature.result_count": "Public Nature search result count; safe bibliographic metadata.",
+    "nature.items": "Public Nature bibliographic result summaries; publication metadata only.",
+    "nature.query_url": "Nature public search URL containing the submitted query and facets; treat as user query metadata.",
+    "nature.refined_url": "Nature public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "nature.confirm_title": "Nature page title confirming query/facet expression; safe bibliographic metadata.",
+    "nature.artifact_path": "Local path to downloaded Nature citation artifact; generated under caller-selected download directory.",
+    "nature.bytes": "Downloaded Nature citation artifact byte size; safe artifact metadata.",
+    "nature.sha256": "Downloaded Nature citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "nature.format": "Requested Nature citation export format; safe artifact metadata.",
+    "nature.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "iet.result_count": "Public IET Digital Library search result count; safe bibliographic metadata.",
+    "iet.items": "Public IET Digital Library bibliographic result summaries; publication metadata only.",
+    "iet.query_url": "IET Digital Library public search URL containing the submitted query and facets; treat as user query metadata.",
+    "iet.refined_url": "IET Digital Library public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "iet.confirm_title": "IET Digital Library page title confirming query/facet expression; safe bibliographic metadata.",
+    "iet.artifact_path": "Local path to downloaded IET Digital Library citation artifact; generated under caller-selected download directory.",
+    "iet.bytes": "Downloaded IET Digital Library citation artifact byte size; safe artifact metadata.",
+    "iet.sha256": "Downloaded IET Digital Library citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "iet.format": "Requested IET Digital Library citation export format; safe artifact metadata.",
+    "iet.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "aip.result_count": "Public AIP Publishing Scitation search result count; safe bibliographic metadata.",
+    "aip.items": "Public AIP Publishing Scitation bibliographic result summaries; publication metadata only.",
+    "aip.query_url": "AIP Publishing Scitation public search URL containing the submitted query and facets; treat as user query metadata.",
+    "aip.refined_url": "AIP Publishing Scitation public refined search URL containing submitted query and facets; treat as user query metadata.",
+    "aip.confirm_title": "AIP Publishing Scitation page title confirming query/facet expression; safe bibliographic metadata.",
+    "aip.artifact_path": "Local path to downloaded AIP Publishing Scitation citation artifact; generated under caller-selected download directory.",
+    "aip.bytes": "Downloaded AIP Publishing Scitation citation artifact byte size; safe artifact metadata.",
+    "aip.sha256": "Downloaded AIP Publishing Scitation citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "aip.format": "Requested AIP Publishing Scitation citation export format; safe artifact metadata.",
+    "aip.doi": "Public DOI identifier; safe bibliographic metadata.",
+    "springer.confirm_url": "SpringerLink browser URL confirming the applied research database refinement.",
+    "springer.source_url": "SpringerLink citation download URL used by the citation export workflow.",
+    "aip.confirm_url": "AIP Publishing Scitation browser URL confirming the applied research database refinement.",
+    "aip.source_url": "AIP Publishing Scitation citation download URL used by the citation export workflow.",
+    "springer.applied_filters": "SpringerLink applied filter labels/URL facets; safe bibliographic metadata.",
+    "nature.facet_param": "Nature facet parameter used for refinement; safe bibliographic metadata.",
+    "nature.facet_value": "Nature facet value used for refinement; safe bibliographic metadata.",
+    "nature.facet_checked": "Nature facet checkbox state observed after refinement; safe UI metadata.",
+    "nature.article_url": "Nature article URL used by the citation export workflow.",
+    "nature.citation_url": "Springer citation-needed URL used by the Nature citation export workflow.",
+    "aip.resource_id": "AIP Silverchair resource identifier used by the citation download endpoint; safe publication metadata.",
+    "mdpi.result_count": "Public MDPI search result count; safe bibliographic metadata.",
+    "mdpi.item_count": "Public MDPI item count parsed from the hydrated results page; safe bibliographic metadata.",
+    "mdpi.items": "Public MDPI bibliographic result summaries; publication metadata only.",
+    "mdpi.query_url": "MDPI public search URL containing submitted query/facets; treat as user query metadata.",
+    "mdpi.refined_url": "MDPI public refined search URL containing submitted query/facets; treat as user query metadata.",
+    "mdpi.confirm_title": "MDPI page title confirming query/facet expression; safe bibliographic metadata.",
+    "mdpi.artifact_path": "Local path to downloaded MDPI citation artifact; generated under caller-selected download directory.",
+    "mdpi.bytes": "Downloaded MDPI citation artifact byte size; safe artifact metadata.",
+    "mdpi.sha256": "Downloaded MDPI citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "mdpi.format": "Requested MDPI citation export format; safe artifact metadata.",
+    "mdpi.article_url": "Public MDPI article URL used by the citation export workflow.",
+    "optica.result_count": "Public Optica filtered result count; safe bibliographic metadata.",
+    "optica.total_count": "Public Optica total result count; safe bibliographic metadata.",
+    "optica.items": "Public Optica bibliographic result summaries; publication metadata only.",
+    "optica.query_url": "Optica public search URL containing submitted query/facets; treat as user query metadata.",
+    "optica.refined_url": "Optica public refined search URL containing submitted query/facets; treat as user query metadata.",
+    "optica.confirm_title": "Optica page title confirming query/facet expression; safe bibliographic metadata.",
+    "optica.artifact_path": "Local path to downloaded Optica citation artifact; generated under caller-selected download directory.",
+    "optica.bytes": "Downloaded Optica citation artifact byte size; safe artifact metadata.",
+    "optica.sha256": "Downloaded Optica citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "optica.format": "Requested Optica citation export format; safe artifact metadata.",
+    "optica.article_id": "Optica article checkbox identifier used by the citation export workflow; safe publication metadata.",
+    "proquest.result_count": "Public ProQuest search/refined result count; safe bibliographic metadata.",
+    "proquest.items": "Public ProQuest bibliographic result summaries; publication metadata only.",
+    "proquest.query_url": "ProQuest advanced-search URL; submitted query is entered via UI and should be treated as user query metadata.",
+    "proquest.results_url": "ProQuest results URL after query/refine/export navigation; may encode query/facet state.",
+    "proquest.title": "ProQuest page title confirming query expression; safe bibliographic metadata.",
+    "proquest.refined_url": "ProQuest refined results URL containing applied facets; treat as user query metadata.",
+    "proquest.confirm_title": "ProQuest page title confirming query/refinement; safe bibliographic metadata.",
+    "proquest.unfiltered_count": "Public ProQuest unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "proquest.unfiltered_url": "ProQuest results URL before refinement; may encode query state.",
+    "proquest.artifact_path": "Local path to downloaded ProQuest citation artifact; generated under caller-selected download directory.",
+    "proquest.bytes": "Downloaded ProQuest citation artifact byte size; safe artifact metadata.",
+    "proquest.sha256": "Downloaded ProQuest citation artifact SHA-256 digest; safe artifact integrity metadata.",
+    "proquest.format": "Requested ProQuest citation export format; safe artifact metadata.",
+    "frontiers.result_count": "Public result-count metadata from the research database response.",
+    "frontiers.items": "Public bibliographic search-result metadata returned by the research database.",
+    "frontiers.query_url": "Research database query URL; may encode local query terms.",
+    "frontiers.group": "Frontiers facet group applied by the refinement workflow.",
+    "frontiers.selected_label": "Frontiers selected facet label confirmed by the refinement workflow.",
+    "frontiers.artifact_path": "Local citation artifact path written by the export workflow.",
+    "frontiers.bytes": "Local citation artifact byte count.",
+    "frontiers.sha256": "Local citation artifact SHA-256 digest.",
+    "frontiers.format": "Citation export format selected for the research database workflow.",
+    "frontiers.doi": "Public DOI used by the research database export workflow.",
+    "frontiers.source_url": "Publisher citation/source URL used by the citation export workflow.",
+    "arxiv.result_count": "Public result-count metadata from the research database response.",
+    "arxiv.items": "Public bibliographic search-result metadata returned by the research database.",
+    "arxiv.query_url": "Research database query URL; may encode local query terms.",
+    "arxiv.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "arxiv.confirm_url": "Browser URL confirming the applied research database query/refinement.",
+    "arxiv.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "arxiv.artifact_path": "Local citation artifact path written by the export workflow.",
+    "arxiv.bytes": "Local citation artifact byte count.",
+    "arxiv.sha256": "Local citation artifact SHA-256 digest.",
+    "arxiv.format": "Citation export format selected for the research database workflow.",
+    "arxiv.id": "Public arXiv identifier used by the export workflow.",
+    "arxiv.source_url": "Publisher citation/source URL used by the citation export workflow.",
+    "siam.result_count": "Public result-count metadata from the research database response.",
+    "siam.items": "Public bibliographic search-result metadata returned by the research database.",
+    "siam.query_url": "Research database query URL; may encode local query terms.",
+    "siam.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "siam.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "siam.artifact_path": "Local citation artifact path written by the export workflow.",
+    "siam.bytes": "Local citation artifact byte count.",
+    "siam.sha256": "Local citation artifact SHA-256 digest.",
+    "siam.format": "Citation export format selected for the research database workflow.",
+    "siam.doi": "Public DOI used by the research database export workflow.",
+    "siam.content_type": "Citation download HTTP content-type metadata.",
+    "siam.content_disposition": "Citation download HTTP content-disposition metadata.",
+    "degruyter.result_count": "Public result-count metadata from the research database response.",
+    "degruyter.items": "Public bibliographic search-result metadata returned by the research database.",
+    "degruyter.query_url": "Research database query URL; may encode local query terms.",
+    "degruyter.confirm_url": "Browser URL confirming the applied research database query/refinement.",
+    "degruyter.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "degruyter.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "degruyter.artifact_path": "Local citation artifact path written by the export workflow.",
+    "degruyter.bytes": "Local citation artifact byte count.",
+    "degruyter.sha256": "Local citation artifact SHA-256 digest.",
+    "degruyter.format": "Citation export format selected for the research database workflow.",
+    "degruyter.doi": "Public DOI used by the research database export workflow.",
+    "worldsci.result_count": "Public result-count metadata from the research database response.",
+    "worldsci.items": "Public bibliographic search-result metadata returned by the research database.",
+    "worldsci.query_url": "Research database query URL; may encode local query terms.",
+    "worldsci.cf_interstitial_observed": "World Scientific Cloudflare/interstitial observation flag; safe operational metadata.",
+    "worldsci.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "worldsci.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "worldsci.artifact_path": "Local citation artifact path written by the export workflow.",
+    "worldsci.bytes": "Local citation artifact byte count.",
+    "worldsci.sha256": "Local citation artifact SHA-256 digest.",
+    "worldsci.format": "Citation export format selected for the research database workflow.",
+    "worldsci.doi": "Public DOI used by the research database export workflow.",
+    "royalsoc.result_count": "Public result-count metadata from the research database response.",
+    "royalsoc.items": "Public bibliographic search-result metadata returned by the research database.",
+    "royalsoc.query_url": "Research database query URL; may encode local query terms.",
+    "royalsoc.confirm_url": "Browser URL confirming the applied research database query/refinement.",
+    "royalsoc.confirm_title": "Browser page title confirming the applied research database query/refinement.",
+    "royalsoc.refined_url": "Research database refined-results URL; may encode local query terms/facets.",
+    "royalsoc.filter_confirmed": "Royal Society filter confirmation boolean derived from hydrated result metadata.",
+    "royalsoc.artifact_path": "Local citation artifact path written by the export workflow.",
+    "royalsoc.bytes": "Local citation artifact byte count.",
+    "royalsoc.sha256": "Local citation artifact SHA-256 digest.",
+    "royalsoc.format": "Citation export format selected for the research database workflow.",
+    "royalsoc.doi": "Public DOI used by the research database export workflow.",
+    "royalsoc.resource_id": "Publisher resource identifier used by the citation export workflow.",
+    "royalsoc.source_url": "Publisher citation/source URL used by the citation export workflow.",
+    "scoap3.result_count": "SCOAP3 Public search/result count; safe bibliographic metadata.",
+    "scoap3.items": "SCOAP3 Public bibliographic result summaries; publication metadata only.",
+    "scoap3.query_url": "SCOAP3 Public query/results URL; may encode submitted query terms/facets.",
+    "scoap3.confirm_url": "SCOAP3 Browser/API URL confirming the applied query or refinement.",
+    "scoap3.export_href": "SCOAP3 First-party export URL discovered from the results page; may encode query/facet terms.",
+    "scoap3.refined_url": "SCOAP3 Public refined-results URL; may encode submitted query terms/facets.",
+    "scoap3.artifact_path": "SCOAP3 Local citation artifact path written by the export workflow.",
+    "scoap3.bytes": "SCOAP3 Local citation artifact byte count.",
+    "scoap3.sha256": "SCOAP3 Local citation artifact SHA-256 digest.",
+    "scoap3.format": "SCOAP3 Citation/export format selected for the research database workflow.",
+    "scoap3.source_url": "SCOAP3 First-party source/download URL used by the export workflow.",
+    "dblp.result_count": "DBLP Public search/result count; safe bibliographic metadata.",
+    "dblp.items": "DBLP Public bibliographic result summaries; publication metadata only.",
+    "dblp.query_url": "DBLP Public query/results URL; may encode submitted query terms/facets.",
+    "dblp.confirm_title": "DBLP Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "dblp.facets": "DBLP Public facet labels observed on the result surface.",
+    "dblp.refined_url": "DBLP Public refined-results URL; may encode submitted query terms/facets.",
+    "dblp.confirm_url": "DBLP Browser/API URL confirming the applied query or refinement.",
+    "dblp.artifact_path": "DBLP Local citation artifact path written by the export workflow.",
+    "dblp.bytes": "DBLP Local citation artifact byte count.",
+    "dblp.sha256": "DBLP Local citation artifact SHA-256 digest.",
+    "dblp.format": "DBLP Citation/export format selected for the research database workflow.",
+    "dblp.source_url": "DBLP First-party source/download URL used by the export workflow.",
+    "dblp.mime_type": "DBLP HTTP content-type metadata for the downloaded citation/export artifact.",
+    "scielo.result_count": "SciELO Public search/result count; safe bibliographic metadata.",
+    "scielo.items": "SciELO Public bibliographic result summaries; publication metadata only.",
+    "scielo.query_url": "SciELO Public query/results URL; may encode submitted query terms/facets.",
+    "scielo.refined_url": "SciELO Public refined-results URL; may encode submitted query terms/facets.",
+    "scielo.confirm_url": "SciELO Browser/API URL confirming the applied query or refinement.",
+    "scielo.confirm_title": "SciELO Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "scielo.selected_filters": "SciELO Boolean/UI marker confirming selected SciELO filters.",
+    "scielo.artifact_path": "SciELO Local citation artifact path written by the export workflow.",
+    "scielo.bytes": "SciELO Local citation artifact byte count.",
+    "scielo.sha256": "SciELO Local citation artifact SHA-256 digest.",
+    "scielo.format": "SciELO Citation/export format selected for the research database workflow.",
+    "scielo.source_url": "SciELO First-party source/download URL used by the export workflow.",
+    "inspirehep.result_count": "INSPIRE-HEP Public search/result count; safe bibliographic metadata.",
+    "inspirehep.items": "INSPIRE-HEP Public bibliographic result summaries; publication metadata only.",
+    "inspirehep.query_url": "INSPIRE-HEP Public query/results URL; may encode submitted query terms/facets.",
+    "inspirehep.confirm_url": "INSPIRE-HEP Browser/API URL confirming the applied query or refinement.",
+    "inspirehep.confirm_title": "INSPIRE-HEP Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "inspirehep.refined_url": "INSPIRE-HEP Public refined-results URL; may encode submitted query terms/facets.",
+    "inspirehep.applied_filters": "INSPIRE-HEP Applied INSPIRE-HEP filters; safe bibliographic facet metadata.",
+    "inspirehep.artifact_path": "INSPIRE-HEP Local citation artifact path written by the export workflow.",
+    "inspirehep.bytes": "INSPIRE-HEP Local citation artifact byte count.",
+    "inspirehep.sha256": "INSPIRE-HEP Local citation artifact SHA-256 digest.",
+    "inspirehep.format": "INSPIRE-HEP Citation/export format selected for the research database workflow.",
+    "inspirehep.source_url": "INSPIRE-HEP First-party source/download URL used by the export workflow.",
+    "pubscholar.result_count": "PubScholar Public search/result count; safe bibliographic metadata.",
+    "pubscholar.selected_count": "PubScholar Public selected/result count observed in the UI; safe bibliographic metadata.",
+    "pubscholar.items": "PubScholar Public bibliographic result summaries; publication metadata only.",
+    "pubscholar.query_url": "PubScholar Public query/results URL; may encode submitted query terms/facets.",
+    "pubscholar.results_url": "PubScholar Results URL after query/refine/export navigation; may encode query/facet state.",
+    "pubscholar.title": "PubScholar Browser page title confirming query expression; safe bibliographic metadata.",
+    "pubscholar.breadcrumb": "PubScholar Visible PubScholar breadcrumb/search-state text; treat as submitted query metadata.",
+    "pubscholar.refined_url": "PubScholar Public refined-results URL; may encode submitted query terms/facets.",
+    "pubscholar.confirm_title": "PubScholar Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "pubscholar.unfiltered_count": "PubScholar Public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "pubscholar.unfiltered_url": "PubScholar Results URL before refinement; may encode query state.",
+    "pubscholar.artifact_path": "PubScholar Local citation artifact path written by the export workflow.",
+    "pubscholar.bytes": "PubScholar Local citation artifact byte count.",
+    "pubscholar.sha256": "PubScholar Local citation artifact SHA-256 digest.",
+    "pubscholar.format": "PubScholar Citation/export format selected for the research database workflow.",
+    "pubscholar.structural_tags": "PubScholar PubScholar structural tag count observed during export verification; safe operational metadata.",
+    "opticsjournal.result_count": "Opticsjournal Public search/result count; safe bibliographic metadata.",
+    "opticsjournal.item_count": "Opticsjournal Public visible item count; safe bibliographic metadata.",
+    "opticsjournal.items": "Opticsjournal Public bibliographic result summaries; publication metadata only.",
+    "opticsjournal.query_url": "Opticsjournal Public query/results URL; may encode submitted query terms/facets.",
+    "opticsjournal.results_url": "Opticsjournal Results URL after query/refine/export navigation; may encode query/facet state.",
+    "opticsjournal.title": "Opticsjournal Browser page title confirming query expression; safe bibliographic metadata.",
+    "opticsjournal.note": "Opticsjournal Workflow note describing source-site search behavior; safe operational metadata.",
+    "opticsjournal.refined_url": "Opticsjournal Public refined-results URL; may encode submitted query terms/facets.",
+    "opticsjournal.confirm_title": "Opticsjournal Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "opticsjournal.unfiltered_count": "Opticsjournal Public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "opticsjournal.artifact_path": "Opticsjournal Local citation artifact path written by the export workflow.",
+    "opticsjournal.bytes": "Opticsjournal Local citation artifact byte count.",
+    "opticsjournal.sha256": "Opticsjournal Local citation artifact SHA-256 digest.",
+    "opticsjournal.format": "Opticsjournal Citation/export format selected for the research database workflow.",
+    "opticsjournal.records": "Opticsjournal Exported citation record count observed during artifact verification; safe operational metadata.",
+    "crc.result_count": "CRC/T&F eBooks Public search/result count; safe bibliographic metadata.",
+    "crc.items": "CRC/T&F eBooks Public bibliographic result summaries; publication metadata only.",
+    "crc.query_url": "CRC/T&F eBooks Public query/results URL; may encode submitted query terms/facets.",
+    "crc.results_url": "CRC/T&F eBooks Results URL after query/refine/export navigation; may encode query/facet state.",
+    "crc.title": "CRC/T&F eBooks Browser page title confirming query expression; safe bibliographic metadata.",
+    "crc.refined_url": "CRC/T&F eBooks Public refined-results URL; may encode submitted query terms/facets.",
+    "crc.confirm_title": "CRC/T&F eBooks Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "crc.unfiltered_count": "CRC/T&F eBooks Public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "crc.unfiltered_url": "CRC/T&F eBooks Results URL before refinement; may encode query state.",
+    "crc.artifact_path": "CRC/T&F eBooks Local citation artifact path written by the export workflow.",
+    "crc.bytes": "CRC/T&F eBooks Local citation artifact byte count.",
+    "crc.sha256": "CRC/T&F eBooks Local citation artifact SHA-256 digest.",
+    "crc.format": "CRC/T&F eBooks Citation/export format selected for the research database workflow.",
+    "crc.columns": "CRC/T&F eBooks CSV column count observed during artifact verification; safe operational metadata.",
+    "crc.rows": "CRC/T&F eBooks CSV row count observed during artifact verification; safe operational metadata.",
+    "cellpress.result_count": "Cell Press Public search/result count; safe bibliographic metadata.",
+    "cellpress.items": "Cell Press Public bibliographic result summaries; publication metadata only.",
+    "cellpress.query_url": "Cell Press Public query/results URL; may encode submitted query terms/facets.",
+    "cellpress.confirm_title": "Cell Press Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "cellpress.base_result_count": "Cell Press Public base result count observed before refinement; safe bibliographic metadata.",
+    "cellpress.refined_url": "Cell Press Public refined-results URL; may encode submitted query terms/facets.",
+    "cellpress.refine_mode": "Cell Press Refinement confirmation mode; safe operational metadata.",
+    "cellpress.artifact_path": "Cell Press Local citation artifact path written by the export workflow.",
+    "cellpress.bytes": "Cell Press Local citation artifact byte count.",
+    "cellpress.sha256": "Cell Press Local citation artifact SHA-256 digest.",
+    "cellpress.format": "Cell Press Citation/export format selected for the research database workflow.",
+    "cellpress.pii": "Cell Press Public publisher PII identifier used for citation export.",
+    "cellpress.doi": "Cell Press Public DOI identifier; safe bibliographic metadata.",
+    "cellpress.source_url": "Cell Press First-party source/download URL used by the export workflow.",
+    "cellpress.mime_type": "Cell Press HTTP content-type metadata for the downloaded citation/export artifact.",
+    "iest.result_count": "Journal of the IEST Public search/result count; safe bibliographic metadata.",
+    "iest.item_count": "Journal of the IEST Public visible item count; safe bibliographic metadata.",
+    "iest.items": "Journal of the IEST Public bibliographic result summaries; publication metadata only.",
+    "iest.query_url": "Journal of the IEST Public query/results URL; may encode submitted query terms/facets.",
+    "iest.results_url": "Journal of the IEST Results URL after query/refine/export navigation; may encode query/facet state.",
+    "iest.title": "Journal of the IEST Browser page title confirming query expression; safe bibliographic metadata.",
+    "iest.refined_url": "Journal of the IEST Public refined-results URL; may encode submitted query terms/facets.",
+    "iest.confirm_title": "Journal of the IEST Browser page/title text confirming query/facet expression; safe bibliographic metadata.",
+    "iest.unfiltered_count": "Journal of the IEST Public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "iest.unfiltered_url": "Journal of the IEST Results URL before refinement; may encode query state.",
+    "iest.artifact_path": "Journal of the IEST Local citation artifact path written by the export workflow.",
+    "iest.bytes": "Journal of the IEST Local citation artifact byte count.",
+    "iest.sha256": "Journal of the IEST Local citation artifact SHA-256 digest.",
+    "iest.format": "Journal of the IEST Citation/export format selected for the research database workflow.",
+    "iest.article_url": "Journal of the IEST Public article URL used by the citation export workflow."
   },
   "release_notes": [
     "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

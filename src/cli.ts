@@ -32,7 +32,7 @@ import { runHealthCheck } from "./capabilities/healthCheck";
 import { CapabilityUpdater } from "./capabilities/updater";
 import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
 import { CapabilityLibraryImporter } from "./adapters/research/capabilityLibraryImporter";
-import { ResearchDbImporter } from "./mcp/researchdb";
+import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport } from "./mcp/researchdb";
 import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
@@ -535,6 +535,120 @@ Core commands:
   capability:export --target <id> --out <path> [--json]
   capability:library:import [docs/capability-library.json] [--json]
   research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only] [--json]
+  research:aiaa:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|AbstractText|Affiliation] [--page-size N] [--json]
+  research:aiaa:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
+  research:aiaa:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
+  research:wos:search <query>|--query <query> [--page-size N] [--json]
+  research:wos:filter <query>|--query <query> [--document-type Article] [--page-size N] [--json]
+  research:wos:export <query>|--query <query> [--document-type Article] [--format bibtex|ris|tab|plain|excel|endnote] [--download-dir <abs>] --confirmed [--json]
+  research:acm:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:acm:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--sort-by relevance|downloaded|cited] [--page-size N] [--json]
+  research:acm:export <doi>|--doi <doi> [--format bibtex|endnote|acm] [--download-dir <abs>] --confirmed [--json]
+  research:ieee:search <query>|--query <query> [--field <field>] [--page-size N] [--json]
+  research:ieee:filter <query>|--query <query> [--field <field>] [--content-type Journals|Conferences|Books|Magazines|Early\ Access\ Articles] [--page-size N] [--json]
+  research:ieee:export <query>|--query <query> [--field <field>] [--content-type <type>] [--format ris|bibtex|csv] [--download-dir <abs>] --confirmed [--json]
+  research:acs:search <query>|--query <query> [--area <area>] [--title-query <query>] [--page-size N] [--json]
+  research:acs:filter <query>|--query <query> [--area <area>] [--title-query <query>] [--earliest <range>] [--pub-type <type>] [--article-type <type>] [--article-subject <subject>] [--concept-id <id>] [--contrib-raw <author>] [--series-key <key>] [--publisher <publisher>] [--page-size N] [--json]
+  research:acs:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:asme:search <query>|--query <query> [--page-size N] [--json]
+  research:asme:filter <query>|--query <query> [--format <facet>] [--publisher <facet>] [--subject <facet>] [--journal <facet>] [--topic <facet>] [--from-date mm/dd/yyyy] [--to-date mm/dd/yyyy] [--page-size N] [--json]
+  research:asme:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:rsc:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:rsc:filter <query>|--query <query> [--area <area>] [--access Open\ Access] [--page-size N] [--json]
+  research:rsc:export <doi>|--doi <doi> [--article-url <url>] [--format ris|bibtex|endnote|medline|procite|referencemanager|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:wiley:search <query>|--query <query> [--area <area>] [--query2 <query>] [--area2 <area>] [--page-size N] [--json]
+  research:wiley:filter <query>|--query <query> [--area <area>] [--query2 <query>] [--area2 <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--ppub <facet>] [--concept-id <id>] [--access] [--page-size N] [--json]
+  research:wiley:export <doi>|--doi <doi> [--format txt|ris|endnote|bibtex|medlars|refworks] [--include-abstract] [--download-dir <abs>] --confirmed [--json]
+  research:asce:search <query>|--query <query> [--query2 <query>] [--area <area>] [--area2 <area>] [--page-size N] [--json]
+  research:asce:filter <query>|--query <query> [--query2 <query>] [--area <area>] [--area2 <area>] [--after-year YYYY] [--before-year YYYY] [--content-item-type <type>] [--contrib-raw <author>] [--concept-id <id>] [--publication <publication>] [--page-size N] [--json]
+  research:asce:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
+  research:iop:search <query>|--query <query> [--page-size N] [--json]
+  research:iop:filter <query>|--query <query> [--search-date-period anytime|lastThirtyDays|lastTwelveMonths|lastFiveYears] [--pub-type article|chapter|book] [--access-type open-access] [--journal-issn <issn>] [--order-by relevance|recent|oldest] [--page-size N] [--json]
+  research:iop:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:tandf:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:tandf:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--content-item-type <type>] [--pub-type <type>] [--journal <journal>] [--access full|open] [--page-size N] [--json]
+  research:tandf:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:sae:search <query>|--query <query> [--page-size N] [--json]
+  research:sae:filter <query>|--query <query> [--facet <facet>] [--page-size N] [--json]
+  research:sae:export <query>|--query <query> [--facet <facet>] [--format ris|bibtex|endnote|metadata] [--download-dir <abs>] --confirmed [--json]
+  research:sciencedirect:search <query>|--query <query> [--date <year-range>] [--pub <title>] [--authors <authors>] [--tak <terms>] [--title <title>] [--doc-id <id>] [--json]
+  research:sciencedirect:filter <query>|--query <query> [--article-type REV|FLA|CH|EN] [--year YYYY] [--access-type openaccess] [--facet-input-id <id>] [--json]
+  research:sciencedirect:export <query>|--query <query> [--article-type REV|FLA|CH|EN] [--year YYYY] [--access-type openaccess] [--format ris|bibtex|text|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:aps:search [<query>|--query <query>] [--field <field>] [--page-size N] [--json]
+  research:aps:filter [<query>|--query <query>] [--field <field>] [--date-range week|month|year] [--page-size N] [--json]
+  research:aps:export <doi>|--doi <doi> [--journal-code <code>] [--article-url <url>] [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:emerald:search <query>|--query <query> [--mode Any|All|Exact\ Phrase] [--page-size N] [--json]
+  research:emerald:filter <query>|--query <query> [--content-type <type>] [--subject <subject>] [--case-provider <provider>] [--page-size N] [--json]
+  research:emerald:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:cambridge:search <query>|--query <query> [--page-size N] [--json]
+  research:cambridge:filter <query>|--query <query> [--product-type JOURNAL_ARTICLE|BOOK_PART|BOOK|ELEMENT] [--open-access <value>] [--only-show-available] [--start-year YYYY] [--end-year YYYY] [--sort <value>] [--page-size N] [--json]
+  research:cambridge:export [--query <query>] [--product-id <id>] [--format ris|bibtex|word|text] [--download-dir <abs>] --confirmed [--json]
+  research:springer:search <query>|--query <query> [--title <title>] [--contributor <name>] [--journal <journal>] [--date-from YYYY] [--date-to YYYY] [--page N] [--json]
+  research:springer:filter <query>|--query <query> [--content-type <type>] [--open-access <value>] [--language <value>] [--taxonomy <value>] [--discipline <value>] [--sub-discipline <value>] [--sustainable-development-goal <value>] [--json]
+  research:springer:export [--doi <doi>] [--format ris|csv] [--bulk-export] [--download-dir <abs>] --confirmed [--json]
+  research:nature:search <query>|--query <query> [--start-year YYYY] [--end-year YYYY] [--order relevance|date_desc] [--json]
+  research:nature:filter <query>|--query <query> [--article-type research|reviews] [--journal <journal>] [--subject <subject>] [--date-range <range>] [--facet-param <param>] [--facet-value <value>] [--json]
+  research:nature:export <doi>|--doi <doi> [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:iet:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:iet:filter <query>|--query <query> [--area <area>] [--ppub <range>] [--after-year YYYY] [--before-year YYYY] [--concept-id <id>] [--contrib-raw <author>] [--series-key <key>] [--alphabet-range <range>] [--page-size N] [--json]
+  research:iet:export <doi>|--doi <doi> [--format ris|endnote|bibtex|medlars|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:aip:search <query>|--query <query> [--page-size N] [--json]
+  research:aip:filter <query>|--query <query> [--content-type <type>] [--journal <journal>] [--subject <subject>] [--article-type <type>] [--book-series <series>] [--issue-section <section>] [--collection <collection>] [--from-date YYYY/MM/DD] [--to-date YYYY/MM/DD] [--page-size N] [--json]
+  research:aip:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:mdpi:search <query>|--query <query> [--journal <key>] [--article-type <key>] [--year-from YYYY] [--year-to YYYY] [--view default|abstract|compact] [--page-count N] [--json]
+  research:mdpi:filter <query>|--query <query> [--journal <key>] [--article-type <key>] [--year-from YYYY] [--year-to YYYY] [--country <value>] [--subject <value>] [--view default|abstract|compact] [--page-count N] [--json]
+  research:mdpi:export [--article-url <url>|--article-path <path>] [--doi <doi>] [--format bibtex|endnote|ris] [--download-dir <abs>] --confirmed [--json]
+  research:optica:search <query>|--query <query> [--page-size N] [--json]
+  research:optica:filter <query>|--query <query> [--year YYYY] [--page-size N] [--json]
+  research:optica:export <query>|--query <query> --article-id <id> [--format bibtex|ris] [--download-dir <abs>] --confirmed [--json]
+  research:proquest:search <query>|--query <query> [--page-size N] [--json]
+  research:proquest:filter <query>|--query <query> [--full-text] [--peer-reviewed] [--page-size N] [--json]
+  research:proquest:export <query>|--query <query> [--full-text] [--peer-reviewed] [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:frontiers:search <query>|--query <query> [--page-size N] [--json]
+  research:frontiers:filter <query>|--query <query> --group <group> --option-id <id> [--option-label <label>] [--page-size N] [--json]
+  research:frontiers:export <doi>|--doi <doi> [--journal-slug <slug>|--article-url <url>] [--format bibtex|endnote|reference] [--download-dir <abs>] --confirmed [--json]
+  research:arxiv:search [<query>|--query <query>] [--field <field>] [--page-size N] [--json]
+  research:arxiv:filter [<query>|--query <query>] [--field <field>] [--subject <classification>] [--date-filter-by all_dates|past_12|specific_year|date_range] [--year YYYY] [--page-size N] [--json]
+  research:arxiv:export <id>|--id <id> [--format bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:siam:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:siam:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--pub-type <type>] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
+  research:siam:export <doi>|--doi <doi> [--format ris|endnote|bibtex|medlars|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:degruyter:search [--title <title>] [--family-name <name>] [--reference <doi|isbn|issn>] [--match all|any] [--min-pub-year YYYY] [--max-pub-year YYYY] [--document-types <type[,type]>] [--json]
+  research:degruyter:filter [--title <title>] [--family-name <name>] [--reference <doi|isbn|issn>] [--document-type-facet <facet>] [--subject <facet>] [--publisher <facet>] [--language <facet>] [--access <facet>] [--pub-date <facet>] [--json]
+  research:degruyter:export <doi>|--doi <doi> [--format ris|bibtex|endnote] [--download-dir <abs>] --confirmed [--json]
+  research:worldsci:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:worldsci:filter <query>|--query <query> [--area <area>] [--pub-type <type>] [--content-item-type <type>] [--after-year YYYY] [--before-year YYYY] [--access full|open] [--page-size N] [--json]
+  research:worldsci:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:royalsoc:search <query>|--query <query> [--page N] [--json]
+  research:royalsoc:filter <query>|--query <query> [--journal <name>] [--article-type <type>] [--subject-id <id>] [--issue-section <section>] [--page N] [--json]
+  research:royalsoc:export [<doi>|--doi <doi>] [--resource-id <id>] [--format ris|endnote|bibtex|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:scoap3:search <query>|--query <query> [--page N] [--size N] [--sort <sort>] [--json]
+  research:scoap3:filter <query>|--query <query> [--journal <value>] [--country <value>] [--country-logic AND|OR] [--publication-year-gte YYYY] [--publication-year-lte YYYY] [--json]
+  research:scoap3:export [--query <query>] [--record-id <id>] [--format csv|json] [--download-dir <abs>] --confirmed [--json]
+  research:dblp:search <query>|--query <query> [--mode combined|author|venue|publ] [--json]
+  research:dblp:filter <query>|--query <query> [--mode <mode>] [--refine-token <token>] [--type <type>] [--year YYYY] [--author-token <token>] [--venue-token <token>] [--access-token <token>] [--json]
+  research:dblp:export [--key <key>|--query <query>] [--format bibtex|xml|json] [--bulk] [--h N] [--download-dir <abs>] --confirmed [--json]
+  research:scielo:search <query>|--query <query> [--lang <lang>] [--count N] [--from N] [--page N] [--sort <sort>] [--json]
+  research:scielo:filter <query>|--query <query> [--collection <value>] [--country <value>] [--journal-title <title>] [--language <lang>] [--year-cluster YYYY] [--subject-area <value>] [--json]
+  research:scielo:export <query>|--query <query> [--export-format ris|bibtex|citation|csv] [--selection current_page|all_results|selection] [--download-dir <abs>] --confirmed [--json]
+  research:inspirehep:search <query>|--query <query> [--page-size N] [--json]
+  research:inspirehep:filter <query>|--query <query> [--doc-type <type>] [--author-count <value>] [--rpp <value>] [--author <name>] [--subject <subject>] [--arxiv-category <cat>] [--collaboration <name>] [--earliest-date <range>] [--facet <facet>] [--facet-value <value>] [--json]
+  research:inspirehep:export [--control-number <id>|--query <query>] [--doc-type <type>] [--size N] [--format bibtex|latex-eu|latex-us|json|cv] [--download-dir <abs>] --confirmed [--json]
+  research:pubscholar:search <query>|--query <query> [--keyword <keyword>] [--field <field>] [--page-size N] [--json]
+  research:pubscholar:filter <query>|--query <query> [--keyword <keyword>] [--field <field>] [--facet-group <group>] [--facet-value <value>] [--publication-year YYYY] [--resource-type <type>] [--full-text] [--json]
+  research:pubscholar:export <query>|--query <query> [--keyword <keyword>] [--field <field>] [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:opticsjournal:search <query>|--query <query> [--field-type title|author|keyword|affiliation|first_author|first_affiliation|abstract|doi|cstr] [--journal-scope <value>] [--year-from YYYY] [--year-to YYYY] [--page-size N] [--json]
+  research:opticsjournal:filter <query>|--query <query> [--facet journal|pubyear|author|topic_cn|topic_en] [--facet-value <value>] [--journal-code <code>] [--pubyear YYYY] [--author <name>] [--topic-cn <value>] [--topic-en <value>] [--json]
+  research:opticsjournal:export <query>|--query <query> [--format enw|ref|txt|xml] [--download-dir <abs>] --confirmed [--json]
+  research:crc:search [<query>|--query <query>] [--title <title>] [--author <author>] [--keyword <keyword>] [--page-size N] [--json]
+  research:crc:filter [<query>|--query <query>] [--access-facet <facet>] [--open-access] [--free-to-view] [--access-content] [--licensed-content] [--include-forthcoming] [--fully-oa-books] [--books-with-oa-chapters] [--year-from YYYY] [--year-to YYYY] [--json]
+  research:crc:export [<query>|--query <query>] [--format csv] [--download-dir <abs>] --confirmed [--json]
+  research:cellpress:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|Abstract|AbstractTitleKeywordFilterField] [--page-size N] [--json]
+  research:cellpress:filter <query>|--query <query> [--content-item-type <type>] [--after-year YYYY] [--before-year YYYY] [--author <author>] [--journal <journal>] [--collection <collection>] [--keyword <keyword>] [--access full|open] [--sort-by <value>] [--json]
+  research:cellpress:export <pii>|--pii <pii> [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:iest:search <query>|--query <query> [--field all|alternative-title|publisher|affiliation|subject|abstract|fulltext|title|identifier|author] [--page-size N] [--json]
+  research:iest:filter <query>|--query <query> [--access <value>] [--type <value>] [--from-year YYYY] [--to-year YYYY] [--refine-query <query>] [--refine-field <field>] [--json]
+  research:iest:export [--article-url <url>|--article-path <path>] [--format ris|bib|enw] [--download-dir <abs>] --confirmed [--json]
 
   workflow:list [--json]
   workflow:compile <workflow.yaml|json> [--json]
@@ -544,6 +658,120 @@ Core commands:
 
   site:registry:import <site_registry.json> [--json]
   research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only] [--json]
+  research:aiaa:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|AbstractText|Affiliation] [--page-size N] [--json]
+  research:aiaa:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
+  research:aiaa:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
+  research:wos:search <query>|--query <query> [--page-size N] [--json]
+  research:wos:filter <query>|--query <query> [--document-type Article] [--page-size N] [--json]
+  research:wos:export <query>|--query <query> [--document-type Article] [--format bibtex|ris|tab|plain|excel|endnote] [--download-dir <abs>] --confirmed [--json]
+  research:acm:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:acm:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--sort-by relevance|downloaded|cited] [--page-size N] [--json]
+  research:acm:export <doi>|--doi <doi> [--format bibtex|endnote|acm] [--download-dir <abs>] --confirmed [--json]
+  research:ieee:search <query>|--query <query> [--field <field>] [--page-size N] [--json]
+  research:ieee:filter <query>|--query <query> [--field <field>] [--content-type Journals|Conferences|Books|Magazines|Early\ Access\ Articles] [--page-size N] [--json]
+  research:ieee:export <query>|--query <query> [--field <field>] [--content-type <type>] [--format ris|bibtex|csv] [--download-dir <abs>] --confirmed [--json]
+  research:acs:search <query>|--query <query> [--area <area>] [--title-query <query>] [--page-size N] [--json]
+  research:acs:filter <query>|--query <query> [--area <area>] [--title-query <query>] [--earliest <range>] [--pub-type <type>] [--article-type <type>] [--article-subject <subject>] [--concept-id <id>] [--contrib-raw <author>] [--series-key <key>] [--publisher <publisher>] [--page-size N] [--json]
+  research:acs:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:asme:search <query>|--query <query> [--page-size N] [--json]
+  research:asme:filter <query>|--query <query> [--format <facet>] [--publisher <facet>] [--subject <facet>] [--journal <facet>] [--topic <facet>] [--from-date mm/dd/yyyy] [--to-date mm/dd/yyyy] [--page-size N] [--json]
+  research:asme:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:rsc:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:rsc:filter <query>|--query <query> [--area <area>] [--access Open\ Access] [--page-size N] [--json]
+  research:rsc:export <doi>|--doi <doi> [--article-url <url>] [--format ris|bibtex|endnote|medline|procite|referencemanager|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:wiley:search <query>|--query <query> [--area <area>] [--query2 <query>] [--area2 <area>] [--page-size N] [--json]
+  research:wiley:filter <query>|--query <query> [--area <area>] [--query2 <query>] [--area2 <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--ppub <facet>] [--concept-id <id>] [--access] [--page-size N] [--json]
+  research:wiley:export <doi>|--doi <doi> [--format txt|ris|endnote|bibtex|medlars|refworks] [--include-abstract] [--download-dir <abs>] --confirmed [--json]
+  research:asce:search <query>|--query <query> [--query2 <query>] [--area <area>] [--area2 <area>] [--page-size N] [--json]
+  research:asce:filter <query>|--query <query> [--query2 <query>] [--area <area>] [--area2 <area>] [--after-year YYYY] [--before-year YYYY] [--content-item-type <type>] [--contrib-raw <author>] [--concept-id <id>] [--publication <publication>] [--page-size N] [--json]
+  research:asce:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
+  research:iop:search <query>|--query <query> [--page-size N] [--json]
+  research:iop:filter <query>|--query <query> [--search-date-period anytime|lastThirtyDays|lastTwelveMonths|lastFiveYears] [--pub-type article|chapter|book] [--access-type open-access] [--journal-issn <issn>] [--order-by relevance|recent|oldest] [--page-size N] [--json]
+  research:iop:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:tandf:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:tandf:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--content-item-type <type>] [--pub-type <type>] [--journal <journal>] [--access full|open] [--page-size N] [--json]
+  research:tandf:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:sae:search <query>|--query <query> [--page-size N] [--json]
+  research:sae:filter <query>|--query <query> [--facet <facet>] [--page-size N] [--json]
+  research:sae:export <query>|--query <query> [--facet <facet>] [--format ris|bibtex|endnote|metadata] [--download-dir <abs>] --confirmed [--json]
+  research:sciencedirect:search <query>|--query <query> [--date <year-range>] [--pub <title>] [--authors <authors>] [--tak <terms>] [--title <title>] [--doc-id <id>] [--json]
+  research:sciencedirect:filter <query>|--query <query> [--article-type REV|FLA|CH|EN] [--year YYYY] [--access-type openaccess] [--facet-input-id <id>] [--json]
+  research:sciencedirect:export <query>|--query <query> [--article-type REV|FLA|CH|EN] [--year YYYY] [--access-type openaccess] [--format ris|bibtex|text|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:aps:search [<query>|--query <query>] [--field <field>] [--page-size N] [--json]
+  research:aps:filter [<query>|--query <query>] [--field <field>] [--date-range week|month|year] [--page-size N] [--json]
+  research:aps:export <doi>|--doi <doi> [--journal-code <code>] [--article-url <url>] [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:emerald:search <query>|--query <query> [--mode Any|All|Exact\ Phrase] [--page-size N] [--json]
+  research:emerald:filter <query>|--query <query> [--content-type <type>] [--subject <subject>] [--case-provider <provider>] [--page-size N] [--json]
+  research:emerald:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:cambridge:search <query>|--query <query> [--page-size N] [--json]
+  research:cambridge:filter <query>|--query <query> [--product-type JOURNAL_ARTICLE|BOOK_PART|BOOK|ELEMENT] [--open-access <value>] [--only-show-available] [--start-year YYYY] [--end-year YYYY] [--sort <value>] [--page-size N] [--json]
+  research:cambridge:export [--query <query>] [--product-id <id>] [--format ris|bibtex|word|text] [--download-dir <abs>] --confirmed [--json]
+  research:springer:search <query>|--query <query> [--title <title>] [--contributor <name>] [--journal <journal>] [--date-from YYYY] [--date-to YYYY] [--page N] [--json]
+  research:springer:filter <query>|--query <query> [--content-type <type>] [--open-access <value>] [--language <value>] [--taxonomy <value>] [--discipline <value>] [--sub-discipline <value>] [--sustainable-development-goal <value>] [--json]
+  research:springer:export [--doi <doi>] [--format ris|csv] [--bulk-export] [--download-dir <abs>] --confirmed [--json]
+  research:nature:search <query>|--query <query> [--start-year YYYY] [--end-year YYYY] [--order relevance|date_desc] [--json]
+  research:nature:filter <query>|--query <query> [--article-type research|reviews] [--journal <journal>] [--subject <subject>] [--date-range <range>] [--facet-param <param>] [--facet-value <value>] [--json]
+  research:nature:export <doi>|--doi <doi> [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:iet:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:iet:filter <query>|--query <query> [--area <area>] [--ppub <range>] [--after-year YYYY] [--before-year YYYY] [--concept-id <id>] [--contrib-raw <author>] [--series-key <key>] [--alphabet-range <range>] [--page-size N] [--json]
+  research:iet:export <doi>|--doi <doi> [--format ris|endnote|bibtex|medlars|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:aip:search <query>|--query <query> [--page-size N] [--json]
+  research:aip:filter <query>|--query <query> [--content-type <type>] [--journal <journal>] [--subject <subject>] [--article-type <type>] [--book-series <series>] [--issue-section <section>] [--collection <collection>] [--from-date YYYY/MM/DD] [--to-date YYYY/MM/DD] [--page-size N] [--json]
+  research:aip:export <doi>|--doi <doi> [--format ris|bibtex|endnote|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:mdpi:search <query>|--query <query> [--journal <key>] [--article-type <key>] [--year-from YYYY] [--year-to YYYY] [--view default|abstract|compact] [--page-count N] [--json]
+  research:mdpi:filter <query>|--query <query> [--journal <key>] [--article-type <key>] [--year-from YYYY] [--year-to YYYY] [--country <value>] [--subject <value>] [--view default|abstract|compact] [--page-count N] [--json]
+  research:mdpi:export [--article-url <url>|--article-path <path>] [--doi <doi>] [--format bibtex|endnote|ris] [--download-dir <abs>] --confirmed [--json]
+  research:optica:search <query>|--query <query> [--page-size N] [--json]
+  research:optica:filter <query>|--query <query> [--year YYYY] [--page-size N] [--json]
+  research:optica:export <query>|--query <query> --article-id <id> [--format bibtex|ris] [--download-dir <abs>] --confirmed [--json]
+  research:proquest:search <query>|--query <query> [--page-size N] [--json]
+  research:proquest:filter <query>|--query <query> [--full-text] [--peer-reviewed] [--page-size N] [--json]
+  research:proquest:export <query>|--query <query> [--full-text] [--peer-reviewed] [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:frontiers:search <query>|--query <query> [--page-size N] [--json]
+  research:frontiers:filter <query>|--query <query> --group <group> --option-id <id> [--option-label <label>] [--page-size N] [--json]
+  research:frontiers:export <doi>|--doi <doi> [--journal-slug <slug>|--article-url <url>] [--format bibtex|endnote|reference] [--download-dir <abs>] --confirmed [--json]
+  research:arxiv:search [<query>|--query <query>] [--field <field>] [--page-size N] [--json]
+  research:arxiv:filter [<query>|--query <query>] [--field <field>] [--subject <classification>] [--date-filter-by all_dates|past_12|specific_year|date_range] [--year YYYY] [--page-size N] [--json]
+  research:arxiv:export <id>|--id <id> [--format bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:siam:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:siam:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--pub-type <type>] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
+  research:siam:export <doi>|--doi <doi> [--format ris|endnote|bibtex|medlars|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:degruyter:search [--title <title>] [--family-name <name>] [--reference <doi|isbn|issn>] [--match all|any] [--min-pub-year YYYY] [--max-pub-year YYYY] [--document-types <type[,type]>] [--json]
+  research:degruyter:filter [--title <title>] [--family-name <name>] [--reference <doi|isbn|issn>] [--document-type-facet <facet>] [--subject <facet>] [--publisher <facet>] [--language <facet>] [--access <facet>] [--pub-date <facet>] [--json]
+  research:degruyter:export <doi>|--doi <doi> [--format ris|bibtex|endnote] [--download-dir <abs>] --confirmed [--json]
+  research:worldsci:search <query>|--query <query> [--area <area>] [--page-size N] [--json]
+  research:worldsci:filter <query>|--query <query> [--area <area>] [--pub-type <type>] [--content-item-type <type>] [--after-year YYYY] [--before-year YYYY] [--access full|open] [--page-size N] [--json]
+  research:worldsci:export <doi>|--doi <doi> [--format ris|bibtex] [--download-dir <abs>] --confirmed [--json]
+  research:royalsoc:search <query>|--query <query> [--page N] [--json]
+  research:royalsoc:filter <query>|--query <query> [--journal <name>] [--article-type <type>] [--subject-id <id>] [--issue-section <section>] [--page N] [--json]
+  research:royalsoc:export [<doi>|--doi <doi>] [--resource-id <id>] [--format ris|endnote|bibtex|refworks] [--download-dir <abs>] --confirmed [--json]
+  research:scoap3:search <query>|--query <query> [--page N] [--size N] [--sort <sort>] [--json]
+  research:scoap3:filter <query>|--query <query> [--journal <value>] [--country <value>] [--country-logic AND|OR] [--publication-year-gte YYYY] [--publication-year-lte YYYY] [--json]
+  research:scoap3:export [--query <query>] [--record-id <id>] [--format csv|json] [--download-dir <abs>] --confirmed [--json]
+  research:dblp:search <query>|--query <query> [--mode combined|author|venue|publ] [--json]
+  research:dblp:filter <query>|--query <query> [--mode <mode>] [--refine-token <token>] [--type <type>] [--year YYYY] [--author-token <token>] [--venue-token <token>] [--access-token <token>] [--json]
+  research:dblp:export [--key <key>|--query <query>] [--format bibtex|xml|json] [--bulk] [--h N] [--download-dir <abs>] --confirmed [--json]
+  research:scielo:search <query>|--query <query> [--lang <lang>] [--count N] [--from N] [--page N] [--sort <sort>] [--json]
+  research:scielo:filter <query>|--query <query> [--collection <value>] [--country <value>] [--journal-title <title>] [--language <lang>] [--year-cluster YYYY] [--subject-area <value>] [--json]
+  research:scielo:export <query>|--query <query> [--export-format ris|bibtex|citation|csv] [--selection current_page|all_results|selection] [--download-dir <abs>] --confirmed [--json]
+  research:inspirehep:search <query>|--query <query> [--page-size N] [--json]
+  research:inspirehep:filter <query>|--query <query> [--doc-type <type>] [--author-count <value>] [--rpp <value>] [--author <name>] [--subject <subject>] [--arxiv-category <cat>] [--collaboration <name>] [--earliest-date <range>] [--facet <facet>] [--facet-value <value>] [--json]
+  research:inspirehep:export [--control-number <id>|--query <query>] [--doc-type <type>] [--size N] [--format bibtex|latex-eu|latex-us|json|cv] [--download-dir <abs>] --confirmed [--json]
+  research:pubscholar:search <query>|--query <query> [--keyword <keyword>] [--field <field>] [--page-size N] [--json]
+  research:pubscholar:filter <query>|--query <query> [--keyword <keyword>] [--field <field>] [--facet-group <group>] [--facet-value <value>] [--publication-year YYYY] [--resource-type <type>] [--full-text] [--json]
+  research:pubscholar:export <query>|--query <query> [--keyword <keyword>] [--field <field>] [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:opticsjournal:search <query>|--query <query> [--field-type title|author|keyword|affiliation|first_author|first_affiliation|abstract|doi|cstr] [--journal-scope <value>] [--year-from YYYY] [--year-to YYYY] [--page-size N] [--json]
+  research:opticsjournal:filter <query>|--query <query> [--facet journal|pubyear|author|topic_cn|topic_en] [--facet-value <value>] [--journal-code <code>] [--pubyear YYYY] [--author <name>] [--topic-cn <value>] [--topic-en <value>] [--json]
+  research:opticsjournal:export <query>|--query <query> [--format enw|ref|txt|xml] [--download-dir <abs>] --confirmed [--json]
+  research:crc:search [<query>|--query <query>] [--title <title>] [--author <author>] [--keyword <keyword>] [--page-size N] [--json]
+  research:crc:filter [<query>|--query <query>] [--access-facet <facet>] [--open-access] [--free-to-view] [--access-content] [--licensed-content] [--include-forthcoming] [--fully-oa-books] [--books-with-oa-chapters] [--year-from YYYY] [--year-to YYYY] [--json]
+  research:crc:export [<query>|--query <query>] [--format csv] [--download-dir <abs>] --confirmed [--json]
+  research:cellpress:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|Abstract|AbstractTitleKeywordFilterField] [--page-size N] [--json]
+  research:cellpress:filter <query>|--query <query> [--content-item-type <type>] [--after-year YYYY] [--before-year YYYY] [--author <author>] [--journal <journal>] [--collection <collection>] [--keyword <keyword>] [--access full|open] [--sort-by <value>] [--json]
+  research:cellpress:export <pii>|--pii <pii> [--format ris] [--download-dir <abs>] --confirmed [--json]
+  research:iest:search <query>|--query <query> [--field all|alternative-title|publisher|affiliation|subject|abstract|fulltext|title|identifier|author] [--page-size N] [--json]
+  research:iest:filter <query>|--query <query> [--access <value>] [--type <value>] [--from-year YYYY] [--to-year YYYY] [--refine-query <query>] [--refine-field <field>] [--json]
+  research:iest:export [--article-url <url>|--article-path <path>] [--format ris|bib|enw] [--download-dir <abs>] --confirmed [--json]
   capability:library:import [docs/capability-library.json] [--json]
   site:capture-map --site <id> [--profile research-default] [--fixture <html>] [--json]
   scheduler:run --interval-minutes <n> [--json]
@@ -828,6 +1056,611 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   if (command === "research:nuaa:import") {
     const file = positionals[0] || asString(options.file) || "configs/research/nuaa_stem_inventory.json";
     output(new ResearchDbImporter(new CapabilityDatabase()).importNuaaSeed(file, { stemOnly: options["stem-only"] === true || options.stemOnly === true }), options);
+    return;
+  }
+  if (command === "research:aiaa:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAiaaSearch({ query: query || "", area: asString(options.area), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aiaa:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAiaaFilter({ query: query || "", area: asString(options.area), after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), series_key: asString(options["series-key"] || options.seriesKey), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), concept_id: asString(options["concept-id"] || options.conceptId), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aiaa:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:aiaa:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAiaaExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wos:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWosSearch({ query: query || "", mode: asString(options.mode) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wos:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWosFilter({ query: query || "", mode: asString(options.mode) as any, document_type: asString(options["document-type"] || options.documentType) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wos:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:wos:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchWosExport({ query: query || "", document_type: asString(options["document-type"] || options.documentType) as any, format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:acm:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAcmSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:acm:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAcmFilter({ query: query || "", area: asString(options.area) as any, after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), sort_by: asString(options["sort-by"] || options.sortBy), facet: asString(options.facet), content_type: asString(options["content-type"] || options.contentType), author: asString(options.author), publisher: asString(options.publisher), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:acm:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:acm:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAcmExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:ieee:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIeeeSearch({ query: query || "", field: asString(options.field) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:ieee:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIeeeFilter({ query: query || "", field: asString(options.field) as any, content_type: asString(options["content-type"] || options.contentType) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:ieee:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:ieee:export requires --confirmed because it writes a browser-downloaded artifact or surfaces the verified handoff blocker");
+    const query = asString(options.query) || positionals[0];
+    output(await researchIeeeExport({ query: query || "", field: asString(options.field) as any, content_type: asString(options["content-type"] || options.contentType) as any, format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+
+  if (command === "research:acs:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAcsSearch({ query: query || "", area: asString(options.area) as any, title_query: asString(options["title-query"] || options.titleQuery), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:acs:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAcsFilter({ query: query || "", area: asString(options.area) as any, title_query: asString(options["title-query"] || options.titleQuery), earliest: asString(options.earliest), pub_type: asString(options["pub-type"] || options.pubType), article_type: asString(options["article-type"] || options.articleType), article_subject: asString(options["article-subject"] || options.articleSubject), concept_id: asString(options["concept-id"] || options.conceptId), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), series_key: asString(options["series-key"] || options.seriesKey), publisher: asString(options.publisher), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:acs:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:acs:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAcsExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asme:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAsmeSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asme:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAsmeFilter({ query: query || "", format: asString(options.format), publisher: asString(options.publisher), subject: asString(options.subject), journal: asString(options.journal), topic: asString(options.topic), from_date: asString(options["from-date"] || options.fromDate), to_date: asString(options["to-date"] || options.toDate), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asme:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:asme:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAsmeExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:rsc:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchRscSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:rsc:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchRscFilter({ query: query || "", area: asString(options.area) as any, access: asString(options.access) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:rsc:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:rsc:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchRscExport({ doi: doi || "", article_url: asString(options["article-url"] || options.articleUrl), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wiley:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWileySearch({ query: query || "", area: asString(options.area) as any, query2: asString(options.query2), area2: asString(options.area2) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wiley:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWileyFilter({ query: query || "", area: asString(options.area) as any, query2: asString(options.query2), area2: asString(options.area2) as any, after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), series_key: asString(options["series-key"] || options.seriesKey), ppub: asString(options.ppub), concept_id: asString(options["concept-id"] || options.conceptId), access: asBoolean(options.access), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:wiley:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:wiley:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchWileyExport({ doi: doi || "", format: asString(options.format) as any, include_abstract: asBoolean(options["include-abstract"] || options.includeAbstract), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asce:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAsceSearch({ query: query || "", query2: asString(options.query2), area: asString(options.area) as any, area2: asString(options.area2) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asce:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAsceFilter({ query: query || "", query2: asString(options.query2), area: asString(options.area) as any, area2: asString(options.area2) as any, after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), content_item_type: asString(options["content-item-type"] || options.contentItemType), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), concept_id: asString(options["concept-id"] || options.conceptId), publication: asString(options.publication), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:asce:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:asce:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAsceExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iop:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIopSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iop:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIopFilter({ query: query || "", search_date_period: asString(options["search-date-period"] || options.searchDatePeriod), pub_type: asString(options["pub-type"] || options.pubType), access_type: asString(options["access-type"] || options.accessType), journal_issn: asString(options["journal-issn"] || options.journalIssn), order_by: asString(options["order-by"] || options.orderBy), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iop:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:iop:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchIopExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:tandf:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchTandfSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:tandf:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchTandfFilter({ query: query || "", area: asString(options.area) as any, after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), content_item_type: asString(options["content-item-type"] || options.contentItemType), pub_type: asString(options["pub-type"] || options.pubType), journal: asString(options.journal), access: asString(options.access), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:tandf:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:tandf:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchTandfExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sae:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSaeSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sae:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSaeFilter({ query: query || "", facet: asString(options.facet), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sae:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:sae:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchSaeExport({ query: query || "", facet: asString(options.facet), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sciencedirect:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScienceDirectSearch({ query: query || "", date: asString(options.date), pub: asString(options.pub), authors: asString(options.authors), affiliations: asString(options.affiliations), tak: asString(options.tak), title: asString(options.title), doc_id: asString(options["doc-id"] || options.docId), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sciencedirect:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScienceDirectFilter({ query: query || "", date: asString(options.date), pub: asString(options.pub), authors: asString(options.authors), affiliations: asString(options.affiliations), tak: asString(options.tak), title: asString(options.title), doc_id: asString(options["doc-id"] || options.docId), article_type: asString(options["article-type"] || options.articleType) as any, year: asNumber(options.year), access_type: asString(options["access-type"] || options.accessType) as any, facet_input_id: asString(options["facet-input-id"] || options.facetInputId), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:sciencedirect:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:sciencedirect:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchScienceDirectExport({ query: query || "", date: asString(options.date), pub: asString(options.pub), authors: asString(options.authors), affiliations: asString(options.affiliations), tak: asString(options.tak), title: asString(options.title), doc_id: asString(options["doc-id"] || options.docId), article_type: asString(options["article-type"] || options.articleType) as any, year: asNumber(options.year), access_type: asString(options["access-type"] || options.accessType) as any, facet_input_id: asString(options["facet-input-id"] || options.facetInputId), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aps:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchApsSearch({ query: query || "", field: asString(options.field) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aps:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchApsFilter({ query: query || "", field: asString(options.field) as any, date_range: asString(options["date-range"] || options.dateRange) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aps:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:aps:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchApsExport({ doi: doi || "", journal_code: asString(options["journal-code"] || options.journalCode), article_url: asString(options["article-url"] || options.articleUrl), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:emerald:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchEmeraldSearch({ query: query || "", mode: asString(options.mode) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:emerald:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchEmeraldFilter({ query: query || "", mode: asString(options.mode) as any, content_type: asString(options["content-type"] || options.contentType), subject: asString(options.subject), case_provider: asString(options["case-provider"] || options.caseProvider), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:emerald:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:emerald:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchEmeraldExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cambridge:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCambridgeSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cambridge:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCambridgeFilter({ query: query || "", product_type: asString(options["product-type"] || options.productType) as any, open_access: asString(options["open-access"] || options.openAccess), only_show_available: asBoolean(options["only-show-available"] || options.onlyShowAvailable), start_year: asNumber(options["start-year"] || options.startYear), end_year: asNumber(options["end-year"] || options.endYear), sort: asString(options.sort), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cambridge:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:cambridge:export requires --confirmed because it writes a browser-downloaded artifact");
+    output(await researchCambridgeExport({ query: asString(options.query), product_id: asString(options["product-id"] || options.productId), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:springer:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSpringerSearch({ query: query || "", title: asString(options.title), contributor: asString(options.contributor), journal: asString(options.journal), date_from: asNumber(options["date-from"] || options.dateFrom), date_to: asNumber(options["date-to"] || options.dateTo), date: asString(options.date), page: asNumber(options.page), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:springer:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSpringerFilter({ query: query || "", title: asString(options.title), contributor: asString(options.contributor), journal: asString(options.journal), date_from: asNumber(options["date-from"] || options.dateFrom), date_to: asNumber(options["date-to"] || options.dateTo), date: asString(options.date), content_type: asString(options["content-type"] || options.contentType), open_access: asString(options["open-access"] || options.openAccess), language: asString(options.language), taxonomy: asString(options.taxonomy), discipline: asString(options.discipline), sub_discipline: asString(options["sub-discipline"] || options.subDiscipline), sustainable_development_goal: asString(options["sustainable-development-goal"] || options.sustainableDevelopmentGoal), page: asNumber(options.page), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:springer:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:springer:export requires --confirmed because it writes a browser-downloaded artifact or surfaces the verified handoff blocker");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchSpringerExport({ doi: doi, format: asString(options.format) as any, bulk_export: asBoolean(options["bulk-export"] || options.bulkExport), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:nature:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchNatureSearch({ query: query || "", start_year: asNumber(options["start-year"] || options.startYear), end_year: asNumber(options["end-year"] || options.endYear), order: asString(options.order), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:nature:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchNatureFilter({ query: query || "", start_year: asNumber(options["start-year"] || options.startYear), end_year: asNumber(options["end-year"] || options.endYear), order: asString(options.order), article_type: asString(options["article-type"] || options.articleType) as any, journal: asString(options.journal), subject: asString(options.subject), date_range: asString(options["date-range"] || options.dateRange), facet_param: asString(options["facet-param"] || options.facetParam) as any, facet_value: asString(options["facet-value"] || options.facetValue), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:nature:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:nature:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchNatureExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iet:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIetSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iet:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIetFilter({ query: query || "", area: asString(options.area) as any, ppub: asString(options.ppub), after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), concept_id: asString(options["concept-id"] || options.conceptId), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), series_key: asString(options["series-key"] || options.seriesKey), alphabet_range: asString(options["alphabet-range"] || options.alphabetRange), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iet:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:iet:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchIetExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aip:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAipSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aip:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchAipFilter({ query: query || "", content_type: asString(options["content-type"] || options.contentType), journal: asString(options.journal), subject: asString(options.subject), article_type: asString(options["article-type"] || options.articleType), book_series: asString(options["book-series"] || options.bookSeries), issue_section: asString(options["issue-section"] || options.issueSection), collection: asString(options.collection), from_date: asString(options["from-date"] || options.fromDate), to_date: asString(options["to-date"] || options.toDate), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:aip:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:aip:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchAipExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:mdpi:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchMdpiSearch({ query: query || "", journal: asString(options.journal), article_type: asString(options["article-type"] || options.articleType), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), view: asString(options.view) as any, sort: asString(options.sort), page_count: asNumber(options["page-count"] || options.pageCount), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:mdpi:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchMdpiFilter({ query: query || "", journal: asString(options.journal), article_type: asString(options["article-type"] || options.articleType), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), view: asString(options.view) as any, sort: asString(options.sort), page_count: asNumber(options["page-count"] || options.pageCount), country: asString(options.country), subject: asString(options.subject), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:mdpi:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:mdpi:export requires --confirmed because it writes a browser-downloaded artifact");
+    output(await researchMdpiExport({ article_url: asString(options["article-url"] || options.articleUrl), article_path: asString(options["article-path"] || options.articlePath), doi: asString(options.doi), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:optica:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticaSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:optica:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticaFilter({ query: query || "", year: asNumber(options.year), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:optica:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:optica:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticaExport({ query: query || "", article_id: asString(options["article-id"] || options.articleId) || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:proquest:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchProquestSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:proquest:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchProquestFilter({ query: query || "", full_text: asBoolean(options["full-text"] || options.fullText), peer_reviewed: asBoolean(options["peer-reviewed"] || options.peerReviewed), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:proquest:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:proquest:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchProquestExport({ query: query || "", full_text: asBoolean(options["full-text"] || options.fullText), peer_reviewed: asBoolean(options["peer-reviewed"] || options.peerReviewed), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+
+  if (command === "research:frontiers:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchFrontiersSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:frontiers:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchFrontiersFilter({ query: query || "", group: asString(options.group) as any, option_id: asString(options["option-id"] || options.optionId) || "", option_label: asString(options["option-label"] || options.optionLabel), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:frontiers:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:frontiers:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchFrontiersExport({ doi: doi || "", journal_slug: asString(options["journal-slug"] || options.journalSlug), article_url: asString(options["article-url"] || options.articleUrl), format: asString(options.format) as any, filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:arxiv:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchArxivSearch({ query, field: asString(options.field) as any, page_size: asNumber(options["page-size"] || options.pageSize), order: asString(options.order) as any, profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:arxiv:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchArxivFilter({ query, field: asString(options.field) as any, subject: asString(options.subject), physics_archive: asString(options["physics-archive"] || options.physicsArchive), include_cross_list: asString(options["include-cross-list"] || options.includeCrossList) as any, date_filter_by: asString(options["date-filter-by"] || options.dateFilterBy) as any, year: asNumber(options.year), from_date: asString(options["from-date"] || options.fromDate), to_date: asString(options["to-date"] || options.toDate), date_type: asString(options["date-type"] || options.dateType) as any, abstracts: asString(options.abstracts) as any, include_older_versions: asBoolean(options["include-older-versions"] || options.includeOlderVersions), page_size: asNumber(options["page-size"] || options.pageSize), order: asString(options.order) as any, profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:arxiv:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:arxiv:export requires --confirmed because it writes a browser-downloaded artifact");
+    const id = asString(options.id) || positionals[0];
+    output(await researchArxivExport({ id: id || "", format: asString(options.format) as any, filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:siam:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSiamSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:siam:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchSiamFilter({ query: query || "", area: asString(options.area) as any, after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), pub_type: asString(options["pub-type"] || options.pubType), series_key: asString(options["series-key"] || options.seriesKey), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), concept_id: asString(options["concept-id"] || options.conceptId), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:siam:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:siam:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchSiamExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:degruyter:search") {
+    output(await researchDegruyterSearch({ title: asString(options.title), family_name: asString(options["family-name"] || options.familyName), reference: asString(options.reference), match: asString(options.match) as any, min_pub_year: asNumber(options["min-pub-year"] || options.minPubYear), max_pub_year: asNumber(options["max-pub-year"] || options.maxPubYear), document_types: asStringList(options["document-types"] || options.documentTypes), sort_by: asString(options["sort-by"] || options.sortBy) as any, document_visibility: asString(options["document-visibility"] || options.documentVisibility) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:degruyter:filter") {
+    output(await researchDegruyterFilter({ title: asString(options.title), family_name: asString(options["family-name"] || options.familyName), reference: asString(options.reference), match: asString(options.match) as any, min_pub_year: asNumber(options["min-pub-year"] || options.minPubYear), max_pub_year: asNumber(options["max-pub-year"] || options.maxPubYear), document_type_facet: asString(options["document-type-facet"] || options.documentTypeFacet), subject: asString(options.subject), publisher: asString(options.publisher), language: asString(options.language), access: asString(options.access), pub_date: asString(options["pub-date"] || options.pubDate), sort_by: asString(options["sort-by"] || options.sortBy) as any, document_visibility: asString(options["document-visibility"] || options.documentVisibility) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:degruyter:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:degruyter:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchDegruyterExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:worldsci:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWorldsciSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:worldsci:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchWorldsciFilter({ query: query || "", area: asString(options.area) as any, pub_type: asString(options["pub-type"] || options.pubType), content_item_type: asString(options["content-item-type"] || options.contentItemType), ppub: asString(options.ppub), after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), contrib_raw: asString(options["contrib-raw"] || options.contribRaw), concept_id: asString(options["concept-id"] || options.conceptId), access: asString(options.access), sort_by: asString(options["sort-by"] || options.sortBy), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:worldsci:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:worldsci:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchWorldsciExport({ doi: doi || "", format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:royalsoc:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchRoyalSocSearch({ query: query || "", page: asNumber(options.page), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:royalsoc:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchRoyalSocFilter({ query: query || "", page: asNumber(options.page), journal: asString(options.journal), article_type: asString(options["article-type"] || options.articleType), subject_id: asString(options["subject-id"] || options.subjectId), issue_section: asString(options["issue-section"] || options.issueSection), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:royalsoc:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:royalsoc:export requires --confirmed because it writes a browser-downloaded artifact");
+    const doi = asString(options.doi) || positionals[0];
+    output(await researchRoyalSocExport({ doi, resource_id: asString(options["resource-id"] || options.resourceId), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scoap3:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScoap3Search({ query: query || "", page: asNumber(options.page), size: asNumber(options.size), sort: asString(options.sort), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scoap3:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScoap3Filter({ query: query || "", journal: asString(options.journal) as any, country: asString(options.country) as any, country_logic: asString(options["country-logic"] || options.countryLogic), publication_year_gte: asNumber(options["publication-year-gte"] || options.publicationYearGte), publication_year_lte: asNumber(options["publication-year-lte"] || options.publicationYearLte), page: asNumber(options.page), size: asNumber(options.size), sort: asString(options.sort), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scoap3:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:scoap3:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchScoap3Export({ query: query || "", journal: asString(options.journal) as any, country: asString(options.country) as any, country_logic: asString(options["country-logic"] || options.countryLogic), publication_year_gte: asNumber(options["publication-year-gte"] || options.publicationYearGte), publication_year_lte: asNumber(options["publication-year-lte"] || options.publicationYearLte), record_id: asNumber(options["record-id"] || options.recordId), format: asString(options.format) as any, filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:dblp:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchDblpSearch({ query: query || "", mode: asString(options.mode) as any, profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:dblp:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchDblpFilter({ query: query || "", mode: asString(options.mode) as any, refine_token: asString(options["refine-token"] || options.refineToken), type: asString(options.type), year: asNumber(options.year), author_token: asString(options["author-token"] || options.authorToken), venue_token: asString(options["venue-token"] || options.venueToken), access_token: asString(options["access-token"] || options.accessToken), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:dblp:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:dblp:export requires --confirmed because it writes a browser-downloaded artifact");
+    const key = asString(options.key) || positionals[0];
+    output(await researchDblpExport({ key, query: asString(options.query), format: asString(options.format) as any, bulk: asBoolean(options.bulk), h: asNumber(options.h), filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scielo:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScieloSearch({ query: query || "", lang: asString(options.lang), count: asNumber(options.count), from: asNumber(options.from), page: asNumber(options.page), sort: asString(options.sort), format: asString(options.format), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scielo:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchScieloFilter({ query: query || "", lang: asString(options.lang), count: asNumber(options.count), from: asNumber(options.from), page: asNumber(options.page), sort: asString(options.sort), format: asString(options.format), collection: asString(options.collection), country: asString(options.country), journal_title: asString(options["journal-title"] || options.journalTitle), language: asString(options.language), year_cluster: asString(options["year-cluster"] || options.yearCluster), subject_area: asString(options["subject-area"] || options.subjectArea), wok_subject_categories: asString(options["wok-subject-categories"] || options.wokSubjectCategories), wok_citation_index: asString(options["wok-citation-index"] || options.wokCitationIndex), is_citable: asString(options["is-citable"] || options.isCitable), literature_type: asString(options["literature-type"] || options.literatureType), network_classification: asString(options["network-classification"] || options.networkClassification), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:scielo:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:scielo:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchScieloExport({ query: query || "", lang: asString(options.lang), count: asNumber(options.count), from: asNumber(options.from), page: asNumber(options.page), sort: asString(options.sort), format: asString(options.format), collection: asString(options.collection), country: asString(options.country), journal_title: asString(options["journal-title"] || options.journalTitle), language: asString(options.language), year_cluster: asString(options["year-cluster"] || options.yearCluster), subject_area: asString(options["subject-area"] || options.subjectArea), wok_subject_categories: asString(options["wok-subject-categories"] || options.wokSubjectCategories), wok_citation_index: asString(options["wok-citation-index"] || options.wokCitationIndex), is_citable: asString(options["is-citable"] || options.isCitable), literature_type: asString(options["literature-type"] || options.literatureType), network_classification: asString(options["network-classification"] || options.networkClassification), export_format: asString(options["export-format"] || options.exportFormat) as any, selection: asString(options.selection) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:inspirehep:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchInspirehepSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:inspirehep:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchInspirehepFilter({ query: query || "", doc_type: asString(options["doc-type"] || options.docType), author_count: asString(options["author-count"] || options.authorCount), rpp: asString(options.rpp), author: asString(options.author), subject: asString(options.subject), arxiv_category: asString(options["arxiv-category"] || options.arxivCategory), collaboration: asString(options.collaboration), earliest_date: asString(options["earliest-date"] || options.earliestDate), facet: asString(options.facet) as any, facet_value: asString(options["facet-value"] || options.facetValue), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:inspirehep:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:inspirehep:export requires --confirmed because it writes a browser-downloaded artifact");
+    const control_number = asString(options["control-number"] || options.controlNumber) || positionals[0];
+    output(await researchInspirehepExport({ control_number, query: asString(options.query), doc_type: asString(options["doc-type"] || options.docType), size: asNumber(options.size), format: asString(options.format) as any, filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:pubscholar:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchPubscholarSearch({ query: query || "", keyword: asString(options.keyword), field: asString(options.field) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:pubscholar:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchPubscholarFilter({ query: query || "", keyword: asString(options.keyword), field: asString(options.field) as any, facet_group: asString(options["facet-group"] || options.facetGroup), facet_value: asString(options["facet-value"] || options.facetValue), publication_year: asNumber(options["publication-year"] || options.publicationYear), resource_type: asString(options["resource-type"] || options.resourceType), full_text: asBoolean(options["full-text"] || options.fullText), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:pubscholar:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:pubscholar:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchPubscholarExport({ query: query || "", keyword: asString(options.keyword), field: asString(options.field) as any, facet_group: asString(options["facet-group"] || options.facetGroup), facet_value: asString(options["facet-value"] || options.facetValue), publication_year: asNumber(options["publication-year"] || options.publicationYear), resource_type: asString(options["resource-type"] || options.resourceType), full_text: asBoolean(options["full-text"] || options.fullText), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:opticsjournal:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticsjournalSearch({ query: query || "", field_type: asString(options["field-type"] || options.fieldType) as any, journal_scope: asString(options["journal-scope"] || options.journalScope), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), sort: asString(options.sort), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:opticsjournal:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticsjournalFilter({ query: query || "", field_type: asString(options["field-type"] || options.fieldType) as any, journal_scope: asString(options["journal-scope"] || options.journalScope), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), sort: asString(options.sort), page_size: asNumber(options["page-size"] || options.pageSize), facet: asString(options.facet) as any, facet_value: asString(options["facet-value"] || options.facetValue), journal_code: asString(options["journal-code"] || options.journalCode), pubyear: asNumber(options.pubyear), author: asString(options.author), topic_cn: asString(options["topic-cn"] || options.topicCn), topic_en: asString(options["topic-en"] || options.topicEn), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:opticsjournal:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:opticsjournal:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchOpticsjournalExport({ query: query || "", field_type: asString(options["field-type"] || options.fieldType) as any, journal_scope: asString(options["journal-scope"] || options.journalScope), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), sort: asString(options.sort), page_size: asNumber(options["page-size"] || options.pageSize), facet: asString(options.facet) as any, facet_value: asString(options["facet-value"] || options.facetValue), journal_code: asString(options["journal-code"] || options.journalCode), pubyear: asNumber(options.pubyear), author: asString(options.author), topic_cn: asString(options["topic-cn"] || options.topicCn), topic_en: asString(options["topic-en"] || options.topicEn), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:crc:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCrcSearch({ query: query || "", title: asString(options.title), author: asString(options.author), keyword: asString(options.keyword), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:crc:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCrcFilter({ query: query || "", title: asString(options.title), author: asString(options.author), keyword: asString(options.keyword), access_facet: asString(options["access-facet"] || options.accessFacet) as any, open_access: asBoolean(options["open-access"] || options.openAccess), free_to_view: asBoolean(options["free-to-view"] || options.freeToView), access_content: asBoolean(options["access-content"] || options.accessContent), licensed_content: asBoolean(options["licensed-content"] || options.licensedContent), include_forthcoming: asBoolean(options["include-forthcoming"] || options.includeForthcoming), fully_oa_books: asBoolean(options["fully-oa-books"] || options.fullyOaBooks), books_with_oa_chapters: asBoolean(options["books-with-oa-chapters"] || options.booksWithOaChapters), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:crc:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:crc:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchCrcExport({ query: query || "", title: asString(options.title), author: asString(options.author), keyword: asString(options.keyword), access_facet: asString(options["access-facet"] || options.accessFacet) as any, open_access: asBoolean(options["open-access"] || options.openAccess), free_to_view: asBoolean(options["free-to-view"] || options.freeToView), access_content: asBoolean(options["access-content"] || options.accessContent), licensed_content: asBoolean(options["licensed-content"] || options.licensedContent), include_forthcoming: asBoolean(options["include-forthcoming"] || options.includeForthcoming), fully_oa_books: asBoolean(options["fully-oa-books"] || options.fullyOaBooks), books_with_oa_chapters: asBoolean(options["books-with-oa-chapters"] || options.booksWithOaChapters), year_from: asNumber(options["year-from"] || options.yearFrom), year_to: asNumber(options["year-to"] || options.yearTo), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cellpress:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCellpressSearch({ query: query || "", area: asString(options.area) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cellpress:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchCellpressFilter({ query: query || "", area: asString(options.area) as any, content_item_type: asString(options["content-item-type"] || options.contentItemType), after_year: asNumber(options["after-year"] || options.afterYear), before_year: asNumber(options["before-year"] || options.beforeYear), author: asString(options.author), journal: asString(options.journal), collection: asString(options.collection), keyword: asString(options.keyword), access: asString(options.access), sort_by: asString(options["sort-by"] || options.sortBy), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:cellpress:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:cellpress:export requires --confirmed because it writes a browser-downloaded artifact");
+    const pii = asString(options.pii) || positionals[0];
+    output(await researchCellpressExport({ pii: pii || "", format: asString(options.format) as any, filename: asString(options.filename), download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iest:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIestSearch({ query: query || "", field: asString(options.field) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iest:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIestFilter({ query: query || "", field: asString(options.field) as any, access: asString(options.access), type: asString(options.type), from_year: asNumber(options["from-year"] || options.fromYear), to_year: asNumber(options["to-year"] || options.toYear), refine_query: asString(options["refine-query"] || options.refineQuery), refine_field: asString(options["refine-field"] || options.refineField) as any, page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:iest:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:iest:export requires --confirmed because it writes a browser-downloaded artifact");
+    output(await researchIestExport({ article_url: asString(options["article-url"] || options.articleUrl), article_path: asString(options["article-path"] || options.articlePath), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
     return;
   }
   if (command === "capability:library:import") {
