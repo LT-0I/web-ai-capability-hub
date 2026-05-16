@@ -140,3 +140,12 @@ user-decision items in USER_HANDOFF.md §A. Pending: user commit/push decision.
 `EXPLORED_PATH_KNOWN` (with a tracked integration follow-up), or
 `BLOCKED_NEEDS_USER` (in the handoff MD). Sora and account-identity
 features are `OUT_OF_SCOPE`.
+
+## Post-campaign follow-up
+
+- [x] Architecture drift fix (2026-05-16): `docs/capability-library.json`
+  had become a parallel hand-maintained store beside the SQLite
+  `CapabilityDatabase`. Resolved (architect-red-teamed) into one store /
+  two tables / two views via the new `integration_registry` table; the
+  JSON is now only the editable import seed. Full record:
+  `docs/plans/architecture-drift-fix-2026-05-16.md`. Commit `aae0c49`.
