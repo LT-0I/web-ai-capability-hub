@@ -52,3 +52,18 @@ test("IOPscience visible-text fallback extracts DOI and year without live networ
   assert.equal(items[0].doi, "10.1088/2053-1591/ab4925");
   assert.equal(items[0].year, 2019);
 });
+
+test("IOPscience eBook ISBN export URL and validators cover RIS EBOOK and BibTeX book without regressing journal RIS", () => {
+  const isbn = "978-0-7503-3343-6";
+  assert.equal(buildIopExportUrl(isbn, "ris"), "https://iopscience.iop.org/exportAbstract?isbn=978-0-7503-3343-6&exportFormat=iopexport_ris&exportType=abs");
+  assert.equal(buildIopExportUrl(isbn, "bibtex"), "https://iopscience.iop.org/exportAbstract?isbn=978-0-7503-3343-6&exportFormat=iopexport_bib&exportType=abs");
+  const { isValidIopRisArtifact, isValidIopBibtexArtifact } = require("../src/mcp/researchdb/iop/flow");
+  const ebookRis = "TY  - EBOOK\nTI  - Semidefinite Programming in Quantum Information Science\nDO  - 10.1088/978-0-7503-3343-6\nSN  - 978-0-7503-3343-6\nER  -\n";
+  const bookBib = "@book{10.1088/978-0-7503-3343-6,\ntitle = {Semidefinite Programming in Quantum Information Science},\nisbn = {978-0-7503-3343-6},\ndoi = {10.1088/978-0-7503-3343-6}\n}\n";
+  const journalRis = "TY  - JOUR\nTI  - InGaAs/graphene infrared photodetectors\nDO  - 10.1088/2053-1591/ab4925\nER  -\n";
+  assert.equal(isValidIopRisArtifact(ebookRis, isbn), true);
+  assert.equal(isValidIopBibtexArtifact(bookBib, isbn), true);
+  assert.equal(isValidIopRisArtifact(journalRis, "10.1088/2053-1591/ab4925"), true);
+  assert.equal(isValidIopRisArtifact("TY  - EBOOK\nSN  - 978-0-7503-3343-6\n", isbn), false);
+  assert.equal(isValidIopBibtexArtifact("@article{bad, isbn = {978-0-7503-3343-6}}", isbn), false);
+});

@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const https = require("node:https");
 import { ManagedBrowserLauncher } from "../../../browser/managedLauncher";
 import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
@@ -51,8 +52,24 @@ function requireQuery(query: string): string {
 }
 function requireDoi(doi: string): string {
   if (!doi || !doi.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "doi is required");
-  return doi.trim().replace(/^https?:\/\/doi\.org\//i, "");
+  const out = doi.trim().replace(/^https?:\/\/doi\.org\//i, "");
+  if (!/^10\.\d{4,9}\//i.test(out)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "doi must be a DOI", { doi });
+  return out;
 }
+function normalizeIopIdentifier(identifier: string): string {
+  if (!identifier || !identifier.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "doi is required");
+  return identifier.trim().replace(/^https?:\/\/doi\.org\//i, "").replace(/^urn:isbn:/i, "");
+}
+function isIopIsbnIdentifier(identifier: string): boolean {
+  const compact = normalizeIopIdentifier(identifier).replace(/[\s-]/g, "");
+  return /^(?:97[89]\d{10}|\d{9}[0-9X])$/i.test(compact);
+}
+function requireIopIdentifier(identifier: string): string {
+  const out = normalizeIopIdentifier(identifier);
+  if (isIopIsbnIdentifier(out) || /^10\.\d{4,9}\//i.test(out)) return out;
+  throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "doi must be a DOI or IOP eBook ISBN", { doi: identifier });
+}
+function escapeRegExp(value: string): string { return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 function normalizeFormat(format?: string): IopExportFormat {
   const out = (format || "ris").toLowerCase();
   if (!VALID_FORMATS.has(out)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `Unsupported IOPscience export format: ${format}`, { format, valid: [...VALID_FORMATS] });
@@ -88,13 +105,39 @@ export function buildIopArticleUrl(doi: string): string {
 
 export function buildIopExportUrl(doi: string, format: IopExportFormat | string = "ris"): string {
   const normalized = normalizeFormat(format);
+  const identifier = requireIopIdentifier(doi);
+  if (isIopIsbnIdentifier(identifier)) {
+    const url = new URL("/exportAbstract", IOP_ORIGIN);
+    url.searchParams.set("isbn", identifier);
+    url.searchParams.set("exportFormat", normalized === "ris" ? "iopexport_ris" : "iopexport_bib");
+    url.searchParams.set("exportType", "abs");
+    return url.toString();
+  }
   const url = new URL("/export", IOP_ORIGIN);
   url.searchParams.set("type", "article");
-  url.searchParams.set("doi", requireDoi(doi));
+  url.searchParams.set("doi", identifier);
   url.searchParams.set("exportFormat", normalized === "ris" ? "iopexport_ris" : "iopexport_bib");
   url.searchParams.set("exportType", "abs");
   url.searchParams.set("navsubmit", "Export abstract");
   return url.toString();
+}
+
+export function isValidIopRisArtifact(text: string, identifier: string): boolean {
+  const source = String(text || "").trim();
+  if (!source || /^</.test(source) || /<html|<!doctype|error|not found/i.test(source)) return false;
+  const hasRisRecord = /^TY  - [A-Z0-9_]{2,8}\s*$/m.test(source) && /^ER  -\s*$/m.test(source);
+  if (!hasRisRecord) return false;
+  const id = requireIopIdentifier(identifier);
+  if (isIopIsbnIdentifier(id)) return /^TY  - (?:EBOOK|BOOK)\s*$/m.test(source) && new RegExp(`^SN  - ${escapeRegExp(id)}\\s*$`, "mi").test(source);
+  return /^TY  - (?:JOUR|EJOUR|CHAP|BOOK|EBOOK)\s*$/m.test(source) && /^DO  - /m.test(source) && source.toLowerCase().includes(id.toLowerCase());
+}
+
+export function isValidIopBibtexArtifact(text: string, identifier: string): boolean {
+  const source = String(text || "").trim();
+  if (!source || /^</.test(source) || /<html|<!doctype|error|not found/i.test(source)) return false;
+  const id = requireIopIdentifier(identifier);
+  if (isIopIsbnIdentifier(id)) return /@book\s*\{/i.test(source) && new RegExp(`isbn\\s*=\\s*\\{${escapeRegExp(id)}\\}`, "i").test(source);
+  return /@article\s*\{/i.test(source) && new RegExp(`doi\\s*=\\s*\\{${escapeRegExp(id)}\\}`, "i").test(source);
 }
 
 export function parseIopResultCount(text: string): number {
@@ -256,13 +299,52 @@ export async function researchIopFilter(args: IopFilterArgs): Promise<{ result_c
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
 }
 
+async function downloadIopBookExport(exportUrl: string, downloadDir: string, format: IopExportFormat, identifier: string): Promise<string> {
+  const ext = format === "ris" ? "ris" : "bib";
+  const artifactPath = path.join(downloadDir, `iop-${identifier.replace(/[^A-Za-z0-9]+/g, "-")}.${ext}`);
+  const data: Buffer = await new Promise((resolve, reject) => {
+    https.get(exportUrl, { headers: { "User-Agent": "Mozilla/5.0" } }, (res: any) => {
+      const status = Number(res.statusCode || 0);
+      const chunks: Buffer[] = [];
+      res.on("data", (chunk: Buffer) => chunks.push(Buffer.from(chunk)));
+      res.on("end", () => {
+        const body = Buffer.concat(chunks);
+        if (status < 200 || status >= 300) {
+          reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience eBook export endpoint did not return an artifact", { export_url: exportUrl, status }));
+          return;
+        }
+        resolve(body);
+      });
+    }).on("error", (error: Error) => reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience eBook export download failed", { export_url: exportUrl, cause: error.message })));
+  });
+  fs.writeFileSync(artifactPath, data);
+  return artifactPath;
+}
+
 export async function researchIopExport(args: IopExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IopExportFormat; doi: string; export_url: string }> {
-  const doi = requireDoi(args.doi);
+  const doi = requireIopIdentifier(args.doi);
   const format = normalizeFormat(args.format);
   const profile = args.profile || "nuaa-iop";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "iop"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
+  const exportUrl = buildIopExportUrl(doi, format);
+  if (isIopIsbnIdentifier(doi)) {
+    try {
+      const artifact_path = await downloadIopBookExport(exportUrl, downloadDir, format, doi);
+      const text = fs.readFileSync(artifact_path, "utf-8");
+      if (format === "ris" && !isValidIopRisArtifact(text, doi)) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience eBook RIS artifact failed content validation", { artifact_path, doi });
+      }
+      if (format === "bibtex" && !isValidIopBibtexArtifact(text, doi)) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience eBook BibTeX artifact failed content validation", { artifact_path, doi });
+      }
+      return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: exportUrl };
+    } catch (error: any) {
+      if (error instanceof WebAiToolError) throw error;
+      throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience eBook export failed", { doi, format, cause: error?.message || String(error) });
+    }
+  }
   const articleUrl = buildIopArticleUrl(doi);
   const tabId = args.tab_id || `research-iop-export-${Date.now()}`;
   return await withAllocatedIopPage(profile, articleUrl, tabId, args.cdp_port ?? 9240, async (page) => {
@@ -286,13 +368,13 @@ export async function researchIopExport(args: IopExportArgs): Promise<{ artifact
       });
       const artifact_path = clicked.path;
       const text = fs.readFileSync(artifact_path, "utf-8");
-      if (format === "ris" && (!/^TY  - /m.test(text) || !/^DO  - /m.test(text) || !text.includes(doi))) {
+      if (format === "ris" && !isValidIopRisArtifact(text, doi)) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience RIS artifact failed content validation", { artifact_path, doi });
       }
-      if (format === "bibtex" && (!/@article\s*\{/i.test(text) || !new RegExp(`doi\\s*=\\s*\\{${doi.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\}`, "i").test(text))) {
+      if (format === "bibtex" && !isValidIopBibtexArtifact(text, doi)) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience BibTeX artifact failed content validation", { artifact_path, doi });
       }
-      return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: buildIopExportUrl(doi, format) };
+      return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: exportUrl };
     } catch (error: any) {
       if (error instanceof WebAiToolError) throw error;
       const raw = String(error?.errorCode || error?.message || error);

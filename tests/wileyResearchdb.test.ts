@@ -43,3 +43,14 @@ test("Wiley visible-text fallback extracts items without live network", () => {
   assert.equal(items[0].doi, "10.1049/cmu2.12107");
   assert.equal(items[0].year, 2022);
 });
+
+test("Wiley RIS validator accepts tag-order-independent book chapter and retained journal RIS", () => {
+  const doi = "10.1002/9781119999999.ch2";
+  const chapterRis = "T1  - Wiley book chapter\nAU  - Doe, Jane\nER  -\nTY  - CHAP\nDO  - 10.1002/9781119999999.ch2\n";
+  const journalRis = "TY  - JOUR\nTI  - Wiley journal article\nDO  - 10.1049/cmu2.12107\nER  -\n";
+  const { isValidWileyRisArtifact } = require("../src/mcp/researchdb/wiley/flow");
+  assert.equal(isValidWileyRisArtifact(chapterRis, doi), true);
+  assert.equal(isValidWileyRisArtifact(journalRis, "10.1049/cmu2.12107"), true);
+  assert.equal(isValidWileyRisArtifact("TY  - CHAP\nDO  - 10.1002/9781119999999.ch2\n", doi), false);
+  assert.equal(isValidWileyRisArtifact("<html><body>not found</body></html>", doi), false);
+});

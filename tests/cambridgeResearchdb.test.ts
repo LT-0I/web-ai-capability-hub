@@ -36,3 +36,16 @@ test("Cambridge Core visible-text fallback extracts DOI/year without live networ
   assert.equal(items[0].doi, "10.1017/S1446181113000199");
   assert.equal(items[0].year, 2013);
 });
+
+test("Cambridge Core RIS validator accepts journal, book, and chapter RIS while rejecting non-RIS", () => {
+  const journalRis = "TY  - JOUR\nTI  - Journal article\nDO  - 10.1017/S1446181113000199\nER  -\n";
+  const bookRis = "TY  - BOOK\nTI  - Cambridge book\nDO  - 10.1017/9781009000000\nER  -\n";
+  const chapterRis = "TY  - CHAP\nTI  - Cambridge chapter\nDO  - 10.1017/9781009000000.002\nER  -\n";
+  const htmlError = "<!doctype html><html><body>Page not found</body></html>";
+  const { isValidCambridgeRisArtifact } = require("../src/mcp/researchdb/cambridge/flow");
+  assert.equal(isValidCambridgeRisArtifact(journalRis), true);
+  assert.equal(isValidCambridgeRisArtifact(bookRis), true);
+  assert.equal(isValidCambridgeRisArtifact(chapterRis), true);
+  assert.equal(isValidCambridgeRisArtifact(htmlError), false);
+  assert.equal(isValidCambridgeRisArtifact("TY  - BOOK\nTI  - Missing terminator\nDO  - 10.1017/9781009000000\n"), false);
+});

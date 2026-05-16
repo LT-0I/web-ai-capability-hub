@@ -49,6 +49,14 @@ function normalizeFormat(format?: string): WileyExportFormat {
   if (!VALID_FORMATS.has(out)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `Unsupported Wiley export format: ${format}`, { format, valid: [...VALID_FORMATS] });
   return out as WileyExportFormat;
 }
+
+export function isValidWileyRisArtifact(text: string, doi: string): boolean {
+  const source = String(text || "").trim();
+  if (!source || /^</.test(source) || /<html|<!doctype|error|not found/i.test(source)) return false;
+  return /^TY  - [A-Z0-9_]{2,8}\s*$/m.test(source)
+    && /^ER  -\s*$/m.test(source)
+    && source.toLowerCase().includes(String(doi || "").toLowerCase());
+}
 function requireQuery(query: string): string {
   if (!query || !query.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "query is required");
   return query.trim();
@@ -256,7 +264,7 @@ export async function researchWileyExport(args: WileyExportArgs): Promise<{ arti
       });
       const artifact_path = clicked.path;
       const text = fs.readFileSync(artifact_path, "utf-8");
-      if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
+      if (format === "ris" && !isValidWileyRisArtifact(text, doi)) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Wiley RIS artifact failed content validation", { artifact_path, doi });
       }
       if (format !== "ris" && !text.toLowerCase().includes(doi.toLowerCase())) {

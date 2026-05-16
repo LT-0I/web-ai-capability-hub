@@ -55,6 +55,22 @@ function authorsFromText(text: string): string[] {
   return text.split(/,| and |;|\|/).map((s) => s.trim()).filter((s) => s && !/^(Article|Chapter|Book|Published online|Published|Abstract|Citation Tools|Download|Access)$/i.test(s)).slice(0, 12);
 }
 
+const CAMBRIDGE_RIS_TYPES = new Set([
+  "ABST", "ADVS", "AGGR", "ANCI", "ART", "BILL", "BOOK", "CASE", "CHAP", "COMP",
+  "CONF", "CPAPER", "CTLG", "DATA", "DBASE", "DICT", "EJOUR", "ELEC", "ENCYC",
+  "GEN", "GOVDOC", "GRANT", "HEAR", "ICOMM", "INPR", "JFULL", "JOUR", "LEGAL",
+  "MANSCPT", "MAP", "MGZN", "MPCT", "MULTI", "MUSIC", "NEWS", "PAMP", "PAT",
+  "PCOMM", "RPRT", "SER", "SLIDE", "SOUND", "STAND", "STAT", "THES", "UNBILL",
+  "UNPB", "VIDEO"
+]);
+
+export function isValidCambridgeRisArtifact(text: string): boolean {
+  const source = String(text || "").trim();
+  if (!source || /^</.test(source) || /<html|<!doctype|error|not found/i.test(source)) return false;
+  const type = /^TY  - ([A-Z0-9_]{2,8})\s*$/m.exec(source)?.[1];
+  return !!type && CAMBRIDGE_RIS_TYPES.has(type) && /^ER  -\s*$/m.test(source) && /10\.1017\//i.test(source);
+}
+
 export function buildCambridgeSearchUrl(args: CambridgeSearchArgs): string {
   const url = new URL("/core/search", CAMBRIDGE_ORIGIN);
   url.searchParams.set("q", requireQuery(args.query));
@@ -247,7 +263,7 @@ export async function researchCambridgeExport(args: CambridgeExportArgs): Promis
       });
       const artifact_path = clicked.path;
       const text = fs.readFileSync(artifact_path, "utf-8");
-      if (format === "ris" && (!/^TY  - JOUR/m.test(text) || !/^ER  -/m.test(text) || !/10\.1017\//i.test(text))) {
+      if (format === "ris" && !isValidCambridgeRisArtifact(text)) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Cambridge Core RIS artifact failed content validation", { artifact_path, product_id });
       }
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, product_id };
