@@ -62,3 +62,29 @@ data/doc_fetch/
 .claude/
 
 .DS_Store
+
+# Session-local NUAA research-DB exploration/固化 evidence — kept on disk, not tracked
+.runs/web-ai-explore/nuaa-db-*/
+.runs/web-ai-explore/nuaa-fixate-*/
+.runs/web-ai-explore/nuaa-stem-2026-05-16/
+# Stream-4/5 bulky webai working artifacts (exact untracked paths only — tracked siblings unaffected)
+.runs/web-ai-explore/stream4-joint-work-2026-05-14/.omc/
+.runs/web-ai-explore/stream4-joint-work-2026-05-14/r6-downloads/
+.runs/web-ai-explore/stream4-joint-work-2026-05-14/r7-downloads/
+.runs/web-ai-explore/stream4-joint-work-2026-05-14/r8-video/
+.runs/web-ai-explore/stream4-joint-work-2026-05-14/r10-video/
+.runs/web-ai-explore/stream5/Beneath_the_Heavy_Arch.mp3
+.runs/web-ai-explore/stream5/artifacts/Paper_Keys.mp3
+.runs/web-ai-explore/stream5/claude-apps-ext.png
+.runs/web-ai-explore/stream5/claude-artifact-rendered.png
+.runs/web-ai-explore/stream5/claude-code-aftersend.png
+.runs/web-ai-explore/stream5/claude-code-landing.png
+.runs/web-ai-explore/stream5/claude-code-newsession.png
+.runs/web-ai-explore/stream5/claude-conv-menu.png
+.runs/web-ai-explore/stream5/claude-conv-mgmt.png
+.runs/web-ai-explore/stream5/claude-design-landing.png
+.runs/web-ai-explore/stream5/claude-design-result.png
+.runs/web-ai-explore/stream5/dbg-artifacts/
+.runs/web-ai-explore/stream5/verify2-artifacts/Beneath_the_Heavy_Arch.mp3
+.runs/web-ai-explore/stream5/verify3-artifacts/019e2c78-13a1-70b4-9e59-18d635816ee5-1045775b7d54.html
+.runs/web-ai-explore/stream5/verify3-artifacts/Beneath_the_Surface.mp3
