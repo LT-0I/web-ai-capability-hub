@@ -10,7 +10,7 @@ import { waitForArtifactPageReady } from "../src/browser/artifactClick";
 import { main } from "../src/cli";
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
-import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexCreateTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexListTasks, webAiTaskStatus } from "../src/mcp/tools";
+import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 
 type Scenario = {
@@ -184,13 +184,13 @@ test("consumer contract manifest is internally consistent", async () => {
 });
 
 
-const expectedWebaiToolCount = 35; // Stream #5 final: 13 pre-existing + 11 main-server + 11 sub-MCP
+const expectedWebaiToolCount = 37; // Stream #5 final + Pulse batch: 13 pre-existing + 13 main-server (+2 Pulse) + 11 sub-MCP
 
-const webAiPlaceholderTools = [
-  { cli: "webai:chatgpt:codex:create-task", mcp: "webai_chatgpt_codex_create_task", ts: "webAiChatgptCodexCreateTask", fn: webAiChatgptCodexCreateTask },
-  { cli: "webai:chatgpt:codex:list-envs", mcp: "webai_chatgpt_codex_list_envs", ts: "webAiChatgptCodexListEnvs", fn: webAiChatgptCodexListEnvs },
-  { cli: "webai:chatgpt:codex:task-status", mcp: "webai_chatgpt_codex_task_status", ts: "webAiChatgptCodexTaskStatus", fn: webAiChatgptCodexTaskStatus },
-  { cli: "webai:chatgpt:codex:list-tasks", mcp: "webai_chatgpt_codex_list_tasks", ts: "webAiChatgptCodexListTasks", fn: webAiChatgptCodexListTasks }
+const webAiCodexTools = [
+  { cli: "webai:chatgpt:codex:submit-task", mcp: "webai_chatgpt_codex_submit_task", ts: "webAiChatgptCodexSubmitTask", fn: webAiChatgptCodexSubmitTask, maturity: "experimental", safety: "mutate" },
+  { cli: "webai:chatgpt:codex:list-envs", mcp: "webai_chatgpt_codex_list_envs", ts: "webAiChatgptCodexListEnvs", fn: webAiChatgptCodexListEnvs, maturity: "experimental", safety: "read" },
+  { cli: "webai:chatgpt:codex:task-status", mcp: "webai_chatgpt_codex_task_status", ts: "webAiChatgptCodexTaskStatus", fn: webAiChatgptCodexTaskStatus, maturity: "experimental", safety: "read" },
+  { cli: "webai:chatgpt:codex:get-diff", mcp: "webai_chatgpt_codex_get_diff", ts: "webAiChatgptCodexGetDiff", fn: webAiChatgptCodexGetDiff, maturity: "experimental", safety: "read", sensitive: true }
 ];
 
 const webAiV13Tools = [
@@ -211,6 +211,8 @@ const webAiV13Tools = [
   { cli: "webai:gemini:conversation-manage", mcp: "webai_gemini_conversation_manage", ts: "webAiGeminiConversationManage", fn: webAiGeminiConversationManage },
   { cli: "webai:gemini:workspace", mcp: "webai_gemini_workspace", ts: "webAiGeminiWorkspace", fn: webAiGeminiWorkspace },
   { cli: "webai:chatgpt:canvas-export", mcp: "webai_chatgpt_canvas_export", ts: "webAiChatgptCanvasExport", fn: webAiChatgptCanvasExport, sensitive: true },
+  { cli: "webai:chatgpt:pulse:get", mcp: "webai_chatgpt_pulse_get", ts: "webAiChatgptPulseGet", fn: webAiChatgptPulseGet },
+  { cli: "webai:chatgpt:pulse:onboard", mcp: "webai_chatgpt_pulse_onboard", ts: "webAiChatgptPulseOnboard", fn: webAiChatgptPulseOnboard },
   { cli: "webai:chatgpt:deep-research", mcp: "webai_chatgpt_deep_research", ts: "webAiChatgptDeepResearch", fn: webAiChatgptDeepResearch },
   { cli: "webai:claude:deep-research", mcp: "webai_claude_deep_research", ts: "webAiClaudeDeepResearch", fn: webAiClaudeDeepResearch },
   { cli: "webai:chatgpt:conversation-manage", mcp: "webai_chatgpt_conversation_manage", ts: "webAiChatgptConversationManage", fn: webAiChatgptConversationManage },
@@ -270,7 +272,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     assert.ok(row, `${mcp} contract row missing`);
     for (const param of params) assert.ok(row.optional_args?.includes(param), `${mcp} optional_args missing ${param}`);
   }
-  assert.equal(expectedWebaiToolCount, 35);
+  assert.equal(expectedWebaiToolCount, 37);
 });
 
 test("consumer contract v1.4.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
@@ -289,33 +291,33 @@ test("consumer contract v1.4.0 webai tools round-trip through CLI, MCP, and TS e
     assert.equal(typeof item.fn, "function", `${item.ts} missing TS export`);
     assertNoForbiddenFields(row.output_keys, manifest.forbidden_output_fields);
   }
-  for (const item of webAiPlaceholderTools) {
+  for (const item of webAiCodexTools) {
     const row = manifest.commands.find((command: any) => command.cli_name === item.cli);
     assert.ok(row, `missing contract row ${item.cli}`);
     assert.equal(row.mcp_name, item.mcp);
     assert.equal(row.ts_export, item.ts);
-    assert.equal(row.maturity, "placeholder");
-    assert.equal(row.safety_class, "read");
-    assert.equal(row.may_contain_sensitive_local_fields, false);
+    assert.equal(row.maturity, item.maturity);
+    assert.equal(row.safety_class, item.safety);
+    assert.equal(row.may_contain_sensitive_local_fields, Boolean((item as any).sensitive));
     assert.ok(cliSource.includes(`"${item.cli}"`), `${item.cli} missing from CLI dispatch map`);
     assert.ok(mcpToolNames.has(item.mcp), `${item.mcp} missing from MCP tools`);
     assert.equal(typeof item.fn, "function", `${item.ts} missing TS export`);
     assertNoForbiddenFields(row.output_keys, manifest.forbidden_output_fields);
   }
-  const placeholderTools = manifest.commands.filter((command: any) => command.maturity === "placeholder");
-  assert.equal(placeholderTools.length, 4);
-  assert.deepEqual(placeholderTools.map((command: any) => command.mcp_name).sort(), webAiPlaceholderTools.map((item) => item.mcp).sort());
+  const codexTools = manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_chatgpt_codex_"));
+  assert.equal(codexTools.length, 4);
+  assert.deepEqual(codexTools.map((command: any) => command.mcp_name).sort(), webAiCodexTools.map((item) => item.mcp).sort());
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, expectedWebaiToolCount);
 });
 
 
-test("stream5 final surface: webai tool count is exactly 35", () => {
+test("stream5 final surface: webai tool count is exactly 37", () => {
   const manifest = contract();
   const webaiCommands = manifest.commands.filter(
     (c: any) => String(c.mcp_name || "").startsWith("webai_")
   );
-  assert.equal(webaiCommands.length, 35,
-    `Expected 35 webai tools; got ${webaiCommands.length}. B8 reconciliation required.`);
+  assert.equal(webaiCommands.length, expectedWebaiToolCount,
+    `Expected 37 webai tools; got ${webaiCommands.length}. Pulse reconciliation required.`);
   const subMcpTools = webaiCommands.filter(
     (c: any) => ["webai_claude_design_", "webai_gemini_music_", "webai_chatgpt_codex_"].some((prefix) => String(c.mcp_name || "").startsWith(prefix))
   );
@@ -336,10 +338,10 @@ test("stream5 final surface: webai tool count is exactly 35", () => {
   const mainServerNewTools = webaiCommands.filter(
     (c: any) => !originalTools.has(c.mcp_name) && !subMcpTools.includes(c)
   );
-  assert.equal(mainServerNewTools.length, 11,
-    `Expected 11 new main-server tools; got ${mainServerNewTools.length}`);
-  assert.equal(originalWebaiTools.length + mainServerNewTools.length + subMcpTools.length, 35,
-    "Expected Stream #5 split to total 35 (13 pre-existing + 11 main-server + 11 sub-MCP)");
+  assert.equal(mainServerNewTools.length, 13,
+    `Expected 13 new main-server tools; got ${mainServerNewTools.length}`);
+  assert.equal(originalWebaiTools.length + mainServerNewTools.length + subMcpTools.length, expectedWebaiToolCount,
+    "Expected Stream #5 split to total 37 (13 pre-existing + 13 main-server + 11 sub-MCP)");
 });
 
 test("stream5 final error_codes count is 32", () => {
@@ -378,15 +380,249 @@ test("submcp/chatgpt-codex has no import-time side effects", async () => {
 });
 
 test("chatgpt-codex handlers return SUBMCP_NOT_PROVISIONED (no live task executed)", async () => {
-  const result = await callMcpTool("webai_chatgpt_codex_create_task", { prompt: "test", profile: "chatgpt" });
+  const result = await callMcpTool("webai_chatgpt_codex_submit_task", { prompt: "test", profile: "chatgpt" });
   assert.equal((result as any).status, "failed");
-  assert.equal((result as any).errorCode, "SUBMCP_NOT_PROVISIONED");
-  assert.match((result as any).message, /throwaway sandbox repository/);
+  assert.equal((result as any).errorCode, "SENSITIVE_CONTENT_GUARD");
+  assert.match((result as any).message, /confirmed=true/);
   assertNoForbiddenFields(result, contract().forbidden_output_fields);
 
-  const listResult = await callMcpTool("webai_chatgpt_codex_list_envs", { profile: "chatgpt" });
+  const listResult = await callMcpTool("webai_chatgpt_codex_list_envs", { profile: "chatgpt" }, mockWebAiRuntime(mockCodexPage({ envRows: [] })));
   assert.equal((listResult as any).errorCode, "SUBMCP_NOT_PROVISIONED");
   assertNoForbiddenFields(listResult, contract().forbidden_output_fields);
+});
+
+test("chatgpt-codex list-envs returns only LT-0I/CN- and filters noeticbraid", async () => {
+  const page = mockCodexPage({
+    envRows: [
+      { text: "LT-0I/CN- LT-0I/CN- 0 cherrypie85arrow@gmail.com May 15, 2026", href: "/codex/cloud/settings/environment/6a07e4ffdafc8191b77e6cff2264cd9a" },
+      { text: "noeticbraid LT-0I/noeticbraid 0 cherrypie85arrow@gmail.com May 12, 2026", href: "/codex/cloud/settings/environment/deadbeefdeadbeefdeadbeefdeadbeef" }
+    ]
+  });
+  const result: any = await callMcpTool("webai_chatgpt_codex_list_envs", { profile: "chatgpt" }, mockWebAiRuntime(page));
+  assert.equal(result.status, "ok");
+  assert.equal(result.envs.length, 1);
+  assert.equal(result.envs[0].repo, "LT-0I/CN-");
+  assert.equal(result.envs[0].env_id, "6a07e4ffdafc8191b77e6cff2264cd9a");
+  assert.equal(JSON.stringify(result).includes("noeticbraid"), false);
+});
+
+test("chatgpt-codex submit-task requires confirmation and selects only LT-0I/CN-", async () => {
+  const taskId = "task_e_22222222222222222222222222222222";
+  const stalePriorId = "task_e_99999999999999999999999999999999";
+  const page = mockCodexPage({ taskId, preSubmitTaskHref: `/codex/cloud/tasks/${stalePriorId}` });
+  const result: any = await callMcpTool("webai_chatgpt_codex_submit_task", { profile: "chatgpt", prompt: "Inventory only", confirmed: true }, mockWebAiRuntime(page));
+  assert.equal(result.task_id, taskId);
+  assert.notEqual(result.task_id, stalePriorId);
+  assert.equal(result.repo, "LT-0I/CN-");
+  assert.ok(page.calls.includes("click:button[aria-label='View all code environments']"));
+  assert.ok(page.calls.some((call: string) => call.includes("normalize-space(.)='LT-0I/CN-'")));
+  assert.ok(page.calls.includes("click:button[aria-label='Submit']"));
+  assert.equal(page.calls.some((call: string) => /noeticbraid/i.test(call)), false);
+
+  const refused: any = await callMcpTool("webai_chatgpt_codex_submit_task", { profile: "chatgpt", prompt: "x", confirmed: true, repo: "LT-0I/noeticbraid" }, mockWebAiRuntime(mockCodexPage({})));
+  assert.equal(refused.errorCode, "INVALID_ARGS");
+});
+
+test("chatgpt-codex task-status maps running, complete, and refuses non-allowlisted tasks", async () => {
+  const taskId = "task_e_33333333333333333333333333333333";
+  const running: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+    bodyText: "Task · LT-0I/CN- · main Running setup scripts Cancel task",
+    counts: { cancel: 1, thumbs: 0 }
+  })));
+  assert.equal(running.status, "running");
+  assert.equal(running.status_text, "Running setup scripts");
+
+  const complete: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+    bodyText: "Task · LT-0I/CN- · main Worked for 48s Give thumbs up feedback",
+    counts: { cancel: 0, thumbs: 1 }
+  })));
+  assert.equal(complete.status, "complete");
+  assert.equal(complete.done, true);
+
+  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+    bodyText: "Task · LT-0I/noeticbraid · main Worked for 1m Give thumbs up feedback",
+    counts: { cancel: 0, thumbs: 1 }
+  })));
+  assert.equal(refused.errorCode, "INVALID_ARGS");
+});
+
+test("chatgpt-codex task readers use snapshot visibleText for delimited LT-0I/CN- proof", async () => {
+  const taskId = "task_e_6a07e803d3e4832dab14de939e456e7f";
+  const realHeaderText = [
+    "Append line to README.md May 15 · LT-0I/CN- · main · +2 -0 Archive Share Create PR",
+    "Worked for 33s",
+    "Give thumbs up feedback",
+    "README.md +2 -0",
+    "@@ -57,2 +57,4 @@",
+    " MIT License",
+    "+",
+    "+<!-- codex-sandbox-probe 2026-05-15 -->",
+    "Summary"
+  ].join(" ");
+
+  const statusPage = mockCodexPage({
+    snapshotVisibleText: realHeaderText,
+    legacyBodyText: "Append line to README.md May 15 · LT-0I/noeticbraid · main Worked for 33s Give thumbs up feedback",
+    counts: { cancel: 0, thumbs: 1 }
+  });
+  const status: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(statusPage));
+  assert.equal(status.status, "complete");
+  assert.equal(status.done, true);
+  assert.equal(status.status_text, "Worked for 33s");
+  assert.ok(statusPage.calls.includes("snapshot-read:include-portals"));
+  assert.equal(statusPage.calls.includes("legacy-evaluate"), false);
+
+  const diffPage = mockCodexPage({
+    snapshotVisibleText: realHeaderText,
+    legacyBodyText: "Task · LT-0I/noeticbraid · main Worked for 33s Give thumbs up feedback",
+    counts: { cancel: 0, thumbs: 1, createPr: 1 },
+    fileLabels: ["View file README.md"],
+    toggleText: "File (1)"
+  });
+  const diff: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(diffPage));
+  assert.equal(diff.status, "complete");
+  assert.deepEqual(diff.files, ["README.md"]);
+  assert.match(diff.diff_text, /^README\.md \+2 -0\n@@ -57,2 \+57,4 @@/);
+  assert.ok(diffPage.calls.includes("snapshot-read:include-portals"));
+  assert.equal(diffPage.calls.includes("legacy-evaluate"), false);
+
+  const refusedPage = mockCodexPage({
+    snapshotVisibleText: "Task · LT-0I/noeticbraid · main Worked for 33s Give thumbs up feedback",
+    legacyBodyText: "Task · LT-0I/CN- · main Worked for 33s Give thumbs up feedback",
+    counts: { cancel: 0, thumbs: 1 }
+  });
+  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(refusedPage));
+  assert.equal(refused.errorCode, "INVALID_ARGS");
+  assert.match(refused.message, /forbidden noeticbraid|does not prove LT-0I\/CN-/);
+});
+
+test("chatgpt-codex ownership guard waits for SPA hydration before refusing (regression)", async () => {
+  const { waitForCodexTaskHydration, assertTaskBelongsToAllowlist } = require("../src/mcp/submcp/chatgpt-codex/flow");
+  const hydratedHeader = "Append line to README.md May 15 · LT-0I/CN- · main · +2 -0 Archive Share Create PR Worked for 33s Give thumbs up feedback";
+  // Reproduces the live defect: the Codex task SPA is empty at
+  // domcontentloaded (visibleText === ""), then hydrates a few reads later.
+  // The pre-fix guard read once at textLen 0 and refused a genuine
+  // LT-0I/CN- task; the fix polls until the header proves ownership.
+  let reads = 0;
+  const hydratingPage: any = {
+    _url: "https://chatgpt.com/codex/cloud/tasks/task_e_6a07e803d3e4832dab14de939e456e7f",
+    url() { return this._url; },
+    evaluate: async (_fn: unknown, arg: any) => {
+      reads += 1;
+      const visibleText = reads >= 3 ? hydratedHeader : "";
+      return { visibleText, elements: [], forms: [], tables: [], lists: [], iframes: [], portalRootCount: arg?.includePortals ? 1 : 0 };
+    }
+  };
+  const hydratedText = await waitForCodexTaskHydration(hydratingPage, 30000);
+  assert.equal(hydratedText, hydratedHeader);
+  assert.ok(reads >= 3, "guard must keep polling past the empty SPA shell");
+  assert.equal(await assertTaskBelongsToAllowlist(hydratingPage), null);
+});
+
+test("chatgpt-codex submit-task returns the freshly-created card id, never the stale top card (regression)", async () => {
+  const { extractSubmittedTaskId, readTopTaskCardId } = require("../src/mcp/submcp/chatgpt-codex/flow");
+  const staleId = "task_e_6a07e803d3e4832dab14de939e456e7f"; // previous run's card
+  const newId = "task_e_6a0803eb5780832d8cc6927474fdc0df";   // card this submit created
+  // Reproduces the live divergence: at Submit-click time the SPA has not yet
+  // prepended the new card, so the document-order top <a> href is still the
+  // previous run's stale id; a few reads later the new card is prepended and
+  // the top href flips to the new id. The page does NOT navigate to a task
+  // route on this account, so URL stays /codex/cloud throughout.
+  let reads = 0;
+  const submittingPage: any = {
+    _url: "https://chatgpt.com/codex/cloud",
+    url() { return this._url; },
+    locator: (selector: string) => ({
+      first() { return this; },
+      async getAttribute(name: string) {
+        if (selector.includes("/codex/cloud/tasks") && name === "href") {
+          reads += 1;
+          const id = reads >= 3 ? newId : staleId;
+          return `/codex/cloud/tasks/${id}`;
+        }
+        return "";
+      }
+    })
+  };
+  const preSubmitTopId = await readTopTaskCardId(submittingPage);
+  assert.equal(preSubmitTopId, staleId, "pre-submit top card is the stale previous-run id");
+  const captured = await extractSubmittedTaskId(submittingPage, preSubmitTopId, 30000);
+  assert.equal(captured, newId, "must return the new card id, not the stale top card");
+  assert.notEqual(captured, staleId);
+  assert.match(captured, /^task_e_[0-9a-f]{32}$/);
+  assert.ok(reads >= 3, "must keep polling until the new card is prepended");
+
+  // Bounded-timeout honesty: if the top card never changes, fail (null) so the
+  // caller surfaces a stable contract error instead of returning the stale id.
+  let stuckReads = 0;
+  const stuckPage: any = {
+    _url: "https://chatgpt.com/codex/cloud",
+    url() { return this._url; },
+    locator: (selector: string) => ({
+      first() { return this; },
+      async getAttribute(name: string) {
+        if (selector.includes("/codex/cloud/tasks") && name === "href") {
+          stuckReads += 1;
+          return `/codex/cloud/tasks/${staleId}`;
+        }
+        return "";
+      }
+    })
+  };
+  const stuck = await extractSubmittedTaskId(stuckPage, staleId, 10);
+  assert.equal(stuck, null, "never return the stale id on bounded timeout");
+});
+
+test("chatgpt-codex ownership guard still refuses a noeticbraid task page", async () => {
+  const { assertTaskBelongsToAllowlist } = require("../src/mcp/submcp/chatgpt-codex/flow");
+  const forbiddenPage: any = {
+    _url: "https://chatgpt.com/codex/cloud/tasks/task_e_6a07e803d3e4832dab14de939e456e7f",
+    url() { return this._url; },
+    evaluate: async (_fn: unknown, arg: any) => ({
+      visibleText: "Append line to README.md May 15 · LT-0I/noeticbraid · main · +2 -0 Worked for 33s Give thumbs up feedback",
+      elements: [], forms: [], tables: [], lists: [], iframes: [], portalRootCount: arg?.includePortals ? 1 : 0
+    })
+  };
+  const guard: any = await assertTaskBelongsToAllowlist(forbiddenPage);
+  assert.equal(guard.errorCode, "INVALID_ARGS");
+  assert.match(guard.message, /forbidden noeticbraid/);
+});
+
+test("chatgpt-codex get-diff extracts visible unified diff and never clicks Create PR", async () => {
+  const taskId = "task_e_44444444444444444444444444444444";
+  const page = mockCodexPage({
+    bodyText: [
+      "Append line to README.md May 15 · LT-0I/CN- · main · +2 -0",
+      "Worked for 33s",
+      "Give thumbs up feedback",
+      "File (1)",
+      "README.md +2 -0",
+      "@@ -57,2 +57,4 @@",
+      " MIT License",
+      "+",
+      "+<!-- codex-sandbox-probe 2026-05-15 -->",
+      "Summary",
+      "Create PR"
+    ].join("\n"),
+    counts: { cancel: 0, thumbs: 1, createPr: 1 },
+    fileLabels: ["View file README.md"],
+    toggleText: "File (1)"
+  });
+  const result: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(page));
+  assert.equal(result.status, "complete");
+  assert.deepEqual(result.files, ["README.md"]);
+  assert.match(result.diff_text, /^README\.md \+2 -0\n@@ -57,2 \+57,4 @@/);
+  assert.match(result.diff_text, /@@ -57,2 \+57,4 @@/);
+  assert.equal(result.create_pr_available, true);
+  assert.equal(page.calls.includes("click:xpath=//button[normalize-space(.)='Create PR']"), false);
+
+  const incomplete: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+    bodyText: "Task · LT-0I/CN- · main Running setup scripts Cancel task",
+    counts: { cancel: 1, thumbs: 0 },
+    fileLabels: ["View file README.md"],
+    toggleText: "File (1)"
+  })));
+  assert.equal(incomplete.errorCode, "INVALID_ARGS");
 });
 
 
@@ -987,6 +1223,99 @@ function mockWebAiRuntimePages(pages: any[]): any {
   return { launcher: { launch: async () => ({}), connectOverCdp: async () => browser } };
 }
 
+type CodexMockOptions = {
+  envRows?: Array<{ text: string; href: string }>;
+  selectedEnv?: string;
+  bodyText?: string;
+  snapshotVisibleText?: string;
+  legacyBodyText?: string;
+  taskId?: string;
+  taskHref?: string;
+  preSubmitTaskHref?: string;
+  fileLabels?: string[];
+  toggleText?: string;
+  counts?: Record<string, number>;
+};
+
+function mockCodexPage(options: CodexMockOptions): any {
+  const calls: string[] = [];
+  const taskId = options.taskId || "task_e_11111111111111111111111111111111";
+  const page: any = {
+    _url: "about:blank",
+    calls,
+    selectedEnv: options.selectedEnv || "noeticbraid",
+    url() { return this._url; },
+    goto: async (url: string) => { calls.push(`goto:${url}`); page._url = url; },
+    waitForLoadState: async () => undefined,
+    waitForSelector: async (selector: string) => { calls.push(`wait:${selector}`); },
+    evaluate: async (_fn: unknown, arg?: any) => {
+      calls.push(arg?.includePortals === true ? "snapshot-read:include-portals" : "legacy-evaluate");
+      if (arg && typeof arg === "object" && "liteMode" in arg) {
+        const visibleText = options.snapshotVisibleText ?? options.bodyText ?? "";
+        return {
+          visibleText,
+          elements: [],
+          forms: [],
+          tables: [],
+          lists: [],
+          iframes: [],
+          portalRootCount: arg.includePortals ? 1 : 0
+        };
+      }
+      return options.legacyBodyText ?? "";
+    },
+    keyboard: { type: async (text: string) => calls.push(`keyboard-type:${text}`) },
+    locator: (selector: string) => makeCodexLocator(page, selector, options)
+  };
+  return page;
+}
+
+function makeCodexLocator(page: any, selector: string, options: CodexMockOptions, rowIndex?: number, fileIndex?: number): any {
+  const loc: any = {
+    first: () => loc,
+    nth: (index: number) => makeCodexLocator(page, selector, options, selector === "tr" ? index : rowIndex, selector.includes("View file") ? index : fileIndex),
+    locator: (child: string) => makeCodexLocator(page, child, options, rowIndex, fileIndex),
+    waitFor: async () => undefined,
+    count: async () => {
+      if (selector === "tr") return (options.envRows || []).length;
+      if (selector === 'button[aria-label="Cancel task"]') return options.counts?.cancel ?? ((options.bodyText || "").includes("Cancel task") ? 1 : 0);
+      if (selector === 'button[aria-label="Give thumbs up feedback"]') return options.counts?.thumbs ?? ((options.bodyText || "").includes("Give thumbs up feedback") ? 1 : 0);
+      if (selector === 'button[aria-label^="View file "]') return (options.fileLabels || []).length;
+      if (selector === "xpath=//button[normalize-space(.)='Create PR']") return options.counts?.createPr ?? ((options.bodyText || "").includes("Create PR") ? 1 : 0);
+      return options.counts?.[selector] ?? 1;
+    },
+    textContent: async () => {
+      if (selector === "tr") return options.envRows?.[rowIndex || 0]?.text || "";
+      if (selector === "button[aria-label='View all code environments']") return page.selectedEnv;
+      if (selector === 'button[aria-label="Toggle file list diffs"]') return options.toggleText || `File (${(options.fileLabels || []).length})`;
+      return "";
+    },
+    innerText: async () => loc.textContent(),
+    getAttribute: async (name: string) => {
+      if (selector.includes("settings/environment") && name === "href") return options.envRows?.[rowIndex || 0]?.href || "";
+      if (selector.includes("/codex/cloud/tasks") && name === "href") {
+        if (!page._submitted && options.preSubmitTaskHref) return options.preSubmitTaskHref;
+        return options.taskHref || `/codex/cloud/tasks/${options.taskId || "task_e_11111111111111111111111111111111"}`;
+      }
+      if (selector === 'button[aria-label^="View file "]' && name === "aria-label") return options.fileLabels?.[fileIndex || 0] || "";
+      return "";
+    },
+    fill: async (text: string) => { page.calls.push(`fill:${selector}:${text}`); },
+    click: async () => {
+      page.calls.push(`click:${selector}`);
+      if (selector.includes("normalize-space(.)='LT-0I/CN-'") && (options.counts?.envPick ?? 1) > 0) page.selectedEnv = "LT-0I/CN-";
+      if (selector === "button[aria-label='Submit']") {
+        page._submitted = true;
+        // Live-accurate path (preSubmitTaskHref configured): the account does
+        // NOT route to /tasks/<id>; the new card is prepended in place and the
+        // top-card href flips. Legacy path keeps the prior URL-nav behavior.
+        if (!options.preSubmitTaskHref) page._url = `https://chatgpt.com/codex/cloud/tasks/${options.taskId || "task_e_11111111111111111111111111111111"}`;
+      }
+    }
+  };
+  return loc;
+}
+
 function mockSendPromptPage(initialUrl: string): any {
   const calls: { goto: string[] } = { goto: [] };
   const page: any = {
@@ -1017,6 +1346,220 @@ function mockSendPromptPage(initialUrl: string): any {
   };
   return page;
 }
+
+function mockPulsePage(initialUrl: string, visibleText: string, presentSelectors: Set<string>, options: { redirectPulseToHome?: boolean; quickNewsPressed?: boolean } = {}): any {
+  const calls: { goto: string[]; click: string[]; snapshotOptions: any[] } = { goto: [], click: [], snapshotOptions: [] };
+  const page: any = {
+    _url: initialUrl,
+    _text: visibleText,
+    _selectors: presentSelectors,
+    _quickNewsPressed: Boolean(options.quickNewsPressed),
+    calls,
+    url() { return this._url; },
+    goto: async (url: string) => {
+      calls.goto.push(url);
+      page._url = options.redirectPulseToHome && url === "https://chatgpt.com/pulse" ? "https://chatgpt.com/" : url;
+    },
+    waitForLoadState: async () => undefined,
+    waitForTimeout: async () => undefined,
+    evaluate: async (_fn?: unknown, arg?: any) => {
+      if (arg && Object.prototype.hasOwnProperty.call(arg, "liteMode")) {
+        page.calls.snapshotOptions.push(arg);
+        return {
+          visibleText: arg.liteMode ? "" : page._text,
+          elements: [],
+          forms: [],
+          tables: [],
+          lists: [],
+          iframes: [],
+          portalRootCount: arg.includePortals ? 1 : 0
+        };
+      }
+      return page._text;
+    },
+    locator: (selector: string) => {
+      const loc: any = {
+        first: () => loc,
+        count: async () => {
+          if (selector === 'xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]') return page._selectors.has(selector) ? 1 : 0;
+          return page._selectors.has(selector) ? 1 : 0;
+        },
+        click: async () => {
+          calls.click.push(selector);
+          if (selector.includes("Get started")) {
+            page._selectors.delete('xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]');
+            page._selectors.add('xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]');
+            page._selectors.add('xpath=//div[@role="dialog"]//button[normalize-space(.)="Next"]');
+          }
+          if (selector.includes("Quick news recap")) page._quickNewsPressed = true;
+          if (selector.includes("Next")) page._selectors.add('xpath=//div[@role="dialog"]//button[normalize-space(.)="Skip for now"]');
+          if (selector.includes("Skip for now")) {
+            page._url = "https://chatgpt.com/pulse";
+            page._text = "Pulse Your first Pulse is in the works Check back in about 30 minutes";
+            page._selectors.delete("#radix-_r_ch_");
+            page._selectors.add('button[aria-label="Actions"]');
+          }
+        },
+        getAttribute: async (name: string) => name === "aria-pressed" && page._quickNewsPressed ? "true" : null,
+        textContent: async () => ""
+      };
+      return loc;
+    }
+  };
+  return page;
+}
+
+function mockPulseSequencePage(states: Array<{ url: string; text: string; selectors: Set<string> }>): any {
+  let index = 0;
+  const calls: { goto: string[]; waitForTimeout: number[]; snapshotOptions: any[] } = { goto: [], waitForTimeout: [], snapshotOptions: [] };
+  const current = () => states[Math.min(index, states.length - 1)];
+  const page: any = {
+    calls,
+    url: () => current().url,
+    goto: async (url: string) => {
+      calls.goto.push(url);
+      states[index] = { ...states[index], url };
+    },
+    waitForLoadState: async () => undefined,
+    waitForTimeout: async (ms: number) => {
+      calls.waitForTimeout.push(ms);
+      if (index < states.length - 1) index += 1;
+    },
+    evaluate: async (_fn?: unknown, arg?: any) => {
+      if (arg && Object.prototype.hasOwnProperty.call(arg, "liteMode")) {
+        calls.snapshotOptions.push(arg);
+        return {
+          visibleText: arg.liteMode ? "" : current().text,
+          elements: [],
+          forms: [],
+          tables: [],
+          lists: [],
+          iframes: [],
+          portalRootCount: arg.includePortals ? 1 : 0
+        };
+      }
+      return current().text;
+    },
+    locator: (selector: string) => {
+      const loc: any = {
+        first: () => loc,
+        count: async () => current().selectors.has(selector) ? 1 : 0,
+        click: async () => undefined,
+        getAttribute: async () => null,
+        textContent: async () => ""
+      };
+      return loc;
+    }
+  };
+  return page;
+}
+
+test("webai_chatgpt_pulse_get detects not_onboarded redirect with Get started dialog", async () => {
+  const page = mockPulsePage("https://chatgpt.com/", "Pulse can help you stay on top of anything Get started", new Set([
+    "#radix-_r_ch_",
+    'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]'
+  ]), { redirectPulseToHome: true });
+  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  assert.equal(result.status, "not_onboarded");
+  assert.equal(result.route, "https://chatgpt.com/");
+  assert.equal(Object.prototype.hasOwnProperty.call(result, "digest_text"), false);
+});
+
+test("webai_chatgpt_pulse_get detects pending from in-the-works page text", async () => {
+  const page = mockPulsePage("https://chatgpt.com/pulse", "Pulse Your first Pulse is in the works Check back in about 30 minutes", new Set([
+    'button[aria-label="Actions"]'
+  ]));
+  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  assert.equal(result.status, "pending");
+  assert.match(result.generated_hint, /Check back in|works/);
+  assert.equal(Object.prototype.hasOwnProperty.call(result, "digest_text"), false);
+});
+
+test("webai_chatgpt_pulse_get extracts hydrated digest body without Pulse chrome or footer", async () => {
+  const body = "我先把今天最该看的变化放前面。近24小时要闻速览：机器人安全标准新动向，AI产品发布节奏继续加快。今天就到这里。✨ 最近在想什么？我会把它当作明天的灵感。";
+  const visibleText = `Chat history ChatGPT New chat Search chats Codex More Python Primes File Shark Pro Pulse Curate 5月15日\n\n${body}\n Curate for tomorrow`;
+  const page = mockPulsePage("https://chatgpt.com/pulse", visibleText, new Set([
+    'button[aria-label="Actions"]'
+  ]));
+  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  assert.equal(result.status, "ready");
+  assert.equal(result.digest_text, body);
+  assert.ok(!result.digest_text.includes("Chat history"));
+  assert.ok(!result.digest_text.includes("New chat"));
+  assert.ok(!result.digest_text.includes("Curate for tomorrow"));
+  assert.match(result.digest_text, /机器人安全标准新动向/);
+  assert.match(result.digest_text, /明天的灵感/);
+  assert.equal(result.generated_hint, "A fresh update lands every morning");
+});
+
+test("webai_chatgpt_pulse_get reads Pulse text from full include-portals snapshot", async () => {
+  const body = "Here is the real digest body. Robotics safety updates landed today, AI product launches accelerated, and tomorrow should focus on practical deployment signals. ✨";
+  const visibleText = `Chat history ChatGPT New chat Search chats Codex More Shark Pro Pulse Curate May 15\n\n${body}\n Curate for tomorrow`;
+  const page = mockPulsePage("https://chatgpt.com/pulse", visibleText, new Set([
+    'button[aria-label="Actions"]'
+  ]));
+  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.digest_text, body);
+  assert.ok(!result.digest_text.includes("Chat history"));
+  assert.ok(!result.digest_text.includes("Curate for tomorrow"));
+  assert.ok(page.calls.snapshotOptions.length > 0);
+  assert.equal(page.calls.snapshotOptions[0].includePortals, true);
+  assert.equal(page.calls.snapshotOptions[0].liteMode, false);
+
+  const shell = mockPulsePage("https://chatgpt.com/pulse", "Chat history ChatGPT New chat Search chats Codex More Shark Pro Pulse \n \n \n ", new Set([
+    'button[aria-label="Actions"]'
+  ]));
+  await assert.rejects(
+    () => webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(shell)),
+    (error: any) => error?.errorCode === "ELEMENT_NOT_FOUND"
+  );
+  assert.ok(shell.calls.snapshotOptions.length > 0);
+  assert.equal(shell.calls.snapshotOptions[0].includePortals, true);
+  assert.equal(shell.calls.snapshotOptions[0].liteMode, false);
+});
+test("webai_chatgpt_pulse_get waits through empty Pulse shell before detecting hydrated digest", async () => {
+  const body = "我先把今天最该看的变化放前面。近24小时要闻速览：机器人安全标准新动向，AI产品发布节奏继续加快。今天就到这里。✨ 最近在想什么？我会把它当作明天的灵感。";
+  const shell = "Chat history ChatGPT New chat Search chats Codex More Shark Pro Pulse \n \n \n \n";
+  const hydrated = `Chat history ChatGPT New chat Search chats Codex More Python Primes File Shark Pro Pulse Curate 5月15日 ${body} Curate for tomorrow`;
+  const page = mockPulseSequencePage([
+    { url: "https://chatgpt.com/pulse", text: shell, selectors: new Set(['button[aria-label="Actions"]']) },
+    { url: "https://chatgpt.com/pulse", text: hydrated, selectors: new Set(['button[aria-label="Actions"]']) }
+  ]);
+  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  assert.equal(result.status, "ready");
+  assert.equal(result.digest_text, body);
+  assert.deepEqual(page.calls.waitForTimeout, [250]);
+});
+
+test("webai_chatgpt_pulse_get rejects empty Pulse shell for the whole hydration budget", async () => {
+  const shell = "Chat history ChatGPT New chat Search chats Codex More Shark Pro Pulse \n \n \n \n";
+  const page = mockPulseSequencePage([
+    { url: "https://chatgpt.com/pulse", text: shell, selectors: new Set(['button[aria-label="Actions"]']) }
+  ]);
+  await assert.rejects(
+    () => webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page)),
+    (error: any) => error?.errorCode === "ELEMENT_NOT_FOUND"
+  );
+  assert.ok(page.calls.waitForTimeout.length > 0);
+});
+
+test("webai_chatgpt_pulse_onboard refuses without confirmed and never clicks Connect with Gmail", async () => {
+  const refused: any = await webAiChatgptPulseOnboard({ profile: "chatgpt" }, mockWebAiRuntime(mockPulsePage("https://chatgpt.com/", "", new Set())));
+  assert.equal(refused.errorCode, "INVALID_ARGS");
+
+  const page = mockPulsePage("https://chatgpt.com/", "Pulse can help you stay on top of anything Get started", new Set([
+    "#radix-_r_ch_",
+    'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]'
+  ]), { redirectPulseToHome: true });
+  const result: any = await webAiChatgptPulseOnboard({ profile: "chatgpt", confirmed: true }, mockWebAiRuntime(page));
+  assert.equal(result.onboarded, true);
+  assert.equal(result.news_topic_selected, true);
+  assert.equal(result.final_status, "pending");
+  assert.equal(page.calls.click.some((selector: string) => selector.includes("Connect with Gmail")), false);
+  assert.ok(page.calls.click.includes('xpath=//div[@role="dialog"]//button[normalize-space(.)="Skip for now"]'));
+});
 
 test("LOGIN_REQUIRED returned for send-prompt login URL precheck", async () => {
   const page = mockSendPromptPage("https://claude.ai/login?from=logout");

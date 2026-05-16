@@ -1,0 +1,117 @@
+{
+  "feature_id": "chatgpt-sidebar-codex",
+  "discovered_at": "2026-05-15",
+  "discovered_via": "live interactive browser, profile=chatgpt, CDP 9223, Chrome 148, account=Shark Pro plan (Codex PRO), GitHub installation org=LT-0I, owner email cherrypie85arrow@gmail.com",
+  "codex_route": "App route is https://chatgpt.com/codex/cloud  (NOTE: https://chatgpt.com/codex/ is the MARKETING/landing page, NOT the app - do not key off it. All real app routes are under /codex/cloud and the server appends /cloud/ on redirect, e.g. requesting /codex/settings/environments lands on /codex/cloud/settings/environments).",
+  "lt0i_cn_connected": true,
+  "lt0i_cn_status_detail": "At session start LT-0I/CN- was NOT a Codex environment (only 'noeticbraid' = LT-0I/noeticbraid existed). The LT-0I GitHub org/installation WAS connected and repo CN- (https://github.com/LT-0I/CN-, Public) was available in the repo picker. Per explicit user authorization to use LT-0I/CN-, the environment was CREATED live this session and is now fully connected and verified working (a read-only task ran end-to-end and completed).",
+  "created_environment": {
+    "env_name": "LT-0I/CN-",
+    "repo": "LT-0I/CN-",
+    "github_url": "https://github.com/LT-0I/CN-",
+    "environment_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+    "environment_detail_route": "https://chatgpt.com/codex/cloud/settings/environment/6a07e4ffdafc8191b77e6cff2264cd9a",
+    "workspace_path": "/workspace/CN-",
+    "container_image": "openai/codex-universal (Ubuntu 24.04)",
+    "creator": "cherrypie85arrow@gmail.com",
+    "created_at": "May 15, 2026",
+    "verified_task_id": "task_e_6a07e593b778832da0942ecbe2947afc",
+    "verified_task_result": "Completed in 'Worked for 48s'; output: 'Top-level entries in /workspace/CN-: .git LICENSE PROMPT_TEMPLATE.md README.md SKILL.md docs examples node_modules package.json scripts templates (Inventory only; no files were modified.)'"
+  },
+  "connect_steps_if_needed": [
+    {
+      "step": "navigate",
+      "selector": "browser:open \"https://chatgpt.com/codex/cloud/settings/environments\" --tab-id <id>",
+      "note": "Environments settings list. Table columns: Name | Repo | Number of tasks | Creator | Created at. Each row is a <tr> (selector 'tr'); the row text encodes name+repo+count+creator+date."
+    },
+    {
+      "step": "click create",
+      "selector": "button[aria-label=\"Link to create a new environment\"]",
+      "note": "Navigates to https://chatgpt.com/codex/cloud/settings/environment/create"
+    },
+    {
+      "step": "select org (if needed)",
+      "selector": "org menu labelled 'Open organization menu LT-0I' on the create page",
+      "note": "Org LT-0I is already the active installation; CN- is listed without changing org."
+    },
+    {
+      "step": "select repo CN-",
+      "selector": "button[aria-label=\"Select repository CN- to create an environment with\"]",
+      "verify_selector": "a[aria-label=\"Link to view CN- in GitHub\"] has href=\"https://github.com/LT-0I/CN-\" (this is the exact-repo proof; ONLY proceed if href is exactly https://github.com/LT-0I/CN-)",
+      "note": "After click, the 'Environment name' input (#label, aria-label=\"Environment name\") is auto-prefilled with value 'LT-0I/CN-'. The repo will clone to /workspace/CN-."
+    },
+    {
+      "step": "create",
+      "selector": "//button[normalize-space(.)='Create environment']  (class btn-primary, no id/testid)",
+      "note": "On success it navigates to https://chatgpt.com/codex/cloud/settings/environment/<envId> and the env appears in the environments table as 'LT-0I/CN- | LT-0I/CN- | 0 | <creator> | <date>'. ALLOWLIST GUARD: before clicking, assert the #label value === 'LT-0I/CN-' AND the GitHub view link href === 'https://github.com/LT-0I/CN-'. Never create/select any other repo (explicitly never noeticbraid or any noeticbraid-* repo)."
+    }
+  ],
+  "list_envs": {
+    "route": "https://chatgpt.com/codex/cloud/settings/environments",
+    "selector": "table rows, each a <tr>. Row text pattern: '<envName> <repo> <taskCount> <creatorEmail> <createdDate>'. Env detail link per row leads to /codex/cloud/settings/environment/<envId>.",
+    "extraction": "Parse each <tr>: name = first token group, repo = 'LT-0I/<repo>', task_count = integer, creator = email, created_at = date. envId is the trailing path segment of the row's environment detail href (/codex/cloud/settings/environment/<envId>). Observed live: row1 'LT-0I/CN- | LT-0I/CN- | 0 | cherrypie85arrow@gmail.com | May 15, 2026' (envId 6a07e4ffdafc8191b77e6cff2264cd9a); row2 'noeticbraid | LT-0I/noeticbraid | 0 | cherrypie85arrow@gmail.com | May 12, 2026'. ALSO available via the composer env picker dialog (button[aria-label=\"View all code environments\"]) which lists section 'Environments' (created envs) vs 'Repositories' (repos without an env yet)."
+  },
+  "submit_task": {
+    "route": "https://chatgpt.com/codex/cloud",
+    "steps": [
+      "1. browser:open https://chatgpt.com/codex/cloud --tab-id <id>",
+      "2. Open env picker: click button[aria-label=\"View all code environments\"] (opens Radix dialog aria-controls=radix-_r_1c_, role=dialog). The dialog has a search input aria-label=\"Search environments and repos\" (placeholder 'Search environments and repos...') and two sections: 'Environments' and 'Repositories'.",
+      "3. Pick LT-0I/CN-: click //div[@role='dialog']//button[normalize-space(.)='LT-0I/CN-']. After selection the env button text (button[aria-label=\"View all code environments\"]) changes from 'noeticbraid' to 'LT-0I/CN-' (this is the env-bound confirmation signal).",
+      "4. (optional) branch: button[aria-label=\"Search for your branch\"] (text shows current branch, default 'main', dialog radix-_r_1d_).",
+      "5. Type prompt into composer: selector #prompt-textarea (contenteditable div, aria-label=\"Codex composer\").",
+      "6. Submit: button[aria-label=\"Submit\"] (disabled:true while composer empty; becomes enabled once text entered)."
+    ],
+    "selectors": {
+      "composer": "#prompt-textarea",
+      "env_picker_open": "button[aria-label=\"View all code environments\"]",
+      "env_picker_search": "input[aria-label=\"Search environments and repos\"]",
+      "branch_picker": "button[aria-label=\"Search for your branch\"]",
+      "submit": "button[aria-label=\"Submit\"]"
+    },
+    "env_pick_selector": "//div[@role='dialog']//button[normalize-space(.)='LT-0I/CN-']  (verify the env button text equals 'LT-0I/CN-' after click; ALLOWLIST: refuse to submit if env button text !== 'LT-0I/CN-')",
+    "taskid_signal": "After Submit, a task card is prepended under the 'TODAY' group in the left task list. The card is an <a> with href '/codex/cloud/tasks/<taskId>' where taskId matches /^task_e_[0-9a-f]{32}$/. Observed: task_e_6a07e593b778832da0942ecbe2947afc. The task detail route is https://chatgpt.com/codex/cloud/tasks/<taskId>. Card text encodes: '<title> <relativeTime> · <repo> <statusLabel>'. A 'Cancel task' button (button[aria-label=\"Cancel task\"]) is present while running.",
+    "confirmation_note": "This CLI's confirmation policy flags the Submit click as sensitive and blocks it unless --confirmed is passed (browser:click ... --confirmed). The sub-MCP should pass an explicit confirmed flag for the submit step and keep it gated behind the contract's risky-action policy."
+  },
+  "task_status": {
+    "route": "https://chatgpt.com/codex/cloud/tasks/<taskId>  (also visible inline on the task card in the /codex/cloud task list)",
+    "selector": "On the task-list card: status is the trailing text of the card <a> (button[aria-label=\"Cancel task\"] present == still running). On the task-detail page: the status label is a <button> whose text is the status; when finished the text becomes 'Worked for <duration>' (e.g. 'Worked for 48s' / 'Worked for 1m 57s') with class 'text-token-text-secondary flex flex-row items-center gap-0.5 text-sm select-none', selector //button[contains(normalize-space(.),'Worked for')]. Clicking that button expands a 'Logs' panel (full container/env-setup/command log). Completed tasks also render 'Give thumbs up feedback' / 'Give thumbs down feedback' buttons and re-enable the follow-up composer Submit.",
+    "status_vocab": [
+      "Starting container        (initial, in-progress)",
+      "Running setup scripts     (in-progress, after container start)",
+      "Worked for <duration>     (TERMINAL SUCCESS, e.g. 'Worked for 48s', 'Worked for 1m 57s')",
+      "(in-progress tasks also show a 'Cancel task' button; observed only the success path live - 'Failed'/'Error' style labels were not observed this session, see caveats)"
+    ],
+    "completion_gate": "Task is DONE when the status button text matches /^Worked for / AND the 'Cancel task' button is absent AND the thumbs feedback buttons (button[aria-label=\"Give thumbs up feedback\"]) are present. While running, status is 'Starting container' or 'Running setup scripts' and 'Cancel task' is present."
+  },
+  "get_diff": {
+    "route": "https://chatgpt.com/codex/cloud/tasks/<taskId>  (task-detail page; for a code-mutating task this same route renders the changes/diff panel + a 'Create PR' control)",
+    "changes_panel_selector": "The changes/diff panel is part of the task-detail right column on the same /codex/cloud/tasks/<taskId> route. It contains a file-list toggle, a per-file sticky header, and a Diff/Logs tab pair. There is no id/data-testid on the outer panel; anchor off its stable child controls: the file-list toggle button[aria-label=\"Toggle file list diffs\"] (text 'File (<n>)'), the per-file entry button[aria-label=\"View file <path>\"] (e.g. button[aria-label=\"View file README.md\"], text '<path> <path> +<adds> -<dels>'), and the Diff tab button[aria-label=\"Tab to view the code diff\"] / Logs tab button[aria-label=\"Tab to view the work logs\"]. The header summary div (class 'contents') text encodes '<title> <date> · <repo> · <branch> · +<adds> -<dels>' (observed: 'Append line to README.md May 15 · LT-0I/CN- · main · +2 -0').",
+    "file_list_selector": "Toggle: button[aria-label=\"Toggle file list diffs\"] (text 'File (1)' = file count). Each changed file is a button[aria-label=\"View file <relpath>\"] whose text is '<relpath> <relpath> +<adds> -<dels>' (observed: button[aria-label=\"View file README.md\"], text 'README.md README.md +2 -0'). Per-file copy-name affordance: div[aria-label=\"Copy file name\"]. Per-file sticky diff header: div with class 'focus-visible:outline-none sticky top-0 z-1' whose text is '<relpath> +<adds> -<dels>' (observed 'README.md +2 -0').",
+    "per_file_diff_selector": "Click button[aria-label=\"Tab to view the code diff\"] to render the unified diff body (the Diff tab is selected by default on a mutating task but click it to be deterministic). The diff body renders below the sticky per-file header (div.'...sticky top-0 z-1', text '<relpath> +<adds> -<dels>') as line-numbered rows: each row carries the old line number, new line number, and the line content; hunk headers render as '@@ -<a>,<b> +<c>,<d> @@ <context>'. Added lines appear with only a new line number (no old number) prefixed by '+'.",
+    "diff_text_extraction": "The full unified diff is present in browser:read --include-portals --mode full output: (a) structurally via the per-file region described above, and (b) reliably via the snapshot's visibleText. Extraction recipe: read the page (include-portals, mode full), locate the per-file sticky header text '<relpath> +<adds> -<dels>' in visibleText, then the unified diff text follows starting at the first '@@ -' hunk header through the end of that file's rows (next file header or 'Logs'/end-of-panel terminates it). The line-number columns and '+' / '-' markers are preserved inline in visibleText. The commit sha + message also appear in the 'Summary' section (visibleText: 'Committed the change as <sha> with message: <msg>').",
+    "create_pr_button_selector": "//button[normalize-space(.)='Create PR']  — a <button class='hover:bg-token-bg-primary/10 rounded-s-full px-3 py-2 transition-colors duration-120'> with NO aria-label / id / data-testid (text-only anchor; XPath normalize-space text match is the stable selector). Sibling header controls on the same row: button[aria-label=\"Archive Task\"], button[aria-label=\"Share task\"]. NOT clicked during discovery (observe-only).",
+    "completion_gate": "Diff is present & extractable when ALL of: (1) the task completion_gate is satisfied — status button text matches /^Worked for / (observed 'Worked for 33s'), the 'Cancel task' button is absent, and thumbs-feedback buttons (button[aria-label=\"Give thumbs up feedback\"]) are present; AND (2) a changes panel is rendered — the file-list toggle button[aria-label=\"Toggle file list diffs\"] is present (text 'File (<n>)' with n>=1) AND at least one button[aria-label^=\"View file \"] exists AND the header summary shows a non-zero '+<adds> -<dels>'. NOTE observed live: while polling, the status label text was not always exposed in the lite element list, but absence of 'Cancel task' + presence of thumbs + a non-zero 'File (<n>)' / '+adds' is a robust DONE proxy; confirm 'Worked for' in mode=full visibleText for the strict gate.",
+    "sample_diff_evidence": "Header: 'Append line to README.md May 15 · LT-0I/CN- · main · +2 -0'. File row: 'README.md README.md +2 -0'. Unified diff body (verbatim from visibleText): '@@ -57,25 +57,27 @@ teaching-plan-generator/ ... 80 80 ## 许可证 81 81 MIT License 82 + 83 +<!-- codex-sandbox-probe 2026-05-15 -->'. i.e. the probe appended a blank line (new line 82) and the line '<!-- codex-sandbox-probe 2026-05-15 -->' (new line 83) at EOF of README.md; +2 -0, no other file touched. Summary text: 'Committed the change as 06476a6 with message: Append codex sandbox probe comment to README.'",
+    "observed_task_id": "task_e_6a07e803d3e4832dab14de939e456e7f"
+  },
+  "allowlist_key": "LT-0I/CN-",
+  "allowlist_enforcement": {
+    "github_url": "https://github.com/LT-0I/CN-",
+    "environment_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+    "guards": [
+      "list-envs: only return / act on the row whose repo === 'LT-0I/CN-' (or envId === '6a07e4ffdafc8191b77e6cff2264cd9a').",
+      "submit-task: refuse unless the composer env button (button[aria-label=\\\"View all code environments\\\"]) text === 'LT-0I/CN-' before clicking Submit.",
+      "create-env: refuse unless #label value === 'LT-0I/CN-' AND a[aria-label=\\\"Link to view CN- in GitHub\\\"] href === 'https://github.com/LT-0I/CN-'.",
+      "Never select, create, submit to, or read any other repo - explicitly never 'noeticbraid' / 'LT-0I/noeticbraid' / any 'noeticbraid-*' / any other LT-0I repo."
+    ]
+  },
+  "caveats": [
+    "LT-0I/CN- did not exist as a Codex environment at session start; it was CREATED this session under explicit user authorization. The 4 sub-MCP tools currently returning SUBMCP_NOT_PROVISIONED can now be wired live - the provisioning precondition (a connected LT-0I/CN- environment) is satisfied (envId 6a07e4ffdafc8191b77e6cff2264cd9a).",
+    "get-diff is only PARTIALLY mapped: both tasks observed live were read-only (no diff panel rendered). The exact diff/changes-panel and 'Create PR' selectors must be captured by one more live run that submits a tiny safe code-mutating task to LT-0I/CN- ONLY. This genuinely needs a follow-up (or explicit user OK to run a small mutating task now).",
+    "Status vocabulary captured live: 'Starting container' -> 'Running setup scripts' -> 'Worked for <duration>'. Failure/cancel status labels were not observed (the happy path completed). The sub-MCP should treat any status not matching /^Worked for / and without 'Cancel task' as an unknown/incomplete state and surface a stable contract error rather than a silent fallback.",
+    "App routes live ONLY under https://chatgpt.com/codex/cloud (server appends /cloud/). https://chatgpt.com/codex/ is the marketing page and must not be used as an app anchor.",
+    "This CLI's confirmation policy blocks 'sensitive'-looking clicks (Submit, settings) unless --confirmed is passed. The sub-MCP must thread an explicit confirmed/risky-action flag through submit-task and create-task, consistent with the consumer-contract risky-action policy (no silent bypass).",
+    "Account is Codex PRO. No model-tier selection occurs in the Codex task flow (the '1x' control is a parallel-attempts/versions count, not a model picker). Safe - no Pro-model action was taken beyond the authorized read-only task.",
+    "get-diff is now FULLY mapped via mutating probe task task_e_6a07e803d3e4832dab14de939e456e7f (LT-0I/CN- only): 'Append line to README.md' completed 'Worked for 33s', diff panel + 'Create PR' control captured live; selectors recorded in get_diff (file-list toggle, per-file view button, Diff/Logs tabs, sticky per-file header, XPath Create-PR anchor, visibleText diff extraction). Probe left a benign +2/-0 README.md EOF comment in the authorized throwaway sandbox repo (commit 06476a6); intentionally NOT reverted and PR NOT created (observe-only)."
+  ]
+}

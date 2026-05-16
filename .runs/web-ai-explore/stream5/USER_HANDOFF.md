@@ -4,8 +4,8 @@ Campaign: Stream #5 — Exhaustive interactive web-AI feature exploration
 Contract: consumer-contract-1.4.0
 Updated: 2026-05-15
 
-**Everything not listed below is IMPLEMENTED_GREEN and auto-callable via the 35 `webai_*` MCP tools.
-Only the 7 items in Section A require a user decision before they can be resolved.**
+**Everything not listed below is IMPLEMENTED_GREEN and auto-callable via the 37 `webai_*` MCP tools.
+All 7 §A items are now resolved: items 1, 3, 5, 6 user-DEFERRED; item 4 OUT_OF_SCOPE (user-confirmed absent); items 2 & 7 IMPLEMENTED_GREEN. No items remain in active resolution.**
 
 Section B (tooling-limitation blocks) from the prior draft is now closed: all tooling blocks
 were resolved by the BP1 primitives (`browser:hover --dwell-ms` + `browser:read --include-portals`).
@@ -31,6 +31,8 @@ provisioned for the managed Chrome, or should voice be represented as text-trans
 only? If the consent gate may be clicked, please confirm and describe the post-consent
 UI (selector for the stop/hang-up control).
 
+**User decision (2026-05-15):** DEFERRED — user chose to skip for now; not re-raised in future campaigns unless reopened.
+
 ---
 
 ### 2. chatgpt-pulse — Pulse (research digest / news briefing)
@@ -47,6 +49,8 @@ change)? If yes, please describe the post-onboarding Pulse surface — its route
 selector, where the daily digest renders, and the completion-gate selector. If the click
 is not authorized, confirm Pulse should remain BLOCKED for this campaign.
 
+**Resolved (2026-05-15):** IMPLEMENTED_GREEN — user authorized onboarding; a "Quick news recap" Pulse was set; integrated as webai_chatgpt_pulse_get + webai_chatgpt_pulse_onboard; live re-verified status=ready with a real digest. Closed.
+
 ---
 
 ### 3. chatgpt-atlas-browser — Atlas browser (AI-guided web browsing agent)
@@ -62,6 +66,8 @@ For this Shark Pro account, is there an in-`chatgpt.com` entry point for AI-guid
 browsing (a route, a composer toggle, or an item under '+' → 'More')? Or does "Atlas
 browser" refer to the separate OpenAI Atlas desktop browser application, which is out of
 scope for this web-automation project?
+
+**User decision (2026-05-15):** DEFERRED — user chose to skip for now; not re-raised in future campaigns unless reopened.
 
 ---
 
@@ -81,6 +87,8 @@ web build? If yes, please give the exact entry point (menuitem text, `data-testi
 modal? If it is not enabled for this account, please confirm `chatgpt-study-mode` should
 remain BLOCKED for this campaign.
 
+**User decision (2026-05-15):** OUT_OF_SCOPE — user confirms Study mode is not present on this account; closed.
+
 ---
 
 ### 5. gemini-voice-mode — Voice mode (speak to Gemini, get audio response)
@@ -96,6 +104,8 @@ Is web voice-mode in scope for MCP integration? It requires a live microphone de
 that the headless host cannot provide. If yes, please either (a) provision a virtual
 audio input device for the `gemini-9225` Chrome and grant mic permission, or (b) confirm
 voice-mode should be permanently marked OUT_OF_SCOPE for this campaign.
+
+**User decision (2026-05-15):** DEFERRED — user chose to skip for now; not re-raised in future campaigns unless reopened.
 
 ---
 
@@ -114,6 +124,8 @@ this account, or is it mobile-app only? If web-reachable, please share the exact
 UI steps to enter Live mode and confirm whether a microphone and camera device should be
 provisioned for `gemini-9225`. Otherwise, confirm this should be marked OUT_OF_SCOPE.
 
+**User decision (2026-05-15):** DEFERRED — user chose to skip for now; not re-raised in future campaigns unless reopened.
+
 ---
 
 ### 7. chatgpt-codex — ChatGPT Codex sub-MCP (needs sandbox repo to go live)
@@ -130,6 +142,8 @@ Please supply a throwaway sandbox GitHub repository (any repo where the automati
 create branches and PRs freely without concern). Once provided, the `chatgpt-codex`
 sub-MCP can be wired to that repo and moved from placeholder to live status. The repo
 can be empty; it just needs to be a connected Codex environment in the ChatGPT UI.
+
+**Resolved (2026-05-15):** IMPLEMENTED_GREEN — user supplied LT-0I/CN- sandbox; sub-MCP provisioned live; all 4 tools (list-envs/submit-task/task-status/get-diff) live-verified GREEN; hard allowlist LT-0I/CN- only; --confirmed gate on submit. Closed.
 
 ---
 

@@ -1042,26 +1042,36 @@
       "may_contain_sensitive_local_fields": false
     },
     {
-      "cli_name": "webai:chatgpt:codex:create-task",
-      "mcp_name": "webai_chatgpt_codex_create_task",
-      "ts_export": "webAiChatgptCodexCreateTask",
-      "maturity": "placeholder",
-      "safety_class": "read",
+      "cli_name": "webai:chatgpt:codex:submit-task",
+      "mcp_name": "webai_chatgpt_codex_submit_task",
+      "ts_export": "webAiChatgptCodexSubmitTask",
+      "maturity": "experimental",
+      "safety_class": "mutate",
       "required_args": [
         "prompt",
         "profile"
       ],
       "optional_args": [
         "repo",
-        "branch"
+        "branch",
+        "confirmed"
       ],
       "output_keys": {
         "always_present": [
-          "status",
-          "errorCode",
-          "message"
+          "task_id",
+          "task_url",
+          "repo",
+          "env",
+          "env_id",
+          "status"
         ],
-        "optional": []
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message",
+          "action"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -1069,7 +1079,7 @@
       "cli_name": "webai:chatgpt:codex:list-envs",
       "mcp_name": "webai_chatgpt_codex_list_envs",
       "ts_export": "webAiChatgptCodexListEnvs",
-      "maturity": "placeholder",
+      "maturity": "experimental",
       "safety_class": "read",
       "required_args": [
         "profile"
@@ -1077,10 +1087,14 @@
       "output_keys": {
         "always_present": [
           "status",
-          "errorCode",
-          "message"
+          "envs"
         ],
-        "optional": []
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -1088,7 +1102,7 @@
       "cli_name": "webai:chatgpt:codex:task-status",
       "mcp_name": "webai_chatgpt_codex_task_status",
       "ts_export": "webAiChatgptCodexTaskStatus",
-      "maturity": "placeholder",
+      "maturity": "experimental",
       "safety_class": "read",
       "required_args": [
         "task_id",
@@ -1096,35 +1110,50 @@
       ],
       "output_keys": {
         "always_present": [
+          "task_id",
+          "repo",
+          "env_id",
           "status",
-          "errorCode",
-          "message"
+          "done",
+          "status_text"
         ],
-        "optional": []
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
     {
-      "cli_name": "webai:chatgpt:codex:list-tasks",
-      "mcp_name": "webai_chatgpt_codex_list_tasks",
-      "ts_export": "webAiChatgptCodexListTasks",
-      "maturity": "placeholder",
+      "cli_name": "webai:chatgpt:codex:get-diff",
+      "mcp_name": "webai_chatgpt_codex_get_diff",
+      "ts_export": "webAiChatgptCodexGetDiff",
+      "maturity": "experimental",
       "safety_class": "read",
       "required_args": [
+        "task_id",
         "profile"
-      ],
-      "optional_args": [
-        "tab"
       ],
       "output_keys": {
         "always_present": [
+          "task_id",
+          "repo",
+          "env_id",
           "status",
-          "errorCode",
-          "message"
+          "files",
+          "diff_text",
+          "create_pr_available"
         ],
-        "optional": []
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message"
+        ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": true
     },
     {
       "cli_name": "webai:chatgpt:canvas-export",
@@ -1153,6 +1182,65 @@
         "download_dir",
         "profile",
         "timeout_ms"
+      ]
+    },
+    {
+      "cli_name": "webai:chatgpt:pulse:get",
+      "mcp_name": "webai_chatgpt_pulse_get",
+      "ts_export": "webAiChatgptPulseGet",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "route",
+          "status",
+          "generated_hint"
+        ],
+        "optional": [
+          "digest_text",
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "tab_id",
+        "wait_ready",
+        "timeout_ms"
+      ]
+    },
+    {
+      "cli_name": "webai:chatgpt:pulse:onboard",
+      "mcp_name": "webai_chatgpt_pulse_onboard",
+      "ts_export": "webAiChatgptPulseOnboard",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile",
+        "confirmed"
+      ],
+      "output_keys": {
+        "always_present": [
+          "route",
+          "onboarded",
+          "news_topic_selected",
+          "final_status"
+        ],
+        "optional": [
+          "note",
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "tab_id"
       ]
     },
     {
@@ -1743,9 +1831,19 @@
     "profile_lease.user_data_dir": "Local browser profile path; treat as sensitive local metadata.",
     "canvas_export.path": "Local filesystem path to exported ChatGPT Canvas artifact; treat as sensitive local metadata.",
     "claude_design.savedPath": "Local filesystem path to saved Design artifact; treat as sensitive local metadata.",
-    "gemini_music.savedPath": "Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata."
+    "gemini_music.savedPath": "Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata.",
+    "pulse.route": "ChatGPT Pulse route; safe URL without conversation id, classify as public route metadata.",
+    "pulse.status": "Pulse readiness state; safe non-content account feature state.",
+    "pulse.digest_text": "Plain visible Pulse page text; safe for contract output but may contain user-curated topics, so classify for consumer awareness.",
+    "pulse.generated_hint": "Pulse generation timing hint; safe page text.",
+    "pulse.onboarded": "Boolean account-state outcome; safe but indicates durable onboarding state.",
+    "pulse.news_topic_selected": "Boolean Quick news recap selection outcome; safe preference metadata.",
+    "pulse.final_status": "Pulse status after onboarding; safe non-content feature state.",
+    "chatgpt_codex.diff_text": "Unified code diff returned by get-diff; treat as code/content output, not local metadata."
   },
   "release_notes": [
-    "consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools \u2192 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning)."
+    "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",
+    "consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning).",
+    "Stream #5 Pulse integration (same contract version): adds webai_chatgpt_pulse_get and webai_chatgpt_pulse_onboard, increasing webai tools from 35 to 37 without changing contract_version or package_version; error code count remains 32."
   ]
 }

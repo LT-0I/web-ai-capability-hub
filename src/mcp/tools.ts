@@ -54,6 +54,8 @@ import {
   webAiCanvasToDocsInput,
   webAiGenerateVideoInput,
   webAiChatgptCanvasExportInput,
+  webAiChatgptPulseGetInput,
+  webAiChatgptPulseOnboardInput,
   webAiChatgptDeepResearchInput,
   webAiClaudeDeepResearchInput,
   webAiChatgptConversationManageInput,
@@ -71,7 +73,7 @@ import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
-export { webAiChatgptCodexCreateTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
+export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
 
 export interface McpToolDefinition {
   name: string;
@@ -1677,6 +1679,172 @@ async function startChatgptDeepResearch(args: any, runtime: Required<BrowserTool
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
+const CHATGPT_PULSE_URL = "https://chatgpt.com/pulse";
+const CHATGPT_PULSE_ONBOARDING_DIALOG_SELECTOR = "#radix-_r_ch_";
+const CHATGPT_PULSE_ACTIONS_SELECTOR = 'button[aria-label="Actions"]';
+const CHATGPT_PULSE_PENDING_PHRASES = ["is in the works", "Check back in"];
+const CHATGPT_PULSE_HYDRATION_TIMEOUT_MS = 30000;
+const CHATGPT_PULSE_HYDRATION_POLL_MS = 250;
+const CHATGPT_PULSE_DIGEST_END = "Curate for tomorrow";
+const CHATGPT_PULSE_DIGEST_MIN_SIGNAL_CHARS = 40;
+
+type ChatgptPulseStatus = "ready" | "pending" | "not_onboarded";
+
+function pulseArgs(args: any): any {
+  return { ...args, tab_url_contains: args.tab_id || args.tab_url_contains, __requireTargetSurface: true };
+}
+
+async function pulseVisibleText(page: any): Promise<string> {
+  try {
+    const snapshot = await readPageSnapshot(page, { includePortals: true });
+    return typeof snapshot.visibleText === "string" ? snapshot.visibleText : "";
+  } catch {
+    return "";
+  }
+}
+
+function pulseUrlEndsWithPulse(url: string): boolean {
+  try { return new URL(url).pathname.replace(/\/$/, "") === "/pulse"; } catch { return /\/pulse\/?(?:[?#].*)?$/.test(url); }
+}
+
+function pulseUrlIsChatgptHome(url: string): boolean {
+  try { const parsed = new URL(url); return parsed.origin === "https://chatgpt.com" && parsed.pathname === "/"; } catch { return url === "https://chatgpt.com/" || url === "https://chatgpt.com"; }
+}
+
+async function locatorCount(page: any, selector: string): Promise<number> {
+  return await page.locator?.(selector).first?.().count?.().catch(() => 0) || 0;
+}
+
+function normalizePulseDigestText(text: string): string {
+  return text
+    .replace(/\r\n?/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function stripLeadingPulseDateToken(text: string): string {
+  return text.replace(/^(?:(?:\d{4}年)?\d{1,2}月\d{1,2}日|(?:Today|Yesterday)|(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2}(?:,\s*\d{4})?|\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?)\s*/i, "").trim();
+}
+
+function extractChatgptPulseDigestText(visibleText: string): string | null {
+  const endIndex = visibleText.lastIndexOf(CHATGPT_PULSE_DIGEST_END);
+  if (endIndex < 0) return null;
+
+  const beforeEnd = visibleText.slice(0, endIndex);
+  const headerPattern = /(?:^|\s)Pulse\s+Curate(?:\s|$)/g;
+  let header: RegExpExecArray | null;
+  let startIndex = -1;
+  while ((header = headerPattern.exec(beforeEnd)) !== null) {
+    startIndex = header.index + header[0].length;
+  }
+  if (startIndex < 0) return null;
+
+  return stripLeadingPulseDateToken(normalizePulseDigestText(beforeEnd.slice(startIndex)));
+}
+
+function hasSubstantiveChatgptPulseDigest(digestText: string | null): digestText is string {
+  if (!digestText) return false;
+  const signalChars = digestText.replace(/[^\p{L}\p{N}]/gu, "");
+  if (signalChars.length < CHATGPT_PULSE_DIGEST_MIN_SIGNAL_CHARS) return false;
+  return /[.!?。！？✨]|[\r\n]/u.test(digestText);
+}
+
+async function readChatgptPulseState(page: any): Promise<Record<string, unknown> | null> {
+  const route = page.url?.() || CHATGPT_PULSE_URL;
+  const visibleText = await pulseVisibleText(page);
+  const pending = CHATGPT_PULSE_PENDING_PHRASES.some((phrase) => visibleText.includes(phrase));
+  const hasActions = await locatorCount(page, CHATGPT_PULSE_ACTIONS_SELECTOR) > 0;
+  const hasDialog = await locatorCount(page, CHATGPT_PULSE_ONBOARDING_DIALOG_SELECTOR) > 0;
+  const hasGetStarted = await locatorCount(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]') > 0;
+
+  if (pulseUrlIsChatgptHome(route) && hasDialog && hasGetStarted) {
+    return safeOutput({ route, status: "not_onboarded", generated_hint: "Run webai_chatgpt_pulse_onboard with confirmed=true before reading Pulse." });
+  }
+  if (pulseUrlEndsWithPulse(route) && pending) {
+    const generated_hint = visibleText.includes("Check back in") ? "Check back in about 30 minutes" : "Your first Pulse is in the works";
+    return safeOutput({ route, status: "pending", generated_hint });
+  }
+  const digestText = extractChatgptPulseDigestText(visibleText);
+  if (pulseUrlEndsWithPulse(route) && hasActions && !pending && hasSubstantiveChatgptPulseDigest(digestText)) {
+    return safeOutput({ route, status: "ready", digest_text: digestText, generated_hint: "A fresh update lands every morning" });
+  }
+  return null;
+}
+
+async function detectChatgptPulseState(page: any): Promise<Record<string, unknown>> {
+  const state = await readChatgptPulseState(page);
+  if (state) return state;
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse state did not match not_onboarded, pending, or ready detection gates", { route: page.url?.() || CHATGPT_PULSE_URL });
+}
+
+async function waitForChatgptPulseState(page: any, timeoutMs = CHATGPT_PULSE_HYDRATION_TIMEOUT_MS): Promise<Record<string, unknown>> {
+  const started = Date.now();
+  const budgetMs = Math.max(0, Number(timeoutMs || 0));
+  const maxAttempts = Math.max(1, Math.ceil(budgetMs / CHATGPT_PULSE_HYDRATION_POLL_MS) + 1);
+  let lastRoute = page.url?.() || CHATGPT_PULSE_URL;
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const state = await readChatgptPulseState(page);
+    if (state) return state;
+    lastRoute = page.url?.() || lastRoute;
+    if (Date.now() - started >= budgetMs || attempt === maxAttempts - 1) break;
+    await page.waitForTimeout?.(CHATGPT_PULSE_HYDRATION_POLL_MS).catch(() => undefined);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse state did not match not_onboarded, pending, or ready detection gates", { route: lastRoute });
+}
+
+async function getChatgptPulse(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = pulseArgs(args);
+  return withManagedPage(effective, runtime, CHATGPT_PULSE_URL, async (page) => {
+    await page.goto?.(CHATGPT_PULSE_URL, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    const deadline = Date.now() + Math.max(0, Number(effective.timeout_ms || 0));
+    for (;;) {
+      const state = await waitForChatgptPulseState(page);
+      if (!effective.wait_ready || state.status !== "pending" || Date.now() >= deadline) return state;
+      await page.waitForTimeout?.(1000).catch(() => undefined);
+    }
+  });
+}
+
+async function clickPulseSelector(page: any, selector: string, message: string): Promise<any> {
+  return requireAndClick(page, selector, message, { dwellMs: 250 });
+}
+
+async function onboardChatgptPulse(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  if (args.confirmed !== true) {
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, reason: "--confirmed is required because Pulse onboarding is a durable account-state change" });
+  }
+  const effective = pulseArgs(args);
+  return withManagedPage(effective, runtime, CHATGPT_PULSE_URL, async (page) => {
+    await page.goto?.(CHATGPT_PULSE_URL, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    const hasDialog = await locatorCount(page, CHATGPT_PULSE_ONBOARDING_DIALOG_SELECTOR) > 0;
+    const hasGetStarted = await locatorCount(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]') > 0;
+    if (!hasDialog || !hasGetStarted) {
+      const state = await detectChatgptPulseState(page);
+      if (state.status === "pending" || state.status === "ready") {
+        return safeOutput({ route: state.route, onboarded: true, news_topic_selected: false, final_status: state.status, note: "Pulse onboarding modal absent; account already onboarded." });
+      }
+      return state;
+    }
+
+    await clickPulseSelector(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]', "ChatGPT Pulse Get started button was not found");
+    await clickPulseSelector(page, 'xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]', "ChatGPT Pulse Quick news recap focus chip was not found");
+    const newsChip = page.locator?.('xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]').first?.();
+    const pressed = await newsChip?.getAttribute?.("aria-pressed").catch(() => null);
+    if (pressed !== "true") throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse Quick news recap chip did not become selected", { selector: 'xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")][@aria-pressed="true"]' });
+    await clickPulseSelector(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Next"]', "ChatGPT Pulse Next button was not found");
+    await clickPulseSelector(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Skip for now"]', "ChatGPT Pulse Skip for now button was not found");
+    await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    const finalState = await detectChatgptPulseState(page);
+    if (finalState.status === "not_onboarded") throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse remained not_onboarded after onboarding steps", { route: finalState.route });
+    return safeOutput({ route: finalState.route, onboarded: true, news_topic_selected: true, final_status: finalState.status });
+  });
+}
+
 function chatgptSettingsRoute(surface: string | undefined): string {
   const map: Record<string, string> = { personalization: "Personalization", data_controls: "DataControls", schedules: "Schedules" };
   return `https://chatgpt.com/#settings/${map[surface || "personalization"] || "Personalization"}`;
@@ -2093,6 +2261,8 @@ export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolR
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiVideoTask(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return exportChatgptCanvas(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return getChatgptPulse(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return onboardChatgptPulse(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startChatgptDeepResearch(args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startClaudeDeepResearch(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageChatgptConversation(args, runtimeOrDefault(runtime)); }
@@ -2225,6 +2395,18 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Export an existing ChatGPT Canvas through the canvas Download dropdown, opening the canvas panel when available, and return artifact metadata.",
     schema: webAiChatgptCanvasExportInput,
     handler: async (args, runtime) => webAiChatgptCanvasExport(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_pulse_get",
+    description: "Read the ChatGPT Pulse digest state without onboarding or synthesizing content.",
+    schema: webAiChatgptPulseGetInput,
+    handler: async (args, runtime) => webAiChatgptPulseGet(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_pulse_onboard",
+    description: "Run the confirmed ChatGPT Pulse onboarding flow and select Quick news recap without connecting Gmail.",
+    schema: webAiChatgptPulseOnboardInput,
+    handler: async (args, runtime) => webAiChatgptPulseOnboard(args, runtime)
   },
   {
     name: "webai_chatgpt_deep_research",

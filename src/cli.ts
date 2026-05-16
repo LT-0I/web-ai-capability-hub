@@ -179,7 +179,9 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     project_url: asString(options["project-url"] || options.projectUrl),
     repo: asString(options.repo),
     branch: asString(options.branch),
-    tab: asString(options.tab)
+    tab: asString(options.tab),
+    tab_id: asString(options["tab-id"] || options.tabId),
+    wait_ready: asBoolean(options["wait-ready"] || options.waitReady)
   };
   const files = asStringList(options.file || options.files);
   if (files.length) base.files = files;
@@ -209,11 +211,13 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:gemini:music:generate": "webai_gemini_music_generate",
     "webai:gemini:music:download-track": "webai_gemini_music_download_track",
     "webai:gemini:music:task-status": "webai_gemini_music_task_status",
-    "webai:chatgpt:codex:create-task": "webai_chatgpt_codex_create_task",
+    "webai:chatgpt:codex:submit-task": "webai_chatgpt_codex_submit_task",
     "webai:chatgpt:codex:list-envs": "webai_chatgpt_codex_list_envs",
     "webai:chatgpt:codex:task-status": "webai_chatgpt_codex_task_status",
-    "webai:chatgpt:codex:list-tasks": "webai_chatgpt_codex_list_tasks",
+    "webai:chatgpt:codex:get-diff": "webai_chatgpt_codex_get_diff",
     "webai:chatgpt:canvas-export": "webai_chatgpt_canvas_export",
+    "webai:chatgpt:pulse:get": "webai_chatgpt_pulse_get",
+    "webai:chatgpt:pulse:onboard": "webai_chatgpt_pulse_onboard",
     "webai:chatgpt:deep-research": "webai_chatgpt_deep_research",
     "webai:claude:deep-research": "webai_claude_deep_research",
     "webai:chatgpt:conversation-manage": "webai_chatgpt_conversation_manage",
@@ -552,11 +556,13 @@ MCP and compatibility commands:
   webai:gemini:music:generate --profile gemini-9225 --prompt <text> --confirmed [--output-json]
   webai:gemini:music:download-track --profile gemini-9225 --tab-url-contains <url-fragment> [--format mp3|video] [--download-dir <abs>] [--output-json]
   webai:gemini:music:task-status --profile gemini-9225 --tab-url-contains <url-fragment> [--output-json]
-  webai:chatgpt:codex:create-task --profile chatgpt --prompt <text> [--repo <owner/repo>] [--branch <branch>] [--output-json]
+  webai:chatgpt:codex:submit-task --profile chatgpt --prompt <text> --confirmed [--repo LT-0I/CN-] [--branch <branch>] [--output-json]
   webai:chatgpt:codex:list-envs --profile chatgpt [--output-json]
   webai:chatgpt:codex:task-status --profile chatgpt --task-id <id> [--output-json]
-  webai:chatgpt:codex:list-tasks --profile chatgpt [--tab active|code_reviews|archived] [--output-json]
+  webai:chatgpt:codex:get-diff --profile chatgpt --task-id <id> [--output-json]
   webai:chatgpt:canvas-export --tab-url-contains <url-fragment> [--format md|pdf|docx] [--download-dir <abs>] [--output-json]
+  webai:chatgpt:pulse:get --profile <name> [--tab-id <id>] [--wait-ready] [--timeout-ms <ms>] [--output-json]
+  webai:chatgpt:pulse:onboard --profile <name> [--tab-id <id>] --confirmed [--output-json]
   webai:chatgpt:deep-research --profile <name> --prompt <text> [--output-json]
   webai:chatgpt:conversation-manage --profile <name> --action share|navigate_settings [--surface <name>] [--output-json]
   webai:chatgpt:workspace --profile <name> --surface projects|gpts|tasks|apps|memory|personalization|data_controls [--output-json]

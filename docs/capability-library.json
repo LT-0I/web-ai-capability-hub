@@ -3,9 +3,15 @@
   "contract": "consumer-contract-1.4.0",
   "generated": "2026-05-15",
   "description": "Machine-readable capability library for the Stream #5 exhaustive web-AI feature exploration campaign. One record per distinct UI-visible feature across ChatGPT, Claude, and Gemini. Final state after all live-verification rounds (verify1–verify9).",
-  "status_enum": ["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE"],
+  "status_enum": [
+    "IMPLEMENTED_GREEN",
+    "EXPLORED_PATH_KNOWN",
+    "UNEXPLORED",
+    "IN_PROGRESS",
+    "BLOCKED_NEEDS_USER",
+    "OUT_OF_SCOPE"
+  ],
   "features": [
-
     {
       "id": "chatgpt-send-prompt",
       "service": "chatgpt",
@@ -114,16 +120,16 @@
       "name": "Sidebar Codex (code agent / cloud coding environment)",
       "ui_location": "Left sidebar → a[href='/codex/cloud'] (target=_blank). Direct route: https://chatgpt.com/codex/cloud (NOT /codex which is a marketing page).",
       "source": "docs/research/chatgpt-feature-catalog.md, stream5-discovery",
-      "status": "EXPLORED_PATH_KNOWN",
-      "mcp_tool": "webai_chatgpt_codex_list_envs",
-      "evidence": ".runs/web-ai-explore/stream5/verify4-chatgpt.json",
-      "verified_by": "stream5-verify4-chatgpt",
+      "status": "IMPLEMENTED_GREEN",
+      "mcp_tool": "webai_chatgpt_codex_list_envs, webai_chatgpt_codex_submit_task, webai_chatgpt_codex_task_status, webai_chatgpt_codex_get_diff",
+      "evidence": ".runs/web-ai-explore/stream5/discovery-chatgpt-codex.json",
+      "verified_by": "live 4-op verify 2026-05-15 against LT-0I/CN- (envId 6a07e4ffda...): list-envs/submit-task/task-status/get-diff GREEN, allowlist strict, clean-rebuild 219 tests",
       "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md",
       "sub_mcp_candidate": true,
       "completion_gate": "Submitted task appears in Tasks tab with status badge; task detail shows diff + completion state. (Not exercised live — real repos, risk of touching noeticbraid.)",
       "artifact": "Code diffs / PRs against connected GitHub repo.",
       "last_update": "2026-05-15",
-      "notes": "Integrated as policy-gated placeholder; needs user-supplied sandbox repo to go live. Handler returns SUBMCP_NOT_PROVISIONED until a throwaway sandbox repo is supplied. Verified: chatgpt-codex:list-envs returns {status:failed, errorCode:SUBMCP_NOT_PROVISIONED} as intended. Surface fully mapped; sub-MCP scaffold (chatgpt-codex) with 4 placeholder tools in registry."
+      "notes": "Integrated as policy-gated placeholder; needs user-supplied sandbox repo to go live. Handler returns SUBMCP_NOT_PROVISIONED until a throwaway sandbox repo is supplied. Verified: chatgpt-codex:list-envs returns {status:failed, errorCode:SUBMCP_NOT_PROVISIONED} as intended. Surface fully mapped; sub-MCP scaffold (chatgpt-codex) with 4 placeholder tools in registry. User supplied LT-0I/CN- as throwaway sandbox 2026-05-15; sub-MCP moved from SUBMCP_NOT_PROVISIONED placeholder to live; hard allowlist LT-0I/CN- only (never noeticbraid); submit-task --confirmed gated; 2 SPA-hydration-timing bugs (ownership-proof + post-submit task-id capture) found+fixed via Opus interactive."
     },
     {
       "id": "chatgpt-deep-research",
@@ -157,7 +163,7 @@
       "completion_gate": "N/A (audio realtime session).",
       "artifact": "None (audio interaction).",
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: no microphone/audio I/O in headless host; clicking 'Continue' enables durable voice-recordings (forbidden account-state change). Entry point 'Start Voice' → 'Say hello to Voice' consent overlay confirmed live. See blocked-chatgpt.md."
+      "notes": "BLOCKED: no microphone/audio I/O in headless host; clicking 'Continue' enables durable voice-recordings (forbidden account-state change). Entry point 'Start Voice' → 'Say hello to Voice' consent overlay confirmed live. See blocked-chatgpt.md. | user_decision: \"DEFERRED 2026-05-15 — user chose to skip for now; do not re-raise in future campaigns unless user reopens\""
     },
     {
       "id": "chatgpt-model-selector",
@@ -216,16 +222,16 @@
       "name": "Pulse (research digest / news briefing)",
       "ui_location": "Onboarding modal (dialog #radix-_r_*_, body 'Pulse can help you stay on top of anything...') + Settings → Personalization → 'Show \"Pulse\" in new chats' toggle. No standalone route (https://chatgpt.com/pulse redirects home).",
       "source": "docs/research/chatgpt-feature-catalog.md, stream5-discovery",
-      "status": "BLOCKED_NEEDS_USER",
-      "mcp_tool": null,
-      "evidence": ".runs/web-ai-explore/stream5/blocked-chatgpt.md",
-      "verified_by": null,
+      "status": "IMPLEMENTED_GREEN",
+      "mcp_tool": "webai_chatgpt_pulse_get, webai_chatgpt_pulse_onboard",
+      "evidence": ".runs/web-ai-explore/stream5/discovery-chatgpt-pulse.json",
+      "verified_by": "live re-verify 2026-05-15: status=ready, real 1028-char news digest, clean-rebuild 211 tests GREEN",
       "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md",
       "sub_mcp_candidate": false,
       "completion_gate": "N/A (not activated).",
       "artifact": "Daily curated digest (only after onboarding).",
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: activating Pulse requires 'Get started' in onboarding modal = durable account-state change (forbidden by campaign rules). Onboarding modal observed live; dismissed via 'Close onboarding'. Settings → Personalization confirms 'Show \"Pulse\" in new chats' toggle. See blocked-chatgpt.md."
+      "notes": "BLOCKED: activating Pulse requires 'Get started' in onboarding modal = durable account-state change (forbidden by campaign rules). Onboarding modal observed live; dismissed via 'Close onboarding'. Settings → Personalization confirms 'Show \"Pulse\" in new chats' toggle. See blocked-chatgpt.md. User authorized Pulse onboarding 2026-05-15; 'Quick news recap' (news) Pulse set; digest read via canonical snapshot reader; honest pending/not_onboarded/ready gate."
     },
     {
       "id": "chatgpt-gpt-store",
@@ -412,7 +418,7 @@
       "completion_gate": "Unknown.",
       "artifact": "Unknown.",
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: no Atlas/Browse entry in composer plus menu, sidebar, or hash routes. Any in-web agentic-browsing capability would sit under the unreachable 'More' submenu. Atlas is a separate OpenAI desktop-browser product per Codex footer reference. Needs user clarification on whether an in-web entry exists for this account."
+      "notes": "BLOCKED: no Atlas/Browse entry in composer plus menu, sidebar, or hash routes. Any in-web agentic-browsing capability would sit under the unreachable 'More' submenu. Atlas is a separate OpenAI desktop-browser product per Codex footer reference. Needs user clarification on whether an in-web entry exists for this account. | user_decision: \"DEFERRED 2026-05-15 — user also cannot locate an in-web entry point; skip for now\""
     },
     {
       "id": "chatgpt-search-web",
@@ -437,7 +443,7 @@
       "name": "Study mode (flashcards, quizzes from uploaded content)",
       "ui_location": "Not found on this account. Probed: composer '+' → 'More' submenu (BP1) = only Agent mode / GitHub / OpenAI Platform. https://chatgpt.com/study = ordinary home.",
       "source": "docs/research/chatgpt-feature-catalog.md, stream5-discovery",
-      "status": "BLOCKED_NEEDS_USER",
+      "status": "OUT_OF_SCOPE",
       "mcp_tool": null,
       "evidence": ".runs/web-ai-explore/stream5/blocked-chatgpt-r2.md",
       "verified_by": null,
@@ -446,7 +452,7 @@
       "completion_gate": "Unknown (no entry point found).",
       "artifact": "Flashcards/quizzes generated from uploaded content.",
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: not a tooling limitation. BP1 successfully opened the + → More submenu but it contains only Agent mode / GitHub / OpenAI Platform — no Study item. Full-DOM scan found zero study/flashcard/quiz interactive controls. Absent on this Shark Pro account/build. See blocked-chatgpt-r2.md."
+      "notes": "BLOCKED: not a tooling limitation. BP1 successfully opened the + → More submenu but it contains only Agent mode / GitHub / OpenAI Platform — no Study item. Full-DOM scan found zero study/flashcard/quiz interactive controls. Absent on this Shark Pro account/build. See blocked-chatgpt-r2.md. | user_decision: \"OUT_OF_SCOPE 2026-05-15 — user confirms Study mode is not present on this Shark Pro account\""
     },
     {
       "id": "chatgpt-image-visual-query",
@@ -516,7 +522,6 @@
       "last_update": "2026-05-15",
       "notes": "Account-identity / billing surface. Explicitly out of scope per campaign rules."
     },
-
     {
       "id": "claude-send-prompt",
       "service": "claude",
@@ -908,7 +913,6 @@
       "last_update": "2026-05-15",
       "notes": "Account-identity / billing surface. Explicitly out of scope per campaign rules."
     },
-
     {
       "id": "gemini-send-prompt",
       "service": "gemini",
@@ -1332,7 +1336,7 @@
       "completion_gate": "UNREACHABLE: no voice overlay appears after clicking Microphone.",
       "artifact": null,
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: managed automation Chrome (gemini-9225) has no microphone input device / getUserMedia audio source → button[aria-label=\"Microphone\"] no-ops silently (3+ click attempts, zero UI change). Environmental/hardware block. See blocked-gemini.md."
+      "notes": "BLOCKED: managed automation Chrome (gemini-9225) has no microphone input device / getUserMedia audio source → button[aria-label=\"Microphone\"] no-ops silently (3+ click attempts, zero UI change). Environmental/hardware block. See blocked-gemini.md. | user_decision: \"DEFERRED 2026-05-15 — user chose to skip for now\""
     },
     {
       "id": "gemini-live-mode",
@@ -1349,7 +1353,7 @@
       "completion_gate": "UNREACHABLE: no Live entry point in web build + voice flow blocked.",
       "artifact": null,
       "last_update": "2026-05-15",
-      "notes": "BLOCKED: double block — (1) no dedicated Live button in this web build (4 probes found zero matches); (2) voice entry (the only audio path) no-ops without mic device. Real-time AV capture is outside benign-text-automation scope. See blocked-gemini.md."
+      "notes": "BLOCKED: double block — (1) no dedicated Live button in this web build (4 probes found zero matches); (2) voice entry (the only audio path) no-ops without mic device. Real-time AV capture is outside benign-text-automation scope. See blocked-gemini.md. | user_decision: \"DEFERRED 2026-05-15 — user chose to skip for now\""
     }
   ]
 }

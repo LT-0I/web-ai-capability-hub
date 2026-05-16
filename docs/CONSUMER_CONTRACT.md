@@ -7,9 +7,11 @@ This document is generated from `configs/consumer-contract.json`, the authoritat
 
 ## Release notes
 
-- consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning).
+- consumer-contract-1.4.0 (2026-05-15): chatgpt-codex is live only for the hard-allowlisted `LT-0I/CN-` environment; `submit-task` requires `confirmed=true`, `get-diff` returns code `diff_text` and never clicks Create PR. Webai count remains 37.
+- consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 37 total, 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, live LT-0I/CN- allowlisted).
 - Phase C correctness notes (same contract version): `tab_url_contains` is honored as a tab selector/URL hint for Claude send/design and Gemini music/conversation tools; ChatGPT conversation `menu_enumerate` uses the in-chat header options button, `search` uses Control+k, and `share` uses `aria-label="Share"`. Claude Design timeout failures return stable contract codes instead of raw Playwright timeout strings.
 - Stream #5 final Claude Design generate note (same contract version): `webai:claude:design:generate` completion is recognized from the served design iframe (`/v1/design/projects/<id>/serve/<file>`) with the existing `?file=<name>.html` URL as a fallback, and timeout/quota envelopes still emit the contracted `status`, `model_used`, `projectUrl`, and `fileName` keys.
+- Stream #5 Pulse integration note (same contract version): `webai:chatgpt:pulse:get` and `webai:chatgpt:pulse:onboard` add the live-discovered ChatGPT Pulse surface, increasing `webai_*` command rows from 35 to 37; error code count remains 32.
 
 ## Public surfaces
 
@@ -79,7 +81,7 @@ Stable JSON keys are exactly:
 
 ## Contract 1.4.0 webai MCP tools
 
-Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing + 11 main-server + 11 sub-MCP. The Stream #5 final surface is 35; no phantom 36th tool is added.
+Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing + 13 main-server (+2 Pulse) + 11 sub-MCP. The Stream #5 Pulse surface is 37; no contract/package version bump is included.
 
 ### Original/B1 existing webai tools
 
@@ -99,7 +101,7 @@ Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:generate-video` | `webai_gemini_generate_video` | `webAiGeminiGenerateVideo` | experimental | risky | no |
 | `webai:task-status` | `webai_task_status` | `webAiTaskStatus` | experimental | read | no |
 
-### Stream #5 main-server tools (B2-B4)
+### Stream #5 main-server tools (B2-B4 + Pulse)
 
 | CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
 | --- | --- | --- | --- | --- | --- |
@@ -108,6 +110,8 @@ Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:conversation-manage` | `webai_gemini_conversation_manage` | `webAiGeminiConversationManage` | experimental | mutate | no |
 | `webai:gemini:workspace` | `webai_gemini_workspace` | `webAiGeminiWorkspace` | experimental | read | no |
 | `webai:chatgpt:canvas-export` | `webai_chatgpt_canvas_export` | `webAiChatgptCanvasExport` | experimental | mutate | yes |
+| `webai:chatgpt:pulse:get` | `webai_chatgpt_pulse_get` | `webAiChatgptPulseGet` | experimental | read | no |
+| `webai:chatgpt:pulse:onboard` | `webai_chatgpt_pulse_onboard` | `webAiChatgptPulseOnboard` | experimental | mutate | no |
 | `webai:chatgpt:deep-research` | `webai_chatgpt_deep_research` | `webAiChatgptDeepResearch` | experimental | mutate | no |
 | `webai:claude:deep-research` | `webai_claude_deep_research` | `webAiClaudeDeepResearch` | experimental | mutate | no |
 | `webai:chatgpt:conversation-manage` | `webai_chatgpt_conversation_manage` | `webAiChatgptConversationManage` | experimental | mutate | no |
@@ -119,10 +123,10 @@ Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing 
 
 | CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
 | --- | --- | --- | --- | --- | --- |
-| `webai:chatgpt:codex:create-task` | `webai_chatgpt_codex_create_task` | `webAiChatgptCodexCreateTask` | placeholder | read | no |
-| `webai:chatgpt:codex:list-envs` | `webai_chatgpt_codex_list_envs` | `webAiChatgptCodexListEnvs` | placeholder | read | no |
-| `webai:chatgpt:codex:task-status` | `webai_chatgpt_codex_task_status` | `webAiChatgptCodexTaskStatus` | placeholder | read | no |
-| `webai:chatgpt:codex:list-tasks` | `webai_chatgpt_codex_list_tasks` | `webAiChatgptCodexListTasks` | placeholder | read | no |
+| `webai:chatgpt:codex:submit-task` | `webai_chatgpt_codex_submit_task` | `webAiChatgptCodexSubmitTask` | experimental | mutate | no |
+| `webai:chatgpt:codex:list-envs` | `webai_chatgpt_codex_list_envs` | `webAiChatgptCodexListEnvs` | experimental | read | no |
+| `webai:chatgpt:codex:task-status` | `webai_chatgpt_codex_task_status` | `webAiChatgptCodexTaskStatus` | experimental | read | no |
+| `webai:chatgpt:codex:get-diff` | `webai_chatgpt_codex_get_diff` | `webAiChatgptCodexGetDiff` | experimental | read | yes |
 | `webai:claude:design:create-project` | `webai_claude_design_create_project` | `webAiClaudeDesignCreateProject` | experimental | mutate | no |
 | `webai:claude:design:generate` | `webai_claude_design_generate` | `webAiClaudeDesignGenerate` | experimental | mutate | no |
 | `webai:claude:design:get-html` | `webai_claude_design_get_html` | `webAiClaudeDesignGetHtml` | experimental | read | yes |
@@ -151,11 +155,13 @@ Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:canvas-edit` / `webai_gemini_canvas_edit` | `canvas_opened`, `edit_applied`, `ai_action_applied` | `ok`, `errorCode`, `error_code`, `message`, `action` |
 | `webai:gemini:conversation-manage` / `webai_gemini_conversation_manage` | _(none)_ | `items`, `dialog_opened`, `results`, `ok`, `errorCode`, `error_code`, `reason`, `message`, `action` |
 | `webai:gemini:workspace` / `webai_gemini_workspace` | `surface`, `url`, `summary` | `ok`, `errorCode`, `error_code`, `reason`, `action` |
-| `webai:chatgpt:codex:create-task` / `webai_chatgpt_codex_create_task` | `status`, `errorCode`, `message` | _(none)_ |
-| `webai:chatgpt:codex:list-envs` / `webai_chatgpt_codex_list_envs` | `status`, `errorCode`, `message` | _(none)_ |
-| `webai:chatgpt:codex:task-status` / `webai_chatgpt_codex_task_status` | `status`, `errorCode`, `message` | _(none)_ |
-| `webai:chatgpt:codex:list-tasks` / `webai_chatgpt_codex_list_tasks` | `status`, `errorCode`, `message` | _(none)_ |
+| `webai:chatgpt:codex:submit-task` / `webai_chatgpt_codex_submit_task` | `task_id`, `task_url`, `repo`, `env`, `env_id`, `status` | `ok`, `errorCode`, `error_code`, `message`, `action` |
+| `webai:chatgpt:codex:list-envs` / `webai_chatgpt_codex_list_envs` | `status`, `envs` | `ok`, `errorCode`, `error_code`, `message` |
+| `webai:chatgpt:codex:task-status` / `webai_chatgpt_codex_task_status` | `task_id`, `repo`, `env_id`, `status`, `done`, `status_text` | `ok`, `errorCode`, `error_code`, `message` |
+| `webai:chatgpt:codex:get-diff` / `webai_chatgpt_codex_get_diff` | `task_id`, `repo`, `env_id`, `status`, `files`, `diff_text`, `create_pr_available` | `ok`, `errorCode`, `error_code`, `message` |
 | `webai:chatgpt:canvas-export` / `webai_chatgpt_canvas_export` | `path`, `sha256`, `format`, `byteSize` | `errorCode`, `error_code` |
+| `webai:chatgpt:pulse:get` / `webai_chatgpt_pulse_get` | `route`, `status`, `generated_hint` | `digest_text`, `ok`, `errorCode`, `error_code` |
+| `webai:chatgpt:pulse:onboard` / `webai_chatgpt_pulse_onboard` | `route`, `onboarded`, `news_topic_selected`, `final_status` | `note`, `ok`, `errorCode`, `error_code`, `reason` |
 | `webai:chatgpt:deep-research` / `webai_chatgpt_deep_research` | `task_id`, `status` | `ok`, `service`, `errorCode`, `error_code`, `expected_model` |
 | `webai:claude:deep-research` / `webai_claude_deep_research` | `task_id`, `status` | `ok`, `service`, `errorCode`, `error_code`, `expected_model` |
 | `webai:chatgpt:conversation-manage` / `webai_chatgpt_conversation_manage` | _(none)_ | `dialog_opened`, `conversationId`, `url`, `surface`, `items`, `results`, `ok`, `errorCode`, `error_code`, `reason` |
@@ -200,12 +206,18 @@ Command rows define `required_args`, `output_keys.always_present`, and `output_k
 | `canvas_export.path` | Local filesystem path to exported ChatGPT Canvas artifact; treat as sensitive local metadata. |
 | `claude_design.savedPath` | Local filesystem path to saved Design artifact; treat as sensitive local metadata. |
 | `gemini_music.savedPath` | Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata. |
+| `pulse.digest_text` | Plain ChatGPT Pulse visible page text; safe for contract output but classify because it can contain user-curated topics. |
+| `pulse.status` / `pulse.final_status` | Pulse readiness state; safe account feature state. |
+| `pulse.route` / `pulse.generated_hint` | Pulse route and generated timing hint; safe route/page metadata. |
+| `pulse.onboarded` / `pulse.news_topic_selected` | Pulse onboarding and Quick news recap selection booleans; safe preference metadata. |
 
 ### Phase C artifact readiness guarantees
 
 - `webai:claude:design:generate` waits for the Design project URL to acquire the same `?file=<name>.html` readiness signal used by the completed Present flow before reporting `status:"generated"`; a genuine miss returns stable `POSTCONDITION_TIMEOUT`.
 - `webai:claude:design:get-html` persists and hashes only verified HTML markup. Bootstrap/loader URL stubs fail with `ARTIFACT_VERIFICATION_FAILED`, are not written as `.html` artifacts, and failed captures clean up newly-created scratch files in the requested download directory.
 - `webai:chatgpt:canvas-export` opens the canvas side panel when a canvas tile/control is available, then exports through Download; if no canvas exists it returns stable `ELEMENT_NOT_FOUND`.
+- `webai:chatgpt:pulse:get` is read-only: it returns `not_onboarded`, `pending`, or `ready` from the recipe gates and never silently onboards or fabricates `digest_text`.
+- `webai:chatgpt:pulse:onboard` requires `--confirmed`, selects `Quick news recap`, and skips Gmail connection.
 
 ## Forbidden output fields for safe consumers
 

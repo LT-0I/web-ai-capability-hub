@@ -8,15 +8,15 @@ Generated: 2026-05-15 | Contract: consumer-contract-1.4.0 | Records: 79
 
 Stream #5 delivered a major expansion of the MCP surface:
 
-- **MCP surface grew from 13 → 35 `webai_*` tools** (contract consumer-contract-1.4.0)
-- **204 unit tests** (full contract round-trip + per-tool schema + sub-MCP isolation tests)
+- **MCP surface grew from 13 → 37 `webai_*` tools** (contract consumer-contract-1.4.0)
+- **219 unit tests** (full contract round-trip + per-tool schema + sub-MCP isolation tests)
 - **3 sub-MCP modules** registered in the single flat tool array:
   - `claude-design` — 4 live tools (`create_project`, `generate`, `get_html`, `present`)
   - `gemini-music` — 3 live tools (`generate`, `task_status`, `download_track`)
-  - `chatgpt-codex` — 4 placeholder tools (returns `SUBMCP_NOT_PROVISIONED` until user supplies a throwaway sandbox repo)
-- **All 63 IMPLEMENTED_GREEN features are auto-callable** via `webai_*` MCP tools or as params on existing tools
-- **7 BLOCKED_NEEDS_USER features** remain — listed in Section A of USER_HANDOFF.md; every other feature is resolved
-- **2 EXPLORED_PATH_KNOWN** features with known entry but policy-gated execution (`chatgpt-agent-mode`) or intentional gated placeholder (`chatgpt-sidebar-codex`)
+  - `chatgpt-codex` — 4 live tools (`list_envs`, `submit_task`, `task_status`, `get_diff`; hard allowlist LT-0I/CN- only; live-verified 2026-05-15)
+- **All 65 IMPLEMENTED_GREEN features are auto-callable** via `webai_*` MCP tools or as params on existing tools
+- **4 BLOCKED_NEEDS_USER features** remain — listed in Section A of USER_HANDOFF.md; items 1,3,5,6 are user-DEFERRED; item 4 is OUT_OF_SCOPE; items 2 & 7 resolved IMPLEMENTED_GREEN
+- **2 EXPLORED_PATH_KNOWN** features with known entry but policy-gated execution (`chatgpt-agent-mode`)
 
 Key artifacts verified this stream:
 - Claude Design HTML: 12319 bytes, sha256 `fb42d3fd674c0753f438eb0a905b1ea5e62416765cb3628d78dfdbee973d4e0f` (verify9)
@@ -29,11 +29,11 @@ Key artifacts verified this stream:
 
 | Status | ChatGPT | Claude | Gemini | Meta | Total |
 |---|---|---|---|---|---|
-| IMPLEMENTED_GREEN | 21 | 19 | 22 | 1 | **63** |
-| EXPLORED_PATH_KNOWN | 2 | 0 | 0 | 0 | **2** |
-| BLOCKED_NEEDS_USER | 4 | 1 | 2 | 0 | **7** |
-| OUT_OF_SCOPE | 3 | 3 | 1 | 0 | **7** |
-| **Total** | **30** | **23** | **25** | **1** | **79** |
+| IMPLEMENTED_GREEN | 23 | 19 | 22 | 1 | **65** |
+| EXPLORED_PATH_KNOWN | 1 | 0 | 0 | 0 | **2** |
+| BLOCKED_NEEDS_USER | 1 | 1 | 2 | 0 | **4** |
+| OUT_OF_SCOPE | 4 | 3 | 1 | 0 | **8** |
+| **Total** | **29** | **23** | **25** | **1** | **78** |
 
 ---
 
@@ -47,13 +47,13 @@ Key artifacts verified this stream:
 | chatgpt-generate-image | Generate image (DALL-E / GPT-4o image) | IMPLEMENTED_GREEN | `webai_chatgpt_generate_image` | docs/plans/stream4-implementation-report.md |
 | chatgpt-canvas | Canvas (collaborative document/code editing surface) | IMPLEMENTED_GREEN | `webai_chatgpt_send_prompt` (canvas:boolean param) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
 | chatgpt-canvas-export | Canvas export (PDF/DOCX/Markdown) | IMPLEMENTED_GREEN | `webai_chatgpt_canvas_export` | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
-| chatgpt-sidebar-codex | Sidebar Codex (code agent / cloud coding environment) | EXPLORED_PATH_KNOWN | `webai_chatgpt_codex_list_envs` (placeholder → SUBMCP_NOT_PROVISIONED) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
+| chatgpt-sidebar-codex | Sidebar Codex (code agent / cloud coding environment) | IMPLEMENTED_GREEN | `webai_chatgpt_codex_list_envs`, `webai_chatgpt_codex_submit_task`, `webai_chatgpt_codex_task_status`, `webai_chatgpt_codex_get_diff` (sub-MCP chatgpt-codex, 4 tools, live on LT-0I/CN-) | .runs/web-ai-explore/stream5/discovery-chatgpt-codex.json |
 | chatgpt-deep-research | Deep Research (multi-source web research, long synthesis) | IMPLEMENTED_GREEN | `webai_chatgpt_deep_research` | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
 | chatgpt-voice-mode | Voice mode (Advanced Voice / GPT-4o audio) | BLOCKED_NEEDS_USER | — | .runs/web-ai-explore/stream5/blocked-chatgpt.md |
 | chatgpt-model-selector | Model selection (Thinking/Instant/Pro) | IMPLEMENTED_GREEN | `webai_chatgpt_send_prompt` (model param) | .runs/web-ai-explore/stream5/verify3-chatgpt.json |
 | chatgpt-projects | Projects (grouped conversations with shared context) | IMPLEMENTED_GREEN | `webai_chatgpt_workspace` (surface=projects) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
 | chatgpt-tasks | Tasks (scheduled recurring ChatGPT tasks) | IMPLEMENTED_GREEN | `webai_chatgpt_workspace` (surface=tasks) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
-| chatgpt-pulse | Pulse (research digest / news briefing) | BLOCKED_NEEDS_USER | — | .runs/web-ai-explore/stream5/blocked-chatgpt.md |
+| chatgpt-pulse | Pulse (research digest / news briefing) | IMPLEMENTED_GREEN | `webai_chatgpt_pulse_get`, `webai_chatgpt_pulse_onboard` | .runs/web-ai-explore/stream5/discovery-chatgpt-pulse.json |
 | chatgpt-gpt-store | GPT Store (custom GPT discovery and launch) | IMPLEMENTED_GREEN | `webai_chatgpt_workspace` (surface=gpts) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
 | chatgpt-memory | Memory (persistent user facts across conversations) | IMPLEMENTED_GREEN | `webai_chatgpt_workspace` (surface=memory) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
 | chatgpt-settings-personalization | Settings: Personalization | IMPLEMENTED_GREEN | `webai_chatgpt_workspace` (surface=personalization) | .runs/web-ai-explore/stream5/verify4-chatgpt.json |
@@ -66,7 +66,7 @@ Key artifacts verified this stream:
 | chatgpt-workspace-agents | Workspace agents (enterprise team agents) | OUT_OF_SCOPE | — | .runs/web-ai-explore/stream5/discovery-chatgpt.json |
 | chatgpt-atlas-browser | Atlas browser (AI-guided web browsing agent) | BLOCKED_NEEDS_USER | — | .runs/web-ai-explore/stream5/blocked-chatgpt.md |
 | chatgpt-search-web | Web search (real-time Bing-powered search in chat) | IMPLEMENTED_GREEN | `webai_chatgpt_send_prompt` (web_search:boolean param) | .runs/web-ai-explore/stream5/recipes-chatgpt.md |
-| chatgpt-study-mode | Study mode (flashcards, quizzes from uploaded content) | BLOCKED_NEEDS_USER | — | .runs/web-ai-explore/stream5/blocked-chatgpt-r2.md |
+| chatgpt-study-mode | Study mode (flashcards, quizzes from uploaded content) | OUT_OF_SCOPE | — | .runs/web-ai-explore/stream5/blocked-chatgpt-r2.md |
 | chatgpt-image-visual-query | Image / visual query (upload image → ask about it) | IMPLEMENTED_GREEN | `webai_chatgpt_upload_and_query` | .runs/web-ai-explore/stream5/recipes-chatgpt.md |
 | chatgpt-code-generation | Code generation + download (Python, JS, etc.) | IMPLEMENTED_GREEN | `webai_chatgpt_generate_file` | .runs/web-ai-explore/stream5/recipes-chatgpt.md |
 | chatgpt-sora | Sora (video generation) | OUT_OF_SCOPE | — | docs/plans/stream4-implementation-report.md |
@@ -144,9 +144,9 @@ Key artifacts verified this stream:
 
 ---
 
-## MCP Surface — 35 webai_ Tools
+## MCP Surface — 37 webai_ Tools
 
-All 35 tools registered in the single flat `toolSpecs` array (server.ts / tools.ts).
+All 37 tools registered in the single flat `toolSpecs` array (server.ts / tools.ts).
 
 ### Core tools (13 pre-Stream-5, baseline)
 
@@ -201,30 +201,28 @@ All 35 tools registered in the single flat `toolSpecs` array (server.ts / tools.
 | `webai_gemini_music_task_status` | Poll music generation status; returns status + download_ready |
 | `webai_gemini_music_download_track` | Download generated MP3 (2-stage format submenu); returns savedPath + sha256 |
 
-#### chatgpt-codex (4 tools — policy-gated placeholder)
+#### chatgpt-codex (4 tools — live, allowlist LT-0I/CN- only)
 
 | tool name | description |
 |---|---|
-| `webai_chatgpt_codex_list_envs` | List connected GitHub environments (returns SUBMCP_NOT_PROVISIONED until sandbox repo supplied) |
-| `webai_chatgpt_codex_submit_task` | Submit a Codex task (placeholder) |
-| `webai_chatgpt_codex_task_status` | Poll Codex task status (placeholder) |
-| `webai_chatgpt_codex_get_diff` | Retrieve task diff/result (placeholder) |
+| `webai_chatgpt_codex_list_envs` | List connected GitHub environments (hard allowlist LT-0I/CN- only; live-verified 2026-05-15) |
+| `webai_chatgpt_codex_submit_task` | Submit a Codex task (--confirmed gate enforced; live-verified 2026-05-15) |
+| `webai_chatgpt_codex_task_status` | Poll Codex task status (live-verified 2026-05-15) |
+| `webai_chatgpt_codex_get_diff` | Retrieve task diff/result (live-verified 2026-05-15, returns real unified diff) |
 
 ---
 
 ## BLOCKED_NEEDS_USER — Features Requiring User Decision
 
-These 7 features cannot be resolved by engineering alone. See USER_HANDOFF.md for the precise question per feature.
+These 4 features cannot be resolved by engineering alone. Items 1,3,5,6 (voice/atlas/gemini) are DEFERRED by user decision 2026-05-15; item 4 (chatgpt-study-mode) moved to OUT_OF_SCOPE; item 2 (chatgpt-pulse) resolved IMPLEMENTED_GREEN 2026-05-15; item 7 (chatgpt-codex) resolved IMPLEMENTED_GREEN 2026-05-15. See USER_HANDOFF.md for details.
 
 | id | service | root cause |
 |---|---|---|
-| chatgpt-voice-mode | chatgpt | No microphone device in headless Chrome; first-time consent = durable account change |
-| chatgpt-pulse | chatgpt | Activation requires 'Get started' = durable account onboarding (forbidden) |
-| chatgpt-atlas-browser | chatgpt | No in-web entry point found; may be a separate desktop product |
-| chatgpt-study-mode | chatgpt | Not present on this Shark Pro account/build (confirmed via BP1 full submenu probe) |
+| chatgpt-voice-mode | chatgpt | No microphone device in headless Chrome; first-time consent = durable account change. DEFERRED 2026-05-15. |
+| chatgpt-atlas-browser | chatgpt | No in-web entry point found; may be a separate desktop product. DEFERRED 2026-05-15. |
 | claude-sidebar-code | claude | Task editor selector unknown; Send button refused by CLI guard |
-| gemini-voice-mode | gemini | No microphone device in headless Chrome (button silently no-ops) |
-| gemini-live-mode | gemini | No dedicated Live button in this web build; voice path also blocked (no mic) |
+| gemini-voice-mode | gemini | No microphone device in headless Chrome (button silently no-ops). DEFERRED 2026-05-15. |
+| gemini-live-mode | gemini | No dedicated Live button in this web build; voice path also blocked (no mic). DEFERRED 2026-05-15. |
 
 ---
 

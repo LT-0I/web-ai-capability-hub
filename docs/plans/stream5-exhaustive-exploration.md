@@ -122,6 +122,7 @@ Run STRICTLY in order; next starts only after prior acceptance gate GREEN
 - [x] claude-design get-html coldstart honesty micro-fix — GREEN 204pass
 - [x] round-9 FINAL: full claude-design chain honestly end-to-end GREEN (cold get-html real 12319B HTML, disk-sha verified, no false-positive)
 - [x] Master-library merge + USER_HANDOFF §A finalized: 63 IMPLEMENTED_GREEN / 2 EXPLORED_PATH_KNOWN / 7 BLOCKED_NEEDS_USER / 7 OUT_OF_SCOPE
+- [x] Stream #5 tail (2026-05-15): USER_HANDOFF §A resolved per user replies — items 1/3/5/6 user-DEFERRED, #4 chatgpt-study-mode OUT_OF_SCOPE (user-confirmed absent), #2 chatgpt-pulse IMPLEMENTED_GREEN (webai_chatgpt_pulse_get + _onboard, 3 reader/gate fix rounds, live status=ready real digest), #7 chatgpt-codex sub-MCP IMPLEMENTED_GREEN (4 tools live on LT-0I/CN-, 2 Opus-interactive SPA-timing fixes). Final: webai count 37, consumer-contract-1.4.0, 219 tests, library 65 GREEN/2 PATH_KNOWN/4 BLOCKED/8 OUT_OF_SCOPE.
 
 ## CAMPAIGN COMPLETE (2026-05-15)
 Surface 13→35 webai tools; consumer-contract-1.4.0; 204 unit tests; 3 sub-MCP

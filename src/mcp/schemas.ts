@@ -277,6 +277,20 @@ export const webAiChatgptCanvasExportInput = objectSchema<{ tab_url_contains: st
   timeout_ms: scalar.number("Timeout in milliseconds")
 }, ["tab_url_contains"]);
 
+
+export const webAiChatgptPulseGetInput = objectSchema<{ profile: string; tab_id?: string; wait_ready?: boolean; timeout_ms?: number }>({
+  profile: scalar.string("Managed browser profile name"),
+  tab_id: scalar.string("Optional managed tab id; tool allocates/navigates to https://chatgpt.com/pulse"),
+  wait_ready: scalar.boolean("Poll for pending Pulse to become ready until timeout_ms"),
+  timeout_ms: scalar.number("Maximum wait in milliseconds when wait_ready is true; defaults to 0")
+}, ["profile"]);
+
+export const webAiChatgptPulseOnboardInput = objectSchema<{ profile: string; tab_id?: string; confirmed?: boolean }>({
+  profile: scalar.string("Managed browser profile name"),
+  tab_id: scalar.string("Optional managed tab id; tool allocates/navigates to https://chatgpt.com/pulse"),
+  confirmed: scalar.boolean("Required true; Pulse onboarding is a durable account-state change")
+}, ["profile", "confirmed"]);
+
 export const webAiChatgptDeepResearchInput = objectSchema<{ prompt: string; profile: string; tab_url_contains?: string; timeout_ms?: number }>({
   prompt: scalar.string("Deep research prompt to send"),
   profile: scalar.string("Managed browser profile name"),

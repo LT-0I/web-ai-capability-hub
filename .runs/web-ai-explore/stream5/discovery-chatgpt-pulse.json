@@ -1,0 +1,83 @@
+{
+  "feature_id": "chatgpt-pulse",
+  "discovered_at": "2026-05-15",
+  "discovered_via": "live interactive browser, profile=chatgpt, CDP 9223, Chrome 148, account=Shark Pro plan",
+  "entry_route": "https://chatgpt.com/pulse  (note: before onboarding, /pulse 302-redirects to https://chatgpt.com/ and renders the Pulse onboarding modal on the home surface; AFTER onboarding completes, /pulse stays on https://chatgpt.com/pulse and renders the Pulse digest surface)",
+  "model_tier_notes": "No model picker is involved in Pulse onboarding or digest. Account is on a Pro plan but Pulse curation is automatic/server-side; no Pro-model action was taken. Safe.",
+  "onboarding_steps": [
+    {
+      "action": "navigate",
+      "selector": "browser:open \"https://chatgpt.com/pulse\" --tab-id <id>  (positional URL, NOT --url)",
+      "note": "Renders Radix dialog id #radix-_r_ch_ role=dialog. Onboarding modal text: 'Pulse can help you stay on top of anything. Each day, it curates research and reminders based on your goals, plans, and ongoing tasks.' Buttons: 'Get started', 'Close onboarding'."
+    },
+    {
+      "action": "click",
+      "selector": "//div[@role='dialog']//button[normalize-space(.)='Get started']",
+      "fallback_selector": "button.btn-primary.btn-large inside #radix-_r_ch_ (classes: 'btn btn-primary btn-large w-full mt-9 h-12 rounded-full', no data-testid/id)",
+      "note": "AUTHORIZED one-time account-onboarding click. Advances dialog to Step 1 of 2."
+    },
+    {
+      "action": "observe",
+      "selector": "div[role='dialog'] (#radix-_r_ch_)",
+      "note": "Step 1 of 2: 'What would you like Pulse to keep track of? Choose a few focus areas to start.' Focus-area chips are <button type=button class='flex w-full items-center justify-between gap-3 py-3 text-start'> with emoji+label text. Available chips include: 'Fitness routine','Weekly meal planning','Reading and learning list','Daily focus plan','Learning goals','Quick news recap','Home reset checklist','Workout ideas','Career growth check-in','Money check-in','Language practice','Creative side projects','Wellness routines','Quick meal ideas'. There is also a 'Share anything...' free-text button. Footer: 'Step 1 of 2', 'Next', 'Go back' (button[aria-label=\"Go back\"]), 'Close onboarding' (button[aria-label=\"Close onboarding\"])."
+    }
+  ],
+  "set_news_pulse_steps": [
+    {
+      "action": "click",
+      "selector": "//div[@role='dialog']//button[contains(normalize-space(.),'Quick news recap')]",
+      "note": "Selects the NEWS focus area. After click the chip gains attribute aria-pressed=\"true\" (this is the deterministic 'selected' signal for any focus chip). Selecting multiple chips is allowed; clicking again toggles aria-pressed back to false."
+    },
+    {
+      "action": "verify",
+      "selector": "//div[@role='dialog']//button[contains(normalize-space(.),'Quick news recap')][@aria-pressed='true']",
+      "note": "Confirms the news topic is registered for Pulse curation."
+    },
+    {
+      "action": "click",
+      "selector": "//div[@role='dialog']//button[normalize-space(.)='Next']",
+      "note": "Advances to Step 2 of 2: 'Give Pulse even more to work with - Connecting your email helps ChatGPT craft more accurate updates.' Buttons: 'Connect with Gmail', 'Skip for now', 'Go back' (button[aria-label=\"Go back\"])."
+    },
+    {
+      "action": "click",
+      "selector": "//div[@role='dialog']//button[normalize-space(.)='Skip for now']",
+      "note": "SAFETY: chose 'Skip for now'. 'Connect with Gmail' is an external OAuth account linkage requiring credential entry and was NOT authorized. Skipping completes onboarding and does NOT impair the news Pulse. After this click the modal closes and the URL becomes https://chatgpt.com/pulse (no longer redirecting to /)."
+    }
+  ],
+  "digest_surface": {
+    "route": "https://chatgpt.com/pulse",
+    "container_selector": "Pulse content is rendered as plain non-interactive divs on the /pulse page (NOT exposed as discrete accessibility nodes; no data-testid on the Pulse container). Stable page-identity anchors on /pulse: button[aria-label=\"Actions\"] (id=#radix-_r_gk_, the top-right '...' menu) AND a 'Open settings' button (//button[normalize-space(.)='Open settings']).",
+    "completion_gate_selector": "TEXT-BASED gate read from page.visibleText (browser:read --mode full, field visibleText). PENDING/EMPTY state (digest NOT ready) contains the literal phrase 'Your first Pulse is in the works' and/or 'Check back in about 30 minutes'. READY state: those phrases are absent and digest cards/topic sections are present instead, with the page still anchored by button[aria-label=\"Actions\"] (#radix-_r_gk_). Recommended gate logic: digest_ready == ( url endsWith '/pulse' AND button[aria-label=\"Actions\"] present AND visibleText does NOT contain 'is in the works' AND visibleText does NOT contain 'Check back in' ). A fresh digest is regenerated every morning ('A fresh update lands every morning').",
+    "sample_evidence": "Post-onboarding day-0 PENDING state (verified live + screenshot data/screenshots/2026-05-16T03-28-59-443Z-ChatGPT.png): page header 'Pulse'; heading 'Your first Pulse is in the works'; subtext 'Check back in about 30 minutes to see it all come together.'; banner 'A fresh update lands every morning. You'll be notified when there's something new. You can adjust this anytime in Settings.'; 'Open settings' button present. The READY digest could not be sampled live because Pulse generates the first digest server-side ~30 min after onboarding (and refreshes each morning) - see caveats."
+  },
+  "screenshots_or_dom_excerpts": {
+    "screenshot": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/screenshots/2026-05-16T03-28-59-443Z-ChatGPT.png",
+    "onboarding_dialog_id": "#radix-_r_ch_ (role=dialog)",
+    "pulse_actions_button": "button[aria-label=\"Actions\"] / #radix-_r_gk_ (aria-haspopup=menu)",
+    "pulse_settings_button": "//button[normalize-space(.)='Open settings']  (NOTE: this CLI's confirmation policy flags 'settings' clicks as sensitive and blocks them unless --confirmed is passed)"
+  },
+  "proposed_mcp_tool": {
+    "name": "webai_chatgpt_pulse_get",
+    "params": {
+      "profile": "chatgpt (required)",
+      "tab_id": "optional managed tab id; tool allocates/navigates to https://chatgpt.com/pulse",
+      "wait_ready": "optional bool (default false). If true, poll up to --timeout-ms for the completion gate to flip from pending to ready.",
+      "timeout_ms": "optional, default 0 (no wait). Pulse first-digest latency is ~30 min so callers should treat PENDING as a normal non-error state."
+    },
+    "output_fields": [
+      "route (https://chatgpt.com/pulse)",
+      "status: one of 'ready' | 'pending' | 'not_onboarded'",
+      "digest_text (visibleText of the Pulse content region, only when status=ready)",
+      "generated_hint (e.g. 'A fresh update lands every morning' / 'Check back in about 30 minutes' when pending)"
+    ],
+    "completion_detection": "status='not_onboarded' when /pulse 302-redirects to https://chatgpt.com/ AND a dialog #radix-_r_ch_ with 'Get started' is present (caller must run onboarding first / surface a stable contract error like PULSE_NOT_ONBOARDED rather than silently onboarding). status='pending' when url endsWith /pulse AND visibleText contains 'is in the works' or 'Check back in'. status='ready' when url endsWith /pulse AND button[aria-label=\"Actions\"] present AND visibleText lacks both pending phrases. No graceful fallback: if the page is neither onboarded nor a recognizable pulse state, surface ELEMENT_NOT_FOUND.",
+    "onboarding_companion_tool": "Optionally a separate webai_chatgpt_pulse_onboard tool that performs the onboarding_steps + set_news_pulse_steps (Get started -> select focus chips -> Next -> Skip for now). Keep it separate from the read tool because onboarding is a durable account state change that should require an explicit --confirmed gate (matches this repo's no-silent-side-effect policy)."
+  },
+  "caveats": [
+    "Pulse first digest is generated server-side ~30 minutes after onboarding and then refreshes every morning; the READY digest DOM/text could not be captured in this session (only the day-0 PENDING state was observed live). A follow-up live read of https://chatgpt.com/pulse ~30+ min after this run (or next morning) is needed to capture a real READY digest sample and confirm the digest card/container DOM shape. Recommend the user or a scheduled re-read does this.",
+    "The Pulse digest content is NOT exposed as accessibility/interactive nodes - it is plain divs with no data-testid. The only reliable detection is the text-gate + the stable button[aria-label=\\\"Actions\\\"] (#radix-_r_gk_) anchor. A codex implementer should extract the digest via page.visibleText or a DOM text query of the main content column, NOT via role-based locators.",
+    "This CLI's built-in confirmation policy (src/actions/confirmationPolicy.ts) flags clicks whose selector/content 'looks sensitive' (the word 'settings' triggered it) and blocks them unless --confirmed is supplied. The Pulse 'Open settings' panel was therefore NOT opened; the news topic was confirmed registered via the Step-1 chip aria-pressed=true state instead, which is sufficient.",
+    "Gmail connect (Step 2) was intentionally skipped (no credential entry / unauthorized account linkage). News Pulse works without it.",
+    "Onboarding is a one-time durable account-state change; it has now been completed on the chatgpt profile, so future /pulse loads will NOT show the onboarding modal (status will be pending or ready, never not_onboarded, for this profile)."
+  ]
+}
