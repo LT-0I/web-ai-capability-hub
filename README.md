@@ -1,16 +1,19 @@
 ﻿# web-ai-capability-hub
 
-A local-first TypeScript package for cataloging, querying, and executing web AI interface workflows through visible, user-authorized browser sessions.
+A local-first TypeScript package (npm name `web-ai-research-automation-hub`) for cataloging, querying, and executing web AI interface workflows and authorized research-database automation through visible, user-authorized browser sessions.
+
+> **Status:** first stable, reasonably feature-complete version — `package 0.6.0`, public surface `consumer-contract-1.4.0`. Clean build green; full test suite 370/370 passing.
 
 ## What is this
 
-`web-ai-capability-hub` is a TypeScript package that:
+`web-ai-research-automation-hub` is a TypeScript package that:
 
 - Catalogs web AI interface capabilities (Gemini, ChatGPT, Claude) via CDP browser automation.
 - Stores capability metadata in SQLite for a queryable knowledge base, with JSON fallback/export support.
 - Provides an MCP server for AI assistants to query capabilities and execute browser workflows.
 - Supports parallel tab orchestration for multi-task automation.
-- Connects to institutional research databases such as CNKI, Web of Science (WoS), PubMed, Scopus, and IEEE Xplore.
+- Exposes **37 `webai_` tools** for ChatGPT / Claude / Gemini (send prompt, upload & query, deep research, canvas/design, image/video/music/file generation, conversation & workspace management).
+- Exposes a **separate research-database sub-MCP** distinct from the webai surface: **40 NUAA STEM databases × `search` / `filter` / `export` = 120 per-DB `research_*` tools** (+ `research_nuaa_import` = 121 `research_`-prefixed contract rows), covering AIAA, IEEE, ACM, Web of Science, Springer, ScienceDirect, Wiley, Nature, arXiv, DBLP, IncoPat, 万方, and 28 more. Walled databases surface a stable contract error code (e.g. `HUMAN_HANDOFF_REQUIRED`, `PLAN_OR_QUOTA_REQUIRED`) rather than a silent fallback or a synthesized artifact.
 
 The package is designed for personal/local development and authorized research workflows. It does **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license restrictions, or service terms. Users authenticate manually in a normal visible browser profile; this project reuses that profile through Chrome DevTools Protocol (CDP) without exporting cookies or credentials.
 
@@ -199,6 +202,25 @@ MCP resources include:
 - `workflows://runs`
 - `browser-profiles://list`
 - `site-registry://sites`
+
+### Public surface (consumer contract)
+
+The full CLI / MCP / TS public surface is versioned and round-tripped through
+`configs/consumer-contract.json`, `docs/CONSUMER_CONTRACT.md`, and
+`tests/consumerContract.test.ts`. Current locks (`consumer-contract-1.4.0`,
+`package 0.6.0`):
+
+- **37** `webai_` tools (ChatGPT / Claude / Gemini).
+- **120** per-DB `research_*` tools across **40** NUAA STEM databases
+  (`search` / `filter` / `export` each) + `research_nuaa_import`
+  (= 121 `research_`-prefixed rows), as a separate database sub-MCP.
+- **11** sub-MCP tools, **32** stable error codes, **23**
+  `forbidden_output_fields` (e.g. `cdpEndpoint`, `webSocketDebuggerUrl`,
+  `profileDir`, `cookies`) redacted for safe consumers.
+
+A contract bump is a deliberate act; additive per-DB expansion within the same
+minor does not bump the version. No silent fallbacks, no synthesized artifacts —
+DOM/access drift surfaces a stable error code from the taxonomy.
 
 ## Capability catalogs
 
