@@ -170,6 +170,9 @@ Stable JSON keys are exactly:
 | `research:iest:search` | `research_iest_search` | `researchIestSearch` | experimental | read | no |
 | `research:iest:filter` | `research_iest_filter` | `researchIestFilter` | experimental | read | no |
 | `research:iest:export` | `research_iest_export` | `researchIestExport` | experimental | mutate | no |
+| `research:incopat:search` | `research_incopat_search` | `researchIncopatSearch` | experimental | read | no |
+| `research:incopat:filter` | `research_incopat_filter` | `researchIncopatFilter` | experimental | read | no |
+| `research:incopat:export` | `research_incopat_export` | `researchIncopatExport` | experimental | mutate | no |
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
@@ -555,3 +558,10 @@ Frontiers, arXiv, SIAM, De Gruyter, World Scientific, and Royal Society keep the
 
 SCOAP3, DBLP, SciELO, INSPIRE-HEP, and PubScholar keep their module-owned `ConsumerErrorCodes` behavior: live blockers and artifact-verification failures surface honestly instead of falling back or fabricating success.
 
+### IncoPat research database tools
+
+- `research:incopat:search` / `research_incopat_search`: always returns `result_count`, `items`, `query_url`, `results_url`, `normalized_query`.
+- `research:incopat:filter` / `research_incopat_filter`: always returns `result_count`, `items`, `refined_url`, `confirm_title`, `unfiltered_count`, `country`, `breadcrumb`.
+- `research:incopat:export` / `research_incopat_export`: always returns `artifact_path`, `bytes`, `sha256`, `format`, `result_count`, `results_url` and may include `country`; it preserves the verified trusted-CDP IncoPat per-row `a.pdf` artifact-click PDF path and does not synthesize artifacts.
+
+IncoPat keeps its module-owned `ConsumerErrorCodes` behavior (`LOGIN_REQUIRED`, `PLAN_OR_QUOTA_REQUIRED`, `ELEMENT_NOT_FOUND`, `ARTIFACT_DOWNLOAD_TIMEOUT`, `ARTIFACT_VERIFICATION_FAILED`, `MODE_UNCERTAIN`, `INVALID_ARGS`, `COMMAND_TIMEOUT`): live blockers and artifact-verification failures surface honestly instead of falling back or fabricating success.

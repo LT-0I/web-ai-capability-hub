@@ -2513,6 +2513,74 @@
       "may_contain_sensitive_local_fields": false
     },
     {
+      "cli_name": "research:incopat:search",
+      "mcp_name": "research_incopat_search",
+      "ts_export": "researchIncopatSearch",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "query_url",
+          "results_url",
+          "normalized_query"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:incopat:filter",
+      "mcp_name": "research_incopat_filter",
+      "ts_export": "researchIncopatFilter",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "result_count",
+          "items",
+          "refined_url",
+          "confirm_title",
+          "unfiltered_count",
+          "country",
+          "breadcrumb"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "research:incopat:export",
+      "mcp_name": "research_incopat_export",
+      "ts_export": "researchIncopatExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "query"
+      ],
+      "output_keys": {
+        "always_present": [
+          "artifact_path",
+          "bytes",
+          "sha256",
+          "format",
+          "result_count",
+          "results_url"
+        ],
+        "optional": [
+          "country"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "capability:update",
       "mcp_name": "capability_update",
       "ts_export": "CapabilityUpdater.updateFromSnapshot",
@@ -4698,7 +4766,21 @@
     "iest.bytes": "Journal of the IEST Local citation artifact byte count.",
     "iest.sha256": "Journal of the IEST Local citation artifact SHA-256 digest.",
     "iest.format": "Journal of the IEST Citation/export format selected for the research database workflow.",
-    "iest.article_url": "Journal of the IEST Public article URL used by the citation export workflow."
+    "iest.article_url": "Journal of the IEST Public article URL used by the citation export workflow.",
+    "incopat.result_count": "IncoPat public search/result count; safe bibliographic metadata.",
+    "incopat.items": "IncoPat public patent-result summaries; publication metadata only.",
+    "incopat.query_url": "IncoPat simple-search URL; submitted query is entered via UI and should be treated as user query metadata.",
+    "incopat.results_url": "IncoPat results URL after query/export navigation; may encode query/facet state.",
+    "incopat.normalized_query": "IncoPat normalized search expression derived from the submitted query; treat as user query metadata.",
+    "incopat.refined_url": "IncoPat refined results URL containing applied facet state; treat as query/facet metadata.",
+    "incopat.confirm_title": "IncoPat browser page title confirming query/refinement; safe bibliographic metadata.",
+    "incopat.unfiltered_count": "IncoPat public unfiltered result count observed before refinement; safe bibliographic metadata.",
+    "incopat.country": "IncoPat country facet code applied by the refinement/export workflow; safe facet metadata.",
+    "incopat.breadcrumb": "IncoPat visible search-state breadcrumb; treat as submitted query/facet metadata.",
+    "incopat.artifact_path": "IncoPat local PDF artifact path written by the export workflow.",
+    "incopat.bytes": "IncoPat local PDF artifact byte count.",
+    "incopat.sha256": "IncoPat local PDF artifact SHA-256 digest.",
+    "incopat.format": "IncoPat export format selected for the research database workflow."
   },
   "release_notes": [
     "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

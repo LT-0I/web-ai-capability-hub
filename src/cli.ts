@@ -32,7 +32,7 @@ import { runHealthCheck } from "./capabilities/healthCheck";
 import { CapabilityUpdater } from "./capabilities/updater";
 import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
 import { CapabilityLibraryImporter } from "./adapters/research/capabilityLibraryImporter";
-import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport } from "./mcp/researchdb";
+import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport } from "./mcp/researchdb";
 import { WorkflowCompiler, listWorkflowFiles } from "./workflows/compiler";
 import { WorkflowExecutor } from "./workflows/executor";
 import { HealthCheckReport } from "./shared/types";
@@ -649,6 +649,9 @@ Core commands:
   research:iest:search <query>|--query <query> [--field all|alternative-title|publisher|affiliation|subject|abstract|fulltext|title|identifier|author] [--page-size N] [--json]
   research:iest:filter <query>|--query <query> [--access <value>] [--type <value>] [--from-year YYYY] [--to-year YYYY] [--refine-query <query>] [--refine-field <field>] [--json]
   research:iest:export [--article-url <url>|--article-path <path>] [--format ris|bib|enw] [--download-dir <abs>] --confirmed [--json]
+  research:incopat:search <query>|--query <query> [--page-size N] [--json]
+  research:incopat:filter <query>|--query <query> [--country CN|US|KR|WO|EP] [--page-size N] [--json]
+  research:incopat:export <query>|--query <query> [--country <code>] [--format pdf] [--download-dir <abs>] --confirmed [--json]
 
   workflow:list [--json]
   workflow:compile <workflow.yaml|json> [--json]
@@ -772,6 +775,9 @@ Core commands:
   research:iest:search <query>|--query <query> [--field all|alternative-title|publisher|affiliation|subject|abstract|fulltext|title|identifier|author] [--page-size N] [--json]
   research:iest:filter <query>|--query <query> [--access <value>] [--type <value>] [--from-year YYYY] [--to-year YYYY] [--refine-query <query>] [--refine-field <field>] [--json]
   research:iest:export [--article-url <url>|--article-path <path>] [--format ris|bib|enw] [--download-dir <abs>] --confirmed [--json]
+  research:incopat:search <query>|--query <query> [--page-size N] [--json]
+  research:incopat:filter <query>|--query <query> [--country CN|US|KR|WO|EP] [--page-size N] [--json]
+  research:incopat:export <query>|--query <query> [--country <code>] [--format pdf] [--download-dir <abs>] --confirmed [--json]
   capability:library:import [docs/capability-library.json] [--json]
   site:capture-map --site <id> [--profile research-default] [--fixture <html>] [--json]
   scheduler:run --interval-minutes <n> [--json]
@@ -1661,6 +1667,22 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   if (command === "research:iest:export") {
     if (asBoolean(options.confirmed) !== true) throw new Error("research:iest:export requires --confirmed because it writes a browser-downloaded artifact");
     output(await researchIestExport({ article_url: asString(options["article-url"] || options.articleUrl), article_path: asString(options["article-path"] || options.articlePath), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:incopat:search") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIncopatSearch({ query: query || "", page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:incopat:filter") {
+    const query = asString(options.query) || positionals[0];
+    output(await researchIncopatFilter({ query: query || "", country: asString(options.country), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
+    return;
+  }
+  if (command === "research:incopat:export") {
+    if (asBoolean(options.confirmed) !== true) throw new Error("research:incopat:export requires --confirmed because it writes a browser-downloaded artifact");
+    const query = asString(options.query) || positionals[0];
+    output(await researchIncopatExport({ query: query || "", country: asString(options.country), format: asString(options.format) as any, download_dir: asString(options["download-dir"] || options.downloadDir), page_size: asNumber(options["page-size"] || options.pageSize), profile: asString(options.profile), cdp_port: asNumber(options["cdp-port"] || options.cdpPort), tab_id: asString(options["tab-id"] || options.tabId) }), options);
     return;
   }
   if (command === "capability:library:import") {

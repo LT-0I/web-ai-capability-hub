@@ -38,3 +38,4 @@ export * from "./opticsjournal/tools";
 export * from "./crc/tools";
 export * from "./cellpress/tools";
 export * from "./iest/tools";
+export * from "./incopat/tools";
