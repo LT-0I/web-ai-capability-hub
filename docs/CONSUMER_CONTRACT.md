@@ -62,6 +62,7 @@ Stable JSON keys are exactly:
 | `capability:query` | `capability_query` | `CapabilityDatabase.queryCapabilities` | experimental | read | no |
 | `capability:export` | `capability_export` | `CapabilityDatabase.exportJson` | experimental | read | yes |
 | `capability:library:import` | `capability_library_import` | `CapabilityLibraryImporter.importFile` | experimental | mutate | no |
+| `research:nuaa:import` | `research_nuaa_import` | `ResearchDbImporter.importNuaaSeed` | experimental | mutate | no |
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
@@ -305,3 +306,12 @@ Within contract major version `1.x`, stable command/tool/resource schemas will n
 ## Integration registry surface
 
 `docs/capability-library.json` is the editable seed. `capability:library:import` loads that seed into SQLite `integration_registry`, and `capability-library://features` exposes the authoritative imported rows. Public fields `feature_id`, `service`, `name`, `status`, and `mcp_tool` are classified as safe governance metadata; no forbidden fields are introduced.
+
+
+## Separate research database MCP surface
+
+`research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only]` is a non-webai database import surface. Its MCP tool is `research_nuaa_import`; it is intentionally not `webai_`-prefixed, does not live under the webai sub-MCP family, and is registered as a plain main MCP tool alongside `site_registry_import`.
+
+The implementation lives under `src/mcp/researchdb/` and reuses the existing site registry table/import path without a schema migration or new table. The optional `--stem-only` / `stem_only` filter keeps only records whose `raw.classification.science_engineering` value is `true`. The stable output keys are `imported`, `sites`, and `path`.
+
+The NUAA governance fields `site_registry.classification.science_engineering` and `site_registry.classification.matched_subjects` are classified as non-sensitive public STEM metadata.

@@ -150,6 +150,23 @@
       "may_contain_sensitive_local_fields": false
     },
     {
+      "cli_name": "research:nuaa:import",
+      "mcp_name": "research_nuaa_import",
+      "ts_export": "ResearchDbImporter.importNuaaSeed",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "imported",
+          "sites",
+          "path"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "capability:update",
       "mcp_name": "capability_update",
       "ts_export": "CapabilityUpdater.updateFromSnapshot",
@@ -1885,7 +1902,9 @@
     "integration_registry.service": "Public service name; safe governance metadata.",
     "integration_registry.name": "Public feature name; safe governance metadata.",
     "integration_registry.status": "Public integration campaign status; safe governance metadata.",
-    "integration_registry.mcp_tool": "Public MCP tool name; safe governance metadata."
+    "integration_registry.mcp_tool": "Public MCP tool name; safe governance metadata.",
+    "site_registry.classification.science_engineering": "Public STEM/non-STEM classification flag; safe governance metadata.",
+    "site_registry.classification.matched_subjects": "Public matched STEM subject labels; safe governance metadata."
   },
   "release_notes": [
     "consumer-contract-1.4.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

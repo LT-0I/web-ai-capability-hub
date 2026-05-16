@@ -12,13 +12,14 @@ import { captureSiteMapForSnapshot, saveSiteMap } from "../maintenance/captureSi
 import { loadRecipeById } from "../recipes/loader";
 import { RecipeEngine } from "../recipes/engine";
 import { safeFilename } from "../utils/paths";
-import { RuntimeSchema } from "../utils/schema";
+import { RuntimeSchema, objectSchema, scalar } from "../utils/schema";
 import { CapabilityDatabase } from "../capabilities/database";
 import { CapabilityUpdater } from "../capabilities/updater";
 import { WorkflowCompiler } from "../workflows/compiler";
 import { WorkflowExecutor } from "../workflows/executor";
 import { SiteRegistryImporter } from "../adapters/research/siteRegistryImporter";
 import { CapabilityLibraryImporter } from "../adapters/research/capabilityLibraryImporter";
+import { ResearchDbImporter } from "./researchdb";
 import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
 import { consumerHealth } from "../consumer/health";
@@ -97,6 +98,11 @@ export interface ToolSpec {
   schema: RuntimeSchema<any>;
   handler(args: any, runtime: Required<BrowserToolRuntime>): Promise<unknown>;
 }
+
+const researchNuaaImportInput = objectSchema<{ path?: string; stem_only?: boolean }>({
+  path: { ...scalar.string("NUAA STEM inventory JSON path; defaults to configs/research/nuaa_stem_inventory.json"), default: "configs/research/nuaa_stem_inventory.json" },
+  stem_only: { ...scalar.boolean("Only import rows classified as science_engineering"), default: false }
+}, []);
 
 function runtimeOrDefault(runtime?: BrowserToolRuntime): Required<BrowserToolRuntime> {
   const database = runtime?.database || new CapabilityDatabase();
@@ -2538,6 +2544,12 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Import paid research database site registry entries into the local capability database.",
     schema: siteRegistryImportInput,
     handler: async (args, runtime) => new SiteRegistryImporter(runtime.database).importFile(args.path)
+  },
+  {
+    name: "research_nuaa_import",
+    description: "Import the NUAA STEM research database seed into the local capability database.",
+    schema: researchNuaaImportInput,
+    handler: async (args, runtime) => new ResearchDbImporter(runtime.database).importNuaaSeed(args.path ?? "configs/research/nuaa_stem_inventory.json", { stemOnly: !!args.stem_only })
   },
   {
     name: "capability_library_import",

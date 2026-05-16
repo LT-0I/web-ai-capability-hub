@@ -12,6 +12,7 @@ import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
 import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
+import { subMcpToolSpecs } from "../src/mcp/submcp";
 
 type Scenario = {
   name: string;
@@ -355,6 +356,37 @@ test("stream5 final error_codes count is 32", () => {
     assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes(code),
       `stream5 error code missing from TS export: ${code}`);
   }
+});
+
+test("researchdb NUAA import is separate from webai sub-MCP and locks contract counts", () => {
+  const manifest = contract();
+  const packageJson = readJson("package.json");
+  const mcpToolNames = listMcpTools().map((tool) => tool.name);
+  const subMcpToolNames = subMcpToolSpecs.map((tool) => tool.name);
+  const row = manifest.commands.find((command: any) => command.mcp_name === "research_nuaa_import");
+
+  assert.ok(row, "research_nuaa_import contract row missing");
+  assert.equal(row.cli_name, "research:nuaa:import");
+  assert.equal(row.ts_export, "ResearchDbImporter.importNuaaSeed");
+  assert.equal(row.maturity, "experimental");
+  assert.equal(row.safety_class, "mutate");
+  assert.deepEqual(row.required_args, []);
+  assert.deepEqual(row.output_keys.always_present, ["imported", "sites", "path"]);
+  assert.equal(row.may_contain_sensitive_local_fields, false);
+  assert.ok(mcpToolNames.includes("research_nuaa_import"), "research_nuaa_import missing from listMcpTools()");
+  assert.equal("research_nuaa_import".startsWith("webai_"), false, "research_nuaa_import must not be webai-prefixed");
+  assert.equal(mcpToolNames.includes("webai_research_nuaa_import"), false, "webai-prefixed NUAA tool must not exist");
+  assert.equal(subMcpToolNames.includes("research_nuaa_import"), false, "research_nuaa_import must not be registered via subMcpToolSpecs");
+  assert.equal(expectedWebaiToolCount, 37, "expectedWebaiToolCount still 37");
+  assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
+  assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 37, "webai command rows still 37");
+  assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 37, "webai MCP tools still 37");
+  assert.equal(manifest.error_codes.length, 32, "error codes still 32");
+  assert.equal(manifest.contract_version, "consumer-contract-1.4.0");
+  assert.equal(packageJson.version, "0.6.0");
+  assert.equal(manifest.package_version, "0.6.0");
+  assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public STEM/non-STEM classification flag; safe governance metadata.");
+  assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched STEM subject labels; safe governance metadata.");
 });
 
 test("no webai command row exposes forbidden output fields", () => {
