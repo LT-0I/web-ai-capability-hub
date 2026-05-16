@@ -1806,6 +1806,8 @@
   ],
   "forbidden_output_fields": [
     "cdpEndpoint",
+    "cdp_port",
+    "cdp_endpoint",
     "webSocketDebuggerUrl",
     "profileDir",
     "profile_dir",

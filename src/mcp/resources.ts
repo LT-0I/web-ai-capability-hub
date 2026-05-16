@@ -1,4 +1,5 @@
 import { CapabilityDatabase } from "../capabilities/database";
+import { assertNoForbidden, stripForbidden } from "./forbiddenFields";
 
 export interface McpResourceDefinition { uri: string; name: string; description: string; mimeType: string; }
 
@@ -17,19 +18,24 @@ export function listMcpResources(): McpResourceDefinition[] {
 
 export function readMcpResource(uri: string, database = new CapabilityDatabase()): unknown {
   const exported = database.exportJson();
-  if (uri === "capabilities://targets") return exported.service_targets;
-  if (uri.startsWith("capabilities://target/") && uri.endsWith("/latest")) {
+  let result: unknown;
+  if (uri === "capabilities://targets") result = exported.service_targets;
+  else if (uri.startsWith("capabilities://target/") && uri.endsWith("/latest")) {
     const targetId = uri.replace("capabilities://target/", "").replace("/latest", "");
-    return database.latestCapture(targetId);
+    result = database.latestCapture(targetId);
   }
-  if (uri.startsWith("capabilities://target/")) {
+  else if (uri.startsWith("capabilities://target/")) {
     const targetId = uri.replace("capabilities://target/", "");
-    return exported.capabilities.filter((capability) => capability.target_id === targetId);
+    result = exported.capabilities.filter((capability) => capability.target_id === targetId);
   }
-  if (uri === "workflows://definitions") return exported.workflow_definitions;
-  if (uri === "workflows://runs") return exported.workflow_runs;
-  if (uri === "browser-profiles://list") return exported.browser_profiles;
-  if (uri === "site-registry://sites") return exported.site_registry_entries;
-  if (uri === "capability-library://features") return exported.integration_registry;
-  throw new Error(`Unknown MCP resource: ${uri}`);
+  else if (uri === "workflows://definitions") result = exported.workflow_definitions;
+  else if (uri === "workflows://runs") result = exported.workflow_runs;
+  else if (uri === "browser-profiles://list") result = exported.browser_profiles;
+  else if (uri === "site-registry://sites") result = exported.site_registry_entries;
+  else if (uri === "capability-library://features") result = exported.integration_registry;
+  else throw new Error(`Unknown MCP resource: ${uri}`);
+
+  const safeResult = stripForbidden(result);
+  assertNoForbidden(safeResult);
+  return safeResult;
 }

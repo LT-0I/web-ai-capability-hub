@@ -226,6 +226,8 @@ Command rows define `required_args`, `output_keys.always_present`, and `output_k
 Safe consumers must strip these fields defensively even when using consumer-safe surfaces:
 
 - `cdpEndpoint`
+- `cdp_endpoint`
+- `cdp_port`
 - `webSocketDebuggerUrl`
 - `profileDir`
 - `profile_dir`
@@ -247,7 +249,7 @@ Safe consumers must strip these fields defensively even when using consumer-safe
 - `rawSnapshot`
 - `snapshot`
 
-The safe `consumer:health` surface is designed not to emit those fields, but downstream re-sanitization is still recommended for defense in depth.
+The safe `consumer:health` surface is designed not to emit those fields, but downstream re-sanitization is still recommended for defense in depth. The MCP tool boundary centrally rejects any final tool result containing forbidden keys with `SAFE_OUTPUT_REDACTION_REQUIRED`; the MCP resource boundary centrally projects forbidden keys out of database-backed resources and then asserts the sanitized payload is clean before returning it.
 
 ## Error code taxonomy
 

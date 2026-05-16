@@ -73,6 +73,7 @@ import {
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
+import { assertNoForbidden, stripForbidden } from "./forbiddenFields";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
@@ -301,8 +302,6 @@ const serviceDefaults: Record<WebAiService, { url: string; promptSelector: strin
 };
 
 const profileLeases = new Map<string, string>();
-const forbiddenOutputFields = new Set(["cdpEndpoint", "webSocketDebuggerUrl", "profileDir", "profile_dir", "executablePath", "executable_path", "cookies", "cookie", "tokens", "token", "Authorization", "authorization", "accountEmail", "account_email", "email", "dom", "html", "screenshot", "screenshotPath", "rawSnapshot", "snapshot"]);
-
 class WebAiToolError extends Error {
   errorCode: string;
   evidence?: Record<string, unknown>;
@@ -328,17 +327,7 @@ function releaseProfileLease(profile: string, lease: string): void {
 function safeTaskId(): string { return `task_${Date.now()}_${crypto.randomBytes(6).toString("hex")}`; }
 
 function ensureNoForbiddenOutput(value: unknown): void {
-  const seen: string[] = [];
-  const visit = (node: any) => {
-    if (!node || typeof node !== "object") return;
-    if (Array.isArray(node)) { node.forEach(visit); return; }
-    for (const [key, child] of Object.entries(node)) {
-      if (forbiddenOutputFields.has(key)) seen.push(key);
-      visit(child);
-    }
-  };
-  visit(value);
-  if (seen.length) throw new WebAiToolError(ConsumerErrorCodes.SAFE_OUTPUT_REDACTION_REQUIRED, `tool response contains forbidden field(s): ${[...new Set(seen)].join(", ")}`, { fields: [...new Set(seen)] });
+  assertNoForbidden(value);
 }
 
 export function safeOutput<T extends Record<string, unknown>>(value: T): T {
@@ -2513,10 +2502,10 @@ const coreToolSpecs: ToolSpec[] = [
     schema: workflowRunInput,
     handler: async (args, runtime) => {
       const plan = workflowExecutePlan(args, runtime.database);
-      if (args.dryRun !== false) return new WorkflowExecutor({ database: runtime.database, actionExecutor: executor(runtime.session) }).runPlan(plan, { dryRun: true });
+      if (args.dryRun !== false) return stripForbidden(await new WorkflowExecutor({ database: runtime.database, actionExecutor: executor(runtime.session) }).runPlan(plan, { dryRun: true }));
       const approvalGates = workflowApprovalGates(plan);
       if (approvalGates.length) return workflowApprovalRequiredResponse(plan, approvalGates, runtime.database);
-      return runWorkflowPlanInManagedPage(args, runtime, plan);
+      return stripForbidden(await runWorkflowPlanInManagedPage(args, runtime, plan));
     }
   },
   {
@@ -2532,13 +2521,13 @@ const coreToolSpecs: ToolSpec[] = [
         if (approvalGates.length) return workflowApprovalRequiredResponse(plan, approvalGates, runtime.database);
 
         const result = await runWorkflowPlanInManagedPage(args, runtime, plan);
-        return {
+        return stripForbidden({
           ok: result.ok,
           status: workflowExecuteStatus(result.ok),
           plan: result.plan,
           finalResult: result.finalResult,
           stepResults: result.results
-        };
+        });
       } catch (error) {
         return { ok: false, status: "error", error: error instanceof Error ? error.message : String(error) };
       }
@@ -2665,5 +2654,7 @@ export async function callMcpTool(name: string, args: unknown, runtime?: Browser
   const resolvedRuntime = runtimeOrDefault(runtime);
   if (typeof parsed.target === "string") resolvedRuntime.session.setTarget(parsed.target);
   else if (typeof parsed.site === "string") resolvedRuntime.session.setTarget(parsed.site);
-  return spec.handler(parsed, resolvedRuntime);
+  const result = await spec.handler(parsed, resolvedRuntime);
+  assertNoForbidden(result);
+  return result;
 }
