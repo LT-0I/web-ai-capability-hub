@@ -1,0 +1,345 @@
+[
+  {
+    "id": "chatgpt-canvas",
+    "service": "chatgpt",
+    "name": "Canvas (collaborative document/code editing surface)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-canvas-export",
+    "service": "chatgpt",
+    "name": "Canvas export (PDF/DOCX/Markdown)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-sidebar-codex",
+    "service": "chatgpt",
+    "name": "Sidebar Codex (code agent / cloud coding environment)",
+    "sub_mcp_candidate": true,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-deep-research",
+    "service": "chatgpt",
+    "name": "Deep Research (multi-source web research, long synthesis)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-model-selector",
+    "service": "chatgpt",
+    "name": "Model selection (Thinking/Instant/Pro)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-projects",
+    "service": "chatgpt",
+    "name": "Projects (grouped conversations with shared context)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-tasks",
+    "service": "chatgpt",
+    "name": "Tasks (scheduled recurring ChatGPT tasks)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-gpt-store",
+    "service": "chatgpt",
+    "name": "GPT Store (custom GPT discovery and launch)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-memory",
+    "service": "chatgpt",
+    "name": "Memory (persistent user facts across conversations)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-settings-personalization",
+    "service": "chatgpt",
+    "name": "Settings: Personalization",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-settings-data-controls",
+    "service": "chatgpt",
+    "name": "Settings: Data controls (training opt-out, export data)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-share-conversation",
+    "service": "chatgpt",
+    "name": "Share conversation (link / social)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-data-analyst",
+    "service": "chatgpt",
+    "name": "Data Analyst (upload CSV/XLSX → chart + code execution)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-apps-mcp",
+    "service": "chatgpt",
+    "name": "Apps / MCP connectors (integrate external tools)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-search-web",
+    "service": "chatgpt",
+    "name": "Web search (real-time Bing-powered search in chat)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-image-visual-query",
+    "service": "chatgpt",
+    "name": "Image / visual query (upload image → ask about it)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "chatgpt-code-generation",
+    "service": "chatgpt",
+    "name": "Code generation + download (Python, JS, etc.)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md"
+  },
+  {
+    "id": "claude-artifacts-export",
+    "service": "claude",
+    "name": "Artifacts full export (download rendered artifact as file)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-design",
+    "service": "claude",
+    "name": "Claude Design (Figma-style interactive design tool at /design)",
+    "sub_mcp_candidate": true,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-model-selector",
+    "service": "claude",
+    "name": "Model selection (Opus 4.7 / Sonnet 4.6 / Haiku 4.5)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-extended-thinking",
+    "service": "claude",
+    "name": "Extended thinking mode (Adaptive thinking)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-deep-research",
+    "service": "claude",
+    "name": "Research mode / Deep Research (multi-source web research)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-web-search",
+    "service": "claude",
+    "name": "Web search (inline search during chat)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-projects",
+    "service": "claude",
+    "name": "Projects (grouped conversations with shared context)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-style-presets",
+    "service": "claude",
+    "name": "Response style presets (Concise, Explanatory, Formal, custom)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-sharing",
+    "service": "claude",
+    "name": "Share conversation / artifact (link generation)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-conversation-management",
+    "service": "claude",
+    "name": "Conversation management (rename, delete, search)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-integrations-connectors",
+    "service": "claude",
+    "name": "Integrations / connectors (Google Drive, GitHub, etc.)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-skills",
+    "service": "claude",
+    "name": "Skills (tool-use capabilities)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-analysis-tool",
+    "service": "claude",
+    "name": "Analysis tool (code execution / data analysis in-chat)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-incognito-mode",
+    "service": "claude",
+    "name": "Incognito conversation (no history saved)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-settings-appearance",
+    "service": "claude",
+    "name": "Settings: Appearance (theme, font size, language) + Customize",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "claude-mermaid-live",
+    "service": "claude",
+    "name": "Mermaid live editor preview (in-artifact rendering)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md"
+  },
+  {
+    "id": "gemini-make-music",
+    "service": "gemini",
+    "name": "Make music / audio (Lyria music generation)",
+    "sub_mcp_candidate": true,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-deep-research",
+    "service": "gemini",
+    "name": "Deep Research (multi-source, long-form research)",
+    "sub_mcp_candidate": true,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-model-selector",
+    "service": "gemini",
+    "name": "Model selection (Fast / Thinking / Pro tiers)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-canvas-edit",
+    "service": "gemini",
+    "name": "Canvas inline editing (direct text editing in canvas panel)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-audio-overview",
+    "service": "gemini",
+    "name": "Audio overview (NotebookLM-style audio summary)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-gems",
+    "service": "gemini",
+    "name": "Gems (custom Gemini personas / assistants)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-scheduled-actions",
+    "service": "gemini",
+    "name": "Scheduled actions (recurring Gemini tasks)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-study-materials",
+    "service": "gemini",
+    "name": "Study materials / Guided learning (flashcards, quizzes, practice tests)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-long-context",
+    "service": "gemini",
+    "name": "Long context (1M token window, multi-document processing)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-workspace-integration",
+    "service": "gemini",
+    "name": "Google Workspace integration (Docs, Drive, Gmail, Calendar)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-connected-apps",
+    "service": "gemini",
+    "name": "Connected apps listing and management",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-personalization-memory",
+    "service": "gemini",
+    "name": "Personalization / memory (Gemini remembers user facts)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-share-chat",
+    "service": "gemini",
+    "name": "Share chat (link generation)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-conversation-management",
+    "service": "gemini",
+    "name": "Conversation management (rename, delete, search, pin)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-deep-think",
+    "service": "gemini",
+    "name": "Deep Think (Gemini extended reasoning mode)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  },
+  {
+    "id": "gemini-image-editing",
+    "service": "gemini",
+    "name": "Image editing (edit generated or uploaded images)",
+    "sub_mcp_candidate": false,
+    "recipe_ref": ".runs/web-ai-explore/stream5/recipes-gemini.md"
+  }
+]

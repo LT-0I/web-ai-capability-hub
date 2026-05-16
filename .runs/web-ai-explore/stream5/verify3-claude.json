@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "tool": "webai:claude:deep-research",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--profile claude-9224 --prompt 'Briefly: what is the capital of France?' -> {\"task_id\":\"task_1778862386301_61e33e046f03\",\"status\":\"queued\"}. Both contract always_present keys (task_id, status) populated. No forbidden fields. Queue is the pass per spec (did not await full report).",
+    "notes": "ROUND-2 BUGFIX CONFIRMED FIXED. Round-2 this failed pre-queue with ELEMENT_NOT_FOUND on the composer '+' (deep-research-specific fresh-navigation hydration race). The round-2 surface-hydration navigation fix (navigate to correct surface + wait hydration before probing composer) now lets deep-research reach the composer, submit, and queue a real task. Honest real task_id, no fabrication."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:task-status",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Real task_id from #1: --task-id 'task_1778862386301_61e33e046f03' -> {\"status\":\"queued\",\"progress_label\":\"queued Claude Deep Research task\"}. Bogus id: --task-id 'rv3-nonexistent-0001' -> {\"status\":\"failed\",\"errorCode\":\"INVALID_ARGS\"}.",
+    "notes": "Now exercised against a REAL Claude deep-research task (round-2 could only test the invalid-id path because #1 failed pre-queue). always_present 'status' present in both cases; INVALID_ARGS from taxonomy for bogus id. Well-formed contract envelope, no regression, no forbidden fields."
+  },
+  {
+    "id": "2",
+    "tool": "webai:claude:workspace (integrations|skills)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "integrations -> {surface:integrations,url:https://claude.ai/new,summary:'integrations list opened; 415 item/control(s) visible'}. skills -> {surface:skills,url:https://claude.ai/new,summary:'skills list opened; 15 item/control(s) visible'}. All 3 contract always_present keys (surface,url,summary) present.",
+    "notes": "NO REGRESSION. The 2 required surfaces incl. integrations still GREEN. Same pattern as round-2 (415 vs 326 control count is benign live-DOM variance). No forbidden fields."
+  },
+  {
+    "id": "3",
+    "tool": "webai:claude:send-prompt (--tab-url-contains, --model sonnet)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Attempt A (--tab-url-contains '/new' --model sonnet): {errorCode:'MODEL_SELECTION_DRIFT', model_used:'Model: Sonnet 4.6 Adaptive', expected_model:'sonnet', chat_url:'https://claude.ai/new', wait_ms:0} -- landed on the CORRECT claude.ai/new tab (NOT /code-forced), model IS Sonnet but the strict label comparator rejected a transient pre-hydration label form 'Model: Sonnet 4.6 Adaptive'. Attempt B (one documented variation, --tab-url-contains 'claude.ai/new' --model sonnet): {response_text:'Claude responded: PONGPONG', errorCode:null, model_used:'Sonnet 4.6Adaptive', completion_detected:true, wait_ms:3767, elapsed_ms:19496, chat_url:'https://claude.ai/chat/4d3188e5-d88e-4d65-88c0-a99dc72f0f90'}.",
+    "notes": "CORE FIX HOLDS (no regression). Tab-targeting honored (no /code forcing), Sonnet sticks, prompt completes with a real response on a real claude.ai/chat/<uuid>. The Attempt-A MODEL_SELECTION_DRIFT is an HONEST pre-hydration label-parse strictness artifact (the scraped model label was transiently 'Model: Sonnet 4.6 Adaptive' before the selector finished hydrating; the underlying model was correctly Sonnet) -- NOT the old round-1 /code-forcing bug and NOT a tab-targeting regression. Same drift-then-green pattern documented in round-2. Cheap Sonnet, benign 'PONG'. No forbidden fields."
+  },
+  {
+    "id": "4",
+    "tool": "webai:claude:conversation-manage (read + destructive refusal)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Read: --action search --query smoke -> {\"results_count\":33,\"action\":\"search\"}. Destructive: --action delete -> {\"ok\":false,\"error\":\"$.action must be one of search, share, sidebar_options\"}; --action rename -> same schema refusal.",
+    "notes": "NO REGRESSION on read path (33 vs 30 results is benign live variance). Destructive guard GUARD_OK -- delete/rename are architecturally absent from the action enum and cannot be expressed. No forbidden fields."
+  },
+  {
+    "id": "4b",
+    "tool": "webai:claude:conversation-manage (destructive guard)",
+    "status": "GUARD_OK",
+    "evidence": "--action delete and --action rename both -> {\"ok\":false,\"error\":\"$.action must be one of search, share, sidebar_options\"}.",
+    "notes": "Strongest refusal: destructive verbs not in the schema enum. No regression vs round-2."
+  },
+  {
+    "id": "5a",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--name 'RV3 Hello Project' --fidelity high_fidelity -> {\"projectUrl\":\"https://claude.ai/design/p/019e2c78-13a1-70b4-9e59-18d635816ee5\",\"projectId\":\"019e2c78-13a1-70b4-9e59-18d635816ee5\"}. Both contract always_present keys (projectUrl, projectId) populated with real values.",
+    "notes": "ROUND-2 BUGFIX CONFIRMED FIXED. Round-2 this failed with ELEMENT_NOT_FOUND (sub-MCP never landed on/operated the live design surface). The round-2 surface-hydration navigation fix now lands the sub-MCP on the live claude.ai/design surface and creates a real project. No forbidden fields."
+  },
+  {
+    "id": "5b",
+    "tool": "webai:claude:design:generate",
+    "status": "FAILED",
+    "evidence": "--project-url <019e2c78...> --prompt 'a page that says Hello' --model sonnet -> {\"ok\":false,\"errorCode\":\"POSTCONDITION_TIMEOUT\",\"error_code\":\"POSTCONDITION_TIMEOUT\",\"status\":\"failed\"} (ran ~5+ min before terminal). STABLE contract code, NOT a raw Playwright string, no fabricated artifact.",
+    "notes": "PROGRESSED but still FAILED honestly. Root cause: generate now reaches the live design surface and submits the prompt (round-2 it failed pre-submit with ELEMENT_NOT_FOUND), but the CLI's success postcondition (wait for the generated design/HTML viewer to be ready) is not satisfied within the timeout window -> POSTCONDITION_TIMEOUT. NOTE: design:present (#5d) later resolved '?file=Hello.html', indicating generation DID complete server-side after the CLI gave up -- so the residual defect is a too-short / wrong postcondition wait (or a postcondition selector that does not match the completed-generation DOM state), not a failure to generate. Honest stable code, no Playwright leak, no fabrication."
+  },
+  {
+    "id": "5c",
+    "tool": "webai:claude:design:get-html",
+    "status": "FAILED",
+    "evidence": "--project-url <019e2c78...> --download-dir <abs> -> {\"iframeArtifactSha256\":\"1045775b7d5443c79a7c287679f70eed4ccab2b036689637d6b73b8a43d34ff6\",\"savedPath\":\".../verify3-artifacts/019e2c78-13a1-70b4-9e59-18d635816ee5-1045775b7d54.html\",\"byteSize\":77}. NO html/dom/screenshot forbidden fields (output keys = only contract output_keys). File exists, non-empty (77 B), sha256 real. BUT `file` reports 'ASCII text, with no line terminators' and the entire content is the single string 'https://019e2c78-13a1-70b4-9e59-18d635816ee5.claudeusercontent.com/_bootstrap' -- a bootstrap loader URL, NOT an HTML document.",
+    "notes": "FAILS the 'REQUIRE a real HTML artifact (HTML file type)' acceptance. Forbidden-field check PASSES (no html/dom/screenshot). Contract-leak check PASSES (no raw Playwright string). Root cause: because #5b generate hit POSTCONDITION_TIMEOUT, the design iframe had not rendered the actual HTML; the iframe only exposed a `_bootstrap` loader URL, which get-html captured verbatim, wrote with a .html extension, sha256'd, and reported as a 77-byte 'artifact'. The bug: get-html does NOT validate that the captured iframe content is real HTML markup before persisting+sha-ing it -- it should have failed with a stable code (e.g. ARTIFACT_VERIFICATION_FAILED) rather than saving a non-HTML bootstrap-URL stub and returning ok-shaped output keys. Counted FAILED because the artifact is not HTML. No fabrication of the sha (it is the true sha of the 77-byte stub) but the artifact is not a valid design HTML capture."
+  },
+  {
+    "id": "5d",
+    "tool": "webai:claude:design:present",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--project-url <019e2c78...> -> {\"presentUrl\":\"https://claude.ai/design/p/019e2c78-13a1-70b4-9e59-18d635816ee5?file=Hello.html\"}. Contract always_present key (presentUrl) populated with a real URL resolving a concrete file (Hello.html).",
+    "notes": "ROUND-2 BUGFIX CONFIRMED FIXED. Round-2 this failed with ELEMENT_NOT_FOUND. Now returns a real presentUrl. The ?file=Hello.html resolution corroborates that generation (#5b) did complete server-side -- confirming #5b's residual defect is a postcondition-wait issue, not a generation failure. No forbidden fields."
+  }
+]

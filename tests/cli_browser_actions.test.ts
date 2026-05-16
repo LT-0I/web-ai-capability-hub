@@ -74,6 +74,10 @@ test("CLI browser action commands invoke ActionExecutor with expected payloads a
       expected: { type: "hover", selector: "body", timeoutMs: 50 }
     },
     {
+      argv: ["browser:hover", "--profile", "claude", "--selector", "#more", "--dwell-ms", "450", "--settle-selector", "[role=menu]", "--json"],
+      expected: { type: "hover", selector: "#more", dwellMs: 450, settleSelector: "[role=menu]" }
+    },
+    {
       argv: ["browser:select-text", "--profile", "claude", "--selector", "#answer", "--start", "1", "--end", "4", "--json"],
       expected: { type: "select-text", selector: "#answer", start: 1, end: 4 }
     },

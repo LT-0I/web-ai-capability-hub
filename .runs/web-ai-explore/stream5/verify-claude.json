@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "tool": "webai:claude:deep-research",
+    "status": "FAILED",
+    "evidence": "ELEMENT_NOT_FOUND: 'Claude composer plus menu button was not found'; selector='#composer-plus-btn, button[aria-label=\"Attach content\"], button[aria-label=\"Add content\"]'. No task_id/status envelope returned (failed pre-queue).",
+    "notes": "Honest stable contract error (no fabricated success, no silent fallback). Root cause: stale composer '+' menu selector. Live DOM read of claude.ai/new shows the actual composer control is labeled 'Add files, connectors, and more' / 'Upload files' (button[aria-label] does not match 'Attach content'/'Add content', and #composer-plus-btn id is absent). Deep-research enters via that '+' menu, so it never reaches the research toggle. Targeted fix: update the composer-plus selector set to the current Claude DOM."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:task-status",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Input task-id 'vc-nonexistent-task-0001' -> {\"status\":\"failed\",\"errorCode\":\"INVALID_ARGS\"} (valid contract envelope; 'status' always-present + errorCode from taxonomy).",
+    "notes": "Tool wiring itself is correct and returns a well-formed envelope. Could NOT be exercised end-to-end against a real Claude deep-research task because deep-research (#1) failed pre-queue and never produced a task_id."
+  },
+  {
+    "id": "2",
+    "tool": "webai:claude:conversation-manage",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--action search --query smoke -> {\"results_count\":30,\"action\":\"search\"} (clean, no forbidden fields). Destructive 'delete'/'rename' -> schema refusal: '$.action must be one of search, share, sidebar_options'. --action sidebar_options -> {errorCode:HUMAN_HANDOFF_REQUIRED, reason:sidebar_kebab_radix_portal_unreliable}.",
+    "notes": "Read/enumerate (search) path GREEN. Destructive ops are architecturally absent from the action enum (strongest possible refusal — cannot be forced). sidebar_options honestly surfaces HUMAN_HANDOFF_REQUIRED (valid contract code) instead of a silent fallback. Guard behavior CORRECT."
+  },
+  {
+    "id": "3",
+    "tool": "webai:claude:workspace",
+    "status": "FAILED",
+    "evidence": "surfaces projects -> {url:https://claude.ai/projects, summary:'Projects surface visible'} GREEN; appearance -> {url:https://claude.ai/customize, summary:'Customize route opened'} GREEN. surfaces integrations / skills / style_presets -> ELEMENT_NOT_FOUND 'Claude composer plus menu button was not found' (same stale selector as #1).",
+    "notes": "2 of 5 surfaces (projects, appearance) VERIFIED_GREEN, no forbidden fields. 3 surfaces (integrations, skills, style_presets) FAIL with identical root cause as deep-research: they navigate via the composer '+' menu whose selector set (#composer-plus-btn / aria-label 'Attach content'/'Add content') no longer matches the live Claude DOM ('Add files, connectors, and more')."
+  },
+  {
+    "id": "4",
+    "tool": "webai:claude:design (sub-MCP: create-project / generate / get-html / present)",
+    "status": "FAILED",
+    "evidence": "create-project -> raw Playwright error: 'page.waitForSelector: Timeout 15000ms exceeded ... waiting for locator(input[placeholder=\"Project name\"]) to be visible'. get-html (probe) -> 'page.waitForSelector: Timeout 30000ms exceeded ... iframe[data-testid=\"html-viewer-iframe\"]'. Live read of claude.ai/design confirms surface is PROVISIONED and reachable (controls 'Project name' input, 'Wireframe', 'High fidelity', 'Create' all present; an existing design 'Hello Test Card' listed). The element input[placeholder=\"Project name\"] EXISTS in the live DOM at probe time.",
+    "notes": "NOT quota-exhausted (no SUBMCP_QUOTA_EXHAUSTED; Design surface live and usable in-browser). Two defects: (a) tab/navigation defect — the sub-MCP does not land on/operate the live claude.ai/design page even though the target selector is valid there (consistent with the Claude tab-resolution bug seen in #5); (b) CONTRACT VIOLATION — it leaks raw Playwright 'waitForSelector Timeout' strings instead of a stable contract code (should be ELEMENT_NOT_FOUND / POSTCONDITION_TIMEOUT). generate/get_html/present could not be chained because create-project failed. get_html forbidden-field check could not be performed (never produced output)."
+  },
+  {
+    "id": "5",
+    "tool": "webai:claude:send-prompt (--model sonnet --thinking)",
+    "status": "FAILED",
+    "evidence": "Attempt 1 (--tab-url-contains claude.ai): {errorCode:MODEL_SELECTION_DRIFT, expected_model:sonnet, model_used:null, chat_url:'https://claude.ai/code', elapsed_ms:372, wait_ms:0}. Attempt 2 (--tab-url-contains 'claude.ai/new'): identical, chat_url still 'https://claude.ai/code'.",
+    "notes": "Two distinct defects. (a) Tab-targeting bug: --tab-url-contains is IGNORED; the tool always resolves to the claude.ai/code (Claude Code) tab regardless of the filter, even when an explicit claude.ai/new chat tab exists. (b) The /code surface has no model selector, so model-selection fails -> MODEL_SELECTION_DRIFT. wait_ms:0 confirms NO prompt was ever submitted (no side effect; verified by live read of claude.ai/new — no PONG conversation created). Live UI is already on 'Sonnet 4.6 Adaptive' (cheap model, compliant). Targeted fix: honor --tab-url-contains in the Claude send-prompt tab resolver so it lands on a /new or /chat tab, not /code."
+  }
+]

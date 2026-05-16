@@ -5,7 +5,10 @@ export type SnapshotMode = "full" | "lite";
 
 export interface SnapshotExtractOptions {
   mode?: SnapshotMode;
+  includePortals?: boolean;
 }
+
+const PORTAL_ROOT_SELECTOR = '[data-radix-popper-content-wrapper], [data-radix-portal], [role="menu"], [role="dialog"], [role="listbox"], [cmdk-root], [data-cmdk-root], [cmdk-dialog], [data-command-palette]';
 
 function decodeEntities(value: string): string {
   return value
@@ -102,6 +105,16 @@ function pushElement(elements: SnapshotElement[], role: string, tag: string, att
   });
 }
 
+function stripPortalBlocks(html: string): string {
+  return html.replace(/<([a-z0-9-]+)\b([^>]*(?:data-radix-popper-content-wrapper|data-radix-portal|cmdk-root|data-cmdk-root|cmdk-dialog|data-command-palette|role\s*=\s*["'](?:menu|dialog|listbox)["'])[^>]*)>[\s\S]*?<\/\1>/gi, " ");
+}
+
+function extractPortalHtml(html: string): string {
+  return Array.from(html.matchAll(/<([a-z0-9-]+)\b([^>]*(?:data-radix-popper-content-wrapper|data-radix-portal|cmdk-root|data-cmdk-root|cmdk-dialog|data-command-palette|role\s*=\s*["'](?:menu|dialog|listbox)["'])[^>]*)>[\s\S]*?<\/\1>/gi))
+    .map((match) => match[0])
+    .join("\n");
+}
+
 function extractElementsFromHtml(html: string): SnapshotElement[] {
   const labels = labelMap(html);
   const elements: SnapshotElement[] = [];
@@ -111,6 +124,7 @@ function extractElementsFromHtml(html: string): SnapshotElement[] {
   const textareaRe = /<textarea\b([^>]*)>([\s\S]*?)<\/textarea>/gi;
   const selectRe = /<select\b([^>]*)>([\s\S]*?)<\/select>/gi;
   const roleRe = /<([a-z0-9-]+)\b([^>]*\srole\s*=\s*(?:"[^"]+"|'[^']+'|[^\s>]+)[^>]*)>([\s\S]*?)<\/\1>/gi;
+  const roleOpeningRe = /<([a-z0-9-]+)\b([^>]*\srole\s*=\s*(?:"[^"]+"|'[^']+'|[^\s>]+)[^>]*)>([^<]*)/gi;
   let match: RegExpExecArray | null;
   while ((match = buttonRe.exec(html))) pushElement(elements, "button", "button", match[1], match[2], labels);
   while ((match = linkRe.exec(html))) pushElement(elements, attr(match[1], "download") !== undefined || hasAttr(match[1], "download") ? "download" : "link", "a", match[1], match[2], labels);
@@ -123,7 +137,13 @@ function extractElementsFromHtml(html: string): SnapshotElement[] {
   while ((match = selectRe.exec(html))) pushElement(elements, "select", "select", match[1], match[2], labels);
   while ((match = roleRe.exec(html))) {
     const role = attr(match[2], "role") || "other";
-    if (["button", "link", "textbox", "tab", "menu", "menuitem", "checkbox", "radio"].includes(role)) {
+    if (["button", "link", "textbox", "tab", "menu", "menuitem", "checkbox", "radio", "dialog", "listbox", "option"].includes(role)) {
+      pushElement(elements, role, match[1].toLowerCase(), match[2], match[3], labels);
+    }
+  }
+  while ((match = roleOpeningRe.exec(html))) {
+    const role = attr(match[2], "role") || "other";
+    if (["button", "link", "textbox", "tab", "menu", "menuitem", "checkbox", "radio", "dialog", "listbox", "option"].includes(role)) {
       pushElement(elements, role, match[1].toLowerCase(), match[2], match[3], labels);
     }
   }
@@ -287,12 +307,17 @@ function extractIframes(html: string): SnapshotIframe[] {
 export function extractSnapshotFromHtml(html: string, url = "about:fixture", title?: string, options: SnapshotExtractOptions = {}): PageSnapshot {
   const titleMatch = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
   const resolvedTitle = title || (titleMatch ? stripTags(titleMatch[1]) : "Fixture Page");
-  const elements = dedupeElements(extractElementsFromHtml(html));
-  const tables = extractTables(html);
-  const lists = extractLists(html);
-  const forms = extractForms(html, elements);
-  const iframes = extractIframes(html);
-  const visibleText = stripTags(html).slice(0, 16000);
+  const baseHtml = options.includePortals ? html : stripPortalBlocks(html);
+  const portalHtml = options.includePortals ? extractPortalHtml(html) : "";
+  const elements = dedupeElements([
+    ...extractElementsFromHtml(baseHtml),
+    ...(options.includePortals && portalHtml ? extractElementsFromHtml(portalHtml) : [])
+  ]);
+  const tables = extractTables(baseHtml);
+  const lists = extractLists(baseHtml);
+  const forms = extractForms(baseHtml, elements);
+  const iframes = extractIframes(baseHtml);
+  const visibleText = stripTags(baseHtml + (options.includePortals ? ` ${portalHtml}` : "")).slice(0, 16000);
   const snapshot = { url, title: resolvedTitle, timestamp: new Date().toISOString(), visibleText, elements, forms, tables, lists, iframes, warnings: [] };
   return options.mode === "lite" ? compactSnapshot(snapshot) : snapshot;
 }
@@ -304,12 +329,15 @@ export function extractSnapshotFromFile(filePath: string, url = `file://${filePa
 
 export async function extractSnapshotFromPage(page: any, options: SnapshotExtractOptions = {}): Promise<PageSnapshot> {
   const lite = options.mode === "lite";
-  const data = await page.evaluate((liteMode: boolean) => {
+  const includePortals = options.includePortals === true;
+  const data = await page.evaluate(({ liteMode, includePortals, portalRootSelector }: { liteMode: boolean; includePortals: boolean; portalRootSelector: string }) => {
     const isVisible = (el: Element): boolean => {
       const style = window.getComputedStyle(el as HTMLElement);
       const rect = (el as HTMLElement).getBoundingClientRect();
       return style.visibility !== "hidden" && style.display !== "none" && rect.width >= 0 && rect.height >= 0;
     };
+    const portalRoots = Array.from(document.querySelectorAll(portalRootSelector));
+    const isInPortal = (el: Element): boolean => portalRoots.some((root) => root === el || root.contains(el));
     const cssEscape = (value: string): string => value.replace(/[^A-Za-z0-9_-]/g, (char) => `\\${char}`);
     const text = (el: Element): string => ((el as HTMLElement).innerText || el.textContent || "").replace(/\s+/g, " ").trim();
     const nameFor = (el: Element): string => {
@@ -352,8 +380,13 @@ export async function extractSnapshotFromPage(page: any, options: SnapshotExtrac
       if (tag === "iframe") return "iframe";
       return "other";
     };
-    const candidates = Array.from(document.querySelectorAll('button,a,input,textarea,select,[role],iframe'));
-    const elements = candidates.filter(isVisible).slice(0, 250).map((el, index) => {
+    const baseCandidates = Array.from(document.querySelectorAll('button,a,input,textarea,select,[role],iframe'))
+      .filter((el) => includePortals || !isInPortal(el));
+    const portalCandidates = includePortals
+      ? portalRoots.flatMap((root) => [root, ...Array.from(root.querySelectorAll('button,a,input,textarea,select,[role]'))])
+      : [];
+    const candidates = Array.from(new Set([...baseCandidates, ...portalCandidates]));
+    const elements = candidates.filter(isVisible).slice(0, 300).map((el, index) => {
       const selector = selectorFor(el);
       const attributes: Record<string, string> = {};
       if (!liteMode) for (const attr of Array.from(el.attributes || [])) attributes[attr.name] = attr.value;
@@ -372,7 +405,7 @@ export async function extractSnapshotFromPage(page: any, options: SnapshotExtrac
         selectorCandidates: [selector]
       };
     });
-    const forms = Array.from(document.querySelectorAll("form")).slice(0, 60).map((form, index) => ({
+    const forms = Array.from(document.querySelectorAll("form")).filter((form) => includePortals || !isInPortal(form)).slice(0, 60).map((form, index) => ({
       ref: `f${index + 1}`,
       name: nameFor(form),
       selector: selectorFor(form),
@@ -380,18 +413,18 @@ export async function extractSnapshotFromPage(page: any, options: SnapshotExtrac
       action: form.getAttribute("action") || undefined,
       fields: elements.filter((element) => ["textbox", "textarea", "select", "checkbox", "radio"].includes(element.role))
     }));
-    const tables = liteMode ? [] : Array.from(document.querySelectorAll("table")).slice(0, 40).map((table, index) => {
+    const tables = liteMode ? [] : Array.from(document.querySelectorAll("table")).filter((table) => includePortals || !isInPortal(table)).slice(0, 40).map((table, index) => {
       const rows = Array.from(table.querySelectorAll("tr")).slice(0, 100).map((row) => Array.from(row.querySelectorAll("th,td")).map((cell) => text(cell)));
       const headers = rows[0] || [];
       return { ref: `t${index + 1}`, caption: table.querySelector("caption")?.textContent?.trim(), selector: selectorFor(table), headers, rows: rows.slice(headers.length ? 1 : 0) };
     });
-    const lists = liteMode ? [] : Array.from(document.querySelectorAll("ul,ol")).slice(0, 60).map((list, index) => ({
+    const lists = liteMode ? [] : Array.from(document.querySelectorAll("ul,ol")).filter((list) => includePortals || !isInPortal(list)).slice(0, 60).map((list, index) => ({
       ref: `l${index + 1}`,
       selector: selectorFor(list),
       ordered: list.tagName.toLowerCase() === "ol",
       items: Array.from(list.querySelectorAll("li")).slice(0, 100).map((li) => text(li))
     })).filter((list) => list.items.length);
-    const iframes = Array.from(document.querySelectorAll("iframe")).slice(0, 50).map((frame, index) => ({
+    const iframes = Array.from(document.querySelectorAll("iframe")).filter((frame) => includePortals || !isInPortal(frame)).slice(0, 50).map((frame, index) => ({
       ref: `i${index + 1}`,
       title: frame.getAttribute("title") || undefined,
       src: frame.getAttribute("src") || undefined,
@@ -399,8 +432,12 @@ export async function extractSnapshotFromPage(page: any, options: SnapshotExtrac
       accessible: false,
       summary: "Iframe DOM requires frame-level access."
     }));
-    return { visibleText: liteMode ? "" : (document.body?.innerText || "").replace(/\s+/g, " ").trim().slice(0, 16000), elements, forms, tables, lists, iframes };
-  }, lite);
+    const portalTextValues = portalRoots.map((root) => text(root)).filter(Boolean);
+    let bodyText = document.body?.innerText || "";
+    if (!includePortals) for (const portalText of portalTextValues) bodyText = bodyText.replace(portalText, " ");
+    const portalText = includePortals ? portalTextValues.join(" ") : "";
+    return { visibleText: liteMode ? "" : [bodyText, portalText].filter(Boolean).join(" ").replace(/\s+/g, " ").trim().slice(0, 16000), elements, forms, tables, lists, iframes, portalRootCount: includePortals ? portalRoots.length : 0 };
+  }, { liteMode: lite, includePortals, portalRootSelector: PORTAL_ROOT_SELECTOR });
   const snapshot = {
     url: typeof page.url === "function" ? page.url() : "about:blank",
     title: typeof page.title === "function" ? await page.title() : "Untitled",

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "r9-cl-1",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "projectUrl=https://claude.ai/design/p/019e2cdb-8b66-70d8-b1fc-97ccd2cdc964 projectId=019e2cdb-8b66-70d8-b1fc-97ccd2cdc964 (.runs/web-ai-explore/stream5/r9-step1-create.json)",
+    "notes": "Cold start. High-fidelity project created on live claude-9224 (port 9224)."
+  },
+  {
+    "id": "r9-cl-2",
+    "tool": "webai:claude:design:generate",
+    "status": "VERIFIED_GREEN",
+    "evidence": "status=generated model_used=sonnet fileName=\"Hello World.html\" (.runs/web-ai-explore/stream5/r9-step2-generate.json)",
+    "notes": "Benign prompt 'a single static page that displays Hello World'. Cheap Sonnet model as required."
+  },
+  {
+    "id": "r9-cl-3-cold",
+    "tool": "webai:claude:design:get-html (COLD-FIRST call)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Tool-reported sha256=fb42d3fd674c0753f438eb0a905b1ea5e62416765cb3628d78dfdbee973d4e0f byteSize=12319. Independently recomputed sha256 from disk (/tmp/r9-cl-dl/019e2cdb-8b66-70d8-b1fc-97ccd2cdc964-fb42d3fd674c.html) = fb42d3fd674c0753f438eb0a905b1ea5e62416765cb3628d78dfdbee973d4e0f -> EXACT MATCH. First 200 bytes start with '<!DOCTYPE html><html data-src-ver=...'. Contains <title>Hello World</title>, <h1>Hello, <em>World</em></h1>. Extracted visible body text = 'A greeting Hello, World' (23 chars). (.runs/web-ai-explore/stream5/r9-step3-gethtml-cold.json)",
+    "notes": "THE CRITICAL TEST. This is the exact cold-first path that previously returned a 39-byte <html><head></head><body></body></html> empty shell as a false positive. The honesty fix (isRealHtmlMarkup + poll loop through hydration) held: the poll loop waited through hydration and returned a REAL 12319-byte HTML artifact with genuine rendered page content. EXPLICITLY NOT an empty-shell false-positive (12319 bytes, real <h1>/<title>/body text, not 39 bytes, not a _bootstrap stub). Outcome path (a): real artifact returned."
+  },
+  {
+    "id": "r9-cl-3-warm",
+    "tool": "webai:claude:design:get-html (WARM re-call)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "sha256=fb42d3fd674c0753f438eb0a905b1ea5e62416765cb3628d78dfdbee973d4e0f byteSize=12319 -> IDENTICAL to cold call. No regression. (.runs/web-ai-explore/stream5/r9-step3-gethtml-warm.json)",
+    "notes": "Warm path returned the identical real artifact (same sha256, same byte size). Deterministic, no regression on the warm path."
+  },
+  {
+    "id": "r9-cl-4",
+    "tool": "webai:claude:design:present",
+    "status": "VERIFIED_GREEN",
+    "evidence": "presentUrl=https://claude.ai/design/p/019e2cdb-8b66-70d8-b1fc-97ccd2cdc964?file=Hello+World.html (.runs/web-ai-explore/stream5/r9-step4-present.json)",
+    "notes": "Real, concrete file-scoped present URL (not a stub/placeholder)."
+  }
+]

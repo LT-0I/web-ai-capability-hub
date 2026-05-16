@@ -1,0 +1,65 @@
+[
+  {
+    "id": "chatgpt-canvas-export",
+    "tool": "webai:chatgpt:canvas-export --profile chatgpt --tab-url-contains <conv> --format md",
+    "status": "FAILED",
+    "evidence": "Built a real canvas doc via Thinking model: conversation https://chatgpt.com/c/6a074371-f3b0-83e8-a493-8f14aa14802e, body 'alpha-one / beta-two / gamma-three', title 'RV2 Canvas Probe' (content verified live in DOM). One clean export attempt: {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"No element matched --button-selector\",\"evidence\":{\"selector\":\"[role=\\\"button\\\"]:has-text(\\\"Download\\\"), button[aria-label=\\\"Download\\\"], [id^=\\\"radix-\\\"][role=\\\"button\\\"]:has-text(\\\"Download\\\")\",\"pageUrl\":\"https://chatgpt.com/c/<conversation-id>\",\"frameCount\":1,\"triedFrames\":[{\"url\":\"https://chatgpt.com/c/<conversation-id>\",\"hadSelectorMatch\":false}]}}. No artifact, NO sha256 (no fabrication). Process also exit-124 (hung after emitting error instead of clean exit). NOTE: a prior attempt WITHOUT --profile failed with a different error (CDP 9222 ECONNREFUSED) — canvas-export defaults to port 9222 when --profile omitted; --profile chatgpt is required and was used for the recorded attempt.",
+    "notes": "ROOT CAUSE: Phase C broadened the selector (was button[aria-label=\\\"Download\\\"][aria-haspopup]) but it still cannot match the live control. Live DOM ground truth: the canvas Download control is a native <button id=\\\"radix-_r_4h_\\\" type=\\\"button\\\" aria-haspopup=\\\"menu\\\" aria-expanded=\\\"false\\\"> with accessible name 'Download' derived from TEXT CONTENT — it has NO explicit role=\\\"button\\\" attribute and NO aria-label. All three OR-branches of the new selector require either an explicit role=\\\"button\\\" CSS attribute or aria-label=\\\"Download\\\", neither of which exists on a native <button>. Correct selector would be e.g. button:has-text(\\\"Download\\\") or button[aria-haspopup=\\\"menu\\\"]:has-text(\\\"Download\\\"). Secondary bugs unfixed: pageUrl still emits literal '<conversation-id>' placeholder; tool hangs (exit 124) after emitting ELEMENT_NOT_FOUND instead of exiting."
+  },
+  {
+    "id": "chatgpt-conversation-manage-share",
+    "tool": "webai:chatgpt:conversation-manage --profile chatgpt --action share",
+    "status": "FAILED",
+    "evidence": "Conversation open (6a074371...). One clean attempt: {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: ChatGPT share conversation button was not found\",\"evidence\":{\"selector\":\"button[aria-label=\\\"Share\\\"]\"}}. Phase C DID update the selector (prior was button[data-testid=\\\"share-chat-button\\\"], now button[aria-label=\\\"Share\\\"]).",
+    "notes": "ROOT CAUSE: NOT selector drift this round. Live wide-viewport DOM read shows the element IS present and matches the tool's exact selector: {ref:e86, role:button, name:'Share', tagName:button, disabled:false, visible:true, attributes:{aria-label:'Share', data-testid:'share-chat-button', class:'... max-sm:hidden'}}. The class contains 'max-sm:hidden' — the header Share button is responsive-collapsed (display:none) at narrow viewport widths and relocates into the conversation-options menu. The tool drives the page at a narrow default viewport where the button is hidden, so Playwright finds no visible match -> ELEMENT_NOT_FOUND. This is a viewport/responsive-handling bug, not a stale-selector bug; the Phase C selector fix was correct but insufficient. STOP BEFORE PUBLISH was not reached because the dialog never opened (honest failure)."
+  },
+  {
+    "id": "chatgpt-conversation-manage-destructive-guard",
+    "tool": "webai:chatgpt:conversation-manage --profile chatgpt --action delete",
+    "status": "GUARD_OK",
+    "evidence": "{\"ok\":false,\"errorCode\":\"HUMAN_HANDOFF_REQUIRED\",\"error_code\":\"HUMAN_HANDOFF_REQUIRED\",\"reason\":\"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\"action\":\"delete\"} (exit 0). No force, no fallback.",
+    "notes": "Correct guard refusal with stable contract code. Unchanged from prior verify (still GUARD_OK)."
+  },
+  {
+    "id": "chatgpt-conversation-manage-readonly",
+    "tool": "webai:chatgpt:conversation-manage --profile chatgpt --action navigate_settings --surface data_controls",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"url\":\"https://chatgpt.com/#settings/DataControls\",\"surface\":\"data_controls\"} (exit 0). Read/navigate action still GREEN, no forbidden fields.",
+    "notes": "No regression. (Sanity check; this surface was GREEN in prior verify and remains GREEN.)"
+  },
+  {
+    "id": "chatgpt-deep-research",
+    "tool": "webai:chatgpt:deep-research --profile chatgpt --prompt <benign>",
+    "status": "FAILED",
+    "evidence": "One clean attempt, benign prompt (SI base units summary). Now returns a STRUCTURED contract envelope (no more Playwright click-interception crash — robust interaction path IS in place): {\"response_text\":\"\",\"elapsed_ms\":0,\"completion_detected\":false,\"errorCode\":\"MODEL_SELECTION_DRIFT\",\"ok\":false,\"service\":\"chatgpt\",\"error_code\":\"MODEL_SELECTION_DRIFT\",\"model_used\":\"Recents\",\"expected_model\":\"Thinking\",\"conversation_id\":null,\"chat_url\":\"https://chatgpt.com/\",\"reuse_conversation\":false}. No task_id (aborted on drift guard before submission).",
+    "notes": "ROOT CAUSE: model-detection scraper bug. The composer model is genuinely 'Thinking' (verified live in DOM, NOT Pro), but the tool's model-name reader scrapes 'Recents' (the sidebar Recents heading) as the active model and the MODEL_SELECTION_DRIFT guard fires on this false positive. Failure mode IMPROVED vs prior (was: bare Playwright click-interception, no envelope) but the tool still does not produce a task_id; reported FAILED per honesty rules. Same root cause as send-prompt below."
+  },
+  {
+    "id": "chatgpt-send-prompt",
+    "tool": "webai:chatgpt:send-prompt --profile chatgpt --prompt <benign> (Thinking)",
+    "status": "FAILED",
+    "evidence": "One clean attempt, prompt 'Reply with exactly the single word: pong'. Robust path in place (reached elapsed_ms:18008, structured envelope, no click-interception crash): {\"response_text\":\"\",\"elapsed_ms\":18008,\"completion_detected\":false,\"errorCode\":\"MODEL_SELECTION_DRIFT\",\"ok\":false,\"service\":\"chatgpt\",\"error_code\":\"MODEL_SELECTION_DRIFT\",\"model_used\":\"Recents\",\"expected_model\":\"Thinking\",\"conversation_id\":null,\"chat_url\":\"https://chatgpt.com/\",\"reuse_conversation\":false}. No completed response.",
+    "notes": "ROOT CAUSE: identical to deep-research — faulty model-name detection reading 'Recents' sidebar text as the active model, triggering a false-positive MODEL_SELECTION_DRIFT abort before send. Composer was verified genuinely on 'Thinking' (never Pro). The 'model sticks / no MODEL_SELECTION_DRIFT' acceptance criterion is NOT met: drift fired, but from a detection bug, not real drift. FAILED (no positive completion assertable)."
+  },
+  {
+    "id": "chatgpt-workspace",
+    "tool": "webai:chatgpt:workspace --profile chatgpt --surface <7 surfaces>",
+    "status": "VERIFIED_GREEN",
+    "evidence": "All 7 surfaces returned clean {surface,url,summary}-only envelopes (exit 0): projects ('Projects sidebar area not confirmed' — live-UI variance, no error), gpts (chatgpt.com/gpts, '0 GPT card link(s) visible'), tasks (#settings/Schedules), apps (#settings/Connectors), memory (#settings/Personalization), personalization (#settings/Personalization), data_controls (#settings/DataControls). Forbidden-field scan across all 7 outputs: CLEAN (no cdpEndpoint/webSocketDebuggerUrl/profileDir/cookies/tokens/dom/html/screenshot).",
+    "notes": "No regression — matches prior VERIFIED_GREEN. projects/gpts 'empty' summaries are live-UI variance; the tool calls themselves succeeded with valid contract-compliant envelopes."
+  },
+  {
+    "id": "chatgpt-codex-submcp",
+    "tool": "webai:chatgpt:codex:list-envs --profile chatgpt",
+    "status": "GUARD_OK",
+    "evidence": "{\"status\":\"failed\",\"errorCode\":\"SUBMCP_NOT_PROVISIONED\",\"message\":\"ChatGPT Codex requires a throwaway sandbox repository. Supply repo via the repo param after user provisioning.\"} — exactly the intended gated placeholder.",
+    "notes": "Correct PASS per spec (intentional gated placeholder). No regression. No Codex task attempted (policy)."
+  },
+  {
+    "id": "chatgpt-task-status",
+    "tool": "webai:task-status --task-id <synthetic>",
+    "status": "GUARD_OK",
+    "evidence": "Synthetic id -> {\"status\":\"failed\",\"errorCode\":\"INVALID_ARGS\"}. Stable contract code, honest rejection of a non-existent task id.",
+    "notes": "Envelope shape correct (stable INVALID_ARGS for bad input). Could not assert against a real deep-research task because deep-research never produced a task_id (FAILED on model-detection bug before submission). No regression."
+  }
+]

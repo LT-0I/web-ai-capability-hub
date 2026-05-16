@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1a",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"projectUrl\":\"https://claude.ai/design/p/019e2cb8-ed8c-707b-917d-97e420fd581a\",\"projectId\":\"019e2cb8-ed8c-707b-917d-97e420fd581a\"} EXIT=0. Real project URL+id, no forbidden fields (no cdpEndpoint/dom/html/screenshot/cookies).",
+    "notes": "Round-6 single clean attempt on live claude-9224 (port 9224). Project title 'Verify6 HelloWorld' confirmed live via own tab r6-cl-verify."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:claude:design:generate",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"status\":\"generated\",\"model_used\":\"sonnet\",\"projectUrl\":\"https://claude.ai/design/p/019e2cb8-ed8c-707b-917d-97e420fd581a\",\"fileName\":\"index.html\"} EXIT=0. NO POSTCONDITION_TIMEOUT. All 4 contract always_present keys (status, model_used, projectUrl, fileName) emitted. Source-grounded fix CONFIRMED working: completion detected via the serve-iframe regex (DESIGN_SERVE_IFRAME_RE = /\\/v1\\/design\\/projects\\/[^/]+\\/serve\\//i) and submit via [data-testid=\"chat-send-button\"] (DESIGN_SEND_SELECTOR). Independently corroborated: live DOM read of own tab r6-cl-verify after generate showed the sidebar 'PAGES index.html HTML page 1m ago' entry — a real index.html was produced server-side. The four prior blind-codex POSTCONDITION_TIMEOUT rounds (verify..verify5) are now resolved.",
+    "notes": "The D1-v2 generate fix is now effectively landed and GREEN. Benign trivial prompt ('a single static page that displays the words Hello World'), Sonnet, no quota/CAPTCHA/auth wall. Real generation, not fabricated — corroborated by independent live DOM read showing the produced index.html in the project PAGES sidebar."
+  },
+  {
+    "id": "1c",
+    "tool": "webai:claude:design:get-html",
+    "status": "FAILED",
+    "evidence": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"iframeArtifactSha256\":\"\",\"savedPath\":\"\",\"byteSize\":0} EXIT=0. Artifact dir .runs/web-ai-explore/stream5/verify6-artifacts is EMPTY (no _bootstrap stub, no scratch files, no fabricated artifact). No html/dom/screenshot fields. No fabricated sha256 (none reported because no artifact was captured).",
+    "notes": "Honest terminal failure with a stable contract code. ROOT CAUSE (structural, NOT a regression of the generate fix): stepGetHtml (flow.ts:241) waits for DESIGN_HTML_IFRAME_SELECTOR = iframe[data-testid=\"html-viewer-iframe\"] with a 30s timeout. That iframe only mounts on the canonical ?file=<name> viewer, which per the live diagnosis recipe only appears after the sidebar file's 'Open' button is clicked. After a successful generate the page stays on the bare /design/p/<id> URL with NO iframe at all — live DOM read of own tab confirmed preview pane shows literally 'Select a file to preview' and zero <iframe> elements. So waitForSelector(html-viewer-iframe) times out -> ELEMENT_NOT_FOUND. This get-html capture-path gap was EXPLICITLY declared OUT OF SCOPE for the generate fix by the live-confirmed recipe (design-generate-fix-recipe.md: 'Leave stepGetHtml / D2 isRealHtmlMarkup validation untouched ... downstream get-html capture is a separate concern (it should browser:download-url the serve URL, but that is NOT in scope for this generate fix)'). The artifact IS real and exists server-side as index.html (proven by live PAGES sidebar entry); the bare serve URL without the ?t=<token> query returns 'preview token required', so the working capture requires either (a) clicking the sidebar Open button to mount the html-viewer-iframe, or (b) browser:download-url of the tokened serve URL. Neither is wired into stepGetHtml today. NO blind retry-rerun performed.",
+    "fix_needed": "stepGetHtml must drive the project to the ?file= viewer (click the sidebar file Open button: xpath=//button[contains(normalize-space(.),\"Open\") and not(@data-testid)]) before waiting for html-viewer-iframe, OR capture via browser:download-url of the tokened serve URL. This is a separate, in-scope follow-up dispatch (the generate fix recipe deferred it deliberately)."
+  },
+  {
+    "id": "1d",
+    "tool": "webai:claude:design:present",
+    "status": "FAILED",
+    "evidence": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"presentUrl\":\"\"} EXIT=0. Stable contract code, empty presentUrl, no fabricated URL.",
+    "notes": "Honest terminal failure with a stable contract code. ROOT CAUSE (same structural class as 1c): stepPresent (flow.ts:263-274) clicks DESIGN_PRESENT_SELECTOR, which is not present on the bare /design/p/<id> URL after generate (the present/share affordance lives on the file-open / viewer state). Same generate-leaves-page-on-bare-URL structural gap; same out-of-scope-for-generate-fix class as get-html. No blind retry-rerun. presentUrl empty (no fabrication)."
+  }
+]

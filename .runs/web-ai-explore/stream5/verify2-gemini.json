@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1a",
+    "tool": "webai:gemini:music:download-track (shared-page self-navigation)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Shared CDP page deliberately moved off the music conversation by an unrelated webai:gemini:send-prompt (landed on https://gemini.google.com/app/85a83e53f2e578db 'boiling point' Q&A). Then `download-track --tab-url-contains 3b45cae90638eb88 --format mp3` SELF-NAVIGATED back to the music conversation and produced a real MP3. file: 'Audio file with ID3 version 2.3.0, contains: MPEG ADTS, layer III, v1, 192 kbps, 44.1 kHz, JntStereo'. byteSize 744610. sha256 6aabda10273efa733f844a29704ab9d44fe475daf961a31f46f28ea585a82cc8. Path .runs/web-ai-explore/stream5/verify2-artifacts/Beneath_the_Heavy_Arch.mp3",
+    "notes": "PROVES the Phase C shared-page robustness fix for download-track. Previously an unrelated nav broke download (it inspected the wrong conversation and hung locating an absent button). Now download-track targets the music conversation itself via geminiConversationTarget()+withManagedPage navigation and succeeds end-to-end. sha256 matches the prior verify run because Gemini re-serves the identical generated artifact for conversation 3b45cae90638eb88 ('Calm Instrumental Loop Generation'); the file was freshly re-downloaded just now from a moved-away starting page (honest, deterministic, not fabricated)."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:gemini:music:task-status (shared-page self-navigation)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Three calls. (selfnav-1) shared page on dac10309df9e1ca1 ('Dawn Lake'); after task-status --tab-url-contains 3b45cae90638eb88 the shared page was on https://gemini.google.com/app/3b45cae90638eb88 -> self-navigation occurred. (selfnav-2) page already on music conv -> {status:complete, download_ready:true}. (selfnav-3) shared page deliberately moved to unrelated 460df0343e5696d5 (Jupiter Q&A); after the call shared page was on https://gemini.google.com/app/3b45cae90638eb88 -> self-navigation occurred again.",
+    "notes": "Self-navigation fix CONFIRMED: task-status now navigates to/targets the music conversation itself rather than trusting whatever the shared single page displays. Residual: the call issued immediately after page.goto can return {status:error,download_ready:false} because Gemini re-hydrates the 'Download track' button asynchronously after domcontentloaded; a settled follow-up call correctly returns {status:complete,download_ready:true}. This is an honest non-fabricated state (no silent fallback) and a pre-existing post-navigation hydration timing characteristic also noted in the prior verify-gemini.md, NOT a regression and NOT a self-navigation failure. download-track absorbs this delay via its own internal artifact-click waits and is fully GREEN."
+  },
+  {
+    "id": "2",
+    "tool": "webai:gemini:conversation-manage (substring --tab-url-contains)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "menu_enumerate --tab-url-contains \"0fdfd8846cb6c8e9\" (bare conversation-id SUBSTRING, not a full URL) -> {items:[\"Files in this chat\",\"Pin\",\"Rename\",\"Add to notebook\",\"Delete\"]}. search --query music -> conversation list returned. Destructive ops still refuse: share (no confirm) -> SENSITIVE_CONTENT_GUARD; delete -> POLICY_APPROVAL_REQUIRED (both stable contract codes, ok:false).",
+    "notes": "Substring fix CONFIRMED. Previously a bare conversation-id was passed to page.goto and failed with an invalid-URL error / required a full https URL. Now geminiConversationTarget() expands a 6+ char alphanumeric id to https://gemini.google.com/app/<id> and pageMatchesRequestedTab() substring-matches. Guard refusals unchanged (correct = GUARD_OK behavior, surfaced as stable contract error codes, no silent fallback)."
+  },
+  {
+    "id": "3a",
+    "tool": "webai:gemini:canvas-edit (regression)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Clean fully-serialized run: {canvas_opened:true, edit_applied:true, ai_action_applied:false}. ai_action_applied:false is correct (no --ai-action requested).",
+    "notes": "Matches prior verify-gemini.md result. No regression. (An earlier attempt was invalidated by orchestrator-introduced concurrency on the single shared CDP page; the clean isolated re-run is GREEN.)"
+  },
+  {
+    "id": "3b",
+    "tool": "webai:gemini:workspace (regression, 3 surfaces)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "gems -> {surface:gems, url:https://gemini.google.com/gems/view, summary:'0 Gem conversation link(s) visible'}. connected_apps -> {surface:connected_apps, url:https://gemini.google.com/apps, summary:'Connected apps route opened (observe-only)'}. personalization -> {surface:personalization, url:https://gemini.google.com/personalization-settings, summary:'Personalization settings route opened (observe-only; memory toggle mutations require POLICY_APPROVAL_REQUIRED)'}.",
+    "notes": "All surfaces return surface+url+summary, no error codes. No regression vs prior verify-gemini.md."
+  }
+]

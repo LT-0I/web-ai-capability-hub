@@ -1,0 +1,30 @@
+[
+  {
+    "id": "claude-design-create-project",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"projectUrl\":\"https://claude.ai/design/p/019e2cc2-af9d-718e-bc9d-07460918fce7\",\"projectId\":\"019e2cc2-af9d-718e-bc9d-07460918fce7\"}",
+    "notes": "Round-7. Project created cleanly, real project URL returned. No regression."
+  },
+  {
+    "id": "claude-design-generate",
+    "tool": "webai:claude:design:generate",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"status\":\"generated\",\"model_used\":\"sonnet\",\"projectUrl\":\"https://claude.ai/design/p/019e2cc2-af9d-718e-bc9d-07460918fce7\",\"fileName\":\"index.html\"}",
+    "notes": "Sonnet model, benign prompt 'a single static page that displays Hello World'. Returns projectUrl + fileName=index.html. No regression vs round-6."
+  },
+  {
+    "id": "claude-design-get-html",
+    "tool": "webai:claude:design:get-html",
+    "status": "FAILED",
+    "evidence": "{\"ok\":false,\"errorCode\":\"ARTIFACT_VERIFICATION_FAILED\",\"error_code\":\"ARTIFACT_VERIFICATION_FAILED\",\"iframeArtifactSha256\":\"\",\"savedPath\":\"\",\"byteSize\":0}",
+    "notes": "Contract code ARTIFACT_VERIFICATION_FAILED. The round-7 scoped fix (ensureDesignViewerOpen clicks the file Open control -> ?file= viewer) DID land and works: probe shows page redirected to ?file=index.html and iframe[data-testid=html-viewer-iframe] is present. But the html-viewer-iframe src is the bootstrap stub https://<proj>.claudeusercontent.com/_bootstrap (never transitions to /serve/index.html at the DOM attribute level even after wait). readIframeHtml(): no srcdoc; contentFrame().content() blocked (cross-origin claudeusercontent.com + sandbox=allow-scripts...); falls back to returning the src attr = the /_bootstrap URL; isRealHtmlMarkup() rejects it via BOOTSTRAP_OR_LOADER_URL_RE -> ARTIFACT_VERIFICATION_FAILED thrown at flow.ts:315-318. CDP target enumeration shows the live iframe target IS at /serve/index.html?t=<preview-token>, but direct navigation to the serve URL returns 'preview token required' (content is gated behind a per-session preview token only valid inside the embedded iframe). Real HTML is never exposed via srcdoc/src/readable-content; the bootstrap-loader iframe content is unreadable over CDP. The fix reached the viewer but did NOT solve real-HTML extraction from the bootstrap-loader iframe. No fabrication: contract correctly refused to save the _bootstrap stub. Download dir /tmp/r7-cl-gethtml left empty (cleanup on failure verified)."
+  },
+  {
+    "id": "claude-design-present",
+    "tool": "webai:claude:design:present",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"presentUrl\":\"https://claude.ai/design/p/019e2cc2-af9d-718e-bc9d-07460918fce7?file=index.html\"}",
+    "notes": "Returns a real presentUrl (the ?file=index.html viewer URL). ensureDesignViewerOpen path works for present. No error code."
+  }
+]

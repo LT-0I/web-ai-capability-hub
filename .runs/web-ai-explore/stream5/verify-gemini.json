@@ -1,0 +1,79 @@
+[
+  {
+    "id": "1",
+    "tool": "webai:gemini:music:generate + music:task-status + music:download-track",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "generate": { "task_id": "gemini_music_1778858449760", "status": "generating", "conversation_url": "https://gemini.google.com/app/3b45cae90638eb88" },
+      "task_status_final": { "status": "complete", "download_ready": true },
+      "download_track": {
+        "savedPath": ".runs/web-ai-explore/stream5/Beneath_the_Heavy_Arch.mp3",
+        "byteSize": 744610,
+        "format": "mp3",
+        "sha256": "6aabda10273efa733f844a29704ab9d44fe475daf961a31f46f28ea585a82cc8"
+      },
+      "artifact_verification": {
+        "file_exists": true,
+        "non_empty": true,
+        "file_type": "Audio file with ID3 version 2.3.0, contains: MPEG ADTS, layer III, v1, 192 kbps, 44.1 kHz, JntStereo",
+        "id3_header_confirmed": true
+      }
+    },
+    "notes": "Full pipeline GREEN. Prompt: 'a short calm instrumental loop with soft piano and ambient pads, 30 seconds' (benign, no artist/copyright names), default Fast tier. The 2-stage MP3 format submenu was handled internally by download-track (followUpTextRegex='MP3'). IMPORTANT TRANSIENT ISSUE (not a tool defect in steady state): early task-status returned status:error and early download-track calls hung past timeout. Root cause: the gemini-9225 profile exposes a SINGLE shared CDP browser page; subsequent/parallel gemini commands (the Test 3 send-prompt) navigated that shared page away from the music conversation, so music:task-status / download-track were inspecting the WRONG conversation page (no Stop button + no Download-track button => status:error false-negative; download-track hung locating an absent button). Once the shared page was on conversation 3b45cae90638eb88, task-status correctly returned complete/download_ready:true and download-track produced the valid 744610-byte MP3. Recommendation: music:task-status and download-track should navigate to the conversation (via tab_url_contains) before inspecting, rather than trusting whatever the shared page currently shows."
+  },
+  {
+    "id": "2",
+    "tool": "webai:gemini:deep-research + webai:task-status",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "deep_research": { "task_id": "task_1778858455576_b53e18bb08eb", "status": "queued" },
+      "task_status_check_1": { "status": "queued", "progress_label": "queued Gemini Deep research task" },
+      "task_status_check_2_final": { "status": "queued", "progress_label": "queued Gemini Deep research task" }
+    },
+    "notes": "Async task queued correctly; task_id + valid envelope returned; webai:task-status reports a valid 'queued' state with progress_label across two checks. Did NOT wait for the full multi-minute report (per instructions). Prompt: 'Brief overview of the history of the metric system' (benign), default tier."
+  },
+  {
+    "id": "3",
+    "tool": "webai:gemini:canvas-edit",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "cli_output": { "canvas_opened": true, "edit_applied": true, "ai_action_applied": false },
+      "exit_code": 0,
+      "dom_verification": {
+        "conversation_url": "https://gemini.google.com/app/0fdfd8846cb6c8e9",
+        "canvasPanel_present": true,
+        "prompt_text_landed": true,
+        "edit_text_landed": true,
+        "snippet": "Gemini said I've created the canvas document with the specific sentence"
+      }
+    },
+    "notes": "Canvas opened, inline edit applied, completed (exit 0). All contract always_present keys present (canvas_opened, edit_applied, ai_action_applied). ai_action_applied:false is correct/expected since no --ai-action was requested. DOM confirms canvas panel present and both the prompt text ('quick brown fox jumps') and the --edit-text value ('lazy dog') are in the canvas, proving the edit wrote into the canvas. Prompt benign, default tier."
+  },
+  {
+    "id": "4",
+    "tool": "webai:gemini:conversation-manage",
+    "status": "GUARD_OK",
+    "evidence": {
+      "menu_enumerate_read": { "items": ["Files in this chat", "Pin", "Rename", "Add to notebook", "Delete"] },
+      "search_read": { "results": "conversation list returned (e.g. 'Blue Cube Video Generation', 'Code Review Note on Canvas', 'A simple flat-style green circle on a white background')" },
+      "share_without_confirm": { "ok": false, "errorCode": "SENSITIVE_CONTENT_GUARD", "message": "Opening Gemini conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.", "action": "share" },
+      "delete_destructive": { "ok": false, "errorCode": "POLICY_APPROVAL_REQUIRED", "reason": "Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.", "action": "delete" }
+    },
+    "notes": "Read/enumerate paths GREEN: menu_enumerate returns menu items, search returns conversation list. Destructive ops correctly REFUSE with stable contract codes: share -> SENSITIVE_CONTENT_GUARD, delete -> POLICY_APPROVAL_REQUIRED (source confirms rename also gated). Guard refusals are correct behavior; not forced. Minor arg-handling note: menu_enumerate's --tab-url-contains is passed to page.goto, so a bare conversation-id string fails with an invalid-URL error; passing a full https://gemini.google.com/app/<id> URL works (initial bare-id attempt also failed harmlessly with ELEMENT_NOT_FOUND when the shared page was not on a conversation - stable contract code, no silent fallback)."
+  },
+  {
+    "id": "5",
+    "tool": "webai:gemini:workspace (all 7 surfaces)",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "gems": { "url": "https://gemini.google.com/gems/view", "summary": "0 Gem conversation link(s) visible", "errorCode": null },
+      "scheduled": { "url": "https://gemini.google.com/scheduled", "summary": "scheduled route opened", "errorCode": null },
+      "study": { "url": "https://gemini.google.com/app", "summary": "Guided learning tool is visible (observe-only)", "errorCode": null },
+      "audio_overview": { "url": "https://notebooklm.google.com/", "summary": "NotebookLM route opened for Audio Overview handoff; generation deferred until a completed research run exists", "errorCode": null },
+      "workspace_integration": { "url": "https://gemini.google.com/apps", "summary": "Google Workspace integration route opened (observe-only)", "errorCode": null },
+      "connected_apps": { "url": "https://gemini.google.com/apps", "summary": "Connected apps route opened (observe-only)", "errorCode": null },
+      "personalization": { "url": "https://gemini.google.com/personalization-settings", "summary": "Personalization settings route opened (observe-only; memory toggle mutations require POLICY_APPROVAL_REQUIRED)", "errorCode": null }
+    },
+    "notes": "All 7 contract enum surfaces (gems, scheduled, study, audio_overview, workspace_integration, connected_apps, personalization) read without error. Each returns surface+url+summary, no error codes. Read-only safety class respected."
+  }
+]

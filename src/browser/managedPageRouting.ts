@@ -10,7 +10,15 @@ export function pageMatchesTargetUrl(pageUrl: string, targetUrl?: string): boole
   try {
     const page = new URL(pageUrl);
     const target = new URL(targetUrl);
-    return page.hostname === target.hostname || page.hostname.endsWith(`.${target.hostname}`);
+    const sameHost = page.hostname === target.hostname || page.hostname.endsWith(`.${target.hostname}`);
+    if (!sameHost) return false;
+    const normalizePath = (value: string) => (value || "/").replace(/\/$/, "") || "/";
+    const pagePath = normalizePath(page.pathname);
+    const targetPath = normalizePath(target.pathname);
+    if (/^\/(auth|login|signin|signup|logout)(?:\/|$)/i.test(pagePath)) return true;
+    if (targetPath === "/") return true;
+    if (targetPath === "/app") return pagePath === "/app" || pagePath.startsWith("/app/");
+    return pagePath === targetPath;
   } catch {
     return pageUrl === targetUrl;
   }

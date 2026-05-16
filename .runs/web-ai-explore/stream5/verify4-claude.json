@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1a",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "projectUrl=https://claude.ai/design/p/019e2c8b-6fa2-7196-b896-7fe2fc62492b projectId=019e2c8b-6fa2-7196-b896-7fe2fc62492b. No forbidden fields.",
+    "notes": "No regression vs round-3 (was GREEN there too)."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:claude:design:generate",
+    "status": "FAILED",
+    "evidence": "One clean foreground attempt against project 019e2c8b. CLI JSON: {\"ok\":false,\"errorCode\":\"POSTCONDITION_TIMEOUT\",\"error_code\":\"POSTCONDITION_TIMEOUT\",\"status\":\"failed\"} EXIT=0. Stable contract code, no raw Playwright string, no fabricated artifact.",
+    "notes": "D1 NOT effectively landed. Live design tab resolved https://claude.ai/design/p/019e2c8b-6fa2-7196-b896-7fe2fc62492b?file=Hello+World.html (a real 'Hello World.html' file was produced server-side on OUR project) yet the CLI still times out on its success postcondition. Same root cause class as round-3: postcondition wait/selector does not recognize the completed-generation DOM state; generation itself succeeds. Not a generate failure - a postcondition-detection defect that the D1 patch did not fix."
+  },
+  {
+    "id": "1c",
+    "tool": "webai:claude:design:get-html",
+    "status": "FAILED",
+    "evidence": "CLI JSON: {\"ok\":false,\"errorCode\":\"ARTIFACT_VERIFICATION_FAILED\",\"error_code\":\"ARTIFACT_VERIFICATION_FAILED\",\"iframeArtifactSha256\":\"\",\"savedPath\":\"\",\"byteSize\":0} EXIT=0. No .html stub persisted to download-dir. No html/dom/screenshot/forbidden fields.",
+    "notes": "D2 LANDED (the round-3 bug is fixed): round-3 persisted a 77-byte _bootstrap-URL file with a .html extension + ok-shaped sha256; round-4 now correctly returns a stable ARTIFACT_VERIFICATION_FAILED with empty savedPath/sha/byteSize and writes NO bootstrap-URL .html stub. Tool-level FAILED only because no real HTML artifact could be produced (downstream of the 1b POSTCONDITION_TIMEOUT - generation completed server-side but the iframe had not rendered real HTML at capture time). This is the honest terminal outcome the contract requires. Minor cleanliness note: get-html left two small canvas scratch .md files (r_3_final_canvas.md 29B, r_4_canvas_document.md 27B) in download-dir; these are NOT html stubs and NOT a contract violation, but get-html should ideally not leave scratch files on a failed capture."
+  },
+  {
+    "id": "2a",
+    "tool": "webai:claude:deep-research",
+    "status": "VERIFIED_GREEN",
+    "evidence": "CLI JSON: {\"task_id\":\"task_1778864347079_0a1671062c04\",\"status\":\"queued\"} EXIT=0. Real task_id, no forbidden fields.",
+    "notes": "No regression. Still GREEN."
+  },
+  {
+    "id": "2b",
+    "tool": "webai:claude:send-prompt",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--tab-url-contains /new --model sonnet. CLI JSON: completion_detected=true, errorCode=null, model_used=\"Sonnet 4.6Adaptive\" (Sonnet stuck), chat_url=https://claude.ai/chat/8ec0996b-22b5-4cb2-b848-2a4becad49ed, elapsed_ms=31334. Real response on a real chat UUID. No forbidden fields.",
+    "notes": "No regression. Sonnet sticks, tab honored (no /code forcing). 'PONGPONG'/'Sonnet 4.6Adaptive' are benign label-concatenation cosmetics (same documented round-3 pattern), core behavior GREEN."
+  }
+]

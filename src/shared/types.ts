@@ -154,6 +154,10 @@ export interface BrowserAction {
   toOffset?: [number, number];
   steps?: number;
   holdMs?: number;
+  /** Pointer dwell duration for hover-intent menus; when set, hover uses raw CDP mouseMoved events. */
+  dwellMs?: number;
+  /** Optional selector that must appear after a hover-dwell interaction. */
+  settleSelector?: string;
   /** Local file paths used by upload actions. */
   files?: string[];
   waitFor?: "text" | "selector" | "navigation" | "download" | "timeout";

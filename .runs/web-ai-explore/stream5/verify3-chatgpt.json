@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "tool": "webai:chatgpt:canvas-export",
+    "status": "FAILED",
+    "evidence": {
+      "artifact_produced": true,
+      "envelope": {
+        "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/web-ai-explore/stream5/verify3-artifacts/r_3_final_canvas.md",
+        "sha256": "f6651468af3855fb35a46265cd059033b51edf54a8e4b2b1e8a4eeba4f27fae9",
+        "format": "md",
+        "byteSize": 29,
+        "errorCode": null
+      },
+      "artifact_disk": {
+        "abs_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/web-ai-explore/stream5/verify3-artifacts/r_3_final_canvas.md",
+        "bytes": 29,
+        "type": "ASCII text (Markdown)",
+        "content": "red-uno\\ngreen-dos\\nblue-tres\\n",
+        "sha256": "f6651468af3855fb35a46265cd059033b51edf54a8e4b2b1e8a4eeba4f27fae9",
+        "sha256_matches_envelope": true
+      },
+      "process_exit": 124,
+      "conversation_id_placeholder_leak": false,
+      "canvas_source_conversation": "6a074ba5-0f40-83e8-99aa-65a4116623ef"
+    },
+    "notes": "Round-2 selector fix WORKS: CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR ('button[aria-haspopup=\"menu\"]:has-text(\"Download\"), button:has-text(\"Download\")') matched and a real, non-empty, correct-type, correct-content Markdown artifact was downloaded with a populated {path,sha256,format,byteSize} envelope (no errorCode, no <conversation-id> placeholder leak). BUT the tool still HANGS after emitting the success envelope (process exit 124 / SIGTERM by timeout). Round-2 post-success hang is NOT fixed; spec requires the tool to exit with a stable code and not hang. Separately observed: canvas-export does NOT open the canvas side-panel itself; it only works when the panel is already open (i.e. right after canvas creation). A fresh navigation to an existing canvas conversation does not auto-open the panel, so a cold export returns ELEMENT_NOT_FOUND (reproduced once: {path:'',sha256:'',byteSize:0,errorCode:'ELEMENT_NOT_FOUND'} on conversation 6a07497c). This is a usability/robustness gap distinct from the hang."
+  },
+  {
+    "id": 2,
+    "tool": "webai:chatgpt:conversation-manage --action share",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {
+        "dialog_opened": true,
+        "conversationId": "6a07497c-5750-83e8-8eeb-517f25c16cd2"
+      },
+      "process_exit": 0,
+      "published": false,
+      "public_link_created": false,
+      "forbidden_fields_present": false
+    },
+    "notes": "Wide-viewport fix (page.setViewportSize 1280x900 before clicking CHATGPT_SHARE_BUTTON_SELECTOR) WORKS. Share control actionable; share dialog opened (dialog_opened:true) with real conversationId (no <conversation-id> placeholder). Stopped at the dialog; nothing published, no public link created. SENSITIVE_CONTENT_GUARD path remains in place for any blocked/unconfirmed publish (not triggered here because content is benign and we did not proceed to publish)."
+  },
+  {
+    "id": 3,
+    "tool": "webai:chatgpt:deep-research",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {
+        "task_id": "task_1778862414824_bc2f01a1374b",
+        "status": "queued"
+      },
+      "task_status_followup": {
+        "tool": "webai:task-status",
+        "task_id": "task_1778862414824_bc2f01a1374b",
+        "result": {
+          "status": "queued",
+          "progress_label": "queued ChatGPT Deep research task"
+        }
+      },
+      "process_exit": 0,
+      "model_selection_drift_false_positive": false
+    },
+    "notes": "Composer-scoped model detection fix WORKS: no false MODEL_SELECTION_DRIFT from the sidebar 'Recents' heading. deep-research selected Thinking, entered Deep research mode, submitted, and returned a queued {task_id,status} envelope (queue=pass; report not awaited per spec). webai:task-status with the real task_id is valid and returns {status:queued, progress_label}. Clean exit 0, no hang."
+  },
+  {
+    "id": 4,
+    "tool": "webai:chatgpt:send-prompt (Thinking)",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {
+        "response_text": "PONG-R3-VERIFY",
+        "elapsed_ms": 9601,
+        "wait_ms": 3462,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "Thinking",
+        "reuse_conversation": false,
+        "conversation_id": "6a074944-314c-83e8-bc86-a6f1db1a3940",
+        "chat_url": "https://chatgpt.com/c/6a074944-314c-83e8-bc86-a6f1db1a3940"
+      },
+      "process_exit": 0,
+      "model_selection_drift_false_positive": false,
+      "pro_model_used": false
+    },
+    "notes": "Composer-scoped model detection fix WORKS. model_used:'Thinking' (no false 'Recents' drift), completion_detected:true, correct response 'PONG-R3-VERIFY', errorCode:null, clean exit 0. Model stuck (no false drift); never Pro. Also re-confirmed indirectly by two further send-prompt canvas-creation runs (model_used:'Thinking', errorCode:null each)."
+  },
+  {
+    "id": "5a",
+    "tool": "webai:chatgpt:workspace --surface projects",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": { "surface": "projects", "url": "https://chatgpt.com/", "summary": "Projects sidebar area not confirmed" },
+      "forbidden_fields_present": false,
+      "process_exit": 0
+    },
+    "notes": "Regression check: still GREEN, {surface,url,summary}-only, no forbidden fields. Same shape as verify2."
+  },
+  {
+    "id": "5b",
+    "tool": "webai:chatgpt:workspace --surface memory",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": { "surface": "memory", "url": "https://chatgpt.com/#settings/Personalization", "summary": "Memory settings route opened" },
+      "forbidden_fields_present": false,
+      "process_exit": 0
+    },
+    "notes": "Regression check: still GREEN, {surface,url,summary}-only, no forbidden fields. No regression."
+  },
+  {
+    "id": "5c",
+    "tool": "webai:chatgpt:codex:list-envs",
+    "status": "GUARD_OK",
+    "evidence": {
+      "envelope": {
+        "status": "failed",
+        "errorCode": "SUBMCP_NOT_PROVISIONED",
+        "message": "ChatGPT Codex requires a throwaway sandbox repository. Supply repo via the repo param after user provisioning."
+      },
+      "process_exit": 0
+    },
+    "notes": "Regression check: still SUBMCP_NOT_PROVISIONED (intended gated PASS). No regression."
+  }
+]

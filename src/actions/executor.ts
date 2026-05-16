@@ -66,6 +66,7 @@ export class ActionExecutor {
     if (action.type === "press" && !action.key) throw new Error("Press action requires key");
     if (action.type === "select" && !action.option) throw new Error("Select action requires option");
     if ((action.type === "hover" || action.type === "select-text") && !action.selector) throw new Error(`${action.type} action requires selector`);
+    if (action.type === "hover" && action.dwellMs !== undefined && (!Number.isInteger(action.dwellMs) || action.dwellMs < 0)) throw new Error("Hover action requires dwellMs to be a non-negative integer");
     if (action.type === "select-text" && ((action.start === undefined) !== (action.end === undefined))) throw new Error("Select text action requires both start and end offsets when either is provided");
     if (action.type === "drag") {
       if (!action.selector && (!action.from || !action.to)) throw new Error("Drag action requires either selector offsets or from/to coordinates");
@@ -193,10 +194,50 @@ export class ActionExecutor {
   private async hover(action: BrowserAction): Promise<ActionResult> {
     const page = this.activePage();
     const locator = getLocator(page, action.target, action.selector);
-    await locator.hover();
+    if (action.dwellMs === undefined && !action.settleSelector) {
+      await locator.hover();
+      const ms = action.timeoutMs || 0;
+      if (ms > 0) await page.waitForTimeout(ms);
+      return { ok: true, action, message: `Hovered ${describeSemanticTarget(action.target, action.selector)}` };
+    }
+
+    const dwellMs = action.dwellMs ?? 450;
+    const box = await locator.boundingBox?.();
+    if (!box) throw new Error(`ELEMENT_NOT_FOUND: hover target not found or not visible: ${describeSemanticTarget(action.target, action.selector)}`);
+    const cdp = await page.context?.().newCDPSession?.(page);
+    if (!cdp?.send) throw new Error("MODE_UNCERTAIN: raw CDP mouse input is unavailable for hover dwell");
+    const targetX = box.x + box.width / 2;
+    const targetY = box.y + box.height / 2;
+    const startX = Math.max(0, targetX - Math.max(24, Math.min(80, box.width || 24)));
+    const startY = Math.max(0, targetY - Math.max(24, Math.min(80, box.height || 24)));
+    const steps = 5;
+    for (let i = 1; i <= steps; i++) {
+      const ratio = i / steps;
+      await cdp.send("Input.dispatchMouseEvent", {
+        type: "mouseMoved",
+        x: startX + (targetX - startX) * ratio,
+        y: startY + (targetY - startY) * ratio,
+        button: "none",
+        buttons: 0
+      });
+    }
+    if (dwellMs > 0) await page.waitForTimeout(dwellMs);
+    if (action.settleSelector) {
+      try {
+        await page.waitForSelector(action.settleSelector, { timeout: action.timeoutMs || 5000 });
+      } catch (error) {
+        throw new Error(`ELEMENT_NOT_FOUND: hover dwell did not reveal settle selector ${action.settleSelector}`);
+      }
+    }
     const ms = action.timeoutMs || 0;
-    if (ms > 0) await page.waitForTimeout(ms);
-    return { ok: true, action, message: `Hovered ${describeSemanticTarget(action.target, action.selector)}` };
+    if (ms > 0 && !action.settleSelector) await page.waitForTimeout(ms);
+    await cdp.detach?.().catch?.(() => undefined);
+    return {
+      ok: true,
+      action,
+      message: `Hover-dwelled ${describeSemanticTarget(action.target, action.selector)}`,
+      data: { x: targetX, y: targetY, dwellMs, mouseMovedEvents: steps }
+    };
   }
 
   private async selectText(action: BrowserAction): Promise<ActionResult> {

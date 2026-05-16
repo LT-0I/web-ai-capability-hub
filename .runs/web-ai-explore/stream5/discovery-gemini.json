@@ -1,0 +1,316 @@
+[
+  {
+    "id": "gemini-make-music",
+    "service": "gemini",
+    "name": "Make music / audio (Lyria music generation)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer quick-action chip 'Create music' OR Tools drawer (#toolbox-drawer-menu) -> 'Create music' menuitemcheckbox; result is an inline music player with a Download track format menu",
+    "recipe": [
+      "Navigate https://gemini.google.com/app (fresh composer).",
+      "Click button[aria-label=\"\\ud83c\\udfb8 Create music, button, tap to use tool\"] (emoji prefix literal). Alt: open Tools (xpath //button[.//text()[contains(.,\"Tools\")] or @aria-label=\"Tools\"]) then click xpath //*[@id=\"toolbox-drawer-menu\"]//button[normalize-space(.)=\"Create music\"].",
+      "Selected when button[aria-label=\"Deselect Create music\"] + button[aria-label=\"Play or pause audio preview\"] appear; composer placeholder becomes 'Describe your track'.",
+      "browser:type into div[aria-label=\"Enter a prompt for Gemini\"] a benign instrumental prompt (no copyrighted content). Press Escape to dismiss ul#auto-suggest-0-0.",
+      "browser:click button[aria-label=\"Send message\"] --confirmed true (RISK_WORDS guard matches 'send'; --confirmed is the sanctioned benign-send bypass).",
+      "Generating: 'Music Generating your music...' + button[aria-label=\"Stop response\"]; URL -> /app/<conversationId>.",
+      "Poll browser:read until button[aria-label=\"Stop response\"] gone and button[aria-label=\"Download track\"] present (~20-30s).",
+      "Capture: browser:artifact-click --profile gemini-9225 --tab-url-contains <conversationId> --button-selector 'button[aria-label=\"Download track\"]' --follow-up-text-regex 'MP3' --download-dir <abs> --locate-timeout-ms 20000 --prerender-wait-ms 1500"
+    ],
+    "completion_gate": "button[aria-label=\"Download track\"] present AND button[aria-label=\"Stop response\"] absent; also button[aria-label=\"Listen\"], input[aria-label=\"Seek slider\"], duration timer span appear.",
+    "artifact": "'Download track' opens dynamic mat-menu (#mat-menu-panel-N) with 'Video Audio with cover art' and 'Audio only MP3 track'. Two-stage artifact-click (button + --follow-up-text-regex 'MP3'). VERIFIED: .runs/web-ai-explore/stream5/artifacts/Paper_Keys.mp3 744610 bytes, file(1)='MPEG ADTS layer III v1 192 kbps 44.1 kHz JntStereo'.",
+    "sub_mcp_candidate": true,
+    "evidence": ".runs/web-ai-explore/stream5/artifacts/Paper_Keys.mp3 (downloaded+file-verified); conversation https://gemini.google.com/app/e6e1575ef51576a3",
+    "notes": "QUIRK: Download track is NOT direct - opens format submenu (2nd click). mat-menu panel id dynamic; target menuitems by follow-up-text-regex. Sub-MCP rationale: Lyria is a large self-contained module (player widget, format menu, share-track, video render) distinct from text chat -> good gemini-music sub-MCP."
+  },
+  {
+    "id": "gemini-image-editing",
+    "service": "gemini",
+    "name": "Image editing (edit generated or uploaded images)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "No dedicated Edit-image button. Conversational/iterative edit-in-conversation (Nano Banana): generate or upload image, then send a follow-up edit instruction in the SAME conversation.",
+    "recipe": [
+      "Generate a base image (gemini-generate-image GREEN flow) OR upload via button[aria-label=\"Open upload file menu\"].",
+      "Wait: button[aria-label=\"Download full size image\"] / button[aria-label=\"Share image\"] / button[aria-label=\"Copy image\"] present, Stop response absent.",
+      "browser:type a benign edit instruction into div[aria-label=\"Enter a prompt for Gemini\"]; press Escape; browser:click button[aria-label=\"Send message\"] --confirmed true.",
+      "Poll until Stop response absent and a NEW image turn with button[aria-label=\"Download full size image\"] appears."
+    ],
+    "completion_gate": "New assistant turn carries a fresh button[aria-label=\"Download full size image\"] (+ Share image / Copy image) and Stop response gone.",
+    "artifact": "Edited image; capture via button[aria-label=\"Download full size image\"] (same as gemini-generate-image GREEN download path).",
+    "sub_mcp_candidate": false,
+    "evidence": "conversation https://gemini.google.com/app/cf030738b7827a98 - turn1 blue circle image; turn2 'make the circle red instead of blue' produced a new edited image with identical image-action buttons.",
+    "notes": "Purely conversational - the toolbar 'Edit' aria-label is the PROMPT-edit button, not image edit. Thin multi-turn extension of the GREEN generate-image tool, not a standalone module."
+  },
+  {
+    "id": "gemini-canvas-edit",
+    "service": "gemini",
+    "name": "Canvas inline editing (direct text editing in canvas panel)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Canvas immersive side panel (opens for substantial doc/code generations when Canvas tool selected). Document body is a directly editable contenteditable; plus selection-driven AI edit tools.",
+    "recipe": [
+      "Select Canvas: Tools drawer -> xpath //*[@id=\"toolbox-drawer-menu\"]//button[normalize-space(.)=\"Canvas\"] (confirmed by button[aria-label=\"Deselect Canvas\"]).",
+      "Send a SUBSTANTIAL prompt (a one-liner renders inline and does NOT open the panel). browser:click Send --confirmed true.",
+      "Canvas panel gated by button[aria-label=\"Share and export canvas\"] + button[aria-label=\"Close panel\"] + button[aria-label=\"Previous version\"]/[\"Next version\"] + Length/Tone/Suggest buttons.",
+      "Inline edit: browser:click then browser:type into xpath=(//div[@contenteditable=\"true\"])[last()] (composer is FIRST contenteditable; canvas doc body is LAST). AI-assisted edits: select text then button[aria-label=\"Length\"|\"Tone\"|\"Suggest\"]."
+    ],
+    "completion_gate": "Canvas panel: button[aria-label=\"Share and export canvas\"] AND button[aria-label=\"Close panel\"] AND button[aria-label=\"Previous version\"]. Inline edit verified by doc text reflecting typed content.",
+    "artifact": "Edited canvas doc. Export via button[aria-label=\"Share and export canvas\"] (= gemini-canvas-to-docs GREEN path) or button[aria-label=\"Print\"].",
+    "sub_mcp_candidate": false,
+    "evidence": "conversation https://gemini.google.com/app/8a5189033f3e6560 - typing into (//div[@contenteditable='true'])[last()] replaced canvas bullet content; screenshot 2026-05-15T13-06-19 confirms.",
+    "notes": "QUIRK: canvas contenteditable NOT enumerated by browser:read - only reachable via xpath (//div[@contenteditable='true'])[last()]. Canvas only opens panel for substantial generations. Best modeled as extension of existing canvas GREEN tool."
+  },
+  {
+    "id": "gemini-personalization-memory",
+    "service": "gemini",
+    "name": "Personalization / memory (Gemini remembers user facts)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://gemini.google.com/personalization-settings (Settings & help -> 'Personal Intelligence')",
+    "recipe": [
+      "Click button[aria-label=\"Settings & help\"] -> menu (#mat-menu-panel-N).",
+      "Click xpath //*[starts-with(@id,\"mat-menu-panel\")]//a[normalize-space(.)=\"Personal Intelligence\"] -> https://gemini.google.com/personalization-settings.",
+      "Sections: Memory (switch #mat-mdc-slide-toggle-0-button + link 'Manage and delete' past chats), Connected Apps (a[aria-label=\"Go to Connected Apps section\"]), Instructions for Gemini (a[aria-label=\"Go to Instructions for Gemini section\"], custom instructions).",
+      "OBSERVE-ONLY: read switch state; do NOT toggle (account-state change)."
+    ],
+    "completion_gate": "URL == https://gemini.google.com/personalization-settings AND switch #mat-mdc-slide-toggle-0-button present.",
+    "artifact": "None (settings surface).",
+    "sub_mcp_candidate": false,
+    "evidence": "Navigated to https://gemini.google.com/personalization-settings; switch + Manage-and-delete/Connected-Apps/Instructions links enumerated.",
+    "notes": "Read/enumerate in scope. Toggling memory or editing custom instructions = account-state change (observe-only / behind confirmation). Page also gates 'Manage and delete past chats'."
+  },
+  {
+    "id": "gemini-connected-apps",
+    "service": "gemini",
+    "name": "Connected apps listing and management",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://gemini.google.com/apps (personalization-settings -> a[aria-label=\"Go to Connected Apps section\"])",
+    "recipe": [
+      "From personalization-settings click a[aria-label=\"Go to Connected Apps section\"] -> https://gemini.google.com/apps.",
+      "Each extension has switch #mat-mdc-slide-toggle-N-button (N=1..9+): Google Workspace, Google Photos, Search services, YouTube, YouTube Music, code/canvas, OpenStax, reservations. Filter chips #mat-mdc-chip-0 (From Google) / #mat-mdc-chip-1 (Other). Privacy Hub a[aria-label=\"Open the Gemini Apps Privacy Hub in a new window\"].",
+      "Enumerate switch labels + on/off (aria-checked). OBSERVE-ONLY: do NOT toggle."
+    ],
+    "completion_gate": "URL == https://gemini.google.com/apps AND >=1 switch #mat-mdc-slide-toggle-N-button enumerated.",
+    "artifact": "None. Output = list {appName, connected:bool}.",
+    "sub_mcp_candidate": false,
+    "evidence": "Navigated to https://gemini.google.com/apps; switches #mat-mdc-slide-toggle-1..9-button enumerated.",
+    "notes": "Listing trivially automatable (read switch labels+aria-checked). Connect/disconnect = account modification (observe-only / confirmation)."
+  },
+  {
+    "id": "gemini-workspace-integration",
+    "service": "gemini",
+    "name": "Google Workspace integration (Docs, Drive, Gmail, Calendar)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://gemini.google.com/apps -> 'Google Workspace' extension card (switch #mat-mdc-slide-toggle-1-button). Covers Gmail, Calendar, Docs, Drive, Keep, Tasks.",
+    "recipe": [
+      "Navigate to Connected Apps page.",
+      "Google Workspace = first card: switch #mat-mdc-slide-toggle-1-button 'Enables or disables the extension of Google Workspace'. Read aria-checked for connected state.",
+      "When connected, Workspace use is conversational (ask about Gmail/Drive/Docs) - no separate UI; results inline in chat. OBSERVE-ONLY for toggle."
+    ],
+    "completion_gate": "Switch #mat-mdc-slide-toggle-1-button (Google Workspace) present on https://gemini.google.com/apps.",
+    "artifact": "None; Workspace results inline in chat answers.",
+    "sub_mcp_candidate": false,
+    "evidence": "On https://gemini.google.com/apps the Google Workspace card lists Gmail/Calendar/Docs/Drive/Keep/Tasks with switch #mat-mdc-slide-toggle-1-button.",
+    "notes": "No dedicated automation surface beyond connect toggle + conversational use via gemini-send-prompt GREEN. Toggling = account modification."
+  },
+  {
+    "id": "gemini-conversation-management",
+    "service": "gemini",
+    "name": "Conversation management (rename, delete, search, pin)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "In-conversation 3-dot menu (button[aria-label=\"Open menu for conversation actions.\"]) + top-bar Share + expanded-sidebar Search",
+    "recipe": [
+      "Open a conversation (https://gemini.google.com/app/<id>).",
+      "Click button[aria-label=\"Open menu for conversation actions.\"] -> mat-menu #mat-menu-panel-N with menuitems: 'Pin', 'Rename', 'Delete'.",
+      "Share: button[aria-label=\"Share conversation\"] (top bar).",
+      "Search conversations: expand sidebar (button[aria-label=\"Main menu\"]) -> button[aria-label=\"Search\"]; conversation list region = #conversations-list-0 with each conversation an <a> button by title.",
+      "OBSERVE-ONLY for Delete/Rename (destructive/mutating); menu enumeration is the definitive recipe."
+    ],
+    "completion_gate": "mat-menu #mat-menu-panel-N opened with menuitems Pin + Rename + Delete enumerated.",
+    "artifact": "None (management actions).",
+    "sub_mcp_candidate": false,
+    "evidence": "conversation https://gemini.google.com/app/e6e1575ef51576a3 - actions menu #mat-menu-panel-21 enumerated menuitems Pin/Rename/Delete; button[aria-label=\"Share conversation\"] present; sidebar button[aria-label=\"Search\"] + #conversations-list-0 present.",
+    "notes": "Pin/Rename/Delete are generic <button> menuitems inside a dynamic mat-menu - target by normalize-space text. Per-conversation sidebar 3-dot only appears on CSS :hover and is NOT enumerated by browser:read across calls (reader limitation) - use the in-conversation actions menu instead, which is stable. Did not exercise Delete/Rename (data-mutating)."
+  },
+  {
+    "id": "gemini-deep-think",
+    "service": "gemini",
+    "name": "Deep Think (Gemini extended reasoning mode)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer mode picker: button[aria-label=\"Open mode picker\"] -> mat-menu #mat-menu-panel-N -> menuitem 'Thinking'",
+    "recipe": [
+      "Click button[aria-label=\"Open mode picker\"] -> mat-menu #mat-menu-panel-N with menuitems: 'Fast Answers quickly', 'Thinking Solves complex problems', 'Pro Advanced math and code with 3.1 Pro', 'Upgrade'.",
+      "Click xpath //*[@id=\"mat-menu-panel-N\"]//button[contains(normalize-space(.),\"Thinking\")] --confirmed true. Picker label updates to 'Thinking'.",
+      "Then send prompts normally (gemini-send-prompt GREEN). NEVER select 'Pro' for test generations (project constraint - Thinking is the allowed extended-reasoning tier)."
+    ],
+    "completion_gate": "Mode picker visible label == 'Thinking' after selection (screenshot-confirmed).",
+    "artifact": "None (mode toggle); affects subsequent answers' reasoning depth.",
+    "sub_mcp_candidate": false,
+    "evidence": "mode picker #mat-menu-panel-4 enumerated Fast/Thinking/Pro; selecting 'Thinking' changed composer picker label from 'Fast' to 'Thinking' (screenshot 2026-05-15T13-15-44).",
+    "notes": "This Gemini build consolidated the legacy '2.5 Pro with Deep Think' into the mode picker as 'Thinking' (non-Pro, ALLOWED) vs 'Pro' (FORBIDDEN for tests). Deep-think == selecting the 'Thinking' menuitem. Shares entry point with gemini-model-selector."
+  },
+  {
+    "id": "gemini-model-selector",
+    "service": "gemini",
+    "name": "Model selection (Fast / Thinking / Pro tiers)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer mode picker: button[aria-label=\"Open mode picker\"] (re-validated; replaces the old top-of-conversation model picker)",
+    "recipe": [
+      "Click button[aria-label=\"Open mode picker\"] -> mat-menu #mat-menu-panel-N.",
+      "Menuitems: 'Fast Answers quickly' (default), 'Thinking Solves complex problems', 'Pro Advanced math and code with 3.1 Pro', 'Upgrade'.",
+      "Select by xpath //*[@id=\"mat-menu-panel-N\"]//button[contains(normalize-space(.),\"<Tier>\")] --confirmed true; picker label updates and persists per-session. Use Fast or Thinking for tests; NEVER Pro (project constraint)."
+    ],
+    "completion_gate": "Mode picker visible label reflects the chosen tier after selection.",
+    "artifact": "None.",
+    "sub_mcp_candidate": false,
+    "evidence": "mode picker #mat-menu-panel-4 with Fast/Thinking/Pro menuitems; selection verified to change picker label (screenshot 2026-05-15T13-15-44).",
+    "notes": "RE-VALIDATED with UI change: the model selector is now the composer 'Open mode picker' (Fast/Thinking/Pro), not a separate top-of-conversation Gemini-2.0/2.5 dropdown. Tiers: Fast / Thinking / Pro. Pro is project-forbidden for test generations."
+  },
+  {
+    "id": "gemini-deep-research",
+    "service": "gemini",
+    "name": "Deep Research (multi-source, long-form research)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Tools drawer (#toolbox-drawer-menu) -> 'Deep research' menuitemcheckbox",
+    "recipe": [
+      "Open Tools (xpath //button[.//text()[contains(.,\"Tools\")] or @aria-label=\"Tools\"]).",
+      "Click xpath //*[@id=\"toolbox-drawer-menu\"]//button[normalize-space(.)=\"Deep research\"] (confirmed by a 'Deselect Deep research' state).",
+      "browser:type a research prompt; press Escape; browser:click button[aria-label=\"Send message\"] --confirmed true.",
+      "Deep Research produces a research plan then a long-form multi-source report (multi-minute run; poll Stop response). Report turn carries export + (post-report) Audio overview affordances."
+    ],
+    "completion_gate": "button[aria-label=\"Stop response\"] absent and a long-form report turn rendered (export/share controls present).",
+    "artifact": "Long-form report; can be exported (Share and export) and an Audio overview generated from it (see gemini-audio-overview).",
+    "sub_mcp_candidate": true,
+    "evidence": "Tools drawer #toolbox-drawer-menu 'Deep research' menuitemcheckbox re-validated present (2026-05-15).",
+    "notes": "RE-VALIDATED: entry is the 'Deep research' Tools-drawer menuitemcheckbox. Full end-to-end run is multi-minute (P2 cost) - not exercised end-to-end this pass; entry point + flow shape confirmed. Sub-MCP candidate (long async job with its own report+audio pipeline)."
+  },
+  {
+    "id": "gemini-study-materials",
+    "service": "gemini",
+    "name": "Study materials (flashcards, quizzes, practice tests)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Tools drawer (#toolbox-drawer-menu) -> 'Guided learning' menuitemcheckbox  (RENAMED from 'Study materials'); OR composer quick-action 'Help me learn'",
+    "recipe": [
+      "Open Tools drawer; click xpath //*[@id=\"toolbox-drawer-menu\"]//button[normalize-space(.)=\"Guided learning\"] (confirmed by button[aria-label=\"Deselect Guided learning\"]). Alt: quick-action button[aria-label=\"Help me learn, button, tap to use tool\"].",
+      "Provide source content (paste text or upload via button[aria-label=\"Open upload file menu\"]) and prompt for flashcards/quiz/practice test; send --confirmed true.",
+      "Gemini returns interactive study materials in the answer."
+    ],
+    "completion_gate": "button[aria-label=\"Deselect Guided learning\"] present after tool select; study-materials answer rendered after send.",
+    "artifact": "Inline study materials (flashcards/quiz); exportable via standard answer copy/share.",
+    "sub_mcp_candidate": false,
+    "evidence": "Tools drawer now exposes 'Guided learning' (NOT 'Study materials'); selecting it set button[aria-label=\"Deselect Guided learning\"] (2026-05-15).",
+    "notes": "RE-VALIDATED with UI rename: library said 'Study materials'; current Tools drawer label is 'Guided learning'. Same capability (study aids from content/uploads)."
+  },
+  {
+    "id": "gemini-audio-overview",
+    "service": "gemini",
+    "name": "Audio overview (NotebookLM-style audio summary)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Post-Deep-Research report action ('Generate/Create Audio Overview' on a completed Deep Research report) OR NotebookLM (Settings & help -> 'NotebookLM' a-link). NO LONGER in the Tools drawer.",
+    "recipe": [
+      "Run a Deep Research report (gemini-deep-research). On the completed report, use the report's Audio Overview action to generate a two-host audio summary.",
+      "OR Settings & help menu -> 'NotebookLM' menuitem (opens NotebookLM where Audio Overview is a notebook feature).",
+      "Universal per-answer read-aloud TTS is a DIFFERENT feature: button[aria-label=\"Listen\"] (available on every answer) - not the NotebookLM-style Audio Overview."
+    ],
+    "completion_gate": "Audio overview player rendered on the Deep Research report (or NotebookLM notebook).",
+    "artifact": "Generated audio summary (player; downloadable similarly to the music player pattern).",
+    "sub_mcp_candidate": false,
+    "evidence": "Tools drawer no longer lists 'Audio overview' (now: Create image/video, Canvas, Deep research, Create music, Guided learning); a regular non-research conversation shows only button[aria-label=\"Listen\"] TTS. Settings menu exposes a 'NotebookLM' link (e34).",
+    "notes": "RE-VALIDATED with UI change: entry moved out of Tools drawer; now a post-Deep-Research-report action or via NotebookLM. End-to-end exercise deferred (requires a completed Deep Research run, multi-minute P2 cost) - path is known, not blocked. Distinguish from button[aria-label=\"Listen\"] (per-answer TTS read-aloud, ubiquitous)."
+  },
+  {
+    "id": "gemini-gems",
+    "service": "gemini",
+    "name": "Gems (custom Gemini personas / assistants)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://gemini.google.com/gems/view ; sidebar a[aria-label=\"Gems\"]",
+    "recipe": [
+      "Navigate https://gemini.google.com/gems/view (or expand sidebar -> a[aria-label=\"Gems\"]).",
+      "Predefined + custom Gems listed; launch one via a[aria-label=\"Start a new conversation with Gem: <name>\"] (e.g. 'Chess champ').",
+      "Gem editor/creation reachable from the Gems manager (gem-labs)."
+    ],
+    "completion_gate": "URL == https://gemini.google.com/gems/view AND >=1 a[aria-label^=\"Start a new conversation with Gem:\"] enumerated.",
+    "artifact": "None (persona launch). Conversation proceeds as normal gemini-send-prompt.",
+    "sub_mcp_candidate": false,
+    "evidence": "Navigated https://gemini.google.com/gems/view; a[aria-label=\"Start a new conversation with Gem: Chess champ\"] enumerated; sidebar a[aria-label=\"Gems\"] present (2026-05-15).",
+    "notes": "RE-VALIDATED: route /gems/view stable (no redirect). Launching a Gem then reuses gemini-send-prompt GREEN. Gem creation/editing is a deeper sub-area (gem-labs)."
+  },
+  {
+    "id": "gemini-scheduled-actions",
+    "service": "gemini",
+    "name": "Scheduled actions (recurring Gemini tasks)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://gemini.google.com/scheduled ; Settings & help -> 'Scheduled actions' menuitem",
+    "recipe": [
+      "Navigate https://gemini.google.com/scheduled (or Settings & help menu -> a[normalize-space(.)=\"Scheduled actions\"]).",
+      "Page lists configured recurring actions (empty for accounts with none). Create via the page's add-action affordance / or via a prompt that schedules a recurring task.",
+      "OBSERVE-ONLY for create/delete unless explicitly creating a benign test schedule."
+    ],
+    "completion_gate": "URL == https://gemini.google.com/scheduled (no redirect to /app).",
+    "artifact": "None (scheduling surface).",
+    "sub_mcp_candidate": false,
+    "evidence": "Navigated https://gemini.google.com/scheduled - route stable, main region empty (no scheduled actions on this account); Settings menu 'Scheduled actions' menuitem (e29) confirmed earlier.",
+    "notes": "RE-VALIDATED: route /scheduled stable + Settings-menu entry. Account has zero scheduled actions so the list is empty (expected); creation flow not exercised (would create persistent account state)."
+  },
+  {
+    "id": "gemini-share-chat",
+    "service": "gemini",
+    "name": "Share chat (link generation)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Conversation top bar: button[aria-label=\"Share conversation\"] ; also Settings & help -> 'Your public links' for managing created links",
+    "recipe": [
+      "Open a conversation; click button[aria-label=\"Share conversation\"] -> share dialog generates a public link.",
+      "Manage existing share links: Settings & help menu -> 'Your public links' menuitem.",
+      "OBSERVE-ONLY: do NOT actually publish/confirm a public link (project policy bans public publishing during web-AI automation) - the button presence is the definitive recipe evidence."
+    ],
+    "completion_gate": "button[aria-label=\"Share conversation\"] present in conversation view (it appears on every persisted /app/<id> conversation).",
+    "artifact": "Public share URL (NOT generated here per no-publish policy).",
+    "sub_mcp_candidate": false,
+    "evidence": "button[aria-label=\"Share conversation\"] present in every conversation read this session (e.g. /app/e6e1575ef51576a3, /app/cf030738b7827a98); Settings menu 'Your public links' (e30) confirmed.",
+    "notes": "RE-VALIDATED. Did NOT click through the share dialog to actually create a public link - project rule forbids public publishing during web-AI automation. Recipe stops at the share-dialog open; final publish must be a deliberate user-authorized action."
+  },
+  {
+    "id": "gemini-long-context",
+    "service": "gemini",
+    "name": "Long context (1M token window, multi-document processing)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "No distinct UI - automatic for long inputs / multi-file uploads via the standard composer + button[aria-label=\"Open upload file menu\"]",
+    "recipe": [
+      "Use the standard gemini-upload-and-query GREEN flow: button[aria-label=\"Open upload file menu\"] -> attach multiple/large documents -> prompt -> send --confirmed true.",
+      "Long context is handled automatically by the model; there is NO separate toggle or UI element."
+    ],
+    "completion_gate": "Normal answer turn completes (same as gemini-upload-and-query GREEN) over large/multi-doc input.",
+    "artifact": "Normal text answer.",
+    "sub_mcp_candidate": false,
+    "evidence": "No distinct UI surface exists; verified by absence of any long-context control in composer/Tools/Settings across this session - it is an implicit model capability of the upload+query GREEN path.",
+    "notes": "RE-VALIDATED by definition: no separate surface. Fully subsumed by the IMPLEMENTED_GREEN gemini-upload-and-query tool (just larger/more inputs). No additional automation needed."
+  },
+  {
+    "id": "gemini-voice-mode",
+    "service": "gemini",
+    "name": "Voice mode (speak to Gemini, get audio response)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Composer: button[aria-label=\"Microphone\"] (bottom-right of the prompt box)",
+    "recipe": [
+      "Locate button[aria-label=\"Microphone\"] in the composer.",
+      "Clicking it should open a voice-input overlay - but in the managed automation Chrome it is a NO-OP (no overlay, no permission prompt, no console-visible error)."
+    ],
+    "completion_gate": "UNREACHABLE in this environment: no voice overlay appears after clicking Microphone.",
+    "artifact": "N/A (blocked).",
+    "sub_mcp_candidate": false,
+    "evidence": "Clicked button[aria-label=\"Microphone\"] multiple times (fresh https://gemini.google.com/app); zero UI change each time (screenshots 2026-05-15T13-07-02 and 13-10-10 identical to pre-click). No permission dialog, no overlay.",
+    "notes": "Environmental/hardware block: the managed automation Chrome has no microphone input device, so the voice flow silently no-ops (cannot be cracked by automation). Voice/audio capture is also outside benign-text-automation scope. See blocked-gemini.md."
+  },
+  {
+    "id": "gemini-live-mode",
+    "service": "gemini",
+    "name": "Live mode (real-time video/screen + audio conversation)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Reached via the voice/microphone flow (Gemini Live). No separate 'Live' button is rendered for this account/build in the web composer (the dashed-square top-right icon is 'Temporary chat', NOT Live).",
+    "recipe": [
+      "Live mode is entered from the voice flow (button[aria-label=\"Microphone\"]) which itself no-ops without a mic device.",
+      "No standalone Live-mode button exists in this web build: probed button[aria-label*=\"Live\"], *real-time*, a[href*=\"live\"], button[data-test-id*=\"live\"] - zero matches. The top-right dashed-square button is button[aria-label=\"Temporary chat\"]."
+    ],
+    "completion_gate": "UNREACHABLE: no Live entry point in web build + voice flow blocked (no mic device).",
+    "artifact": "N/A (blocked).",
+    "sub_mcp_candidate": false,
+    "evidence": "No Live-mode selector matched (4 probes); the only audio entry is button[aria-label=\"Microphone\"] which no-ops; top-right dashed-square is button[aria-label=\"Temporary chat\"].",
+    "notes": "Double block: (1) no dedicated Live button in this web build (likely mobile-app / mic-device gated), (2) the voice entry no-ops without a microphone device. Real-time AV capture is also outside benign-text-automation scope. See blocked-gemini.md."
+  }
+]

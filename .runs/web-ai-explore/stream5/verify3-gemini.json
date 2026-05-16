@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "tool": "webai:gemini:music:generate",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "precondition_test": "Shared CDP page deliberately parked on NON-music conversation app/2234b75e6aa44add (via webai:gemini:send-prompt 'boiling point of water', completion_detected:true) BEFORE the music:generate call.",
+      "music_generate_call": "webai:gemini:music:generate --profile gemini-9225 --prompt 'A short calm ambient instrumental loop with soft synth pads, no vocals' --confirmed (NO --tab-url-contains, default Fast tier).",
+      "music_generate_result": {
+        "task_id": "gemini_music_1778862473225",
+        "status": "generating",
+        "conversation_url": "https://gemini.google.com/app/b2b36a80f14e9680"
+      },
+      "self_navigation_proof": "Result conversation_url app/b2b36a80f14e9680 is DIFFERENT from the parked non-music conversation app/2234b75e6aa44add — the round-2 precondition fix (page.goto GEMINI_MUSIC_URL when parked on /app/<id> + waitForSelector hydration on the prompt textbox / toolbox-drawer-button before stepActivateMusicTool) navigated to a fresh music surface, hydrated, activated the music tool (NO stepActivateMusicTool / 'Deselect Create music' timeout this round — the round-2 bug is fixed), sent the prompt, and reached a real generation on a brand-new conversation. It did NOT act on the parked non-music page.",
+      "task_status": {
+        "call": "webai:gemini:music:task-status --tab-url-contains b2b36a80f14e9680",
+        "result": { "status": "complete", "download_ready": true }
+      },
+      "download_track": {
+        "call": "webai:gemini:music:download-track --tab-url-contains b2b36a80f14e9680 --format mp3 --download-dir .runs/web-ai-explore/stream5/verify3-artifacts",
+        "artifact_path": ".runs/web-ai-explore/stream5/verify3-artifacts/Beneath_the_Surface.mp3",
+        "size_bytes": 744610,
+        "file_verdict": "Audio file with ID3 version 2.3.0, contains: MPEG ADTS, layer III, v1, 192 kbps, 44.1 kHz, JntStereo",
+        "sha256": "d12663ce390989fd8c45ecc3d0d522f18226c379bf65d132be276501fc2ffc46"
+      },
+      "freshness": "sha256 d12663ce390989fd8c45ecc3d0d522f18226c379bf65d132be276501fc2ffc46 DIFFERS from the round-2 artifact sha256 6aabda10273efa733f844a29704ab9d44fe475daf961a31f46f28ea585a82cc8 — this is a freshly generated, freshly downloaded track from the new conversation b2b36a80f14e9680, NOT a re-served prior artifact."
+    },
+    "notes": "Core fix-under-test confirmed end-to-end: generate (from a deliberately parked non-music page) -> self-navigate to fresh music surface + hydration wait -> stepActivateMusicTool success (round-2 'Deselect Create music' precondition fragility resolved) -> real generation -> task-status complete -> download a real, non-empty, valid MPEG layer III MP3 with a NEW sha256. No fabrication, no blind retry, no fallback. The download CLI's background-harness stdout capture file was 0B, but the artifact is fully present and valid on disk; the empty stdout is a backgrounding-harness artifact, not a download failure."
+  },
+  {
+    "id": "2a",
+    "tool": "webai:gemini:canvas-edit",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "call": "webai:gemini:canvas-edit --profile gemini-9225 --prompt 'Write two short sentences about how rivers shape valleys over time.' --confirmed --edit-text 'Add a short closing sentence summarizing the key idea.'",
+      "result": { "canvas_opened": true, "edit_applied": true, "ai_action_applied": false },
+      "comparison": "Matches round-2 verify (canvas_opened:true, edit_applied:true, ai_action_applied:false). ai_action_applied:false is correct (no --ai-action passed)."
+    },
+    "notes": "No regression. A first invocation with only --edit-text (no --prompt/--confirmed) against the page parked on the music conversation correctly errored (no open canvas -> contenteditable never visible); that was an orchestrator invocation/precondition difference, NOT a code regression. The apples-to-apples round-2-shaped invocation is GREEN."
+  },
+  {
+    "id": "2b",
+    "tool": "webai:gemini:workspace",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "call": "webai:gemini:workspace --profile gemini-9225 --surface gems",
+      "result": { "surface": "gems", "url": "https://gemini.google.com/gems/view", "summary": "0 Gem conversation link(s) visible" }
+    },
+    "notes": "No regression. Returns surface+url+summary with no error code, matching round-2 verify."
+  }
+]

@@ -1,9 +1,15 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v0.5.0
-Contract: `consumer-contract-1.3.0`
+Package: `web-ai-research-automation-hub` v0.6.0
+Contract: `consumer-contract-1.4.0`
 
-This document is the versioned public integration contract for packages that consume the hub as a dependency. It adds a small consumer-safe layer without changing the existing safety policy, manual-login boundary, confirmation policy, or any existing CLI/MCP tool behavior.
+This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
+
+## Release notes
+
+- consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning).
+- Phase C correctness notes (same contract version): `tab_url_contains` is honored as a tab selector/URL hint for Claude send/design and Gemini music/conversation tools; ChatGPT conversation `menu_enumerate` uses the in-chat header options button, `search` uses Control+k, and `share` uses `aria-label="Share"`. Claude Design timeout failures return stable contract codes instead of raw Playwright timeout strings.
+- Stream #5 final Claude Design generate note (same contract version): `webai:claude:design:generate` completion is recognized from the served design iframe (`/v1/design/projects/<id>/serve/<file>`) with the existing `?file=<name>.html` URL as a fallback, and timeout/quota envelopes still emit the contracted `status`, `model_used`, `projectUrl`, and `fileName` keys.
 
 ## Public surfaces
 
@@ -17,13 +23,11 @@ Unlisted commands remain developer/automation surfaces documented elsewhere and 
 
 ## Consumer-safe health probe
 
-`consumer:health` is the preferred health-check entry point for NoeticBraid and other safe consumers. It reads managed browser status/page metadata and returns a deliberately narrow JSON object. It must not include CDP endpoints, websocket debugger URLs, browser profile directories, executable paths, cookies, tokens, account identifiers, DOM/HTML, screenshots, or raw snapshots.
+`consumer:health` is the preferred health-check entry point for safe consumers. It returns a deliberately narrow JSON object and must not include forbidden local/browser fields.
 
 ```bash
 node dist/src/cli.js consumer:health --target chatgpt --profile chatgpt --json
 ```
-
-TypeScript:
 
 ```ts
 import { consumerHealth } from "web-ai-research-automation-hub";
@@ -35,16 +39,16 @@ Stable JSON keys are exactly:
 
 | Key | Type | Guarantee |
 | --- | --- | --- |
-| `ok` | boolean | Always present; true only when the target page appears available and unblocked. |
-| `target` | string | Always present; echoes the requested target id. |
-| `profile` | string | Always present; echoes the requested profile name. |
-| `connected` | boolean | Always present; true when the managed CDP endpoint is reachable. |
-| `pageCount` | number | Always present; count only, never page URLs or titles. |
-| `loginLikeState` | `healthy` \| `unhealthy` \| `not_implemented` | Always present; conservative login-like signal from safe metadata only. |
-| `status` | `ok` \| `missing` \| `blocked` \| `needs_review` | Always present; consumer summary status. |
-| `errorCode` | error code or null | Always present; one of the taxonomy below, or null when healthy. |
-| `message` | string | Always present; short safe human-readable text. |
-| `checkedAt` | ISO-8601 string | Always present. |
+| `ok` | contracted | Always present. |
+| `target` | contracted | Always present. |
+| `profile` | contracted | Always present. |
+| `connected` | contracted | Always present. |
+| `pageCount` | contracted | Always present. |
+| `loginLikeState` | contracted | Always present. |
+| `status` | contracted | Always present. |
+| `errorCode` | contracted | Always present. |
+| `message` | contracted | Always present. |
+| `checkedAt` | contracted | Always present. |
 
 ## CLI / MCP / TypeScript mapping
 
@@ -58,23 +62,26 @@ Stable JSON keys are exactly:
 | `capability:update` | `capability_update` | `CapabilityUpdater.updateFromSnapshot` | experimental | mutate | yes |
 | `workflow:compile` | `workflow_compile` | `WorkflowCompiler.compileFile` | experimental | read | yes |
 | `workflow:run` | `workflow_run` | `WorkflowExecutor.runFile` | experimental | risky | yes |
-| `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 | `browser:read` | `browser_read` | `readPageSnapshot` | experimental | read | yes |
-| `browser:screenshot` | `browser_screenshot` | `readPageSnapshot({ screenshot: true })` | experimental | read | yes |
+| `browser:read --include-portals` | `browser_read.includePortals` | `readPageSnapshot({includePortals:true})` | experimental | read | yes |
+| `browser:screenshot` | `browser_screenshot` | `readPageSnapshot` | experimental | read | yes |
 | `browser:launch` | `browser_launch` | `ManagedBrowserLauncher.launch` | experimental | mutate | yes |
 | `browser:open` | `browser_open` | `BrowserSessionManager.open` | experimental | mutate | yes |
-| `browser:click` | n/a | `ActionExecutor.execute({type:"click"})` | experimental | mutate | yes |
-| `browser:upload` | n/a | `ActionExecutor.execute({type:"upload"})` | experimental | risky | yes |
-| `browser:wait` | n/a | `ActionExecutor.execute({type:"wait"})` | experimental | read | yes |
-| `browser:artifact-click` | n/a | `runArtifactClick` | experimental | risky | yes |
 | `mcp:tools` | n/a | `listMcpTools` | stable | read | no |
 | `mcp:resources` | n/a | `listMcpResources` | stable | read | no |
+| `browser:click` | n/a | `ActionExecutor.execute({type:'click'})` | experimental | mutate | yes |
+| `browser:upload` | n/a | `ActionExecutor.execute({type:'upload'})` | experimental | risky | yes |
+| `browser:wait` | n/a | `ActionExecutor.execute({type:'wait'})` | experimental | read | yes |
+| `browser:hover --dwell-ms --settle-selector` | n/a | `ActionExecutor.execute({type:'hover'})` | experimental | mutate | no |
+| `browser:artifact-click` | n/a | `runArtifactClick` | experimental | risky | yes |
+| `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
+| `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
+## Contract 1.4.0 webai MCP tools
 
+Generated from the manifest: 35 current `webai_*` command rows: 13 pre-existing + 11 main-server + 11 sub-MCP. The Stream #5 final surface is 35; no phantom 36th tool is added.
 
-### Contract 1.3.0 webai MCP tools
-
-Contract 1.3.0 adds 13 experimental webai tools, implemented as service-specific CLI commands, MCP tools, and TypeScript exports. Design source: `.runs/web-ai-explore/stream4-mcp-design.md`.
+### Original/B1 existing webai tools
 
 | CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
 | --- | --- | --- | --- | --- | --- |
@@ -92,73 +99,113 @@ Contract 1.3.0 adds 13 experimental webai tools, implemented as service-specific
 | `webai:gemini:generate-video` | `webai_gemini_generate_video` | `webAiGeminiGenerateVideo` | experimental | risky | no |
 | `webai:task-status` | `webai_task_status` | `webAiTaskStatus` | experimental | read | no |
 
-`webai:gemini:generate-video` is asynchronous. It returns `{ task_id, status, profile, lease_id, started_at }` immediately; callers poll `webai:task-status --task-id <id>` / `webai_task_status({ task_id })` for `{ status, progress_label?, result?, errorCode? }`. In v1.3.0 task metadata is durable in the capability database, so CLI/MCP processes can poll the same task id across process boundaries; the detached worker owns the long-running browser job and records terminal state in the same store. Mutating webai tools serialize per profile; a concurrent same-profile mutation returns `PROFILE_LEASE_BUSY`, while different profiles may proceed in parallel.
+### Stream #5 main-server tools (B2-B4)
 
-Webai send-prompt and upload-and-query outputs always include `wait_ms` and `completion_detected`; ChatGPT and Gemini send-prompt also include `reuse_conversation`. Completion detection is two-phase: Phase A must observe generation started (Stop control visible or assistant response container count increased), then Phase B waits for Stop gone, Send ready, and stable assistant text. Upload-and-query captures `response_text` inside the active conversation page after completion detection; if `completion_detected` is false, callers must treat `errorCode`/`error_code` as authoritative and must not interpret `response_text` as a partial answer. Login prechecks return structured `LOGIN_REQUIRED` failures before prompt-input locator waits.
+| CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
+| --- | --- | --- | --- | --- | --- |
+| `webai:gemini:deep-research` | `webai_gemini_deep_research` | `webAiGeminiDeepResearch` | experimental | mutate | no |
+| `webai:gemini:canvas-edit` | `webai_gemini_canvas_edit` | `webAiGeminiCanvasEdit` | experimental | mutate | no |
+| `webai:gemini:conversation-manage` | `webai_gemini_conversation_manage` | `webAiGeminiConversationManage` | experimental | mutate | no |
+| `webai:gemini:workspace` | `webai_gemini_workspace` | `webAiGeminiWorkspace` | experimental | read | no |
+| `webai:chatgpt:canvas-export` | `webai_chatgpt_canvas_export` | `webAiChatgptCanvasExport` | experimental | mutate | yes |
+| `webai:chatgpt:deep-research` | `webai_chatgpt_deep_research` | `webAiChatgptDeepResearch` | experimental | mutate | no |
+| `webai:claude:deep-research` | `webai_claude_deep_research` | `webAiClaudeDeepResearch` | experimental | mutate | no |
+| `webai:chatgpt:conversation-manage` | `webai_chatgpt_conversation_manage` | `webAiChatgptConversationManage` | experimental | mutate | no |
+| `webai:claude:conversation-manage` | `webai_claude_conversation_manage` | `webAiClaudeConversationManage` | experimental | mutate | no |
+| `webai:chatgpt:workspace` | `webai_chatgpt_workspace` | `webAiChatgptWorkspace` | experimental | read | no |
+| `webai:claude:workspace` | `webai_claude_workspace` | `webAiClaudeWorkspace` | experimental | read | no |
 
-Per-tool send-prompt output keys:
+### Stream #5 sub-MCP tools (B5-B7)
 
-| Tool | Always-present output keys | Structured-failure optional keys |
+| CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
+| --- | --- | --- | --- | --- | --- |
+| `webai:chatgpt:codex:create-task` | `webai_chatgpt_codex_create_task` | `webAiChatgptCodexCreateTask` | placeholder | read | no |
+| `webai:chatgpt:codex:list-envs` | `webai_chatgpt_codex_list_envs` | `webAiChatgptCodexListEnvs` | placeholder | read | no |
+| `webai:chatgpt:codex:task-status` | `webai_chatgpt_codex_task_status` | `webAiChatgptCodexTaskStatus` | placeholder | read | no |
+| `webai:chatgpt:codex:list-tasks` | `webai_chatgpt_codex_list_tasks` | `webAiChatgptCodexListTasks` | placeholder | read | no |
+| `webai:claude:design:create-project` | `webai_claude_design_create_project` | `webAiClaudeDesignCreateProject` | experimental | mutate | no |
+| `webai:claude:design:generate` | `webai_claude_design_generate` | `webAiClaudeDesignGenerate` | experimental | mutate | no |
+| `webai:claude:design:get-html` | `webai_claude_design_get_html` | `webAiClaudeDesignGetHtml` | experimental | read | yes |
+| `webai:claude:design:present` | `webai_claude_design_present` | `webAiClaudeDesignPresent` | experimental | mutate | no |
+| `webai:gemini:music:generate` | `webai_gemini_music_generate` | `webAiGeminiMusicGenerate` | experimental | mutate | no |
+| `webai:gemini:music:download-track` | `webai_gemini_music_download_track` | `webAiGeminiMusicDownloadTrack` | experimental | read | yes |
+| `webai:gemini:music:task-status` | `webai_gemini_music_task_status` | `webAiGeminiMusicTaskStatus` | experimental | read | no |
+
+### Webai output-key contract
+
+| Tool | Always-present output keys | Optional output keys |
 | --- | --- | --- |
-| `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code` |
-| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code` |
-| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code` |
-
-Per-tool upload-and-query output keys:
-
-| Tool | Always-present output keys | Structured-failure optional keys |
-| --- | --- | --- |
-| `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `conversation_id`, `attachment_names`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code` |
-| `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `files_uploaded_count`, `attachment_names`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code` |
-| `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `files_in_chip`, `response_text`, `chat_url`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `error_code`, `selector`, `expected_selector` |
-
-Artifact download outputs now include `download_filename` when the browser suggested filename is materialized on disk. If Chrome omits `suggestedFilename`, generate-file paths use `download-<sha256[:12]>.<expected-ext>` and include a `WARN` field. Gemini upload selector failures include `selector` / `expected_selector`; Gemini upload opens the file menu, waits for the visible `button[data-test-id="local-images-files-uploader-button"]`, arms Playwright file chooser interception before clicking that menu item, then attaches files through the intercepted chooser. If the Gemini file chooser does not open or cannot be intercepted, upload-and-query returns `COMMAND_TIMEOUT`. Generate-image enters each service's image mode before submitting: ChatGPT uses `#composer-plus-btn` → the `Create image` `menuitemradio`, and Gemini uses the `Create image` tool button plus the `rich-textarea .ql-editor[contenteditable="true"]` Enter-send path. ChatGPT image download uses CDP-level artifact-click against the unnamed toolbar download button resolved as the last button in the toolbar containing `button[aria-label="Edit image"]`; Gemini image download uses the stable `button[data-test-id="more-menu-button"]` → `button[data-test-id="image-download-button"]` chain. Generate-image waits for the service image toolbar to render; if no toolbar renders before the cap it returns `COMMAND_TIMEOUT`, while missing image-mode or download controls remain `ELEMENT_NOT_FOUND` with `expected_selector`. Gemini Canvas-to-Docs must verify a `https://docs.google.com/document/d/<id>` artifact URL; otherwise it returns `ARTIFACT_VERIFICATION_FAILED` instead of a success-shaped Gemini app URL.
-
-Webai outputs are redacted by schema: they must not include account email, local browser profile paths, CDP/websocket endpoints, cookies/tokens, screenshot bytes/paths, raw DOM, raw HTML, or conversation URLs except the explicitly contracted `chat_url` fields. Prompt text requesting public publishing, collaborator invites, connector enablement, billing/account changes, or scheduled actions returns `POLICY_APPROVAL_REQUIRED`. Publish-class labels such as `Share conversation`, `Create public link`, `Publish`, `Make public`, and `Share Canvas` are denied before click with `AUTO_PUBLISH_DETECTED`. Gemini export-adjacent flows perform a post-export sharing scan and return `AUTO_PUBLISH_DETECTED` if a new public link is observed.
+| `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code`, `expected_model` |
+| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code`, `expected_model` |
+| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode`, `reuse_conversation` | `ok`, `service`, `error_code`, `expected_model` |
+| `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `conversation_id`, `attachment_names`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code`, `expected_model` |
+| `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `files_uploaded_count`, `attachment_names`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code`, `expected_model` |
+| `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `files_in_chip`, `response_text`, `chat_url`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `error_code`, `selector`, `expected_selector`, `expected_model` |
+| `webai:chatgpt:generate-file` / `webai_chatgpt_generate_file` | `path`, `sha256`, `size_bytes`, `suggested_filename`, `errorCode`, `download_filename` | `WARN`, `expected_model` |
+| `webai:claude:generate-file` / `webai_claude_generate_file` | `path`, `sha256`, `size_bytes`, `artifact_name`, `errorCode`, `download_filename` | `WARN`, `expected_model` |
+| `webai:chatgpt:generate-image` / `webai_chatgpt_generate_image` | `path`, `sha256`, `size_bytes`, `dimensions`, `errorCode`, `download_filename` | `error_code`, `expected_selector`, `message`, `expected_model` |
+| `webai:gemini:generate-image` / `webai_gemini_generate_image` | `path`, `sha256`, `size_bytes`, `dimensions`, `errorCode`, `download_filename` | `error_code`, `expected_selector`, `message`, `expected_model` |
+| `webai:gemini:canvas-to-docs` / `webai_gemini_canvas_to_docs` | `docs_url`, `docs_doc_id`, `title`, `errorCode` | `cleanup_attempted`, `expected_model` |
+| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `task_id`, `status`, `profile`, `lease_id`, `started_at` | `expected_model` |
+| `webai:gemini:deep-research` / `webai_gemini_deep_research` | `task_id`, `status` | `ok`, `errorCode`, `error_code`, `message`, `action` |
+| `webai:gemini:canvas-edit` / `webai_gemini_canvas_edit` | `canvas_opened`, `edit_applied`, `ai_action_applied` | `ok`, `errorCode`, `error_code`, `message`, `action` |
+| `webai:gemini:conversation-manage` / `webai_gemini_conversation_manage` | _(none)_ | `items`, `dialog_opened`, `results`, `ok`, `errorCode`, `error_code`, `reason`, `message`, `action` |
+| `webai:gemini:workspace` / `webai_gemini_workspace` | `surface`, `url`, `summary` | `ok`, `errorCode`, `error_code`, `reason`, `action` |
+| `webai:chatgpt:codex:create-task` / `webai_chatgpt_codex_create_task` | `status`, `errorCode`, `message` | _(none)_ |
+| `webai:chatgpt:codex:list-envs` / `webai_chatgpt_codex_list_envs` | `status`, `errorCode`, `message` | _(none)_ |
+| `webai:chatgpt:codex:task-status` / `webai_chatgpt_codex_task_status` | `status`, `errorCode`, `message` | _(none)_ |
+| `webai:chatgpt:codex:list-tasks` / `webai_chatgpt_codex_list_tasks` | `status`, `errorCode`, `message` | _(none)_ |
+| `webai:chatgpt:canvas-export` / `webai_chatgpt_canvas_export` | `path`, `sha256`, `format`, `byteSize` | `errorCode`, `error_code` |
+| `webai:chatgpt:deep-research` / `webai_chatgpt_deep_research` | `task_id`, `status` | `ok`, `service`, `errorCode`, `error_code`, `expected_model` |
+| `webai:claude:deep-research` / `webai_claude_deep_research` | `task_id`, `status` | `ok`, `service`, `errorCode`, `error_code`, `expected_model` |
+| `webai:chatgpt:conversation-manage` / `webai_chatgpt_conversation_manage` | _(none)_ | `dialog_opened`, `conversationId`, `url`, `surface`, `items`, `results`, `ok`, `errorCode`, `error_code`, `reason` |
+| `webai:claude:conversation-manage` / `webai_claude_conversation_manage` | _(none)_ | `results_count`, `action`, `dialog_opened`, `conversationId`, `ok`, `errorCode`, `error_code`, `reason`, `message` |
+| `webai:chatgpt:workspace` / `webai_chatgpt_workspace` | `surface`, `url`, `summary` | `ok`, `errorCode`, `error_code`, `reason`, `action` |
+| `webai:claude:workspace` / `webai_claude_workspace` | `surface`, `url`, `summary` | `ok`, `errorCode`, `error_code`, `reason`, `action` |
+| `webai:claude:design:create-project` / `webai_claude_design_create_project` | `projectUrl`, `projectId` | `ok`, `errorCode`, `error_code` |
+| `webai:claude:design:generate` / `webai_claude_design_generate` | `status`, `model_used`, `projectUrl`, `fileName` | `ok`, `errorCode`, `error_code` |
+| `webai:claude:design:get-html` / `webai_claude_design_get_html` | `iframeArtifactSha256`, `savedPath`, `byteSize` | `ok`, `errorCode`, `error_code` |
+| `webai:claude:design:present` / `webai_claude_design_present` | `presentUrl` | `ok`, `errorCode`, `error_code` |
+| `webai:gemini:music:generate` / `webai_gemini_music_generate` | `task_id`, `status`, `conversation_url` | `ok`, `errorCode`, `error_code`, `message`, `action` |
+| `webai:gemini:music:download-track` / `webai_gemini_music_download_track` | `savedPath`, `sha256`, `byteSize`, `format` | `ok`, `errorCode`, `error_code` |
+| `webai:gemini:music:task-status` / `webai_gemini_music_task_status` | `status`, `download_ready` | `ok`, `errorCode`, `error_code` |
+| `webai:task-status` / `webai_task_status` | `status` | `progress_label`, `result`, `errorCode` |
 
 ## MCP resources
 
-| Resource URI | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
-| --- | --- | --- | --- | --- |
-| `capabilities://targets` | `readMcpResource` | experimental | read | no |
-| `capabilities://target/{targetId}` | `readMcpResource` | experimental | read | no |
-| `capabilities://target/{targetId}/latest` | `readMcpResource` | experimental | read | yes |
-| `workflows://definitions` | `readMcpResource` | experimental | read | yes |
-| `workflows://runs` | `readMcpResource` | experimental | read | yes |
-| `browser-profiles://list` | `readMcpResource` | experimental | read | yes |
-| `site-registry://sites` | `readMcpResource` | experimental | read | no |
+| Resource URI | TypeScript API | Maturity | Safety class | Sensitive local fields possible? | Always-present output keys | Optional output keys |
+| --- | --- | --- | --- | --- | --- | --- |
+| `capabilities://targets` | `readMcpResource` | experimental | read | no | _(none)_ | `target_id`, `display_name`, `kind`, `base_url` |
+| `capabilities://target/{targetId}` | `readMcpResource` | experimental | read | no | _(none)_ | `id`, `target_id`, `category`, `name`, `description`, `selectors`, `status` |
+| `capabilities://target/{targetId}/latest` | `readMcpResource` | experimental | read | yes | _(none)_ | `id`, `target_id`, `url`, `title`, `captured_at`, `artifact_refs` |
+| `workflows://definitions` | `readMcpResource` | experimental | read | yes | _(none)_ | `id`, `target_id`, `name`, `definition`, `created_at` |
+| `workflows://runs` | `readMcpResource` | experimental | read | yes | _(none)_ | `id`, `workflow_id`, `status`, `started_at`, `finished_at` |
+| `browser-profiles://list` | `readMcpResource` | experimental | read | yes | _(none)_ | `profileName`, `browserType`, `profileDir`, `executablePath`, `cdpEndpoint`, `cdpPort`, `processId`, `lastStatus` |
+| `site-registry://sites` | `readMcpResource` | experimental | read | no | _(none)_ | `site_id`, `display_name`, `kind`, `base_url` |
 
 ## Stable JSON output guarantees
 
-### `consumer:health` / `consumer_health` / `consumerHealth`
+Command rows define `required_args`, `output_keys.always_present`, and `output_keys.optional` in `configs/consumer-contract.json`. Safe consumers should treat always-present keys as the compatibility floor and optional keys as additive, tolerant-parse fields.
 
-Always returns the exact keys listed in the health-probe table above. Optional raw browser fields are never included.
+## Sensitive local fields
 
-### `browser:status` / `browser_status` / `ManagedBrowserLauncher.status`
+| Field | Handling |
+| --- | --- |
+| `artifact_click.path` | Local filesystem path; treat as sensitive local metadata. |
+| `artifact_click.sha256` | Content fingerprint; acceptable to log when artifact logging is allowed. |
+| `artifact_click.frameUrl` | May contain conversation IDs or tenant-specific URLs; treat as sensitive. |
+| `profile-id` | Opaque browser profile identifier; do not expose outside trusted local logs. |
+| `run_events.evidence` | Redacted by default; use --no-redact only for trusted local debugging. |
+| `profile_lease.user_data_dir` | Local browser profile path; treat as sensitive local metadata. |
+| `canvas_export.path` | Local filesystem path to exported ChatGPT Canvas artifact; treat as sensitive local metadata. |
+| `claude_design.savedPath` | Local filesystem path to saved Design artifact; treat as sensitive local metadata. |
+| `gemini_music.savedPath` | Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata. |
 
-This is a raw compatibility surface. Always-present keys: `profile`, `profileDir`, `cdpEndpoint`, `cdpPort`, `connected`, `launchedByPackage`. Optional keys: `executablePath`, `processId`, `pages`, `browser`, `webSocketDebuggerUrl`, `lastError`. Safe consumers must strip forbidden fields before logging, storing, or returning this output.
+### Phase C artifact readiness guarantees
 
-### `browser:pages` / `browser_pages` / `ManagedBrowserLauncher.pages`
-
-Returns an array. Page entries may contain `id`, `type`, `title`, `url`, and `webSocketDebuggerUrl`. Safe consumers must strip page URLs/titles and debugger URLs unless they have an explicit local-only need.
-
-### `mcp:tools` and `mcp:resources`
-
-Return MCP tool/resource definitions for introspection. These definitions do not include runtime browser secrets.
-
-
-### `browser:artifact-click` and action postconditions
-
-Contract 1.1.0 adds the CLI primitive `browser:artifact-click` for Chromium-CDP artifact capture and extends `browser:click`, `browser:upload`, and `browser:wait` with postcondition flags: `--until`, `--until-selector`, `--until-content-regex`, `--until-stable-ms`, `--until-download`, and `--until-timeout-ms`.
-
-`browser:artifact-click` returns local artifact metadata including `path`, `sha256`, `size`, `suggestedFilename`, `downloadGuid`, `frameUrl`, `bbox`, and `elapsedMs`. Safe consumers must treat `path`, `frameUrl`, and `profile-id` as sensitive local fields. `sha256` is a fingerprint and is generally acceptable to log when artifact logging is allowed.
-
-
-### Contract 1.2.0 resumability, profile leases, and redaction
-
-Contract 1.2.0 adds `workflow:run --resume <run-id>` with `--confirm-replay` for non-idempotent replay risk, `browser:close --release-lease [--force]`, `browser:audit --output-json`, and default redaction for persisted run-event evidence and CLI JSON error evidence. `--no-redact` is a trusted-local debugging opt-out and may expose profile ids, conversation URLs, and absolute paths.
-
-`browser:audit` returns an array of profile lifecycle entries with `profileId`, `profileDir`, `chromePid`, `chromeAlive`, `cacheSizeBytes`, `lastUsedAt`, `staleLockFiles`, and optional `lease`. Safe consumers must treat `profileDir`, lease `user_data_dir`, process IDs, and page URLs as local-sensitive fields.
+- `webai:claude:design:generate` waits for the Design project URL to acquire the same `?file=<name>.html` readiness signal used by the completed Present flow before reporting `status:"generated"`; a genuine miss returns stable `POSTCONDITION_TIMEOUT`.
+- `webai:claude:design:get-html` persists and hashes only verified HTML markup. Bootstrap/loader URL stubs fail with `ARTIFACT_VERIFICATION_FAILED`, are not written as `.html` artifacts, and failed captures clean up newly-created scratch files in the requested download directory.
+- `webai:chatgpt:canvas-export` opens the canvas side panel when a canvas tile/control is available, then exports through Download; if no canvas exists it returns stable `ELEMENT_NOT_FOUND`.
 
 ## Forbidden output fields for safe consumers
 
@@ -190,7 +237,7 @@ The safe `consumer:health` surface is designed not to emit those fields, but dow
 
 ## Error code taxonomy
 
-Consumer-stable error codes are:
+Consumer-stable error codes (32):
 
 - `HUB_NOT_BUILT`
 - `BROWSER_NOT_LAUNCHED`
@@ -207,28 +254,33 @@ Consumer-stable error codes are:
 - `ELEMENT_OUT_OF_VIEWPORT`
 - `ARTIFACT_DOWNLOAD_TIMEOUT`
 - `ARTIFACT_VERIFICATION_FAILED`
+- `DOCX_VERIFICATION_FAILED`
 - `POSTCONDITION_TIMEOUT`
-- `MODE_UNCERTAIN`
-- `HUMAN_HANDOFF_REQUIRED`
 - `RESUME_REQUIRES_CONFIRMATION`
 - `IDEMPOTENCY_MISMATCH`
 - `PROFILE_LOCKED`
 - `PROFILE_LEASE_BUSY`
+- `SAFE_OUTPUT_REDACTION_REQUIRED`
+- `PLAN_OR_QUOTA_REQUIRED`
+- `MODEL_SELECTION_DRIFT`
+- `ARTIFACT_MODE_UNSUPPORTED`
+- `AUTO_PUBLISH_DETECTED`
+- `MODE_UNCERTAIN`
+- `HUMAN_HANDOFF_REQUIRED`
 - `UNKNOWN`
-
-
-
-New in contract 1.3.0:
-
-- `AUTO_PUBLISH_DETECTED` — refused a publish/share-public action or detected a new public link after an export-adjacent flow.
-- `ARTIFACT_MODE_UNSUPPORTED` — service returned or would return the wrong artifact mode for the requested file shape.
-- `MODEL_SELECTION_DRIFT` — observed model did not match the requested model hint.
-- `PLAN_OR_QUOTA_REQUIRED` — service feature is blocked by plan tier or quota exhaustion.
-- `SAFE_OUTPUT_REDACTION_REQUIRED` — a tool response would expose a forbidden safe-consumer field and must be fixed before returning.
-- `PROFILE_LEASE_BUSY` — a same-profile mutation lease is already active.
+- `SENSITIVE_CONTENT_GUARD`
+- `SUBMCP_QUOTA_EXHAUSTED`
+- `SUBMCP_NOT_PROVISIONED`
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.
 
 ## Backward compatibility promise
 
 Within contract major version `1.x`, stable command/tool/resource schemas will not remove always-present keys, rename keys, or change enum values. Optional keys may be added only when they do not expose forbidden fields on safe surfaces. Experimental surfaces can change across minor package releases and should be wrapped with local sanitization and tolerant parsing.
+
+
+### Browser hover dwell and portal reads
+
+`browser:hover` keeps its existing instantaneous Playwright hover unless `--dwell-ms` or `--settle-selector` is provided. With those flags it dispatches raw CDP `Input.dispatchMouseEvent` `mouseMoved` steps toward the target, dwells for the requested duration (default 450ms when the dwell path is selected), and optionally requires `--settle-selector` to appear; missing targets or unrevealed submenus surface existing `ELEMENT_NOT_FOUND`/`MODE_UNCERTAIN`-style failures rather than success.
+
+`browser:read --include-portals` is opt-in and includes body-level Radix/command-palette portal roots such as `[data-radix-popper-content-wrapper]`, `[role="menu"]`, `[role="dialog"]`, and `[role="listbox"]`. The default read path remains portal-excluding for compatibility. The MCP `browser_read` tool exposes the same option as `includePortals`; no new MCP/webai tool is added.

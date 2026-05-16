@@ -1,0 +1,82 @@
+[
+  {
+    "id": "canvas-export-A-panel-open",
+    "tool": "webai:chatgpt:canvas-export",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "scenario": "Immediately after creating a fresh Canvas doc (panel open) -> export md",
+      "canvas_conversation_id": "6a074f45-7c34-83e8-98ad-1e64fd69ebb7",
+      "canvas_created_via": "webai:chatgpt:send-prompt (model_used=Thinking, errorCode=null)",
+      "envelope": {"path":"<home>/.../verify4-artifacts/r_4_canvas_document.md","sha256":"c38e9bd9c4baca6157db3140b2147e110b8301f4619c75d383d2c23c9686fe59","format":"md","byteSize":27},
+      "process_exit_code": 0,
+      "elapsed_ms": 5061,
+      "hang_fixed": true,
+      "artifact_disk_path": ".runs/web-ai-explore/stream5/verify4-artifacts/r_4_canvas_document.md",
+      "artifact_disk_sha256_recomputed": "c38e9bd9c4baca6157db3140b2147e110b8301f4619c75d383d2c23c9686fe59",
+      "sha256_matches_envelope": true,
+      "artifact_bytes": 27,
+      "artifact_type": "ASCII Markdown",
+      "artifact_content": "alpha-r4\\nbeta-r4\\ngamma-r4\\n",
+      "placeholder_leak": false,
+      "forbidden_fields": "none"
+    },
+    "notes": "PRIOR (round3): real artifact but process hung exit 124 (SIGTERM by timeout). NOW: exit 0, ~5.1s wall, terminates promptly. Round-3 D3 teardown fix (runArtifactClick finally{ if(!noDisconnect) browser.close() } at src/browser/artifactClick.ts:478-480) releases the CDP browser connection so the Node event loop no longer stays alive. Hang is FIXED. Artifact real/non-empty/correct type/correct content; sha256 independently recomputed from disk and matches."
+  },
+  {
+    "id": "canvas-export-B-cold-self-open",
+    "tool": "webai:chatgpt:canvas-export",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "scenario": "Cold run on an EXISTING canvas conversation (fresh navigation, panel NOT pre-opened) -> tool self-opens canvas panel -> export md",
+      "canvas_conversation_id": "6a074ba5-0f40-83e8-99aa-65a4116623ef (verify3 canvas: red-uno/green-dos/blue-tres)",
+      "cold_setup": "browser:tab:alloc r4-cg-coldB navigated fresh to the conversation; panel not explicitly opened",
+      "envelope": {"path":"<home>/.../verify4-artifacts/r_3_final_canvas.md","sha256":"f6651468af3855fb35a46265cd059033b51edf54a8e4b2b1e8a4eeba4f27fae9","format":"md","byteSize":29},
+      "process_exit_code": 0,
+      "elapsed_ms": 4655,
+      "hang_fixed": true,
+      "artifact_disk_path": ".runs/web-ai-explore/stream5/verify4-artifacts/r_3_final_canvas.md",
+      "artifact_disk_sha256_recomputed": "f6651468af3855fb35a46265cd059033b51edf54a8e4b2b1e8a4eeba4f27fae9",
+      "sha256_matches_envelope": true,
+      "artifact_bytes": 29,
+      "artifact_type": "ASCII Markdown",
+      "artifact_content": "red-uno\\ngreen-dos\\nblue-tres\\n",
+      "placeholder_leak": false,
+      "forbidden_fields": "none"
+    },
+    "notes": "PRIOR (round3): cold conversation returned honest ELEMENT_NOT_FOUND because canvas-export relied on the panel already being open. NOW: D3 self-open fix (exportChatgptCanvas passes openPanelIfMissing:'chatgpt-canvas' at src/mcp/tools.ts:1625; openChatgptCanvasPanelIfMissing at src/browser/artifactClick.ts:413-430) self-opens the collapsed canvas panel, then exports a real artifact. Exit 0, ~4.7s, no hang. Content is the genuine verify3 canvas content round-tripped from the live conversation (not fabricated; sha256 recomputed from disk and matches envelope). Cold-start usability gap RESOLVED."
+  },
+  {
+    "id": "deep-research-regression",
+    "tool": "webai:chatgpt:deep-research",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {"task_id":"task_1778864019056_433332d59d33","status":"queued"},
+      "process_exit_code": 0,
+      "forbidden_fields": "none"
+    },
+    "notes": "No regression. Returns real task_id, status queued, exit 0. Report not awaited per spec (queue=pass)."
+  },
+  {
+    "id": "conversation-manage-share-regression",
+    "tool": "webai:chatgpt:conversation-manage --action share",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {"dialog_opened":true,"conversationId":"6a074f45-7c34-83e8-98ad-1e64fd69ebb7"},
+      "process_exit_code": 0,
+      "published": false,
+      "forbidden_fields": "none"
+    },
+    "notes": "No regression. Share dialog opened, real conversationId (no placeholder). Stopped at the dialog; nothing published, no public link created."
+  },
+  {
+    "id": "workspace-projects-regression",
+    "tool": "webai:chatgpt:workspace --surface projects",
+    "status": "VERIFIED_GREEN",
+    "evidence": {
+      "envelope": {"surface":"projects","url":"https://chatgpt.com/","summary":"Projects sidebar area not confirmed"},
+      "process_exit_code": 0,
+      "forbidden_fields": "none"
+    },
+    "notes": "No regression. Surface opened, exit 0, forbidden-field scan clean (same behavior as verify3)."
+  }
+]

@@ -1,6 +1,6 @@
 {
-  "package_version": "0.5.0",
-  "contract_version": "consumer-contract-1.3.0",
+  "package_version": "0.6.0",
+  "contract_version": "consumer-contract-1.4.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -227,7 +227,10 @@
           "warnings"
         ]
       },
-      "may_contain_sensitive_local_fields": true
+      "may_contain_sensitive_local_fields": true,
+      "flags": [
+        "include-portals"
+      ]
     },
     {
       "cli_name": "browser:screenshot",
@@ -414,6 +417,32 @@
       "may_contain_sensitive_local_fields": true
     },
     {
+      "cli_name": "browser:hover",
+      "mcp_name": "",
+      "ts_export": "ActionExecutor.execute({type:'hover'})",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "selector"
+      ],
+      "flags": [
+        "ms",
+        "dwell-ms",
+        "settle-selector"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "action",
+          "message"
+        ],
+        "optional": [
+          "data"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "browser:artifact-click",
       "mcp_name": "",
       "ts_export": "runArtifactClick",
@@ -537,10 +566,16 @@
         "optional": [
           "ok",
           "service",
-          "error_code"
+          "error_code",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model",
+        "web_search",
+        "canvas"
+      ]
     },
     {
       "cli_name": "webai:claude:send-prompt",
@@ -565,10 +600,18 @@
         "optional": [
           "ok",
           "service",
-          "error_code"
+          "error_code",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model",
+        "thinking",
+        "web_search",
+        "incognito",
+        "tab_url_contains"
+      ]
     },
     {
       "cli_name": "webai:gemini:send-prompt",
@@ -594,10 +637,16 @@
         "optional": [
           "ok",
           "service",
-          "error_code"
+          "error_code",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model",
+        "thinking",
+        "web_search"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:upload-and-query",
@@ -620,10 +669,14 @@
           "errorCode"
         ],
         "optional": [
-          "error_code"
+          "error_code",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:claude:upload-and-query",
@@ -646,10 +699,14 @@
           "errorCode"
         ],
         "optional": [
-          "error_code"
+          "error_code",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:gemini:upload-and-query",
@@ -675,10 +732,14 @@
           "ok",
           "error_code",
           "selector",
-          "expected_selector"
+          "expected_selector",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:generate-file",
@@ -702,10 +763,14 @@
           "download_filename"
         ],
         "optional": [
-          "WARN"
+          "WARN",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:claude:generate-file",
@@ -730,10 +795,14 @@
           "download_filename"
         ],
         "optional": [
-          "WARN"
+          "WARN",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:generate-image",
@@ -758,10 +827,14 @@
         "optional": [
           "error_code",
           "expected_selector",
-          "message"
+          "message",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:gemini:generate-image",
@@ -786,10 +859,14 @@
         "optional": [
           "error_code",
           "expected_selector",
-          "message"
+          "message",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:gemini:canvas-to-docs",
@@ -809,10 +886,14 @@
           "errorCode"
         ],
         "optional": [
-          "cleanup_attempted"
+          "cleanup_attempted",
+          "expected_model"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
     },
     {
       "cli_name": "webai:gemini:generate-video",
@@ -833,7 +914,601 @@
           "lease_id",
           "started_at"
         ],
+        "optional": [
+          "expected_model"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model"
+      ]
+    },
+    {
+      "cli_name": "webai:gemini:deep-research",
+      "mcp_name": "webai_gemini_deep_research",
+      "ts_export": "webAiGeminiDeepResearch",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "prompt",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "task_id",
+          "status"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "confirmed",
+        "tab_url_contains"
+      ]
+    },
+    {
+      "cli_name": "webai:gemini:canvas-edit",
+      "mcp_name": "webai_gemini_canvas_edit",
+      "ts_export": "webAiGeminiCanvasEdit",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "canvas_opened",
+          "edit_applied",
+          "ai_action_applied"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "prompt",
+        "edit_text",
+        "ai_action",
+        "tab_url_contains",
+        "confirmed"
+      ]
+    },
+    {
+      "cli_name": "webai:gemini:conversation-manage",
+      "mcp_name": "webai_gemini_conversation_manage",
+      "ts_export": "webAiGeminiConversationManage",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "action",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "items",
+          "dialog_opened",
+          "results",
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "message",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "tab_url_contains",
+        "query",
+        "confirmed"
+      ]
+    },
+    {
+      "cli_name": "webai:gemini:workspace",
+      "mcp_name": "webai_gemini_workspace",
+      "ts_export": "webAiGeminiWorkspace",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "surface",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "surface",
+          "url",
+          "summary"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:codex:create-task",
+      "mcp_name": "webai_chatgpt_codex_create_task",
+      "ts_export": "webAiChatgptCodexCreateTask",
+      "maturity": "placeholder",
+      "safety_class": "read",
+      "required_args": [
+        "prompt",
+        "profile"
+      ],
+      "optional_args": [
+        "repo",
+        "branch"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "errorCode",
+          "message"
+        ],
         "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:codex:list-envs",
+      "mcp_name": "webai_chatgpt_codex_list_envs",
+      "ts_export": "webAiChatgptCodexListEnvs",
+      "maturity": "placeholder",
+      "safety_class": "read",
+      "required_args": [
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:codex:task-status",
+      "mcp_name": "webai_chatgpt_codex_task_status",
+      "ts_export": "webAiChatgptCodexTaskStatus",
+      "maturity": "placeholder",
+      "safety_class": "read",
+      "required_args": [
+        "task_id",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:codex:list-tasks",
+      "mcp_name": "webai_chatgpt_codex_list_tasks",
+      "ts_export": "webAiChatgptCodexListTasks",
+      "maturity": "placeholder",
+      "safety_class": "read",
+      "required_args": [
+        "profile"
+      ],
+      "optional_args": [
+        "tab"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:chatgpt:canvas-export",
+      "mcp_name": "webai_chatgpt_canvas_export",
+      "ts_export": "webAiChatgptCanvasExport",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "tab_url_contains"
+      ],
+      "output_keys": {
+        "always_present": [
+          "path",
+          "sha256",
+          "format",
+          "byteSize"
+        ],
+        "optional": [
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true,
+      "optional_args": [
+        "format",
+        "download_dir",
+        "profile",
+        "timeout_ms"
+      ]
+    },
+    {
+      "cli_name": "webai:chatgpt:deep-research",
+      "mcp_name": "webai_chatgpt_deep_research",
+      "ts_export": "webAiChatgptDeepResearch",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "prompt",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "task_id",
+          "status"
+        ],
+        "optional": [
+          "ok",
+          "service",
+          "errorCode",
+          "error_code",
+          "expected_model"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:deep-research",
+      "mcp_name": "webai_claude_deep_research",
+      "ts_export": "webAiClaudeDeepResearch",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "prompt",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "task_id",
+          "status"
+        ],
+        "optional": [
+          "ok",
+          "service",
+          "errorCode",
+          "error_code",
+          "expected_model"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "model",
+        "tab_url_contains"
+      ]
+    },
+    {
+      "cli_name": "webai:chatgpt:conversation-manage",
+      "mcp_name": "webai_chatgpt_conversation_manage",
+      "ts_export": "webAiChatgptConversationManage",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "action",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "dialog_opened",
+          "conversationId",
+          "url",
+          "surface",
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "items",
+          "results"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "tab_url_contains",
+        "surface",
+        "query"
+      ]
+    },
+    {
+      "cli_name": "webai:claude:conversation-manage",
+      "mcp_name": "webai_claude_conversation_manage",
+      "ts_export": "webAiClaudeConversationManage",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "action",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [],
+        "optional": [
+          "results_count",
+          "action",
+          "dialog_opened",
+          "conversationId",
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "message"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "query",
+        "tab_url_contains",
+        "confirmed"
+      ]
+    },
+    {
+      "cli_name": "webai:chatgpt:workspace",
+      "mcp_name": "webai_chatgpt_workspace",
+      "ts_export": "webAiChatgptWorkspace",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "surface",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "surface",
+          "url",
+          "summary"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:workspace",
+      "mcp_name": "webai_claude_workspace",
+      "ts_export": "webAiClaudeWorkspace",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "surface",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "surface",
+          "url",
+          "summary"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "reason",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:design:create-project",
+      "mcp_name": "webai_claude_design_create_project",
+      "ts_export": "webAiClaudeDesignCreateProject",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "name",
+        "profile"
+      ],
+      "optional_args": [
+        "fidelity"
+      ],
+      "output_keys": {
+        "always_present": [
+          "projectUrl",
+          "projectId"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:design:generate",
+      "mcp_name": "webai_claude_design_generate",
+      "ts_export": "webAiClaudeDesignGenerate",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "prompt",
+        "project_url",
+        "profile"
+      ],
+      "optional_args": [
+        "model",
+        "timeout_ms"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "model_used",
+          "projectUrl",
+          "fileName"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "postcondition_signal": "serve_iframe_src_or_file_param",
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:claude:design:get-html",
+      "mcp_name": "webai_claude_design_get_html",
+      "ts_export": "webAiClaudeDesignGetHtml",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "project_url",
+        "profile"
+      ],
+      "optional_args": [
+        "download_dir"
+      ],
+      "output_keys": {
+        "always_present": [
+          "iframeArtifactSha256",
+          "savedPath",
+          "byteSize"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "webai:claude:design:present",
+      "mcp_name": "webai_claude_design_present",
+      "ts_export": "webAiClaudeDesignPresent",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "project_url",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "presentUrl"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:music:generate",
+      "mcp_name": "webai_gemini_music_generate",
+      "ts_export": "webAiGeminiMusicGenerate",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "prompt",
+        "profile"
+      ],
+      "optional_args": [
+        "confirmed",
+        "tab_url_contains"
+      ],
+      "output_keys": {
+        "always_present": [
+          "task_id",
+          "status",
+          "conversation_url"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code",
+          "message",
+          "action"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:gemini:music:download-track",
+      "mcp_name": "webai_gemini_music_download_track",
+      "ts_export": "webAiGeminiMusicDownloadTrack",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "tab_url_contains",
+        "profile"
+      ],
+      "optional_args": [
+        "download_dir",
+        "format"
+      ],
+      "output_keys": {
+        "always_present": [
+          "savedPath",
+          "sha256",
+          "byteSize",
+          "format"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
+      },
+      "may_contain_sensitive_local_fields": true
+    },
+    {
+      "cli_name": "webai:gemini:music:task-status",
+      "mcp_name": "webai_gemini_music_task_status",
+      "ts_export": "webAiGeminiMusicTaskStatus",
+      "maturity": "experimental",
+      "safety_class": "read",
+      "required_args": [
+        "tab_url_contains",
+        "profile"
+      ],
+      "output_keys": {
+        "always_present": [
+          "status",
+          "download_ready"
+        ],
+        "optional": [
+          "ok",
+          "errorCode",
+          "error_code"
+        ]
       },
       "may_contain_sensitive_local_fields": false
     },
@@ -1054,7 +1729,10 @@
     "AUTO_PUBLISH_DETECTED",
     "MODE_UNCERTAIN",
     "HUMAN_HANDOFF_REQUIRED",
-    "UNKNOWN"
+    "UNKNOWN",
+    "SENSITIVE_CONTENT_GUARD",
+    "SUBMCP_QUOTA_EXHAUSTED",
+    "SUBMCP_NOT_PROVISIONED"
   ],
   "sensitive_fields": {
     "artifact_click.path": "Local filesystem path; treat as sensitive local metadata.",
@@ -1062,7 +1740,12 @@
     "artifact_click.frameUrl": "May contain conversation IDs or tenant-specific URLs; treat as sensitive.",
     "profile-id": "Opaque browser profile identifier; do not expose outside trusted local logs.",
     "run_events.evidence": "Redacted by default; use --no-redact only for trusted local debugging.",
-    "profile_lease.user_data_dir": "Local browser profile path; treat as sensitive local metadata."
+    "profile_lease.user_data_dir": "Local browser profile path; treat as sensitive local metadata.",
+    "canvas_export.path": "Local filesystem path to exported ChatGPT Canvas artifact; treat as sensitive local metadata.",
+    "claude_design.savedPath": "Local filesystem path to saved Design artifact; treat as sensitive local metadata.",
+    "gemini_music.savedPath": "Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata."
   },
-  "release_notes": "v1.3.0 adds 13 experimental webai MCP tools (12 service tools plus webai.task_status), async Gemini video task metadata, and six new error codes. Design: .runs/web-ai-explore/stream4-mcp-design.md"
+  "release_notes": [
+    "consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools \u2192 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning)."
+  ]
 }

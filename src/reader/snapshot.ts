@@ -8,10 +8,11 @@ export interface PageReadOptions {
   screenshot?: boolean;
   screenshotName?: string;
   mode?: SnapshotMode;
+  includePortals?: boolean;
 }
 
 export async function readPageSnapshot(page: any, options: PageReadOptions = {}): Promise<PageSnapshot> {
-  const snapshot = await extractSnapshotFromPage(page, { mode: options.mode });
+  const snapshot = await extractSnapshotFromPage(page, { mode: options.mode, includePortals: options.includePortals });
   if (options.includeAccessibility && options.mode !== "lite") {
     const accessibility = await readAccessibilitySummary(page);
     if (accessibility.length) snapshot.accessibility = accessibility;
@@ -22,9 +23,9 @@ export async function readPageSnapshot(page: any, options: PageReadOptions = {})
 }
 
 export function readHtmlSnapshot(html: string, url?: string, title?: string, options: PageReadOptions = {}): PageSnapshot {
-  return extractSnapshotFromHtml(html, url, title, { mode: options.mode });
+  return extractSnapshotFromHtml(html, url, title, { mode: options.mode, includePortals: options.includePortals });
 }
 
 export function readHtmlSnapshotFromFile(filePath: string, url?: string, options: PageReadOptions = {}): PageSnapshot {
-  return extractSnapshotFromFile(filePath, url, { mode: options.mode });
+  return extractSnapshotFromFile(filePath, url, { mode: options.mode, includePortals: options.includePortals });
 }

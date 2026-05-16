@@ -34,6 +34,7 @@ export interface ArtifactClickOptions {
   scrollMainWaitMs?: number;
   noDisconnect?: boolean;
   maxViewportY?: number;
+  openPanelIfMissing?: "chatgpt-canvas";
   /** Internal: readiness evidence collected before locate/click. */
   pageReadyEvidence?: Record<string, unknown>;
 }
@@ -373,6 +374,61 @@ async function waitForLoadStateBestEffort(page: any, state: string, timeout: num
   try { await page.waitForLoadState(state, { timeout }); } catch { /* best effort for reused live tabs */ }
 }
 
+async function locatorVisibleCount(page: any, selector: string): Promise<number> {
+  try {
+    const locator = page.locator?.(selector);
+    if (!locator) return 0;
+    const count = typeof locator.count === "function" ? await locator.count() : 0;
+    let visible = 0;
+    for (let i = 0; i < count; i++) {
+      const item = typeof locator.nth === "function" ? locator.nth(i) : locator;
+      if (typeof item.isVisible !== "function" || await item.isVisible().catch(() => false)) visible++;
+    }
+    return visible;
+  } catch {
+    return 0;
+  }
+}
+
+async function clickFirstVisible(page: any, selectors: string[]): Promise<boolean> {
+  for (const selector of selectors) {
+    try {
+      const locator = page.locator?.(selector);
+      if (!locator) continue;
+      const count = typeof locator.count === "function" ? await locator.count() : 0;
+      for (let i = 0; i < count; i++) {
+        const item = typeof locator.nth === "function" ? locator.nth(i) : locator;
+        const visible = typeof item.isVisible !== "function" || await item.isVisible().catch(() => false);
+        if (!visible) continue;
+        await item.click?.({ timeout: 3000 }).catch(async () => item.click?.());
+        return true;
+      }
+    } catch {
+      // Try the next candidate selector.
+    }
+  }
+  return false;
+}
+
+async function openChatgptCanvasPanelIfMissing(page: any, downloadSelector: string, timeoutMs: number): Promise<Record<string, unknown>> {
+  const before = await locatorVisibleCount(page, downloadSelector);
+  if (before > 0) return { canvasPanelAlreadyOpen: true, downloadControlsBefore: before };
+  const clicked = await clickFirstVisible(page, [
+    'button[aria-label*="canvas" i]',
+    'a[aria-label*="canvas" i]',
+    '[role="button"][aria-label*="canvas" i]',
+    'button:has-text("Open in canvas")',
+    'button:has-text("Canvas")',
+    'a:has-text("Canvas")',
+    '[role="button"]:has-text("Canvas")'
+  ]);
+  if (clicked) {
+    const deadline = now() + Math.min(Math.max(timeoutMs, 1000), 10000);
+    while (now() < deadline && await locatorVisibleCount(page, downloadSelector) === 0) await sleep(250);
+  }
+  return { canvasPanelAlreadyOpen: false, attemptedCanvasPanelOpen: clicked, downloadControlsBefore: before, downloadControlsAfter: await locatorVisibleCount(page, downloadSelector) };
+}
+
 export async function waitForArtifactPageReady(page: any, options: ArtifactClickOptions): Promise<Record<string, unknown>> {
   const evidence: Record<string, unknown> = {};
   const viewportRequested = options.viewportWidth !== undefined || options.viewportHeight !== undefined;
@@ -401,6 +457,9 @@ export async function waitForArtifactPageReady(page: any, options: ArtifactClick
   if (framesOf(page).length < 3 && minIframeCount > 0) {
     const deadline = now() + 3000;
     while (now() < deadline && Math.max(0, framesOf(page).length - 1) < minIframeCount) await sleep(100);
+  }
+  if (options.openPanelIfMissing === "chatgpt-canvas") {
+    evidence.openPanelIfMissing = await openChatgptCanvasPanelIfMissing(page, options.buttonSelector, options.locateTimeoutMs ?? 8000);
   }
   return evidence;
 }

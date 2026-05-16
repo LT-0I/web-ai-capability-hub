@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1a",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"projectUrl\":\"https://claude.ai/design/p/019e2c9f-eb07-7a43-a1bc-454b96242f10\",\"projectId\":\"019e2c9f-eb07-7a43-a1bc-454b96242f10\"} EXIT=0. Real project URL+id, no forbidden fields.",
+    "notes": "Round-5 single clean attempt. Project created live on claude-9224. Confirmed via own tab r5-cl-design (title 'Hello World R5')."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:claude:design:generate",
+    "status": "FAILED",
+    "evidence": "{\"ok\":false,\"errorCode\":\"POSTCONDITION_TIMEOUT\",\"error_code\":\"POSTCONDITION_TIMEOUT\",\"status\":\"failed\"} EXIT=0. Output does NOT contain the new projectUrl/fileName keys the D1-v2 fix was meant to expose.",
+    "notes": "D1-v2 fix NOT effectively landed. Live tab read (r5-cl-design) AFTER the failed generate + a 20s wait shows the project URL is still the BARE project URL (no '?file=<Name>.html' suffix) and the composer is an empty pristine 'Describe what you want to create...' textarea with 'New sketch'/'Paste from clipboard' shell. NO Hello World.html file was produced server-side this run (materially worse than round-4 where ?file=Hello+World.html did resolve). Stable contract code, no stub, no fabrication. Root cause: generate's submit/completion path did not drive the project to a generated-file state; the new completion detector (project URL gaining ?file=) never had a ?file= to detect because no file was generated, and the command still emitted neither projectUrl nor fileName."
+  },
+  {
+    "id": "1c",
+    "tool": "webai:claude:design:get-html",
+    "status": "GUARD_OK",
+    "evidence": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"iframeArtifactSha256\":\"\",\"savedPath\":\"\",\"byteSize\":0} EXIT=0. Artifact dir verify5-artifacts is EMPTY (no bootstrap stub, no scratch files).",
+    "notes": "Honest terminal: no generated design exists (downstream of 1b), so get-html correctly fails with a stable contract code, empty savedPath/sha/byteSize, and writes NOTHING to the download dir. D2 still landed AND is now cleaner than round-4 (round-4 left r_3/r_4 canvas scratch .md files; round-5 leaves zero). No html/dom/screenshot/forbidden fields. No fabricated sha256 (none reported because no artifact exists)."
+  },
+  {
+    "id": "1d",
+    "tool": "webai:claude:design:present",
+    "status": "GUARD_OK",
+    "evidence": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"presentUrl\":\"\"} EXIT=0.",
+    "notes": "Honest terminal: no generated design to present (downstream of 1b). Stable contract code, empty presentUrl, no fabricated URL."
+  }
+]

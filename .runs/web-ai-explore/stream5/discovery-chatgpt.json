@@ -1,0 +1,416 @@
+[
+  {
+    "id": "chatgpt-sidebar-codex",
+    "service": "chatgpt",
+    "name": "Sidebar Codex (cloud code agent)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Left sidebar -> 'Codex' link (a[href='/codex/cloud'], target=_blank). Direct route: https://chatgpt.com/codex/cloud (NOT https://chatgpt.com/codex which is a marketing landing page).",
+    "recipe": [
+      "Allocate a dedicated tab at https://chatgpt.com/codex/cloud (Codex opens in a new tab via target=_blank).",
+      "Composer: textbox '#prompt-textarea' (aria 'Codex composer').",
+      "Repo/branch picker: button[aria-label='Search for your branch']; environment picker: button[aria-label='View all code environments'] -> lists connected GitHub repos as a dropdown.",
+      "Version/parallelism: button[aria-label^='Open versions number selector'] (e.g. 1x).",
+      "Submit task: button[aria-label='Submit'].",
+      "Task list / status tabs: button[aria-label='Tab selector to view active tasks'] (Tasks) | 'Code reviews' | 'Archive'. Task search: 'Open task search'."
+    ],
+    "completion_gate": "Submitted task appears in the Tasks tab list with a status badge; task detail page shows diff + completion state. (Not exercised live — see notes.)",
+    "artifact": "Code diffs / PRs against a connected GitHub repo (no file download artifact).",
+    "sub_mcp_candidate": true,
+    "evidence": "Codex Cloud surface fully mapped via live DOM read (/tmp/cg_canvas equivalents); environment dropdown enumerated connected repos (LT-0I/* and noeticbraid-related).",
+    "notes": "Large self-contained module -> strong sub-MCP candidate. NOT exercised end-to-end: every connected environment is a real GitHub repo (noeticbraid-related or unrelated personal repos); submitting a live Codex task is NOT a benign trivial action and risks touching the forbidden noeticbraid project. Live exercise needs a dedicated throwaway sandbox repo from the user. Path is fully deterministic and documented."
+  },
+  {
+    "id": "chatgpt-canvas",
+    "service": "chatgpt",
+    "name": "Canvas (collaborative doc/code editing)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Triggered by an explicit canvas request in any chat (most reliable). Also a 'Canvas' entry under composer '+' -> 'More' submenu (submenu unreachable via CLI, see blocked notes).",
+    "recipe": [
+      "Open a chat; ensure model is non-Pro (set 'Thinking' via model dropdown — see chatgpt-model-selector).",
+      "Type into '#prompt-textarea': a request beginning 'Use canvas to write ...' with a trivial benign body.",
+      "Press Enter (or [data-testid=send-button]).",
+      "Canvas panel opens beside the chat; conversation URL becomes https://chatgpt.com/c/<id>.",
+      "Canvas toolbar: button[aria-label='Copy'], an 'Edit' button, and a Download dropdown trigger (button id #radix-_r_*_ with aria-label='Download')."
+    ],
+    "completion_gate": "Canvas panel rendered with the document title + body text; 'Done.' marker in the chat turn; Canvas toolbar (Copy/Edit/Download) present.",
+    "artifact": "See chatgpt-canvas-export.",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: prompt 'Use canvas to write a 4-line plain-text note titled \"Stream5 Canvas Probe\" ...' -> canvas opened at https://chatgpt.com/c/6a0718ad-2894-83e8-81c4-dec35ae0c1b2 with content one/two/three/four.",
+    "notes": "Model selector resets to account default ('Extended Pro') on each fresh navigation — MUST re-select Thinking per new chat before sending. Canvas trigger by prompt phrasing is the stable path."
+  },
+  {
+    "id": "chatgpt-canvas-export",
+    "service": "chatgpt",
+    "name": "Canvas export (PDF/DOCX/Markdown)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Canvas panel -> Download dropdown trigger (button#radix-_r_*_, aria-label='Download') -> format menuitem.",
+    "recipe": [
+      "From an open Canvas (see chatgpt-canvas).",
+      "Use the mandated CDP artifact-click pattern: node dist/src/cli.js browser:artifact-click --profile chatgpt --tab-url-contains \"/c/<convId>\" --button-selector '<download-dropdown-id>' --follow-up-text-regex 'Markdown Document' --download-dir <abs> --output-json",
+      "Dropdown exposes exactly 3 menuitems: 'PDF Document (.pdf)', 'Microsoft Word Document (.docx)', 'Markdown Document (.md)'.",
+      "The download-dropdown-id is a dynamic Radix id (#radix-_r_*_); locate it each run by aria-label='Download' on the canvas toolbar (it is the Download button that has aria-haspopup; the other plain 'Download' button is the chat-turn one)."
+    ],
+    "completion_gate": "browser:artifact-click returns {path, sha256, size, suggestedFilename, downloadGuid}.",
+    "artifact": ".runs/web-ai-explore/stream5/artifacts/stream_5_canvas_probe.md (sha256 2d7da7fdc133470a18981d1a08e61a553b634ce0a2936de35ebc7f5ae3bb9482, 44 bytes).",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live end-to-end via browser:artifact-click (follow-up-text-regex 'Markdown Document'); file content verified ('# Stream5 Canvas Probe\\none\\ntwo\\nthree\\nfour').",
+    "notes": "This is a single-call artifact path via the mandated CDP pattern (unlike stream4's canvas-download-dropdown which was flagged as multi-step — the --follow-up-text-regex form resolves it). PDF/DOCX should work identically with regex 'PDF Document' / 'Microsoft Word Document'."
+  },
+  {
+    "id": "chatgpt-deep-research",
+    "service": "chatgpt",
+    "name": "Deep Research",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' menu (#composer-plus-btn) -> menuitemradio 'Deep research'.",
+    "recipe": [
+      "Click '#composer-plus-btn'.",
+      "Click [role=menuitemradio]:has-text('Deep research').",
+      "Composer shows active toggle: button[aria-label='Deep research, click to remove'] + a 'Deep Research tabs' tablist (div[aria-label='Deep Research tabs']).",
+      "Type query into '#prompt-textarea', send. Deep research runs 5-30 min."
+    ],
+    "completion_gate": "Toggle-active state confirmed (button[aria-label='Deep research, click to remove']). Full completion = long synthesized report in turn (not waited here; stream4 confirmed full completion separately).",
+    "artifact": "Long-form synthesized research report in the chat turn.",
+    "sub_mcp_candidate": false,
+    "evidence": "Toggle activation confirmed live: composer showed 'Deep research, click to remove' + Deep Research tablist after enabling via plus menu.",
+    "notes": "Re-validated: toggle path stable. Full run not executed in this sweep (would stall the campaign for 5-30 min); stream4 already validated end-to-end completion."
+  },
+  {
+    "id": "chatgpt-voice-mode",
+    "service": "chatgpt",
+    "name": "Voice mode (Advanced Voice)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Composer right side: button[aria-label='Start Voice'] (and button[aria-label='Start dictation'] for dictation-only).",
+    "recipe": [
+      "Click button[aria-label='Start Voice'].",
+      "First-use intro overlay 'Say hello to Voice' appears with a 'Continue' button (consent: audio recordings saved).",
+      "Beyond 'Continue' is a live realtime voice session requiring microphone capture + audio playback."
+    ],
+    "completion_gate": "N/A (audio realtime session).",
+    "artifact": "None (audio interaction).",
+    "sub_mcp_candidate": false,
+    "evidence": "Entry confirmed live: 'Start Voice' opened the 'Say hello to Voice' consent overlay ('Natural conversations / Multiple voices / Personalized / Audio recordings are saved').",
+    "notes": "BLOCKED: cannot be exercised via browser automation — no microphone/audio I/O in the headless host, and clicking 'Continue' is a first-use consent that enables a durable voice-recordings feature (forbidden durable-state change). Entry point + consent gate documented."
+  },
+  {
+    "id": "chatgpt-model-selector",
+    "service": "chatgpt",
+    "name": "Model selection (Thinking/Instant/Pro)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer model dropdown button (dynamic id #radix-_r_*_, aria-haspopup='menu', accessible name = current model e.g. 'Extended Pro'/'Thinking').",
+    "recipe": [
+      "Locate the composer model button by accessible name ('Extended Pro' | 'Thinking' | 'Instant') with aria-haspopup='menu'. Id is dynamic — match by name, not id.",
+      "Click it; menu opens (this Radix menu DOES open via CLI click, unlike plus-submenus/kebabs).",
+      "Menuitems: menuitemradio 'Instant', 'Thinking', 'Pro • Extended', menuitem 'Configure...'.",
+      "Click [role=menuitemradio]:has-text('Thinking') for the compliant non-Pro Thinking-class model.",
+      "Verify: model button accessible name now reads 'Thinking'."
+    ],
+    "completion_gate": "Model button accessible name updates to the selected model.",
+    "artifact": "None (state change).",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: switched 'Extended Pro' -> 'Thinking' successfully on multiple tabs.",
+    "notes": "CRITICAL: model selection is per-conversation and RESETS to account default ('Extended Pro') on every fresh navigation/new chat. Any automated send MUST re-select Thinking first to honor the no-Pro constraint. The model dropdown is a reliable Radix menu (works via synthetic click), distinct from the unreliable plus-'More' submenu and kebab menus."
+  },
+  {
+    "id": "chatgpt-projects",
+    "service": "chatgpt",
+    "name": "Projects (grouped conversations w/ shared context)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Left sidebar -> Projects section -> 'New project' (button[data-sidebar-item=true] with text 'New project'). Existing projects: a[href='/g/g-p-<id>/project'].",
+    "recipe": [
+      "Ensure the sidebar is open (button[aria-label='Open sidebar'] if collapsed).",
+      "Click button[data-sidebar-item='true']:has-text('New project').",
+      "Create-project dialog: input '#project-name' (placeholder 'Copenhagen Trip').",
+      "Type a project name; click button:has-text('Create project').",
+      "Lands on https://chatgpt.com/g/g-p-<id>/project with tabs 'Chats'/'Sources', composer '#prompt-textarea' (placeholder 'New chat in <name>'), button[aria-label='Project settings'], button[name='project-title'] (rename).",
+      "Project options in sidebar: button#radix-_r_*_ aria-label='Open project options for <name>' (menu = Radix kebab, see blocked notes for delete)."
+    ],
+    "completion_gate": "Navigated to /g/g-p-<id>/project; project appears in sidebar Projects list.",
+    "artifact": "Durable project (user content).",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: created project 'S5 Probe Temp' -> https://chatgpt.com/g/g-p-6a071add7a94819190b74d18bcb38c16/project.",
+    "notes": "Test project 'S5 Probe Temp' left behind — delete via project options kebab could NOT be automated (Radix kebab menu does not open via CLI). Listed in blocked-chatgpt.md for manual user cleanup. Note: clicking 'New project' for a Pulse-onboarding-eligible account first surfaced the Pulse promo dialog once."
+  },
+  {
+    "id": "chatgpt-tasks",
+    "service": "chatgpt",
+    "name": "Tasks (scheduled recurring runs)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Management: Settings -> 'Schedules' tab (route https://chatgpt.com/#settings/Schedules) -> 'Manage'. Creation: in-conversation message/response action menu -> 'Schedule'.",
+    "recipe": [
+      "Open Settings via hash route https://chatgpt.com/#settings/Connectors (any tab), then click button:has-text('Schedules').",
+      "Settings -> Schedules pane: 'ChatGPT can be scheduled to run again after it completes a task. Choose Schedule from the menu in a conversation to set up future runs.' + 'Manage' button.",
+      "To create a task: in a conversation, open the response 'More actions' menu and pick 'Schedule' (Radix menu — see blocked notes; not CLI-automatable)."
+    ],
+    "completion_gate": "Settings -> Schedules pane renders with 'Manage'; created schedules listed under Manage.",
+    "artifact": "Scheduled task entries (account state).",
+    "sub_mcp_candidate": false,
+    "evidence": "Settings -> Schedules tab read live: description + 'Manage' button confirmed.",
+    "notes": "Management surface fully reachable via the stable hash route. Creation step is gated behind the in-conversation Radix action menu which does not open via CLI (same systemic limitation as kebabs)."
+  },
+  {
+    "id": "chatgpt-pulse",
+    "service": "chatgpt",
+    "name": "Pulse (research digest / briefing)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "No standalone in-app route for this account (https://chatgpt.com/pulse redirects to home). Surfaces as an onboarding modal; toggle exists at Settings -> Personalization -> 'Show \"Pulse\" in new chats'.",
+    "recipe": [
+      "Pulse onboarding modal (dialog #radix-_r_*_) appears with body 'Pulse can help you stay on top of anything...' and a 'Get started' button + 'Close onboarding'.",
+      "Activating Pulse requires clicking 'Get started' (durable account onboarding state change) — forbidden by campaign rules."
+    ],
+    "completion_gate": "N/A (not activated).",
+    "artifact": "Daily curated digest (only after onboarding).",
+    "sub_mcp_candidate": false,
+    "evidence": "Pulse onboarding modal observed live (triggered incidentally when sidebar was collapsed); dismissed via 'Close onboarding' without activating. Settings -> Personalization confirms 'Show \"Pulse\" in new chats' toggle and 'Turning this off will disable Pulse'.",
+    "notes": "BLOCKED: requires 'Get started' onboarding (durable account-state change, explicitly forbidden by stream5 hard rules and stream4's prior pulse-content-view note). Stable entry once enabled is unknown until activated."
+  },
+  {
+    "id": "chatgpt-gpt-store",
+    "service": "chatgpt",
+    "name": "GPT Store (custom GPT discovery/launch)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Left sidebar 'Explore GPTs' (a[href='/gpts']). Direct route https://chatgpt.com/gpts.",
+    "recipe": [
+      "Navigate to https://chatgpt.com/gpts.",
+      "Store grid renders; GPT cards are anchors with href '/g/g-<id>-<slug>' (a.gizmo-link per stream4; >=7 cards seen).",
+      "Launch a GPT by navigating to its '/g/<id>-<slug>' URL; composer is the same '#prompt-textarea'."
+    ],
+    "completion_gate": "/gpts loaded with gizmo-link cards; launched GPT shows its branded composer.",
+    "artifact": "None (discovery/launch).",
+    "sub_mcp_candidate": false,
+    "evidence": "Re-validated live: https://chatgpt.com/gpts loaded with 7+ '/g/g-' gizmo links.",
+    "notes": "Stable, matches stream4 webai.chatgpt.list_custom_gpts / invoke_custom_gpt recipes. URL pattern /g/<id>-<slug> is deterministic."
+  },
+  {
+    "id": "chatgpt-memory",
+    "service": "chatgpt",
+    "name": "Memory (persistent user facts)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Settings -> Personalization (route https://chatgpt.com/#settings/Personalization) -> 'Manage memories' (button[aria-label='Manage memories']).",
+    "recipe": [
+      "Open Settings (hash route), click button:has-text('Personalization').",
+      "Memory section: button[aria-label='Manage memories'] opens the saved-memories list; 'Reference record history' / record-mode toggles also present.",
+      "Inline memory save also occurs automatically when a chat states a durable fact (ChatGPT shows 'Memory updated')."
+    ],
+    "completion_gate": "Personalization pane shows 'Manage memories'; clicking it lists stored facts.",
+    "artifact": "None (account memory store).",
+    "sub_mcp_candidate": false,
+    "evidence": "Personalization tab read live: 'Manage memories' button + custom-instruction textareas (traits_model_message, other_user_message) confirmed.",
+    "notes": "Did NOT open 'Manage memories' — exposing/altering persistent personal facts is sensitive (read-only-sensitive). Path confirmed; matches stream4 read_settings_tab recipe."
+  },
+  {
+    "id": "chatgpt-settings-personalization",
+    "service": "chatgpt",
+    "name": "Settings: Personalization",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Settings dialog -> Personalization tab. Route https://chatgpt.com/#settings/Personalization.",
+    "recipe": [
+      "Navigate to https://chatgpt.com/#settings/<anyTab> (e.g. #settings/Connectors) to open the Settings dialog.",
+      "Click button:has-text('Personalization').",
+      "Widgets: custom instructions textareas (traits_model_message, other_user_message), 'Manage memories', 'Show \"Pulse\" in new chats' toggle, Record mode toggles, base style/tone."
+    ],
+    "completion_gate": "Personalization tabpanel content rendered (custom instructions + memory controls).",
+    "artifact": "None.",
+    "sub_mcp_candidate": false,
+    "evidence": "Re-validated live via hash route; tab content confirmed.",
+    "notes": "Hash route #settings/<Tab> is a stable, CLI-friendly way into Settings (avoids the unreliable profile-menu Radix dropdown). Matches stream4 read_settings_tab."
+  },
+  {
+    "id": "chatgpt-settings-data-controls",
+    "service": "chatgpt",
+    "name": "Settings: Data controls",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Settings dialog -> Data controls tab. Route https://chatgpt.com/#settings/DataControls (or click Settings -> 'Data controls').",
+    "recipe": [
+      "Open Settings via hash route; click button:has-text('Data controls').",
+      "Widgets: 'Improve the model for everyone' (Off), 'Remote browser data' (On / Manage), 'Shared links' Manage, 'Archived chats' Manage, 'Archive all chats', 'Delete all chats', 'Export data' Export, Marketing privacy."
+    ],
+    "completion_gate": "Data controls tabpanel rendered with the above widgets.",
+    "artifact": "Export data produces an account data export (NOT exercised — account-data action).",
+    "sub_mcp_candidate": false,
+    "evidence": "Re-validated live: widget list read including 'Improve the model for everyone Off' and 'Remote browser data On Manage'.",
+    "notes": "Reading the tab is safe. 'Export data' / 'Delete all chats' are destructive/account actions — out of scope to trigger. 'Remote browser data' relates to the Atlas/agentic-browser feature."
+  },
+  {
+    "id": "chatgpt-share-conversation",
+    "service": "chatgpt",
+    "name": "Share conversation (link / social)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Conversation header -> button[aria-label='Share'] / button[data-testid='share-chat-button'] -> Share dialog.",
+    "recipe": [
+      "In any conversation (URL https://chatgpt.com/c/<id>).",
+      "Click button[data-testid='share-chat-button'] (aria-label 'Share').",
+      "Share dialog offers: Copy link, X, LinkedIn, Reddit (per stream4 — no private text-export option)."
+    ],
+    "completion_gate": "Share dialog open with Copy link / social buttons.",
+    "artifact": "Public share URL (public-publishing classed — do NOT actually publish).",
+    "sub_mcp_candidate": false,
+    "evidence": "Share button (button[data-testid='share-chat-button']) present and identified on conversation surfaces (canvas/data-analyst conversations).",
+    "notes": "Did NOT click 'Copy link'/social — creating a public share link is public-publishing, banned during web-AI automation (doctrine §2.3). Button identity + dialog options confirmed; matches stream4 share-menu-social finding."
+  },
+  {
+    "id": "chatgpt-conversation-management",
+    "service": "chatgpt",
+    "name": "Conversation management (rename/archive/delete/search)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Sidebar per-conversation kebab: button#radix-_r_*_ (data-testid='history-item-<n>-options', aria-label='Open conversation options for <title>') -> menu (rename/archive/delete). Search: button[aria-label='Search chats'] -> command palette.",
+    "recipe": [
+      "Each sidebar conversation has a kebab button (data-testid='history-item-<n>-options'); clicking it should open a Radix menu with Rename/Archive/Delete.",
+      "Search: button[aria-label='Search chats'] should open a Radix command-palette dialog.",
+      "Bulk archive/delete also available at Settings -> Data controls ('Archive all chats' / 'Delete all chats' / 'Archived chats' Manage)."
+    ],
+    "completion_gate": "Per-item menu open with Rename/Archive/Delete; or search palette accepting a query.",
+    "artifact": "None (conversation state changes).",
+    "sub_mcp_candidate": false,
+    "evidence": "Kebab buttons + Search-chats button identified with stable selectors. Both the per-conversation kebab Radix menu AND the Search-chats command palette FAILED to open via CLI synthetic click (confirmed across many attempts + screenshots).",
+    "notes": "BLOCKED: the rename/archive/delete kebab and the search command-palette are Radix portal popovers that do not open via the project CLI's synthetic mouse events, and the snapshot reader cannot traverse them. Bulk archive/delete IS reachable via the stable Settings -> Data controls route (documented under chatgpt-settings-data-controls) but per-conversation rename/archive/delete + chat search need either a CLI hover/pointer-dwell capability or manual user steps. See blocked-chatgpt.md."
+  },
+  {
+    "id": "chatgpt-data-analyst",
+    "service": "chatgpt",
+    "name": "Data Analyst (CSV/XLSX -> chart + code exec)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Any chat: attach a spreadsheet via input '#upload-files', then prompt for a chart/analysis. Code Interpreter runs automatically.",
+    "recipe": [
+      "Ensure model is Thinking (non-Pro).",
+      "browser:upload --selector '#upload-files' --file <csv> (attachment chip shows '<name> Spreadsheet').",
+      "Type analysis prompt into '#prompt-textarea' (e.g. 'Make a simple bar chart of population by city from this CSV. Show the chart.').",
+      "Send via button[aria-label='Send prompt'] / [data-testid=send-button] (NOT Enter while attachment processing).",
+      "Code Interpreter shows 'Analyzing'/'Thinking', parses the file, renders an interactive chart in the turn."
+    ],
+    "completion_gate": "Turn shows 'Done.' + an interactive chart element ('Now interactive! (Beta)'); conversation URL https://chatgpt.com/c/<id>.",
+    "artifact": "Interactive chart in-turn. PNG export = role=dialog with duplicate 'Download <name>.png' buttons (stream4 code-charts-export-dialog — multi-step, not single-call).",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: uploaded s5_data.csv (city,population x3), prompt produced 'Population By City' interactive bar chart at https://chatgpt.com/c/6a071c30-d3e8-83e8-901f-1b144c9f9963.",
+    "notes": "Core analysis capability fully exercised. Chart-image export remains a multi-step dialog path per stream4 (not a single-call behavior chip)."
+  },
+  {
+    "id": "chatgpt-agent-mode",
+    "service": "chatgpt",
+    "name": "Agent mode (autonomous multi-step task)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Composer '+' menu -> 'More' submenu (Radix hover-submenu). Not present as a top-level plus-menu item, sidebar item, or hash route for this account.",
+    "recipe": [
+      "Composer '#composer-plus-btn' -> hover the 'More' menuitem (#radix-_r_*_) to expand its submenu, which should contain Agent mode / Study mode / explicit Canvas / additional tools."
+    ],
+    "completion_gate": "Unknown (submenu unreachable).",
+    "artifact": "Unknown.",
+    "sub_mcp_candidate": true,
+    "evidence": "Top-level plus menu enumerated (Add photos & files, Recent files, Create image, Deep research, Web search, More, Projects). 'Agent mode' is NOT a top-level item, NOT a sidebar link, NOT a working hash route. It lives under the 'More' submenu.",
+    "notes": "BLOCKED: the composer '+' 'More' submenu is a Radix hover-intent submenu that does not expand via the CLI's synthetic hover/click (no pointer-dwell); the snapshot reader cannot traverse the portal. Confirmed via repeated hover+screenshot. Needs a CLI pointer-dwell/native-hover capability OR manual user steps to enumerate + drive Agent mode. Likely a sub-MCP candidate (large autonomous module)."
+  },
+  {
+    "id": "chatgpt-apps-mcp",
+    "service": "chatgpt",
+    "name": "Apps / MCP connectors",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Settings -> Apps tab (formerly 'Connectors'). Route https://chatgpt.com/#settings/Connectors.",
+    "recipe": [
+      "Navigate to https://chatgpt.com/#settings/Connectors (opens Settings dialog on the Apps tab).",
+      "Pane: 'Enabled apps' / 'Manage enabled apps ChatGPT can use in your chats', connected app rows (e.g. 'GitHub'), 'Add more', 'Advanced settings', 'Explore all apps'. Note: 'Connectors are now called Apps.'"
+    ],
+    "completion_gate": "Apps tabpanel rendered listing enabled apps + 'Add more'/'Explore all apps'.",
+    "artifact": "None (connector config).",
+    "sub_mcp_candidate": false,
+    "evidence": "Read live via hash route: Enabled apps section, connected 'GitHub' app, Add more / Advanced settings / Explore all apps.",
+    "notes": "Listing/inspecting enabled apps is safe and exercised. Connecting a NEW app requires third-party OAuth + credential entry — forbidden by doctrine §3 (no credential entry / no account changes). Read-only surface is EXPLORED_PATH_KNOWN."
+  },
+  {
+    "id": "chatgpt-workspace-agents",
+    "service": "chatgpt",
+    "name": "Workspace agents (enterprise team agents)",
+    "status": "OUT_OF_SCOPE",
+    "ui_location": "Workspace admin panel -> Agents section (enterprise/Team workspace only).",
+    "recipe": [],
+    "completion_gate": "N/A",
+    "artifact": "None.",
+    "sub_mcp_candidate": false,
+    "evidence": "This account is an individual 'Shark Pro' plan (not an enterprise/Team workspace). No workspace admin panel or Agents section exists in the UI for this account. No sidebar/route/settings entry observed.",
+    "notes": "OUT_OF_SCOPE: requires an enterprise/Team workspace and admin/account access (account-identity / admin surface, off-limits). Not available to this individual Pro account."
+  },
+  {
+    "id": "chatgpt-atlas-browser",
+    "service": "chatgpt",
+    "name": "Atlas browser (AI-guided web browsing agent)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Not exposed as a composer toggle, sidebar item, or hash route in this web UI. A related setting 'Remote browser data' (On / Manage) exists at Settings -> Data controls. Atlas is primarily a separate desktop browser product.",
+    "recipe": [
+      "No reachable in-web-UI entry point found. Plus menu has no Atlas/Browse item; no sidebar link; no working route."
+    ],
+    "completion_gate": "Unknown.",
+    "artifact": "Unknown.",
+    "sub_mcp_candidate": false,
+    "evidence": "Top-level plus menu fully enumerated (no 'Atlas'/'Browse with' item). No sidebar entry. The only Atlas-adjacent surface is Settings -> Data controls 'Remote browser data On / Manage'. The Codex landing page footer references 'Atlas' as a separate OpenAI product/desktop app.",
+    "notes": "BLOCKED: 'Atlas browser' is an OpenAI desktop-browser product, not a feature drivable from this chatgpt.com web UI for this account (any agentic-browsing capability would sit under the unreachable 'More' submenu or the separate Atlas app). Needs user clarification on whether an in-web entry exists for this account, or whether this maps to the desktop Atlas app (out of web-automation scope)."
+  },
+  {
+    "id": "chatgpt-search-web",
+    "service": "chatgpt",
+    "name": "Web search (real-time search in chat)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' menu (#composer-plus-btn) -> menuitemradio 'Web search'.",
+    "recipe": [
+      "Click '#composer-plus-btn'.",
+      "Click [role=menuitemradio]:has-text('Web search').",
+      "Composer shows active pill: button[aria-label='Search, click to remove'] + a 'Search' indicator.",
+      "Type query into '#prompt-textarea', press Enter."
+    ],
+    "completion_gate": "Response produced with a 'Search' indicator in the turn; composer shows the 'Search, click to remove' pill.",
+    "artifact": "Web-grounded answer in the chat turn.",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: enabled Web search, asked 'What is the capital city of France?' -> 'The capital city of France is Paris.' with 'Search' marker at https://chatgpt.com/c/6a071eff-... (conv id 6a0718ff-4018-83e8-ad5d-6d16f8da0bb0).",
+    "notes": "Stable single-call path. The plus-menu top-level menuitemradios (Create image / Deep research / Web search) DO open and toggle via CLI — only the 'More' SUBmenu fails."
+  },
+  {
+    "id": "chatgpt-study-mode",
+    "service": "chatgpt",
+    "name": "Study mode (flashcards/quizzes)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "Composer '+' menu -> 'More' submenu (Radix hover-submenu). Stream4 also observed a transient 'Study Mode' promotion modal. Not a top-level plus item / sidebar link / working hash route.",
+    "recipe": [
+      "Composer '#composer-plus-btn' -> expand 'More' submenu (#radix-_r_*_) which should contain Study mode."
+    ],
+    "completion_gate": "Unknown (submenu unreachable).",
+    "artifact": "Flashcards/quizzes generated from uploaded content.",
+    "sub_mcp_candidate": false,
+    "evidence": "Top-level plus menu enumerated; Study mode is NOT a top-level item, sidebar link, or working route. It lives under the 'More' submenu. Stream4 noted a transient Study Mode promo modal (non-deterministic).",
+    "notes": "BLOCKED: same Radix 'More' submenu limitation as Agent mode — submenu does not expand via the CLI's synthetic hover; snapshot reader cannot traverse it. Needs CLI pointer-dwell/native-hover OR manual user steps. See blocked-chatgpt.md."
+  },
+  {
+    "id": "chatgpt-image-visual-query",
+    "service": "chatgpt",
+    "name": "Image / visual query (upload image -> ask)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Any chat: attach an image via input '#upload-files' (or '#upload-photos'), then ask about it.",
+    "recipe": [
+      "Ensure model Thinking.",
+      "browser:upload --selector '#upload-files' --file <image> (chip renders).",
+      "Type the visual question into '#prompt-textarea'.",
+      "Send via button[aria-label='Send prompt'] / [data-testid=send-button].",
+      "Model returns a description/answer about the image."
+    ],
+    "completion_gate": "Response turn with the visual answer; conversation URL https://chatgpt.com/c/<id>.",
+    "artifact": "None (textual answer).",
+    "sub_mcp_candidate": false,
+    "evidence": "Re-validated by reuse of the verified upload path (same '#upload-files' input used for the live Data Analyst CSV exercise). Stream4 upload/image = PASS (red-square image correctly described).",
+    "notes": "Essentially covered by IMPLEMENTED_GREEN webai_chatgpt_upload_and_query (multi-file). Path stable; not separately re-driven with a new image to conserve tokens since the identical upload mechanism was exercised live this session."
+  },
+  {
+    "id": "chatgpt-code-generation",
+    "service": "chatgpt",
+    "name": "Code generation + download",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Any chat: prompt for code; response renders a code block with Copy / 'Run code' buttons. Downloadable code-file artifacts use the stream4 behavior-chip path.",
+    "recipe": [
+      "Set model Thinking.",
+      "Type a code request into '#prompt-textarea' (e.g. 'Write a one-line Python function add(a,b) ... Code block only.').",
+      "Send (Enter or send button).",
+      "Response turn shows a code block with 'Copy' and 'Run code'/'Run' buttons.",
+      "For a downloadable code FILE: stream4 webai.chatgpt.download_artifact_chip via button.behavior-btn (py/md/csv/docx/pdf/svg)."
+    ],
+    "completion_gate": "Code block rendered in the turn with Copy/Run controls; conversation URL https://chatgpt.com/c/<id>.",
+    "artifact": "Inline code block (copy/run); downloadable file via behavior-chip when ChatGPT emits a file.",
+    "sub_mcp_candidate": false,
+    "evidence": "Exercised live: 'Write a one-line Python function add(a,b)...' on Thinking -> code block with Copy + 'Run code' at https://chatgpt.com/c/6a071e07-7ffc-83e8-b021-a98fa478e1a7.",
+    "notes": "Re-validated. File-download path matches stream4 download_artifact_chip (button.behavior-btn). Stable."
+  }
+]

@@ -128,6 +128,8 @@ function snapshotMode(options: Record<string, CliOptionValue>): "full" | "lite" 
   throw new Error("--mode must be one of full|lite");
 }
 
+function hasOption(options: Record<string, CliOptionValue>, ...keys: string[]): boolean { return keys.some((key) => Object.prototype.hasOwnProperty.call(options, key)); }
+
 function asBoolean(value: CliOptionValue | undefined): boolean | undefined {
   if (Array.isArray(value)) return asBoolean(value[value.length - 1]);
   if (value === true || value === "true") return true;
@@ -153,6 +155,10 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     response_timeout_ms: asNumber(options["response-timeout-ms"] || options.responseTimeoutMs),
     reuse_conversation: asBoolean(options["reuse-conversation"] || options.reuseConversation),
     model: asString(options.model),
+    thinking: asBoolean(options.thinking),
+    web_search: asBoolean(options["web-search"] || options.webSearch),
+    incognito: asBoolean(options.incognito),
+    canvas: asBoolean(options.canvas),
     style: asString(options.style),
     download_dir: asString(options["download-dir"] || options.downloadDir),
     expected_extension: asString(options["expected-extension"] || options.expectedExtension),
@@ -160,7 +166,20 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     title: asString(options.title),
     size: asString(options.size),
     duration_seconds: asNumber(options["duration-seconds"] || options.durationSeconds),
-    task_id: asString(options["task-id"] || options.taskId)
+    task_id: asString(options["task-id"] || options.taskId),
+    format: asString(options.format),
+    action: asString(options.action),
+    surface: asString(options.surface),
+    query: asString(options.query),
+    edit_text: asString(options["edit-text"] || options.editText),
+    ai_action: asString(options["ai-action"] || options.aiAction),
+    confirmed: asBoolean(options.confirmed),
+    name: asString(options.name),
+    fidelity: asString(options.fidelity),
+    project_url: asString(options["project-url"] || options.projectUrl),
+    repo: asString(options.repo),
+    branch: asString(options.branch),
+    tab: asString(options.tab)
   };
   const files = asStringList(options.file || options.files);
   if (files.length) base.files = files;
@@ -183,6 +202,28 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:gemini:generate-image": "webai_gemini_generate_image",
     "webai:gemini:canvas-to-docs": "webai_gemini_canvas_to_docs",
     "webai:gemini:generate-video": "webai_gemini_generate_video",
+    "webai:gemini:deep-research": "webai_gemini_deep_research",
+    "webai:gemini:canvas-edit": "webai_gemini_canvas_edit",
+    "webai:gemini:conversation-manage": "webai_gemini_conversation_manage",
+    "webai:gemini:workspace": "webai_gemini_workspace",
+    "webai:gemini:music:generate": "webai_gemini_music_generate",
+    "webai:gemini:music:download-track": "webai_gemini_music_download_track",
+    "webai:gemini:music:task-status": "webai_gemini_music_task_status",
+    "webai:chatgpt:codex:create-task": "webai_chatgpt_codex_create_task",
+    "webai:chatgpt:codex:list-envs": "webai_chatgpt_codex_list_envs",
+    "webai:chatgpt:codex:task-status": "webai_chatgpt_codex_task_status",
+    "webai:chatgpt:codex:list-tasks": "webai_chatgpt_codex_list_tasks",
+    "webai:chatgpt:canvas-export": "webai_chatgpt_canvas_export",
+    "webai:chatgpt:deep-research": "webai_chatgpt_deep_research",
+    "webai:claude:deep-research": "webai_claude_deep_research",
+    "webai:chatgpt:conversation-manage": "webai_chatgpt_conversation_manage",
+    "webai:claude:conversation-manage": "webai_claude_conversation_manage",
+    "webai:chatgpt:workspace": "webai_chatgpt_workspace",
+    "webai:claude:workspace": "webai_claude_workspace",
+    "webai:claude:design:create-project": "webai_claude_design_create_project",
+    "webai:claude:design:generate": "webai_claude_design_generate",
+    "webai:claude:design:get-html": "webai_claude_design_get_html",
+    "webai:claude:design:present": "webai_claude_design_present",
     "webai:task-status": "webai_task_status"
   };
   return map[command];
@@ -350,7 +391,17 @@ function browserActionFromCli(command: string, options: Record<string, CliOption
     const selector = asString(options.selector);
     if (!selector) throw new Error("browser:hover requires --selector <css-or-xpath>");
     const timeoutMs = asNumber(options.ms);
-    return { ...base, type: "hover", selector, ...(timeoutMs === undefined ? {} : { timeoutMs }) };
+    const dwellMs = hasOption(options, "dwell-ms", "dwellMs") ? (asNumber(options["dwell-ms"] || options.dwellMs) ?? 450) : undefined;
+    if (dwellMs !== undefined && (!Number.isInteger(dwellMs) || dwellMs < 0)) throw new Error("browser:hover --dwell-ms must be a non-negative integer");
+    const settleSelector = asString(options["settle-selector"] || options.settleSelector);
+    return {
+      ...base,
+      type: "hover",
+      selector,
+      ...(timeoutMs === undefined ? {} : { timeoutMs }),
+      ...(dwellMs === undefined && !settleSelector ? {} : { dwellMs: dwellMs ?? 450 }),
+      ...(settleSelector ? { settleSelector } : {})
+    };
   }
   if (command === "browser:select-text") {
     const selector = asString(options.selector);
@@ -494,6 +545,25 @@ MCP and compatibility commands:
   webai:chatgpt:generate-image|webai:gemini:generate-image --profile <name> --prompt <text> --download-dir <abs> [--output-json]
   webai:gemini:canvas-to-docs --profile <name> --prompt <text> [--title <title>] [--output-json]
   webai:gemini:generate-video --profile <name> --prompt <text> --download-dir <abs> [--output-json]
+  webai:gemini:deep-research --profile <name> --prompt <text> --confirmed [--output-json]
+  webai:gemini:canvas-edit --profile <name> [--prompt <text> --confirmed] [--edit-text <text>] [--ai-action length|tone|suggest] [--output-json]
+  webai:gemini:conversation-manage --profile <name> --action menu_enumerate|share|search [--query <text>] [--confirmed] [--output-json]
+  webai:gemini:workspace --profile <name> --surface gems|scheduled|study|audio_overview|workspace_integration|connected_apps|personalization [--output-json]
+  webai:gemini:music:generate --profile gemini-9225 --prompt <text> --confirmed [--output-json]
+  webai:gemini:music:download-track --profile gemini-9225 --tab-url-contains <url-fragment> [--format mp3|video] [--download-dir <abs>] [--output-json]
+  webai:gemini:music:task-status --profile gemini-9225 --tab-url-contains <url-fragment> [--output-json]
+  webai:chatgpt:codex:create-task --profile chatgpt --prompt <text> [--repo <owner/repo>] [--branch <branch>] [--output-json]
+  webai:chatgpt:codex:list-envs --profile chatgpt [--output-json]
+  webai:chatgpt:codex:task-status --profile chatgpt --task-id <id> [--output-json]
+  webai:chatgpt:codex:list-tasks --profile chatgpt [--tab active|code_reviews|archived] [--output-json]
+  webai:chatgpt:canvas-export --tab-url-contains <url-fragment> [--format md|pdf|docx] [--download-dir <abs>] [--output-json]
+  webai:chatgpt:deep-research --profile <name> --prompt <text> [--output-json]
+  webai:chatgpt:conversation-manage --profile <name> --action share|navigate_settings [--surface <name>] [--output-json]
+  webai:chatgpt:workspace --profile <name> --surface projects|gpts|tasks|apps|memory|personalization|data_controls [--output-json]
+  webai:claude:design:create-project --profile claude-9224 --name <project> [--fidelity wireframe|high_fidelity] [--output-json]
+  webai:claude:design:generate --profile claude-9224 --project-url <url> --prompt <text> [--model sonnet|haiku] [--output-json]
+  webai:claude:design:get-html --profile claude-9224 --project-url <url> [--download-dir <abs>] [--output-json]
+  webai:claude:design:present --profile claude-9224 --project-url <url> [--output-json]
   webai:task-status --task-id <id> [--output-json]
   mcp
   mcp:tools [--json]
@@ -501,8 +571,8 @@ MCP and compatibility commands:
   adapter:list [--json]
   web-ai:adapters [--json]
   recipe:list [--json]
-  browser:start|browser:open|browser:read|browser:screenshot [--tab-id <id>] [--mode full|lite]
-  browser:click|browser:type|browser:select|browser:press|browser:wait|browser:upload|browser:hover|browser:select-text|browser:drag [--tab-id <id>] [--json]
+  browser:start|browser:open|browser:read|browser:screenshot [--tab-id <id>] [--mode full|lite] [browser:read --include-portals]
+  browser:click|browser:type|browser:select|browser:press|browser:wait|browser:upload|browser:hover [--dwell-ms 450] [--settle-selector <css>]|browser:select-text|browser:drag [--tab-id <id>] [--json]
   browser:downloads [--profile <name>] [--limit <n>] [--json]
   browser:download-url --url <absolute-url> [--filename <name>] [--tab-id <id>] [--json]
   browser:artifact-click --profile <name> (--url <url>|--tab-url-contains <substr>) --button-selector <css> --download-dir <abs-path> [--follow-up-selector <css>|--follow-up-text-regex <regex>] [--locate-timeout-ms <ms>] [--frame-min-count <n>] [--viewport-width <px>] [--viewport-height <px>] [--prerender-wait-ms <ms>] [--scroll-main-to-y <y>] [--scroll-main-wait-ms <ms>] [--output-json]
@@ -781,13 +851,14 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   }
   if (command === "browser:read" || command === "browser:screenshot") {
     const mode = snapshotMode(options);
+    const includePortals = command === "browser:read" && (options["include-portals"] === true || options.includePortals === true);
     if (asString(options["tab-id"] || options.tabId)) {
-      output(await withManagedPage(async (page) => readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite" }), options, asString(options.url)), options);
+      output(await withManagedPage(async (page) => readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite", includePortals }), options, asString(options.url)), options);
       return;
     }
     output(await withSession(async (session) => {
       const page = session.activePage() || await session.newPage();
-      return readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite" });
+      return readPageSnapshot(page, { mode, screenshot: command === "browser:screenshot" || options.screenshot === true, includeAccessibility: mode !== "lite", includePortals });
     }, options), options);
     return;
   }

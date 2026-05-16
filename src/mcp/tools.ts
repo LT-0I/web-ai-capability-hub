@@ -45,15 +45,33 @@ import {
   workflowExecuteInput,
   workflowRunInput,
   webAiSendPromptInput,
+  webAiChatgptSendPromptInput,
+  webAiClaudeSendPromptInput,
+  webAiGeminiSendPromptInput,
   webAiUploadAndQueryInput,
   webAiGenerateFileInput,
   webAiGenerateImageInput,
   webAiCanvasToDocsInput,
   webAiGenerateVideoInput,
+  webAiChatgptCanvasExportInput,
+  webAiChatgptDeepResearchInput,
+  webAiClaudeDeepResearchInput,
+  webAiChatgptConversationManageInput,
+  webAiClaudeConversationManageInput,
+  webAiChatgptWorkspaceInput,
+  webAiClaudeWorkspaceInput,
+  webAiGeminiDeepResearchInput,
+  webAiGeminiCanvasEditInput,
+  webAiGeminiConversationManageInput,
+  webAiGeminiWorkspaceInput,
   webAiTaskStatusInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
+import { subMcpToolSpecs } from "./submcp/index";
+export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
+export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
+export { webAiChatgptCodexCreateTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
 
 export interface McpToolDefinition {
   name: string;
@@ -68,7 +86,7 @@ export interface BrowserToolRuntime {
   spawnVideoWorker?: (taskId: string, args: any, database: CapabilityDatabase) => { pid?: number };
 }
 
-interface ToolSpec {
+export interface ToolSpec {
   name: string;
   description: string;
   schema: RuntimeSchema<any>;
@@ -100,34 +118,91 @@ function pageMatchesTargetUrl(pageUrl: string, targetUrl?: string): boolean {
   try {
     const page = new URL(pageUrl);
     const target = new URL(targetUrl);
-    return page.hostname === target.hostname || page.hostname.endsWith(`.${target.hostname}`);
+    const sameHost = page.hostname === target.hostname || page.hostname.endsWith(`.${target.hostname}`);
+    if (!sameHost) return false;
+    const normalizePath = (value: string) => (value || "/").replace(/\/$/, "") || "/";
+    const pagePath = normalizePath(page.pathname);
+    const targetPath = normalizePath(target.pathname);
+    if (/^\/(auth|login|signin|signup|logout)(?:\/|$)/i.test(pagePath)) return true;
+    if (targetPath === "/") return true;
+    if (targetPath === "/app") return pagePath === "/app" || pagePath.startsWith("/app/");
+    return pagePath === targetPath;
   } catch {
     return pageUrl === targetUrl;
   }
 }
 
-async function activeManagedPage(browser: any, targetUrl?: string): Promise<any> {
+function normalizeUrlLikeTarget(value?: string): string | undefined {
+  if (!value) return undefined;
+  if (/^https?:\/\//i.test(value)) return value;
+  if (/^[a-z0-9.-]+\.[a-z]{2,}(?:[/:?#].*)?$/i.test(value)) return `https://${value}`;
+  return undefined;
+}
+
+function pageMatchesRequestedTab(pageUrl: string, requested?: string): boolean {
+  if (!requested || !pageUrl) return false;
+  if (pageUrl.includes(requested)) return true;
+  const normalized = normalizeUrlLikeTarget(requested);
+  if (!normalized) return false;
+  if (pageUrl.includes(normalized)) return true;
+  try {
+    const target = new URL(normalized);
+    return target.pathname !== "/" && pageUrl.includes(target.pathname);
+  } catch {
+    return false;
+  }
+}
+
+async function activeManagedPage(browser: any, targetUrl?: string, requestedTab?: string): Promise<any> {
   const contexts = browser.contexts?.() || [];
   const context = contexts[0] || await browser.newContext?.();
   if (!context) throw new Error("No browser context is available from the managed CDP connection.");
   const pages = contexts.flatMap((ctx: any) => ctx.pages?.() || []);
-  let page = pages.find((candidate: any) => pageMatchesTargetUrl(candidate.url?.() || "", targetUrl));
+  let page = pages.find((candidate: any) => pageMatchesRequestedTab(candidate.url?.() || "", requestedTab));
+  let matchedRequested = Boolean(page);
+  if (!page) page = pages.find((candidate: any) => pageMatchesTargetUrl(candidate.url?.() || "", targetUrl));
   if (!page) page = pages.find((candidate: any) => isUsefulPageUrl(candidate.url?.() || "") && candidate.url?.() !== "about:blank");
   if (!page) page = pages.find((candidate: any) => isUsefulPageUrl(candidate.url?.() || ""));
+  const created = !page;
   if (!page) page = await context.newPage();
-  if (targetUrl && !pageMatchesTargetUrl(page.url?.() || "", targetUrl)) await page.goto(targetUrl, { waitUntil: "domcontentloaded" });
+  const requestedUrl = normalizeUrlLikeTarget(requestedTab);
+  const navigationTarget = requestedUrl || (created ? targetUrl : undefined);
+  const currentUrl = page.url?.() || "";
+  const needsNavigation = requestedUrl
+    ? !matchedRequested && !pageMatchesRequestedTab(currentUrl, requestedTab)
+    : Boolean(created && navigationTarget && !pageMatchesTargetUrl(currentUrl, navigationTarget));
+  if (navigationTarget && needsNavigation) {
+    await page.goto(navigationTarget, { waitUntil: "domcontentloaded" });
+  }
   await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
   return page;
 }
 
-async function withManagedPage<T>(args: any, runtime: Required<BrowserToolRuntime>, targetUrl: string | undefined, fn: (page: any) => Promise<T>): Promise<T> {
+export async function withManagedPage<T>(args: any, runtime: Required<BrowserToolRuntime>, targetUrl: string | undefined, fn: (page: any) => Promise<T>): Promise<T> {
   const profile = args.profile || process.env.WAH_DEFAULT_PROFILE || "default";
   const status = await runtime.launcher.launch({ profile, url: targetUrl, cdpPort: args.cdpPort });
   const browser = await runtime.launcher.connectOverCdp(status);
   try {
-    return await fn(await activeManagedPage(browser, targetUrl));
+    const requested = args.url || args.tab_url_contains;
+    const page = await activeManagedPage(browser, targetUrl, requested);
+    const forcedTarget = normalizeUrlLikeTarget(requested) || (targetUrl && (requested || args.__requireTargetSurface) ? targetUrl : undefined);
+    const forcedMatches = requested ? pageMatchesRequestedTab(page.url?.() || "", requested) : pageMatchesTargetUrl(page.url?.() || "", forcedTarget);
+    if (forcedTarget && !forcedMatches) {
+      await page.goto?.(forcedTarget, { waitUntil: "domcontentloaded", timeout: 30000 });
+      await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    }
+    return await fn(page);
   } finally {
     await browser.close?.().catch(() => undefined);
+  }
+}
+
+async function waitForHydratedSurface(page: any, selector: string, timeoutMs = 15000): Promise<void> {
+  try {
+    await page.waitForLoadState?.("domcontentloaded", { timeout: Math.min(timeoutMs, 15000) });
+    await page.waitForSelector?.(selector, { state: "visible", timeout: timeoutMs });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Required browser surface did not hydrate before interaction", { selector, cause: error?.message || String(error) });
   }
 }
 
@@ -262,7 +337,7 @@ function ensureNoForbiddenOutput(value: unknown): void {
   if (seen.length) throw new WebAiToolError(ConsumerErrorCodes.SAFE_OUTPUT_REDACTION_REQUIRED, `tool response contains forbidden field(s): ${[...new Set(seen)].join(", ")}`, { fields: [...new Set(seen)] });
 }
 
-function safeOutput<T extends Record<string, unknown>>(value: T): T {
+export function safeOutput<T extends Record<string, unknown>>(value: T): T {
   ensureNoForbiddenOutput(value);
   return value;
 }
@@ -277,7 +352,7 @@ function sha256File(filePath: string): string {
 }
 
 function targetUrlFor(service: WebAiService, args: any): string {
-  return typeof args.tab_url_contains === "string" && args.tab_url_contains.startsWith("http") ? args.tab_url_contains : serviceDefaults[service].url;
+  return normalizeUrlLikeTarget(args.url) || normalizeUrlLikeTarget(args.tab_url_contains) || serviceDefaults[service].url;
 }
 
 const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
@@ -318,6 +393,14 @@ const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i]';
 const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = '[role="dialog"] button[aria-label="Save"]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
+const GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR = 'xpath=//button[.//text()[contains(.,"Tools")] or @aria-label="Tools"]';
+const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Deep research"]';
+const GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Canvas"]';
+const GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Guided learning"]';
+const GEMINI_SEND_MESSAGE_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
+const GEMINI_CANVAS_BODY_SELECTOR = 'xpath=(//div[@contenteditable="true"])[last()]';
+const GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR = 'button[aria-label="Open menu for conversation actions."]';
+const GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR = 'button[aria-label="Share conversation"]';
 const GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create image")';
 const GEMINI_IMAGE_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
 const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[data-test-id="more-menu-button"]';
@@ -343,6 +426,24 @@ const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
 const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
+const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
+const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Thinking")';
+const CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Web search")';
+const CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR = 'button[aria-label="Search, click to remove"]';
+const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download")';
+const CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Deep research")';
+const CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR = 'button[aria-label="Deep research, click to remove"]';
+const CHATGPT_SHARE_BUTTON_SELECTOR = 'button[aria-label="Share"]';
+const CLAUDE_MODEL_SELECTOR = '[data-testid="model-selector-dropdown"]';
+const CLAUDE_ADAPTIVE_THINKING_SELECTOR = 'input[aria-label="Adaptive thinking"]';
+const CLAUDE_PLUS_MENU_SELECTOR = 'button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"]';
+const CLAUDE_PROMPT_SELECTOR = 'div[aria-label="Write your prompt to Claude"], [data-testid="chat-input"], [contenteditable="true"], #prompt-textarea';
+const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Web search")]';
+const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Research")]';
+const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
+const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
+const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
+const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"]';
 const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"]';
 const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Download video"]';
@@ -409,10 +510,150 @@ async function navigateGeminiFreshIfNeeded(page: any, args: any): Promise<void> 
   await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
 }
 
+
+function modelSelectionDriftResponse(service: WebAiService, page: any, started: number, expected: string, actual: string | null): Record<string, unknown> {
+  return safeOutput(sendPromptBase(service, page.url?.() || serviceDefaults[service].url, started, {
+    ok: false,
+    service,
+    errorCode: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    error_code: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    model_used: actual,
+    expected_model: expected
+  }));
+}
+
+function normalizeModelTier(service: WebAiService, args: any): string | null {
+  const raw = typeof args.model === "string" ? args.model.trim() : "";
+  if (service === "chatgpt") {
+    if (!raw || /^thinking$/i.test(raw) || /pro/i.test(raw)) return "Thinking";
+    return raw;
+  }
+  if (service === "claude") return raw || null;
+  if (args.thinking) return "Thinking";
+  return raw || null;
+}
+
+function modelLabelMatches(expected: string, actual: string | null): boolean {
+  if (!actual) return false;
+  const e = expected.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const a = actual.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  if (!e) return true;
+  if (e === "thinking") return /\bthinking\b/.test(a);
+  if (e === "sonnet 4 6") return /\bsonnet\b/.test(a) && /4\.?6|4 6/.test(a);
+  return a.includes(e) || e.includes(a);
+}
+
+async function locatorText(locator: any): Promise<string | null> {
+  if (!locator) return null;
+  const aria = await locator.getAttribute?.("aria-label", { timeout: 500 }).catch(() => undefined);
+  if (typeof aria === "string" && aria.trim()) return aria.trim().replace(/\s+/g, " ");
+  const text = await locator.textContent?.({ timeout: 500 }).catch(() => undefined);
+  if (typeof text === "string" && text.trim()) return text.trim().replace(/\s+/g, " ");
+  return null;
+}
+
+async function selectChatgptModel(page: any, expected = "Thinking"): Promise<{ ok: boolean; actual: string | null; expected: string }> {
+  const button = page.locator?.(CHATGPT_MODEL_BUTTON_SELECTOR).first?.();
+  if (!button || !(await button.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
+  await robustClickLocator(page, button, CHATGPT_MODEL_BUTTON_SELECTOR, { timeout: 5000 });
+  const itemSelector = expected === "Thinking" ? CHATGPT_THINKING_MENUITEM_SELECTOR : `[role="menuitemradio"]:has-text("${expected.replace(/"/g, '\\"')}")`;
+  try { await page.waitForSelector?.(itemSelector, { state: "visible", timeout: 8000 }); } catch {}
+  const item = page.locator?.(itemSelector).first?.();
+  if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(button), expected };
+  await robustClickLocator(page, item, itemSelector, { timeout: 5000 });
+  await page.waitForTimeout?.(250).catch(() => undefined);
+  const actual = await locatorText(button);
+  return { ok: modelLabelMatches(expected, actual), actual, expected };
+}
+
+async function selectClaudeModel(page: any, expected: string): Promise<{ ok: boolean; actual: string | null; expected: string }> {
+  const button = page.locator?.(CLAUDE_MODEL_SELECTOR).first?.();
+  if (!button || !(await button.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
+  await robustClickLocator(page, button, CLAUDE_MODEL_SELECTOR, { timeout: 5000 });
+  const selector = `[role="menuitemradio"]:has-text("${expected.replace(/"/g, '\\"')}")`;
+  try { await page.waitForSelector?.(selector, { state: "visible", timeout: 8000 }); } catch {}
+  const item = page.locator?.(selector).first?.();
+  if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(button), expected };
+  await robustClickLocator(page, item, selector, { timeout: 5000 });
+  await page.waitForTimeout?.(250).catch(() => undefined);
+  const actual = await locatorText(button);
+  return { ok: modelLabelMatches(expected, actual), actual, expected };
+}
+
+async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boolean; actual: string | null; expected: string }> {
+  const picker = page.locator?.(GEMINI_MODE_PICKER_SELECTOR).first?.();
+  if (!picker || !(await picker.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
+  await robustClickLocator(page, picker, GEMINI_MODE_PICKER_SELECTOR, { timeout: 5000 });
+  const selector = `xpath=//*[@role="menuitem" or @role="menuitemradio" or self::button][contains(normalize-space(.),"${expected.replace(/"/g, '\\"')}")]`;
+  try { await page.waitForSelector?.(selector, { state: "visible", timeout: 8000 }); } catch {}
+  const item = page.locator?.(selector).first?.();
+  if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(picker), expected };
+  await robustClickLocator(page, item, selector, { timeout: 5000 });
+  await page.waitForTimeout?.(250).catch(() => undefined);
+  const actual = await locatorText(picker);
+  return { ok: modelLabelMatches(expected, actual), actual, expected };
+}
+
+async function setClaudeAdaptiveThinking(page: any): Promise<void> {
+  const toggle = page.locator?.(CLAUDE_ADAPTIVE_THINKING_SELECTOR).first?.();
+  if (!toggle || !(await toggle.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Adaptive thinking toggle was not found", { selector: CLAUDE_ADAPTIVE_THINKING_SELECTOR });
+  const checked = await toggle.isChecked?.().catch(() => false);
+  const aria = await toggle.getAttribute?.("aria-checked").catch(() => undefined);
+  if (checked || aria === "true") return;
+  await robustClickLocator(page, toggle, CLAUDE_ADAPTIVE_THINKING_SELECTOR, { timeout: 5000 });
+}
+
+async function enableChatgptWebSearch(page: any): Promise<void> {
+  if (await page.locator?.(CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR).first?.().count?.().catch(() => 0)) return;
+  await requireAndClick(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, "ChatGPT composer plus menu button was not found");
+  try { await page.waitForSelector?.(CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+  await requireAndClick(page, CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR, "ChatGPT Web search menuitemradio was not found");
+}
+
+async function enableClaudeWebSearch(page: any): Promise<void> {
+  await requireAndClick(page, CLAUDE_PLUS_MENU_SELECTOR, "Claude composer plus menu button was not found");
+  try { await page.waitForSelector?.(CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+  await requireAndClick(page, CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR, "Claude Web search menuitemcheckbox was not found");
+}
+
+async function enableGeminiWebSearch(page: any): Promise<void> {
+  await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
+  try { await page.waitForSelector?.(GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+  await requireAndClick(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, "Gemini Google Search menuitemcheckbox was not found");
+}
+
+async function applyPreSendOptions(service: WebAiService, args: any, page: any, started: number): Promise<Record<string, unknown> | null> {
+  if (service === "chatgpt") {
+    const expected = normalizeModelTier(service, args) || "Thinking";
+    const selection = await selectChatgptModel(page, expected);
+    if (!selection.ok) return modelSelectionDriftResponse(service, page, started, selection.expected, selection.actual);
+    if (args.web_search) await enableChatgptWebSearch(page);
+    if (args.canvas && typeof args.prompt === "string" && !/^\s*use canvas to write\b/i.test(args.prompt)) args.prompt = `Use canvas to write ${args.prompt}`;
+    return null;
+  }
+  if (service === "claude") {
+    const expected = normalizeModelTier(service, args);
+    if (expected) {
+      const selection = await selectClaudeModel(page, expected);
+      if (!selection.ok) return modelSelectionDriftResponse(service, page, started, selection.expected, selection.actual);
+    }
+    if (args.thinking) await setClaudeAdaptiveThinking(page);
+    if (args.web_search) await enableClaudeWebSearch(page);
+    return null;
+  }
+  const expected = normalizeModelTier(service, args);
+  if (expected) {
+    const selection = await selectGeminiModel(page, expected);
+    if (!selection.ok) return modelSelectionDriftResponse(service, page, started, selection.expected, selection.actual);
+  }
+  if (args.web_search) await enableGeminiWebSearch(page);
+  return null;
+}
+
 async function readModelUsed(service: WebAiService, page: any, args: any): Promise<string | null> {
-  if (args.model) return args.model;
+  void args;
   const selectors = service === "chatgpt"
-    ? ['button[aria-label*="Model selector" i] span', 'button:has-text("GPT") span']
+    ? [CHATGPT_MODEL_BUTTON_SELECTOR, 'button[aria-label*="Model selector" i] span', 'button:has-text("GPT") span']
     : service === "claude"
       ? ['[data-testid*="model" i]', 'header button:has-text("Claude")', 'header']
       : ['header:has-text("Gemini")', 'button:has-text("Gemini")', '[aria-label*="Gemini" i]'];
@@ -609,7 +850,7 @@ async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, b
   const attemptSend = async () => {
     if (forceEnterToSend) { await page.keyboard?.press("Enter"); return; }
     const sendButton = page.locator?.(sendSelector).first?.();
-    if (sendButton && await sendButton.count?.().catch(() => 0)) await sendButton.click?.({ timeout: 3000 });
+    if (sendButton && await sendButton.count?.().catch(() => 0)) await robustClickLocator(page, sendButton, sendSelector, { timeout: 3000 });
     else await page.keyboard?.press("Enter");
   };
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -634,13 +875,49 @@ async function waitForGeneratedImageRendered(service: "chatgpt" | "gemini", page
 async function clickIfPresent(page: any, selector: string): Promise<void> {
   const loc = page.locator?.(selector).first?.();
   if (!loc) return;
-  if (await loc.count?.().catch(() => 0)) await loc.click?.({ timeout: 1500 }).catch(() => undefined);
+  if (await loc.count?.().catch(() => 0)) await robustClickLocator(page, loc, selector, { timeout: 1500 }).catch(() => undefined);
 }
 
-async function requireAndClick(page: any, selector: string, message: string): Promise<any> {
+async function cdpSessionForPage(page: any): Promise<any> {
+  return await page.context?.()?.newCDPSession?.(page) || await page.context?.()?.new_cdp_session?.(page);
+}
+
+async function robustClickLocator(page: any, loc: any, selector: string, options: { timeout?: number; dwellMs?: number } = {}): Promise<void> {
+  const handles = typeof loc.elementHandles === "function" ? await loc.elementHandles().catch(() => []) : [];
+  const handle = handles?.[0];
+  if (handle && typeof handle.boundingBox === "function") {
+    try { await handle.scrollIntoViewIfNeeded?.({ timeout: Math.min(options.timeout || 5000, 2000) }); } catch {}
+    const box = await handle.boundingBox?.();
+    const cdp = box ? await cdpSessionForPage(page).catch(() => undefined) : undefined;
+    if (box && cdp?.send) {
+      const x = box.x + box.width / 2;
+      const y = box.y + box.height / 2;
+      const startX = Math.max(0, x - Math.max(24, Math.min(80, box.width || 24)));
+      const startY = Math.max(0, y - Math.max(24, Math.min(80, box.height || 24)));
+      for (let i = 1; i <= 5; i++) {
+        const ratio = i / 5;
+        await cdp.send("Input.dispatchMouseEvent", { type: "mouseMoved", x: startX + (x - startX) * ratio, y: startY + (y - startY) * ratio, button: "none", buttons: 0 });
+      }
+      if ((options.dwellMs ?? 80) > 0) await page.waitForTimeout?.(options.dwellMs ?? 80).catch(() => undefined);
+      await cdp.send("Input.dispatchMouseEvent", { type: "mousePressed", x, y, button: "left", buttons: 1, clickCount: 1 });
+      await cdp.send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", buttons: 0, clickCount: 1 });
+      await cdp.detach?.().catch?.(() => undefined);
+      return;
+    }
+  }
+  await loc.click?.({ timeout: options.timeout || 5000 });
+}
+
+async function dismissPreExistingInterceptors(page: any): Promise<void> {
+  await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+  await clickIfPresent(page, '[role="dialog"] button[aria-label="Close"], [data-testid="modal-close-button"], button[aria-label="Close"]');
+}
+
+async function requireAndClick(page: any, selector: string, message: string, options: { dismissInterceptors?: boolean; dwellMs?: number } = {}): Promise<any> {
+  if (options.dismissInterceptors) await dismissPreExistingInterceptors(page);
   const loc = page.locator?.(selector).first?.();
   if (!loc || !(await loc.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector });
-  await loc.click?.({ timeout: 5000 });
+  await robustClickLocator(page, loc, selector, { timeout: 5000, dwellMs: options.dwellMs });
   return loc;
 }
 
@@ -657,7 +934,7 @@ async function activateChatgptImageMode(page: any): Promise<void> {
   // Verify activation via the composer image-mode pill, not the (now-detached)
   // radio's aria-checked. Wrap the click so a raw Playwright timeout cannot leak.
   try {
-    await radio.click?.({ timeout: 8000 });
+    await robustClickLocator(page, radio, CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, { timeout: 8000 });
   } catch (error: any) {
     throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Create image menuitemradio could not be clicked", { selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, cause: error?.message || String(error) });
   }
@@ -689,7 +966,7 @@ async function activateGeminiImageMode(page: any): Promise<void> {
     if (menuItem && await menuItem.count?.().catch(() => 0)) {
       const before = typeof menuItem.getAttribute === "function" ? await menuItem.getAttribute("aria-checked").catch(() => undefined) : undefined;
       if (before === "true" || before === "mixed") return;
-      await menuItem.click?.({ timeout: 5000 });
+      await robustClickLocator(page, menuItem, GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR, { timeout: 5000 });
       if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
       const after = typeof menuItem.getAttribute === "function" ? await menuItem.getAttribute("aria-checked").catch(() => undefined) : undefined;
       const checked = typeof menuItem.isChecked === "function" ? await menuItem.isChecked().catch(() => false) : false;
@@ -719,7 +996,7 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
       ? await page.waitForSelector(opts.zeroStateSelector, { state: "visible", timeout: 4000 }).then(() => true).catch(() => false)
       : false;
     if (zeroVisible && zero && await zero.count?.().catch(() => 0)) {
-      await zero.click?.({ timeout: 5000 }).catch(() => undefined);
+      await robustClickLocator(page, zero, opts.zeroStateSelector, { timeout: 5000 }).catch(() => undefined);
       if (typeof page.waitForTimeout === "function") await page.waitForTimeout(400).catch(() => undefined);
       if (await isActive()) return;
     }
@@ -812,9 +1089,12 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
   const timeout = args.timeout_ms || 60000;
   const completionTimeout = responseTimeoutMs(args);
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
-  await clickIfPresent(page, 'button[aria-label="Close"]');
+  if (service === "chatgpt" || service === "claude") await dismissPreExistingInterceptors(page);
+  else await clickIfPresent(page, 'button[aria-label="Close"]');
   if (service === "gemini") await clickIfPresent(page, 'button:has-text("Not now")');
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
+  const preSendFailure = await applyPreSendOptions(service, args, page, started);
+  if (preSendFailure) return preSendFailure;
   const model_used = await readModelUsed(service, page, args);
   const start_chat_url = page.url?.() || targetUrlFor(service, args);
   const assistantCountBefore = await assistantCount(service, page);
@@ -890,7 +1170,6 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
     model_used,
     reuse_conversation: Boolean(args.reuse_conversation)
   });
-  if (args.model && base.model_used && String(base.model_used).toLowerCase() !== String(args.model).toLowerCase()) base.errorCode = ConsumerErrorCodes.MODEL_SELECTION_DRIFT;
   if (service === "chatgpt") base.reuse_conversation = Boolean(args.reuse_conversation || chat_url === start_chat_url);
   if (service === "gemini") base.reuse_conversation = Boolean(args.reuse_conversation);
   return safeOutput(base);
@@ -899,6 +1178,17 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
 async function sendPromptOnPage(service: WebAiService, args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const started = Date.now();
   return withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
+    if (service === "claude") {
+      const requestedClaudeUrl = normalizeUrlLikeTarget(args.url || args.tab_url_contains);
+      if (requestedClaudeUrl && !pageMatchesRequestedTab(page.url?.() || "", args.url || args.tab_url_contains)) {
+        await page.goto?.(requestedClaudeUrl, { waitUntil: "domcontentloaded", timeout: Math.min(args.timeout_ms || 60000, 30000) });
+        await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+      }
+    }
+    if (service === "claude" && args.incognito) {
+      await page.goto?.("https://claude.ai/new?incognito=", { waitUntil: "domcontentloaded", timeout: Math.min(args.timeout_ms || 60000, 30000) });
+      await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    }
     if (service === "chatgpt") await navigateChatgptFreshIfNeeded(page, args);
     if (service === "gemini") await navigateGeminiFreshIfNeeded(page, args);
     return sendPromptInExistingPage(service, args, page, started);
@@ -973,7 +1263,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
       buttonSelector,
       downloadDir: args.download_dir,
       filenamePattern: `\\.${args.expected_extension}$`,
-      timeoutMs: args.timeout_ms || 60000,
+      timeoutMs: Math.min(Number(args.timeout_ms || 60000), 60000),
       noDisconnect: true
     });
     return artifactClickResultToSafeOutput(result, service === "chatgpt" ? { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") } : { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
@@ -1295,6 +1585,501 @@ export async function runGeminiVideoTaskWorker(taskId: string, args: any, databa
   }
 }
 
+
+const CHATGPT_CANVAS_FORMAT_LABELS: Record<string, string> = {
+  md: "Markdown Document",
+  pdf: "PDF Document",
+  docx: "Microsoft Word Document"
+};
+
+function defaultWebAiDownloadDir(): string {
+  return path.join(process.cwd(), "data", "downloads");
+}
+
+function policyApprovalRequired(reason: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.POLICY_APPROVAL_REQUIRED, error_code: ConsumerErrorCodes.POLICY_APPROVAL_REQUIRED, reason, ...extra });
+}
+
+function humanHandoffRequired(reason: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED, error_code: ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED, reason, ...extra });
+}
+
+function conversationIdFromUrl(url: string): string | null {
+  return /\/c\/([^/?#]+)/.exec(url)?.[1] || null;
+}
+
+async function exportChatgptCanvas(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const format = args.format || "md";
+  const downloadDir = args.download_dir || defaultWebAiDownloadDir();
+  requireAbsoluteDir(downloadDir);
+  const label = CHATGPT_CANVAS_FORMAT_LABELS[format] || CHATGPT_CANVAS_FORMAT_LABELS.md;
+  try {
+    const result = await artifactClickRunner(runtime)({
+      profile: args.profile || process.env.WAH_DEFAULT_PROFILE || "chatgpt",
+      tabUrlContains: args.tab_url_contains,
+      buttonSelector: CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR,
+      followUpTextRegex: label,
+      downloadDir,
+      filenamePattern: format === "md" ? "\\.md$" : `\\.${format}$`,
+      timeoutMs: Math.min(Number(args.timeout_ms || 60000), 60000),
+      openPanelIfMissing: "chatgpt-canvas"
+    });
+    const rawResult: any = result;
+    const artifactPath = rawResult.path || rawResult.savedPath || "";
+    const stat = artifactPath && fs.existsSync(artifactPath) ? fs.statSync(artifactPath) : undefined;
+    return safeOutput({
+      path: artifactPath,
+      sha256: rawResult.sha256 || (artifactPath && fs.existsSync(artifactPath) ? sha256File(artifactPath) : ""),
+      format,
+      byteSize: rawResult.size_bytes ?? rawResult.sizeBytes ?? rawResult.size ?? stat?.size ?? 0
+    });
+  } catch (error: any) {
+    const code = error?.errorCode || (/timeout/i.test(String(error?.message || error)) ? ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT : ConsumerErrorCodes.ELEMENT_NOT_FOUND);
+    const stable = code === ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT || code === "ARTIFACT_DOWNLOAD_TIMEOUT"
+      ? ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT
+      : ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+    return safeOutput({ path: "", sha256: "", format, byteSize: 0, errorCode: stable, error_code: stable });
+  }
+}
+
+async function startChatgptDeepResearch(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  assertPromptAllowed(args.prompt);
+  const lease = acquireProfileLease(args.profile);
+  const task_id = safeTaskId();
+  try {
+    return await withManagedPage(args, runtime, targetUrlFor("chatgpt", args), async (page) => {
+      await waitForHydratedSurface(page, serviceDefaults.chatgpt.promptSelector, Math.min(args.timeout_ms || 60000, 15000));
+      if (loginRequiredForService("chatgpt", page.url?.() || "")) return loginRequiredResponse("chatgpt", page, Date.now());
+      const selection = await selectChatgptModel(page, "Thinking");
+      if (!selection.ok) return modelSelectionDriftResponse("chatgpt", page, Date.now(), selection.expected, selection.actual);
+      await requireAndClick(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, "ChatGPT composer plus menu button was not found", { dismissInterceptors: true, dwellMs: 250 });
+      try { await page.waitForSelector?.(CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+      await requireAndClick(page, CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR, "ChatGPT Deep research menuitemradio was not found", { dwellMs: 250 });
+      try { await page.waitForSelector?.(CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR, { state: "visible", timeout: 8000 }); } catch (error: any) {
+        throw new WebAiToolError(ConsumerErrorCodes.MODE_UNCERTAIN, "ChatGPT Deep research mode did not expose its active pill", { selector: CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR, cause: error?.message || String(error) });
+      }
+      const box = page.locator(serviceDefaults.chatgpt.promptSelector).first();
+      await box.waitFor({ state: "visible", timeout: Math.min(args.timeout_ms || 60000, 15000) });
+      await box.fill?.(args.prompt).catch(async () => { await box.click(); await page.keyboard?.type(args.prompt); });
+      await page.keyboard?.press("Enter");
+      const record: WebAiTaskRecord = {
+        task_id,
+        status: "queued",
+        profile: args.profile,
+        lease_id: lease,
+        started_at: new Date().toISOString(),
+        progress_label: "queued ChatGPT Deep research task",
+        timeout_ms: args.timeout_ms || 1800000
+      };
+      runtime.database.upsertWebAiTask(record);
+      return safeOutput({ task_id, status: "queued" });
+    });
+  } finally { releaseProfileLease(args.profile, lease); }
+}
+
+function chatgptSettingsRoute(surface: string | undefined): string {
+  const map: Record<string, string> = { personalization: "Personalization", data_controls: "DataControls", schedules: "Schedules" };
+  return `https://chatgpt.com/#settings/${map[surface || "personalization"] || "Personalization"}`;
+}
+
+async function manageChatgptConversation(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  if (["rename", "delete", "archive"].includes(args.action)) {
+    return humanHandoffRequired("Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.", { action: args.action });
+  }
+  if (args.action === "navigate_settings") {
+    const url = chatgptSettingsRoute(args.surface);
+    return withManagedPage(args, runtime, url, async (page) => {
+      await page.goto?.(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+      return safeOutput({ url: page.url?.() || url, surface: args.surface || "personalization" });
+    });
+  }
+  return withManagedPage(args, runtime, args.tab_url_contains || serviceDefaults.chatgpt.url, async (page) => {
+    if (loginRequiredForService("chatgpt", page.url?.() || "")) return loginRequiredResponse("chatgpt", page, Date.now());
+    if (args.action === "search") {
+      await page.keyboard?.press("Control+k");
+      await page.waitForSelector?.('input[placeholder="Search chats..."]', { state: "visible", timeout: 8000 });
+      if (args.query) await page.keyboard?.type(args.query);
+      await page.waitForTimeout?.(500).catch(() => undefined);
+      const links = page.locator?.('a[aria-label]');
+      const count = await links?.count?.().catch(() => 0) || 0;
+      const results: Array<{ title: string; href: string }> = [];
+      for (let i = 0; i < count; i++) {
+        const item = typeof links.nth === "function" ? links.nth(i) : links;
+        const title = await item.getAttribute?.("aria-label").catch(() => "") || "";
+        const href = await item.getAttribute?.("href").catch(() => "") || "";
+        if (title || href) results.push({ title, href });
+      }
+      return safeOutput({ results });
+    }
+    if (args.action === "menu_enumerate") {
+      await requireAndClick(page, 'button[aria-label="Open conversation options"]', "ChatGPT in-chat header conversation options button was not found", { dismissInterceptors: true, dwellMs: 250 });
+      await page.waitForSelector?.('[role="menuitem"]', { state: "visible", timeout: 8000 });
+      const items = await textListFromLocator(page.locator?.('[role="menuitem"]') || { count: async () => 0 });
+      return safeOutput({ items });
+    }
+    await page.setViewportSize?.({ width: 1280, height: 900 })?.catch?.(() => undefined);
+    await requireAndClick(page, CHATGPT_SHARE_BUTTON_SELECTOR, "ChatGPT share conversation button was not found", { dismissInterceptors: true, dwellMs: 250 });
+    const blocked = await page.locator?.("text=/sensitive content|can\\'t share|cannot share/i").first?.().count?.().catch(() => 0);
+    if (blocked) return safeOutput({ dialog_opened: false, conversationId: conversationIdFromUrl(page.url?.() || ""), errorCode: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, error_code: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD });
+    return safeOutput({ dialog_opened: true, conversationId: conversationIdFromUrl(page.url?.() || "") });
+  });
+}
+
+function workspaceRoute(surface: string): string {
+  const map: Record<string, string> = {
+    projects: "https://chatgpt.com/",
+    gpts: "https://chatgpt.com/gpts",
+    tasks: "https://chatgpt.com/#settings/Schedules",
+    apps: "https://chatgpt.com/#settings/Connectors",
+    memory: "https://chatgpt.com/#settings/Personalization",
+    personalization: "https://chatgpt.com/#settings/Personalization",
+    data_controls: "https://chatgpt.com/#settings/DataControls"
+  };
+  return map[surface] || "https://chatgpt.com/";
+}
+
+async function summarizeWorkspaceSurface(page: any, surface: string): Promise<string> {
+  if (surface === "gpts") {
+    const count = await page.locator?.("a[href^='/g/g-']").count?.().catch(() => 0) || 0;
+    return `${count} GPT card link(s) visible`;
+  }
+  if (surface === "projects") {
+    const count = await page.locator?.("button:has-text('New project')").count?.().catch(() => 0) || 0;
+    return count ? "Projects sidebar area visible" : "Projects sidebar area not confirmed";
+  }
+  if (surface === "memory") {
+    const count = await page.locator?.("button[aria-label='Manage memories']").count?.().catch(() => 0) || 0;
+    return count ? "Manage memories area visible" : "Memory settings route opened";
+  }
+  return `${surface} route opened`;
+}
+
+async function inspectChatgptWorkspace(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const action = args.action || "read";
+  if (action !== "read") {
+    return policyApprovalRequired("ChatGPT workspace destructive or mutating operations require explicit human approval and are not performed by this tool.", { surface: args.surface, action });
+  }
+  const url = workspaceRoute(args.surface);
+  return withManagedPage(args, runtime, url, async (page) => {
+    await page.goto?.(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+    if (args.surface === "memory") await page.locator?.("button[aria-label='Manage memories']").first?.().count?.().catch(() => 0);
+    const summary = await summarizeWorkspaceSurface(page, args.surface);
+    return safeOutput({ surface: args.surface, url: page.url?.() || url, summary });
+  });
+}
+
+
+function claudeToolArgs(args: any): any {
+  return { ...args, profile: args.profile || "claude-9224" };
+}
+
+function claudeConversationIdFromUrl(url: string): string | null {
+  return /\/(?:chat|c)\/([^/?#]+)/.exec(url)?.[1] || conversationIdFromUrl(url);
+}
+
+async function startClaudeDeepResearch(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = claudeToolArgs(args);
+  assertPromptAllowed(effective.prompt);
+  const lease = acquireProfileLease(effective.profile);
+  const task_id = safeTaskId();
+  try {
+    return await withManagedPage({ ...effective, __requireTargetSurface: true }, runtime, targetUrlFor("claude", effective), async (page) => {
+      await waitForHydratedSurface(page, CLAUDE_PLUS_MENU_SELECTOR, Math.min(effective.timeout_ms || 60000, 15000));
+      if (loginRequiredForService("claude", page.url?.() || "")) return loginRequiredResponse("claude", page, Date.now());
+      if (effective.model) {
+        const selection = await selectClaudeModel(page, effective.model);
+        if (!selection.ok) return modelSelectionDriftResponse("claude", page, Date.now(), selection.expected, selection.actual);
+      }
+      await requireAndClick(page, CLAUDE_PLUS_MENU_SELECTOR, "Claude composer plus menu button was not found", { dismissInterceptors: true, dwellMs: 250 });
+      try { await page.waitForSelector?.(CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+      await requireAndClick(page, CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR, "Claude Research menuitemcheckbox was not found", { dwellMs: 250 });
+      const box = page.locator(CLAUDE_PROMPT_SELECTOR).first();
+      await box.waitFor({ state: "visible", timeout: Math.min(effective.timeout_ms || 60000, 15000) });
+      await box.fill?.(effective.prompt).catch(async () => { await box.click(); await page.keyboard?.type(effective.prompt); });
+      await page.keyboard?.press("Enter");
+      const record: WebAiTaskRecord = {
+        task_id,
+        status: "queued",
+        profile: effective.profile,
+        lease_id: lease,
+        started_at: new Date().toISOString(),
+        progress_label: "queued Claude Deep Research task",
+        timeout_ms: effective.timeout_ms || 1800000
+      };
+      runtime.database.upsertWebAiTask(record);
+      return safeOutput({ task_id, status: "queued" });
+    });
+  } finally { releaseProfileLease(effective.profile, lease); }
+}
+
+function sensitiveContentGuard(message: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, error_code: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, message, ...extra });
+}
+
+async function manageClaudeConversation(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = claudeToolArgs(args);
+  if (effective.action === "sidebar_options") {
+    return humanHandoffRequired("Claude sidebar kebab opens a Radix portal that is not reliably snapshot-accessible from the CLI.", { action: "sidebar_options", reason: "sidebar_kebab_radix_portal_unreliable" });
+  }
+  if (effective.action === "share" && effective.confirmed !== true) {
+    return sensitiveContentGuard("Opening Claude conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "share", conversationId: null });
+  }
+  if (effective.action === "search") {
+    return withManagedPage(effective, runtime, "https://claude.ai/", async (page) => {
+      await page.goto?.("https://claude.ai/", { waitUntil: "domcontentloaded", timeout: 30000 });
+      if (loginRequiredForService("claude", page.url?.() || "")) return loginRequiredResponse("claude", page, Date.now());
+      await requireAndClick(page, CLAUDE_SEARCH_LINK_SELECTOR, "Claude search link was not found");
+      if (effective.query) await page.keyboard?.type(effective.query);
+      await page.keyboard?.press("Enter");
+      await page.waitForTimeout?.(500).catch(() => undefined);
+      const results_count = await page.locator?.('a[href*="/chat/"], [role="option"], [role="listitem"]').count?.().catch(() => 0) || 0;
+      return safeOutput({ results_count, action: "search" });
+    });
+  }
+  if (effective.action === "share") {
+    return withManagedPage(effective, runtime, effective.tab_url_contains || serviceDefaults.claude.url, async (page) => {
+      if (loginRequiredForService("claude", page.url?.() || "")) return loginRequiredResponse("claude", page, Date.now());
+      await requireAndClick(page, CLAUDE_SHARE_BUTTON_SELECTOR, "Claude share conversation button was not found");
+      return safeOutput({ dialog_opened: true, conversationId: claudeConversationIdFromUrl(page.url?.() || "") });
+    });
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `Unsupported Claude conversation action: ${effective.action}`);
+}
+
+const CLAUDE_WORKSPACE_ROUTES: Record<string, string> = {
+  projects: "https://claude.ai/projects",
+  appearance: "https://claude.ai/customize"
+};
+
+async function summarizeClaudeMenuSurface(page: any, surface: string): Promise<string> {
+  const labels: Record<string, string> = { integrations: "Add connectors", skills: "Skills", style_presets: "Use style" };
+  await requireAndClick(page, CLAUDE_PLUS_MENU_SELECTOR, "Claude composer plus menu button was not found", { dismissInterceptors: true, dwellMs: 250 });
+  const label = labels[surface] || surface;
+  const selector = `xpath=//*[@role="menuitem" or @role="menuitemcheckbox" or @role="menuitemradio" or self::button][contains(normalize-space(.),"${label}")]`;
+  try { await page.waitForSelector?.(selector, { state: "visible", timeout: 8000 }); } catch {}
+  await requireAndClick(page, selector, `Claude ${label} menu item was not found`);
+  await page.waitForTimeout?.(500).catch(() => undefined);
+  const count = await page.locator?.('[role="menuitem"], [role="option"], [role="dialog"] button, [data-testid]').count?.().catch(() => 0) || 0;
+  return `${surface} list opened; ${count} item/control(s) visible`;
+}
+
+async function inspectClaudeWorkspace(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = claudeToolArgs(args);
+  const url = CLAUDE_WORKSPACE_ROUTES[effective.surface] || "https://claude.ai/";
+  return withManagedPage(effective, runtime, url, async (page) => {
+    await page.goto?.(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+    if (loginRequiredForService("claude", page.url?.() || "")) return loginRequiredResponse("claude", page, Date.now());
+    let summary = `${effective.surface} route opened`;
+    if (["integrations", "skills", "style_presets"].includes(effective.surface)) summary = await summarizeClaudeMenuSurface(page, effective.surface);
+    else if (effective.surface === "projects") {
+      const count = await page.locator?.('a[aria-label="Projects"], button:has-text("New project"), a[href*="/project"]').count?.().catch(() => 0) || 0;
+      summary = count ? "Projects surface visible" : "Projects route opened";
+    } else if (effective.surface === "appearance") {
+      const count = await page.locator?.('a[aria-label="Customize"], text=/appearance|style/i').count?.().catch(() => 0) || 0;
+      summary = count ? "Customize/appearance surface visible" : "Customize route opened";
+    }
+    return safeOutput({ surface: effective.surface, url: page.url?.() || url, summary });
+  });
+}
+
+function geminiToolArgs(args: any): any {
+  return { ...args, profile: args.profile || "gemini-9225" };
+}
+
+function geminiConversationTarget(tabUrlContains?: string): string {
+  if (typeof tabUrlContains !== "string" || !tabUrlContains.trim()) return serviceDefaults.gemini.url;
+  if (/^https?:\/\//i.test(tabUrlContains)) return tabUrlContains;
+  if (/^[A-Za-z0-9_-]{6,}$/.test(tabUrlContains)) return `https://gemini.google.com/app/${tabUrlContains}`;
+  return serviceDefaults.gemini.url;
+}
+
+async function openGeminiToolsDrawer(page: any): Promise<void> {
+  if (typeof page.waitForSelector === "function") {
+    await page.waitForSelector(GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR, { state: "visible", timeout: 15000 }).catch(() => undefined);
+  }
+  await requireAndClick(page, GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR, "Gemini Tools drawer button was not found");
+}
+
+async function fillGeminiComposer(page: any, prompt: string): Promise<void> {
+  const box = page.locator(GEMINI_IMAGE_PROMPT_SELECTOR).first();
+  await box.waitFor({ state: "visible", timeout: 15000 });
+  await box.fill?.(prompt).catch(async () => { await box.click?.(); await page.keyboard?.type(prompt); });
+}
+
+async function clickGeminiSendMessage(page: any): Promise<void> {
+  await requireAndClick(page, GEMINI_SEND_MESSAGE_BUTTON_SELECTOR, "Gemini Send message button was not found");
+}
+
+async function startGeminiDeepResearch(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiToolArgs(args);
+  assertPromptAllowed(effective.prompt);
+  if (effective.confirmed !== true) {
+    return sensitiveContentGuard("Submitting Gemini Deep research requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "deep_research" });
+  }
+  const lease = acquireProfileLease(effective.profile);
+  const task_id = safeTaskId();
+  try {
+    return await withManagedPage(effective, runtime, targetUrlFor("gemini", effective), async (page) => {
+      await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
+      if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+      await openGeminiToolsDrawer(page);
+      await page.waitForSelector?.(GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 });
+      await requireAndClick(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, "Gemini Deep research menuitemcheckbox was not found");
+      await fillGeminiComposer(page, effective.prompt);
+      await clickGeminiSendMessage(page);
+      const record: WebAiTaskRecord = {
+        task_id,
+        status: "queued",
+        profile: effective.profile,
+        lease_id: lease,
+        started_at: new Date().toISOString(),
+        progress_label: "queued Gemini Deep research task",
+        timeout_ms: effective.timeout_ms || 1800000
+      };
+      runtime.database.upsertWebAiTask(record);
+      return safeOutput({ task_id, status: "queued" });
+    });
+  } finally { releaseProfileLease(effective.profile, lease); }
+}
+
+async function editGeminiCanvas(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiToolArgs(args);
+  if (effective.prompt) assertPromptAllowed(effective.prompt);
+  if (effective.edit_text) assertPromptAllowed(effective.edit_text);
+  if (effective.prompt && effective.confirmed !== true) {
+    return sensitiveContentGuard("Submitting a Gemini Canvas prompt requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "canvas_edit" });
+  }
+  return withManagedPage(effective, runtime, targetUrlFor("gemini", effective), async (page) => {
+    let canvas_opened = false;
+    let edit_applied = false;
+    let ai_action_applied = false;
+    if (effective.prompt) {
+      await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
+      if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+      await openGeminiToolsDrawer(page);
+      await page.waitForSelector?.(GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR, { state: "visible", timeout: 8000 });
+      await requireAndClick(page, GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR, "Gemini Canvas menuitemcheckbox was not found");
+      await fillGeminiComposer(page, effective.prompt);
+      await clickGeminiSendMessage(page);
+      await page.waitForSelector?.('button[aria-label="Share and export canvas"]', { state: "visible", timeout: effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
+      canvas_opened = true;
+    }
+    if (effective.edit_text) {
+      const body = page.locator(GEMINI_CANVAS_BODY_SELECTOR).last?.() || page.locator(GEMINI_CANVAS_BODY_SELECTOR).first();
+      await body.waitFor?.({ state: "visible", timeout: 15000 });
+      await body.click?.();
+      await page.keyboard?.type(effective.edit_text);
+      edit_applied = true;
+      canvas_opened = true;
+    }
+    if (effective.ai_action) {
+      const label = effective.ai_action === "length" ? "Length" : effective.ai_action === "tone" ? "Tone" : "Suggest";
+      const body = page.locator(GEMINI_CANVAS_BODY_SELECTOR).last?.() || page.locator(GEMINI_CANVAS_BODY_SELECTOR).first();
+      await body.click?.();
+      await page.keyboard?.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
+      await requireAndClick(page, `button[aria-label="${label}"]`, `Gemini Canvas ${label} AI edit button was not found`);
+      ai_action_applied = true;
+      canvas_opened = true;
+    }
+    return safeOutput({ canvas_opened, edit_applied, ai_action_applied });
+  });
+}
+
+async function textListFromLocator(locator: any): Promise<string[]> {
+  const count = await locator.count?.().catch(() => 0) || 0;
+  const items: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const item = typeof locator.nth === "function" ? locator.nth(i) : locator;
+    const text = (await item.textContent?.().catch(() => "") || "").trim();
+    if (text) items.push(text);
+  }
+  return items;
+}
+
+async function manageGeminiConversation(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiToolArgs(args);
+  if (["delete", "rename"].includes(effective.action)) {
+    return policyApprovalRequired("Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.", { action: effective.action });
+  }
+  if (effective.action === "share" && effective.confirmed !== true) {
+    return sensitiveContentGuard("Opening Gemini conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "share" });
+  }
+  if (effective.action === "search") {
+    return withManagedPage(effective, runtime, serviceDefaults.gemini.url, async (page) => {
+      if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+      await requireAndClick(page, 'button[aria-label="Main menu"]', "Gemini main menu button was not found");
+      await requireAndClick(page, 'button[aria-label="Search"]', "Gemini sidebar Search button was not found");
+      if (effective.query) await page.keyboard?.type(effective.query);
+      await page.waitForTimeout?.(500).catch(() => undefined);
+      const list = page.locator('#conversations-list-0 a, #conversations-list-0 [role="listitem"]');
+      const count = await list.count?.().catch(() => 0) || 0;
+      const results: Array<{ title: string; href: string }> = [];
+      for (let i = 0; i < count; i++) {
+        const item = typeof list.nth === "function" ? list.nth(i) : list;
+        const title = (await item.textContent?.().catch(() => "") || "").trim();
+        const href = await item.getAttribute?.("href").catch(() => null) || "";
+        if (title || href) results.push({ title, href });
+      }
+      return safeOutput({ results });
+    });
+  }
+  return withManagedPage(effective, runtime, geminiConversationTarget(effective.tab_url_contains), async (page) => {
+    if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+    if (effective.action === "share") {
+      await requireAndClick(page, GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR, "Gemini share conversation button was not found");
+      return safeOutput({ dialog_opened: true });
+    }
+    await requireAndClick(page, GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, "Gemini conversation actions menu button was not found");
+    const menuItems = page.locator('[role="menu"] [role="menuitem"], .mat-mdc-menu-panel [role="menuitem"], .mat-mdc-menu-panel button');
+    const items = await textListFromLocator(menuItems);
+    return safeOutput({ items });
+  });
+}
+
+function geminiWorkspaceRoute(surface: string): string {
+  const map: Record<string, string> = {
+    gems: "https://gemini.google.com/gems/view",
+    scheduled: "https://gemini.google.com/scheduled",
+    workspace_integration: "https://gemini.google.com/apps",
+    connected_apps: "https://gemini.google.com/apps",
+    personalization: "https://gemini.google.com/personalization-settings",
+    audio_overview: "https://notebooklm.google.com/"
+  };
+  return map[surface] || serviceDefaults.gemini.url;
+}
+
+async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiToolArgs(args);
+  const url = geminiWorkspaceRoute(effective.surface);
+  return withManagedPage(effective, runtime, url, async (page) => {
+    await page.goto?.(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+    if (effective.surface !== "audio_overview" && loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
+    let summary = `${effective.surface} route opened`;
+    if (effective.surface === "gems") {
+      const count = await page.locator?.('a[aria-label^="Start a new conversation with Gem:"]').count?.().catch(() => 0) || 0;
+      summary = `${count} Gem conversation link(s) visible`;
+    } else if (effective.surface === "study") {
+      await page.goto?.(serviceDefaults.gemini.url, { waitUntil: "domcontentloaded", timeout: 30000 });
+      await openGeminiToolsDrawer(page);
+      await page.waitForSelector?.(GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }).catch(() => undefined);
+      const count = await page.locator?.(GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR).count?.().catch(() => 0) || 0;
+      summary = count ? "Guided learning tool is visible (observe-only)" : "Guided learning tool was not confirmed visible";
+    } else if (effective.surface === "workspace_integration") {
+      const count = await page.locator?.('#mat-mdc-slide-toggle-1-button, text=/Google Workspace/i').count?.().catch(() => 0) || 0;
+      summary = count ? "Google Workspace integration controls visible (observe-only)" : "Google Workspace integration route opened (observe-only)";
+    } else if (effective.surface === "connected_apps") {
+      const labels = await textListFromLocator(page.locator?.('mat-slide-toggle, [role="switch"]') || { count: async () => 0 });
+      summary = labels.length ? `Connected app toggle(s) visible: ${labels.join(", ")}` : "Connected apps route opened (observe-only)";
+    } else if (effective.surface === "personalization") {
+      summary = "Personalization settings route opened (observe-only; memory toggle mutations require POLICY_APPROVAL_REQUIRED)";
+    } else if (effective.surface === "audio_overview") {
+      summary = "NotebookLM route opened for Audio Overview handoff; generation deferred until a completed research run exists";
+    }
+    return safeOutput({ surface: effective.surface, url: page.url?.() || url, summary });
+  });
+}
+
+
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("claude", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime)); }
@@ -1307,6 +2092,17 @@ export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserTool
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiVideoTask(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return exportChatgptCanvas(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startChatgptDeepResearch(args, runtimeOrDefault(runtime)); }
+export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startClaudeDeepResearch(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageChatgptConversation(args, runtimeOrDefault(runtime)); }
+export async function webAiClaudeConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageClaudeConversation(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectChatgptWorkspace(args, runtimeOrDefault(runtime)); }
+export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectClaudeWorkspace(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiDeepResearch(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return editGeminiCanvas(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageGeminiConversation(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectGeminiWorkspace(args, runtimeOrDefault(runtime)); }
 export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const database = runtime?.database || new CapabilityDatabase();
   const record = database.getWebAiTask(args.task_id);
@@ -1315,7 +2111,7 @@ export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): 
   return safeOutput({ status: current.status, progress_label: current.progress_label, result: current.result, errorCode: current.errorCode });
 }
 
-export const toolSpecs: ToolSpec[] = [
+const coreToolSpecs: ToolSpec[] = [
   {
     name: "consumer_health",
     description: "Return a consumer-safe health summary without CDP endpoints, profile paths, page URLs, snapshots, cookies, or tokens.",
@@ -1325,19 +2121,19 @@ export const toolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_send_prompt",
     description: "Send a prompt to ChatGPT and return redacted response metadata.",
-    schema: webAiSendPromptInput,
+    schema: webAiChatgptSendPromptInput,
     handler: async (args, runtime) => webAiChatgptSendPrompt(args, runtime)
   },
   {
     name: "webai_claude_send_prompt",
     description: "Send a prompt to Claude and return redacted response metadata.",
-    schema: webAiSendPromptInput,
+    schema: webAiClaudeSendPromptInput,
     handler: async (args, runtime) => webAiClaudeSendPrompt(args, runtime)
   },
   {
     name: "webai_gemini_send_prompt",
     description: "Send a prompt to Gemini and return redacted response metadata.",
-    schema: webAiSendPromptInput,
+    schema: webAiGeminiSendPromptInput,
     handler: async (args, runtime) => webAiGeminiSendPrompt(args, runtime)
   },
   {
@@ -1395,10 +2191,76 @@ export const toolSpecs: ToolSpec[] = [
     handler: async (args, runtime) => webAiGeminiGenerateVideo(args, runtime)
   },
   {
+    name: "webai_gemini_deep_research",
+    description: "Start a Gemini Deep research task and return a task id immediately; poll with webai_task_status.",
+    schema: webAiGeminiDeepResearchInput,
+    handler: async (args, runtime) => webAiGeminiDeepResearch(args, runtime)
+  },
+  {
+    name: "webai_gemini_canvas_edit",
+    description: "Open or edit a Gemini Canvas using direct canvas-body edits or observe-only AI edit controls.",
+    schema: webAiGeminiCanvasEditInput,
+    handler: async (args, runtime) => webAiGeminiCanvasEdit(args, runtime)
+  },
+  {
+    name: "webai_gemini_conversation_manage",
+    description: "Enumerate Gemini conversation menu items, guard sharing, or search conversations without mutating data.",
+    schema: webAiGeminiConversationManageInput,
+    handler: async (args, runtime) => webAiGeminiConversationManage(args, runtime)
+  },
+  {
+    name: "webai_gemini_workspace",
+    description: "Navigate read-only Gemini workspace/settings surfaces and return a short summary.",
+    schema: webAiGeminiWorkspaceInput,
+    handler: async (args, runtime) => webAiGeminiWorkspace(args, runtime)
+  },
+  {
     name: "webai_task_status",
     description: "Return status/result metadata for an async webai task.",
     schema: webAiTaskStatusInput,
     handler: async (args, runtime) => webAiTaskStatus(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_canvas_export",
+    description: "Export an existing ChatGPT Canvas through the canvas Download dropdown, opening the canvas panel when available, and return artifact metadata.",
+    schema: webAiChatgptCanvasExportInput,
+    handler: async (args, runtime) => webAiChatgptCanvasExport(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_deep_research",
+    description: "Start a ChatGPT Deep research task and return a task id immediately; poll with webai_task_status.",
+    schema: webAiChatgptDeepResearchInput,
+    handler: async (args, runtime) => webAiChatgptDeepResearch(args, runtime)
+  },
+  {
+    name: "webai_claude_deep_research",
+    description: "Start a Claude Deep Research task and return a task id immediately; poll with webai_task_status.",
+    schema: webAiClaudeDeepResearchInput,
+    handler: async (args, runtime) => webAiClaudeDeepResearch(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_conversation_manage",
+    description: "Open ChatGPT share dialog or navigate read-only settings surfaces; kebab-gated operations return human handoff.",
+    schema: webAiChatgptConversationManageInput,
+    handler: async (args, runtime) => webAiChatgptConversationManage(args, runtime)
+  },
+  {
+    name: "webai_claude_conversation_manage",
+    description: "Search Claude conversations, guard sharing behind explicit confirmation, or report sidebar kebab handoff.",
+    schema: webAiClaudeConversationManageInput,
+    handler: async (args, runtime) => webAiClaudeConversationManage(args, runtime)
+  },
+  {
+    name: "webai_chatgpt_workspace",
+    description: "Navigate read-only ChatGPT workspace/settings surfaces and return a short summary.",
+    schema: webAiChatgptWorkspaceInput,
+    handler: async (args, runtime) => webAiChatgptWorkspace(args, runtime)
+  },
+  {
+    name: "webai_claude_workspace",
+    description: "Navigate read-only Claude workspace/settings surfaces and return a short summary.",
+    schema: webAiClaudeWorkspaceInput,
+    handler: async (args, runtime) => webAiClaudeWorkspace(args, runtime)
   },
   {
     name: "browser_launch",
@@ -1599,6 +2461,8 @@ export const toolSpecs: ToolSpec[] = [
     }
   }
 ];
+
+export const toolSpecs: ToolSpec[] = [...coreToolSpecs, ...subMcpToolSpecs];
 
 export function listMcpTools(): McpToolDefinition[] {
   return toolSpecs.map((tool) => ({ name: tool.name, description: tool.description, inputSchema: tool.schema.toJsonSchema() }));

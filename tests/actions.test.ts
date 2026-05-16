@@ -87,6 +87,47 @@ test("action executor performs selector-relative mouse drag sequence", async () 
   ]);
 });
 
+
+test("action executor hover dwell dispatches CDP mouseMoved sequence and waits dwell", async () => {
+  const page = new FakePage();
+  const cdpEvents: any[] = [];
+  (page as any).locator = (selector: string) => ({
+    boundingBox: async () => {
+      page.events.push(`box:${selector}`);
+      return { x: 100, y: 80, width: 40, height: 20 };
+    }
+  });
+  (page as any).context = () => ({
+    newCDPSession: async () => ({
+      send: async (method: string, params: any) => { cdpEvents.push({ method, params }); },
+      detach: async () => { page.events.push("cdp:detach"); }
+    })
+  });
+  const executor = new ActionExecutor({ getActivePage: () => page }, { mode: "confirm-risky" });
+
+  const result = await executor.execute({ type: "hover", selector: "#more", dwellMs: 450 });
+
+  assert.equal(result.ok, true);
+  assert.equal(cdpEvents.length, 5);
+  assert.ok(cdpEvents.every((event) => event.method === "Input.dispatchMouseEvent"));
+  assert.ok(cdpEvents.every((event) => event.params.type === "mouseMoved"));
+  assert.deepEqual(page.events, ["box:#more", "timeout:450", "cdp:detach"]);
+  assert.deepEqual((result as any).data, { x: 120, y: 90, dwellMs: 450, mouseMovedEvents: 5 });
+});
+
+test("action executor hover dwell waits for settle selector", async () => {
+  const page = new FakePage();
+  const cdpEvents: any[] = [];
+  (page as any).locator = () => ({ boundingBox: async () => ({ x: 0, y: 0, width: 10, height: 10 }) });
+  (page as any).context = () => ({ newCDPSession: async () => ({ send: async (method: string, params: any) => { cdpEvents.push({ method, params }); }, detach: async () => undefined }) });
+  const executor = new ActionExecutor({ getActivePage: () => page }, { mode: "confirm-risky" });
+
+  await executor.execute({ type: "hover", selector: "#more", dwellMs: 10, settleSelector: "[role=menu]", timeoutMs: 1234 });
+
+  assert.equal(cdpEvents.length, 5);
+  assert.deepEqual(page.events, ["timeout:10", "waitForSelector:[role=menu]"]);
+});
+
 test("action executor selects text ranges and returns selected text", async () => {
   const page = new FakePage();
   page.textContent["#answer"] = "selectable text";

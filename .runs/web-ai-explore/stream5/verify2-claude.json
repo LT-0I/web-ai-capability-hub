@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "tool": "webai:claude:deep-research",
+    "status": "FAILED",
+    "evidence": "Two clean attempts (no tab arg; --tab-url-contains 'claude.ai/new'). Both -> {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: Claude composer plus menu button was not found\",\"evidence\":{\"selector\":\"button[aria-label=\\\"Add files, connectors, and more\\\", button[aria-label=\\\"Upload files\\\"]\"}}. No task_id/status envelope (failed pre-queue). NOT a raw Playwright string.",
+    "notes": "PARTIAL FIX. The composer-plus selector WAS updated to the current Claude DOM (button[aria-label=\"Add files, connectors, and more\"] / button[aria-label=\"Upload files\"]). Live browser:read of claude.ai/new confirms BOTH selectors exist and the '+' element is a real <button type=button aria-haspopup=menu aria-label=\"Add files, connectors, and more\" id=_r_5k_>. The IDENTICAL selector path now SUCCEEDS for webai:claude:workspace (integrations/skills/style_presets all GREEN this run). Therefore the residual defect is deep-research-SPECIFIC code path, not a stale selector: most likely a fresh-navigation hydration/timing race (deep-research probes the composer before it mounts) or a context-traversal gap the workspace tool handles but deep-research does not. Honest stable contract error, no fabricated success, no silent fallback, no raw Playwright leak."
+  },
+  {
+    "id": "1b",
+    "tool": "webai:task-status",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--task-id 'rv-nonexistent-task-0001' -> {\"status\":\"failed\",\"errorCode\":\"INVALID_ARGS\"}. 'status' always-present + errorCode from taxonomy. Well-formed contract envelope.",
+    "notes": "Tool wiring correct. Could not be exercised against a real Claude deep-research task because #1 failed pre-queue and produced no task_id. No regression vs prior run."
+  },
+  {
+    "id": "2",
+    "tool": "webai:claude:workspace (integrations|skills|style_presets|projects|appearance)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "integrations -> {surface:integrations,url:https://claude.ai/new,summary:'integrations list opened; 326 item/control(s) visible'}. skills -> {...,summary:'skills list opened; 15 ...'}. style_presets -> {...,summary:'style_presets list opened; 14 ...'}. projects -> {url:https://claude.ai/projects,summary:'Projects surface visible'}. appearance -> {url:https://claude.ai/customize,summary:'Customize route opened'}.",
+    "notes": "FIX CONFIRMED. The 3 previously-FAILED surfaces (integrations, skills, style_presets) that died on the stale composer '+' selector now ALL read without error. The 2 previously-GREEN surfaces (projects, appearance) did not regress. No forbidden fields in any output. The fixed composer '+' selector is the load-bearing fix and it works here."
+  },
+  {
+    "id": "3a",
+    "tool": "webai:claude:design:create-project",
+    "status": "FAILED",
+    "evidence": "--name 'RV2 Hello Project' --fidelity high_fidelity -> {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"projectUrl\":\"\",\"projectId\":null}. NO raw Playwright 'page.waitForSelector: Timeout' string (prior run leaked exactly that).",
+    "notes": "CONTRACT-LEAK BUG FIXED. Prior run emitted raw 'page.waitForSelector: Timeout 15000ms exceeded ... locator(input[placeholder=\"Project name\"])'. Now a stable taxonomy code (ELEMENT_NOT_FOUND), no Playwright internals. Live browser:read of claude.ai/design confirms surface is PROVISIONED and reachable ('Project name','Wireframe','High fidelity','Create','Recent / Your designs' all present) -> NOT quota-walled, no SUBMCP_QUOTA_EXHAUSTED. Residual operational defect: sub-MCP tab/navigation does not land on/operate the live design surface (same family as deep-research). Fails honestly; no fabricated artifact, no local synthesis."
+  },
+  {
+    "id": "3b",
+    "tool": "webai:claude:design:generate",
+    "status": "FAILED",
+    "evidence": "--project-url <existing claude.ai/design/p/019e2bb4-...> --prompt 'a page that says Hello' --model sonnet -> {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"status\":\"failed\"}. No raw Playwright string.",
+    "notes": "Stable contract code, not a raw Playwright leak (contract-leak bug fixed). Could not produce an HTML artifact because the sub-MCP does not operate the live design surface. No fabricated artifact."
+  },
+  {
+    "id": "3c",
+    "tool": "webai:claude:design:get-html",
+    "status": "FAILED",
+    "evidence": "--project-url <existing project> --download-dir <abs> -> {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"iframeArtifactSha256\":\"\",\"savedPath\":\"\",\"byteSize\":0}. NO raw Playwright 'page.waitForSelector: Timeout 30000ms ... iframe[data-testid=\"html-viewer-iframe\"]' string (that exact leak was the prior-run bug).",
+    "notes": "CONTRACT-LEAK BUG FIXED + FORBIDDEN-FIELD CHECK PASS. Output contains ONLY contract output keys (iframeArtifactSha256, savedPath, byteSize, ok, errorCode, error_code) all empty/zero. NO html, NO dom, NO screenshot field leaked. No real HTML artifact could be produced (sub-MCP does not operate the live design surface) so none was fabricated and no local DOCX/HTML synthesis occurred — honest failure with a stable code. The 'REQUIRE a real HTML artifact' acceptance could not be met because the operation honestly failed pre-artifact; this is the banned-fallback-correct behavior, not a fabrication."
+  },
+  {
+    "id": "3d",
+    "tool": "webai:claude:design:present",
+    "status": "FAILED",
+    "evidence": "--project-url <existing project> -> {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error_code\":\"ELEMENT_NOT_FOUND\",\"presentUrl\":\"\"}. No raw Playwright string.",
+    "notes": "Stable contract code, contract-leak bug fixed. Same residual sub-MCP navigation defect. Fails honestly."
+  },
+  {
+    "id": "4",
+    "tool": "webai:claude:send-prompt (--model sonnet, --tab-url-contains)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Attempt A (--tab-url-contains 'claude.ai/new'): {errorCode:MODEL_SELECTION_DRIFT, model_used:null, chat_url:'chrome://new-tab-page/', wait_ms:0} -- the 'claude.ai/new' substring ambiguously matched the chrome://newtab tab. Attempt B (--tab-url-contains '/new', --model sonnet): {response_text:'Claude responded: PONGPONG', errorCode:null, model_used:'Sonnet 4.6Adaptive', completion_detected:true, wait_ms:3788, elapsed_ms:20091, chat_url:'https://claude.ai/chat/8769c737-6309-49ed-9276-4e533a92f5c1'}.",
+    "notes": "CORE FIX CONFIRMED. Prior run: --tab-url-contains was IGNORED and the tool ALWAYS forced chat_url=https://claude.ai/code (no model selector there -> MODEL_SELECTION_DRIFT, wait_ms:0, no submission). Now with a tab fragment that uniquely matches the Claude tab ('/new'), the resolver honors it, does NOT force /code (lands on a real claude.ai/chat/<uuid>), the requested Sonnet model sticks (model_used='Sonnet 4.6Adaptive', NO MODEL_SELECTION_DRIFT), and the prompt actually completes (PONG response, wait_ms>0). No forbidden fields. The Attempt-A drift is an honest substring-collision artifact (full 'claude.ai/new' also substring-matches a chrome:// tab title), not the old /code-forcing bug. Cheap model (Sonnet), benign trivial input."
+  },
+  {
+    "id": "5a",
+    "tool": "webai:claude:conversation-manage (read path)",
+    "status": "VERIFIED_GREEN",
+    "evidence": "--action search --query smoke -> {\"results_count\":30,\"action\":\"search\"}. Clean, no forbidden fields.",
+    "notes": "No regression. Read/enumerate path identical to prior VERIFIED_GREEN."
+  },
+  {
+    "id": "5b",
+    "tool": "webai:claude:conversation-manage (destructive refusal)",
+    "status": "GUARD_OK",
+    "evidence": "--action delete -> {\"ok\":false,\"error\":\"$.action must be one of search, share, sidebar_options\"}. --action rename -> same schema refusal.",
+    "notes": "Strongest possible refusal: destructive verbs (delete/rename) are architecturally absent from the action enum and cannot be expressed. No regression. Guard behavior correct."
+  }
+]

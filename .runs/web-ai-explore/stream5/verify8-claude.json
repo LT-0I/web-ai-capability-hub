@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r8-claude-design-create-project",
+    "tool": "webai:claude:design:create-project",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"projectUrl\":\"https://claude.ai/design/p/019e2cd2-b907-73e7-9e2d-7a56ff271a86\",\"projectId\":\"019e2cd2-b907-73e7-9e2d-7a56ff271a86\"}",
+    "notes": "Sonnet, fidelity high_fidelity. Real project URL returned, no error code."
+  },
+  {
+    "id": "r8-claude-design-generate",
+    "tool": "webai:claude:design:generate",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"status\":\"generated\",\"model_used\":\"sonnet\",\"projectUrl\":\"https://claude.ai/design/p/019e2cd2-b907-73e7-9e2d-7a56ff271a86\",\"fileName\":\"index.html\"}",
+    "notes": "Benign prompt (Hello World static page). Sonnet. Live DOM probe later confirmed 'The Hello World page is live' in the viewer."
+  },
+  {
+    "id": "r8-claude-design-get-html",
+    "tool": "webai:claude:design:get-html",
+    "status": "VERIFIED_GREEN",
+    "evidence": "Canonical real artifact sha256=20b5860c11d9f7b308b28731c7b6eedfe660f48e8c736d20c678779236fa9f75, byteSize=11560. First 200 bytes: '<!DOCTYPE html><html data-src-ver=\"0591a083\" lang=\"en\" data-om-id=\"0591a083:0\"><head data-om-id=\"0591a083:1\">...'. Contains <title>Hello World</title> AND <h1>Hello, <em>World</em></h1> — real page content, NOT a _bootstrap stub. Envelope had no html/dom/screenshot/cdpEndpoint/cookies/tokens fields. 4 of 5 invocations produced this identical real artifact.",
+    "notes": "ElementHandle->Frame bridge fix (flow.ts:248-269) WORKS — it reads the hydrated cross-origin claudeusercontent.com serve document. NARROW DEFECT: the very first get-html call immediately after generate captured an empty '<html><head></head><body></body></html>' (39 bytes) shell because the bootstrap iframe had created the blank doc but not yet hydrated, and isRealHtmlMarkup() (flow.ts:172-178) accepts bare <html> so the poll loop (flow.ts:321-325) broke early on the empty shell — a false-positive GREEN on cold first call. Runs 2-5 (and a re-run) all produced the genuine 11560-byte page. Step is GREEN on real artifact but the cold-first-call timing race is a real bug worth a follow-up fix to isRealHtmlMarkup (require non-trivial body content / minimum byte threshold before accepting)."
+  },
+  {
+    "id": "r8-claude-design-present",
+    "tool": "webai:claude:design:present",
+    "status": "VERIFIED_GREEN",
+    "evidence": "{\"presentUrl\":\"https://claude.ai/design/p/019e2cd2-b907-73e7-9e2d-7a56ff271a86?file=index.html\"}",
+    "notes": "Real presentUrl returned, no error code."
+  }
+]

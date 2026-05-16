@@ -1,0 +1,86 @@
+[
+  {
+    "id": "chatgpt-conversation-management",
+    "tool": "browser:hover/--include-portals (BP1 primitive) + webai:chatgpt:conversation-manage",
+    "status": "EXPLORED_PATH_KNOWN",
+    "evidence": "CRACKED. (A) In-chat-header button[aria-label=\"Open conversation options\"] + browser:read --include-portals revealed body-portal menuitems: 'Start a group chat','View files in chat','Move to project','Pin chat','Archive','Delete'. (B) Search palette via browser:press Control+k -> dialog #radix-_r_*_ with input[placeholder=\"Search chats...\"]; query 'Python' -> 15 result links enumerated live. Sidebar kebab itself stays overlay-blocked (sibling <a data-sidebar-item> intercepts pointer events) — header button is the working path.",
+    "notes": "Recipe in recipes-chatgpt-rediscover.md. The new --include-portals flag is the unlock for the Radix portal traversal that blocked the prior sweep."
+  },
+  {
+    "id": "chatgpt-agent-mode",
+    "tool": "browser:hover --dwell-ms (BP1 primitive) + browser:read --include-portals",
+    "status": "EXPLORED_PATH_KNOWN",
+    "evidence": "CRACKED (entry verified, task NOT executed per policy). Sustained browser:hover --dwell-ms 5000 on the composer + -> 'More' Radix hover-intent submenu trigger, then browser:read --include-portals, revealed body-portal menuitems: 'Agent mode','GitHub','OpenAI Platform'. Reproduced cleanly 2x. Hover primitive telemetry confirms real CDP pointer-dwell (ok:true, mouseMovedEvents:5, dwellMs honored).",
+    "notes": "Submenu-open is intermittent (Radix hover-intent timing + flaky #composer-plus-btn open step) but the hover primitive fires correctly every time. NO autonomous agent task launched (forbidden). Recipe + flakiness note in recipes-chatgpt-rediscover.md; engineering follow-up (fused hover+read) filed in blocked-chatgpt-r2.md."
+  },
+  {
+    "id": "chatgpt-study-mode",
+    "tool": "browser:hover --dwell-ms + browser:read --include-portals (probed)",
+    "status": "BLOCKED_NEEDS_USER",
+    "evidence": "STILL BLOCKED — not a tooling limitation. The new primitive successfully opens the + -> More submenu (same path that cracked agent-mode) but it contains ONLY 'Agent mode','GitHub','OpenAI Platform' — no Study item. https://chatgpt.com/study loads the ordinary home (no study UI). Full-DOM scan: zero study/flashcard/quiz/tutor interactive controls anywhere.",
+    "notes": "Study mode has no drivable entry point on this Shark Pro account/build. Precise user question recorded in blocked-chatgpt-r2.md."
+  },
+  {
+    "id": "chatgpt-workspace",
+    "tool": "webai:chatgpt:workspace --surface <projects|gpts|tasks|apps|memory|personalization|data_controls>",
+    "status": "VERIFIED_GREEN",
+    "evidence": "All 7 surfaces returned clean envelopes without error: projects (summary 'not confirmed' — transient UI, no error), gpts (0 cards — transient, no error), tasks->#settings/Schedules, apps->#settings/Connectors, memory->#settings/Personalization, personalization->#settings/Personalization, data_controls->#settings/DataControls. Output keys {surface,url,summary} only — NO forbidden sensitive fields (cdpEndpoint/cookies/dom/etc.) — contract-compliant.",
+    "notes": "Read-only surface verified GREEN. projects/gpts 'empty' summaries are live-UI variance, the tool calls themselves succeeded with valid envelopes."
+  },
+  {
+    "id": "chatgpt-conversation-manage-readonly",
+    "tool": "webai:chatgpt:conversation-manage --action navigate_settings",
+    "status": "VERIFIED_GREEN",
+    "evidence": "navigate_settings --surface data_controls -> {\"url\":\"https://chatgpt.com/#settings/DataControls\",\"surface\":\"data_controls\"}. Surface enum is validated (uppercase 'DataControls' correctly rejected with '$.surface must be one of personalization, data_controls, schedules').",
+    "notes": "Read/navigate action GREEN. Enum validation is correct strict-arg behavior."
+  },
+  {
+    "id": "chatgpt-conversation-manage-destructive-guard",
+    "tool": "webai:chatgpt:conversation-manage --action delete",
+    "status": "GUARD_OK",
+    "evidence": "Destructive action refused with stable contract code: {\"ok\":false,\"errorCode\":\"HUMAN_HANDOFF_REQUIRED\",\"reason\":\"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\"action\":\"delete\"}. No force, no fallback.",
+    "notes": "Correct guard refusal (guard-ok per honesty rules)."
+  },
+  {
+    "id": "chatgpt-conversation-manage-share",
+    "tool": "webai:chatgpt:conversation-manage --action share",
+    "status": "FAILED",
+    "evidence": "Both on home and with a conversation open: {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: ChatGPT share conversation button was not found\",\"evidence\":{\"selector\":\"button[data-testid=\\\"share-chat-button\\\"]\"}}.",
+    "notes": "ROOT CAUSE: stale hardcoded selector. The tool looks for button[data-testid=\"share-chat-button\"] but the live conversation header exposes button[aria-label=\"Share\"] (observed directly in JOB 1). Selector drift. Honest error, no fabrication. Needs selector update dispatch."
+  },
+  {
+    "id": "chatgpt-canvas-export",
+    "tool": "webai:chatgpt:canvas-export --format md",
+    "status": "FAILED",
+    "evidence": "Canvas doc created via Thinking model at https://chatgpt.com/c/6a073d15-8c98-83e8-a129-df22dd71b851 (content alpha/beta/gamma, intact, verified). Export against a clean pinned tab: {\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"No element matched --button-selector\",\"evidence\":{\"selector\":\"button[aria-label=\\\"Download\\\"][aria-haspopup]\",\"pageUrl\":\"https://chatgpt.com/c/<conversation-id>\",\"frameCount\":1,\"triedFrames\":[{\"url\":\"https://chatgpt.com/c/<conversation-id>\",\"hadSelectorMatch\":false}]}}. No artifact produced. NO sha256 (no fabricated success).",
+    "notes": "ROOT CAUSE: stale hardcoded button selector button[aria-label=\"Download\"][aria-haspopup]. Live canvas Download control observed in JOB 2 is role=button, dynamic id #radix-_r_9b_, accessible name 'Download' but the [aria-haspopup] attribute predicate does not match the current Radix DOM. Selector drift (same class as the share failure). Secondary: evidence pageUrl shows literal '<conversation-id>' placeholder (the tool did not substitute the resolved conv id into its evidence — minor reporting bug)."
+  },
+  {
+    "id": "chatgpt-deep-research",
+    "tool": "webai:chatgpt:deep-research",
+    "status": "FAILED",
+    "evidence": "Two clean attempts (2nd after navigating tab to a fresh modal-free home page). Both failed with Playwright click-interception: target click blocked because '<div ... id=\"modal-settings\" data-testid=\"modal-settings\"> subtree intercepts pointer events' (run 1/2) and sidebar '<div w-(--sidebar-width)> subtree intercepts pointer events'. No task_id envelope ever emitted (the click fails before submission).",
+    "notes": "ROOT CAUSE: the tool uses a fragile default Playwright .click() that fails the actionability hit-test when a ChatGPT settings modal or sidebar overlay covers the composer/target. It does not dismiss a pre-existing modal nor use the BP1 robust interaction path. Same systemic blocker class as the JOB1 sidebar-kebab overlay. Honest failure, no fabricated task_id."
+  },
+  {
+    "id": "chatgpt-send-prompt",
+    "tool": "webai:chatgpt:send-prompt --model thinking (implicit)",
+    "status": "FAILED",
+    "evidence": "Two attempts incl. one on a freshly-cleaned tab (verified modal-settings:False, url home). Both failed with Playwright click-interception: 'subtree intercepts pointer events' (sidebar/icon overlay at target hit-point). Could not reach the MODEL_SELECTION_DRIFT / no-Pro assertion because the prompt never sent. Model was manually verified switchable to Thinking out-of-band (composer model button 'Extended Pro' -> 'Thinking' via Radix menu, confirmed live, no Pro).",
+    "notes": "ROOT CAUSE: same as deep-research — fragile default .click() failing the actionability hit-test under ChatGPT sidebar/overlay; the webai:chatgpt:* MCP tools were NOT migrated to the BP1 robust interaction path. No MODEL_SELECTION_DRIFT observed because no send occurred (cannot assert positively; reported honestly as FAILED, not GREEN)."
+  },
+  {
+    "id": "chatgpt-codex-submcp",
+    "tool": "webai:chatgpt:codex:list-envs",
+    "status": "GUARD_OK",
+    "evidence": "{\"status\":\"failed\",\"errorCode\":\"SUBMCP_NOT_PROVISIONED\",\"message\":\"ChatGPT Codex requires a throwaway sandbox repository. Supply repo via the repo param after user provisioning.\"} — exactly the intended gated placeholder.",
+    "notes": "Correct PASS per spec: the chatgpt-codex sub-MCP is an intentional gated placeholder; SUBMCP_NOT_PROVISIONED is the expected/correct response. No Codex task attempted (policy)."
+  },
+  {
+    "id": "chatgpt-task-status",
+    "tool": "webai:task-status",
+    "status": "GUARD_OK",
+    "evidence": "Synthetic id -> {\"status\":\"failed\",\"errorCode\":\"INVALID_ARGS\"}. Stable contract code, honest rejection of a non-existent task id.",
+    "notes": "Could not assert a real running/queued deep-research task because deep-research never produced a task_id (it FAILED at click-interception before submission). task-status envelope shape itself is correct (stable INVALID_ARGS for bad input)."
+  }
+]

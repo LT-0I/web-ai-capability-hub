@@ -28,11 +28,12 @@ export const browserOpenInput = objectSchema<{ url: string; profile?: string; co
   confirmed: scalar.boolean("Set true after human approval when required")
 }, ["url"]);
 
-export const browserReadInput = objectSchema<{ profile?: string; url?: string; screenshot?: boolean; includeAccessibility?: boolean }>({
+export const browserReadInput = objectSchema<{ profile?: string; url?: string; screenshot?: boolean; includeAccessibility?: boolean; includePortals?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   url: scalar.string("Optional URL to open or prefer before reading"),
   screenshot: scalar.boolean("Capture a full-page screenshot"),
-  includeAccessibility: scalar.boolean("Include accessibility-tree summary")
+  includeAccessibility: scalar.boolean("Include accessibility-tree summary"),
+  includePortals: scalar.boolean("Include body-level portal overlays such as Radix poppers, menus, dialogs, listboxes, and command palettes")
 });
 
 export const browserActionInput = objectSchema<BrowserAction>({
@@ -143,15 +144,60 @@ export const siteCaptureMapInput = objectSchema<{ site: string; profile?: string
 }, ["site"]);
 
 
-export const webAiSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
+const webAiSendPromptBaseProps = {
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Prompt text to send"),
-  model: scalar.string("Optional service-specific model hint"),
+  model: scalar.string("Optional service-specific model tier to select before sending"),
   style: scalar.string("Optional Claude style hint"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
   timeout_ms: scalar.number("Timeout in milliseconds"),
   response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000"),
   reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
+};
+
+export const webAiSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean; thinking?: boolean; web_search?: boolean; incognito?: boolean; canvas?: boolean }>({
+  ...webAiSendPromptBaseProps,
+  thinking: scalar.boolean("Claude/Gemini only: enable adaptive thinking / Thinking mode before sending"),
+  web_search: scalar.boolean("Enable the service web-search mode before sending"),
+  incognito: scalar.boolean("Claude only: start the prompt at https://claude.ai/new?incognito="),
+  canvas: scalar.boolean("ChatGPT only: request canvas creation for this prompt")
+}, ["profile", "prompt"]);
+
+export const webAiChatgptSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; web_search?: boolean; canvas?: boolean; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
+  profile: webAiSendPromptBaseProps.profile,
+  prompt: webAiSendPromptBaseProps.prompt,
+  model: webAiSendPromptBaseProps.model,
+  web_search: scalar.boolean("Enable ChatGPT Web search mode before sending"),
+  canvas: scalar.boolean("Request ChatGPT canvas creation for this prompt"),
+  tab_url_contains: webAiSendPromptBaseProps.tab_url_contains,
+  timeout_ms: webAiSendPromptBaseProps.timeout_ms,
+  response_timeout_ms: webAiSendPromptBaseProps.response_timeout_ms,
+  reuse_conversation: webAiSendPromptBaseProps.reuse_conversation
+}, ["profile", "prompt"]);
+
+export const webAiClaudeSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; thinking?: boolean; web_search?: boolean; incognito?: boolean; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number }>({
+  profile: webAiSendPromptBaseProps.profile,
+  prompt: webAiSendPromptBaseProps.prompt,
+  model: webAiSendPromptBaseProps.model,
+  thinking: scalar.boolean("Enable Claude Adaptive thinking before sending"),
+  web_search: scalar.boolean("Enable Claude Web search before sending"),
+  incognito: scalar.boolean("Start at https://claude.ai/new?incognito= before composing"),
+  style: webAiSendPromptBaseProps.style,
+  tab_url_contains: webAiSendPromptBaseProps.tab_url_contains,
+  timeout_ms: webAiSendPromptBaseProps.timeout_ms,
+  response_timeout_ms: webAiSendPromptBaseProps.response_timeout_ms
+}, ["profile", "prompt"]);
+
+export const webAiGeminiSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; thinking?: boolean; web_search?: boolean; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
+  profile: webAiSendPromptBaseProps.profile,
+  prompt: webAiSendPromptBaseProps.prompt,
+  model: webAiSendPromptBaseProps.model,
+  thinking: scalar.boolean("Select Gemini Thinking mode before sending"),
+  web_search: scalar.boolean("Enable Gemini Google Search before sending"),
+  tab_url_contains: webAiSendPromptBaseProps.tab_url_contains,
+  timeout_ms: webAiSendPromptBaseProps.timeout_ms,
+  response_timeout_ms: webAiSendPromptBaseProps.response_timeout_ms,
+  reuse_conversation: webAiSendPromptBaseProps.reuse_conversation
 }, ["profile", "prompt"]);
 
 
@@ -170,10 +216,11 @@ export const webAiSendPromptOutputShape = {
   service: scalar.string("Service id on structured failure responses")
 };
 
-export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number }>({
+export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; model?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number }>({
   profile: scalar.string("Managed browser profile name"),
   files: scalar.array(scalar.string("Local file path"), "Files to upload"),
   prompt: scalar.string("Prompt text to send after upload"),
+  model: scalar.string("Optional service-specific model tier to select before sending"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
   timeout_ms: scalar.number("Timeout in milliseconds"),
   response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000")
@@ -190,19 +237,21 @@ export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: st
   timeout_ms: scalar.number("Timeout in milliseconds")
 }, ["profile", "prompt", "expected_extension", "download_dir"]);
 
-export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean }>({
+export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Image generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded image"),
+  model: scalar.string("Optional service-specific model tier to select before sending"),
   size: scalar.string("Optional image size hint"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
   timeout_ms: scalar.number("Timeout in milliseconds"),
   reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt", "download_dir"]);
 
-export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; title?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
+export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; model?: string; title?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Canvas prompt to export to Google Docs"),
+  model: scalar.string("Optional Gemini model tier to select before sending"),
   title: scalar.string("Optional document title"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
   timeout_ms: scalar.number("Timeout in milliseconds"),
@@ -210,14 +259,99 @@ export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: st
   reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt"]);
 
-export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
+export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Video generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded video"),
+  model: scalar.string("Optional Gemini model tier to select before sending"),
   duration_seconds: scalar.number("Optional duration: 2, 4, or 8"),
   timeout_ms: scalar.number("Maximum task runtime in milliseconds"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service")
 }, ["profile", "prompt", "download_dir"]);
+
+export const webAiChatgptCanvasExportInput = objectSchema<{ tab_url_contains: string; format?: string; download_dir?: string; profile?: string; timeout_ms?: number }>({
+  tab_url_contains: scalar.string("Stable ChatGPT canvas conversation tab URL substring"),
+  format: scalar.enum(["pdf", "docx", "md"], "Canvas export format; defaults to md"),
+  download_dir: scalar.string("Absolute directory for downloaded canvas artifact; defaults to data/downloads"),
+  profile: scalar.string("Managed browser profile name; defaults to WAH_DEFAULT_PROFILE/chatgpt for canvas export"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["tab_url_contains"]);
+
+export const webAiChatgptDeepResearchInput = objectSchema<{ prompt: string; profile: string; tab_url_contains?: string; timeout_ms?: number }>({
+  prompt: scalar.string("Deep research prompt to send"),
+  profile: scalar.string("Managed browser profile name"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults to ChatGPT"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["prompt", "profile"]);
+
+
+export const webAiClaudeDeepResearchInput = objectSchema<{ prompt: string; profile: string; model?: string; tab_url_contains?: string; timeout_ms?: number }>({
+  prompt: scalar.string("Claude Deep Research prompt to send"),
+  profile: scalar.string("Managed browser profile name; defaults to claude-9224"),
+  model: scalar.string("Optional Claude model tier to select before sending"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults to Claude"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["prompt", "profile"]);
+
+export const webAiClaudeConversationManageInput = objectSchema<{ action: string; profile: string; query?: string; tab_url_contains?: string; confirmed?: boolean }>({
+  action: scalar.enum(["search", "share", "sidebar_options"], "Claude conversation management action"),
+  profile: scalar.string("Managed browser profile name; defaults to claude-9224"),
+  query: scalar.string("Search query for search action"),
+  tab_url_contains: scalar.string("Optional stable conversation tab URL substring for share action"),
+  confirmed: scalar.boolean("Required true for opening Claude share controls")
+}, ["action", "profile"]);
+
+export const webAiClaudeWorkspaceInput = objectSchema<{ surface: string; profile: string }>({
+  surface: scalar.enum(["projects", "integrations", "skills", "appearance", "style_presets"], "Claude workspace/settings surface to inspect"),
+  profile: scalar.string("Managed browser profile name; defaults to claude-9224")
+}, ["surface", "profile"]);
+
+export const webAiChatgptConversationManageInput = objectSchema<{ action: string; profile: string; tab_url_contains?: string; surface?: string; query?: string }>({
+  action: scalar.enum(["share", "navigate_settings", "rename", "delete", "archive", "search", "menu_enumerate"], "Conversation management action; menu_enumerate uses the in-chat header options button and search uses Control+k; destructive actions return HUMAN_HANDOFF_REQUIRED"),
+  profile: scalar.string("Managed browser profile name"),
+  tab_url_contains: scalar.string("Optional stable conversation tab URL substring for share/menu actions"),
+  surface: scalar.enum(["personalization", "data_controls", "schedules"], "Settings surface for navigate_settings"),
+  query: scalar.string("Search query for Control+k conversation search")
+}, ["action", "profile"]);
+
+export const webAiChatgptWorkspaceInput = objectSchema<{ surface: string; profile: string; action?: string }>({
+  surface: scalar.enum(["projects", "gpts", "tasks", "apps", "memory", "personalization", "data_controls"], "ChatGPT workspace/settings surface to inspect"),
+  profile: scalar.string("Managed browser profile name"),
+  action: scalar.enum(["read", "delete", "delete_memory", "grant_oauth", "create"], "Optional action; destructive/mutating actions return POLICY_APPROVAL_REQUIRED")
+}, ["surface", "profile"]);
+
+
+export const webAiGeminiDeepResearchInput = objectSchema<{ prompt: string; profile: string; confirmed?: boolean; tab_url_contains?: string; timeout_ms?: number }>({
+  prompt: scalar.string("Gemini Deep research prompt to send"),
+  profile: scalar.string("Managed browser profile name; defaults to gemini-9225"),
+  confirmed: scalar.boolean("Required true to submit the prompt through the Send message confirmation path"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults to Gemini"),
+  timeout_ms: scalar.number("Timeout in milliseconds")
+}, ["prompt", "profile"]);
+
+export const webAiGeminiCanvasEditInput = objectSchema<{ prompt?: string; edit_text?: string; ai_action?: string; profile: string; tab_url_contains?: string; confirmed?: boolean; timeout_ms?: number; response_timeout_ms?: number }>({
+  prompt: scalar.string("Optional substantial prompt used to open a Gemini Canvas"),
+  edit_text: scalar.string("Optional text to type directly into the Gemini Canvas body"),
+  ai_action: scalar.enum(["length", "tone", "suggest"], "Optional Gemini Canvas AI edit action"),
+  profile: scalar.string("Managed browser profile name; defaults to gemini-9225"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults to Gemini"),
+  confirmed: scalar.boolean("Required true when prompt submission is requested"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  response_timeout_ms: scalar.number("Maximum wait for Canvas ready controls")
+}, ["profile"]);
+
+export const webAiGeminiConversationManageInput = objectSchema<{ action: string; profile: string; tab_url_contains?: string; query?: string; confirmed?: boolean }>({
+  action: scalar.enum(["menu_enumerate", "share", "search", "delete", "rename"], "Gemini conversation management action; mutating actions return POLICY_APPROVAL_REQUIRED"),
+  profile: scalar.string("Managed browser profile name; defaults to gemini-9225"),
+  tab_url_contains: scalar.string("Optional stable conversation tab URL substring for menu/share actions"),
+  query: scalar.string("Search query for search action"),
+  confirmed: scalar.boolean("Required true for opening Gemini share controls")
+}, ["action", "profile"]);
+
+export const webAiGeminiWorkspaceInput = objectSchema<{ surface: string; profile: string }>({
+  surface: scalar.enum(["gems", "scheduled", "study", "audio_overview", "workspace_integration", "connected_apps", "personalization"], "Gemini workspace/settings surface to inspect"),
+  profile: scalar.string("Managed browser profile name; defaults to gemini-9225")
+}, ["surface", "profile"]);
 
 export const webAiTaskStatusInput = objectSchema<{ task_id: string }>({
   task_id: scalar.string("Task id returned by an async webai tool")

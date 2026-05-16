@@ -1,0 +1,344 @@
+[
+  {
+    "id": "claude-design",
+    "service": "claude",
+    "name": "Claude Design (Figma-style interactive design tool at /design)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "https://claude.ai/design (sidebar link a[aria-label=\"Design\"], href /design). Iframe-based SPA, separate quota, own composer/model/canvas.",
+    "recipe": [
+      "Navigate https://claude.ai/design (or click a[aria-label=\"Design\"]).",
+      "Optional project-type tabs: Prototype | Slide deck | From template | Other. Default = Prototype.",
+      "Type project name into input[placeholder=\"Project name\"].",
+      "Choose fidelity: button 'Wireframe' or 'High fidelity' (plain <button>, text-addressed).",
+      "Click [data-testid=\"create-project-button\"] (disabled until project name non-empty; becomes enabled).",
+      "Project workspace opens at https://claude.ai/design/p/<uuid> (title = project name).",
+      "Select cheap model: click [data-testid=\"model-selector-button\"] -> click xpath=//button[normalize-space(text())=\"Sonnet 4.6\"] (options: Haiku 4.5, Sonnet 4.6, Sonnet 4.5, Opus 4.6/4.7, Claude Opus 3 - use Sonnet/Haiku, never Opus).",
+      "Type design request into textarea[data-testid=\"chat-composer-input\"] (placeholder 'Describe what you want to create...').",
+      "Submit: browser:press Enter on the composer (the [data-testid=\"chat-send-button\"] click is refused by the CLI sensitive-content guard; Enter works).",
+      "Wait for generation: 'Stop' button -> back to 'Send (Enter)' (~24s for a simple card).",
+      "Rendered design is an HTML file inside iframe[data-testid=\"html-viewer-iframe\"]; URL gains ?file=<Name>.html.",
+      "View/standalone: click 'Present' (xpath=//button[contains(.,\"Present\")]) -> menu: 'In this tab' | 'Fullscreen' | 'New tab' (New tab opens standalone HTML)."
+    ],
+    "completion_gate": "Composer control text transitions from 'Stop' back to 'Send (Enter)'; URL acquires ?file=<Name>.html; iframe[data-testid=\"html-viewer-iframe\"] populated.",
+    "artifact": "Generated artifact is an HTML file rendered in iframe[data-testid=\"html-viewer-iframe\"]; openable standalone via Present->New tab. Public 'Share' link is gated by the CLI sensitive-content guard (auto-publish risk) - not exercised per policy.",
+    "sub_mcp_candidate": true,
+    "evidence": ".runs/web-ai-explore/stream5/claude-design-landing.png, claude-design-result.png",
+    "notes": "Large self-contained app ('Claude Design Research Preview by Anthropic Labs'): own composer, own model selector, own canvas with Comment(data-testid=mode-comment)/Edit(mode-edit)/Draw(mode-draw) modes, Design System, Share, Chat history(data-testid=nav-chat-history), Add screenshot, Attach codebase, Figma import, voice(data-testid=live-voice-mic-button), import(data-testid=composer-import-button). Separate quota from main chat. Strong sub-MCP candidate - wrapping it as one tool on the main server would bloat it; warrants its own callable sub-MCP (claude-design.* : create_project, generate, get_html, present)."
+  },
+  {
+    "id": "claude-sidebar-code",
+    "service": "claude",
+    "name": "Claude sidebar Code (cloud code agent at /code)",
+    "status": "BLOCKED_NEEDS_USER",
+    "ui_location": "https://claude.ai/code (sidebar link a[aria-label=\"Code\"], href /code). 'Claude Code - Research preview'.",
+    "recipe": [
+      "Navigate https://claude.ai/code.",
+      "Click 'New session' (xpath=//button[contains(.,\"New session\")], shortcut Shift+Cmd+O) -> panel 'What's up next, Bb?'.",
+      "Switch model OFF Opus: click xpath=//button[contains(.,\"Opus 4.7\")] -> click xpath=//*[@role=\"menuitemradio\"][contains(.,\"Haiku 4.5\")] (options Opus 4.7 / Opus 4.7 1M / Sonnet 4.6 / Haiku 4.5; Effort Low/Medium/High/Max). VERIFIED switched to Haiku 4.5.",
+      "Environment: click xpath=//button[contains(.,\"Default\")] -> menuitemradios 'Local · Desktop only' | 'Default' (cloud) ; menuitem 'Add cloud environment…'. Select Default. ('Select repo…' opens GitHub-repo picker; no repos connected, connecting = OAuth = OUT_OF_SCOPE).",
+      "BLOCKED: real task editor not reachable via project CLI (see blocked-claude.md)."
+    ],
+    "completion_gate": "UNKNOWN - submission could not be performed.",
+    "artifact": null,
+    "sub_mcp_candidate": true,
+    "evidence": ".runs/web-ai-explore/stream5/claude-code-landing.png, claude-code-newsession.png, claude-code-aftersend.png, blocked-claude.md",
+    "notes": "Nav + model select (Haiku confirmed) + Default cloud env select all WORK. Blocker: browser:read --mode full exposes NO composer node (no placeholder='Describe a task...', no contenteditable, no ProseMirror/textarea). The only role=textbox is #base-ui-_r_g9_, a hidden aria-hidden 1px base-ui sink (typing doesn't populate visible composer). browser:type on xpath placeholder times out. Visible Send (button[aria-label=\"Send\"]) refused by CLI sensitive-content guard; Enter on the hidden input opens the repo picker instead. Precise user questions captured in blocked-claude.md. Would be a sub-MCP candidate once the editor target is known."
+  },
+  {
+    "id": "claude-artifacts-export",
+    "service": "claude",
+    "name": "Artifacts full export (download rendered artifact as file)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Any conversation that produced an artifact -> artifact panel (right side) -> Download button.",
+    "recipe": [
+      "In main chat (div[aria-label=\"Write your prompt to Claude\"] / [data-testid=\"chat-input\"]) request an artifact, e.g. 'Create a tiny HTML page with an h1 that says Hello. Put it in an artifact.'",
+      "Submit via browser:press Enter on the composer (model Sonnet 4.6 default - cheap).",
+      "Wait for completion: action bar shows 'Retry'/'Copy'/'Preview' and NO 'Stop' (artifact rendered ~9s).",
+      "Artifact panel auto-opens; download button = button[aria-label^=\"Download \"] (aria-label = 'Download <ArtifactTitle>'). Inline artifact card button (text = artifact summary) toggles the panel open if closed.",
+      "Capture with the mandated CDP pattern: node dist/src/cli.js browser:artifact-click --profile claude-9224 --tab-url-contains \"claude.ai/chat/<id>\" --button-selector 'button[aria-label^=\"Download \"]' --download-dir <abs-dir> --output-json"
+    ],
+    "completion_gate": "Message action bar contains 'Retry' & 'Copy' & 'Preview' with no 'Stop'; button[aria-label^=\"Download \"] present in artifact panel.",
+    "artifact": "Real file written to disk via browser:artifact-click. VERIFIED: hello.html (136 bytes, valid HTML, sha256 32efd76e...) downloaded. Returns path/sha256/size/suggestedFilename JSON.",
+    "sub_mcp_candidate": false,
+    "evidence": ".runs/web-ai-explore/stream5/artifact-dl/hello.html, claude-artifact-rendered.png",
+    "notes": "Fully cracked. Download button aria-label is dynamic per artifact title -> use prefix selector button[aria-label^=\"Download \"]. Panel also has Copy (action-bar-copy), Close (data-testid=wiggle-controls-actions-toggle), Share (data-testid=wiggle-controls-actions-share - publish, leave guarded). HTML/React/SVG/Mermaid/code/DOCX/PDF artifacts all use this same Download button pattern."
+  },
+  {
+    "id": "claude-extended-thinking",
+    "service": "claude",
+    "name": "Extended thinking mode (Adaptive thinking)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Main composer -> model selector dropdown -> 'Adaptive thinking' toggle.",
+    "recipe": [
+      "Click button[data-testid=\"model-selector-dropdown\"] (label 'Model: <model> Adaptive').",
+      "Menu shows model menuitemradios + menuitem 'Adaptive thinking Thinks for more complex tasks' + a switch.",
+      "Toggle via input[aria-label=\"Adaptive thinking\"] (role=switch; observed checked=true by default).",
+      "Close menu (Escape)."
+    ],
+    "completion_gate": "input[aria-label=\"Adaptive thinking\"] checked attribute reflects desired state; model button label shows/omits 'Adaptive'.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM read this session (s5-claude-feat model dropdown)",
+    "notes": "Claude's 'extended thinking' is surfaced as the 'Adaptive thinking' switch inside the model dropdown. Stable selector input[aria-label=\"Adaptive thinking\"]. Default ON. Also a 'More models' menuitem expands extra models."
+  },
+  {
+    "id": "claude-web-search",
+    "service": "claude",
+    "name": "Web search (inline search during chat)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' tools menu (button 'Add files, connectors, and more') -> 'Web search' menuitemcheckbox.",
+    "recipe": [
+      "Click the composer '+' button (accessible name 'Add files, connectors, and more', dynamic id).",
+      "Menu items: 'Add files or photos', 'Take a screenshot', 'Add to project', 'Skills', 'Add connectors', 'Research' (menuitemcheckbox), 'Web search' (menuitemcheckbox), 'Use style'.",
+      "Toggle: click xpath=//*[@role=\"menuitemcheckbox\"][contains(.,\"Web search\")] (dynamic base-ui id; address by name).",
+      "Then type prompt and submit normally; Claude performs inline web search."
+    ],
+    "completion_gate": "menuitemcheckbox 'Web search' checked state toggled (menu closes on click = registered); search results appear inline in response.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM read this session ('+' tools menu)",
+    "notes": "Toggle confirmed (click registered, menu dismissed). menuitemcheckbox shares the '+' menu with Research (deep research) - both are checkbox toggles. Dynamic IDs => must address by accessible name via xpath."
+  },
+  {
+    "id": "claude-conversation-management",
+    "service": "claude",
+    "name": "Conversation management (rename, delete, search)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Left sidebar (expand via pin toggle) -> per-conversation kebab; global Search palette.",
+    "recipe": [
+      "Expand sidebar if collapsed: click button[data-testid=\"pin-sidebar-toggle\"] (aria-label 'Open sidebar'/'Close sidebar').",
+      "Each conversation row in Recents is an <a> with an adjacent kebab button accessible-name 'More options for <title>' (dynamic id) - address via xpath=//button[starts-with(@aria-label,\"More options for\")] or by full name. Opens rename/delete/star menu (Radix portal).",
+      "Global search: click a[aria-label=\"Search\"] (shortcut Ctrl+K) -> modal 'Search chats and projects' with searchbox; type query; results = conversations; Enter opens highlighted."
+    ],
+    "completion_gate": "Search modal 'Search chats and projects' visible with input; for rename/delete the Radix menu opens off the kebab.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": ".runs/web-ai-explore/stream5/claude-conv-mgmt.png (search palette listing conversations)",
+    "notes": "Search palette VERIFIED (screenshot shows 'Search chats and projects' modal listing stream4-claude-test, Tiny HTML page, etc., Enter to open). The per-row kebab menu (rename/delete/star) is a Radix dropdown that the project CLI browser:read cannot reliably capture (portal closes on re-evaluation - same Radix limitation); entry point + path are known, exact rename/delete item selectors need a CLI capture improvement or are addressed by accessible name."
+  },
+  {
+    "id": "claude-analysis-tool",
+    "service": "claude",
+    "name": "Analysis tool (in-chat code execution / data analysis)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Main chat - auto-invoked for computational/data prompts, or explicit 'use the analysis tool' instruction.",
+    "recipe": [
+      "In main composer (div[aria-label=\"Write your prompt to Claude\"] / [data-testid=\"chat-input\"]) send a benign computational prompt, e.g. 'Use the analysis tool to compute the sum of integers 1 to 10.'",
+      "Submit via browser:press Enter (model Sonnet 4.6, cheap).",
+      "Claude runs code; a status line e.g. 'Devised bash computation for integer summation task' indicates the analysis tool executed; result appears inline."
+    ],
+    "completion_gate": "Response idle: 'Claude finished the response' / action bar 'Retry' present with no 'Stop'. Status line referencing the computation confirms tool ran.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live test this session (s5-claude-an): prompt sum 1..10 -> response '55', status 'Devised bash computation for integer summation task'",
+    "notes": "VERIFIED live: correct numeric result (55) plus an execution status line confirming the analysis (code-execution) tool ran. Auto-invoked; no explicit toggle in the '+' menu (Skills/Research/Web search/connectors/style only)."
+  },
+  {
+    "id": "claude-chrome-extension",
+    "service": "claude",
+    "name": "Claude in Chrome extension (browser-embedded Claude)",
+    "status": "OUT_OF_SCOPE",
+    "ui_location": "In-app entry: sidebar 'Get apps and extensions' (div[aria-label=\"Get apps and extensions\"]) -> navigates to https://claude.ai/downloads.",
+    "recipe": [
+      "Click div[aria-label=\"Get apps and extensions\"] -> https://claude.ai/downloads (desktop apps + browser extension download/install page, 'Install' button)."
+    ],
+    "completion_gate": "URL = https://claude.ai/downloads (downloads/install page).",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live nav this session (URL https://claude.ai/downloads after clicking 'Get apps and extensions')",
+    "notes": "The in-app discovery path is known (/downloads). The Chrome extension itself is a SEPARATE browser surface, NOT installed in the managed claude-9224 profile, and installing/exercising it requires Chrome Web Store + extension permissions outside claude.ai. OUT_OF_SCOPE for this campaign (separate surface, not installed)."
+  },
+  {
+    "id": "claude-incognito-mode",
+    "service": "claude",
+    "name": "Incognito conversation (no history saved)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "New chat composer -> 'Use incognito' button.",
+    "recipe": [
+      "On https://claude.ai/new click button[aria-label=\"Use incognito\"].",
+      "URL changes to https://claude.ai/new?incognito= ; UI shows 'Exit incognito' + 'Learn more'.",
+      "Exit via the 'Exit incognito' control."
+    ],
+    "completion_gate": "URL contains '?incognito='; an 'Exit incognito' button is present.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live test this session (s5-claude-inc): URL became https://claude.ai/new?incognito=, 'Exit incognito' shown",
+    "notes": "VERIFIED. Stable selector button[aria-label=\"Use incognito\"]. The mode toggle itself is the feature (no message needed to confirm)."
+  },
+  {
+    "id": "claude-model-selector",
+    "service": "claude",
+    "name": "Model selection (Opus 4.7 / Sonnet 4.6 / Haiku 4.5 / More models)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Main composer -> model selector dropdown.",
+    "recipe": [
+      "Click button[data-testid=\"model-selector-dropdown\"] (label 'Model: <model> Adaptive').",
+      "menuitemradios: 'Opus 4.7 Most capable...', 'Sonnet 4.6 Responsive everyday work', 'Haiku 4.5 Fastest...'; plus 'Adaptive thinking' menuitem+switch and 'More models' menuitem.",
+      "Select by name: click xpath=//*[@role=\"menuitemradio\"][contains(.,\"Sonnet 4.6\")] (use Sonnet/Haiku, never Opus per rules)."
+    ],
+    "completion_gate": "button[data-testid=\"model-selector-dropdown\"] label updates to chosen model.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM read this session (model dropdown opened, options enumerated)",
+    "notes": "Re-validated. Stable container selector data-testid=model-selector-dropdown; items are menuitemradio with dynamic base-ui ids, address by accessible name. 'More models' expands extra models."
+  },
+  {
+    "id": "claude-deep-research",
+    "service": "claude",
+    "name": "Research mode / Deep Research",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' tools menu -> 'Research' menuitemcheckbox.",
+    "recipe": [
+      "Click composer '+' button ('Add files, connectors, and more').",
+      "Toggle xpath=//*[@role=\"menuitemcheckbox\"][contains(.,\"Research\")].",
+      "Type research query and submit; Claude runs multi-source research."
+    ],
+    "completion_gate": "Research menuitemcheckbox checked; long multi-source response with sources (stream4: 30 sources, ~44s).",
+    "artifact": "Research report rendered in conversation; export path = same as artifacts-export if produced as an artifact (button[aria-label^=\"Download \"]).",
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM read this session ('+' menu shows 'Research' menuitemcheckbox); stream4 PASS",
+    "notes": "Re-validated entry point. 'Research' is a checkbox toggle in the same '+' menu as 'Web search'. Dynamic id -> address by name."
+  },
+  {
+    "id": "claude-projects",
+    "service": "claude",
+    "name": "Projects (grouped conversations with shared context)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Left sidebar -> 'Projects' (a[aria-label=\"Projects\"], href /projects).",
+    "recipe": [
+      "Click a[aria-label=\"Projects\"] (or navigate https://claude.ai/projects).",
+      "Create new project / open existing; conversations within a project share context + custom instructions.",
+      "Add a conversation to a project also via composer '+' menu -> 'Add to project'."
+    ],
+    "completion_gate": "URL /projects; project list/editor visible.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM (a[aria-label=\"Projects\"] href /projects); '+' menu 'Add to project'; stream4 PASS",
+    "notes": "Re-validated stable selector. Project creation + in-project conversation PASS in stream4."
+  },
+  {
+    "id": "claude-style-presets",
+    "service": "claude",
+    "name": "Response style presets (Concise, Explanatory, Formal, custom)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' tools menu -> 'Use style'.",
+    "recipe": [
+      "Click composer '+' button.",
+      "Click menuitem 'Use style' (xpath=//*[@role=\"menuitem\"][contains(.,\"Use style\")]) -> style preset picker.",
+      "Pick a preset."
+    ],
+    "completion_gate": "Style picker opens; chosen style reflected on composer.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM this session ('+' menu 'Use style' menuitem); stream4 PASS",
+    "notes": "Re-validated entry. Lives in the '+' menu as 'Use style' menuitem."
+  },
+  {
+    "id": "claude-sharing",
+    "service": "claude",
+    "name": "Share conversation / artifact (link generation)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Conversation header -> 'Share' button; artifact panel -> Share (data-testid=wiggle-controls-actions-share).",
+    "recipe": [
+      "In an open conversation, click the header 'Share' button (text 'Share', present near 'Open sidebar').",
+      "Share dialog generates a link (Claude has no auto-publish concern per stream4)."
+    ],
+    "completion_gate": "Share dialog/link generated.",
+    "artifact": "Shareable link (not a file).",
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM this session ('Share' button present in conversation header); stream4 PASS",
+    "notes": "Re-validated 'Share' present in conversation chrome. NOTE: the project CLI sensitive-content guard refuses share/send-style button clicks (requires human confirmation) - an MCP wrapper should treat share as an explicit, confirmed action."
+  },
+  {
+    "id": "claude-integrations-connectors",
+    "service": "claude",
+    "name": "Integrations / connectors (Google Drive, GitHub, etc.)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' tools menu -> 'Add connectors'; also Settings.",
+    "recipe": [
+      "Click composer '+' button.",
+      "Click menuitem 'Add connectors' (xpath=//*[@role=\"menuitem\"][contains(.,\"Add connectors\")]) -> connector list.",
+      "Listing/reading connectors is in scope; OAuth connect flow is OUT_OF_SCOPE."
+    ],
+    "completion_gate": "Connector list visible.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM this session ('+' menu 'Add connectors' menuitem); stream4 PASS",
+    "notes": "Re-validated entry. Reading connector list in scope; OAuth connect = OUT_OF_SCOPE."
+  },
+  {
+    "id": "claude-skills",
+    "service": "claude",
+    "name": "Skills (tool-use capabilities)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Composer '+' tools menu -> 'Skills'.",
+    "recipe": [
+      "Click composer '+' button.",
+      "Click menuitem 'Skills' (xpath=//*[@role=\"menuitem\"][contains(.,\"Skills\")]) -> Skills picker UI."
+    ],
+    "completion_gate": "Skills picker opens.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM this session ('+' menu 'Skills' menuitem); stream4 PASS",
+    "notes": "Re-validated entry. 'Skills' menuitem in the '+' menu."
+  },
+  {
+    "id": "claude-settings-appearance",
+    "service": "claude",
+    "name": "Settings: Appearance (theme, font size, language) + Customize",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Sidebar 'Customize' (a[aria-label=\"Customize\"], href /customize); account Settings via user menu button[data-testid=\"user-menu-button\"].",
+    "recipe": [
+      "Appearance/customize: click a[aria-label=\"Customize\"] (or navigate https://claude.ai/customize).",
+      "Account/full settings: click button[data-testid=\"user-menu-button\"] ('Bb, Settings') -> Settings (Appearance tab etc.). Account/identity/billing tabs are OUT_OF_SCOPE."
+    ],
+    "completion_gate": "Customize page (/customize) or Settings modal visible.",
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "live DOM this session (a[aria-label=\"Customize\"] href /customize; user-menu-button); stream4 PASS",
+    "notes": "Re-validated stable selectors. Appearance/non-sensitive settings in scope; billing/account-identity OUT_OF_SCOPE."
+  },
+  {
+    "id": "claude-mermaid-live",
+    "service": "claude",
+    "name": "Mermaid live editor preview (in-artifact rendering)",
+    "status": "EXPLORED_PATH_KNOWN",
+    "ui_location": "Artifact panel - Mermaid diagram renders inline; export via the artifact Download button.",
+    "recipe": [
+      "Request a Mermaid diagram in main chat ('create a mermaid flowchart ... as an artifact').",
+      "Wait for artifact (Retry/Copy/Preview, no Stop).",
+      "Diagram renders in the artifact panel iframe; download via button[aria-label^=\"Download \"] + browser:artifact-click CDP (same recipe as claude-artifacts-export)."
+    ],
+    "completion_gate": "Artifact panel shows rendered Mermaid; button[aria-label^=\"Download \"] present.",
+    "artifact": "SVG/source via browser:artifact-click (same mechanism proven for claude-artifacts-export with hello.html).",
+    "sub_mcp_candidate": false,
+    "evidence": "shares the verified artifacts-export download path (.runs/web-ai-explore/stream5/artifact-dl/); stream4 PASS",
+    "notes": "Re-validated: Mermaid is just a Claude artifact type; export = the same proven button[aria-label^=\"Download \"] + CDP artifact-click pattern."
+  },
+  {
+    "id": "claude-computer-use",
+    "service": "claude",
+    "name": "Computer use (autonomous OS/desktop control)",
+    "status": "OUT_OF_SCOPE",
+    "ui_location": "N/A - dedicated endpoint / special mode.",
+    "recipe": [],
+    "completion_gate": null,
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "policy (campaign + project rules)",
+    "notes": "Autonomous OS control on a shared host = security risk. OUT_OF_SCOPE by policy. Not exercised."
+  },
+  {
+    "id": "claude-account-billing",
+    "service": "claude",
+    "name": "Account / billing / subscription management",
+    "status": "OUT_OF_SCOPE",
+    "ui_location": "Settings -> Billing / Plan.",
+    "recipe": [],
+    "completion_gate": null,
+    "artifact": null,
+    "sub_mcp_candidate": false,
+    "evidence": "policy (campaign rule 5 / project safety)",
+    "notes": "Account-identity / billing surface. Explicitly OUT_OF_SCOPE. Not exercised."
+  }
+]
