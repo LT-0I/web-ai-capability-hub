@@ -108,7 +108,7 @@ function hasIncopatTemplateTokens(value: unknown): boolean {
 }
 
 function incopatRowsHaveTemplateTokens(rows: unknown): boolean {
-  return Array.isArray(rows) && rows.some((row: any) => hasIncopatTemplateTokens(row?.text) || hasIncopatTemplateTokens(row?.title) || hasIncopatTemplateTokens(row?.publication_number));
+  return Array.isArray(rows) && rows.some((row: any) => hasIncopatTemplateTokens(row?.text) || hasIncopatTemplateTokens(row?.title) || hasIncopatTemplateTokens(row?.publication_number) || hasIncopatTemplateTokens(row?.html));
 }
 
 function incopatItemsHaveTemplateTokens(items: IncopatItem[]): boolean {
@@ -128,15 +128,19 @@ function incopatLooksUnauthenticated(state: any): boolean {
   return hasVisibleLoginWithoutAuthSignals || /\/newLogin\b|请先?登录|重新登录|登录超时|session\s*(?:expired|timeout)|login\s+required|sign\s*in/i.test(text);
 }
 
-function incopatHasUnhydratedTemplateState(state: any): boolean {
+function incopatHasGenuineZeroState(state: any): boolean {
   const countText = String(state?.countText || "").trim();
-  const zeroTemplatePlaceholder = countText === "0" && Boolean(state?.hasEmptyPlaceholder) && (Boolean(state?.hasTemplateTokens) || incopatRowsHaveTemplateTokens(state?.rows));
-  return Boolean(state?.hasTemplateTokens) || zeroTemplatePlaceholder || incopatRowsHaveTemplateTokens(state?.rows);
+  const rowCount = Array.isArray(state?.rows) ? state.rows.length : 0;
+  return rowCount === 0 && (/^共\s*0\s*条$/.test(countText) || countText === "0");
+}
+
+function incopatHasUnhydratedTemplateState(state: any): boolean {
+  return Boolean(state?.hasTemplateTokens) || incopatRowsHaveTemplateTokens(state?.rows);
 }
 
 function incopatHydrationEvidence(state: any, previousText?: string): Record<string, unknown> {
   return {
-    selector: "#totalCount / #totalCountspan / table tbody tr / li.empty",
+    selector: "#totalCount / #totalCountspan / div.patent_information",
     previousText,
     countText: state?.countText || "",
     url: state?.url || "",
@@ -157,10 +161,10 @@ function throwIncopatHydrationError(state: any, previousText?: string): never {
 function assertHydratedIncopatResults(results: { countText: string; html: string; rows: Array<{ text: string; title?: string; publication_number?: string }>; url: string }, items: IncopatItem[]): void {
   const state = {
     ...results,
-    hasTemplateTokens: incopatRowsHaveTemplateTokens(results.rows),
-    hasEmptyPlaceholder: /<li\b[^>]*class=["'][^"']*\bempty\b[^"']*["']/i.test(String(results.html || ""))
+    hasTemplateTokens: incopatRowsHaveTemplateTokens(results.rows)
   };
-  if (incopatHasUnhydratedTemplateState(state) || incopatItemsHaveTemplateTokens(items)) throwIncopatHydrationError(state);
+  if (incopatHasGenuineZeroState(state)) return;
+  if (incopatHasUnhydratedTemplateState(state) || incopatItemsHaveTemplateTokens(items)) throwIncopatHydrationError({ ...state, hasEmptyPlaceholder: incopatHasGenuineZeroState(state) });
 }
 
 async function allocateResearchSession(profile: string, url: string, tabId: string, cdpPort?: number): Promise<void> {
@@ -264,12 +268,12 @@ async function waitForCount(page: any, previousText?: string, requireDelta = fal
     const state = await page.evaluate(() => {
       const countText = ((document.querySelector("#totalCount") as HTMLElement | null)?.innerText || (document.querySelector("#totalCountspan") as HTMLElement | null)?.innerText || "").trim();
       const html = document.documentElement.outerHTML;
-      const rows = Array.from(document.querySelectorAll("table tbody tr")).slice(0, 100).map((el: any) => ({
+      const rows = Array.from(document.querySelectorAll("div.patent_information")).slice(0, 100).map((el: any) => ({
         text: (el.innerText || "").trim(),
-        title: (el.querySelector('[class*="title"], [id*="title"], a:not(.pdf)')?.textContent || "").trim(),
-        publication_number: (el.querySelector('a.pdf, [onclick*="downloadOnePdf"]')?.textContent || "").trim()
+        title: (el.querySelector(".title")?.textContent || "").trim(),
+        publication_number: (el.querySelector("span.tit-name1")?.textContent || "").trim(),
+        html: String(el.outerHTML || "").slice(0, 4000)
       }));
-      const emptyPlaceholders = Array.from(document.querySelectorAll("li.empty, tr.empty, .empty")).slice(0, 20).map((el: any) => `${el.outerHTML || ""} ${el.innerText || ""}`).join("\n");
       const breadcrumb = Array.from(document.querySelectorAll("body *")).map((el: any) => el.innerText || "").find((t: string) => /已筛选/.test(t)) || "";
       return {
         countText,
@@ -280,8 +284,8 @@ async function waitForCount(page: any, previousText?: string, requireDelta = fal
         bodyText: (document.body?.innerText || "").slice(0, 2000),
         hasLogin: (() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; })(),
         hasSearch: !!document.querySelector("#searchValue"),
-        hasTemplateTokens: /{{\s*[/#:>A-Za-z]/.test(emptyPlaceholders) || rows.some((row: any) => /{{\s*[/#:>A-Za-z]/.test(`${row.text} ${row.title} ${row.publication_number}`)),
-        hasEmptyPlaceholder: Boolean(emptyPlaceholders)
+        hasTemplateTokens: rows.some((row: any) => /{{\s*[/#:>A-Za-z]/.test(`${row.text} ${row.title} ${row.publication_number} ${row.html}`)),
+        hasEmptyPlaceholder: rows.length === 0 && /^共\s*0\s*条$/.test(countText)
       };
     }).catch(() => ({ countText: "", rows: [], html: "", url: page.url?.() || "", breadcrumb: "" }));
     lastEvidence = incopatHydrationEvidence(state, previousText);
@@ -347,7 +351,7 @@ export async function researchIncopatSearch(args: IncopatSearchArgs): Promise<{ 
   return await withAllocatedIncopatPage(profile, tabId, cdpPort, async (page) => {
     const results = await runIncopatSearch(page, requireQuery(args.query));
     const items = parseIncopatItemsFromDomRows(results.rows);
-    const parsedItems = items.length ? items : parseIncopatItemsFromHtml(results.html);
+    const parsedItems = items.length ? items : results.count === 0 ? [] : parseIncopatItemsFromHtml(results.html);
     assertHydratedIncopatResults(results, parsedItems);
     return { result_count: results.count, items: parsedItems, query_url: buildIncopatSearchUrl(), results_url: results.url, normalized_query: buildIncopatNormalizedQuery(args.query) };
   });
@@ -363,7 +367,7 @@ export async function researchIncopatFilter(args: IncopatFilterArgs): Promise<{ 
     const after = await applyIncopatCountryFilter(page, country, before);
     const items = parseIncopatItemsFromDomRows(after.rows);
     const title = await page.title().catch(() => "");
-    const parsedItems = items.length ? items : parseIncopatItemsFromHtml(after.html);
+    const parsedItems = items.length ? items : after.count === 0 ? [] : parseIncopatItemsFromHtml(after.html);
     assertHydratedIncopatResults(after, parsedItems);
     return { result_count: after.count, items: parsedItems, refined_url: after.url, confirm_title: title, unfiltered_count: before.count, country, breadcrumb: after.breadcrumb };
   });
