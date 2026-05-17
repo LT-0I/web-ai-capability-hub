@@ -174,6 +174,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     profile: asString(options.profile),
     prompt: asString(options.prompt),
     tab_url_contains: asString(options["tab-url-contains"] || options.tabUrlContains),
+    url: asString(options.url),
     timeout_ms: asNumber(options["timeout-ms"] || options.timeoutMs),
     response_timeout_ms: asNumber(options["response-timeout-ms"] || options.responseTimeoutMs),
     reuse_conversation: asBoolean(options["reuse-conversation"] || options.reuseConversation),
