@@ -1050,42 +1050,32 @@ async function waitForClaudeAttachmentReadyAfterUpload(page: any, resolved: stri
   try {
     await page.waitForFunction?.(
       (expectedFilenames: string[]) => {
-        const visible = (el: Element | null): el is HTMLElement => {
-          if (!(el instanceof HTMLElement)) return false;
-          const style = window.getComputedStyle(el);
-          if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
-          const box = el.getBoundingClientRect();
-          return box.width > 0 && box.height > 0;
-        };
+        const thumbs = Array.from(document.querySelectorAll('[data-testid="file-thumbnail"]')) as HTMLElement[];
+        if (thumbs.length < expectedFilenames.length) return false;
         const busySelector = [
           '[role="progressbar"]',
           'progress',
-          '[aria-busy="true"]',
-          '[aria-label*="processing" i]',
-          '[data-testid*="progress" i]',
           '[data-testid*="spinner" i]',
-          '[class*="progress" i]',
           '[class*="spinner" i]',
           '.animate-spin'
         ].join(",");
-        const busyText = /\b(uploading|processing|attaching|scanning|loading)\b|%/i;
-        const scopeFor = (el: HTMLElement): HTMLElement => {
-          return el.closest('[data-testid*="attachment" i], [data-testid*="file" i], [class*="attachment" i], [class*="file" i], [role="listitem"], [role="button"]') as HTMLElement
-            || el.parentElement?.parentElement as HTMLElement
-            || el.parentElement
-            || el;
+        const isVisible = (el: Element | null): boolean => {
+          if (!(el instanceof HTMLElement)) return false;
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && r.height > 0;
         };
         return expectedFilenames.every((name) => {
           const lowerName = name.toLowerCase();
-          const match = Array.from(document.querySelectorAll("body *")).find((el) => {
-            if (!visible(el)) return false;
-            const text = (el.textContent || "").trim().toLowerCase();
-            return text.length <= Math.max(240, lowerName.length + 80) && text.includes(lowerName);
-          }) as HTMLElement | undefined;
-          if (!match) return false;
-          const scope = scopeFor(match);
-          const busy = Array.from(scope.querySelectorAll(busySelector)).some(visible);
-          return !busy && !busyText.test(scope.textContent || "");
+          // textContent is read directly (independent of CSS opacity fade-in);
+          // anchor on the real Claude attachment container, never a body * scan.
+          return thumbs.some((th) => {
+            if (!isVisible(th)) return false;
+            const label = ((th.querySelector("button") as HTMLElement | null)?.getAttribute("aria-label") || "").toLowerCase();
+            const text = (th.textContent || "").toLowerCase();
+            if (!label.includes(lowerName) && !text.includes(lowerName)) return false;
+            const spinner = th.querySelector(busySelector);
+            return !(spinner && spinner instanceof HTMLElement && spinner.getBoundingClientRect().width > 0);
+          });
         });
       },
       filenames,
