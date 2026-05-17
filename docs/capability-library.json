@@ -71,14 +71,14 @@
       "source": "stream4-implementation-report",
       "status": "IMPLEMENTED_GREEN",
       "mcp_tool": "webai_chatgpt_generate_image",
-      "evidence": "docs/plans/stream4-implementation-report.md",
-      "verified_by": "stream4-resmoke-r7",
+      "evidence": "docs/plans/stream4-implementation-report.md; commit 95846f0 (issue #2 render-race fix)",
+      "verified_by": "issue-fix-loop 2026-05-17 live re-smoke",
       "recipe_ref": null,
       "sub_mcp_candidate": false,
       "completion_gate": "Image detail dialog Save button present.",
       "artifact": "PNG image via Save button in image detail dialog.",
-      "last_update": "2026-05-15",
-      "notes": "Single wrapped radio click entry. Download via image detail dialog → Save button (user-provided flow). Real 1254×1254 PNG verified."
+      "last_update": "2026-05-17",
+      "notes": "Single wrapped radio click entry. Download via image detail dialog → Save button (user-provided flow). Race-hardened per 95846f0: second render gate waits for the alt-labeled generated-image overlay to be boxed (not just the Edit-image button), Save anchored via header[data-testid=fullscreen-shell-header] with the legacy [role=dialog] button[aria-label=Save] retained as trailing fallback, locateTimeoutMs 15000. Real 1254×1254 PNG (992,928 B, sha256 b0ea92db…) verified 2026-05-17."
     },
     {
       "id": "chatgpt-canvas",
