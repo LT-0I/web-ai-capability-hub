@@ -1254,6 +1254,13 @@ async function uploadAndQueryOnPage(service: WebAiService, args: any, runtime: R
   const lease = acquireProfileLease(args.profile);
   try {
     return await withManagedPage(args, runtime, targetUrlFor(service, args), async (page) => {
+      if (service === "claude") {
+        const requestedClaudeUrl = normalizeUrlLikeTarget(args.url || args.tab_url_contains);
+        if (requestedClaudeUrl && !pageMatchesRequestedTab(page.url?.() || "", args.url || args.tab_url_contains)) {
+          await page.goto?.(requestedClaudeUrl, { waitUntil: "domcontentloaded", timeout: Math.min(args.timeout_ms || 60000, 30000) });
+          await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+        }
+      }
       if (service === "chatgpt") await navigateChatgptFreshIfNeeded(page, args);
       if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, Date.now());
       if (service === "gemini") await clickIfPresent(page, 'button:has-text("Got it"), button:has-text("Agree")');
