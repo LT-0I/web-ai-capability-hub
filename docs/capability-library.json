@@ -547,14 +547,14 @@
       "source": "stream4-implementation-report, stream4-claude-exhaustive",
       "status": "IMPLEMENTED_GREEN",
       "mcp_tool": "webai_claude_upload_and_query",
-      "evidence": "docs/plans/stream4-implementation-report.md",
-      "verified_by": "stream4-phase1-evidence",
+      "evidence": "docs/plans/stream4-implementation-report.md; commits 8a4f1df (chat_url output parity), 7a36d3c (fresh-thread per invocation)",
+      "verified_by": "mcp-health-campaign-2026-05-16 live re-smoke",
       "recipe_ref": null,
       "sub_mcp_candidate": false,
       "completion_gate": "Response idle.",
       "artifact": null,
-      "last_update": "2026-05-15",
-      "notes": "Supports PDF, DOCX, images, code files. Phase 1 evidence confirms selectors."
+      "last_update": "2026-05-17",
+      "notes": "Supports PDF, DOCX, images, code files. Phase 1 evidence confirms selectors. Output now includes chat_url (parity with gemini upload-and-query; honest null when absent) per 8a4f1df. Each invocation starts a fresh independent Claude thread by default; pass reuse_conversation to continue the existing thread per 7a36d3c. Contract round-tripped at consumer-contract-1.5.0 (no version bump)."
     },
     {
       "id": "claude-generate-file",
