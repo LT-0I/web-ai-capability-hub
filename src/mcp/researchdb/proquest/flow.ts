@@ -127,6 +127,77 @@ async function dismissProquestOverlays(page: any): Promise<void> {
   }
 }
 
+async function hasVisibleProquestBackdrop(page: any): Promise<boolean> {
+  return await page.locator("div.modal-backdrop").evaluateAll((els: any[]) => els.some((el: any) => {
+    const style = window.getComputedStyle(el);
+    const rect = el.getBoundingClientRect();
+    return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity || "1") > 0 && rect.width > 0 && rect.height > 0;
+  })).catch(() => false);
+}
+
+async function dismissProquestRestoreSessionModal(page: any, clickSelector: string): Promise<void> {
+  const dialog = page.locator("#restoresession_confirm").first();
+  const dialogPresent = Boolean(await dialog.count().catch(() => 0));
+  const dialogVisible = dialogPresent && await dialog.isVisible({ timeout: 1000 }).catch(() => false);
+  const backdropVisible = await hasVisibleProquestBackdrop(page);
+  if (!dialogVisible && !backdropVisible) return;
+
+  if (dialogVisible) {
+    const controls = [
+      '#restoresession_confirm button:has-text("Start new session")',
+      '#restoresession_confirm a:has-text("Start new session")',
+      '#restoresession_confirm button:has-text("New session")',
+      '#restoresession_confirm a:has-text("New session")',
+      '#restoresession_confirm button:has-text("start a new")',
+      '#restoresession_confirm a:has-text("start a new")',
+      '#restoresession_confirm button:has-text("Close")',
+      '#restoresession_confirm a:has-text("Close")',
+      '#restoresession_confirm button:has-text("Dismiss")',
+      '#restoresession_confirm a:has-text("Dismiss")',
+      '#restoresession_confirm button:has-text("继续")',
+      '#restoresession_confirm a:has-text("继续")',
+      '#restoresession_confirm button:has-text("新会话")',
+      '#restoresession_confirm a:has-text("新会话")',
+      '#restoresession_confirm button:has-text("关闭")',
+      '#restoresession_confirm a:has-text("关闭")',
+      '#restoresession_confirm [data-dismiss="modal"]',
+      '#restoresession_confirm button.close',
+      '#restoresession_confirm .close',
+      '#restoresession_confirm .modal-footer button',
+      '#restoresession_confirm .modal-footer a',
+      '#restoresession_confirm button',
+      '#restoresession_confirm a'
+    ];
+    let dismissed = false;
+    let lastCause = "";
+    for (const selector of controls) {
+      const control = page.locator(selector).first();
+      if (!(await control.count().catch(() => 0))) continue;
+      try {
+        await control.click({ timeout: 5000 });
+        dismissed = true;
+        break;
+      } catch (error: any) {
+        lastCause = error?.message || String(error);
+      }
+    }
+    if (!dismissed) {
+      const blocker = await readProquestBlockingLayer(page, clickSelector);
+      throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest restore-session dialog could not be dismissed before search", { selector: clickSelector, dialogSelector: "#restoresession_confirm", ...blocker, cause: lastCause });
+    }
+  }
+
+  await page.locator("div.modal-backdrop").first().waitFor({ state: "hidden", timeout: 7000 }).catch(async (error: any) => {
+    const blocker = await readProquestBlockingLayer(page, clickSelector);
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest restore-session backdrop did not clear before search", { selector: clickSelector, dialogSelector: "#restoresession_confirm", ...blocker, cause: error?.message || String(error) });
+  });
+
+  if (await hasVisibleProquestBackdrop(page)) {
+    const blocker = await readProquestBlockingLayer(page, clickSelector);
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest restore-session backdrop still blocks search", { selector: clickSelector, dialogSelector: "#restoresession_confirm", ...blocker });
+  }
+}
+
 async function readProquestBlockingLayer(page: any, selector: string): Promise<Record<string, unknown>> {
   return await page.evaluate((sel: string) => {
     const visible = (el: Element | null): boolean => {
@@ -194,12 +265,24 @@ async function readProquestResults(page: any): Promise<{ title: string; url: str
 
 async function runProquestSearch(page: any, query: string): Promise<void> {
   await dismissProquestOverlays(page);
+  await dismissProquestRestoreSessionModal(page, "#queryTermField");
   const field = page.locator("#queryTermField").first();
   if (!(await field.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest base boolean query field was not found", { selector: "#queryTermField" });
-  await field.fill(buildProquestInlineNoftQuery(query), { timeout: 10000 });
+  await field.fill(buildProquestInlineNoftQuery(query), { timeout: 10000 }).catch(async (error: any) => {
+    const blocker = await readProquestBlockingLayer(page, "#queryTermField");
+    const code = classifyProquestBlockingLayer(blocker);
+    const message = code === ConsumerErrorCodes.ELEMENT_NOT_FOUND ? "ProQuest base boolean query field was not fillable" : "ProQuest session/auth overlay blocked query field";
+    throw new WebAiToolError(code, message, { selector: "#queryTermField", ...blocker, cause: error?.message || String(error) });
+  });
   const submit = page.locator("#searchToResultPage").first();
   if (!(await submit.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest search submit was not found", { selector: "#searchToResultPage" });
-  await submit.click({ timeout: 10000 });
+  await dismissProquestRestoreSessionModal(page, "#searchToResultPage");
+  await submit.click({ timeout: 10000 }).catch(async (error: any) => {
+    const blocker = await readProquestBlockingLayer(page, "#searchToResultPage");
+    const code = classifyProquestBlockingLayer(blocker);
+    const message = code === ConsumerErrorCodes.ELEMENT_NOT_FOUND ? "ProQuest search submit was not clickable" : "ProQuest session/auth overlay blocked search submit";
+    throw new WebAiToolError(code, message, { selector: "#searchToResultPage", ...blocker, cause: error?.message || String(error) });
+  });
   await waitForResults(page);
   await dismissProquestOverlays(page);
 }

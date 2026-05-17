@@ -247,6 +247,40 @@ async function waitForCountDelta(page: any, before: number): Promise<{ after: nu
   }
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks refine did not produce a result-count delta", { before, lastCount });
 }
+async function expandCrcPublicationRangePanel(page: any): Promise<void> {
+  await page.evaluate(() => {
+    const apply = document.querySelector("button.applyPublicationRange") as HTMLElement | null;
+    if (!apply) return;
+    const findToggle = (root: Element): HTMLElement | null => {
+      if (root.getAttribute("aria-expanded") === "false") return root as HTMLElement;
+      const collapsed = root.querySelector(
+        [
+          '[aria-expanded="false"]',
+          ".mat-expansion-panel-header:not([aria-expanded='true'])",
+          ".accordion-button.collapsed",
+          "button.collapsed",
+          "[data-toggle='collapse'][aria-expanded='false']",
+          "[data-bs-toggle='collapse'][aria-expanded='false']"
+        ].join(",")
+      ) as HTMLElement | null;
+      if (collapsed && !collapsed.contains(apply)) return collapsed;
+      if (root.classList.contains("mat-expansion-panel") && !root.classList.contains("mat-expanded")) {
+        return root.querySelector(".mat-expansion-panel-header, [role='button'], button") as HTMLElement | null;
+      }
+      if ((root.classList.contains("accordion-item") || root.classList.contains("accordion")) && root.querySelector(".collapse:not(.show), .collapsed")) {
+        return root.querySelector(".accordion-button, [aria-controls], [data-toggle='collapse'], [data-bs-toggle='collapse'], [role='button'], button") as HTMLElement | null;
+      }
+      return null;
+    };
+    for (let node: Element | null = apply.parentElement; node && node !== document.body; node = node.parentElement) {
+      const toggle = findToggle(node);
+      if (toggle) {
+        toggle.click();
+        return;
+      }
+    }
+  }).catch(() => undefined);
+}
 async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultCount: number }): Promise<void> {
   const facet = args.access_facet || (args.open_access ? "open_access" : args.free_to_view ? "free_to_view" : args.access_content ? "access" : args.licensed_content ? "licensed" : args.include_forthcoming ? "forthcoming" : args.fully_oa_books ? "fully_oa_books" : args.books_with_oa_chapters ? "books_with_oa_chapters" : undefined);
   const yearFrom = asYear(args.year_from, "year_from");
@@ -259,7 +293,13 @@ async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultC
     if (yearTo !== undefined) await waitForAngularNumberValue(page, "#ChooseYear", yearTo);
     const apply = page.locator("button.applyPublicationRange").first();
     if (!(await apply.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks year-range apply button was not found", { selector: "button.applyPublicationRange" });
-    await apply.click({ timeout: 10000 }).catch((error: any) => {
+    await expandCrcPublicationRangePanel(page);
+    await sleep(300);
+    await (async () => {
+      await apply.scrollIntoViewIfNeeded({ timeout: 10000 });
+      await apply.waitFor({ state: "visible", timeout: 10000 });
+      await apply.click({ timeout: 10000 });
+    })().catch((error: any) => {
       throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks year-range apply button was not clickable", { selector: "button.applyPublicationRange", cause: error?.message || String(error) });
     });
   }

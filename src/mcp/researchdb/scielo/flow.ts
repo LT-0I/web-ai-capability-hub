@@ -185,6 +185,21 @@ async function forceScieloExportModalOpen(page: any, controlSelector: string, re
   }
 }
 
+async function scrollScieloExportControlIntoClickBand(page: any, controlSelector: string, maxViewportY = 1000): Promise<void> {
+  const exportEl = page.locator(controlSelector).first();
+  await exportEl.waitFor({ state: "visible", timeout: 5000 });
+  await exportEl.scrollIntoViewIfNeeded({ timeout: 5000 });
+  const deadline = Date.now() + 5000;
+  while (Date.now() < deadline) {
+    const inClickBand = await exportEl.evaluate((el: Element, maxY: number) => {
+      const rect = el.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.top >= 0 && rect.top <= maxY;
+    }, maxViewportY).catch(() => false);
+    if (inClickBand) return;
+    await sleep(100);
+  }
+}
+
 function validateScieloArtifact(artifactPath: string, format: ScieloExportFormat, expectedCount?: number): void {
   const text = fs.readFileSync(artifactPath, "utf-8").replace(/^\uFEFF/, "");
   if (format === "ris") {
@@ -317,6 +332,7 @@ export async function researchScieloExport(args: ScieloExportArgs): Promise<{ ar
       const requestedFrom = asNonNegativeInt(args.from, "from");
       const requestedOffset = requestedFrom !== undefined ? requestedFrom : (requestedPage - 1) * requestedPageSize;
       const expectedExportCount = Math.min(requestedPageSize, Math.max(state.resultCount - requestedOffset, 0));
+      await scrollScieloExportControlIntoClickBand(page, exportControlSelector);
       const clicked = await runArtifactClick({
         profile,
         tabUrlContains: "search.scielo.org",

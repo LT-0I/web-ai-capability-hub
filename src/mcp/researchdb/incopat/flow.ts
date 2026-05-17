@@ -115,10 +115,14 @@ function incopatItemsHaveTemplateTokens(items: IncopatItem[]): boolean {
   return items.some((item) => hasIncopatTemplateTokens(item.title) || hasIncopatTemplateTokens(item.publication_number) || item.applicants.some(hasIncopatTemplateTokens) || item.inventors.some(hasIncopatTemplateTokens));
 }
 
+function incopatHasPositiveResultCount(countText: unknown): boolean {
+  return /^共\s*[1-9][\d,]*\s*条$/.test(String(countText || "").trim());
+}
+
 function incopatLooksUnauthenticated(state: any): boolean {
   const bodyText = String(state?.bodyText || "");
   const countText = String(state?.countText || "").trim();
-  const hasHydratedCount = countText !== "" && countText !== "0" && !/^共\s*0\s*条$/.test(countText);
+  const hasHydratedCount = incopatHasPositiveResultCount(countText) || (countText !== "" && countText !== "0" && !/^共\s*0\s*条$/.test(countText));
   const hasVisibleLoginWithoutAuthSignals = Boolean(state?.hasLogin) && !/IP用户/.test(bodyText) && !hasHydratedCount && !Boolean(state?.hasSearch);
   const text = `${state?.url || ""} ${bodyText} ${String(state?.html || "").slice(0, 2000)}`;
   return hasVisibleLoginWithoutAuthSignals || /\/newLogin\b|请先?登录|重新登录|登录超时|session\s*(?:expired|timeout)|login\s+required|sign\s*in/i.test(text);
@@ -255,6 +259,7 @@ async function ensureSearchPage(page: any): Promise<void> {
 
 async function waitForCount(page: any, previousText?: string, requireDelta = false): Promise<{ count: number; countText: string; html: string; rows: Array<{ text: string; title?: string; publication_number?: string }>; url: string; breadcrumb: string }> {
   let lastEvidence: Record<string, unknown> = {};
+  let settledZero: { count: number; countText: string; html: string; rows: Array<{ text: string; title?: string; publication_number?: string }>; url: string; breadcrumb: string } | undefined;
   for (let i = 0; i < 16; i++) {
     const state = await page.evaluate(() => {
       const countText = ((document.querySelector("#totalCount") as HTMLElement | null)?.innerText || (document.querySelector("#totalCountspan") as HTMLElement | null)?.innerText || "").trim();
@@ -281,16 +286,27 @@ async function waitForCount(page: any, previousText?: string, requireDelta = fal
     }).catch(() => ({ countText: "", rows: [], html: "", url: page.url?.() || "", breadcrumb: "" }));
     lastEvidence = incopatHydrationEvidence(state, previousText);
     if (incopatLooksUnauthenticated(state)) throwIncopatHydrationError(state, previousText);
+    try {
+      const count = parseIncopatResultCount(state.countText);
+      const hasRequiredTransition = !requireDelta || state.countText !== previousText;
+      if (incopatHasPositiveResultCount(state.countText) && !state.hasLogin && hasRequiredTransition) return { count, countText: state.countText, html: state.html, rows: state.rows, url: state.url, breadcrumb: state.breadcrumb };
+      if (!incopatHasUnhydratedTemplateState(state) && hasRequiredTransition) {
+        const hydrated = { count, countText: state.countText, html: state.html, rows: state.rows, url: state.url, breadcrumb: state.breadcrumb };
+        if (count === 0) settledZero = hydrated;
+        else return hydrated;
+      } else {
+        settledZero = undefined;
+      }
+    } catch {
+      settledZero = undefined;
+    }
     if (incopatHasUnhydratedTemplateState(state)) {
       await sleep(2000);
       continue;
     }
-    try {
-      const count = parseIncopatResultCount(state.countText);
-      if (!requireDelta || state.countText !== previousText) return { count, countText: state.countText, html: state.html, rows: state.rows, url: state.url, breadcrumb: state.breadcrumb };
-    } catch {}
     await sleep(2000);
   }
+  if (settledZero) return settledZero;
   throw new WebAiToolError(ConsumerErrorCodes.MODE_UNCERTAIN, "IncoPat result count did not reach a hydrated observed state", { previousText, ...lastEvidence });
 }
 
