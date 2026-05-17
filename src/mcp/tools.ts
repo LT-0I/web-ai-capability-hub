@@ -6,7 +6,7 @@ import { BrowserSessionManager } from "../browser/sessionManager";
 import { ManagedBrowserLauncher } from "../browser/managedLauncher";
 import { DownloadManager } from "../browser/downloads";
 import { ActionExecutor } from "../actions/executor";
-import { requiresApproval, riskyReason } from "../actions/confirmationPolicy";
+import { ConfirmationRequiredError, requiresApproval, riskyReason } from "../actions/confirmationPolicy";
 import { readHtmlSnapshotFromFile, readPageSnapshot } from "../reader/snapshot";
 import { captureSiteMapForSnapshot, saveSiteMap } from "../maintenance/captureSiteMap";
 import { loadRecipeById } from "../recipes/loader";
@@ -24,8 +24,8 @@ import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
 import { consumerHealth } from "../consumer/health";
 import { runArtifactClick } from "../browser/artifactClick";
-import { ConsumerErrorCodes } from "../consumer/errorCodes";
-import { assertPromptAllowed } from "../safety/promptDeny";
+import { ConsumerErrorCode, ConsumerErrorCodes, isConsumerErrorCode } from "../consumer/errorCodes";
+import { PromptPolicyDeniedError, assertPromptAllowed } from "../safety/promptDeny";
 import { assertNotPublishDeniedLabel } from "../safety/publishDeny";
 import {
   browserActionInput,
@@ -74,7 +74,7 @@ import {
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
-import { assertNoForbidden, stripForbidden } from "./forbiddenFields";
+import { ForbiddenOutputFieldError, assertNoForbidden, stripForbidden } from "./forbiddenFields";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
@@ -1270,8 +1270,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
       buttonSelector,
       downloadDir: args.download_dir,
       filenamePattern: `\\.${args.expected_extension}$`,
-      timeoutMs: Math.min(Number(args.timeout_ms || 60000), 60000),
-      noDisconnect: true
+      timeoutMs: Math.min(Number(args.timeout_ms || 60000), 60000)
     });
     return artifactClickResultToSafeOutput(result, service === "chatgpt" ? { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") } : { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } finally { releaseProfileLease(args.profile, lease); }
@@ -1330,8 +1329,7 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       followUpSelector: downloadSelector,
       downloadDir: args.download_dir,
       filenamePattern: "\\.(png|jpg|jpeg|webp)$",
-      timeoutMs: args.timeout_ms || 90000,
-      noDisconnect: true
+      timeoutMs: args.timeout_ms || 90000
     });
     return artifactClickResultToSafeOutput(result, { dimensions: null, download_filename: path.basename(result.path || "") });
   } catch (error: any) {
@@ -2724,14 +2722,290 @@ export function listMcpTools(): McpToolDefinition[] {
   return toolSpecs.map((tool) => ({ name: tool.name, description: tool.description, inputSchema: tool.schema.toJsonSchema() }));
 }
 
+const DEFAULT_MCP_TOOL_INVOCATION_TIMEOUT_MS = 180000;
+const MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS = 600000;
+const MCP_TOOL_TIMEOUT_ENV_KEYS = ["WEBAI_MCP_TOOL_TIMEOUT_MS", "MCP_TOOL_TIMEOUT_MS"];
+
+interface HonestErrorEnvelope {
+  ok: false;
+  errorCode: ConsumerErrorCode;
+  error_code: ConsumerErrorCode;
+  error: string;
+  evidence: Record<string, unknown>;
+}
+
+class McpInvocationDeadlineError extends Error {
+  errorCode = ConsumerErrorCodes.COMMAND_TIMEOUT;
+  evidence: Record<string, unknown>;
+
+  constructor(tool: string, timeoutMs: number) {
+    super(`${ConsumerErrorCodes.COMMAND_TIMEOUT}: MCP tool invocation exceeded ${timeoutMs}ms deadline`);
+    this.evidence = { tool, timeout_ms: timeoutMs };
+  }
+}
+
+function mcpToolInvocationTimeoutMs(): number {
+  for (const key of MCP_TOOL_TIMEOUT_ENV_KEYS) {
+    const raw = process.env[key];
+    if (!raw) continue;
+    const parsed = Number(raw);
+    if (Number.isFinite(parsed) && parsed > 0) return Math.min(Math.max(Math.floor(parsed), 1000), MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
+  }
+  return DEFAULT_MCP_TOOL_INVOCATION_TIMEOUT_MS;
+}
+
+async function withMcpToolDeadline<T>(tool: string, run: () => Promise<T>): Promise<T> {
+  const timeoutMs = mcpToolInvocationTimeoutMs();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_resolve, reject) => {
+    timer = setTimeout(() => reject(new McpInvocationDeadlineError(tool, timeoutMs)), timeoutMs);
+    (timer as any)?.unref?.();
+  });
+  try {
+    return await Promise.race([run(), timeout]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function errorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  if (typeof error === "string") return error;
+  try {
+    const json = JSON.stringify(error);
+    return json === undefined ? String(error) : json;
+  } catch {
+    return String(error);
+  }
+}
+
+function safeJsonSnippet(value: unknown, maxLength = 600): string {
+  let text: string;
+  try {
+    text = typeof value === "string" ? value : JSON.stringify(value);
+  } catch {
+    text = String(value);
+  }
+  if (text === undefined) text = String(value);
+  return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
+}
+
+function evidenceRecord(value: unknown): Record<string, unknown> {
+  if (isRecord(value)) return value;
+  if (value === undefined || value === null) return {};
+  return { value };
+}
+
+function normalizedErrorEnvelope(errorCode: ConsumerErrorCode, message: string, evidence: Record<string, unknown> = {}): HonestErrorEnvelope {
+  const safeEvidence = stripForbidden(Object.keys(evidence).length ? evidence : { message });
+  return {
+    ok: false,
+    errorCode,
+    error_code: errorCode,
+    error: message,
+    evidence: safeEvidence
+  };
+}
+
+function isTimeoutLikeError(error: unknown): boolean {
+  const name = isRecord(error) && typeof error.name === "string" ? error.name : error instanceof Error ? error.name : "";
+  const message = errorMessage(error);
+  return /TimeoutError/i.test(name) || /\btimeout\b|\btimed\s*out\b|Timeout\s+\d+ms\s+exceeded/i.test(message);
+}
+
+function isHardGateError(error: unknown): boolean {
+  return error instanceof ForbiddenOutputFieldError
+    || error instanceof PromptPolicyDeniedError
+    || error instanceof ConfirmationRequiredError;
+}
+
+function mapMcpToolError(tool: string, error: unknown, stage: string): HonestErrorEnvelope {
+  if (isHardGateError(error)) throw error;
+
+  const candidate = error as { errorCode?: unknown; evidence?: unknown; name?: unknown };
+  const message = errorMessage(error);
+  const baseEvidence = {
+    tool,
+    stage,
+    message,
+    ...(typeof candidate?.name === "string" ? { error_name: candidate.name } : {})
+  };
+
+  if (stage === "schema") {
+    return normalizedErrorEnvelope(ConsumerErrorCodes.INVALID_ARGS, message || "Invalid MCP tool arguments", baseEvidence);
+  }
+
+  if (isConsumerErrorCode(candidate?.errorCode)) {
+    return normalizedErrorEnvelope(candidate.errorCode, message || candidate.errorCode, {
+      ...baseEvidence,
+      ...evidenceRecord(candidate.evidence)
+    });
+  }
+
+  if (candidate?.errorCode !== undefined) {
+    return normalizedErrorEnvelope(ConsumerErrorCodes.UNKNOWN, message || "MCP tool failed with non-taxonomy error code", {
+      ...baseEvidence,
+      original_error_code: String(candidate.errorCode),
+      ...evidenceRecord(candidate.evidence)
+    });
+  }
+
+  if (isTimeoutLikeError(error)) {
+    return normalizedErrorEnvelope(ConsumerErrorCodes.COMMAND_TIMEOUT, message || "MCP tool invocation timed out", baseEvidence);
+  }
+
+  return normalizedErrorEnvelope(ConsumerErrorCodes.UNKNOWN, message || "MCP tool invocation failed", {
+    ...baseEvidence,
+    cause_type: typeof error
+  });
+}
+
+function nonEmptyResultErrorCode(value: unknown): unknown {
+  if (value === null || value === undefined || value === "") return undefined;
+  return value;
+}
+
+function invalidResultErrorCode(tool: string, result: unknown): HonestErrorEnvelope | undefined {
+  if (!isRecord(result)) return undefined;
+  for (const field of ["errorCode", "error_code"]) {
+    if (!(field in result)) continue;
+    const value = nonEmptyResultErrorCode(result[field]);
+    if (value === undefined) continue;
+    if (isConsumerErrorCode(value)) continue;
+    return normalizedErrorEnvelope(ConsumerErrorCodes.UNKNOWN, `MCP tool returned non-taxonomy ${field}`, {
+      tool,
+      field,
+      original_error_code: String(value),
+      result_snippet: safeJsonSnippet(result)
+    });
+  }
+  return undefined;
+}
+
+interface UnhydratedFinding {
+  path: string;
+  reason: string;
+  snippet: string;
+}
+
+function isResultRowsKey(key: string): boolean {
+  return /^(items|results|records|rows|articles)$/i.test(key);
+}
+
+function isBlank(value: unknown): boolean {
+  return value === null || value === undefined || (typeof value === "string" && value.trim() === "");
+}
+
+function hasNonEmptyIdentifier(row: Record<string, unknown>): boolean {
+  return ["url", "id", "identifier", "doi", "arxiv_id", "record_id", "key"].some((key) => !isBlank(row[key]));
+}
+
+function looksLikeEmptyFacetChromeRow(row: Record<string, unknown>): boolean {
+  if (!("title" in row) || !isBlank(row.title) || hasNonEmptyIdentifier(row)) return false;
+  const values = Object.values(row);
+  const allBlankish = values.every((value) => isBlank(value) || (Array.isArray(value) && value.length === 0));
+  const facetSignal = Object.keys(row).some((key) => /facet|filter|count|label|checkbox|class|text/i.test(key))
+    || values.some((value) => typeof value === "string" && /\bfacet\b|\bfilter\b|show\s+all|refine|li\.empty/i.test(value));
+  return allBlankish || facetSignal;
+}
+
+function findTemplateMarker(value: unknown, pathName: string): UnhydratedFinding | undefined {
+  if (typeof value === "string") {
+    if (/{{[^}]*}}|<li[^>]*class=["'][^"']*\bempty\b[^"']*["']|li\.empty/i.test(value)) {
+      return { path: pathName, reason: "template_or_placeholder_marker", snippet: safeJsonSnippet(value, 240) };
+    }
+    return undefined;
+  }
+  if (Array.isArray(value)) {
+    for (let index = 0; index < value.length; index++) {
+      const finding = findTemplateMarker(value[index], `${pathName}[${index}]`);
+      if (finding) return finding;
+    }
+    return undefined;
+  }
+  if (isRecord(value)) {
+    for (const [key, child] of Object.entries(value)) {
+      const finding = findTemplateMarker(child, `${pathName}.${key}`);
+      if (finding) return finding;
+    }
+  }
+  return undefined;
+}
+
+function detectUnhydratedSuccess(value: unknown, pathName = "$", parentKey = ""): UnhydratedFinding | undefined {
+  if (Array.isArray(value)) {
+    if (!value.length) return undefined;
+    if (isResultRowsKey(parentKey)) {
+      for (let index = 0; index < value.length; index++) {
+        const itemPath = `${pathName}[${index}]`;
+        const marker = findTemplateMarker(value[index], itemPath);
+        if (marker) return marker;
+        if (isRecord(value[index]) && looksLikeEmptyFacetChromeRow(value[index] as Record<string, unknown>)) {
+          return { path: itemPath, reason: "empty_result_row_or_facet_chrome", snippet: safeJsonSnippet(value[index], 300) };
+        }
+      }
+    }
+    for (let index = 0; index < value.length; index++) {
+      const finding = detectUnhydratedSuccess(value[index], `${pathName}[${index}]`, parentKey);
+      if (finding) return finding;
+    }
+    return undefined;
+  }
+  if (!isRecord(value)) return undefined;
+  for (const [key, child] of Object.entries(value)) {
+    const finding = detectUnhydratedSuccess(child, `${pathName}.${key}`, key);
+    if (finding) return finding;
+  }
+  return undefined;
+}
+
+function resultHasError(result: unknown): boolean {
+  if (!isRecord(result)) return false;
+  const code = nonEmptyResultErrorCode(result.errorCode) ?? nonEmptyResultErrorCode(result.error_code);
+  return isConsumerErrorCode(code);
+}
+
+function validateMcpToolResult(tool: string, result: unknown): unknown {
+  assertNoForbidden(result);
+  const invalidCode = invalidResultErrorCode(tool, result);
+  if (invalidCode) return invalidCode;
+  if (!resultHasError(result)) {
+    const unhydrated = detectUnhydratedSuccess(result);
+    if (unhydrated) {
+      return normalizedErrorEnvelope(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "MCP tool returned unhydrated/template output instead of real contract data", {
+        tool,
+        ...unhydrated
+      });
+    }
+  }
+  return result;
+}
+
 export async function callMcpTool(name: string, args: unknown, runtime?: BrowserToolRuntime): Promise<unknown> {
   const spec = toolSpecs.find((tool) => tool.name === name);
-  if (!spec) throw new Error(`Unknown MCP tool: ${name}`);
-  const parsed = spec.schema.parse(args || {});
-  const resolvedRuntime = runtimeOrDefault(runtime);
-  if (typeof parsed.target === "string") resolvedRuntime.session.setTarget(parsed.target);
-  else if (typeof parsed.site === "string") resolvedRuntime.session.setTarget(parsed.site);
-  const result = await spec.handler(parsed, resolvedRuntime);
-  assertNoForbidden(result);
-  return result;
+  if (!spec) {
+    return normalizedErrorEnvelope(ConsumerErrorCodes.INVALID_ARGS, `Unknown MCP tool: ${name}`, {
+      tool: name,
+      available_tool_count: toolSpecs.length
+    });
+  }
+  let stage = "schema";
+  try {
+    const parsed = spec.schema.parse(args || {});
+    stage = "runtime";
+    const resolvedRuntime = runtimeOrDefault(runtime);
+    if (typeof parsed.target === "string") resolvedRuntime.session.setTarget(parsed.target);
+    else if (typeof parsed.site === "string") resolvedRuntime.session.setTarget(parsed.site);
+    stage = "handler";
+    const result = await withMcpToolDeadline(name, () => spec.handler(parsed, resolvedRuntime));
+    stage = "contract";
+    return validateMcpToolResult(name, result);
+  } catch (error) {
+    if (isHardGateError(error)) throw error;
+    return mapMcpToolError(name, error, stage);
+  }
 }

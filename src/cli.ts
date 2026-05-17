@@ -28,6 +28,7 @@ import { listMcpResources } from "./mcp/resources";
 import { readConfigFile } from "./utils/yaml";
 import { policyNotice } from "./safety/policy";
 import { CapabilityDatabase } from "./capabilities/database";
+import { ConsumerErrorCodes, isConsumerErrorCode } from "./consumer/errorCodes";
 import { runHealthCheck } from "./capabilities/healthCheck";
 import { CapabilityUpdater } from "./capabilities/updater";
 import { SiteRegistryImporter } from "./adapters/research/siteRegistryImporter";
@@ -88,6 +89,26 @@ function output(value: unknown, options: Record<string, CliOptionValue> = {}): v
 function redactForCli(value: unknown, options: Record<string, CliOptionValue> = {}): unknown {
   if (options["no-redact"] === true || options.noRedact === true) return value;
   return redactValue(value, { mode: "default" });
+}
+function consumerErrorCodeFromResult(value: unknown): string | undefined {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const record = value as Record<string, unknown>;
+  const code = record.errorCode || record.error_code;
+  return isConsumerErrorCode(code) ? code : undefined;
+}
+function cliExitCodeForErrorCode(errorCode: string | undefined): number {
+  if (errorCode === ConsumerErrorCodes.POSTCONDITION_TIMEOUT) return 12;
+  return errorCode ? 1 : 0;
+}
+function flushWritable(stream: any): Promise<void> {
+  if (!stream?.writable || stream.destroyed) return Promise.resolve();
+  return new Promise((resolve) => stream.write("", resolve));
+}
+async function finishWebAiDispatch(exitCode: number): Promise<void> {
+  process.exitCode = exitCode;
+  if (require.main !== module) return;
+  await Promise.all([flushWritable(process.stdout), flushWritable(process.stderr)]);
+  process.exit(exitCode);
 }
 function downloadManager(): DownloadManager { return new DownloadManager(getStoragePaths().downloadDir); }
 
@@ -188,7 +209,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
   const files = asStringList(options.file || options.files);
   if (files.length) base.files = files;
   for (const key of Object.keys(base)) if (base[key] === undefined) delete base[key];
-  if (command === "webai:task-status" && !base.task_id) throw new Error("webai:task-status requires --task-id <id>");
+  if (command === "webai:task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:task-status requires --task-id <id>");
   return base;
 }
 
@@ -864,7 +885,9 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
 
   const webAiMcpName = webAiMcpNameFromCli(command);
   if (webAiMcpName) {
-    output(redactForCli(await callMcpTool(webAiMcpName, webAiArgsFromCli(command, options)), options), options);
+    const result = redactForCli(await callMcpTool(webAiMcpName, webAiArgsFromCli(command, options)), options);
+    output(result, options);
+    await finishWebAiDispatch(cliExitCodeForErrorCode(consumerErrorCodeFromResult(result)));
     return;
   }
 
@@ -1818,11 +1841,14 @@ if (require.main === module) {
   main().catch((error) => {
     const parsed = parseArgs(process.argv.slice(3));
     const message = error instanceof Error ? error.message : String(error);
-    const errorCode = (error as any)?.errorCode || (message.startsWith("INVALID_ARGS:") ? "INVALID_ARGS" : undefined);
-    const evidence = (error as any)?.evidence;
+    const rawErrorCode = (error as any)?.errorCode || (message.startsWith("INVALID_ARGS:") ? ConsumerErrorCodes.INVALID_ARGS : undefined);
+    const errorCode = isConsumerErrorCode(rawErrorCode) ? rawErrorCode : rawErrorCode !== undefined ? ConsumerErrorCodes.UNKNOWN : undefined;
+    const evidence = (error as any)?.evidence
+      || (errorCode === ConsumerErrorCodes.INVALID_ARGS ? { message } : undefined)
+      || (rawErrorCode !== undefined && !isConsumerErrorCode(rawErrorCode) ? { original_error_code: String(rawErrorCode), message } : undefined);
     const redactedEvidence = evidence ? redactForCli(evidence, parsed.options) : undefined;
     if (wantJson(parsed.options)) console.error(JSON.stringify({ ok: false, ...(errorCode ? { errorCode } : {}), error: message, ...(redactedEvidence ? { evidence: redactedEvidence } : {}) }));
-    else console.error(message);
-    process.exitCode = errorCode === "POSTCONDITION_TIMEOUT" ? 12 : 1;
+    else console.error(errorCode ? `${errorCode}: ${message}` : message);
+    process.exitCode = errorCode === ConsumerErrorCodes.POSTCONDITION_TIMEOUT ? 12 : 1;
   });
 }
