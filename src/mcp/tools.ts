@@ -1045,6 +1045,57 @@ async function waitForGeminiSendReadyAfterUpload(page: any): Promise<void> {
   }
 }
 
+async function waitForClaudeAttachmentReadyAfterUpload(page: any, resolved: string[]): Promise<void> {
+  const filenames = resolved.map((file: string) => path.basename(file));
+  try {
+    await page.waitForFunction?.(
+      (expectedFilenames: string[]) => {
+        const visible = (el: Element | null): el is HTMLElement => {
+          if (!(el instanceof HTMLElement)) return false;
+          const style = window.getComputedStyle(el);
+          if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
+          const box = el.getBoundingClientRect();
+          return box.width > 0 && box.height > 0;
+        };
+        const busySelector = [
+          '[role="progressbar"]',
+          'progress',
+          '[aria-busy="true"]',
+          '[aria-label*="processing" i]',
+          '[data-testid*="progress" i]',
+          '[data-testid*="spinner" i]',
+          '[class*="progress" i]',
+          '[class*="spinner" i]',
+          '.animate-spin'
+        ].join(",");
+        const busyText = /\b(uploading|processing|attaching|scanning|loading)\b|%/i;
+        const scopeFor = (el: HTMLElement): HTMLElement => {
+          return el.closest('[data-testid*="attachment" i], [data-testid*="file" i], [class*="attachment" i], [class*="file" i], [role="listitem"], [role="button"]') as HTMLElement
+            || el.parentElement?.parentElement as HTMLElement
+            || el.parentElement
+            || el;
+        };
+        return expectedFilenames.every((name) => {
+          const lowerName = name.toLowerCase();
+          const match = Array.from(document.querySelectorAll("body *")).find((el) => {
+            if (!visible(el)) return false;
+            const text = (el.textContent || "").trim().toLowerCase();
+            return text.length <= Math.max(240, lowerName.length + 80) && text.includes(lowerName);
+          }) as HTMLElement | undefined;
+          if (!match) return false;
+          const scope = scopeFor(match);
+          const busy = Array.from(scope.querySelectorAll(busySelector)).some(visible);
+          return !busy && !busyText.test(scope.textContent || "");
+        });
+      },
+      filenames,
+      { timeout: 30000 }
+    );
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Claude attachment did not finish processing before send", { selector: "Claude visible attachment chip without upload progress", cause: error?.message || String(error) });
+  }
+}
+
 async function uploadFilesInExistingPage(service: WebAiService, page: any, resolved: string[]): Promise<void> {
   if (service !== "gemini") {
     const uploadSelector = service === "chatgpt" ? "input#upload-files" : "#chat-input-file-upload-onpage";
@@ -1057,6 +1108,7 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
       }
       throw error;
     }
+    if (service === "claude") await waitForClaudeAttachmentReadyAfterUpload(page, resolved);
     return;
   }
   // The Gemini composer (and its upload-trigger button) mounts AFTER
@@ -1261,7 +1313,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
     const promptResult = await sendPromptOnPage(service, args, runtime);
     const conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     const buttonSelector = service === "chatgpt"
-      ? 'button.behavior-btn, a[aria-label*="Download" i][class*="__menu-item"]'
+      ? 'button.behavior-btn'
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;
