@@ -1026,6 +1026,20 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
     const loc = page.locator?.(opts.activeSelector).first?.();
     return !!loc && !!(await loc.count?.().catch(() => 0));
   };
+  const waitForActive = async (timeout = 8000) => {
+    if (typeof page.waitForSelector === "function") {
+      await page.waitForSelector(opts.activeSelector, { state: "visible", timeout });
+    }
+    return await isActive();
+  };
+  const drawerCanOpen = async () => {
+    const drawer = page.locator?.(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR).first?.();
+    if (!drawer || !(await drawer.count?.().catch(() => 0))) return false;
+    const className = typeof drawer.getAttribute === "function" ? await drawer.getAttribute("class").catch(() => "") : "";
+    const ariaDisabled = typeof drawer.getAttribute === "function" ? await drawer.getAttribute("aria-disabled").catch(() => "") : "";
+    const disabled = typeof drawer.isDisabled === "function" ? await drawer.isDisabled().catch(() => false) : false;
+    return !disabled && ariaDisabled !== "true" && !(typeof className === "string" && className.includes("has-selected-item"));
+  };
   if (await isActive()) return;
   if (opts.zeroStateSelector) {
     const zero = page.locator?.(opts.zeroStateSelector).first?.();
@@ -1034,8 +1048,7 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
       : false;
     if (zeroVisible && zero && await zero.count?.().catch(() => 0)) {
       await robustClickLocator(page, zero, opts.zeroStateSelector, { timeout: 5000 }).catch(() => undefined);
-      if (typeof page.waitForTimeout === "function") await page.waitForTimeout(400).catch(() => undefined);
-      if (await isActive()) return;
+      if (await waitForActive().catch(() => false)) return;
     }
   }
   try {
@@ -1043,17 +1056,23 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
     // via Angular hydration; an instant requireAndClick races that render and
     // spuriously throws ELEMENT_NOT_FOUND at ~0ms (same class as the upload
     // trigger race). Wait for the button to actually be visible (bounded)
-    // before clicking — confirmed live present on the fresh composer.
+    // before clicking — confirmed live present on the fresh composer. If a
+    // zero-state chip already selected a tool, the drawer re-renders as
+    // has-selected-item/disabled and cannot open; do not burn a dead click
+    // timeout in that already-selected state.
+    if (await isActive()) return;
     if (typeof page.waitForSelector === "function") {
       await page.waitForSelector(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, { state: "visible", timeout: 15000 });
     }
+    if (await isActive()) return;
+    if (!(await drawerCanOpen())) throw new Error("Gemini Tools drawer is already selected or disabled");
     await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
     await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: 8000 });
     await requireAndClick(page, opts.menuItemSelector, `Gemini ${opts.toolName} menu item was not found`);
-    await page.waitForSelector?.(opts.activeSelector, { state: "visible", timeout: 8000 });
-    if (await isActive()) return;
+    if (await waitForActive().catch(() => false)) return;
   } catch (_error) {
-    // Fall through to a stable ELEMENT_NOT_FOUND with both affordances in evidence.
+    // Fall through to the existing honest ELEMENT_NOT_FOUND contract code; do
+    // not synthesize success when the requested active pill never appeared.
   }
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}` });
 }
