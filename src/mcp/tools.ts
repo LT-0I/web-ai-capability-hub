@@ -1284,7 +1284,7 @@ async function uploadAndQueryOnPage(service: WebAiService, args: any, runtime: R
         ...(response.error_code ? { error_code: response.error_code } : {})
       };
       if (service === "chatgpt") return safeOutput({ conversation_id: response.conversation_id || null, attachment_names: names, ...completion });
-      if (service === "claude") return safeOutput({ files_uploaded_count: names.length, attachment_names: names, ...completion });
+      if (service === "claude") return safeOutput({ files_uploaded_count: names.length, attachment_names: names, chat_url: response.chat_url || null, ...completion });
       return safeOutput({ files_in_chip: names, chat_url: response.chat_url || null, ...completion });
     });
   } finally { releaseProfileLease(args.profile, lease); }
