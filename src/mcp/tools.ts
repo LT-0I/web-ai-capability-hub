@@ -159,7 +159,10 @@ function pageMatchesRequestedTab(pageUrl: string, requested?: string): boolean {
   if (pageUrl.includes(normalized)) return true;
   try {
     const target = new URL(normalized);
-    return target.pathname !== "/" && pageUrl.includes(target.pathname);
+    if (target.pathname === "/") return false;
+    const page = new URL(pageUrl);
+    if (page.host !== target.host) return false;
+    return page.pathname === target.pathname || page.pathname.startsWith(`${target.pathname.replace(/\/$/, "")}/`);
   } catch {
     return false;
   }
