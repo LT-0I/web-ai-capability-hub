@@ -259,7 +259,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     webai_claude_send_prompt: ["model", "thinking", "web_search", "incognito"],
     webai_gemini_send_prompt: ["model", "thinking", "web_search"],
     webai_chatgpt_upload_and_query: ["model"],
-    webai_claude_upload_and_query: ["model"],
+    webai_claude_upload_and_query: ["model", "reuse_conversation"],
     webai_gemini_upload_and_query: ["model"],
     webai_chatgpt_generate_file: ["model"],
     webai_claude_generate_file: ["model"],

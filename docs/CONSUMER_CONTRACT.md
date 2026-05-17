@@ -251,6 +251,17 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:music:download-track` | `webai_gemini_music_download_track` | `webAiGeminiMusicDownloadTrack` | experimental | read | yes |
 | `webai:gemini:music:task-status` | `webai_gemini_music_task_status` | `webAiGeminiMusicTaskStatus` | experimental | read | no |
 
+### Webai optional-argument contract
+
+| Tool | Optional args |
+| --- | --- |
+| `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `model`, `web_search`, `canvas` |
+| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `model`, `thinking`, `web_search`, `incognito`, `tab_url_contains` |
+| `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `model`, `thinking`, `web_search` |
+| `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `model` |
+| `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `model`, `reuse_conversation` |
+| `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `model` |
+
 ### Webai output-key contract
 
 | Tool | Always-present output keys | Optional output keys |

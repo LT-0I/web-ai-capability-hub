@@ -3222,7 +3222,8 @@
       },
       "may_contain_sensitive_local_fields": false,
       "optional_args": [
-        "model"
+        "model",
+        "reuse_conversation"
       ]
     },
     {

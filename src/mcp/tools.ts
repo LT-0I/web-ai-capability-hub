@@ -360,6 +360,8 @@ function targetUrlFor(service: WebAiService, args: any): string {
 
 const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
 const CHATGPT_FRESH_URL = "https://chatgpt.com/?model=gpt-4o";
+const CLAUDE_FRESH_URL = "https://claude.ai/new";
+const CLAUDE_INCOGNITO_FRESH_URL = "https://claude.ai/new?incognito=";
 const GEMINI_FRESH_URL = "https://gemini.google.com/app";
 const GEMINI_FRESH_COMPOSER_URL = "https://gemini.google.com/app?hl=en";
 const GEMINI_RESPONSE_SELECTOR = "main";
@@ -487,6 +489,14 @@ function loginRequiredResponse(service: WebAiService, page: any, started: number
 async function navigateChatgptFreshIfNeeded(page: any, args: any): Promise<void> {
   if (args.reuse_conversation) return;
   await page.goto?.(CHATGPT_FRESH_URL, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
+  await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
+}
+
+async function navigateClaudeFreshIfNeeded(page: any, args: any): Promise<void> {
+  if (args.reuse_conversation) return;
+  if (loginRequiredForService("claude", page.url?.() || "")) return;
+  const freshUrl = args.incognito ? CLAUDE_INCOGNITO_FRESH_URL : CLAUDE_FRESH_URL;
+  await page.goto?.(freshUrl, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
   await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
 }
 
@@ -1263,6 +1273,7 @@ async function uploadAndQueryOnPage(service: WebAiService, args: any, runtime: R
           await page.goto?.(requestedClaudeUrl, { waitUntil: "domcontentloaded", timeout: Math.min(args.timeout_ms || 60000, 30000) });
           await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
         }
+        await navigateClaudeFreshIfNeeded(page, args);
       }
       if (service === "chatgpt") await navigateChatgptFreshIfNeeded(page, args);
       if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, Date.now());
