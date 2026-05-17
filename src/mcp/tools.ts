@@ -425,7 +425,7 @@ const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)
 // menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
-const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
+const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '#toolbox-drawer-menu button[role="menuitemcheckbox"]:has-text("Create video"), #toolbox-drawer-menu button:has-text("Create video"), [role="menuitemcheckbox"]:has-text("Create video")';
 const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
 const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Thinking")';
 const CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Web search")';
@@ -444,9 +444,9 @@ const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
 const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
 const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
 const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
-const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"]';
-const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"]';
-const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Download video"]';
+const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
+const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"], toolbox-drawer button.toolbox-drawer-item-deselect-button[aria-label*="Create video" i]';
+const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'generated-video button[aria-label="Download video"], video-player button.download-button[aria-label*="Download" i], button[aria-label="Download video"]';
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
