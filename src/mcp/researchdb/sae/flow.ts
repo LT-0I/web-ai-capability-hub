@@ -6,7 +6,7 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
+import { artifactClickOnPage, waitForArtifactPageReady } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type SaeFacet = "Technical Paper" | "Aerospace" | "Automotive" | "Journal Article" | "Magazine Article" | "Standard" | string;
@@ -28,6 +28,7 @@ export class WebAiToolError extends Error {
 }
 
 const SAE_ORIGIN = "https://saemobilus.sae.org";
+const SAE_SEARCH_INPUT = "input[matinput][type=search], input[type=search]";
 const VALID_FORMATS = new Set(["ris", "bibtex", "endnote", "metadata"]);
 const FORMAT_MENU: Record<SaeExportFormat, string> = { ris: "RefMan", bibtex: "BibTex", endnote: "EndNote", metadata: "Export Metadata" };
 const FORMAT_PATTERN: Record<SaeExportFormat, string | undefined> = { ris: "*.ris", bibtex: "*.bib", endnote: undefined, metadata: undefined };
@@ -67,8 +68,12 @@ export function buildSaeFilterUrl(args: SaeFilterArgs): string {
 }
 
 export function parseSaeResultCount(text: string): number {
-  const raw = /Items\s*\(([\d,]+)\)/i.exec(text || "")?.[1];
-  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus result count node was not found", { probe: "Items (N)" });
+  const body = text || "";
+  const raw =
+    /Items\s*\(([\d,]+)\)/i.exec(body)?.[1] ||
+    /Items\s*:\s*([\d,]+)\s+results\b/i.exec(body)?.[1] ||
+    /\b([\d,]+)\s+results\b/i.exec(body)?.[1];
+  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus result count node was not found", { probe: "Items (N) or Items: N results" });
   return Number(raw.replace(/,/g, ""));
 }
 
@@ -82,6 +87,20 @@ function authorsFromText(text: string): string[] {
 
 export function parseSaeItemsFromHtml(html: string): SaeItem[] {
   const body = String(html || "");
+  const cards = [...body.matchAll(/<mobi-publication-document-card\b[^>]*>([\s\S]*?)<\/mobi-publication-document-card>/gi)].map((m) => m[1]);
+  const currentDomItems = cards.map((block) => {
+    const title = cleanText(/<mat-card-title\b[^>]*>([\s\S]*?)<\/mat-card-title>/i.exec(block)?.[1] || "").replace(/^(?:lock|verified_user)\s+/i, "");
+    const authorsHtml = /<mat-card-content\b[^>]*si-card__c--authors[^>]*>([\s\S]*?)<\/mat-card-content>/i.exec(block)?.[1] || "";
+    const authors = [...authorsHtml.matchAll(/<span\b[^>]*>([^<]+)<\/span>/gi)]
+      .map((m) => cleanText(m[1]))
+      .filter((name) => name && name !== "," && !/^,&?$/.test(name))
+      .slice(0, 12);
+    const text = cleanText(block);
+    const publication = cleanText(/data-tabtext=["']([^"']+)["']/i.exec(block)?.[1] || /aria-label=["']Browse\s+([^"']+?)\s+Content["']/i.exec(block)?.[1] || "");
+    return { title, authors, publication, year: yearFromText(text), doi: doiFromText(text) };
+  }).filter((item) => item.title && !/^Results$/i.test(item.title)).slice(0, 100);
+  if (currentDomItems.length) return currentDomItems;
+
   const blocks = [...body.matchAll(/<[^>]+class=["'][^"']*(?:result|search|item|card)[^"']*["'][^>]*>([\s\S]*?)(?=<[^>]+class=["'][^"']*(?:result|search|item|card)[^"']*["']|$)/gi)].map((m) => m[1]);
   return blocks.map((block) => {
     const title = cleanText(/<a[^>]*>([\s\S]*?)<\/a>/i.exec(block)?.[1] || /<h\d[^>]*>([\s\S]*?)<\/h\d>/i.exec(block)?.[1] || "");
@@ -127,7 +146,7 @@ async function allocateSaeHomeSession(profile: string, tabId: string, cdpPort?: 
   }
 }
 
-async function withAllocatedSaePage<T>(profile: string, tabId: string, cdpPort: number | undefined, fn: (page: any) => Promise<T>, keepTab = false): Promise<T> {
+async function withAllocatedSaePage<T>(profile: string, tabId: string, cdpPort: number | undefined, fn: (page: any, browser: any) => Promise<T>, keepTab = false): Promise<T> {
   await freeSession(tabId).catch(() => undefined);
   try {
     await allocateSaeHomeSession(profile, tabId, cdpPort);
@@ -139,7 +158,7 @@ async function withAllocatedSaePage<T>(profile: string, tabId: string, cdpPort: 
   const browser = await launcher.connectOverCdp(status);
   try {
     const page = await activeManagedPage(browser, undefined, tabId);
-    return await fn(page);
+    return await fn(page, browser);
   } finally {
     await browser.close?.().catch(() => undefined);
     if (!keepTab) await freeSession(tabId).catch(() => undefined);
@@ -150,39 +169,53 @@ async function dismissOneTrust(page: any): Promise<void> {
   await page.locator("#onetrust-accept-btn-handler").click({ timeout: 2500 }).catch(() => undefined);
 }
 
-async function ensureSaeSearchRoute(page: any): Promise<void> {
+function normalizeSaeQuery(value: string): string { return String(value || "").replace(/\s+/g, " ").trim().toLowerCase(); }
+function tryParseSaeResultCount(text: string): number | undefined {
+  try { return parseSaeResultCount(text); } catch { return undefined; }
+}
+
+async function saeQuerySettled(page: any, query?: string): Promise<boolean> {
+  if (!query) return true;
+  const expected = normalizeSaeQuery(query);
+  const inputValue = normalizeSaeQuery(await page.locator(SAE_SEARCH_INPUT).first().inputValue({ timeout: 1000 }).catch(() => ""));
+  if (inputValue === expected) return true;
+  const title = normalizeSaeQuery(await page.title().catch(() => ""));
+  return title.includes(expected);
+}
+
+async function ensureSaeSearchRoute(page: any, query?: string): Promise<void> {
   await dismissOneTrust(page);
-  if (!/\/search(?:$|[#?])/.test(page.url?.() || "")) {
-    await page.locator("#searchNavBtn").click({ timeout: 15000 });
+  if (query) {
+    await page.goto(buildSaeSearchUrl({ query }), { waitUntil: "domcontentloaded", timeout: 45000 });
+  } else if (!/\/search(?:$|[#?])/.test(page.url?.() || "")) {
+    const searchNav = page.locator("#searchNavBtn");
+    if (await searchNav.count().catch(() => 0)) await searchNav.click({ timeout: 15000 });
+    else await page.goto(`${SAE_ORIGIN}/search`, { waitUntil: "domcontentloaded", timeout: 45000 });
   }
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 30; i++) {
     await dismissOneTrust(page);
     const url = page.url?.() || "";
-    const searchInputs = await page.locator("input[matinput][type=search]").count().catch(() => 0);
+    const searchInputs = await page.locator(SAE_SEARCH_INPUT).count().catch(() => 0);
     const text = await page.locator("body").innerText({ timeout: 5000 }).catch(() => "");
-    if (/\/search(?:$|[#?])/.test(url) && searchInputs > 0 && /Items\s*\([\d,]+\)/.test(text)) return;
+    if (/\/search(?:$|[#?])/.test(url) && searchInputs > 0 && tryParseSaeResultCount(text) !== undefined && await saeQuerySettled(page, query)) return;
     await sleep(1000);
   }
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus SPA search route did not hydrate", { url: page.url?.() || "" });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus SPA search route did not hydrate", { url: page.url?.() || "", query });
 }
 
 async function runSaeQuery(page: any, query: string): Promise<void> {
-  await ensureSaeSearchRoute(page);
-  const input = page.locator("input[matinput][type=search]").first();
-  await input.fill("");
-  await input.type(requireQuery(query));
-  await input.press("Enter");
+  await ensureSaeSearchRoute(page, requireQuery(query));
 }
 
-async function readSaeResults(page: any, expectedUrl?: RegExp, previousCount?: number): Promise<{ visibleText: string; title: string; html: string; url: string; resultCount: number; items: SaeItem[] }> {
+async function readSaeResults(page: any, expectedUrl?: RegExp, previousCount?: number, expectedQuery?: string): Promise<{ visibleText: string; title: string; html: string; url: string; resultCount: number; items: SaeItem[] }> {
   let stable: any;
   let lastError: unknown;
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 30; i++) {
     try {
       const visibleText = await page.locator("body").innerText({ timeout: 10000 });
       const resultCount = parseSaeResultCount(visibleText);
       const url = page.url?.() || "";
-      if ((!expectedUrl || expectedUrl.test(url)) && (previousCount === undefined || resultCount !== previousCount)) {
+      if ((!expectedUrl || expectedUrl.test(url)) && (previousCount === undefined || resultCount !== previousCount) && await saeQuerySettled(page, expectedQuery)) {
         const title = await page.title().catch(() => "");
         const html = await page.content().catch(() => "");
         const items = parseSaeItemsFromHtml(html);
@@ -217,7 +250,7 @@ export async function researchSaeSearch(args: SaeSearchArgs): Promise<{ result_c
   const tabId = args.tab_id || `research-sae-search-${Date.now()}`;
   const page = await withAllocatedSaePage(profile, tabId, args.cdp_port, async (p) => {
     await runSaeQuery(p, args.query);
-    return readSaeResults(p, /#q=/);
+    return readSaeResults(p, /#q=/, undefined, args.query);
   });
   return { result_count: page.resultCount, items: page.items, query_url };
 }
@@ -228,7 +261,7 @@ export async function researchSaeFilter(args: SaeFilterArgs): Promise<{ result_c
   const tabId = args.tab_id || `research-sae-filter-${Date.now()}`;
   const page = await withAllocatedSaePage(profile, tabId, args.cdp_port, async (p) => {
     await runSaeQuery(p, args.query);
-    const base = await readSaeResults(p, /#q=/);
+    const base = await readSaeResults(p, /#q=/, undefined, args.query);
     await applySaeFacet(p, requireFacet(args.facet), base.resultCount);
     return readSaeResults(p, /sub_group=/);
   });
@@ -255,10 +288,10 @@ export async function researchSaeExport(args: SaeExportArgs): Promise<{ artifact
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
   const tabId = args.tab_id || `research-sae-export-${Date.now()}`;
-  return await withAllocatedSaePage(profile, tabId, args.cdp_port, async (page) => {
+  return await withAllocatedSaePage(profile, tabId, args.cdp_port, async (page, browser) => {
     try {
       await runSaeQuery(page, args.query);
-      let results = await readSaeResults(page, /#q=/);
+      let results = await readSaeResults(page, /#q=/, undefined, args.query);
       if (args.facet) {
         await applySaeFacet(page, requireFacet(args.facet), results.resultCount);
         results = await readSaeResults(page, /sub_group=/);
@@ -269,9 +302,8 @@ export async function researchSaeExport(args: SaeExportArgs): Promise<{ artifact
         if (/Selected:\s*\d+\//i.test(text) && /Export/i.test(text)) break;
         await sleep(1000);
       }
-      const clicked = await runArtifactClick({
+      const artifactOptions = {
         profile,
-        tabUrlContains: "saemobilus.sae.org/search",
         buttonSelector: 'button[aria-label="Export"]',
         followUpTextRegex: FORMAT_MENU[format],
         downloadDir,
@@ -280,7 +312,9 @@ export async function researchSaeExport(args: SaeExportArgs): Promise<{ artifact
         frameMinCount: 0,
         filenamePattern: FORMAT_PATTERN[format],
         verifyMinBytes: 100
-      });
+      };
+      const pageReadyEvidence = await waitForArtifactPageReady(page, artifactOptions);
+      const clicked = await artifactClickOnPage(browser, page, { ...artifactOptions, pageReadyEvidence, maxViewportY: 1000 });
       validateSaeArtifact(clicked.path, format);
       return { artifact_path: clicked.path, bytes: fs.statSync(clicked.path).size, sha256: sha256File(clicked.path), format, query: requireQuery(args.query), result_count: results.resultCount };
     } catch (error: any) {

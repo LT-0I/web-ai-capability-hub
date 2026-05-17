@@ -90,7 +90,7 @@ export function buildPubscholarAdvancedQueryLabel(args: PubscholarSearchArgs): s
 }
 
 export function parsePubscholarResultCountParts(text: string): { selected: number; total: number } {
-  const normalized = String(text || "").replace(/,/g, "").replace(/\s+/g, " ").trim();
+  const normalized = String(text || "").replace(/[,，]/g, "").replace(/\s+/g, " ").trim();
   const pair = /(\d+)\s*\/\s*(\d+)\s*条/.exec(normalized);
   if (pair) return { selected: Number(pair[1]), total: Number(pair[2]) };
   const total = /(\d+)\s*条/.exec(normalized);
@@ -215,21 +215,31 @@ async function fillAdvancedSearch(page: any, args: PubscholarSearchArgs): Promis
 async function waitForPubscholarResults(page: any, expectedBreadcrumb?: string): Promise<{ countText: string; breadcrumb: string; itemCount: number; url: string }> {
   const started = Date.now();
   let lastEvidence: Record<string, unknown> = {};
+  let sawCountNode = false;
   while (Date.now() - started < 45000) {
     const evidence = await page.evaluate(() => ({
       url: location.href,
+      countNodePresent: Boolean(document.querySelector(".AppFilterMeta.MetaCounting")),
       countText: (document.querySelector(".AppFilterMeta.MetaCounting") as HTMLElement | null)?.innerText || "",
       breadcrumb: (document.querySelector(".AppSearchRefineItems") as HTMLElement | null)?.innerText || Array.from(document.querySelectorAll(".AppSearchRefineItem")).map((el: any) => el.innerText || el.textContent || "").join(" "),
       itemCount: document.querySelectorAll(".List .List__item").length
     })).catch((error: any) => ({ error: error?.message || String(error) }));
     lastEvidence = evidence as Record<string, unknown>;
+    sawCountNode = sawCountNode || Boolean((evidence as any).countNodePresent);
+    const url = String((evidence as any).url || "");
     const countText = String((evidence as any).countText || "");
     const breadcrumb = String((evidence as any).breadcrumb || "").replace(/\s+/g, " ").trim();
     const itemCount = Number((evidence as any).itemCount || 0);
-    if (/\/explore/.test(String((evidence as any).url || "")) && /\d+\s*\/\s*\d+\s*条/.test(countText) && itemCount > 0 && (!expectedBreadcrumb || breadcrumb.includes(expectedBreadcrumb.replace(/^高级检索:\s*/, "")))) {
-      return { countText, breadcrumb, itemCount, url: String((evidence as any).url || "") };
+    let countParts: { selected: number; total: number } | undefined;
+    try { countParts = parsePubscholarResultCountParts(countText); } catch {}
+    const isPubscholarPage = /^https?:\/\/(?:www\.)?pubscholar\.cn(?:\/|$)/i.test(url);
+    if (isPubscholarPage && countParts && countParts.total > 0 && itemCount > 0 && (!expectedBreadcrumb || breadcrumb.includes(expectedBreadcrumb.replace(/^高级检索:\s*/, "")))) {
+      return { countText, breadcrumb, itemCount, url };
     }
     await sleep(1000);
+  }
+  if (!sawCountNode) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "PubScholar result count node was not found", { ...lastEvidence, probe: ".AppFilterMeta.MetaCounting" });
   }
   throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "PubScholar results did not settle", lastEvidence);
 }
