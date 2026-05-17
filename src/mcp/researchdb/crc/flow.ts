@@ -253,7 +253,9 @@ async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultC
   if (yearFrom !== undefined || yearTo !== undefined) {
     const apply = page.locator("button.applyPublicationRange").first();
     if (!(await apply.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks year-range apply button was not found", { selector: "button.applyPublicationRange" });
-    await apply.click({ timeout: 10000 });
+    await apply.click({ timeout: 10000 }).catch((error: any) => {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks year-range apply button was not clickable", { selector: "button.applyPublicationRange", cause: error?.message || String(error) });
+    });
   }
   if (!facet && yearFrom === undefined && yearTo === undefined) await clickMaterialCheckbox(page, ACCESS_SELECTOR.open_access);
   await waitForCountDelta(page, before.resultCount);

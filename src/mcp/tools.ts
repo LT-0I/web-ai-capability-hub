@@ -1048,7 +1048,14 @@ async function waitForGeminiSendReadyAfterUpload(page: any): Promise<void> {
 async function uploadFilesInExistingPage(service: WebAiService, page: any, resolved: string[]): Promise<void> {
   if (service !== "gemini") {
     const uploadSelector = service === "chatgpt" ? "input#upload-files" : "#chat-input-file-upload-onpage";
-    await page.setInputFiles(uploadSelector, resolved, { timeout: 10000 });
+    try {
+      await page.setInputFiles(uploadSelector, resolved, { timeout: 10000 });
+    } catch (error: any) {
+      if (service === "claude") {
+        throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude upload input was not found before file attach", { selector: uploadSelector, cause: error?.message || String(error) });
+      }
+      throw error;
+    }
     return;
   }
   // The Gemini composer (and its upload-trigger button) mounts AFTER

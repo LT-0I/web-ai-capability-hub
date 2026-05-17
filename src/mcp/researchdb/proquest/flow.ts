@@ -127,6 +127,40 @@ async function dismissProquestOverlays(page: any): Promise<void> {
   }
 }
 
+async function readProquestBlockingLayer(page: any, selector: string): Promise<Record<string, unknown>> {
+  return await page.evaluate((sel: string) => {
+    const visible = (el: Element | null): boolean => {
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity || "1") > 0 && rect.width > 0 && rect.height > 0;
+    };
+    const target = document.querySelector(sel) as HTMLElement | null;
+    const rect = target?.getBoundingClientRect();
+    const top = rect ? document.elementFromPoint(Math.min(Math.max(rect.left + rect.width / 2, 0), Math.max(window.innerWidth - 1, 0)), Math.min(Math.max(rect.top + rect.height / 2, 0), Math.max(window.innerHeight - 1, 0))) as HTMLElement | null : null;
+    const candidates = Array.from(document.querySelectorAll('[role="dialog"], .modal, .modal-backdrop, .ui-dialog, [class*="modal"], [id*="modal"], [class*="session"], [id*="session"]')).filter(visible) as HTMLElement[];
+    const overlay = candidates.find((el) => /restore|session|login|sign|auth|modal/i.test(`${el.id} ${el.className} ${el.innerText}`)) || candidates[0] || null;
+    return {
+      selector: sel,
+      targetPresent: Boolean(target),
+      targetVisible: visible(target),
+      topElement: top ? { tag: top.tagName, id: top.id || "", className: String(top.className || "").slice(0, 200), text: (top.innerText || "").slice(0, 300) } : null,
+      overlayText: (overlay?.innerText || "").slice(0, 1000),
+      overlayId: overlay?.id || "",
+      overlayClass: overlay ? String(overlay.className || "").slice(0, 200) : "",
+      bodyText: (document.body?.innerText || "").slice(0, 1500)
+    };
+  }, selector).catch((error: any) => ({ selector, cause: error?.message || String(error) }));
+}
+
+function classifyProquestBlockingLayer(evidence: Record<string, unknown>): string {
+  const focusedText = `${evidence.overlayText || ""} ${evidence.overlayId || ""} ${evidence.overlayClass || ""} ${JSON.stringify(evidence.topElement || "")}`;
+  const bodyText = String(evidence.bodyText || "");
+  if (/restore|session|logged\s*out|sign\s*in|login|authenticat|重新登录|登录超时|请先?登录/i.test(focusedText) || /restore.{0,80}session|session.{0,80}(?:expired|timeout|restore)/i.test(bodyText)) return ConsumerErrorCodes.LOGIN_REQUIRED;
+  if (/captcha|verify\s+you|human|access\s+denied|blocked/i.test(`${focusedText} ${bodyText}`)) return ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED;
+  return ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+}
+
 async function waitForResults(page: any, previousUrl?: string): Promise<void> {
   const started = Date.now();
   let lastEvidence: Record<string, unknown> = {};
@@ -176,7 +210,12 @@ async function applyProquestFilters(page: any, args: ProquestFilterArgs, current
     if (!enabled) continue;
     const checkbox = page.locator(selector).first();
     if (!(await checkbox.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest refine checkbox was not found", { selector });
-    await checkbox.click({ timeout: 10000 });
+    await checkbox.click({ timeout: 10000 }).catch(async (error: any) => {
+      const blocker = await readProquestBlockingLayer(page, selector);
+      const code = classifyProquestBlockingLayer(blocker);
+      const message = code === ConsumerErrorCodes.ELEMENT_NOT_FOUND ? "ProQuest refine checkbox was not clickable" : "ProQuest session/auth overlay blocked refine checkbox";
+      throw new WebAiToolError(code, message, { selector, ...blocker, cause: error?.message || String(error) });
+    });
     const started = Date.now();
     let lastEvidence: Record<string, unknown> = {};
     while (Date.now() - started < 45000) {

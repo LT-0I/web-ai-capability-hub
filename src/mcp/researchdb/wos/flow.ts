@@ -30,6 +30,9 @@ export class WebAiToolError extends Error {
 
 const WOS_ORIGIN = "https://www.webofscience.com";
 const ADVANCED_PATH = "/wos/woscc/advanced-search";
+const WOS_RUN_SEARCH_SELECTOR = 'button[data-ta="run-search"]';
+const WOS_CONSENT_OVERLAY_SELECTORS = ["#onetrust-banner-sdk", "#onetrust-consent-sdk", ".ot-sdk-container"];
+const WOS_CONSENT_CONTROL_SELECTORS = ["#onetrust-accept-btn-handler", "#onetrust-reject-all-handler", ".ot-pc-refuse-all-handler"];
 const VALID_FORMATS = new Set(["bibtex", "ris", "tab", "plain", "excel", "endnote"]);
 const FORMAT_SELECTORS: Record<WosExportFormat, string> = {
   bibtex: "#exportToBibtexButton",
@@ -114,6 +117,62 @@ export function parseWosItemsFromVisibleText(text: string): WosItem[] {
   }).filter((item) => item.title || item.doi);
 }
 
+async function readWosConsentEvidence(page: any): Promise<Record<string, unknown>> {
+  return await page.evaluate(({ overlays, controls }: { overlays: string[]; controls: string[] }) => {
+    const visible = (el: Element | null): boolean => {
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity || "1") > 0 && rect.width > 0 && rect.height > 0;
+    };
+    const overlay = overlays.map((selector) => ({ selector, el: document.querySelector(selector) as HTMLElement | null })).find((entry) => visible(entry.el));
+    return {
+      consentOverlayPresent: Boolean(overlay),
+      consentOverlaySelector: overlay?.selector || "",
+      consentOverlayText: (overlay?.el?.innerText || "").slice(0, 1000),
+      consentControlsPresent: controls.filter((selector) => visible(document.querySelector(selector)))
+    };
+  }, { overlays: WOS_CONSENT_OVERLAY_SELECTORS, controls: WOS_CONSENT_CONTROL_SELECTORS }).catch((error: any) => ({ cause: error?.message || String(error) }));
+}
+
+async function dismissWosConsentIfPresent(page: any): Promise<boolean> {
+  for (const selector of WOS_CONSENT_CONTROL_SELECTORS) {
+    const control = page.locator(selector).first();
+    if (!(await control.count().catch(() => 0))) continue;
+    if (await control.click({ timeout: 3000 }).then(() => true).catch(() => false)) {
+      await sleep(1000);
+      return true;
+    }
+  }
+  return false;
+}
+
+async function throwWosClickFailure(page: any, selector: string, description: string, error: any, consentDismissed: boolean): Promise<never> {
+  const targetCount = await page.locator(selector).count().catch(() => 0);
+  const consent = await readWosConsentEvidence(page);
+  const code = targetCount ? ConsumerErrorCodes.COMMAND_TIMEOUT : ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+  throw new WebAiToolError(code, `${description} was blocked or unavailable`, { selector, targetCount, consentDismissed, ...consent, cause: error?.message || String(error) });
+}
+
+async function clickWosControl(page: any, selector: string, description: string, options: Record<string, unknown> = {}): Promise<void> {
+  let consentDismissed = await dismissWosConsentIfPresent(page);
+  const target = page.locator(selector).first();
+  if (!(await target.count().catch(() => 0))) {
+    const consent = await readWosConsentEvidence(page);
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `${description} was not found`, { selector, consentDismissed, ...consent });
+  }
+  try {
+    await target.click({ timeout: 10000, ...options });
+  } catch (error: any) {
+    consentDismissed = (await dismissWosConsentIfPresent(page)) || consentDismissed;
+    try {
+      await target.click({ timeout: 10000, ...options });
+    } catch (retryError: any) {
+      await throwWosClickFailure(page, selector, description, retryError || error, consentDismissed);
+    }
+  }
+}
+
 async function waitForWosAdvancedPage(page: any): Promise<void> {
   let lastText = "";
   for (let i = 0; i < 8; i++) {
@@ -191,11 +250,12 @@ async function withAllocatedWosPage<T>(profile: string, url: string, tabId: stri
 
 async function runWosSearch(page: any, query: string): Promise<{ resultCount: number; items: WosItem[]; queryUrl: string; title: string }> {
   await waitForWosAdvancedPage(page);
+  await dismissWosConsentIfPresent(page);
   await page.locator('button[data-ta="clear-search"]').click({ timeout: 3000 }).catch(() => undefined);
   await page.locator("#advancedSearchInputArea").fill(requireQuery(query), { timeout: 10000 });
   const value = await page.locator("#advancedSearchInputArea").inputValue({ timeout: 5000 }).catch(() => "");
   if (!value.includes(query.slice(0, Math.min(20, query.length)))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Web of Science query did not land in advanced search input", { query, value });
-  await page.locator('button[data-ta="run-search"]').click({ timeout: 10000 });
+  await clickWosControl(page, WOS_RUN_SEARCH_SELECTOR, "Web of Science run-search button");
   const settled = await readWosResultsPage(page);
   return { resultCount: settled.resultCount, items: settled.items, queryUrl: settled.url, title: settled.title };
 }
@@ -203,11 +263,12 @@ async function runWosSearch(page: any, query: string): Promise<{ resultCount: nu
 async function applyWosArticleFilter(page: any): Promise<{ resultCount: number; items: WosItem[]; refinedUrl: string; confirmTitle: string; activeRefine: string }> {
   normalizeDocumentType("Article");
   let beforeUrl = page.url?.() || "";
+  await dismissWosConsentIfPresent(page);
   const text = await page.locator("body").innerText({ timeout: 10000 }).catch(() => "");
   const match = /Article\.\s*([\d,]+)/i.exec(text);
   const selector = match ? `input[aria-label^="Article. ${match[1]}"]` : 'input[aria-label^="Article. "]';
-  await page.locator(selector).click({ timeout: 10000 });
-  await page.locator('xpath=(//button[@data-ta="refine-submit"])[3]').click({ timeout: 10000, force: true });
+  await clickWosControl(page, selector, "Web of Science Article refine checkbox");
+  await clickWosControl(page, 'xpath=(//button[@data-ta="refine-submit"])[3]', "Web of Science refine-submit button", { force: true });
   for (let i = 0; i < 8; i++) {
     const url = page.url?.() || "";
     const body = await page.locator("body").innerText({ timeout: 10000 }).catch(() => "");

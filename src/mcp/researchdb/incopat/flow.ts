@@ -103,6 +103,58 @@ export function parseIncopatItemsFromDomRows(rows: Array<{ text: string; title?:
   }).filter((item) => item.publication_number || item.title).slice(0, 100);
 }
 
+function hasIncopatTemplateTokens(value: unknown): boolean {
+  return /{{\s*[/#:>A-Za-z]/.test(String(value || ""));
+}
+
+function incopatRowsHaveTemplateTokens(rows: unknown): boolean {
+  return Array.isArray(rows) && rows.some((row: any) => hasIncopatTemplateTokens(row?.text) || hasIncopatTemplateTokens(row?.title) || hasIncopatTemplateTokens(row?.publication_number));
+}
+
+function incopatItemsHaveTemplateTokens(items: IncopatItem[]): boolean {
+  return items.some((item) => hasIncopatTemplateTokens(item.title) || hasIncopatTemplateTokens(item.publication_number) || item.applicants.some(hasIncopatTemplateTokens) || item.inventors.some(hasIncopatTemplateTokens));
+}
+
+function incopatLooksUnauthenticated(state: any): boolean {
+  const text = `${state?.url || ""} ${state?.bodyText || ""} ${String(state?.html || "").slice(0, 2000)}`;
+  return Boolean(state?.hasLogin) || /\/newLogin\b|请先?登录|重新登录|登录超时|session\s*(?:expired|timeout)|login\s+required|sign\s*in/i.test(text);
+}
+
+function incopatHasUnhydratedTemplateState(state: any): boolean {
+  const countText = String(state?.countText || "").trim();
+  const zeroTemplatePlaceholder = countText === "0" && Boolean(state?.hasEmptyPlaceholder) && (Boolean(state?.hasTemplateTokens) || incopatRowsHaveTemplateTokens(state?.rows));
+  return Boolean(state?.hasTemplateTokens) || zeroTemplatePlaceholder || incopatRowsHaveTemplateTokens(state?.rows);
+}
+
+function incopatHydrationEvidence(state: any, previousText?: string): Record<string, unknown> {
+  return {
+    selector: "#totalCount / #totalCountspan / table tbody tr / li.empty",
+    previousText,
+    countText: state?.countText || "",
+    url: state?.url || "",
+    hasLogin: Boolean(state?.hasLogin),
+    hasTemplateTokens: Boolean(state?.hasTemplateTokens) || incopatRowsHaveTemplateTokens(state?.rows),
+    hasEmptyPlaceholder: Boolean(state?.hasEmptyPlaceholder),
+    rowCount: Array.isArray(state?.rows) ? state.rows.length : 0,
+    bodyText: String(state?.bodyText || "").slice(0, 500),
+    htmlSample: String(state?.html || "").slice(0, 1000)
+  };
+}
+
+function throwIncopatHydrationError(state: any, previousText?: string): never {
+  const code = incopatLooksUnauthenticated(state) ? ConsumerErrorCodes.LOGIN_REQUIRED : ConsumerErrorCodes.MODE_UNCERTAIN;
+  throw new WebAiToolError(code, "IncoPat results did not hydrate into real patent rows/counts", incopatHydrationEvidence(state, previousText));
+}
+
+function assertHydratedIncopatResults(results: { countText: string; html: string; rows: Array<{ text: string; title?: string; publication_number?: string }>; url: string }, items: IncopatItem[]): void {
+  const state = {
+    ...results,
+    hasTemplateTokens: incopatRowsHaveTemplateTokens(results.rows),
+    hasEmptyPlaceholder: /<li\b[^>]*class=["'][^"']*\bempty\b[^"']*["']/i.test(String(results.html || ""))
+  };
+  if (incopatHasUnhydratedTemplateState(state) || incopatItemsHaveTemplateTokens(items)) throwIncopatHydrationError(state);
+}
+
 async function allocateResearchSession(profile: string, url: string, tabId: string, cdpPort?: number): Promise<void> {
   const registry = new TabRegistry(getStoragePaths().dataDir);
   const existing = await registry.get(tabId);
@@ -197,22 +249,39 @@ async function waitForCount(page: any, previousText?: string, requireDelta = fal
   for (let i = 0; i < 16; i++) {
     const state = await page.evaluate(() => {
       const countText = ((document.querySelector("#totalCount") as HTMLElement | null)?.innerText || (document.querySelector("#totalCountspan") as HTMLElement | null)?.innerText || "").trim();
+      const html = document.documentElement.outerHTML;
       const rows = Array.from(document.querySelectorAll("table tbody tr")).slice(0, 100).map((el: any) => ({
         text: (el.innerText || "").trim(),
         title: (el.querySelector('[class*="title"], [id*="title"], a:not(.pdf)')?.textContent || "").trim(),
         publication_number: (el.querySelector('a.pdf, [onclick*="downloadOnePdf"]')?.textContent || "").trim()
       }));
+      const emptyPlaceholders = Array.from(document.querySelectorAll("li.empty, tr.empty, .empty")).slice(0, 20).map((el: any) => `${el.outerHTML || ""} ${el.innerText || ""}`).join("\n");
       const breadcrumb = Array.from(document.querySelectorAll("body *")).map((el: any) => el.innerText || "").find((t: string) => /已筛选/.test(t)) || "";
-      return { countText, rows, html: document.documentElement.outerHTML, url: location.href, breadcrumb: String(breadcrumb).slice(0, 500) };
+      return {
+        countText,
+        rows,
+        html,
+        url: location.href,
+        breadcrumb: String(breadcrumb).slice(0, 500),
+        bodyText: (document.body?.innerText || "").slice(0, 2000),
+        hasLogin: !!document.querySelector("#ipLoginBtn"),
+        hasTemplateTokens: /{{\s*[/#:>A-Za-z]/.test(emptyPlaceholders) || rows.some((row: any) => /{{\s*[/#:>A-Za-z]/.test(`${row.text} ${row.title} ${row.publication_number}`)),
+        hasEmptyPlaceholder: Boolean(emptyPlaceholders)
+      };
     }).catch(() => ({ countText: "", rows: [], html: "", url: page.url?.() || "", breadcrumb: "" }));
-    lastEvidence = state;
+    lastEvidence = incopatHydrationEvidence(state, previousText);
+    if (incopatLooksUnauthenticated(state)) throwIncopatHydrationError(state, previousText);
+    if (incopatHasUnhydratedTemplateState(state)) {
+      await sleep(2000);
+      continue;
+    }
     try {
       const count = parseIncopatResultCount(state.countText);
       if (!requireDelta || state.countText !== previousText) return { count, countText: state.countText, html: state.html, rows: state.rows, url: state.url, breadcrumb: state.breadcrumb };
     } catch {}
     await sleep(2000);
   }
-  throw new WebAiToolError(requireDelta ? ConsumerErrorCodes.MODE_UNCERTAIN : ConsumerErrorCodes.COMMAND_TIMEOUT, "IncoPat result count did not reach the expected observed state", { previousText, ...lastEvidence });
+  throw new WebAiToolError(ConsumerErrorCodes.MODE_UNCERTAIN, "IncoPat result count did not reach a hydrated observed state", { previousText, ...lastEvidence });
 }
 
 async function runIncopatSearch(page: any, query: string): Promise<{ count: number; countText: string; html: string; rows: Array<{ text: string; title?: string; publication_number?: string }>; url: string; breadcrumb: string }> {
@@ -252,7 +321,9 @@ export async function researchIncopatSearch(args: IncopatSearchArgs): Promise<{ 
   return await withAllocatedIncopatPage(profile, tabId, cdpPort, async (page) => {
     const results = await runIncopatSearch(page, requireQuery(args.query));
     const items = parseIncopatItemsFromDomRows(results.rows);
-    return { result_count: results.count, items: items.length ? items : parseIncopatItemsFromHtml(results.html), query_url: buildIncopatSearchUrl(), results_url: results.url, normalized_query: buildIncopatNormalizedQuery(args.query) };
+    const parsedItems = items.length ? items : parseIncopatItemsFromHtml(results.html);
+    assertHydratedIncopatResults(results, parsedItems);
+    return { result_count: results.count, items: parsedItems, query_url: buildIncopatSearchUrl(), results_url: results.url, normalized_query: buildIncopatNormalizedQuery(args.query) };
   });
 }
 
@@ -266,7 +337,9 @@ export async function researchIncopatFilter(args: IncopatFilterArgs): Promise<{ 
     const after = await applyIncopatCountryFilter(page, country, before);
     const items = parseIncopatItemsFromDomRows(after.rows);
     const title = await page.title().catch(() => "");
-    return { result_count: after.count, items: items.length ? items : parseIncopatItemsFromHtml(after.html), refined_url: after.url, confirm_title: title, unfiltered_count: before.count, country, breadcrumb: after.breadcrumb };
+    const parsedItems = items.length ? items : parseIncopatItemsFromHtml(after.html);
+    assertHydratedIncopatResults(after, parsedItems);
+    return { result_count: after.count, items: parsedItems, refined_url: after.url, confirm_title: title, unfiltered_count: before.count, country, breadcrumb: after.breadcrumb };
   });
 }
 
