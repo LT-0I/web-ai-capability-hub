@@ -2530,11 +2530,13 @@ test("chatgpt generate-image enters image mode before typing prompt", async () =
   assert.ok(events.includes("press:Enter"), events.join("\n"));
   // Live-verified 2026-05-15 (Extended Pro account): the inline image-hover
   // toolbar has NO download button. The real download path is: click the
-  // generated image -> a full-screen [role="dialog"] (z-[120] absolute
-  // inset-0) opens whose toolbar has a direct button[aria-label="Save"].
-  // Two-step CDP artifact-click: open viewer (image) then click Save.
+  // generated image -> full-screen viewer toolbar Save, now primarily anchored
+  // via header[data-testid="fullscreen-shell-header"] with the legacy
+  // [role="dialog"] button[aria-label="Save"] selector retained as a trailing
+  // fallback for post-generation layer swap-in race-hardening (re-verified
+  // 2026-05-17, issue #2). Two-step CDP artifact-click: open viewer then Save.
   assert.equal(calls[0].buttonSelector, 'img[alt^="Generated image" i]');
-  assert.equal(calls[0].followUpSelector, '[role="dialog"] button[aria-label="Save"]');
+  assert.equal(calls[0].followUpSelector, '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]');
 });
 
 test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio wait expires", async () => {

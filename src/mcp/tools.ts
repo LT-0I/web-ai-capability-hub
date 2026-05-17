@@ -395,7 +395,7 @@ const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
 // contains a direct (no aria-haspopup) button[aria-label="Save"]. Two-step
 // CDP artifact-click: open the viewer (image), then click Save.
 const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i]';
-const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = '[role="dialog"] button[aria-label="Save"]';
+const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
 const GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR = 'xpath=//button[.//text()[contains(.,"Tools")] or @aria-label="Tools"]';
@@ -878,10 +878,27 @@ async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, b
 
 async function waitForGeneratedImageRendered(service: "chatgpt" | "gemini", page: any, timeoutMs: number): Promise<void> {
   const imageSelector = service === "chatgpt" ? CHATGPT_IMAGE_RENDERED_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
+  const budgetMs = Math.min(120000, timeoutMs || 120000);
+  const startedAt = Date.now();
   try {
-    await page.waitForSelector?.(imageSelector, { state: "visible", timeout: Math.min(120000, timeoutMs || 120000) });
+    await page.waitForSelector?.(imageSelector, { state: "visible", timeout: budgetMs });
   } catch (error: any) {
     throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} generated image toolbar did not render before timeout`, { selector: imageSelector, cause: error?.message || String(error) });
+  }
+  if (service !== "chatgpt") return;
+
+  const remainingMs = Math.max(1000, budgetMs - (Date.now() - startedAt));
+  try {
+    await page.waitForFunction?.(
+      (selector: string) => Array.from(document.querySelectorAll(selector)).some((node) => {
+        const rect = node.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      }),
+      CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR,
+      { polling: 250, timeout: remainingMs }
+    );
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} generated image did not render before timeout`, { selector: CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, cause: error?.message || String(error) });
   }
 }
 
@@ -1393,7 +1410,8 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       followUpSelector: downloadSelector,
       downloadDir: args.download_dir,
       filenamePattern: "\\.(png|jpg|jpeg|webp)$",
-      timeoutMs: args.timeout_ms || 90000
+      timeoutMs: args.timeout_ms || 90000,
+      ...(service === "chatgpt" ? { locateTimeoutMs: 15000 } : {})
     });
     return artifactClickResultToSafeOutput(result, { dimensions: null, download_filename: path.basename(result.path || "") });
   } catch (error: any) {
