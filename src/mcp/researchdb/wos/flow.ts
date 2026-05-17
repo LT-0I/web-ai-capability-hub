@@ -43,6 +43,7 @@ const FORMAT_SELECTORS: Record<WosExportFormat, string> = {
   endnote: "#exportToEnwDesktopButton"
 };
 const FORMAT_PATTERNS: Partial<Record<WosExportFormat, string>> = { bibtex: "*.bib", ris: "*.ris", tab: "*.txt", plain: "*.txt", excel: "*.xls", endnote: "*.enw" };
+const WOS_FIELD_TAG_PATTERN = /^(?:TS|TI|AU|AB|AK|SO|DO|PY|AD|AI|ALL|AN|AR|CB|CF|CI|CU|DT|ED|FG|FO|GP|IS|KP|LA|OO|OG|PMID|PS|PU|SA|SG|SU|UT|WC|ZP)\s*=/i;
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
@@ -55,6 +56,10 @@ function asPositiveInt(value: unknown, name: string): number | undefined {
 function requireQuery(query: string): string {
   if (!query || !query.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "query is required");
   return query.trim();
+}
+function normalizeWosAdvancedQuery(query: string): string {
+  const trimmed = requireQuery(query);
+  return WOS_FIELD_TAG_PATTERN.test(trimmed) ? trimmed : `TS=(${trimmed})`;
 }
 function normalizeDocumentType(documentType?: string): WosDocumentType {
   const out = documentType || "Article";
@@ -70,7 +75,7 @@ function normalizeFormat(format?: string): WosExportFormat {
 export function buildWosAdvancedSearchUrl(args: { query?: string; page_size?: number } = {}): string {
   const url = new URL(ADVANCED_PATH, WOS_ORIGIN);
   const query = args.query?.trim();
-  if (query) url.searchParams.set("query", query);
+  if (query) url.searchParams.set("query", normalizeWosAdvancedQuery(query));
   const pageSize = asPositiveInt(args.page_size, "page_size");
   if (pageSize) url.searchParams.set("pageSize", String(pageSize));
   return url.toString();
@@ -249,14 +254,25 @@ async function withAllocatedWosPage<T>(profile: string, url: string, tabId: stri
 }
 
 async function runWosSearch(page: any, query: string): Promise<{ resultCount: number; items: WosItem[]; queryUrl: string; title: string }> {
+  const normalizedQuery = normalizeWosAdvancedQuery(query);
   await waitForWosAdvancedPage(page);
   await dismissWosConsentIfPresent(page);
   await page.locator('button[data-ta="clear-search"]').click({ timeout: 3000 }).catch(() => undefined);
-  await page.locator("#advancedSearchInputArea").fill(requireQuery(query), { timeout: 10000 });
+  await page.locator("#advancedSearchInputArea").fill(normalizedQuery, { timeout: 10000 });
   const value = await page.locator("#advancedSearchInputArea").inputValue({ timeout: 5000 }).catch(() => "");
-  if (!value.includes(query.slice(0, Math.min(20, query.length)))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Web of Science query did not land in advanced search input", { query, value });
+  if (!value.includes(normalizedQuery.slice(0, Math.min(20, normalizedQuery.length)))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Web of Science query did not land in advanced search input", { query: normalizedQuery, value });
   await clickWosControl(page, WOS_RUN_SEARCH_SELECTOR, "Web of Science run-search button");
-  const settled = await readWosResultsPage(page);
+  const settled = await readWosResultsPage(page).catch(async (error: any) => {
+    const url = page.url?.() || "";
+    const title = await page.title().catch(() => "");
+    const visibleText = await page.locator("body").innerText({ timeout: 5000 }).catch(() => "");
+    const reflectedQuery = visibleText.includes(normalizedQuery) || url.includes(encodeURIComponent(normalizedQuery));
+    const stillBuilder = /advanced-search/i.test(url) || (visibleText.includes("Add to query") && visibleText.includes("Field Tag"));
+    if (stillBuilder && !reflectedQuery) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Web of Science search did not execute as an advanced field query", { query: normalizedQuery, url, title, visibleText: visibleText.slice(0, 500), cause: error?.message || String(error) });
+    }
+    throw error;
+  });
   return { resultCount: settled.resultCount, items: settled.items, queryUrl: settled.url, title: settled.title };
 }
 

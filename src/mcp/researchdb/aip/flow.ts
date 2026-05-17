@@ -129,8 +129,8 @@ export function buildAipCitationDownloadUrl(resourceId: string | number, format?
 }
 
 export function parseAipResultCount(text: string): number {
-  const raw = /1\s*-\s*\d+\s+of\s+([\d,]+)\s+Search Results/i.exec(text || "")?.[1];
-  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "AIP result count node was not found", { probe: "1-N of total Search Results" });
+  const raw = /(?:\d[\d,]*\s*[–-]\s*\d[\d,]*\s+of\s+)?([\d,]+)\s+Search\s+Results/i.exec(text || "")?.[1];
+  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "AIP result count node was not found", { probe: "total Search Results" });
   return Number(raw.replace(/,/g, ""));
 }
 
@@ -186,7 +186,7 @@ async function readAipResultsPage(page: any): Promise<{ visibleText: string; tit
       const resultCount = parseAipResultCount(visibleText);
       const items = parseAipItemsFromHtml(html);
       stable = { visibleText, title, html, url, resultCount, items: items.length ? items : parseAipItemsFromVisibleText(visibleText) };
-      if (/Search Results \| AIP Publishing/i.test(title) && resultCount > 0) break;
+      if (/Search Results \| AIP Publishing/i.test(title) && Number.isFinite(resultCount) && resultCount >= 0) break;
     } catch (error) { lastError = error; }
     await sleep(4000);
   }

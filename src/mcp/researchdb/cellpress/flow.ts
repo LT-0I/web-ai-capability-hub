@@ -167,8 +167,13 @@ async function readCellpressPage(page: any): Promise<{ visibleText: string; titl
   let stable: any;
   let lastCount = -1;
   let lastError: unknown;
-  for (let i = 0; i < 5; i++) {
+  const hydrationBackoffs = [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5000];
+  for (let i = 0; i < hydrationBackoffs.length; i++) {
     try {
+      await page.waitForFunction(
+        () => /Search Results\s+[\d,]+\s+results/i.test(document.body.innerText),
+        { timeout: 25000 },
+      );
       const visibleText = await page.locator("body").innerText({ timeout: 15000 });
       const title = await page.title().catch(() => "");
       const html = await page.content().catch(() => "");
@@ -178,7 +183,7 @@ async function readCellpressPage(page: any): Promise<{ visibleText: string; titl
       if (resultCount === lastCount) break;
       lastCount = resultCount;
     } catch (error) { lastError = error; }
-    await sleep(3000);
+    await sleep(hydrationBackoffs[i]);
   }
   if (!stable) {
     if (lastError instanceof WebAiToolError) throw lastError;
@@ -199,6 +204,7 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
     const page = await context.newPage();
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 }).catch(() => undefined);
     await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    await page.waitForLoadState?.("networkidle", { timeout: 8000 }).catch(() => undefined);
     const pageId = await requireCdpPageId(page);
     await registry.register({ tabId, pageId, url: page.url?.() || url, profile, allocatedAt: new Date().toISOString(), status: "active" });
   } finally {
@@ -275,14 +281,15 @@ export async function researchCellpressExport(args: CellpressExportArgs): Promis
   const citationUrl = buildCellpressCitationUrl(pii);
   return await withAllocatedCellpressPage(profile, citationUrl, tabId, args.cdp_port || DEFAULT_CDP_PORT, async (page) => {
     try {
-      let ready = false;
-      for (let i = 0; i < 5; i++) {
-        const hasForm = await page.locator('form[action="/action/downloadCitationSecure"], form[action$="/action/downloadCitationSecure"]').count().catch(() => 0);
-        const text = await page.locator("body").innerText({ timeout: 10000 }).catch(() => "");
-        if (hasForm && /RIS format|Export citations/i.test(text)) { ready = true; break; }
-        await sleep(3000);
+      try {
+        await page.waitForSelector('form[action="/action/downloadCitationSecure"], form[action$="/action/downloadCitationSecure"]', { timeout: 25000 });
+        await page.waitForFunction(
+          () => /RIS format|Export citations/i.test(document.body.innerText),
+          { timeout: 25000 },
+        );
+      } catch {
+        throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Cell Press citation export form did not hydrate", { selector: 'form[action="/action/downloadCitationSecure"]' });
       }
-      if (!ready) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Cell Press citation export form did not hydrate", { selector: 'form[action="/action/downloadCitationSecure"]' });
       const resolved = await resolveCellpressDownloadUrl(page, pii);
       const response = await page.request.get(resolved.url, { timeout: 60000 });
       if (!response.ok?.()) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Cell Press downloadCitationSecure returned a non-OK status", { status: response.status?.(), source_url: resolved.url });

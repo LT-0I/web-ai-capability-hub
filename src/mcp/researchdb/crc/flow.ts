@@ -221,18 +221,22 @@ async function clickMaterialCheckbox(page: any, inputSelector: string): Promise<
   });
 }
 async function fillAngularNumber(page: any, selector: string, value: number): Promise<void> {
-  const exists = await page.locator(selector).count().catch(() => 0);
+  const input = page.locator(selector).first();
+  const exists = await input.count().catch(() => 0);
   if (!exists) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks publication-year input was not found", { selector });
-  await page.evaluate(({ selector, value }: { selector: string; value: number }) => {
-    const input = document.querySelector(selector) as HTMLInputElement | null;
-    if (!input) throw new Error(`input not found: ${selector}`);
-    input.focus();
-    input.value = String(value);
-    input.dispatchEvent(new Event("input", { bubbles: true }));
-    input.dispatchEvent(new Event("change", { bubbles: true }));
-    input.blur();
-    input.dispatchEvent(new FocusEvent("blur", { bubbles: true }));
-  }, { selector, value });
+  await input.focus({ timeout: 10000 });
+  await input.evaluate((element: HTMLInputElement) => element.select());
+  await page.keyboard.press("Backspace");
+  await input.pressSequentially(String(value), { delay: 20 });
+  await input.evaluate((element: HTMLInputElement) => element.blur());
+}
+async function waitForAngularNumberValue(page: any, selector: string, value: number): Promise<void> {
+  const expected = String(value);
+  await page.waitForFunction(
+    ({ selector, expected }: { selector: string; expected: string }) => (document.querySelector(selector) as HTMLInputElement | null)?.value === expected,
+    { selector, expected },
+    { timeout: 5000 }
+  ).catch(() => {});
 }
 async function waitForCountDelta(page: any, before: number): Promise<{ after: number; text: string }> {
   const started = Date.now(); let lastText = ""; let lastCount = before;
@@ -251,6 +255,8 @@ async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultC
   if (yearFrom !== undefined) await fillAngularNumber(page, "#Choose", yearFrom);
   if (yearTo !== undefined) await fillAngularNumber(page, "#ChooseYear", yearTo);
   if (yearFrom !== undefined || yearTo !== undefined) {
+    if (yearFrom !== undefined) await waitForAngularNumberValue(page, "#Choose", yearFrom);
+    if (yearTo !== undefined) await waitForAngularNumberValue(page, "#ChooseYear", yearTo);
     const apply = page.locator("button.applyPublicationRange").first();
     if (!(await apply.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks year-range apply button was not found", { selector: "button.applyPublicationRange" });
     await apply.click({ timeout: 10000 }).catch((error: any) => {

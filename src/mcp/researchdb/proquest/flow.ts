@@ -210,6 +210,7 @@ async function applyProquestFilters(page: any, args: ProquestFilterArgs, current
     if (!enabled) continue;
     const checkbox = page.locator(selector).first();
     if (!(await checkbox.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest refine checkbox was not found", { selector });
+    const previousCount = current.resultCount;
     await checkbox.click({ timeout: 10000 }).catch(async (error: any) => {
       const blocker = await readProquestBlockingLayer(page, selector);
       const code = classifyProquestBlockingLayer(blocker);
@@ -218,17 +219,32 @@ async function applyProquestFilters(page: any, args: ProquestFilterArgs, current
     });
     const started = Date.now();
     let lastEvidence: Record<string, unknown> = {};
+    let lastDecrementedCount: number | undefined;
     while (Date.now() - started < 45000) {
       const url = page.url?.() || "";
       const countText = await page.locator("div.resultsHeaderBarItem").first().innerText({ timeout: 1500 }).catch(() => "");
       let count: number | undefined;
       try { count = parseProquestResultCount(countText); } catch {}
-      lastEvidence = { url, countText, previousUrl: current.url, previousCount: current.resultCount };
-      if (url !== current.url && count !== undefined && count <= current.resultCount) return;
+      const decremented = count !== undefined && count < previousCount;
+      lastEvidence = { url, countText, count, previousUrl: current.url, previousCount, urlChanged: url !== current.url, lastDecrementedCount };
+      if (decremented && count === lastDecrementedCount) return;
+      lastDecrementedCount = decremented ? count : undefined;
       await sleep(1500);
     }
-    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest refine did not produce the verified URL/count change", lastEvidence);
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest refine did not produce the verified settled count decrement", lastEvidence);
   }
+}
+
+async function waitForProquestSaveToolbarEnabled(save: any, timeoutMs = 15000): Promise<{ enabled: boolean; className: string }> {
+  const started = Date.now();
+  let className = "";
+  while (Date.now() - started < timeoutMs) {
+    className = await save.getAttribute("class").catch(() => "") || "";
+    if (!/\bdisabled\b/.test(className)) return { enabled: true, className };
+    await sleep(500);
+  }
+  className = await save.getAttribute("class").catch(() => "") || className;
+  return { enabled: !/\bdisabled\b/.test(className), className };
 }
 
 export async function researchProquestSearch(args: ProquestSearchArgs): Promise<{ result_count: number; items: ProquestItem[]; query_url: string; results_url: string; title: string }> {
@@ -275,13 +291,14 @@ export async function researchProquestExport(args: ProquestExportArgs): Promise<
       await dismissProquestOverlays(page);
       const save = page.locator("#allSaveOptionsLink").first();
       if (!(await save.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest save/export menu was not found", { selector: "#allSaveOptionsLink" });
-      const saveClass = await save.getAttribute("class").catch(() => "");
-      if (/\bdisabled\b/.test(saveClass || "")) {
+      const firstEnable = await waitForProquestSaveToolbarEnabled(save);
+      if (!firstEnable.enabled) {
         const allCheckbox = page.locator("#mlcbAll").first();
         if (!(await allCheckbox.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest selected-item toolbar did not enable after selecting a result", { selector: "#mlcb1" });
         await allCheckbox.click({ timeout: 10000 });
       }
-      if (/\bdisabled\b/.test((await save.getAttribute("class").catch(() => "")) || "")) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest selected-item toolbar stayed disabled", { selector: "#allSaveOptionsLink" });
+      const finalEnable = firstEnable.enabled ? firstEnable : await waitForProquestSaveToolbarEnabled(save);
+      if (!finalEnable.enabled) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest selected-item toolbar stayed disabled", { selector: "#allSaveOptionsLink", className: finalEnable.className });
       await save.click({ timeout: 10000 });
       await page.locator('a.saveExportLink[href*="ProEndRefMgr"]').first().waitFor({ state: "visible", timeout: 15000 }).catch((error: any) => { throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest RIS export link was not found", { selector: 'a.saveExportLink[href*="ProEndRefMgr"]', cause: error?.message || String(error) }); });
       await runArtifactClick({ profile, tabUrlContains: "proquest.com", buttonSelector: 'a.saveExportLink[href*="ProEndRefMgr"]', downloadDir, timeoutMs: 20000, locateTimeoutMs: 20000, frameMinCount: 0 }).catch(() => undefined);

@@ -95,6 +95,10 @@ function resourceIdFromArticleUrl(url: string): string {
   return match[1];
 }
 function journalPrefixFromArticleUrl(url: string): string | undefined { return /^https?:\/\/[^/]+\/([^/]+)\//i.exec(url || "")?.[1] || /^\/([^/]+)\//.exec(url || "")?.[1]; }
+function isCloudflareInterstitial(title: string, html: string, visibleText = ""): boolean {
+  const haystack = `${title || ""}\n${visibleText || ""}\n${html || ""}`;
+  return /(?:Just a moment|Attention Required|cf-challenge|cf-browser-verification|cf-turnstile|challenge-platform|cloudflare)/i.test(haystack);
+}
 
 export function buildRoyalSocSearchUrl(args: RoyalSocSearchArgs): string {
   const url = new URL("/search-results", ROYALSOC_ORIGIN);
@@ -179,6 +183,10 @@ async function readRoyalSocResultsPage(page: any): Promise<{ title: string; html
         const visibleText = document.body?.innerText || "";
         return { html, visibleText, title: document.title, url: location.href, itemCount: itemNodes.length, firstChildClass };
       });
+      if (isCloudflareInterstitial(observed.title, observed.html, observed.visibleText)) {
+        lastError = new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Royal Society returned a Cloudflare managed challenge instead of article results", { url: observed.url, title: observed.title });
+        break;
+      }
       const items = parseRoyalSocItemsFromHtml(observed.html);
       const resultCount = parseRoyalSocDerivedResultCount(observed.html) || items.length;
       stable = { title: observed.title, html: observed.html, url: observed.url, resultCount, items: items.length ? items : parseRoyalSocItemsFromVisibleText(observed.visibleText), firstChildClass: observed.firstChildClass };
@@ -234,10 +242,52 @@ async function withAllocatedRoyalSocPage<T>(profile: string, url: string, tabId:
   }
 }
 
-async function fetchRoyalSocCitationViaManagedPage(page: any, sourceUrl: string): Promise<Buffer> {
-  const response = await page.request.get(sourceUrl, { timeout: 60000 });
-  if (!response.ok?.()) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Royal Society citation download returned a non-OK status", { status: response.status?.(), source_url: sourceUrl });
-  return Buffer.from(await response.body());
+async function fetchRoyalSocCitationViaManagedPage(page: any, sourceUrl: string, downloadDir: string): Promise<Buffer> {
+  const browser = page?.context?.()?.browser?.() || page?.browser?.();
+  if (!browser?.newBrowserCDPSession) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "Browser-level CDP session is required for Royal Society citation download");
+  const session = await browser.newBrowserCDPSession();
+  if (typeof session.send !== "function") throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "Browser.setDownloadBehavior is unavailable for Royal Society citation download");
+  fs.mkdirSync(downloadDir, { recursive: true });
+  const downloads = new Map<string, any>();
+  session.on?.("Browser.downloadWillBegin", (event: any) => downloads.set(event.guid, { ...(downloads.get(event.guid) || {}), ...event, will: true }));
+  session.on?.("Browser.downloadProgress", (event: any) => downloads.set(event.guid, { ...(downloads.get(event.guid) || {}), ...event }));
+  await session.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
+
+  await page.goto(sourceUrl, { waitUntil: "domcontentloaded", timeout: 60000 }).catch((error: any) => {
+    const message = String(error?.message || error);
+    if (!/download|ERR_ABORTED|net::ERR_ABORTED/i.test(message)) throw error;
+  });
+
+  const started = Date.now();
+  let guid = "";
+  while (Date.now() - started < 60000) {
+    for (const [key, event] of downloads.entries()) {
+      if (event?.will) { guid = key; break; }
+    }
+    if (guid) break;
+    await sleep(100);
+  }
+  if (!guid) {
+    const observed = await page.evaluate(() => ({ title: document.title, html: document.documentElement.outerHTML, visibleText: document.body?.innerText || "", url: location.href })).catch(() => undefined);
+    if (observed && isCloudflareInterstitial(observed.title, observed.html, observed.visibleText)) {
+      throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Royal Society citation download reached a Cloudflare managed challenge", { source_url: sourceUrl, url: observed.url, title: observed.title });
+    }
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Royal Society citation download did not start", { source_url: sourceUrl });
+  }
+
+  const completedStarted = Date.now();
+  while (Date.now() - completedStarted < 60000) {
+    const event = downloads.get(guid);
+    if (event?.state === "completed") {
+      const filePath = path.join(downloadDir, guid);
+      const body = fs.readFileSync(filePath);
+      fs.unlinkSync(filePath);
+      return body;
+    }
+    if (event?.state === "canceled") throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Royal Society citation download was canceled", { source_url: sourceUrl, guid });
+    await sleep(100);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Royal Society citation download did not complete", { source_url: sourceUrl, guid });
 }
 
 export async function researchRoyalSocSearch(args: RoyalSocSearchArgs): Promise<{ result_count: number; items: RoyalSocItem[]; query_url: string; confirm_url: string; confirm_title: string }> {
@@ -281,7 +331,7 @@ export async function researchRoyalSocExport(args: RoyalSocExportArgs): Promise<
   fs.mkdirSync(downloadDir, { recursive: true });
   const doi = args.doi ? requireDoi(args.doi) : undefined;
   const tabId = args.tab_id || `research-royalsoc-export-${Date.now()}`;
-  const seedUrl = doi ? new URL(`/doi/${doi}`, ROYALSOC_ORIGIN).toString() : ROYALSOC_ORIGIN;
+  const seedUrl = doi ? buildRoyalSocSearchUrl({ query: doi }) : ROYALSOC_ORIGIN;
   return await withAllocatedRoyalSocPage(profile, seedUrl, tabId, args.cdp_port, async (page) => {
     try {
       let resourceId = args.resource_id ? String(args.resource_id) : "";
@@ -290,6 +340,9 @@ export async function researchRoyalSocExport(args: RoyalSocExportArgs): Promise<
           (document.querySelector("#onetrust-accept-btn-handler") as HTMLElement | null)?.click?.();
           (document.querySelector(".swal2-close") as HTMLElement | null)?.click?.();
         }).catch(() => undefined);
+        const results = doi ? await readRoyalSocResultsPage(page) : undefined;
+        const match = results?.items.find((item) => item.resource_id && (!doi || item.doi.toLowerCase() === doi.toLowerCase() || item.article_url.toLowerCase().includes(doi.toLowerCase())));
+        resourceId = match?.resource_id || "";
         for (let i = 0; i < 20 && !resourceId; i++) {
           resourceId = await page.evaluate(() => (document.querySelector(".js-add-to-citation-download-manager[data-resource-id]") as HTMLElement | null)?.getAttribute("data-resource-id") || "").catch(() => "");
           if (!resourceId) {
@@ -301,7 +354,7 @@ export async function researchRoyalSocExport(args: RoyalSocExportArgs): Promise<
       }
       if (!resourceId) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Royal Society resourceId was not found for export", { doi });
       const source_url = buildRoyalSocCitationDownloadUrl(resourceId, format);
-      const body = await fetchRoyalSocCitationViaManagedPage(page, source_url);
+      const body = await fetchRoyalSocCitationViaManagedPage(page, source_url, downloadDir);
       const artifact_path = uniquePath(downloadDir, `royalsoc-${safeFileToken(doi || resourceId)}.${FORMAT_TO_EXTENSION[format]}`);
       fs.writeFileSync(artifact_path, body);
       const text = fs.readFileSync(artifact_path, "utf-8");

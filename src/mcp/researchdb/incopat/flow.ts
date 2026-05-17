@@ -116,8 +116,12 @@ function incopatItemsHaveTemplateTokens(items: IncopatItem[]): boolean {
 }
 
 function incopatLooksUnauthenticated(state: any): boolean {
-  const text = `${state?.url || ""} ${state?.bodyText || ""} ${String(state?.html || "").slice(0, 2000)}`;
-  return Boolean(state?.hasLogin) || /\/newLogin\b|请先?登录|重新登录|登录超时|session\s*(?:expired|timeout)|login\s+required|sign\s*in/i.test(text);
+  const bodyText = String(state?.bodyText || "");
+  const countText = String(state?.countText || "").trim();
+  const hasHydratedCount = countText !== "" && countText !== "0" && !/^共\s*0\s*条$/.test(countText);
+  const hasVisibleLoginWithoutAuthSignals = Boolean(state?.hasLogin) && !/IP用户/.test(bodyText) && !hasHydratedCount && !Boolean(state?.hasSearch);
+  const text = `${state?.url || ""} ${bodyText} ${String(state?.html || "").slice(0, 2000)}`;
+  return hasVisibleLoginWithoutAuthSignals || /\/newLogin\b|请先?登录|重新登录|登录超时|session\s*(?:expired|timeout)|login\s+required|sign\s*in/i.test(text);
 }
 
 function incopatHasUnhydratedTemplateState(state: any): boolean {
@@ -212,12 +216,17 @@ async function trustedClick(page: any, selector: string, absentCode = ConsumerEr
 
 async function ensureLoggedIn(page: any): Promise<void> {
   for (let i = 0; i < 12; i++) {
-    const state = await page.evaluate(() => ({ url: location.href, hasLogin: !!document.querySelector("#ipLoginBtn"), hasSearch: !!document.querySelector("#searchValue"), userText: (document.body?.innerText || "").slice(0, 2000) })).catch(() => ({ url: page.url?.() || "", hasLogin: false, hasSearch: false, userText: "" }));
+    const state = await page.evaluate(() => ({
+      url: location.href,
+      hasLogin: (() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; })(),
+      hasSearch: !!document.querySelector("#searchValue"),
+      userText: (document.body?.innerText || "").slice(0, 2000)
+    })).catch(() => ({ url: page.url?.() || "", hasLogin: false, hasSearch: false, userText: "" }));
     if (state.hasSearch || /IP用户/.test(state.userText) || /advancedSearch\/simpleInit/.test(state.url)) return;
     if (state.hasLogin) break;
     await sleep(1000);
   }
-  const hasLogin = await page.evaluate(() => !!document.querySelector("#ipLoginBtn")).catch(() => false);
+  const hasLogin = await page.evaluate(() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; }).catch(() => false);
   if (!hasLogin) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "IncoPat IP-login button was absent", { selector: "#ipLoginBtn", url: page.url?.() || "" });
   await trustedClick(page, "#ipLoginBtn", ConsumerErrorCodes.ELEMENT_NOT_FOUND);
   let lastState: Record<string, unknown> = {};
@@ -264,7 +273,8 @@ async function waitForCount(page: any, previousText?: string, requireDelta = fal
         url: location.href,
         breadcrumb: String(breadcrumb).slice(0, 500),
         bodyText: (document.body?.innerText || "").slice(0, 2000),
-        hasLogin: !!document.querySelector("#ipLoginBtn"),
+        hasLogin: (() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; })(),
+        hasSearch: !!document.querySelector("#searchValue"),
         hasTemplateTokens: /{{\s*[/#:>A-Za-z]/.test(emptyPlaceholders) || rows.some((row: any) => /{{\s*[/#:>A-Za-z]/.test(`${row.text} ${row.title} ${row.publication_number}`)),
         hasEmptyPlaceholder: Boolean(emptyPlaceholders)
       };

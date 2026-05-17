@@ -235,11 +235,22 @@ async function readSaeResults(page: any, expectedUrl?: RegExp, previousCount?: n
 async function applySaeFacet(page: any, facet: string, previousCount: number): Promise<void> {
   const inputSelector = `input.mat-checkbox-input[value=${JSON.stringify(facet)}]`;
   const input = page.locator(inputSelector).first();
-  const inputCount = await input.count().catch(() => 0);
-  if (!inputCount) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus facet checkbox was not found", { facet, selector: inputSelector });
-  const inputId = await input.getAttribute("id").catch(() => "");
+  let inputId = "";
+  let sawInput = false;
+  for (let i = 0; i < 30; i++) {
+    await dismissOneTrust(page);
+    const inputCount = await input.count().catch(() => 0);
+    if (inputCount) {
+      sawInput = true;
+      inputId = await input.getAttribute("id").catch(() => "") || "";
+      if (inputId) break;
+    }
+    await sleep(1000);
+  }
+  if (!sawInput) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus facet checkbox was not found", { facet, selector: inputSelector });
   if (!inputId) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SAE Mobilus facet checkbox id was not found", { facet, selector: inputSelector });
   const labelSelector = `label[for=${JSON.stringify(inputId)}]`;
+  await input.scrollIntoViewIfNeeded();
   await page.locator(labelSelector).first().click({ timeout: 10000 });
   await readSaeResults(page, new RegExp(`[&#]sub_group=${doubleEncode(facet).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`), previousCount);
 }

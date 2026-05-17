@@ -157,6 +157,34 @@ export function parseScieloItemsFromVisibleText(text: string): ScieloItem[] {
   }).filter((item) => item.title || item.doi).slice(0, 100);
 }
 
+
+async function forceScieloExportModalOpen(page: any, controlSelector: string, resultsUrl: string): Promise<void> {
+  await page.evaluate?.(() => {
+    const modal = document.querySelector("#Export") as HTMLElement | null;
+    const jquery = (window as any).jQuery;
+    if (jquery?.fn?.modal) {
+      jquery("#Export").modal("show");
+      return;
+    }
+    if (modal) {
+      modal.classList.add("in");
+      modal.style.display = "block";
+      modal.removeAttribute("aria-hidden");
+      modal.setAttribute("aria-modal", "true");
+    }
+  }).catch(() => undefined);
+  try {
+    await page.waitForSelector(controlSelector, { state: "visible", timeout: 20000 });
+  } catch (error) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SciELO citation export modal/form not found", {
+      selector: controlSelector,
+      modalSelector: "#Export",
+      resultsUrl,
+      cause: error instanceof Error ? error.message : String(error)
+    });
+  }
+}
+
 function validateScieloArtifact(artifactPath: string, format: ScieloExportFormat, expectedCount?: number): void {
   const text = fs.readFileSync(artifactPath, "utf-8").replace(/^\uFEFF/, "");
   if (format === "ris") {
@@ -269,19 +297,31 @@ export async function researchScieloExport(args: ScieloExportArgs): Promise<{ ar
       const state = await readScieloResultsPage(page, resultsUrl, resultsUrl.includes("filter%5B") || resultsUrl.includes("filter["));
       const count = await page.locator("a.openExport").count().catch(() => 0);
       if (!count) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SciELO export trigger was not found", { selector: "a.openExport", resultsUrl });
+      const exportControlSelector = "#exportForm input[name=\"s\"]";
+      await forceScieloExportModalOpen(page, exportControlSelector, resultsUrl);
       if (format !== "ris") {
         const radio = `#export_format_${format}`;
-        await page.locator("a.openExport").click({ timeout: 10000 });
-        await page.locator("#Export.modal, #Export").waitFor?.({ state: "visible", timeout: 10000 }).catch(() => undefined);
-        const radioCount = await page.locator(radio).count().catch(() => 0);
-        if (!radioCount) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SciELO export format radio was not found", { selector: radio });
+        try {
+          await page.waitForSelector(radio, { state: "visible", timeout: 20000 });
+        } catch (error) {
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SciELO export format radio was not found", {
+            selector: radio,
+            resultsUrl,
+            cause: error instanceof Error ? error.message : String(error)
+          });
+        }
         await page.locator(radio).click({ timeout: 10000 });
       }
+      const requestedPageSize = asPositiveInt(args.count, "count") || 15;
+      const requestedPage = asPositiveInt(args.page, "page") || 1;
+      const requestedFrom = asNonNegativeInt(args.from, "from");
+      const requestedOffset = requestedFrom !== undefined ? requestedFrom : (requestedPage - 1) * requestedPageSize;
+      const expectedExportCount = Math.min(requestedPageSize, Math.max(state.resultCount - requestedOffset, 0));
       const clicked = await runArtifactClick({
         profile,
         tabUrlContains: "search.scielo.org",
-        buttonSelector: format === "ris" ? "a.openExport" : "#exportForm input[name=\"s\"]",
-        followUpSelector: format === "ris" ? "#exportForm input[name=\"s\"]" : undefined,
+        buttonSelector: exportControlSelector,
+        followUpSelector: undefined,
         downloadDir,
         timeoutMs: 60000,
         locateTimeoutMs: 20000,
@@ -289,7 +329,7 @@ export async function researchScieloExport(args: ScieloExportArgs): Promise<{ ar
         filenamePattern: format === "ris" ? "*.ris" : undefined
       });
       const artifact_path = clicked.path;
-      validateScieloArtifact(artifact_path, format, format === "ris" ? state.resultCount : undefined);
+      validateScieloArtifact(artifact_path, format, format === "ris" ? expectedExportCount : undefined);
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, source_url, result_count: state.resultCount };
     } catch (error: any) {
       if (error instanceof WebAiToolError) throw error;
