@@ -590,7 +590,7 @@ async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boo
   if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(picker), expected };
   await robustClickLocator(page, item, selector, { timeout: 5000 });
   await page.waitForTimeout?.(250).catch(() => undefined);
-  const actual = await locatorText(picker);
+  const actual = ((await picker.textContent?.().catch(() => "") || "") as string).trim();
   return { ok: modelLabelMatches(expected, actual), actual, expected };
 }
 
@@ -1049,6 +1049,7 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
   if (service !== "gemini") {
     const uploadSelector = service === "chatgpt" ? "input#upload-files" : "#chat-input-file-upload-onpage";
     try {
+      if (service === "claude") await page.waitForSelector?.(uploadSelector, { state: "attached", timeout: 10000 });
       await page.setInputFiles(uploadSelector, resolved, { timeout: 10000 });
     } catch (error: any) {
       if (service === "claude") {
@@ -1260,7 +1261,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
     const promptResult = await sendPromptOnPage(service, args, runtime);
     const conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
     const buttonSelector = service === "chatgpt"
-      ? "button.behavior-btn"
+      ? 'button.behavior-btn, a[aria-label*="Download" i][class*="__menu-item"]'
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;
@@ -2132,7 +2133,7 @@ async function editGeminiCanvas(args: any, runtime: Required<BrowserToolRuntime>
       await requireAndClick(page, GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR, "Gemini Canvas menuitemcheckbox was not found");
       await fillGeminiComposer(page, effective.prompt);
       await clickGeminiSendMessage(page);
-      await page.waitForSelector?.('button[aria-label="Share and export canvas"]', { state: "visible", timeout: effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
+      await page.waitForSelector?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
       canvas_opened = true;
     }
     if (effective.edit_text) {
@@ -2199,6 +2200,11 @@ async function manageGeminiConversation(args: any, runtime: Required<BrowserTool
     if (effective.action === "share") {
       await requireAndClick(page, GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR, "Gemini share conversation button was not found");
       return safeOutput({ dialog_opened: true });
+    }
+    try {
+      await page.waitForSelector?.(GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, { state: "visible", timeout: 10000 });
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini conversation actions menu button was not found", { selector: GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, cause: error?.message || String(error) });
     }
     await requireAndClick(page, GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, "Gemini conversation actions menu button was not found");
     const menuItems = page.locator('[role="menu"] [role="menuitem"], .mat-mdc-menu-panel [role="menuitem"], .mat-mdc-menu-panel button');

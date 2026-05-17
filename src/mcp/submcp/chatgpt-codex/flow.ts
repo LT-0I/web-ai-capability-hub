@@ -257,9 +257,9 @@ export async function readCodexStatus(page: any, taskId: string): Promise<Record
   if (/^Worked for\s+/.test(worked) && cancelCount === 0 && !textShowsCancel && (thumbsCount > 0 || textShowsThumbs)) {
     return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "complete", done: true, status_text: worked };
   }
-  const running = /\b(Starting container|Running setup scripts)\b/.exec(text)?.[1] || "";
-  if (running && cancelCount > 0) {
-    return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "running", done: false, status_text: running };
+  const running = /\b(Starting container|Running setup scripts|Working on your task)\b/i.exec(text)?.[1] || "";
+  if (running || cancelCount > 0) {
+    return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "running", done: false, status_text: running || "Cancel task" };
   }
   return contractError(ConsumerErrorCodes.INVALID_ARGS, "ChatGPT Codex task status is not a known in-progress or terminal state.", { task_id: taskId });
 }
