@@ -989,14 +989,14 @@
       "source": "stream4-implementation-report",
       "status": "IMPLEMENTED_GREEN",
       "mcp_tool": "webai_gemini_generate_video",
-      "evidence": "docs/plans/stream4-implementation-report.md",
-      "verified_by": "stream4-addendum-sonnet-resmoke-r10",
+      "evidence": "docs/plans/stream4-implementation-report.md; commits 02b026c (honest PLAN_OR_QUOTA_REQUIRED), 1e587d6 (activation timing-race fix); issue #1",
+      "verified_by": "stream4-addendum-sonnet-resmoke-r10 (happy-path MP4); issue-fix-loop 2026-05-17 (quota-honest path live-verified, activation-timing happy-path re-smoke pending Veo quota reset)",
       "recipe_ref": null,
       "sub_mcp_candidate": false,
       "completion_gate": "Download video button present after async generation completes.",
-      "artifact": "MP4 video (real 2.0MB ftypisom verified).",
-      "last_update": "2026-05-15",
-      "notes": "Async: durable DB task + detached child_process worker. Cross-process e2e verified. Real 2.0MB MP4 (ftypisom) on disk."
+      "artifact": "MP4 video (real 2.0MB ftypisom verified, stream4-r10).",
+      "last_update": "2026-05-17",
+      "notes": "Async: durable DB task + detached child_process worker. Cross-process e2e verified; real 2.0MB MP4 (ftypisom) on disk (stream4-r10). 2026-05-17 issue #1 hardening: (1) 02b026c — Veo quota / disabled-composer now surfaces the existing PLAN_OR_QUOTA_REQUIRED instead of masking as COMMAND_TIMEOUT (live-verified 2026-05-17); (2) 1e587d6 — Create-video zero-state activation timing race fixed (bounded ~8s confirm poll on the Deselect-Create-video pill which mounts ~1846ms post-click, drawer fallback guarded vs has-selected-item); all GEMINI_* selectors verified correct on live DOM, unchanged. Post-fix happy-path MP4 + :454 download-button re-smoke is pending the live gemini-9225 Veo quota reset (honest external wall, not a hub defect)."
     },
     {
       "id": "meta-task-status",
