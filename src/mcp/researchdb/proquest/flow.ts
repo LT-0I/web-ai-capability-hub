@@ -245,21 +245,51 @@ async function waitForResults(page: any, previousUrl?: string): Promise<void> {
   throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest results page did not settle", lastEvidence);
 }
 
-async function readProquestResults(page: any): Promise<{ title: string; url: string; resultCount: number; items: ProquestItem[] }> {
+type ProquestResults = { title: string; url: string; resultCount: number; items: ProquestItem[]; appliedFacets: Record<string, boolean> };
+
+async function isProquestCheckboxChecked(page: any, selector: string): Promise<boolean> {
+  const checkbox = page.locator(selector).first();
+  if (!(await checkbox.count().catch(() => 0))) return false;
+  return Boolean(await checkbox.isChecked({ timeout: 1000 }).catch(async () => {
+    const checked = await checkbox.getAttribute("checked").catch(() => null);
+    const ariaChecked = await checkbox.getAttribute("aria-checked").catch(() => null);
+    return checked !== null || ariaChecked === "true";
+  }));
+}
+
+async function readProquestFacetState(page: any, facetSelectors: string[] = []): Promise<Record<string, boolean>> {
+  const appliedFacets: Record<string, boolean> = {};
+  for (const selector of facetSelectors) appliedFacets[selector] = await isProquestCheckboxChecked(page, selector);
+  return appliedFacets;
+}
+
+async function readProquestResultsOnce(page: any, facetSelectors: string[] = []): Promise<ProquestResults> {
+  const title = await page.title().catch(() => "");
+  const url = page.url?.() || "";
+  const countText = await page.locator("div.resultsHeaderBarItem").first().innerText({ timeout: 10000 });
+  const resultCount = parseProquestResultCount(countText);
+  const rows = await page.locator("li.resultItem").evaluateAll((els: any[]) => els.slice(0, 100).map((el: any) => ({ text: el.innerText || "", title: (el.querySelector("a.resultTitle, .truncatedResultsTitle a, h3 a, h2 a")?.textContent || "").trim() }))).catch(() => []);
+  const html = await page.content().catch(() => "");
+  const items = parseProquestItemsFromDomRows(rows as Array<{ text: string; title?: string }>);
+  return { title, url, resultCount, items: items.length ? items : parseProquestItemsFromHtml(html), appliedFacets: await readProquestFacetState(page, facetSelectors) };
+}
+
+async function readProquestResults(page: any, facetSelectors: string[] = []): Promise<ProquestResults> {
+  const started = Date.now();
   let lastError: unknown;
-  for (let i = 0; i < 3; i++) {
+  let lastResult: ProquestResults | undefined;
+  while (Date.now() - started < 45000) {
     try {
-      const title = await page.title().catch(() => "");
-      const url = page.url?.() || "";
-      const countText = await page.locator("div.resultsHeaderBarItem").first().innerText({ timeout: 10000 });
-      const resultCount = parseProquestResultCount(countText);
-      const rows = await page.locator("li.resultItem").evaluateAll((els: any[]) => els.slice(0, 100).map((el: any) => ({ text: el.innerText || "", title: (el.querySelector("a.resultTitle, .truncatedResultsTitle a, h3 a, h2 a")?.textContent || "").trim() }))).catch(() => []);
-      const html = await page.content().catch(() => "");
-      const items = parseProquestItemsFromDomRows(rows as Array<{ text: string; title?: string }>);
-      return { title, url, resultCount, items: items.length ? items : parseProquestItemsFromHtml(html) };
-    } catch (error) { lastError = error; await sleep(3000); }
+      const result = await readProquestResultsOnce(page, facetSelectors);
+      if (lastResult?.resultCount === result.resultCount) return result;
+      lastResult = result;
+    } catch (error) {
+      lastError = error;
+    }
+    await sleep(1500);
   }
   if (lastError instanceof WebAiToolError) throw lastError;
+  if (lastResult) throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest results count did not settle across two reads", { url: lastResult.url, resultCount: lastResult.resultCount, appliedFacets: lastResult.appliedFacets });
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest results page did not hydrate", { cause: lastError instanceof Error ? lastError.message : String(lastError) });
 }
 
@@ -287,13 +317,22 @@ async function runProquestSearch(page: any, query: string): Promise<void> {
   await dismissProquestOverlays(page);
 }
 
-async function applyProquestFilters(page: any, args: ProquestFilterArgs, current: { url: string; resultCount: number }): Promise<void> {
+function proquestFilterSelectors(args: ProquestFilterArgs): string[] {
+  const selectors: string[] = [];
+  if (args.full_text) selectors.push("#filterCheckbox_fulltext");
+  if (args.peer_reviewed) selectors.push("#filterCheckbox_peerreviewed");
+  return selectors;
+}
+
+async function applyProquestFilters(page: any, args: ProquestFilterArgs, current: ProquestResults): Promise<void> {
   const filters: Array<[boolean | undefined, string]> = [[args.full_text, "#filterCheckbox_fulltext"], [args.peer_reviewed, "#filterCheckbox_peerreviewed"]];
   for (const [enabled, selector] of filters) {
     if (!enabled) continue;
     const checkbox = page.locator(selector).first();
     if (!(await checkbox.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ProQuest refine checkbox was not found", { selector });
     const previousCount = current.resultCount;
+    const alreadyAppliedAtBaseline = Boolean(current.appliedFacets[selector]) || await isProquestCheckboxChecked(page, selector);
+    if (alreadyAppliedAtBaseline) continue;
     await checkbox.click({ timeout: 10000 }).catch(async (error: any) => {
       const blocker = await readProquestBlockingLayer(page, selector);
       const code = classifyProquestBlockingLayer(blocker);
@@ -302,16 +341,19 @@ async function applyProquestFilters(page: any, args: ProquestFilterArgs, current
     });
     const started = Date.now();
     let lastEvidence: Record<string, unknown> = {};
-    let lastDecrementedCount: number | undefined;
+    let lastAcceptedCount: number | undefined;
     while (Date.now() - started < 45000) {
       const url = page.url?.() || "";
       const countText = await page.locator("div.resultsHeaderBarItem").first().innerText({ timeout: 1500 }).catch(() => "");
       let count: number | undefined;
       try { count = parseProquestResultCount(countText); } catch {}
+      const checked = await isProquestCheckboxChecked(page, selector);
       const decremented = count !== undefined && count < previousCount;
-      lastEvidence = { url, countText, count, previousUrl: current.url, previousCount, urlChanged: url !== current.url, lastDecrementedCount };
-      if (decremented && count === lastDecrementedCount) return;
-      lastDecrementedCount = decremented ? count : undefined;
+      const alreadyAppliedStable = alreadyAppliedAtBaseline && checked && count === previousCount;
+      const accepted = decremented || alreadyAppliedStable;
+      lastEvidence = { url, countText, count, previousUrl: current.url, previousCount, urlChanged: url !== current.url, checked, alreadyAppliedAtBaseline, lastAcceptedCount };
+      if (accepted && count === lastAcceptedCount) return;
+      lastAcceptedCount = accepted ? count : undefined;
       await sleep(1500);
     }
     throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "ProQuest refine did not produce the verified settled count decrement", lastEvidence);
@@ -345,8 +387,9 @@ export async function researchProquestFilter(args: ProquestFilterArgs): Promise<
   const tabId = args.tab_id || `research-proquest-filter-${Date.now()}`;
   return await withAllocatedProquestPage(profile, buildProquestAdvancedSearchUrl(), tabId, args.cdp_port, async (page) => {
     await runProquestSearch(page, requireQuery(args.query));
-    const before = await readProquestResults(page);
-    await applyProquestFilters(page, args.full_text === undefined && args.peer_reviewed === undefined ? { ...args, full_text: true } : args, before);
+    const filterArgs = args.full_text === undefined && args.peer_reviewed === undefined ? { ...args, full_text: true } : args;
+    const before = await readProquestResults(page, proquestFilterSelectors(filterArgs));
+    await applyProquestFilters(page, filterArgs, before);
     const after = await readProquestResults(page);
     return { result_count: after.resultCount, items: after.items, refined_url: after.url, confirm_title: after.title, unfiltered_count: before.resultCount, unfiltered_url: before.url };
   });
@@ -362,10 +405,10 @@ export async function researchProquestExport(args: ProquestExportArgs): Promise<
   return await withAllocatedProquestPage(profile, buildProquestAdvancedSearchUrl(), tabId, args.cdp_port, async (page) => {
     try {
       await runProquestSearch(page, requireQuery(args.query));
-      let results = await readProquestResults(page);
+      let results = await readProquestResults(page, proquestFilterSelectors(args));
       if (args.full_text || args.peer_reviewed) {
         await applyProquestFilters(page, args, results);
-        results = await readProquestResults(page);
+        results = await readProquestResults(page, proquestFilterSelectors(args));
       }
       await dismissProquestOverlays(page);
       const firstCheckbox = page.locator("#mlcb1").first();
