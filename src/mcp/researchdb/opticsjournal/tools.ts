@@ -9,7 +9,7 @@ export const researchOpticsjournalSearchInput = objectSchema<OpticsjournalSearch
   year_to: scalar.number("Optional end publication year"),
   sort: scalar.string("Optional sort select value/label"),
   page_size: scalar.number("Optional pageSize select value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-opticsjournal" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-opticsjournal" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -29,7 +29,7 @@ export const researchOpticsjournalFilterInput = objectSchema<OpticsjournalFilter
   author: scalar.string("Author facet data-value"),
   topic_cn: scalar.string("Chinese topic/research-area facet data-value"),
   topic_en: scalar.string("English topic facet data-value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-opticsjournal" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-opticsjournal" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -51,7 +51,7 @@ export const researchOpticsjournalExportInput = objectSchema<OpticsjournalExport
   topic_en: scalar.string("Optional English topic facet data-value"),
   format: { ...scalar.enum(["enw", "ref", "txt", "xml"], "Export format"), default: "enw" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-opticsjournal" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-opticsjournal" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

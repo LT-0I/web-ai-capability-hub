@@ -242,7 +242,7 @@ async function fetchRoyalSocCitationViaManagedPage(page: any, sourceUrl: string)
 
 export async function researchRoyalSocSearch(args: RoyalSocSearchArgs): Promise<{ result_count: number; items: RoyalSocItem[]; query_url: string; confirm_url: string; confirm_title: string }> {
   const query_url = buildRoyalSocSearchUrl(args);
-  const profile = args.profile || "nuaa-royalsoc";
+  const profile = args.profile || "research-royalsoc";
   const tabId = args.tab_id || `research-royalsoc-search-${Date.now()}`;
   const page = await withAllocatedRoyalSocPage(profile, query_url, tabId, args.cdp_port, (p) => readRoyalSocResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url, confirm_url: page.url, confirm_title: page.title };
@@ -250,7 +250,7 @@ export async function researchRoyalSocSearch(args: RoyalSocSearchArgs): Promise<
 
 export async function researchRoyalSocFilter(args: RoyalSocFilterArgs): Promise<{ result_count: number; items: RoyalSocItem[]; refined_url: string; confirm_url: string; confirm_title: string; filter_confirmed: boolean }> {
   const refined_url = buildRoyalSocFilterUrl(args);
-  const profile = args.profile || "nuaa-royalsoc";
+  const profile = args.profile || "research-royalsoc";
   const tabId = args.tab_id || `research-royalsoc-filter-${Date.now()}`;
   const page = await withAllocatedRoyalSocPage(profile, refined_url, tabId, args.cdp_port, (p) => readRoyalSocResultsPage(p));
   const journalPrefixMap: Record<string, string> = {
@@ -275,7 +275,7 @@ export async function researchRoyalSocFilter(args: RoyalSocFilterArgs): Promise<
 
 export async function researchRoyalSocExport(args: RoyalSocExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: RoyalSocExportFormat; doi?: string; resource_id: string; source_url: string }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-royalsoc";
+  const profile = args.profile || "research-royalsoc";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "royalsoc"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

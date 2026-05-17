@@ -10,7 +10,7 @@ export const researchNatureSearchInput = objectSchema<NatureSearchArgs>({
   start_year: scalar.number("Nature #start_year value"),
   end_year: scalar.number("Nature #end_year value"),
   order: { ...scalar.string("Nature search order"), default: "relevance" },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-nature" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-nature" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9248 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -26,7 +26,7 @@ export const researchNatureFilterInput = objectSchema<NatureFilterArgs>({
   date_range: scalar.string("Nature date_range facet value such as last_year or 2021-2024"),
   facet_param: scalar.enum(natureFacetParams, "Exact Nature URL facet param"),
   facet_value: scalar.string("Exact Nature URL facet value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-nature" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-nature" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9248 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -35,7 +35,7 @@ export const researchNatureExportInput = objectSchema<NatureExportArgs>({
   doi: scalar.string("Nature DOI to export, e.g. 10.1038/s41598-024-65383-9"),
   format: { ...scalar.enum(natureFormats, "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-nature" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-nature" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9248 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -43,7 +43,7 @@ export const researchNatureExportInput = objectSchema<NatureExportArgs>({
 export const natureResearchTools = [
   {
     name: "research_nature_search",
-    description: "Search Nature journals using the verified NUAA advanced-search recipe (#searchForm / q / date_range).",
+    description: "Search Nature journals using the verified advanced-search recipe (#searchForm / q / date_range).",
     schema: researchNatureSearchInput,
     handler: async (args: NatureSearchArgs) => researchNatureSearch(args)
   },

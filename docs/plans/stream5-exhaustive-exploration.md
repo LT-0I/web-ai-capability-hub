@@ -90,7 +90,7 @@ Blueprint: `docs/plans/stream5-integration-blueprint.md`. Prompts:
 Run STRICTLY in order; next starts only after prior acceptance gate GREEN
 (all touch the contract — never parallel). Target final webai count = 36.
 
-- [x] B0 contract-scaffold (1.4.0 / 0.6.0 / +3 error codes / count constant) — GREEN: build0 test0 158pass
+- [x] B0 contract-scaffold (1.5.0 / 0.7.0 / +3 error codes / count constant) — GREEN: build0 test0 158pass
 - [x] B1 params-existing (model/thinking/web_search/incognito/canvas on 14) — GREEN: build0 test0 161pass, count=13
 - [x] B2 chatgpt-tools (+4 → 17) — GREEN: build0 test0 163pass, count=17
 - [x] B3 claude-tools (+3 → 20) — GREEN: build0 test0 165pass, count=20
@@ -98,7 +98,7 @@ Run STRICTLY in order; next starts only after prior acceptance gate GREEN
 - [x] B5 submcp-claude-design (+4 → 28) — GREEN: build0 test0 170pass, count=28, server.ts unchanged
 - [x] B6 submcp-gemini-music (+3 → 31) — GREEN: build0 test0 173pass, count=31, 2-stage MP3 quirk wired
 - [x] B7 submcp-chatgpt-codex placeholder (+4 → 35) — GREEN: build0 test0 175pass, count=35, gated SUBMCP_NOT_PROVISIONED
-- [x] B8 contract-finalize + count correction → **35** (blueprint's "36" was off-by-one; real baseline 13) — GREEN: build0 test0 178pass, contract 1.4.0, 32 error codes, 3 sub-MCP modules
+- [x] B8 contract-finalize + count correction → **35** (blueprint's "36" was off-by-one; real baseline 13) — GREEN: build0 test0 178pass, contract 1.5.0, 32 error codes, 3 sub-MCP modules
 - [x] BP1 hover/portal CLI primitive (--dwell-ms/--include-portals) — GREEN: build0 test0 181pass, count still 35
 - [x] Phase C live verify (3 Opus agents): Gemini 4G+1guard 0F; Claude 2G/3F; ChatGPT 2G/3guard/4F. Tooling-blocked: conversation-mgmt + agent-mode entry CRACKED via BP1; study-mode genuinely absent → USER_HANDOFF §A
 - [ ] Phase C-fix consolidated codex bugfix (task #22) — **RUNNING** (selector drift + route to BP1 path + tab-resolver + error-leak honesty + Gemini robustness; count stays 35)
@@ -122,15 +122,15 @@ Run STRICTLY in order; next starts only after prior acceptance gate GREEN
 - [x] claude-design get-html coldstart honesty micro-fix — GREEN 204pass
 - [x] round-9 FINAL: full claude-design chain honestly end-to-end GREEN (cold get-html real 12319B HTML, disk-sha verified, no false-positive)
 - [x] Master-library merge + USER_HANDOFF §A finalized: 63 IMPLEMENTED_GREEN / 2 EXPLORED_PATH_KNOWN / 7 BLOCKED_NEEDS_USER / 7 OUT_OF_SCOPE
-- [x] Stream #5 tail (2026-05-15): USER_HANDOFF §A resolved per user replies — items 1/3/5/6 user-DEFERRED, #4 chatgpt-study-mode OUT_OF_SCOPE (user-confirmed absent), #2 chatgpt-pulse IMPLEMENTED_GREEN (webai_chatgpt_pulse_get + _onboard, 3 reader/gate fix rounds, live status=ready real digest), #7 chatgpt-codex sub-MCP IMPLEMENTED_GREEN (4 tools live on LT-0I/CN-, 2 Opus-interactive SPA-timing fixes). Final: webai count 37, consumer-contract-1.4.0, 219 tests, library 65 GREEN/2 PATH_KNOWN/4 BLOCKED/8 OUT_OF_SCOPE.
+- [x] Stream #5 tail (2026-05-15): USER_HANDOFF §A resolved per user replies — items 1/3/5/6 user-DEFERRED, #4 chatgpt-study-mode OUT_OF_SCOPE (user-confirmed absent), #2 chatgpt-pulse IMPLEMENTED_GREEN (webai_chatgpt_pulse_get + _onboard, 3 reader/gate fix rounds, live status=ready real digest), #7 chatgpt-codex sub-MCP IMPLEMENTED_GREEN (4 tools live on LT-0I/CN-, 2 Opus-interactive SPA-timing fixes). Final: webai count 37, consumer-contract-1.5.0, 219 tests, library 65 GREEN/2 PATH_KNOWN/4 BLOCKED/8 OUT_OF_SCOPE.
 
 ## CAMPAIGN COMPLETE (2026-05-15)
-Surface 13→35 webai tools; consumer-contract-1.4.0; 204 unit tests; 3 sub-MCP
+Surface 13→35 webai tools; consumer-contract-1.5.0; 204 unit tests; 3 sub-MCP
 modules (claude-design 4 / gemini-music 3 / chatgpt-codex 4 placeholder);
 all integrated tools live cross-model verified GREEN. 0 UNEXPLORED. 7 genuine
 user-decision items in USER_HANDOFF.md §A. Pending: user commit/push decision.
 - [ ] Merge all verify statuses → master library; finalize USER_HANDOFF §A; commit checkpoint
-- Status: 34/35 new tools live-verified GREEN; contract 1.4.0; 193 tests; honesty fully solid (no leaks/fabrication/stale-stub)
+- Status: 34/35 new tools live-verified GREEN; contract 1.5.0; 193 tests; honesty fully solid (no leaks/fabrication/stale-stub)
 - [ ] Merge final statuses → master library; present USER_HANDOFF §A to user
 
 ## Stop condition

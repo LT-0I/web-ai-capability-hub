@@ -4,7 +4,7 @@ import { researchAsmeSearch, researchAsmeFilter, researchAsmeExport, AsmeSearchA
 export const researchAsmeSearchInput = objectSchema<AsmeSearchArgs>({
   query: scalar.string("ASME Digital Collection query text"),
   page_size: scalar.number("Optional ASME pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asme" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asme" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9236 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -19,7 +19,7 @@ export const researchAsmeFilterInput = objectSchema<AsmeFilterArgs>({
   from_date: scalar.string("Optional date range start, mm/dd/yyyy"),
   to_date: scalar.string("Optional date range end, mm/dd/yyyy"),
   page_size: scalar.number("Optional ASME pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asme" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asme" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9236 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -28,7 +28,7 @@ export const researchAsmeExportInput = objectSchema<AsmeExportArgs>({
   doi: scalar.string("ASME DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote", "refworks"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asme" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asme" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9236 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);

@@ -279,7 +279,7 @@ async function applyOpticsjournalFilter(page: any, args: OpticsjournalFilterArgs
 }
 
 export async function researchOpticsjournalSearch(args: OpticsjournalSearchArgs): Promise<{ result_count: number; item_count: number; items: OpticsjournalItem[]; query_url: string; results_url: string; title: string; note: string }> {
-  const profile = args.profile || "nuaa-opticsjournal";
+  const profile = args.profile || "research-opticsjournal";
   const tabId = args.tab_id || `research-opticsjournal-search-${Date.now()}`;
   return await withAllocatedOpticsjournalPage(profile, buildOpticsjournalSearchUrl(), tabId, args.cdp_port, async (page) => {
     await runOpticsjournalSearch(page, args);
@@ -289,7 +289,7 @@ export async function researchOpticsjournalSearch(args: OpticsjournalSearchArgs)
 }
 
 export async function researchOpticsjournalFilter(args: OpticsjournalFilterArgs): Promise<{ result_count: number; item_count: number; items: OpticsjournalItem[]; refined_url: string; confirm_title: string; unfiltered_count: number }> {
-  const profile = args.profile || "nuaa-opticsjournal";
+  const profile = args.profile || "research-opticsjournal";
   const tabId = args.tab_id || `research-opticsjournal-filter-${Date.now()}`;
   return await withAllocatedOpticsjournalPage(profile, buildOpticsjournalSearchUrl(), tabId, args.cdp_port, async (page) => {
     await runOpticsjournalSearch(page, args);
@@ -302,7 +302,7 @@ export async function researchOpticsjournalFilter(args: OpticsjournalFilterArgs)
 
 export async function researchOpticsjournalExport(args: OpticsjournalExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: OpticsjournalExportFormat; result_count: number; results_url: string; records: number }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-opticsjournal";
+  const profile = args.profile || "research-opticsjournal";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "opticsjournal"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

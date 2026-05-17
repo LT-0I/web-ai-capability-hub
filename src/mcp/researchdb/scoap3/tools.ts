@@ -8,7 +8,7 @@ export const researchScoap3SearchInput = objectSchema<Scoap3SearchArgs>({
   page: scalar.number("Optional result page"),
   size: scalar.number("Optional result page size"),
   sort: scalar.string("Optional SCOAP3 sort value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scoap3" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scoap3" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9232 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -23,7 +23,7 @@ export const researchScoap3FilterInput = objectSchema<Scoap3FilterArgs>({
   page: scalar.number("Optional result page"),
   size: scalar.number("Optional result page size"),
   sort: scalar.string("Optional SCOAP3 sort value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scoap3" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scoap3" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9232 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -39,7 +39,7 @@ export const researchScoap3ExportInput = objectSchema<Scoap3ExportArgs>({
   format: { ...scalar.enum(["csv", "json"], "SCOAP3 result-set export format; bibtex/ris/xml are not offered and are not synthesized"), default: "csv" },
   filename: scalar.string("Optional output filename"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scoap3" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scoap3" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9232 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

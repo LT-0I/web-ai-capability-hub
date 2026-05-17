@@ -216,7 +216,7 @@ async function withAllocatedTandfPage<T>(profile: string, url: string, tabId: st
 
 export async function researchTandfSearch(args: TandfSearchArgs): Promise<{ result_count: number; items: TandfItem[]; query_url: string }> {
   const query_url = buildTandfSearchUrl(args);
-  const profile = args.profile || "nuaa-tandf";
+  const profile = args.profile || "research-tandf";
   const tabId = args.tab_id || `research-tandf-search-${Date.now()}`;
   const page = await withAllocatedTandfPage(profile, query_url, tabId, args.cdp_port, (p) => readTandfPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -224,7 +224,7 @@ export async function researchTandfSearch(args: TandfSearchArgs): Promise<{ resu
 
 export async function researchTandfFilter(args: TandfFilterArgs): Promise<{ result_count: number; items: TandfItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildTandfFilterUrl(args);
-  const profile = args.profile || "nuaa-tandf";
+  const profile = args.profile || "research-tandf";
   const tabId = args.tab_id || `research-tandf-filter-${Date.now()}`;
   const page = await withAllocatedTandfPage(profile, refined_url, tabId, args.cdp_port, (p) => readTandfPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -233,7 +233,7 @@ export async function researchTandfFilter(args: TandfFilterArgs): Promise<{ resu
 export async function researchTandfExport(args: TandfExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: TandfExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-tandf";
+  const profile = args.profile || "research-tandf";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "tandf"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

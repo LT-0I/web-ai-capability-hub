@@ -1,11 +1,12 @@
 {
   "name": "web-ai-research-automation-hub",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Local-first managed CDP browser capability database and workflow hub for AI agents, web AI services, and authorized research databases.",
   "type": "commonjs",
   "main": "dist/src/index.js",
   "bin": {
-    "web-ai-research-automation-hub": "dist/src/cli.js"
+    "web-ai-research-automation-hub": "dist/src/cli.js",
+    "web-ai-research-automation-hub-mcp": "dist/src/mcp/stdio-entry.js"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -55,5 +56,14 @@
   },
   "optionalDependencies": {
     "better-sqlite3": "^11.9.1"
-  }
+  },
+  "files": [
+    "dist/",
+    "!dist/tests/",
+    "configs/",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "docs/MCP_SERVER.md"
+  ]
 }

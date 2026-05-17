@@ -5,7 +5,7 @@ export const researchEmeraldSearchInput = objectSchema<EmeraldSearchArgs>({
   query: scalar.string("Emerald Insight query text"),
   mode: { ...scalar.enum(["Any", "All", "Exact Phrase"], "Emerald advanced search match mode"), default: "Any" },
   page_size: scalar.number("Optional Emerald pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-emerald" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-emerald" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9246 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -17,7 +17,7 @@ export const researchEmeraldFilterInput = objectSchema<EmeraldFilterArgs>({
   subject: scalar.string("Subject facet value"),
   case_provider: scalar.string("Case provider facet value"),
   page_size: scalar.number("Optional Emerald pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-emerald" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-emerald" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9246 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -26,7 +26,7 @@ export const researchEmeraldExportInput = objectSchema<EmeraldExportArgs>({
   doi: scalar.string("Emerald DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote", "refworks"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-emerald" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-emerald" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9246 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);

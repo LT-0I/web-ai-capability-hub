@@ -4,7 +4,7 @@ import { researchInspirehepSearch, researchInspirehepFilter, researchInspirehepE
 export const researchInspirehepSearchInput = objectSchema<InspirehepSearchArgs>({
   query: scalar.string('INSPIRE-HEP SPIRES-style structured query, e.g. "t neutrino and t oscillation"'),
   page_size: { ...scalar.number("Results per page; verified value 25"), default: 25 },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-inspirehep" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-inspirehep" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9227 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -22,7 +22,7 @@ export const researchInspirehepFilterInput = objectSchema<InspirehepFilterArgs>(
   facet: scalar.enum(["doc_type", "author_count", "rpp", "author", "subject", "arxiv_categories", "collaboration"], "Generic INSPIRE-HEP facet parameter"),
   facet_value: scalar.string("Generic facet visible checkbox value"),
   page_size: { ...scalar.number("Results per page; verified value 25"), default: 25 },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-inspirehep" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-inspirehep" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9227 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -35,7 +35,7 @@ export const researchInspirehepExportInput = objectSchema<InspirehepExportArgs>(
   format: { ...scalar.enum(["bibtex", "latex-eu", "latex-us", "json", "cv"], "INSPIRE-HEP first-party export format"), default: "bibtex" },
   filename: scalar.string("Optional output filename"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-inspirehep" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-inspirehep" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9227 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

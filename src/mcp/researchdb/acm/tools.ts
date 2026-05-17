@@ -5,7 +5,7 @@ export const researchAcmSearchInput = objectSchema<AcmSearchArgs>({
   query: scalar.string("ACM Digital Library query text"),
   area: { ...scalar.enum(["AllField", "Title", "PublicationTitle", "Contrib", "Abstract", "Fulltext", "Affiliation", "Keyword", "ConferenceLocation", "Sponsor", "ISBN", "DOI"], "ACM search area"), default: "AllField" },
   page_size: scalar.number("Optional ACM pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-acm" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-acm" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -21,7 +21,7 @@ export const researchAcmFilterInput = objectSchema<AcmFilterArgs>({
   author: scalar.string("Premium-gated Authors facet; returns PLAN_OR_QUOTA_REQUIRED"),
   publisher: scalar.string("Premium-gated Publisher facet; returns PLAN_OR_QUOTA_REQUIRED"),
   page_size: scalar.number("Optional ACM pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-acm" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-acm" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -30,7 +30,7 @@ export const researchAcmExportInput = objectSchema<AcmExportArgs>({
   doi: scalar.string("ACM DOI to export"),
   format: { ...scalar.enum(["bibtex", "endnote", "acm"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-acm" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-acm" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -38,7 +38,7 @@ export const researchAcmExportInput = objectSchema<AcmExportArgs>({
 export const acmResearchTools = [
   {
     name: "research_acm_search",
-    description: "Search ACM Digital Library via the verified NUAA ACM headless recipe.",
+    description: "Search ACM Digital Library via the verified ACM headless recipe.",
     schema: researchAcmSearchInput,
     handler: async (args: AcmSearchArgs) => researchAcmSearch(args)
   },

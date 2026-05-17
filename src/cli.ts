@@ -534,7 +534,7 @@ Core commands:
   capability:query --target <id> --text <query> [--json]
   capability:export --target <id> --out <path> [--json]
   capability:library:import [docs/capability-library.json] [--json]
-  research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only] [--json]
+  research:inventory:import [configs/research/research_inventory.json] [--stem-only] [--json]
   research:aiaa:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|AbstractText|Affiliation] [--page-size N] [--json]
   research:aiaa:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
   research:aiaa:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
@@ -663,7 +663,7 @@ Core commands:
   verify:docx-min --path <abs> [--min-paragraphs N] [--min-chars N] [--topic-regex <pattern>] [--no-sha256] [--output-json]
 
   site:registry:import <site_registry.json> [--json]
-  research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only] [--json]
+  research:inventory:import [configs/research/research_inventory.json] [--stem-only] [--json]
   research:aiaa:search <query>|--query <query> [--area AllField|Title|Contrib|Keyword|AbstractText|Affiliation] [--page-size N] [--json]
   research:aiaa:filter <query>|--query <query> [--area <area>] [--after-year YYYY] [--before-year YYYY] [--series-key <key>] [--contrib-raw <author>] [--concept-id <id>] [--page-size N] [--json]
   research:aiaa:export <doi>|--doi <doi> [--format ris|bibtex|endnote|medlars] [--download-dir <abs>] --confirmed [--json]
@@ -1065,9 +1065,9 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
     output(new SiteRegistryImporter(new CapabilityDatabase()).importFile(file), options);
     return;
   }
-  if (command === "research:nuaa:import") {
-    const file = positionals[0] || asString(options.file) || "configs/research/nuaa_stem_inventory.json";
-    output(new ResearchDbImporter(new CapabilityDatabase()).importNuaaSeed(file, { stemOnly: options["stem-only"] === true || options.stemOnly === true }), options);
+  if (command === "research:inventory:import") {
+    const file = positionals[0] || asString(options.file) || "configs/research/research_inventory.json";
+    output(new ResearchDbImporter(new CapabilityDatabase()).importInventorySeed(file, { stemOnly: options["stem-only"] === true || options.stemOnly === true }), options);
     return;
   }
   if (command === "research:aiaa:search") {

@@ -224,7 +224,7 @@ async function withAllocatedMdpiPage<T>(profile: string, url: string, tabId: str
 
 export async function researchMdpiSearch(args: MdpiSearchArgs): Promise<{ result_count: number; item_count: number; items: MdpiItem[]; query_url: string }> {
   const query_url = buildMdpiSearchUrl(args);
-  const profile = args.profile || "nuaa-mdpi";
+  const profile = args.profile || "research-mdpi";
   const tabId = args.tab_id || `research-mdpi-search-${Date.now()}`;
   const page = await withAllocatedMdpiPage(profile, query_url, tabId, args.cdp_port, (p) => readMdpiPage(p, query_url));
   return { result_count: page.resultCount, item_count: page.itemCount, items: page.items, query_url };
@@ -232,7 +232,7 @@ export async function researchMdpiSearch(args: MdpiSearchArgs): Promise<{ result
 
 export async function researchMdpiFilter(args: MdpiFilterArgs): Promise<{ result_count: number; item_count: number; items: MdpiItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildMdpiFilterUrl(args);
-  const profile = args.profile || "nuaa-mdpi";
+  const profile = args.profile || "research-mdpi";
   const tabId = args.tab_id || `research-mdpi-filter-${Date.now()}`;
   const page = await withAllocatedMdpiPage(profile, refined_url, tabId, args.cdp_port, (p) => readMdpiPage(p, refined_url));
   return { result_count: page.resultCount, item_count: page.itemCount, items: page.items, refined_url, confirm_title: page.title };
@@ -240,7 +240,7 @@ export async function researchMdpiFilter(args: MdpiFilterArgs): Promise<{ result
 
 export async function researchMdpiExport(args: MdpiExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: MdpiExportFormat; article_url: string }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-mdpi";
+  const profile = args.profile || "research-mdpi";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "mdpi"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

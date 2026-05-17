@@ -245,7 +245,7 @@ async function withAllocatedEmeraldPage<T>(profile: string, url: string, tabId: 
 
 export async function researchEmeraldSearch(args: EmeraldSearchArgs): Promise<{ result_count: number; items: EmeraldItem[]; query_url: string }> {
   const query_url = buildEmeraldSearchUrl(args);
-  const profile = args.profile || "nuaa-emerald";
+  const profile = args.profile || "research-emerald";
   const tabId = args.tab_id || `research-emerald-search-${Date.now()}`;
   const page = await withAllocatedEmeraldPage(profile, query_url, tabId, args.cdp_port, (p) => readEmeraldResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -253,7 +253,7 @@ export async function researchEmeraldSearch(args: EmeraldSearchArgs): Promise<{ 
 
 export async function researchEmeraldFilter(args: EmeraldFilterArgs): Promise<{ result_count: number; items: EmeraldItem[]; refined_url: string; confirm_url: string; confirm_title: string }> {
   const refined_url = buildEmeraldFilterUrl(args);
-  const profile = args.profile || "nuaa-emerald";
+  const profile = args.profile || "research-emerald";
   const tabId = args.tab_id || `research-emerald-filter-${Date.now()}`;
   const page = await withAllocatedEmeraldPage(profile, refined_url, tabId, args.cdp_port, (p) => readEmeraldResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
@@ -262,7 +262,7 @@ export async function researchEmeraldFilter(args: EmeraldFilterArgs): Promise<{ 
 export async function researchEmeraldExport(args: EmeraldExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: EmeraldExportFormat; doi: string; resource_id: string; source_url: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-emerald";
+  const profile = args.profile || "research-emerald";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "emerald"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

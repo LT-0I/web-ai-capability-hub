@@ -211,7 +211,7 @@ async function withAllocatedAscePage<T>(profile: string, url: string, tabId: str
 
 export async function researchAsceSearch(args: AsceSearchArgs): Promise<{ result_count: number; items: AsceItem[]; query_url: string }> {
   const query_url = buildAsceSearchUrl(args);
-  const profile = args.profile || "nuaa-asce";
+  const profile = args.profile || "research-asce";
   const tabId = args.tab_id || `research-asce-search-${Date.now()}`;
   const page = await withAllocatedAscePage(profile, query_url, tabId, args.cdp_port, (p) => readAscePage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -219,7 +219,7 @@ export async function researchAsceSearch(args: AsceSearchArgs): Promise<{ result
 
 export async function researchAsceFilter(args: AsceFilterArgs): Promise<{ result_count: number; items: AsceItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildAsceFilterUrl(args);
-  const profile = args.profile || "nuaa-asce";
+  const profile = args.profile || "research-asce";
   const tabId = args.tab_id || `research-asce-filter-${Date.now()}`;
   const page = await withAllocatedAscePage(profile, refined_url, tabId, args.cdp_port, (p) => readAscePage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -228,7 +228,7 @@ export async function researchAsceFilter(args: AsceFilterArgs): Promise<{ result
 export async function researchAsceExport(args: AsceExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: AsceExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-asce";
+  const profile = args.profile || "research-asce";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "asce"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

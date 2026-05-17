@@ -4,7 +4,7 @@ import { researchWanfangSearch, researchWanfangFilter, researchWanfangExport, Wa
 export const researchWanfangSearchInput = objectSchema<WanfangSearchArgs>({
   query: scalar.string("Wanfang paper search text; replayed as https://s.wanfangdata.com.cn/paper?q=<query>"),
   page_size: scalar.number("Optional page size hint; Wanfang UI defaults to 20 result rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wanfang" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wanfang" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9238 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -14,7 +14,7 @@ export const researchWanfangFilterInput = objectSchema<WanfangFilterArgs>({
   resource_type: { ...scalar.enum(["Thesis", "Periodical", "Conference", "Patent"], "Wanfang resource Type facet value"), default: "Thesis" },
   resource_label: scalar.string("Optional visible resource label; defaults map Thesis to 学位论文"),
   page_size: scalar.number("Optional page size hint; Wanfang UI defaults to 20 result rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wanfang" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wanfang" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9238 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -27,7 +27,7 @@ export const researchWanfangExportInput = objectSchema<WanfangExportArgs>({
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
   row_index: scalar.number("Zero-based result row index to select; defaults to 0"),
   page_size: scalar.number("Optional page size hint; Wanfang UI defaults to 20 result rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wanfang" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wanfang" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9238 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

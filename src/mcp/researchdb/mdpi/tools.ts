@@ -10,7 +10,7 @@ export const researchMdpiSearchInput = objectSchema<MdpiSearchArgs>({
   view: { ...scalar.enum(["default", "abstract", "compact"], "MDPI results view"), default: "default" },
   sort: scalar.string("Optional MDPI sort key"),
   page_count: scalar.number("Optional MDPI page_count value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-mdpi" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-mdpi" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -26,7 +26,7 @@ export const researchMdpiFilterInput = objectSchema<MdpiFilterArgs>({
   page_count: scalar.number("Optional MDPI page_count value"),
   country: scalar.string("Optional MDPI countries facet query value"),
   subject: scalar.string("Optional MDPI subjects facet query value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-mdpi" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-mdpi" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -37,7 +37,7 @@ export const researchMdpiExportInput = objectSchema<MdpiExportArgs>({
   doi: scalar.string("Optional expected DOI for artifact validation"),
   format: { ...scalar.enum(["bibtex", "endnote", "ris"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-mdpi" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-mdpi" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
@@ -45,7 +45,7 @@ export const researchMdpiExportInput = objectSchema<MdpiExportArgs>({
 export const mdpiResearchTools = [
   {
     name: "research_mdpi_search",
-    description: "Search MDPI via the verified NUAA MDPI GET-query recipe with bounded hydration polling.",
+    description: "Search MDPI via the verified MDPI GET-query recipe with bounded hydration polling.",
     schema: researchMdpiSearchInput,
     handler: async (args: MdpiSearchArgs) => researchMdpiSearch(args)
   },

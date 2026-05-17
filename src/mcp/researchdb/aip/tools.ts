@@ -4,7 +4,7 @@ import { researchAipSearch, researchAipFilter, researchAipExport, AipSearchArgs,
 export const researchAipSearchInput = objectSchema<AipSearchArgs>({
   query: scalar.string("AIP Publishing Scitation query text"),
   page_size: scalar.number("Optional AIP pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-aip" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-aip" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9249 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -21,7 +21,7 @@ export const researchAipFilterInput = objectSchema<AipFilterArgs>({
   from_date: scalar.string("Date range start, YYYY/MM/DD"),
   to_date: scalar.string("Date range end, YYYY/MM/DD"),
   page_size: scalar.number("Optional AIP pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-aip" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-aip" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9249 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -30,7 +30,7 @@ export const researchAipExportInput = objectSchema<AipExportArgs>({
   doi: scalar.string("AIP DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote", "refworks"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-aip" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-aip" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9249 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);

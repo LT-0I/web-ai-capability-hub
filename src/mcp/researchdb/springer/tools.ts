@@ -10,7 +10,7 @@ export const researchSpringerSearchInput = objectSchema<SpringerSearchArgs>({
   date_to: scalar.number("Custom end year"),
   date: { ...scalar.string("Date facet value"), default: "custom" },
   page: scalar.number("Optional result page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-springer" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-springer" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9247 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -31,7 +31,7 @@ export const researchSpringerFilterInput = objectSchema<SpringerFilterArgs>({
   sub_discipline: scalar.string("Subdiscipline facet value"),
   sustainable_development_goal: scalar.string("Sustainable development goal facet value"),
   page: scalar.number("Optional result page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-springer" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-springer" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9247 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -41,7 +41,7 @@ export const researchSpringerExportInput = objectSchema<SpringerExportArgs>({
   format: { ...scalar.enum(["ris", "csv"], "Export format; csv/bulk is blocked by personal-account login and returns HUMAN_HANDOFF_REQUIRED"), default: "ris" },
   bulk_export: scalar.boolean("Set true only to request the documented blocked bulk CSV path; returns HUMAN_HANDOFF_REQUIRED"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-springer" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-springer" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9247 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

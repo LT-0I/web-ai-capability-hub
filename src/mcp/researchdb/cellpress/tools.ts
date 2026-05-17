@@ -5,7 +5,7 @@ export const researchCellpressSearchInput = objectSchema<CellpressSearchArgs>({
   query: scalar.string("Cell Press query text"),
   area: { ...scalar.enum(["AllField", "Title", "Contrib", "Keyword", "Abstract", "AbstractTitleKeywordFilterField"], "Cell Press search area"), default: "AllField" },
   page_size: scalar.number("Optional Cell Press pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cellpress" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cellpress" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9240 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -23,7 +23,7 @@ export const researchCellpressFilterInput = objectSchema<CellpressFilterArgs>({
   access: scalar.string("Access facet: full or open"),
   sort_by: scalar.string("sortBy parameter such as relevancy"),
   page_size: scalar.number("Optional Cell Press pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cellpress" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cellpress" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9240 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -33,7 +33,7 @@ export const researchCellpressExportInput = objectSchema<CellpressExportArgs>({
   format: { ...scalar.enum(["ris"], "Cell Press citation export format; RIS-only"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
   filename: scalar.string("Optional output filename"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cellpress" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cellpress" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9240 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["pii"]);
@@ -41,7 +41,7 @@ export const researchCellpressExportInput = objectSchema<CellpressExportArgs>({
 export const cellpressResearchTools = [
   {
     name: "research_cellpress_search",
-    description: "Search Cell Press via the verified NUAA Atypon/Literatum doSearch recipe.",
+    description: "Search Cell Press via the verified Atypon/Literatum doSearch recipe.",
     schema: researchCellpressSearchInput,
     handler: async (args: CellpressSearchArgs) => researchCellpressSearch(args)
   },

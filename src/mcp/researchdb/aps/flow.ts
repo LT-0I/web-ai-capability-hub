@@ -228,7 +228,7 @@ async function withAllocatedApsPage<T>(profile: string, url: string, tabId: stri
 
 export async function researchApsSearch(args: ApsSearchArgs): Promise<{ result_count: number; items: ApsItem[]; query_url: string }> {
   const query_url = buildApsSearchUrl(args);
-  const profile = args.profile || "nuaa-aps";
+  const profile = args.profile || "research-aps";
   const tabId = args.tab_id || `research-aps-search-${Date.now()}`;
   const page = await withAllocatedApsPage(profile, query_url, tabId, args.cdp_port ?? 9244, (p) => readApsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -236,7 +236,7 @@ export async function researchApsSearch(args: ApsSearchArgs): Promise<{ result_c
 
 export async function researchApsFilter(args: ApsFilterArgs): Promise<{ result_count: number; items: ApsItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildApsFilterUrl(args);
-  const profile = args.profile || "nuaa-aps";
+  const profile = args.profile || "research-aps";
   const tabId = args.tab_id || `research-aps-filter-${Date.now()}`;
   const page = await withAllocatedApsPage(profile, refined_url, tabId, args.cdp_port ?? 9244, (p) => readApsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -246,7 +246,7 @@ export async function researchApsExport(args: ApsExportArgs): Promise<{ artifact
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
   const articleUrl = args.article_url || buildApsArticleUrl(normalizeJournalCode(args.journal_code), doi);
-  const profile = args.profile || "nuaa-aps";
+  const profile = args.profile || "research-aps";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "aps"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

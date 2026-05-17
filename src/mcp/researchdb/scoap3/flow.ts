@@ -228,7 +228,7 @@ async function withAllocatedScoap3Page<T>(profile: string, url: string, tabId: s
 
 export async function researchScoap3Search(args: Scoap3SearchArgs): Promise<{ result_count: number; items: Scoap3Item[]; query_url: string; confirm_url: string; export_href: string }> {
   const query_url = buildScoap3SearchUrl(args);
-  const profile = args.profile || "nuaa-scoap3";
+  const profile = args.profile || "research-scoap3";
   const tabId = args.tab_id || `research-scoap3-search-${Date.now()}`;
   const page = await withAllocatedScoap3Page(profile, query_url, tabId, args.cdp_port, (p) => readScoap3ResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url, confirm_url: page.url, export_href: page.exportHref };
@@ -236,14 +236,14 @@ export async function researchScoap3Search(args: Scoap3SearchArgs): Promise<{ re
 
 export async function researchScoap3Filter(args: Scoap3FilterArgs): Promise<{ result_count: number; items: Scoap3Item[]; refined_url: string; confirm_url: string; export_href: string }> {
   const refined_url = buildScoap3FilterUrl(args);
-  const profile = args.profile || "nuaa-scoap3";
+  const profile = args.profile || "research-scoap3";
   const tabId = args.tab_id || `research-scoap3-filter-${Date.now()}`;
   const page = await withAllocatedScoap3Page(profile, refined_url, tabId, args.cdp_port, (p) => readScoap3ResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, export_href: page.exportHref };
 }
 
 export async function researchScoap3Export(args: Scoap3ExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: Scoap3ExportFormat | "record-json"; source_url: string }> {
-  const profile = args.profile || "nuaa-scoap3";
+  const profile = args.profile || "research-scoap3";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "scoap3"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

@@ -1,9 +1,9 @@
 # Research-Database Workflows
 
-How the hub automates **paid/licensed research databases** (the STEM
+How the hub automates **paid/licensed research databases** (the science/engineering
 digital-resource family), kept strictly separate from the web-AI surface.
 
-> Companion: `docs/plans/nuaa-stem-db-absorption-2026-05-16.md` (initiative
+> Companion: `docs/plans/research-db-absorption-2026-05-16.md` (initiative
 > plan), `docs/CONSUMER_CONTRACT.md` (versioned surface),
 > `examples/workflows/research-database-search-dry-run.yaml` (dry-run
 > starting point). Real paid-database runs require visible browser access
@@ -18,20 +18,20 @@ digital-resource family), kept strictly separate from the web-AI surface.
 
 The database MCP is a **separate module** by explicit design so the two
 are never confused. Adding database tools never moves the `webai_` count,
-the 11-sub-MCP count, the 32 error codes, or `consumer-contract-1.4.0`.
+the 11-sub-MCP count, the 32 error codes, or `consumer-contract-1.5.0`.
 
 ## 2. Catalog (source of truth)
 
-The NUAA library digital-resource navigation directory is enumerated
-read-only into `configs/research/nuaa_stem_inventory.json` (the editable
-seed; `schema_version: nuaa-stem-deep-explore-1.0`). The authoritative
+The library digital-resource navigation directory is enumerated
+read-only into `configs/research/research_inventory.json` (the editable
+seed; `schema_version: research-inventory-1.0`). The authoritative
 store is the SQLite `site_registry_entries` table — import the seed via:
 
-- CLI: `research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only] [--json]`
-- MCP: `research_nuaa_import` (`{ path?, stem_only? }`)
+- CLI: `research:inventory:import [configs/research/research_inventory.json] [--stem-only] [--json]`
+- MCP: `research_inventory_import` (`{ path?, stem_only? }`)
 
 `--stem-only` keeps only `raw.classification.science_engineering === true`
-rows (理工科). Imported rows auto-mirror into `service_targets` with
+rows (学术研究). Imported rows auto-mirror into `service_targets` with
 `kind:"research-database"`, so the existing research adapter /
 `capability:query` / `site-registry://sites` resource see them for free.
 The seed is the seed; the table is authoritative; tallies are derived.
@@ -60,7 +60,7 @@ Device is on the institutional network. A database is reached by:
 - **(c) nav-proxy link** — click the EZproxy link in the navigation page.
 
 We **never type credentials**. Institutional/proxy URLs
-(`*.nuaa.edu.cn`, `libproxy`, nav/proxy URLs) are **sensitive values**,
+(`*.institution.example.edu`, `libproxy`, nav/proxy URLs) are **sensitive values**,
 redacted at import (the `normalizeInstitutionalUrls` projection in
 `siteRegistryImporter.ts`) and never persisted or emitted; the R1/R2
 forbidden-field boundary (`src/mcp/forbiddenFields.ts`) is the second
@@ -83,7 +83,7 @@ graceful fallback — fail honestly with the code.
 ## 6. Safe execution sequence
 
 1. Launch the `research-default` profile (own CDP port; do not collide
-   with the web-AI chromes 9223/9224/9225 or `nuaa-research` 9226).
+   with the web-AI chromes 9223/9224/9225 or another research profile on 9226).
 2. Let the user confirm access or institutional login (mode a/b/c above).
 3. Discover capabilities (advanced search / filters / export).
 4. Compile a dry-run workflow.

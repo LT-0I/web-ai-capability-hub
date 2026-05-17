@@ -5,7 +5,7 @@ export const researchIestSearchInput = objectSchema<IestSearchArgs>({
   query: scalar.string("Journal of the IEST search query; canonical URL uses q[0]=<query>, not q1="),
   field: { ...scalar.enum(["all", "alternative-title", "publisher", "affiliation", "subject", "abstract", "fulltext", "title", "identifier", "author"], "Refine terms field"), default: "all" },
   page_size: scalar.number("Optional page size hint; PubFactory renders 10 results/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iest" },
   cdp_port: { ...scalar.number("CDP port override; IEST recipe requires 9245"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -20,7 +20,7 @@ export const researchIestFilterInput = objectSchema<IestFilterArgs>({
   refine_query: scalar.string("Optional Refine terms query"),
   refine_field: { ...scalar.enum(["all", "alternative-title", "publisher", "affiliation", "subject", "abstract", "fulltext", "title", "identifier", "author"], "Refine terms field"), default: "all" },
   page_size: scalar.number("Optional page size hint; PubFactory renders 10 results/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iest" },
   cdp_port: { ...scalar.number("CDP port override; IEST recipe requires 9245"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -30,7 +30,7 @@ export const researchIestExportInput = objectSchema<IestExportArgs>({
   article_path: scalar.string("Journal of the IEST article path, e.g. /view/journals/jiet/49/1/article-p21.xml"),
   format: { ...scalar.enum(["ris", "bib", "enw"], "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iest" },
   cdp_port: { ...scalar.number("CDP port override; IEST recipe requires 9245"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

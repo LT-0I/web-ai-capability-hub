@@ -240,7 +240,7 @@ async function withAllocatedScieloPage<T>(profile: string, url: string, tabId: s
 
 export async function researchScieloSearch(args: ScieloSearchArgs): Promise<{ result_count: number; items: ScieloItem[]; query_url: string }> {
   const query_url = buildScieloSearchUrl(args);
-  const profile = args.profile || "nuaa-scielo";
+  const profile = args.profile || "research-scielo";
   const tabId = args.tab_id || `research-scielo-search-${Date.now()}`;
   const page = await withAllocatedScieloPage(profile, query_url, tabId, args.cdp_port, (p) => readScieloResultsPage(p, query_url));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -248,7 +248,7 @@ export async function researchScieloSearch(args: ScieloSearchArgs): Promise<{ re
 
 export async function researchScieloFilter(args: ScieloFilterArgs): Promise<{ result_count: number; items: ScieloItem[]; refined_url: string; confirm_url: string; confirm_title: string; selected_filters: boolean }> {
   const refined_url = buildScieloFilterUrl(args);
-  const profile = args.profile || "nuaa-scielo";
+  const profile = args.profile || "research-scielo";
   const tabId = args.tab_id || `research-scielo-filter-${Date.now()}`;
   const hasFacet = refined_url.includes("filter%5B") || refined_url.includes("filter[");
   const page = await withAllocatedScieloPage(profile, refined_url, tabId, args.cdp_port, (p) => readScieloResultsPage(p, refined_url, hasFacet));
@@ -257,7 +257,7 @@ export async function researchScieloFilter(args: ScieloFilterArgs): Promise<{ re
 
 export async function researchScieloExport(args: ScieloExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: ScieloExportFormat; source_url: string; result_count: number }> {
   const format = normalizeFormat(args.export_format);
-  const profile = args.profile || "nuaa-scielo";
+  const profile = args.profile || "research-scielo";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "scielo"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

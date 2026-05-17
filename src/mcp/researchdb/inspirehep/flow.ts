@@ -252,7 +252,7 @@ async function clickFacet(page: any, facetValue: string): Promise<void> {
 
 export async function researchInspirehepSearch(args: InspirehepSearchArgs): Promise<{ result_count: number; items: InspirehepItem[]; query_url: string; confirm_url: string; confirm_title: string }> {
   const query_url = buildInspirehepSearchUrl(args);
-  const profile = args.profile || "nuaa-inspirehep";
+  const profile = args.profile || "research-inspirehep";
   const tabId = args.tab_id || `research-inspirehep-search-${Date.now()}`;
   const page = await withAllocatedInspirehepPage(profile, INSPIREHEP_ORIGIN, tabId, (args.cdp_port || 9227), async (p) => {
     await driveInAppSearch(p, args.query);
@@ -263,7 +263,7 @@ export async function researchInspirehepSearch(args: InspirehepSearchArgs): Prom
 
 export async function researchInspirehepFilter(args: InspirehepFilterArgs): Promise<{ result_count: number; items: InspirehepItem[]; refined_url: string; confirm_url: string; confirm_title: string; applied_filters: Record<string, string> }> {
   const refined_url = buildInspirehepFilterUrl(args);
-  const profile = args.profile || "nuaa-inspirehep";
+  const profile = args.profile || "research-inspirehep";
   const tabId = args.tab_id || `research-inspirehep-filter-${Date.now()}`;
   const applied: Record<string, string> = {};
   const page = await withAllocatedInspirehepPage(profile, INSPIREHEP_ORIGIN, tabId, (args.cdp_port || 9227), async (p) => {
@@ -278,7 +278,7 @@ export async function researchInspirehepFilter(args: InspirehepFilterArgs): Prom
 
 export async function researchInspirehepExport(args: InspirehepExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: InspirehepExportFormat; source_url: string }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-inspirehep";
+  const profile = args.profile || "research-inspirehep";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "inspirehep"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

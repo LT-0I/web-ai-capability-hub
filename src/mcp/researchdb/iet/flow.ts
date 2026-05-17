@@ -214,7 +214,7 @@ async function withAllocatedIetPage<T>(profile: string, url: string, tabId: stri
 
 export async function researchIetSearch(args: IetSearchArgs): Promise<{ result_count: number; items: IetItem[]; query_url: string }> {
   const query_url = buildIetSearchUrl(args);
-  const profile = args.profile || "nuaa-iet";
+  const profile = args.profile || "research-iet";
   const tabId = args.tab_id || `research-iet-search-${Date.now()}`;
   const page = await withAllocatedIetPage(profile, query_url, tabId, args.cdp_port, (p) => readIetPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -222,7 +222,7 @@ export async function researchIetSearch(args: IetSearchArgs): Promise<{ result_c
 
 export async function researchIetFilter(args: IetFilterArgs): Promise<{ result_count: number; items: IetItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildIetFilterUrl(args);
-  const profile = args.profile || "nuaa-iet";
+  const profile = args.profile || "research-iet";
   const tabId = args.tab_id || `research-iet-filter-${Date.now()}`;
   const page = await withAllocatedIetPage(profile, refined_url, tabId, args.cdp_port, (p) => readIetPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -231,7 +231,7 @@ export async function researchIetFilter(args: IetFilterArgs): Promise<{ result_c
 export async function researchIetExport(args: IetExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IetExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-iet";
+  const profile = args.profile || "research-iet";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "iet"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

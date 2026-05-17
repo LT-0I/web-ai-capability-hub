@@ -263,7 +263,7 @@ async function fetchAipCitationViaManagedPage(page: any, sourceUrl: string): Pro
 
 export async function researchAipSearch(args: AipSearchArgs): Promise<{ result_count: number; items: AipItem[]; query_url: string }> {
   const query_url = buildAipSearchUrl(args);
-  const profile = args.profile || "nuaa-aip";
+  const profile = args.profile || "research-aip";
   const tabId = args.tab_id || `research-aip-search-${Date.now()}`;
   const page = await withAllocatedAipPage(profile, query_url, tabId, args.cdp_port, (p) => readAipResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -271,7 +271,7 @@ export async function researchAipSearch(args: AipSearchArgs): Promise<{ result_c
 
 export async function researchAipFilter(args: AipFilterArgs): Promise<{ result_count: number; items: AipItem[]; refined_url: string; confirm_url: string; confirm_title: string }> {
   const refined_url = buildAipFilterUrl(args);
-  const profile = args.profile || "nuaa-aip";
+  const profile = args.profile || "research-aip";
   const tabId = args.tab_id || `research-aip-filter-${Date.now()}`;
   const page = await withAllocatedAipPage(profile, refined_url, tabId, args.cdp_port, (p) => readAipResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
@@ -280,7 +280,7 @@ export async function researchAipFilter(args: AipFilterArgs): Promise<{ result_c
 export async function researchAipExport(args: AipExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: AipExportFormat; doi: string; resource_id: string; source_url: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-aip";
+  const profile = args.profile || "research-aip";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "aip"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

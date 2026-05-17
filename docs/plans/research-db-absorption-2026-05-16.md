@@ -1,11 +1,11 @@
-# NUAA STEM-DB auto-collection + sibling-asset absorption (2026-05-16)
+# academic research science/engineering-DB auto-collection + sibling-asset absorption (2026-05-16)
 
 Status: **ACTIVE** · Initiative kicked off post-R1R2 (`eebf87c`).
 
 ## User request
 
-Build research-database auto-collection covering **all 理工科 (STEM-related)
-accessible databases** from the NUAA library digital-resource navigation
+Build research-database auto-collection covering **all 学术研究 (science/engineering-related)
+accessible databases** from the library digital-resource navigation directory
 directory, and absorb that capability into this hub. Hard constraint:
 **"不要破坏当下既有流程即可，增加更多新功能"** — do not break any existing
 flow; only ADD. Absorption scope = orchestrator's call.
@@ -13,14 +13,14 @@ flow; only ADD. Absorption scope = orchestrator's call.
 ## Source-of-truth decision
 
 The previously-referenced sibling assets
-(`ip-literature-patent-research/`, `nuaa_stem_inventory.json`,
+(`ip-literature-patent-research/`, `research_inventory.json`,
 `references/site_registry.json`) **do not exist on this host** (architect +
 independent `find /home/l1u` both confirm absent). Fabricating the
 inventory is banned (no synthesis). The user supplied the **authoritative
 live nav portal**:
 
 ```
-https://lib.nuaa.edu.cn/engine2/m/C033AF58F1DD8665?p=254235&typeId=4493755&pageId=226566&wfwfid=21318&websiteId=136822
+https://lib.institution.example.edu/engine2/m/C033AF58F1DD8665?p=254235&typeId=4493755&pageId=226566&wfwfid=21318&websiteId=136822
 ```
 
 Decision: **re-derive the inventory by an authorized live read-only
@@ -47,33 +47,33 @@ NOT re-crawled afterward — import-first, per
   New sub-MCP module `src/mcp/submcp/research-db/` mirroring the shipped
   `src/mcp/submcp/` pattern (claude-design / gemini-music / chatgpt-codex)
   — explicitly distinct so the database MCP and the webai MCP are never
-  confused/mixed. Houses `research:nuaa:import` CLI + `research_nuaa_import`
+  confused/mixed. Houses `research:inventory:import` CLI + `research_inventory_import`
   MCP (seed importer) AND all future per-DB flow tools. None are `webai_`
   tools → **37 stays 37, 32 error codes stay 32,
-  `consumer-contract-1.4.0` / package `0.6.0` unchanged.** Round-trip
+  `consumer-contract-1.5.0` / package `0.7.0` unchanged.** Round-trip
   triad still required (command row + 2 `sensitive_fields` entries; docs;
   non-counting assertions + explicit "still 37/32" locks).
 - **Database access uses the CDP approach** (user directive): CDP-level
   `Browser.setDownloadBehavior` + raw `Input.dispatchMouseEvent` /
   `browser:artifact-click`, never page-level Playwright `download.click()`
   — same anti-pattern ban as the sandbox-iframe download.
-- **Per-DB capability scope (user directive 2026-05-16):** each STEM DB's
+- **Per-DB capability scope (user directive 2026-05-16):** each science/engineering DB's
   automation surface is exactly three primitives — (1) the DB's built-in
   **advanced search**, (2) its various **filter/refine** controls, (3)
   **file export** (results/records → file, via the CDP download path,
   never page-level `download.click()`). Not full-text scraping, not
   account/billing actions. Export reuses the proven round-3 raw-CDP
   `Browser.setDownloadBehavior` recipe.
-- **Per-DB automation pipeline (user directive):** for any STEM DB whose
+- **Per-DB automation pipeline (user directive):** for any science/engineering DB whose
   automation is in scope — FIRST Opus-4.7 effort=max interactive
   exploration (observe-first, canonical reader, bounded-poll past SPA
   hydration) maps advanced-search + filters + export → THEN Codex
   re-runs/reproduces → THEN固化 into a tool in the database sub-MCP +
   additive contract round-trip. No blind-codex per-DB flow before an
   Opus-max interactive pass has mapped it.
-- **STEM filter:** per-record `science_engineering:bool` +
+- **science/engineering filter:** per-record `science_engineering:bool` +
   `subject`/`matched_subjects` ride losslessly in `raw`; import-all,
-  mark-STEM, with a cheap `--stem-only` flag.
+  mark-science/engineering, with a cheap `--stem-only` flag.
 
 ## Access model (user-stated; MUST honor)
 
@@ -95,29 +95,29 @@ fallback/synthesis:
 
 Forbidden-field walker (`src/mcp/forbiddenFields.ts`, just shipped) catches
 structural **key names** only. Institutional/proxy URL **values**
-(`*.nuaa.edu.cn`, `libproxy.nuaa.edu.cn` EZproxy, `nav_url`, `proxy_url`)
+(`*.institution.example.edu`, `libproxy.institution.example.edu` EZproxy, `nav_url`, `proxy_url`)
 are blanked by an **import-time normalizer** BEFORE rows hit the DB, so
 `site-registry://sites` can never emit them. Seed JSON keeps
 `redactions_applied:["nav_url","institutional_markers"]` as authored.
 
 ## Serialized Codex batches (each: own build+test gate, orchestrator re-verifies)
 
-1. **`nuaa-stem-enumerate`** (Task #28) — live read-only listing crawl of
-   the nav portal → `configs/research/nuaa_stem_inventory.json` seed
+1. **`research-inventory-enumerate`** (Task #28) — live read-only listing crawl of
+   the nav portal → `configs/research/research_inventory.json` seed
    (classified, redacted). No per-DB login, no credential entry.
-2. **`nuaa-importer-extend`** — `SiteRegistryImporter` additive STEM
+2. **`research-importer-extend`** — `SiteRegistryImporter` additive science/engineering
    classifier + nav/proxy/institutional-URL normalizer; namespaced
-   `site_id` (`nuaa-stem-<slug>`). Existing `site:registry:import` tests
+   `site_id` (`research-inventory-<slug>`). Existing `site:registry:import` tests
    must stay green (no regression).
-3. **`nuaa-cli-mcp-surface`** — `research:nuaa:import` CLI +
-   `research_nuaa_import` MCP (delegates to B2), non-`webai_`.
-4. **`nuaa-contract-roundtrip`** — command row + `sensitive_fields`;
+3. **`research-cli-mcp-surface`** — `research:inventory:import` CLI +
+   `research_inventory_import` MCP (delegates to B2), non-`webai_`.
+4. **`research-contract-roundtrip`** — command row + `sensitive_fields`;
    `docs/CONSUMER_CONTRACT.md`; tests incl. explicit "still 37 / still 32"
    locks; `contract_version` unchanged.
-5. **`nuaa-import-verify`** — import real seed in scratch DB; assert row
-   counts, STEM preserved, zero forbidden field / institutional URL in
+5. **`research-import-verify`** — import real seed in scratch DB; assert row
+   counts, science/engineering preserved, zero forbidden field / institutional URL in
    `site-registry://sites`.
-6. **`nuaa-docs-workflow`** — `docs/RESEARCH_DATABASE_WORKFLOWS.md` 3-mode
+6. **`research-docs-workflow`** — `docs/RESEARCH_DATABASE_WORKFLOWS.md` 3-mode
    access + error-code map; round-3 export script cited as prior art only.
 
 ## Top risks (red-team)

@@ -31,7 +31,7 @@ export class WebAiToolError extends Error {
 const WORLDSCI_ORIGIN = "https://www.worldscientific.com";
 const VALID_AREAS = new Set(["AllField", "Title", "Contrib", "Keyword", "Abstract", "Affiliation"]);
 const VALID_FORMATS = new Set(["ris", "bibtex"]);
-const DEFAULT_PROFILE = "nuaa-worldsci";
+const DEFAULT_PROFILE = "research-worldsci";
 const DEFAULT_CDP_PORT = 9259;
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }

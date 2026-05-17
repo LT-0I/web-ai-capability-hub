@@ -4,7 +4,7 @@ import { researchDblpSearch, researchDblpFilter, researchDblpExport, DblpSearchA
 export const researchDblpSearchInput = objectSchema<DblpSearchArgs>({
   query: scalar.string("DBLP CompleteSearch query; space=AND, pipe=OR, word$=exact word; phrase/NOT disabled by DBLP"),
   mode: { ...scalar.enum(["combined", "author", "venue", "publ"], "DBLP search mode"), default: "combined" },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-dblp" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-dblp" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9226 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -18,7 +18,7 @@ export const researchDblpFilterInput = objectSchema<DblpFilterArgs>({
   author_token: scalar.string("DBLP author facet token"),
   venue_token: scalar.string("DBLP venue/stream facet token"),
   access_token: scalar.string("DBLP access facet token"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-dblp" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-dblp" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9226 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -31,7 +31,7 @@ export const researchDblpExportInput = objectSchema<DblpExportArgs>({
   h: { ...scalar.number("Bulk API hit limit; DBLP UI documents first 1000 hits"), default: 1000 },
   filename: scalar.string("Optional output filename"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-dblp" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-dblp" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9226 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

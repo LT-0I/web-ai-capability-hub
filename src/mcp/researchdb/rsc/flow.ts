@@ -237,7 +237,7 @@ async function resolveRscArticleUrl(page: any, doi: string, explicitUrl?: string
 
 export async function researchRscSearch(args: RscSearchArgs): Promise<{ result_count: number; items: RscItem[]; query_url: string }> {
   const query_url = buildRscSearchUrl(args);
-  const profile = args.profile || "nuaa-rsc";
+  const profile = args.profile || "research-rsc";
   const tabId = args.tab_id || `research-rsc-search-${Date.now()}`;
   const page = await withAllocatedRscPage(profile, query_url, tabId, args.cdp_port, (p) => readRscPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -245,7 +245,7 @@ export async function researchRscSearch(args: RscSearchArgs): Promise<{ result_c
 
 export async function researchRscFilter(args: RscFilterArgs): Promise<{ result_count: number; items: RscItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildRscFilterUrl(args);
-  const profile = args.profile || "nuaa-rsc";
+  const profile = args.profile || "research-rsc";
   const tabId = args.tab_id || `research-rsc-filter-${Date.now()}`;
   const page = await withAllocatedRscPage(profile, refined_url, tabId, args.cdp_port, (p) => readRscPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -254,7 +254,7 @@ export async function researchRscFilter(args: RscFilterArgs): Promise<{ result_c
 export async function researchRscExport(args: RscExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: RscExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-rsc";
+  const profile = args.profile || "research-rsc";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "rsc"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

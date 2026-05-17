@@ -218,7 +218,7 @@ async function withAllocatedSpringerPage<T>(profile: string, url: string, tabId:
 
 export async function researchSpringerSearch(args: SpringerSearchArgs): Promise<{ result_count: number; items: SpringerItem[]; query_url: string }> {
   const query_url = buildSpringerSearchUrl(args);
-  const profile = args.profile || "nuaa-springer";
+  const profile = args.profile || "research-springer";
   const tabId = args.tab_id || `research-springer-search-${Date.now()}`;
   const page = await withAllocatedSpringerPage(profile, query_url, tabId, args.cdp_port, (p) => readSpringerResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -226,7 +226,7 @@ export async function researchSpringerSearch(args: SpringerSearchArgs): Promise<
 
 export async function researchSpringerFilter(args: SpringerFilterArgs): Promise<{ result_count: number; items: SpringerItem[]; refined_url: string; confirm_url: string; confirm_title: string; applied_filters: string[] }> {
   const refined_url = buildSpringerFilterUrl(args);
-  const profile = args.profile || "nuaa-springer";
+  const profile = args.profile || "research-springer";
   const tabId = args.tab_id || `research-springer-filter-${Date.now()}`;
   const page = await withAllocatedSpringerPage(profile, refined_url, tabId, args.cdp_port, (p) => readSpringerResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title, applied_filters: page.appliedFilters };
@@ -238,7 +238,7 @@ export async function researchSpringerExport(args: SpringerExportArgs): Promise<
     throw new WebAiToolError(ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED, "SpringerLink bulk CSV export is behind a personal-account login wall; per-article RIS is the verified export primitive", { format, blocker: "Springer Nature account login required for /search/csv" });
   }
   const doi = requireDoi(args.doi);
-  const profile = args.profile || "nuaa-springer";
+  const profile = args.profile || "research-springer";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "springer"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

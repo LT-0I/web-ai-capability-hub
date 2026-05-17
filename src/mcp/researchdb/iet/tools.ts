@@ -5,7 +5,7 @@ export const researchIetSearchInput = objectSchema<IetSearchArgs>({
   query: scalar.string("IET Digital Library query text"),
   area: { ...scalar.enum(["AllField", "Title", "Contrib", "Keyword", "Abstract", "Affiliation"], "IET search area"), default: "AllField" },
   page_size: scalar.number("Optional IET pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iet" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iet" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -21,7 +21,7 @@ export const researchIetFilterInput = objectSchema<IetFilterArgs>({
   series_key: scalar.string("SeriesKey publication facet"),
   alphabet_range: scalar.string("alphabetRange title A-Z facet"),
   page_size: scalar.number("Optional IET pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iet" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iet" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -30,7 +30,7 @@ export const researchIetExportInput = objectSchema<IetExportArgs>({
   doi: scalar.string("IET DOI to export"),
   format: { ...scalar.enum(["ris", "endnote", "bibtex", "medlars", "refworks"], "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-iet" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-iet" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -38,7 +38,7 @@ export const researchIetExportInput = objectSchema<IetExportArgs>({
 export const ietResearchTools = [
   {
     name: "research_iet_search",
-    description: "Search IET Digital Library via the verified NUAA IET Atypon/Literatum recipe.",
+    description: "Search IET Digital Library via the verified IET Atypon/Literatum recipe.",
     schema: researchIetSearchInput,
     handler: async (args: IetSearchArgs) => researchIetSearch(args)
   },

@@ -31,7 +31,7 @@ const INCOPAT_ORIGIN = "https://www.incopat.com";
 const INCOPAT_LOGIN_URL = "https://www.incopat.com/newLogin";
 const INCOPAT_SIMPLE_SEARCH_URL = "https://www.incopat.com/advancedSearch/simpleInit";
 const VALID_FORMATS = new Set(["pdf"]);
-const DEFAULT_PROFILE = "nuaa-incopat";
+const DEFAULT_PROFILE = "research-incopat";
 const DEFAULT_CDP_PORT = 9239;
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }

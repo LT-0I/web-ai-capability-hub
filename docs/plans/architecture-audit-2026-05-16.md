@@ -164,7 +164,7 @@ one table and did not sweep for the pattern elsewhere.
 1. **Close the resources/CLI forbidden-field leak (R1+R2) in one Codex
    dispatch** — centralize the sanitizer in `callMcpTool` AND
    `readMcpResource`; add contract tests iterating every resource URI
-   through `assertNoForbiddenFields`. Safety patch within `1.4.0` (no
+   through `assertNoForbiddenFields`. Safety patch within `1.5.0` (no
    version bump). Kills the highest-severity analog of the drift this audit
    was commissioned to hunt.
 2. **Unify the lease model (R6) + fix `importJson` table-completeness (R7)

@@ -5,7 +5,7 @@ export const researchWosSearchInput = objectSchema<WosSearchArgs>({
   query: scalar.string("Web of Science advanced-search query, e.g. TS=(...)"),
   mode: { ...scalar.enum(["advanced"], "Web of Science search mode"), default: "advanced" },
   page_size: scalar.number("Optional page size hint; Web of Science UI defaults are used by live flow"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wos" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wos" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -15,7 +15,7 @@ export const researchWosFilterInput = objectSchema<WosFilterArgs>({
   mode: { ...scalar.enum(["advanced"], "Web of Science search mode"), default: "advanced" },
   document_type: { ...scalar.enum(["Article"], "Document Types facet"), default: "Article" },
   page_size: scalar.number("Optional page size hint; Web of Science UI defaults are used by live flow"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wos" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wos" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -25,7 +25,7 @@ export const researchWosExportInput = objectSchema<WosExportArgs>({
   document_type: { ...scalar.enum(["Article"], "Document Types facet"), default: "Article" },
   format: { ...scalar.enum(["bibtex", "ris", "tab", "plain", "excel", "endnote"], "Export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wos" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wos" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

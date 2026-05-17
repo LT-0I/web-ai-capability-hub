@@ -204,7 +204,7 @@ async function withAllocatedSiamPage<T>(profile: string, url: string, tabId: str
 
 export async function researchSiamSearch(args: SiamSearchArgs): Promise<{ result_count: number; items: SiamItem[]; query_url: string }> {
   const query_url = buildSiamSearchUrl(args);
-  const profile = args.profile || "nuaa-siam";
+  const profile = args.profile || "research-siam";
   const tabId = args.tab_id || `research-siam-search-${Date.now()}`;
   const page = await withAllocatedSiamPage(profile, query_url, tabId, args.cdp_port, (p) => readSiamPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -212,7 +212,7 @@ export async function researchSiamSearch(args: SiamSearchArgs): Promise<{ result
 
 export async function researchSiamFilter(args: SiamFilterArgs): Promise<{ result_count: number; items: SiamItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildSiamFilterUrl(args);
-  const profile = args.profile || "nuaa-siam";
+  const profile = args.profile || "research-siam";
   const tabId = args.tab_id || `research-siam-filter-${Date.now()}`;
   const page = await withAllocatedSiamPage(profile, refined_url, tabId, args.cdp_port, (p) => readSiamPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -226,7 +226,7 @@ function artifactNameFor(doi: string, format: SiamExportFormat): string {
 export async function researchSiamExport(args: SiamExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: SiamExportFormat; doi: string; content_type: string | null; content_disposition: string | null }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-siam";
+  const profile = args.profile || "research-siam";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "siam"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

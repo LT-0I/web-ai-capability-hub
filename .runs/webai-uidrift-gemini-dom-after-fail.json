@@ -1,0 +1,478 @@
+{
+  "url": "https://gemini.google.com/app?hl=en",
+  "title": "Google Gemini",
+  "counts": {
+    "zero": "ERR Failed to execute 'querySelectorAll' on 'Document': 'button[aria-label=\"Create video, button, tap to use tool\"], intent-card button.card-zero-state:has-text(\"Create video\"), intent-card button[aria-label*=\"Create video\" i]:not([aria-label^=\"Deselect\"])' is not a valid selector.",
+    "active": "ERR Failed to execute 'querySelectorAll' on 'Document': 'button[aria-label=\"Deselect Create video\"], toolbox-drawer button.toolbox-drawer-item-deselect-button:has-text(\"Create video\"), button[aria-label^=\"Deselect\"][aria-label*=\"Create video\" i]' is not a valid selector.",
+    "toolbox": 1,
+    "menu": "ERR Failed to execute 'querySelectorAll' on 'Document': '#toolbox-drawer-menu button[role=\"menuitemcheckbox\"]:has-text(\"Create video\"), #toolbox-drawer-menu button:has-text(\"Create video\"), [role=\"menuitemcheckbox\"]:has-text(\"Create video\")' is not a valid selector.",
+    "prompt": 1
+  },
+  "visibleText": "Gemini\nPRO\nNew chat\nMy stuff\nNotebooks\nUntitled notebook\nNew notebook\nGems\nChats\nAbstract Neural Braid Motion Graphic\nAI Platform Promo Video Generation\nRobotic Cable Coiling Workstation Design\nAutomated Cable Coiling Workstation Visualization\nRiver Valley Shaping Inquiry\nAmbient Instrumental Loop Request\nWater's Boiling Point at Sea Level\nQuiet Morning Garden Sentence\nLargest Planet In Solar System\nWater's Boiling Point at Sea Level\nDawn Lake Description\nCreating a Canvas Document\nCanvas Document Creation Permission\nSettings & help\nConversation with Gemini\nHi Shark\nWhere should we start?\n🖼️ Create image\n🎸 Create music\nBoost my day\nHelp me learn\nCreate video\nWrite anything\n\n\n\n\nTools\nPro\n\n\n",
+  "elements": [
+    {
+      "i": 1,
+      "tag": "button",
+      "role": null,
+      "aria": "Main menu",
+      "text": "",
+      "test": "side-nav-menu-button",
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger main-menu-button mat-unthemed ng-star-in",
+      "rect": {
+        "x": 16,
+        "y": 16,
+        "w": 40,
+        "h": 40
+      },
+      "path": "button[data-test-id=side-nav-menu-button][aria-label=\"Main menu\"] < side-nav-menu-button < div[data-test-id=chat-app] < main < chat-app#app-root < body < html"
+    },
+    {
+      "i": 3,
+      "tag": "button",
+      "role": null,
+      "aria": "Temporary chat",
+      "text": "",
+      "test": "temp-chat-button",
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger temp-chat-button redesign mat-unthemed n",
+      "rect": {
+        "x": 1101,
+        "y": 16,
+        "w": 40,
+        "h": 40
+      },
+      "path": "button[data-test-id=temp-chat-button][aria-label=\"Temporary chat\"] < temp-chat-button < div[data-test-id=temp-chat-button-container] < div < div < div < top-bar-actions < main"
+    },
+    {
+      "i": 4,
+      "tag": "button",
+      "role": null,
+      "aria": null,
+      "text": "PRO",
+      "test": null,
+      "cls": "mdc-button mat-mdc-button-base gds-pillbox-button pillbox-btn mdc-button--unelevated mat-mdc-unelevated-button mat-mdc-b",
+      "rect": {
+        "x": 1153,
+        "y": 24,
+        "w": 45,
+        "h": 24
+      },
+      "path": "button < div[data-test-id=pillbox] < div < div < div < top-bar-actions < main < chat-app#app-root"
+    },
+    {
+      "i": 5,
+      "tag": "button",
+      "role": null,
+      "aria": "Search",
+      "text": "",
+      "test": null,
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger search-button ng-tns-c3036173105-10 ng-t",
+      "rect": {
+        "x": 254,
+        "y": 16,
+        "w": 40,
+        "h": 40
+      },
+      "path": "button[aria-label=\"Search\"] < search-nav-button < div < side-navigation-content < bard-sidenav[role=navigation][aria-label=\"Side Navigation\"] < bard-sidenav-container[data-test-id=bard-sidenav-container] < side-navigation-v2 < main"
+    },
+    {
+      "i": 6,
+      "tag": "a",
+      "role": null,
+      "aria": "New chat",
+      "text": "New chat",
+      "test": "expanded-button",
+      "cls": "mat-mdc-list-item mdc-list-item mat-ripple mat-mdc-tooltip-trigger side-nav-action-button explicit-gmat-override mat-mdc",
+      "rect": {
+        "x": 12,
+        "y": 80,
+        "w": 284,
+        "h": 40
+      },
+      "path": "a[data-test-id=expanded-button][aria-label=\"New chat\"] < side-nav-action-button[data-test-id=new-chat-button] < mat-action-list[role=group] < div[data-test-id=overflow-container] < div < side-navigation-content < bard-sidenav[role=navigation][aria-label=\"Side Navigation\"] < bard-sidenav-container[data-test-id=bard-sidenav-container]"
+    },
+    {
+      "i": 7,
+      "tag": "a",
+      "role": null,
+      "aria": "My stuff",
+      "text": "My stuff",
+      "test": "side-nav-entry-button",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger side-nav-entry-button is-scheduled-actions-enabled mat-mdc-tooltip-disabled ng-star-i",
+      "rect": {
+        "x": 8,
+        "y": 120,
+        "w": 288,
+        "h": 40
+      },
+      "path": "a[data-test-id=side-nav-entry-button][aria-label=\"My stuff\"] < side-nav-entry-button[data-test-id=my-stuff-side-nav-entry-button] < div < infinite-scroller < div[data-test-id=overflow-container] < div < side-navigation-content < bard-sidenav[role=navigation][aria-label=\"Side Navigation\"]"
+    },
+    {
+      "i": 8,
+      "tag": "a",
+      "role": null,
+      "aria": "Notebooks",
+      "text": "Notebooks",
+      "test": "side-nav-entry-button",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger side-nav-entry-button is-arrow-icon is-scheduled-actions-enabled mat-mdc-tooltip-disa",
+      "rect": {
+        "x": 8,
+        "y": 168,
+        "w": 288,
+        "h": 40
+      },
+      "path": "a[data-test-id=side-nav-entry-button][aria-label=\"Notebooks\"] < side-nav-entry-button[data-test-id=project-management-button] < div < project-sidenav-list < infinite-scroller < div[data-test-id=overflow-container] < div < side-navigation-content"
+    },
+    {
+      "i": 9,
+      "tag": "button",
+      "role": null,
+      "aria": null,
+      "text": "Untitled notebook",
+      "test": null,
+      "cls": "mat-ripple mat-mdc-tooltip-trigger project-new-conversation-button ng-tns-c484641100-15 is-my-stuff-side-nav-enabled",
+      "rect": {
+        "x": 8,
+        "y": 208,
+        "w": 288,
+        "h": 40
+      },
+      "path": "button < div[data-test-id=item] < project-sidenav-list-item < div[role=region] < div < project-sidenav-list < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 10,
+      "tag": "button",
+      "role": null,
+      "aria": "Open notebook actions menu",
+      "text": "",
+      "test": "actions-menu-button",
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-menu-trigger project-menu-button mat-unthemed ng-star-in",
+      "rect": {
+        "x": 264,
+        "y": 214,
+        "w": 28,
+        "h": 28
+      },
+      "path": "button[data-test-id=actions-menu-button][aria-label=\"Open notebook actions menu\"] < project-list-item-menu < div[data-test-id=item] < project-sidenav-list-item < div[role=region] < div < project-sidenav-list < infinite-scroller"
+    },
+    {
+      "i": 11,
+      "tag": "a",
+      "role": null,
+      "aria": "New notebook",
+      "text": "New notebook",
+      "test": "side-nav-entry-button",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger side-nav-entry-button is-scheduled-actions-enabled mat-mdc-tooltip-disabled ng-star-i",
+      "rect": {
+        "x": 8,
+        "y": 248,
+        "w": 288,
+        "h": 40
+      },
+      "path": "a[data-test-id=side-nav-entry-button][aria-label=\"New notebook\"] < side-nav-entry-button < div < project-sidenav-list < infinite-scroller < div[data-test-id=overflow-container] < div < side-navigation-content"
+    },
+    {
+      "i": 12,
+      "tag": "a",
+      "role": null,
+      "aria": "Gems",
+      "text": "Gems",
+      "test": "side-nav-entry-button",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger side-nav-entry-button is-arrow-icon is-scheduled-actions-enabled mat-mdc-tooltip-disa",
+      "rect": {
+        "x": 8,
+        "y": 300,
+        "w": 288,
+        "h": 40
+      },
+      "path": "a[data-test-id=side-nav-entry-button][aria-label=\"Gems\"] < side-nav-entry-button[data-test-id=bot-list-side-nav-entry-button] < div < bot-list < div < infinite-scroller < div[data-test-id=overflow-container] < div"
+    },
+    {
+      "i": 13,
+      "tag": "a",
+      "role": "button",
+      "aria": null,
+      "text": "Abstract Neural Braid Motion Graphic",
+      "test": "conversation",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger conversation ng-tns-c738427979-9 ng-trigger ng-trigger-conversationListRevealAnimatio",
+      "rect": {
+        "x": 12,
+        "y": 392,
+        "w": 282,
+        "h": 40
+      },
+      "path": "a[role=button][data-test-id=conversation] < div < div#conversations-list-0[role=region] < conversations-list[data-test-id=all-conversations] < div < div < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 14,
+      "tag": "a",
+      "role": "button",
+      "aria": null,
+      "text": "AI Platform Promo Video Generation",
+      "test": "conversation",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger conversation ng-tns-c738427979-9 ng-trigger ng-trigger-conversationListRevealAnimatio",
+      "rect": {
+        "x": 12,
+        "y": 432,
+        "w": 282,
+        "h": 40
+      },
+      "path": "a[role=button][data-test-id=conversation] < div < div#conversations-list-0[role=region] < conversations-list[data-test-id=all-conversations] < div < div < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 15,
+      "tag": "a",
+      "role": "button",
+      "aria": null,
+      "text": "Robotic Cable Coiling Workstation Design",
+      "test": "conversation",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger conversation ng-tns-c738427979-9 ng-trigger ng-trigger-conversationListRevealAnimatio",
+      "rect": {
+        "x": 12,
+        "y": 472,
+        "w": 282,
+        "h": 40
+      },
+      "path": "a[role=button][data-test-id=conversation] < div < div#conversations-list-0[role=region] < conversations-list[data-test-id=all-conversations] < div < div < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 16,
+      "tag": "a",
+      "role": "button",
+      "aria": null,
+      "text": "Automated Cable Coiling Workstation Visualization",
+      "test": "conversation",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger conversation ng-tns-c738427979-9 ng-trigger ng-trigger-conversationListRevealAnimatio",
+      "rect": {
+        "x": 12,
+        "y": 512,
+        "w": 282,
+        "h": 40
+      },
+      "path": "a[role=button][data-test-id=conversation] < div < div#conversations-list-0[role=region] < conversations-list[data-test-id=all-conversations] < div < div < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 17,
+      "tag": "a",
+      "role": "button",
+      "aria": null,
+      "text": "River Valley Shaping Inquiry",
+      "test": "conversation",
+      "cls": "mat-ripple mat-mdc-tooltip-trigger conversation ng-tns-c738427979-9 ng-trigger ng-trigger-conversationListRevealAnimatio",
+      "rect": {
+        "x": 12,
+        "y": 552,
+        "w": 282,
+        "h": 40
+      },
+      "path": "a[role=button][data-test-id=conversation] < div < div#conversations-list-0[role=region] < conversations-list[data-test-id=all-conversations] < div < div < infinite-scroller < div[data-test-id=overflow-container]"
+    },
+    {
+      "i": 18,
+      "tag": "button",
+      "role": null,
+      "aria": "Settings & help",
+      "text": "Settings & help",
+      "test": "expanded-button",
+      "cls": "mat-mdc-list-item mdc-list-item mat-mdc-menu-trigger mat-ripple mat-mdc-tooltip-trigger side-nav-action-button explicit-",
+      "rect": {
+        "x": 12,
+        "y": 513,
+        "w": 284,
+        "h": 40
+      },
+      "path": "button[data-test-id=expanded-button][aria-label=\"Settings & help\"] < side-nav-action-button[data-test-id=settings-and-help-button] < mat-action-list[role=group] < div[data-test-id=overflow-container] < div < side-navigation-content < bard-sidenav[role=navigation][aria-label=\"Side Navigation\"] < bard-sidenav-container[data-test-id=bard-sidenav-container]"
+    },
+    {
+      "i": 19,
+      "tag": "button",
+      "role": null,
+      "aria": "🖼️ Create image, button, tap to use tool",
+      "text": "🖼️ Create image",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 485,
+        "y": 375,
+        "w": 153,
+        "h": 56
+      },
+      "path": "button[aria-label=\"🖼️ Create image, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 20,
+      "tag": "button",
+      "role": null,
+      "aria": "🎸 Create music, button, tap to use tool",
+      "text": "🎸 Create music",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 645,
+        "y": 375,
+        "w": 151,
+        "h": 56
+      },
+      "path": "button[aria-label=\"🎸 Create music, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 21,
+      "tag": "button",
+      "role": null,
+      "aria": "Boost my day, button, tap to use tool",
+      "text": "Boost my day",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 805,
+        "y": 375,
+        "w": 130,
+        "h": 56
+      },
+      "path": "button[aria-label=\"Boost my day, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 22,
+      "tag": "button",
+      "role": null,
+      "aria": "Help me learn, button, tap to use tool",
+      "text": "Help me learn",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 943,
+        "y": 375,
+        "w": 132,
+        "h": 56
+      },
+      "path": "button[aria-label=\"Help me learn, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 23,
+      "tag": "button",
+      "role": null,
+      "aria": "Create video, button, tap to use tool",
+      "text": "Create video",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 645,
+        "y": 439,
+        "w": 124,
+        "h": 56
+      },
+      "path": "button[aria-label=\"Create video, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 24,
+      "tag": "button",
+      "role": null,
+      "aria": "Write anything, button, tap to use tool",
+      "text": "Write anything",
+      "test": null,
+      "cls": "mat-ripple card card-zero-state",
+      "rect": {
+        "x": 778,
+        "y": 439,
+        "w": 137,
+        "h": 56
+      },
+      "path": "button[aria-label=\"Write anything, button, tap to use tool\"] < intent-card < div < intent-card-bar < intent-chips-block < div < zero-state-block-picker < div"
+    },
+    {
+      "i": 26,
+      "tag": "div",
+      "role": "textbox",
+      "aria": "Enter a prompt for Gemini",
+      "text": "",
+      "test": null,
+      "cls": "ql-editor ql-blank textarea new-input-ui",
+      "rect": {
+        "x": 429,
+        "y": 253,
+        "w": 710,
+        "h": 24
+      },
+      "path": "div[role=textbox][aria-label=\"Enter a prompt for Gemini\"] < rich-textarea < div < div[data-test-id=textarea-inner] < div < div < div < div"
+    },
+    {
+      "i": 27,
+      "tag": "button",
+      "role": null,
+      "aria": "Open upload file menu",
+      "text": "",
+      "test": null,
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger upload-card-button open mat-primary ng-s",
+      "rect": {
+        "x": 417,
+        "y": 298,
+        "w": 40,
+        "h": 40
+      },
+      "path": "button[aria-label=\"Open upload file menu\"] < div < div < uploader < div < div < div < div"
+    },
+    {
+      "i": 28,
+      "tag": "button",
+      "role": null,
+      "aria": null,
+      "text": "Tools",
+      "test": null,
+      "cls": "mdc-button mat-mdc-button-base toolbox-drawer-button toolbox-drawer-button-with-label mat-mdc-button ng-tns-c2002101076-",
+      "rect": {
+        "x": 465,
+        "y": 298,
+        "w": 87,
+        "h": 40
+      },
+      "path": "button < div < div < toolbox-drawer < div < div < div < input-area-v2"
+    },
+    {
+      "i": 29,
+      "tag": "button",
+      "role": null,
+      "aria": "Open mode picker",
+      "text": "Pro",
+      "test": "bard-mode-menu-button",
+      "cls": "mdc-button mat-mdc-button-base mat-mdc-menu-trigger input-area-switch mat-mdc-button mat-unthemed ng-star-inserted",
+      "rect": {
+        "x": 1027,
+        "y": 295,
+        "w": 78,
+        "h": 40
+      },
+      "path": "button[data-test-id=bard-mode-menu-button][aria-label=\"Open mode picker\"] < bard-mode-switcher < div < div < div < div < input-area-v2 < fieldset"
+    },
+    {
+      "i": 30,
+      "tag": "button",
+      "role": null,
+      "aria": "Microphone",
+      "text": "",
+      "test": null,
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-mdc-tooltip-trigger speech_dictation_mic_button ng-tns-c2383",
+      "rect": {
+        "x": 1111,
+        "y": 295,
+        "w": 40,
+        "h": 40
+      },
+      "path": "button[aria-label=\"Microphone\"] < speech-dictation-mic-button < div < div < div < div < div < input-area-v2"
+    },
+    {
+      "i": 31,
+      "tag": "button",
+      "role": null,
+      "aria": "Send message",
+      "text": "",
+      "test": null,
+      "cls": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base send-button ng-tns-c2837856917-5 submit mat-unthemed ng-star-ins",
+      "rect": {
+        "x": 1130,
+        "y": 294,
+        "w": 42,
+        "h": 42
+      },
+      "path": "button[aria-label=\"Send message\"] < div < div < div < div < div < input-area-v2 < fieldset"
+    }
+  ]
+}

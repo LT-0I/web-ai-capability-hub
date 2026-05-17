@@ -221,7 +221,7 @@ async function withAllocatedFrontiersPage<T>(profile: string, url: string, tabId
 
 export async function researchFrontiersSearch(args: FrontiersSearchArgs): Promise<{ result_count: number; items: FrontiersItem[]; query_url: string }> {
   const query_url = buildFrontiersSearchUrl(args);
-  const profile = args.profile || "nuaa-frontiers";
+  const profile = args.profile || "research-frontiers";
   const tabId = args.tab_id || `research-frontiers-search-${Date.now()}`;
   const page = await withAllocatedFrontiersPage(profile, query_url, tabId, args.cdp_port, (p) => readFrontiersResultsPage(p));
   const limit = args.page_size && args.page_size > 0 ? args.page_size : undefined;
@@ -230,7 +230,7 @@ export async function researchFrontiersSearch(args: FrontiersSearchArgs): Promis
 
 export async function researchFrontiersFilter(args: FrontiersFilterArgs): Promise<{ result_count: number; items: FrontiersItem[]; query_url: string; group: FrontiersFacetGroup; selected_label: string }> {
   const query_url = buildFrontiersSearchUrl(args);
-  const profile = args.profile || "nuaa-frontiers";
+  const profile = args.profile || "research-frontiers";
   const tabId = args.tab_id || `research-frontiers-filter-${Date.now()}`;
   const selectors = frontiersFacetSelectors(args.group, args.option_id);
   return await withAllocatedFrontiersPage(profile, query_url, tabId, args.cdp_port, async (page) => {
@@ -258,7 +258,7 @@ export async function researchFrontiersFilter(args: FrontiersFilterArgs): Promis
 export async function researchFrontiersExport(args: FrontiersExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: FrontiersExportFormat; doi: string; source_url: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-frontiers";
+  const profile = args.profile || "research-frontiers";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "frontiers"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

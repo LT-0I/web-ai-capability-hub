@@ -194,8 +194,8 @@ capability) would add ~28 tools and a far larger contract/test churn — rejecte
 
 ## 3. Contract versioning decision
 
-**Decision: deliberate bump to `consumer-contract-1.4.0`.** Package version
-`0.5.0` → `0.6.0`.
+**Decision: deliberate bump to `consumer-contract-1.5.0`.** Package version
+`0.5.0` → `0.7.0`.
 
 Justification against CLAUDE.md §2.4:
 - §2.4 says a contract bump is a *deliberate act* and patches within a minor do
@@ -207,7 +207,7 @@ Justification against CLAUDE.md §2.4:
   `consumerContract.test.ts:207` asserts webai command count `=== 13`, plus the
   `webaiV13Tools` list (`:195`) and `error_codes.length === 29` (`:137`).
   These invariants MUST be deliberately updated in lockstep — they are the
-  enforcement mechanism that makes the bump auditable. Bumping to 1.4.0 and
+  enforcement mechanism that makes the bump auditable. Bumping to 1.5.0 and
   updating these counts is the sanctioned path; leaving 1.3.0 would force
   weakening a guard, which §2.4 forbids.
 - Every new CLI/MCP/TS surface must round-trip
@@ -254,7 +254,7 @@ the prior batch's acceptance gate is GREEN.
 
 | # | Batch (prompt file) | Scope | Contract touch | Acceptance gate |
 |---|---|---|---|---|
-| B0 | `stream5-contract-scaffold.md` | Bump `contract_version`→`consumer-contract-1.4.0`, `package_version`→`0.6.0`; add new `error_codes`; update `consumerContract.test.ts` invariants (webai count target, `webaiV13`→`webaiV14`+ list, `error_codes.length`); add `release_notes`. NO new tools yet. | YES (sole owner of count/version) | `npm run build` clean; `node --test dist/tests/*.test.js` green with new counts asserting the *intended* final surface as it lands per batch (use a per-batch incremental count or a single end-state count gated last — see note). |
+| B0 | `stream5-contract-scaffold.md` | Bump `contract_version`→`consumer-contract-1.5.0`, `package_version`→`0.7.0`; add new `error_codes`; update `consumerContract.test.ts` invariants (webai count target, `webaiV13`→`webaiV14`+ list, `error_codes.length`); add `release_notes`. NO new tools yet. | YES (sole owner of count/version) | `npm run build` clean; `node --test dist/tests/*.test.js` green with new counts asserting the *intended* final surface as it lands per batch (use a per-batch incremental count or a single end-state count gated last — see note). |
 | B1 | `stream5-params-existing.md` | §2a: add `model`/`thinking`/`web_search`/`incognito`/`canvas` params to existing 14 GREEN tools' schemas; wire model re-select (Pro-reset fix) + `MODEL_SELECTION_DRIFT`. Contract rows: update `required_args`/optional output keys for the 14. | YES | Unit tests for each new param; contract row round-trip test; no forbidden fields; build clean. |
 | B2 | `stream5-chatgpt-tools.md` | ChatGPT new tools: `webai_chatgpt_canvas_export`, `webai_chatgpt_deep_research`, `webai_chatgpt_conversation_manage`, `webai_chatgpt_workspace`. CLI verbs + contract rows + docs + tests. | YES | New tool contract rows present; CLI source contains cli_name (`test:148`); MCP tool registered (`:155`); live re-smoke gate (§5). |
 | B3 | `stream5-claude-tools.md` | Claude new tools: `webai_claude_deep_research`, `webai_claude_conversation_manage`, `webai_claude_workspace`. | YES | same gate as B2. |
@@ -330,7 +330,7 @@ Per batch:
 
 | ID | Risk | Evidence | Mitigation / contract behavior |
 |---|---|---|---|
-| R1 | Sensitive-content guard refuses Share/Send (needs human confirm) | recipes: Claude Send button + Share, Gemini "Send message" trips RISK_WORDS, Claude `/design` send-btn guarded | Do NOT bypass silently. Surface a stable code — promote to `SENSITIVE_CONTENT_GUARD` in 1.4.0. Known-benign sends use the sanctioned `--confirmed true` / Enter-key path (the contract's explicit human-confirm path, NOT a fallback — CLAUDE.md §2.3). Conversation-manage Delete/Rename refuse with `POLICY_APPROVAL_REQUIRED`. |
+| R1 | Sensitive-content guard refuses Share/Send (needs human confirm) | recipes: Claude Send button + Share, Gemini "Send message" trips RISK_WORDS, Claude `/design` send-btn guarded | Do NOT bypass silently. Surface a stable code — promote to `SENSITIVE_CONTENT_GUARD` in 1.5.0. Known-benign sends use the sanctioned `--confirmed true` / Enter-key path (the contract's explicit human-confirm path, NOT a fallback — CLAUDE.md §2.3). Conversation-manage Delete/Rename refuse with `POLICY_APPROVAL_REQUIRED`. |
 | R2 | ChatGPT model selector resets to Pro on every navigation | recipes-chatgpt.md cross-cutting #1 | §2a `model` param logic MUST re-select `Thinking` before EVERY send; assert post-select label; emit `MODEL_SELECTION_DRIFT` if it didn't stick. Never proceed on Pro (cheap-models rule). |
 | R3 | Radix portal limitation: kebab/submenu/command-palette don't open via CLI synthetic click | recipes-chatgpt.md #3; `tooling-blocked.json` (chatgpt-conversation-management, agent-mode, study-mode) | Phase B1 fixes this SEPARATELY (native-hover/pointer-dwell). Stream #5 must NOT depend on it: affected tools return `MODE_UNCERTAIN`/`HUMAN_HANDOFF_REQUIRED` honestly. `chatgpt-agent-mode` excluded from all batches. Do not build flows that need the unreachable submenu. |
 | R4 | Per-profile lease serialization | `src/browser/sessionManager.ts`/`managedLauncher.ts`; contract codes `PROFILE_LOCKED`/`PROFILE_LEASE_BUSY`; `withManagedPage` (tools.ts:123) | Sub-MCP modules share the SAME launcher/session/lease — they cannot run concurrently against one Chrome profile anyway (this is also why an out-of-process sub-MCP buys nothing — R7). Batches serialized; live smokes serialized; surface `PROFILE_LEASE_BUSY` not a silent wait. |

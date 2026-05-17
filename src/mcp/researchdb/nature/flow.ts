@@ -233,7 +233,7 @@ async function withAllocatedNaturePage<T>(profile: string, url: string, tabId: s
 
 export async function researchNatureSearch(args: NatureSearchArgs): Promise<{ result_count: number; items: NatureItem[]; query_url: string }> {
   const query_url = buildNatureSearchUrl(args);
-  const profile = args.profile || "nuaa-nature";
+  const profile = args.profile || "research-nature";
   const tabId = args.tab_id || `research-nature-search-${Date.now()}`;
   const page = await withAllocatedNaturePage(profile, query_url, tabId, args.cdp_port || 9248, (p) => readNaturePage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -241,7 +241,7 @@ export async function researchNatureSearch(args: NatureSearchArgs): Promise<{ re
 
 export async function researchNatureFilter(args: NatureFilterArgs): Promise<{ result_count: number; items: NatureItem[]; refined_url: string; confirm_title: string; facet_param?: string; facet_value?: string; facet_checked?: boolean }> {
   const refined_url = buildNatureFilterUrl(args);
-  const profile = args.profile || "nuaa-nature";
+  const profile = args.profile || "research-nature";
   const tabId = args.tab_id || `research-nature-filter-${Date.now()}`;
   const facet = facetFromArgs(args);
   const page = await withAllocatedNaturePage(profile, refined_url, tabId, args.cdp_port || 9248, async (p) => {
@@ -257,7 +257,7 @@ export async function researchNatureExport(args: NatureExportArgs): Promise<{ ar
   const format = normalizeFormat(args.format);
   const article_url = buildNatureArticleUrl(doi);
   const citation_url = buildNatureCitationUrl(doi);
-  const profile = args.profile || "nuaa-nature";
+  const profile = args.profile || "research-nature";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "nature"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

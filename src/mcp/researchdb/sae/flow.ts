@@ -213,7 +213,7 @@ async function applySaeFacet(page: any, facet: string, previousCount: number): P
 
 export async function researchSaeSearch(args: SaeSearchArgs): Promise<{ result_count: number; items: SaeItem[]; query_url: string }> {
   const query_url = buildSaeSearchUrl(args);
-  const profile = args.profile || "nuaa-sae";
+  const profile = args.profile || "research-sae";
   const tabId = args.tab_id || `research-sae-search-${Date.now()}`;
   const page = await withAllocatedSaePage(profile, tabId, args.cdp_port, async (p) => {
     await runSaeQuery(p, args.query);
@@ -224,7 +224,7 @@ export async function researchSaeSearch(args: SaeSearchArgs): Promise<{ result_c
 
 export async function researchSaeFilter(args: SaeFilterArgs): Promise<{ result_count: number; items: SaeItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildSaeFilterUrl(args);
-  const profile = args.profile || "nuaa-sae";
+  const profile = args.profile || "research-sae";
   const tabId = args.tab_id || `research-sae-filter-${Date.now()}`;
   const page = await withAllocatedSaePage(profile, tabId, args.cdp_port, async (p) => {
     await runSaeQuery(p, args.query);
@@ -250,7 +250,7 @@ function validateSaeArtifact(artifactPath: string, format: SaeExportFormat): voi
 
 export async function researchSaeExport(args: SaeExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: SaeExportFormat; query: string; result_count: number }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-sae";
+  const profile = args.profile || "research-sae";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "sae"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

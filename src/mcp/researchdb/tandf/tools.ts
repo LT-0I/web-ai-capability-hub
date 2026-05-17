@@ -5,7 +5,7 @@ export const researchTandfSearchInput = objectSchema<TandfSearchArgs>({
   query: scalar.string("Taylor & Francis Online query text"),
   area: { ...scalar.enum(["AllField", "Title", "Contrib", "Keywords", "Abstract", "Affiliation", "Funder"], "Taylor & Francis search area"), default: "AllField" },
   page_size: scalar.number("Optional Taylor & Francis pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-tandf" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-tandf" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -20,7 +20,7 @@ export const researchTandfFilterInput = objectSchema<TandfFilterArgs>({
   journal: scalar.string("Journal facet, if URL-verified by caller"),
   access: scalar.string("Access facet: full or open"),
   page_size: scalar.number("Optional Taylor & Francis pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-tandf" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-tandf" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -29,7 +29,7 @@ export const researchTandfExportInput = objectSchema<TandfExportArgs>({
   doi: scalar.string("Taylor & Francis DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex"], "File citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-tandf" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-tandf" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -37,7 +37,7 @@ export const researchTandfExportInput = objectSchema<TandfExportArgs>({
 export const tandfResearchTools = [
   {
     name: "research_tandf_search",
-    description: "Search Taylor & Francis Online via the verified NUAA T&F headless recipe.",
+    description: "Search Taylor & Francis Online via the verified T&F headless recipe.",
     schema: researchTandfSearchInput,
     handler: async (args: TandfSearchArgs) => researchTandfSearch(args)
   },

@@ -6,7 +6,7 @@ const path = require("node:path");
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { SiteRegistryImporter, normalizeInstitutionalUrls } from "../src/adapters/research/siteRegistryImporter";
 
-function tempDir(): string { return fs.mkdtempSync(path.join(os.tmpdir(), "nuaa-registry-test-")); }
+function tempDir(): string { return fs.mkdtempSync(path.join(os.tmpdir(), "research-registry-test-")); }
 function tempDb(): CapabilityDatabase { return new CapabilityDatabase({ dbPath: path.join(tempDir(), "capability.sqlite"), preferSqlite: false }); }
 function writeJson(value: unknown): string {
   const file = path.join(tempDir(), "seed.json");
@@ -14,31 +14,31 @@ function writeJson(value: unknown): string {
   return file;
 }
 
-test("NUAA schema seed maps to namespaced research database entries without persisted base URLs", () => {
+test("research inventory schema seed maps to namespaced research database entries without persisted base URLs", () => {
   const file = writeJson({
-    schema_version: "nuaa-stem-deep-explore-1.0",
+    schema_version: "research-inventory-1.0",
     records: [{
-      resource_id: "nuaa-nav-1",
+      resource_id: "research-nav-1",
       title: "Engineering Index",
       subject: "工程",
       science_engineering: true,
       matched_subjects: ["工程"],
       has_external_url: true,
       nav_entry_id: "1",
-      proxy_url: "https://libproxy.nuaa.edu.cn/example"
+      proxy_url: "https://libproxy.institution.example.edu/example"
     }]
   });
 
   const entries = new SiteRegistryImporter(tempDb()).parseFile(file);
 
   assert.equal(entries.length, 1);
-  assert.equal(entries[0].site_id, "nuaa-stem-nuaa-nav-1");
+  assert.equal(entries[0].site_id, "research-inventory-research-nav-1");
   assert.equal(entries[0].title, "Engineering Index");
   assert.equal(entries[0].kind, "research-database");
   assert.equal(entries[0].base_url, undefined);
   assert.equal((entries[0].raw as any).classification.science_engineering, true);
   assert.deepEqual((entries[0].raw as any).classification.matched_subjects, ["工程"]);
-  assert.equal((entries[0].raw as any).classification.source, "nuaa-stem-deep-explore-1.0");
+  assert.equal((entries[0].raw as any).classification.source, "research-inventory-1.0");
   assert.equal((entries[0].raw as any).proxy_url, "[REDACTED_INSTITUTIONAL_URL]");
 });
 
@@ -80,10 +80,10 @@ test("legacy array and sites seeds keep shipped parser shape", () => {
 
 test("institutional URL normalizer redacts proxy and nav URLs while preserving benign values", () => {
   const normalized = normalizeInstitutionalUrls({
-    proxy_url: "https://libproxy.nuaa.edu.cn/login?target=x",
+    proxy_url: "https://libproxy.institution.example.edu/login?target=x",
     direct_url: "https://vendor.example/resource",
     nested: {
-      homepage: "https://lib.nuaa.edu.cn/database",
+      homepage: "https://lib.institution.example.edu/database",
       benign: "https://example.test/resource",
       label: "普通资源"
     },
@@ -99,30 +99,30 @@ test("institutional URL normalizer redacts proxy and nav URLs while preserving b
   assert.equal(normalized.list[1], "https://safe.example/path");
 });
 
-test("importing NUAA seed is collision-safe for unrelated site ids", () => {
+test("importing research inventory seed is collision-safe for unrelated site ids", () => {
   const db = tempDb();
-  db.importSiteRegistry([{ site_id: "nuaa-nav-8258648", title: "Existing", kind: "legacy", base_url: "https://example.test", raw: { keep: true }, imported_at: new Date(0).toISOString() }]);
+  db.importSiteRegistry([{ site_id: "research-nav-8258648", title: "Existing", kind: "legacy", base_url: "https://example.test", raw: { keep: true }, imported_at: new Date(0).toISOString() }]);
 
-  const result = new SiteRegistryImporter(db).importFile(path.resolve(process.cwd(), "configs/research/nuaa_stem_inventory.json"));
+  const result = new SiteRegistryImporter(db).importFile(path.resolve(process.cwd(), "configs/research/research_inventory.json"));
   const exported = db.exportJson();
-  const existing = exported.site_registry_entries.find((row: any) => row.site_id === "nuaa-nav-8258648") as any;
+  const existing = exported.site_registry_entries.find((row: any) => row.site_id === "research-nav-8258648") as any;
 
   assert.equal(result.imported, 159);
   assert.equal(existing.title, "Existing");
   assert.equal(existing.kind, "legacy");
   assert.equal(existing.base_url, "https://example.test");
   assert.deepEqual(existing.raw, { keep: true });
-  assert.ok(exported.site_registry_entries.some((row: any) => row.site_id === "nuaa-stem-nuaa-nav-8258648"));
+  assert.ok(exported.site_registry_entries.some((row: any) => row.site_id === "research-inventory-research-nav-8258648"));
 });
 
-test("real NUAA inventory parses to 159 clean entries with at least 75 STEM classifications", () => {
-  const entries = new SiteRegistryImporter(tempDb()).parseFile(path.resolve(process.cwd(), "configs/research/nuaa_stem_inventory.json"));
+test("real research inventory parses to 159 clean entries with at least 75 science/engineering classifications", () => {
+  const entries = new SiteRegistryImporter(tempDb()).parseFile(path.resolve(process.cwd(), "configs/research/research_inventory.json"));
   const stemCount = entries.filter((entry) => (entry.raw as any).classification?.science_engineering === true).length;
 
   assert.equal(entries.length, 159);
-  assert.equal(entries.every((entry) => entry.site_id.startsWith("nuaa-stem-")), true);
+  assert.equal(entries.every((entry) => entry.site_id.startsWith("research-inventory-")), true);
   assert.equal(entries.every((entry) => entry.kind === "research-database"), true);
   assert.equal(entries.every((entry) => entry.base_url === undefined), true);
-  assert.equal(/nuaa\.edu\.cn|libproxy/i.test(JSON.stringify(entries.map((entry) => entry.raw))), false);
+  assert.equal(/institution\.example\.edu|libproxy/i.test(JSON.stringify(entries.map((entry) => entry.raw))), false);
   assert.ok(stemCount >= 75, `stemCount=${stemCount}`);
 });

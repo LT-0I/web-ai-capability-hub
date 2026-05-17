@@ -229,7 +229,7 @@ async function withAllocatedDblpPage<T>(profile: string, url: string, tabId: str
 
 export async function researchDblpSearch(args: DblpSearchArgs): Promise<{ result_count: number; items: DblpItem[]; query_url: string; confirm_title: string; facets: string[] }> {
   const query_url = buildDblpSearchUrl(args);
-  const profile = args.profile || "nuaa-dblp";
+  const profile = args.profile || "research-dblp";
   const tabId = args.tab_id || `research-dblp-search-${Date.now()}`;
   const page = await withAllocatedDblpPage(profile, query_url, tabId, args.cdp_port, (p) => readDblpPage(p));
   return { result_count: page.resultCount, items: page.items, query_url, confirm_title: page.title, facets: page.facets };
@@ -237,7 +237,7 @@ export async function researchDblpSearch(args: DblpSearchArgs): Promise<{ result
 
 export async function researchDblpFilter(args: DblpFilterArgs): Promise<{ result_count: number; items: DblpItem[]; refined_url: string; confirm_url: string; confirm_title: string; facets: string[] }> {
   const refined_url = buildDblpFilterUrl(args);
-  const profile = args.profile || "nuaa-dblp";
+  const profile = args.profile || "research-dblp";
   const tabId = args.tab_id || `research-dblp-filter-${Date.now()}`;
   const page = await withAllocatedDblpPage(profile, refined_url, tabId, args.cdp_port, (p) => readDblpPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title, facets: page.facets };
@@ -248,7 +248,7 @@ export async function researchDblpExport(args: DblpExportArgs): Promise<{ artifa
   const bulk = Boolean(args.bulk || args.query);
   if (!bulk && format !== "bibtex") throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "DBLP per-entry export is verified for BibTeX; use bulk=true for xml/json API", { format });
   const source_url = bulk ? buildDblpBulkApiUrl({ query: requireQuery(args.query), format, h: args.h }) : buildDblpBibtexUrl(requireKey(args.key));
-  const profile = args.profile || "nuaa-dblp";
+  const profile = args.profile || "research-dblp";
   const tabId = args.tab_id || `research-dblp-export-${Date.now()}`;
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "dblp"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");

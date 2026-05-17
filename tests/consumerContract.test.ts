@@ -138,7 +138,7 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.4.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.5.0");
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 32);
 
@@ -276,7 +276,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
   assert.equal(expectedWebaiToolCount, 37);
 });
 
-test("consumer contract v1.4.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
+test("consumer contract v1.5.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
   const manifest = contract();
   const cliSource = fs.readFileSync(path.resolve(process.cwd(), "src/cli.ts"), "utf-8");
   const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
@@ -358,25 +358,28 @@ test("stream5 final error_codes count is 32", () => {
   }
 });
 
-test("researchdb NUAA/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE/ScienceDirect/APS/Emerald/Cambridge/Springer/Nature/IET/AIP/MDPI/Optica/ProQuest/SCOAP3/DBLP/SciELO/INSPIRE-HEP/PubScholar/Opticsjournal/CRC/Cell Press/IEST/IncoPat/Wanfang tools are separate from webai sub-MCP and lock contract counts", () => {
+test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE/ScienceDirect/APS/Emerald/Cambridge/Springer/Nature/IET/AIP/MDPI/Optica/ProQuest/SCOAP3/DBLP/SciELO/INSPIRE-HEP/PubScholar/Opticsjournal/CRC/Cell Press/IEST/IncoPat/Wanfang tools are separate from webai sub-MCP and lock contract counts", () => {
   const manifest = contract();
   const packageJson = readJson("package.json");
   const mcpToolNames = listMcpTools().map((tool) => tool.name);
   const subMcpToolNames = subMcpToolSpecs.map((tool) => tool.name);
-  const row = manifest.commands.find((command: any) => command.mcp_name === "research_nuaa_import");
+  const row = manifest.commands.find((command: any) => command.mcp_name === "research_inventory_import");
+  const oldImportToolName = ["research", "nu" + "aa", "import"].join("_");
 
-  assert.ok(row, "research_nuaa_import contract row missing");
-  assert.equal(row.cli_name, "research:nuaa:import");
-  assert.equal(row.ts_export, "ResearchDbImporter.importNuaaSeed");
+  assert.ok(row, "research_inventory_import contract row missing");
+  assert.equal(row.cli_name, "research:inventory:import");
+  assert.equal(row.ts_export, "ResearchDbImporter.importInventorySeed");
   assert.equal(row.maturity, "experimental");
   assert.equal(row.safety_class, "mutate");
   assert.deepEqual(row.required_args, []);
   assert.deepEqual(row.output_keys.always_present, ["imported", "sites", "path"]);
   assert.equal(row.may_contain_sensitive_local_fields, false);
-  assert.ok(mcpToolNames.includes("research_nuaa_import"), "research_nuaa_import missing from listMcpTools()");
-  assert.equal("research_nuaa_import".startsWith("webai_"), false, "research_nuaa_import must not be webai-prefixed");
-  assert.equal(mcpToolNames.includes("webai_research_nuaa_import"), false, "webai-prefixed NUAA tool must not exist");
-  assert.equal(subMcpToolNames.includes("research_nuaa_import"), false, "research_nuaa_import must not be registered via subMcpToolSpecs");
+  assert.ok(mcpToolNames.includes("research_inventory_import"), "research_inventory_import missing from listMcpTools()");
+  assert.equal("research_inventory_import".startsWith("webai_"), false, "research_inventory_import must not be webai-prefixed");
+  assert.equal(mcpToolNames.includes("webai_research_inventory_import"), false, "webai-prefixed academic research tool must not exist");
+  assert.equal(subMcpToolNames.includes("research_inventory_import"), false, "research_inventory_import must not be registered via subMcpToolSpecs");
+  assert.equal(mcpToolNames.includes(oldImportToolName), false, "old import tool must not be listed");
+  assert.equal(manifest.commands.some((command: any) => command.mcp_name === oldImportToolName), false, "old import row must not remain in contract");
   const researchRows = [
     { cli: "research:aiaa:search", mcp: "research_aiaa_search", ts: "researchAiaaSearch", safety: "read", required: ["query"], always: ["result_count", "items", "query_url"], fn: researchAiaaSearch },
     { cli: "research:aiaa:filter", mcp: "research_aiaa_filter", ts: "researchAiaaFilter", safety: "read", required: ["query"], always: ["result_count", "items", "refined_url", "confirm_title"], fn: researchAiaaFilter },
@@ -522,11 +525,11 @@ test("researchdb NUAA/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE/Scie
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 37, "webai command rows still 37");
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 37, "webai MCP tools still 37");
   assert.equal(manifest.error_codes.length, 32, "error codes still 32");
-  assert.equal(manifest.contract_version, "consumer-contract-1.4.0");
-  assert.equal(packageJson.version, "0.6.0");
-  assert.equal(manifest.package_version, "0.6.0");
-  assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public STEM/non-STEM classification flag; safe governance metadata.");
-  assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched STEM subject labels; safe governance metadata.");
+  assert.equal(manifest.contract_version, "consumer-contract-1.5.0");
+  assert.equal(packageJson.version, "0.7.0");
+  assert.equal(manifest.package_version, "0.7.0");
+  assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
+  assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched science/engineering subject labels; safe governance metadata.");
 });
 
 test("no webai command row exposes forbidden output fields", () => {
@@ -2847,7 +2850,7 @@ test("webai task status marks abandoned stale running video task as COMMAND_TIME
   assert.equal(persisted?.errorCode, "COMMAND_TIMEOUT");
 });
 
-test("new v1.4.0 error codes exist in TS export and contract manifest", () => {
+test("new v1.5.0 error codes exist in TS export and contract manifest", () => {
   const manifest = contract();
   for (const code of ["SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED"]) {
     assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes(code), `TS missing ${code}`);

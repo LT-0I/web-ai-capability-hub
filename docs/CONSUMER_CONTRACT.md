@@ -1,16 +1,17 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v0.6.0
-Contract: `consumer-contract-1.4.0`
+Package: `web-ai-research-automation-hub` v0.7.0
+Contract: `consumer-contract-1.5.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.5.0 (2026-05-16): deliberate breaking rename of the prior institution-specific import surface to `research:inventory:import` / `research_inventory_import` / `ResearchDbImporter.importInventorySeed`; package version is now `0.7.0`.
 - Phase-B #8 (same contract/package versions): SCOAP3, DBLP, SciELO, INSPIRE-HEP, and PubScholar add 15 plain non-`webai_` research database MCP tools, bringing the locked per-DB research round-trip set to 102 while webai/sub-MCP/error-code counts remain 37/11/32.
 - Phase-B #7 (same contract/package versions): Frontiers, arXiv, SIAM, De Gruyter, World Scientific, and Royal Society add 18 plain non-`webai_` research database MCP tools, bringing the locked research round-trip set to 87 while webai/sub-MCP/error-code counts remain 37/11/32.
-- consumer-contract-1.4.0 (2026-05-15): chatgpt-codex is live only for the hard-allowlisted `LT-0I/CN-` environment; `submit-task` requires `confirmed=true`, `get-diff` returns code `diff_text` and never clicks Create PR. Webai count remains 37.
-- consumer-contract-1.4.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 37 total, 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, live LT-0I/CN- allowlisted).
+- consumer-contract-1.5.0 (2026-05-15): chatgpt-codex is live only for the hard-allowlisted `LT-0I/CN-` environment; `submit-task` requires `confirmed=true`, `get-diff` returns code `diff_text` and never clicks Create PR. Webai count remains 37.
+- consumer-contract-1.5.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 37 total, 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, live LT-0I/CN- allowlisted).
 - Phase C correctness notes (same contract version): `tab_url_contains` is honored as a tab selector/URL hint for Claude send/design and Gemini music/conversation tools; ChatGPT conversation `menu_enumerate` uses the in-chat header options button, `search` uses Control+k, and `share` uses `aria-label="Share"`. Claude Design timeout failures return stable contract codes instead of raw Playwright timeout strings.
 - Stream #5 final Claude Design generate note (same contract version): `webai:claude:design:generate` completion is recognized from the served design iframe (`/v1/design/projects/<id>/serve/<file>`) with the existing `?file=<name>.html` URL as a fallback, and timeout/quota envelopes still emit the contracted `status`, `model_used`, `projectUrl`, and `fileName` keys.
 - Stream #5 Pulse integration note (same contract version): `webai:chatgpt:pulse:get` and `webai:chatgpt:pulse:onboard` add the live-discovered ChatGPT Pulse surface, increasing `webai_*` command rows from 35 to 37; error code count remains 32.
@@ -64,7 +65,7 @@ Stable JSON keys are exactly:
 | `capability:query` | `capability_query` | `CapabilityDatabase.queryCapabilities` | experimental | read | no |
 | `capability:export` | `capability_export` | `CapabilityDatabase.exportJson` | experimental | read | yes |
 | `capability:library:import` | `capability_library_import` | `CapabilityLibraryImporter.importFile` | experimental | mutate | no |
-| `research:nuaa:import` | `research_nuaa_import` | `ResearchDbImporter.importNuaaSeed` | experimental | mutate | no |
+| `research:inventory:import` | `research_inventory_import` | `ResearchDbImporter.importInventorySeed` | experimental | mutate | no |
 | `research:aiaa:search` | `research_aiaa_search` | `researchAiaaSearch` | experimental | read | no |
 | `research:aiaa:filter` | `research_aiaa_filter` | `researchAiaaFilter` | experimental | read | no |
 | `research:aiaa:export` | `research_aiaa_export` | `researchAiaaExport` | experimental | mutate | no |
@@ -194,7 +195,7 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.4.0 webai MCP tools
+## Contract 1.5.0 webai MCP tools
 
 Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing + 13 main-server (+2 Pulse) + 11 sub-MCP. The Stream #5 Pulse surface is 37; no contract/package version bump is included.
 
@@ -423,11 +424,11 @@ Within contract major version `1.x`, stable command/tool/resource schemas will n
 
 ## Separate research database MCP surface
 
-`research:nuaa:import [configs/research/nuaa_stem_inventory.json] [--stem-only]` is a non-webai database import surface. Its MCP tool is `research_nuaa_import`; it is intentionally not `webai_`-prefixed, does not live under the webai sub-MCP family, and is registered as a plain main MCP tool alongside `site_registry_import`.
+`research:inventory:import [configs/research/research_inventory.json] [--stem-only]` is a non-webai database import surface. Its MCP tool is `research_inventory_import`; it is intentionally not `webai_`-prefixed, does not live under the webai sub-MCP family, and is registered as a plain main MCP tool alongside `site_registry_import`.
 
 The implementation lives under `src/mcp/researchdb/` and reuses the existing site registry table/import path without a schema migration or new table. The optional `--stem-only` / `stem_only` filter keeps only records whose `raw.classification.science_engineering` value is `true`. The stable output keys are `imported`, `sites`, and `path`.
 
-The NUAA governance fields `site_registry.classification.science_engineering` and `site_registry.classification.matched_subjects` are classified as non-sensitive public STEM metadata.
+The Research inventory governance fields `site_registry.classification.science_engineering` and `site_registry.classification.matched_subjects` are classified as non-sensitive public science/engineering metadata.
 
 
 ### AIAA research database tools
@@ -573,6 +574,6 @@ IncoPat keeps its module-owned `ConsumerErrorCodes` behavior (`LOGIN_REQUIRED`, 
 
 - `research:wanfang:search` / `research_wanfang_search`: always returns `result_count`, `items`, `query_url`, `results_url`.
 - `research:wanfang:filter` / `research_wanfang_filter`: always returns `result_count`, `items`, `refined_url`, `confirm_title`, `unfiltered_count`, `resource_type`, `resource_label`.
-- `research:wanfang:export` / `research_wanfang_export`: always returns `artifact_path`, `bytes`, `sha256`, `format`, `result_count`, `results_url`, `resource_type`, `resource_label`; it preserves the verified NUAA institutional-IP Wanfang trusted-CDP facet apply plus per-row selection, 批量引用 new-tab, and CDP artifact-click TXT citation path and does not synthesize artifacts.
+- `research:wanfang:export` / `research_wanfang_export`: always returns `artifact_path`, `bytes`, `sha256`, `format`, `result_count`, `results_url`, `resource_type`, `resource_label`; it preserves the verified institutional-IP Wanfang trusted-CDP facet apply plus per-row selection, 批量引用 new-tab, and CDP artifact-click TXT citation path and does not synthesize artifacts.
 
 Wanfang keeps its module-owned `ConsumerErrorCodes` behavior (`ELEMENT_NOT_FOUND`, `ARTIFACT_DOWNLOAD_TIMEOUT`, `ARTIFACT_VERIFICATION_FAILED`, `MODE_UNCERTAIN`, `PLAN_OR_QUOTA_REQUIRED`, `COMMAND_TIMEOUT`, `INVALID_ARGS`): live blockers and artifact-verification failures surface honestly instead of falling back or fabricating success.

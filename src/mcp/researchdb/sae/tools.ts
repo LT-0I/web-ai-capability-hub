@@ -4,7 +4,7 @@ import { researchSaeSearch, researchSaeFilter, researchSaeExport, SaeSearchArgs,
 export const researchSaeSearchInput = objectSchema<SaeSearchArgs>({
   query: scalar.string("SAE Mobilus query text"),
   page_size: scalar.number("Optional page size hint; SAE Mobilus currently uses the site default"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sae" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sae" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -13,7 +13,7 @@ export const researchSaeFilterInput = objectSchema<SaeFilterArgs>({
   query: scalar.string("SAE Mobilus query text"),
   facet: { ...scalar.string("SAE Mobilus left-rail facet value, e.g. Technical Paper"), default: "Technical Paper" },
   page_size: scalar.number("Optional page size hint; SAE Mobilus currently uses the site default"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sae" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sae" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -23,7 +23,7 @@ export const researchSaeExportInput = objectSchema<SaeExportArgs>({
   facet: scalar.string("Optional SAE Mobilus left-rail facet value before export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote", "metadata"], "Citation export format"), default: "bibtex" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sae" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sae" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9237 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

@@ -5,7 +5,7 @@ export const researchWorldsciSearchInput = objectSchema<WorldsciSearchArgs>({
   query: scalar.string("World Scientific query text"),
   area: { ...scalar.enum(["AllField", "Title", "Contrib", "Keyword", "Abstract", "Affiliation"], "World Scientific search area"), default: "AllField" },
   page_size: scalar.number("Optional World Scientific pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-worldsci" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-worldsci" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -23,7 +23,7 @@ export const researchWorldsciFilterInput = objectSchema<WorldsciFilterArgs>({
   access: scalar.string("Access facet: full or open"),
   sort_by: scalar.string("sortBy parameter such as downloaded or cited"),
   page_size: scalar.number("Optional World Scientific pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-worldsci" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-worldsci" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -32,7 +32,7 @@ export const researchWorldsciExportInput = objectSchema<WorldsciExportArgs>({
   doi: scalar.string("World Scientific DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex"], "File citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-worldsci" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-worldsci" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -40,7 +40,7 @@ export const researchWorldsciExportInput = objectSchema<WorldsciExportArgs>({
 export const worldsciResearchTools = [
   {
     name: "research_worldsci_search",
-    description: "Search World Scientific via the verified NUAA Atypon/Literatum URL-driven recipe and CDP observer.",
+    description: "Search World Scientific via the verified Atypon/Literatum URL-driven recipe and CDP observer.",
     schema: researchWorldsciSearchInput,
     handler: async (args: WorldsciSearchArgs) => researchWorldsciSearch(args)
   },

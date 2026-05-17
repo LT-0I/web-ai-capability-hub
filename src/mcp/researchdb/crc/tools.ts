@@ -7,8 +7,8 @@ export const researchCrcSearchInput = objectSchema<CrcSearchArgs>({
   author: scalar.string("Optional advanced-search author field; AND-combined with title/keyword"),
   keyword: scalar.string("Optional advanced-search keyword field; overrides query when present"),
   page_size: scalar.number("Optional page size hint; CRC/T&F eBooks UI controls pagination in the SPA"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-crc" },
-  cdp_port: scalar.number("Optional CDP port override; use 9243 for NUAA CRC"),
+  profile: { ...scalar.string("Managed browser profile"), default: "research-crc" },
+  cdp_port: scalar.number("Optional CDP port override; use 9243 for academic research CRC"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
 
@@ -28,8 +28,8 @@ export const researchCrcFilterInput = objectSchema<CrcFilterArgs>({
   year_from: scalar.number("Publication year range start; dispatched with Angular input/change/blur events"),
   year_to: scalar.number("Publication year range end; dispatched with Angular input/change/blur events"),
   page_size: scalar.number("Optional page size hint"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-crc" },
-  cdp_port: scalar.number("Optional CDP port override; use 9243 for NUAA CRC"),
+  profile: { ...scalar.string("Managed browser profile"), default: "research-crc" },
+  cdp_port: scalar.number("Optional CDP port override; use 9243 for academic research CRC"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
 
@@ -50,8 +50,8 @@ export const researchCrcExportInput = objectSchema<CrcExportArgs>({
   year_to: scalar.number("Optional publication year range end before export"),
   format: { ...scalar.enum(["csv"], "CRC/T&F eBooks supports only the verified bulk CSV export"), default: "csv" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-crc" },
-  cdp_port: scalar.number("Optional CDP port override; use 9243 for NUAA CRC"),
+  profile: { ...scalar.string("Managed browser profile"), default: "research-crc" },
+  cdp_port: scalar.number("Optional CDP port override; use 9243 for academic research CRC"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
 

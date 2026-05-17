@@ -14,7 +14,7 @@ export const researchScienceDirectSearchInput = objectSchema<ScienceDirectSearch
   tak: scalar.string("ScienceDirect #tak title/abstract/keywords value"),
   title: scalar.string("ScienceDirect #title value"),
   doc_id: scalar.string("ScienceDirect #docId ISSN/ISBN value"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sciencedirect" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sciencedirect" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9243 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -32,7 +32,7 @@ export const researchScienceDirectFilterInput = objectSchema<ScienceDirectFilter
   year: scalar.number("ScienceDirect years facet value, e.g. 2024"),
   access_type: scalar.enum(scienceDirectAccessTypes, "ScienceDirect accessTypes facet code, e.g. openaccess"),
   facet_input_id: scalar.string("Exact ScienceDirect facet input id such as articleTypes-REV, years-2024, or accessTypes-openaccess"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sciencedirect" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sciencedirect" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9243 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -52,7 +52,7 @@ export const researchScienceDirectExportInput = objectSchema<ScienceDirectExport
   facet_input_id: scalar.string("Exact ScienceDirect facet input id such as articleTypes-REV, years-2024, or accessTypes-openaccess"),
   format: { ...scalar.enum(scienceDirectFormats, "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-sciencedirect" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-sciencedirect" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9243 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -60,7 +60,7 @@ export const researchScienceDirectExportInput = objectSchema<ScienceDirectExport
 export const sciencedirectResearchTools = [
   {
     name: "research_sciencedirect_search",
-    description: "Search Elsevier ScienceDirect using the verified NUAA advanced-search recipe (#search-advanced-form / #qs / #date).",
+    description: "Search Elsevier ScienceDirect using the verified advanced-search recipe (#search-advanced-form / #qs / #date).",
     schema: researchScienceDirectSearchInput,
     handler: async (args: ScienceDirectSearchArgs) => researchScienceDirectSearch(args)
   },

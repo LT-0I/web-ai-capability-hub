@@ -242,7 +242,7 @@ async function withAllocatedScienceDirectPage<T>(profile: string, url: string, t
 
 export async function researchScienceDirectSearch(args: ScienceDirectSearchArgs): Promise<{ result_count: number; items: ScienceDirectItem[]; query_url: string }> {
   const query_url = buildScienceDirectSearchUrl(args);
-  const profile = args.profile || "nuaa-sciencedirect";
+  const profile = args.profile || "research-sciencedirect";
   const tabId = args.tab_id || `research-sciencedirect-search-${Date.now()}`;
   const page = await withAllocatedScienceDirectPage(profile, query_url, tabId, args.cdp_port || 9243, (p) => readScienceDirectPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -250,7 +250,7 @@ export async function researchScienceDirectSearch(args: ScienceDirectSearchArgs)
 
 export async function researchScienceDirectFilter(args: ScienceDirectFilterArgs): Promise<{ result_count: number; items: ScienceDirectItem[]; refined_url: string; confirm_title: string; facet_input_id?: string; facet_checked?: boolean }> {
   const refined_url = buildScienceDirectFilterUrl(args);
-  const profile = args.profile || "nuaa-sciencedirect";
+  const profile = args.profile || "research-sciencedirect";
   const tabId = args.tab_id || `research-sciencedirect-filter-${Date.now()}`;
   const facetId = scienceDirectFacetInputId(args);
   const page = await withAllocatedScienceDirectPage(profile, refined_url, tabId, args.cdp_port || 9243, async (p) => {
@@ -264,7 +264,7 @@ export async function researchScienceDirectFilter(args: ScienceDirectFilterArgs)
 export async function researchScienceDirectExport(args: ScienceDirectExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: ScienceDirectExportFormat; record_count?: number; query_url: string }> {
   const format = normalizeFormat(args.format);
   const query_url = buildScienceDirectFilterUrl(args);
-  const profile = args.profile || "nuaa-sciencedirect";
+  const profile = args.profile || "research-sciencedirect";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "sciencedirect"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

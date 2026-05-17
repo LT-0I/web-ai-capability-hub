@@ -266,7 +266,7 @@ async function withAllocatedArxivPage<T>(profile: string, url: string, tabId: st
 
 export async function researchArxivSearch(args: ArxivSearchArgs): Promise<{ result_count: number; items: ArxivItem[]; query_url: string }> {
   const query_url = buildArxivSearchUrl(args);
-  const profile = args.profile || "nuaa-arxiv";
+  const profile = args.profile || "research-arxiv";
   const tabId = args.tab_id || `research-arxiv-search-${Date.now()}`;
   const page = await withAllocatedArxivPage(profile, query_url, tabId, (args.cdp_port || 9257), (p) => readArxivResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -274,7 +274,7 @@ export async function researchArxivSearch(args: ArxivSearchArgs): Promise<{ resu
 
 export async function researchArxivFilter(args: ArxivFilterArgs): Promise<{ result_count: number; items: ArxivItem[]; refined_url: string; confirm_url: string; confirm_title: string }> {
   const refined_url = buildArxivFilterUrl(args);
-  const profile = args.profile || "nuaa-arxiv";
+  const profile = args.profile || "research-arxiv";
   const tabId = args.tab_id || `research-arxiv-filter-${Date.now()}`;
   const page = await withAllocatedArxivPage(profile, refined_url, tabId, (args.cdp_port || 9257), (p) => readArxivResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
@@ -284,7 +284,7 @@ export async function researchArxivExport(args: ArxivExportArgs): Promise<{ arti
   const id = normalizeArxivId(args.id);
   const format = (args.format || "bibtex").toLowerCase();
   if (format !== "bibtex") throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `Unsupported arXiv export format: ${args.format}`, { format: args.format, valid: ["bibtex"] });
-  const profile = args.profile || "nuaa-arxiv";
+  const profile = args.profile || "research-arxiv";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "arxiv"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

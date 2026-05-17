@@ -4,7 +4,7 @@ import { researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExpo
 export const researchCambridgeSearchInput = objectSchema<CambridgeSearchArgs>({
   query: scalar.string("Cambridge Core boolean query; q is mandatory because bare /core/search returns 404"),
   page_size: scalar.number("Optional pageSize passthrough"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cambridge" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cambridge" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -18,7 +18,7 @@ export const researchCambridgeFilterInput = objectSchema<CambridgeFilterArgs>({
   end_year: scalar.number("dateRange.to publication year"),
   sort: scalar.string("Sort value for Cambridge Core search"),
   page_size: scalar.number("Optional pageSize passthrough"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cambridge" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cambridge" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -28,7 +28,7 @@ export const researchCambridgeExportInput = objectSchema<CambridgeExportArgs>({
   product_id: scalar.string("Optional Cambridge Core data-prod-id for a per-result Citation Tools link"),
   format: { ...scalar.enum(["ris", "bibtex", "word", "text"], "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-cambridge" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-cambridge" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9245 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);

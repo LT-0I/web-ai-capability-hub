@@ -4,7 +4,7 @@ import { researchProquestSearch, researchProquestFilter, researchProquestExport,
 export const researchProquestSearchInput = objectSchema<ProquestSearchArgs>({
   query: scalar.string("ProQuest inline query text; noft(...) is accepted and bare text is wrapped as noft(<query>)"),
   page_size: scalar.number("Optional page size hint; ProQuest UI defaults to 50 results/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-proquest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-proquest" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -14,7 +14,7 @@ export const researchProquestFilterInput = objectSchema<ProquestFilterArgs>({
   full_text: scalar.boolean("Apply ProQuest Full text inline refine checkbox"),
   peer_reviewed: scalar.boolean("Apply ProQuest Peer reviewed inline refine checkbox"),
   page_size: scalar.number("Optional page size hint; ProQuest UI defaults to 50 results/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-proquest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-proquest" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -25,7 +25,7 @@ export const researchProquestExportInput = objectSchema<ProquestExportArgs>({
   peer_reviewed: scalar.boolean("Optionally apply ProQuest Peer reviewed inline refine before export"),
   format: { ...scalar.enum(["ris"], "Export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-proquest" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-proquest" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

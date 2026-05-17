@@ -194,7 +194,7 @@ async function withAllocatedAiaaPage<T>(profile: string, url: string, tabId: str
 
 export async function researchAiaaSearch(args: AiaaSearchArgs): Promise<{ result_count: number; items: AiaaItem[]; query_url: string }> {
   const query_url = buildAiaaSearchUrl(args);
-  const profile = args.profile || "nuaa-aiaa";
+  const profile = args.profile || "research-aiaa";
   const tabId = args.tab_id || `research-aiaa-search-${Date.now()}`;
   const page = await withAllocatedAiaaPage(profile, query_url, tabId, args.cdp_port, (p) => readAiaaPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -202,7 +202,7 @@ export async function researchAiaaSearch(args: AiaaSearchArgs): Promise<{ result
 
 export async function researchAiaaFilter(args: AiaaFilterArgs): Promise<{ result_count: number; items: AiaaItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildAiaaFilterUrl(args);
-  const profile = args.profile || "nuaa-aiaa";
+  const profile = args.profile || "research-aiaa";
   const tabId = args.tab_id || `research-aiaa-filter-${Date.now()}`;
   const page = await withAllocatedAiaaPage(profile, refined_url, tabId, args.cdp_port, (p) => readAiaaPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -211,7 +211,7 @@ export async function researchAiaaFilter(args: AiaaFilterArgs): Promise<{ result
 export async function researchAiaaExport(args: AiaaExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: AiaaExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-aiaa";
+  const profile = args.profile || "research-aiaa";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "aiaa"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

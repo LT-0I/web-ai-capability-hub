@@ -16,11 +16,11 @@ function baseUrlFrom(raw: any): string | undefined {
 function titleFrom(raw: any, siteId: string): string | undefined {
   return stringValue(raw.title) || stringValue(raw.name) || stringValue(raw.display_name) || siteId;
 }
-function isNuaaStemSeed(raw: any): boolean {
-  return typeof raw?.schema_version === "string" && raw.schema_version.startsWith("nuaa-stem-deep-explore") && Array.isArray(raw.records);
+function isResearchInventorySeed(raw: any): boolean {
+  return typeof raw?.schema_version === "string" && raw.schema_version.startsWith("research-inventory") && Array.isArray(raw.records);
 }
 function shouldRedactInstitutionalString(value: string, key?: string): boolean {
-  if (/(^|[\s/:@.-])(?:[a-z0-9-]+\.)*nuaa\.edu\.cn\b/i.test(value)) return true;
+  if (/(^|[\s/:@.-])(?:[a-z0-9-]+\.)*(?:lib|library|proxy|institution)\.[a-z0-9.-]*\b/i.test(value)) return true;
   if (/libproxy/i.test(value)) return true;
   if (key && /^(nav_url|proxy_url|direct_url)$/i.test(key) && /^https?:\/\//i.test(value.trim())) return true;
   return false;
@@ -33,9 +33,9 @@ export function normalizeInstitutionalUrls(value: unknown, key?: string): any {
   }
   return value;
 }
-function nuaaEntryFrom(record: any, schemaVersion: string): Omit<SiteRegistryEntryRecord, "imported_at"> {
+function researchEntryFrom(record: any, schemaVersion: string): Omit<SiteRegistryEntryRecord, "imported_at"> {
   return {
-    site_id: `nuaa-stem-${record.resource_id}`,
+    site_id: `research-inventory-${record.resource_id}`,
     title: record.title,
     kind: "research-database",
     base_url: undefined,
@@ -59,9 +59,9 @@ export class SiteRegistryImporter {
   parseFile(filePath: string): SiteRegistryEntryRecord[] {
     const resolved = path.resolve(filePath);
     const raw = JSON.parse(fs.readFileSync(resolved, "utf-8"));
-    if (isNuaaStemSeed(raw)) {
+    if (isResearchInventorySeed(raw)) {
       return raw.records.map((record: any) => {
-        const entry = nuaaEntryFrom(record, raw.schema_version);
+        const entry = researchEntryFrom(record, raw.schema_version);
         return { ...entry, raw: normalizeInstitutionalUrls(entry.raw), imported_at: now() };
       });
     }

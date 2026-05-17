@@ -285,7 +285,7 @@ async function withAllocatedIopPage<T>(profile: string, url: string, tabId: stri
 
 export async function researchIopSearch(args: IopSearchArgs): Promise<{ result_count: number; items: IopItem[]; query_url: string }> {
   const query_url = buildIopSearchUrl(args);
-  const profile = args.profile || "nuaa-iop";
+  const profile = args.profile || "research-iop";
   const tabId = args.tab_id || `research-iop-search-${Date.now()}`;
   const page = await withAllocatedIopPage(profile, query_url, tabId, args.cdp_port ?? 9240, (p) => readIopPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -293,7 +293,7 @@ export async function researchIopSearch(args: IopSearchArgs): Promise<{ result_c
 
 export async function researchIopFilter(args: IopFilterArgs): Promise<{ result_count: number; items: IopItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildIopFilterUrl(args);
-  const profile = args.profile || "nuaa-iop";
+  const profile = args.profile || "research-iop";
   const tabId = args.tab_id || `research-iop-filter-${Date.now()}`;
   const page = await withAllocatedIopPage(profile, refined_url, tabId, args.cdp_port ?? 9240, (p) => readIopPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -324,7 +324,7 @@ async function downloadIopBookExport(exportUrl: string, downloadDir: string, for
 export async function researchIopExport(args: IopExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IopExportFormat; doi: string; export_url: string }> {
   const doi = requireIopIdentifier(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-iop";
+  const profile = args.profile || "research-iop";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "iop"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

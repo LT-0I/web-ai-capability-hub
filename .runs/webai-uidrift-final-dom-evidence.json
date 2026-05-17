@@ -1,0 +1,94 @@
+{
+  "chatgpt": {
+    "url": "https://chatgpt.com/c/6a093539-a708-83e8-870d-9c9c31883118",
+    "title": "Icon design request",
+    "openSelector": "img[alt^=\"Generated image\" i]",
+    "downloadSelector": "[role=\"dialog\"] button[aria-label=\"Save\"]",
+    "openCount": 1,
+    "saveCountNoDialog": 1,
+    "imageEvidence": [
+      {
+        "alt": "Generated image: Blue square with white star",
+        "rect": {
+          "x": 193,
+          "y": 52,
+          "w": 480,
+          "h": 480
+        },
+        "ancestor": [
+          "img#_r_12e_",
+          "div",
+          "div",
+          "div[role=button]",
+          "div#image-939e39a7-2770-4adc-a5b4-509182aaa3de"
+        ]
+      }
+    ]
+  },
+  "gemini": {
+    "url": "https://gemini.google.com/app/193e91ff7d05c035?hl=en",
+    "title": "Generating Calm Blue Square Video - Google Gemini",
+    "selectors": {
+      "menu": "#toolbox-drawer-menu button[role=\"menuitemcheckbox\"]:has-text(\"Create video\"), #toolbox-drawer-menu button:has-text(\"Create video\"), [role=\"menuitemcheckbox\"]:has-text(\"Create video\")",
+      "zero": "button[aria-label=\"Create video, button, tap to use tool\"], intent-card button.card-zero-state[aria-label*=\"Create video\" i]",
+      "active": "button[aria-label=\"Deselect Create video\"], toolbox-drawer button.toolbox-drawer-item-deselect-button[aria-label*=\"Create video\" i]",
+      "download": "generated-video button[aria-label=\"Download video\"], video-player button.download-button[aria-label*=\"Download\" i], button[aria-label=\"Download video\"]"
+    },
+    "counts": {
+      "zero": 0,
+      "active": 1,
+      "download": 1,
+      "video": 1
+    },
+    "videoEvidence": [
+      {
+        "tag": "generated-video",
+        "aria": null,
+        "text": "0:00 / 0:08",
+        "cls": "ng-star-inserted",
+        "rect": {
+          "x": 464,
+          "y": 314,
+          "w": 692,
+          "h": 389
+        }
+      },
+      {
+        "tag": "video-player",
+        "aria": null,
+        "text": "0:00 / 0:08",
+        "cls": "ng-star-inserted",
+        "rect": {
+          "x": 472,
+          "y": 314,
+          "w": 676,
+          "h": 389
+        }
+      },
+      {
+        "tag": "video",
+        "aria": null,
+        "text": "",
+        "cls": "ng-star-inserted",
+        "rect": {
+          "x": 472,
+          "y": 314,
+          "w": 676,
+          "h": 389
+        }
+      },
+      {
+        "tag": "button",
+        "aria": "Download video",
+        "text": "",
+        "cls": "mat-mdc-tooltip-trigger download-button active-lock ng-star-inserted",
+        "rect": {
+          "x": 1060,
+          "y": 326,
+          "w": 32,
+          "h": 32
+        }
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExpo
 export const researchFrontiersSearchInput = objectSchema<FrontiersSearchArgs>({
   query: scalar.string("Frontiers boolean/free-text query"),
   page_size: scalar.number("Optional maximum parsed items to return"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-frontiers" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-frontiers" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9256 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -15,7 +15,7 @@ export const researchFrontiersFilterInput = objectSchema<FrontiersFilterArgs>({
   option_id: scalar.string("Frontiers facet option id suffix, e.g. 3 for Date→Past year or 2449 for Aerospace Engineering"),
   option_label: scalar.string("Optional label to verify on li.current, e.g. Past year"),
   page_size: scalar.number("Optional maximum parsed items to return"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-frontiers" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-frontiers" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9256 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query", "group", "option_id"]);
@@ -27,7 +27,7 @@ export const researchFrontiersExportInput = objectSchema<FrontiersExportArgs>({
   format: { ...scalar.enum(["bibtex", "endnote", "reference"], "Citation export format; reference is RIS/Reference Manager"), default: "bibtex" },
   filename: scalar.string("Optional output filename"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-frontiers" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-frontiers" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9256 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);

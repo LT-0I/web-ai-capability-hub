@@ -211,7 +211,7 @@ async function withAllocatedIeeePage<T>(profile: string, url: string, tabId: str
 
 export async function researchIeeeSearch(args: IeeeSearchArgs): Promise<{ result_count: number; items: IeeeItem[]; query_url: string }> {
   const query_url = buildIeeeSearchUrl(args);
-  const profile = args.profile || "nuaa-research";
+  const profile = args.profile || "research-default";
   const tabId = args.tab_id || `research-ieee-search-${Date.now()}`;
   const page = await withAllocatedIeeePage(profile, query_url, tabId, args.cdp_port, (p) => readIeeePage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -219,7 +219,7 @@ export async function researchIeeeSearch(args: IeeeSearchArgs): Promise<{ result
 
 export async function researchIeeeFilter(args: IeeeFilterArgs): Promise<{ result_count: number; items: IeeeItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildIeeeFilterUrl(args);
-  const profile = args.profile || "nuaa-research";
+  const profile = args.profile || "research-default";
   const tabId = args.tab_id || `research-ieee-filter-${Date.now()}`;
   const page = await withAllocatedIeeePage(profile, refined_url, tabId, args.cdp_port, (p) => readIeeePage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };

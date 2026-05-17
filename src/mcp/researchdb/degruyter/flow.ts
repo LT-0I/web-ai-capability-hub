@@ -239,7 +239,7 @@ async function withAllocatedDegruyterPage<T>(profile: string, url: string, tabId
 
 export async function researchDegruyterSearch(args: DegruyterSearchArgs): Promise<{ result_count: number; items: DegruyterItem[]; query_url: string; confirm_url: string; confirm_title: string }> {
   const query_url = buildDegruyterSearchUrl(args);
-  const profile = args.profile || "nuaa-degruyter";
+  const profile = args.profile || "research-degruyter";
   const tabId = args.tab_id || `research-degruyter-search-${Date.now()}`;
   const page = await withAllocatedDegruyterPage(profile, query_url, tabId, args.cdp_port, (p) => readDegruyterResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url, confirm_url: page.url, confirm_title: page.title };
@@ -247,7 +247,7 @@ export async function researchDegruyterSearch(args: DegruyterSearchArgs): Promis
 
 export async function researchDegruyterFilter(args: DegruyterFilterArgs): Promise<{ result_count: number; items: DegruyterItem[]; refined_url: string; confirm_url: string; confirm_title: string }> {
   const refined_url = buildDegruyterFilterUrl(args);
-  const profile = args.profile || "nuaa-degruyter";
+  const profile = args.profile || "research-degruyter";
   const tabId = args.tab_id || `research-degruyter-filter-${Date.now()}`;
   const page = await withAllocatedDegruyterPage(profile, refined_url, tabId, args.cdp_port, (p) => readDegruyterResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
@@ -256,7 +256,7 @@ export async function researchDegruyterFilter(args: DegruyterFilterArgs): Promis
 export async function researchDegruyterExport(args: DegruyterExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: DegruyterExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-degruyter";
+  const profile = args.profile || "research-degruyter";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "degruyter"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

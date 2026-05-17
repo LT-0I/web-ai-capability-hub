@@ -61,7 +61,7 @@ Codex dispatch `stream5-integration-registry.md`, mirroring the shipped
   `capability_library_import`, resource `capability-library://features`;
   round-tripped `configs/consumer-contract.json` ↔
   `docs/CONSUMER_CONTRACT.md` ↔ `tests/consumerContract.test.ts`.
-  `consumer-contract-1.4.0` / `package 0.6.0` / 32 error codes / `webai_`
+  `consumer-contract-1.5.0` / `package 0.7.0` / 32 error codes / `webai_`
   count 37 **all unchanged** (additive within the minor, per the Stream-#5
   precedent; `capability:*` is not a `webai_` tool).
 - Runtime `capabilities` table + extractor/updater/WorkflowCompiler

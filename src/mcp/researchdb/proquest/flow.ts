@@ -193,7 +193,7 @@ async function applyProquestFilters(page: any, args: ProquestFilterArgs, current
 }
 
 export async function researchProquestSearch(args: ProquestSearchArgs): Promise<{ result_count: number; items: ProquestItem[]; query_url: string; results_url: string; title: string }> {
-  const profile = args.profile || "nuaa-proquest";
+  const profile = args.profile || "research-proquest";
   const tabId = args.tab_id || `research-proquest-search-${Date.now()}`;
   return await withAllocatedProquestPage(profile, buildProquestAdvancedSearchUrl(), tabId, args.cdp_port, async (page) => {
     await runProquestSearch(page, requireQuery(args.query));
@@ -203,7 +203,7 @@ export async function researchProquestSearch(args: ProquestSearchArgs): Promise<
 }
 
 export async function researchProquestFilter(args: ProquestFilterArgs): Promise<{ result_count: number; items: ProquestItem[]; refined_url: string; confirm_title: string; unfiltered_count: number; unfiltered_url: string }> {
-  const profile = args.profile || "nuaa-proquest";
+  const profile = args.profile || "research-proquest";
   const tabId = args.tab_id || `research-proquest-filter-${Date.now()}`;
   return await withAllocatedProquestPage(profile, buildProquestAdvancedSearchUrl(), tabId, args.cdp_port, async (page) => {
     await runProquestSearch(page, requireQuery(args.query));
@@ -216,7 +216,7 @@ export async function researchProquestFilter(args: ProquestFilterArgs): Promise<
 
 export async function researchProquestExport(args: ProquestExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: ProquestExportFormat; result_count: number; results_url: string }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-proquest";
+  const profile = args.profile || "research-proquest";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "proquest"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

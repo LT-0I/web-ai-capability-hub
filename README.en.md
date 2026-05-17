@@ -7,8 +7,8 @@
 Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
-[![version](https://img.shields.io/badge/version-0.6.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.4.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![version](https://img.shields.io/badge/version-0.7.0-blue)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-1.5.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
 [![tests](https://img.shields.io/badge/tests-370%2F370%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -19,8 +19,8 @@ research-database automation through visible, user-authorized browser sessions.
 
 ---
 
-> **Status — `v0.6.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.4.0`, package `0.6.0`. Clean build green,
+> **Status — `v0.7.0` (first stable, reasonably feature-complete version).**
+> Public surface `consumer-contract-1.5.0`, package `0.7.0`. Clean build green,
 > full test suite **370/370 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
@@ -37,6 +37,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - [Highlights](#highlights)
 - [Public surface (consumer contract)](#public-surface-consumer-contract)
 - [Quick start](#quick-start)
+- [Use as a standard MCP server](#use-as-a-standard-mcp-server)
 - [NoeticBraid v3.2 first-phase scope](#noeticbraid-v32-first-phase-scope)
 - [Architecture](#architecture)
 - [Project layout](#project-layout)
@@ -64,7 +65,7 @@ code** — never a silent fallback, never a synthesized artifact.
   independent tool families:
   - **37 `webai_` tools** — ChatGPT / Claude / Gemini automation.
   - **120 per-DB `research_*` tools** — a separate research-database sub-MCP
-    over 40 NUAA STEM databases.
+    over 40 academic research databases.
 
 ## Highlights
 
@@ -93,13 +94,13 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.4.0`, `package 0.6.0`):
+Current locks (`consumer-contract-1.5.0`, `package 0.7.0`):
 
 | Surface | Count |
 | --- | --- |
 | `webai_` tools (ChatGPT / Claude / Gemini) | **37** |
 | per-DB `research_*` tools (40 DBs × search/filter/export) | **120** |
-| `research_nuaa_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
+| `research_inventory_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
 | sub-MCP tools | **11** |
 | stable error codes | **32** |
 | `forbidden_output_fields` redacted for safe consumers | **23** |
@@ -164,6 +165,36 @@ DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
 # run as an MCP server
 node dist/src/cli.js mcp
 ```
+
+## Use as a standard MCP server
+
+GitHub Releases include `web-ai-research-automation-hub-0.7.0.tgz`. Consumers can install it and point their MCP client at the dedicated stdio binary:
+
+```bash
+npm i -g ./web-ai-research-automation-hub-0.7.0.tgz
+web-ai-research-automation-hub-mcp
+```
+
+Or run it without a global install:
+
+```bash
+npx -y --package ./web-ai-research-automation-hub-0.7.0.tgz web-ai-research-automation-hub-mcp
+```
+
+Generic `mcpServers` config (Claude Desktop uses the same shape in `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "web-ai-research-automation-hub": {
+      "command": "web-ai-research-automation-hub-mcp",
+      "args": []
+    }
+  }
+}
+```
+
+The server exposes the existing `webai_`, `research_`, sub-MCP tools, and resources over stdio; server name and version are read from `package.json`. See [`docs/MCP_SERVER.md`](docs/MCP_SERVER.md).
 
 ## NoeticBraid v3.2 first-phase scope
 

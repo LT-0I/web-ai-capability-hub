@@ -225,7 +225,7 @@ async function withAllocatedAcsPage<T>(profile: string, url: string, tabId: stri
 
 export async function researchAcsSearch(args: AcsSearchArgs): Promise<{ result_count: number; items: AcsItem[]; query_url: string }> {
   const query_url = buildAcsSearchUrl(args);
-  const profile = args.profile || "nuaa-acs";
+  const profile = args.profile || "research-acs";
   const tabId = args.tab_id || `research-acs-search-${Date.now()}`;
   const page = await withAllocatedAcsPage(profile, query_url, tabId, args.cdp_port, (p) => readAcsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -233,7 +233,7 @@ export async function researchAcsSearch(args: AcsSearchArgs): Promise<{ result_c
 
 export async function researchAcsFilter(args: AcsFilterArgs): Promise<{ result_count: number; items: AcsItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildAcsFilterUrl(args);
-  const profile = args.profile || "nuaa-acs";
+  const profile = args.profile || "research-acs";
   const tabId = args.tab_id || `research-acs-filter-${Date.now()}`;
   const page = await withAllocatedAcsPage(profile, refined_url, tabId, args.cdp_port, (p) => readAcsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -242,7 +242,7 @@ export async function researchAcsFilter(args: AcsFilterArgs): Promise<{ result_c
 export async function researchAcsExport(args: AcsExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: AcsExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-acs";
+  const profile = args.profile || "research-acs";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "acs"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

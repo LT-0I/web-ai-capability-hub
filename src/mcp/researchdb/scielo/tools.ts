@@ -9,7 +9,7 @@ export const researchScieloSearchInput = objectSchema<ScieloSearchArgs>({
   page: { ...scalar.number("Result page number"), default: 1 },
   sort: scalar.string("Optional SciELO sort key"),
   format: { ...scalar.string("SciELO results format parameter"), default: "summary" },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scielo" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scielo" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9228 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -34,7 +34,7 @@ export const researchScieloFilterInput = objectSchema<ScieloFilterArgs>({
   literature_type: scalar.string("Literature type facet value, e.g. Artigo"),
   network_classification: scalar.string("Network classification facet value"),
   facets: scalar.object("Advanced raw SciELO facet map keyed by filter facet name"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scielo" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scielo" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9228 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -62,7 +62,7 @@ export const researchScieloExportInput = objectSchema<ScieloExportArgs>({
   export_format: { ...scalar.enum(["ris", "bibtex", "citation", "csv"], "Export format; uses CDP artifact-click, never browser:download-url"), default: "ris" },
   selection: { ...scalar.enum(["current_page", "all_results", "selection"], "SciELO export scope; current_page is the verified default"), default: "current_page" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-scielo" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-scielo" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9228 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

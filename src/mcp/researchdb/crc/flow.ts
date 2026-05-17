@@ -261,14 +261,14 @@ async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultC
 
 export async function researchCrcSearch(args: CrcSearchArgs): Promise<{ result_count: number; items: CrcItem[]; query_url: string; results_url: string; title: string }> {
   const query_url = buildCrcSearchUrl(args);
-  const profile = args.profile || "nuaa-crc";
+  const profile = args.profile || "research-crc";
   const tabId = args.tab_id || `research-crc-search-${Date.now()}`;
   const page = await withAllocatedCrcPage(profile, query_url, tabId, args.cdp_port, (p) => readCrcResults(p));
   return { result_count: page.resultCount, items: page.items, query_url, results_url: page.url, title: page.title };
 }
 export async function researchCrcFilter(args: CrcFilterArgs): Promise<{ result_count: number; items: CrcItem[]; refined_url: string; confirm_title: string; unfiltered_count: number; unfiltered_url: string }> {
   const query_url = buildCrcSearchUrl(args);
-  const profile = args.profile || "nuaa-crc";
+  const profile = args.profile || "research-crc";
   const tabId = args.tab_id || `research-crc-filter-${Date.now()}`;
   return await withAllocatedCrcPage(profile, query_url, tabId, args.cdp_port, async (page) => {
     const before = await readCrcResults(page);
@@ -281,7 +281,7 @@ export async function researchCrcFilter(args: CrcFilterArgs): Promise<{ result_c
 export async function researchCrcExport(args: CrcExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: CrcExportFormat; result_count: number; results_url: string; columns: number; rows: number }> {
   const format = normalizeFormat(args.format);
   const query_url = buildCrcSearchUrl(args);
-  const profile = args.profile || "nuaa-crc";
+  const profile = args.profile || "research-crc";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "crc"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

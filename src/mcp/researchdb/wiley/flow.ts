@@ -217,7 +217,7 @@ async function withAllocatedWileyPage<T>(profile: string, url: string, tabId: st
 
 export async function researchWileySearch(args: WileySearchArgs): Promise<{ result_count: number; items: WileyItem[]; query_url: string }> {
   const query_url = buildWileySearchUrl(args);
-  const profile = args.profile || "nuaa-wiley";
+  const profile = args.profile || "research-wiley";
   const tabId = args.tab_id || `research-wiley-search-${Date.now()}`;
   const page = await withAllocatedWileyPage(profile, query_url, tabId, args.cdp_port, (p) => readWileyPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -225,7 +225,7 @@ export async function researchWileySearch(args: WileySearchArgs): Promise<{ resu
 
 export async function researchWileyFilter(args: WileyFilterArgs): Promise<{ result_count: number; items: WileyItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildWileyFilterUrl(args);
-  const profile = args.profile || "nuaa-wiley";
+  const profile = args.profile || "research-wiley";
   const tabId = args.tab_id || `research-wiley-filter-${Date.now()}`;
   const page = await withAllocatedWileyPage(profile, refined_url, tabId, args.cdp_port, (p) => readWileyPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -234,7 +234,7 @@ export async function researchWileyFilter(args: WileyFilterArgs): Promise<{ resu
 export async function researchWileyExport(args: WileyExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: WileyExportFormat; doi: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-wiley";
+  const profile = args.profile || "research-wiley";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "wiley"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

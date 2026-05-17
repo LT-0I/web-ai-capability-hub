@@ -293,7 +293,7 @@ async function applyIestFilters(page: any, args: IestFilterArgs, before: { url: 
 export async function researchIestSearch(args: IestSearchArgs): Promise<{ result_count: number; item_count: number; items: IestItem[]; query_url: string; results_url: string; title: string }> {
   normalizeField(args.field);
   const query_url = buildIestSearchUrl(args);
-  const profile = args.profile || "nuaa-iest";
+  const profile = args.profile || "research-iest";
   const tabId = args.tab_id || `research-iest-search-${Date.now()}`;
   const page = await withAllocatedIestPage(profile, query_url, tabId, args.cdp_port, (p) => waitForIestResults(p));
   return { result_count: page.resultCount, item_count: page.items.length, items: page.items, query_url, results_url: page.url, title: page.title };
@@ -301,7 +301,7 @@ export async function researchIestSearch(args: IestSearchArgs): Promise<{ result
 
 export async function researchIestFilter(args: IestFilterArgs): Promise<{ result_count: number; item_count: number; items: IestItem[]; refined_url: string; confirm_title: string; unfiltered_count: number; unfiltered_url: string }> {
   const query_url = buildIestSearchUrl(args);
-  const profile = args.profile || "nuaa-iest";
+  const profile = args.profile || "research-iest";
   const tabId = args.tab_id || `research-iest-filter-${Date.now()}`;
   return await withAllocatedIestPage(profile, query_url, tabId, args.cdp_port, async (page) => {
     const before = await waitForIestResults(page);
@@ -313,7 +313,7 @@ export async function researchIestFilter(args: IestFilterArgs): Promise<{ result
 
 export async function researchIestExport(args: IestExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IestExportFormat; article_url: string }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-iest";
+  const profile = args.profile || "research-iest";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "iest"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

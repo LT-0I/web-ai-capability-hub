@@ -217,7 +217,7 @@ async function applyOpticaYearFacet(page: any, year: number): Promise<void> {
 
 export async function researchOpticaSearch(args: OpticaSearchArgs): Promise<{ result_count: number; total_count: number; items: OpticaItem[]; query_url: string }> {
   const query_url = buildOpticaSearchUrl(args);
-  const profile = args.profile || "nuaa-optica";
+  const profile = args.profile || "research-optica";
   const tabId = args.tab_id || `research-optica-search-${Date.now()}`;
   const page = await withAllocatedOpticaPage(profile, query_url, tabId, args.cdp_port, (p) => readOpticaPage(p));
   return { result_count: page.resultCount, total_count: page.totalCount, items: page.items, query_url };
@@ -225,7 +225,7 @@ export async function researchOpticaSearch(args: OpticaSearchArgs): Promise<{ re
 
 export async function researchOpticaFilter(args: OpticaFilterArgs): Promise<{ result_count: number; total_count: number; items: OpticaItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildOpticaFilterUrl(args);
-  const profile = args.profile || "nuaa-optica";
+  const profile = args.profile || "research-optica";
   const tabId = args.tab_id || `research-optica-filter-${Date.now()}`;
   const page = await withAllocatedOpticaPage(profile, refined_url, tabId, args.cdp_port, async (p) => {
     const before = await readOpticaPage(p);
@@ -241,7 +241,7 @@ export async function researchOpticaExport(args: OpticaExportArgs): Promise<{ ar
   const query_url = buildOpticaSearchUrl(args);
   const articleId = requireArticleId(args.article_id);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-optica";
+  const profile = args.profile || "research-optica";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "optica"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

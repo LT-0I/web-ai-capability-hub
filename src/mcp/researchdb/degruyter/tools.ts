@@ -12,7 +12,7 @@ export const researchDegruyterSearchInput = objectSchema<DegruyterSearchArgs>({
   sort_by: { ...scalar.enum(["relevance", "mostrecent", "leastrecent", "alphabetical", "reversealpha"], "Sort order"), default: "relevance" },
   document_visibility: { ...scalar.enum(["explicit", "open", "public", "available", "all"], "Document visibility filter"), default: "available" },
   page_size: scalar.number("Optional pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-degruyter" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-degruyter" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
@@ -33,7 +33,7 @@ export const researchDegruyterFilterInput = objectSchema<DegruyterFilterArgs>({
   sort_by: { ...scalar.enum(["relevance", "mostrecent", "leastrecent", "alphabetical", "reversealpha"], "Sort order"), default: "relevance" },
   document_visibility: { ...scalar.enum(["explicit", "open", "public", "available", "all"], "Document visibility filter"), default: "available" },
   page_size: scalar.number("Optional pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-degruyter" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-degruyter" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, []);
@@ -42,7 +42,7 @@ export const researchDegruyterExportInput = objectSchema<DegruyterExportArgs>({
   doi: scalar.string("De Gruyter DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote"], "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-degruyter" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-degruyter" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);

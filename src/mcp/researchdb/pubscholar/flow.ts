@@ -361,7 +361,7 @@ function validateRisArtifact(artifactPath: string): { structural_tags: number } 
 }
 
 export async function researchPubscholarSearch(args: PubscholarSearchArgs): Promise<{ result_count: number; selected_count: number; items: PubscholarItem[]; query_url: string; results_url: string; title: string; breadcrumb: string }> {
-  const profile = args.profile || "nuaa-pubscholar";
+  const profile = args.profile || "research-pubscholar";
   const tabId = args.tab_id || `research-pubscholar-search-${Date.now()}`;
   return await withAllocatedPubscholarPage(profile, buildPubscholarHomeUrl(), tabId, args.cdp_port, async (page) => {
     await runPubscholarSearch(page, args);
@@ -371,7 +371,7 @@ export async function researchPubscholarSearch(args: PubscholarSearchArgs): Prom
 }
 
 export async function researchPubscholarFilter(args: PubscholarFilterArgs): Promise<{ result_count: number; selected_count: number; items: PubscholarItem[]; refined_url: string; confirm_title: string; breadcrumb: string; unfiltered_count: number; unfiltered_url: string }> {
-  const profile = args.profile || "nuaa-pubscholar";
+  const profile = args.profile || "research-pubscholar";
   const tabId = args.tab_id || `research-pubscholar-filter-${Date.now()}`;
   return await withAllocatedPubscholarPage(profile, buildPubscholarHomeUrl(), tabId, args.cdp_port, async (page) => {
     await runPubscholarSearch(page, args);
@@ -384,7 +384,7 @@ export async function researchPubscholarFilter(args: PubscholarFilterArgs): Prom
 
 export async function researchPubscholarExport(args: PubscholarExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: PubscholarExportFormat; result_count: number; results_url: string; breadcrumb: string; structural_tags: number }> {
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-pubscholar";
+  const profile = args.profile || "research-pubscholar";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "pubscholar"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

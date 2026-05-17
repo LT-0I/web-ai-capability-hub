@@ -100,8 +100,8 @@ export interface ToolSpec {
   handler(args: any, runtime: Required<BrowserToolRuntime>): Promise<unknown>;
 }
 
-const researchNuaaImportInput = objectSchema<{ path?: string; stem_only?: boolean }>({
-  path: { ...scalar.string("NUAA STEM inventory JSON path; defaults to configs/research/nuaa_stem_inventory.json"), default: "configs/research/nuaa_stem_inventory.json" },
+const researchInventoryImportInput = objectSchema<{ path?: string; stem_only?: boolean }>({
+  path: { ...scalar.string("academic research inventory JSON path; defaults to configs/research/research_inventory.json"), default: "configs/research/research_inventory.json" },
   stem_only: { ...scalar.boolean("Only import rows classified as science_engineering"), default: false }
 }, []);
 
@@ -2547,14 +2547,14 @@ const coreToolSpecs: ToolSpec[] = [
     handler: async (args, runtime) => new SiteRegistryImporter(runtime.database).importFile(args.path)
   },
   {
-    name: "research_nuaa_import",
-    description: "Import the NUAA STEM research database seed into the local capability database.",
-    schema: researchNuaaImportInput,
-    handler: async (args, runtime) => new ResearchDbImporter(runtime.database).importNuaaSeed(args.path ?? "configs/research/nuaa_stem_inventory.json", { stemOnly: !!args.stem_only })
+    name: "research_inventory_import",
+    description: "Import the academic research database seed into the local capability database.",
+    schema: researchInventoryImportInput,
+    handler: async (args, runtime) => new ResearchDbImporter(runtime.database).importInventorySeed(args.path ?? "configs/research/research_inventory.json", { stemOnly: !!args.stem_only })
   },
   {
     name: "research_aiaa_search",
-    description: "Search AIAA Aerospace Research Central via the verified NUAA AIAA headless recipe.",
+    description: "Search AIAA Aerospace Research Central via the verified AIAA headless recipe.",
     schema: researchAiaaSearchInput,
     handler: async (args) => researchAiaaSearch(args)
   },

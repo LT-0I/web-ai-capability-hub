@@ -10,7 +10,7 @@ export const researchWileySearchInput = objectSchema<WileySearchArgs>({
   query2: scalar.string("Optional Wiley row 2 query text; Wiley joins rows with AND"),
   area2: { ...scalar.enum(wileyAreas, "Wiley search area for row 2"), default: "AllField" },
   page_size: { ...scalar.number("Optional Wiley pageSize"), default: 10 },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wiley" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wiley" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9231 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -27,7 +27,7 @@ export const researchWileyFilterInput = objectSchema<WileyFilterArgs>({
   concept_id: scalar.string("ConceptID subject facet"),
   access: scalar.boolean("Open Access Content refine"),
   page_size: { ...scalar.number("Optional Wiley pageSize"), default: 10 },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wiley" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wiley" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9231 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -37,7 +37,7 @@ export const researchWileyExportInput = objectSchema<WileyExportArgs>({
   format: { ...scalar.enum(wileyFormats, "Citation export format"), default: "ris" },
   include_abstract: scalar.boolean("Enable Wiley include-abstract/direct toggle when supported"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-wiley" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-wiley" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9231 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -45,7 +45,7 @@ export const researchWileyExportInput = objectSchema<WileyExportArgs>({
 export const wileyResearchTools = [
   {
     name: "research_wiley_search",
-    description: "Search Wiley Online Library via the verified NUAA Wiley Literatum headless recipe.",
+    description: "Search Wiley Online Library via the verified Wiley Literatum headless recipe.",
     schema: researchWileySearchInput,
     handler: async (args: WileySearchArgs) => researchWileySearch(args)
   },

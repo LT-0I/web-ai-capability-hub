@@ -7,7 +7,7 @@ export const researchAsceSearchInput = objectSchema<AsceSearchArgs>({
   area: { ...scalar.enum(["AllField", "Title", "Contrib", "Keyword", "AbstractText", "Affiliation"], "ASCE search area"), default: "AllField" },
   area2: { ...scalar.enum(["AllField", "Title", "Contrib", "Keyword", "AbstractText", "Affiliation"], "ASCE second-row search area"), default: "AllField" },
   page_size: scalar.number("Optional ASCE pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asce" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asce" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -24,7 +24,7 @@ export const researchAsceFilterInput = objectSchema<AsceFilterArgs>({
   concept_id: scalar.string("ConceptID topic facet"),
   publication: scalar.string("ASCE publication facet"),
   page_size: scalar.number("Optional ASCE pageSize"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asce" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asce" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -33,7 +33,7 @@ export const researchAsceExportInput = objectSchema<AsceExportArgs>({
   doi: scalar.string("ASCE DOI to export"),
   format: { ...scalar.enum(["ris", "bibtex", "endnote", "medlars"], "Citation export format"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-asce" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-asce" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["doi"]);
@@ -41,7 +41,7 @@ export const researchAsceExportInput = objectSchema<AsceExportArgs>({
 export const asceResearchTools = [
   {
     name: "research_asce_search",
-    description: "Search ASCE Library via the verified NUAA ASCE headless recipe.",
+    description: "Search ASCE Library via the verified ASCE headless recipe.",
     schema: researchAsceSearchInput,
     handler: async (args: AsceSearchArgs) => researchAsceSearch(args)
   },

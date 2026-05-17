@@ -199,7 +199,7 @@ async function withAllocatedCambridgePage<T>(profile: string, url: string, tabId
 
 export async function researchCambridgeSearch(args: CambridgeSearchArgs): Promise<{ result_count: number; items: CambridgeItem[]; query_url: string }> {
   const query_url = buildCambridgeSearchUrl(args);
-  const profile = args.profile || "nuaa-cambridge";
+  const profile = args.profile || "research-cambridge";
   const tabId = args.tab_id || `research-cambridge-search-${Date.now()}`;
   const page = await withAllocatedCambridgePage(profile, query_url, tabId, args.cdp_port, (p) => readCambridgePage(p, /results?\s+for/i));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -207,7 +207,7 @@ export async function researchCambridgeSearch(args: CambridgeSearchArgs): Promis
 
 export async function researchCambridgeFilter(args: CambridgeFilterArgs): Promise<{ result_count: number; items: CambridgeItem[]; refined_url: string; confirm_title: string; applied_filter?: string }> {
   const refined_url = buildCambridgeFilterUrl(args);
-  const profile = args.profile || "nuaa-cambridge";
+  const profile = args.profile || "research-cambridge";
   const tabId = args.tab_id || `research-cambridge-filter-${Date.now()}`;
   const confirm = args.product_type === "JOURNAL_ARTICLE" ? /Type:\s*Articles\s*\(/i : undefined;
   const page = await withAllocatedCambridgePage(profile, refined_url, tabId, args.cdp_port, (p) => readCambridgePage(p, confirm));
@@ -242,7 +242,7 @@ export async function researchCambridgeExport(args: CambridgeExportArgs): Promis
   const format = normalizeFormat(args.format);
   const query = args.query || "unmanned aerial vehicle AND control";
   const searchUrl = buildCambridgeSearchUrl({ query });
-  const profile = args.profile || "nuaa-cambridge";
+  const profile = args.profile || "research-cambridge";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "cambridge"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

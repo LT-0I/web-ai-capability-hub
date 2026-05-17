@@ -13,7 +13,7 @@ export const researchArxivSearchInput = objectSchema<ArxivSearchArgs>({
   terms: { type: "array", items: termSchema, description: "Optional arXiv advanced-search rows with operator/field/term" } as any,
   page_size: { ...scalar.number("Results per page; verified values include 25, 50, 100, 200"), default: 50 },
   order: { ...scalar.enum(["-announced_date_first", "announced_date_first", "-submitted_date", "submitted_date", ""], "arXiv sort order"), default: "-announced_date_first" },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-arxiv" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-arxiv" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9257 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);
@@ -34,7 +34,7 @@ export const researchArxivFilterInput = objectSchema<ArxivFilterArgs>({
   include_older_versions: scalar.boolean("Include older versions"),
   page_size: { ...scalar.number("Results per page"), default: 50 },
   order: { ...scalar.enum(["-announced_date_first", "announced_date_first", "-submitted_date", "submitted_date", ""], "arXiv sort order"), default: "-announced_date_first" },
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-arxiv" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-arxiv" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9257 },
   tab_id: scalar.string("Optional managed tab id")
 }, []);
@@ -44,7 +44,7 @@ export const researchArxivExportInput = objectSchema<ArxivExportArgs>({
   format: { ...scalar.enum(["bibtex"], "Verified arXiv export format"), default: "bibtex" },
   filename: scalar.string("Optional BibTeX filename"),
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-arxiv" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-arxiv" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9257 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["id"]);

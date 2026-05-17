@@ -6,6 +6,25 @@ import { ManagedBrowserLauncher } from "../browser/managedLauncher";
 import { CapabilityDatabase } from "../capabilities/database";
 import { ConfirmationRequiredError } from "../actions/confirmationPolicy";
 
+const fs = require("node:fs");
+const path = require("node:path");
+
+function packageMetadata(): { name: string; version: string } {
+  const candidates = [
+    path.resolve(__dirname, "../../../package.json"),
+    path.resolve(__dirname, "../../package.json"),
+    path.resolve(process.cwd(), "package.json")
+  ];
+  for (const candidate of candidates) {
+    if (!fs.existsSync(candidate)) continue;
+    const parsed = JSON.parse(fs.readFileSync(candidate, "utf-8"));
+    if (typeof parsed.name === "string" && typeof parsed.version === "string") {
+      return { name: parsed.name, version: parsed.version };
+    }
+  }
+  throw new Error("Unable to read MCP server package metadata from package.json.");
+}
+
 export function serializeMcpToolError(error: unknown): Record<string, unknown> | undefined {
   const candidate = error as Partial<ConfirmationRequiredError> & { name?: string; action?: unknown; reason?: unknown };
   if (!(error instanceof ConfirmationRequiredError) && candidate?.name !== "ConfirmationRequiredError") return undefined;
@@ -28,7 +47,7 @@ export async function startMcpServer(): Promise<void> {
   const { StdioServerTransport } = sdkStdio;
   const { ListToolsRequestSchema, CallToolRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } = sdkTypes;
   const runtime = { session: new BrowserSessionManager(), launcher: new ManagedBrowserLauncher(), database: new CapabilityDatabase() };
-  const server = new Server({ name: "web-ai-research-automation-hub", version: "0.3.0" }, { capabilities: { tools: {}, resources: {} } });
+  const server = new Server(packageMetadata(), { capabilities: { tools: {}, resources: {} } });
   server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: listMcpTools() }));
   server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
     let result: unknown;

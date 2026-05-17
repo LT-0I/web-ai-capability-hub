@@ -223,7 +223,7 @@ async function applyWosArticleFilter(page: any): Promise<{ resultCount: number; 
 export async function researchWosSearch(args: WosSearchArgs): Promise<{ result_count: number; items: WosItem[]; query_url: string }> {
   const query = requireQuery(args.query);
   asPositiveInt(args.page_size, "page_size");
-  const profile = args.profile || "nuaa-wos";
+  const profile = args.profile || "research-wos";
   const tabId = args.tab_id || `research-wos-search-${Date.now()}`;
   const page = await withAllocatedWosPage(profile, buildWosAdvancedSearchUrl(), tabId, args.cdp_port, (p) => runWosSearch(p, query));
   return { result_count: page.resultCount, items: page.items, query_url: page.queryUrl };
@@ -233,7 +233,7 @@ export async function researchWosFilter(args: WosFilterArgs): Promise<{ result_c
   const query = requireQuery(args.query);
   normalizeDocumentType(args.document_type);
   asPositiveInt(args.page_size, "page_size");
-  const profile = args.profile || "nuaa-wos";
+  const profile = args.profile || "research-wos";
   const tabId = args.tab_id || `research-wos-filter-${Date.now()}`;
   return await withAllocatedWosPage(profile, buildWosAdvancedSearchUrl(), tabId, args.cdp_port, async (p) => {
     await runWosSearch(p, query);
@@ -246,7 +246,7 @@ export async function researchWosExport(args: WosExportArgs): Promise<{ artifact
   const query = requireQuery(args.query);
   const format = normalizeFormat(args.format);
   normalizeDocumentType(args.document_type);
-  const profile = args.profile || "nuaa-wos";
+  const profile = args.profile || "research-wos";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "wos"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

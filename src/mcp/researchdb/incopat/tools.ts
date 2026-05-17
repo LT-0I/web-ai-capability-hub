@@ -4,7 +4,7 @@ import { researchIncopatSearch, researchIncopatFilter, researchIncopatExport, In
 export const researchIncopatSearchInput = objectSchema<IncopatSearchArgs>({
   query: scalar.string("IncoPat simple-search text; the UI normalizes bare text to ALL=(...)"),
   page_size: scalar.number("Optional page size hint; IncoPat UI defaults to 20 patent rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-incopat" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-incopat" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9239 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -13,7 +13,7 @@ export const researchIncopatFilterInput = objectSchema<IncopatFilterArgs>({
   query: scalar.string("IncoPat simple-search text used before applying the facet refine"),
   country: { ...scalar.enum(["CN", "US", "KR", "WO", "EP"], "Country facet code for #PNC_TYPE_<CC> singleFilter span"), default: "CN" },
   page_size: scalar.number("Optional page size hint; IncoPat UI defaults to 20 patent rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-incopat" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-incopat" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9239 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -24,7 +24,7 @@ export const researchIncopatExportInput = objectSchema<IncopatExportArgs>({
   format: { ...scalar.enum(["pdf"], "Export format"), default: "pdf" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
   page_size: scalar.number("Optional page size hint; IncoPat UI defaults to 20 patent rows/page"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-incopat" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-incopat" },
   cdp_port: { ...scalar.number("Optional CDP port override"), default: 9239 },
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

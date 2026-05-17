@@ -9,7 +9,7 @@ export const researchPubscholarSearchInput = objectSchema<PubscholarSearchArgs>(
   field: { ...scalar.enum(["标题", "关键词", "作者", "机构", "摘要", "期刊"], "First condition field"), default: "标题" },
   conditions: scalar.array(conditionSchema, "Optional explicit PubScholar advanced-search conditions (max three UI rows)"),
   page_size: scalar.number("Optional page size hint; PubScholar SPA controls its own page size"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-pubscholar" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-pubscholar" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -25,7 +25,7 @@ export const researchPubscholarFilterInput = objectSchema<PubscholarFilterArgs>(
   resource_type: scalar.string("Top resource tab label, e.g. 论文, 科学数据, 科研设施, 开源软件, 专利, 图书"),
   full_text: scalar.boolean("Apply the verified 可获取全文 toggle"),
   page_size: scalar.number("Optional page size hint"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-pubscholar" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-pubscholar" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);
@@ -42,7 +42,7 @@ export const researchPubscholarExportInput = objectSchema<PubscholarExportArgs>(
   full_text: scalar.boolean("Optionally apply 可获取全文 toggle before export"),
   format: { ...scalar.enum(["ris"], "Export format; PubScholar verified file export is per-record RIS"), default: "ris" },
   download_dir: scalar.string("Absolute or cwd-relative download directory"),
-  profile: { ...scalar.string("Managed browser profile"), default: "nuaa-pubscholar" },
+  profile: { ...scalar.string("Managed browser profile"), default: "research-pubscholar" },
   cdp_port: scalar.number("Optional CDP port override"),
   tab_id: scalar.string("Optional managed tab id")
 }, ["query"]);

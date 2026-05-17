@@ -229,7 +229,7 @@ async function withAllocatedAsmePage<T>(profile: string, url: string, tabId: str
 
 export async function researchAsmeSearch(args: AsmeSearchArgs): Promise<{ result_count: number; items: AsmeItem[]; query_url: string }> {
   const query_url = buildAsmeSearchUrl(args);
-  const profile = args.profile || "nuaa-asme";
+  const profile = args.profile || "research-asme";
   const tabId = args.tab_id || `research-asme-search-${Date.now()}`;
   const page = await withAllocatedAsmePage(profile, query_url, tabId, args.cdp_port, (p) => readAsmeResultsPage(p));
   return { result_count: page.resultCount, items: page.items, query_url };
@@ -237,7 +237,7 @@ export async function researchAsmeSearch(args: AsmeSearchArgs): Promise<{ result
 
 export async function researchAsmeFilter(args: AsmeFilterArgs): Promise<{ result_count: number; items: AsmeItem[]; refined_url: string; confirm_title: string }> {
   const refined_url = buildAsmeFilterUrl(args);
-  const profile = args.profile || "nuaa-asme";
+  const profile = args.profile || "research-asme";
   const tabId = args.tab_id || `research-asme-filter-${Date.now()}`;
   const page = await withAllocatedAsmePage(profile, refined_url, tabId, args.cdp_port, (p) => readAsmeResultsPage(p));
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
@@ -246,7 +246,7 @@ export async function researchAsmeFilter(args: AsmeFilterArgs): Promise<{ result
 export async function researchAsmeExport(args: AsmeExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: AsmeExportFormat; doi: string; resource_id: string }> {
   const doi = requireDoi(args.doi);
   const format = normalizeFormat(args.format);
-  const profile = args.profile || "nuaa-asme";
+  const profile = args.profile || "research-asme";
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "asme"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });

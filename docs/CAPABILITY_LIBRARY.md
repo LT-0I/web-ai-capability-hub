@@ -1,6 +1,6 @@
 # Capability Library — Stream #5 Final State
 
-Generated: 2026-05-15 | Contract: consumer-contract-1.4.0 | Records: 79
+Generated: 2026-05-15 | Contract: consumer-contract-1.5.0 | Records: 79
 
 ---
 
@@ -8,7 +8,7 @@ Generated: 2026-05-15 | Contract: consumer-contract-1.4.0 | Records: 79
 
 Stream #5 delivered a major expansion of the MCP surface:
 
-- **MCP surface grew from 13 → 37 `webai_*` tools** (contract consumer-contract-1.4.0)
+- **MCP surface grew from 13 → 37 `webai_*` tools** (contract consumer-contract-1.5.0)
 - **219 unit tests** (full contract round-trip + per-tool schema + sub-MCP isolation tests)
 - **3 sub-MCP modules** registered in the single flat tool array:
   - `claude-design` — 4 live tools (`create_project`, `generate`, `get_html`, `present`)
@@ -231,7 +231,7 @@ These 4 features cannot be resolved by engineering alone. Items 1,3,5,6 (voice/a
 - **Editable seed:** `docs/capability-library.json` — machine-readable, one record per feature. Import it with `capability:library:import`; the SQLite `integration_registry` table is the source of truth for consumers.
 - **Campaign plan:** `docs/plans/web-ai-automation-v2.md`
 - **Integration blueprint:** `docs/plans/stream5-integration-blueprint.md`
-- **Consumer contract:** `configs/consumer-contract.json` (consumer-contract-1.4.0)
+- **Consumer contract:** `configs/consumer-contract.json` (consumer-contract-1.5.0)
 - **Contract tests:** `tests/consumerContract.test.ts`
 
 Future sessions: do **not** re-explore IMPLEMENTED_GREEN features. Treat the imported SQLite `integration_registry` table as the authoritative map; edit `docs/capability-library.json` only as the seed and re-import it. Use `docs/plans/stream5-integration-blueprint.md` for the batch dispatch runbook (B0–B8) if extending the surface further.

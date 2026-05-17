@@ -28,7 +28,7 @@ export class WebAiToolError extends Error {
 }
 
 const WANFANG_ORIGIN = "https://s.wanfangdata.com.cn";
-const DEFAULT_PROFILE = "nuaa-wanfang";
+const DEFAULT_PROFILE = "research-wanfang";
 const DEFAULT_CDP_PORT = 9238;
 const VALID_FORMATS = new Set(["txt"]);
 const RESOURCE_LABELS: Record<string, string> = {

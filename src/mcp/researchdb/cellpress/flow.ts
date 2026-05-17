@@ -28,7 +28,7 @@ export class WebAiToolError extends Error {
 }
 
 const CELLPRESS_ORIGIN = "https://www.cell.com";
-const DEFAULT_PROFILE = "nuaa-cellpress";
+const DEFAULT_PROFILE = "research-cellpress";
 const DEFAULT_CDP_PORT = 9240;
 const VALID_AREAS = new Set(["AllField", "Title", "Contrib", "Keyword", "Abstract", "AbstractTitleKeywordFilterField"]);
 const VALID_FORMATS = new Set(["ris"]);
