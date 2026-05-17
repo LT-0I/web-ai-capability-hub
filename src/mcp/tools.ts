@@ -452,6 +452,13 @@ const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text(
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
 const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"], toolbox-drawer button.toolbox-drawer-item-deselect-button[aria-label*="Create video" i]';
 const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'generated-video button[aria-label="Download video"], video-player button.download-button[aria-label*="Download" i], button[aria-label="Download video"]';
+const GEMINI_VIDEO_QUOTA_TEXT_SIGNAL = 'snapshot.visibleText:/video generation limit/i';
+const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
+  'rich-textarea.ql-disabled',
+  '.text-input-field.disabled',
+  'button[aria-label="Open mode picker"][disabled]'
+];
+const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -1523,6 +1530,46 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
 // button[aria-label="Download video"] renders -> CDP artifact-click downloads
 // the file. ~105s observed for an 8s clip on Fast tier. Honest terminal
 // errorCode (no synthesis) when any stage genuinely fails.
+async function detectGeminiVideoQuotaExhausted(page: any, timeoutMs = 8000): Promise<{ selector: string; evidence: Record<string, unknown> } | null> {
+  const startedAt = Date.now();
+  const budgetMs = Math.min(8000, Math.max(1, timeoutMs));
+  do {
+    const snapshot = await readPageSnapshot(page, { includePortals: true }).catch(() => null);
+    const visibleText = typeof snapshot?.visibleText === "string" ? snapshot.visibleText : "";
+    const quotaMatch = GEMINI_VIDEO_QUOTA_RE.exec(visibleText);
+    let disabledSelector: string | null = null;
+    for (const selector of GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS) {
+      const count = await page.locator?.(selector).count?.().catch(() => 0) || 0;
+      if (count > 0) {
+        disabledSelector = selector;
+        break;
+      }
+    }
+    if (quotaMatch && disabledSelector) {
+      const index = Math.max(0, visibleText.toLowerCase().indexOf(quotaMatch[0].toLowerCase()));
+      const excerpt = visibleText.slice(Math.max(0, index - 80), Math.min(visibleText.length, index + quotaMatch[0].length + 120)).replace(/\s+/g, " ").trim();
+      return {
+        selector: `${GEMINI_VIDEO_QUOTA_TEXT_SIGNAL} AND ${disabledSelector}`,
+        evidence: {
+          quota_text_match: quotaMatch[0],
+          disabled_composer_selector: disabledSelector,
+          visible_text_excerpt: excerpt
+        }
+      };
+    }
+    const remaining = budgetMs - (Date.now() - startedAt);
+    if (remaining <= 0) break;
+    await page.waitForTimeout?.(Math.min(250, remaining)).catch(() => undefined);
+  } while (Date.now() - startedAt < budgetMs);
+  return null;
+}
+
+async function throwIfGeminiVideoQuotaExhausted(page: any, timeoutMs = 8000): Promise<void> {
+  const quota = await detectGeminiVideoQuotaExhausted(page, timeoutMs);
+  if (!quota) return;
+  throw new WebAiToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "Gemini Veo video-generation quota exhausted", { selector: quota.selector, evidence: quota.evidence });
+}
+
 async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserToolRuntime>, record: WebAiTaskRecord): Promise<void> {
   const timeoutMs = Number(args.timeout_ms) > 0 ? Number(args.timeout_ms) : 300000;
   let conversationUrl: string | undefined;
@@ -1532,6 +1579,7 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     if (loginRequiredForService("gemini", page.url?.() || "")) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login required for video generation");
     record.progress_label = "activating Create video mode";
     await activateGeminiVideoMode(page);
+    await throwIfGeminiVideoQuotaExhausted(page, 8000);
     record.progress_label = "submitting video prompt";
     const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
     if (result.errorCode) throw new WebAiToolError(String(result.errorCode), "Gemini video prompt failed before generation started");
@@ -1539,6 +1587,7 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     try {
       await page.waitForSelector?.(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, { state: "visible", timeout: timeoutMs });
     } catch (error: any) {
+      await throwIfGeminiVideoQuotaExhausted(page, 8000);
       throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini video did not finish generating before timeout", { selector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, cause: error?.message || String(error) });
     }
     const settled = page.url?.();
