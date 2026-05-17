@@ -238,6 +238,14 @@ async function waitForAngularNumberValue(page: any, selector: string, value: num
     { timeout: 5000 }
   ).catch(() => {});
 }
+async function ensureCrcDesktopViewport(page: any): Promise<void> {
+  if (typeof page.setViewportSize === "function") {
+    await page.setViewportSize({ width: 1600, height: 1000 });
+    return;
+  }
+  const cdp = await page.context?.().newCDPSession?.(page);
+  await cdp?.send?.("Emulation.setDeviceMetricsOverride", { width: 1600, height: 1000, deviceScaleFactor: 1, mobile: false });
+}
 async function waitForCountDelta(page: any, before: number): Promise<{ after: number; text: string }> {
   const started = Date.now(); let lastText = ""; let lastCount = before;
   while (Date.now() - started < 45000) {
@@ -286,6 +294,7 @@ async function applyCrcFilters(page: any, args: CrcFilterArgs, before: { resultC
   const yearFrom = asYear(args.year_from, "year_from");
   const yearTo = asYear(args.year_to, "year_to");
   if (facet) await clickMaterialCheckbox(page, ACCESS_SELECTOR[facet]);
+  if (yearFrom !== undefined || yearTo !== undefined) await ensureCrcDesktopViewport(page);
   if (yearFrom !== undefined) await fillAngularNumber(page, "#Choose", yearFrom);
   if (yearTo !== undefined) await fillAngularNumber(page, "#ChooseYear", yearTo);
   if (yearFrom !== undefined || yearTo !== undefined) {
