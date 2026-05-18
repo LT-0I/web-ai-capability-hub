@@ -990,7 +990,7 @@
       "status": "IMPLEMENTED_GREEN",
       "mcp_tool": "webai_gemini_generate_video",
       "evidence": "docs/plans/stream4-implementation-report.md; commits 02b026c (honest PLAN_OR_QUOTA_REQUIRED), 1e587d6 (activation timing-race fix); issue #1",
-      "verified_by": "stream4-addendum-sonnet-resmoke-r10 (happy-path MP4); issue-fix-loop 2026-05-17 (quota-honest path live-verified, activation-timing happy-path re-smoke pending Veo quota reset)",
+      "verified_by": "issue-fix-loop 2026-05-17: DEFINITIVE cross-account live-verified at 0481e47 — real MP4 (6,352,644 bytes, sha256 23f36d704c37b4a223002508190796db310e40a7ffb2cc8c964240462d810fa3, ISO Media ftyp isom) generated+downloaded end-to-end on a Veo-quota-available account. Root cause of prior ELEMENT_NOT_FOUND was quota exhaustion on the gemini-9225/Shark account (not selector drift/code defect); hardening 02b026c/1e587d6/bd16793/0481e47 retained. Multi-account rotation feature forthcoming.",
       "recipe_ref": null,
       "sub_mcp_candidate": false,
       "completion_gate": "Download video button present after async generation completes.",
