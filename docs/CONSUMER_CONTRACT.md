@@ -318,6 +318,17 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 
 Consumers must pin this package to a specific resolved commit SHA, preferably the latest commit identified by the maintainer as `Fixed in <sha>`, then rebuild `dist/` deterministically from that pinned tree. Treat `main` as a moving development branch: a digest pinned to a moving branch tip will not hold by design. This is consumption guidance only and does not change any machine-checked contract surface.
 
+**HEAD-stability is not tree-stability.** This repository's checkout is also the maintainer's active issue-fix working directory. Between a fix landing and its commit, the working tree legitimately carries uncommitted tracked modifications while `git HEAD` is unchanged. Digesting that live shared working tree — or any tree you did not yourself reconstruct from a committed SHA — is explicitly **out of the determinism contract**: an unchanged HEAD does not imply unchanged source or `dist/` bytes, and a digest taken over a maintainer working tree is expected to drift and carries no stability guarantee.
+
+**Execution-digest determinism is defined only over a pristine reconstruction of a committed SHA.** The single contractually-stable, digest-deterministic artifact is the `dist/` produced by building a *clean* checkout of a pinned commit in a location the consumer controls. To obtain a reproducible execution digest, the consumer must, in their own workspace:
+
+1. `git clone <repo>` (or `git worktree add <path> <sha>`) and `git checkout <sha>` for the pinned `Fixed in <sha>` commit — never digest, build in, or `git pull` the maintainer's shared checkout;
+2. confirm the tree is pristine: `git status --porcelain` is empty and `git rev-parse HEAD` equals `<sha>`;
+3. `rm -rf dist && npm ci && npm run build` in that pristine checkout (`npm run build` is `npm run clean && tsc -p tsconfig.json` — a deterministic, codegen-free compile; no source or `dist/` byte is mutated at runtime by the hub);
+4. compute the execution digest over that freshly built `dist/` only, excluding any untracked or dirty state.
+
+A digest so computed is byte-stable PRE==POST for a fixed SHA. If two such digests differ, the pinned SHA itself changed (the maintainer published a new `Fixed in <sha>`); re-pin to the new SHA rather than treating it as drift. As of this clarification the recommended pin target is the latest clean commit `d2cc581` (tree clean; supersedes the in-flight state observed at `e866e29`). The hub performs no out-of-band rewrite of committed tracked `src/` or `dist/` bytes; all runtime writes target gitignored runtime directories (`data/`, download dirs, artifact stores) or caller-supplied `--out` paths.
+
 ## MCP resources
 
 | Resource URI | TypeScript API | Maturity | Safety class | Sensitive local fields possible? | Always-present output keys | Optional output keys |
