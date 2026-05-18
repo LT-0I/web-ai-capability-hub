@@ -1904,6 +1904,111 @@ test("webai:chatgpt:send-prompt emits MODEL_SELECTION_DRIFT when Thinking select
   assert.ok(clicks.some((selector) => selector.includes('[role="menuitemradio"]:has-text("Thinking")')), clicks.join("\n"));
 });
 
+
+
+test("webai:chatgpt:send-prompt accepts Thinking row when trigger pill collapses to Heavy", async () => {
+  const page = mockSendPromptPage("https://chatgpt.com/");
+  let promptTouched = false;
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => {
+        if (selector.includes('aria-haspopup="menu"')) return 1;
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]')) return 1;
+        if (selector.includes('model-switcher-gpt-5-5-thinking') || selector.includes('[role="menuitemradio"]:has-text("Thinking")')) return 1;
+        if (selector === '#prompt-textarea' || selector.includes('[data-message-author-role="assistant"]')) return 1;
+        return 0;
+      },
+      waitFor: async () => { if (selector === '#prompt-textarea') promptTouched = true; },
+      fill: async () => { if (selector === '#prompt-textarea') promptTouched = true; },
+      click: async () => undefined,
+      getAttribute: async (name: string) => {
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]') && name === "data-testid") return "model-switcher-gpt-5-5-thinking";
+        if (selector.includes('aria-haspopup="menu"') && name === "aria-label") return "Heavy";
+        return null;
+      },
+      textContent: async () => {
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]')) return "Thinking • Heavy";
+        if (selector.includes('aria-haspopup="menu"')) return "Heavy";
+        return "assistant response";
+      }
+    };
+    return loc;
+  };
+  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, null);
+  assert.equal(promptTouched, true, "prompt composer should be touched when Thinking identity is selected");
+});
+
+test("webai:chatgpt:send-prompt drifts when checked ChatGPT model identity remains Instant while Thinking expected", async () => {
+  const page = mockSendPromptPage("https://chatgpt.com/");
+  let promptTouched = false;
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => {
+        if (selector.includes('aria-haspopup="menu"')) return 1;
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]')) return 1;
+        if (selector.includes('model-switcher-gpt-5-5-thinking') || selector.includes('[role="menuitemradio"]:has-text("Thinking")')) return 1;
+        if (selector === '#prompt-textarea' || selector.includes('[data-message-author-role="assistant"]')) return 1;
+        return 0;
+      },
+      waitFor: async () => { if (selector === '#prompt-textarea') promptTouched = true; },
+      fill: async () => { if (selector === '#prompt-textarea') promptTouched = true; },
+      click: async () => undefined,
+      getAttribute: async (name: string) => {
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]') && name === "data-testid") return "model-switcher-gpt-5-5";
+        if (selector.includes('aria-haspopup="menu"') && name === "aria-label") return "Instant";
+        return null;
+      },
+      textContent: async () => selector.includes('[role="menuitemradio"][aria-checked="true"]') ? "Instant" : "assistant response"
+    };
+    return loc;
+  };
+  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, "MODEL_SELECTION_DRIFT");
+  assert.equal(result.expected_model, "Thinking");
+  assert.equal(result.model_used, "Instant");
+  assert.equal(promptTouched, false, "prompt composer must not be touched after genuine identity drift");
+});
+
+test("webai:chatgpt:send-prompt routes explicit Pro model to Pro row only", async () => {
+  const page = mockSendPromptPage("https://chatgpt.com/");
+  let selected = "model-switcher-gpt-5-5-thinking";
+  const clicks: string[] = [];
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => {
+        if (selector.includes('aria-haspopup="menu"')) return 1;
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]')) return 1;
+        if (selector.includes('model-switcher-gpt-5-5-pro')) return 1;
+        if (selector === '#prompt-textarea' || selector.includes('[data-message-author-role="assistant"]')) return 1;
+        return 0;
+      },
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => {
+        clicks.push(selector);
+        if (selector.includes('model-switcher-gpt-5-5-pro')) selected = "model-switcher-gpt-5-5-pro";
+      },
+      getAttribute: async (name: string) => {
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]') && name === "data-testid") return selected;
+        return null;
+      },
+      textContent: async () => selected === "model-switcher-gpt-5-5-pro" ? "Pro • Extended" : "Thinking • Heavy"
+    };
+    return loc;
+  };
+  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", model: "pro", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, null);
+  assert.ok(clicks.some((selector) => selector.includes('model-switcher-gpt-5-5-pro')), clicks.join("\n"));
+  assert.equal(clicks.some((selector) => selector.includes('model-switcher-gpt-5-5-thinking')), false, clicks.join("\n"));
+});
+
 test("chat_url is not redacted to placeholder literal", () => {
   const id = "6a04a213-5648-83e8-b9d0-6134aef56831";
   const url = `https://chatgpt.com/c/${id}`;
@@ -2574,11 +2679,14 @@ test("chatgpt generate-image enters image mode before typing prompt", async () =
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes('aria-haspopup="menu"') || selector.includes("composer-plus-btn") || selector.includes("menuitemradio") || selector.includes("prompt-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => selector.includes('aria-haspopup="menu"') && name === "aria-label" ? "Thinking" : "",
+      getAttribute: async (name: string) => {
+        if (selector.includes('[role="menuitemradio"][aria-checked="true"]') && name === "data-testid") return "model-switcher-gpt-5-5-thinking";
+        return selector.includes('aria-haspopup="menu"') && name === "aria-label" ? "Thinking" : "";
+      },
       waitFor: async () => { events.push(`wait:${selector}`); },
       fill: async () => { events.push(`fill:${selector}`); },
       click: async (options: any) => { events.push(`click:${selector}:${options?.timeout}`); },
-      textContent: async () => selector.includes("prompt-textarea") ? "" : "image response"
+      textContent: async () => selector.includes("prompt-textarea") ? "" : selector.includes('[role="menuitemradio"][aria-checked="true"]') ? "Thinking • Heavy" : "image response"
     };
     return loc;
   };

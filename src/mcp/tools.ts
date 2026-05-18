@@ -432,8 +432,11 @@ const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
 const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '#toolbox-drawer-menu button[role="menuitemcheckbox"]:has-text("Create video"), #toolbox-drawer-menu button:has-text("Create video"), [role="menuitemcheckbox"]:has-text("Create video")';
-const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
-const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Thinking")';
+const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), form button[aria-haspopup="menu"]:has-text("Heavy"), button.__composer-pill[aria-haspopup="menu"], main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
+const CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR = '[role="menu"] [role="menuitemradio"][aria-checked="true"], [role="menuitemradio"][aria-checked="true"]';
+const CHATGPT_INSTANT_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"]';
+const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5-thinking"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5-thinking"][role="menuitemradio"], [role="menuitemradio"]:has-text("Thinking")';
+const CHATGPT_PRO_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"]';
 const CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Web search")';
 const CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR = 'button[aria-label="Search, click to remove"]';
 const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download")';
@@ -546,7 +549,9 @@ function modelSelectionDriftResponse(service: WebAiService, page: any, started: 
 function normalizeModelTier(service: WebAiService, args: any): string | null {
   const raw = typeof args.model === "string" ? args.model.trim() : "";
   if (service === "chatgpt") {
-    if (!raw || /^thinking$/i.test(raw) || /pro/i.test(raw)) return "Thinking";
+    if (!raw || /^thinking$/i.test(raw)) return "Thinking";
+    if (/pro/i.test(raw)) return "Pro";
+    if (/^instant$/i.test(raw)) return "Instant";
     return raw;
   }
   if (service === "claude") return raw || null;
@@ -573,18 +578,63 @@ async function locatorText(locator: any): Promise<string | null> {
   return null;
 }
 
+function chatgptMenuItemSelectorForModel(expected: string): string {
+  if (/^thinking$/i.test(expected)) return CHATGPT_THINKING_MENUITEM_SELECTOR;
+  if (/^pro$/i.test(expected)) return CHATGPT_PRO_MENUITEM_SELECTOR;
+  if (/^instant$/i.test(expected)) return CHATGPT_INSTANT_MENUITEM_SELECTOR;
+  return `[role="menuitemradio"]:has-text("${expected.replace(/"/g, '\\"')}")`;
+}
+
+function chatgptModelIdentityMatches(expected: string, actual: string | null): boolean {
+  if (!actual) return false;
+  if (/^thinking$/i.test(expected)) return /^thinking$/i.test(actual);
+  if (/^pro$/i.test(expected)) return /^pro$/i.test(actual);
+  if (/^instant$/i.test(expected)) return /^instant$/i.test(actual);
+  return modelLabelMatches(expected, actual);
+}
+
+async function chatgptSelectedModelIdentity(page: any): Promise<string | null> {
+  const selected = page.locator?.(CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR).first?.();
+  if (!selected || !(await selected.count?.().catch(() => 0))) return null;
+  const testId = await selected.getAttribute?.("data-testid", { timeout: 500 }).catch(() => undefined);
+  if (testId === "model-switcher-gpt-5-5-thinking") return "Thinking";
+  if (testId === "model-switcher-gpt-5-5-pro") return "Pro";
+  if (testId === "model-switcher-gpt-5-5") return "Instant";
+  const text = await locatorText(selected);
+  if (!text) return null;
+  if (/^thinking\b/i.test(text)) return "Thinking";
+  if (/^pro\b/i.test(text)) return "Pro";
+  if (/^instant\b/i.test(text)) return "Instant";
+  return text;
+}
+
+async function ensureChatgptModelMenuOpen(page: any, button: any): Promise<void> {
+  if (await page.locator?.(CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR).first?.().count?.().catch(() => 0)) return;
+  await robustClickLocator(page, button, CHATGPT_MODEL_BUTTON_SELECTOR, { timeout: 5000 });
+}
+
 async function selectChatgptModel(page: any, expected = "Thinking"): Promise<{ ok: boolean; actual: string | null; expected: string }> {
   const button = page.locator?.(CHATGPT_MODEL_BUTTON_SELECTOR).first?.();
   if (!button || !(await button.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
-  await robustClickLocator(page, button, CHATGPT_MODEL_BUTTON_SELECTOR, { timeout: 5000 });
-  const itemSelector = expected === "Thinking" ? CHATGPT_THINKING_MENUITEM_SELECTOR : `[role="menuitemradio"]:has-text("${expected.replace(/"/g, '\\"')}")`;
+  await ensureChatgptModelMenuOpen(page, button);
+  const itemSelector = chatgptMenuItemSelectorForModel(expected);
   try { await page.waitForSelector?.(itemSelector, { state: "visible", timeout: 8000 }); } catch {}
   const item = page.locator?.(itemSelector).first?.();
-  if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(button), expected };
-  await robustClickLocator(page, item, itemSelector, { timeout: 5000 });
-  await page.waitForTimeout?.(250).catch(() => undefined);
-  const actual = await locatorText(button);
-  return { ok: modelLabelMatches(expected, actual), actual, expected };
+  if (!item || !(await item.count?.().catch(() => 0))) {
+    const actual = await chatgptSelectedModelIdentity(page) || await locatorText(button);
+    await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+    return { ok: false, actual, expected };
+  }
+
+  let actual = await chatgptSelectedModelIdentity(page);
+  if (!chatgptModelIdentityMatches(expected, actual)) {
+    await robustClickLocator(page, item, itemSelector, { timeout: 5000 });
+    await page.waitForTimeout?.(250).catch(() => undefined);
+    await ensureChatgptModelMenuOpen(page, button);
+    actual = await chatgptSelectedModelIdentity(page) || await locatorText(button);
+  }
+  await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+  return { ok: chatgptModelIdentityMatches(expected, actual), actual, expected };
 }
 
 async function selectClaudeModel(page: any, expected: string): Promise<{ ok: boolean; actual: string | null; expected: string }> {
