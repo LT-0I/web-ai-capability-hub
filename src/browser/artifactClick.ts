@@ -113,7 +113,31 @@ function filenameMatchesPattern(name: string, pattern: string): boolean {
 }
 function sha256(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
 function safeDownloadBasename(name: string): string {
-  return path.basename(String(name || "")).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_").trim();
+  const parsed = path.parse(path.basename(String(name || "")).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_").trim());
+  const stem = parsed.name.replace(/[\s,;:]+/g, "_").replace(/_+/g, "_").replace(/^_+|_+$/g, "");
+  const ext = parsed.ext.replace(/[\s,;:]+/g, "_").replace(/_+/g, "_");
+  return `${stem}${ext}`.trim();
+}
+function verifiedGovernedArtifact(filePath: string, governedDir: string): { ok: true; realPath: string } | { ok: false } {
+  try {
+    if (!fs.existsSync(filePath)) return { ok: false };
+    const stat = fs.statSync(filePath);
+    if (!stat.isFile() || stat.size <= 0) return { ok: false };
+    const fd = fs.openSync(filePath, "r");
+    try {
+      const header = Buffer.alloc(8);
+      if (fs.readSync(fd, header, 0, 8, 0) !== 8) return { ok: false };
+      if (!header.equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return { ok: false };
+    } finally {
+      fs.closeSync(fd);
+    }
+    const realFile = fs.realpathSync(filePath);
+    const realDir = fs.realpathSync(path.resolve(governedDir));
+    if (path.dirname(realFile) !== realDir) return { ok: false };
+    return { ok: true, realPath: realFile };
+  } catch {
+    return { ok: false };
+  }
 }
 function fallbackNameFromPattern(filePath: string, filenamePattern?: string): string {
   const digest = sha256(filePath).slice(0, 12);
@@ -229,6 +253,69 @@ function notFoundEvidence(candidate: CandidateResult, extra: Record<string, unkn
 
 type PollDownloadResult = { aborted: true } | { aborted?: false; guid: string; suggestedFilename?: string; filePath: string };
 
+interface ResolvedDownload { finalPath: string; suggested: string; warn?: string }
+
+function newestFreshFile(downloadDir: string, runStartedMs?: number): string | undefined {
+  const started = runStartedMs ?? Number.NEGATIVE_INFINITY;
+  const ended = now();
+  const files = fs.readdirSync(downloadDir)
+    .map((name: string) => path.join(downloadDir, name))
+    .filter((p: string) => {
+      const stat = fs.statSync(p);
+      return stat.isFile() && stat.mtimeMs >= started && stat.mtimeMs <= ended;
+    });
+  return files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
+}
+
+function resolveAndRenameDownloaded(downloaded: Exclude<PollDownloadResult, { aborted: true }>, options: ArtifactClickOptions, runStartedMs?: number): ResolvedDownload {
+  let finalPath = downloaded.filePath;
+  if (!fs.existsSync(finalPath)) {
+    const freshFallback = runStartedMs === undefined ? undefined : newestFreshFile(options.downloadDir, runStartedMs);
+    const files = runStartedMs === undefined
+      ? fs.readdirSync(options.downloadDir).map((name: string) => path.join(options.downloadDir, name)).filter((p: string) => fs.statSync(p).isFile())
+      : freshFallback ? [freshFallback] : [];
+    if (files.length) finalPath = files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
+  }
+  const suggested = downloaded.suggestedFilename || path.basename(finalPath);
+  if (options.filenamePattern && downloaded.suggestedFilename && !filenameMatchesPattern(suggested, options.filenamePattern)) {
+    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: suggested, filenamePattern: options.filenamePattern });
+  }
+  let warn: string | undefined;
+  if (!options.renameTo) {
+    const safeSuggested = safeDownloadBasename(downloaded.suggestedFilename || "");
+    const targetName = safeSuggested || fallbackNameFromPattern(finalPath, options.filenamePattern);
+    if (!safeSuggested) warn = "WARN: Browser.downloadWillBegin did not include suggestedFilename; used deterministic fallback download filename.";
+    const targetPath = path.join(options.downloadDir, targetName);
+    if (path.resolve(targetPath) !== path.resolve(finalPath)) {
+      if (fs.existsSync(targetPath)) fs.rmSync(targetPath, { force: true });
+      fs.renameSync(finalPath, targetPath);
+      finalPath = targetPath;
+    }
+  }
+  if (options.renameTo) {
+    const renamed = path.join(options.downloadDir, options.renameTo);
+    fs.renameSync(finalPath, renamed);
+    finalPath = renamed;
+  }
+  return { finalPath, suggested, warn };
+}
+
+function requiresPngGovernedVerification(options: ArtifactClickOptions): boolean {
+  return !!(options.followUpSelector || options.followUpTextRegex) && !!options.filenamePattern && /png/i.test(options.filenamePattern);
+}
+
+function buildArtifactClickResult(resolved: ResolvedDownload, downloaded: Exclude<PollDownloadResult, { aborted: true }>, options: ArtifactClickOptions, candidate: CandidateResult, started: number, warnOverride?: string): ArtifactClickResult {
+  if (options.filenamePattern && !filenameMatchesPattern(path.basename(resolved.finalPath), options.filenamePattern)) {
+    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: resolved.suggested, filenamePattern: options.filenamePattern });
+  }
+  const size = fs.statSync(resolved.finalPath).size;
+  if (options.verifyMinBytes !== undefined && size < options.verifyMinBytes) throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded file is smaller than --verify-min-bytes", { size, verifyMinBytes: options.verifyMinBytes });
+  if (requiresPngGovernedVerification(options) && !verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
+    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded artifact failed governed on-disk PNG verification", { path: resolved.finalPath });
+  }
+  return { path: resolved.finalPath, sha256: sha256(resolved.finalPath), size, suggestedFilename: downloaded.suggestedFilename, downloadFilename: path.basename(resolved.finalPath), warn: warnOverride || resolved.warn, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
+}
+
 async function pollDownload(browserSession: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
   if (signal?.aborted) return { aborted: true };
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
@@ -299,6 +386,19 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
       if (!found.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", `Follow-up element was outside viewport y range [0,${maxViewportY}]`, { ...options.pageReadyEvidence, selector: followValue, maxViewportY });
       await rawClick(cdp, found.box);
     } catch (error) {
+      const graceMs = Math.min(options.timeoutMs ?? 60000, 8000);
+      const settled = await Promise.race([downloadPromise.catch(() => undefined), sleep(graceMs).then(() => undefined)]);
+      if (settled && !settled.aborted && settled.filePath) {
+        let resolved: ResolvedDownload | undefined;
+        try {
+          resolved = resolveAndRenameDownloaded(settled, options, started);
+        } catch {
+          resolved = undefined;
+        }
+        if (resolved && verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
+          return buildArtifactClickResult(resolved, settled, options, candidate, started, "follow-up download control not found, but the governed artifact was delivered by the browser");
+        }
+      }
       abortDownloads.abort();
       await downloadPromise.catch(() => undefined);
       throw error;
@@ -307,38 +407,8 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
 
   const downloaded = await downloadPromise;
   if (downloaded.aborted) throw new ArtifactClickError("ARTIFACT_DOWNLOAD_TIMEOUT", "Download polling was aborted before completion");
-  let finalPath = downloaded.filePath;
-  if (!fs.existsSync(finalPath)) {
-    const files = fs.readdirSync(options.downloadDir).map((name: string) => path.join(options.downloadDir, name)).filter((p: string) => fs.statSync(p).isFile());
-    if (files.length) finalPath = files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
-  }
-  const suggested = downloaded.suggestedFilename || path.basename(finalPath);
-  if (options.filenamePattern && downloaded.suggestedFilename && !filenameMatchesPattern(suggested, options.filenamePattern)) {
-    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: suggested, filenamePattern: options.filenamePattern });
-  }
-  let warn: string | undefined;
-  if (!options.renameTo) {
-    const safeSuggested = safeDownloadBasename(downloaded.suggestedFilename || "");
-    const targetName = safeSuggested || fallbackNameFromPattern(finalPath, options.filenamePattern);
-    if (!safeSuggested) warn = "WARN: Browser.downloadWillBegin did not include suggestedFilename; used deterministic fallback download filename.";
-    const targetPath = path.join(options.downloadDir, targetName);
-    if (path.resolve(targetPath) !== path.resolve(finalPath)) {
-      if (fs.existsSync(targetPath)) fs.rmSync(targetPath, { force: true });
-      fs.renameSync(finalPath, targetPath);
-      finalPath = targetPath;
-    }
-  }
-  if (options.renameTo) {
-    const renamed = path.join(options.downloadDir, options.renameTo);
-    fs.renameSync(finalPath, renamed);
-    finalPath = renamed;
-  }
-  if (options.filenamePattern && !filenameMatchesPattern(path.basename(finalPath), options.filenamePattern)) {
-    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded filename did not match --filename-pattern", { suggestedFilename: suggested, filenamePattern: options.filenamePattern });
-  }
-  const size = fs.statSync(finalPath).size;
-  if (options.verifyMinBytes !== undefined && size < options.verifyMinBytes) throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded file is smaller than --verify-min-bytes", { size, verifyMinBytes: options.verifyMinBytes });
-  return { path: finalPath, sha256: sha256(finalPath), size, suggestedFilename: downloaded.suggestedFilename, downloadFilename: path.basename(finalPath), warn, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
+  const resolved = resolveAndRenameDownloaded(downloaded, options);
+  return buildArtifactClickResult(resolved, downloaded, options, candidate, started);
 }
 
 function matchesUrlTarget(current: string, target: string): boolean {
