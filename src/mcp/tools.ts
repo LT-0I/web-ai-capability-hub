@@ -1597,7 +1597,13 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     await navigateGeminiFreshIfNeeded(page, { ...args, __forceFreshComposer: true });
     if (loginRequiredForService("gemini", page.url?.() || "")) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login required for video generation");
     record.progress_label = "activating Create video mode";
-    await activateGeminiVideoMode(page);
+    await throwIfGeminiVideoQuotaExhausted(page, 8000);
+    try {
+      await activateGeminiVideoMode(page);
+    } catch (error) {
+      await throwIfGeminiVideoQuotaExhausted(page, 8000);
+      throw error;
+    }
     await throwIfGeminiVideoQuotaExhausted(page, 8000);
     record.progress_label = "submitting video prompt";
     const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
