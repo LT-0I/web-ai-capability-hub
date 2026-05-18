@@ -1740,8 +1740,9 @@ function persistVideoTask(database: CapabilityDatabase, record: WebAiTaskRecord)
 function maybeMarkStaleVideoTask(database: CapabilityDatabase, record: WebAiTaskRecord): WebAiTaskRecord {
   if (!["queued", "running"].includes(record.status)) return record;
   const timeoutMs = Number(record.timeout_ms || 300000);
+  const staleGraceMs = 60000;
   const started = Date.parse(record.started_at);
-  const budgetExceeded = Number.isFinite(started) && Date.now() - started > timeoutMs;
+  const budgetExceeded = Number.isFinite(started) && Date.now() - started > timeoutMs + staleGraceMs;
   if (!budgetExceeded || isPidAlive(record.worker_pid)) return record;
   const stale: WebAiTaskRecord = {
     ...record,

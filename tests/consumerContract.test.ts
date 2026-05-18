@@ -13,6 +13,7 @@ import { listMcpResources } from "../src/mcp/resources";
 import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 import { subMcpToolSpecs } from "../src/mcp/submcp";
+import { bestEffortMarkVideoTaskBootstrapFailure } from "../src/mcp/videoWorker";
 
 type Scenario = {
   name: string;
@@ -2903,10 +2904,9 @@ test("webai task status marks abandoned stale running video task as COMMAND_TIME
     status: "running",
     profile: "gemini-stale",
     lease_id: "lease_stale",
-    started_at: new Date(Date.now() - 10_000).toISOString(),
+    started_at: new Date(Date.now() - 70_000).toISOString(),
     progress_label: "generating video",
-    timeout_ms: 1,
-    worker_pid: 99999999
+    timeout_ms: 1
   });
   const status: any = await webAiTaskStatus({ task_id: "task_stale" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
   assert.equal(status.status, "failed");
@@ -2914,6 +2914,52 @@ test("webai task status marks abandoned stale running video task as COMMAND_TIME
   const persisted = db.getWebAiTask("task_stale");
   assert.equal(persisted?.status, "failed");
   assert.equal(persisted?.errorCode, "COMMAND_TIMEOUT");
+});
+
+test("webai task status keeps healthy in-budget running video task active", async () => {
+  const db = tempCapabilityDb();
+  db.upsertWebAiTask({
+    task_id: "task_healthy",
+    status: "running",
+    profile: "gemini-healthy",
+    lease_id: "lease_healthy",
+    started_at: new Date().toISOString(),
+    progress_label: "generating video",
+    timeout_ms: 300000,
+    worker_pid: process.pid
+  });
+  const status: any = await webAiTaskStatus({ task_id: "task_healthy" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
+  assert.equal(status.status, "running");
+  assert.equal(status.errorCode, undefined);
+  assert.equal(db.getWebAiTask("task_healthy")?.status, "running");
+});
+
+test("gemini video worker bootstrap failure persists terminal COMMAND_TIMEOUT", () => {
+  const db = tempCapabilityDb();
+  db.upsertWebAiTask({
+    task_id: "task_bootstrap",
+    status: "running",
+    profile: "gemini-bootstrap",
+    lease_id: "lease_bootstrap",
+    started_at: new Date().toISOString(),
+    progress_label: "queued Gemini video generation",
+    timeout_ms: 300000
+  });
+  const previousArgv = process.argv;
+  process.argv = ["node", "videoWorker.js", "--task-id", "task_bootstrap", "--db-path", db.dbPath];
+  try {
+    bestEffortMarkVideoTaskBootstrapFailure();
+    const fresh = new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false });
+    const failed = fresh.getWebAiTask("task_bootstrap");
+    assert.equal(failed?.status, "failed");
+    assert.equal(failed?.errorCode, "COMMAND_TIMEOUT");
+    assert.equal(failed?.progress_label, "failed: COMMAND_TIMEOUT");
+    fresh.upsertWebAiTask({ ...failed!, status: "done", errorCode: undefined, progress_label: "video generated and downloaded" });
+    bestEffortMarkVideoTaskBootstrapFailure();
+    assert.equal(new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }).getWebAiTask("task_bootstrap")?.status, "done");
+  } finally {
+    process.argv = previousArgv;
+  }
 });
 
 test("new v1.5.0 error codes exist in TS export and contract manifest", () => {

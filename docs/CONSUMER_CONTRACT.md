@@ -310,6 +310,14 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 
 `webai:gemini:generate-video` accepts optional `account_pool` as a comma-separated list of pre-registered Gemini profile names. Rotation triggers only when the worker receives `PLAN_OR_QUOTA_REQUIRED` from the unchanged Veo quota detection path; all other errors fail honestly without rotation. If every pooled account is exhausted, the task fails honestly with `PLAN_OR_QUOTA_REQUIRED`. The worker never synthesizes video output, does not expose `account_used`, and callers with no declared pool retain the single-profile fallback behavior.
 
+### Async Gemini video polling
+
+`webai:gemini:generate-video` is an async mutation: the initial response returns `status:"running"` plus `task_id`, `profile`, `lease_id`, and `started_at`. Consumers must poll `webai:task-status --task-id <id>` until `status` is no longer `running`; terminal statuses are `done` and `failed`. The expected maximum latency is the worker budget `300000` ms (5 min), overridable per call with `timeout_ms`. If a task is still `running` materially past its budget, the status reader reaps the orphaned task to `failed` with `errorCode:"COMMAND_TIMEOUT"` rather than leaving it running indefinitely. This clarifies the polling contract only; it does not add commands, output keys, error codes, or a contract version bump.
+
+### Consumption & pinning
+
+Consumers must pin this package to a specific resolved commit SHA, preferably the latest commit identified by the maintainer as `Fixed in <sha>`, then rebuild `dist/` deterministically from that pinned tree. Treat `main` as a moving development branch: a digest pinned to a moving branch tip will not hold by design. This is consumption guidance only and does not change any machine-checked contract surface.
+
 ## MCP resources
 
 | Resource URI | TypeScript API | Maturity | Safety class | Sensitive local fields possible? | Always-present output keys | Optional output keys |
