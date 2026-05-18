@@ -1021,7 +1021,7 @@ async function activateGeminiImageMode(page: any): Promise<void> {
 // (2026-05-15): clicking the menuitemcheckbox closes the drawer and replaces
 // the mode-picker affordance with button[aria-label="Deselect <tool>"], exactly
 // like "Deselect Create image". An optional zero-state chip is tried first.
-async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string }): Promise<void> {
+async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string; quotaGuard?: () => Promise<void> }): Promise<void> {
   const isActive = async () => {
     const loc = page.locator?.(opts.activeSelector).first?.();
     return !!loc && !!(await loc.count?.().catch(() => 0));
@@ -1049,6 +1049,7 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
     if (zeroVisible && zero && await zero.count?.().catch(() => 0)) {
       await robustClickLocator(page, zero, opts.zeroStateSelector, { timeout: 5000 }).catch(() => undefined);
       if (await waitForActive().catch(() => false)) return;
+      await opts.quotaGuard?.();
     }
   }
   try {
@@ -1070,10 +1071,12 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
     await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: 8000 });
     await requireAndClick(page, opts.menuItemSelector, `Gemini ${opts.toolName} menu item was not found`);
     if (await waitForActive().catch(() => false)) return;
+    await opts.quotaGuard?.();
   } catch (_error) {
     // Fall through to the existing honest ELEMENT_NOT_FOUND contract code; do
     // not synthesize success when the requested active pill never appeared.
   }
+  await opts.quotaGuard?.();
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}` });
 }
 
@@ -1082,7 +1085,7 @@ async function activateGeminiCanvasMode(page: any): Promise<void> {
 }
 
 async function activateGeminiVideoMode(page: any): Promise<void> {
-  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, activeSelector: GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, zeroStateSelector: GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR, toolName: "Create video" });
+  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, activeSelector: GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, zeroStateSelector: GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR, toolName: "Create video", quotaGuard: () => throwIfGeminiVideoQuotaExhausted(page, 8000) });
 }
 
 
@@ -1597,7 +1600,6 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     await navigateGeminiFreshIfNeeded(page, { ...args, __forceFreshComposer: true });
     if (loginRequiredForService("gemini", page.url?.() || "")) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login required for video generation");
     record.progress_label = "activating Create video mode";
-    await throwIfGeminiVideoQuotaExhausted(page, 8000);
     try {
       await activateGeminiVideoMode(page);
     } catch (error) {
