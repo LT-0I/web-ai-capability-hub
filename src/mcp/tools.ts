@@ -75,6 +75,7 @@ import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, Workflo
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
 import { ForbiddenOutputFieldError, assertNoForbidden, stripForbidden } from "./forbiddenFields";
+import { GeminiQuotaStateStore } from "../browser/geminiQuotaStateStore";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
@@ -312,7 +313,7 @@ const serviceDefaults: Record<WebAiService, { url: string; promptSelector: strin
 };
 
 const profileLeases = new Map<string, string>();
-class WebAiToolError extends Error {
+export class WebAiToolError extends Error {
   errorCode: string;
   evidence?: Record<string, unknown>;
   constructor(errorCode: string, message: string, evidence?: Record<string, unknown>) {
@@ -1644,6 +1645,64 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
   };
 }
 
+
+export interface GeminiAccountPoolCandidate {
+  profile: string;
+  cdp_port?: number;
+}
+
+function parseGeminiPoolCsv(csv: string): string[] {
+  return csv.split(",").map((item) => item.trim()).filter(Boolean);
+}
+
+function readGeminiAccountPoolConfig(): GeminiAccountPoolCandidate[] {
+  const configPath = path.join(process.cwd(), "configs", "gemini-account-pool.json");
+  try {
+    if (!fs.existsSync(configPath)) return [];
+    const parsed = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    const pool = parsed?.pools?.["gemini-video"];
+    if (!Array.isArray(pool)) return [];
+    return pool
+      .filter((entry: any) => entry && typeof entry.profile === "string" && entry.profile.trim())
+      .map((entry: any) => ({
+        profile: entry.profile.trim(),
+        ...(Number.isFinite(Number(entry.cdp_port)) ? { cdp_port: Number(entry.cdp_port) } : {})
+      }));
+  } catch {
+    return [];
+  }
+}
+
+export function resolveGeminiAccountPool(args: any): GeminiAccountPoolCandidate[] {
+  const boundProfile = String(args.profile || "").trim();
+  const explicit: GeminiAccountPoolCandidate[] = typeof args.account_pool === "string" && parseGeminiPoolCsv(args.account_pool).length > 0
+    ? parseGeminiPoolCsv(args.account_pool).map((profile) => ({ profile }))
+    : [];
+  const fromEnv: GeminiAccountPoolCandidate[] = !explicit.length && typeof process.env.WAH_GEMINI_VIDEO_POOL === "string" && parseGeminiPoolCsv(process.env.WAH_GEMINI_VIDEO_POOL).length > 0
+    ? parseGeminiPoolCsv(process.env.WAH_GEMINI_VIDEO_POOL).map((profile) => ({ profile }))
+    : [];
+  const declared: GeminiAccountPoolCandidate[] = explicit.length ? explicit : fromEnv.length ? fromEnv : readGeminiAccountPoolConfig();
+  const source: GeminiAccountPoolCandidate[] = declared.length ? declared : [{ profile: boundProfile }];
+  const boundEntry = source.find((entry) => entry.profile === boundProfile);
+  const ordered = boundProfile ? [{ profile: boundProfile, ...(boundEntry?.cdp_port ? { cdp_port: boundEntry.cdp_port } : {}) }, ...source] : source;
+  const seen = new Set<string>();
+  const resolved: GeminiAccountPoolCandidate[] = [];
+  for (const entry of ordered) {
+    const profile = String(entry.profile || "").trim();
+    if (!profile || seen.has(profile)) continue;
+    seen.add(profile);
+    resolved.push({ profile, ...(entry.cdp_port ? { cdp_port: entry.cdp_port } : {}) });
+  }
+  return resolved.length ? resolved : [{ profile: boundProfile }];
+}
+
+function validateExplicitGeminiAccountPool(args: any): void {
+  if (!Object.prototype.hasOwnProperty.call(args, "account_pool") || args.account_pool === undefined) return;
+  if (typeof args.account_pool !== "string") throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "account_pool must be a comma-separated profile list");
+  const parts = args.account_pool.split(",");
+  if (!parts.length || parts.some((part) => !part.trim())) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "account_pool must not contain empty profile names");
+}
+
 function videoTaskTimeoutMs(args: any): number {
   const value = Number(args.timeout_ms ?? args.timeoutMs ?? 300000);
   return Number.isFinite(value) && value > 0 ? value : 300000;
@@ -1709,17 +1768,22 @@ function spawnDetachedGeminiVideoWorker(taskId: string, args: any, database: Cap
 function startGeminiVideoTask(args: any, runtime: Required<BrowserToolRuntime>): Record<string, unknown> {
   assertPromptAllowed(args.prompt);
   requireAbsoluteDir(args.download_dir);
-  const active = runtime.database.getActiveWebAiTaskForProfile(args.profile);
-  if (active) {
-    const current = maybeMarkStaleVideoTask(runtime.database, active);
-    if (["queued", "running"].includes(current.status)) throw new WebAiToolError(ConsumerErrorCodes.PROFILE_LEASE_BUSY, `profile ${args.profile} already has an active webai mutation lease`, { profile: args.profile, lease_id: active.lease_id });
+  validateExplicitGeminiAccountPool(args);
+  const resolvedPool = resolveGeminiAccountPool(args);
+  for (const candidate of resolvedPool) {
+    const active = runtime.database.getActiveWebAiTaskForProfile(candidate.profile);
+    if (active) {
+      const current = maybeMarkStaleVideoTask(runtime.database, active);
+      if (["queued", "running"].includes(current.status)) throw new WebAiToolError(ConsumerErrorCodes.PROFILE_LEASE_BUSY, `profile ${candidate.profile} already has an active webai mutation lease`, { profile: candidate.profile, lease_id: active.lease_id });
+    }
   }
   const task_id = safeTaskId();
   const lease = `lease_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`;
+  const workerArgs = { ...args, __resolvedPool: resolvedPool };
   let record: WebAiTaskRecord = { task_id, status: "running", profile: args.profile, lease_id: lease, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation", timeout_ms: videoTaskTimeoutMs(args) };
   record = persistVideoTask(runtime.database, record);
   try {
-    const spawned = (runtime as any).spawnVideoWorker ? (runtime as any).spawnVideoWorker(task_id, args, runtime.database) : spawnDetachedGeminiVideoWorker(task_id, args, runtime.database);
+    const spawned = (runtime as any).spawnVideoWorker ? (runtime as any).spawnVideoWorker(task_id, workerArgs, runtime.database) : spawnDetachedGeminiVideoWorker(task_id, workerArgs, runtime.database);
     if (spawned?.pid) {
       const latest = runtime.database.getWebAiTask(task_id) || record;
       persistVideoTask(runtime.database, { ...latest, worker_pid: spawned.pid });
@@ -1730,8 +1794,11 @@ function startGeminiVideoTask(args: any, runtime: Required<BrowserToolRuntime>):
   return safeOutput({ task_id, status: record.status, profile: record.profile, lease_id: lease, started_at: record.started_at });
 }
 
-export async function runGeminiVideoTaskWorker(taskId: string, args: any, database = new CapabilityDatabase()): Promise<void> {
-  const runtime = runtimeOrDefault({ database });
+export async function runGeminiVideoTaskWorker(taskId: string, args: any, database = new CapabilityDatabase(), runtimeOverrides?: BrowserToolRuntime): Promise<void> {
+  const runtime = runtimeOrDefault({ ...(runtimeOverrides as any || {}), database });
+  const generateVideo = (runtime as any).generateGeminiVideo || runGeminiVideoGeneration;
+  const quotaStore: GeminiQuotaStateStore = (runtime as any).geminiQuotaStateStore || new GeminiQuotaStateStore(args.__quotaStateRoot || process.cwd());
+  const candidates: GeminiAccountPoolCandidate[] = Array.isArray(args.__resolvedPool) && args.__resolvedPool.length ? args.__resolvedPool : resolveGeminiAccountPool(args);
   let record = database.getWebAiTask(taskId);
   if (!record) {
     record = { task_id: taskId, status: "running", profile: args.profile, lease_id: `lease_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`, started_at: new Date().toISOString(), progress_label: "queued Gemini video generation", timeout_ms: videoTaskTimeoutMs(args), worker_pid: process.pid };
@@ -1739,13 +1806,43 @@ export async function runGeminiVideoTaskWorker(taskId: string, args: any, databa
     record = { ...record, status: "running", worker_pid: process.pid };
   }
   persistVideoTask(database, record);
-  try {
-    await runGeminiVideoGeneration(args, runtime, record);
-    persistVideoTask(database, { ...record, status: "done", progress_label: "video generated and downloaded" });
-  } catch (error: any) {
-    const errorCode = (error instanceof WebAiToolError && error.errorCode) ? error.errorCode : ConsumerErrorCodes.COMMAND_TIMEOUT;
-    persistVideoTask(database, { ...record, status: "failed", errorCode, progress_label: `failed: ${errorCode}` });
+
+  let generationCalls = 0;
+  let quotaRotations = 0;
+  for (const candidate of candidates) {
+    if (quotaStore.isCooledDown(candidate.profile)) {
+      record = persistVideoTask(database, { ...record, progress_label: `skipping cooled-down Gemini account ${candidate.profile}` });
+      quotaRotations += 1;
+      continue;
+    }
+    const attemptArgs = { ...args, profile: candidate.profile, ...(candidate.cdp_port ? { cdpPort: candidate.cdp_port } : {}) };
+    record = persistVideoTask(database, { ...record, progress_label: `attempt account ${candidate.profile}` });
+    try {
+      generationCalls += 1;
+      await generateVideo(attemptArgs, runtime, record);
+      quotaStore.clear(candidate.profile);
+      const result = { ...(record.result || {}), account_rotations: quotaRotations, accounts_tried_count: generationCalls };
+      persistVideoTask(database, { ...record, status: "done", result, progress_label: "video generated and downloaded" });
+      return;
+    } catch (error: any) {
+      if (error instanceof WebAiToolError && error.errorCode === ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED) {
+        quotaStore.markExhausted(candidate.profile, ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED);
+        quotaRotations += 1;
+        continue;
+      }
+      const errorCode = (error instanceof WebAiToolError && error.errorCode) ? error.errorCode : ConsumerErrorCodes.COMMAND_TIMEOUT;
+      persistVideoTask(database, { ...record, status: "failed", errorCode, result: { ...(record.result || {}), accounts_tried_count: generationCalls }, progress_label: `failed: ${errorCode}` });
+      return;
+    }
   }
+
+  persistVideoTask(database, {
+    ...record,
+    status: "failed",
+    errorCode: ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED,
+    result: { ...(record.result || {}), account_rotations: Math.max(0, quotaRotations), accounts_tried_count: generationCalls },
+    progress_label: "all pooled Gemini accounts quota-exhausted"
+  });
 }
 
 

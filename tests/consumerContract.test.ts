@@ -326,7 +326,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     webai_chatgpt_generate_image: ["model"],
     webai_gemini_generate_image: ["model"],
     webai_gemini_canvas_to_docs: ["model"],
-    webai_gemini_generate_video: ["model"]
+    webai_gemini_generate_video: ["model", "account_pool"]
   };
   for (const [mcp, params] of Object.entries(expected)) {
     const row = manifest.commands.find((command: any) => command.mcp_name === mcp);
@@ -369,6 +369,10 @@ test("consumer contract v1.5.0 webai tools round-trip through CLI, MCP, and TS e
   assert.equal(codexTools.length, 4);
   assert.deepEqual(codexTools.map((command: any) => command.mcp_name).sort(), webAiCodexTools.map((item) => item.mcp).sort());
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, expectedWebaiToolCount);
+  const videoRow = manifest.commands.find((command: any) => command.mcp_name === "webai_gemini_generate_video");
+  assert.ok(videoRow.output_keys.optional.includes("account_rotations"), "video optional output missing account_rotations");
+  assert.ok(videoRow.output_keys.optional.includes("accounts_tried_count"), "video optional output missing accounts_tried_count");
+  assert.equal(videoRow.output_keys.optional.includes("account_used"), false, "video output must not expose account_used");
 });
 
 

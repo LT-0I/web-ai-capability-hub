@@ -261,6 +261,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `model` |
 | `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `model`, `reuse_conversation` |
 | `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `model` |
+| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `model`, `account_pool` |
 
 ### Webai output-key contract
 
@@ -277,7 +278,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:chatgpt:generate-image` / `webai_chatgpt_generate_image` | `path`, `sha256`, `size_bytes`, `dimensions`, `errorCode`, `download_filename` | `error_code`, `expected_selector`, `message`, `expected_model` |
 | `webai:gemini:generate-image` / `webai_gemini_generate_image` | `path`, `sha256`, `size_bytes`, `dimensions`, `errorCode`, `download_filename` | `error_code`, `expected_selector`, `message`, `expected_model` |
 | `webai:gemini:canvas-to-docs` / `webai_gemini_canvas_to_docs` | `docs_url`, `docs_doc_id`, `title`, `errorCode` | `cleanup_attempted`, `expected_model` |
-| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `task_id`, `status`, `profile`, `lease_id`, `started_at` | `expected_model` |
+| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `task_id`, `status`, `profile`, `lease_id`, `started_at` | `expected_model`, `account_rotations`, `accounts_tried_count` |
 | `webai:gemini:deep-research` / `webai_gemini_deep_research` | `task_id`, `status` | `ok`, `errorCode`, `error_code`, `message`, `action` |
 | `webai:gemini:canvas-edit` / `webai_gemini_canvas_edit` | `canvas_opened`, `edit_applied`, `ai_action_applied` | `ok`, `errorCode`, `error_code`, `message`, `action` |
 | `webai:gemini:conversation-manage` / `webai_gemini_conversation_manage` | _(none)_ | `items`, `dialog_opened`, `results`, `ok`, `errorCode`, `error_code`, `reason`, `message`, `action` |
@@ -303,6 +304,11 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:music:download-track` / `webai_gemini_music_download_track` | `savedPath`, `sha256`, `byteSize`, `format` | `ok`, `errorCode`, `error_code` |
 | `webai:gemini:music:task-status` / `webai_gemini_music_task_status` | `status`, `download_ready` | `ok`, `errorCode`, `error_code` |
 | `webai:task-status` / `webai_task_status` | `status` | `progress_label`, `result`, `errorCode` |
+
+
+### Veo quota rotation
+
+`webai:gemini:generate-video` accepts optional `account_pool` as a comma-separated list of pre-registered Gemini profile names. Rotation triggers only when the worker receives `PLAN_OR_QUOTA_REQUIRED` from the unchanged Veo quota detection path; all other errors fail honestly without rotation. If every pooled account is exhausted, the task fails honestly with `PLAN_OR_QUOTA_REQUIRED`. The worker never synthesizes video output, does not expose `account_used`, and callers with no declared pool retain the single-profile fallback behavior.
 
 ## MCP resources
 

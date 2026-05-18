@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "pools": {
+    "gemini-video": [
+      { "profile": "gemini-9225", "cdp_port": 9225, "label": "primary" },
+      { "profile": "gemini-daily", "cdp_port": 9333, "label": "5Owl" },
+      { "profile": "gemini-9226", "cdp_port": 9226, "label": "alt" }
+    ]
+  }
+}

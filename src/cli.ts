@@ -190,6 +190,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     title: asString(options.title),
     size: asString(options.size),
     duration_seconds: asNumber(options["duration-seconds"] || options.durationSeconds),
+    account_pool: asString(options["account-pool"] || options.accountPool),
     task_id: asString(options["task-id"] || options.taskId),
     format: asString(options.format),
     action: asString(options.action),
@@ -816,7 +817,7 @@ MCP and compatibility commands:
   webai:chatgpt:generate-file|webai:claude:generate-file --profile <name> --prompt <text> --expected-extension <ext> --download-dir <abs> [--output-json]
   webai:chatgpt:generate-image|webai:gemini:generate-image --profile <name> --prompt <text> --download-dir <abs> [--output-json]
   webai:gemini:canvas-to-docs --profile <name> --prompt <text> [--title <title>] [--output-json]
-  webai:gemini:generate-video --profile <name> --prompt <text> --download-dir <abs> [--output-json]
+  webai:gemini:generate-video --profile <name> --prompt <text> --download-dir <abs> [--account-pool <p1,p2,...>] [--output-json]
   webai:gemini:deep-research --profile <name> --prompt <text> --confirmed [--output-json]
   webai:gemini:canvas-edit --profile <name> [--prompt <text> --confirmed] [--edit-text <text>] [--ai-action length|tone|suggest] [--output-json]
   webai:gemini:conversation-manage --profile <name> --action menu_enumerate|share|search [--query <text>] [--confirmed] [--output-json]

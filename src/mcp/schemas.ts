@@ -261,11 +261,12 @@ export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: st
   reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt"]);
 
-export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
+export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; account_pool?: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Video generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded video"),
   model: scalar.string("Optional Gemini model tier to select before sending"),
+  account_pool: scalar.string("Optional comma-separated Gemini profile names for Veo quota rotation"),
   duration_seconds: scalar.number("Optional duration: 2, 4, or 8"),
   timeout_ms: scalar.number("Maximum task runtime in milliseconds"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service")
