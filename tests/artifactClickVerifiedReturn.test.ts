@@ -7,6 +7,8 @@ const { EventEmitter } = require("node:events");
 import { artifactClickOnPage, ArtifactClickError } from "../src/browser/artifactClick";
 
 const PNG_BYTES = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x01, 0x02, 0x03, 0x04]);
+const RECOVERY_WARN = "follow-up download control not found, but the governed artifact was delivered by the browser";
+const RESULT_KEYS = ["bbox", "downloadFilename", "downloadGuid", "elapsedMs", "frameUrl", "path", "sha256", "size", "suggestedFilename", "warn"].sort();
 
 class FakeElement {
   public tagName = "BUTTON";
@@ -87,6 +89,101 @@ test("valid governed PNG returns ok when follow-up selector throws ELEMENT_NOT_F
     assert.doesNotMatch(path.basename(result.path), /[\s,:]/);
     assert.equal(result.warn, "follow-up download control not found, but the governed artifact was delivered by the browser");
     assert.equal(fs.readFileSync(result.path).subarray(0, 8).equals(PNG_BYTES.subarray(0, 8)), true);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("real governed PNG on disk returns ok when downloadPromise yields nothing", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const diskPath = path.join(dir, "ChatGPT Image May 18, 2026, 01_40_19 AM.png");
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open", () => setTimeout(() => fs.writeFileSync(diskPath, PNG_BYTES), 350));
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new FakePageCDP(open));
+    const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 });
+    assert.deepEqual(Object.keys(result).sort(), RESULT_KEYS);
+    assert.equal(result.path, diskPath);
+    assert.equal(result.size, PNG_BYTES.length);
+    assert.equal(result.warn, RECOVERY_WARN);
+    assert.equal(fs.readFileSync(result.path).subarray(0, 8).equals(PNG_BYTES.subarray(0, 8)), true);
+    assert.equal(result.downloadFilename, path.basename(result.path));
+    assert.ok(result.sha256);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("nothing on disk and no download events preserves original follow-up ELEMENT_NOT_FOUND", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open");
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new FakePageCDP(open));
+    await assert.rejects(
+      () => artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 }),
+      (error: any) => error instanceof ArtifactClickError && error.errorCode === "ELEMENT_NOT_FOUND" && /--follow-up-selector/.test(error.message)
+    );
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("stale governed PNG without download events preserves original follow-up ELEMENT_NOT_FOUND", async () => {
+  const dir = tempDir();
+  try {
+    const stalePath = path.join(dir, "stale.png");
+    fs.writeFileSync(stalePath, PNG_BYTES);
+    const oldDate = new Date(Date.now() - 60000);
+    fs.utimesSync(stalePath, oldDate, oldDate);
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open");
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new FakePageCDP(open));
+    await assert.rejects(
+      () => artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 }),
+      (error: any) => error instanceof ArtifactClickError && error.errorCode === "ELEMENT_NOT_FOUND" && /--follow-up-selector/.test(error.message)
+    );
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("fresh symlinked PNG outside governed dir without download events preserves original follow-up ELEMENT_NOT_FOUND", async () => {
+  const dir = tempDir();
+  const outside = tempDir();
+  try {
+    const outsidePng = path.join(outside, "outside.png");
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open", () => {
+      fs.writeFileSync(outsidePng, PNG_BYTES);
+      fs.symlinkSync(outsidePng, path.join(dir, "linked.png"));
+    });
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new FakePageCDP(open));
+    await assert.rejects(
+      () => artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 }),
+      (error: any) => error instanceof ArtifactClickError && error.errorCode === "ELEMENT_NOT_FOUND" && /--follow-up-selector/.test(error.message)
+    );
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); fs.rmSync(outside, { recursive: true, force: true }); }
+});
+
+test("fresh non-PNG magic without download events preserves original follow-up ELEMENT_NOT_FOUND", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open", () => fs.writeFileSync(path.join(dir, "whatever.png"), Buffer.from("not a png")));
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new FakePageCDP(open));
+    await assert.rejects(
+      () => artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 }),
+      (error: any) => error instanceof ArtifactClickError && error.errorCode === "ELEMENT_NOT_FOUND" && /--follow-up-selector/.test(error.message)
+    );
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("gemini-shaped disk fallback returns populated governed PNG without service branch", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const diskPath = path.join(dir, "Gemini image, 10_11 AM.png");
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "image", () => setTimeout(() => fs.writeFileSync(diskPath, PNG_BYTES), 350));
+    const page = new FakePage([new FakeFrame({ "img.generated": [open] })], new FakePageCDP(open));
+    const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "img.generated", followUpSelector: 'button[data-test-id="image-download-button"]', downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 });
+    assert.equal(result.path, diskPath);
+    assert.equal(result.size, PNG_BYTES.length);
+    assert.equal(result.warn, RECOVERY_WARN);
+    assert.equal(result.downloadFilename, path.basename(result.path));
+    assert.ok(result.sha256);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 

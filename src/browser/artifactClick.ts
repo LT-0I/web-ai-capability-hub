@@ -267,6 +267,29 @@ function newestFreshFile(downloadDir: string, runStartedMs?: number): string | u
   return files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
 }
 
+function recoverGovernedArtifactFromDisk(governedDir: string, runStartedMs: number): { ok: true; realPath: string } | { ok: false } {
+  try {
+    const dir = governedDir;
+    if (!fs.existsSync(dir)) return { ok: false };
+    const ended = now();
+    const files = fs.readdirSync(dir)
+      .map((name: string) => path.join(dir, name))
+      .map((p: string) => {
+        try {
+          return { p, stat: fs.statSync(p) };
+        } catch {
+          return undefined;
+        }
+      })
+      .filter((entry): entry is { p: string; stat: any } => !!entry && entry.stat.isFile() && entry.stat.mtimeMs >= runStartedMs && entry.stat.mtimeMs <= ended)
+      .filter((entry) => verifiedGovernedArtifact(entry.p, governedDir).ok);
+    const chosen = files.sort((a, b) => b.stat.mtimeMs - a.stat.mtimeMs)[0];
+    return chosen ? { ok: true, realPath: fs.realpathSync(chosen.p) } : { ok: false };
+  } catch {
+    return { ok: false };
+  }
+}
+
 function resolveAndRenameDownloaded(downloaded: Exclude<PollDownloadResult, { aborted: true }>, options: ArtifactClickOptions, runStartedMs?: number): ResolvedDownload {
   let finalPath = downloaded.filePath;
   if (!fs.existsSync(finalPath)) {
@@ -389,15 +412,33 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
       const graceMs = Math.min(options.timeoutMs ?? 60000, 8000);
       const settled = await Promise.race([downloadPromise.catch(() => undefined), sleep(graceMs).then(() => undefined)]);
       if (settled && !settled.aborted && settled.filePath) {
-        let resolved: ResolvedDownload | undefined;
         try {
-          resolved = resolveAndRenameDownloaded(settled, options, started);
+          const resolved = resolveAndRenameDownloaded(settled, options, started);
+          if (verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
+            return buildArtifactClickResult(resolved, settled, options, candidate, started, "follow-up download control not found, but the governed artifact was delivered by the browser");
+          }
         } catch {
-          resolved = undefined;
+          /* fall through to disk fallback below */
         }
-        if (resolved && verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
-          return buildArtifactClickResult(resolved, settled, options, candidate, started, "follow-up download control not found, but the governed artifact was delivered by the browser");
-        }
+      }
+      const recovered = recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
+      if (recovered.ok) {
+        const finalPath = recovered.realPath;
+        const size = fs.statSync(finalPath).size;
+        abortDownloads.abort();
+        await downloadPromise.catch(() => undefined);
+        return {
+          path: finalPath,
+          sha256: sha256(finalPath),
+          size,
+          suggestedFilename: settled && !settled.aborted ? settled.suggestedFilename : undefined,
+          downloadFilename: path.basename(finalPath),
+          warn: "follow-up download control not found, but the governed artifact was delivered by the browser",
+          downloadGuid: settled && !settled.aborted && settled.guid ? settled.guid : "",
+          frameUrl: candidate.frameUrl,
+          bbox: candidate.box,
+          elapsedMs: now() - started
+        };
       }
       abortDownloads.abort();
       await downloadPromise.catch(() => undefined);
