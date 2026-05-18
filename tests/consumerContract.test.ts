@@ -114,6 +114,66 @@ test("consumer:health output schema matches contract and strips forbidden fields
   }
 });
 
+
+test("consumer:health aliases legacy claude profile only for claude health probes", async () => {
+  const calls: string[] = [];
+  const launcher = {
+    profileStore: { list: () => [{ profileName: "claude-9224" }] },
+    status: async (profile?: string): Promise<ManagedBrowserStatus> => {
+      calls.push(profile || "");
+      if (profile === "claude-9224") {
+        return {
+          profile,
+          profileDir: `/tmp/${profile}`,
+          cdpEndpoint: "http://127.0.0.1:9224",
+          cdpPort: 9224,
+          connected: true,
+          launchedByPackage: false,
+          pages: [
+            {
+              id: "claude-page",
+              type: "page",
+              title: "Claude",
+              url: "https://claude.ai/new"
+            }
+          ]
+        } as ManagedBrowserStatus;
+      }
+      return {
+        profile: profile || "",
+        profileDir: `/tmp/${profile || "unknown"}`,
+        cdpEndpoint: "http://127.0.0.1:0",
+        cdpPort: 0,
+        connected: false,
+        launchedByPackage: false,
+        pages: []
+      } as ManagedBrowserStatus;
+    }
+  };
+
+  const aliased = await consumerHealth({
+    target: "claude",
+    profile: "claude",
+    launcher,
+    now: () => new Date(fixtures().checkedAt)
+  });
+
+  assert.equal(aliased.ok, true);
+  assert.equal(aliased.status, "ok");
+  assert.equal(aliased.profile, "claude-9224");
+  assert.equal(calls.at(-1), "claude-9224");
+
+  const scoped = await consumerHealth({
+    target: "chatgpt",
+    profile: "claude",
+    launcher,
+    now: () => new Date(fixtures().checkedAt)
+  });
+
+  assert.equal(scoped.profile, "claude");
+  assert.equal(calls.at(-1), "claude");
+});
+
 test("consumer:health CLI emits the safe contract shape", async (t: any) => {
   const originalStatus = ManagedBrowserLauncher.prototype.status;
   const scenario = fixtures().scenarios.find((item) => item.name === "connected-chatgpt-page")!;

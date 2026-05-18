@@ -39,6 +39,16 @@ const TARGET_HOST_ALIASES: Record<string, string[]> = {
   gemini: ["gemini.google.com"]
 };
 
+// SANCTIONED health-probe-only alias. CLAUDE.md §5 bans `--profile claude`
+// for real webai:* flows; this map ONLY rewrites the profile for the
+// read-only consumer-health target resolution so an external watchdog
+// probing the legacy `claude` name reaches the canonical logged-in
+// claude-9224 session. It never launches/logs into 9222 and never affects
+// ManagedBrowserLauncher or any tool.
+const HEALTH_PROFILE_ALIASES: Record<string, Record<string, string>> = {
+  claude: { claude: "claude-9224" }
+};
+
 export async function consumerHealth(options: ConsumerHealthOptions): Promise<ConsumerHealthResult> {
   const target = (options.target || "").trim();
   const profile = (options.profile || "").trim();
@@ -59,17 +69,21 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
     });
   }
 
+  const requestedProfile = profile;
+  const resolvedProfile =
+    HEALTH_PROFILE_ALIASES[target.toLowerCase()]?.[requestedProfile] ?? requestedProfile;
+
   const launcher = options.launcher || new ManagedBrowserLauncher();
-  const profileKnown = knownProfileBeforeCheck(launcher, profile);
+  const profileKnown = knownProfileBeforeCheck(launcher, resolvedProfile);
   let status: ManagedBrowserStatus;
 
   try {
-    status = await withTimeout(launcher.status(profile), options.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    status = await withTimeout(launcher.status(resolvedProfile), options.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   } catch (error) {
     const timeout = error instanceof Error && error.name === "ConsumerHealthTimeoutError";
     return result({
       target,
-      profile,
+      profile: resolvedProfile,
       checkedAt,
       ok: false,
       connected: false,
@@ -86,7 +100,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
     const errorCode = profileKnown === false ? ConsumerErrorCodes.PROFILE_NOT_FOUND : ConsumerErrorCodes.BROWSER_NOT_LAUNCHED;
     return result({
       target,
-      profile,
+      profile: resolvedProfile,
       checkedAt,
       ok: false,
       connected: false,
@@ -104,7 +118,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
   if (!targetPage) {
     return result({
       target,
-      profile,
+      profile: resolvedProfile,
       checkedAt,
       ok: false,
       connected: true,
@@ -119,7 +133,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
   if (pageLooksLoginLike(targetPage)) {
     return result({
       target,
-      profile,
+      profile: resolvedProfile,
       checkedAt,
       ok: false,
       connected: true,
@@ -133,7 +147,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
 
   return result({
     target,
-    profile,
+    profile: resolvedProfile,
     checkedAt,
     ok: true,
     connected: true,
