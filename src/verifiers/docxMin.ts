@@ -64,6 +64,38 @@ export function verifyDocxMin(path: string, opts: VerifyDocxMinOptions): VerifyD
   };
 }
 
+
+export function verifyOoxmlPackage(filePath: string, expectedExt: "docx" | "pptx" | "xlsx"): { ok: true } | { ok: false; reason: string } {
+  let bytes: any;
+  try {
+    bytes = fs.readFileSync(filePath);
+  } catch (error) {
+    return { ok: false, reason: `FILE_READ_FAILED: ${error instanceof Error ? error.message : String(error)}` };
+  }
+
+  if (bytes.length < 4 || !bytes.subarray(0, 4).equals(Buffer.from([0x50, 0x4b, 0x03, 0x04]))) {
+    return { ok: false, reason: "OOXML_MAGIC_MISMATCH" };
+  }
+
+  let entries: ZipEntry[];
+  try {
+    entries = readCentralDirectory(bytes);
+  } catch (error) {
+    return { ok: false, reason: `INVALID_ZIP_CENTRAL_DIRECTORY: ${error instanceof Error ? error.message : String(error)}` };
+  }
+
+  if (!entries.some((entry) => entry.name === "[Content_Types].xml")) {
+    return { ok: false, reason: "MISSING_CONTENT_TYPES" };
+  }
+
+  const prefix = expectedExt === "docx" ? "word/" : expectedExt === "pptx" ? "ppt/" : "xl/";
+  if (!entries.some((entry) => entry.name.startsWith(prefix))) {
+    return { ok: false, reason: `MISSING_${expectedExt.toUpperCase()}_PART` };
+  }
+
+  return { ok: true };
+}
+
 function emptyResult(path: string, size: number, opts: VerifyDocxMinOptions, failures: string[]): VerifyDocxMinResult {
   return { ok: false, path, size, paragraphs: 0, chars: 0, ...(opts.topicRegex ? { topicMatched: false } : {}), failures };
 }

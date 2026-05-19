@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-import { verifyDocxMin } from "../src/verifiers/docxMin";
+import { verifyDocxMin, verifyOoxmlPackage } from "../src/verifiers/docxMin";
 import { main } from "../src/cli";
 
 const fixture = path.resolve("ip-literature-patent-research/.runs/literature-review-rl-antiuav-2026-05-13/phase1-resmoke4-downloads/phase1-resmoke4-export.docx");
@@ -35,6 +35,30 @@ test("verifyDocxMin passes the Round-3/Phase-1 DOCX fixture", () => {
   assert.ok(result.paragraphs >= 50);
   assert.ok(result.chars >= 5000);
   assert.equal(result.topicMatched, true);
+});
+
+test("verifyOoxmlPackage accepts the Round-3/Phase-1 DOCX fixture", () => {
+  assert.ok(fs.existsSync(fixture), "expected real DOCX fixture to be present");
+  assert.equal(verifyOoxmlPackage(fixture, "docx").ok, true);
+});
+
+test("verifyOoxmlPackage rejects renamed non-zip bytes", () => {
+  const file = tempFile("renamed.docx");
+  fs.writeFileSync(file, "not a zip");
+  const result = verifyOoxmlPackage(file, "docx");
+  assert.equal(result.ok, false);
+});
+
+test("verifyOoxmlPackage rejects a truncated ZIP local header", () => {
+  const file = tempFile("truncated.docx");
+  fs.writeFileSync(file, Buffer.from([0x50, 0x4b, 0x03, 0x04]));
+  const result = verifyOoxmlPackage(file, "docx");
+  assert.equal(result.ok, false);
+});
+
+test("verifyOoxmlPackage rejects a real DOCX when XLSX is expected", () => {
+  const result = verifyOoxmlPackage(fixture, "xlsx");
+  assert.equal(result.ok, false);
 });
 
 test("verifyDocxMin fails paragraph threshold clearly", () => {

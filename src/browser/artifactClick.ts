@@ -2,6 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 import { ManagedBrowserLauncher } from "./managedLauncher";
+import { verifyOoxmlPackage } from "../verifiers/docxMin";
 
 export type ArtifactClickErrorCode = "IFRAME_NOT_FOUND" | "ELEMENT_NOT_FOUND" | "ELEMENT_OUT_OF_VIEWPORT" | "ARTIFACT_DOWNLOAD_TIMEOUT" | "ARTIFACT_VERIFICATION_FAILED" | "INVALID_ARGS";
 
@@ -118,22 +119,33 @@ function safeDownloadBasename(name: string): string {
   const ext = parsed.ext.replace(/[\s,;:]+/g, "_").replace(/_+/g, "_");
   return `${stem}${ext}`.trim();
 }
-function verifiedGovernedArtifact(filePath: string, governedDir: string): { ok: true; realPath: string } | { ok: false } {
+function verifiedGovernedArtifact(filePath: string, governedDir: string, format: GovernedFormat = "png"): { ok: true; realPath: string } | { ok: false } {
   try {
+    if (!format) return { ok: false };
     if (!fs.existsSync(filePath)) return { ok: false };
     const stat = fs.statSync(filePath);
     if (!stat.isFile() || stat.size <= 0) return { ok: false };
     const fd = fs.openSync(filePath, "r");
     try {
-      const header = Buffer.alloc(8);
-      if (fs.readSync(fd, header, 0, 8, 0) !== 8) return { ok: false };
-      if (!header.equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return { ok: false };
+      if (format === "png") {
+        const header = Buffer.alloc(8);
+        if (fs.readSync(fd, header, 0, 8, 0) !== 8) return { ok: false };
+        if (!header.equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return { ok: false };
+      } else {
+        const header = Buffer.alloc(4);
+        if (fs.readSync(fd, header, 0, 4, 0) !== 4) return { ok: false };
+        if (!header.equals(OOXML_MAGIC)) return { ok: false };
+      }
     } finally {
       fs.closeSync(fd);
     }
     const realFile = fs.realpathSync(filePath);
     const realDir = fs.realpathSync(path.resolve(governedDir));
     if (path.dirname(realFile) !== realDir) return { ok: false };
+    if (format !== "png") {
+      const ext = format === "ooxml-docx" ? "docx" : format === "ooxml-pptx" ? "pptx" : "xlsx";
+      if (!verifyOoxmlPackage(filePath, ext).ok) return { ok: false };
+    }
     return { ok: true, realPath: realFile };
   } catch {
     return { ok: false };
@@ -251,6 +263,8 @@ function notFoundEvidence(candidate: CandidateResult, extra: Record<string, unkn
   return { ...extra, pageUrl: candidate.pageUrl, frameCount: candidate.frameCount, triedFrames: candidate.triedFrames.slice(0, 20) };
 }
 
+type GovernedFormat = "png" | "ooxml-docx" | "ooxml-pptx" | "ooxml-xlsx" | null;
+
 type PollDownloadResult = { aborted: true } | { aborted?: false; guid: string; suggestedFilename?: string; filePath: string };
 
 interface ResolvedDownload { finalPath: string; suggested: string; warn?: string }
@@ -267,7 +281,7 @@ function newestFreshFile(downloadDir: string, runStartedMs?: number): string | u
   return files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
 }
 
-export async function recoverGovernedArtifactFromDisk(governedDir: string, runStartedMs: number, settleMs = 5000): Promise<{ ok: true; realPath: string } | { ok: false }> {
+export async function recoverGovernedArtifactFromDisk(governedDir: string, runStartedMs: number, settleMs = 5000, format: GovernedFormat = "png"): Promise<{ ok: true; realPath: string } | { ok: false }> {
   const deadline = now() + settleMs;
   while (true) {
     try {
@@ -284,7 +298,7 @@ export async function recoverGovernedArtifactFromDisk(governedDir: string, runSt
           }
         })
         .filter((entry): entry is { p: string; stat: any } => !!entry && entry.stat.isFile() && entry.stat.mtimeMs >= runStartedMs && entry.stat.mtimeMs <= ended)
-        .filter((entry) => verifiedGovernedArtifact(entry.p, governedDir).ok);
+        .filter((entry) => verifiedGovernedArtifact(entry.p, governedDir, format).ok);
       const chosen = files.sort((a, b) => b.stat.mtimeMs - a.stat.mtimeMs)[0];
       if (chosen) return { ok: true, realPath: fs.realpathSync(chosen.p) };
     } catch {
@@ -328,8 +342,16 @@ function resolveAndRenameDownloaded(downloaded: Exclude<PollDownloadResult, { ab
   return { finalPath, suggested, warn };
 }
 
-function requiresPngGovernedVerification(options: ArtifactClickOptions): boolean {
-  return !!(options.followUpSelector || options.followUpTextRegex) && !!options.filenamePattern && /png/i.test(options.filenamePattern);
+function governedVerificationFormat(options: ArtifactClickOptions): GovernedFormat {
+  const pat = options.filenamePattern || "";
+  if (/png/i.test(pat)) return (options.followUpSelector || options.followUpTextRegex) ? "png" : null;
+  const selector = options.buttonSelector || "";
+  const nativeOfficeDownloadSelector = /behavior-btn|aria-label[\^$*|~]?=["']Download|has-text\(["']Download/i.test(selector);
+  if (!nativeOfficeDownloadSelector) return null;
+  if (/docx/i.test(pat)) return "ooxml-docx";
+  if (/pptx/i.test(pat)) return "ooxml-pptx";
+  if (/xlsx/i.test(pat)) return "ooxml-xlsx";
+  return null;
 }
 
 function buildArtifactClickResult(resolved: ResolvedDownload, downloaded: Exclude<PollDownloadResult, { aborted: true }>, options: ArtifactClickOptions, candidate: CandidateResult, started: number, warnOverride?: string): ArtifactClickResult {
@@ -338,8 +360,9 @@ function buildArtifactClickResult(resolved: ResolvedDownload, downloaded: Exclud
   }
   const size = fs.statSync(resolved.finalPath).size;
   if (options.verifyMinBytes !== undefined && size < options.verifyMinBytes) throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded file is smaller than --verify-min-bytes", { size, verifyMinBytes: options.verifyMinBytes });
-  if (requiresPngGovernedVerification(options) && !verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
-    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded artifact failed governed on-disk PNG verification", { path: resolved.finalPath });
+  const fmt = governedVerificationFormat(options);
+  if (fmt && !verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir), fmt).ok) {
+    throw new ArtifactClickError("ARTIFACT_VERIFICATION_FAILED", "Downloaded artifact failed governed on-disk verification", { path: resolved.finalPath, format: fmt });
   }
   return { path: resolved.finalPath, sha256: sha256(resolved.finalPath), size, suggestedFilename: downloaded.suggestedFilename, downloadFilename: path.basename(resolved.finalPath), warn: warnOverride || resolved.warn, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
 }
@@ -354,6 +377,7 @@ interface NetworkCaptureState {
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
 const PNG_MAGIC = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+const OOXML_MAGIC = Buffer.from([0x50, 0x4b, 0x03, 0x04]);
 
 async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string): Promise<any> {
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
@@ -381,13 +405,19 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   return bcdp;
 }
 
-async function materializeNetworkCapturedPng(pageCdp: any, downloadDir: string, runStartedMs: number): Promise<boolean> {
+async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: string, runStartedMs: number, expectedFormat: GovernedFormat): Promise<boolean> {
   const capture = pageCdp && typeof pageCdp === "object" ? networkCaptureBySession.get(pageCdp) : undefined;
   if (!capture) return false;
   const candidates = Array.from(capture.finished)
     .map((requestId) => ({ requestId, finishedAt: capture.finishedAt.get(requestId) ?? 0 }))
     .filter(({ finishedAt }) => finishedAt >= runStartedMs && finishedAt <= now())
     .sort((a, b) => b.finishedAt - a.finishedAt);
+  const normalizedExpectedFormat = expectedFormat || "png";
+  const expectedExt = normalizedExpectedFormat === "png" ? "png" : normalizedExpectedFormat.replace("ooxml-", "");
+  const hasExpectedMagic = (buf: Buffer): boolean => normalizedExpectedFormat === "png"
+    ? PNG_MAGIC.equals(buf.subarray(0, PNG_MAGIC.length))
+    : OOXML_MAGIC.equals(buf.subarray(0, OOXML_MAGIC.length));
+  const expectedFilename = (requestId: string): string => `network-${requestId}.${expectedExt}`;
   const downloadUrls: string[] = [];
   for (const { requestId } of candidates) {
     const meta = capture.responses.get(requestId);
@@ -424,8 +454,8 @@ async function materializeNetworkCapturedPng(pageCdp: any, downloadDir: string, 
     const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
     if (!r?.body) continue;
     const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
-    if (!buf.subarray(0, PNG_MAGIC.length).equals(PNG_MAGIC)) continue;
-    fs.writeFileSync(path.join(downloadDir, "network-" + requestId + ".png"), buf);
+    if (!hasExpectedMagic(buf)) continue;
+    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId)), buf);
     return true;
   }
   for (const { requestId } of candidates) {
@@ -433,10 +463,10 @@ async function materializeNetworkCapturedPng(pageCdp: any, downloadDir: string, 
     const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
     if (!r?.body) continue;
     const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
-    const isPng = buf.subarray(0, PNG_MAGIC.length).equals(PNG_MAGIC);
-    if (!String(meta?.mimeType || "").toLowerCase().startsWith("image/") && !isPng) continue;
-    if (!isPng) continue;
-    fs.writeFileSync(path.join(downloadDir, "network-" + requestId + ".png"), buf);
+    const hasMagic = hasExpectedMagic(buf);
+    if (normalizedExpectedFormat === "png" && !String(meta?.mimeType || "").toLowerCase().startsWith("image/") && !hasMagic) continue;
+    if (!hasMagic) continue;
+    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId)), buf);
     return true;
   }
   return false;
@@ -513,15 +543,15 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
       if (settled && !settled.aborted && settled.filePath) {
         try {
           const resolved = resolveAndRenameDownloaded(settled, options, started);
-          if (verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir)).ok) {
+          if (verifiedGovernedArtifact(resolved.finalPath, path.resolve(options.downloadDir), governedVerificationFormat(options)).ok) {
             return buildArtifactClickResult(resolved, settled, options, candidate, started, "follow-up download control not found, but the governed artifact was delivered by the browser");
           }
         } catch {
           /* fall through to disk fallback below */
         }
       }
-      await materializeNetworkCapturedPng(cdp, path.resolve(options.downloadDir), started);
-      const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
+      await materializeNetworkCapturedArtifact(cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
+      const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started, 5000, governedVerificationFormat(options));
       if (recovered.ok) {
         const finalPath = recovered.realPath;
         const size = fs.statSync(finalPath).size;
@@ -547,8 +577,8 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   }
 
   const recoverFollowUpDeliveredArtifact = async (originalError: ArtifactClickError): Promise<ArtifactClickResult> => {
-    await materializeNetworkCapturedPng(cdp, path.resolve(options.downloadDir), started);
-    const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
+    await materializeNetworkCapturedArtifact(cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
+    const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started, 5000, governedVerificationFormat(options));
     if (recovered.ok) {
       const finalPath = recovered.realPath;
       const size = fs.statSync(finalPath).size;
