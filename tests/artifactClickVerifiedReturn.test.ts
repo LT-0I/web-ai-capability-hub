@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
+const crypto = require("node:crypto");
 const { EventEmitter } = require("node:events");
 import { artifactClickOnPage, ArtifactClickError, recoverGovernedArtifactFromDisk } from "../src/browser/artifactClick";
 
@@ -299,5 +300,46 @@ test("happy path follow-up success preserves result shape", async () => {
     assert.equal(result.downloadGuid, "guid-happy");
     assert.equal(result.warn, undefined);
     assert.equal(result.size, PNG_BYTES.length);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("non-throwing follow-up recovers governed PNG when downloadWillBegin is missed", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const diskPath = path.join(dir, "save-wrote-real.png");
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open");
+    const save = new FakeElement({ x: 30, y: 10, width: 20, height: 10 }, "save", () => fs.writeFileSync(diskPath, PNG_BYTES));
+    const page = new FakePage([new FakeFrame({ "button.open": [open], "button.save": [save] })], new CoordinatePageCDP([open, save]));
+    const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.save", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 });
+    assert.deepEqual(Object.keys(result).sort(), RESULT_KEYS);
+    assert.equal(result.path, fs.realpathSync(diskPath));
+    assert.equal(result.size, PNG_BYTES.length);
+    assert.equal(result.sha256, crypto.createHash("sha256").update(PNG_BYTES).digest("hex"));
+    assert.equal(result.warn, RECOVERY_WARN);
+    assert.equal(result.downloadGuid, "");
+    assert.equal(result.downloadFilename, path.basename(diskPath));
+    assert.equal(result.suggestedFilename, undefined);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("non-throwing follow-up rethrows download timeout verbatim when no governed PNG exists", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open");
+    const save = new FakeElement({ x: 30, y: 10, width: 20, height: 10 }, "save");
+    const page = new FakePage([new FakeFrame({ "button.open": [open], "button.save": [save] })], new CoordinatePageCDP([open, save]));
+    await assert.rejects(
+      () => artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.save", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 }),
+      (error: any) => {
+        assert.ok(error instanceof ArtifactClickError);
+        assert.equal(error.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT");
+        assert.equal(error.message, "No Browser.downloadWillBegin event was observed");
+        assert.deepEqual(error.evidence, { timeoutMs: 1000 });
+        assert.deepEqual(fs.readdirSync(dir), []);
+        return true;
+      }
+    );
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });

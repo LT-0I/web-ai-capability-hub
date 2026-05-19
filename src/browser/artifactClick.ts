@@ -451,8 +451,44 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
     }
   }
 
-  const downloaded = await downloadPromise;
-  if (downloaded.aborted) throw new ArtifactClickError("ARTIFACT_DOWNLOAD_TIMEOUT", "Download polling was aborted before completion");
+  const recoverFollowUpDeliveredArtifact = async (originalError: ArtifactClickError): Promise<ArtifactClickResult> => {
+    const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
+    if (recovered.ok) {
+      const finalPath = recovered.realPath;
+      const size = fs.statSync(finalPath).size;
+      abortDownloads.abort();
+      await downloadPromise.catch(() => undefined);
+      return {
+        path: finalPath,
+        sha256: sha256(finalPath),
+        size,
+        suggestedFilename: undefined,
+        downloadFilename: path.basename(finalPath),
+        warn: "follow-up download control not found, but the governed artifact was delivered by the browser",
+        downloadGuid: "",
+        frameUrl: candidate.frameUrl,
+        bbox: candidate.box,
+        elapsedMs: now() - started
+      };
+    }
+    throw originalError;
+  };
+
+  const hasFollowUp = !!(options.followUpSelector || options.followUpTextRegex);
+  let downloaded: PollDownloadResult;
+  try {
+    downloaded = await downloadPromise;
+  } catch (error) {
+    if (hasFollowUp && error instanceof ArtifactClickError && error.errorCode === "ARTIFACT_DOWNLOAD_TIMEOUT") {
+      return await recoverFollowUpDeliveredArtifact(error);
+    }
+    throw error;
+  }
+  if (downloaded.aborted) {
+    const error = new ArtifactClickError("ARTIFACT_DOWNLOAD_TIMEOUT", "Download polling was aborted before completion");
+    if (hasFollowUp) return await recoverFollowUpDeliveredArtifact(error);
+    throw error;
+  }
   const resolved = resolveAndRenameDownloaded(downloaded, options);
   return buildArtifactClickResult(resolved, downloaded, options, candidate, started);
 }
