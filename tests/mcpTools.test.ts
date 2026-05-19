@@ -28,11 +28,13 @@ test("ChatGPT image selectors use generated-image fallbacks and share-excluding 
   assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /^img\[alt\^="Generated image" i\]/);
   assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /main img\[src\^="blob:"\]/);
   assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /main img\[alt\*="generated" i\]/);
-  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /^button\[aria-label="Save"\]/);
-  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /button\[aria-label="Download"\]/);
-  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /xpath=.*pointer-events-auto/);
+  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /^xpath=/);
+  assert.doesNotMatch(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /,\s*xpath=/);
+  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /@aria-label="Save"/);
+  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /@aria-label="Download"/);
+  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /pointer-events-auto/);
   assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /button\[@aria-label="Edit image"\]/);
-  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /not\(contains\(translate\(@aria-label,'SHARE','share'\),'share'\)\)/);
+  assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /not\(contains\(translate\(@aria-label,"SHARE","share"\),"share"\)\)/);
 });
 
 test("Gemini video prompt path falls back to the default Gemini composer", () => {
