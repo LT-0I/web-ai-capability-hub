@@ -395,8 +395,8 @@ const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
 // selectors first when available and fall back to the probe-grounded toolbar
 // structure without ever targeting share; the old
 // [role="dialog"] button[aria-label="Save"] hypothesis is not relied on.
-export const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i], main img[src^="blob:"], main img[alt*="generated" i]';
-export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'xpath=//button[@aria-label="Save" or @aria-label="Download" or contains(translate(@aria-label,"DOWNLOAD","download"),"download")] | //*[contains(@class,"pointer-events-auto")][.//button[@aria-label="Edit image"]]//button[not(@aria-label="Edit image") and not(contains(translate(@aria-label,"SHARE","share"),"share"))][last()]';
+export const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = '[class*="imagegen-image"] [role="button"][aria-labelledby], [id^="image-"] [role="button"][aria-labelledby], img[alt^="Generated image" i]';
+export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'xpath=//*[@data-testid="fullscreen-shell-header-content"]//button[@aria-label="Save" or @aria-label="Download" or contains(translate(@aria-label,"DOWNLOAD","download"),"download")] | //*[contains(@class,"pointer-events-auto")][.//button[@aria-label="Edit image"]]//button[not(@aria-label="Edit image") and not(contains(translate(@aria-label,"SHARE","share"),"share"))][last()]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
 const GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR = 'xpath=//button[.//text()[contains(.,"Tools")] or @aria-label="Tools"]';

@@ -25,9 +25,9 @@ test("claude login detection is anchored to auth path segments", () => {
 test("ChatGPT image selectors use generated-image fallbacks and share-excluding download fallback", () => {
   const oldSaveOnly = '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]';
   assert.notEqual(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, oldSaveOnly);
-  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /^img\[alt\^="Generated image" i\]/);
-  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /main img\[src\^="blob:"\]/);
-  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /main img\[alt\*="generated" i\]/);
+  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /\[role="button"\]\[aria-labelledby\]/);
+  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /imagegen-image|\[id\^="image-"\]/);
+  assert.match(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, /img\[alt\^="Generated image" i\]/);
   assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /^xpath=/);
   assert.doesNotMatch(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /,\s*xpath=/);
   assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /@aria-label="Save"/);
