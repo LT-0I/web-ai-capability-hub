@@ -375,6 +375,7 @@ interface NetworkCaptureState {
   finishedAt: Map<string, number>;
   bodies: Map<string, { url: string; finishedAt: number; buf: Buffer }>;
   pointerUrls: string[];
+  bufferedBytes: number;
 }
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
@@ -428,14 +429,15 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   await bcdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
   await pageCdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true }).catch(() => undefined);
   await pageCdp.send("Network.enable", {}).catch(() => undefined);
-  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [] };
-  const eagerRawBody = async (requestId: string, meta: { url: string; mimeType: string } | undefined, finishedAt: number, sessionId?: string) => {
+  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [], bufferedBytes: 0 };
+  const eagerRawBody = async (sess: any, requestId: string, meta: { url: string; mimeType: string } | undefined, finishedAt: number, sessionId?: string) => {
     try {
       const url = String(meta?.url || "");
       if (!url) return;
-      const sendArgs = sessionId ? ["Network.getResponseBody", { requestId }, sessionId] : ["Network.getResponseBody", { requestId }];
       if (url.includes("backend-api/files/download/")) {
-        const r = await pageCdp.send(...sendArgs as [string, any, any?]).catch(() => ({} as any));
+        const r = sessionId
+          ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => ({} as any))
+          : await sess.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
         if (!r?.body) return;
         const pointer = extractPointerUrlFromJsonBody(Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8"));
         if (pointer) networkCapture.pointerUrls.push(pointer);
@@ -443,29 +445,35 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
       }
       const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls) || String(meta?.mimeType || "").toLowerCase().startsWith("image/");
       if (!shouldTryBody) return;
-      const r = await pageCdp.send(...sendArgs as [string, any, any?]).catch(() => ({} as any));
+      const r = sessionId
+        ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => ({} as any))
+        : await sess.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
       if (!r?.body) return;
       const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
-      if (imageMagicExt(buf) !== null) networkCapture.bodies.set(requestId, { url, finishedAt, buf });
+      if (imageMagicExt(buf) !== null) {
+        networkCapture.bodies.set(requestId, { url, finishedAt, buf });
+        networkCapture.bufferedBytes += buf.length;
+      }
     } catch {
       // Passive capture only; misses fall through to existing governed recovery.
     }
   };
-  const registerRawNetworkCapture = (sessionId?: string) => {
-    pageCdp.on?.("Network.responseReceived", (event: any) => {
+  const registerRawNetworkCaptureOn = (sess: any, sessionId?: string) => {
+    sess.on?.("Network.responseReceived", (event: any) => {
       if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
       if (!event?.requestId) return;
       networkCapture.responses.set(String(event.requestId), { url: String(event.response?.url || ""), mimeType: String(event.response?.mimeType || "") });
     });
-    pageCdp.on?.("Network.loadingFinished", (event: any) => {
+    sess.on?.("Network.loadingFinished", (event: any) => {
       if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
       if (!event?.requestId) return;
       networkCapture.finished.add(String(event.requestId));
       networkCapture.finishedAt.set(String(event.requestId), now());
-      void eagerRawBody(String(event.requestId), networkCapture.responses.get(String(event.requestId)), networkCapture.finishedAt.get(String(event.requestId)) ?? now(), sessionId);
+      void eagerRawBody(sess, String(event.requestId), networkCapture.responses.get(String(event.requestId)), networkCapture.finishedAt.get(String(event.requestId)) ?? now(), sessionId);
     });
   };
-  registerRawNetworkCapture();
+  const registerRawNetworkCapture = (sessionId?: string) => registerRawNetworkCaptureOn(pageCdp, sessionId);
+  registerRawNetworkCaptureOn(pageCdp);
   pageCdp.on?.("Target.attachedToTarget", (event: any) => {
     const sessionId = event?.sessionId ? String(event.sessionId) : "";
     if (!sessionId) return;
@@ -473,6 +481,13 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
     registerRawNetworkCapture(sessionId);
   });
   await pageCdp.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: false, flatten: true }).catch(() => undefined);
+  bcdp.on?.("Target.attachedToTarget", (event: any) => {
+    const sessionId = event?.sessionId ? String(event.sessionId) : "";
+    if (!sessionId) return;
+    bcdp.send("Network.enable", {}, sessionId).catch(() => undefined);
+    registerRawNetworkCaptureOn(bcdp, sessionId);
+  });
+  await bcdp.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: false, flatten: true }).catch(() => undefined);
   try {
     let seq = 0;
     const onResponse = async (response: any) => {
@@ -495,13 +510,15 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
         const request = typeof response?.request === "function" ? response.request() : undefined;
         const key = "pw-" + (request?._guid ?? String(seq++));
         networkCapture.bodies.set(key, { url: u, finishedAt: now(), buf });
+        networkCapture.bufferedBytes += buf.length;
       } catch {
         // Passive observer only; any miss falls through to the unchanged R8 scan.
       }
     };
-    const pwObs = (typeof page?.context === "function" ? page.context() : undefined);
-    if (typeof pwObs?.on === "function") pwObs.on("response", onResponse);
-    else if (typeof page?.on === "function") page.on("response", onResponse);
+    const pwCtx = (typeof page?.context === "function" ? page.context() : undefined);
+    if (typeof pwCtx?.on === "function") pwCtx.on("response", onResponse);
+    if (typeof page?.on === "function") page.on("response", onResponse);
+    if (typeof pwCtx?.on === "function") pwCtx.on("page", (p: any) => { try { if (typeof p?.on === "function") p.on("response", onResponse); } catch {} });
   } catch {
     // Fake/offline harnesses may not expose Playwright event surfaces.
   }
@@ -575,6 +592,13 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
     return true;
   }
   return false;
+}
+
+function attachNetworkCaptureEvidence(pageCdp: any, error: ArtifactClickError): void {
+  const capture = pageCdp && typeof pageCdp === "object" ? networkCaptureBySession.get(pageCdp) : undefined;
+  if (!capture || (capture.bufferedBytes === 0 && capture.bodies.size === 0)) return;
+  error.evidence.bufferedBytes = capture.bufferedBytes;
+  error.evidence["bodies.size"] = capture.bodies.size;
 }
 
 async function pollDownload(bcdp: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
@@ -702,6 +726,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
         elapsedMs: now() - started
       };
     }
+    attachNetworkCaptureEvidence(cdp, originalError);
     throw originalError;
   };
 
