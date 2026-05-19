@@ -376,6 +376,7 @@ interface NetworkCaptureState {
   bodies: Map<string, { url: string; finishedAt: number; buf: Buffer }>;
   pointerUrls: string[];
   bufferedBytes: number;
+  lastBodyReadFailReason?: string;
 }
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
@@ -445,15 +446,23 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
       }
       const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls) || String(meta?.mimeType || "").toLowerCase().startsWith("image/");
       if (!shouldTryBody) return;
-      const r = sessionId
-        ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => ({} as any))
-        : await sess.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
-      if (!r?.body) return;
-      const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
-      if (imageMagicExt(buf) !== null) {
-        networkCapture.bodies.set(requestId, { url, finishedAt, buf });
-        networkCapture.bufferedBytes += buf.length;
+      let lastReason = "";
+      for (let attempt = 0; attempt < 4; attempt++) {
+        const r = sessionId
+          ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => { lastReason = "rejected"; return {} as any; })
+          : await sess.send("Network.getResponseBody", { requestId }).catch(() => { lastReason = "rejected"; return {} as any; });
+        if (r?.body) {
+          const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
+          if (imageMagicExt(buf) !== null) {
+            networkCapture.bodies.set(requestId, { url, finishedAt, buf });
+            networkCapture.bufferedBytes += buf.length;
+          }
+          return;
+        }
+        lastReason = lastReason || "empty";
+        await sleep(8);
       }
+      if (lastReason) networkCapture.lastBodyReadFailReason = lastReason;
     } catch {
       // Passive capture only; misses fall through to existing governed recovery.
     }
@@ -599,6 +608,7 @@ function attachNetworkCaptureEvidence(pageCdp: any, error: ArtifactClickError): 
   if (!capture) return;
   error.evidence.bufferedBytes = capture.bufferedBytes;
   error.evidence["bodies.size"] = capture.bodies.size;
+  if (capture.lastBodyReadFailReason) error.evidence.bodyReadFail = capture.lastBodyReadFailReason;
 }
 
 async function pollDownload(bcdp: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
