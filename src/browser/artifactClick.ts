@@ -346,6 +346,15 @@ function buildArtifactClickResult(resolved: ResolvedDownload, downloaded: Exclud
 
 const downloadEventsBySession = new WeakMap<object, Map<string, any>>();
 
+interface NetworkCaptureState {
+  responses: Map<string, { url: string; mimeType: string }>;
+  finished: Set<string>;
+  finishedAt: Map<string, number>;
+}
+
+const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
+const PNG_MAGIC = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+
 async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string): Promise<any> {
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
   const bcdp = await browserSession.newBrowserCDPSession();
@@ -357,7 +366,40 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   downloadEventsBySession.set(bcdp, downloads);
   await bcdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
   await pageCdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true }).catch(() => undefined);
+  await pageCdp.send("Network.enable", {}).catch(() => undefined);
+  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>() };
+  pageCdp.on?.("Network.responseReceived", (event: any) => {
+    if (!event?.requestId) return;
+    networkCapture.responses.set(String(event.requestId), { url: String(event.response?.url || ""), mimeType: String(event.response?.mimeType || "") });
+  });
+  pageCdp.on?.("Network.loadingFinished", (event: any) => {
+    if (!event?.requestId) return;
+    networkCapture.finished.add(String(event.requestId));
+    networkCapture.finishedAt.set(String(event.requestId), now());
+  });
+  networkCaptureBySession.set(pageCdp, networkCapture);
   return bcdp;
+}
+
+async function materializeNetworkCapturedPng(pageCdp: any, downloadDir: string, runStartedMs: number): Promise<boolean> {
+  const capture = pageCdp && typeof pageCdp === "object" ? networkCaptureBySession.get(pageCdp) : undefined;
+  if (!capture) return false;
+  const candidates = Array.from(capture.finished)
+    .map((requestId) => ({ requestId, finishedAt: capture.finishedAt.get(requestId) ?? 0 }))
+    .filter(({ finishedAt }) => finishedAt >= runStartedMs && finishedAt <= now())
+    .sort((a, b) => b.finishedAt - a.finishedAt);
+  for (const { requestId } of candidates) {
+    const meta = capture.responses.get(requestId);
+    const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
+    if (!r?.body) continue;
+    const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
+    const isPng = buf.subarray(0, PNG_MAGIC.length).equals(PNG_MAGIC);
+    if (!String(meta?.mimeType || "").toLowerCase().startsWith("image/") && !isPng) continue;
+    if (!isPng) continue;
+    fs.writeFileSync(path.join(downloadDir, "network-" + requestId + ".png"), buf);
+    return true;
+  }
+  return false;
 }
 
 async function pollDownload(bcdp: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
@@ -438,6 +480,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
           /* fall through to disk fallback below */
         }
       }
+      await materializeNetworkCapturedPng(cdp, path.resolve(options.downloadDir), started);
       const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
       if (recovered.ok) {
         const finalPath = recovered.realPath;
@@ -464,6 +507,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   }
 
   const recoverFollowUpDeliveredArtifact = async (originalError: ArtifactClickError): Promise<ArtifactClickResult> => {
+    await materializeNetworkCapturedPng(cdp, path.resolve(options.downloadDir), started);
     const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
     if (recovered.ok) {
       const finalPath = recovered.realPath;
