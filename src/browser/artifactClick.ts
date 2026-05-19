@@ -128,9 +128,9 @@ function verifiedGovernedArtifact(filePath: string, governedDir: string, format:
     const fd = fs.openSync(filePath, "r");
     try {
       if (format === "png") {
-        const header = Buffer.alloc(8);
-        if (fs.readSync(fd, header, 0, 8, 0) !== 8) return { ok: false };
-        if (!header.equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return { ok: false };
+        const header = Buffer.alloc(12);
+        const bytesRead = fs.readSync(fd, header, 0, 12, 0);
+        if (imageMagicExt(header.subarray(0, bytesRead)) === null) return { ok: false };
       } else {
         const header = Buffer.alloc(4);
         if (fs.readSync(fd, header, 0, 4, 0) !== 4) return { ok: false };
@@ -373,13 +373,50 @@ interface NetworkCaptureState {
   responses: Map<string, { url: string; mimeType: string }>;
   finished: Set<string>;
   finishedAt: Map<string, number>;
+  bodies: Map<string, { url: string; finishedAt: number; buf: Buffer }>;
+  pointerUrls: string[];
 }
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
 const PNG_MAGIC = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+const JPEG_MAGIC = Buffer.from([0xff, 0xd8, 0xff]);
 const OOXML_MAGIC = Buffer.from([0x50, 0x4b, 0x03, 0x04]);
 
-async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string): Promise<any> {
+function imageMagicExt(buf: Buffer): "png" | "jpg" | "webp" | null {
+  if (buf.length >= 8 && PNG_MAGIC.equals(buf.subarray(0, 8))) return "png";
+  if (buf.length >= 3 && JPEG_MAGIC.equals(buf.subarray(0, 3))) return "jpg";
+  if (buf.length >= 12 && buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50) return "webp";
+  return null;
+}
+
+function originPath(url: string): string | false {
+  try {
+    const parsed = new URL(url);
+    return parsed.origin + parsed.pathname;
+  } catch {
+    return false;
+  }
+}
+
+function extractPointerUrlFromJsonBody(body: Buffer): string | undefined {
+  try {
+    const parsed = JSON.parse(body.toString());
+    const downloadUrl = parsed?.download_url || parsed?.url || parsed?.data?.download_url;
+    return downloadUrl ? String(downloadUrl) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function matchesKnownPointer(url: string, pointerUrls: string[]): boolean {
+  const metaOriginPath = originPath(url);
+  return pointerUrls.some((downloadUrl) => {
+    const downloadOriginPath = originPath(downloadUrl);
+    return Boolean(metaOriginPath && downloadOriginPath && metaOriginPath === downloadOriginPath);
+  });
+}
+
+async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string, page?: any): Promise<any> {
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
   const bcdp = await browserSession.newBrowserCDPSession();
   if (typeof bcdp.send !== "function") throw new ArtifactClickError("INVALID_ARGS", "Browser.setDownloadBehavior is unavailable on this browser session");
@@ -391,16 +428,83 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   await bcdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
   await pageCdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true }).catch(() => undefined);
   await pageCdp.send("Network.enable", {}).catch(() => undefined);
-  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>() };
-  pageCdp.on?.("Network.responseReceived", (event: any) => {
-    if (!event?.requestId) return;
-    networkCapture.responses.set(String(event.requestId), { url: String(event.response?.url || ""), mimeType: String(event.response?.mimeType || "") });
+  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [] };
+  const eagerRawBody = async (requestId: string, meta: { url: string; mimeType: string } | undefined, finishedAt: number, sessionId?: string) => {
+    try {
+      const url = String(meta?.url || "");
+      if (!url) return;
+      const sendArgs = sessionId ? ["Network.getResponseBody", { requestId }, sessionId] : ["Network.getResponseBody", { requestId }];
+      if (url.includes("backend-api/files/download/")) {
+        const r = await pageCdp.send(...sendArgs as [string, any, any?]).catch(() => ({} as any));
+        if (!r?.body) return;
+        const pointer = extractPointerUrlFromJsonBody(Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8"));
+        if (pointer) networkCapture.pointerUrls.push(pointer);
+        return;
+      }
+      const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls) || String(meta?.mimeType || "").toLowerCase().startsWith("image/");
+      if (!shouldTryBody) return;
+      const r = await pageCdp.send(...sendArgs as [string, any, any?]).catch(() => ({} as any));
+      if (!r?.body) return;
+      const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
+      if (imageMagicExt(buf) !== null) networkCapture.bodies.set(requestId, { url, finishedAt, buf });
+    } catch {
+      // Passive capture only; misses fall through to existing governed recovery.
+    }
+  };
+  const registerRawNetworkCapture = (sessionId?: string) => {
+    pageCdp.on?.("Network.responseReceived", (event: any) => {
+      if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
+      if (!event?.requestId) return;
+      networkCapture.responses.set(String(event.requestId), { url: String(event.response?.url || ""), mimeType: String(event.response?.mimeType || "") });
+    });
+    pageCdp.on?.("Network.loadingFinished", (event: any) => {
+      if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
+      if (!event?.requestId) return;
+      networkCapture.finished.add(String(event.requestId));
+      networkCapture.finishedAt.set(String(event.requestId), now());
+      void eagerRawBody(String(event.requestId), networkCapture.responses.get(String(event.requestId)), networkCapture.finishedAt.get(String(event.requestId)) ?? now(), sessionId);
+    });
+  };
+  registerRawNetworkCapture();
+  pageCdp.on?.("Target.attachedToTarget", (event: any) => {
+    const sessionId = event?.sessionId ? String(event.sessionId) : "";
+    if (!sessionId) return;
+    pageCdp.send("Network.enable", {}, sessionId).catch(() => undefined);
+    registerRawNetworkCapture(sessionId);
   });
-  pageCdp.on?.("Network.loadingFinished", (event: any) => {
-    if (!event?.requestId) return;
-    networkCapture.finished.add(String(event.requestId));
-    networkCapture.finishedAt.set(String(event.requestId), now());
-  });
+  await pageCdp.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: false, flatten: true }).catch(() => undefined);
+  try {
+    let seq = 0;
+    const onResponse = async (response: any) => {
+      try {
+        const u = String(typeof response?.url === "function" ? response.url() : response?.url || "");
+        if (!u) return;
+        if (u.includes("backend-api/files/download/")) {
+          const text = typeof response?.text === "function" ? await response.text() : "";
+          const pointer = extractPointerUrlFromJsonBody(Buffer.from(text, "utf8"));
+          if (pointer) networkCapture.pointerUrls.push(pointer);
+          return;
+        }
+        const headers = typeof response?.headers === "function" ? response.headers() : {};
+        const contentType = String(headers?.["content-type"] || headers?.["Content-Type"] || "").toLowerCase();
+        const shouldTryBody = matchesKnownPointer(u, networkCapture.pointerUrls) || contentType.startsWith("image/");
+        if (!shouldTryBody) return;
+        const body = typeof response?.body === "function" ? await response.body() : undefined;
+        const buf = Buffer.isBuffer(body) ? body : body ? Buffer.from(body) : undefined;
+        if (!buf || imageMagicExt(buf) === null) return;
+        const request = typeof response?.request === "function" ? response.request() : undefined;
+        const key = "pw-" + (request?._guid ?? String(seq++));
+        networkCapture.bodies.set(key, { url: u, finishedAt: now(), buf });
+      } catch {
+        // Passive observer only; any miss falls through to the unchanged R8 scan.
+      }
+    };
+    const pwObs = (typeof page?.context === "function" ? page.context() : undefined);
+    if (typeof pwObs?.on === "function") pwObs.on("response", onResponse);
+    else if (typeof page?.on === "function") page.on("response", onResponse);
+  } catch {
+    // Fake/offline harnesses may not expose Playwright event surfaces.
+  }
   networkCaptureBySession.set(pageCdp, networkCapture);
   return bcdp;
 }
@@ -415,10 +519,10 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
   const normalizedExpectedFormat = expectedFormat || "png";
   const expectedExt = normalizedExpectedFormat === "png" ? "png" : normalizedExpectedFormat.replace("ooxml-", "");
   const hasExpectedMagic = (buf: Buffer): boolean => normalizedExpectedFormat === "png"
-    ? PNG_MAGIC.equals(buf.subarray(0, PNG_MAGIC.length))
+    ? imageMagicExt(buf) !== null
     : OOXML_MAGIC.equals(buf.subarray(0, OOXML_MAGIC.length));
-  const expectedFilename = (requestId: string): string => `network-${requestId}.${expectedExt}`;
-  const downloadUrls: string[] = [];
+  const expectedFilename = (requestId: string, buf: Buffer): string => `network-${requestId}.${normalizedExpectedFormat === "png" ? (imageMagicExt(buf) || "png") : expectedExt}`;
+  const downloadUrls: string[] = [...capture.pointerUrls];
   for (const { requestId } of candidates) {
     const meta = capture.responses.get(requestId);
     if (!String(meta?.url || "").includes("backend-api/files/download/")) continue;
@@ -434,14 +538,15 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
       // Not a JSON pointer body; keep the no-synthesis path honest.
     }
   }
-  const originPath = (url: string): string | false => {
-    try {
-      const parsed = new URL(url);
-      return parsed.origin + parsed.pathname;
-    } catch {
-      return false;
-    }
-  };
+  for (const [requestId, body] of Array.from(capture.bodies.entries())
+    .filter(([, entry]) => entry.finishedAt >= runStartedMs && entry.finishedAt <= now())
+    .sort((a, b) => b[1].finishedAt - a[1].finishedAt)) {
+    const matchesPointer = matchesKnownPointer(body.url, downloadUrls) || imageMagicExt(body.buf) !== null;
+    if (!matchesPointer) continue;
+    if (!hasExpectedMagic(body.buf)) continue;
+    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId, body.buf)), body.buf);
+    return true;
+  }
   for (const { requestId } of candidates) {
     const meta = capture.responses.get(requestId);
     const metaOriginPath = originPath(String(meta?.url || ""));
@@ -455,7 +560,7 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
     if (!r?.body) continue;
     const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
     if (!hasExpectedMagic(buf)) continue;
-    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId)), buf);
+    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId, buf)), buf);
     return true;
   }
   for (const { requestId } of candidates) {
@@ -466,7 +571,7 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
     const hasMagic = hasExpectedMagic(buf);
     if (normalizedExpectedFormat === "png" && !String(meta?.mimeType || "").toLowerCase().startsWith("image/") && !hasMagic) continue;
     if (!hasMagic) continue;
-    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId)), buf);
+    fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId, buf)), buf);
     return true;
   }
   return false;
@@ -518,7 +623,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
 
   const abortDownloads = new AbortController();
   const downloadDir = path.resolve(options.downloadDir);
-  const armedBcdp = await armDownloadBehavior(browser, cdp, downloadDir);
+  const armedBcdp = await armDownloadBehavior(browser, cdp, downloadDir, page);
   const downloadPromise = pollDownload(armedBcdp, downloadDir, options.timeoutMs || 60000, abortDownloads.signal)
     .catch((error) => abortDownloads.signal.aborted ? ({ aborted: true as const }) : Promise.reject(error));
   await rawClick(cdp, candidate.box);
