@@ -373,6 +373,7 @@ Command rows define `required_args`, `output_keys.always_present`, and `output_k
 - `webai:claude:design:generate` waits for the Design project URL to acquire the same `?file=<name>.html` readiness signal used by the completed Present flow before reporting `status:"generated"`; a genuine miss returns stable `POSTCONDITION_TIMEOUT`.
 - `webai:claude:design:get-html` persists and hashes only verified HTML markup. Bootstrap/loader URL stubs fail with `ARTIFACT_VERIFICATION_FAILED`, are not written as `.html` artifacts, and failed captures clean up newly-created scratch files in the requested download directory.
 - `webai:chatgpt:canvas-export` opens the canvas side panel when a canvas tile/control is available, then exports through Download; if no canvas exists it returns stable `ELEMENT_NOT_FOUND`.
+- `webai:chatgpt:generate-file`/`webai:claude:generate-file` support `expected_extension=docx` (validated) plus code/text artifacts; `{pptx,xlsx}` is rejected pre-flight with stable `INVALID_ARGS`; no `.pptx`/`.xlsx` is ever synthesized or substituted.
 - `webai:chatgpt:pulse:get` is read-only: it returns `not_onboarded`, `pending`, or `ready` from the recipe gates and never silently onboards or fabricates `digest_text`.
 - `webai:chatgpt:pulse:onboard` requires `--confirmed`, selects `Quick news recap`, and skips Gmail connection.
 

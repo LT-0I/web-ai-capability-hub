@@ -1465,6 +1465,13 @@ async function artifactClickResultToSafeOutput(result: any, extra: Record<string
 
 async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   assertPromptAllowed(args.prompt);
+  const UNSUPPORTED_GENERATE_FILE_EXTS = new Set(["pptx", "xlsx"]);
+  if (UNSUPPORTED_GENERATE_FILE_EXTS.has(String(args.expected_extension))) {
+    throw new WebAiToolError(
+      ConsumerErrorCodes.INVALID_ARGS,
+      `expected_extension="${args.expected_extension}" is not supported on webai_${service}_generate_file: native downloadable .pptx/.xlsx generation is not reliably produced by the driven ${service}-web path. Supported: docx (and code/text artifacts: py, md, csv, svg, html, mmd, pdf).`
+    );
+  }
   requireAbsoluteDir(args.download_dir);
   assertNotPublishDeniedLabel("Download", { tool: `webai.${service}.generate_file` });
   const lease = acquireProfileLease(args.profile);

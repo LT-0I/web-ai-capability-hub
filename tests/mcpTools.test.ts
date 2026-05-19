@@ -107,6 +107,56 @@ test("MCP tool definitions include required browser tools and validate schemas",
   assert.equal(browserOpenInput.safeParse({}).success, false);
 });
 
+function runtimeThatFailsIfBrowserInvoked(counter: { count: number }): any {
+  return {
+    launcher: {
+      launch: async () => { counter.count++; throw new Error("browser launch should not be invoked"); },
+      connectOverCdp: async () => { counter.count++; throw new Error("browser CDP should not be invoked"); }
+    }
+  };
+}
+
+test("webai_chatgpt_generate_file rejects pptx pre-flight without browser or artifact metadata", async () => {
+  const browserCalls = { count: 0 };
+  const result = await callMcpTool("webai_chatgpt_generate_file", {
+    profile: "chatgpt-generate-file-pptx-guard",
+    prompt: "Create a three-slide deck",
+    expected_extension: "pptx",
+    download_dir: process.cwd()
+  }, runtimeThatFailsIfBrowserInvoked(browserCalls)) as any;
+
+  assert.equal(result.ok, false);
+  assert.equal(result.errorCode, "INVALID_ARGS");
+  assert.equal(result.error_code, "INVALID_ARGS");
+  assert.match(result.error, /expected_extension="pptx" is not supported on webai_chatgpt_generate_file/);
+  assert.match(result.error, /native downloadable \.pptx\/\.xlsx generation is not reliably produced/);
+  assert.equal("path" in result, false);
+  assert.equal("sha256" in result, false);
+  assert.equal("size_bytes" in result, false);
+  assert.equal(browserCalls.count, 0);
+});
+
+test("webai_claude_generate_file rejects xlsx pre-flight without browser or artifact metadata", async () => {
+  const browserCalls = { count: 0 };
+  const result = await callMcpTool("webai_claude_generate_file", {
+    profile: "claude-generate-file-xlsx-guard",
+    prompt: "Create a spreadsheet",
+    artifact_class: "document",
+    expected_extension: "xlsx",
+    download_dir: process.cwd()
+  }, runtimeThatFailsIfBrowserInvoked(browserCalls)) as any;
+
+  assert.equal(result.ok, false);
+  assert.equal(result.errorCode, "INVALID_ARGS");
+  assert.equal(result.error_code, "INVALID_ARGS");
+  assert.match(result.error, /expected_extension="xlsx" is not supported on webai_claude_generate_file/);
+  assert.match(result.error, /Supported: docx \(and code\/text artifacts: py, md, csv, svg, html, mmd, pdf\)\./);
+  assert.equal("path" in result, false);
+  assert.equal("sha256" in result, false);
+  assert.equal("size_bytes" in result, false);
+  assert.equal(browserCalls.count, 0);
+});
+
 test("workflow_execute accepts an inline workflow and returns a dry-run plan without a file path", async () => {
   const workflow = {
     id: "inline-final-text",
