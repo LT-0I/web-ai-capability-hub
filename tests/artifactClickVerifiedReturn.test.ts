@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { EventEmitter } = require("node:events");
-import { artifactClickOnPage, ArtifactClickError } from "../src/browser/artifactClick";
+import { artifactClickOnPage, ArtifactClickError, recoverGovernedArtifactFromDisk } from "../src/browser/artifactClick";
 
 const PNG_BYTES = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x01, 0x02, 0x03, 0x04]);
 const RECOVERY_WARN = "follow-up download control not found, but the governed artifact was delivered by the browser";
@@ -107,6 +107,29 @@ test("real governed PNG on disk returns ok when downloadPromise yields nothing",
     assert.equal(fs.readFileSync(result.path).subarray(0, 8).equals(PNG_BYTES.subarray(0, 8)), true);
     assert.equal(result.downloadFilename, path.basename(result.path));
     assert.ok(result.sha256);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("recoverGovernedArtifactFromDisk waits for a governed PNG written within settleMs", async () => {
+  const dir = tempDir();
+  try {
+    const diskPath = path.join(dir, "late.png");
+    const started = Date.now();
+    setTimeout(() => fs.writeFileSync(diskPath, PNG_BYTES), 50);
+    const recovered = await recoverGovernedArtifactFromDisk(dir, started, 1000);
+    assert.equal(recovered.ok, true);
+    if (recovered.ok) assert.equal(recovered.realPath, fs.realpathSync(diskPath));
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("recoverGovernedArtifactFromDisk returns ok false after bounded settle with no governed PNG", async () => {
+  const dir = tempDir();
+  try {
+    const started = Date.now();
+    const before = Date.now();
+    const recovered = await recoverGovernedArtifactFromDisk(dir, started, 100);
+    assert.deepEqual(recovered, { ok: false });
+    assert.ok(Date.now() - before >= 100);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 

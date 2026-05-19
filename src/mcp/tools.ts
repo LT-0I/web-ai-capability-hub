@@ -472,7 +472,14 @@ function responseTimeoutMs(args: any): number {
 export function loginRequiredForService(service: WebAiService, url: string): boolean {
   if (!url) return false;
   if (service === "chatgpt") return /(auth|login|signup)/i.test(url) || /^https:\/\/auth\.openai\.com\//i.test(url);
-  if (service === "claude") return /login|signup|logout/i.test(url);
+  if (service === "claude") {
+    try {
+      const parsed = new URL(url);
+      return ["claude.ai", "www.claude.ai"].includes(parsed.hostname.toLowerCase()) && /^\/(login|signup|logout)(\/|$)/i.test(parsed.pathname);
+    } catch {
+      return /login|signup|logout/i.test(url);
+    }
+  }
   return /accounts\.google\.com|signin/i.test(url);
 }
 
@@ -509,6 +516,28 @@ async function navigateClaudeFreshIfNeeded(page: any, args: any): Promise<void> 
   const freshUrl = args.incognito ? CLAUDE_INCOGNITO_FRESH_URL : CLAUDE_FRESH_URL;
   await page.goto?.(freshUrl, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
   await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
+  const settleMs = Math.min(args.timeout_ms || 60000, 8000);
+  const deadline = Date.now() + settleMs;
+  let lastNonAuthPath = "";
+  while (Date.now() < deadline) {
+    const remaining = Math.max(1, deadline - Date.now());
+    const selector = await page.waitForSelector?.(serviceDefaults.claude.promptSelector, { state: "visible", timeout: Math.min(250, remaining) }).catch(() => undefined);
+    if (selector) return;
+    try {
+      const parsed = new URL(page.url?.() || "");
+      const isClaudeHost = ["claude.ai", "www.claude.ai"].includes(parsed.hostname.toLowerCase());
+      const isAuthPath = /^\/(login|signup|logout)(\/|$)/i.test(parsed.pathname);
+      if (isClaudeHost && !isAuthPath) {
+        if (lastNonAuthPath === parsed.pathname) return;
+        lastNonAuthPath = parsed.pathname;
+      } else {
+        lastNonAuthPath = "";
+      }
+    } catch {
+      lastNonAuthPath = "";
+    }
+    await new Promise((resolve) => setTimeout(resolve, Math.min(250, Math.max(0, deadline - Date.now()))));
+  }
 }
 
 async function navigateGeminiFreshIfNeeded(page: any, args: any): Promise<void> {

@@ -1,7 +1,16 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { callMcpTool, listMcpTools } from "../src/mcp/tools";
+import { callMcpTool, listMcpTools, loginRequiredForService } from "../src/mcp/tools";
 import { browserOpenInput, workflowExecuteInput } from "../src/mcp/schemas";
+
+test("claude login detection is anchored to auth path segments", () => {
+  for (const url of ["https://claude.ai/new?x=login", "https://claude.ai/chat/abc", "https://claude.ai/recents"]) {
+    assert.equal(loginRequiredForService("claude", url), false, url);
+  }
+  for (const url of ["https://claude.ai/login", "https://claude.ai/logout", "https://claude.ai/login/"]) {
+    assert.equal(loginRequiredForService("claude", url), true, url);
+  }
+});
 
 test("MCP tool definitions include required browser tools and validate schemas", () => {
   const names = listMcpTools().map((tool) => tool.name);

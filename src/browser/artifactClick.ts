@@ -267,26 +267,31 @@ function newestFreshFile(downloadDir: string, runStartedMs?: number): string | u
   return files.sort((a: string, b: string) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
 }
 
-function recoverGovernedArtifactFromDisk(governedDir: string, runStartedMs: number): { ok: true; realPath: string } | { ok: false } {
-  try {
-    const dir = governedDir;
-    if (!fs.existsSync(dir)) return { ok: false };
-    const ended = now();
-    const files = fs.readdirSync(dir)
-      .map((name: string) => path.join(dir, name))
-      .map((p: string) => {
-        try {
-          return { p, stat: fs.statSync(p) };
-        } catch {
-          return undefined;
-        }
-      })
-      .filter((entry): entry is { p: string; stat: any } => !!entry && entry.stat.isFile() && entry.stat.mtimeMs >= runStartedMs && entry.stat.mtimeMs <= ended)
-      .filter((entry) => verifiedGovernedArtifact(entry.p, governedDir).ok);
-    const chosen = files.sort((a, b) => b.stat.mtimeMs - a.stat.mtimeMs)[0];
-    return chosen ? { ok: true, realPath: fs.realpathSync(chosen.p) } : { ok: false };
-  } catch {
-    return { ok: false };
+export async function recoverGovernedArtifactFromDisk(governedDir: string, runStartedMs: number, settleMs = 5000): Promise<{ ok: true; realPath: string } | { ok: false }> {
+  const deadline = now() + settleMs;
+  while (true) {
+    try {
+      const dir = governedDir;
+      if (!fs.existsSync(dir)) return { ok: false };
+      const ended = now();
+      const files = fs.readdirSync(dir)
+        .map((name: string) => path.join(dir, name))
+        .map((p: string) => {
+          try {
+            return { p, stat: fs.statSync(p) };
+          } catch {
+            return undefined;
+          }
+        })
+        .filter((entry): entry is { p: string; stat: any } => !!entry && entry.stat.isFile() && entry.stat.mtimeMs >= runStartedMs && entry.stat.mtimeMs <= ended)
+        .filter((entry) => verifiedGovernedArtifact(entry.p, governedDir).ok);
+      const chosen = files.sort((a, b) => b.stat.mtimeMs - a.stat.mtimeMs)[0];
+      if (chosen) return { ok: true, realPath: fs.realpathSync(chosen.p) };
+    } catch {
+      return { ok: false };
+    }
+    if (now() >= deadline) return { ok: false };
+    await sleep(250);
   }
 }
 
@@ -421,7 +426,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
           /* fall through to disk fallback below */
         }
       }
-      const recovered = recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
+      const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started);
       if (recovered.ok) {
         const finalPath = recovered.realPath;
         const size = fs.statSync(finalPath).size;
