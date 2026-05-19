@@ -596,7 +596,7 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
 
 function attachNetworkCaptureEvidence(pageCdp: any, error: ArtifactClickError): void {
   const capture = pageCdp && typeof pageCdp === "object" ? networkCaptureBySession.get(pageCdp) : undefined;
-  if (!capture || (capture.bufferedBytes === 0 && capture.bodies.size === 0)) return;
+  if (!capture) return;
   error.evidence.bufferedBytes = capture.bufferedBytes;
   error.evidence["bodies.size"] = capture.bodies.size;
 }

@@ -201,6 +201,7 @@ export class ManagedBrowserLauncher {
     if (!status?.connected) throw new Error("No connected CDP endpoint. Launch or connect before requesting a Playwright CDP session.");
     const playwright = optionalRequire<any>("playwright");
     if (!playwright?.chromium?.connectOverCDP) throw new Error("Playwright is not installed. Run npm install before connecting over CDP.");
+    if (process.env.PW_CHROMIUM_ATTACH_TO_OTHER === undefined) process.env.PW_CHROMIUM_ATTACH_TO_OTHER = "1";
     this.playwrightBrowser = await playwright.chromium.connectOverCDP(status.cdpEndpoint);
     return this.playwrightBrowser;
   }

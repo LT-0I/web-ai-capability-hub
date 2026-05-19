@@ -336,7 +336,7 @@ test("non-throwing follow-up rethrows download timeout verbatim when no governed
         assert.ok(error instanceof ArtifactClickError);
         assert.equal(error.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT");
         assert.equal(error.message, "No Browser.downloadWillBegin event was observed");
-        assert.deepEqual(error.evidence, { timeoutMs: 1000 });
+        assert.deepEqual(error.evidence, { timeoutMs: 1000, bufferedBytes: 0, "bodies.size": 0 });
         assert.deepEqual(fs.readdirSync(dir), []);
         return true;
       }
