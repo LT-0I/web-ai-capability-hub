@@ -388,6 +388,46 @@ async function materializeNetworkCapturedPng(pageCdp: any, downloadDir: string, 
     .map((requestId) => ({ requestId, finishedAt: capture.finishedAt.get(requestId) ?? 0 }))
     .filter(({ finishedAt }) => finishedAt >= runStartedMs && finishedAt <= now())
     .sort((a, b) => b.finishedAt - a.finishedAt);
+  const downloadUrls: string[] = [];
+  for (const { requestId } of candidates) {
+    const meta = capture.responses.get(requestId);
+    if (!String(meta?.url || "").includes("backend-api/files/download/")) continue;
+    const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
+    if (!r?.body) continue;
+    try {
+      const parsed = JSON.parse(Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8").toString("utf8"));
+      if (String(meta?.mimeType || "").toLowerCase().startsWith("application/json") || parsed) {
+        const downloadUrl = parsed?.download_url || parsed?.url || parsed?.data?.download_url;
+        if (downloadUrl) downloadUrls.push(String(downloadUrl));
+      }
+    } catch {
+      // Not a JSON pointer body; keep the no-synthesis path honest.
+    }
+  }
+  const originPath = (url: string): string | false => {
+    try {
+      const parsed = new URL(url);
+      return parsed.origin + parsed.pathname;
+    } catch {
+      return false;
+    }
+  };
+  for (const { requestId } of candidates) {
+    const meta = capture.responses.get(requestId);
+    const metaOriginPath = originPath(String(meta?.url || ""));
+    const matchesPointer = downloadUrls.some((downloadUrl) => {
+      const downloadOriginPath = originPath(downloadUrl);
+      return Boolean(metaOriginPath && downloadOriginPath && metaOriginPath === downloadOriginPath);
+    })
+      || (downloadUrls.length > 0 && String(meta?.mimeType || "").toLowerCase().startsWith("image/"));
+    if (!matchesPointer) continue;
+    const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
+    if (!r?.body) continue;
+    const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
+    if (!buf.subarray(0, PNG_MAGIC.length).equals(PNG_MAGIC)) continue;
+    fs.writeFileSync(path.join(downloadDir, "network-" + requestId + ".png"), buf);
+    return true;
+  }
   for (const { requestId } of candidates) {
     const meta = capture.responses.get(requestId);
     const r = await pageCdp.send("Network.getResponseBody", { requestId }).catch(() => ({} as any));
