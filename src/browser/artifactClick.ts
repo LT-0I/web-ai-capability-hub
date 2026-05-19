@@ -344,8 +344,9 @@ function buildArtifactClickResult(resolved: ResolvedDownload, downloaded: Exclud
   return { path: resolved.finalPath, sha256: sha256(resolved.finalPath), size, suggestedFilename: downloaded.suggestedFilename, downloadFilename: path.basename(resolved.finalPath), warn: warnOverride || resolved.warn, downloadGuid: downloaded.guid, frameUrl: candidate.frameUrl, bbox: candidate.box, elapsedMs: now() - started };
 }
 
-async function pollDownload(browserSession: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
-  if (signal?.aborted) return { aborted: true };
+const downloadEventsBySession = new WeakMap<object, Map<string, any>>();
+
+async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string): Promise<any> {
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
   const bcdp = await browserSession.newBrowserCDPSession();
   if (typeof bcdp.send !== "function") throw new ArtifactClickError("INVALID_ARGS", "Browser.setDownloadBehavior is unavailable on this browser session");
@@ -353,7 +354,16 @@ async function pollDownload(browserSession: any, downloadDir: string, timeoutMs:
   const downloads = new Map<string, any>();
   bcdp.on?.("Browser.downloadWillBegin", (event: any) => downloads.set(event.guid, { ...(downloads.get(event.guid) || {}), ...event, will: true }));
   bcdp.on?.("Browser.downloadProgress", (event: any) => downloads.set(event.guid, { ...(downloads.get(event.guid) || {}), ...event }));
+  downloadEventsBySession.set(bcdp, downloads);
   await bcdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
+  await pageCdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true }).catch(() => undefined);
+  return bcdp;
+}
+
+async function pollDownload(bcdp: any, downloadDir: string, timeoutMs: number, signal?: AbortSignal): Promise<PollDownloadResult> {
+  if (signal?.aborted) return { aborted: true };
+  const downloads = downloadEventsBySession.get(bcdp);
+  if (!downloads) throw new ArtifactClickError("INVALID_ARGS", "Browser.setDownloadBehavior must be armed before polling downloads");
 
   const waitSlice = async () => { await sleep(50); return signal?.aborted ? { aborted: true as const } : undefined; };
   const beginDeadline = now() + Math.max(1, Math.floor(timeoutMs / 2));
@@ -395,7 +405,9 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   if (!candidate.box) throw new ArtifactClickError("ELEMENT_OUT_OF_VIEWPORT", `All matching elements were outside viewport y range [0,${maxViewportY}]`, { ...options.pageReadyEvidence, selector: options.buttonSelector, outOfViewport: candidate.outOfViewport, maxViewportY });
 
   const abortDownloads = new AbortController();
-  const downloadPromise = pollDownload(browser, path.resolve(options.downloadDir), options.timeoutMs || 60000, abortDownloads.signal)
+  const downloadDir = path.resolve(options.downloadDir);
+  const armedBcdp = await armDownloadBehavior(browser, cdp, downloadDir);
+  const downloadPromise = pollDownload(armedBcdp, downloadDir, options.timeoutMs || 60000, abortDownloads.signal)
     .catch((error) => abortDownloads.signal.aborted ? ({ aborted: true as const }) : Promise.reject(error));
   await rawClick(cdp, candidate.box);
   if (options.followUpSelector || options.followUpTextRegex) {
