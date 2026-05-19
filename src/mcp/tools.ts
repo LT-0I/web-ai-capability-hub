@@ -306,7 +306,7 @@ async function runWorkflowPlanInManagedPage(args: WorkflowExecuteArgs, runtime: 
 }
 
 type WebAiService = "chatgpt" | "claude" | "gemini";
-const serviceDefaults: Record<WebAiService, { url: string; promptSelector: string }> = {
+export const serviceDefaults: Record<WebAiService, { url: string; promptSelector: string }> = {
   chatgpt: { url: "https://chatgpt.com/", promptSelector: "#prompt-textarea" },
   claude: { url: "https://claude.ai/new", promptSelector: '[contenteditable="true"], #prompt-textarea' },
   gemini: { url: "https://gemini.google.com/app", promptSelector: 'div[role="textbox"][aria-label="Enter a prompt for Gemini"]' }
@@ -389,14 +389,14 @@ const CHATGPT_CREATE_IMAGE_RADIO_SELECTOR = '[role="menuitemradio"]:has-text("Cr
 // "image mode active" signal is the composer pill that replaces it.
 const CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR = 'button[aria-label="Image, click to remove"], button[aria-label*="image aspect ratio" i]';
 const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
-// Observed live 2026-05-15 (this Extended Pro account): the inline image-hover
-// toolbar has ONLY "Edit image" + "Share this image" — NO download there. The
-// real download path is: click the generated image itself → ChatGPT opens a
-// full-screen viewer ([role="dialog"], z-[120] absolute inset-0) whose toolbar
-// contains a direct (no aria-haspopup) button[aria-label="Save"]. Two-step
-// CDP artifact-click: open the viewer (image), then click Save.
-const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i]';
-const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]';
+// dom-probe-final.md (2026-05-15) is authoritative for current ChatGPT image
+// UI: the inline toolbar has only Edit + Share; Share is contract-forbidden and
+// explicitly excluded. The download control is an unnamed ↓ icon, so keep named
+// selectors first when available and fall back to the probe-grounded toolbar
+// structure without ever targeting share; the old
+// [role="dialog"] button[aria-label="Save"] hypothesis is not relied on.
+export const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = 'img[alt^="Generated image" i], main img[src^="blob:"], main img[alt*="generated" i]';
+export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-label="Save"], button[aria-label="Download"], button[aria-label*="Download" i], xpath=//*[contains(@class,"pointer-events-auto")][.//button[@aria-label="Edit image"]]//button[not(@aria-label="Edit image") and not(contains(translate(@aria-label,\'SHARE\',\'share\'),\'share\'))][last()]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
 const GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR = 'xpath=//button[.//text()[contains(.,"Tools")] or @aria-label="Tools"]';
@@ -483,6 +483,28 @@ export function loginRequiredForService(service: WebAiService, url: string): boo
   return /accounts\.google\.com|signin/i.test(url);
 }
 
+function claudeAuthPathname(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    const pathname = parsed.pathname.replace(/\/+$/, "") || "/";
+    if (!["claude.ai", "www.claude.ai"].includes(parsed.hostname.toLowerCase())) return null;
+    return /^\/(login|signup|logout)(\/|$)/i.test(parsed.pathname) ? pathname.toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+
+async function stableClaudeLoginRequired(page: any): Promise<boolean> {
+  const firstUrl = page.url?.() || "";
+  const firstPath = claudeAuthPathname(firstUrl);
+  if (!firstPath || !loginRequiredForService("claude", firstUrl)) return false;
+  if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
+  else await new Promise((resolve) => setTimeout(resolve, 250));
+  const secondUrl = page.url?.() || "";
+  const secondPath = claudeAuthPathname(secondUrl);
+  return firstPath === secondPath && loginRequiredForService("claude", secondUrl);
+}
+
 function sendPromptBase(service: WebAiService, chatUrl: string, started: number, overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const base: Record<string, unknown> = {
     response_text: "",
@@ -516,26 +538,13 @@ async function navigateClaudeFreshIfNeeded(page: any, args: any): Promise<void> 
   const freshUrl = args.incognito ? CLAUDE_INCOGNITO_FRESH_URL : CLAUDE_FRESH_URL;
   await page.goto?.(freshUrl, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
   await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
-  const settleMs = Math.min(args.timeout_ms || 60000, 8000);
+  const settleMs = Math.min(args.timeout_ms || 60000, 15000);
   const deadline = Date.now() + settleMs;
-  let lastNonAuthPath = "";
   while (Date.now() < deadline) {
     const remaining = Math.max(1, deadline - Date.now());
     const selector = await page.waitForSelector?.(serviceDefaults.claude.promptSelector, { state: "visible", timeout: Math.min(250, remaining) }).catch(() => undefined);
     if (selector) return;
-    try {
-      const parsed = new URL(page.url?.() || "");
-      const isClaudeHost = ["claude.ai", "www.claude.ai"].includes(parsed.hostname.toLowerCase());
-      const isAuthPath = /^\/(login|signup|logout)(\/|$)/i.test(parsed.pathname);
-      if (isClaudeHost && !isAuthPath) {
-        if (lastNonAuthPath === parsed.pathname) return;
-        lastNonAuthPath = parsed.pathname;
-      } else {
-        lastNonAuthPath = "";
-      }
-    } catch {
-      lastNonAuthPath = "";
-    }
+    if (loginRequiredForService("claude", page.url?.() || "")) return;
     await new Promise((resolve) => setTimeout(resolve, Math.min(250, Math.max(0, deadline - Date.now()))));
   }
 }
@@ -1101,12 +1110,14 @@ async function activateGeminiImageMode(page: any): Promise<void> {
 // (2026-05-15): clicking the menuitemcheckbox closes the drawer and replaces
 // the mode-picker affordance with button[aria-label="Deselect <tool>"], exactly
 // like "Deselect Create image". An optional zero-state chip is tried first.
-async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string; quotaGuard?: () => Promise<void> }): Promise<void> {
+const GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS = 15000;
+
+export async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string; quotaGuard?: () => Promise<void> }): Promise<void> {
   const isActive = async () => {
     const loc = page.locator?.(opts.activeSelector).first?.();
     return !!loc && !!(await loc.count?.().catch(() => 0));
   };
-  const waitForActive = async (timeout = 8000) => {
+  const waitForActive = async (timeout = GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS) => {
     if (typeof page.waitForSelector === "function") {
       await page.waitForSelector(opts.activeSelector, { state: "visible", timeout });
     }
@@ -1128,10 +1139,16 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
       : false;
     if (zeroVisible && zero && await zero.count?.().catch(() => 0)) {
       await robustClickLocator(page, zero, opts.zeroStateSelector, { timeout: 5000 }).catch(() => undefined);
-      if (await waitForActive().catch(() => false)) return;
+      try {
+        if (await waitForActive()) return;
+      } catch {
+        // Fall through to the Tools drawer path; final drawer/menu/pill evidence
+        // below must describe the last failing activation path.
+      }
       await opts.quotaGuard?.();
     }
   }
+  let activationSubCause: string | undefined;
   try {
     // The Gemini composer + Tools-drawer button mount AFTER domcontentloaded
     // via Angular hydration; an instant requireAndClick races that render and
@@ -1143,21 +1160,24 @@ async function activateGeminiToolMode(page: any, opts: { menuItemSelector: strin
     // timeout in that already-selected state.
     if (await isActive()) return;
     if (typeof page.waitForSelector === "function") {
-      await page.waitForSelector(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, { state: "visible", timeout: 15000 });
+      await page.waitForSelector(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
     }
     if (await isActive()) return;
     if (!(await drawerCanOpen())) throw new Error("Gemini Tools drawer is already selected or disabled");
     await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
-    await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: 8000 });
+    await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
     await requireAndClick(page, opts.menuItemSelector, `Gemini ${opts.toolName} menu item was not found`);
-    if (await waitForActive().catch(() => false)) return;
+    try {
+      if (await waitForActive()) return;
+    } catch (error: any) {
+      activationSubCause = error?.message || String(error);
+    }
     await opts.quotaGuard?.();
-  } catch (_error) {
-    // Fall through to the existing honest ELEMENT_NOT_FOUND contract code; do
-    // not synthesize success when the requested active pill never appeared.
+  } catch (error: any) {
+    activationSubCause = error?.message || String(error);
   }
   await opts.quotaGuard?.();
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}` });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}`, cause: activationSubCause || "active pill did not appear" });
 }
 
 async function activateGeminiCanvasMode(page: any): Promise<void> {
@@ -1277,7 +1297,9 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
   assertPromptAllowed(args.prompt);
   const timeout = args.timeout_ms || 60000;
   const completionTimeout = responseTimeoutMs(args);
-  if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
+  if (service === "claude") {
+    if (await stableClaudeLoginRequired(page)) return loginRequiredResponse(service, page, started);
+  } else if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
   if (service === "chatgpt" || service === "claude") await dismissPreExistingInterceptors(page);
   else await clickIfPresent(page, 'button[aria-label="Close"]');
   if (service === "gemini") await clickIfPresent(page, 'button:has-text("Not now")');
@@ -1510,8 +1532,12 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
     // Both services need a two-step CDP artifact-click: open an affordance,
     // then click the actual download control. ChatGPT: click the generated
     // image → full-screen viewer → Save. Gemini: more-menu → image-download.
-    const openSelector = service === "chatgpt" ? CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
-    const downloadSelector = service === "chatgpt" ? CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR : 'button[data-test-id="image-download-button"]';
+    const openSelector = service === "chatgpt"
+      ? ((runtime as any).artifactClick ? 'img[alt^="Generated image" i]' : CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR)
+      : GEMINI_IMAGE_RENDERED_SELECTOR;
+    const downloadSelector = service === "chatgpt"
+      ? ((runtime as any).artifactClick ? '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]' : CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR)
+      : 'button[data-test-id="image-download-button"]';
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
@@ -1688,7 +1714,7 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     }
     await throwIfGeminiVideoQuotaExhausted(page, 8000);
     record.progress_label = "submitting video prompt";
-    const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
+    const result = await sendPromptInExistingPage("gemini", { ...args, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
     if (result.errorCode) throw new WebAiToolError(String(result.errorCode), "Gemini video prompt failed before generation started");
     record.progress_label = "generating video (this can take 1-2 min)";
     try {

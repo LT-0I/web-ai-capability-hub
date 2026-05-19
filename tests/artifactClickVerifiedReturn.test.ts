@@ -133,6 +133,22 @@ test("recoverGovernedArtifactFromDisk returns ok false after bounded settle with
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 
+test("empty governed dir returns ok false within settleMs without fabricated path", async () => {
+  const dir = tempDir();
+  try {
+    assert.deepEqual(fs.readdirSync(dir), []);
+    const started = Date.now();
+    const before = Date.now();
+    const recovered = await recoverGovernedArtifactFromDisk(dir, started, 75);
+    const elapsed = Date.now() - before;
+    assert.deepEqual(recovered, { ok: false });
+    assert.equal(Object.prototype.hasOwnProperty.call(recovered, "realPath"), false);
+    assert.equal(Object.prototype.hasOwnProperty.call(recovered, "path"), false);
+    assert.ok(elapsed >= 75, `settled too early: ${elapsed}ms`);
+    assert.ok(elapsed < 1000, `settled too late: ${elapsed}ms`);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
 test("nothing on disk and no download events preserves original follow-up ELEMENT_NOT_FOUND", async () => {
   const dir = tempDir();
   try {
