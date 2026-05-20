@@ -40,7 +40,7 @@ test("ChatGPT image selectors use generated-image fallbacks and share-excluding 
 test("Gemini video prompt path falls back to the default Gemini composer", () => {
   const source = fs.readFileSync(path.join(process.cwd(), "src/mcp/tools.ts"), "utf8");
   const videoPromptBlock = source.slice(source.indexOf('record.progress_label = "submitting video prompt"'), source.indexOf('record.progress_label = "generating video'));
-  assert.equal(serviceDefaults.gemini.promptSelector, 'div[role="textbox"][aria-label="Enter a prompt for Gemini"]');
+  assert.equal(serviceDefaults.gemini.promptSelector, 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Ask Gemini"]');
   assert.match(videoPromptBlock, /sendPromptInExistingPage\("gemini",\s*\{ \.\.\.args, __expectImageResponse: true, __forceEnterToSend: true \}/);
   assert.doesNotMatch(videoPromptBlock, /__promptSelector:\s*GEMINI_IMAGE_PROMPT_SELECTOR/);
 });
@@ -62,12 +62,12 @@ function toolModePage(failStage: "drawer" | "menu" | "active", message: string):
     context: () => ({ newCDPSession: async () => ({ send: async () => undefined, detach: async () => undefined }) }),
     locator: (selector: string) => {
       if (selector === activeSelector) return new ToolModeLocator(0);
-      if (selector === "button.toolbox-drawer-button") return new ToolModeLocator(failStage === "drawer" ? 0 : 1);
+      if (selector === 'button[aria-label="Upload & tools"]') return new ToolModeLocator(failStage === "drawer" ? 0 : 1);
       if (selector === '[role="menuitemcheckbox"]:has-text("Create video")') return new ToolModeLocator(failStage === "menu" ? 0 : 1);
       return new ToolModeLocator(0);
     },
     waitForSelector: async (selector: string) => {
-      if (selector === "button.toolbox-drawer-button" && failStage === "drawer") throw new Error(message);
+      if (selector === 'button[aria-label="Upload & tools"]' && failStage === "drawer") throw new Error(message);
       if (selector === '[role="menuitemcheckbox"]:has-text("Create video")' && failStage === "menu") throw new Error(message);
       if (selector === activeSelector && failStage === "active") throw new Error(message);
       return {};

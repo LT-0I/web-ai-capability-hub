@@ -2216,7 +2216,7 @@ test("gemini upload-and-query intercepts filechooser before clicking upload-file
     const loc: any = {
       first: () => loc,
       last: () => loc,
-      count: async () => selector.includes("Open upload file menu") || selector.includes("local-images-files-uploader-button") || selector.includes("Send message") ? 1 : 0,
+      count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Send message") ? 1 : 0,
       waitFor: async () => { calls.push(`waitFor:${selector}`); },
       fill: async () => { calls.push(`fill:${selector}`); },
       click: async () => { calls.push(`click:${selector}`); },
@@ -2229,9 +2229,9 @@ test("gemini upload-and-query intercepts filechooser before clicking upload-file
   assert.deepEqual(setFilesCalls, [[path.resolve(file)]]);
   assert.equal(calls.some((c) => c === 'waitForSelector:input[type="file"]'), false, calls.join("\n"));
   assert.equal(calls.some((c) => c === 'setInputFiles:input[type="file"]'), false, calls.join("\n"));
-  const menuWaitIndex = calls.findIndex((c) => c.startsWith('waitForSelector:button[data-test-id="local-images-files-uploader-button"]'));
+  const menuWaitIndex = calls.findIndex((c) => c.includes('[role="menuitem"][aria-label^="Upload files"]') && c.startsWith('waitForSelector:'));
   const chooserWaitIndex = calls.findIndex((c) => c === "waitForEvent:filechooser:15000");
-  const menuClickIndex = calls.findIndex((c) => c.startsWith('click:button[data-test-id="local-images-files-uploader-button"]'));
+  const menuClickIndex = calls.findIndex((c) => c.startsWith('click:[role="menuitem"][aria-label^="Upload files"]'));
   const setFilesIndex = calls.findIndex((c) => c === "chooser.setFiles");
   assert.ok(menuWaitIndex >= 0, calls.join("\n"));
   assert.ok(chooserWaitIndex > menuWaitIndex, calls.join("\n"));
@@ -2284,7 +2284,7 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
     const loc: any = {
       first: () => loc,
       last: () => loc,
-      count: async () => selector.includes("Open upload file menu") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
+      count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
@@ -2317,7 +2317,7 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when post-upload response 
     const loc: any = {
       first: () => loc,
       last: () => loc,
-      count: async () => selector.includes("Open upload file menu") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
+      count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
@@ -2392,7 +2392,7 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when filechooser never ope
     const loc: any = {
       first: () => loc,
       last: () => loc,
-      count: async () => selector.includes("Open upload file menu") || selector.includes("local-images-files-uploader-button") ? 1 : 0,
+      count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
@@ -2404,7 +2404,7 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when filechooser never ope
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
-  assert.equal(result.selector, 'button[data-test-id="local-images-files-uploader-button"]');
+  assert.equal(result.selector, '[role="menuitem"][aria-label^="Upload files"]');
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
@@ -2416,14 +2416,16 @@ test("gemini upload-and-query returns ELEMENT_NOT_FOUND when upload-files item i
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.waitForEvent = async () => { waitForEventTouched = true; };
   page.waitForSelector = async (selector: string) => {
-    if (selector === 'button[data-test-id="local-images-files-uploader-button"]') throw new Error("not visible");
+    // Post-revamp: impl waits for the Upload files menuitem after opening Upload & tools.
+    // The "upload-files item is absent" condition is simulated by throwing on that selector.
+    if (selector.includes('[role="menuitem"][aria-label^="Upload files"]')) throw new Error("not visible");
   };
   page.setInputFiles = async () => { throw new Error("stale setInputFiles path should not run"); };
   page.locator = (selector: string) => {
     const loc: any = {
       first: () => loc,
       last: () => loc,
-      count: async () => selector.includes("Open upload file menu") ? 1 : 0,
+      count: async () => selector.includes("Upload & tools") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
@@ -2435,7 +2437,7 @@ test("gemini upload-and-query returns ELEMENT_NOT_FOUND when upload-files item i
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.error_code, "ELEMENT_NOT_FOUND");
-  assert.equal(result.selector, 'button[data-test-id="local-images-files-uploader-button"]');
+  assert.match(result.selector, /\[role="menuitem"\]\[aria-label\^="Upload files"\]/);
   assert.equal(waitForEventTouched, false);
   fs.rmSync(dir, { recursive: true, force: true });
 });
@@ -2488,7 +2490,7 @@ test("gemini generate-image returns ELEMENT_NOT_FOUND when Create image button w
   };
   const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-button-missing", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
-  assert.match(result.expected_selector, /button\[aria-label\*=\"Create image\"\].*toolbox-drawer-button.*menuitemcheckbox/);
+  assert.match(result.expected_selector, /button\[aria-label\*=\"Create image\"\].*Upload & tools.*menuitemcheckbox/);
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app?hl=en"]);
 });
 

@@ -3,8 +3,10 @@ import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 import { BrowserToolRuntime, ToolSpec, withManagedPage } from "../../tools";
 import {
   GEMINI_MUSIC_URL,
+  MUSIC_COMPOSER_SELECTOR,
   MUSIC_DOWNLOAD_BTN_SELECTOR,
   MUSIC_STOP_SELECTOR,
+  MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR,
   GeminiMusicFormat,
   stepActivateMusicTool,
   stepDownloadTrack,
@@ -65,7 +67,7 @@ export async function webAiGeminiMusicGenerate(args: any, runtime: Required<Brow
     if (!effective.tab_url_contains && /\/app\/[^/?#]+/.test(page.url?.() || "")) {
       await page.goto?.(GEMINI_MUSIC_URL, { waitUntil: "domcontentloaded", timeout: Math.min(Number(effective.timeout_ms || 30000), 30000) });
     }
-    await page.waitForSelector?.('div[role="textbox"][aria-label="Enter a prompt for Gemini"], button.toolbox-drawer-button', { state: "visible", timeout: Math.min(Number(effective.timeout_ms || 15000), 15000) }).catch(() => undefined);
+    await page.waitForSelector?.(`${MUSIC_COMPOSER_SELECTOR}, ${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR}`, { state: "visible", timeout: Math.min(Number(effective.timeout_ms || 15000), 15000) }).catch(() => undefined);
     await stepActivateMusicTool(page);
     const sent = await stepGenerateTrack(page, { prompt: String(effective.prompt), confirmed: true, timeoutMs: Number(effective.timeout_ms || 180000) });
     if ((sent as any).errorCode) return sent;

@@ -309,7 +309,7 @@ type WebAiService = "chatgpt" | "claude" | "gemini";
 export const serviceDefaults: Record<WebAiService, { url: string; promptSelector: string }> = {
   chatgpt: { url: "https://chatgpt.com/", promptSelector: "#prompt-textarea" },
   claude: { url: "https://claude.ai/new", promptSelector: '[contenteditable="true"], #prompt-textarea' },
-  gemini: { url: "https://gemini.google.com/app", promptSelector: 'div[role="textbox"][aria-label="Enter a prompt for Gemini"]' }
+  gemini: { url: "https://gemini.google.com/app", promptSelector: 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Ask Gemini"]' }
 };
 
 const profileLeases = new Map<string, string>();
@@ -379,7 +379,8 @@ const GEMINI_REGENERATE_BUTTON_SELECTOR = 'button[data-test-id="regenerate-butto
 // chrome; the bare <model-response> textContent carries a leading "Gemini said").
 const GEMINI_LATEST_RESPONSE_SELECTOR = "model-response";
 const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-content", ".markdown"];
-const GEMINI_UPLOAD_TRIGGER_SELECTOR = "button[aria-label=\"Open upload file menu\"]";
+const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
+const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
 const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
 const CHATGPT_IMAGE_MENU_BUTTON_SELECTOR = "#composer-plus-btn";
@@ -398,21 +399,19 @@ const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
 export const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = '[class*="imagegen-image"] [role="button"][aria-labelledby], [id^="image-"] [role="button"][aria-labelledby], img[alt^="Generated image" i]';
 export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'xpath=//*[@data-testid="fullscreen-shell-header-content"]//button[@aria-label="Save" or @aria-label="Download" or contains(translate(@aria-label,"DOWNLOAD","download"),"download")] | //*[contains(@class,"pointer-events-auto")][.//button[@aria-label="Edit image"]]//button[not(@aria-label="Edit image") and not(contains(translate(@aria-label,"SHARE","share"),"share"))][last()]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
-const GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR = "button.toolbox-drawer-button";
-const GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR = 'xpath=//button[.//text()[contains(.,"Tools")] or @aria-label="Tools"]';
-const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Deep research"]';
-const GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Canvas"]';
-const GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR = 'xpath=//*[@id="toolbox-drawer-menu"]//button[normalize-space(.)="Guided learning"]';
+const GEMINI_MORE_TOOLS_SUBMENU_SELECTOR = 'button[aria-label="More tools"], [role="menuitem"]:has-text("More tools")';
+const GEMINI_CONVERSATION_MORE_OPTIONS_SELECTOR_PREFIX = 'button[aria-label^="More options for "]';
+const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Deep research")';
+const GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Guided learning")';
 const GEMINI_SEND_MESSAGE_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
 const GEMINI_CANVAS_BODY_SELECTOR = 'xpath=(//div[@contenteditable="true"])[last()]';
-const GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR = 'button[aria-label="Open menu for conversation actions."]';
 const GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR = 'button[aria-label="Share conversation"]';
 const GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create image")';
 const GEMINI_IMAGE_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
 const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[data-test-id="more-menu-button"]';
 // Live-observed 2026-05-15 (gemini-9225, account "Shark 7", Fast tier).
 // Canvas → Google Docs export flow:
-//   1. Tools drawer (button.toolbox-drawer-button) → Canvas menuitemcheckbox
+//   1. Upload & tools menu → Canvas menuitemcheckbox
 //      ([role="menuitemcheckbox"]:has-text("Canvas")); active-mode pill becomes
 //      button[aria-label="Deselect Canvas"].
 //   2. Send the prompt; Gemini renders a Canvas document inside the turn.
@@ -427,11 +426,11 @@ const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]
 const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"]';
 const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = 'button[data-test-id="export-to-docs-button"]';
 const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
-// Veo video generation flow (same composer): Tools drawer → Create video
+// Veo video generation flow (same composer): Upload & tools → Create video
 // menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
-const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '#toolbox-drawer-menu button[role="menuitemcheckbox"]:has-text("Create video"), #toolbox-drawer-menu button:has-text("Create video"), [role="menuitemcheckbox"]:has-text("Create video")';
+const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
 const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), form button[aria-haspopup="menu"]:has-text("Heavy"), button.__composer-pill[aria-haspopup="menu"], main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
 const CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR = '[role="menu"] [role="menuitemradio"][aria-checked="true"], [role="menuitemradio"][aria-checked="true"]';
 const CHATGPT_INSTANT_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"]';
@@ -454,7 +453,7 @@ const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-labe
 const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
 const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
-const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"], toolbox-drawer button.toolbox-drawer-item-deselect-button[aria-label*="Create video" i]';
+const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"]';
 const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'generated-video button[aria-label="Download video"], video-player button.download-button[aria-label*="Download" i], button[aria-label="Download video"]';
 const GEMINI_VIDEO_QUOTA_TEXT_SIGNAL = 'snapshot.visibleText:/video generation limit/i';
 const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
@@ -726,7 +725,7 @@ async function enableClaudeWebSearch(page: any): Promise<void> {
 }
 
 async function enableGeminiWebSearch(page: any): Promise<void> {
-  await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
+  await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
   try { await page.waitForSelector?.(GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
   await requireAndClick(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, "Gemini Google Search menuitemcheckbox was not found");
 }
@@ -1085,24 +1084,33 @@ async function activateGeminiImageMode(page: any): Promise<void> {
     if (typeof after === "string" && after.includes("Deselect Create image")) return;
   }
 
+  // Upload & tools menu → Create image menuitemcheckbox. Material menu closes
+  // on click, so the menuitem detaches; the canonical post-activation signal
+  // is the composer pill button[aria-label="Deselect Create image"] (same
+  // pattern as activateGeminiToolMode uses for Canvas/Create video).
   try {
-    await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
+    await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
     await page.waitForSelector?.(GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 });
     const menuItem = page.locator?.(GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR).first?.();
     if (menuItem && await menuItem.count?.().catch(() => 0)) {
       const before = typeof menuItem.getAttribute === "function" ? await menuItem.getAttribute("aria-checked").catch(() => undefined) : undefined;
       if (before === "true" || before === "mixed") return;
       await robustClickLocator(page, menuItem, GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR, { timeout: 5000 });
-      if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
-      const after = typeof menuItem.getAttribute === "function" ? await menuItem.getAttribute("aria-checked").catch(() => undefined) : undefined;
-      const checked = typeof menuItem.isChecked === "function" ? await menuItem.isChecked().catch(() => false) : false;
-      if (after === "true" || after === "mixed" || checked) return;
+      // Material auto-closes the menu on click. Wait for the in-composer
+      // "Deselect Create image" pill — that's the live-observed activation
+      // signal post-revamp (parallel to Canvas/Video at activateGeminiToolMode).
+      try {
+        await page.waitForSelector?.('button[aria-label="Deselect Create image"]', { state: "visible", timeout: 5000 });
+        return;
+      } catch (_e) {
+        // The pill never appeared; fall through to ELEMENT_NOT_FOUND.
+      }
     }
   } catch (_error) {
-    // Fall through to a stable ELEMENT_NOT_FOUND with both real UI affordances in evidence.
+    // Reach the bottom throw with both selector paths captured in evidence.
   }
 
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate from the zero-state chip or Tools drawer", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR}` });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate from the zero-state chip or Upload & tools menu", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR} -> button[aria-label="Deselect Create image"]` });
 }
 
 // Activate a Gemini Tools-drawer mode (Canvas / Create video) and confirm via
@@ -1124,7 +1132,7 @@ export async function activateGeminiToolMode(page: any, opts: { menuItemSelector
     return await isActive();
   };
   const drawerCanOpen = async () => {
-    const drawer = page.locator?.(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR).first?.();
+    const drawer = page.locator?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR).first?.();
     if (!drawer || !(await drawer.count?.().catch(() => 0))) return false;
     const className = typeof drawer.getAttribute === "function" ? await drawer.getAttribute("class").catch(() => "") : "";
     const ariaDisabled = typeof drawer.getAttribute === "function" ? await drawer.getAttribute("aria-disabled").catch(() => "") : "";
@@ -1142,7 +1150,7 @@ export async function activateGeminiToolMode(page: any, opts: { menuItemSelector
       try {
         if (await waitForActive()) return;
       } catch {
-        // Fall through to the Tools drawer path; final drawer/menu/pill evidence
+        // Fall through to the Upload & tools path; final menu/pill evidence
         // below must describe the last failing activation path.
       }
       await opts.quotaGuard?.();
@@ -1160,11 +1168,11 @@ export async function activateGeminiToolMode(page: any, opts: { menuItemSelector
     // timeout in that already-selected state.
     if (await isActive()) return;
     if (typeof page.waitForSelector === "function") {
-      await page.waitForSelector(GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+      await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
     }
     if (await isActive()) return;
-    if (!(await drawerCanOpen())) throw new Error("Gemini Tools drawer is already selected or disabled");
-    await requireAndClick(page, GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR, "Gemini Tools drawer button was not found");
+    if (!(await drawerCanOpen())) throw new Error("Gemini Upload & tools menu is already selected or disabled");
+    await openGeminiUploadToolsMenu(page, { exposeMoreTools: opts.toolName === "Create music" || opts.toolName === "Guided learning" });
     await page.waitForSelector?.(opts.menuItemSelector, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
     await requireAndClick(page, opts.menuItemSelector, `Gemini ${opts.toolName} menu item was not found`);
     try {
@@ -1177,7 +1185,7 @@ export async function activateGeminiToolMode(page: any, opts: { menuItemSelector
     activationSubCause = error?.message || String(error);
   }
   await opts.quotaGuard?.();
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Tools drawer`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_TOOLBOX_DRAWER_BUTTON_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}`, cause: activationSubCause || "active pill did not appear" });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini ${opts.toolName} tool did not activate from the zero-state chip or Upload & tools menu`, { selector: `${opts.zeroStateSelector || ""} OR ${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${opts.menuItemSelector} -> ${opts.activeSelector}`, cause: activationSubCause || "active pill did not appear" });
 }
 
 async function activateGeminiCanvasMode(page: any): Promise<void> {
@@ -1260,33 +1268,20 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
     if (service === "claude") await waitForClaudeAttachmentReadyAfterUpload(page, resolved);
     return;
   }
-  // The Gemini composer (and its upload-trigger button) mounts AFTER
-  // domcontentloaded via Angular; an instant count() check races the render
-  // and spuriously throws ELEMENT_NOT_FOUND at wait_ms=0. Wait for the button
-  // to actually be present/visible first (bounded), then click.
-  try {
-    await page.waitForSelector?.(GEMINI_UPLOAD_TRIGGER_SELECTOR, { state: "visible", timeout: 15000 });
-  } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload trigger button was not found", { selector: GEMINI_UPLOAD_TRIGGER_SELECTOR, cause: error?.message || String(error) });
-  }
-  await requireAndClick(page, GEMINI_UPLOAD_TRIGGER_SELECTOR, "Gemini upload trigger button was not found");
-  try {
-    await page.waitForSelector?.(GEMINI_UPLOAD_FILES_SELECTOR, { state: "visible", timeout: 10000 });
-  } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menu item was not found after opening the upload menu", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: error?.message || String(error) });
-  }
+  // Gemini unified upload entry: Upload & tools -> Upload files menuitem.
+  await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
   let chooser: any;
   try {
     [chooser] = await Promise.all([
       page.waitForEvent?.("filechooser", { timeout: 15000 }),
-      requireAndClick(page, GEMINI_UPLOAD_FILES_SELECTOR, "Gemini upload-files menu item was not found"),
+      requireAndClick(page, GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, "Gemini Upload files menuitem was not found"),
     ]);
   } catch (error: any) {
     if (error instanceof WebAiToolError) throw error;
-    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini upload did not open a file chooser", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: error?.message || String(error) });
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini upload did not open a file chooser", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, cause: error?.message || String(error) });
   }
   if (!chooser || typeof chooser.setFiles !== "function") {
-    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini file chooser was not intercepted", { selector: GEMINI_UPLOAD_FILES_SELECTOR });
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini file chooser was not intercepted", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR });
   }
   await chooser.setFiles(resolved);
   await page.locator?.(GEMINI_UPLOAD_CHIP_SELECTOR).first?.().waitFor?.({ state: "visible", timeout: 30000 });
@@ -1600,7 +1595,7 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
     return await withManagedPage(args, runtime, targetUrlFor("gemini", args), async (page) => {
       await navigateGeminiFreshIfNeeded(page, { ...args, __forceFreshComposer: true });
       if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
-      // 1. Activate Canvas mode (Tools drawer -> Canvas; ELEMENT_NOT_FOUND if absent).
+      // 1. Activate Canvas mode (Upload & tools -> Canvas; ELEMENT_NOT_FOUND if absent).
       try {
         await activateGeminiCanvasMode(page);
       } catch (error: any) {
@@ -1660,7 +1655,7 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
 }
 
 // Drive the real Gemini (Veo) video generation flow, live-observed 2026-05-15:
-// fresh composer -> activate Create video (Tools drawer / zero-state chip) ->
+// fresh composer -> activate Create video (Upload & tools / zero-state chip) ->
 // send prompt -> "Generating your video..." (~1-2 min) -> a video player with
 // button[aria-label="Download video"] renders -> CDP artifact-click downloads
 // the file. ~105s observed for an 8s clip on Fast tier. Honest terminal
@@ -2432,11 +2427,26 @@ function geminiConversationTarget(tabUrlContains?: string): string {
   return serviceDefaults.gemini.url;
 }
 
-async function openGeminiToolsDrawer(page: any): Promise<void> {
-  if (typeof page.waitForSelector === "function") {
-    await page.waitForSelector(GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR, { state: "visible", timeout: 15000 }).catch(() => undefined);
+async function openGeminiUploadToolsMenu(page: any, opts: { exposeMoreTools?: boolean } = {}): Promise<void> {
+  try {
+    await page.waitForSelector?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: 15000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, cause: error?.message || String(error) });
   }
-  await requireAndClick(page, GEMINI_TOOLS_DRAWER_DYNAMIC_SELECTOR, "Gemini Tools drawer button was not found");
+  await requireAndClick(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, "Gemini Upload & tools button was not found");
+  try {
+    await page.waitForSelector?.(`${GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR}, [role="menuitemcheckbox"]`, { state: "visible", timeout: 5000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools menu did not open", { selector: `${GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR}, [role="menuitemcheckbox"]`, cause: error?.message || String(error) });
+  }
+  if (opts.exposeMoreTools === true) {
+    await requireAndClick(page, GEMINI_MORE_TOOLS_SUBMENU_SELECTOR, "Gemini More tools sub-menu trigger was not found");
+    try {
+      await page.waitForSelector?.('[role="menuitemcheckbox"]:has-text("Create music"), [role="menuitemcheckbox"]:has-text("Guided learning")', { state: "visible", timeout: 3000 });
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini More tools sub-menu did not expand", { selector: '[role="menuitemcheckbox"]:has-text("Create music"), [role="menuitemcheckbox"]:has-text("Guided learning")', cause: error?.message || String(error) });
+    }
+  }
 }
 
 async function fillGeminiComposer(page: any, prompt: string): Promise<void> {
@@ -2461,7 +2471,7 @@ async function startGeminiDeepResearch(args: any, runtime: Required<BrowserToolR
     return await withManagedPage(effective, runtime, targetUrlFor("gemini", effective), async (page) => {
       await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
       if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
-      await openGeminiToolsDrawer(page);
+      await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
       await page.waitForSelector?.(GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 });
       await requireAndClick(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, "Gemini Deep research menuitemcheckbox was not found");
       await fillGeminiComposer(page, effective.prompt);
@@ -2495,9 +2505,9 @@ async function editGeminiCanvas(args: any, runtime: Required<BrowserToolRuntime>
     if (effective.prompt) {
       await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
       if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
-      await openGeminiToolsDrawer(page);
-      await page.waitForSelector?.(GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR, { state: "visible", timeout: 8000 });
-      await requireAndClick(page, GEMINI_CANVAS_MENUITEM_DYNAMIC_SELECTOR, "Gemini Canvas menuitemcheckbox was not found");
+      await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
+      await page.waitForSelector?.(GEMINI_CANVAS_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 });
+      await requireAndClick(page, GEMINI_CANVAS_MENUITEM_SELECTOR, "Gemini Canvas menuitemcheckbox was not found");
       await fillGeminiComposer(page, effective.prompt);
       await clickGeminiSendMessage(page);
       await page.waitForSelector?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
@@ -2568,12 +2578,32 @@ async function manageGeminiConversation(args: any, runtime: Required<BrowserTool
       await requireAndClick(page, GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR, "Gemini share conversation button was not found");
       return safeOutput({ dialog_opened: true });
     }
-    try {
-      await page.waitForSelector?.(GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, { state: "visible", timeout: 10000 });
-    } catch (error: any) {
-      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini conversation actions menu button was not found", { selector: GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, cause: error?.message || String(error) });
+    const m = (page.url?.() || "").match(/\/app\/([^?#/]+)/);
+    if (!m) {
+      throw new WebAiToolError(
+        ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+        "Gemini conversation_manage menu_enumerate requires an open conversation (/app/<id>); page is on /app root",
+        { pageUrl: page.url?.() || "" }
+      );
     }
-    await requireAndClick(page, GEMINI_CONVERSATION_ACTIONS_MENU_SELECTOR, "Gemini conversation actions menu button was not found");
+    const convId = m[1];
+    const card = page.locator(`a[href*="/app/${convId}"]`).first();
+    let title: string;
+    try {
+      title = ((await card.getAttribute("aria-label", { timeout: 4000 })) || "").trim();
+    } catch (_e) {
+      title = "";
+    }
+    if (!title) {
+      throw new WebAiToolError(
+        ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+        "Gemini conversation card aria-label not resolvable for currently loaded conversation",
+        { convId }
+      );
+    }
+    const kebab = page.getByRole("button", { name: `More options for ${title}`, exact: true });
+    await kebab.waitFor({ state: "visible", timeout: 10000 });
+    await kebab.click();
     const menuItems = page.locator('[role="menu"] [role="menuitem"], .mat-mdc-menu-panel [role="menuitem"], .mat-mdc-menu-panel button');
     const items = await textListFromLocator(menuItems);
     return safeOutput({ items });
@@ -2604,7 +2634,7 @@ async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRu
       summary = `${count} Gem conversation link(s) visible`;
     } else if (effective.surface === "study") {
       await page.goto?.(serviceDefaults.gemini.url, { waitUntil: "domcontentloaded", timeout: 30000 });
-      await openGeminiToolsDrawer(page);
+      await openGeminiUploadToolsMenu(page, { exposeMoreTools: true });
       await page.waitForSelector?.(GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }).catch(() => undefined);
       const count = await page.locator?.(GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR).count?.().catch(() => 0) || 0;
       summary = count ? "Guided learning tool is visible (observe-only)" : "Guided learning tool was not confirmed visible";
