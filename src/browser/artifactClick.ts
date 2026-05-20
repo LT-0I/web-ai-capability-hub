@@ -446,23 +446,23 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
       }
       const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls) || String(meta?.mimeType || "").toLowerCase().startsWith("image/");
       if (!shouldTryBody) return;
-      let lastReason = "";
       for (let attempt = 0; attempt < 4; attempt++) {
         const r = sessionId
-          ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => { lastReason = "rejected"; return {} as any; })
-          : await sess.send("Network.getResponseBody", { requestId }).catch(() => { lastReason = "rejected"; return {} as any; });
+          ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => { networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "rejected"; return {} as any; })
+          : await sess.send("Network.getResponseBody", { requestId }).catch(() => { networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "rejected"; return {} as any; });
         if (r?.body) {
           const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
           if (imageMagicExt(buf) !== null) {
             networkCapture.bodies.set(requestId, { url, finishedAt, buf });
             networkCapture.bufferedBytes += buf.length;
+            return;
           }
+          networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "no-magic";
           return;
         }
-        lastReason = lastReason || "empty";
+        networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "empty";
         await sleep(8);
       }
-      if (lastReason) networkCapture.lastBodyReadFailReason = lastReason;
     } catch {
       // Passive capture only; misses fall through to existing governed recovery.
     }
@@ -471,7 +471,31 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
     sess.on?.("Network.responseReceived", (event: any) => {
       if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
       if (!event?.requestId) return;
-      networkCapture.responses.set(String(event.requestId), { url: String(event.response?.url || ""), mimeType: String(event.response?.mimeType || "") });
+      const requestId = String(event.requestId);
+      const url = String(event.response?.url || "");
+      const mime = String(event.response?.mimeType || "").toLowerCase();
+      networkCapture.responses.set(requestId, { url, mimeType: mime });
+      const shouldStream = mime.startsWith("image/") || matchesKnownPointer(url, networkCapture.pointerUrls);
+      if (!shouldStream) return;
+      void (async () => {
+        try {
+          await sess.send("Network.streamResourceContent", { requestId }).catch(() => undefined);
+          const chunks: Buffer[] = [];
+          while (true) {
+            const chunk: any = await sess.send("IO.read", { handle: requestId }).catch(() => undefined);
+            if (!chunk) { networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "stream-rejected"; return; }
+            if (chunk.data) chunks.push(Buffer.from(chunk.data, chunk.base64Encoded ? "base64" : "utf8"));
+            if (chunk.eof) { await sess.send("IO.close", { handle: requestId }).catch(() => undefined); break; }
+          }
+          const buf = Buffer.concat(chunks);
+          if (buf.length === 0) { networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "stream-empty"; return; }
+          if (imageMagicExt(buf) === null) { networkCapture.lastBodyReadFailReason = networkCapture.lastBodyReadFailReason || "stream-magic"; return; }
+          networkCapture.bodies.set(requestId, { url, finishedAt: now(), buf });
+          networkCapture.bufferedBytes += buf.length;
+        } catch {
+          // Passive capture only; misses fall through to existing R8 Pass-1/2 + governed recovery.
+        }
+      })();
     });
     sess.on?.("Network.loadingFinished", (event: any) => {
       if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
@@ -486,14 +510,14 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   pageCdp.on?.("Target.attachedToTarget", (event: any) => {
     const sessionId = event?.sessionId ? String(event.sessionId) : "";
     if (!sessionId) return;
-    pageCdp.send("Network.enable", {}, sessionId).catch(() => undefined);
+    pageCdp.send("Network.enable", {}).catch(() => undefined);
     registerRawNetworkCapture(sessionId);
   });
   await pageCdp.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: false, flatten: true }).catch(() => undefined);
   bcdp.on?.("Target.attachedToTarget", (event: any) => {
     const sessionId = event?.sessionId ? String(event.sessionId) : "";
     if (!sessionId) return;
-    bcdp.send("Network.enable", {}, sessionId).catch(() => undefined);
+    bcdp.send("Network.enable", {}).catch(() => undefined);
     registerRawNetworkCaptureOn(bcdp, sessionId);
   });
   await bcdp.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: false, flatten: true }).catch(() => undefined);
@@ -586,6 +610,8 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
     if (!r?.body) continue;
     const buf = Buffer.from(r.body, r.base64Encoded ? "base64" : "utf8");
     if (!hasExpectedMagic(buf)) continue;
+    capture.bodies.set(requestId, { url: String(meta?.url || ""), finishedAt: capture.finishedAt.get(requestId) ?? now(), buf });
+    capture.bufferedBytes += buf.length;
     fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId, buf)), buf);
     return true;
   }
@@ -597,6 +623,8 @@ async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: str
     const hasMagic = hasExpectedMagic(buf);
     if (normalizedExpectedFormat === "png" && !String(meta?.mimeType || "").toLowerCase().startsWith("image/") && !hasMagic) continue;
     if (!hasMagic) continue;
+    capture.bodies.set(requestId, { url: String(meta?.url || ""), finishedAt: capture.finishedAt.get(requestId) ?? now(), buf });
+    capture.bufferedBytes += buf.length;
     fs.writeFileSync(path.join(downloadDir, expectedFilename(requestId, buf)), buf);
     return true;
   }
