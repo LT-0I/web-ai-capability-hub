@@ -382,7 +382,13 @@ const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-c
 const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
 const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
-const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label*=\"Remove file\"]";
+// Post-revamp 2026-05-20: aria-label changed from "Remove file" to lowercase
+// "close <filename>" format (e.g. "close probe-upload"). The button itself sits
+// inside an UPLOADER-FILE-PREVIEW-CONTAINER row with visibility:hidden until
+// the row receives hover (handled by the xpath=ancestor::*[1] hover step at the
+// call site). The lowercase-strict ^="close " avoids matching "Close sidebar"
+// (capital C) which is a different visible button.
+const GEMINI_UPLOAD_CHIP_SELECTOR = "button[aria-label^=\"close \"]";
 const CHATGPT_IMAGE_MENU_BUTTON_SELECTOR = "#composer-plus-btn";
 const CHATGPT_CREATE_IMAGE_RADIO_SELECTOR = '[role="menuitemradio"]:has-text("Create image")';
 // After selecting "Create image" the Radix menu closes and the menuitemradio is
@@ -1284,7 +1290,17 @@ async function uploadFilesInExistingPage(service: WebAiService, page: any, resol
     throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini file chooser was not intercepted", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR });
   }
   await chooser.setFiles(resolved);
-  await page.locator?.(GEMINI_UPLOAD_CHIP_SELECTOR).first?.().waitFor?.({ state: "visible", timeout: 30000 });
+  // Material per-chip-hover affordance: Remove-file button (=GEMINI_UPLOAD_CHIP_SELECTOR)
+  // is in DOM with visibility:hidden until an ancestor chip row receives hover.
+  // ancestor::*[1] is GEM-ICON-BUTTON which is itself visibility:hidden (silent
+  // actionability fail under Playwright). ancestor::*[2] is SPAN.gem-attachment-content
+  // which is visibility:visible and IS the actual chip-row container whose
+  // :hover state flips the button visibility. Confirmed via live probe
+  // probe-chip-hover-level.mjs against gemini-9225 on 2026-05-20.
+  // Honest convergence: hover failure routes to the same waitFor below, no fallback layer.
+  const chip = page.locator?.(GEMINI_UPLOAD_CHIP_SELECTOR).first?.();
+  await chip?.locator?.("xpath=ancestor::*[2]").first?.().hover?.({ timeout: 5000 }).catch?.(() => undefined);
+  await chip?.waitFor?.({ state: "visible", timeout: 30000 });
   await waitForGeminiSendReadyAfterUpload(page);
 }
 
@@ -2587,7 +2603,11 @@ async function manageGeminiConversation(args: any, runtime: Required<BrowserTool
       );
     }
     const convId = m[1];
-    const card = page.locator(`a[href*="/app/${convId}"]`).first();
+    // href^= anchors at start of href to exclude the Google Account sign-out link
+    // whose href is https://accounts.google.com/SignOutOptions?...continue=.../app/<id>...
+    // (a substring match `href*="/app/<id>"` would match BOTH that account link AND
+    // the actual conv card; .first() would grab whichever rendered first.)
+    const card = page.locator(`a[href^="/app/${convId}"]`).first();
     let title: string;
     try {
       title = ((await card.getAttribute("aria-label", { timeout: 4000 })) || "").trim();
@@ -2602,6 +2622,11 @@ async function manageGeminiConversation(args: any, runtime: Required<BrowserTool
       );
     }
     const kebab = page.getByRole("button", { name: `More options for ${title}`, exact: true });
+    // Material per-card-hover affordance: kebab is in DOM with visibility:hidden
+    // until the parent conversation card receives hover. Honest convergence: if the
+    // hover fails or doesn't flip the CSS state, the subsequent waitFor surfaces
+    // the same ELEMENT_NOT_FOUND with selector context — no fallback layer.
+    await card.hover({ timeout: 5000 }).catch(() => undefined);
     await kebab.waitFor({ state: "visible", timeout: 10000 });
     await kebab.click();
     const menuItems = page.locator('[role="menu"] [role="menuitem"], .mat-mdc-menu-panel [role="menuitem"], .mat-mdc-menu-panel button');

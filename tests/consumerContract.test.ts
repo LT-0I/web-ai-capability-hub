@@ -2216,6 +2216,8 @@ test("gemini upload-and-query intercepts filechooser before clicking upload-file
     const loc: any = {
       first: () => loc,
       last: () => loc,
+      locator: () => loc,
+      hover: async () => undefined,
       count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Send message") ? 1 : 0,
       waitFor: async () => { calls.push(`waitFor:${selector}`); },
       fill: async () => { calls.push(`fill:${selector}`); },
@@ -2284,6 +2286,8 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
     const loc: any = {
       first: () => loc,
       last: () => loc,
+      locator: () => loc,
+      hover: async () => undefined,
       count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
@@ -2317,6 +2321,8 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when post-upload response 
     const loc: any = {
       first: () => loc,
       last: () => loc,
+      locator: () => loc,
+      hover: async () => undefined,
       count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") || selector.includes("Remove file") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
@@ -2392,6 +2398,8 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when filechooser never ope
     const loc: any = {
       first: () => loc,
       last: () => loc,
+      locator: () => loc,
+      hover: async () => undefined,
       count: async () => selector.includes("Upload & tools") || selector.includes("Upload files") || selector.includes("local-images-files-uploader-button") ? 1 : 0,
       waitFor: async () => undefined,
       fill: async () => undefined,
