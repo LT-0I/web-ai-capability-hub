@@ -381,6 +381,8 @@ interface NetworkCaptureState {
   imageGatePassed: number;
   streamArmAttempts: number;
   eagerRawBodyEntries: number;
+  resourceTreeMatches: number;
+  resourceContentRetrieved: number;
 }
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
@@ -450,7 +452,7 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   } catch {
     bodyCdp = pageCdp;
   }
-  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [], bufferedBytes: 0, responseReceivedSeen: 0, imageGatePassed: 0, streamArmAttempts: 0, eagerRawBodyEntries: 0 };
+  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [], bufferedBytes: 0, responseReceivedSeen: 0, imageGatePassed: 0, streamArmAttempts: 0, eagerRawBodyEntries: 0, resourceTreeMatches: 0, resourceContentRetrieved: 0 };
   const eagerRawBody = async (sess: any, requestId: string, meta: { url: string; mimeType: string } | undefined, finishedAt: number, sessionId?: string) => {
     try {
       const url = String(meta?.url || "");
@@ -609,9 +611,72 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   return bcdp;
 }
 
-async function materializeNetworkCapturedArtifact(pageCdp: any, downloadDir: string, runStartedMs: number, expectedFormat: GovernedFormat): Promise<boolean> {
+async function harvestPageResourceTree(page: any, pageCdp: any, capture: NetworkCaptureState, runStartedMs: number): Promise<void> {
+  if (!pageCdp || typeof pageCdp.send !== "function") return;
+  let harvestCdp: any = pageCdp;
+  let opened = false;
+  try {
+    const ctx = typeof page?.context === "function" ? page.context() : undefined;
+    const fresh = ctx && typeof ctx.newCDPSession === "function" ? await ctx.newCDPSession(page) : undefined;
+    if (fresh && typeof fresh.send === "function") { harvestCdp = fresh; opened = true; }
+  } catch {
+    harvestCdp = pageCdp;
+  }
+  try {
+    if (opened) await harvestCdp.send("Page.enable").catch(() => undefined);
+    const tree: any = await harvestCdp.send("Page.getResourceTree").catch(() => undefined);
+    if (!tree || !tree.frameTree) return;
+    const matches: { frameId: string; url: string; mimeType: string }[] = [];
+    const visit = (frame: any) => {
+      if (!frame) return;
+      const frameId = String(frame?.frame?.id || "");
+      const resources = Array.isArray(frame.resources) ? frame.resources : [];
+      for (const r of resources) {
+        const url = String(r?.url || "");
+        if (!url) continue;
+        const isHop2 = isChatgptPointerHop2(url);
+        const isPointerMatch = matchesKnownPointer(url, capture.pointerUrls);
+        if (!isHop2 && !isPointerMatch) continue;
+        if (frameId) matches.push({ frameId, url, mimeType: String(r?.mimeType || "") });
+      }
+      const children = Array.isArray(frame.childFrames) ? frame.childFrames : [];
+      for (const child of children) visit(child);
+    };
+    visit(tree.frameTree);
+    capture.resourceTreeMatches += matches.length;
+    matches.sort((a, b) => {
+      const ap = matchesKnownPointer(a.url, capture.pointerUrls) ? 0 : 1;
+      const bp = matchesKnownPointer(b.url, capture.pointerUrls) ? 0 : 1;
+      return ap - bp;
+    });
+    const [pointerMatchCount, hop2Count, ambiguousMultiHop2] = (() => {
+      const pointerMatches = matches.filter((m) => matchesKnownPointer(m.url, capture.pointerUrls)).length;
+      const hop2Matches = matches.filter((m) => isChatgptPointerHop2(m.url)).length;
+      return [pointerMatches, hop2Matches, pointerMatches === 0 && hop2Matches >= 2] as const;
+    })();
+    for (const m of matches) {
+      const r: any = await harvestCdp.send("Page.getResourceContent", { frameId: m.frameId, url: m.url }).catch(() => undefined);
+      if (!r || typeof r.content !== "string" || !r.content) continue;
+      const buf = Buffer.from(r.content, r.base64Encoded ? "base64" : "utf8");
+      if (!buf.length) continue;
+      if (imageMagicExt(buf) === null) continue;
+      capture.resourceContentRetrieved += 1;
+      if (ambiguousMultiHop2) continue;
+      const key = `pageres-${capture.bodies.size}`;
+      capture.bodies.set(key, { url: m.url, finishedAt: runStartedMs, buf });
+      capture.bufferedBytes += buf.length;
+    }
+  } finally {
+    if (opened && typeof harvestCdp.detach === "function") await harvestCdp.detach().catch(() => undefined);
+  }
+}
+
+async function materializeNetworkCapturedArtifact(page: any, pageCdp: any, downloadDir: string, runStartedMs: number, expectedFormat: GovernedFormat): Promise<boolean> {
   const capture = pageCdp && typeof pageCdp === "object" ? networkCaptureBySession.get(pageCdp) : undefined;
   if (!capture) return false;
+  if ((expectedFormat || "png") === "png") {
+    await harvestPageResourceTree(page, pageCdp, capture, runStartedMs);
+  }
   const candidates = Array.from(capture.finished)
     .map((requestId) => ({ requestId, finishedAt: capture.finishedAt.get(requestId) ?? 0 }))
     .filter(({ finishedAt }) => finishedAt >= runStartedMs && finishedAt <= now())
@@ -690,6 +755,8 @@ function attachNetworkCaptureEvidence(pageCdp: any, error: ArtifactClickError): 
   error.evidence.imageGatePassed = capture.imageGatePassed;
   error.evidence.streamArmAttempts = capture.streamArmAttempts;
   error.evidence.eagerRawBodyEntries = capture.eagerRawBodyEntries;
+  error.evidence.resourceTreeMatches = capture.resourceTreeMatches;
+  error.evidence.resourceContentRetrieved = capture.resourceContentRetrieved;
   if (capture.lastBodyReadFailReason) error.evidence.bodyReadFail = capture.lastBodyReadFailReason;
 }
 
@@ -771,7 +838,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
           /* fall through to disk fallback below */
         }
       }
-      await materializeNetworkCapturedArtifact(cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
+      await materializeNetworkCapturedArtifact(page, cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
       const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started, 5000, governedVerificationFormat(options));
       if (recovered.ok) {
         const finalPath = recovered.realPath;
@@ -798,7 +865,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   }
 
   const recoverFollowUpDeliveredArtifact = async (originalError: ArtifactClickError): Promise<ArtifactClickResult> => {
-    await materializeNetworkCapturedArtifact(cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
+    await materializeNetworkCapturedArtifact(page, cdp, path.resolve(options.downloadDir), started, governedVerificationFormat(options));
     const recovered = await recoverGovernedArtifactFromDisk(path.resolve(options.downloadDir), started, 5000, governedVerificationFormat(options));
     if (recovered.ok) {
       const finalPath = recovered.realPath;
