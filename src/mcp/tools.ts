@@ -367,7 +367,13 @@ const GEMINI_FRESH_URL = "https://gemini.google.com/app";
 const GEMINI_FRESH_COMPOSER_URL = "https://gemini.google.com/app?hl=en";
 const GEMINI_RESPONSE_SELECTOR = "main";
 const GEMINI_TURN_SELECTOR = 'main [role="article"], main article, main [class*="turn" i], main [class*="response" i]';
-const GEMINI_REGENERATE_BUTTON_SELECTOR = 'button[data-test-id="regenerate-button"]';
+// Post-revamp 2026-05-20: data-test-id="regenerate-button" no longer rendered.
+// Response-done toolbar now exposes `button[aria-label="Good response"]` (thumbs-up)
+// which is the stable completion signal — appears only AFTER the response stream
+// has finished, never during streaming. Confirmed via probe-response-toolbar.mjs
+// against gemini-9225. Constant name kept for backwards compatibility with the
+// completion gate at line ~843; semantic is "response-done marker".
+const GEMINI_REGENERATE_BUTTON_SELECTOR = 'button[aria-label="Good response"]';
 // The latest Gemini assistant turn is the LAST <model-response> element. Reading
 // the whole <main> (the old GEMINI_RESPONSE_SELECTOR target) pulls in the left
 // nav sidebar ("New chat / My stuff / Notebooks / Gems / Chats"), the
@@ -414,7 +420,13 @@ const GEMINI_CANVAS_BODY_SELECTOR = 'xpath=(//div[@contenteditable="true"])[last
 const GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR = 'button[aria-label="Share conversation"]';
 const GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create image")';
 const GEMINI_IMAGE_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
-const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[data-test-id="more-menu-button"]';
+// Post-revamp 2026-05-20: image-message toolbar simplified. The data-test-id
+// "more-menu-button" no longer exists; image toolbar now exposes 3 direct buttons
+// (Share image / Copy image / Download full size image) with no intermediate
+// open-menu step. Confirmed via probe-image-menu-deep.mjs against gemini-9225.
+// "Download full size image" is the canonical image-rendered signal AND the
+// direct download trigger (no 2-step open-menu hop needed anymore).
+const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Download full size image"]';
 // Live-observed 2026-05-15 (gemini-9225, account "Shark 7", Fast tier).
 // Canvas → Google Docs export flow:
 //   1. Upload & tools menu → Canvas menuitemcheckbox
@@ -1083,16 +1095,16 @@ async function activateGeminiImageMode(page: any): Promise<void> {
     .catch(() => false);
   if (zeroStateVisible && zeroStateButton && await zeroStateButton.count?.().catch(() => 0)) {
     const before = typeof zeroStateButton.getAttribute === "function" ? await zeroStateButton.getAttribute("aria-label").catch(() => "") : "";
-    if (typeof before === "string" && before.includes("Deselect Create image")) return;
+    if (typeof before === "string" && before.includes("Deselect Images")) return;
     await zeroStateButton.click?.({ timeout: 5000 });
     if (typeof page.waitForTimeout === "function") await page.waitForTimeout(250).catch(() => undefined);
     const after = typeof zeroStateButton.getAttribute === "function" ? await zeroStateButton.getAttribute("aria-label").catch(() => "") : "";
-    if (typeof after === "string" && after.includes("Deselect Create image")) return;
+    if (typeof after === "string" && after.includes("Deselect Images")) return;
   }
 
   // Upload & tools menu → Create image menuitemcheckbox. Material menu closes
   // on click, so the menuitem detaches; the canonical post-activation signal
-  // is the composer pill button[aria-label="Deselect Create image"] (same
+  // is the composer pill button[aria-label="Deselect Images"] (same
   // pattern as activateGeminiToolMode uses for Canvas/Create video).
   try {
     await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
@@ -1103,10 +1115,10 @@ async function activateGeminiImageMode(page: any): Promise<void> {
       if (before === "true" || before === "mixed") return;
       await robustClickLocator(page, menuItem, GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR, { timeout: 5000 });
       // Material auto-closes the menu on click. Wait for the in-composer
-      // "Deselect Create image" pill — that's the live-observed activation
+      // "Deselect Images" pill — that's the live-observed activation
       // signal post-revamp (parallel to Canvas/Video at activateGeminiToolMode).
       try {
-        await page.waitForSelector?.('button[aria-label="Deselect Create image"]', { state: "visible", timeout: 5000 });
+        await page.waitForSelector?.('button[aria-label="Deselect Images"]', { state: "visible", timeout: 5000 });
         return;
       } catch (_e) {
         // The pill never appeared; fall through to ELEMENT_NOT_FOUND.
@@ -1116,14 +1128,14 @@ async function activateGeminiImageMode(page: any): Promise<void> {
     // Reach the bottom throw with both selector paths captured in evidence.
   }
 
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate from the zero-state chip or Upload & tools menu", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR} -> button[aria-label="Deselect Create image"]` });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate from the zero-state chip or Upload & tools menu", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR} -> button[aria-label="Deselect Images"]` });
 }
 
 // Activate a Gemini Tools-drawer mode (Canvas / Create video) and confirm via
 // the active-mode "Deselect <tool>" pill — the live-observed activation signal
 // (2026-05-15): clicking the menuitemcheckbox closes the drawer and replaces
 // the mode-picker affordance with button[aria-label="Deselect <tool>"], exactly
-// like "Deselect Create image". An optional zero-state chip is tried first.
+// like "Deselect Images". An optional zero-state chip is tried first.
 const GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS = 15000;
 
 export async function activateGeminiToolMode(page: any, opts: { menuItemSelector: string; activeSelector: string; zeroStateSelector?: string; toolName: string; quotaGuard?: () => Promise<void> }): Promise<void> {
@@ -1555,7 +1567,7 @@ async function generateImageOnPage(service: "chatgpt" | "gemini", args: any, run
       : GEMINI_IMAGE_RENDERED_SELECTOR;
     const downloadSelector = service === "chatgpt"
       ? ((runtime as any).artifactClick ? '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]' : CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR)
-      : 'button[data-test-id="image-download-button"]';
+      : 'button[aria-label="Download full size image"]';
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,

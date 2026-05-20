@@ -2060,7 +2060,7 @@ function installCompletionDom(options: { stopVisible?: boolean; sendDisabled?: b
     querySelectorAll: (selector: string) => {
       if (selector.includes("Stop response") || selector.includes("stop-button") || selector.includes("Stop")) return options.stopVisible ? [stop] : [];
       if (selector.includes("Send message")) return [send];
-      if (selector.includes("regenerate-button")) return options.regenerateVisible ? [regenerate] : [];
+      if (selector.includes("Good response")) return options.regenerateVisible ? [regenerate] : [];
       if (selector.includes("role=\"article\"") || selector.includes("article") || selector.includes("turn") || selector.includes("response") || selector.includes("assistant")) return assistants;
       if (selector.includes("AI generated") || selector.includes("img")) return [image];
       return [];
@@ -2119,7 +2119,7 @@ test("waitForPromptCompletion returns true only after Phase A start then Phase B
       phases.push("phase-b");
       installCompletionDom({ stopVisible: false, sendDisabled: false, assistantTexts: ["final answer"], regenerateVisible: true });
       assert.equal(fn(arg), false);
-      assert.match(arg.regenerateSelector, /regenerate-button/);
+      assert.match(arg.regenerateSelector, /Good response/);
       (globalThis as any).window.__webAiCompletionStable.since -= 1600;
       assert.equal(fn(arg), true);
     } finally {
@@ -2178,7 +2178,7 @@ test("gemini send.prompt completion polling uses extractor-visible Stop response
   assert.notEqual(result.response_text, POLLUTED_MAIN);
   assert.match(seen.join("\n"), /button\[aria-label="Stop response"\]/);
   assert.match(seen.join("\n"), /button\[aria-label="Send message"\]/);
-  assert.match(seen.join("\n"), /regenerate-button/);
+  assert.match(seen.join("\n"), /Good response/);
   assert.match(seen.join("\n"), /assistantCountBefore/);
 });
 
@@ -2272,7 +2272,7 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
       phases.push("phase-b");
       installCompletionDom({ stopVisible: false, sendDisabled: false, assistantTexts: ["uploaded answer"], regenerateVisible: true });
       assert.equal(fn(arg), false);
-      assert.match(arg.regenerateSelector, /regenerate-button/);
+      assert.match(arg.regenerateSelector, /Good response/);
       (globalThis as any).window.__webAiCompletionStable.since -= 1600;
       assert.equal(fn(arg), true);
     } finally {
@@ -2371,7 +2371,7 @@ test("gemini completion returns COMMAND_TIMEOUT when Phase-B regenerate anchor n
   const result: any = await webAiGeminiSendPrompt({ profile: "gemini-regenerate-timeout", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.completion_detected, false);
-  assert.match(JSON.stringify(seen), /regenerate-button/);
+  assert.match(JSON.stringify(seen), /Good response/);
 });
 
 test("tools.ts Gemini completion path does not rely on stale Angular response selectors", () => {
@@ -2460,7 +2460,7 @@ test("gemini generate-image forces fresh composer navigation before activating i
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Create image" : "",
+      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Images" : "",
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => { clicks.push(selector); if (selector.includes("New chat")) page._url = "https://gemini.google.com/app?hl=en"; },
@@ -2595,7 +2595,7 @@ test("generate-file passes captured conversation URL to artifactClickRunner", as
   assert.notEqual(calls[0].tabUrlContains, "https://claude.ai");
 });
 
-test("gemini generate-image uses more-menu-button then image-download-button chain", async () => {
+test("gemini generate-image uses Download full size image then Download full size image chain", async () => {
   const page = mockSendPromptPage("https://gemini.google.com/app/stale456?hl=en");
   page.waitForSelector = async () => undefined;
   page.locator = (selector: string) => {
@@ -2603,7 +2603,7 @@ test("gemini generate-image uses more-menu-button then image-download-button cha
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Create image" : "",
+      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Images" : "",
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => { if (selector.includes("New chat")) page._url = "https://gemini.google.com/app/conversation-456?hl=en"; },
@@ -2615,8 +2615,8 @@ test("gemini generate-image uses more-menu-button then image-download-button cha
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async (options: any) => { calls.push(options); return { path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }; } } as any;
   const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-chain", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "out.png");
-  assert.equal(calls[0].buttonSelector, 'button[data-test-id="more-menu-button"]');
-  assert.equal(calls[0].followUpSelector, 'button[data-test-id="image-download-button"]');
+  assert.equal(calls[0].buttonSelector, 'button[aria-label="Download full size image"]');
+  assert.equal(calls[0].followUpSelector, 'button[aria-label="Download full size image"]');
 });
 
 
@@ -2624,14 +2624,14 @@ test("generateImageOnPage waits for image toolbar before artifact-click", async 
   const events: string[] = [];
   const page = mockSendPromptPage("https://gemini.google.com/app/stale789?hl=en");
   page.waitForSelector = async (selector: string) => {
-    if (selector.includes("more-menu-button")) events.push("render-toolbar");
+    if (selector.includes("Download full size image")) events.push("render-toolbar");
   };
   page.locator = (selector: string) => {
     const loc: any = {
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes("New chat") || selector.includes("Create image") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Create image" : "",
+      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Images" : "",
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => { if (selector.includes("New chat")) page._url = "https://gemini.google.com/app/conversation-789?hl=en"; },
@@ -2648,14 +2648,14 @@ test("generateImageOnPage waits for image toolbar before artifact-click", async 
 test("generateImageOnPage returns COMMAND_TIMEOUT when generated image never renders", async () => {
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.waitForSelector = async (selector: string) => {
-    if (selector.includes("more-menu-button")) throw new Error("image toolbar never rendered");
+    if (selector.includes("Download full size image")) throw new Error("image toolbar never rendered");
   };
   page.locator = (selector: string) => {
     const loc: any = {
       first: () => loc,
       last: () => loc,
       count: async () => selector.includes("Create image") || selector.includes("Send message") || selector.includes("rich-textarea") ? 1 : 0,
-      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Create image" : "",
+      getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? "Deselect Images" : "",
       waitFor: async () => undefined,
       fill: async () => undefined,
       click: async () => undefined,
@@ -2788,7 +2788,7 @@ test("gemini generate-image activates Create image and sends from ql-editor with
   const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
   page.waitForSelector = async (selector: string, options: any) => {
     if (selector.includes("Create image")) events.push(`waitForSelector:${selector}:${options?.state}:${options?.timeout}`);
-    if (selector.includes("more-menu-button")) events.push(`render:${selector}`);
+    if (selector.includes("Download full size image")) events.push(`render:${selector}`);
   };
   page.waitForTimeout = async () => undefined;
   page.keyboard = { press: async (key: string) => { events.push(`press:${key}`); }, type: async () => undefined };
@@ -2800,7 +2800,7 @@ test("gemini generate-image activates Create image and sends from ql-editor with
       getAttribute: async (name: string) => name === "aria-label" && selector.includes("Create image") ? label : "",
       waitFor: async () => { events.push(`wait:${selector}`); },
       fill: async () => { events.push(`fill:${selector}`); },
-      click: async () => { events.push(`click:${selector}`); if (selector.includes("Create image")) label = "Deselect Create image"; },
+      click: async () => { events.push(`click:${selector}`); if (selector.includes("Create image")) label = "Deselect Images"; },
       textContent: async () => selector.includes("rich-textarea") ? "" : "image response"
     };
     return loc;
@@ -2812,7 +2812,7 @@ test("gemini generate-image activates Create image and sends from ql-editor with
   const create = events.findIndex((e) => e.includes('click:button[aria-label*="Create image"]'));
   const fill = events.findIndex((e) => e === 'fill:rich-textarea .ql-editor[contenteditable="true"]');
   const enter = events.findIndex((e) => e === "press:Enter");
-  const render = events.findIndex((e) => e.includes("render:button[data-test-id=\"more-menu-button\"]"));
+  const render = events.findIndex((e) => e.includes('render:button[aria-label="Download full size image"]'));
   assert.ok(waitCreate >= 0 && waitCreate < create && create < fill && fill < enter && enter < render, events.join("\n"));
 });
 
