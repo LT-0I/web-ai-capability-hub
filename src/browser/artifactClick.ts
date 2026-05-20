@@ -377,6 +377,10 @@ interface NetworkCaptureState {
   pointerUrls: string[];
   bufferedBytes: number;
   lastBodyReadFailReason?: string;
+  responseReceivedSeen: number;
+  imageGatePassed: number;
+  streamArmAttempts: number;
+  eagerRawBodyEntries: number;
 }
 
 const networkCaptureBySession = new WeakMap<object, NetworkCaptureState>();
@@ -430,11 +434,23 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
   await bcdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true });
   await pageCdp.send("Browser.setDownloadBehavior", { behavior: "allowAndName", downloadPath: downloadDir, eventsEnabled: true }).catch(() => undefined);
   await pageCdp.send("Network.enable", {}).catch(() => undefined);
-  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [], bufferedBytes: 0 };
+  let bodyCdp: any = pageCdp;
+  try {
+    const ctx = typeof page?.context === "function" ? page.context() : undefined;
+    const fresh = ctx && typeof ctx.newCDPSession === "function" ? await ctx.newCDPSession(page) : undefined;
+    if (fresh && typeof fresh.send === "function") {
+      bodyCdp = fresh;
+      await bodyCdp.send("Network.enable", {}).catch(() => undefined);
+    }
+  } catch {
+    bodyCdp = pageCdp;
+  }
+  const networkCapture: NetworkCaptureState = { responses: new Map<string, { url: string; mimeType: string }>(), finished: new Set<string>(), finishedAt: new Map<string, number>(), bodies: new Map<string, { url: string; finishedAt: number; buf: Buffer }>(), pointerUrls: [], bufferedBytes: 0, responseReceivedSeen: 0, imageGatePassed: 0, streamArmAttempts: 0, eagerRawBodyEntries: 0 };
   const eagerRawBody = async (sess: any, requestId: string, meta: { url: string; mimeType: string } | undefined, finishedAt: number, sessionId?: string) => {
     try {
       const url = String(meta?.url || "");
       if (!url) return;
+      networkCapture.eagerRawBodyEntries += 1;
       if (url.includes("backend-api/files/download/")) {
         const r = sessionId
           ? await sess.send("Network.getResponseBody", { requestId }, sessionId).catch(() => ({} as any))
@@ -471,14 +487,17 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
     sess.on?.("Network.responseReceived", (event: any) => {
       if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
       if (!event?.requestId) return;
+      networkCapture.responseReceivedSeen += 1;
       const requestId = String(event.requestId);
       const url = String(event.response?.url || "");
       const mime = String(event.response?.mimeType || "").toLowerCase();
       networkCapture.responses.set(requestId, { url, mimeType: mime });
       const shouldStream = mime.startsWith("image/") || matchesKnownPointer(url, networkCapture.pointerUrls);
       if (!shouldStream) return;
+      networkCapture.imageGatePassed += 1;
       void (async () => {
         try {
+          networkCapture.streamArmAttempts += 1;
           await sess.send("Network.streamResourceContent", { requestId }).catch(() => undefined);
           const chunks: Buffer[] = [];
           while (true) {
@@ -506,7 +525,8 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
     });
   };
   const registerRawNetworkCapture = (sessionId?: string) => registerRawNetworkCaptureOn(pageCdp, sessionId);
-  registerRawNetworkCaptureOn(pageCdp);
+  registerRawNetworkCaptureOn(bodyCdp);
+  if (bodyCdp !== pageCdp) registerRawNetworkCaptureOn(pageCdp);
   pageCdp.on?.("Target.attachedToTarget", (event: any) => {
     const sessionId = event?.sessionId ? String(event.sessionId) : "";
     if (!sessionId) return;
@@ -636,6 +656,10 @@ function attachNetworkCaptureEvidence(pageCdp: any, error: ArtifactClickError): 
   if (!capture) return;
   error.evidence.bufferedBytes = capture.bufferedBytes;
   error.evidence["bodies.size"] = capture.bodies.size;
+  error.evidence.responseReceivedSeen = capture.responseReceivedSeen;
+  error.evidence.imageGatePassed = capture.imageGatePassed;
+  error.evidence.streamArmAttempts = capture.streamArmAttempts;
+  error.evidence.eagerRawBodyEntries = capture.eagerRawBodyEntries;
   if (capture.lastBodyReadFailReason) error.evidence.bodyReadFail = capture.lastBodyReadFailReason;
 }
 
