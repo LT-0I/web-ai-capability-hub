@@ -422,6 +422,11 @@ function matchesKnownPointer(url: string, pointerUrls: string[]): boolean {
   });
 }
 
+function isChatgptPointerHop2(url: string): boolean {
+  if (!url) return false;
+  return url.includes("/backend-api/estuary/content");
+}
+
 async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDir: string, page?: any): Promise<any> {
   if (!browserSession?.newBrowserCDPSession) throw new ArtifactClickError("INVALID_ARGS", "Browser-level CDP session is required for Browser.setDownloadBehavior");
   const bcdp = await browserSession.newBrowserCDPSession();
@@ -460,7 +465,9 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
         if (pointer) networkCapture.pointerUrls.push(pointer);
         return;
       }
-      const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls) || String(meta?.mimeType || "").toLowerCase().startsWith("image/");
+      const shouldTryBody = matchesKnownPointer(url, networkCapture.pointerUrls)
+        || String(meta?.mimeType || "").toLowerCase().startsWith("image/")
+        || isChatgptPointerHop2(url);
       if (!shouldTryBody) return;
       for (let attempt = 0; attempt < 4; attempt++) {
         const r = sessionId
@@ -491,8 +498,12 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
       const requestId = String(event.requestId);
       const url = String(event.response?.url || "");
       const mime = String(event.response?.mimeType || "").toLowerCase();
-      networkCapture.responses.set(requestId, { url, mimeType: mime });
-      const shouldStream = mime.startsWith("image/") || matchesKnownPointer(url, networkCapture.pointerUrls);
+      const prior = networkCapture.responses.get(requestId);
+      const effectiveMime = mime || (prior?.mimeType ?? "");
+      networkCapture.responses.set(requestId, { url, mimeType: effectiveMime });
+      const shouldStream = mime.startsWith("image/")
+        || matchesKnownPointer(url, networkCapture.pointerUrls)
+        || isChatgptPointerHop2(url);
       if (!shouldStream) return;
       networkCapture.imageGatePassed += 1;
       void (async () => {
@@ -522,6 +533,25 @@ async function armDownloadBehavior(browserSession: any, pageCdp: any, downloadDi
       networkCapture.finished.add(String(event.requestId));
       networkCapture.finishedAt.set(String(event.requestId), now());
       void eagerRawBody(sess, String(event.requestId), networkCapture.responses.get(String(event.requestId)), networkCapture.finishedAt.get(String(event.requestId)) ?? now(), sessionId);
+    });
+    sess.on?.("Network.responseReceivedExtraInfo", (event: any) => {
+      if (sessionId && event?.sessionId && String(event.sessionId) !== sessionId) return;
+      if (!event?.requestId) return;
+      const requestId = String(event.requestId);
+      const headers = event?.headers || {};
+      const headerMime = String(
+        headers["content-type"]
+        || headers["Content-Type"]
+        || headers["CONTENT-TYPE"]
+        || ""
+      ).toLowerCase().split(";")[0].trim();
+      if (!headerMime) return;
+      const existing = networkCapture.responses.get(requestId);
+      if (existing && !existing.mimeType) {
+        networkCapture.responses.set(requestId, { url: existing.url, mimeType: headerMime });
+      } else if (!existing) {
+        networkCapture.responses.set(requestId, { url: "", mimeType: headerMime });
+      }
     });
   };
   const registerRawNetworkCapture = (sessionId?: string) => registerRawNetworkCaptureOn(pageCdp, sessionId);
