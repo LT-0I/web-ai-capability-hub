@@ -644,15 +644,30 @@ async function harvestPageResourceTree(page: any, pageCdp: any, capture: Network
     };
     visit(tree.frameTree);
     capture.resourceTreeMatches += matches.length;
+    // R19b: URL-parameter discriminator for current ChatGPT image generation output.
+    // Fresh generated images carry `&p=fs&` (full-size) and lack `gizmo_id=` / `&p=gpp&`.
+    // Stale gizmo persona-badge images carry `gizmo_id=` and/or `&p=gpp&`.
+    // Both signals live in the URL itself — no page.evaluate, preserves offline FakeCDP contract.
+    const isFreshHop2Url = (url: string): boolean => {
+      if (!url) return false;
+      if (!isChatgptPointerHop2(url)) return false;
+      if (/[?&]gizmo_id=/.test(url)) return false;
+      if (/[?&]p=gpp(&|$)/.test(url)) return false;
+      return /[?&]p=fs(&|$)/.test(url);
+    };
     matches.sort((a, b) => {
-      const ap = matchesKnownPointer(a.url, capture.pointerUrls) ? 0 : 1;
-      const bp = matchesKnownPointer(b.url, capture.pointerUrls) ? 0 : 1;
-      return ap - bp;
+      const rank = (url: string): number => {
+        if (isFreshHop2Url(url)) return 0;
+        if (matchesKnownPointer(url, capture.pointerUrls)) return 1;
+        return 2;
+      };
+      return rank(a.url) - rank(b.url);
     });
     const [pointerMatchCount, hop2Count, ambiguousMultiHop2] = (() => {
       const pointerMatches = matches.filter((m) => matchesKnownPointer(m.url, capture.pointerUrls)).length;
       const hop2Matches = matches.filter((m) => isChatgptPointerHop2(m.url)).length;
-      return [pointerMatches, hop2Matches, pointerMatches === 0 && hop2Matches >= 2] as const;
+      const freshMatches = matches.filter((m) => isFreshHop2Url(m.url)).length;
+      return [pointerMatches, hop2Matches, freshMatches === 0 && pointerMatches === 0 && hop2Matches >= 2] as const;
     })();
     for (const m of matches) {
       const r: any = await harvestCdp.send("Page.getResourceContent", { frameId: m.frameId, url: m.url }).catch(() => undefined);
