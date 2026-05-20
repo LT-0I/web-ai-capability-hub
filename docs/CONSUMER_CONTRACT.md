@@ -1,12 +1,13 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v0.7.0
-Contract: `consumer-contract-1.5.0`
+Contract: `consumer-contract-1.6.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.6.0 (2026-05-20): adds Gemini-only `webai:gemini:select-model` / `webai_gemini_select_model` for programmatic model and thinking-level selection; command rows 181, `webai_*` rows 38, error-code taxonomy unchanged at 32.
 - consumer-contract-1.5.0 (2026-05-16): deliberate breaking rename of the prior institution-specific import surface to `research:inventory:import` / `research_inventory_import` / `ResearchDbImporter.importInventorySeed`; package version is now `0.7.0`.
 - Phase-B #8 (same contract/package versions): SCOAP3, DBLP, SciELO, INSPIRE-HEP, and PubScholar add 15 plain non-`webai_` research database MCP tools, bringing the locked per-DB research round-trip set to 102 while webai/sub-MCP/error-code counts remain 37/11/32.
 - Phase-B #7 (same contract/package versions): Frontiers, arXiv, SIAM, De Gruyter, World Scientific, and Royal Society add 18 plain non-`webai_` research database MCP tools, bringing the locked research round-trip set to 87 while webai/sub-MCP/error-code counts remain 37/11/32.
@@ -195,9 +196,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.5.0 webai MCP tools
+## Contract 1.6.0 webai MCP tools
 
-Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing + 13 main-server (+2 Pulse) + 11 sub-MCP. The Stream #5 Pulse surface is 37; no contract/package version bump is included.
+Generated from the manifest: 38 current `webai_*` command rows: 13 pre-existing + 14 main-server (+2 Pulse + Issue #14 Gemini selector) + 11 sub-MCP. Contract 1.6.0 adds the Gemini selector while keeping the 32-code error taxonomy unchanged.
 
 ### Original/B1 existing webai tools
 
@@ -217,7 +218,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:generate-video` | `webai_gemini_generate_video` | `webAiGeminiGenerateVideo` | experimental | risky | no |
 | `webai:task-status` | `webai_task_status` | `webAiTaskStatus` | experimental | read | no |
 
-### Stream #5 main-server tools (B2-B4 + Pulse)
+### Stream #5 main-server tools (B2-B4 + Pulse + Issue #14)
 
 | CLI name | MCP name | TypeScript API | Maturity | Safety class | Sensitive local fields possible? |
 | --- | --- | --- | --- | --- | --- |
@@ -225,6 +226,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:canvas-edit` | `webai_gemini_canvas_edit` | `webAiGeminiCanvasEdit` | experimental | mutate | no |
 | `webai:gemini:conversation-manage` | `webai_gemini_conversation_manage` | `webAiGeminiConversationManage` | experimental | mutate | no |
 | `webai:gemini:workspace` | `webai_gemini_workspace` | `webAiGeminiWorkspace` | experimental | read | no |
+| `webai:gemini:select-model` | `webai_gemini_select_model` | `webAiGeminiSelectModel` | experimental | mutate | no |
 | `webai:chatgpt:canvas-export` | `webai_chatgpt_canvas_export` | `webAiChatgptCanvasExport` | experimental | mutate | yes |
 | `webai:chatgpt:pulse:get` | `webai_chatgpt_pulse_get` | `webAiChatgptPulseGet` | experimental | read | no |
 | `webai:chatgpt:pulse:onboard` | `webai_chatgpt_pulse_onboard` | `webAiChatgptPulseOnboard` | experimental | mutate | no |
@@ -258,6 +260,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `model`, `web_search`, `canvas` |
 | `webai:claude:send-prompt` / `webai_claude_send_prompt` | `model`, `thinking`, `web_search`, `incognito`, `tab_url_contains` |
 | `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `model`, `thinking`, `web_search` |
+| `webai:gemini:select-model` / `webai_gemini_select_model` | `model`, `thinking_level` |
 | `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `model` |
 | `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `model`, `reuse_conversation` |
 | `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `model` |
@@ -270,6 +273,7 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `reuse_conversation`, `errorCode` | `ok`, `service`, `error_code`, `expected_model` |
 | `webai:claude:send-prompt` / `webai_claude_send_prompt` | `conversation_id`, `chat_url`, `response_text`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `service`, `error_code`, `expected_model` |
 | `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `chat_url`, `response_text`, `model_used`, `elapsed_ms`, `wait_ms`, `completion_detected`, `errorCode`, `reuse_conversation` | `ok`, `service`, `error_code`, `expected_model` |
+| `webai:gemini:select-model` / `webai_gemini_select_model` | `ok`, `selected_model`, `selected_thinking_level`, `errorCode` | _(none)_ |
 | `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `conversation_id`, `attachment_names`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code`, `expected_model` |
 | `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `files_uploaded_count`, `attachment_names`, `chat_url`, `response_text`, `wait_ms`, `completion_detected`, `errorCode` | `error_code`, `expected_model` |
 | `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `files_in_chip`, `response_text`, `chat_url`, `wait_ms`, `completion_detected`, `errorCode` | `ok`, `error_code`, `selector`, `expected_selector`, `expected_model` |
@@ -305,6 +309,11 @@ Generated from the manifest: 37 current `webai_*` command rows: 13 pre-existing 
 | `webai:gemini:music:task-status` / `webai_gemini_music_task_status` | `status`, `download_ready` | `ok`, `errorCode`, `error_code` |
 | `webai:task-status` / `webai_task_status` | `status` | `progress_label`, `result`, `errorCode` |
 
+
+
+### Gemini model selector
+
+`webai:gemini:select-model` / `webai_gemini_select_model` selects the Gemini mode-picker model and/or Thinking level without sending a prompt. Required args: `profile`. Optional args: `model` (`3.1-flash-lite`, `3.5-flash`, `3.1-pro`) and `thinking_level` (`standard`, `extended`). Output shape: `ok`, `selected_model`, `selected_thinking_level`, `errorCode`. Error codes: `ELEMENT_NOT_FOUND`, `COMMAND_TIMEOUT`, `INVALID_ARGS`.
 
 ### Veo quota rotation
 

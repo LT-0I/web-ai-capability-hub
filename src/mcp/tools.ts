@@ -106,6 +106,15 @@ const researchInventoryImportInput = objectSchema<{ path?: string; stem_only?: b
   stem_only: { ...scalar.boolean("Only import rows classified as science_engineering"), default: false }
 }, []);
 
+const webAiGeminiSelectModelInput = objectSchema<{ profile: string; model?: string; thinking_level?: string; tab_url_contains?: string; url?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed Gemini browser profile name"),
+  model: scalar.string("Gemini model selector value: 3.1-flash-lite, 3.5-flash, or 3.1-pro"),
+  thinking_level: scalar.string("Gemini thinking level selector value: standard or extended"),
+  tab_url_contains: scalar.string("Optional existing Gemini tab URL fragment"),
+  url: scalar.string("Optional Gemini URL override"),
+  timeout_ms: scalar.number("Optional command timeout in milliseconds")
+}, ["profile"]);
+
 function runtimeOrDefault(runtime?: BrowserToolRuntime): Required<BrowserToolRuntime> {
   const database = runtime?.database || new CapabilityDatabase();
   const session = runtime?.session || new BrowserSessionManager();
@@ -388,6 +397,31 @@ const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-c
 const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
 const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
+const GEMINI_MODE_PICKER_TRIGGER_SELECTOR = 'button[aria-label="Open mode picker"]';
+
+// Model menuitems — disambiguated by their UNIQUE descriptor suffix (not the model
+// tier alone) so that future "3.5 Flash-Lite" cannot silently match "3.5 Flash".
+// :text-is() proved too strict against the live DOM (menuitem text is split across
+// two child nodes; Playwright doesn't normalize across the line break), so we use
+// :has-text() on the descriptor string which is unique per option.
+// Localization risk acknowledged (English-only labels; if Gemini ships localized
+// labels this needs revisit).
+const GEMINI_MODEL_OPTION_TEMPLATES: Record<string, string> = {
+  "3.1-flash-lite": '[role="menuitem"]:has-text("Fastest answers")',
+  "3.5-flash":      '[role="menuitem"]:has-text("All-around help")',
+  "3.1-pro":        '[role="menuitem"]:has-text("Advanced math and code")',
+};
+
+// Thinking level expander menuitem; suffix changes with current state ("Standard"/"Extended"),
+// so use a startsWith-style match on the leading text only.
+const GEMINI_THINKING_EXPANDER_SELECTOR = '[role="menuitem"][aria-label*="Thinking level"], [role="menuitem"]:has-text("Thinking level")';
+
+// Thinking level sub-options — disambiguated by their descriptor (the bare words
+// "Standard" / "Extended" alone would collide with the expander label suffix).
+const GEMINI_THINKING_OPTION_TEMPLATES: Record<string, string> = {
+  "standard": '[role="menuitem"]:has-text("Best for most questions")',
+  "extended": '[role="menuitem"]:has-text("Complex problem solving")',
+};
 // Post-revamp 2026-05-20: aria-label changed from "Remove file" to lowercase
 // "close <filename>" format (e.g. "close probe-upload"). The button itself sits
 // inside an UPLOADER-FILE-PREVIEW-CONTAINER row with visibility:hidden until
@@ -2693,6 +2727,72 @@ async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRu
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("claude", args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  if (!args.model && !args.thinking_level) {
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: "webai_gemini_select_model requires at least one of: model, thinking_level" });
+  }
+  if (args.model && !GEMINI_MODEL_OPTION_TEMPLATES[args.model]) {
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `webai_gemini_select_model: unsupported model "${args.model}" (allowed: 3.1-flash-lite, 3.5-flash, 3.1-pro)` });
+  }
+  if (args.thinking_level && !GEMINI_THINKING_OPTION_TEMPLATES[args.thinking_level]) {
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `webai_gemini_select_model: unsupported thinking_level "${args.thinking_level}" (allowed: standard, extended)` });
+  }
+  const lease = acquireProfileLease(args.profile);
+  try {
+    return await withManagedPage(args, runtime, targetUrlFor("gemini", args), async (page) => {
+      // Open the picker once at the start; both branches re-open if it auto-closed.
+      const openPicker = async () => {
+        // Dismiss any stale cdk-overlay-backdrop (e.g. previously-opened mat-menu / tools drawer)
+        // — Angular Material's transparent backdrop intercepts the trigger click otherwise.
+        await page.keyboard?.press?.("Escape").catch(() => undefined);
+        await page.waitForFunction?.(() => !document.querySelector('.cdk-overlay-backdrop-showing'), undefined, { timeout: 2000 }).catch(() => undefined);
+        const trigger = page.locator(GEMINI_MODE_PICKER_TRIGGER_SELECTOR).first();
+        await trigger.waitFor({ state: "visible", timeout: 5000 }).catch(() => {
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini mode picker trigger was not found", { selector: GEMINI_MODE_PICKER_TRIGGER_SELECTOR });
+        });
+        const expanded = await trigger.getAttribute("aria-expanded").catch(() => null);
+        if (expanded !== "true") {
+          await trigger.click({ timeout: 5000 });
+          await page.waitForSelector(`${GEMINI_MODE_PICKER_TRIGGER_SELECTOR}[aria-expanded="true"], [role="menuitem"]`, { state: "visible", timeout: 5000 });
+        }
+      };
+      let selected_model: string | null = null;
+      let selected_thinking_level: string | null = null;
+
+      if (args.model) {
+        await openPicker();
+        const opt = page.locator(GEMINI_MODEL_OPTION_TEMPLATES[args.model]).first();
+        await opt.waitFor({ state: "visible", timeout: 5000 }).catch(() => {
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini model option ${args.model} not found`, { selector: GEMINI_MODEL_OPTION_TEMPLATES[args.model] });
+        });
+        await opt.click({ timeout: 5000 });
+        selected_model = args.model;
+        await page.waitForTimeout?.(300);
+      }
+
+      if (args.thinking_level) {
+        await openPicker();
+        const expander = page.locator(GEMINI_THINKING_EXPANDER_SELECTOR).first();
+        await expander.waitFor({ state: "visible", timeout: 5000 }).catch(() => {
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Thinking level expander was not found", { selector: GEMINI_THINKING_EXPANDER_SELECTOR });
+        });
+        await expander.click({ timeout: 5000 });
+        const lvlOpt = page.locator(GEMINI_THINKING_OPTION_TEMPLATES[args.thinking_level]).first();
+        await lvlOpt.waitFor({ state: "visible", timeout: 3000 }).catch(() => {
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini thinking_level option ${args.thinking_level} not found`, { selector: GEMINI_THINKING_OPTION_TEMPLATES[args.thinking_level] });
+        });
+        await lvlOpt.click({ timeout: 5000 });
+        selected_thinking_level = args.thinking_level;
+        await page.waitForTimeout?.(300);
+      }
+
+      // Best-effort close (Escape) so downstream commands don't run with picker open.
+      await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+      return safeOutput({ ok: true, selected_model, selected_thinking_level, errorCode: null });
+    });
+  } finally { releaseProfileLease(args.profile, lease); }
+}
+
 export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime)); }
@@ -2748,6 +2848,12 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Send a prompt to Gemini and return redacted response metadata.",
     schema: webAiGeminiSendPromptInput,
     handler: async (args, runtime) => webAiGeminiSendPrompt(args, runtime)
+  },
+  {
+    name: "webai_gemini_select_model",
+    description: "Select a Gemini model and/or thinking level without sending a prompt.",
+    schema: webAiGeminiSelectModelInput,
+    handler: async (args, runtime) => webAiGeminiSelectModel(args, runtime)
   },
   {
     name: "webai_chatgpt_upload_and_query",

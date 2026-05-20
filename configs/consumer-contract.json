@@ -1,6 +1,6 @@
 {
   "package_version": "0.7.0",
-  "contract_version": "consumer-contract-1.5.0",
+  "contract_version": "consumer-contract-1.6.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -3165,6 +3165,30 @@
       ]
     },
     {
+      "cli_name": "webai:gemini:select-model",
+      "mcp_name": "webai_gemini_select_model",
+      "ts_export": "webAiGeminiSelectModel",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile"
+      ],
+      "optional_args": [
+        "model",
+        "thinking_level"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "selected_model",
+          "selected_thinking_level",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "webai:chatgpt:upload-and-query",
       "mcp_name": "webai_chatgpt_upload_and_query",
       "ts_export": "webAiChatgptUploadAndQuery",
@@ -4873,6 +4897,6 @@
     "consumer-contract-1.5.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools \u2192 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning).",
     "Stream #5 Pulse integration (same contract version): adds webai_chatgpt_pulse_get and webai_chatgpt_pulse_onboard, increasing webai tools from 35 to 37 without changing contract_version or package_version; error code count remains 32.",
     "Issue #12 (same contract version consumer-contract-1.5.0): webai_chatgpt_generate_file / webai_claude_generate_file / webai_chatgpt_canvas_export capture native downloadable DOCX (.docx) via the #10-R8/R9 pointer-follow path with an OOXML-package on-disk verifier (PK\\x03\\x04 + central directory + [Content_Types].xml + word/ part). .docx validated end-to-end.",
-    "Issue #12 R2 (same contract version consumer-contract-1.5.0): webai_chatgpt_generate_file / webai_claude_generate_file reject expected_extension in {pptx,xlsx} pre-flight with INVALID_ARGS — the driven ChatGPT-web/Claude-web generate-file path does not reliably emit native downloadable .pptx/.xlsx (ChatGPT renders an image; Claude returns DOCX). Doc-driven: ChatGPT help center documents no driven downloadable pptx/xlsx generate-file affordance; Claude's is doc-claimed but live-unverified. Supported expected_extension on this path: docx plus code/text (py, md, csv, svg, html, mmd, pdf). No new tool, error code, output field, or arg; reuses INVALID_ARGS from the locked 32-code taxonomy; contract_version and package_version unchanged; locks 180/32/37/121 unchanged."
+    "Issue #12 R2 (same contract version consumer-contract-1.5.0): webai_chatgpt_generate_file / webai_claude_generate_file reject expected_extension in {pptx,xlsx} pre-flight with INVALID_ARGS \u2014 the driven ChatGPT-web/Claude-web generate-file path does not reliably emit native downloadable .pptx/.xlsx (ChatGPT renders an image; Claude returns DOCX). Doc-driven: ChatGPT help center documents no driven downloadable pptx/xlsx generate-file affordance; Claude's is doc-claimed but live-unverified. Supported expected_extension on this path: docx plus code/text (py, md, csv, svg, html, mmd, pdf). No new tool, error code, output field, or arg; reuses INVALID_ARGS from the locked 32-code taxonomy; contract_version and package_version unchanged; locks 180/32/37/121 unchanged."
   ]
 }

@@ -10,7 +10,7 @@ import { waitForArtifactPageReady } from "../src/browser/artifactClick";
 import { main } from "../src/cli";
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
-import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
+import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 import { subMcpToolSpecs } from "../src/mcp/submcp";
 import { bestEffortMarkVideoTaskBootstrapFailure } from "../src/mcp/videoWorker";
@@ -199,7 +199,7 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.5.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.6.0");
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 32);
 
@@ -246,7 +246,7 @@ test("consumer contract manifest is internally consistent", async () => {
 });
 
 
-const expectedWebaiToolCount = 37; // Stream #5 final + Pulse batch: 13 pre-existing + 13 main-server (+2 Pulse) + 11 sub-MCP
+const expectedWebaiToolCount = 38; // Stream #5 final + Pulse batch + Issue #14 Gemini selector: 13 pre-existing + 14 main-server (+2 Pulse + selector) + 11 sub-MCP
 
 const webAiCodexTools = [
   { cli: "webai:chatgpt:codex:submit-task", mcp: "webai_chatgpt_codex_submit_task", ts: "webAiChatgptCodexSubmitTask", fn: webAiChatgptCodexSubmitTask, maturity: "experimental", safety: "mutate" },
@@ -259,6 +259,7 @@ const webAiV13Tools = [
   { cli: "webai:chatgpt:send-prompt", mcp: "webai_chatgpt_send_prompt", ts: "webAiChatgptSendPrompt", fn: webAiChatgptSendPrompt },
   { cli: "webai:claude:send-prompt", mcp: "webai_claude_send_prompt", ts: "webAiClaudeSendPrompt", fn: webAiClaudeSendPrompt },
   { cli: "webai:gemini:send-prompt", mcp: "webai_gemini_send_prompt", ts: "webAiGeminiSendPrompt", fn: webAiGeminiSendPrompt },
+  { cli: "webai:gemini:select-model", mcp: "webai_gemini_select_model", ts: "webAiGeminiSelectModel", fn: webAiGeminiSelectModel },
   { cli: "webai:chatgpt:upload-and-query", mcp: "webai_chatgpt_upload_and_query", ts: "webAiChatgptUploadAndQuery", fn: webAiChatgptUploadAndQuery },
   { cli: "webai:claude:upload-and-query", mcp: "webai_claude_upload_and_query", ts: "webAiClaudeUploadAndQuery", fn: webAiClaudeUploadAndQuery },
   { cli: "webai:gemini:upload-and-query", mcp: "webai_gemini_upload_and_query", ts: "webAiGeminiUploadAndQuery", fn: webAiGeminiUploadAndQuery },
@@ -319,6 +320,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     webai_chatgpt_send_prompt: ["model", "web_search", "canvas"],
     webai_claude_send_prompt: ["model", "thinking", "web_search", "incognito"],
     webai_gemini_send_prompt: ["model", "thinking", "web_search"],
+    webai_gemini_select_model: ["model", "thinking_level"],
     webai_chatgpt_upload_and_query: ["model"],
     webai_claude_upload_and_query: ["model", "reuse_conversation"],
     webai_gemini_upload_and_query: ["model"],
@@ -334,10 +336,10 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     assert.ok(row, `${mcp} contract row missing`);
     for (const param of params) assert.ok(row.optional_args?.includes(param), `${mcp} optional_args missing ${param}`);
   }
-  assert.equal(expectedWebaiToolCount, 37);
+  assert.equal(expectedWebaiToolCount, 38);
 });
 
-test("consumer contract v1.5.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
+test("consumer contract v1.6.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
   const manifest = contract();
   const cliSource = fs.readFileSync(path.resolve(process.cwd(), "src/cli.ts"), "utf-8");
   const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
@@ -377,13 +379,13 @@ test("consumer contract v1.5.0 webai tools round-trip through CLI, MCP, and TS e
 });
 
 
-test("stream5 final surface: webai tool count is exactly 37", () => {
+test("stream5 plus issue14 surface: webai tool count is exactly 38", () => {
   const manifest = contract();
   const webaiCommands = manifest.commands.filter(
     (c: any) => String(c.mcp_name || "").startsWith("webai_")
   );
   assert.equal(webaiCommands.length, expectedWebaiToolCount,
-    `Expected 37 webai tools; got ${webaiCommands.length}. Pulse reconciliation required.`);
+    `Expected 38 webai tools; got ${webaiCommands.length}. Issue #14 selector reconciliation required.`);
   const subMcpTools = webaiCommands.filter(
     (c: any) => ["webai_claude_design_", "webai_gemini_music_", "webai_chatgpt_codex_"].some((prefix) => String(c.mcp_name || "").startsWith(prefix))
   );
@@ -404,10 +406,10 @@ test("stream5 final surface: webai tool count is exactly 37", () => {
   const mainServerNewTools = webaiCommands.filter(
     (c: any) => !originalTools.has(c.mcp_name) && !subMcpTools.includes(c)
   );
-  assert.equal(mainServerNewTools.length, 13,
-    `Expected 13 new main-server tools; got ${mainServerNewTools.length}`);
+  assert.equal(mainServerNewTools.length, 14,
+    `Expected 14 new main-server tools; got ${mainServerNewTools.length}`);
   assert.equal(originalWebaiTools.length + mainServerNewTools.length + subMcpTools.length, expectedWebaiToolCount,
-    "Expected Stream #5 split to total 37 (13 pre-existing + 13 main-server + 11 sub-MCP)");
+    "Expected Stream #5 plus Issue #14 split to total 38 (13 pre-existing + 14 main-server + 11 sub-MCP)");
 });
 
 test("stream5 final error_codes count is 32", () => {
@@ -585,12 +587,12 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
     assert.equal(typeof item.fn, "function", `${item.ts} missing TS export`);
   }
   assert.equal(mcpToolNames.filter((name) => /^research_(aiaa|wos|acm|ieee|acs|asme|rsc|wiley|asce|iop|tandf|sae|sciencedirect|aps|emerald|cambridge|springer|nature|iet|aip|mdpi|optica|proquest|frontiers|arxiv|siam|degruyter|worldsci|royalsoc|scoap3|dblp|scielo|inspirehep|pubscholar|opticsjournal|crc|cellpress|iest|incopat|wanfang)_(search|filter|export)$/.test(name)).length, 120, "120 per-DB research_ tools in listMcpTools()");
-  assert.equal(expectedWebaiToolCount, 37, "expectedWebaiToolCount still 37");
+  assert.equal(expectedWebaiToolCount, 38, "expectedWebaiToolCount now 38");
   assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
-  assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 37, "webai command rows still 37");
-  assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 37, "webai MCP tools still 37");
+  assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 38, "webai command rows now 38");
+  assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 38, "webai MCP tools now 38");
   assert.equal(manifest.error_codes.length, 32, "error codes still 32");
-  assert.equal(manifest.contract_version, "consumer-contract-1.5.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.6.0");
   assert.equal(packageJson.version, "0.7.0");
   assert.equal(manifest.package_version, "0.7.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
@@ -2500,6 +2502,106 @@ test("gemini generate-image returns ELEMENT_NOT_FOUND when Create image button w
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.match(result.expected_selector, /button\[aria-label\*=\"Create image\"\].*Upload & tools.*menuitemcheckbox/);
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app?hl=en"]);
+});
+
+const GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST = 'button[aria-label="Open mode picker"]';
+const GEMINI_FLASH_LITE_OPTION_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Fastest answers")';
+const GEMINI_THINKING_EXPANDER_SELECTOR_FOR_TEST = '[role="menuitem"][aria-label*="Thinking level"], [role="menuitem"]:has-text("Thinking level")';
+const GEMINI_THINKING_STANDARD_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Best for most questions")';
+const GEMINI_THINKING_EXTENDED_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Complex problem solving")';
+
+function mockGeminiSelectModelPage(options: { missingTrigger?: boolean } = {}): any {
+  const page = mockSendPromptPage("https://gemini.google.com/app?hl=en");
+  page.calls.click = [];
+  page.calls.waitForSelector = [];
+  page.calls.keyboard = [];
+  page.waitForSelector = async (selector: string) => { page.calls.waitForSelector.push(selector); };
+  page.waitForTimeout = async () => undefined;
+  page.waitForFunction = async () => undefined;
+  page.keyboard = { press: async (key: string) => { page.calls.keyboard.push(`key:${key}`); } };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      waitFor: async () => {
+        if (options.missingTrigger && selector === GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST) throw new Error("missing trigger");
+      },
+      getAttribute: async (name: string) => name === "aria-expanded" ? "false" : null,
+      click: async () => { page.calls.click.push(selector); },
+      count: async () => 1,
+      textContent: async () => ""
+    };
+    return loc;
+  };
+  return page;
+}
+
+test("webai_gemini_select_model is registered in contract with the 6 expected args", () => {
+  const manifest = contract();
+  const row = manifest.commands.find((command: any) => command.mcp_name === "webai_gemini_select_model");
+  assert.ok(row, "webai_gemini_select_model contract row missing");
+  assert.equal(row.cli_name, "webai:gemini:select-model");
+  assert.equal(row.ts_export, "webAiGeminiSelectModel");
+  assert.deepEqual(row.required_args, ["profile"]);
+  assert.deepEqual(row.optional_args, ["model", "thinking_level"]);
+  assert.deepEqual(row.output_keys.always_present, ["ok", "selected_model", "selected_thinking_level", "errorCode"]);
+  assert.deepEqual(row.output_keys.optional, []);
+  assert.ok(listMcpTools().some((tool) => tool.name === "webai_gemini_select_model"));
+});
+
+test("webai_gemini_select_model returns INVALID_ARGS when neither model nor thinking_level provided", async () => {
+  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
+  assert.equal(result.errorCode, "INVALID_ARGS");
+  assert.match(result.message, /requires at least one of: model, thinking_level/);
+});
+
+test("webai_gemini_select_model returns INVALID_ARGS for unknown model value", async () => {
+  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225", model: "unknown" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
+  assert.equal(result.errorCode, "INVALID_ARGS");
+  assert.match(result.message, /unsupported model/);
+});
+
+test("webai_gemini_select_model clicks Open mode picker then the 3.1 Flash-Lite menuitem", async () => {
+  const page = mockGeminiSelectModelPage();
+  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(page));
+  assert.equal(result.ok, true);
+  assert.equal(result.selected_model, "3.1-flash-lite");
+  assert.deepEqual(page.calls.click.slice(0, 2), [
+    GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST,
+    GEMINI_FLASH_LITE_OPTION_SELECTOR_FOR_TEST
+  ]);
+});
+
+test("webai_gemini_select_model returns ELEMENT_NOT_FOUND when mode picker trigger is missing", async () => {
+  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(mockGeminiSelectModelPage({ missingTrigger: true })));
+  assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
+  assert.equal(result.evidence?.selector, GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST);
+});
+
+test("webai_gemini_select_model clicks Thinking level expander, then Extended sub-option", async () => {
+  const page = mockGeminiSelectModelPage();
+  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", thinking_level: "extended" }, mockWebAiRuntime(page));
+  assert.equal(result.ok, true);
+  assert.equal(result.selected_thinking_level, "extended");
+  assert.deepEqual(page.calls.click.slice(0, 3), [
+    GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST,
+    GEMINI_THINKING_EXPANDER_SELECTOR_FOR_TEST,
+    GEMINI_THINKING_EXTENDED_SELECTOR_FOR_TEST
+  ]);
+});
+
+test("webai_gemini_select_model handles dual-set: clicks model, picker auto-closes, re-opens, then expands Thinking level, then Standard", async () => {
+  const page = mockGeminiSelectModelPage();
+  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", model: "3.1-flash-lite", thinking_level: "standard" }, mockWebAiRuntime(page));
+  assert.equal(result.ok, true);
+  assert.equal(result.selected_model, "3.1-flash-lite");
+  assert.equal(result.selected_thinking_level, "standard");
+  assert.deepEqual(page.calls.click.slice(0, 5), [
+    GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST,
+    GEMINI_FLASH_LITE_OPTION_SELECTOR_FOR_TEST,
+    GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST,
+    GEMINI_THINKING_EXPANDER_SELECTOR_FOR_TEST,
+    GEMINI_THINKING_STANDARD_SELECTOR_FOR_TEST
+  ]);
 });
 
 test("upload-and-query completion fields round-trip through schema and contract", () => {

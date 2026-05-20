@@ -179,6 +179,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     response_timeout_ms: asNumber(options["response-timeout-ms"] || options.responseTimeoutMs),
     reuse_conversation: asBoolean(options["reuse-conversation"] || options.reuseConversation),
     model: asString(options.model),
+    thinking_level: asString(options["thinking-level"] || options.thinkingLevel),
     thinking: asBoolean(options.thinking),
     web_search: asBoolean(options["web-search"] || options.webSearch),
     incognito: asBoolean(options.incognito),
@@ -220,6 +221,7 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:chatgpt:send-prompt": "webai_chatgpt_send_prompt",
     "webai:claude:send-prompt": "webai_claude_send_prompt",
     "webai:gemini:send-prompt": "webai_gemini_send_prompt",
+    "webai:gemini:select-model": "webai_gemini_select_model",
     "webai:chatgpt:upload-and-query": "webai_chatgpt_upload_and_query",
     "webai:claude:upload-and-query": "webai_claude_upload_and_query",
     "webai:gemini:upload-and-query": "webai_gemini_upload_and_query",
@@ -813,6 +815,7 @@ Core commands:
 
 MCP and compatibility commands:
   webai:chatgpt:send-prompt|webai:claude:send-prompt|webai:gemini:send-prompt --profile <name> --prompt <text> [--response-timeout-ms <ms>] [--reuse-conversation] [--output-json]
+  webai:gemini:select-model --profile <name> [--model <3.1-flash-lite|3.5-flash|3.1-pro>] [--thinking-level <standard|extended>] [--output-json]
   webai:chatgpt:upload-and-query|webai:claude:upload-and-query|webai:gemini:upload-and-query --profile <name> --file <path> --prompt <text> [--output-json]
   webai:chatgpt:generate-file|webai:claude:generate-file --profile <name> --prompt <text> --expected-extension <ext> --download-dir <abs> [--output-json]
   webai:chatgpt:generate-image|webai:gemini:generate-image --profile <name> --prompt <text> --download-dir <abs> [--output-json]
