@@ -2682,11 +2682,34 @@ test("upload-and-query timeout returns COMMAND_TIMEOUT with empty response text"
 });
 
 function installClaudeAttachmentDom(filename: string, stillLoading: boolean): void {
-  const finalChip = { getAttribute: (name: string) => name === "data-testid" ? filename : null };
-  const skeleton = { getAttribute: (name: string) => name === "data-testid" ? "file-thumbnail" : null, textContent: "Loading..." };
+  // #16 R2 (2026-05-21): Claude composer chip DOM revamped — the finalized chip
+  // wrapper itself carries data-testid="file-thumbnail" (no longer the transient
+  // skeleton); filename lives as the LEFT-of-first-comma segment of its inner
+  // <button aria-label="<filename>, <ext>, <N> lines">.
+  const finishedButton = {
+    getAttribute: (name: string) => name === "aria-label" ? `${filename}, txt, 2 lines` : null
+  };
+  const loadingHint = stillLoading
+    ? { getAttribute: (name: string) => name === "role" ? "progressbar" : null }
+    : null;
+  const chip = {
+    querySelector: (selector: string) => {
+      if (selector === 'button[aria-label]') return finishedButton;
+      if (
+        selector.includes('progressbar') ||
+        selector.includes('oading') ||
+        selector.includes('rogress') ||
+        selector.includes('animate-spin') ||
+        selector.includes('spin')
+      ) {
+        return loadingHint;
+      }
+      return null;
+    }
+  };
   const root = {
-    querySelectorAll: (selector: string) => selector.includes("group\\/thumbnail") || selector.includes("group/thumbnail") ? [finalChip] : [],
-    querySelector: (selector: string) => selector === '[data-testid="file-thumbnail"]' && stillLoading ? skeleton : null
+    querySelectorAll: (selector: string) => selector === '[data-testid="file-thumbnail"]' ? [chip] : [],
+    querySelector: () => null
   };
   (globalThis as any).document = {
     querySelector: (selector: string) => selector.includes("fieldset") || selector.includes("composer") || selector.includes("main") ? root : null,
@@ -2694,7 +2717,7 @@ function installClaudeAttachmentDom(filename: string, stillLoading: boolean): vo
   };
 }
 
-test("claude upload wait recognizes finalized filename data-testid chip after skeleton disappears", async () => {
+test("claude upload wait recognizes finalized chip aria-label after loading hint disappears", async () => {
   const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-chip-"));
   const file = path.join(dir, "deck-outline.md");
   fs.writeFileSync(file, "hello\n");
@@ -2745,6 +2768,56 @@ test("generate-file passes captured conversation URL to artifactClickRunner", as
   assert.equal(result.artifact_name, "artifact.md");
   assert.equal(calls[0].tabUrlContains, "https://claude.ai/chat/conversation-123");
   assert.notEqual(calls[0].tabUrlContains, "https://claude.ai");
+});
+
+test("chatgpt generate-file widens artifactClick locate budget for the file-card render race (issue #16 R2)", async () => {
+  const calls: any[] = [];
+  const page = mockSendPromptPage("https://chatgpt.com/c/conversation-pptx");
+  const runtime = {
+    ...mockWebAiRuntime(page),
+    artifactClick: async (options: any) => {
+      calls.push(options);
+      return { path: path.join(process.cwd(), "deck.pptx"), sha256: "abc", size: 4096, downloadFilename: "deck.pptx", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
+    }
+  } as any;
+  await webAiChatgptGenerateFile({ profile: "chatgpt-generate-file-r2", prompt: "make pptx", expected_extension: "pptx", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  // The file card streams in AFTER the text-response completion signal; without
+  // a widened locate budget the artifactClick races the file-card render and
+  // returns ELEMENT_NOT_FOUND. Live smoke 2026-05-21 on chatgpt-9223 observed
+  // 3m 20s of "Thought for ..." before the file card emitted, and consumer
+  // cycle#26 (smoke 09) confirmed the file-card can stream in 6-9 min into the
+  // run on Thinking-class paths. Pin the 360s locate budget and the 480s
+  // overall ceiling so artifactClick's locate phase can wait through the
+  // longest observed file-card render windows without leaking ELEMENT_NOT_FOUND.
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].locateTimeoutMs, 360000);
+  assert.equal(calls[0].timeoutMs, 480000);
+  // The ChatGPT file-card download chip needs the JS-click fallback because
+  // its onClick is on the inner SVG via React synthetic events and is NOT
+  // reached by Input.dispatchMouseEvent alone (verified live 2026-05-21:
+  // probe-pptx-rawclick.mjs sees 0 download events, probe-pptx-js-click.mjs
+  // sees 1). The chip's onClick is idempotent so the dual-fire is safe.
+  assert.equal(calls[0].useJsClickFallback, true);
+});
+
+test("claude generate-file does NOT widen the locate budget — its file card is bundled with the response (issue #16 R2 scope)", async () => {
+  const calls: any[] = [];
+  const page = mockSendPromptPage("https://claude.ai/chat/conversation-claude");
+  const runtime = {
+    ...mockWebAiRuntime(page),
+    artifactClick: async (options: any) => {
+      calls.push(options);
+      return { path: path.join(process.cwd(), "doc.md"), sha256: "abc", size: 12, downloadFilename: "doc.md", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
+    }
+  } as any;
+  await webAiClaudeGenerateFile({ profile: "claude-generate-file-r2", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  assert.equal(calls.length, 1);
+  // No locateTimeoutMs or useJsClickFallback override for claude — keeps the
+  // R2 selector-locate fix surgically scoped to chatgpt (the React-synthetic
+  // event hit-test gap is chatgpt-specific; claude's file-card download
+  // button is reached by Input.dispatchMouseEvent alone).
+  assert.equal(calls[0].locateTimeoutMs, undefined);
+  assert.equal(calls[0].useJsClickFallback, undefined);
 });
 
 test("gemini generate-image uses Download full size image then Download full size image chain", async () => {

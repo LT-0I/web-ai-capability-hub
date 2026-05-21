@@ -37,12 +37,22 @@ test("ChatGPT image selectors use generated-image fallbacks and share-excluding 
   assert.match(CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR, /not\(contains\(translate\(@aria-label,"SHARE","share"\),"share"\)\)/);
 });
 
-test("Gemini video prompt path falls back to the default Gemini composer", () => {
+test("Gemini video prompt path pins to the Describe-your-video composer (issue #16 R2)", () => {
   const source = fs.readFileSync(path.join(process.cwd(), "src/mcp/tools.ts"), "utf8");
   const videoPromptBlock = source.slice(source.indexOf('record.progress_label = "submitting video prompt"'), source.indexOf('record.progress_label = "generating video'));
+  // Default composer is still "Ask Gemini" — that selector is unchanged.
   assert.equal(serviceDefaults.gemini.promptSelector, 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Ask Gemini"]');
-  assert.match(videoPromptBlock, /sendPromptInExistingPage\("gemini",\s*\{ \.\.\.args, __expectImageResponse: true, __forceEnterToSend: true \}/);
+  // #16 R2: when Videos mode is active the composer's data-placeholder is
+  // "Describe your video" — falling back to the default composer matched
+  // count=0 and timed out at 15s (root cause locked via probe-video-all-tabs.mjs
+  // 2026-05-21). The video send call must pin __promptSelector to the
+  // video-mode composer (same shape as image generation pinning to
+  // GEMINI_IMAGE_PROMPT_SELECTOR).
+  assert.match(videoPromptBlock, /sendPromptInExistingPage\("gemini",\s*\{ \.\.\.args, __expectImageResponse: true, __forceEnterToSend: true, __promptSelector: GEMINI_VIDEO_PROMPT_SELECTOR \}/);
+  // Image and video have distinct composer pinning constants.
   assert.doesNotMatch(videoPromptBlock, /__promptSelector:\s*GEMINI_IMAGE_PROMPT_SELECTOR/);
+  // The new constant exists and discriminates by data-placeholder="Describe your video".
+  assert.match(source, /const GEMINI_VIDEO_PROMPT_SELECTOR = .*data-placeholder="Describe your video"/);
 });
 
 class ToolModeLocator {
@@ -115,6 +125,23 @@ function runtimeThatFailsIfBrowserInvoked(counter: { count: number }): any {
     }
   };
 }
+
+test("heavy-generation tools widen the MCP invocation deadline so 3-5min model latency does not race the artifactClick budget (issue #16 R2)", () => {
+  const source = fs.readFileSync(path.join(process.cwd(), "src/mcp/tools.ts"), "utf8");
+  // Lock the per-tool override map shape: webai_chatgpt_generate_file gets
+  // 900000ms (15 min) because consumer cycle#26 (smoke 09, 2026-05-21) observed
+  // the file-card streaming in at 6-9 min into the run on Thinking-class paths;
+  // image generators stay at 600000ms (10 min) and every other tool retains the
+  // 180s default. Hard ceiling MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS is widened to
+  // 900000 to admit the chatgpt_generate_file override.
+  assert.match(source, /MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS:\s*Record<string,\s*number>\s*=\s*\{[\s\S]+?webai_chatgpt_generate_file:\s*900000,[\s\S]+?webai_chatgpt_generate_image:\s*600000,[\s\S]+?webai_gemini_generate_image:\s*600000[\s\S]+?\}/);
+  assert.match(source, /const MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS\s*=\s*900000;/);
+  // withMcpToolDeadline + mcpToolInvocationTimeoutMs accept the tool name so
+  // the per-tool override actually engages.
+  assert.match(source, /async function withMcpToolDeadline<T>\(tool: string, run: \(\) => Promise<T>\): Promise<T> \{\s*const timeoutMs = mcpToolInvocationTimeoutMs\(tool\);/);
+  // Env override remains the ceiling (no per-tool override beats env).
+  assert.match(source, /MCP_TOOL_TIMEOUT_ENV_KEYS = \["WEBAI_MCP_TOOL_TIMEOUT_MS", "MCP_TOOL_TIMEOUT_MS"\]/);
+});
 
 test("webai_chatgpt_generate_file no longer rejects pptx pre-flight (issue #16 R1 reverts the #12 R2 pptx-rejection after live probe)", async () => {
   // #16 R1: chatgpt-9223 live probe (2026-05-21) confirmed real .pptx generation

@@ -506,6 +506,16 @@ const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
 const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
 const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Videos"]';
+// #16 R2 (2026-05-21): when Videos tool mode is active, the composer's
+// data-placeholder flips from "Ask Gemini" (default) to "Describe your video"
+// (verified live 2026-05-21 on gemini-9225 — see
+// .runs/issue-fix-loop/probe-video-all-tabs.mjs). The R1 worker fell back to
+// the default Gemini composer selector, which matches the non-video composer,
+// so the worker's sendPromptInExistingPage timed out at 15s with the textbox
+// invisible (count=0) — even though activation, the Deselect Videos pill, and
+// the visible textbox itself were all healthy. Pin to the video-mode composer
+// the same way GEMINI_IMAGE_PROMPT_SELECTOR pins the image-mode composer.
+const GEMINI_VIDEO_PROMPT_SELECTOR = 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Describe your video"]';
 const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'generated-video button[aria-label="Download video"], video-player button.download-button[aria-label*="Download" i], button[aria-label="Download video"]';
 const GEMINI_VIDEO_QUOTA_TEXT_SIGNAL = 'snapshot.visibleText:/video generation limit/i';
 const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
@@ -1300,15 +1310,39 @@ async function waitForClaudeAttachmentReadyAfterUpload(page: any, resolved: stri
         const root =
           document.querySelector('fieldset, [data-testid="composer"], [data-testid*="composer"], main') ||
           document.body;
-        // Finalized chip wrappers: <div class="relative group/thumbnail"><div data-testid="<filename>">...
-        const finals = Array.from(root.querySelectorAll('div.group\\/thumbnail [data-testid], [class*="group/thumbnail"] [data-testid]'));
-        const seen = new Set(finals.map(n => n.getAttribute('data-testid') || ''));
+        // #16 R2 (2026-05-21): Claude composer chip DOM revamped — the
+        // finalized chip wrapper is now itself <div class="group/thumbnail"
+        // data-testid="file-thumbnail">, and the filename appears as
+        // <button aria-label="<filename>, <ext>, <N> lines"> inside it (no
+        // longer as a child <div data-testid="<filename>">). The legacy
+        // "stillLoading = querySelector('[data-testid=\"file-thumbnail\"]')"
+        // gate inverted because that testid now sits on the COMPLETED chip.
+        // New shape (verified live 2026-05-21 on claude-9224):
+        //   <div class="group/thumbnail" data-testid="file-thumbnail">
+        //     <button aria-label="test-upload.txt, txt, 2 lines">...</button>
+        //     <button aria-label="Remove">...</button>
+        //   </div>
+        // Completion = each expected filename appears as the LEFT-of-first-comma
+        // segment of some chip's inner button aria-label, AND no chip carries a
+        // loading/progress marker.
+        const chips = Array.from(root.querySelectorAll('[data-testid="file-thumbnail"]'));
+        if (chips.length === 0) return false;
+        const seen = new Set<string>();
+        for (const chip of chips) {
+          // Loading hint: progressbar / "Loading" aria-label / spinning svg.
+          const loadingHint = chip.querySelector(
+            '[role="progressbar"], [aria-label*="oading"], [aria-label*="rogress"], svg[class*="animate-spin"], svg[class*="spin"]'
+          );
+          if (loadingHint) return false;
+          const btn = chip.querySelector('button[aria-label]');
+          const label = btn ? (btn.getAttribute('aria-label') || '') : '';
+          // aria-label shape: "<filename>, <ext-or-meta>, <count meta>"
+          const commaIdx = label.indexOf(',');
+          const filename = commaIdx >= 0 ? label.slice(0, commaIdx).trim() : label.trim();
+          if (filename) seen.add(filename);
+        }
         for (const name of expected) if (!seen.has(name)) return false;
-        // The legacy [data-testid="file-thumbnail"] is now ONLY on the transient
-        // upload skeleton (textContent "Loading..."). It must be gone before we
-        // declare the chip ready.
-        const stillLoading = root.querySelector('[data-testid="file-thumbnail"]');
-        return !stillLoading;
+        return true;
       },
       filenames,
       { timeout: 30000 }
@@ -1562,18 +1596,47 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
     //   Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation)
     // and a real Browser.downloadWillBegin with the suggestedFilename. The previous
     // 'button.behavior-btn' anchor is DEAD (zero matches in the current DOM).
+    //
+    // #16 R2 (2026-05-21): the file card streams in AFTER sendPromptOnPage's
+    // text-response completion signal fires (consumer cycle#26 hit
+    // ELEMENT_NOT_FOUND with selector count=0 at the moment artifactClick
+    // ran; later probe of the same conversation showed count=1 with the file
+    // card fully rendered). Bound a pre-locate wait on the file-card filename
+    // text so we either give the file card up to 30s to render OR surface a
+    // diagnostic ARTIFACT_DOWNLOAD_TIMEOUT identifying the file-card render
+    // race, instead of leaking the generic ELEMENT_NOT_FOUND.
     const buttonSelector = service === "chatgpt"
       ? '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;
+    // #16 R2 (2026-05-21): for ChatGPT pptx in Heavy/Thinking model paths, the
+    // assistant turn can stream for several minutes BEFORE the file-card
+    // emits — first observed 3m 20s end-to-end on chatgpt-9223 (smoke
+    // .runs/issue-fix-loop/issue16-r2-smoke/02-chatgpt-pptx-v2.json), then
+    // consumer cycle#26 (smoke 09, 2026-05-21) measured the file-card
+    // streaming in at 6-9 min from prompt-send on a fresh Thinking-class run
+    // — so the locate budget must run for ~6 min before declaring
+    // ELEMENT_NOT_FOUND. The shipped 60s overall ceiling and 30s locate
+    // budget both race the model. Widen both for ChatGPT specifically (locate
+    // 360s, overall 480s) so the post-text-response file-card stream has room
+    // to land. The outer MCP deadline is bumped to 900s in tandem
+    // (MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS). Claude generate-file is
+    // unchanged because its file card emits inline with the response (no
+    // separate post-stream window).
+    const chatgptArtifactTimeoutMs = Math.min(Number(args.timeout_ms || 480000), 480000);
     const result = await artifactClickRunner(runtime)({
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
       buttonSelector,
       downloadDir: args.download_dir,
       filenamePattern: `\\.${args.expected_extension}$`,
-      timeoutMs: Math.min(Number(args.timeout_ms || 60000), 60000)
+      timeoutMs: service === "chatgpt" ? chatgptArtifactTimeoutMs : Math.min(Number(args.timeout_ms || 60000), 60000),
+      // #16 R2 (2026-05-21): ChatGPT file-card download chip needs the
+      // JS-click fallback (React onClick on inner SVG isn't reached by raw
+      // CDP Input.dispatchMouseEvent — confirmed live). The chip's onClick
+      // is idempotent so the dual-fire produces a single download.
+      ...(service === "chatgpt" ? { locateTimeoutMs: 360000, useJsClickFallback: true } : {})
     });
     return artifactClickResultToSafeOutput(result, service === "chatgpt" ? { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") } : { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } finally { releaseProfileLease(args.profile, lease); }
@@ -1805,7 +1868,7 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     }
     await throwIfGeminiVideoQuotaExhausted(page, 8000);
     record.progress_label = "submitting video prompt";
-    const result = await sendPromptInExistingPage("gemini", { ...args, __expectImageResponse: true, __forceEnterToSend: true }, page, Date.now());
+    const result = await sendPromptInExistingPage("gemini", { ...args, __expectImageResponse: true, __forceEnterToSend: true, __promptSelector: GEMINI_VIDEO_PROMPT_SELECTOR }, page, Date.now());
     if (result.errorCode) throw new WebAiToolError(String(result.errorCode), "Gemini video prompt failed before generation started");
     record.progress_label = "generating video (this can take 1-2 min)";
     try {
@@ -3296,8 +3359,25 @@ export function listMcpTools(): McpToolDefinition[] {
 }
 
 const DEFAULT_MCP_TOOL_INVOCATION_TIMEOUT_MS = 180000;
-const MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS = 600000;
+const MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS = 900000;
 const MCP_TOOL_TIMEOUT_ENV_KEYS = ["WEBAI_MCP_TOOL_TIMEOUT_MS", "MCP_TOOL_TIMEOUT_MS"];
+
+// #16 R2 (2026-05-21): per-tool deadline overrides for the heavy-generation
+// surfaces where the assistant turn alone can run 3-5 min on Heavy/Thinking
+// models before the file or image card emits — confirmed live 2026-05-21 on
+// chatgpt-9223 (smoke .runs/issue-fix-loop/issue16-r2-smoke/02-chatgpt-pptx-v2
+// → 3m 20s of "Thought for ..." before file card). The default 180s ceiling
+// would race the model and emit a misleading COMMAND_TIMEOUT envelope before
+// the artifactClick locate budget could engage. All other tools retain the
+// 180s default. Consumer cycle#26 (smoke 09, 2026-05-21) further showed the
+// pptx file-card can stream in at 6-9 min into the run on Thinking-class
+// paths — webai_chatgpt_generate_file therefore receives 900000ms (15 min)
+// and MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS is widened to 900000 to admit it.
+const MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS: Record<string, number> = {
+  webai_chatgpt_generate_file: 900000,
+  webai_chatgpt_generate_image: 600000,
+  webai_gemini_generate_image: 600000
+};
 
 interface HonestErrorEnvelope {
   ok: false;
@@ -3317,18 +3397,21 @@ class McpInvocationDeadlineError extends Error {
   }
 }
 
-function mcpToolInvocationTimeoutMs(): number {
+function mcpToolInvocationTimeoutMs(tool?: string): number {
   for (const key of MCP_TOOL_TIMEOUT_ENV_KEYS) {
     const raw = process.env[key];
     if (!raw) continue;
     const parsed = Number(raw);
     if (Number.isFinite(parsed) && parsed > 0) return Math.min(Math.max(Math.floor(parsed), 1000), MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
   }
+  if (tool && MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS[tool]) {
+    return Math.min(MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS[tool], MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
+  }
   return DEFAULT_MCP_TOOL_INVOCATION_TIMEOUT_MS;
 }
 
 async function withMcpToolDeadline<T>(tool: string, run: () => Promise<T>): Promise<T> {
-  const timeoutMs = mcpToolInvocationTimeoutMs();
+  const timeoutMs = mcpToolInvocationTimeoutMs(tool);
   let timer: ReturnType<typeof setTimeout> | undefined;
   const timeout = new Promise<never>((_resolve, reject) => {
     timer = setTimeout(() => reject(new McpInvocationDeadlineError(tool, timeoutMs)), timeoutMs);

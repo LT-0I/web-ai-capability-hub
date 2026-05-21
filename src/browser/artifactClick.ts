@@ -36,6 +36,15 @@ export interface ArtifactClickOptions {
   noDisconnect?: boolean;
   maxViewportY?: number;
   openPanelIfMissing?: "chatgpt-canvas";
+  /**
+   * #16 R2: secondary JS-level click on the element-from-point after the
+   * synthetic CDP mouse events. Required for the ChatGPT post-revamp
+   * file-card download chip (React synthetic event system on inner SVG —
+   * Input.dispatchMouseEvent alone does not trigger the onClick handler).
+   * Caller MUST verify the click target's handler is idempotent before
+   * enabling.
+   */
+  useJsClickFallback?: boolean;
   /** Internal: readiness evidence collected before locate/click. */
   pageReadyEvidence?: Record<string, unknown>;
 }
@@ -97,12 +106,30 @@ async function candidateBox(handle: any, scrollIntoView: string = "auto"): Promi
   return await handle.boundingBox?.();
 }
 function inViewport(box: any, maxY = 1000): boolean { return !!box && Number.isFinite(box.y) && box.y >= 0 && box.y <= maxY; }
-async function rawClick(cdp: any, box: any): Promise<void> {
+async function rawClick(cdp: any, box: any, jsClickSelector?: string): Promise<void> {
   const x = box.x + box.width / 2;
   const y = box.y + box.height / 2;
   await cdp.send("Input.dispatchMouseEvent", { type: "mouseMoved", x, y });
   await cdp.send("Input.dispatchMouseEvent", { type: "mousePressed", x, y, button: "left", buttons: 1, clickCount: 1 });
   await cdp.send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", buttons: 0, clickCount: 1 });
+  if (jsClickSelector) {
+    // #16 R2 (2026-05-21): the ChatGPT post-revamp file-card download chip
+    // listens to React's synthetic event system on the inner SVG element.
+    // CDP's Input.dispatchMouseEvent dispatches native mouse + pointer events
+    // but React's hit-test does not always match — confirmed live 2026-05-21
+    // on chatgpt-9223: same coordinates click via Playwright's .click() fires
+    // Browser.downloadWillBegin within 1s, whereas Input.dispatchMouseEvent
+    // alone leaves the listener silent for 300s+ (.runs/issue-fix-loop/
+    // probe-pptx-rawclick.mjs vs probe-pptx-js-click.mjs). The JS-click
+    // fallback re-resolves the element via the original buttonSelector
+    // (not via elementFromPoint, which can land on an irrelevant overlay
+    // after the synthetic mouse events shift focus) and calls HTMLElement.click()
+    // directly. The chip's onClick is idempotent so the dual-fire produces a
+    // single download. Caller MUST verify the click target's handler is
+    // idempotent before enabling.
+    const expr = `((sel) => { const el = document.querySelector(sel); if (!el) return "no-element"; if (typeof el.click !== "function") return "not-clickable"; el.click(); return "clicked:" + el.tagName; })(${JSON.stringify(jsClickSelector)});`;
+    await cdp.send("Runtime.evaluate", { expression: expr, awaitPromise: false, returnByValue: true }).catch(() => undefined);
+  }
 }
 function globToRegExp(glob: string): RegExp {
   const escaped = glob.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*").replace(/\?/g, ".");
@@ -830,7 +857,7 @@ export async function artifactClickOnPage(browser: any, page: any, options: Arti
   const armedBcdp = await armDownloadBehavior(browser, cdp, downloadDir, page);
   const downloadPromise = pollDownload(armedBcdp, downloadDir, options.timeoutMs || 60000, abortDownloads.signal)
     .catch((error) => abortDownloads.signal.aborted ? ({ aborted: true as const }) : Promise.reject(error));
-  await rawClick(cdp, candidate.box);
+  await rawClick(cdp, candidate.box, options.useJsClickFallback ? options.buttonSelector : undefined);
   if (options.followUpSelector || options.followUpTextRegex) {
     try {
       await sleep(300);
