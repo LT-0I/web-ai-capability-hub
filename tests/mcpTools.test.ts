@@ -116,24 +116,26 @@ function runtimeThatFailsIfBrowserInvoked(counter: { count: number }): any {
   };
 }
 
-test("webai_chatgpt_generate_file rejects pptx pre-flight without browser or artifact metadata", async () => {
+test("webai_chatgpt_generate_file no longer rejects pptx pre-flight (issue #16 R1 reverts the #12 R2 pptx-rejection after live probe)", async () => {
+  // #16 R1: chatgpt-9223 live probe (2026-05-21) confirmed real .pptx generation
+  // via the post-revamp file-card UI; the pre-flight INVALID_ARGS guard is now
+  // xlsx-only. With pptx the handler proceeds to the browser stage, so the
+  // runtime-that-fails-if-browser-invoked path now reaches the launcher (which
+  // we deliberately fail) — callMcpTool wraps that into a non-INVALID_ARGS
+  // envelope. That envelope shape (browser was invoked AND error is not the
+  // pre-flight pptx guard) is the contract we want to assert.
   const browserCalls = { count: 0 };
   const result = await callMcpTool("webai_chatgpt_generate_file", {
-    profile: "chatgpt-generate-file-pptx-guard",
+    profile: "chatgpt-generate-file-pptx-no-longer-rejected",
     prompt: "Create a three-slide deck",
     expected_extension: "pptx",
     download_dir: process.cwd()
   }, runtimeThatFailsIfBrowserInvoked(browserCalls)) as any;
 
   assert.equal(result.ok, false);
-  assert.equal(result.errorCode, "INVALID_ARGS");
-  assert.equal(result.error_code, "INVALID_ARGS");
-  assert.match(result.error, /expected_extension="pptx" is not supported on webai_chatgpt_generate_file/);
-  assert.match(result.error, /native downloadable \.pptx\/\.xlsx generation is not reliably produced/);
-  assert.equal("path" in result, false);
-  assert.equal("sha256" in result, false);
-  assert.equal("size_bytes" in result, false);
-  assert.equal(browserCalls.count, 0);
+  assert.ok(browserCalls.count > 0, "pptx now reaches the browser stage instead of pre-flight rejection");
+  // The envelope must NOT be the old pre-flight pptx rejection.
+  assert.doesNotMatch(String(result.error ?? ""), /expected_extension="pptx" is not supported/);
 });
 
 test("webai_claude_generate_file rejects xlsx pre-flight without browser or artifact metadata", async () => {
@@ -150,7 +152,7 @@ test("webai_claude_generate_file rejects xlsx pre-flight without browser or arti
   assert.equal(result.errorCode, "INVALID_ARGS");
   assert.equal(result.error_code, "INVALID_ARGS");
   assert.match(result.error, /expected_extension="xlsx" is not supported on webai_claude_generate_file/);
-  assert.match(result.error, /Supported: docx \(and code\/text artifacts: py, md, csv, svg, html, mmd, pdf\)\./);
+  assert.match(result.error, /Supported: docx, pptx \(and code\/text artifacts: py, md, csv, svg, html, mmd, pdf\)\./);
   assert.equal("path" in result, false);
   assert.equal("sha256" in result, false);
   assert.equal("size_bytes" in result, false);

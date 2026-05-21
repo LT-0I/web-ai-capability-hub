@@ -10,7 +10,7 @@ import { waitForArtifactPageReady } from "../src/browser/artifactClick";
 import { main } from "../src/cli";
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
-import { callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
+import { activateGeminiVideoMode, callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 import { subMcpToolSpecs } from "../src/mcp/submcp";
 import { bestEffortMarkVideoTaskBootstrapFailure } from "../src/mcp/videoWorker";
@@ -2681,6 +2681,56 @@ test("upload-and-query timeout returns COMMAND_TIMEOUT with empty response text"
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
+function installClaudeAttachmentDom(filename: string, stillLoading: boolean): void {
+  const finalChip = { getAttribute: (name: string) => name === "data-testid" ? filename : null };
+  const skeleton = { getAttribute: (name: string) => name === "data-testid" ? "file-thumbnail" : null, textContent: "Loading..." };
+  const root = {
+    querySelectorAll: (selector: string) => selector.includes("group\\/thumbnail") || selector.includes("group/thumbnail") ? [finalChip] : [],
+    querySelector: (selector: string) => selector === '[data-testid="file-thumbnail"]' && stillLoading ? skeleton : null
+  };
+  (globalThis as any).document = {
+    querySelector: (selector: string) => selector.includes("fieldset") || selector.includes("composer") || selector.includes("main") ? root : null,
+    body: root
+  };
+}
+
+test("claude upload wait recognizes finalized filename data-testid chip after skeleton disappears", async () => {
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-chip-"));
+  const file = path.join(dir, "deck-outline.md");
+  fs.writeFileSync(file, "hello\n");
+  const page = mockSendPromptPage("https://claude.ai/new");
+  page.setInputFiles = async () => undefined;
+  let checkedPredicate = false;
+  page.waitForFunction = async (fn: any, arg: any, options: any) => {
+    if (options?.timeout === 30000) {
+      checkedPredicate = true;
+      assert.deepEqual(arg, ["deck-outline.md"]);
+      installClaudeAttachmentDom("deck-outline.md", true);
+      assert.equal(fn(arg), false);
+      installClaudeAttachmentDom("deck-outline.md", false);
+      assert.equal(fn(arg), true);
+      cleanupCompletionDom();
+      return;
+    }
+  };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("chat-input") || selector.includes("Send message") || selector.includes("Write your prompt") || selector.includes("contenteditable") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector.includes("main") || selector.includes("assistant") ? "uploaded answer" : "Claude"
+    };
+    return loc;
+  };
+  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-chip", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, null);
+  assert.equal(checkedPredicate, true);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
 test("generate-file passes captured conversation URL to artifactClickRunner", async () => {
   const calls: any[] = [];
   const page = mockSendPromptPage("https://claude.ai/chat/conversation-123");
@@ -2719,6 +2769,27 @@ test("gemini generate-image uses Download full size image then Download full siz
   assert.equal(result.download_filename, "out.png");
   assert.equal(calls[0].buttonSelector, 'button[aria-label="Download full size image"]');
   assert.equal(calls[0].followUpSelector, 'button[aria-label="Download full size image"]');
+});
+
+test("activateGeminiVideoMode opens tools with force and waits for Videos pill", async () => {
+  const calls: string[] = [];
+  const page: any = {
+    waitForSelector: async (selector: string, options: any) => {
+      calls.push(`wait:${selector}:${options?.state}:${options?.timeout}`);
+    },
+    locator: (selector: string) => {
+      const loc: any = {
+        first: () => loc,
+        count: async () => 1,
+        click: async (options?: any) => calls.push(`click:${selector}:${JSON.stringify(options || {})}`)
+      };
+      return loc;
+    }
+  };
+  await activateGeminiVideoMode(page);
+  assert.ok(calls.includes('click:button[aria-label="Upload & tools"]:{"force":true}'), calls.join("\n"));
+  assert.ok(calls.includes('click:[role="menuitemcheckbox"]:has-text("Create video"), [role="menuitem"]:has-text("Create video"):{}'), calls.join("\n"));
+  assert.ok(calls.some((call) => call.startsWith('wait:button[aria-label="Deselect Videos"]:visible:')), calls.join("\n"));
 });
 
 

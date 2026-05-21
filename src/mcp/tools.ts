@@ -482,7 +482,7 @@ const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)
 // menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
-const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
+const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video"), [role="menuitem"]:has-text("Create video")';
 const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), form button[aria-haspopup="menu"]:has-text("Heavy"), button.__composer-pill[aria-haspopup="menu"], main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
 const CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR = '[role="menu"] [role="menuitemradio"][aria-checked="true"], [role="menuitemradio"][aria-checked="true"]';
 const CHATGPT_INSTANT_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"]';
@@ -505,7 +505,7 @@ const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-labe
 const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
 const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
-const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Create video"]';
+const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Videos"]';
 const GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR = 'generated-video button[aria-label="Download video"], video-player button.download-button[aria-label*="Download" i], button[aria-label="Download video"]';
 const GEMINI_VIDEO_QUOTA_TEXT_SIGNAL = 'snapshot.visibleText:/video generation limit/i';
 const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
@@ -1244,8 +1244,33 @@ async function activateGeminiCanvasMode(page: any): Promise<void> {
   await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CANVAS_MENUITEM_SELECTOR, activeSelector: GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, toolName: "Canvas" });
 }
 
-async function activateGeminiVideoMode(page: any): Promise<void> {
-  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, activeSelector: GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, zeroStateSelector: GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR, toolName: "Create video", quotaGuard: () => throwIfGeminiVideoQuotaExhausted(page, 8000) });
+export async function activateGeminiVideoMode(page: any): Promise<void> {
+  try {
+    await page.waitForSelector?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, cause: error?.message || String(error) });
+  }
+  const opener = page.locator?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR).first?.();
+  if (!opener || !(await opener.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR });
+  }
+  await opener.click?.({ force: true });
+  try {
+    await page.waitForSelector?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, cause: error?.message || String(error) });
+  }
+  const menuItem = page.locator?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR).first?.();
+  if (!menuItem || !(await menuItem.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR });
+  }
+  await menuItem.click?.();
+  try {
+    await page.waitForSelector?.(GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+  } catch (error: any) {
+    await throwIfGeminiVideoQuotaExhausted(page, 8000);
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video tool did not activate from Upload & tools menu", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: error?.message || String(error) });
+  }
 }
 
 
@@ -1268,34 +1293,22 @@ async function waitForClaudeAttachmentReadyAfterUpload(page: any, resolved: stri
   const filenames = resolved.map((file: string) => path.basename(file));
   try {
     await page.waitForFunction?.(
-      (expectedFilenames: string[]) => {
-        const thumbs = Array.from(document.querySelectorAll('[data-testid="file-thumbnail"]')) as HTMLElement[];
-        if (thumbs.length < expectedFilenames.length) return false;
-        const busySelector = [
-          '[role="progressbar"]',
-          'progress',
-          '[data-testid*="spinner" i]',
-          '[class*="spinner" i]',
-          '.animate-spin'
-        ].join(",");
-        const isVisible = (el: Element | null): boolean => {
-          if (!(el instanceof HTMLElement)) return false;
-          const r = el.getBoundingClientRect();
-          return r.width > 0 && r.height > 0;
-        };
-        return expectedFilenames.every((name) => {
-          const lowerName = name.toLowerCase();
-          // textContent is read directly (independent of CSS opacity fade-in);
-          // anchor on the real Claude attachment container, never a body * scan.
-          return thumbs.some((th) => {
-            if (!isVisible(th)) return false;
-            const label = ((th.querySelector("button") as HTMLElement | null)?.getAttribute("aria-label") || "").toLowerCase();
-            const text = (th.textContent || "").toLowerCase();
-            if (!label.includes(lowerName) && !text.includes(lowerName)) return false;
-            const spinner = th.querySelector(busySelector);
-            return !(spinner && spinner instanceof HTMLElement && spinner.getBoundingClientRect().width > 0);
-          });
-        });
+      (expectedNames: string[]) => {
+        const expected = new Set(expectedNames);
+        // Scope to the live composer / attachment area to avoid matching prior turns'
+        // chip wrappers that linger in conversation scrollback.
+        const root =
+          document.querySelector('fieldset, [data-testid="composer"], [data-testid*="composer"], main') ||
+          document.body;
+        // Finalized chip wrappers: <div class="relative group/thumbnail"><div data-testid="<filename>">...
+        const finals = Array.from(root.querySelectorAll('div.group\\/thumbnail [data-testid], [class*="group/thumbnail"] [data-testid]'));
+        const seen = new Set(finals.map(n => n.getAttribute('data-testid') || ''));
+        for (const name of expected) if (!seen.has(name)) return false;
+        // The legacy [data-testid="file-thumbnail"] is now ONLY on the transient
+        // upload skeleton (textContent "Loading..."). It must be gone before we
+        // declare the chip ready.
+        const stillLoading = root.querySelector('[data-testid="file-thumbnail"]');
+        return !stillLoading;
       },
       filenames,
       { timeout: 30000 }
@@ -1522,11 +1535,17 @@ async function artifactClickResultToSafeOutput(result: any, extra: Record<string
 
 async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   assertPromptAllowed(args.prompt);
-  const UNSUPPORTED_GENERATE_FILE_EXTS = new Set(["pptx", "xlsx"]);
+  // 2026-05-21 (#16 R1): pptx removed from the unsupported set after a live probe
+  // (chatgpt-9223) confirmed ChatGPT web reliably produces a real downloadable
+  // .pptx file via the post-revamp file-card UI when prompted explicitly (file-card
+  // first icon button triggers the interpreter/download → estuary/content OOXML
+  // stream, same shape as the #12 .docx path). xlsx remains rejected until
+  // independently probed.
+  const UNSUPPORTED_GENERATE_FILE_EXTS = new Set(["xlsx"]);
   if (UNSUPPORTED_GENERATE_FILE_EXTS.has(String(args.expected_extension))) {
     throw new WebAiToolError(
       ConsumerErrorCodes.INVALID_ARGS,
-      `expected_extension="${args.expected_extension}" is not supported on webai_${service}_generate_file: native downloadable .pptx/.xlsx generation is not reliably produced by the driven ${service}-web path. Supported: docx (and code/text artifacts: py, md, csv, svg, html, mmd, pdf).`
+      `expected_extension="${args.expected_extension}" is not supported on webai_${service}_generate_file: native downloadable .xlsx generation is not reliably produced by the driven ${service}-web path. Supported: docx, pptx (and code/text artifacts: py, md, csv, svg, html, mmd, pdf).`
     );
   }
   requireAbsoluteDir(args.download_dir);
@@ -1535,8 +1554,16 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
   try {
     const promptResult = await sendPromptOnPage(service, args, runtime);
     const conversationUrl = typeof promptResult.chat_url === "string" && promptResult.chat_url ? promptResult.chat_url : undefined;
+    // ChatGPT post-revamp file-card: the dedicated download chip is the FIRST unnamed
+    // icon button in the file-card header row (sibling of the truncated filename text).
+    // Verified live 2026-05-21 on chatgpt-9223: click triggers GET
+    //   backend-api/conversation/<id>/interpreter/download (JSON pointer hop-1)
+    // then backend-api/estuary/content (HTTP 200,
+    //   Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation)
+    // and a real Browser.downloadWillBegin with the suggestedFilename. The previous
+    // 'button.behavior-btn' anchor is DEAD (zero matches in the current DOM).
     const buttonSelector = service === "chatgpt"
-      ? 'button.behavior-btn'
+      ? '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;

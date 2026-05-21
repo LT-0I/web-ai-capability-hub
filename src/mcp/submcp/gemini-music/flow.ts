@@ -6,14 +6,13 @@ import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export const GEMINI_MUSIC_URL = "https://gemini.google.com/app";
 export const MUSIC_TOOL_BTN_SELECTOR = 'button[aria-label="🎸 Create music, button, tap to use tool"]';
-export const MUSIC_COMPOSER_SELECTOR = 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Ask Gemini"]';
+export const MUSIC_COMPOSER_SELECTOR = 'div[role="textbox"][aria-label="Enter a prompt for Gemini"][contenteditable="true"][data-placeholder="Describe your track"]';
 export const MUSIC_SEND_SELECTOR = 'button[aria-label="Send message"]';
 export const MUSIC_DOWNLOAD_BTN_SELECTOR = 'button[aria-label="Download track"]';
 export const MUSIC_STOP_SELECTOR = 'button[aria-label="Stop response"]';
-export const MUSIC_DESELECT_SELECTOR = 'button[aria-label="Deselect Create music"]';
+export const MUSIC_DESELECT_SELECTOR = 'button[aria-label="Deselect Music"]';
 export const MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
-export const MUSIC_MORE_TOOLS_SUBMENU_SELECTOR = 'button[aria-label="More tools"], [role="menuitem"]:has-text("More tools")';
-export const MUSIC_TOOLS_CREATE_ITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create music")';
+export const MUSIC_TOOLS_CREATE_ITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create music"), [role="menuitem"]:has-text("Create music")';
 
 export type GeminiMusicFormat = "mp3" | "video";
 export type ArtifactClickLike = (options: Record<string, unknown>) => Promise<any>;
@@ -64,7 +63,12 @@ async function openGeminiMusicUploadToolsMenu(page: any): Promise<void> {
   } catch (error: any) {
     throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Upload & tools button was not found (${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR}) ${safeErrorMessage(error)}`);
   }
-  await requireAndClick(page, MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR, "Gemini Music Upload & tools button was not found", 15000);
+  try {
+    const loc = await firstLocator(page, MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR);
+    await loc.click({ force: true });
+  } catch (error: any) {
+    throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Upload & tools button was not found (${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR}) ${safeErrorMessage(error)}`);
+  }
   try {
     await waitForVisible(page, '[role="menuitem"][aria-label^="Upload files"], [role="menuitemcheckbox"]', 5000);
   } catch (error: any) {
@@ -81,7 +85,6 @@ async function fillComposer(page: any, selector: string, value: string): Promise
 
 export async function stepActivateMusicTool(page: any): Promise<{ music_tool_active: boolean }> {
   await openGeminiMusicUploadToolsMenu(page);
-  await requireAndClick(page, MUSIC_MORE_TOOLS_SUBMENU_SELECTOR, "Gemini Music More tools sub-menu trigger was not found", 10000);
   await requireAndClick(page, MUSIC_TOOLS_CREATE_ITEM_SELECTOR, "Gemini Music Create music menuitemcheckbox was not found", 10000);
   await waitForVisible(page, MUSIC_DESELECT_SELECTOR, 15000);
   return { music_tool_active: true };

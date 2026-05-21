@@ -346,7 +346,13 @@ function governedVerificationFormat(options: ArtifactClickOptions): GovernedForm
   const pat = options.filenamePattern || "";
   if (/png/i.test(pat)) return (options.followUpSelector || options.followUpTextRegex) ? "png" : null;
   const selector = options.buttonSelector || "";
-  const nativeOfficeDownloadSelector = /behavior-btn|aria-label[\^$*|~]?=["']Download|has-text\(["']Download/i.test(selector);
+  // Recognized native Office download selectors:
+  // - `behavior-btn` (legacy ChatGPT)
+  // - `aria-label*=Download` (Claude)
+  // - `has-text("Download")` (Gemini canvas)
+  // - `data-message-author-role="assistant"` (post-revamp ChatGPT file-card,
+  //   first icon button in the file-card header row — verified live 2026-05-21).
+  const nativeOfficeDownloadSelector = /behavior-btn|aria-label[\^$*|~]?=["']Download|has-text\(["']Download|data-message-author-role=["']assistant/i.test(selector);
   if (!nativeOfficeDownloadSelector) return null;
   if (/docx/i.test(pat)) return "ooxml-docx";
   if (/pptx/i.test(pat)) return "ooxml-pptx";
