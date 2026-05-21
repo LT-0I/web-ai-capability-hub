@@ -1310,36 +1310,73 @@ async function waitForClaudeAttachmentReadyAfterUpload(page: any, resolved: stri
         const root =
           document.querySelector('fieldset, [data-testid="composer"], [data-testid*="composer"], main') ||
           document.body;
-        // #16 R2 (2026-05-21): Claude composer chip DOM revamped — the
-        // finalized chip wrapper is now itself <div class="group/thumbnail"
-        // data-testid="file-thumbnail">, and the filename appears as
-        // <button aria-label="<filename>, <ext>, <N> lines"> inside it (no
-        // longer as a child <div data-testid="<filename>">). The legacy
-        // "stillLoading = querySelector('[data-testid=\"file-thumbnail\"]')"
-        // gate inverted because that testid now sits on the COMPLETED chip.
-        // New shape (verified live 2026-05-21 on claude-9224):
-        //   <div class="group/thumbnail" data-testid="file-thumbnail">
-        //     <button aria-label="test-upload.txt, txt, 2 lines">...</button>
-        //     <button aria-label="Remove">...</button>
-        //   </div>
-        // Completion = each expected filename appears as the LEFT-of-first-comma
-        // segment of some chip's inner button aria-label, AND no chip carries a
-        // loading/progress marker.
-        const chips = Array.from(root.querySelectorAll('[data-testid="file-thumbnail"]'));
-        if (chips.length === 0) return false;
+        // #16 R3 (2026-05-21): Claude composer renders TWO chip shapes side by
+        // side, depending on upload kind. Both wrappers carry the discrete
+        // class token "group/thumbnail"; the chip identity is otherwise shape-
+        // specific. Cycle#26 R2 verdict on d676f60 regressed image uploads
+        // because the R2 detector hard-coded the text-chip shape.
+        //
+        //   IMAGE shape (verified live 2026-05-21 on claude-9224):
+        //     <div class="relative group/thumbnail">
+        //       <div data-testid="<filename>"><button><img alt="<filename>"></button></div>
+        //       <button aria-label="Remove <filename>">X</button>
+        //     </div>
+        //   TEXT shape (verified live 2026-05-21 on claude-9224):
+        //     <div class="group/thumbnail" data-testid="file-thumbnail">
+        //       <button aria-label="<filename>, <ext>, <N> lines">...</button>
+        //       <button aria-label="Remove">X</button>
+        //     </div>
+        //
+        // Completion = each expected filename can be derived from at least
+        // ONE of three signals on a wrapper carrying the discrete
+        // 'group/thumbnail' class token, AND no wrapper carries a loading
+        // marker. Three signals: (S1) inner <div data-testid="<filename>">
+        // (image), (S2) wrapper's own data-testid="file-thumbnail" + inner
+        // button[aria-label] LEFT-of-first-comma (text), (S3) inner
+        // <button aria-label="Remove <filename>"> (image; text Remove has
+        // no filename suffix so this is silently a no-op there).
+        //
+        // Wrapper isolation: filter DIVs whose class list contains the
+        // discrete 'group/thumbnail' token; the Remove button has
+        // 'group-focus-within/thumbnail' which is a different token and
+        // must NOT be treated as a wrapper.
+        const wrappers = Array.from(root.querySelectorAll('div[class*="group/thumbnail"]'))
+          .filter((el: any) => /(^|\s)group\/thumbnail(\s|$)/.test(String(el.className || '')));
+        if (wrappers.length === 0) return false;
         const seen = new Set<string>();
-        for (const chip of chips) {
+        for (const wrapper of wrappers) {
           // Loading hint: progressbar / "Loading" aria-label / spinning svg.
-          const loadingHint = chip.querySelector(
+          const loadingHint = (wrapper as any).querySelector(
             '[role="progressbar"], [aria-label*="oading"], [aria-label*="rogress"], svg[class*="animate-spin"], svg[class*="spin"]'
           );
           if (loadingHint) return false;
-          const btn = chip.querySelector('button[aria-label]');
-          const label = btn ? (btn.getAttribute('aria-label') || '') : '';
-          // aria-label shape: "<filename>, <ext-or-meta>, <count meta>"
-          const commaIdx = label.indexOf(',');
-          const filename = commaIdx >= 0 ? label.slice(0, commaIdx).trim() : label.trim();
-          if (filename) seen.add(filename);
+          // S1 — image chip: inner descendants with a non-meta data-testid;
+          // the testid value IS the filename.
+          const innerTestidNodes = Array.from((wrapper as any).querySelectorAll('[data-testid]'));
+          for (const node of innerTestidNodes) {
+            const t = (node as any).getAttribute('data-testid');
+            if (t && t !== 'file-thumbnail' && t !== 'file-upload') seen.add(t);
+          }
+          // S2 — text chip: wrapper itself carries data-testid="file-thumbnail"
+          // and the inner main button's aria-label encodes the filename as the
+          // LEFT-of-first-comma segment.
+          if ((wrapper as any).getAttribute('data-testid') === 'file-thumbnail') {
+            const btn = (wrapper as any).querySelector('button[aria-label]');
+            const label = btn ? (btn.getAttribute('aria-label') || '') : '';
+            const commaIdx = label.indexOf(',');
+            const fn = (commaIdx >= 0 ? label.slice(0, commaIdx) : label).trim();
+            if (fn && fn !== 'Remove') seen.add(fn);
+          }
+          // S3 — shape-agnostic fallback: a "Remove <filename>" button
+          // appears on image chips (text chips have just "Remove" with no
+          // filename suffix; the regex below intentionally requires a
+          // non-empty suffix).
+          const removeButtons = Array.from((wrapper as any).querySelectorAll('button[aria-label]'));
+          for (const rb of removeButtons) {
+            const lbl = (rb as any).getAttribute('aria-label') || '';
+            const m = /^Remove\s+(.+)$/.exec(lbl);
+            if (m && m[1].trim()) seen.add(m[1].trim());
+          }
         }
         for (const name of expected) if (!seen.has(name)) return false;
         return true;

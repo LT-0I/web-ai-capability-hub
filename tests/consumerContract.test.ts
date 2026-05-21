@@ -2681,20 +2681,46 @@ test("upload-and-query timeout returns COMMAND_TIMEOUT with empty response text"
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
-function installClaudeAttachmentDom(filename: string, stillLoading: boolean): void {
-  // #16 R2 (2026-05-21): Claude composer chip DOM revamped — the finalized chip
-  // wrapper itself carries data-testid="file-thumbnail" (no longer the transient
-  // skeleton); filename lives as the LEFT-of-first-comma segment of its inner
-  // <button aria-label="<filename>, <ext>, <N> lines">.
-  const finishedButton = {
-    getAttribute: (name: string) => name === "aria-label" ? `${filename}, txt, 2 lines` : null
-  };
+function installClaudeAttachmentDom(filename: string, stillLoading: boolean, shape: "text" | "image" = "text"): void {
+  // #16 R3 (2026-05-21): Claude composer renders TWO chip shapes side by side.
+  // Both wrappers carry the discrete class token 'group/thumbnail'. The
+  // identifier signal differs:
+  //   TEXT  — wrapper data-testid="file-thumbnail" + inner button[aria-label]
+  //           LEFT-of-first-comma is the filename. Remove button is unlabeled.
+  //   IMAGE — wrapper has no data-testid + inner <div data-testid="<filename>">
+  //           wraps <img alt="<filename>">. Remove button aria-label =
+  //           "Remove <filename>" (filename-suffixed).
+  // This mock lets a single test exercise either shape.
   const loadingHint = stillLoading
-    ? { getAttribute: (name: string) => name === "role" ? "progressbar" : null }
+    ? { getAttribute: (name: string) => name === "role" ? "progressbar" : null, tagName: "DIV" }
     : null;
-  const chip = {
+  let wrapperClassName: string;
+  let wrapperTestid: string | null;
+  let innerTestidNodes: any[];
+  let mainButton: any;
+  let removeButton: any;
+  if (shape === "text") {
+    wrapperClassName = "group/thumbnail";
+    wrapperTestid = "file-thumbnail";
+    innerTestidNodes = []; // text chip has no inner testid descendants
+    mainButton = { getAttribute: (n: string) => n === "aria-label" ? `${filename}, txt, 2 lines` : null };
+    removeButton = { getAttribute: (n: string) => n === "aria-label" ? "Remove" : null };
+  } else {
+    // IMAGE shape
+    wrapperClassName = "relative group/thumbnail";
+    wrapperTestid = null;
+    innerTestidNodes = [
+      { getAttribute: (n: string) => n === "data-testid" ? filename : null }
+    ];
+    // image chip's main inner button has no aria-label (it wraps the <img>); only
+    // the Remove button advertises the filename.
+    mainButton = { getAttribute: (_n: string) => null };
+    removeButton = { getAttribute: (n: string) => n === "aria-label" ? `Remove ${filename}` : null };
+  }
+  const wrapper: any = {
+    className: wrapperClassName,
+    getAttribute: (n: string) => n === "data-testid" ? wrapperTestid : null,
     querySelector: (selector: string) => {
-      if (selector === 'button[aria-label]') return finishedButton;
       if (
         selector.includes('progressbar') ||
         selector.includes('oading') ||
@@ -2704,11 +2730,17 @@ function installClaudeAttachmentDom(filename: string, stillLoading: boolean): vo
       ) {
         return loadingHint;
       }
+      if (selector === 'button[aria-label]') return mainButton;
       return null;
+    },
+    querySelectorAll: (selector: string) => {
+      if (selector === '[data-testid]') return innerTestidNodes;
+      if (selector === 'button[aria-label]') return [mainButton, removeButton];
+      return [];
     }
   };
   const root = {
-    querySelectorAll: (selector: string) => selector === '[data-testid="file-thumbnail"]' ? [chip] : [],
+    querySelectorAll: (selector: string) => selector === 'div[class*="group/thumbnail"]' ? [wrapper] : [],
     querySelector: () => null
   };
   (globalThis as any).document = {
@@ -2717,7 +2749,7 @@ function installClaudeAttachmentDom(filename: string, stillLoading: boolean): vo
   };
 }
 
-test("claude upload wait recognizes finalized chip aria-label after loading hint disappears", async () => {
+test("claude upload wait recognizes text-chip aria-label after loading hint disappears", async () => {
   const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-chip-"));
   const file = path.join(dir, "deck-outline.md");
   fs.writeFileSync(file, "hello\n");
@@ -2728,9 +2760,9 @@ test("claude upload wait recognizes finalized chip aria-label after loading hint
     if (options?.timeout === 30000) {
       checkedPredicate = true;
       assert.deepEqual(arg, ["deck-outline.md"]);
-      installClaudeAttachmentDom("deck-outline.md", true);
+      installClaudeAttachmentDom("deck-outline.md", true, "text");
       assert.equal(fn(arg), false);
-      installClaudeAttachmentDom("deck-outline.md", false);
+      installClaudeAttachmentDom("deck-outline.md", false, "text");
       assert.equal(fn(arg), true);
       cleanupCompletionDom();
       return;
@@ -2749,6 +2781,50 @@ test("claude upload wait recognizes finalized chip aria-label after loading hint
     return loc;
   };
   const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-chip", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  assert.equal(result.errorCode, null);
+  assert.equal(checkedPredicate, true);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test("claude upload wait recognizes image-chip via inner data-testid (issue #16 R3 cycle#26 PNG regression)", async () => {
+  // #16 R3 (2026-05-21): cycle#26 R2 verdict on d676f60 regressed image uploads
+  // because the R2 detector hard-coded the text-chip shape (wrapper carries
+  // data-testid="file-thumbnail" + inner button[aria-label] LEFT-of-comma). The
+  // image chip is rendered with a different shape — wrapper has no testid, the
+  // filename is on an inner <div data-testid="<filename>"> wrapping <img>, and
+  // the Remove button carries aria-label="Remove <filename>". This test pins
+  // the R3 dual-shape detector against the image shape.
+  const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-image-chip-"));
+  const file = path.join(dir, "req_3_poster.png");
+  fs.writeFileSync(file, "fake-png\n");
+  const page = mockSendPromptPage("https://claude.ai/new");
+  page.setInputFiles = async () => undefined;
+  let checkedPredicate = false;
+  page.waitForFunction = async (fn: any, arg: any, options: any) => {
+    if (options?.timeout === 30000) {
+      checkedPredicate = true;
+      assert.deepEqual(arg, ["req_3_poster.png"]);
+      installClaudeAttachmentDom("req_3_poster.png", true, "image");
+      assert.equal(fn(arg), false);
+      installClaudeAttachmentDom("req_3_poster.png", false, "image");
+      assert.equal(fn(arg), true);
+      cleanupCompletionDom();
+      return;
+    }
+  };
+  page.locator = (selector: string) => {
+    const loc: any = {
+      first: () => loc,
+      last: () => loc,
+      count: async () => selector.includes("chat-input") || selector.includes("Send message") || selector.includes("Write your prompt") || selector.includes("contenteditable") ? 1 : 0,
+      waitFor: async () => undefined,
+      fill: async () => undefined,
+      click: async () => undefined,
+      textContent: async () => selector.includes("main") || selector.includes("assistant") ? "image uploaded" : "Claude"
+    };
+    return loc;
+  };
+  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-image-chip", files: [file], prompt: "describe it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.equal(checkedPredicate, true);
   fs.rmSync(dir, { recursive: true, force: true });
