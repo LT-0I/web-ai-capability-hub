@@ -91,3 +91,14 @@ data/doc_fetch/
 
 # npm pack release artifacts (attached to GitHub Releases, not committed)
 *.tgz
+
+# vendored chrome-extension (mcp-chrome fork) — build outputs
+vendor/mcp-chrome/**/node_modules/
+vendor/mcp-chrome/**/dist/
+vendor/mcp-chrome/**/.output/
+vendor/mcp-chrome/**/build/
+vendor/mcp-chrome/**/coverage/
+vendor/mcp-chrome/**/.wxt/
+vendor/mcp-chrome/**/.pnpm-store/
+vendor/mcp-chrome/**/*.crx
+vendor/mcp-chrome/**/*.zip
