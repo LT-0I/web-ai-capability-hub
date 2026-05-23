@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "selected_model": "Model: Opus 4.7 Adaptive",
+  "selected_thinking_level": "extended",
+  "errorCode": "MODEL_SELECTION_DRIFT",
+  "error_code": "MODEL_SELECTION_DRIFT",
+  "expected_model": "Claude Sonnet 4.6",
+  "message": "webai_claude_select_model: model selection drift; expected \"Claude Sonnet 4.6\", actual \"Model: Opus 4.7 Adaptive\""
+}

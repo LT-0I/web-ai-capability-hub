@@ -8,8 +8,8 @@ Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.7.1-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-549%2F549%20passing-success)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-1.7.2-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![tests](https://img.shields.io/badge/tests-573%2F573%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -20,8 +20,8 @@ research-database automation through visible, user-authorized browser sessions.
 ---
 
 > **Status — `v1.0.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.7.1`, package `1.0.0`. Clean build green,
-> full test suite **549/549 passing**. Apache-2.0, Node ≥ 20.
+> Public surface `consumer-contract-1.7.2`, package `1.0.0`. Clean build green,
+> full test suite **573/573 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
 **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license
@@ -63,7 +63,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - Supports parallel named-tab orchestration for multi-task automation.
 - Exposes a versioned, contract-locked public surface split into two
   independent tool families:
-  - **38 `webai_` tools** — ChatGPT / Claude / Gemini automation.
+  - **40 `webai_` tools** — ChatGPT / Claude / Gemini automation.
   - **120 per-DB `research_*` tools** — a separate research-database sub-MCP
     over 40 academic research databases.
 
@@ -94,29 +94,30 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.7.1`, `package 1.0.0`; P3: public surface unchanged, per-DB MCP shims removed, legacy aliases run through ExecutionEngine):
+Current locks (`consumer-contract-1.7.2`, `package 1.0.0`; post-refactor W1: standalone ChatGPT/Claude model and thinking-depth selectors added, per-DB MCP shims removed, legacy aliases run through ExecutionEngine):
 
 | Surface | Count |
 | --- | --- |
-| `webai_` tools (ChatGPT / Claude / Gemini) | **38** |
+| `webai_` tools (ChatGPT / Claude / Gemini) | **40** |
 | per-DB `research_*` tools (40 DBs × search/filter/export) | **120** |
 | `research_inventory_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
 | sub-MCP tools | **11** |
 | stable error codes | **36** |
 | `forbidden_output_fields` redacted for safe consumers | **23** |
 
-### Web-AI tools (38)
+### Web-AI tools (40)
 
-- **ChatGPT (14)** — send prompt, upload & query, deep research, Canvas
-  export, image/file generation, Pulse (get / onboard), conversation &
-  workspace management, Codex integration (submit task / status / diff / list
-  envs).
-- **Claude (10)** — send prompt, upload & query, deep research, file
-  generation, conversation & workspace management, Design (create project /
-  generate / get HTML / present).
-- **Gemini (12)** — send prompt, upload & query, deep research, image/video
-  generation, Canvas (edit / to Docs), music (generate / status / download),
-  conversation & workspace management.
+- **ChatGPT (15)** — send prompt, standalone model/thinking-depth selection,
+  upload & query, deep research, Canvas export, image/file generation, Pulse
+  (get / onboard), conversation & workspace management, Codex integration
+  (submit task / status / diff / list envs).
+- **Claude (11)** — send prompt, standalone model/thinking-depth selection,
+  upload & query, deep research, file generation, conversation & workspace
+  management, Design (create project / generate / get HTML / present).
+- **Gemini (13)** — send prompt, standalone model/thinking-depth selection,
+  upload & query, deep research, image/video generation, Canvas (edit / to
+  Docs), music (generate / status / download), conversation & workspace
+  management.
 - Plus `webai_task_status`.
 
 Services run in independent managed profiles on separate CDP ports (ChatGPT

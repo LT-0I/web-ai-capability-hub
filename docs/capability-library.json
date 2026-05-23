@@ -166,23 +166,6 @@
       "notes": "BLOCKED: no microphone/audio I/O in headless host; clicking 'Continue' enables durable voice-recordings (forbidden account-state change). Entry point 'Start Voice' → 'Say hello to Voice' consent overlay confirmed live. See blocked-chatgpt.md. | user_decision: \"DEFERRED 2026-05-15 — user chose to skip for now; do not re-raise in future campaigns unless user reopens\""
     },
     {
-      "id": "chatgpt-model-selector",
-      "service": "chatgpt",
-      "name": "Model selection (Thinking/Instant/Pro)",
-      "ui_location": "Composer model dropdown button (dynamic id #radix-_r_*_, aria-haspopup='menu', accessible name = current model e.g. 'Extended Pro'/'Thinking').",
-      "source": "stream4-chatgpt-exhaustive, docs/research/chatgpt-feature-catalog.md, stream5-discovery",
-      "status": "IMPLEMENTED_GREEN",
-      "mcp_tool": "webai_chatgpt_send_prompt",
-      "evidence": ".runs/web-ai-explore/stream5/verify3-chatgpt.json",
-      "verified_by": "stream5-verify3-chatgpt",
-      "recipe_ref": ".runs/web-ai-explore/stream5/recipes-chatgpt.md",
-      "sub_mcp_candidate": false,
-      "completion_gate": "Model button accessible name updates to the selected model.",
-      "artifact": null,
-      "last_update": "2026-05-15",
-      "notes": "Folded as model param on webai_chatgpt_send_prompt and all *_generate_* tools. CRITICAL: resets to Extended Pro on every fresh nav. Must re-select Thinking before any send. MODEL_SELECTION_DRIFT emitted on mismatch. Verified GREEN in verify3 (model_used:Thinking, no drift)."
-    },
-    {
       "id": "chatgpt-projects",
       "service": "chatgpt",
       "name": "Projects (grouped conversations with shared context)",
@@ -625,23 +608,6 @@
       "notes": "Working: nav, New session, model switch to Haiku 4.5 (verified), environment select (Default cloud). BLOCKED: real task editor not exposed by browser:read (no contenteditable, no ProseMirror, no placeholder match). Only textbox is hidden aria-hidden 1px base-ui sink. button[aria-label=\"Send\"] refused by CLI sensitive-content guard. See blocked-claude.md for precise user questions."
     },
     {
-      "id": "claude-model-selector",
-      "service": "claude",
-      "name": "Model selection (Opus 4.7 / Sonnet 4.6 / Haiku 4.5 / More models)",
-      "ui_location": "Main composer → button[data-testid=\"model-selector-dropdown\"] (label 'Model: <model> Adaptive').",
-      "source": "stream4-claude-exhaustive, docs/research/claude-feature-catalog.md, stream5-discovery",
-      "status": "IMPLEMENTED_GREEN",
-      "mcp_tool": "webai_claude_send_prompt",
-      "evidence": ".runs/web-ai-explore/stream5/verify3-claude.json",
-      "verified_by": "stream5-verify3-claude",
-      "recipe_ref": ".runs/web-ai-explore/stream5/recipes-claude.md",
-      "sub_mcp_candidate": false,
-      "completion_gate": "button[data-testid=\"model-selector-dropdown\"] label updates to chosen model.",
-      "artifact": null,
-      "last_update": "2026-05-15",
-      "notes": "Folded as model param on webai_claude_send_prompt. Stable container selector data-testid=model-selector-dropdown. Verified GREEN verify3 (model_used:Sonnet 4.6Adaptive, no drift)."
-    },
-    {
       "id": "claude-extended-thinking",
       "service": "claude",
       "name": "Extended thinking mode (Adaptive thinking)",
@@ -1048,6 +1014,40 @@
       "artifact": "Long-form report; exportable + Audio overview post-report (async).",
       "last_update": "2026-05-15",
       "notes": "Async-task pattern (reclassified from sub-MCP per blueprint §1): returns task_id + status:queued; poll with webai_task_status. Verified GREEN verify1 (task_id=task_1778858455576_b53e18bb08eb, status:queued, webai:task-status confirmed queued)."
+    },
+    {
+      "id": "chatgpt-model-selector",
+      "service": "chatgpt",
+      "name": "Model selection (ChatGPT picker label + thinking level)",
+      "ui_location": "Composer model picker button; model menuitem labels include Thinking/Instant/Pro variants.",
+      "source": "post-refactor-w1-chatgpt-claude-select-model",
+      "status": "IMPLEMENTED_GREEN",
+      "mcp_tool": "webai_chatgpt_select_model",
+      "evidence": ".runs/post-refactor-w1/",
+      "verified_by": "post-refactor-w1-codex-writer",
+      "recipe_ref": "configs/adapters/webai/chatgpt/select_model.yaml",
+      "sub_mcp_candidate": false,
+      "completion_gate": "Requested picker label is selected, or MODEL_SELECTION_DRIFT is returned without fallback.",
+      "artifact": null,
+      "last_update": "2026-05-23",
+      "notes": "Standalone tool parallel to Gemini selector. Args: profile (required); optional model (human-readable picker label), thinking_level in {auto,extended}. thinking_level=extended maps to the Thinking tier. At least one of model/thinking_level required."
+    },
+    {
+      "id": "claude-model-selector",
+      "service": "claude",
+      "name": "Model selection (Claude picker label + adaptive thinking)",
+      "ui_location": "Composer model selector dropdown plus Adaptive thinking checkbox.",
+      "source": "post-refactor-w1-chatgpt-claude-select-model",
+      "status": "IMPLEMENTED_GREEN",
+      "mcp_tool": "webai_claude_select_model",
+      "evidence": ".runs/post-refactor-w1/",
+      "verified_by": "post-refactor-w1-codex-writer",
+      "recipe_ref": "configs/adapters/webai/claude/select_model.yaml",
+      "sub_mcp_candidate": false,
+      "completion_gate": "Requested picker label is selected and adaptive thinking is enabled for extended, or MODEL_SELECTION_DRIFT is returned without fallback.",
+      "artifact": null,
+      "last_update": "2026-05-23",
+      "notes": "Standalone tool parallel to Gemini selector. Args: profile (required); optional model (human-readable picker label), thinking_level in {auto,extended}. thinking_level=extended enables Adaptive thinking. At least one of model/thinking_level required."
     },
     {
       "id": "gemini-model-selector",

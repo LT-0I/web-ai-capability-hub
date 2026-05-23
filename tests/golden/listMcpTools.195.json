@@ -1,6 +1,6 @@
 {
-  "count": 193,
-  "captured_at": "2026-05-23T11:03:22.682Z",
+  "count": 195,
+  "captured_at": "2026-05-23T15:43:37.170Z",
   "tools": [
     {
       "name": "browser_capture_site_map",
@@ -8807,6 +8807,43 @@
       }
     },
     {
+      "name": "webai_chatgpt_select_model",
+      "description": "Select a ChatGPT model and/or thinking level without sending a prompt.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "type": "string",
+            "description": "Managed ChatGPT browser profile name"
+          },
+          "model": {
+            "type": "string",
+            "description": "ChatGPT human-readable model picker label"
+          },
+          "thinking_level": {
+            "type": "string",
+            "description": "ChatGPT thinking level selector value: auto or extended"
+          },
+          "tab_url_contains": {
+            "type": "string",
+            "description": "Optional existing ChatGPT tab URL fragment"
+          },
+          "url": {
+            "type": "string",
+            "description": "Optional ChatGPT URL override"
+          },
+          "timeout_ms": {
+            "type": "number",
+            "description": "Optional command timeout in milliseconds"
+          }
+        },
+        "required": [
+          "profile"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
       "name": "webai_chatgpt_send_prompt",
       "description": "Send a prompt to ChatGPT and return redacted response metadata.",
       "inputSchema": {
@@ -9194,6 +9231,43 @@
           "prompt",
           "expected_extension",
           "download_dir"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "webai_claude_select_model",
+      "description": "Select a Claude model and/or thinking level without sending a prompt.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "type": "string",
+            "description": "Managed Claude browser profile name"
+          },
+          "model": {
+            "type": "string",
+            "description": "Claude human-readable model picker label"
+          },
+          "thinking_level": {
+            "type": "string",
+            "description": "Claude thinking level selector value: auto or extended"
+          },
+          "tab_url_contains": {
+            "type": "string",
+            "description": "Optional existing Claude tab URL fragment"
+          },
+          "url": {
+            "type": "string",
+            "description": "Optional Claude URL override"
+          },
+          "timeout_ms": {
+            "type": "number",
+            "description": "Optional command timeout in milliseconds"
+          }
+        },
+        "required": [
+          "profile"
         ],
         "additionalProperties": true
       }

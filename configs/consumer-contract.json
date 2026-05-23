@@ -1,6 +1,6 @@
 {
   "package_version": "1.0.0",
-  "contract_version": "consumer-contract-1.7.1",
+  "contract_version": "consumer-contract-1.7.2",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -3094,6 +3094,30 @@
       ]
     },
     {
+      "cli_name": "webai:chatgpt:select-model",
+      "mcp_name": "webai_chatgpt_select_model",
+      "ts_export": "webAiChatgptSelectModel",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile"
+      ],
+      "optional_args": [
+        "model",
+        "thinking_level"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "selected_model",
+          "selected_thinking_level",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "webai:claude:send-prompt",
       "mcp_name": "webai_claude_send_prompt",
       "ts_export": "webAiClaudeSendPrompt",
@@ -3128,6 +3152,30 @@
         "incognito",
         "tab_url_contains"
       ]
+    },
+    {
+      "cli_name": "webai:claude:select-model",
+      "mcp_name": "webai_claude_select_model",
+      "ts_export": "webAiClaudeSelectModel",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "profile"
+      ],
+      "optional_args": [
+        "model",
+        "thinking_level"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "selected_model",
+          "selected_thinking_level",
+          "errorCode"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
     },
     {
       "cli_name": "webai:gemini:send-prompt",

@@ -17,13 +17,13 @@ const EXPECTED_WAH_NAMES = [
   "wah_artifact_get"
 ];
 
-test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.7.1", () => {
+test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.7.2", () => {
   assert.equal(CONTRACT.package_version, "1.0.0");
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.1");
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
 });
 
-test("P1 contract: commands.length === 189", () => {
-  assert.equal(CONTRACT.commands.length, 189);
+test("P1 contract: commands.length === 191", () => {
+  assert.equal(CONTRACT.commands.length, 191);
 });
 
 test("P1 contract: error_codes.length === 36", () => {
@@ -48,9 +48,9 @@ test("P1 contract: every wah_* command row has cli_name, mcp_name, ts_export, ou
   }
 });
 
-test("P1 contract: webai_ row count is UNCHANGED at 38", () => {
+test("P1 contract: webai_ row count is 40 after W1 selectors", () => {
   const webai = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && c.mcp_name.startsWith("webai_"));
-  assert.equal(webai.length, 38);
+  assert.equal(webai.length, 40);
 });
 
 test("P1 contract: research_ row count is UNCHANGED at 121", () => {
@@ -73,7 +73,8 @@ test("P1 contract: error_codes ordering — last four entries preserve P1 drift 
 test("P1 contract: no existing 181-row mcp_name was renamed or removed", () => {
   const wahCount = CONTRACT.commands.filter((c: any) => c.mcp_name.startsWith("wah_")).length;
   // 189 - 8 wah_* should give 181 originals; cross-check
-  assert.equal(CONTRACT.commands.length - wahCount, 181);
+  const w1SelectorCount = CONTRACT.commands.filter((c: any) => ["webai_chatgpt_select_model", "webai_claude_select_model"].includes(c.mcp_name)).length;
+  assert.equal(CONTRACT.commands.length - wahCount - w1SelectorCount, 181);
 });
 
 test("P1 contract: every command has the standard required keys", () => {

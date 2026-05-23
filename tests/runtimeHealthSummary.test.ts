@@ -41,7 +41,7 @@ test("runtime health summary reports leases, drift, cancel, and build locks with
   updateRow(store, "cancel_requests", "run_id", "recent", { requested_at: isoAgo(now, 60 * 60 * 1000) });
   updateRow(store, "cancel_requests", "run_id", "old", { requested_at: isoAgo(now, 48 * 60 * 60 * 1000) });
 
-  const summary = getHealthSummary({ store, now, listMcpToolsFn: () => new Array(193).fill(null) });
+  const summary = getHealthSummary({ store, now, listMcpToolsFn: () => new Array(195).fill(null) });
   assert.equal(summary.profile_pool.active_leases_count, 1);
   assert.equal(summary.profile_pool.stuck_leases_count, 1);
   assert.equal(summary.profile_pool.released_in_last_1h_count, 1);
@@ -52,6 +52,6 @@ test("runtime health summary reports leases, drift, cancel, and build locks with
   assert.deepEqual(summary.drift_events.top_selector_roles_by_miss[0], { selector_role: "prompt", miss_count: 2, average_confidence: 0.7 });
   assert.deepEqual(summary.drift_events.average_confidence_per_role.find((row) => row.selector_role === "submit"), { selector_role: "submit", average_confidence: 0.3 });
   assert.equal(summary.cancel.total_cancel_requests_last_24h, 1);
-  assert.equal(summary.build.list_mcp_tools_count, 193);
+  assert.equal(summary.build.list_mcp_tools_count, 195);
   assert.match(summary.build.contract_version, /^consumer-contract-/);
 });

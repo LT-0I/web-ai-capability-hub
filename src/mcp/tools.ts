@@ -118,6 +118,24 @@ const researchInventoryImportInput = objectSchema<{ path?: string; stem_only?: b
   stem_only: { ...scalar.boolean("Only import rows classified as science_engineering"), default: false }
 }, []);
 
+const webAiChatgptSelectModelInput = objectSchema<{ profile: string; model?: string; thinking_level?: string; tab_url_contains?: string; url?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed ChatGPT browser profile name"),
+  model: scalar.string("ChatGPT human-readable model picker label"),
+  thinking_level: scalar.string("ChatGPT thinking level selector value: auto or extended"),
+  tab_url_contains: scalar.string("Optional existing ChatGPT tab URL fragment"),
+  url: scalar.string("Optional ChatGPT URL override"),
+  timeout_ms: scalar.number("Optional command timeout in milliseconds")
+}, ["profile"]);
+
+const webAiClaudeSelectModelInput = objectSchema<{ profile: string; model?: string; thinking_level?: string; tab_url_contains?: string; url?: string; timeout_ms?: number }>({
+  profile: scalar.string("Managed Claude browser profile name"),
+  model: scalar.string("Claude human-readable model picker label"),
+  thinking_level: scalar.string("Claude thinking level selector value: auto or extended"),
+  tab_url_contains: scalar.string("Optional existing Claude tab URL fragment"),
+  url: scalar.string("Optional Claude URL override"),
+  timeout_ms: scalar.number("Optional command timeout in milliseconds")
+}, ["profile"]);
+
 const webAiGeminiSelectModelInput = objectSchema<{ profile: string; model?: string; thinking_level?: string; tab_url_contains?: string; url?: string; timeout_ms?: number }>({
   profile: scalar.string("Managed Gemini browser profile name"),
   model: scalar.string("Gemini model selector value: 3.1-flash-lite, 3.5-flash, or 3.1-pro"),
@@ -675,6 +693,11 @@ function modelLabelMatches(expected: string, actual: string | null): boolean {
   const e = expected.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   const a = actual.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   if (!e) return true;
+  const providerStripped = e.replace(/^(claude|gemini|chatgpt|openai)\s+/, "").trim();
+  if (providerStripped && providerStripped !== e) {
+    if (a.includes(providerStripped) || providerStripped.includes(a)) return true;
+    if (providerStripped === "sonnet 4 6") return /\bsonnet\b/.test(a) && /4\.?6|4 6/.test(a);
+  }
   if (e === "thinking") return /\bthinking\b/.test(a);
   if (e === "sonnet 4 6") return /\bsonnet\b/.test(a) && /4\.?6|4 6/.test(a);
   return a.includes(e) || e.includes(a);
@@ -719,15 +742,44 @@ async function chatgptSelectedModelIdentity(page: any): Promise<string | null> {
   return text;
 }
 
-async function ensureChatgptModelMenuOpen(page: any, button: any): Promise<void> {
+async function chatgptModelButton(page: any): Promise<{ button: any; selector: string } | null> {
+  const selectors = [
+    'form button.__composer-pill[aria-haspopup="menu"]',
+    'button.__composer-pill[aria-haspopup="menu"]',
+    'form button[aria-haspopup="menu"]:has-text("Thinking")',
+    'form button[aria-haspopup="menu"]:has-text("Instant")',
+    'form button[aria-haspopup="menu"]:has-text("Heavy")',
+    'form button[aria-haspopup="menu"]:has-text("Pro")',
+    CHATGPT_MODEL_BUTTON_SELECTOR
+  ];
+  for (const selector of selectors) {
+    const candidate = page.locator?.(selector).first?.();
+    if (candidate && (await candidate.count?.().catch(() => 0))) return { button: candidate, selector };
+  }
+
+  const candidates = page.locator?.(CHATGPT_MODEL_BUTTON_SELECTOR);
+  const count = await candidates?.count?.().catch(() => 0) || 0;
+  for (let i = 0; i < count; i++) {
+    const candidate = candidates.nth?.(i);
+    const text = await locatorText(candidate);
+    const className = await candidate?.getAttribute?.("class", { timeout: 500 }).catch(() => "") || "";
+    if (/__composer-pill/.test(className) || /\b(Thinking|Instant|Heavy|Pro|GPT)\b/i.test(text || "")) {
+      return { button: candidate, selector: CHATGPT_MODEL_BUTTON_SELECTOR };
+    }
+  }
+  return null;
+}
+
+async function ensureChatgptModelMenuOpen(page: any, button: any, buttonSelector = CHATGPT_MODEL_BUTTON_SELECTOR): Promise<void> {
   if (await page.locator?.(CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR).first?.().count?.().catch(() => 0)) return;
-  await robustClickLocator(page, button, CHATGPT_MODEL_BUTTON_SELECTOR, { timeout: 5000 });
+  await robustClickLocator(page, button, buttonSelector, { timeout: 5000 });
 }
 
 async function selectChatgptModel(page: any, expected = "Thinking"): Promise<{ ok: boolean; actual: string | null; expected: string }> {
-  const button = page.locator?.(CHATGPT_MODEL_BUTTON_SELECTOR).first?.();
-  if (!button || !(await button.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
-  await ensureChatgptModelMenuOpen(page, button);
+  const found = await chatgptModelButton(page);
+  if (!found) return { ok: false, actual: null, expected };
+  const { button, selector: buttonSelector } = found;
+  await ensureChatgptModelMenuOpen(page, button, buttonSelector);
   const itemSelector = chatgptMenuItemSelectorForModel(expected);
   try { await page.waitForSelector?.(itemSelector, { state: "visible", timeout: 8000 }); } catch {}
   const item = page.locator?.(itemSelector).first?.();
@@ -741,22 +793,79 @@ async function selectChatgptModel(page: any, expected = "Thinking"): Promise<{ o
   if (!chatgptModelIdentityMatches(expected, actual)) {
     await robustClickLocator(page, item, itemSelector, { timeout: 5000 });
     await page.waitForTimeout?.(250).catch(() => undefined);
-    await ensureChatgptModelMenuOpen(page, button);
+    await ensureChatgptModelMenuOpen(page, button, buttonSelector);
     actual = await chatgptSelectedModelIdentity(page) || await locatorText(button);
   }
   await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
   return { ok: chatgptModelIdentityMatches(expected, actual), actual, expected };
 }
 
+function xpathLiteral(value: string): string {
+  if (!value.includes("'")) return `'${value}'`;
+  if (!value.includes('"')) return `"${value}"`;
+  return `concat(${value.split("'").map((part) => `'${part}'`).join(`, "\"'\"", `)})`;
+}
+
+function claudeModelLabels(expected: string): string[] {
+  const labels = [expected.trim()].filter(Boolean);
+  const withoutProvider = expected.trim().replace(/^Claude\s+/i, "").trim();
+  if (withoutProvider && !labels.some((label) => label.toLowerCase() === withoutProvider.toLowerCase())) labels.push(withoutProvider);
+  return labels;
+}
+
+function claudeModelMenuItemSelector(label: string): string {
+  return `xpath=//*[@role="menuitemradio" or @role="menuitem"][contains(normalize-space(.), ${xpathLiteral(label)})]`;
+}
+
+async function findClaudeModelMenuItem(page: any, expected: string): Promise<{ item: any; selector: string } | null> {
+  for (const label of claudeModelLabels(expected)) {
+    const selector = claudeModelMenuItemSelector(label);
+    const item = page.locator?.(selector).first?.();
+    if (item && (await item.count?.().catch(() => 0))) return { item, selector };
+  }
+  return null;
+}
+
+async function waitForClaudeModelMenuItem(page: any, expected: string, timeoutMs = 5000): Promise<void> {
+  for (const label of claudeModelLabels(expected)) {
+    const selector = claudeModelMenuItemSelector(label);
+    try {
+      await page.waitForSelector?.(selector, { state: "visible", timeout: timeoutMs });
+      return;
+    } catch {}
+  }
+}
+
+async function clickClaudeMenuItem(page: any, loc: any, selector: string): Promise<void> {
+  try {
+    await loc.click?.({ timeout: 5000 });
+  } catch {
+    await robustClickLocator(page, loc, selector, { timeout: 5000 });
+  }
+}
+
 async function selectClaudeModel(page: any, expected: string): Promise<{ ok: boolean; actual: string | null; expected: string }> {
   const button = page.locator?.(CLAUDE_MODEL_SELECTOR).first?.();
   if (!button || !(await button.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
   await robustClickLocator(page, button, CLAUDE_MODEL_SELECTOR, { timeout: 5000 });
-  const selector = `[role="menuitemradio"]:has-text("${expected.replace(/"/g, '\\"')}")`;
-  try { await page.waitForSelector?.(selector, { state: "visible", timeout: 8000 }); } catch {}
-  const item = page.locator?.(selector).first?.();
-  if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(button), expected };
-  await robustClickLocator(page, item, selector, { timeout: 5000 });
+  try { await page.waitForSelector?.('[role="menuitemradio"], [role="menuitem"]', { state: "visible", timeout: 8000 }); } catch {}
+  await waitForClaudeModelMenuItem(page, expected, 1000);
+  let found = await findClaudeModelMenuItem(page, expected);
+  if (!found) {
+    const moreModelsSelector = `xpath=//*[@role="menuitem" or self::button][contains(normalize-space(.), 'More models')]`;
+    const moreModels = page.locator?.(moreModelsSelector).first?.();
+    if (moreModels && (await moreModels.count?.().catch(() => 0))) {
+      await clickClaudeMenuItem(page, moreModels, moreModelsSelector);
+      await waitForClaudeModelMenuItem(page, expected, 5000);
+      found = await findClaudeModelMenuItem(page, expected);
+    }
+  }
+  if (!found) {
+    const actual = await locatorText(button);
+    await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+    return { ok: false, actual, expected };
+  }
+  await clickClaudeMenuItem(page, found.item, found.selector);
   await page.waitForTimeout?.(250).catch(() => undefined);
   const actual = await locatorText(button);
   return { ok: modelLabelMatches(expected, actual), actual, expected };
@@ -777,12 +886,39 @@ async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boo
 }
 
 async function setClaudeAdaptiveThinking(page: any): Promise<void> {
+  const button = page.locator?.(CLAUDE_MODEL_SELECTOR).first?.();
+  if (button && (await button.count?.().catch(() => 0))) {
+    const selected = await locatorText(button);
+    if (/\bAdaptive\b/i.test(selected || "")) return;
+  }
+
   const toggle = page.locator?.(CLAUDE_ADAPTIVE_THINKING_SELECTOR).first?.();
-  if (!toggle || !(await toggle.count?.().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Adaptive thinking toggle was not found", { selector: CLAUDE_ADAPTIVE_THINKING_SELECTOR });
-  const checked = await toggle.isChecked?.().catch(() => false);
-  const aria = await toggle.getAttribute?.("aria-checked").catch(() => undefined);
-  if (checked || aria === "true") return;
-  await robustClickLocator(page, toggle, CLAUDE_ADAPTIVE_THINKING_SELECTOR, { timeout: 5000 });
+  if (toggle && (await toggle.count?.().catch(() => 0))) {
+    const checked = await toggle.isChecked?.().catch(() => false);
+    const aria = await toggle.getAttribute?.("aria-checked").catch(() => undefined);
+    if (checked || aria === "true") return;
+    await robustClickLocator(page, toggle, CLAUDE_ADAPTIVE_THINKING_SELECTOR, { timeout: 5000 });
+    return;
+  }
+
+  if (button && (await button.count?.().catch(() => 0))) {
+    await robustClickLocator(page, button, CLAUDE_MODEL_SELECTOR, { timeout: 5000 });
+    const adaptiveSelector = `xpath=//*[@role="menuitem" or @role="menuitemradio" or @role="menuitemcheckbox" or self::button][contains(normalize-space(.), 'Adaptive thinking')]`;
+    try { await page.waitForSelector?.(adaptiveSelector, { state: "visible", timeout: 5000 }); } catch {}
+    const adaptive = page.locator?.(adaptiveSelector).first?.();
+    if (adaptive && (await adaptive.count?.().catch(() => 0))) {
+      const aria = await adaptive.getAttribute?.("aria-checked").catch(() => undefined);
+      if (aria === "true") {
+        await page.keyboard?.press?.("Escape")?.catch?.(() => undefined);
+        return;
+      }
+      await clickClaudeMenuItem(page, adaptive, adaptiveSelector);
+      await page.waitForTimeout?.(250).catch(() => undefined);
+      return;
+    }
+  }
+
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Adaptive thinking toggle was not found", { selector: CLAUDE_ADAPTIVE_THINKING_SELECTOR });
 }
 
 async function enableChatgptWebSearch(page: any): Promise<void> {
@@ -2866,6 +3002,122 @@ async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRu
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("claude", args, runtimeOrDefault(runtime)); }
+
+const WEBAI_STANDALONE_THINKING_LEVELS = new Set(["auto", "extended"]);
+
+function selectModelInvalidArgs(tool: string, message: string): Record<string, unknown> {
+  return safeOutput({
+    ok: false,
+    selected_model: null,
+    selected_thinking_level: null,
+    errorCode: ConsumerErrorCodes.INVALID_ARGS,
+    error_code: ConsumerErrorCodes.INVALID_ARGS,
+    message: `${tool}: ${message}`
+  });
+}
+
+function selectModelDrift(tool: string, selection: { actual: string | null; expected: string }, selectedThinkingLevel: string | null): Record<string, unknown> {
+  return safeOutput({
+    ok: false,
+    selected_model: selection.actual,
+    selected_thinking_level: selectedThinkingLevel,
+    errorCode: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    error_code: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    expected_model: selection.expected,
+    message: `${tool}: model selection drift; expected "${selection.expected}", actual "${selection.actual || ""}"`
+  });
+}
+
+function selectModelToolError(error: WebAiToolError, selectedModel: string | null = null, selectedThinkingLevel: string | null = null): Record<string, unknown> {
+  return safeOutput({
+    ok: false,
+    selected_model: selectedModel,
+    selected_thinking_level: selectedThinkingLevel,
+    errorCode: error.errorCode,
+    error_code: error.errorCode,
+    message: error.message,
+    evidence: error.evidence
+  });
+}
+
+function validateStandaloneSelectModelArgs(tool: string, args: any): Record<string, unknown> | null {
+  if (!args?.profile || typeof args.profile !== "string") {
+    return selectModelInvalidArgs(tool, "requires profile");
+  }
+  if (!args.model && !args.thinking_level) {
+    return selectModelInvalidArgs(tool, "requires at least one of: model, thinking_level");
+  }
+  if (args.model !== undefined && (typeof args.model !== "string" || !args.model.trim())) {
+    return selectModelInvalidArgs(tool, "model must be a non-empty picker label");
+  }
+  if (args.thinking_level !== undefined && !WEBAI_STANDALONE_THINKING_LEVELS.has(String(args.thinking_level))) {
+    return selectModelInvalidArgs(tool, `unsupported thinking_level "${args.thinking_level}" (allowed: auto, extended)`);
+  }
+  return null;
+}
+
+export async function webAiChatgptSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const invalid = validateStandaloneSelectModelArgs("webai_chatgpt_select_model", args);
+  if (invalid) return invalid;
+  const lease = acquireProfileLease(args.profile);
+  const requestedThinkingLevel = args.thinking_level ? String(args.thinking_level) : null;
+  try {
+    return await withManagedPage(args, runtime, targetUrlFor("chatgpt", args), async (page) => {
+      const modelFromArg = args.model ? normalizeModelTier("chatgpt", { model: args.model }) || String(args.model).trim() : null;
+      const expectedModel = modelFromArg || (requestedThinkingLevel === "extended" ? "Thinking" : null);
+      let selected_model: string | null = null;
+
+      if (expectedModel) {
+        const selection = await selectChatgptModel(page, expectedModel);
+        if (!selection.ok) return selectModelDrift("webai_chatgpt_select_model", selection, requestedThinkingLevel);
+        selected_model = selection.expected;
+      }
+
+      return safeOutput({
+        ok: true,
+        selected_model,
+        selected_thinking_level: requestedThinkingLevel,
+        errorCode: null
+      });
+    });
+  } catch (error) {
+    if (error instanceof WebAiToolError) return selectModelToolError(error, null, requestedThinkingLevel);
+    throw error;
+  } finally { releaseProfileLease(args.profile, lease); }
+}
+
+export async function webAiClaudeSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const invalid = validateStandaloneSelectModelArgs("webai_claude_select_model", args);
+  if (invalid) return invalid;
+  const lease = acquireProfileLease(args.profile);
+  const requestedThinkingLevel = args.thinking_level ? String(args.thinking_level) : null;
+  let selected_model: string | null = null;
+  try {
+    return await withManagedPage(args, runtime, targetUrlFor("claude", args), async (page) => {
+      if (args.model) {
+        const expectedModel = String(args.model).trim();
+        const selection = await selectClaudeModel(page, expectedModel);
+        if (!selection.ok) return selectModelDrift("webai_claude_select_model", selection, requestedThinkingLevel);
+        selected_model = selection.expected;
+      }
+
+      if (requestedThinkingLevel === "extended") {
+        await setClaudeAdaptiveThinking(page);
+      }
+
+      return safeOutput({
+        ok: true,
+        selected_model,
+        selected_thinking_level: requestedThinkingLevel,
+        errorCode: null
+      });
+    });
+  } catch (error) {
+    if (error instanceof WebAiToolError) return selectModelToolError(error, selected_model, requestedThinkingLevel);
+    throw error;
+  } finally { releaseProfileLease(args.profile, lease); }
+}
+
 export async function webAiGeminiSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   if (!args.model && !args.thinking_level) {
     return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: "webai_gemini_select_model requires at least one of: model, thinking_level" });
@@ -3026,10 +3278,22 @@ const coreToolSpecs: ToolSpec[] = [
     handler: async (args, runtime) => webAiChatgptSendPrompt(args, runtime)
   },
   {
+    name: "webai_chatgpt_select_model",
+    description: "Select a ChatGPT model and/or thinking level without sending a prompt.",
+    schema: webAiChatgptSelectModelInput,
+    handler: async (args, runtime) => webAiChatgptSelectModel(args, runtime)
+  },
+  {
     name: "webai_claude_send_prompt",
     description: "Send a prompt to Claude and return redacted response metadata.",
     schema: webAiClaudeSendPromptInput,
     handler: async (args, runtime) => webAiClaudeSendPrompt(args, runtime)
+  },
+  {
+    name: "webai_claude_select_model",
+    description: "Select a Claude model and/or thinking level without sending a prompt.",
+    schema: webAiClaudeSelectModelInput,
+    handler: async (args, runtime) => webAiClaudeSelectModel(args, runtime)
   },
   {
     name: "webai_gemini_send_prompt",

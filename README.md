@@ -7,8 +7,8 @@
 通过可见、用户授权的浏览器会话,编目、查询并执行 Web-AI 界面工作流与受权科研数据库自动化。
 
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.7.1-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-549%2F549%20passing-success)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-1.7.2-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![tests](https://img.shields.io/badge/tests-573%2F573%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -18,7 +18,7 @@
 
 ---
 
-> **状态 — `v1.0.0`(首个稳定、功能较为健全的版本)。** 公共面 `consumer-contract-1.7.1`,包版本 `1.0.0`。清洁构建通过,完整测试套件 **549/549 全过**。Apache-2.0,Node ≥ 20。
+> **状态 — `v1.0.0`(首个稳定、功能较为健全的版本)。** 公共面 `consumer-contract-1.7.2`,包版本 `1.0.0`。清洁构建通过,完整测试套件 **573/573 全过**。Apache-2.0,Node ≥ 20。
 
 本项目面向个人/本地开发与受权科研工作流。它**不**绕过登录、付费墙、CAPTCHA、机器人检测、速率限制、许可限制或服务条款。用户在正常可见浏览器 profile 中**手动登录**,本项目经 Chrome DevTools Protocol(CDP)复用该会话,**不导出 cookie 或凭据**。当 UI/访问路径漂移或遇墙时,返回**稳定合约错误码**——绝无静默兜底,绝无合成工件。
 
@@ -50,7 +50,7 @@
 - 提供 **MCP 服务器**(stdio),供 AI 智能体查询能力并驱动浏览器工作流。
 - 支持并行命名标签编排,实现多任务自动化。
 - 暴露一个版本化、受合约锁定的公共面,分为两个相互独立的工具族:
-  - **38 个 `webai_` 工具** —— ChatGPT / Claude / Gemini 自动化。
+  - **40 个 `webai_` 工具** —— ChatGPT / Claude / Gemini 自动化。
   - **120 个 per-DB `research_*` 工具** —— 跨 40 个学术研究数据库的**独立科研数据库子 MCP**。
 
 ## 核心特性
@@ -66,22 +66,22 @@
 
 完整 CLI / MCP / TS 公共面经 `configs/consumer-contract.json`、`docs/CONSUMER_CONTRACT.md`、`tests/consumerContract.test.ts` 版本化并三方回环。合约升级是审慎行为;同一 minor 内的增量式 per-DB 扩张**不**升版。
 
-当前锁(`consumer-contract-1.7.1`,`package 1.0.0`; P3：公共面不变,per-DB MCP shims 已删除,legacy alias 走 ExecutionEngine):
+当前锁(`consumer-contract-1.7.2`,`package 1.0.0`; post-refactor W1：新增 ChatGPT/Claude 独立模型与思考深度选择工具,per-DB MCP shims 已删除,legacy alias 走 ExecutionEngine):
 
 | 表面 | 数量 |
 | --- | --- |
-| `webai_` 工具(ChatGPT / Claude / Gemini) | **38** |
+| `webai_` 工具(ChatGPT / Claude / Gemini) | **40** |
 | per-DB `research_*` 工具(40 库 × 检索/筛选/导出) | **120** |
 | `research_inventory_import`(种子导入器) | 1(合计 121 个 `research_` 前缀行) |
 | 子 MCP 工具 | **11** |
 | 稳定错误码 | **36** |
 | 对安全消费者脱敏的 `forbidden_output_fields` | **23** |
 
-### Web-AI 工具(38)
+### Web-AI 工具(40)
 
-- **ChatGPT(14)** —— 发送提示、上传问答、深度研究、Canvas 导出、图像/文件生成、Pulse(获取/onboard)、会话与工作区管理、Codex 集成(提交任务/状态/diff/列环境)。
-- **Claude(10)** —— 发送提示、上传问答、深度研究、文件生成、会话与工作区管理、Design(建项目/生成/取 HTML/演示)。
-- **Gemini(12)** —— 发送提示、上传问答、深度研究、图像/视频生成、Canvas(编辑/转 Docs)、音乐(生成/状态/下载)、会话与工作区管理。
+- **ChatGPT(15)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、Canvas 导出、图像/文件生成、Pulse(获取/onboard)、会话与工作区管理、Codex 集成(提交任务/状态/diff/列环境)。
+- **Claude(11)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、文件生成、会话与工作区管理、Design(建项目/生成/取 HTML/演示)。
+- **Gemini(13)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、图像/视频生成、Canvas(编辑/转 Docs)、音乐(生成/状态/下载)、会话与工作区管理。
 - 外加 `webai_task_status`。
 
 三个服务运行于独立受管 profile 与独立 CDP 端口(ChatGPT `9223`、Claude `claude-9224` 于 `9224`、Gemini `9225`)。浏览器启动串行化(共享 singleton-lock),宿主机需 `DISPLAY` + `XAUTHORITY`。

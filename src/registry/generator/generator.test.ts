@@ -11,12 +11,12 @@ test("generator skeleton returns no generated specs for an empty manifest set", 
 });
 
 test("golden MCP tool snapshot has the expected minimal shape", () => {
-  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.193.json");
+  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.195.json");
   const golden = JSON.parse(fs.readFileSync(goldenPath, "utf8")) as {
     tools: Array<Record<string, unknown>>;
   };
 
-  assert.equal(golden.tools.length, 193);
+  assert.equal(golden.tools.length, 195);
   for (const [index, tool] of golden.tools.entries()) {
     assert.equal(typeof tool.name, "string", `tools[${index}].name`);
     assert.equal(typeof tool.description, "string", `tools[${index}].description`);
@@ -24,9 +24,9 @@ test("golden MCP tool snapshot has the expected minimal shape", () => {
   }
 });
 
-test("p1 MCP golden migration is exactly the eight wah facade tools", () => {
+test("MCP golden migration preserves P1 wah facade tools plus W1 selectors", () => {
   const oldPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.185.archived.json");
-  const newPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.193.json");
+  const newPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.195.json");
   const oldGolden = JSON.parse(fs.readFileSync(oldPath, "utf8")) as { tools: Array<Record<string, unknown>> };
   const newGolden = JSON.parse(fs.readFileSync(newPath, "utf8")) as { tools: Array<Record<string, unknown>> };
   const oldByName = new Map(oldGolden.tools.map((tool) => [tool.name, tool]));
@@ -46,8 +46,10 @@ test("p1 MCP golden migration is exactly the eight wah facade tools", () => {
     "wah_task_cancel",
     "wah_task_resume",
     "wah_task_start",
-    "wah_task_status"
-  ]);
+    "wah_task_status",
+    "webai_chatgpt_select_model",
+    "webai_claude_select_model"
+  ].sort());
   assert.deepEqual(removed, []);
   assert.deepEqual(changed, []);
 });

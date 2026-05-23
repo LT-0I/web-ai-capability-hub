@@ -221,7 +221,9 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
 function webAiMcpNameFromCli(command: string): string | undefined {
   const map: Record<string, string> = {
     "webai:chatgpt:send-prompt": "webai_chatgpt_send_prompt",
+    "webai:chatgpt:select-model": "webai_chatgpt_select_model",
     "webai:claude:send-prompt": "webai_claude_send_prompt",
+    "webai:claude:select-model": "webai_claude_select_model",
     "webai:gemini:send-prompt": "webai_gemini_send_prompt",
     "webai:gemini:select-model": "webai_gemini_select_model",
     "webai:chatgpt:upload-and-query": "webai_chatgpt_upload_and_query",
@@ -855,6 +857,7 @@ Core commands:
 
 MCP and compatibility commands:
   webai:chatgpt:send-prompt|webai:claude:send-prompt|webai:gemini:send-prompt --profile <name> --prompt <text> [--response-timeout-ms <ms>] [--reuse-conversation] [--output-json]
+  webai:chatgpt:select-model|webai:claude:select-model --profile <name> [--model <picker label>] [--thinking-level <auto|extended>] [--output-json]
   webai:gemini:select-model --profile <name> [--model <3.1-flash-lite|3.5-flash|3.1-pro>] [--thinking-level <standard|extended>] [--output-json]
   webai:chatgpt:upload-and-query|webai:claude:upload-and-query|webai:gemini:upload-and-query --profile <name> --file <path> --prompt <text> [--output-json]
   webai:chatgpt:generate-file|webai:claude:generate-file --profile <name> --prompt <text> --expected-extension <ext> --download-dir <abs> [--output-json]

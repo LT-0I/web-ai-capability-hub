@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run generate:tools && tsc -p tsconfig.json && node scripts/copy-runtime-configs.ts",
-    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js",
+    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js dist/tests/post-refactor-w1/*.test.js",
     "mcp": "node dist/src/cli.js mcp",
     "browser:start": "node dist/src/cli.js browser:start",
     "browser:open": "node dist/src/cli.js browser:open",

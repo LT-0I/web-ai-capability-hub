@@ -25,8 +25,8 @@ test("p2 contract: error_codes.length is exactly 36 (no over/under count)", () =
   assert.equal((CONSUMER_ERROR_CODES as readonly string[]).length, 36);
 });
 
-test("p2/P3 contract: contract_version remains consumer-contract-1.7.1; package_version is 1.0.0", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.1");
+test("p2/W1 contract: contract_version is consumer-contract-1.7.2; package_version is 1.0.0", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
   assert.equal(CONTRACT.package_version, "1.0.0");
 });
 

@@ -20,10 +20,10 @@ type ConsumerContract = {
 };
 
 const EXPECTED_PACKAGE_VERSION = "1.0.0";
-const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.7.1";
-const EXPECTED_COMMANDS = 189;
+const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.7.2";
+const EXPECTED_COMMANDS = 191;
 const EXPECTED_ERROR_CODES = 36;
-const EXPECTED_WEBAI_ROWS = 38;
+const EXPECTED_WEBAI_ROWS = 40;
 const EXPECTED_RESEARCH_ROWS = 121;
 
 function readJson<T>(repoRoot: string, relPath: string): T {
