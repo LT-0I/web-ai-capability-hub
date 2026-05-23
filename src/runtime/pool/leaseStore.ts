@@ -354,6 +354,11 @@ export class RuntimeLeaseStore {
     if (this.sqlite) return this.sqlite.prepare(`SELECT * FROM tab_leases ORDER BY acquired_at, lease_id`).all().map((row: any) => ({ ...row, ttl_seconds: Number(row.ttl_seconds) }));
     return [...this.memory.tab_leases];
   }
+
+  listCancelRequests(): Array<{ run_id: string; requested_at: string; reason?: string }> {
+    if (this.sqlite) return this.sqlite.prepare(`SELECT * FROM cancel_requests ORDER BY requested_at, run_id`).all();
+    return [...this.memory.cancel_requests];
+  }
 }
 
 let defaultStore: RuntimeLeaseStore | undefined;

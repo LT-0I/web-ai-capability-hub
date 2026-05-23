@@ -20,7 +20,8 @@ import { WorkflowCompiler } from "../workflows/compiler";
 import { WorkflowExecutor } from "../workflows/executor";
 import { SiteRegistryImporter } from "../adapters/research/siteRegistryImporter";
 import { CapabilityLibraryImporter } from "../adapters/research/capabilityLibraryImporter";
-import { ResearchDbImporter, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchAiaaSearchInput, researchAiaaFilterInput, researchAiaaExportInput, wosResearchTools, acmResearchTools, ieeeResearchTools, acsResearchTools, asmeResearchTools, rscResearchTools, wileyResearchTools, asceResearchTools, iopResearchTools, tandfResearchTools, saeResearchTools, sciencedirectResearchTools, apsResearchTools, emeraldResearchTools, cambridgeResearchTools, springerResearchTools, natureResearchTools, ietResearchTools, aipResearchTools, mdpiResearchTools, opticaResearchTools, proquestResearchTools, frontiersResearchTools, arxivResearchTools, siamResearchTools, degruyterResearchTools, worldsciResearchTools, royalsocResearchTools, scoap3ResearchTools, dblpResearchTools, scieloResearchTools, inspirehepResearchTools, pubscholarResearchTools, opticsjournalResearchTools, crcResearchTools, cellpressResearchTools, iestResearchTools, incopatResearchTools, wanfangResearchTools } from "./researchdb";
+import { ResearchDbImporter } from "./researchdb";
+import { legacyResearchToolSpecs } from "./researchdb/legacyToolSpecs";
 import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
 import { consumerHealth } from "../consumer/health";
@@ -90,7 +91,7 @@ export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeD
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
 export { wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet };
-export { researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "./researchdb";
+export * from "./researchdb";
 
 export interface McpToolDefinition {
   name: string;
@@ -3290,63 +3291,7 @@ const coreToolSpecs: ToolSpec[] = [
     schema: researchInventoryImportInput,
     handler: async (args, runtime) => new ResearchDbImporter(runtime.database).importInventorySeed(args.path ?? "configs/research/research_inventory.json", { stemOnly: !!args.stem_only })
   },
-  {
-    name: "research_aiaa_search",
-    description: "Search AIAA Aerospace Research Central via the verified AIAA headless recipe.",
-    schema: researchAiaaSearchInput,
-    handler: async (args) => researchAiaaSearch(args)
-  },
-  {
-    name: "research_aiaa_filter",
-    description: "Search and refine AIAA Aerospace Research Central with verified URL facet parameters.",
-    schema: researchAiaaFilterInput,
-    handler: async (args) => researchAiaaFilter(args)
-  },
-  {
-    name: "research_aiaa_export",
-    description: "Export a real AIAA citation artifact using the verified CDP artifact-click path.",
-    schema: researchAiaaExportInput,
-    handler: async (args) => researchAiaaExport(args)
-  },
-  ...wosResearchTools,
-  ...acmResearchTools,
-  ...ieeeResearchTools,
-  ...acsResearchTools,
-  ...asmeResearchTools,
-  ...rscResearchTools,
-  ...wileyResearchTools,
-  ...asceResearchTools,
-  ...iopResearchTools,
-  ...tandfResearchTools,
-  ...saeResearchTools,
-  ...sciencedirectResearchTools,
-  ...apsResearchTools,
-  ...emeraldResearchTools,
-  ...cambridgeResearchTools,
-  ...springerResearchTools,
-  ...natureResearchTools,
-  ...ietResearchTools,
-  ...aipResearchTools,
-  ...mdpiResearchTools,
-  ...opticaResearchTools,
-  ...proquestResearchTools,
-  ...frontiersResearchTools,
-  ...arxivResearchTools,
-  ...siamResearchTools,
-  ...degruyterResearchTools,
-  ...worldsciResearchTools,
-  ...royalsocResearchTools,
-  ...scoap3ResearchTools,
-  ...dblpResearchTools,
-  ...scieloResearchTools,
-  ...inspirehepResearchTools,
-  ...pubscholarResearchTools,
-  ...opticsjournalResearchTools,
-  ...crcResearchTools,
-  ...cellpressResearchTools,
-  ...iestResearchTools,
-  ...incopatResearchTools,
-  ...wanfangResearchTools,
+  ...legacyResearchToolSpecs,
   {
     name: "capability_library_import",
     description: "Import the editable capability library seed into the authoritative integration registry table.",

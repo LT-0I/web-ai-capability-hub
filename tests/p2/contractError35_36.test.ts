@@ -25,9 +25,9 @@ test("p2 contract: error_codes.length is exactly 36 (no over/under count)", () =
   assert.equal((CONSUMER_ERROR_CODES as readonly string[]).length, 36);
 });
 
-test("p2 contract: contract_version bumped to consumer-contract-1.7.1; package_version still 0.9.0", () => {
+test("p2/P3 contract: contract_version remains consumer-contract-1.7.1; package_version is 1.0.0", () => {
   assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.1");
-  assert.equal(CONTRACT.package_version, "0.9.0");
+  assert.equal(CONTRACT.package_version, "1.0.0");
 });
 
 test("p2 contract: TS error code export and JSON error_codes array are in lockstep order", () => {

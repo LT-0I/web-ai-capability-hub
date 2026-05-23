@@ -1,12 +1,13 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v0.9.0
+Package: `web-ai-research-automation-hub` v1.0.0
 Contract: `consumer-contract-1.7.1`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.7.1 (2026-05-23 P3 v1.0 cut): first GA release; obsolete handwritten paths removed; manifest-driven architecture is now the only path; migration notes at docs/MIGRATION_v3.2.md. No surface change.
 - consumer-contract-1.7.1 (2026-05-23 P2): wires ExecutionEngine live through 159 legacy aliases; cancel + heartbeat + TTL fully active; drift_events table starts accumulating; adds 2 error codes (PROFILE_LEASE_TIMEOUT, TAB_LEASE_EXPIRED) for lease-lifecycle failures. No new commands, no surface change.
 - consumer-contract-1.7.0 (2026-05-23): P1 atomic refactor adds 8 wah_* facade tools (181→189), 2 error codes (32→34: UI_DRIFT_DETECTED, HEAL_CONFIDENCE_LOW), and ports 159 existing tools onto the manifest-driven generator without surface change.
 - consumer-contract-1.6.0 (2026-05-20): adds Gemini-only `webai:gemini:select-model` / `webai_gemini_select_model` for programmatic model and thinking-level selection; command rows 181, `webai_*` rows 38, error-code taxonomy unchanged at 32.

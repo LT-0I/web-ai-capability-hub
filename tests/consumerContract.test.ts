@@ -657,8 +657,8 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(manifest.error_codes.length, 36, "error codes now 36");
   assert.equal(manifest.commands.length, 189, "commands now 189");
   assert.equal(manifest.contract_version, "consumer-contract-1.7.1");
-  assert.equal(packageJson.version, "0.9.0");
-  assert.equal(manifest.package_version, "0.9.0");
+  assert.equal(packageJson.version, "1.0.0");
+  assert.equal(manifest.package_version, "1.0.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
   assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched science/engineering subject labels; safe governance metadata.");
 });
