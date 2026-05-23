@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchWileySearch, researchWileyFilter, researchWileyExport, WileySearchArgs, WileyFilterArgs, WileyExportArgs } from "./flow";
+import { researchWileySearch, researchWileyFilter, researchWileyExport, WileySearchArgs, WileyFilterArgs, WileyExportArgs } from "../../../handlers/researchdb/legacy/wiley";
 
 const wileyAreas = ["AllField", "Title", "ContribRaw", "Keyword", "AbstractText", "Affiliation", "Funding"];
 const wileyFormats = ["txt", "ris", "endnote", "bibtex", "medlars", "refworks"];

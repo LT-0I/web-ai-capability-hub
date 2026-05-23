@@ -1,0 +1,16 @@
+id: webai.claude.design_create_project
+version: 1.0.0
+target:
+  kind: webai
+  provider: claude
+operation: design_create_project
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_claude_design_create_project manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

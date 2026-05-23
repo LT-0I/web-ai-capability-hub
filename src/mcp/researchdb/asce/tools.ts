@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAsceSearch, researchAsceFilter, researchAsceExport, AsceSearchArgs, AsceFilterArgs, AsceExportArgs } from "./flow";
+import { researchAsceSearch, researchAsceFilter, researchAsceExport, AsceSearchArgs, AsceFilterArgs, AsceExportArgs } from "../../../handlers/researchdb/legacy/asce";
 
 export const researchAsceSearchInput = objectSchema<AsceSearchArgs>({
   query: scalar.string("ASCE Library query text"),

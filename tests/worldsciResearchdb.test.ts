@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildWorldsciSearchUrl, buildWorldsciFilterUrl, buildWorldsciCitationUrl, parseWorldsciResultCount, parseWorldsciItemsFromHtml, parseWorldsciItemsFromVisibleText } from "../src/mcp/researchdb/worldsci/flow";
+import { buildWorldsciSearchUrl, buildWorldsciFilterUrl, buildWorldsciCitationUrl, parseWorldsciResultCount, parseWorldsciItemsFromHtml, parseWorldsciItemsFromVisibleText } from "../src/handlers/researchdb/legacy/worldsci";
 
 test("World Scientific URL builders preserve verified Literatum query, facet, and citation parameters", () => {
   assert.equal(

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildEmeraldSearchUrl, buildEmeraldFilterUrl, buildEmeraldArticleUrl, buildEmeraldCitationDownloadUrl, parseEmeraldResultCount, parseEmeraldItemsFromHtml, parseEmeraldItemsFromVisibleText, parseEmeraldResourceIdFromHtml } from "../src/mcp/researchdb/emerald/flow";
+import { buildEmeraldSearchUrl, buildEmeraldFilterUrl, buildEmeraldArticleUrl, buildEmeraldCitationDownloadUrl, parseEmeraldResultCount, parseEmeraldItemsFromHtml, parseEmeraldItemsFromVisibleText, parseEmeraldResourceIdFromHtml } from "../src/handlers/researchdb/legacy/emerald";
 
 test("Emerald URL builders preserve verified Silverchair search, refine, article, and citation contracts", () => {
   assert.equal(

@@ -1,0 +1,16 @@
+id: webai.chatgpt.pulse_onboard
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: pulse_onboard
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_chatgpt_pulse_onboard manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

@@ -1,0 +1,16 @@
+id: webai.chatgpt.send_prompt
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: send_prompt
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: webai_chatgpt_send_prompt manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

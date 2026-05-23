@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchApsSearch, researchApsFilter, researchApsExport, ApsSearchArgs, ApsFilterArgs, ApsExportArgs } from "./flow";
+import { researchApsSearch, researchApsFilter, researchApsExport, ApsSearchArgs, ApsFilterArgs, ApsExportArgs } from "../../../handlers/researchdb/legacy/aps";
 
 const apsFieldEnum = ["all", "author", "abstract", "abstitle", "title", "citedauthor", "affiliation", "collaboration", "keyword"];
 const apsOperatorEnum = ["AND", "OR", "NOT"];

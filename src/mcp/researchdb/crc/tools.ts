@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchCrcSearch, researchCrcFilter, researchCrcExport, CrcSearchArgs, CrcFilterArgs, CrcExportArgs } from "./flow";
+import { researchCrcSearch, researchCrcFilter, researchCrcExport, CrcSearchArgs, CrcFilterArgs, CrcExportArgs } from "../../../handlers/researchdb/legacy/crc";
 
 export const researchCrcSearchInput = objectSchema<CrcSearchArgs>({
   query: scalar.string("CRC/T&F eBooks keyword query text; maps to advanceKeywords"),

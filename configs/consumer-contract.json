@@ -1,6 +1,6 @@
 {
-  "package_version": "0.7.1",
-  "contract_version": "consumer-contract-1.6.0",
+  "package_version": "0.9.0",
+  "contract_version": "consumer-contract-1.7.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -4165,6 +4165,220 @@
         ]
       },
       "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "wah:capability:query",
+      "mcp_name": "wah_capability_query",
+      "ts_export": "wahCapabilityQuery",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "manifests",
+          "capabilities"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "target",
+        "text",
+        "operation",
+        "limit"
+      ]
+    },
+    {
+      "cli_name": "wah:adapter:health",
+      "mcp_name": "wah_adapter_health",
+      "ts_export": "wahAdapterHealth",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "manifest_count",
+          "by_kind",
+          "errors"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "provider",
+        "kind"
+      ]
+    },
+    {
+      "cli_name": "wah:policy:explain",
+      "mcp_name": "wah_policy_explain",
+      "ts_export": "wahPolicyExplain",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "manifest_id",
+          "safety",
+          "possible_error_codes"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "manifest_id",
+        "mcp_name"
+      ]
+    },
+    {
+      "cli_name": "wah:task:start",
+      "mcp_name": "wah_task_start",
+      "ts_export": "wahTaskStart",
+      "maturity": "stable",
+      "safety_class": "mutate",
+      "required_args": [
+        "manifest_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "status",
+          "runId",
+          "manifestId",
+          "events"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "input",
+        "dry_run",
+        "confirmed"
+      ]
+    },
+    {
+      "cli_name": "wah:task:status",
+      "mcp_name": "wah_task_status",
+      "ts_export": "wahTaskStatus",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [
+        "run_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "run_id",
+          "workflow_run",
+          "events"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "wah:task:cancel",
+      "mcp_name": "wah_task_cancel",
+      "ts_export": "wahTaskCancel",
+      "maturity": "stable",
+      "safety_class": "mutate",
+      "required_args": [
+        "run_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "status",
+          "runId",
+          "requestedAt"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "reason"
+      ]
+    },
+    {
+      "cli_name": "wah:task:resume",
+      "mcp_name": "wah_task_resume",
+      "ts_export": "wahTaskResume",
+      "maturity": "stable",
+      "safety_class": "mutate",
+      "required_args": [
+        "run_id",
+        "manifest_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "status",
+          "runId",
+          "manifestId",
+          "events"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "input",
+        "confirmed"
+      ]
+    },
+    {
+      "cli_name": "wah:artifact:get",
+      "mcp_name": "wah_artifact_get",
+      "ts_export": "wahArtifactGet",
+      "maturity": "stable",
+      "safety_class": "read",
+      "required_args": [],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "artifact"
+        ],
+        "optional": [
+          "errorCode",
+          "message",
+          "result"
+        ]
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "artifact_id",
+        "path"
+      ]
     }
   ],
   "resources": [
@@ -4388,7 +4602,9 @@
     "UNKNOWN",
     "SENSITIVE_CONTENT_GUARD",
     "SUBMCP_QUOTA_EXHAUSTED",
-    "SUBMCP_NOT_PROVISIONED"
+    "SUBMCP_NOT_PROVISIONED",
+    "UI_DRIFT_DETECTED",
+    "HEAL_CONFIDENCE_LOW"
   ],
   "sensitive_fields": {
     "artifact_click.path": "Local filesystem path; treat as sensitive local metadata.",

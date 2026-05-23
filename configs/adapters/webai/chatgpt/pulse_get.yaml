@@ -1,0 +1,16 @@
+id: webai.chatgpt.pulse_get
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: pulse_get
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: webai_chatgpt_pulse_get manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

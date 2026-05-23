@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAsmeSearch, researchAsmeFilter, researchAsmeExport, AsmeSearchArgs, AsmeFilterArgs, AsmeExportArgs } from "./flow";
+import { researchAsmeSearch, researchAsmeFilter, researchAsmeExport, AsmeSearchArgs, AsmeFilterArgs, AsmeExportArgs } from "../../../handlers/researchdb/legacy/asme";
 
 export const researchAsmeSearchInput = objectSchema<AsmeSearchArgs>({
   query: scalar.string("ASME Digital Collection query text"),

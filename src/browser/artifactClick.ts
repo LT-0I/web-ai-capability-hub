@@ -2,6 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 import { ManagedBrowserLauncher } from "./managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 import { verifyOoxmlPackage } from "../verifiers/docxMin";
 
 export type ArtifactClickErrorCode = "IFRAME_NOT_FOUND" | "ELEMENT_NOT_FOUND" | "ELEMENT_OUT_OF_VIEWPORT" | "ARTIFACT_DOWNLOAD_TIMEOUT" | "ARTIFACT_VERIFICATION_FAILED" | "INVALID_ARGS";
@@ -1081,7 +1082,7 @@ export async function waitForArtifactPageReady(page: any, options: ArtifactClick
 
 export async function runArtifactClick(options: ArtifactClickOptions): Promise<ArtifactClickResult> {
   ensureArgs(options);
-  const launcher = new ManagedBrowserLauncher();
+  const launcher = createManagedBrowserLauncher();
   const status = await launcher.launch({ profile: options.profile });
   const browser = await launcher.connectOverCdp(status);
   try {

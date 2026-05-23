@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildDblpSearchUrl, buildDblpFilterUrl, buildDblpBibtexUrl, buildDblpBulkApiUrl, parseDblpResultCount, parseDblpItemsFromHtml, parseDblpItemsFromVisibleText, researchDblpExport, WebAiToolError } from "../src/mcp/researchdb/dblp/flow";
+import { buildDblpSearchUrl, buildDblpFilterUrl, buildDblpBibtexUrl, buildDblpBulkApiUrl, parseDblpResultCount, parseDblpItemsFromHtml, parseDblpItemsFromVisibleText, researchDblpExport, WebAiToolError } from "../src/handlers/researchdb/legacy/dblp";
 
 test("DBLP URL builders preserve verified CompleteSearch, refine, and export contracts", () => {
   assert.equal(

@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchMdpiSearch, researchMdpiFilter, researchMdpiExport, MdpiSearchArgs, MdpiFilterArgs, MdpiExportArgs } from "./flow";
+import { researchMdpiSearch, researchMdpiFilter, researchMdpiExport, MdpiSearchArgs, MdpiFilterArgs, MdpiExportArgs } from "../../../handlers/researchdb/legacy/mdpi";
 
 export const researchMdpiSearchInput = objectSchema<MdpiSearchArgs>({
   query: scalar.string("MDPI title/keyword query text"),

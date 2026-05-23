@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildCrcAdvancedSearchUrl, buildCrcSearchUrl, parseCrcResultCount, parseCrcItemsFromHtml, parseCrcItemsFromVisibleText } from "../src/mcp/researchdb/crc/flow";
+import { buildCrcAdvancedSearchUrl, buildCrcSearchUrl, parseCrcResultCount, parseCrcItemsFromHtml, parseCrcItemsFromVisibleText } from "../src/handlers/researchdb/legacy/crc";
 
 test("CRC/T&F eBooks URL builders preserve the distinct UBX advanced-search surface", () => {
   assert.equal(buildCrcAdvancedSearchUrl(), "https://www.taylorfrancis.com/search/advance-search?context=ubx");

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildSpringerSearchUrl, buildSpringerFilterUrl, buildSpringerCitationUrl, parseSpringerResultCount, parseSpringerItemsFromHtml, parseSpringerItemsFromVisibleText, researchSpringerExport, WebAiToolError } from "../src/mcp/researchdb/springer/flow";
+import { buildSpringerSearchUrl, buildSpringerFilterUrl, buildSpringerCitationUrl, parseSpringerResultCount, parseSpringerItemsFromHtml, parseSpringerItemsFromVisibleText, researchSpringerExport, WebAiToolError } from "../src/handlers/researchdb/legacy/springer";
 
 test("Springer URL builders preserve verified search, refine, and citation contracts", () => {
   assert.equal(

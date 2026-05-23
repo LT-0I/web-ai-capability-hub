@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIopSearchUrl, buildIopFilterUrl, buildIopArticleUrl, buildIopExportUrl, parseIopResultCount, parseIopItemsFromHtml, parseIopItemsFromVisibleText } from "../src/mcp/researchdb/iop/flow";
+import { buildIopSearchUrl, buildIopFilterUrl, buildIopArticleUrl, buildIopExportUrl, parseIopResultCount, parseIopItemsFromHtml, parseIopItemsFromVisibleText } from "../src/handlers/researchdb/legacy/iop";
 
 test("IOPscience URL builders preserve verified /nsearch facet and export parameters", () => {
   assert.equal(
@@ -57,7 +57,7 @@ test("IOPscience eBook ISBN export URL and validators cover RIS EBOOK and BibTeX
   const isbn = "978-0-7503-3343-6";
   assert.equal(buildIopExportUrl(isbn, "ris"), "https://iopscience.iop.org/exportAbstract?isbn=978-0-7503-3343-6&exportFormat=iopexport_ris&exportType=abs");
   assert.equal(buildIopExportUrl(isbn, "bibtex"), "https://iopscience.iop.org/exportAbstract?isbn=978-0-7503-3343-6&exportFormat=iopexport_bib&exportType=abs");
-  const { isValidIopRisArtifact, isValidIopBibtexArtifact } = require("../src/mcp/researchdb/iop/flow");
+  const { isValidIopRisArtifact, isValidIopBibtexArtifact } = require("../src/handlers/researchdb/legacy/iop");
   const ebookRis = "TY  - EBOOK\nTI  - Semidefinite Programming in Quantum Information Science\nDO  - 10.1088/978-0-7503-3343-6\nSN  - 978-0-7503-3343-6\nER  -\n";
   const bookBib = "@book{10.1088/978-0-7503-3343-6,\ntitle = {Semidefinite Programming in Quantum Information Science},\nisbn = {978-0-7503-3343-6},\ndoi = {10.1088/978-0-7503-3343-6}\n}\n";
   const journalRis = "TY  - JOUR\nTI  - InGaAs/graphene infrared photodetectors\nDO  - 10.1088/2053-1591/ab4925\nER  -\n";

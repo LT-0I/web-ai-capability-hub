@@ -10,7 +10,7 @@ import { waitForArtifactPageReady } from "../src/browser/artifactClick";
 import { main } from "../src/cli";
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
-import { activateGeminiVideoMode, callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "../src/mcp/tools";
+import { activateGeminiVideoMode, callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport, wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 import { subMcpToolSpecs } from "../src/mcp/submcp";
 import { bestEffortMarkVideoTaskBootstrapFailure } from "../src/mcp/videoWorker";
@@ -199,14 +199,15 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.6.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.7.0");
+  assert.equal(manifest.commands.length, 189);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
-  assert.equal(manifest.error_codes.length, 32);
+  assert.equal(manifest.error_codes.length, 34);
 
-  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED"]) {
+  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW"]) {
     assert.ok(manifest.error_codes.includes(code), `missing error code ${code}`);
   }
-  for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait", "browser:hover", "workflow:run", "browser:audit", "verify:docx-min"]) {
+  for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait", "browser:hover", "workflow:run", "browser:audit", "verify:docx-min", "wah:capability:query", "wah:adapter:health", "wah:policy:explain", "wah:task:start", "wah:task:status", "wah:task:cancel", "wah:task:resume", "wah:artifact:get"]) {
     assert.ok(manifest.commands.find((command: any) => command.cli_name === cliName), `missing command row ${cliName}`);
   }
   assert.ok(manifest.sensitive_fields["artifact_click.path"]);
@@ -292,6 +293,16 @@ const webAiV13Tools = [
   { cli: "webai:task-status", mcp: "webai_task_status", ts: "webAiTaskStatus", fn: webAiTaskStatus }
 ];
 
+const wahFacadeTools = [
+  { cli: "wah:capability:query", mcp: "wah_capability_query", ts: "wahCapabilityQuery", fn: wahCapabilityQuery, safety: "read", required: [] },
+  { cli: "wah:adapter:health", mcp: "wah_adapter_health", ts: "wahAdapterHealth", fn: wahAdapterHealth, safety: "read", required: [] },
+  { cli: "wah:policy:explain", mcp: "wah_policy_explain", ts: "wahPolicyExplain", fn: wahPolicyExplain, safety: "read", required: [] },
+  { cli: "wah:task:start", mcp: "wah_task_start", ts: "wahTaskStart", fn: wahTaskStart, safety: "mutate", required: ["manifest_id"] },
+  { cli: "wah:task:status", mcp: "wah_task_status", ts: "wahTaskStatus", fn: wahTaskStatus, safety: "read", required: ["run_id"] },
+  { cli: "wah:task:cancel", mcp: "wah_task_cancel", ts: "wahTaskCancel", fn: wahTaskCancel, safety: "mutate", required: ["run_id"] },
+  { cli: "wah:task:resume", mcp: "wah_task_resume", ts: "wahTaskResume", fn: wahTaskResume, safety: "mutate", required: ["run_id", "manifest_id"] },
+  { cli: "wah:artifact:get", mcp: "wah_artifact_get", ts: "wahArtifactGet", fn: wahArtifactGet, safety: "read", required: [] }
+];
 
 
 test("stream5 B1 webai send-prompt schemas expose optional model/control params", () => {
@@ -339,7 +350,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
   assert.equal(expectedWebaiToolCount, 38);
 });
 
-test("consumer contract v1.6.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
+test("consumer contract v1.7.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
   const manifest = contract();
   const cliSource = fs.readFileSync(path.resolve(process.cwd(), "src/cli.ts"), "utf-8");
   const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
@@ -379,6 +390,42 @@ test("consumer contract v1.6.0 webai tools round-trip through CLI, MCP, and TS e
 });
 
 
+test("p1 wah facade tools round-trip through contract, CLI, MCP, and TS exports", () => {
+  const manifest = contract();
+  const cliSource = fs.readFileSync(path.resolve(process.cwd(), "src/cli.ts"), "utf-8");
+  const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
+  const byMcp = new Map(manifest.commands.map((command: any) => [command.mcp_name, command]));
+
+  assert.equal(manifest.commands.length, 189, "P1 command lock must be 189");
+  assert.ok(byMcp.has("wah_capability_query"), "wah_capability_query command row missing");
+  assert.ok(byMcp.has("wah_adapter_health"), "wah_adapter_health command row missing");
+  assert.ok(byMcp.has("wah_policy_explain"), "wah_policy_explain command row missing");
+  assert.ok(byMcp.has("wah_task_start"), "wah_task_start command row missing");
+  assert.ok(byMcp.has("wah_task_status"), "wah_task_status command row missing");
+  assert.ok(byMcp.has("wah_task_cancel"), "wah_task_cancel command row missing");
+  assert.ok(byMcp.has("wah_task_resume"), "wah_task_resume command row missing");
+  assert.ok(byMcp.has("wah_artifact_get"), "wah_artifact_get command row missing");
+
+  for (const item of wahFacadeTools) {
+    const row = byMcp.get(item.mcp) as any;
+    assert.equal(row.cli_name, item.cli, `${item.mcp} cli_name`);
+    assert.equal(row.ts_export, item.ts, `${item.mcp} ts_export`);
+    assert.equal(row.safety_class, item.safety, `${item.mcp} safety_class`);
+    assert.deepEqual(row.required_args, item.required, `${item.mcp} required_args`);
+    assert.ok(cliSource.includes(`"${item.cli}"`), `${item.cli} missing from CLI dispatch`);
+    assert.ok(mcpToolNames.has(item.mcp), `${item.mcp} missing from MCP tools`);
+    assert.equal(typeof item.fn, "function", `${item.ts} missing TS export`);
+    assertNoForbiddenFields(row.output_keys, manifest.forbidden_output_fields);
+  }
+});
+
+test("p1 wah_task_start supports dry_run input in contract and MCP schema", () => {
+  const row = contract().commands.find((command: any) => command.mcp_name === "wah_task_start");
+  assert.ok(row.optional_args?.includes("dry_run"), "wah_task_start optional_args missing dry_run");
+  const tool = listMcpTools().find((entry) => entry.name === "wah_task_start")!;
+  assert.equal((tool.inputSchema as any).properties.dry_run.type, "boolean");
+});
+
 test("stream5 plus issue14 surface: webai tool count is exactly 38", () => {
   const manifest = contract();
   const webaiCommands = manifest.commands.filter(
@@ -412,11 +459,15 @@ test("stream5 plus issue14 surface: webai tool count is exactly 38", () => {
     "Expected Stream #5 plus Issue #14 split to total 38 (13 pre-existing + 14 main-server + 11 sub-MCP)");
 });
 
-test("stream5 final error_codes count is 32", () => {
+test("p1 final error_codes count is 34", () => {
   const manifest = contract();
-  assert.equal(manifest.error_codes.length, 32);
+  assert.equal(manifest.error_codes.length, 34);
+  assert.ok(manifest.error_codes.includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from contract");
+  assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from TS export");
+  assert.ok(manifest.error_codes.includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing from contract");
+  assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing from TS export");
   for (const code of [
-    "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED"
+    "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW"
   ]) {
     assert.ok(manifest.error_codes.includes(code),
       `stream5 error code missing from contract: ${code}`);
@@ -591,10 +642,11 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 38, "webai command rows now 38");
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 38, "webai MCP tools now 38");
-  assert.equal(manifest.error_codes.length, 32, "error codes still 32");
-  assert.equal(manifest.contract_version, "consumer-contract-1.6.0");
-  assert.equal(packageJson.version, "0.7.1");
-  assert.equal(manifest.package_version, "0.7.1");
+  assert.equal(manifest.error_codes.length, 34, "error codes now 34");
+  assert.equal(manifest.commands.length, 189, "commands now 189");
+  assert.equal(manifest.contract_version, "consumer-contract-1.7.0");
+  assert.equal(packageJson.version, "0.9.0");
+  assert.equal(manifest.package_version, "0.9.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
   assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched science/engineering subject labels; safe governance metadata.");
 });

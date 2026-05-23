@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchCellpressSearch, researchCellpressFilter, researchCellpressExport, CellpressSearchArgs, CellpressFilterArgs, CellpressExportArgs } from "./flow";
+import { researchCellpressSearch, researchCellpressFilter, researchCellpressExport, CellpressSearchArgs, CellpressFilterArgs, CellpressExportArgs } from "../../../handlers/researchdb/legacy/cellpress";
 
 export const researchCellpressSearchInput = objectSchema<CellpressSearchArgs>({
   query: scalar.string("Cell Press query text"),

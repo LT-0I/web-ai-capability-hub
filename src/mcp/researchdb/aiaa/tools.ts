@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAiaaSearch, researchAiaaFilter, researchAiaaExport, AiaaSearchArgs, AiaaFilterArgs, AiaaExportArgs } from "./flow";
+import { researchAiaaSearch, researchAiaaFilter, researchAiaaExport, AiaaSearchArgs, AiaaFilterArgs, AiaaExportArgs } from "../../../handlers/researchdb/legacy/aiaa";
 
 export const researchAiaaSearchInput = objectSchema<AiaaSearchArgs>({
   query: scalar.string("AIAA query text"),

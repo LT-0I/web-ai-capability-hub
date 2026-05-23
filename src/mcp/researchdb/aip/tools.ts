@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAipSearch, researchAipFilter, researchAipExport, AipSearchArgs, AipFilterArgs, AipExportArgs } from "./flow";
+import { researchAipSearch, researchAipFilter, researchAipExport, AipSearchArgs, AipFilterArgs, AipExportArgs } from "../../../handlers/researchdb/legacy/aip";
 
 export const researchAipSearchInput = objectSchema<AipSearchArgs>({
   query: scalar.string("AIP Publishing Scitation query text"),

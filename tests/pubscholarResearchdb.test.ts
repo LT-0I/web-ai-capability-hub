@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildPubscholarHomeUrl, buildPubscholarExploreUrl, buildPubscholarAdvancedQueryLabel, normalizePubscholarConditions, parsePubscholarResultCount, parsePubscholarResultCountParts, parsePubscholarItemsFromHtml, parsePubscholarItemsFromDomRows } from "../src/mcp/researchdb/pubscholar/flow";
+import { buildPubscholarHomeUrl, buildPubscholarExploreUrl, buildPubscholarAdvancedQueryLabel, normalizePubscholarConditions, parsePubscholarResultCount, parsePubscholarResultCountParts, parsePubscholarItemsFromHtml, parsePubscholarItemsFromDomRows } from "../src/handlers/researchdb/legacy/pubscholar";
 
 test("PubScholar builders preserve route-only SPA and breadcrumb query state", () => {
   assert.equal(buildPubscholarHomeUrl(), "https://pubscholar.cn");

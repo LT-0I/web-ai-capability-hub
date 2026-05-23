@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildSiamSearchUrl, buildSiamFilterUrl, buildSiamCitationUrl, parseSiamResultCount, parseSiamItemsFromHtml, parseSiamItemsFromVisibleText } from "../src/mcp/researchdb/siam/flow";
+import { buildSiamSearchUrl, buildSiamFilterUrl, buildSiamCitationUrl, parseSiamResultCount, parseSiamItemsFromHtml, parseSiamItemsFromVisibleText } from "../src/handlers/researchdb/legacy/siam";
 
 test("SIAM URL builders preserve verified Literatum query and facet parameters", () => {
   assert.equal(

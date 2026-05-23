@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildScieloSearchUrl, buildScieloFilterUrl, buildScieloExportUrl, parseScieloResultCount, parseScieloItemsFromHtml, parseScieloItemsFromVisibleText, researchScieloExport, WebAiToolError } from "../src/mcp/researchdb/scielo/flow";
+import { buildScieloSearchUrl, buildScieloFilterUrl, buildScieloExportUrl, parseScieloResultCount, parseScieloItemsFromHtml, parseScieloItemsFromVisibleText, researchScieloExport, WebAiToolError } from "../src/handlers/researchdb/legacy/scielo";
 
 test("SciELO URL builders preserve verified GET search, facet, and export contracts", () => {
   assert.equal(

@@ -1,0 +1,16 @@
+id: wah.artifact.get
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: artifact_get
+kind: direct
+maturity: stable
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: Read redacted metadata for a persisted run artifact by id or path.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/artifactGet.ts#wahArtifactGet

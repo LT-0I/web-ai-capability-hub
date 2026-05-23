@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildSaeSearchUrl, buildSaeFilterUrl, parseSaeResultCount, parseSaeItemsFromHtml, parseSaeItemsFromVisibleText } from "../src/mcp/researchdb/sae/flow";
+import { buildSaeSearchUrl, buildSaeFilterUrl, parseSaeResultCount, parseSaeItemsFromHtml, parseSaeItemsFromVisibleText } from "../src/handlers/researchdb/legacy/sae";
 
 test("SAE URL builders preserve verified Angular hash query and facet refinement contract", () => {
   assert.equal(

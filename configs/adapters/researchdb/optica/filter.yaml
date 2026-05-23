@@ -1,0 +1,17 @@
+id: researchdb.optica.filter
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: optica
+  baseUrl: https://opg.optica.org
+operation: filter
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_optica_filter manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/filter.ts#runResearchDbFilter

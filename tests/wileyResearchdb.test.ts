@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildWileySearchUrl, buildWileyFilterUrl, buildWileyCitationUrl, parseWileyResultCount, parseWileyItemsFromHtml, parseWileyItemsFromVisibleText } from "../src/mcp/researchdb/wiley/flow";
+import { buildWileySearchUrl, buildWileyFilterUrl, buildWileyCitationUrl, parseWileyResultCount, parseWileyItemsFromHtml, parseWileyItemsFromVisibleText } from "../src/handlers/researchdb/legacy/wiley";
 
 test("Wiley URL builders preserve verified Literatum query, facet, and citation parameters", () => {
   assert.equal(
@@ -48,7 +48,7 @@ test("Wiley RIS validator accepts tag-order-independent book chapter and retaine
   const doi = "10.1002/9781119999999.ch2";
   const chapterRis = "T1  - Wiley book chapter\nAU  - Doe, Jane\nER  -\nTY  - CHAP\nDO  - 10.1002/9781119999999.ch2\n";
   const journalRis = "TY  - JOUR\nTI  - Wiley journal article\nDO  - 10.1049/cmu2.12107\nER  -\n";
-  const { isValidWileyRisArtifact } = require("../src/mcp/researchdb/wiley/flow");
+  const { isValidWileyRisArtifact } = require("../src/handlers/researchdb/legacy/wiley");
   assert.equal(isValidWileyRisArtifact(chapterRis, doi), true);
   assert.equal(isValidWileyRisArtifact(journalRis, "10.1049/cmu2.12107"), true);
   assert.equal(isValidWileyRisArtifact("TY  - CHAP\nDO  - 10.1002/9781119999999.ch2\n", doi), false);

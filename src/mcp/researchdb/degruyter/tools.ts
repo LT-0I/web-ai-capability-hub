@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, DegruyterSearchArgs, DegruyterFilterArgs, DegruyterExportArgs } from "./flow";
+import { researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, DegruyterSearchArgs, DegruyterFilterArgs, DegruyterExportArgs } from "../../../handlers/researchdb/legacy/degruyter";
 
 export const researchDegruyterSearchInput = objectSchema<DegruyterSearchArgs>({
   title: scalar.string("De Gruyter advanced-search title field"),

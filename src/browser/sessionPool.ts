@@ -1,5 +1,6 @@
 import { getStoragePaths } from "../utils/paths";
 import { ManagedBrowserLauncher } from "./managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 import { firstBrowserContext, findPageByCdpPageId, requireCdpPageId } from "./managedPageRouting";
 import { TabEntry, TabRegistry } from "./tabRegistry";
 
@@ -20,7 +21,7 @@ export async function allocateSession(
   const existing = await registry.get(tabId);
   if (existing?.status === "active") throw new Error(`Tab ID "${tabId}" is already allocated`);
 
-  const launcher = new ManagedBrowserLauncher();
+  const launcher = createManagedBrowserLauncher();
   const status = await launcher.launch({ profile });
   const browser = await launcher.connectOverCdp(status);
   try {
@@ -49,7 +50,7 @@ export async function freeSession(tabId: string, dataDir = getStoragePaths().dat
   const entry = await registry.get(tabId);
   if (!entry) return;
 
-  const launcher = new ManagedBrowserLauncher();
+  const launcher = createManagedBrowserLauncher();
   const status = await launcher.status(entry.profile);
   if (status.connected) {
     const browser = await launcher.connectOverCdp(status);

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAcmSearchUrl, buildAcmFilterUrl, buildAcmDoiSearchUrl, parseAcmResultCount, parseAcmItemsFromHtml, parseAcmItemsFromVisibleText, researchAcmFilter, WebAiToolError } from "../src/mcp/researchdb/acm/flow";
+import { buildAcmSearchUrl, buildAcmFilterUrl, buildAcmDoiSearchUrl, parseAcmResultCount, parseAcmItemsFromHtml, parseAcmItemsFromVisibleText, researchAcmFilter, WebAiToolError } from "../src/handlers/researchdb/legacy/acm";
 
 test("ACM URL builders preserve verified advanced search and date refine parameters", () => {
   assert.equal(

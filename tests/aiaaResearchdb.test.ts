@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAiaaSearchUrl, buildAiaaFilterUrl, buildAiaaCitationUrl, parseAiaaResultCount, parseAiaaItemsFromHtml, parseAiaaItemsFromVisibleText } from "../src/mcp/researchdb/aiaa/flow";
+import { buildAiaaSearchUrl, buildAiaaFilterUrl, buildAiaaCitationUrl, parseAiaaResultCount, parseAiaaItemsFromHtml, parseAiaaItemsFromVisibleText } from "../src/handlers/researchdb/legacy/aiaa";
 
 test("AIAA URL builders preserve verified Literatum query and facet parameters", () => {
   assert.equal(

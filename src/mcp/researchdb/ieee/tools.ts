@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchIeeeSearch, researchIeeeFilter, researchIeeeExport, IeeeSearchArgs, IeeeFilterArgs, IeeeExportArgs } from "./flow";
+import { researchIeeeSearch, researchIeeeFilter, researchIeeeExport, IeeeSearchArgs, IeeeFilterArgs, IeeeExportArgs } from "../../../handlers/researchdb/legacy/ieee";
 
 const ieeeFields = ["All Metadata", "Full Text & Metadata", "Full Text Only", "Document Title", "Authors", "Publication Title", "Abstract", "Index Terms", "Accession Number", "Article Number", "Article Page Number"];
 const ieeeContentTypes = ["Conferences", "Journals", "Early Access Articles", "Magazines", "Books"];

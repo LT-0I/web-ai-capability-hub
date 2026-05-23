@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, PubscholarSearchArgs, PubscholarFilterArgs, PubscholarExportArgs } from "./flow";
+import { researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, PubscholarSearchArgs, PubscholarFilterArgs, PubscholarExportArgs } from "../../../handlers/researchdb/legacy/pubscholar";
 
 const conditionSchema = scalar.object("PubScholar advanced-search condition: { field: 标题|关键词|作者|机构|摘要|期刊, value, match_mode: 精确|模糊, op: AND|OR|NOT }. Up to three conditions mirror the verified portal rows.");
 

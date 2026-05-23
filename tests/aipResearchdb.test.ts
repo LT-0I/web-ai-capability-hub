@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAipSearchUrl, buildAipFilterUrl, buildAipCitationDownloadUrl, parseAipResultCount, parseAipItemsFromHtml, parseAipItemsFromVisibleText } from "../src/mcp/researchdb/aip/flow";
+import { buildAipSearchUrl, buildAipFilterUrl, buildAipCitationDownloadUrl, parseAipResultCount, parseAipItemsFromHtml, parseAipItemsFromVisibleText } from "../src/handlers/researchdb/legacy/aip";
 
 test("AIP URL builders preserve verified Silverchair search, f_* refine, and citation contracts", () => {
   assert.equal(

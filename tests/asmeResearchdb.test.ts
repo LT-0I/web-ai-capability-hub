@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAsmeSearchUrl, buildAsmeFilterUrl, buildAsmeDoiUrl, buildAsmeCitationDownloadPath, parseAsmeResultCount, parseAsmeItemsFromHtml, parseAsmeItemsFromVisibleText } from "../src/mcp/researchdb/asme/flow";
+import { buildAsmeSearchUrl, buildAsmeFilterUrl, buildAsmeDoiUrl, buildAsmeCitationDownloadPath, parseAsmeResultCount, parseAsmeItemsFromHtml, parseAsmeItemsFromVisibleText } from "../src/handlers/researchdb/legacy/asme";
 
 test("ASME URL builders preserve verified Silverchair search, refine, and citation contracts", () => {
   assert.equal(

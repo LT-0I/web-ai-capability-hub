@@ -1,6 +1,6 @@
 {
   "name": "web-ai-research-automation-hub",
-  "version": "0.7.1",
+  "version": "0.9.0",
   "description": "Local-first managed CDP browser capability database and workflow hub for AI agents, web AI services, and authorized research databases.",
   "type": "commonjs",
   "main": "dist/src/index.js",
@@ -12,7 +12,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "npm run clean && tsc -p tsconfig.json",
+    "build": "npm run clean && npm run generate:tools && tsc -p tsconfig.json && node scripts/copy-runtime-configs.ts",
     "test": "npm run build && node --test dist/tests/*.test.js",
     "mcp": "node dist/src/cli.js mcp",
     "browser:start": "node dist/src/cli.js browser:start",
@@ -34,7 +34,12 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
     "verify:contract-version": "node dist/scripts/verify-contract-version.js",
     "verify:golden": "node --test dist/tests/golden/listMcpTools.test.js",
-    "verify:all": "npm run verify:contract-version && npm run verify:golden"
+    "verify:all": "npm run verify:contract-version && npm run verify:golden",
+    "generate:tools": "node scripts/generate-tools.ts",
+    "generate:research-manifests": "node scripts/generate-research-db-manifests.ts",
+    "verify:manifest": "node scripts/verify-manifest.ts",
+    "verify:no-launcher": "bash -lc '! grep -R \"new ManagedBrowserLauncher\" -n src | grep -v \"src/runtime/pool/profilePool.ts\"'",
+    "verify:generated-clean": "git diff --exit-code src/generated/"
   },
   "keywords": [
     "browser-automation",
@@ -56,7 +61,9 @@
   },
   "devDependencies": {
     "@types/node": "^22.7.4",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "jscodeshift": "^17.3.0",
+    "@types/jscodeshift": "^0.11.11"
   },
   "optionalDependencies": {
     "better-sqlite3": "^11.9.1"

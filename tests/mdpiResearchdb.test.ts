@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildMdpiSearchUrl, buildMdpiFilterUrl, buildMdpiArticleUrl, parseMdpiResultCount, parseMdpiItemsFromHtml, parseMdpiItemsFromVisibleText } from "../src/mcp/researchdb/mdpi/flow";
+import { buildMdpiSearchUrl, buildMdpiFilterUrl, buildMdpiArticleUrl, parseMdpiResultCount, parseMdpiItemsFromHtml, parseMdpiItemsFromVisibleText } from "../src/handlers/researchdb/legacy/mdpi";
 
 test("MDPI URL builders preserve verified GET search and facet parameters", () => {
   assert.equal(

@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchRscSearch, researchRscFilter, researchRscExport, RscSearchArgs, RscFilterArgs, RscExportArgs } from "./flow";
+import { researchRscSearch, researchRscFilter, researchRscExport, RscSearchArgs, RscFilterArgs, RscExportArgs } from "../../../handlers/researchdb/legacy/rsc";
 
 export const researchRscSearchInput = objectSchema<RscSearchArgs>({
   query: scalar.string("RSC advanced search query text; Boolean operators must be uppercase when used"),

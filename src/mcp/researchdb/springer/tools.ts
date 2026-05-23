@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchSpringerSearch, researchSpringerFilter, researchSpringerExport, SpringerSearchArgs, SpringerFilterArgs, SpringerExportArgs } from "./flow";
+import { researchSpringerSearch, researchSpringerFilter, researchSpringerExport, SpringerSearchArgs, SpringerFilterArgs, SpringerExportArgs } from "../../../handlers/researchdb/legacy/springer";
 
 export const researchSpringerSearchInput = objectSchema<SpringerSearchArgs>({
   query: scalar.string("SpringerLink boolean query text"),

@@ -4,6 +4,7 @@ const crypto = require("node:crypto");
 const childProcess = require("node:child_process");
 import { BrowserSessionManager } from "../browser/sessionManager";
 import { ManagedBrowserLauncher } from "../browser/managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 import { DownloadManager } from "../browser/downloads";
 import { ActionExecutor } from "../actions/executor";
 import { ConfirmationRequiredError, requiresApproval, riskyReason } from "../actions/confirmationPolicy";
@@ -76,9 +77,19 @@ import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
 import { ForbiddenOutputFieldError, assertNoForbidden, stripForbidden } from "./forbiddenFields";
 import { GeminiQuotaStateStore } from "../browser/geminiQuotaStateStore";
+
+import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
+import { wahAdapterHealth, wahAdapterHealthInput } from "../facade/wah/adapterHealth";
+import { wahPolicyExplain, wahPolicyExplainInput } from "../facade/wah/policyExplain";
+import { wahTaskStart, wahTaskStartInput } from "../facade/wah/taskStart";
+import { wahTaskStatus, wahTaskStatusInput } from "../facade/wah/taskStatus";
+import { wahTaskCancel, wahTaskCancelInput } from "../facade/wah/taskCancel";
+import { wahTaskResume, wahTaskResumeInput } from "../facade/wah/taskResume";
+import { wahArtifactGet, wahArtifactGetInput } from "../facade/wah/artifactGet";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
+export { wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet };
 export { researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport } from "./researchdb";
 
 export interface McpToolDefinition {
@@ -119,7 +130,7 @@ function runtimeOrDefault(runtime?: BrowserToolRuntime): Required<BrowserToolRun
   const database = runtime?.database || new CapabilityDatabase();
   const session = runtime?.session || new BrowserSessionManager();
   session.setDatabase(database);
-  return { ...(runtime as any || {}), session, launcher: runtime?.launcher || new ManagedBrowserLauncher(), database };
+  return { ...(runtime as any || {}), session, launcher: runtime?.launcher || createManagedBrowserLauncher(), database };
 }
 
 function executor(session: BrowserSessionManager): ActionExecutor {
@@ -2952,6 +2963,55 @@ export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): 
 }
 
 const coreToolSpecs: ToolSpec[] = [
+
+  {
+    name: "wah_capability_query",
+    description: "Query manifest-backed capabilities and legacy tool aliases without exposing local browser internals.",
+    schema: wahCapabilityQueryInput,
+    handler: async (args, runtime) => wahCapabilityQuery(args, runtime)
+  },
+  {
+    name: "wah_adapter_health",
+    description: "Return adapter and manifest health for a provider, including generated-tool availability.",
+    schema: wahAdapterHealthInput,
+    handler: async (args) => wahAdapterHealth(args)
+  },
+  {
+    name: "wah_policy_explain",
+    description: "Explain the policy, safety class, approvals, and stable error codes for a capability.",
+    schema: wahPolicyExplainInput,
+    handler: async (args) => wahPolicyExplain(args)
+  },
+  {
+    name: "wah_task_start",
+    description: "Start a manifest-backed task or return its dry-run execution plan.",
+    schema: wahTaskStartInput,
+    handler: async (args, runtime) => wahTaskStart(args, runtime)
+  },
+  {
+    name: "wah_task_status",
+    description: "Read status and event metadata for a manifest-backed task run.",
+    schema: wahTaskStatusInput,
+    handler: async (args, runtime) => wahTaskStatus(args, runtime)
+  },
+  {
+    name: "wah_task_cancel",
+    description: "Request cancellation for a manifest-backed task run.",
+    schema: wahTaskCancelInput,
+    handler: async (args) => wahTaskCancel(args)
+  },
+  {
+    name: "wah_task_resume",
+    description: "Resume or re-plan a manifest-backed task run from persisted evidence.",
+    schema: wahTaskResumeInput,
+    handler: async (args, runtime) => wahTaskResume(args, runtime)
+  },
+  {
+    name: "wah_artifact_get",
+    description: "Read redacted metadata for a persisted run artifact by id or path.",
+    schema: wahArtifactGetInput,
+    handler: async (args, runtime) => wahArtifactGet(args, runtime)
+  },
   {
     name: "consumer_health",
     description: "Return a consumer-safe health summary without CDP endpoints, profile paths, page URLs, snapshots, cookies, or tokens.",

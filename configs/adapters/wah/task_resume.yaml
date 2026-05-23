@@ -1,0 +1,16 @@
+id: wah.task.resume
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: task_resume
+kind: direct
+maturity: stable
+safety:
+  class: write
+  requiresApproval: false
+descriptionLiteral: Resume or re-plan a manifest-backed task run from persisted evidence.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/taskResume.ts#wahTaskResume

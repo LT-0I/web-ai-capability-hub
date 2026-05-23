@@ -1,7 +1,8 @@
 import { ManagedBrowserLauncher, ManagedBrowserLaunchOptions, ManagedBrowserStatus } from "./managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 
 export class ManagedCdpSessionManager {
-  constructor(private launcher = new ManagedBrowserLauncher()) {}
+  constructor(private launcher = createManagedBrowserLauncher()) {}
 
   async launch(options: ManagedBrowserLaunchOptions = {}): Promise<ManagedBrowserStatus> {
     return this.launcher.launch(options);

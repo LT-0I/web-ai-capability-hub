@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, InspirehepSearchArgs, InspirehepFilterArgs, InspirehepExportArgs } from "./flow";
+import { researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, InspirehepSearchArgs, InspirehepFilterArgs, InspirehepExportArgs } from "../../../handlers/researchdb/legacy/inspirehep";
 
 export const researchInspirehepSearchInput = objectSchema<InspirehepSearchArgs>({
   query: scalar.string('INSPIRE-HEP SPIRES-style structured query, e.g. "t neutrino and t oscillation"'),

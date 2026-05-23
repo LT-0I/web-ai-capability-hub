@@ -1,0 +1,17 @@
+id: researchdb.scoap3.search
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: scoap3
+  baseUrl: https://repo.scoap3.org
+operation: search
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_scoap3_search manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/search.ts#runResearchDbSearch

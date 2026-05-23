@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchIncopatSearch, researchIncopatFilter, researchIncopatExport, IncopatSearchArgs, IncopatFilterArgs, IncopatExportArgs } from "./flow";
+import { researchIncopatSearch, researchIncopatFilter, researchIncopatExport, IncopatSearchArgs, IncopatFilterArgs, IncopatExportArgs } from "../../../handlers/researchdb/legacy/incopat";
 
 export const researchIncopatSearchInput = objectSchema<IncopatSearchArgs>({
   query: scalar.string("IncoPat simple-search text; the UI normalizes bare text to ALL=(...)"),

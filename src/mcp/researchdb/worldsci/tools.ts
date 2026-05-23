@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, WorldsciSearchArgs, WorldsciFilterArgs, WorldsciExportArgs } from "./flow";
+import { researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, WorldsciSearchArgs, WorldsciFilterArgs, WorldsciExportArgs } from "../../../handlers/researchdb/legacy/worldsci";
 
 export const researchWorldsciSearchInput = objectSchema<WorldsciSearchArgs>({
   query: scalar.string("World Scientific query text"),

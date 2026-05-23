@@ -1,0 +1,17 @@
+id: researchdb.asme.search
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: asme
+  baseUrl: https://asmedigitalcollection.asme.org
+operation: search
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_asme_search manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/search.ts#runResearchDbSearch

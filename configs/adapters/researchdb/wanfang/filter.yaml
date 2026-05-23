@@ -1,0 +1,17 @@
+id: researchdb.wanfang.filter
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: wanfang
+  baseUrl: https://s.wanfangdata.com.cn
+operation: filter
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_wanfang_filter manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/filter.ts#runResearchDbFilter

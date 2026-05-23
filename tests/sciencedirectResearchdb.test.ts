@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildScienceDirectSearchUrl, buildScienceDirectFilterUrl, parseScienceDirectResultCount, parseScienceDirectItemsFromHtml, parseScienceDirectItemsFromVisibleText, scienceDirectFacetInputId } from "../src/mcp/researchdb/sciencedirect/flow";
+import { buildScienceDirectSearchUrl, buildScienceDirectFilterUrl, parseScienceDirectResultCount, parseScienceDirectItemsFromHtml, parseScienceDirectItemsFromVisibleText, scienceDirectFacetInputId } from "../src/handlers/researchdb/legacy/sciencedirect";
 
 test("ScienceDirect URL builders preserve verified advanced-search and facet parameters", () => {
   assert.equal(

@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchArxivSearch, researchArxivFilter, researchArxivExport, ArxivSearchArgs, ArxivFilterArgs, ArxivExportArgs } from "./flow";
+import { researchArxivSearch, researchArxivFilter, researchArxivExport, ArxivSearchArgs, ArxivFilterArgs, ArxivExportArgs } from "../../../handlers/researchdb/legacy/arxiv";
 
 const termSchema = objectSchema({
   term: scalar.string("arXiv advanced-search term"),

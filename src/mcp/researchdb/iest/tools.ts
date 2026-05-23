@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchIestSearch, researchIestFilter, researchIestExport, IestSearchArgs, IestFilterArgs, IestExportArgs } from "./flow";
+import { researchIestSearch, researchIestFilter, researchIestExport, IestSearchArgs, IestFilterArgs, IestExportArgs } from "../../../handlers/researchdb/legacy/iest";
 
 export const researchIestSearchInput = objectSchema<IestSearchArgs>({
   query: scalar.string("Journal of the IEST search query; canonical URL uses q[0]=<query>, not q1="),

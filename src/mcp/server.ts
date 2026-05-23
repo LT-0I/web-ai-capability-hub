@@ -3,6 +3,7 @@ import { callMcpTool, listMcpTools } from "./tools";
 import { listMcpResources, readMcpResource } from "./resources";
 import { BrowserSessionManager } from "../browser/sessionManager";
 import { ManagedBrowserLauncher } from "../browser/managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 import { CapabilityDatabase } from "../capabilities/database";
 import { ConfirmationRequiredError } from "../actions/confirmationPolicy";
 
@@ -46,7 +47,7 @@ export async function startMcpServer(): Promise<void> {
   const { Server } = sdkServer;
   const { StdioServerTransport } = sdkStdio;
   const { ListToolsRequestSchema, CallToolRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } = sdkTypes;
-  const runtime = { session: new BrowserSessionManager(), launcher: new ManagedBrowserLauncher(), database: new CapabilityDatabase() };
+  const runtime = { session: new BrowserSessionManager(), launcher: createManagedBrowserLauncher(), database: new CapabilityDatabase() };
   const server = new Server(packageMetadata(), { capabilities: { tools: {}, resources: {} } });
   server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: listMcpTools() }));
   server.setRequestHandler(CallToolRequestSchema, async (request: any) => {

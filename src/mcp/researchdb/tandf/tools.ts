@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchTandfSearch, researchTandfFilter, researchTandfExport, TandfSearchArgs, TandfFilterArgs, TandfExportArgs } from "./flow";
+import { researchTandfSearch, researchTandfFilter, researchTandfExport, TandfSearchArgs, TandfFilterArgs, TandfExportArgs } from "../../../handlers/researchdb/legacy/tandf";
 
 export const researchTandfSearchInput = objectSchema<TandfSearchArgs>({
   query: scalar.string("Taylor & Francis Online query text"),

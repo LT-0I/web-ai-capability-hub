@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildInspirehepSearchUrl, buildInspirehepFilterUrl, buildInspirehepRecordExportUrl, buildInspirehepResultsetExportUrl, parseInspirehepResultCount, parseInspirehepItemsFromHtml, researchInspirehepExport, WebAiToolError } from "../src/mcp/researchdb/inspirehep/flow";
+import { buildInspirehepSearchUrl, buildInspirehepFilterUrl, buildInspirehepRecordExportUrl, buildInspirehepResultsetExportUrl, parseInspirehepResultCount, parseInspirehepItemsFromHtml, researchInspirehepExport, WebAiToolError } from "../src/handlers/researchdb/legacy/inspirehep";
 
 test("INSPIRE-HEP URL builders preserve structured-query, facet, and first-party export contracts", () => {
   assert.equal(

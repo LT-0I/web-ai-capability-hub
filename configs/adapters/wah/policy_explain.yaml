@@ -1,0 +1,16 @@
+id: wah.policy.explain
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: policy_explain
+kind: direct
+maturity: stable
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: Explain the policy, safety class, approvals, and stable error codes for a capability.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/policyExplain.ts#wahPolicyExplain

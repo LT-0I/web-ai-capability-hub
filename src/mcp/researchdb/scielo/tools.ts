@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchScieloSearch, researchScieloFilter, researchScieloExport, ScieloSearchArgs, ScieloFilterArgs, ScieloExportArgs } from "./flow";
+import { researchScieloSearch, researchScieloFilter, researchScieloExport, ScieloSearchArgs, ScieloFilterArgs, ScieloExportArgs } from "../../../handlers/researchdb/legacy/scielo";
 
 export const researchScieloSearchInput = objectSchema<ScieloSearchArgs>({
   query: scalar.string("SciELO boolean query text; inline AND/OR/AND NOT, parentheses, and quotes are supported"),

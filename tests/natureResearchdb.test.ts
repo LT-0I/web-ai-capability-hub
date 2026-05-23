@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildNatureSearchUrl, buildNatureFilterUrl, buildNatureArticleUrl, buildNatureCitationUrl, parseNatureResultCount, parseNatureItemsFromHtml, parseNatureItemsFromVisibleText, natureFacetParam } from "../src/mcp/researchdb/nature/flow";
+import { buildNatureSearchUrl, buildNatureFilterUrl, buildNatureArticleUrl, buildNatureCitationUrl, parseNatureResultCount, parseNatureItemsFromHtml, parseNatureItemsFromVisibleText, natureFacetParam } from "../src/handlers/researchdb/legacy/nature";
 
 test("Nature URL builders preserve verified advanced-search, facet, and citation endpoints", () => {
   assert.equal(

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildScoap3SearchUrl, buildScoap3FilterUrl, buildScoap3ResultsetExportUrl, buildScoap3RecordExportUrl, parseScoap3ResultCount, parseScoap3ItemsFromHtml, parseScoap3ItemsFromVisibleText, researchScoap3Export, WebAiToolError } from "../src/mcp/researchdb/scoap3/flow";
+import { buildScoap3SearchUrl, buildScoap3FilterUrl, buildScoap3ResultsetExportUrl, buildScoap3RecordExportUrl, parseScoap3ResultCount, parseScoap3ItemsFromHtml, parseScoap3ItemsFromVisibleText, researchScoap3Export, WebAiToolError } from "../src/handlers/researchdb/legacy/scoap3";
 
 test("SCOAP3 URL builders preserve search_simple_query_string, facets, and export contracts", () => {
   assert.equal(

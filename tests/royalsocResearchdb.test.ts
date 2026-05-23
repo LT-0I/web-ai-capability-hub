@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildRoyalSocSearchUrl, buildRoyalSocFilterUrl, buildRoyalSocCitationDownloadUrl, parseRoyalSocDerivedResultCount, parseRoyalSocItemsFromHtml, parseRoyalSocItemsFromVisibleText } from "../src/mcp/researchdb/royalsoc/flow";
+import { buildRoyalSocSearchUrl, buildRoyalSocFilterUrl, buildRoyalSocCitationDownloadUrl, parseRoyalSocDerivedResultCount, parseRoyalSocItemsFromHtml, parseRoyalSocItemsFromVisibleText } from "../src/handlers/researchdb/legacy/royalsoc";
 
 test("Royal Society URL builders preserve verified Silverchair advanced search, facet, and citation contracts", () => {
   assert.equal(

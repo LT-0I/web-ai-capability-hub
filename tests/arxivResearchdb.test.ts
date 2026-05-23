@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildArxivSearchUrl, buildArxivFilterUrl, buildArxivBibtexUrl, normalizeArxivId, parseArxivResultCount, parseArxivItemsFromHtml, parseArxivItemsFromVisibleText } from "../src/mcp/researchdb/arxiv/flow";
+import { buildArxivSearchUrl, buildArxivFilterUrl, buildArxivBibtexUrl, normalizeArxivId, parseArxivResultCount, parseArxivItemsFromHtml, parseArxivItemsFromVisibleText } from "../src/handlers/researchdb/legacy/arxiv";
 
 test("arXiv URL builders preserve verified advanced-search, refine, and bibtex endpoints", () => {
   assert.equal(

@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildRscSearchUrl, buildRscFilterUrl, buildRscDoiSearchUrl, parseRscResultCount, parseRscItemsFromHtml, parseRscItemsFromVisibleText } from "../src/mcp/researchdb/rsc/flow";
+import { buildRscSearchUrl, buildRscFilterUrl, buildRscDoiSearchUrl, parseRscResultCount, parseRscItemsFromHtml, parseRscItemsFromVisibleText } from "../src/handlers/researchdb/legacy/rsc";
 
 test("RSC URL builders preserve verified advanced-search and Open Access refine parameters", () => {
   assert.equal(

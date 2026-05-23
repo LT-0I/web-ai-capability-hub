@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildApsSearchUrl, buildApsFilterUrl, buildApsArticleUrl, buildApsExportUrl, parseApsResultCount, parseApsItemsFromHtml, parseApsItemsFromVisibleText } from "../src/mcp/researchdb/aps/flow";
+import { buildApsSearchUrl, buildApsFilterUrl, buildApsArticleUrl, buildApsExportUrl, parseApsResultCount, parseApsItemsFromHtml, parseApsItemsFromVisibleText } from "../src/handlers/researchdb/legacy/aps";
 
 test("APS URL builders preserve verified React search, date refine, and export endpoints", () => {
   assert.equal(

@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchIetSearch, researchIetFilter, researchIetExport, IetSearchArgs, IetFilterArgs, IetExportArgs } from "./flow";
+import { researchIetSearch, researchIetFilter, researchIetExport, IetSearchArgs, IetFilterArgs, IetExportArgs } from "../../../handlers/researchdb/legacy/iet";
 
 export const researchIetSearchInput = objectSchema<IetSearchArgs>({
   query: scalar.string("IET Digital Library query text"),

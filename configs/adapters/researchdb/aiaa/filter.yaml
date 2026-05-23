@@ -1,0 +1,17 @@
+id: researchdb.aiaa.filter
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: aiaa
+  baseUrl: https://arc.aiaa.org
+operation: filter
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_aiaa_filter manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/filter.ts#runResearchDbFilter

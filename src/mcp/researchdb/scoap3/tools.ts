@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchScoap3Search, researchScoap3Filter, researchScoap3Export, Scoap3SearchArgs, Scoap3FilterArgs, Scoap3ExportArgs } from "./flow";
+import { researchScoap3Search, researchScoap3Filter, researchScoap3Export, Scoap3SearchArgs, Scoap3FilterArgs, Scoap3ExportArgs } from "../../../handlers/researchdb/legacy/scoap3";
 
 const stringArray = { type: "array", items: scalar.string("Facet value"), description: "Repeatable SCOAP3 facet values" } as any;
 

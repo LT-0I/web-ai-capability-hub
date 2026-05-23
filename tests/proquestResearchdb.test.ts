@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildProquestAdvancedSearchUrl, buildProquestInlineNoftQuery, parseProquestResultCount, parseProquestItemsFromHtml, parseProquestItemsFromDomRows } from "../src/mcp/researchdb/proquest/flow";
+import { buildProquestAdvancedSearchUrl, buildProquestInlineNoftQuery, parseProquestResultCount, parseProquestItemsFromHtml, parseProquestItemsFromDomRows } from "../src/handlers/researchdb/legacy/proquest";
 
 test("ProQuest URL and inline noft query builders preserve verified advanced-search route", () => {
   assert.equal(buildProquestAdvancedSearchUrl(), "https://www.proquest.com/advanced?accountid=16605");

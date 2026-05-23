@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, RoyalSocSearchArgs, RoyalSocFilterArgs, RoyalSocExportArgs } from "./flow";
+import { researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, RoyalSocSearchArgs, RoyalSocFilterArgs, RoyalSocExportArgs } from "../../../handlers/researchdb/legacy/royalsoc";
 
 export const researchRoyalSocSearchInput = objectSchema<RoyalSocSearchArgs>({
   query: scalar.string("Royal Society advanced-search query text"),

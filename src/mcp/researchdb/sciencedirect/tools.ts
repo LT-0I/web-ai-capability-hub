@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, ScienceDirectSearchArgs, ScienceDirectFilterArgs, ScienceDirectExportArgs } from "./flow";
+import { researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, ScienceDirectSearchArgs, ScienceDirectFilterArgs, ScienceDirectExportArgs } from "../../../handlers/researchdb/legacy/sciencedirect";
 
 const scienceDirectFormats = ["ris", "bibtex", "text", "refworks"];
 const scienceDirectArticleTypes = ["REV", "FLA", "CH", "EN"];

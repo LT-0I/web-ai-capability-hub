@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildDegruyterLuceneQuery, buildDegruyterSearchUrl, buildDegruyterFilterUrl, buildDegruyterDocumentUrl, buildDegruyterCitationUrl, parseDegruyterResultCount, parseDegruyterItemsFromHtml, parseDegruyterItemsFromVisibleText } from "../src/mcp/researchdb/degruyter/flow";
+import { buildDegruyterLuceneQuery, buildDegruyterSearchUrl, buildDegruyterFilterUrl, buildDegruyterDocumentUrl, buildDegruyterCitationUrl, parseDegruyterResultCount, parseDegruyterItemsFromHtml, parseDegruyterItemsFromVisibleText } from "../src/handlers/researchdb/legacy/degruyter";
 
 test("De Gruyter URL builders preserve verified advanced-search replay and facet parameters", () => {
   assert.equal(

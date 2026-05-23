@@ -1,0 +1,16 @@
+id: webai.chatgpt.canvas_export
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: canvas_export
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_chatgpt_canvas_export manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

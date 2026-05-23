@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIeeeSearchUrl, buildIeeeFilterUrl, parseIeeeResultCount, parseIeeeItemsFromHtml, parseIeeeItemsFromVisibleText, researchIeeeExport, WebAiToolError } from "../src/mcp/researchdb/ieee/flow";
+import { buildIeeeSearchUrl, buildIeeeFilterUrl, parseIeeeResultCount, parseIeeeItemsFromHtml, parseIeeeItemsFromVisibleText, researchIeeeExport, WebAiToolError } from "../src/handlers/researchdb/legacy/ieee";
 import { ConsumerErrorCodes } from "../src/consumer/errorCodes";
 
 test("IEEE URL builders preserve verified boolean query and URL refinement contract", () => {

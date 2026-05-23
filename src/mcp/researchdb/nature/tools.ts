@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchNatureSearch, researchNatureFilter, researchNatureExport, NatureSearchArgs, NatureFilterArgs, NatureExportArgs } from "./flow";
+import { researchNatureSearch, researchNatureFilter, researchNatureExport, NatureSearchArgs, NatureFilterArgs, NatureExportArgs } from "../../../handlers/researchdb/legacy/nature";
 
 const natureArticleTypes = ["research", "reviews"];
 const natureFacetParams = ["article_type", "journal", "subject", "date_range"];

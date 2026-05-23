@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildOpticsjournalSearchUrl, buildOpticsjournalSearchForm, parseOpticsjournalResultCount, parseOpticsjournalItemsFromHtml, parseOpticsjournalItemsFromVisibleText } from "../src/mcp/researchdb/opticsjournal/flow";
+import { buildOpticsjournalSearchUrl, buildOpticsjournalSearchForm, parseOpticsjournalResultCount, parseOpticsjournalItemsFromHtml, parseOpticsjournalItemsFromVisibleText } from "../src/handlers/researchdb/legacy/opticsjournal";
 
 test("Opticsjournal builders preserve verified advanced-search form contract", () => {
   assert.equal(buildOpticsjournalSearchUrl(), "https://www.opticsjournal.net/Search");

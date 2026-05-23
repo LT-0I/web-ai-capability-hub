@@ -1,0 +1,16 @@
+id: wah.adapter.health
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: adapter_health
+kind: direct
+maturity: stable
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: Return adapter and manifest health for a provider, including generated-tool availability.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/adapterHealth.ts#wahAdapterHealth

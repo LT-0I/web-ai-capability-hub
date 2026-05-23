@@ -1,4 +1,5 @@
 import { CdpPageInfo, ManagedBrowserLauncher, ManagedBrowserStatus } from "../browser/managedLauncher";
+import { createManagedBrowserLauncher } from "../runtime/pool/profilePool";
 import { getWebAiAdapter } from "../adapters/web-ai";
 import { ConsumerErrorCode, ConsumerErrorCodes } from "./errorCodes";
 
@@ -73,7 +74,7 @@ export async function consumerHealth(options: ConsumerHealthOptions): Promise<Co
   const resolvedProfile =
     HEALTH_PROFILE_ALIASES[target.toLowerCase()]?.[requestedProfile] ?? requestedProfile;
 
-  const launcher = options.launcher || new ManagedBrowserLauncher();
+  const launcher = options.launcher || createManagedBrowserLauncher();
   const profileKnown = knownProfileBeforeCheck(launcher, resolvedProfile);
   let status: ManagedBrowserStatus;
 

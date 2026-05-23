@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildWanfangSearchUrl, buildWanfangFacetParam, buildWanfangFilterUrl, parseWanfangResultCount, parseWanfangItemsFromDomRows, parseWanfangItemsFromHtml } from "../src/mcp/researchdb/wanfang/flow";
+import { buildWanfangSearchUrl, buildWanfangFacetParam, buildWanfangFilterUrl, parseWanfangResultCount, parseWanfangItemsFromDomRows, parseWanfangItemsFromHtml } from "../src/handlers/researchdb/legacy/wanfang";
 
 test("Wanfang URL builders preserve the verified replayable search and facet surfaces", () => {
   assert.equal(buildWanfangSearchUrl("无人机路径规划"), "https://s.wanfangdata.com.cn/paper?q=%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92");

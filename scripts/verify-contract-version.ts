@@ -19,10 +19,10 @@ type ConsumerContract = {
   error_codes?: unknown[];
 };
 
-const EXPECTED_PACKAGE_VERSION = "0.7.1";
-const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.6.0";
-const EXPECTED_COMMANDS = 181;
-const EXPECTED_ERROR_CODES = 32;
+const EXPECTED_PACKAGE_VERSION = "0.9.0";
+const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.7.0";
+const EXPECTED_COMMANDS = 189;
+const EXPECTED_ERROR_CODES = 34;
 const EXPECTED_WEBAI_ROWS = 38;
 const EXPECTED_RESEARCH_ROWS = 121;
 

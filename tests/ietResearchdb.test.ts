@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIetSearchUrl, buildIetFilterUrl, buildIetArticleUrl, parseIetResultCount, parseIetItemsFromHtml, parseIetItemsFromVisibleText } from "../src/mcp/researchdb/iet/flow";
+import { buildIetSearchUrl, buildIetFilterUrl, buildIetArticleUrl, parseIetResultCount, parseIetItemsFromHtml, parseIetItemsFromVisibleText } from "../src/handlers/researchdb/legacy/iet";
 
 test("IET URL builders preserve verified Literatum advanced-search and facet parameters", () => {
   assert.equal(

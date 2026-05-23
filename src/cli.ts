@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 import { BrowserSessionManager } from "./browser/sessionManager";
 import { ManagedBrowserLauncher, BrowserCloseMode } from "./browser/managedLauncher";
+import { createManagedBrowserLauncher } from "./runtime/pool/profilePool";
 import { BrowserProfileStore } from "./browser/profileStore";
 import { auditProfiles, releaseLeaseAndCleanLocks } from "./browser/profileLease";
 import { DownloadManager } from "./browser/downloads";
@@ -40,6 +41,7 @@ import { HealthCheckReport } from "./shared/types";
 import { consumerHealth } from "./consumer/health";
 import { redactValue } from "./trace/redact";
 import { verifyDocxMin } from "./verifiers/docxMin";
+import { runWahScout } from "./observe/scout/cli";
 
 type CliOptionValue = string | boolean | Array<string | boolean>;
 interface ParsedArgs { options: Record<string, CliOptionValue>; positionals: string[]; }
@@ -260,6 +262,44 @@ function webAiMcpNameFromCli(command: string): string | undefined {
   return map[command];
 }
 
+
+function wahMcpNameFromCli(command: string): string | undefined {
+  const map: Record<string, string> = {
+    "wah:capability:query": "wah_capability_query",
+    "wah:adapter:health": "wah_adapter_health",
+    "wah:policy:explain": "wah_policy_explain",
+    "wah:task:start": "wah_task_start",
+    "wah:task:status": "wah_task_status",
+    "wah:task:cancel": "wah_task_cancel",
+    "wah:task:resume": "wah_task_resume",
+    "wah:artifact:get": "wah_artifact_get"
+  };
+  return map[command];
+}
+
+function wahArgsFromCli(options: Record<string, CliOptionValue>, positionals: string[]): Record<string, unknown> {
+  const args: Record<string, unknown> = {
+    target: asString(options.target),
+    text: asString(options.text) || positionals[0],
+    operation: asString(options.operation),
+    provider: asString(options.provider),
+    kind: asString(options.kind),
+    manifest_id: asString(options["manifest-id"] || options.manifestId) || positionals[0],
+    mcp_name: asString(options["mcp-name"] || options.mcpName),
+    run_id: asString(options["run-id"] || options.runId) || positionals[0],
+    artifact_id: asString(options["artifact-id"] || options.artifactId) || positionals[0],
+    path: asString(options.path),
+    reason: asString(options.reason),
+    dry_run: asBoolean(options["dry-run"] || options.dryRun),
+    confirmed: asBoolean(options.confirmed),
+    limit: asNumber(options.limit)
+  };
+  const input = asString(options.input);
+  if (input) args.input = JSON.parse(input);
+  for (const key of Object.keys(args)) if (args[key] === undefined) delete args[key];
+  return args;
+}
+
 function workflowInputsFromCli(value: CliOptionValue | undefined): Record<string, unknown> {
   const entries = Array.isArray(value) ? value : value === undefined ? [] : [value];
   const inputs: Record<string, unknown> = {};
@@ -325,7 +365,7 @@ function formatHealthCheckReport(report: HealthCheckReport): string {
 async function withManagedPage(fn: (page: any) => Promise<unknown>, options: Record<string, CliOptionValue> = {}, targetUrl?: string): Promise<unknown> {
   const profile = asString(options.profile) || process.env.WAH_DEFAULT_PROFILE || "default";
   const tabId = asString(options["tab-id"] || options.tabId);
-  const launcher = new ManagedBrowserLauncher();
+  const launcher = createManagedBrowserLauncher();
   const status = await launcher.launch({ profile, url: tabId ? undefined : targetUrl, cdpPort: asNumber(options["cdp-port"] || options.cdpPort) });
   const browser = await launcher.connectOverCdp(status);
   try {
@@ -846,6 +886,15 @@ MCP and compatibility commands:
   mcp
   mcp:tools [--json]
   mcp:resources [--json]
+  wah scout --target <id> --fixture <html> [--json]
+  wah:capability:query [--target <id>] [--text <text>] [--json]
+  wah:adapter:health [--provider <id>] [--kind webai|researchdb|generic] [--json]
+  wah:policy:explain --manifest-id <id>|--mcp-name <name> [--json]
+  wah:task:start --manifest-id <id> [--input JSON] [--dry-run] [--json]
+  wah:task:status --run-id <id> [--json]
+  wah:task:cancel --run-id <id> [--reason <text>] [--json]
+  wah:task:resume --run-id <id> --manifest-id <id> [--input JSON] [--json]
+  wah:artifact:get --artifact-id <id>|--path <path> [--json]
   adapter:list [--json]
   web-ai:adapters [--json]
   recipe:list [--json]
@@ -888,6 +937,25 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   }
 
 
+
+  if (command === "wah" && positionals[0] === "scout") {
+    output(await runWahScout({
+      target: asString(options.target) || asString(options.site) || "",
+      fixture: asString(options.fixture),
+      feature: asString(options.feature) || positionals[1],
+      url: asString(options.url),
+      notes: asString(options.notes),
+      save: asBoolean(options.save)
+    }), options);
+    return;
+  }
+
+  const wahMcpName = wahMcpNameFromCli(command);
+  if (wahMcpName) {
+    output(redactForCli(await callMcpTool(wahMcpName, wahArgsFromCli(options, positionals)), options), options);
+    return;
+  }
+
   const webAiMcpName = webAiMcpNameFromCli(command);
   if (webAiMcpName) {
     const result = redactForCli(await callMcpTool(webAiMcpName, webAiArgsFromCli(command, options)), options);
@@ -902,17 +970,17 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   }
 
   if (command === "browser:launch") {
-    const launcher = new ManagedBrowserLauncher();
+    const launcher = createManagedBrowserLauncher();
     output(await launcher.launch({ profile: asString(options.profile), url: asString(options.url), cdpPort: asNumber(options["cdp-port"] || options.cdpPort), executablePath: asString(options.executable || options.executablePath) }), options);
     return;
   }
   if (command === "browser:status") {
-    const status = await new ManagedBrowserLauncher().status(asString(options.profile));
+    const status = await createManagedBrowserLauncher().status(asString(options.profile));
     output({ ...status, lease: new CapabilityDatabase().getActiveProfileLease(status.profile) }, options);
     return;
   }
   if (command === "browser:pages") {
-    output(await new ManagedBrowserLauncher().pages(asString(options.profile)), options);
+    output(await createManagedBrowserLauncher().pages(asString(options.profile)), options);
     return;
   }
   if (command === "browser:tab:alloc") {
@@ -951,7 +1019,7 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
       output(release, options);
       return;
     }
-    output(await new ManagedBrowserLauncher().close(profile, mode), options);
+    output(await createManagedBrowserLauncher().close(profile, mode), options);
     return;
   }
   if (command === "browser:profiles") {

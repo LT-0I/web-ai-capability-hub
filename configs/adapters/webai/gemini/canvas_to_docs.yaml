@@ -1,0 +1,16 @@
+id: webai.gemini.canvas_to_docs
+version: 1.0.0
+target:
+  kind: webai
+  provider: gemini
+operation: canvas_to_docs
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_gemini_canvas_to_docs manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

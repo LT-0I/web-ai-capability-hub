@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchSaeSearch, researchSaeFilter, researchSaeExport, SaeSearchArgs, SaeFilterArgs, SaeExportArgs } from "./flow";
+import { researchSaeSearch, researchSaeFilter, researchSaeExport, SaeSearchArgs, SaeFilterArgs, SaeExportArgs } from "../../../handlers/researchdb/legacy/sae";
 
 export const researchSaeSearchInput = objectSchema<SaeSearchArgs>({
   query: scalar.string("SAE Mobilus query text"),

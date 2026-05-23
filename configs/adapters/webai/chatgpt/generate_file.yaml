@@ -1,0 +1,16 @@
+id: webai.chatgpt.generate_file
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: generate_file
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_chatgpt_generate_file manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

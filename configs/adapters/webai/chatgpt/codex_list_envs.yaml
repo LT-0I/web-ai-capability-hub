@@ -1,0 +1,16 @@
+id: webai.chatgpt.codex_list_envs
+version: 1.0.0
+target:
+  kind: webai
+  provider: chatgpt
+operation: codex_list_envs
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: webai_chatgpt_codex_list_envs manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

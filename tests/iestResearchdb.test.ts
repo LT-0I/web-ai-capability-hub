@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIestSearchUrl, buildIestFilterUrl, buildIestArticleUrl, parseIestResultCount, parseIestItemsFromHtml, parseIestItemsFromDomRows } from "../src/mcp/researchdb/iest/flow";
+import { buildIestSearchUrl, buildIestFilterUrl, buildIestArticleUrl, parseIestResultCount, parseIestItemsFromHtml, parseIestItemsFromDomRows } from "../src/handlers/researchdb/legacy/iest";
 
 test("IEST URL builders preserve verified q[0] search surface and article host", () => {
   assert.equal(buildIestSearchUrl({ query: "cleanroom" }), "https://jiest.kglmeridian.com/search?q%5B0%5D=cleanroom");

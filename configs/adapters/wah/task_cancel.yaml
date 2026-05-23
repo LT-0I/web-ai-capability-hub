@@ -1,0 +1,16 @@
+id: wah.task.cancel
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: task_cancel
+kind: direct
+maturity: stable
+safety:
+  class: write
+  requiresApproval: false
+descriptionLiteral: Request cancellation for a manifest-backed task run.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/taskCancel.ts#wahTaskCancel

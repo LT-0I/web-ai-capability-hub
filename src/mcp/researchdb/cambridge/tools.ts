@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, CambridgeSearchArgs, CambridgeFilterArgs, CambridgeExportArgs } from "./flow";
+import { researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, CambridgeSearchArgs, CambridgeFilterArgs, CambridgeExportArgs } from "../../../handlers/researchdb/legacy/cambridge";
 
 export const researchCambridgeSearchInput = objectSchema<CambridgeSearchArgs>({
   query: scalar.string("Cambridge Core boolean query; q is mandatory because bare /core/search returns 404"),

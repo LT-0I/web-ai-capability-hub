@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchProquestSearch, researchProquestFilter, researchProquestExport, ProquestSearchArgs, ProquestFilterArgs, ProquestExportArgs } from "./flow";
+import { researchProquestSearch, researchProquestFilter, researchProquestExport, ProquestSearchArgs, ProquestFilterArgs, ProquestExportArgs } from "../../../handlers/researchdb/legacy/proquest";
 
 export const researchProquestSearchInput = objectSchema<ProquestSearchArgs>({
   query: scalar.string("ProQuest inline query text; noft(...) is accepted and bare text is wrapped as noft(<query>)"),

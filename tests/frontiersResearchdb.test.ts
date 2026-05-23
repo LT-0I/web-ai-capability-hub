@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildFrontiersSearchUrl, buildFrontiersCitationUrl, frontiersFacetSelectors, parseFrontiersResultCount, parseFrontiersItemsFromHtml, parseFrontiersItemsFromVisibleText, researchFrontiersExport, WebAiToolError } from "../src/mcp/researchdb/frontiers/flow";
+import { buildFrontiersSearchUrl, buildFrontiersCitationUrl, frontiersFacetSelectors, parseFrontiersResultCount, parseFrontiersItemsFromHtml, parseFrontiersItemsFromVisibleText, researchFrontiersExport, WebAiToolError } from "../src/handlers/researchdb/legacy/frontiers";
 
 test("Frontiers URL builders preserve verified search, facet, and citation contracts", () => {
   assert.equal(

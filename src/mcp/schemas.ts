@@ -373,3 +373,6 @@ export const webAiGeminiWorkspaceInput = objectSchema<{ surface: string; profile
 export const webAiTaskStatusInput = objectSchema<{ task_id: string }>({
   task_id: scalar.string("Task id returned by an async webai tool")
 }, ["task_id"]);
+
+export const generatedManifestInput = objectSchema<Record<string, unknown>>({}, []);
+export const generatedManifestOutput = objectSchema<Record<string, unknown>>({}, []);

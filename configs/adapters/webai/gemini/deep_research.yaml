@@ -1,0 +1,16 @@
+id: webai.gemini.deep_research
+version: 1.0.0
+target:
+  kind: webai
+  provider: gemini
+operation: deep_research
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: webai_gemini_deep_research manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

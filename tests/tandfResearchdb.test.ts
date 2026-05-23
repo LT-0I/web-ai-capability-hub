@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildTandfSearchUrl, buildTandfFilterUrl, buildTandfCitationUrl, parseTandfResultCount, parseTandfItemsFromHtml, parseTandfItemsFromVisibleText } from "../src/mcp/researchdb/tandf/flow";
+import { buildTandfSearchUrl, buildTandfFilterUrl, buildTandfCitationUrl, parseTandfResultCount, parseTandfItemsFromHtml, parseTandfItemsFromVisibleText } from "../src/handlers/researchdb/legacy/tandf";
 
 test("Taylor & Francis URL builders preserve verified Literatum query and date facet parameters", () => {
   assert.equal(

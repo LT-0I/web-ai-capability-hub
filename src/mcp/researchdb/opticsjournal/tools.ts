@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, OpticsjournalSearchArgs, OpticsjournalFilterArgs, OpticsjournalExportArgs } from "./flow";
+import { researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, OpticsjournalSearchArgs, OpticsjournalFilterArgs, OpticsjournalExportArgs } from "../../../handlers/researchdb/legacy/opticsjournal";
 
 export const researchOpticsjournalSearchInput = objectSchema<OpticsjournalSearchArgs>({
   query: scalar.string("Opticsjournal query text, submitted through input[name=\"_title\"]"),

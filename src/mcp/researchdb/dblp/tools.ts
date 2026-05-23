@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchDblpSearch, researchDblpFilter, researchDblpExport, DblpSearchArgs, DblpFilterArgs, DblpExportArgs } from "./flow";
+import { researchDblpSearch, researchDblpFilter, researchDblpExport, DblpSearchArgs, DblpFilterArgs, DblpExportArgs } from "../../../handlers/researchdb/legacy/dblp";
 
 export const researchDblpSearchInput = objectSchema<DblpSearchArgs>({
   query: scalar.string("DBLP CompleteSearch query; space=AND, pipe=OR, word$=exact word; phrase/NOT disabled by DBLP"),

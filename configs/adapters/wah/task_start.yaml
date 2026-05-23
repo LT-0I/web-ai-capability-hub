@@ -1,0 +1,16 @@
+id: wah.task.start
+version: 1.0.0
+target:
+  kind: generic
+  provider: wah
+operation: task_start
+kind: direct
+maturity: stable
+safety:
+  class: write
+  requiresApproval: false
+descriptionLiteral: Start a manifest-backed task or return its dry-run execution plan.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/wah/taskStart.ts#wahTaskStart

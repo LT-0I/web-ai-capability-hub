@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, FrontiersSearchArgs, FrontiersFilterArgs, FrontiersExportArgs } from "./flow";
+import { researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, FrontiersSearchArgs, FrontiersFilterArgs, FrontiersExportArgs } from "../../../handlers/researchdb/legacy/frontiers";
 
 export const researchFrontiersSearchInput = objectSchema<FrontiersSearchArgs>({
   query: scalar.string("Frontiers boolean/free-text query"),

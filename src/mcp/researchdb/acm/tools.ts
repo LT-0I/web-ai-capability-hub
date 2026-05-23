@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAcmSearch, researchAcmFilter, researchAcmExport, AcmSearchArgs, AcmFilterArgs, AcmExportArgs } from "./flow";
+import { researchAcmSearch, researchAcmFilter, researchAcmExport, AcmSearchArgs, AcmFilterArgs, AcmExportArgs } from "../../../handlers/researchdb/legacy/acm";
 
 export const researchAcmSearchInput = objectSchema<AcmSearchArgs>({
   query: scalar.string("ACM Digital Library query text"),

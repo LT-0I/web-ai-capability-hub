@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAsceSearchUrl, buildAsceFilterUrl, buildAsceCitationUrl, parseAsceResultCount, parseAsceItemsFromHtml, parseAsceItemsFromVisibleText } from "../src/mcp/researchdb/asce/flow";
+import { buildAsceSearchUrl, buildAsceFilterUrl, buildAsceCitationUrl, parseAsceResultCount, parseAsceItemsFromHtml, parseAsceItemsFromVisibleText } from "../src/handlers/researchdb/legacy/asce";
 
 test("ASCE URL builders preserve verified Atypon query, facet, and citation parameters", () => {
   assert.equal(

@@ -11,15 +11,43 @@ test("generator skeleton returns no generated specs for an empty manifest set", 
 });
 
 test("golden MCP tool snapshot has the expected minimal shape", () => {
-  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.185.json");
+  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.193.json");
   const golden = JSON.parse(fs.readFileSync(goldenPath, "utf8")) as {
     tools: Array<Record<string, unknown>>;
   };
 
-  assert.equal(golden.tools.length, 185);
+  assert.equal(golden.tools.length, 193);
   for (const [index, tool] of golden.tools.entries()) {
     assert.equal(typeof tool.name, "string", `tools[${index}].name`);
     assert.equal(typeof tool.description, "string", `tools[${index}].description`);
     assert.equal(Object.prototype.hasOwnProperty.call(tool, "inputSchema"), true, `tools[${index}].inputSchema`);
   }
+});
+
+test("p1 MCP golden migration is exactly the eight wah facade tools", () => {
+  const oldPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.185.archived.json");
+  const newPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.193.json");
+  const oldGolden = JSON.parse(fs.readFileSync(oldPath, "utf8")) as { tools: Array<Record<string, unknown>> };
+  const newGolden = JSON.parse(fs.readFileSync(newPath, "utf8")) as { tools: Array<Record<string, unknown>> };
+  const oldByName = new Map(oldGolden.tools.map((tool) => [tool.name, tool]));
+  const newByName = new Map(newGolden.tools.map((tool) => [tool.name, tool]));
+  const added = [...newByName.keys()].filter((name) => !oldByName.has(name)).sort();
+  const removed = [...oldByName.keys()].filter((name) => !newByName.has(name)).sort();
+  const changed = [...oldByName.entries()].filter(([name, oldTool]) => {
+    const next = newByName.get(name);
+    return JSON.stringify(oldTool) !== JSON.stringify(next);
+  }).map(([name]) => name).sort();
+
+  assert.deepEqual(added, [
+    "wah_adapter_health",
+    "wah_artifact_get",
+    "wah_capability_query",
+    "wah_policy_explain",
+    "wah_task_cancel",
+    "wah_task_resume",
+    "wah_task_start",
+    "wah_task_status"
+  ]);
+  assert.deepEqual(removed, []);
+  assert.deepEqual(changed, []);
 });

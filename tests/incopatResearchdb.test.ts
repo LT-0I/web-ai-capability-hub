@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIncopatLoginUrl, buildIncopatSearchUrl, buildIncopatFacetSelector, buildIncopatNormalizedQuery, parseIncopatResultCount, parseIncopatItemsFromHtml, parseIncopatItemsFromDomRows } from "../src/mcp/researchdb/incopat/flow";
+import { buildIncopatLoginUrl, buildIncopatSearchUrl, buildIncopatFacetSelector, buildIncopatNormalizedQuery, parseIncopatResultCount, parseIncopatItemsFromHtml, parseIncopatItemsFromDomRows } from "../src/handlers/researchdb/legacy/incopat";
 
 test("IncoPat URL and selector builders preserve the verified custom-SPA surfaces", () => {
   assert.equal(buildIncopatLoginUrl(), "https://www.incopat.com/newLogin");

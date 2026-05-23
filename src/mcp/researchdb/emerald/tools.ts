@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, EmeraldSearchArgs, EmeraldFilterArgs, EmeraldExportArgs } from "./flow";
+import { researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, EmeraldSearchArgs, EmeraldFilterArgs, EmeraldExportArgs } from "../../../handlers/researchdb/legacy/emerald";
 
 export const researchEmeraldSearchInput = objectSchema<EmeraldSearchArgs>({
   query: scalar.string("Emerald Insight query text"),

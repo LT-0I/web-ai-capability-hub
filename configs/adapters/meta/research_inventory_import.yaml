@@ -1,0 +1,16 @@
+id: meta.research_inventory.import
+version: 1.0.0
+target:
+  kind: generic
+  provider: research_inventory
+operation: import
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: research_inventory_import manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias

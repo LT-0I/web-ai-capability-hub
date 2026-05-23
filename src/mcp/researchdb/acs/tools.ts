@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchAcsSearch, researchAcsFilter, researchAcsExport, AcsSearchArgs, AcsFilterArgs, AcsExportArgs } from "./flow";
+import { researchAcsSearch, researchAcsFilter, researchAcsExport, AcsSearchArgs, AcsFilterArgs, AcsExportArgs } from "../../../handlers/researchdb/legacy/acs";
 
 const acsFields = ["AllField", "Title", "Contrib", "Abstract", "Figure/Table Caption"];
 

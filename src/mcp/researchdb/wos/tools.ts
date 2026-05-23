@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchWosSearch, researchWosFilter, researchWosExport, WosSearchArgs, WosFilterArgs, WosExportArgs } from "./flow";
+import { researchWosSearch, researchWosFilter, researchWosExport, WosSearchArgs, WosFilterArgs, WosExportArgs } from "../../../handlers/researchdb/legacy/wos";
 
 export const researchWosSearchInput = objectSchema<WosSearchArgs>({
   query: scalar.string("Web of Science advanced-search query, e.g. TS=(...)"),

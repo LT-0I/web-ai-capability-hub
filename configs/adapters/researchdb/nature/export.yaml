@@ -1,0 +1,17 @@
+id: researchdb.nature.export
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: nature
+  baseUrl: https://www.nature.com
+operation: export
+kind: direct
+maturity: experimental
+safety:
+  class: write
+  requiresApproval: true
+descriptionLiteral: research_nature_export manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/export.ts#runResearchDbExport

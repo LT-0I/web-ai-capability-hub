@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchWanfangSearch, researchWanfangFilter, researchWanfangExport, WanfangSearchArgs, WanfangFilterArgs, WanfangExportArgs } from "./flow";
+import { researchWanfangSearch, researchWanfangFilter, researchWanfangExport, WanfangSearchArgs, WanfangFilterArgs, WanfangExportArgs } from "../../../handlers/researchdb/legacy/wanfang";
 
 export const researchWanfangSearchInput = objectSchema<WanfangSearchArgs>({
   query: scalar.string("Wanfang paper search text; replayed as https://s.wanfangdata.com.cn/paper?q=<query>"),

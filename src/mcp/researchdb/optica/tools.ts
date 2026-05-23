@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchOpticaSearch, researchOpticaFilter, researchOpticaExport, OpticaSearchArgs, OpticaFilterArgs, OpticaExportArgs } from "./flow";
+import { researchOpticaSearch, researchOpticaFilter, researchOpticaExport, OpticaSearchArgs, OpticaFilterArgs, OpticaExportArgs } from "../../../handlers/researchdb/legacy/optica";
 
 export const researchOpticaSearchInput = objectSchema<OpticaSearchArgs>({
   query: scalar.string("Optica Publishing Group query text; boolean operators are accepted directly in q"),

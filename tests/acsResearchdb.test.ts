@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildAcsSearchUrl, buildAcsFilterUrl, buildAcsCitationUrl, parseAcsResultCount, parseAcsItemsFromHtml, parseAcsItemsFromVisibleText } from "../src/mcp/researchdb/acs/flow";
+import { buildAcsSearchUrl, buildAcsFilterUrl, buildAcsCitationUrl, parseAcsResultCount, parseAcsItemsFromHtml, parseAcsItemsFromVisibleText } from "../src/handlers/researchdb/legacy/acs";
 
 test("ACS URL builders preserve verified doSearch and showCitFormats contracts", () => {
   assert.equal(

@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchIopSearch, researchIopFilter, researchIopExport, IopSearchArgs, IopFilterArgs, IopExportArgs } from "./flow";
+import { researchIopSearch, researchIopFilter, researchIopExport, IopSearchArgs, IopFilterArgs, IopExportArgs } from "../../../handlers/researchdb/legacy/iop";
 
 export const researchIopSearchInput = objectSchema<IopSearchArgs>({
   query: scalar.string("IOPscience boolean/unified search terms"),

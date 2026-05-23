@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildWosAdvancedSearchUrl, parseWosResultCount, parseWosItemsFromHtml, parseWosItemsFromVisibleText } from "../src/mcp/researchdb/wos/flow";
+import { buildWosAdvancedSearchUrl, parseWosResultCount, parseWosItemsFromHtml, parseWosItemsFromVisibleText } from "../src/handlers/researchdb/legacy/wos";
 
 test("Web of Science URL builder preserves verified advanced-search route and optional query metadata", () => {
   assert.equal(buildWosAdvancedSearchUrl(), "https://www.webofscience.com/wos/woscc/advanced-search");

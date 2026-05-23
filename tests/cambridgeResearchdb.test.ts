@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildCambridgeSearchUrl, buildCambridgeFilterUrl, parseCambridgeResultCount, parseCambridgeItemsFromHtml, parseCambridgeItemsFromVisibleText } from "../src/mcp/researchdb/cambridge/flow";
+import { buildCambridgeSearchUrl, buildCambridgeFilterUrl, parseCambridgeResultCount, parseCambridgeItemsFromHtml, parseCambridgeItemsFromVisibleText } from "../src/handlers/researchdb/legacy/cambridge";
 
 test("Cambridge Core URL builders preserve mandatory q and verified facet parameters", () => {
   assert.equal(
@@ -42,7 +42,7 @@ test("Cambridge Core RIS validator accepts journal, book, and chapter RIS while 
   const bookRis = "TY  - BOOK\nTI  - Cambridge book\nDO  - 10.1017/9781009000000\nER  -\n";
   const chapterRis = "TY  - CHAP\nTI  - Cambridge chapter\nDO  - 10.1017/9781009000000.002\nER  -\n";
   const htmlError = "<!doctype html><html><body>Page not found</body></html>";
-  const { isValidCambridgeRisArtifact } = require("../src/mcp/researchdb/cambridge/flow");
+  const { isValidCambridgeRisArtifact } = require("../src/handlers/researchdb/legacy/cambridge");
   assert.equal(isValidCambridgeRisArtifact(journalRis), true);
   assert.equal(isValidCambridgeRisArtifact(bookRis), true);
   assert.equal(isValidCambridgeRisArtifact(chapterRis), true);

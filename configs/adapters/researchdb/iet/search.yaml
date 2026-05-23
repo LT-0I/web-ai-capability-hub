@@ -1,0 +1,17 @@
+id: researchdb.iet.search
+version: 1.0.0
+target:
+  kind: researchdb
+  provider: iet
+  baseUrl: https://digital-library.theiet.org
+operation: search
+kind: direct
+maturity: experimental
+safety:
+  class: read
+  requiresApproval: false
+descriptionLiteral: research_iet_search manifest-backed tool.
+inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
+outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
+direct:
+  handler: ./src/handlers/researchdb/search.ts#runResearchDbSearch

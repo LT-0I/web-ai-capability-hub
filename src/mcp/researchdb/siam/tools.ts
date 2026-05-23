@@ -1,5 +1,5 @@
 import { objectSchema, scalar } from "../../../utils/schema";
-import { researchSiamSearch, researchSiamFilter, researchSiamExport, SiamSearchArgs, SiamFilterArgs, SiamExportArgs } from "./flow";
+import { researchSiamSearch, researchSiamFilter, researchSiamExport, SiamSearchArgs, SiamFilterArgs, SiamExportArgs } from "../../../handlers/researchdb/legacy/siam";
 
 export const researchSiamSearchInput = objectSchema<SiamSearchArgs>({
   query: scalar.string("SIAM ePubs query text"),

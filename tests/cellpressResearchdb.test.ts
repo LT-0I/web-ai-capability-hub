@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildCellpressSearchUrl, buildCellpressFilterUrl, buildCellpressCitationUrl, buildCellpressDownloadUrl, normalizeCellpressPiiForObjectUri, parseCellpressResultCount, parseCellpressItemsFromHtml, parseCellpressItemsFromVisibleText } from "../src/mcp/researchdb/cellpress/flow";
+import { buildCellpressSearchUrl, buildCellpressFilterUrl, buildCellpressCitationUrl, buildCellpressDownloadUrl, normalizeCellpressPiiForObjectUri, parseCellpressResultCount, parseCellpressItemsFromHtml, parseCellpressItemsFromVisibleText } from "../src/handlers/researchdb/legacy/cellpress";
 
 test("Cell Press URL builders preserve verified pii-keyed Literatum query, facet, and export parameters", () => {
   assert.equal(

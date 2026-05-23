@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildOpticaSearchUrl, buildOpticaFilterUrl, parseOpticaResultCounts, parseOpticaItemsFromHtml, parseOpticaItemsFromVisibleText } from "../src/mcp/researchdb/optica/flow";
+import { buildOpticaSearchUrl, buildOpticaFilterUrl, parseOpticaResultCounts, parseOpticaItemsFromHtml, parseOpticaItemsFromVisibleText } from "../src/handlers/researchdb/legacy/optica";
 
 test("Optica URL builders preserve verified search.cfm GET primitive", () => {
   assert.equal(
