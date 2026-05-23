@@ -1,6 +1,6 @@
 {
   "name": "web-ai-research-automation-hub",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Local-first managed CDP browser capability database and workflow hub for AI agents, web AI services, and authorized research databases.",
   "type": "commonjs",
   "main": "dist/src/index.js",
@@ -31,7 +31,10 @@
     "workflow:compile": "node dist/src/cli.js workflow:compile examples/workflows/gemini-image-draft.yaml",
     "workflow:run": "node dist/src/cli.js workflow:run examples/workflows/gemini-image-draft.yaml --dry-run",
     "site:registry:import": "node dist/src/cli.js site:registry:import fixtures/site_registry.sample.json",
-    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "verify:contract-version": "node dist/scripts/verify-contract-version.js",
+    "verify:golden": "node --test dist/tests/golden/listMcpTools.test.js",
+    "verify:all": "npm run verify:contract-version && npm run verify:golden"
   },
   "keywords": [
     "browser-automation",
@@ -45,6 +48,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
     "commander": "^12.1.0",
+    "js-yaml": "^4.1.1",
     "pino": "^9.4.0",
     "playwright": "^1.48.2",
     "yaml": "^2.5.1",

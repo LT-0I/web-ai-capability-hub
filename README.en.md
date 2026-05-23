@@ -7,8 +7,8 @@
 Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
-[![version](https://img.shields.io/badge/version-0.7.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.5.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![version](https://img.shields.io/badge/version-0.7.1-blue)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-1.6.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
 [![tests](https://img.shields.io/badge/tests-370%2F370%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -19,8 +19,8 @@ research-database automation through visible, user-authorized browser sessions.
 
 ---
 
-> **Status — `v0.7.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.5.0`, package `0.7.0`. Clean build green,
+> **Status — `v0.7.1` (first stable, reasonably feature-complete version).**
+> Public surface `consumer-contract-1.6.0`, package `0.7.1`. Clean build green,
 > full test suite **370/370 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
@@ -94,7 +94,7 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.5.0`, `package 0.7.0`):
+Current locks (`consumer-contract-1.6.0`, `package 0.7.1`):
 
 | Surface | Count |
 | --- | --- |
