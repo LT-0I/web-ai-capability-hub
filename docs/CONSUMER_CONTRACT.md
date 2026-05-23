@@ -1,12 +1,13 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v0.9.0
-Contract: `consumer-contract-1.7.0`
+Contract: `consumer-contract-1.7.1`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.7.1 (2026-05-23 P2): wires ExecutionEngine live through 159 legacy aliases; cancel + heartbeat + TTL fully active; drift_events table starts accumulating; adds 2 error codes (PROFILE_LEASE_TIMEOUT, TAB_LEASE_EXPIRED) for lease-lifecycle failures. No new commands, no surface change.
 - consumer-contract-1.7.0 (2026-05-23): P1 atomic refactor adds 8 wah_* facade tools (181→189), 2 error codes (32→34: UI_DRIFT_DETECTED, HEAL_CONFIDENCE_LOW), and ports 159 existing tools onto the manifest-driven generator without surface change.
 - consumer-contract-1.6.0 (2026-05-20): adds Gemini-only `webai:gemini:select-model` / `webai_gemini_select_model` for programmatic model and thinking-level selection; command rows 181, `webai_*` rows 38, error-code taxonomy unchanged at 32.
 - consumer-contract-1.5.0 (2026-05-16): deliberate breaking rename of the prior institution-specific import surface to `research:inventory:import` / `research_inventory_import` / `ResearchDbImporter.importInventorySeed`; package version is now `0.7.0`.
@@ -199,7 +200,7 @@ Stable JSON keys are exactly:
 
 ## Contract 1.6.0 webai MCP tools
 
-Generated from the manifest: 38 current `webai_*` command rows: 13 pre-existing + 14 main-server (+2 Pulse + Issue #14 Gemini selector) + 11 sub-MCP. Contract 1.6.0 adds the Gemini selector while keeping the 32-code error taxonomy unchanged.
+Generated from the manifest: 38 current `webai_*` command rows: 13 pre-existing + 14 main-server (+2 Pulse + Issue #14 Gemini selector) + 11 sub-MCP. Contract 1.7.1 keeps the command surface stable and expands the error taxonomy to 36 codes for lease lifecycle failures.
 
 ### Original/B1 existing webai tools
 
@@ -419,7 +420,7 @@ The safe `consumer:health` surface is designed not to emit those fields, but dow
 
 ## Error code taxonomy
 
-Consumer-stable error codes (32):
+Consumer-stable error codes (36):
 
 - `HUB_NOT_BUILT`
 - `BROWSER_NOT_LAUNCHED`
@@ -453,6 +454,17 @@ Consumer-stable error codes (32):
 - `SENSITIVE_CONTENT_GUARD`
 - `SUBMCP_QUOTA_EXHAUSTED`
 - `SUBMCP_NOT_PROVISIONED`
+- `UI_DRIFT_DETECTED`
+- `HEAL_CONFIDENCE_LOW`
+- `PROFILE_LEASE_TIMEOUT`
+- `TAB_LEASE_EXPIRED`
+
+Lease-lifecycle additions in `consumer-contract-1.7.1`: `PROFILE_LEASE_TIMEOUT`
+means a profile lease missed heartbeats for more than 2× its TTL while the holder
+PID was still alive, so the runtime force-released it instead of hiding the
+stuck owner. `TAB_LEASE_EXPIRED` means an active tab lease for the same URL
+pattern had elapsed when a new tab acquire arrived; consumers should retry after
+observing the surfaced code rather than assuming a tab was selected silently.
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.
 

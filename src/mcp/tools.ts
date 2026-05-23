@@ -2998,7 +2998,7 @@ const coreToolSpecs: ToolSpec[] = [
     name: "wah_task_cancel",
     description: "Request cancellation for a manifest-backed task run.",
     schema: wahTaskCancelInput,
-    handler: async (args) => wahTaskCancel(args)
+    handler: async (args, runtime) => wahTaskCancel(args, runtime)
   },
   {
     name: "wah_task_resume",

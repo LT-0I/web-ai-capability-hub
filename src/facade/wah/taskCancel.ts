@@ -6,6 +6,7 @@ export const wahTaskCancelInput = objectSchema<{ run_id: string; reason?: string
   reason: scalar.string("Human-readable cancellation reason")
 }, ["run_id"]);
 
-export async function wahTaskCancel(args: { run_id: string; reason?: string }): Promise<unknown> {
-  return { ok: true, status: "cancel_requested", ...requestCancel(args.run_id, args.reason) };
+export async function wahTaskCancel(args: { run_id: string; reason?: string }, runtime?: any): Promise<unknown> {
+  const signal = runtime?.cancelRegistry?.request ? runtime.cancelRegistry.request(args.run_id, args.reason) : requestCancel(args.run_id, args.reason);
+  return { ok: true, status: "cancel_requested", ...signal };
 }

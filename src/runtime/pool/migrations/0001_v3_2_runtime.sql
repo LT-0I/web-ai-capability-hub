@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS profile_leases (
 );
 CREATE TABLE IF NOT EXISTS tab_leases (
   lease_id TEXT PRIMARY KEY, profile_lease_id TEXT, url_match TEXT,
-  acquired_at TEXT, ttl_seconds INTEGER, status TEXT
+  acquired_at TEXT, ttl_seconds INTEGER, last_heartbeat_at TEXT, status TEXT
 );
 CREATE TABLE IF NOT EXISTS element_bank (
   id TEXT PRIMARY KEY, manifest_id TEXT, selector_role TEXT, target TEXT,

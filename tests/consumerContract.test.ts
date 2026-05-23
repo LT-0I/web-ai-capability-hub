@@ -199,12 +199,12 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.7.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.7.1");
   assert.equal(manifest.commands.length, 189);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
-  assert.equal(manifest.error_codes.length, 34);
+  assert.equal(manifest.error_codes.length, 36);
 
-  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW"]) {
+  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW", "PROFILE_LEASE_TIMEOUT", "TAB_LEASE_EXPIRED"]) {
     assert.ok(manifest.error_codes.includes(code), `missing error code ${code}`);
   }
   for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait", "browser:hover", "workflow:run", "browser:audit", "verify:docx-min", "wah:capability:query", "wah:adapter:health", "wah:policy:explain", "wah:task:start", "wah:task:status", "wah:task:cancel", "wah:task:resume", "wah:artifact:get"]) {
@@ -350,7 +350,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
   assert.equal(expectedWebaiToolCount, 38);
 });
 
-test("consumer contract v1.7.0 webai tools round-trip through CLI, MCP, and TS exports", () => {
+test("consumer contract v1.7.1 webai tools round-trip through CLI, MCP, and TS exports", () => {
   const manifest = contract();
   const cliSource = fs.readFileSync(path.resolve(process.cwd(), "src/cli.ts"), "utf-8");
   const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
@@ -459,9 +459,9 @@ test("stream5 plus issue14 surface: webai tool count is exactly 38", () => {
     "Expected Stream #5 plus Issue #14 split to total 38 (13 pre-existing + 14 main-server + 11 sub-MCP)");
 });
 
-test("p1 final error_codes count is 34", () => {
+test("p1 final error_codes count is 36", () => {
   const manifest = contract();
-  assert.equal(manifest.error_codes.length, 34);
+  assert.equal(manifest.error_codes.length, 36);
   assert.ok(manifest.error_codes.includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from contract");
   assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from TS export");
   assert.ok(manifest.error_codes.includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing from contract");
@@ -474,6 +474,18 @@ test("p1 final error_codes count is 34", () => {
     assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes(code),
       `stream5 error code missing from TS export: ${code}`);
   }
+});
+
+test("p2 error code PROFILE_LEASE_TIMEOUT (#35) is present in TS export and contract", () => {
+  const manifest = contract();
+  assert.equal(manifest.error_codes[34], "PROFILE_LEASE_TIMEOUT");
+  assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("PROFILE_LEASE_TIMEOUT"));
+});
+
+test("p2 error code TAB_LEASE_EXPIRED (#36) is present in TS export and contract", () => {
+  const manifest = contract();
+  assert.equal(manifest.error_codes[35], "TAB_LEASE_EXPIRED");
+  assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("TAB_LEASE_EXPIRED"));
 });
 
 test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE/ScienceDirect/APS/Emerald/Cambridge/Springer/Nature/IET/AIP/MDPI/Optica/ProQuest/SCOAP3/DBLP/SciELO/INSPIRE-HEP/PubScholar/Opticsjournal/CRC/Cell Press/IEST/IncoPat/Wanfang tools are separate from webai sub-MCP and lock contract counts", () => {
@@ -642,9 +654,9 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 38, "webai command rows now 38");
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 38, "webai MCP tools now 38");
-  assert.equal(manifest.error_codes.length, 34, "error codes now 34");
+  assert.equal(manifest.error_codes.length, 36, "error codes now 36");
   assert.equal(manifest.commands.length, 189, "commands now 189");
-  assert.equal(manifest.contract_version, "consumer-contract-1.7.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.7.1");
   assert.equal(packageJson.version, "0.9.0");
   assert.equal(manifest.package_version, "0.9.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");

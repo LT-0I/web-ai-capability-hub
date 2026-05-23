@@ -13,4 +13,4 @@ descriptionLiteral: webai_chatgpt_codex_submit_task manifest-backed tool.
 inputSchemaRef: ./src/mcp/schemas.ts#generatedManifestInput
 outputSchemaRef: ./src/mcp/schemas.ts#generatedManifestOutput
 direct:
-  handler: ./src/facade/legacy/aliases.ts#runLegacyAlias
+  handler: ./src/handlers/webai/manifestDirect.ts#runWebAiManifest

@@ -13,8 +13,9 @@ export interface AcquiredProfileLease {
   profileId: string;
   runId: string;
   cdpEndpoint: string;
-  releaseFn: () => Promise<void>;
+  releaseFn: (status?: "released" | "cancelled" | "expired") => Promise<void>;
   heartbeat: () => void;
+  renew: (ttlSeconds?: number) => void;
 }
 
 export function createManagedBrowserLauncher(): ManagedBrowserLauncher {
@@ -78,8 +79,9 @@ export class ProfilePool {
       runId,
       cdpEndpoint: launched.cdpEndpoint,
       heartbeat: () => this.store.heartbeatProfileLease(lease.lease_id),
-      releaseFn: async () => {
-        this.store.releaseProfileLease(lease.lease_id);
+      renew: (ttlSeconds = opts.ttlSeconds || 300) => this.store.renewProfileLease(lease.lease_id, ttlSeconds),
+      releaseFn: async (status = "released") => {
+        this.store.releaseProfileLease(lease.lease_id, status);
         await launched.close().catch(() => undefined);
       }
     };

@@ -8,7 +8,7 @@ Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
 [![version](https://img.shields.io/badge/version-0.9.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.7.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![contract](https://img.shields.io/badge/consumer--contract-1.7.1-blueviolet)](docs/CONSUMER_CONTRACT.md)
 [![tests](https://img.shields.io/badge/tests-370%2F370%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -20,7 +20,7 @@ research-database automation through visible, user-authorized browser sessions.
 ---
 
 > **Status — `v0.9.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.7.0`, package `0.9.0`. Clean build green,
+> Public surface `consumer-contract-1.7.1`, package `0.9.0`. Clean build green,
 > full test suite **370/370 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
@@ -63,7 +63,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - Supports parallel named-tab orchestration for multi-task automation.
 - Exposes a versioned, contract-locked public surface split into two
   independent tool families:
-  - **37 `webai_` tools** — ChatGPT / Claude / Gemini automation.
+  - **38 `webai_` tools** — ChatGPT / Claude / Gemini automation.
   - **120 per-DB `research_*` tools** — a separate research-database sub-MCP
     over 40 academic research databases.
 
@@ -94,18 +94,18 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.7.0`, `package 0.9.0`):
+Current locks (`consumer-contract-1.7.1`, `package 0.9.0`; P2: 159 legacy aliases run through ExecutionEngine, cancel/heartbeat/TTL wired):
 
 | Surface | Count |
 | --- | --- |
-| `webai_` tools (ChatGPT / Claude / Gemini) | **37** |
+| `webai_` tools (ChatGPT / Claude / Gemini) | **38** |
 | per-DB `research_*` tools (40 DBs × search/filter/export) | **120** |
 | `research_inventory_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
 | sub-MCP tools | **11** |
-| stable error codes | **32** |
+| stable error codes | **36** |
 | `forbidden_output_fields` redacted for safe consumers | **23** |
 
-### Web-AI tools (37)
+### Web-AI tools (38)
 
 - **ChatGPT (14)** — send prompt, upload & query, deep research, Canvas
   export, image/file generation, Pulse (get / onboard), conversation &
@@ -242,8 +242,8 @@ screenshot/accessibility). Tabs tracked through a registry for parallel work.
 (~76% fewer bytes on typical landing pages, no loss of interactive labels).
 
 **MCP server** — stdio (`node dist/src/cli.js mcp` / `npm run mcp`), exposing
-browser, capability, workflow, site-registry, maintenance, the 37 `webai_`
-and 120 `research_*` tools, plus JSON resources.
+browser, capability, workflow, site-registry, maintenance, the 38 `webai_`
+and 120 per-DB `research_*` tools (plus `research_inventory_import`, 121 `research_`-prefixed rows), plus JSON resources.
 
 **Workflow compiler & executor** — compiles YAML/JSON definitions into
 concrete action plans, resolving abstract capability references to selectors.
@@ -325,7 +325,7 @@ an explicit `--tab-url-contains` or `--url`; the tools refuse to silently pick
 Representative tools: `browser_launch`, `browser_status`, `browser_pages`,
 `browser_open`, `browser_read`, `browser_screenshot`, the browser-action
 tools, `capability_update`, `capability_query`, `capability_export`,
-`workflow_compile`, `workflow_run`, `consumer_health`, plus the 37 `webai_*`
+`workflow_compile`, `workflow_run`, `consumer_health`, plus the 38 `webai_*`
 and 120 `research_*_{search,filter,export}` tools.
 
 Resources: `capabilities://targets`, `capabilities://target/{targetId}`,

@@ -13,7 +13,9 @@ export interface AcquireTabOptions {
 export interface AcquiredTabLease {
   leaseId: string;
   page: any;
-  releaseFn: () => Promise<void>;
+  releaseFn: (status?: "released" | "cancelled" | "expired") => Promise<void>;
+  heartbeat: () => void;
+  renew: (ttlSeconds?: number) => void;
 }
 
 export async function acquireTab(options: AcquireTabOptions, store: RuntimeLeaseStore = runtimeLeaseStore()): Promise<AcquiredTabLease> {
@@ -30,8 +32,10 @@ export async function acquireTab(options: AcquireTabOptions, store: RuntimeLease
     return {
       leaseId: tabLease.lease_id,
       page,
-      releaseFn: async () => {
-        store.releaseTabLease(tabLease.lease_id);
+      heartbeat: () => store.heartbeatTabLease(tabLease.lease_id),
+      renew: (ttlSeconds = options.ttlSeconds || 300) => store.renewTabLease(tabLease.lease_id, ttlSeconds),
+      releaseFn: async (status = "released") => {
+        store.releaseTabLease(tabLease.lease_id, status);
         await browser.close?.().catch(() => undefined);
       }
     };

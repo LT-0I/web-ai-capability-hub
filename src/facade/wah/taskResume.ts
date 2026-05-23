@@ -9,5 +9,5 @@ export const wahTaskResumeInput = objectSchema<{ run_id: string; manifest_id: st
 }, ["run_id", "manifest_id"]);
 
 export async function wahTaskResume(args: { run_id: string; manifest_id: string; input?: Record<string, unknown>; confirmed?: boolean }, runtime?: any): Promise<unknown> {
-  return ExecutionEngine.run(args.manifest_id, { ...(args.input || {}), resume_of: args.run_id, confirmed: args.confirmed }, runtime || {});
+  return ExecutionEngine.run(args.manifest_id, { ...(args.input || {}), run_id: args.run_id, resume_of: args.run_id, confirmed: args.confirmed }, runtime || {});
 }
