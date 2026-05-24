@@ -480,33 +480,33 @@ class ElementPickerTool extends BaseBrowserToolExecutor {
 
       const uiReady = await ensureUiReady();
       if (!uiReady) {
-        console.error('[ElementPicker] UI not available after all attempts');
-        return createErrorResponse(
-          `${ERROR_MESSAGES.TOOL_EXECUTION_FAILED}: Element Picker UI is not available. This may happen if: (1) The page blocks content scripts, (2) You're using dev mode - try restarting the dev server or use production build, (3) The page needs to be refreshed.`,
-        );
+        // Phase 2 prunes the panel content script. Continue with the frame-level
+        // picker script only; when all requested elements are selected, the tool
+        // auto-confirms because no separate UI can send a confirm event.
+        uiAvailable = false;
       }
 
       // Step 2: Show UI in top frame (must receive success:true)
-      try {
-        const showResp = await this.sendMessageToTab(
-          tabId,
-          {
-            action: TOOL_MESSAGE_TYPES.ELEMENT_PICKER_UI_SHOW,
-            sessionId,
-            requests,
-            activeRequestId,
-            deadlineTs,
-          },
-          0,
-        );
-        if (showResp?.success !== true) {
-          throw new Error('UI did not acknowledge show message');
+      if (uiAvailable) {
+        try {
+          const showResp = await this.sendMessageToTab(
+            tabId,
+            {
+              action: TOOL_MESSAGE_TYPES.ELEMENT_PICKER_UI_SHOW,
+              sessionId,
+              requests,
+              activeRequestId,
+              deadlineTs,
+            },
+            0,
+          );
+          if (showResp?.success !== true) {
+            throw new Error('UI did not acknowledge show message');
+          }
+        } catch (e) {
+          console.warn('[ElementPicker] UI show failed; falling back to frame picker only:', e);
+          uiAvailable = false;
         }
-      } catch (e) {
-        console.error('[ElementPicker] UI show failed:', e);
-        return createErrorResponse(
-          `${ERROR_MESSAGES.TOOL_EXECUTION_FAILED}: Failed to show Element Picker UI. Please refresh the page and try again.`,
-        );
       }
 
       // Step 3: Inject picker scripts and start selection engine in all frames

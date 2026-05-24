@@ -8,12 +8,6 @@ import { keyboardTool } from './keyboard';
 import { screenshotTool } from './screenshot';
 import { screenshotContextManager, scaleCoordinates } from '@/utils/screenshot-context';
 import { cdpSessionManager } from '@/utils/cdp-session-manager';
-import {
-  captureFrameOnAction,
-  isAutoCaptureActive,
-  type ActionMetadata,
-  type ActionType,
-} from './gif-recorder';
 
 type MouseButton = 'left' | 'right' | 'middle';
 
@@ -232,64 +226,13 @@ class ComputerTool extends BaseBrowserToolExecutor {
       if (!tab.id)
         return createErrorResponse(ERROR_MESSAGES.TAB_NOT_FOUND + ': Active tab has no ID');
 
-      // Execute the action and capture frame on success
-      const result = await this.executeAction(params, tab);
-
-      // Trigger auto-capture on successful actions (except screenshot which is read-only)
-      if (!result.isError && params.action !== 'screenshot' && params.action !== 'wait') {
-        const actionType = this.mapActionToCapture(params.action);
-        if (actionType) {
-          // Convert to viewport-space coordinates for GIF overlays
-          // params.coordinates may be screenshot-space when screenshot context exists
-          const ctx = screenshotContextManager.getContext(tab.id);
-          const toViewport = (c?: Coordinates): { x: number; y: number } | undefined => {
-            if (!c) return undefined;
-            if (!ctx) return { x: c.x, y: c.y };
-            const scaled = scaleCoordinates(c.x, c.y, ctx);
-            return { x: scaled.x, y: scaled.y };
-          };
-
-          const endCoords = toViewport(params.coordinates);
-          const startCoords = toViewport(params.startCoordinates);
-
-          await this.triggerAutoCapture(tab.id, actionType, {
-            coordinateSpace: 'viewport',
-            coordinates: endCoords,
-            startCoordinates: startCoords,
-            endCoordinates: actionType === 'drag' ? endCoords : undefined,
-            text: params.text,
-            ref: params.ref,
-          });
-        }
-      }
-
-      return result;
+      return await this.executeAction(params, tab);
     } catch (error) {
       console.error('Error in computer tool:', error);
       return createErrorResponse(
         `Failed to execute action: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
-  }
-
-  private mapActionToCapture(action: string): ActionType | null {
-    const mapping: Record<string, ActionType> = {
-      left_click: 'click',
-      right_click: 'right_click',
-      double_click: 'double_click',
-      triple_click: 'triple_click',
-      left_click_drag: 'drag',
-      scroll: 'scroll',
-      type: 'type',
-      key: 'key',
-      hover: 'hover',
-      fill: 'fill',
-      fill_form: 'fill',
-      resize_page: 'other',
-      scroll_to: 'scroll',
-      zoom: 'other',
-    };
-    return mapping[action] || null;
   }
 
   private async executeAction(params: ComputerParams, tab: chrome.tabs.Tab): Promise<ToolResult> {
@@ -1396,30 +1339,6 @@ class ComputerTool extends BaseBrowserToolExecutor {
       return createErrorResponse(
         `DOM hover fallback failed: ${error instanceof Error ? error.message : String(error)}`,
       );
-    }
-  }
-
-  /**
-   * Trigger GIF auto-capture after a successful action.
-   * This is a no-op if auto-capture is not active.
-   */
-  private async triggerAutoCapture(
-    tabId: number,
-    actionType: ActionType,
-    metadata?: Partial<ActionMetadata>,
-  ): Promise<void> {
-    if (!isAutoCaptureActive(tabId)) {
-      return;
-    }
-
-    try {
-      await captureFrameOnAction(tabId, {
-        type: actionType,
-        ...metadata,
-      });
-    } catch (error) {
-      // Log but don't fail the main action
-      console.warn('[ComputerTool] Auto-capture failed:', error);
     }
   }
 }

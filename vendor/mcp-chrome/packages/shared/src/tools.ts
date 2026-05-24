@@ -3,7 +3,6 @@ import { type Tool } from '@modelcontextprotocol/sdk/types.js';
 export const TOOL_NAMES = {
   BROWSER: {
     GET_WINDOWS_AND_TABS: 'get_windows_and_tabs',
-    SEARCH_TABS_CONTENT: 'search_tabs_content',
     NAVIGATE: 'chrome_navigate',
     SCREENSHOT: 'chrome_screenshot',
     CLOSE_TABS: 'chrome_close_tabs',
@@ -21,10 +20,6 @@ export const TOOL_NAMES = {
     NETWORK_DEBUGGER_START: 'chrome_network_debugger_start',
     NETWORK_DEBUGGER_STOP: 'chrome_network_debugger_stop',
     KEYBOARD: 'chrome_keyboard',
-    HISTORY: 'chrome_history',
-    BOOKMARK_SEARCH: 'chrome_bookmark_search',
-    BOOKMARK_ADD: 'chrome_bookmark_add',
-    BOOKMARK_DELETE: 'chrome_bookmark_delete',
     INJECT_SCRIPT: 'chrome_inject_script',
     SEND_COMMAND_TO_INJECT_SCRIPT: 'chrome_send_command_to_inject_script',
     JAVASCRIPT: 'chrome_javascript',
@@ -34,15 +29,9 @@ export const TOOL_NAMES = {
     COMPUTER: 'chrome_computer',
     HANDLE_DIALOG: 'chrome_handle_dialog',
     HANDLE_DOWNLOAD: 'chrome_handle_download',
-    USERSCRIPT: 'chrome_userscript',
     PERFORMANCE_START_TRACE: 'performance_start_trace',
     PERFORMANCE_STOP_TRACE: 'performance_stop_trace',
     PERFORMANCE_ANALYZE_INSIGHT: 'performance_analyze_insight',
-    GIF_RECORDER: 'chrome_gif_recorder',
-  },
-  RECORD_REPLAY: {
-    FLOW_RUN: 'record_replay_flow_run',
-    LIST_PUBLISHED: 'record_replay_list_published',
   },
 };
 
@@ -56,44 +45,6 @@ export const TOOL_SCHEMAS: Tool[] = [
       required: [],
     },
   },
-  // {
-  //   name: TOOL_NAMES.RECORD_REPLAY.FLOW_RUN,
-  //   description:
-  //     'Run a recorded flow by ID with optional variables and run options. Returns a standardized run result.',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       flowId: { type: 'string', description: 'ID of the flow to run' },
-  //       args: {
-  //         type: 'object',
-  //         description: 'Variable values for the flow (flat object of key/value)',
-  //       },
-  //       tabTarget: {
-  //         type: 'string',
-  //         description: "Target tab: 'current' or 'new' (default: current)",
-  //         enum: ['current', 'new'],
-  //       },
-  //       refresh: { type: 'boolean', description: 'Refresh before running (default false)' },
-  //       captureNetwork: {
-  //         type: 'boolean',
-  //         description: 'Capture network snippets for debugging (default false)',
-  //       },
-  //       returnLogs: { type: 'boolean', description: 'Return run logs (default false)' },
-  //       timeoutMs: { type: 'number', description: 'Global timeout in ms (optional)' },
-  //       startUrl: { type: 'string', description: 'Optional start URL to open before running' },
-  //     },
-  //     required: ['flowId'],
-  //   },
-  // },
-  // {
-  //   name: TOOL_NAMES.RECORD_REPLAY.LIST_PUBLISHED,
-  //   description: 'List published flows available as dynamic tools (for discovery).',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {},
-  //     required: [],
-  //   },
-  // },
   {
     name: TOOL_NAMES.BROWSER.PERFORMANCE_START_TRACE,
     description:
@@ -317,83 +268,6 @@ export const TOOL_SCHEMAS: Tool[] = [
       required: ['action'],
     },
   },
-  // {
-  //   name: TOOL_NAMES.BROWSER.USERSCRIPT,
-  //   description:
-  //     'Unified userscript tool (create/list/get/enable/disable/update/remove/send_command/export). Paste JS/CSS/Tampermonkey script and the system will auto-select the best strategy (insertCSS / persistent script in ISOLATED or MAIN world / once by CDP) with CSP-aware fallbacks.',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       action: {
-  //         type: 'string',
-  //         description:
-  //           'Operation to perform',
-  //         enum: [
-  //           'create',
-  //           'list',
-  //           'get',
-  //           'enable',
-  //           'disable',
-  //           'update',
-  //           'remove',
-  //           'send_command',
-  //           'export',
-  //         ],
-  //       },
-  //       args: {
-  //         type: 'object',
-  //         description:
-  //           'Arguments for the specified action.\n- create: { script (required), name?, description?, matches?: string[], excludes?: string[], persist?: boolean (default true), runAt?: "document_start"|"document_end"|"document_idle"|"auto", world?: "auto"|"ISOLATED"|"MAIN", allFrames?: boolean (default true), mode?: "auto"|"css"|"persistent"|"once", dnrFallback?: boolean (default true), tags?: string[] }\n- list: { query?: string, status?: "enabled"|"disabled", domain?: string }\n- get: { id (required) }\n- enable/disable: { id (required) }\n- update: { id (required), script?, name?, description?, matches?, excludes?, runAt?, world?, allFrames?, persist?, dnrFallback?, tags? }\n- remove: { id (required) }\n- send_command: { id (required), payload?: string, tabId?: number }\n- export: {}\nTip: For a one-off execution that returns a value, use create with args.mode="once". The returned value is included as onceResult in the tool response.',
-  //         properties: {
-  //           // Common identifiers
-  //           id: { type: 'string', description: 'Userscript id (for get/enable/disable/update/remove/send_command)' },
-  //           // Create / Update fields
-  //           script: { type: 'string', description: 'JS/CSS/Tampermonkey script source (required for create)' },
-  //           name: { type: 'string', description: 'Userscript name (optional)' },
-  //           description: { type: 'string', description: 'Userscript description (optional)' },
-  //           matches: {
-  //             type: 'array',
-  //             items: { type: 'string' },
-  //             description: 'Match patterns for pages to apply to (e.g., https://*.example.com/*)'
-  //           },
-  //           excludes: {
-  //             type: 'array',
-  //             items: { type: 'string' },
-  //             description: 'Exclude patterns'
-  //           },
-  //           persist: { type: 'boolean', description: 'Persist userscript for matched pages (default true)' },
-  //           runAt: {
-  //             type: 'string',
-  //             description: 'Injection timing',
-  //             enum: ['document_start', 'document_end', 'document_idle', 'auto'],
-  //           },
-  //           world: {
-  //             type: 'string',
-  //             description: 'Execution world',
-  //             enum: ['auto', 'ISOLATED', 'MAIN'],
-  //           },
-  //           allFrames: { type: 'boolean', description: 'Inject into all frames (default true)' },
-  //           mode: {
-  //             type: 'string',
-  //             description:
-  //               'Injection strategy: auto | css | persistent | once. Use once to evaluate immediately (no persistence) and include the return value in onceResult.',
-  //             enum: ['auto', 'css', 'persistent', 'once'],
-  //           },
-  //           dnrFallback: { type: 'boolean', description: 'Use DNR fallback when needed (default true)' },
-  //           tags: { type: 'array', items: { type: 'string' }, description: 'Custom tags' },
-  //           // List filters
-  //           query: { type: 'string', description: 'Search by name/description (list action)' },
-  //           status: { type: 'string', enum: ['enabled', 'disabled'], description: 'Filter by status (list action)' },
-  //           domain: { type: 'string', description: 'Filter by domain (list action)' },
-  //           // Send command
-  //           payload: { type: 'string', description: 'Arbitrary payload (stringified) for send_command' },
-  //           tabId: { type: 'number', description: 'Target tab for send_command (default active tab)' },
-  //         },
-  //       },
-  //     },
-  //     required: ['action'],
-  //   },
-  // },
   {
     name: TOOL_NAMES.BROWSER.NAVIGATE,
     description:
@@ -562,6 +436,34 @@ export const TOOL_SCHEMAS: Tool[] = [
     },
   },
   {
+    name: TOOL_NAMES.BROWSER.GET_INTERACTIVE_ELEMENTS,
+    description:
+      'Get interactive elements from the current page, optionally filtered by text, selector, or element type.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        textQuery: {
+          type: 'string',
+          description: 'Text to search for within interactive elements.',
+        },
+        selector: {
+          type: 'string',
+          description: 'CSS selector used to filter interactive elements.',
+        },
+        includeCoordinates: {
+          type: 'boolean',
+          description: 'Include element coordinates in the response (default: true).',
+        },
+        types: {
+          type: 'array',
+          description: 'Types of interactive elements to include. Defaults to all supported types.',
+          items: { type: 'string' },
+        },
+      },
+      required: [],
+    },
+  },
+  {
     name: TOOL_NAMES.BROWSER.NETWORK_REQUEST,
     description: 'Send a network request from the browser with cookies and other browser context',
     inputSchema: {
@@ -648,192 +550,67 @@ export const TOOL_SCHEMAS: Tool[] = [
     },
   },
   {
-    name: TOOL_NAMES.BROWSER.HISTORY,
-    description: 'Retrieve and search browsing history from Chrome',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        text: {
-          type: 'string',
-          description:
-            'Text to search for in history URLs and titles. Leave empty to retrieve all history entries within the time range.',
-        },
-        startTime: {
-          type: 'string',
-          description:
-            'Start time as a date string. Supports ISO format (e.g., "2023-10-01", "2023-10-01T14:30:00"), relative times (e.g., "1 day ago", "2 weeks ago", "3 months ago", "1 year ago"), and special keywords ("now", "today", "yesterday"). Default: 24 hours ago',
-        },
-        endTime: {
-          type: 'string',
-          description:
-            'End time as a date string. Supports ISO format (e.g., "2023-10-31", "2023-10-31T14:30:00"), relative times (e.g., "1 day ago", "2 weeks ago", "3 months ago", "1 year ago"), and special keywords ("now", "today", "yesterday"). Default: current time',
-        },
-        maxResults: {
-          type: 'number',
-          description:
-            'Maximum number of history entries to return. Use this to limit results for performance or to focus on the most relevant entries. (default: 100)',
-        },
-        excludeCurrentTabs: {
-          type: 'boolean',
-          description:
-            "When set to true, filters out URLs that are currently open in any browser tab. Useful for finding pages you've visited but don't have open anymore. (default: false)",
-        },
-      },
-      required: [],
-    },
-  },
-  {
-    name: TOOL_NAMES.BROWSER.BOOKMARK_SEARCH,
-    description: 'Search Chrome bookmarks by title and URL',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        query: {
-          type: 'string',
-          description:
-            'Search query to match against bookmark titles and URLs. Leave empty to retrieve all bookmarks.',
-        },
-        maxResults: {
-          type: 'number',
-          description: 'Maximum number of bookmarks to return (default: 50)',
-        },
-        folderPath: {
-          type: 'string',
-          description:
-            'Optional folder path or ID to limit search to a specific bookmark folder. Can be a path string (e.g., "Work/Projects") or a folder ID.',
-        },
-      },
-      required: [],
-    },
-  },
-  {
-    name: TOOL_NAMES.BROWSER.BOOKMARK_ADD,
-    description: 'Add a new bookmark to Chrome',
+    name: TOOL_NAMES.BROWSER.INJECT_SCRIPT,
+    description:
+      'inject the user-specified content script into the webpage. By default, inject into the currently active tab',
     inputSchema: {
       type: 'object',
       properties: {
         url: {
           type: 'string',
-          description: 'URL to bookmark. If not provided, uses the current active tab URL.',
-        },
-        title: {
-          type: 'string',
-          description: 'Title for the bookmark. If not provided, uses the page title from the URL.',
-        },
-        parentId: {
-          type: 'string',
           description:
-            'Parent folder path or ID to add the bookmark to. Can be a path string (e.g., "Work/Projects") or a folder ID. If not provided, adds to the "Bookmarks Bar" folder.',
+            'If a URL is specified, inject the script into the webpage corresponding to the URL.',
         },
-        createFolder: {
+        tabId: {
+          type: 'number',
+          description:
+            'Target an existing tab by ID to inject into. Overrides url/active tab selection when provided.',
+        },
+        windowId: {
+          type: 'number',
+          description:
+            'Target window ID for selecting active tab or creating new tab when url is provided and tabId is omitted.',
+        },
+        background: {
           type: 'boolean',
-          description: 'Whether to create the parent folder if it does not exist (default: false)',
+          description: 'Do not activate tab/focus window during injection when true (default: false).',
+        },
+        type: {
+          type: 'string',
+          description: 'the javaScript world for a script to execute within. must be ISOLATED or MAIN',
+        },
+        jsScript: {
+          type: 'string',
+          description: 'the content script to inject',
         },
       },
-      required: [],
+      required: ['type', 'jsScript'],
     },
   },
   {
-    name: TOOL_NAMES.BROWSER.BOOKMARK_DELETE,
-    description: 'Delete a bookmark from Chrome',
+    name: TOOL_NAMES.BROWSER.SEND_COMMAND_TO_INJECT_SCRIPT,
+    description:
+      'if the script injected using chrome_inject_script listens for user-defined events, this tool can be used to trigger those events',
     inputSchema: {
       type: 'object',
       properties: {
-        bookmarkId: {
-          type: 'string',
-          description: 'ID of the bookmark to delete. Either bookmarkId or url must be provided.',
+        tabId: {
+          type: 'number',
+          description:
+            'the tab where you previously injected the script(if not provided,  use the currently active tab)',
         },
-        url: {
+        eventName: {
           type: 'string',
-          description: 'URL of the bookmark to delete. Used if bookmarkId is not provided.',
+          description: 'the eventName your injected content script listen for',
         },
-        title: {
+        payload: {
           type: 'string',
-          description: 'Title of the bookmark to help with matching when deleting by URL.',
+          description: 'the payload passed to event, must be a json string',
         },
       },
-      required: [],
+      required: ['eventName'],
     },
   },
-  // {
-  //   name: TOOL_NAMES.BROWSER.SEARCH_TABS_CONTENT,
-  //   description:
-  //     'search for related content from the currently open tab and return the corresponding web pages.',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       query: {
-  //         type: 'string',
-  //         description: 'the query to search for related content.',
-  //       },
-  //     },
-  //     required: ['query'],
-  //   },
-  // },
-  // {
-  //   name: TOOL_NAMES.BROWSER.INJECT_SCRIPT,
-  //   description:
-  //     'inject the user-specified content script into the webpage. By default, inject into the currently active tab',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       url: {
-  //         type: 'string',
-  //         description:
-  //           'If a URL is specified, inject the script into the webpage corresponding to the URL.',
-  //       },
-  //       tabId: {
-  //         type: 'number',
-  //         description:
-  //           'Target an existing tab by ID to inject into. Overrides url/active tab selection when provided.',
-  //       },
-  //       windowId: {
-  //         type: 'number',
-  //         description:
-  //           'Target window ID for selecting active tab or creating new tab when url is provided and tabId is omitted.',
-  //       },
-  //       background: {
-  //         type: 'boolean',
-  //         description:
-  //           'Do not activate tab/focus window during injection when true (default: false).',
-  //       },
-  //       type: {
-  //         type: 'string',
-  //         description:
-  //           'the javaScript world for a script to execute within. must be ISOLATED or MAIN',
-  //       },
-  //       jsScript: {
-  //         type: 'string',
-  //         description: 'the content script to inject',
-  //       },
-  //     },
-  //     required: ['type', 'jsScript'],
-  //   },
-  // },
-  // {
-  //   name: TOOL_NAMES.BROWSER.SEND_COMMAND_TO_INJECT_SCRIPT,
-  //   description:
-  //     'if the script injected using chrome_inject_script listens for user-defined events, this tool can be used to trigger those events',
-  //   inputSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       tabId: {
-  //         type: 'number',
-  //         description:
-  //           'the tab where you previously injected the script(if not provided,  use the currently active tab)',
-  //       },
-  //       eventName: {
-  //         type: 'string',
-  //         description: 'the eventName your injected content script listen for',
-  //       },
-  //       payload: {
-  //         type: 'string',
-  //         description: 'the payload passed to event, must be a json string',
-  //       },
-  //     },
-  //     required: ['eventName'],
-  //   },
-  // },
   {
     name: TOOL_NAMES.BROWSER.JAVASCRIPT,
     description:
@@ -1190,208 +967,6 @@ export const TOOL_SCHEMAS: Tool[] = [
         promptText: {
           type: 'string',
           description: 'Optional prompt text when accepting a prompt',
-        },
-      },
-      required: ['action'],
-    },
-  },
-  {
-    name: TOOL_NAMES.BROWSER.GIF_RECORDER,
-    description:
-      'Record browser tab activity as an animated GIF.\n\nModes:\n- Fixed FPS mode (action="start"): Captures frames at regular intervals. Good for animations/videos.\n- Auto-capture mode (action="auto_start"): Captures frames automatically when chrome_computer or chrome_navigate actions succeed. Better for interaction recordings with natural pacing.\n\nUse "stop" to end recording and save the GIF.',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        action: {
-          type: 'string',
-          enum: ['start', 'stop', 'status', 'auto_start', 'capture', 'clear', 'export'],
-          description:
-            'Action to perform:\n- "start": Begin fixed-FPS recording (captures frames at regular intervals)\n- "auto_start": Begin auto-capture mode (frames captured on tool actions)\n- "stop": End recording and save GIF\n- "status": Get current recording state\n- "capture": Manually trigger a frame capture in auto mode\n- "clear": Clear all recording state and cached GIF without saving\n- "export": Export the last recorded GIF (download or drag&drop upload)',
-        },
-        tabId: {
-          type: 'number',
-          description:
-            'Target tab ID (default: active tab). Used with "start"/"auto_start" for recording, and with "export" (download=false) for drag&drop upload target.',
-        },
-        fps: {
-          type: 'number',
-          description:
-            'Frames per second for fixed-FPS mode (1-30, default: 5). Higher values = smoother but larger file.',
-        },
-        durationMs: {
-          type: 'number',
-          description:
-            'Maximum recording duration in milliseconds (default: 5000, max: 60000). Only for fixed-FPS mode.',
-        },
-        maxFrames: {
-          type: 'number',
-          description:
-            'Maximum number of frames to capture (default: 50 for fixed-FPS, 100 for auto mode, max: 300).',
-        },
-        width: {
-          type: 'number',
-          description: 'Output GIF width in pixels (default: 800, max: 1920).',
-        },
-        height: {
-          type: 'number',
-          description: 'Output GIF height in pixels (default: 600, max: 1080).',
-        },
-        maxColors: {
-          type: 'number',
-          description:
-            'Maximum colors in palette (default: 256). Lower values = smaller file size.',
-        },
-        filename: {
-          type: 'string',
-          description: 'Output filename (without extension). Defaults to timestamped name.',
-        },
-        captureDelayMs: {
-          type: 'number',
-          description:
-            'Auto-capture mode only: Delay in ms after action before capturing frame (default: 150). Allows UI to stabilize.',
-        },
-        frameDelayCs: {
-          type: 'number',
-          description:
-            'Auto-capture mode only: Display duration per frame in centiseconds (default: 20 = 200ms per frame).',
-        },
-        annotation: {
-          type: 'string',
-          description:
-            'Auto-capture mode only (action="capture"): Optional text label to render on the captured frame.',
-        },
-        download: {
-          type: 'boolean',
-          description:
-            'Export action only: Set to true (default) to download the GIF, or false to upload via drag&drop.',
-        },
-        coordinates: {
-          type: 'object',
-          description:
-            'Export action only (when download=false): Target coordinates for drag&drop upload.',
-          properties: {
-            x: { type: 'number' },
-            y: { type: 'number' },
-          },
-          required: ['x', 'y'],
-        },
-        ref: {
-          type: 'string',
-          description:
-            'Export action only (when download=false): Element ref from chrome_read_page for drag&drop target.',
-        },
-        selector: {
-          type: 'string',
-          description:
-            'Export action only (when download=false): CSS selector for drag&drop target element.',
-        },
-        enhancedRendering: {
-          type: 'object',
-          description:
-            'Auto-capture mode only: Configure visual overlays for recorded actions (click indicators, drag paths, labels). Pass `true` to enable all defaults.',
-          properties: {
-            clickIndicators: {
-              oneOf: [
-                { type: 'boolean' },
-                {
-                  type: 'object',
-                  properties: {
-                    enabled: {
-                      type: 'boolean',
-                      description: 'Enable click indicators (default: true)',
-                    },
-                    color: {
-                      type: 'string',
-                      description:
-                        'CSS color for click indicator (default: "rgba(255, 87, 34, 0.8)")',
-                    },
-                    radius: { type: 'number', description: 'Initial radius in px (default: 20)' },
-                    animationDurationMs: {
-                      type: 'number',
-                      description: 'Animation duration in ms (default: 400)',
-                    },
-                    animationFrames: {
-                      type: 'number',
-                      description: 'Number of animation frames (default: 3)',
-                    },
-                    animationIntervalMs: {
-                      type: 'number',
-                      description: 'Interval between animation frames in ms (default: 80)',
-                    },
-                  },
-                },
-              ],
-              description:
-                'Click indicator overlay config (true for defaults, or object for custom).',
-            },
-            dragPaths: {
-              oneOf: [
-                { type: 'boolean' },
-                {
-                  type: 'object',
-                  properties: {
-                    enabled: {
-                      type: 'boolean',
-                      description: 'Enable drag path rendering (default: true)',
-                    },
-                    color: {
-                      type: 'string',
-                      description: 'CSS color for drag path (default: "rgba(33, 150, 243, 0.7)")',
-                    },
-                    lineWidth: { type: 'number', description: 'Line width in px (default: 3)' },
-                    lineDash: {
-                      type: 'array',
-                      items: { type: 'number' },
-                      description: 'Dash pattern (default: [6, 4])',
-                    },
-                    arrowSize: {
-                      type: 'number',
-                      description: 'Arrow head size in px (default: 10)',
-                    },
-                  },
-                },
-              ],
-              description: 'Drag path overlay config (true for defaults, or object for custom).',
-            },
-            labels: {
-              oneOf: [
-                { type: 'boolean' },
-                {
-                  type: 'object',
-                  properties: {
-                    enabled: {
-                      type: 'boolean',
-                      description: 'Enable action labels (default: true)',
-                    },
-                    font: {
-                      type: 'string',
-                      description: 'Font for labels (default: "bold 12px sans-serif")',
-                    },
-                    textColor: { type: 'string', description: 'Text color (default: "#fff")' },
-                    bgColor: {
-                      type: 'string',
-                      description: 'Background color (default: "rgba(0,0,0,0.7)")',
-                    },
-                    padding: { type: 'number', description: 'Padding in px (default: 4)' },
-                    borderRadius: {
-                      type: 'number',
-                      description: 'Border radius in px (default: 4)',
-                    },
-                    offset: {
-                      type: 'object',
-                      properties: { x: { type: 'number' }, y: { type: 'number' } },
-                      description: 'Offset from action position (default: {x: 10, y: -20})',
-                    },
-                  },
-                },
-              ],
-              description: 'Action label overlay config (true for defaults, or object for custom).',
-            },
-            durationMs: {
-              type: 'number',
-              description: 'How long overlays remain visible in ms (default: 1500).',
-            },
-          },
         },
       },
       required: ['action'],

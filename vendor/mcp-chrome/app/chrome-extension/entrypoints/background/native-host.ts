@@ -2,8 +2,6 @@ import { NativeMessageType } from 'chrome-mcp-shared';
 import { BACKGROUND_MESSAGE_TYPES } from '@/common/message-types';
 import { NATIVE_HOST, STORAGE_KEYS, ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/common/constants';
 import { handleCallTool } from './tools';
-import { listPublished, getFlow } from './record-replay/flow-store';
-import { acquireKeepalive } from './keepalive-manager';
 
 const LOG_PREFIX = '[NativeHost]';
 
@@ -19,7 +17,6 @@ const RECONNECT_COOLDOWN_DELAY_MS = 5 * 60_000;
 
 // ==================== Auto-connect State ====================
 
-let keepaliveRelease: (() => void) | null = null;
 let autoConnectEnabled = true;
 let autoConnectLoaded = false;
 let ensurePromise: Promise<boolean> | null = null;
@@ -137,31 +134,6 @@ function resetReconnectState(): void {
   clearReconnectTimer();
 }
 
-// ==================== Keepalive Management ====================
-
-/**
- * Sync keepalive hold based on autoConnectEnabled state.
- * When auto-connect is enabled, we hold a keepalive reference to keep SW alive.
- */
-function syncKeepaliveHold(): void {
-  if (autoConnectEnabled) {
-    if (!keepaliveRelease) {
-      keepaliveRelease = acquireKeepalive('native-host');
-      console.debug(`${LOG_PREFIX} Acquired keepalive`);
-    }
-    return;
-  }
-  if (keepaliveRelease) {
-    try {
-      keepaliveRelease();
-      console.debug(`${LOG_PREFIX} Released keepalive`);
-    } catch {
-      // Ignore
-    }
-    keepaliveRelease = null;
-  }
-}
-
 // ==================== Auto-connect Settings ====================
 
 /**
@@ -190,7 +162,6 @@ async function setNativeAutoConnectEnabled(enabled: boolean): Promise<void> {
   } catch (error) {
     console.warn(`${LOG_PREFIX} Failed to persist nativeAutoConnectEnabled`, error);
   }
-  syncKeepaliveHold();
 }
 
 // ==================== Port Preference ====================
@@ -290,7 +261,6 @@ async function ensureNativeConnected(trigger: string, portOverride?: unknown): P
     if (!autoConnectLoaded) {
       autoConnectEnabled = await loadNativeAutoConnectEnabled();
       autoConnectLoaded = true;
-      syncKeepaliveHold();
     }
 
     // If auto-connect is disabled, do nothing
@@ -298,9 +268,6 @@ async function ensureNativeConnected(trigger: string, portOverride?: unknown): P
       console.debug(`${LOG_PREFIX} Auto-connect disabled, skipping ensure (trigger=${trigger})`);
       return false;
     }
-
-    // Sync keepalive hold
-    syncKeepaliveHold();
 
     // Already connected
     if (nativePort) {
@@ -376,34 +343,6 @@ export function connectNativeHost(port: number = NATIVE_HOST.DEFAULT_PORT): bool
               message: ERROR_MESSAGES.TOOL_EXECUTION_FAILED,
               error: error instanceof Error ? error.message : String(error),
             },
-          });
-        }
-      } else if (message.type === 'rr_list_published_flows' && message.requestId) {
-        const requestId = message.requestId;
-        try {
-          const published = await listPublished();
-          const items = [] as any[];
-          for (const p of published) {
-            const flow = await getFlow(p.id);
-            if (!flow) continue;
-            items.push({
-              id: p.id,
-              slug: p.slug,
-              version: p.version,
-              name: p.name,
-              description: p.description || flow.description || '',
-              variables: flow.variables || [],
-              meta: flow.meta || {},
-            });
-          }
-          nativePort?.postMessage({
-            responseToRequestId: requestId,
-            payload: { status: 'success', items },
-          });
-        } catch (error: any) {
-          nativePort?.postMessage({
-            responseToRequestId: requestId,
-            payload: { status: 'error', error: error?.message || String(error) },
           });
         }
       } else if (message.type === NativeMessageType.SERVER_STARTED) {
@@ -558,7 +497,6 @@ export const initNativeHostListener = () => {
         await setNativeAutoConnectEnabled(false);
         clearReconnectTimer();
         reconnectAttempts = 0;
-        syncKeepaliveHold();
 
         if (nativePort) {
           // Only set manualDisconnect if we actually have a port to disconnect.
