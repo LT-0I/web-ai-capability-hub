@@ -8741,6 +8741,13 @@
           "reuse_conversation": {
             "type": "boolean",
             "description": "Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT image generation perception; defaults to managed-cdp"
           }
         },
         "required": [

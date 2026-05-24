@@ -8,6 +8,7 @@ import { EventEmitter } from "node:events";
 import { spawn as defaultSpawn, ChildProcessWithoutNullStreams } from "node:child_process";
 import { BridgeMethod, BridgeRequest, BridgeResponse } from "./protocol";
 import { ConsumerErrorCode, isConsumerErrorCode } from "../../consumer/errorCodes";
+import { BridgeClient } from "./bridgeClient";
 
 export type NativeMessagingClientMode = "spawn-host" | "chrome-bridged";
 
@@ -118,7 +119,7 @@ function bridgeErrorFromResponse(response: BridgeResponse): NativeMessagingBridg
   return bridgeError(code, error?.message || "Chrome extension bridge request failed", error?.data);
 }
 
-export class NativeMessagingClient extends EventEmitter {
+export class NativeMessagingClient extends EventEmitter implements BridgeClient {
   readonly mode: NativeMessagingClientMode;
   private readonly hostPath?: string;
   private readonly hostArgs: string[];

@@ -250,6 +250,18 @@ export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: s
   reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt", "download_dir"]);
 
+export const webAiChatgptGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Image generation prompt"),
+  download_dir: scalar.string("Absolute directory for downloaded image"),
+  model: scalar.string("Optional service-specific model tier to select before sending"),
+  size: scalar.string("Optional image size hint"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT image generation perception; defaults to managed-cdp")
+}, ["profile", "prompt", "download_dir"]);
+
 export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: string; model?: string; title?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Canvas prompt to export to Google Docs"),

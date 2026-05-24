@@ -66,13 +66,13 @@ test("nativeMessagingClient: bootstrap reports CHROME_EXTENSION_NOT_CONNECTED wh
   await client.dispose();
 });
 
-test("extensionAssistedCdpBackend: Phase 3 tab stubs name their vendor wire method", async () => {
+test("extensionAssistedCdpBackend: remaining deferred tab stubs name their vendor wire method", async () => {
   const port = new ExtensionAssistedPagePort(123);
-  await assert.rejects(() => port.click({ selector: "#submit" }), (error: any) => {
+  await assert.rejects(() => port.press("Enter"), (error: any) => {
     assert.ok(error instanceof BackendNotImplementedError);
     assert.equal(error.name, "BackendNotImplementedError");
-    assert.equal(error.wireMethod, "chrome_click_element");
-    assert.match(error.message, /chrome_click_element/);
+    assert.equal(error.wireMethod, "chrome_keyboard");
+    assert.match(error.message, /chrome_keyboard/);
     return true;
   });
 });

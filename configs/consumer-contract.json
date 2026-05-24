@@ -1,6 +1,6 @@
 {
   "package_version": "1.0.0",
-  "contract_version": "consumer-contract-1.8.0",
+  "contract_version": "consumer-contract-1.9.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -3423,7 +3423,8 @@
       },
       "may_contain_sensitive_local_fields": false,
       "optional_args": [
-        "model"
+        "model",
+        "backend"
       ]
     },
     {
@@ -5161,6 +5162,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "consumer-contract-1.9.0 (2026-05-24 Chrome Extension #15 Phase 4): adds optional backend to webai_chatgpt_generate_image with enum managed-cdp | extension-assisted-cdp. No new commands or error codes; package version remains 1.0.0 and lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "consumer-contract-1.5.0 (2026-05-16): deliberate breaking rename of the prior institution-specific import surface to research:inventory:import / research_inventory_import / ResearchDbImporter.importInventorySeed; package version is now 0.7.0.",
     "consumer-contract-1.5.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",
     "consumer-contract-1.5.0 (2026-05-15): Stream #5 reconciliation confirms 13 pre-existing webai tools → 35 total (22 new: 11 main-server + 11 sub-MCP), 3 new error codes (SENSITIVE_CONTENT_GUARD, SUBMCP_QUOTA_EXHAUSTED, SUBMCP_NOT_PROVISIONED), and model/control parameter updates on existing tools. No phantom tool was added. Sub-MCP modules: claude-design (4 tools, live), gemini-music (3 tools, live), chatgpt-codex (4 tools, placeholder pending sandbox provisioning).",

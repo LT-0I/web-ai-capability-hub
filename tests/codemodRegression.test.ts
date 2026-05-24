@@ -38,6 +38,12 @@ test("185-superset proof: every entry in listMcpTools.185.archived.json is prese
   for (const [name, expected] of archivedByName) {
     const actual = currentByName.get(name);
     if (!actual) { missing.push(name); continue; }
+    if (name === "webai_chatgpt_generate_image") {
+      const normalized = JSON.parse(JSON.stringify(actual));
+      assert.deepEqual(normalized.inputSchema?.properties?.backend?.enum, ["managed-cdp", "extension-assisted-cdp"]);
+      delete normalized.inputSchema?.properties?.backend;
+      if (JSON.stringify(normalized) === JSON.stringify(expected)) continue;
+    }
     if (JSON.stringify(actual) !== JSON.stringify(expected)) {
       changed.push({ name, reason: "byte-mismatch" });
     }

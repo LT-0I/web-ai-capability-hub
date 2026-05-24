@@ -26,6 +26,7 @@ import { getWebAiAdapter } from "../adapters/web-ai";
 import { ApprovalGate, WorkflowApprovalResponse } from "../shared/types";
 import { consumerHealth } from "../consumer/health";
 import { runArtifactClick } from "../browser/artifactClick";
+import { getBackend } from "../browser/backends";
 import { ConsumerErrorCode, ConsumerErrorCodes, isConsumerErrorCode } from "../consumer/errorCodes";
 import { PromptPolicyDeniedError, assertPromptAllowed } from "../safety/promptDeny";
 import { assertNotPublishDeniedLabel } from "../safety/publishDeny";
@@ -55,6 +56,7 @@ import {
   webAiGeminiSendPromptInput,
   webAiUploadAndQueryInput,
   webAiGenerateFileInput,
+  webAiChatgptGenerateImageInput,
   webAiGenerateImageInput,
   webAiCanvasToDocsInput,
   webAiGenerateVideoInput,
@@ -1752,6 +1754,106 @@ async function artifactClickResultToSafeOutput(result: any, extra: Record<string
   });
 }
 
+function imageErrorOutput(errorCode: ConsumerErrorCode, message: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  return safeOutput({
+    path: "",
+    sha256: "",
+    size_bytes: 0,
+    dimensions: null,
+    download_filename: "",
+    errorCode,
+    error_code: errorCode,
+    message,
+    ...extra
+  });
+}
+
+async function generateChatgptImageWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  assertPromptAllowed(args.prompt);
+  requireAbsoluteDir(args.download_dir);
+  assertNotPublishDeniedLabel("Download full size image", { tool: "webai.chatgpt.generate_image" });
+  const lease = acquireProfileLease(args.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: args.http_bridge_url || process.env.CHROME_EXTENSION_HTTP_BRIDGE_URL
+    });
+    await backend.ping();
+    const page = args.reuse_conversation
+      ? await backend.claimTab({ url: args.tab_url_contains || serviceDefaults.chatgpt.url })
+      : await backend.newTab({ url: CHATGPT_FRESH_URL, background: false });
+
+    const requestedUrl = normalizeUrlLikeTarget(args.url || args.tab_url_contains);
+    if (args.reuse_conversation && requestedUrl) {
+      await page.navigate(requestedUrl, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+    } else if (!args.reuse_conversation) {
+      await page.navigate(CHATGPT_FRESH_URL, { waitUntil: "load", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+    }
+
+    const snapshot = await page.textSnapshot();
+    if (loginRequiredForService("chatgpt", snapshot.url || "")) {
+      return imageErrorOutput(ConsumerErrorCodes.LOGIN_REQUIRED, "ChatGPT login is required before image generation");
+    }
+
+    await page.waitForSelector(serviceDefaults.chatgpt.promptSelector, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
+    await page.click({ selector: CHATGPT_IMAGE_MENU_BUTTON_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.click({ selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: 8000 });
+
+    await page.fill({ selector: serviceDefaults.chatgpt.promptSelector }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
+    const sendSelector = sendButtonSelector("chatgpt");
+    await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
+    await page.queryElements(sendSelector, { limit: 3 });
+    await page.click({ selector: sendSelector }, { timeoutMs: 5000 });
+    await page.waitForSelector(CHATGPT_IMAGE_RENDERED_SELECTOR, { state: "visible", timeoutMs: args.timeout_ms || 120000 });
+    const imageCandidates = await page.queryElements(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, { limit: 5 });
+    if (!imageCandidates.length) {
+      return imageErrorOutput(ConsumerErrorCodes.COMMAND_TIMEOUT, "ChatGPT generated image did not render before timeout", { expected_selector: CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR });
+    }
+
+    const postImageSnapshot = await page.textSnapshot();
+    await page.assetsList();
+    const bundle = await page.assetsBundle();
+    const generatedAsset = bundle.assets.find((asset: any) => asset.type === "image" && /\\.(png|jpe?g|webp|gif|avif)(?:[?#]|$)/i.test(asset.url))
+      || bundle.assets.find((asset: any) => asset.type === "image");
+    const conversationUrl = postImageSnapshot.url || snapshot.url || serviceDefaults.chatgpt.url;
+    const result = await artifactClickRunner(runtime)({
+      profile: args.profile,
+      tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults.chatgpt.url,
+      buttonSelector: (runtime as any).artifactClick ? 'img[alt^="Generated image" i]' : CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR,
+      followUpSelector: (runtime as any).artifactClick ? '[data-testid="fullscreen-shell-header"] button[aria-label="Save"], [role="dialog"] button[aria-label="Save"]' : CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR,
+      downloadDir: args.download_dir,
+      filenamePattern: "\\.(png|jpg|jpeg|webp)$",
+      timeoutMs: args.timeout_ms || 90000,
+      locateTimeoutMs: 15000,
+      pageReadyEvidence: {
+        backend: "extension-assisted-cdp",
+        capturedAt: bundle.capturedAt,
+        assetCount: bundle.assets.length,
+        generatedAssetUrl: generatedAsset?.url || null,
+        imageCandidateCount: imageCandidates.length
+      }
+    });
+    return artifactClickResultToSafeOutput(result, { dimensions: null, download_filename: path.basename(result.path || "") });
+  } catch (error: any) {
+    if (isConsumerErrorCode(error?.errorCode)) {
+      return imageErrorOutput(error.errorCode, error.message || error.errorCode, error?.evidence ? { evidence: error.evidence } : {});
+    }
+    if (error?.errorCode === ConsumerErrorCodes.COMMAND_TIMEOUT || error?.errorCode === "COMMAND_TIMEOUT") {
+      return imageErrorOutput(ConsumerErrorCodes.COMMAND_TIMEOUT, error.message || "Generated image did not render before timeout");
+    }
+    if (error?.errorCode === ConsumerErrorCodes.ELEMENT_NOT_FOUND || error?.errorCode === "ELEMENT_NOT_FOUND") {
+      return imageErrorOutput(ConsumerErrorCodes.ELEMENT_NOT_FOUND, error.message || "Expected image control was not found", { expected_selector: error.evidence?.selector || CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR });
+    }
+    throw error;
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(args.profile, lease);
+  }
+}
+
 async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   assertPromptAllowed(args.prompt);
   // 2026-05-21 (#16 R1): pptx removed from the unsupported set after a live probe
@@ -3190,7 +3292,12 @@ export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserTool
 export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateFileOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateFileOnPage("claude", args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "managed-cdp") return generateImageOnPage("chatgpt", args, runtimeOrDefault(runtime));
+  if (backend === "extension-assisted-cdp") return generateChatgptImageWithExtensionBackend(args, runtimeOrDefault(runtime));
+  return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+}
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateImageOnPage("gemini", args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiVideoTask(args, runtimeOrDefault(runtime)); }
@@ -3340,7 +3447,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_generate_image",
     description: "Ask ChatGPT to generate an image and return download metadata.",
-    schema: webAiGenerateImageInput,
+    schema: webAiChatgptGenerateImageInput,
     handler: async (args, runtime) => webAiChatgptGenerateImage(args, runtime)
   },
   {

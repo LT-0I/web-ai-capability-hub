@@ -220,7 +220,7 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.8.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.9.0");
   assert.equal(manifest.commands.length, 191);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 39);
@@ -367,7 +367,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     webai_gemini_upload_and_query: ["model"],
     webai_chatgpt_generate_file: ["model"],
     webai_claude_generate_file: ["model"],
-    webai_chatgpt_generate_image: ["model"],
+    webai_chatgpt_generate_image: ["model", "backend"],
     webai_gemini_generate_image: ["model"],
     webai_gemini_canvas_to_docs: ["model"],
     webai_gemini_generate_video: ["model", "account_pool"]
@@ -686,7 +686,7 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 40, "webai MCP tools now 40");
   assert.equal(manifest.error_codes.length, 39, "error codes now 39");
   assert.equal(manifest.commands.length, 191, "commands now 191");
-  assert.equal(manifest.contract_version, "consumer-contract-1.8.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.9.0");
   assert.equal(packageJson.version, "1.0.0");
   assert.equal(manifest.package_version, "1.0.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");

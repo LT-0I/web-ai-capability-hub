@@ -17,9 +17,9 @@ const EXPECTED_WAH_NAMES = [
   "wah_artifact_get"
 ];
 
-test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.8.0", () => {
+test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.9.0", () => {
   assert.equal(CONTRACT.package_version, "1.0.0");
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.8.0");
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.9.0");
 });
 
 test("P1 contract: commands.length === 191", () => {

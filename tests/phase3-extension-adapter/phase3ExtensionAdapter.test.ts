@@ -165,10 +165,9 @@ test("phase3 no-fallback: chrome-bridged mode without a transport surfaces CHROM
 // 4) BackendNotImplementedError carries BOTH design-doc tab method AND vendor wire name
 // -----------------------------------------------------------------------------
 
-test("phase3 stubs: every tab.* stub throws BackendNotImplementedError with design+wire names so Phase 4 can wire it up", async () => {
+test("phase4 deferrals: non-critical tab.* methods still throw BackendNotImplementedError with design+wire names", async () => {
   const port = new ExtensionAssistedPagePort(1);
-  const tabMethods = Object.keys(DESIGN_TAB_METHOD_TO_VENDOR_WIRE) as Array<keyof typeof DESIGN_TAB_METHOD_TO_VENDOR_WIRE>;
-  assert.equal(tabMethods.length, 14, "expected 14 design tab methods covered by DESIGN_TAB_METHOD_TO_VENDOR_WIRE");
+  const tabMethods = ["getInfo", "elementState", "elementBox", "press"] as Array<keyof typeof DESIGN_TAB_METHOD_TO_VENDOR_WIRE>;
 
   for (const tabMethod of tabMethods) {
     const wireMethod = DESIGN_TAB_METHOD_TO_VENDOR_WIRE[tabMethod];
@@ -262,7 +261,7 @@ test("phase3 contract: all 3 new error codes exist in JSON manifest, TS enum, an
     assert.equal(ConsumerErrorCodes[code], code, `${code} must round-trip through ConsumerErrorCodes object`);
     assert.ok(docs.includes(`\`${code}\``), `${code} must be referenced in docs/CONSUMER_CONTRACT.md`);
   }
-  assert.equal(manifest.contract_version, "consumer-contract-1.8.0", "contract version must be bumped to 1.8.0");
+  assert.equal(manifest.contract_version, "consumer-contract-1.9.0", "contract version must be bumped to 1.9.0");
   assert.equal(manifest.error_codes.length, 39, "contract error_codes length must be 39");
   assert.equal(CONSUMER_ERROR_CODES.length, 39, "TS error code list length must be 39");
 });

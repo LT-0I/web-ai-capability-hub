@@ -1,7 +1,7 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v1.0.0
-Contract: `consumer-contract-1.8.0`
+Contract: `consumer-contract-1.9.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
@@ -201,9 +201,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.8.0 webai MCP tools
+## Contract 1.9.0 webai MCP tools
 
-Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.8.0 keeps the 40 webai command rows from 1.7.2 and adds only extension-bridge error taxonomy; no new MCP tools are added in Chrome Extension Phase 3.
+Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.9.0 keeps the 40 webai command rows from 1.8.0 and adds only the ChatGPT generate-image `backend` optional argument; no new MCP tools or error codes are added in Chrome Extension Phase 4.
 
 ### Original/B1 existing webai tools
 
