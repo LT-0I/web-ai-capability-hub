@@ -189,6 +189,24 @@ function selectorLiteral(selector: string): string {
   return JSON.stringify(selector);
 }
 
+const SELECTOR_HELPER_SCRIPT = `
+const __parseSelector = (raw) => {
+  const m = raw.match(/^(.*?):has-text\\(\\s*(?:"((?:[^"\\\\]|\\\\.)*)"|'((?:[^'\\\\]|\\\\.)*)'|([^)]*))\\s*\\)\\s*$/);
+  if (!m) return { base: raw, text: null };
+  const base = (m[1] || '').trim() || '*';
+  const text = (m[2] !== undefined ? m[2] : m[3] !== undefined ? m[3] : (m[4] || '').trim().replace(/^["']|["']$/g, ''));
+  return { base, text };
+};
+const __qsa = (raw) => {
+  const { base, text } = __parseSelector(raw);
+  const all = Array.from(document.querySelectorAll(base));
+  if (text === null) return all;
+  const needle = text.toLowerCase();
+  return all.filter((el) => ((el.innerText || el.textContent || '').toLowerCase().includes(needle)));
+};
+const __qs = (raw) => __qsa(raw)[0] || null;
+`;
+
 function waitForSelectorScript(selector: string, options: BrowserWaitForSelectorOptions = {}): string {
   const state = options.state || "attached";
   const timeoutMs = Math.max(1, Math.floor(options.timeoutMs || 30_000));
@@ -196,6 +214,7 @@ function waitForSelectorScript(selector: string, options: BrowserWaitForSelector
 const selector = ${selectorLiteral(selector)};
 const state = ${JSON.stringify(state)};
 const timeoutMs = ${timeoutMs};
+${SELECTOR_HELPER_SCRIPT}
 const isVisible = (el) => {
   if (!el) return false;
   const style = window.getComputedStyle(el);
@@ -203,7 +222,7 @@ const isVisible = (el) => {
   return style && style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
 };
 const matches = () => {
-  const el = document.querySelector(selector);
+  const el = __qs(selector);
   if (state === 'attached') return !!el;
   if (state === 'detached') return !el;
   if (state === 'visible') return isVisible(el);
@@ -223,6 +242,7 @@ function queryElementsScript(selector: string, limit: number): string {
   return `
 const selector = ${selectorLiteral(selector)};
 const limit = ${Math.max(0, Math.floor(limit))};
+${SELECTOR_HELPER_SCRIPT}
 const cssPath = (el) => {
   if (!(el instanceof Element)) return undefined;
   if (el.id) return '#' + CSS.escape(el.id);
@@ -247,7 +267,7 @@ const serializeElement = (el, index) => ({
   selector: cssPath(el),
   attributes: Object.fromEntries(Array.from(el.attributes || []).map((attr) => [attr.name, attr.value]))
 });
-return Array.from(document.querySelectorAll(selector)).slice(0, limit).map(serializeElement);
+return __qsa(selector).slice(0, limit).map(serializeElement);
 `;
 }
 
@@ -319,8 +339,9 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
   async elementBox(..._args: any[]): Promise<any> { return this.notImplemented("elementBox"); }
 
   async click(target: BrowserElementTarget, options: BrowserClickOptions = {}): Promise<void> {
+    const resolved = await this.resolveTextSelector(target);
     await this.vendorRequest(VENDOR_BROWSER_TOOL_NAMES.CLICK, withTabScope({
-      ...target,
+      ...resolved,
       ...(options.timeoutMs === undefined ? {} : { timeout: options.timeoutMs }),
       waitForNavigation: options.waitForNavigation,
       button: options.button,
@@ -330,10 +351,20 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
   }
 
   async fill(target: BrowserElementTarget, value: string | number | boolean, options: BrowserFillOptions = {}): Promise<void> {
+    const resolved = await this.resolveTextSelector(target);
     await this.vendorRequest(VENDOR_BROWSER_TOOL_NAMES.FILL, withTabScope({
-      ...target,
+      ...resolved,
       value
     }, this.tabId, this.windowId), options.timeoutMs);
+  }
+
+  private async resolveTextSelector(target: BrowserElementTarget): Promise<BrowserElementTarget> {
+    const selector = (target as any)?.selector;
+    if (typeof selector !== "string" || !/:has-text\(/i.test(selector)) return target;
+    const matches = await this.queryElements(selector, { limit: 1 });
+    const resolvedSelector = matches[0]?.selector;
+    if (typeof resolvedSelector !== "string" || resolvedSelector.length === 0) return target;
+    return { ...target, selector: resolvedSelector } as BrowserElementTarget;
   }
 
   async press(..._args: any[]): Promise<void> { return this.notImplemented("press"); }
