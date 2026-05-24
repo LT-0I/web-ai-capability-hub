@@ -177,7 +177,7 @@ export const webAiChatgptSendPromptInput = objectSchema<{ profile: string; promp
   reuse_conversation: webAiSendPromptBaseProps.reuse_conversation
 }, ["profile", "prompt"]);
 
-export const webAiClaudeSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; thinking?: boolean; web_search?: boolean; incognito?: boolean; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number }>({
+export const webAiClaudeSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; thinking?: boolean; web_search?: boolean; incognito?: boolean; style?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
   profile: webAiSendPromptBaseProps.profile,
   prompt: webAiSendPromptBaseProps.prompt,
   model: webAiSendPromptBaseProps.model,
@@ -187,7 +187,8 @@ export const webAiClaudeSendPromptInput = objectSchema<{ profile: string; prompt
   style: webAiSendPromptBaseProps.style,
   tab_url_contains: webAiSendPromptBaseProps.tab_url_contains,
   timeout_ms: webAiSendPromptBaseProps.timeout_ms,
-  response_timeout_ms: webAiSendPromptBaseProps.response_timeout_ms
+  response_timeout_ms: webAiSendPromptBaseProps.response_timeout_ms,
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Claude prompt routing; defaults to managed-cdp")
 }, ["profile", "prompt"]);
 
 export const webAiGeminiSendPromptInput = objectSchema<{ profile: string; prompt: string; model?: string; thinking?: boolean; web_search?: boolean; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; reuse_conversation?: boolean }>({
@@ -228,6 +229,17 @@ export const webAiUploadAndQueryInput = objectSchema<{ profile: string; files: s
   response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000")
 }, ["profile", "files", "prompt"]);
 
+export const webAiClaudeUploadAndQueryInput = objectSchema<{ profile: string; files: string[]; prompt: string; model?: string; tab_url_contains?: string; timeout_ms?: number; response_timeout_ms?: number; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+  profile: scalar.string("Managed browser profile name"),
+  files: scalar.array(scalar.string("Local file path"), "Files to upload"),
+  prompt: scalar.string("Prompt text to send after upload"),
+  model: scalar.string("Optional service-specific model tier to select before sending"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  response_timeout_ms: scalar.number("Maximum wait for model response completion in milliseconds; defaults to 120000"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Claude upload routing; defaults to managed-cdp")
+}, ["profile", "files", "prompt"]);
+
 export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: string; expected_extension: string; download_dir: string; model?: string; artifact_class?: string; tab_url_contains?: string; timeout_ms?: number }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Prompt requesting a downloadable artifact"),
@@ -239,7 +251,19 @@ export const webAiGenerateFileInput = objectSchema<{ profile: string; prompt: st
   timeout_ms: scalar.number("Timeout in milliseconds")
 }, ["profile", "prompt", "expected_extension", "download_dir"]);
 
-export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean }>({
+export const webAiClaudeGenerateFileInput = objectSchema<{ profile: string; prompt: string; expected_extension: string; download_dir: string; model?: string; artifact_class?: string; tab_url_contains?: string; timeout_ms?: number; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+  profile: scalar.string("Managed browser profile name"),
+  prompt: scalar.string("Prompt requesting a downloadable artifact"),
+  expected_extension: scalar.enum(["py", "md", "csv", "docx", "pdf", "svg", "xlsx", "pptx", "html", "mmd"], "Expected file extension"),
+  download_dir: scalar.string("Absolute directory for downloaded artifact"),
+  model: scalar.string("Optional model hint"),
+  artifact_class: scalar.enum(["code", "document"], "Claude artifact class"),
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  timeout_ms: scalar.number("Timeout in milliseconds"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Claude generate-file routing; defaults to managed-cdp")
+}, ["profile", "prompt", "expected_extension", "download_dir"]);
+
+export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Image generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded image"),
@@ -247,7 +271,8 @@ export const webAiGenerateImageInput = objectSchema<{ profile: string; prompt: s
   size: scalar.string("Optional image size hint"),
   tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
   timeout_ms: scalar.number("Timeout in milliseconds"),
-  reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first")
+  reuse_conversation: scalar.boolean("Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Gemini image generation perception; defaults to managed-cdp")
 }, ["profile", "prompt", "download_dir"]);
 
 export const webAiChatgptGenerateImageInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; size?: string; tab_url_contains?: string; timeout_ms?: number; reuse_conversation?: boolean; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
@@ -273,7 +298,7 @@ export const webAiCanvasToDocsInput = objectSchema<{ profile: string; prompt: st
   reuse_conversation: scalar.boolean("ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first")
 }, ["profile", "prompt"]);
 
-export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; account_pool?: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string }>({
+export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: string; download_dir: string; model?: string; account_pool?: string; duration_seconds?: number; timeout_ms?: number; tab_url_contains?: string; backend?: "managed-cdp" | "extension-assisted-cdp" }>({
   profile: scalar.string("Managed browser profile name"),
   prompt: scalar.string("Video generation prompt"),
   download_dir: scalar.string("Absolute directory for downloaded video"),
@@ -281,7 +306,8 @@ export const webAiGenerateVideoInput = objectSchema<{ profile: string; prompt: s
   account_pool: scalar.string("Optional comma-separated Gemini profile names for Veo quota rotation"),
   duration_seconds: scalar.number("Optional duration: 2, 4, or 8"),
   timeout_ms: scalar.number("Maximum task runtime in milliseconds"),
-  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service")
+  tab_url_contains: scalar.string("Optional stable tab URL substring; defaults internally per service"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Gemini video generation perception; defaults to managed-cdp")
 }, ["profile", "prompt", "download_dir"]);
 
 export const webAiChatgptCanvasExportInput = objectSchema<{ tab_url_contains: string; format?: string; download_dir?: string; profile?: string; timeout_ms?: number }>({

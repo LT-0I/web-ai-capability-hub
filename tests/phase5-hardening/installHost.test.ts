@@ -177,7 +177,7 @@ test("phase5 no-contract-change guard keeps package, contract, and 8-lock counts
 
   assert.equal(packageJson.version, "1.0.0");
   assert.equal(contract.package_version, "1.0.0");
-  assert.equal(contract.contract_version, "consumer-contract-1.9.0");
+  assert.equal(contract.contract_version, "consumer-contract-1.10.0");
   assert.equal(contract.commands.length, 191);
   assert.equal(contract.error_codes.length, 39);
   assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 40);

@@ -7,6 +7,19 @@ const DEFAULT_NATIVE_SERVER_PORT = 12306;
 const DEFAULT_TIMEOUT_MS = 30_000;
 const MCP_PROTOCOL_VERSION = "2024-11-05";
 
+export const EXTENSION_HTTP_PORT_FOR_PROFILE: Record<string, number> = {
+  chatgpt: 12306,
+  "claude-9224": 12307,
+  claude: 12307,
+  gemini: 12308,
+  "gemini-9225": 12308,
+};
+
+export function defaultHttpBridgeUrlForProfile(profile: string | undefined): string {
+  const port = profile && EXTENSION_HTTP_PORT_FOR_PROFILE[profile];
+  return `http://127.0.0.1:${port || DEFAULT_NATIVE_SERVER_PORT}/mcp`;
+}
+
 export interface HttpBridgeClientOptions {
   httpBridgeUrl?: string;
   baseUrl?: string;

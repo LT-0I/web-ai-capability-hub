@@ -128,6 +128,7 @@ export interface BrowserPagePort {
   elementBox(target: BrowserElementTarget): Promise<BrowserBox | null>;
   click(target: BrowserElementTarget, options?: BrowserClickOptions): Promise<void>;
   fill(target: BrowserElementTarget, value: string | number | boolean, options?: BrowserFillOptions): Promise<void>;
+  uploadFile?(selector: string, filePath: string, options?: { timeoutMs?: number; multiple?: boolean }): Promise<void>;
   press(key: string, options?: BrowserPressOptions): Promise<void>;
   evaluateReadOnly<T = unknown>(expression: string, arg?: unknown): Promise<T>;
   textSnapshot(options?: { selector?: string }): Promise<BrowserTextSnapshot>;

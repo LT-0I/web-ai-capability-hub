@@ -190,14 +190,14 @@ test("phase4 evaluateReadOnly rejects common write patterns", async () => {
   }
 });
 
-test("phase4 contract and MCP schema expose ChatGPT backend enum only on generate_image", () => {
+test("phase4/6 contract and MCP schema expose backend enum on opted-in image tools", () => {
   const manifest = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "configs/consumer-contract.json"), "utf8"));
   const row = manifest.commands.find((command: any) => command.mcp_name === "webai_chatgpt_generate_image");
   assert.ok(row.optional_args.includes("backend"));
   const tool: any = listMcpTools().find((item) => item.name === "webai_chatgpt_generate_image");
   assert.deepEqual(tool.inputSchema.properties.backend.enum, ["managed-cdp", "extension-assisted-cdp"]);
   const gemini: any = listMcpTools().find((item) => item.name === "webai_gemini_generate_image");
-  assert.equal(gemini.inputSchema.properties.backend, undefined);
+  assert.deepEqual(gemini.inputSchema.properties.backend.enum, ["managed-cdp", "extension-assisted-cdp"]);
 });
 
 test("phase4 tool routing uses extension backend only when explicitly requested", async (t) => {

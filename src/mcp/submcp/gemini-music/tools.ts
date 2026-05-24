@@ -1,13 +1,22 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { objectSchema, scalar } from "../../../utils/schema";
-import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
-import { BrowserToolRuntime, ToolSpec, withManagedPage } from "../../tools";
+import { ConsumerErrorCode, ConsumerErrorCodes, isConsumerErrorCode } from "../../../consumer/errorCodes";
+import { getBackend } from "../../../browser/backends";
+import { runArtifactClick } from "../../../browser/artifactClick";
+import { defaultHttpBridgeUrlForProfile } from "../../../runtime/extension/httpBridgeClient";
+import { assertPromptAllowed } from "../../../safety/promptDeny";
+import { BrowserToolRuntime, ToolSpec, acquireProfileLease, releaseProfileLease, withManagedPage } from "../../tools";
 import {
   GEMINI_MUSIC_URL,
   MUSIC_COMPOSER_SELECTOR,
   MUSIC_DOWNLOAD_BTN_SELECTOR,
+  MUSIC_SEND_SELECTOR,
   MUSIC_STOP_SELECTOR,
   MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR,
   GeminiMusicFormat,
+  MUSIC_DESELECT_SELECTOR,
+  MUSIC_TOOLS_CREATE_ITEM_SELECTOR,
   stepActivateMusicTool,
   stepDownloadTrack,
   stepGenerateTrack
@@ -15,7 +24,7 @@ import {
 
 const DEFAULT_MUSIC_PROFILE = "gemini-9225";
 
-type GenerateArgs = { prompt: string; profile?: string; confirmed?: boolean; tab_url_contains?: string; timeout_ms?: number };
+type GenerateArgs = { prompt: string; profile?: string; confirmed?: boolean; tab_url_contains?: string; timeout_ms?: number; backend?: "managed-cdp" | "extension-assisted-cdp" };
 type DownloadArgs = { tab_url_contains: string; profile?: string; download_dir?: string; format?: GeminiMusicFormat };
 type StatusArgs = { tab_url_contains: string; profile?: string };
 
@@ -24,7 +33,8 @@ const generateInput = objectSchema<GenerateArgs>({
   profile: { ...scalar.string("Managed Gemini browser profile"), default: DEFAULT_MUSIC_PROFILE },
   confirmed: { ...scalar.boolean("Required true to send the music generation prompt"), default: false },
   tab_url_contains: scalar.string("Optional Gemini conversation URL fragment"),
-  timeout_ms: scalar.number("Generation readiness timeout in milliseconds")
+  timeout_ms: scalar.number("Generation readiness timeout in milliseconds"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Gemini Music perception; defaults to managed-cdp")
 }, ["prompt", "profile"]);
 
 const downloadInput = objectSchema<DownloadArgs>({
@@ -51,6 +61,121 @@ function targetUrlForTab(tabUrlContains?: string): string {
 function guardResponse(action: string): Record<string, unknown> {
   return { ok: false, errorCode: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, error_code: ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, action };
 }
+function musicErrorOutput(errorCode: ConsumerErrorCode, message: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  return { task_id: "", status: "error", conversation_url: "", ok: false, errorCode, error_code: errorCode, message, ...extra };
+}
+function extensionHttpBridgeUrlForMusicArgs(args: any): string {
+  return process.env.CHROME_EXTENSION_HTTP_BRIDGE_URL
+    || args.http_bridge_url
+    || defaultHttpBridgeUrlForProfile(args.profile);
+}
+function extensionErrorCode(error: any, fallback: ConsumerErrorCode = ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED): ConsumerErrorCode {
+  return isConsumerErrorCode(error?.errorCode) ? error.errorCode : fallback;
+}
+function musicDownloadDir(args: any): string {
+  const resolved = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads"));
+  fs.mkdirSync(resolved, { recursive: true });
+  return resolved;
+}
+async function extensionGeminiMusicPage(args: any, backend: any): Promise<any> {
+  const requested = args.url || args.tab_url_contains;
+  const page = requested
+    ? await backend.claimTab({ url: requested })
+    : await backend.newTab({ url: GEMINI_MUSIC_URL, background: false });
+  const target = targetUrlForTab(requested);
+  await page.navigate(target, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+  return page;
+}
+async function activateMusicToolWithExtension(page: any, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector(MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, 15000) });
+    await page.click({ selector: MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(MUSIC_TOOLS_CREATE_ITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.click({ selector: MUSIC_TOOLS_CREATE_ITEM_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(MUSIC_DESELECT_SELECTOR, { state: "visible", timeoutMs: 15000 });
+  } catch (error: any) {
+    const message = error?.message || String(error);
+    throw Object.assign(new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music tool did not activate through the extension-assisted backend (${message})`), {
+      errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+      evidence: { selector: `${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${MUSIC_TOOLS_CREATE_ITEM_SELECTOR} -> ${MUSIC_DESELECT_SELECTOR}` }
+    });
+  }
+}
+async function generateGeminiMusicWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = withDefaultProfile(args);
+  assertPromptAllowed(String(effective.prompt || ""));
+  if (!effective.confirmed) return guardResponse("gemini_music_generate");
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForMusicArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiMusicPage(effective, backend);
+    const snapshot = await page.textSnapshot();
+    if (/accounts\.google\.com|signin/i.test(String(snapshot.url || ""))) {
+      return musicErrorOutput(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before music generation");
+    }
+
+    await activateMusicToolWithExtension(page, Number(effective.timeout_ms || 180000));
+    await page.waitForSelector(MUSIC_COMPOSER_SELECTOR, { state: "visible", timeoutMs: Math.min(Number(effective.timeout_ms || 180000), 15000) });
+    await page.fill({ selector: MUSIC_COMPOSER_SELECTOR }, String(effective.prompt), { timeoutMs: Math.min(Number(effective.timeout_ms || 180000), 15000) });
+    await page.waitForSelector(MUSIC_SEND_SELECTOR, { state: "visible", timeoutMs: 5000 });
+    await page.queryElements(MUSIC_SEND_SELECTOR, { limit: 3 });
+    await page.click({ selector: MUSIC_SEND_SELECTOR }, { timeoutMs: 5000 });
+    await page.waitForSelector(MUSIC_DOWNLOAD_BTN_SELECTOR, { state: "visible", timeoutMs: Number(effective.timeout_ms || 180000) });
+    const trackCandidates = await page.queryElements(MUSIC_DOWNLOAD_BTN_SELECTOR, { limit: 5 });
+    if (!trackCandidates.length) {
+      return musicErrorOutput(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini Music track did not render before timeout", { expected_selector: MUSIC_DOWNLOAD_BTN_SELECTOR });
+    }
+
+    const postMusicSnapshot = await page.textSnapshot();
+    await page.assetsList();
+    const bundle = await page.assetsBundle();
+    const generatedAsset = bundle.assets.find((asset: any) => /\\.(mp3|wav|m4a|mp4|webm|mov|m4v)(?:[?#]|$)/i.test(asset.url));
+    const conversationUrl = postMusicSnapshot.url || snapshot.url || GEMINI_MUSIC_URL;
+    const downloadDir = musicDownloadDir(effective);
+    const result = await ((runtime as any).artifactClick || runArtifactClick)({
+      profile: effective.profile,
+      tabUrlContains: effective.tab_url_contains || conversationUrl || GEMINI_MUSIC_URL,
+      buttonSelector: MUSIC_DOWNLOAD_BTN_SELECTOR,
+      followUpTextRegex: "MP3",
+      downloadDir,
+      filenamePattern: "\\.mp3$",
+      timeoutMs: 60000,
+      locateTimeoutMs: 20000,
+      prerenderWaitMs: 1500,
+      noDisconnect: true,
+      pageReadyEvidence: {
+        backend: "extension-assisted-cdp",
+        capturedAt: bundle.capturedAt,
+        assetCount: bundle.assets.length,
+        generatedAssetUrl: generatedAsset?.url || null,
+        trackCandidateCount: trackCandidates.length
+      }
+    });
+    const artifactPath = result.path || result.savedPath || "";
+    const stat = artifactPath && fs.existsSync(artifactPath) ? fs.statSync(artifactPath) : undefined;
+    return {
+      task_id: `gemini_music_${Date.now()}`,
+      status: "complete",
+      conversation_url: conversationUrl,
+      path: artifactPath,
+      sha256: result.sha256 || "",
+      size_bytes: result.size_bytes ?? result.sizeBytes ?? result.size ?? stat?.size ?? 0,
+      download_filename: result.downloadFilename || (artifactPath ? path.basename(artifactPath) : ""),
+      errorCode: null
+    };
+  } catch (error: any) {
+    const code = extensionErrorCode(error);
+    return musicErrorOutput(code, error?.message || code, error?.evidence ? { evidence: error.evidence } : {});
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
 async function visible(page: any, selector: string): Promise<boolean> {
   try {
     const loc = page.locator(selector).first?.() || page.locator(selector);
@@ -62,6 +187,9 @@ async function visible(page: any, selector: string): Promise<boolean> {
 
 export async function webAiGeminiMusicGenerate(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
+  const backend = effective.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return generateGeminiMusicWithExtensionBackend(effective, runtime);
+  if (backend !== "managed-cdp") return musicErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_music_generate backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
   if (!effective.confirmed) return guardResponse("gemini_music_generate");
   return withManagedPage(effective, runtime, targetUrlForTab(effective.tab_url_contains as string | undefined), async (page) => {
     if (!effective.tab_url_contains && /\/app\/[^/?#]+/.test(page.url?.() || "")) {

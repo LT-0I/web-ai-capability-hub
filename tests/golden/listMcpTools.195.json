@@ -1,6 +1,6 @@
 {
   "count": 195,
-  "captured_at": "2026-05-23T15:43:37.170Z",
+  "captured_at": "2026-05-24T13:32:28.619Z",
   "tools": [
     {
       "name": "browser_capture_site_map",
@@ -9231,6 +9231,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude generate-file routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9324,6 +9331,13 @@
           "response_timeout_ms": {
             "type": "number",
             "description": "Maximum wait for model response completion in milliseconds; defaults to 120000"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude prompt routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9370,6 +9384,13 @@
           "response_timeout_ms": {
             "type": "number",
             "description": "Maximum wait for model response completion in milliseconds; defaults to 120000"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude upload routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9614,6 +9635,13 @@
           "reuse_conversation": {
             "type": "boolean",
             "description": "Gemini/ChatGPT: continue the existing conversation instead of navigating to a fresh chat first"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini image generation perception; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9661,6 +9689,13 @@
           "tab_url_contains": {
             "type": "string",
             "description": "Optional stable tab URL substring; defaults internally per service"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini video generation perception; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9733,6 +9768,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Generation readiness timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini Music perception; defaults to managed-cdp"
           }
         },
         "required": [

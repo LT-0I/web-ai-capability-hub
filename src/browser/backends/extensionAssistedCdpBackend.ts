@@ -358,6 +358,14 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
     }, this.tabId, this.windowId), options.timeoutMs);
   }
 
+  async uploadFile(selector: string, filePath: string, options: { timeoutMs?: number; multiple?: boolean } = {}): Promise<void> {
+    await this.vendorRequest(VENDOR_BROWSER_TOOL_NAMES.FILE_UPLOAD, withTabScope({
+      selector,
+      filePath,
+      multiple: options.multiple === true
+    }, this.tabId, this.windowId), options.timeoutMs);
+  }
+
   private async resolveTextSelector(target: BrowserElementTarget): Promise<BrowserElementTarget> {
     const selector = (target as any)?.selector;
     if (typeof selector !== "string" || !/:has-text\(/i.test(selector)) return target;

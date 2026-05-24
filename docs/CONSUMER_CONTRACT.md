@@ -1,12 +1,19 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v1.0.0
-Contract: `consumer-contract-1.9.0`
+Contract: `consumer-contract-1.10.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.10.0 (2026-05-24 Chrome Extension #15 Phase 6 Gemini + Claude lanes): no new commands or error codes; adds the opt-in `backend` optional argument (`managed-cdp` | `extension-assisted-cdp`) to six tools so Gemini image/video/music and Claude send/upload/generate-file can opt into the extension-assisted CDP path:
+  - `webai_gemini_generate_image` gains `backend`.
+  - `webai_gemini_generate_video` gains `backend`.
+  - `webai_gemini_music_generate` gains `backend`.
+  - `webai_claude_send_prompt` gains `backend`.
+  - `webai_claude_upload_and_query` gains `backend`.
+  - `webai_claude_generate_file` gains `backend`.
 - consumer-contract-1.8.0 (2026-05-24 Chrome Extension #15 Phase 3): adds BrowserPagePort backend infrastructure plus Native Messaging bridge error taxonomy for the extension-assisted CDP path. No new commands; commands remain 191, webai_ remains 40, research_ remains 121, wah_ remains 8, and error codes increase 36→39.
 - consumer-contract-1.7.2 (2026-05-23 post-refactor W1): added webai_chatgpt_select_model + webai_claude_select_model standalone tools (parallel to webai_gemini_select_model shipped fcbce82). 2 new commands, webai_ 38→40, no error code changes. Underlying selectors already in src/mcp/tools.ts since pre-refactor — this exposes them as first-class MCP/CLI surfaces.
 - consumer-contract-1.7.1 (2026-05-23 P3 v1.0 cut): first GA release; obsolete handwritten paths removed; manifest-driven architecture is now the only path; migration notes at docs/MIGRATION_v3.2.md. No surface change.
@@ -201,9 +208,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.9.0 webai MCP tools
+## Contract 1.10.0 webai MCP tools
 
-Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.9.0 keeps the 40 webai command rows from 1.8.0 and adds only the ChatGPT generate-image `backend` optional argument; no new MCP tools or error codes are added in Chrome Extension Phase 4.
+Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.10.0 keeps the 40 webai command rows from 1.9.0 and adds opt-in `backend` optional arguments to three Gemini tools (image/video/music) and three Claude tools (send-prompt/upload-and-query/generate-file); no new MCP tools or error codes are added in Chrome Extension Phase 6.
 
 ### Original/B1 existing webai tools
 
@@ -265,15 +272,19 @@ Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing 
 | Tool | Optional args |
 | --- | --- |
 | `webai:chatgpt:send-prompt` / `webai_chatgpt_send_prompt` | `model`, `web_search`, `canvas` |
-| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `model`, `thinking`, `web_search`, `incognito`, `tab_url_contains` |
+| `webai:claude:send-prompt` / `webai_claude_send_prompt` | `model`, `thinking`, `web_search`, `incognito`, `tab_url_contains`, `backend` |
 | `webai:gemini:send-prompt` / `webai_gemini_send_prompt` | `model`, `thinking`, `web_search` |
 | `webai:chatgpt:select-model` / `webai_chatgpt_select_model` | `model`, `thinking_level` |
 | `webai:claude:select-model` / `webai_claude_select_model` | `model`, `thinking_level` |
 | `webai:gemini:select-model` / `webai_gemini_select_model` | `model`, `thinking_level` |
 | `webai:chatgpt:upload-and-query` / `webai_chatgpt_upload_and_query` | `model` |
-| `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `model`, `reuse_conversation` |
+| `webai:claude:upload-and-query` / `webai_claude_upload_and_query` | `model`, `reuse_conversation`, `backend` |
+| `webai:claude:generate-file` / `webai_claude_generate_file` | `model`, `backend` |
 | `webai:gemini:upload-and-query` / `webai_gemini_upload_and_query` | `model` |
-| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `model`, `account_pool` |
+| `webai:chatgpt:generate-image` / `webai_chatgpt_generate_image` | `model`, `backend` |
+| `webai:gemini:generate-image` / `webai_gemini_generate_image` | `model`, `backend` |
+| `webai:gemini:generate-video` / `webai_gemini_generate_video` | `model`, `account_pool`, `backend` |
+| `webai:gemini:music:generate` / `webai_gemini_music_generate` | `confirmed`, `tab_url_contains`, `backend` |
 
 ### Webai output-key contract
 

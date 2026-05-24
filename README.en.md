@@ -8,8 +8,8 @@ Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.9.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-573%2F573%20passing-success)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-1.10.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![tests](https://img.shields.io/badge/tests-661%2F661%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -20,8 +20,8 @@ research-database automation through visible, user-authorized browser sessions.
 ---
 
 > **Status — `v1.0.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.9.0`, package `1.0.0`. Clean build green,
-> full test suite **573/573 passing**. Apache-2.0, Node ≥ 20.
+> Public surface `consumer-contract-1.10.0`, package `1.0.0`. Clean build green,
+> full test suite **661/661 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
 **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license
@@ -94,7 +94,7 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.9.0`, `package 1.0.0`; Chrome Extension #15 Phase 4: ChatGPT image generation adds an optional extension-assisted-cdp backend, with no new MCP tools or error codes):
+Current locks (`consumer-contract-1.10.0`, `package 1.0.0`; Chrome Extension #15 Phase 6: Gemini image/video/music add optional extension-assisted-cdp backends, with no new MCP tools or error codes):
 
 | Surface | Count |
 | --- | --- |
