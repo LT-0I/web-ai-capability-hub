@@ -14,6 +14,8 @@ export interface ManagedBrowserLaunchOptions {
   cdpPort?: number;
   extraArgs?: string[];
   reuseExisting?: boolean;
+  extensionAssisted?: boolean;
+  extensionPath?: string;
 }
 
 export interface ManagedBrowserStatus {
@@ -60,7 +62,7 @@ function httpGetJson<T = any>(url: string, timeoutMs = 1500): Promise<T> {
   });
 }
 
-export function buildLaunchArguments(options: Required<Pick<ManagedBrowserLaunchOptions, "cdpHost" | "cdpPort">> & { profileDir: string; url?: string; extraArgs?: string[] }): string[] {
+export function buildLaunchArguments(options: Required<Pick<ManagedBrowserLaunchOptions, "cdpHost" | "cdpPort">> & { profileDir: string; url?: string; extraArgs?: string[]; extensionAssisted?: boolean; extensionPath?: string }): string[] {
   const args = [
     `--remote-debugging-address=${options.cdpHost}`,
     `--remote-debugging-port=${options.cdpPort}`,
@@ -69,6 +71,11 @@ export function buildLaunchArguments(options: Required<Pick<ManagedBrowserLaunch
     "--no-default-browser-check",
     "--disable-background-networking"
   ];
+  if (options.extensionAssisted) {
+    if (!options.extensionPath) throw new Error("extensionPath is required when extensionAssisted=true");
+    args.push(`--load-extension=${options.extensionPath}`);
+    args.push(`--disable-extensions-except=${options.extensionPath}`);
+  }
   if (options.extraArgs?.length) args.push(...options.extraArgs);
   if (options.url) args.push(options.url);
   return args;
@@ -167,7 +174,15 @@ export class ManagedBrowserLauncher {
       ? { kind: options.browserKind || "chrome", path: options.executablePath, source: "env" }
       : findBrowserExecutable(options.browserKind);
     if (!discovered) throw new Error("Chrome/Edge executable was not found. Set WAH_BROWSER_EXECUTABLE to a Chrome or Edge executable path.");
-    const args = buildLaunchArguments({ cdpHost, cdpPort, profileDir, url: options.url, extraArgs: options.extraArgs || [] });
+    const args = buildLaunchArguments({
+      cdpHost,
+      cdpPort,
+      profileDir,
+      url: options.url,
+      extraArgs: options.extraArgs || [],
+      extensionAssisted: options.extensionAssisted === true,
+      extensionPath: options.extensionPath
+    });
     this.launchedProcess = childProcess.spawn(discovered.path, args, { detached: true, stdio: "ignore", windowsHide: true });
     detachLaunchedProcess(this.launchedProcess);
     this.launchedProcess.once?.("error", (error: Error) => { this.lastStatus = { ...(this.lastStatus as any), connected: false, lastError: error.message }; });

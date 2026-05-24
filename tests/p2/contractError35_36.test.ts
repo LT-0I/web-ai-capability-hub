@@ -20,13 +20,13 @@ test("p2 contract: TAB_LEASE_EXPIRED (#36) present in TS export and contract JSO
   assert.equal(CONTRACT.error_codes[35], "TAB_LEASE_EXPIRED", "TAB_LEASE_EXPIRED must be 36th entry (index 35) for taxonomy stability");
 });
 
-test("p2 contract: error_codes.length is exactly 36 (no over/under count)", () => {
-  assert.equal(CONTRACT.error_codes.length, 36);
-  assert.equal((CONSUMER_ERROR_CODES as readonly string[]).length, 36);
+test("p2 contract: error_codes.length is exactly 39 (no over/under count)", () => {
+  assert.equal(CONTRACT.error_codes.length, 39);
+  assert.equal((CONSUMER_ERROR_CODES as readonly string[]).length, 39);
 });
 
-test("p2/W1 contract: contract_version is consumer-contract-1.7.2; package_version is 1.0.0", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
+test("p2/W1/extension contract: contract_version is consumer-contract-1.8.0; package_version is 1.0.0", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.8.0");
   assert.equal(CONTRACT.package_version, "1.0.0");
 });
 

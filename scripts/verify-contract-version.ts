@@ -20,9 +20,9 @@ type ConsumerContract = {
 };
 
 const EXPECTED_PACKAGE_VERSION = "1.0.0";
-const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.7.2";
+const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.8.0";
 const EXPECTED_COMMANDS = 191;
-const EXPECTED_ERROR_CODES = 36;
+const EXPECTED_ERROR_CODES = 39;
 const EXPECTED_WEBAI_ROWS = 40;
 const EXPECTED_RESEARCH_ROWS = 121;
 

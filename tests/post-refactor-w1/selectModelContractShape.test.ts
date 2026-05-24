@@ -40,8 +40,8 @@ test("W1: chatgpt+claude select_model contract rows mirror gemini's shape", () =
   }
 });
 
-test("W1: contract bumped to 1.7.2 with 191 commands and 40 webai_ rows", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
+test("W1: contract bumped to 1.8.0 with 191 commands and 40 webai_ rows", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.8.0");
   assert.equal(CONTRACT.commands.length, 191);
   const webai = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && c.mcp_name.startsWith("webai_"));
   assert.equal(webai.length, 40);

@@ -1,6 +1,6 @@
 {
   "package_version": "1.0.0",
-  "contract_version": "consumer-contract-1.7.2",
+  "contract_version": "consumer-contract-1.8.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -4654,7 +4654,10 @@
     "UI_DRIFT_DETECTED",
     "HEAL_CONFIDENCE_LOW",
     "PROFILE_LEASE_TIMEOUT",
-    "TAB_LEASE_EXPIRED"
+    "TAB_LEASE_EXPIRED",
+    "CHROME_EXTENSION_NOT_CONNECTED",
+    "CHROME_EXTENSION_PERMISSION_DENIED",
+    "CHROME_EXTENSION_DEBUGGER_UNAVAILABLE"
   ],
   "sensitive_fields": {
     "artifact_click.path": "Local filesystem path; treat as sensitive local metadata.",

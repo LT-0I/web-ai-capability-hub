@@ -17,17 +17,17 @@ const EXPECTED_WAH_NAMES = [
   "wah_artifact_get"
 ];
 
-test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.7.2", () => {
+test("P3 contract: package_version = 1.0.0, contract_version = consumer-contract-1.8.0", () => {
   assert.equal(CONTRACT.package_version, "1.0.0");
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.8.0");
 });
 
 test("P1 contract: commands.length === 191", () => {
   assert.equal(CONTRACT.commands.length, 191);
 });
 
-test("P1 contract: error_codes.length === 36", () => {
-  assert.equal(CONTRACT.error_codes.length, 36);
+test("P1 contract: error_codes.length === 39", () => {
+  assert.equal(CONTRACT.error_codes.length, 39);
 });
 
 test("P1 contract: exactly 8 commands with mcp_name starting wah_", () => {
@@ -64,10 +64,17 @@ test("P1 contract: error_codes includes UI_DRIFT_DETECTED and HEAL_CONFIDENCE_LO
   assert.ok(CONTRACT.error_codes.includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing");
 });
 
-test("P1 contract: error_codes ordering — last four entries preserve P1 drift codes then append P2 lease codes", () => {
-  // Per §H of the writer brief these were appended in order (33, 34).
-  const last4 = CONTRACT.error_codes.slice(-4);
-  assert.deepEqual(last4, ["UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW", "PROFILE_LEASE_TIMEOUT", "TAB_LEASE_EXPIRED"]);
+test("P1/P2/extension contract: error_codes ordering appends extension bridge codes after lease codes", () => {
+  const last7 = CONTRACT.error_codes.slice(-7);
+  assert.deepEqual(last7, [
+    "UI_DRIFT_DETECTED",
+    "HEAL_CONFIDENCE_LOW",
+    "PROFILE_LEASE_TIMEOUT",
+    "TAB_LEASE_EXPIRED",
+    "CHROME_EXTENSION_NOT_CONNECTED",
+    "CHROME_EXTENSION_PERMISSION_DENIED",
+    "CHROME_EXTENSION_DEBUGGER_UNAVAILABLE"
+  ]);
 });
 
 test("P1 contract: no existing 181-row mcp_name was renamed or removed", () => {

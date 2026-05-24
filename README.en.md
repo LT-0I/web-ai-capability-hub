@@ -8,7 +8,7 @@ Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.7.2-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![contract](https://img.shields.io/badge/consumer--contract-1.8.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
 [![tests](https://img.shields.io/badge/tests-573%2F573%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -20,7 +20,7 @@ research-database automation through visible, user-authorized browser sessions.
 ---
 
 > **Status — `v1.0.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.7.2`, package `1.0.0`. Clean build green,
+> Public surface `consumer-contract-1.8.0`, package `1.0.0`. Clean build green,
 > full test suite **573/573 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
@@ -94,7 +94,7 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.7.2`, `package 1.0.0`; post-refactor W1: standalone ChatGPT/Claude model and thinking-depth selectors added, per-DB MCP shims removed, legacy aliases run through ExecutionEngine):
+Current locks (`consumer-contract-1.8.0`, `package 1.0.0`; Chrome Extension #15 Phase 3: BrowserPagePort/Native Messaging infrastructure and 3 extension bridge error codes added, with no new MCP tools):
 
 | Surface | Count |
 | --- | --- |
@@ -102,8 +102,10 @@ Current locks (`consumer-contract-1.7.2`, `package 1.0.0`; post-refactor W1: sta
 | per-DB `research_*` tools (40 DBs × search/filter/export) | **120** |
 | `research_inventory_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
 | sub-MCP tools | **11** |
-| stable error codes | **36** |
+| stable error codes | **39** |
 | `forbidden_output_fields` redacted for safe consumers | **23** |
+
+Phase 3 only advances the extension-assisted CDP infrastructure contract: commands stay 191, `webai_` stays 40, `research_` stays 121, and `wah_` stays 8. The new error codes cover bridge-not-connected, permission-denied, and debugger-unavailable failures.
 
 ### Web-AI tools (40)
 

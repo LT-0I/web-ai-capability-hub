@@ -1,12 +1,13 @@
 # Consumer Contract
 
 Package: `web-ai-research-automation-hub` v1.0.0
-Contract: `consumer-contract-1.7.2`
+Contract: `consumer-contract-1.8.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-1.8.0 (2026-05-24 Chrome Extension #15 Phase 3): adds BrowserPagePort backend infrastructure plus Native Messaging bridge error taxonomy for the extension-assisted CDP path. No new commands; commands remain 191, webai_ remains 40, research_ remains 121, wah_ remains 8, and error codes increase 36→39.
 - consumer-contract-1.7.2 (2026-05-23 post-refactor W1): added webai_chatgpt_select_model + webai_claude_select_model standalone tools (parallel to webai_gemini_select_model shipped fcbce82). 2 new commands, webai_ 38→40, no error code changes. Underlying selectors already in src/mcp/tools.ts since pre-refactor — this exposes them as first-class MCP/CLI surfaces.
 - consumer-contract-1.7.1 (2026-05-23 P3 v1.0 cut): first GA release; obsolete handwritten paths removed; manifest-driven architecture is now the only path; migration notes at docs/MIGRATION_v3.2.md. No surface change.
 - consumer-contract-1.7.1 (2026-05-23 P2): wires ExecutionEngine live through 159 legacy aliases; cancel + heartbeat + TTL fully active; drift_events table starts accumulating; adds 2 error codes (PROFILE_LEASE_TIMEOUT, TAB_LEASE_EXPIRED) for lease-lifecycle failures. No new commands, no surface change.
@@ -200,9 +201,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.7.2 webai MCP tools
+## Contract 1.8.0 webai MCP tools
 
-Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.7.2 adds ChatGPT/Claude standalone selector surfaces while keeping the error taxonomy at 36 codes.
+Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.8.0 keeps the 40 webai command rows from 1.7.2 and adds only extension-bridge error taxonomy; no new MCP tools are added in Chrome Extension Phase 3.
 
 ### Original/B1 existing webai tools
 
@@ -428,7 +429,7 @@ The safe `consumer:health` surface is designed not to emit those fields, but dow
 
 ## Error code taxonomy
 
-Consumer-stable error codes (36):
+Consumer-stable error codes (39):
 
 - `HUB_NOT_BUILT`
 - `BROWSER_NOT_LAUNCHED`
@@ -466,6 +467,15 @@ Consumer-stable error codes (36):
 - `HEAL_CONFIDENCE_LOW`
 - `PROFILE_LEASE_TIMEOUT`
 - `TAB_LEASE_EXPIRED`
+- `CHROME_EXTENSION_NOT_CONNECTED`
+- `CHROME_EXTENSION_PERMISSION_DENIED`
+- `CHROME_EXTENSION_DEBUGGER_UNAVAILABLE`
+
+Chrome-extension bridge additions in `consumer-contract-1.8.0`: `CHROME_EXTENSION_NOT_CONNECTED` means the extension-assisted bridge transport is unavailable, the native host exited, or the bootstrap `browser.ping` heartbeat did not answer within `CHROME_EXTENSION_DISPATCH_TIMEOUT` (default 30s). Consumers should surface the code, verify the extension/native host is installed and connected, then retry the same explicit backend path; the hub must not silently fall back to managed CDP.
+
+`CHROME_EXTENSION_PERMISSION_DENIED` means the extension bridge reached Chrome but lacks the permission required for the requested operation, such as `chrome.debugger`, `scripting`, or `tabs`. Consumers should ask the operator to reinstall or re-enable the extension with the required MV3 permissions, then retry; changing profiles or falling back to another backend is a caller-level decision, not an automatic hub behavior.
+
+`CHROME_EXTENSION_DEBUGGER_UNAVAILABLE` means a `chrome.debugger` attach failed because another debugger is already attached or MV3 prevented the attach for that target. Consumers should close competing DevTools/debugger sessions, choose a different tab, or retry after the attached debugger detaches; the bridge reports this code instead of pretending the CDP-backed operation succeeded.
 
 Lease-lifecycle additions in `consumer-contract-1.7.1`: `PROFILE_LEASE_TIMEOUT`
 means a profile lease missed heartbeats for more than 2× its TTL while the holder

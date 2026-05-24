@@ -31,6 +31,16 @@ function readJson(file: string): any {
 function contract(): any { return readJson("configs/consumer-contract.json"); }
 function fixtures(): { checkedAt: string; scenarios: Scenario[] } { return readJson("tests/fixtures/consumer-health-scenarios.json"); }
 
+const CHROME_EXTENSION_ERROR_CODES = [
+  "CHROME_EXTENSION_NOT_CONNECTED",
+  "CHROME_EXTENSION_PERMISSION_DENIED",
+  "CHROME_EXTENSION_DEBUGGER_UNAVAILABLE"
+] as const;
+
+function consumerContractDoc(): string {
+  return fs.readFileSync(path.resolve(process.cwd(), "docs/CONSUMER_CONTRACT.md"), "utf-8");
+}
+
 function tempCapabilityDb(): CapabilityDatabase {
   const dir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "wah-task-db-"));
   return new CapabilityDatabase({ dbPath: path.join(dir, "capability.json"), preferSqlite: false });
@@ -86,6 +96,17 @@ async function captureStdout(fn: () => Promise<void>): Promise<string> {
     console.log = originalLog;
   }
   return lines.join("\n");
+}
+
+for (const code of CHROME_EXTENSION_ERROR_CODES) {
+  test(`consumer contract includes and documents ${code}`, () => {
+    const manifest = contract();
+    assert.ok(manifest.error_codes.includes(code), `${code} missing from contract error_codes`);
+    assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes(code), `${code} missing from TypeScript error codes`);
+    const docs = consumerContractDoc();
+    const description = docs.match(new RegExp(`\`${code}\` means ([^\n]+(?:\n(?!\n)[^\n]+)*)`))?.[1]?.trim();
+    assert.ok(description && description.length > 40, `${code} missing non-empty docs description`);
+  });
 }
 
 test("consumer:health output schema matches contract and strips forbidden fields for fixtures", async () => {
@@ -199,13 +220,18 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.7.2");
+  assert.equal(manifest.contract_version, "consumer-contract-1.8.0");
   assert.equal(manifest.commands.length, 191);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
-  assert.equal(manifest.error_codes.length, 36);
+  assert.equal(manifest.error_codes.length, 39);
 
-  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW", "PROFILE_LEASE_TIMEOUT", "TAB_LEASE_EXPIRED"]) {
+  for (const code of ["IFRAME_NOT_FOUND", "ELEMENT_OUT_OF_VIEWPORT", "ARTIFACT_DOWNLOAD_TIMEOUT", "ARTIFACT_VERIFICATION_FAILED", "DOCX_VERIFICATION_FAILED", "POSTCONDITION_TIMEOUT", "RESUME_REQUIRES_CONFIRMATION", "IDEMPOTENCY_MISMATCH", "PROFILE_LOCKED", "PROFILE_LEASE_BUSY", "AUTO_PUBLISH_DETECTED", "ARTIFACT_MODE_UNSUPPORTED", "MODEL_SELECTION_DRIFT", "PLAN_OR_QUOTA_REQUIRED", "SAFE_OUTPUT_REDACTION_REQUIRED", "MODE_UNCERTAIN", "HUMAN_HANDOFF_REQUIRED", "SENSITIVE_CONTENT_GUARD", "SUBMCP_QUOTA_EXHAUSTED", "SUBMCP_NOT_PROVISIONED", "UI_DRIFT_DETECTED", "HEAL_CONFIDENCE_LOW", "PROFILE_LEASE_TIMEOUT", "TAB_LEASE_EXPIRED", ...CHROME_EXTENSION_ERROR_CODES]) {
     assert.ok(manifest.error_codes.includes(code), `missing error code ${code}`);
+  }
+  const docs = consumerContractDoc();
+  for (const code of CHROME_EXTENSION_ERROR_CODES) {
+    const description = docs.match(new RegExp(`\`${code}\` means ([^\n]+(?:\n(?!\n)[^\n]+)*)`))?.[1]?.trim();
+    assert.ok(description && description.length > 40, `${code} missing non-empty docs description`);
   }
   for (const cliName of ["browser:artifact-click", "browser:click", "browser:upload", "browser:wait", "browser:hover", "workflow:run", "browser:audit", "verify:docx-min", "wah:capability:query", "wah:adapter:health", "wah:policy:explain", "wah:task:start", "wah:task:status", "wah:task:cancel", "wah:task:resume", "wah:artifact:get"]) {
     assert.ok(manifest.commands.find((command: any) => command.cli_name === cliName), `missing command row ${cliName}`);
@@ -463,9 +489,9 @@ test("stream5 plus issue14 surface: webai tool count is exactly 40", () => {
     "Expected Stream #5 plus W1 split to total 40 (13 pre-existing + 16 main-server + 11 sub-MCP)");
 });
 
-test("p1 final error_codes count is 36", () => {
+test("p1/p2/extension final error_codes count is 39", () => {
   const manifest = contract();
-  assert.equal(manifest.error_codes.length, 36);
+  assert.equal(manifest.error_codes.length, 39);
   assert.ok(manifest.error_codes.includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from contract");
   assert.ok((CONSUMER_ERROR_CODES as readonly string[]).includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing from TS export");
   assert.ok(manifest.error_codes.includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing from contract");
@@ -658,9 +684,9 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
   assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 40, "webai command rows now 40");
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 40, "webai MCP tools now 40");
-  assert.equal(manifest.error_codes.length, 36, "error codes now 36");
+  assert.equal(manifest.error_codes.length, 39, "error codes now 39");
   assert.equal(manifest.commands.length, 191, "commands now 191");
-  assert.equal(manifest.contract_version, "consumer-contract-1.7.2");
+  assert.equal(manifest.contract_version, "consumer-contract-1.8.0");
   assert.equal(packageJson.version, "1.0.0");
   assert.equal(manifest.package_version, "1.0.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");

@@ -15,14 +15,14 @@ test("p3: consumer-contract.json package_version is 1.0.0", () => {
   assert.equal(CONTRACT.package_version, "1.0.0");
 });
 
-test("p3: consumer-contract.json contract_version is consumer-contract-1.7.2 after post-refactor W1", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-1.7.2");
+test("p3: consumer-contract.json contract_version is consumer-contract-1.8.0 after Chrome Extension Phase 3", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-1.8.0");
 });
 
 test("p3: scripts/verify-contract-version.ts EXPECTED_PACKAGE_VERSION === '1.0.0'", () => {
   assert.match(VERIFY, /EXPECTED_PACKAGE_VERSION\s*=\s*"1\.0\.0"/);
 });
 
-test("p3: scripts/verify-contract-version.ts EXPECTED_CONTRACT_VERSION === 'consumer-contract-1.7.2'", () => {
-  assert.match(VERIFY, /EXPECTED_CONTRACT_VERSION\s*=\s*"consumer-contract-1\.7\.2"/);
+test("p3: scripts/verify-contract-version.ts EXPECTED_CONTRACT_VERSION === 'consumer-contract-1.8.0'", () => {
+  assert.match(VERIFY, /EXPECTED_CONTRACT_VERSION\s*=\s*"consumer-contract-1\.8\.0"/);
 });

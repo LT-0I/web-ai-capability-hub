@@ -7,7 +7,7 @@
 通过可见、用户授权的浏览器会话,编目、查询并执行 Web-AI 界面工作流与受权科研数据库自动化。
 
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.7.2-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![contract](https://img.shields.io/badge/consumer--contract-1.8.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
 [![tests](https://img.shields.io/badge/tests-573%2F573%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
@@ -18,7 +18,7 @@
 
 ---
 
-> **状态 — `v1.0.0`(首个稳定、功能较为健全的版本)。** 公共面 `consumer-contract-1.7.2`,包版本 `1.0.0`。清洁构建通过,完整测试套件 **573/573 全过**。Apache-2.0,Node ≥ 20。
+> **状态 — `v1.0.0`(首个稳定、功能较为健全的版本)。** 公共面 `consumer-contract-1.8.0`,包版本 `1.0.0`。清洁构建通过,完整测试套件 **573/573 全过**。Apache-2.0,Node ≥ 20。
 
 本项目面向个人/本地开发与受权科研工作流。它**不**绕过登录、付费墙、CAPTCHA、机器人检测、速率限制、许可限制或服务条款。用户在正常可见浏览器 profile 中**手动登录**,本项目经 Chrome DevTools Protocol(CDP)复用该会话,**不导出 cookie 或凭据**。当 UI/访问路径漂移或遇墙时,返回**稳定合约错误码**——绝无静默兜底,绝无合成工件。
 
@@ -66,7 +66,7 @@
 
 完整 CLI / MCP / TS 公共面经 `configs/consumer-contract.json`、`docs/CONSUMER_CONTRACT.md`、`tests/consumerContract.test.ts` 版本化并三方回环。合约升级是审慎行为;同一 minor 内的增量式 per-DB 扩张**不**升版。
 
-当前锁(`consumer-contract-1.7.2`,`package 1.0.0`; post-refactor W1：新增 ChatGPT/Claude 独立模型与思考深度选择工具,per-DB MCP shims 已删除,legacy alias 走 ExecutionEngine):
+当前锁(`consumer-contract-1.8.0`,`package 1.0.0`; Chrome Extension #15 Phase 3：新增 BrowserPagePort/Native Messaging 基础设施和 3 个扩展桥错误码,不新增 MCP 工具):
 
 | 表面 | 数量 |
 | --- | --- |
@@ -74,8 +74,10 @@
 | per-DB `research_*` 工具(40 库 × 检索/筛选/导出) | **120** |
 | `research_inventory_import`(种子导入器) | 1(合计 121 个 `research_` 前缀行) |
 | 子 MCP 工具 | **11** |
-| 稳定错误码 | **36** |
+| 稳定错误码 | **39** |
 | 对安全消费者脱敏的 `forbidden_output_fields` | **23** |
+
+Phase 3 仅提升扩展辅助 CDP 的基础设施合约：命令数保持 191,`webai_` 保持 40,`research_` 保持 121,`wah_` 保持 8；新增错误码用于桥未连接、权限不足和 debugger 不可用。
 
 ### Web-AI 工具(40)
 
