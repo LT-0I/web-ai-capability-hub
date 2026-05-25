@@ -2000,6 +2000,15 @@ function extensionErrorCode(error: any, fallback: ConsumerErrorCode = ConsumerEr
   return isConsumerErrorCode(error?.errorCode) ? error.errorCode : fallback;
 }
 
+function webAiExtensionErrorCode(error: any): ConsumerErrorCode {
+  if (isConsumerErrorCode(error?.errorCode)) return error.errorCode;
+  if (isConsumerErrorCode(error?.code)) return error.code;
+  const message = errorMessageFromUnknown(error, "");
+  if (/timeout|timed out/i.test(message)) return ConsumerErrorCodes.COMMAND_TIMEOUT;
+  if (/selector|element|not found/i.test(message)) return ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+  return classifyChromeExtensionBridgeError(error);
+}
+
 function sendPromptExtensionErrorOutput(service: WebAiService, args: any, started: number, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
   const errorCode = extensionErrorCode(error, ConsumerErrorCodes.COMMAND_TIMEOUT);
   return safeOutput(sendPromptBase(service, targetUrlFor(service, args || {}), started, {
@@ -2089,6 +2098,32 @@ function claudeUploadExtensionErrorOutput(args: any, error: any, extra: Record<s
     error_code: errorCode,
     message: errorMessageFromUnknown(error, errorCode),
     ...extra
+  });
+}
+
+function uploadExtensionErrorOutput(service: "chatgpt" | "gemini", args: any, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = webAiExtensionErrorCode(error);
+  const base = {
+    ok: false,
+    response_text: "",
+    wait_ms: 0,
+    completion_detected: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  };
+  if (service === "chatgpt") {
+    return safeOutput({
+      conversation_id: null,
+      attachment_names: [],
+      ...base
+    });
+  }
+  return safeOutput({
+    files_in_chip: [],
+    chat_url: targetUrlFor("gemini", args || {}),
+    ...base
   });
 }
 
@@ -2620,6 +2655,147 @@ async function uploadClaudeFilesWithExtension(page: any, resolved: string[], arg
   await waitForClaudeAttachmentReadyWithExtension(page, resolved, Math.min(args.timeout_ms || 60000, 30000));
 }
 
+async function waitForAttachmentReadyWithExtension(page: any, service: "chatgpt" | "gemini", resolved: string[], timeoutMs = 30000): Promise<void> {
+  const filenames = resolved.map((file: string) => path.basename(file));
+  const sendSelector = sendButtonSelector(service);
+  const deadline = Date.now() + timeoutMs;
+  const expression = `(() => {
+    const expected = new Set(arg.filenames);
+    const qsa = (selector) => {
+      try { return Array.from(document.querySelectorAll(selector)); } catch (_) { return []; }
+    };
+    const visible = (el) => {
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return style && style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
+    };
+    const seen = new Set();
+    for (const input of qsa('input[type="file"]')) {
+      for (const file of Array.from(input.files || [])) {
+        if (file && file.name) seen.add(file.name);
+      }
+    }
+    const text = document.body ? String(document.body.innerText || document.body.textContent || '') : '';
+    for (const name of expected) {
+      if (text.includes(name)) seen.add(name);
+    }
+    for (const node of qsa('[aria-label], [title], [data-testid], [data-file-name], [data-filename]')) {
+      const values = [
+        node.getAttribute('aria-label'),
+        node.getAttribute('title'),
+        node.getAttribute('data-testid'),
+        node.getAttribute('data-file-name'),
+        node.getAttribute('data-filename'),
+        node.textContent
+      ].filter(Boolean).map((value) => String(value));
+      for (const name of expected) {
+        if (values.some((value) => value.includes(name))) seen.add(name);
+      }
+    }
+    const sendButtons = qsa(arg.sendSelector);
+    const sendReady = sendButtons.some((button) => visible(button) && button.getAttribute('aria-disabled') !== 'true' && !(button instanceof HTMLButtonElement && button.disabled));
+    const ready = expected.size > 0 && Array.from(expected).every((name) => seen.has(name)) && sendReady;
+    return { ready, seen: Array.from(seen), sendReady };
+  })()`;
+  let lastState: any = { ready: false, seen: [], sendReady: false };
+  while (Date.now() <= deadline) {
+    lastState = await page.evaluateReadOnly(expression, { filenames, sendSelector }).catch(() => lastState);
+    if (lastState?.ready) return;
+    await extensionSleep(500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${service} attachment did not finish processing before send`, {
+    selector: service === "chatgpt" ? "input#upload-files + visible attachment chip" : `${GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR} -> input[type="file"] + ${GEMINI_UPLOAD_CHIP_SELECTOR}`,
+    seen: lastState?.seen || [],
+    sendReady: Boolean(lastState?.sendReady)
+  });
+}
+
+async function uploadChatgptFilesWithExtension(page: any, resolved: string[], args: any): Promise<void> {
+  if (typeof page.uploadFile !== "function") {
+    throw new WebAiToolError(ConsumerErrorCodes.CHROME_EXTENSION_DEBUGGER_UNAVAILABLE, `Vendor ${VENDOR_BROWSER_TOOL_NAMES.FILE_UPLOAD} tool is not available on the extension-assisted page port`);
+  }
+  const uploadSelector = "input#upload-files";
+  try {
+    await page.waitForSelector(uploadSelector, { state: "attached", timeoutMs: 10000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT upload input was not found before file attach", { selector: uploadSelector, cause: errorMessageFromUnknown(error, "") });
+  }
+  for (const filePath of resolved) {
+    await page.uploadFile(uploadSelector, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
+  }
+  await waitForAttachmentReadyWithExtension(page, "chatgpt", resolved, Math.min(args.timeout_ms || 60000, 30000));
+}
+
+async function uploadGeminiFilesWithExtension(page: any, resolved: string[], args: any): Promise<void> {
+  if (typeof page.uploadFile !== "function") {
+    throw new WebAiToolError(ConsumerErrorCodes.CHROME_EXTENSION_DEBUGGER_UNAVAILABLE, `Vendor ${VENDOR_BROWSER_TOOL_NAMES.FILE_UPLOAD} tool is not available on the extension-assisted page port`);
+  }
+  await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
+  try {
+    await page.waitForSelector(GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menuitem was not found", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, cause: errorMessageFromUnknown(error, "") });
+  }
+  const uploadSelector = 'input[type="file"]:not([accept^="image/"]):not([accept*="image/*"]), input[type="file"]';
+  try {
+    await page.waitForSelector(uploadSelector, { state: "attached", timeoutMs: 10000 });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload file input was not found before file attach", { selector: uploadSelector, cause: errorMessageFromUnknown(error, "") });
+  }
+  for (const filePath of resolved) {
+    await page.uploadFile(uploadSelector, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
+  }
+  await waitForAttachmentReadyWithExtension(page, "gemini", resolved, Math.min(args.timeout_ms || 60000, 30000));
+}
+
+async function uploadAndQueryWithExtensionBackend(service: "chatgpt" | "gemini", args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = service === "gemini" ? geminiToolArgs(args || {}) : (args || {});
+  assertPromptAllowed(effective.prompt);
+  if (!Array.isArray(effective.files)) return uploadExtensionErrorOutput(service, effective, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "files must be an array"));
+  const missing = effective.files.map((file: string) => path.resolve(file)).filter((file: string) => !fs.existsSync(file));
+  if (missing.length) return uploadExtensionErrorOutput(service, effective, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `upload file(s) not found: ${missing.join(", ")}`));
+  const resolved = effective.files.map((file: string) => path.resolve(file));
+  const names = resolved.map((file: string) => path.basename(file));
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = service === "chatgpt"
+      ? await openChatgptExtensionPage(backend, effective)
+      : await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor(service, effective), text: "" }));
+    if (loginRequiredForService(service, snapshot.url || "")) {
+      return uploadExtensionErrorOutput(service, effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, `${service} login is required before upload`), { chat_url: snapshot.url || targetUrlFor(service, effective) });
+    }
+    await waitForExtensionSelector(page, serviceDefaults[service].promptSelector, Math.min(effective.timeout_ms || 60000, 15000), `${service} prompt composer was not found`);
+    if (service === "chatgpt") await uploadChatgptFilesWithExtension(page, resolved, effective);
+    else await uploadGeminiFilesWithExtension(page, resolved, effective);
+    const response = await sendPromptInExtensionPage(service, effective, page, Date.now());
+    const completion = {
+      response_text: response.response_text || "",
+      wait_ms: Number(response.wait_ms || 0),
+      completion_detected: Boolean(response.completion_detected),
+      errorCode: response.errorCode || null,
+      ...(response.error_code ? { error_code: response.error_code } : {})
+    };
+    await page.assetsList().catch(() => []);
+    await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
+    if (service === "chatgpt") return safeOutput({ conversation_id: response.conversation_id || null, attachment_names: names, ...completion });
+    return safeOutput({ files_in_chip: names, chat_url: response.chat_url || snapshot.url || null, ...completion });
+  } catch (error: any) {
+    return uploadExtensionErrorOutput(service, effective, error, service === "chatgpt" ? { attachment_names: names } : { files_in_chip: names });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
 async function sendClaudePromptWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = claudeToolArgs(args || {});
   const started = Date.now();
@@ -2917,6 +3093,63 @@ async function generateClaudeFileWithExtensionBackend(args: any, runtime: Requir
     return artifactClickResultToSafeOutput(result, { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } catch (error: any) {
     const errorCode = claudeExtensionErrorCode(error);
+    return fileErrorOutput(errorCode, errorMessageFromUnknown(error, errorCode));
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function generateChatgptFileWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = args || {};
+  assertPromptAllowed(effective.prompt);
+  const unsupported = new Set(["xlsx"]);
+  if (unsupported.has(String(effective.expected_extension))) {
+    return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `expected_extension="${effective.expected_extension}" is not supported on webai_chatgpt_generate_file: native downloadable .xlsx generation is not reliably produced by the driven chatgpt-web path. Supported: docx, pptx (and code/text artifacts: py, md, csv, svg, html, mmd, pdf).`);
+  }
+  try {
+    requireAbsoluteDir(effective.download_dir);
+    assertNotPublishDeniedLabel("Download", { tool: "webai.chatgpt.generate_file" });
+  } catch (error: any) {
+    const errorCode = webAiExtensionErrorCode(error);
+    return fileErrorOutput(errorCode, errorMessageFromUnknown(error, "ChatGPT generate-file preflight failed"));
+  }
+  const started = Date.now();
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptExtensionPage(backend, effective);
+    const promptResult = await sendPromptInExtensionPage("chatgpt", effective, page, started);
+    if (promptResult.errorCode) {
+      return fileErrorOutput(promptResult.errorCode as ConsumerErrorCode, promptResult.error_code ? String(promptResult.error_code) : "ChatGPT generate-file prompt failed before download");
+    }
+    const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: promptResult.chat_url || targetUrlFor("chatgpt", effective), text: "" }));
+    await page.assetsList().catch(() => []);
+    const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
+    const chatgptArtifactTimeoutMs = Math.min(Number(effective.timeout_ms || 480000), 480000);
+    const result = await artifactClickRunner(runtime)({
+      profile: effective.profile,
+      tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
+      buttonSelector: '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type',
+      downloadDir: effective.download_dir,
+      filenamePattern: `\\.${effective.expected_extension}$`,
+      timeoutMs: chatgptArtifactTimeoutMs,
+      locateTimeoutMs: 360000,
+      useJsClickFallback: true,
+      pageReadyEvidence: {
+        backend: "extension-assisted-cdp",
+        capturedAt: bundle.capturedAt,
+        assetCount: bundle.assets.length
+      }
+    });
+    return artifactClickResultToSafeOutput(result, { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
+  } catch (error: any) {
+    const errorCode = webAiExtensionErrorCode(error);
     return fileErrorOutput(errorCode, errorMessageFromUnknown(error, errorCode));
   } finally {
     await backend?.finalize?.().catch?.(() => undefined);
@@ -4653,15 +4886,30 @@ export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRunt
   if (backend === "managed-cdp") return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
   return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
-export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return uploadAndQueryWithExtensionBackend("chatgpt", args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return uploadAndQueryOnPage("chatgpt", args, runtimeOrDefault(runtime));
+  return uploadExtensionErrorOutput("chatgpt", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+}
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "managed-cdp") return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return uploadAndQueryClaudeWithExtensionBackend(args, runtimeOrDefault(runtime));
   return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
-export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return generateFileOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return uploadAndQueryWithExtensionBackend("gemini", args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime));
+  return uploadExtensionErrorOutput("gemini", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+}
+export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return generateChatgptFileWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return generateFileOnPage("chatgpt", args, runtimeOrDefault(runtime));
+  return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_file backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+}
 export async function webAiClaudeGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "managed-cdp") return generateFileOnPage("claude", args, runtimeOrDefault(runtime));
@@ -4724,11 +4972,30 @@ function selectModelSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: stri
   }, json.required || []);
 }
 
+function uploadSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} upload routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
+function generateFileSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} generate-file routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
 const webAiChatgptSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiChatgptSendPromptInput, "ChatGPT");
 const webAiGeminiSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiGeminiSendPromptInput, "Gemini");
 const webAiChatgptSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiChatgptSelectModelInput, "ChatGPT");
 const webAiClaudeSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiClaudeSelectModelInput, "Claude");
 const webAiGeminiSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiGeminiSelectModelInput, "Gemini");
+const webAiChatgptUploadAndQueryWithBackendInput = uploadSchemaWithBackend(webAiUploadAndQueryInput, "ChatGPT");
+const webAiGeminiUploadAndQueryWithBackendInput = uploadSchemaWithBackend(webAiUploadAndQueryInput, "Gemini");
+const webAiChatgptGenerateFileWithBackendInput = generateFileSchemaWithBackend(webAiGenerateFileInput, "ChatGPT");
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -4825,7 +5092,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_upload_and_query",
     description: "Upload files to ChatGPT and ask a prompt about them.",
-    schema: webAiUploadAndQueryInput,
+    schema: webAiChatgptUploadAndQueryWithBackendInput,
     handler: async (args, runtime) => webAiChatgptUploadAndQuery(args, runtime)
   },
   {
@@ -4837,13 +5104,13 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_upload_and_query",
     description: "Upload files to Gemini and ask a prompt about them.",
-    schema: webAiUploadAndQueryInput,
+    schema: webAiGeminiUploadAndQueryWithBackendInput,
     handler: async (args, runtime) => webAiGeminiUploadAndQuery(args, runtime)
   },
   {
     name: "webai_chatgpt_generate_file",
     description: "Ask ChatGPT to generate a downloadable file artifact and return sha256 metadata.",
-    schema: webAiGenerateFileInput,
+    schema: webAiChatgptGenerateFileWithBackendInput,
     handler: async (args, runtime) => webAiChatgptGenerateFile(args, runtime)
   },
   {

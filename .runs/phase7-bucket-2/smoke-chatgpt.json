@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "selected_model": null,
+  "selected_thinking_level": null,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "error_code": "ELEMENT_NOT_FOUND",
+  "message": "ELEMENT_NOT_FOUND: ChatGPT model option was not found: Thinking",
+  "evidence": {
+    "selector": "[role=\"menu\"] [data-testid=\"model-switcher-gpt-5-5-thinking\"][role=\"menuitemradio\"], [data-testid=\"model-switcher-gpt-5-5-thinking\"][role=\"menuitemradio\"], [role=\"menuitemradio\"]:has-text(\"Thinking\")",
+    "cause": "{\"success\":false,\"tabId\":740055919,\"engine\":\"cdp\",\"error\":{\"kind\":\"runtime_error\",\"message\":\"Error: waitForSelector timeout for [role=\\\"menuitemradio\\\"]:has-text(\\\"Thinking\\\") state=visible\\n    at <anonymous>:41:7\",\"details\":{\"lineNumber\":0,\"columnNumber\":0}},\"metrics\":{\"elapsedMs\":5020}}"
+  }
+}

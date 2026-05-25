@@ -8693,6 +8693,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT generate-file routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8951,6 +8958,13 @@
           "response_timeout_ms": {
             "type": "number",
             "description": "Maximum wait for model response completion in milliseconds; defaults to 120000"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT upload routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9966,6 +9980,13 @@
           "response_timeout_ms": {
             "type": "number",
             "description": "Maximum wait for model response completion in milliseconds; defaults to 120000"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini upload routing; defaults to managed-cdp"
           }
         },
         "required": [
