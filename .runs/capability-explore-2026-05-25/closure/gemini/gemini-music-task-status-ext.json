@@ -1,0 +1,19 @@
+{
+  "id": "gemini-music-task-status-ext",
+  "service": "gemini",
+  "source": "G5",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": null,
+  "closure_criterion": "raw status in {complete, completed} AND track_url/conversation_url non-empty",
+  "started_at": "2026-05-24T21:09:30.874Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/gemini-gemini-music-task-status-ext.yaml",
+    "examples/workflows/gemini-music-task-status-ext.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:30.874Z"
+}

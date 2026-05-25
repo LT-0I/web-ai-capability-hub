@@ -1,0 +1,26 @@
+# Rewritten 2026-05-25 from codex C8 draft.
+id: chatgpt-pulse-get-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Read the current ChatGPT Pulse digest
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:pulse:get
+      - --profile
+      - chatgpt
+      - --response-timeout-ms
+      - "120000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: status
+          equals: ready
+        - path: digest_text
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.json

@@ -1,0 +1,400 @@
+{
+  "id": "chatgpt-send-thinking-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C1",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-send-thinking-ext.yaml",
+  "closure_criterion": "response_text contains 351 AND completion_detected === true",
+  "started_at": "2026-05-25T02:50:46.390Z",
+  "ok": true,
+  "closureOk": true,
+  "cause": "thinking arithmetic gate failed",
+  "errorCode": "TIMEOUT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-25T02:50:46.540Z",
+      "finished_at": "2026-05-25T02:51:15.076Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/chatgpt-chatgpt-send-thinking-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": true,
+      "closure_ok": true,
+      "closure_cause": "thinking arithmetic gate failed",
+      "parsed": {
+        "ok": true,
+        "plan": {
+          "id": "chatgpt-send-thinking-ext",
+          "target": "chatgpt",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T02:50:46.694Z",
+          "actions": [
+            {
+              "stepId": "invoke-cli",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:chatgpt:send-prompt",
+                  "--profile",
+                  "chatgpt",
+                  "--backend",
+                  "extension-assisted-cdp",
+                  "--thinking",
+                  "--prompt",
+                  "Think step by step: 13 x 27 = ?",
+                  "--response-timeout-ms",
+                  "180000",
+                  "--json"
+                ],
+                "timeoutMs": 240000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "response_text",
+                      "regex": "351"
+                    },
+                    {
+                      "path": "completion_detected",
+                      "equals": true
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "chatgpt-send-thinking-ext",
+            "target": "chatgpt",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Send a Thinking prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)",
+            "steps": [
+              {
+                "id": "invoke-cli",
+                "command": "<circular>",
+                "timeoutMs": 240000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-thinking-ext.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "invoke-cli",
+            "ok": true,
+            "message": "command gate passed",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:chatgpt:send-prompt",
+                "--profile",
+                "chatgpt",
+                "--backend",
+                "extension-assisted-cdp",
+                "--thinking",
+                "--prompt",
+                "Think step by step: 13 x 27 = ?",
+                "--response-timeout-ms",
+                "180000",
+                "--json"
+              ],
+              "exit_code": 0,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 28330,
+              "stdout": "{\n  \"response_text\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\nChatGPT Instruments13 × 27Give feedback\",\n  \"elapsed_ms\": 28178,\n  \"wait_ms\": 8807,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Heavy\",\n  \"reuse_conversation\": false,\n  \"conversation_id\": \"6a13b915-3264-83e8-acff-234a20fb8b36\",\n  \"chat_url\": \"https://chatgpt.com/c/<conversation-id>\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "response_text": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+                "elapsed_ms": 28178,
+                "wait_ms": 8807,
+                "completion_detected": true,
+                "errorCode": null,
+                "model_used": "Heavy",
+                "reuse_conversation": false,
+                "conversation_id": "6a13b915-3264-83e8-acff-234a20fb8b36",
+                "chat_url": "https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 0,
+                  "ok": true
+                },
+                "json_path": [
+                  {
+                    "path": "response_text",
+                    "actual": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+                    "ok": true
+                  },
+                  {
+                    "path": "completion_detected",
+                    "actual": true,
+                    "ok": true
+                  }
+                ]
+              },
+              "response_text": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+              "wait_ms": 8807,
+              "completion_detected": true,
+              "errorCode": null,
+              "model_used": "Heavy",
+              "reuse_conversation": false,
+              "conversation_id": "6a13b915-3264-83e8-acff-234a20fb8b36",
+              "chat_url": "https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36"
+            }
+          }
+        ],
+        "runId": "run_8cad74d2e11e97d7"
+      },
+      "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"chatgpt-send-thinking-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T02:50:46.694Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:send-prompt\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--thinking\",\n            \"--prompt\",\n            \"Think step by step: 13 x 27 = ?\",\n            \"--response-timeout-ms\",\n            \"180000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"351\"\n              },\n              {\n                \"path\": \"completion_detected\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-send-thinking-ext\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Send a Thinking prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-thinking-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:send-prompt\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--thinking\",\n          \"--prompt\",\n          \"Think step by step: 13 x 27 = ?\",\n          \"--response-timeout-ms\",\n          \"180000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 28330,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\\\nChatGPT Instruments13 × 27Give feedback\\\",\\n  \\\"elapsed_ms\\\": 28178,\\n  \\\"wait_ms\\\": 8807,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"model_used\\\": \\\"Heavy\\\",\\n  \\\"reuse_conversation\\\": false,\\n  \\\"conversation_id\\\": \\\"6a13b915-3264-83e8-acff-234a20fb8b36\\\",\\n  \\\"chat_url\\\": \\\"https://chatgpt.com/c/<conversation-id>\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\nChatGPT Instruments13 × 27Give feedback\",\n          \"elapsed_ms\": 28178,\n          \"wait_ms\": 8807,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"model_used\": \"Heavy\",\n          \"reuse_conversation\": false,\n          \"conversation_id\": \"6a13b915-3264-83e8-acff-234a20fb8b36\",\n          \"chat_url\": \"https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\nChatGPT Instruments13 × 27Give feedback\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"completion_detected\",\n              \"actual\": true,\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\nChatGPT Instruments13 × 27Give feedback\",\n        \"wait_ms\": 8807,\n        \"completion_detected\": true,\n        \"errorCode\": null,\n        \"model_used\": \"Heavy\",\n        \"reuse_conversation\": false,\n        \"conversation_id\": \"6a13b915-3264-83e8-acff-234a20fb8b36\",\n        \"chat_url\": \"https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36\"\n      }\n    }\n  ],\n  \"runId\": \"run_8cad74d2e11e97d7\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "chatgpt",
+    "status": {
+      "profile": "chatgpt",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9223,
+      "connected": true,
+      "launchedByPackage": true,
+      "processId": 1710800,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "Canvas Document Creation",
+          "type": "page",
+          "url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "11BA805DCA390CE7F408A401E5E5D6ED",
+          "parentId": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop",
+          "type": "iframe",
+          "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "217F0F74C8D723DFD13387BB53D6876A",
+          "title": "User request silence",
+          "type": "page",
+          "url": "https://chatgpt.com/c/6a13b8fc-94b0-83e8-ada0-5cf6138634d4",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4",
+          "id": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08",
+          "id": "48CF4FD0F8678DD608E5735463637E08",
+          "parentId": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E",
+          "id": "9FAFF05EA3016CA7405FE180448C4E4E",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]",
+      "lease": {
+        "id": "lease_7602f5ea1b0331c2",
+        "profile_id": "chatgpt",
+        "run_id": "run_a4523ea5bbdfa9f2",
+        "owner_pid": 2564527,
+        "acquired_at": "2026-05-25T02:29:45.693Z",
+        "last_heartbeat_at": "2026-05-25T02:29:45.693Z",
+        "chrome_process_pid": 1710800,
+        "user_data_dir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt",
+        "released_at": null
+      }
+    },
+    "error": "{\n  \"profile\": \"chatgpt\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9223\",\n  \"cdpPort\": 9223,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 1710800,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"Canvas Document Creation\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"parentId\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop\",\n      \"type\": \"iframe\",\n      \"url\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"217F0F74C8D723DFD13387BB53D6876A\",\n      \"title\": \"User request silence\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/c/6a13b8fc-94b0-83e8-ada0-5cf6138634d4\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"id\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\",\n      \"id\": \"48CF4FD0F8678DD608E5735463637E08\",\n      \"parentId\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"id\": \"9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/browser/66f09e41-c6ad-40c3-9e59-b540ac084dcf\",\n  \"lease\": {\n    \"id\": \"lease_7602f5ea1b0331c2\",\n    \"profile_id\": \"chatgpt\",\n    \"run_id\": \"run_a4523ea5bbdfa9f2\",\n    \"owner_pid\": 2564527,\n    \"acquired_at\": \"2026-05-25T02:29:45.693Z\",\n    \"last_heartbeat_at\": \"2026-05-25T02:29:45.693Z\",\n    \"chrome_process_pid\": 1710800,\n    \"user_data_dir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n    \"released_at\": null\n  }\n}\n"
+  },
+  "workflow_output": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-send-thinking-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T02:50:46.694Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:send-prompt",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--thinking",
+              "--prompt",
+              "Think step by step: 13 x 27 = ?",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "351"
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-send-thinking-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Send a Thinking prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-thinking-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:send-prompt",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--thinking",
+            "--prompt",
+            "Think step by step: 13 x 27 = ?",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 28330,
+          "stdout": "{\n  \"response_text\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\\nChatGPT Instruments13 × 27Give feedback\",\n  \"elapsed_ms\": 28178,\n  \"wait_ms\": 8807,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Heavy\",\n  \"reuse_conversation\": false,\n  \"conversation_id\": \"6a13b915-3264-83e8-acff-234a20fb8b36\",\n  \"chat_url\": \"https://chatgpt.com/c/<conversation-id>\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+            "elapsed_ms": 28178,
+            "wait_ms": 8807,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": "Heavy",
+            "reuse_conversation": false,
+            "conversation_id": "6a13b915-3264-83e8-acff-234a20fb8b36",
+            "chat_url": "https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\nChatGPT Instruments13 × 27Give feedback",
+          "wait_ms": 8807,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Heavy",
+          "reuse_conversation": false,
+          "conversation_id": "6a13b915-3264-83e8-acff-234a20fb8b36",
+          "chat_url": "https://chatgpt.com/c/6a13b915-3264-83e8-acff-234a20fb8b36"
+        }
+      }
+    ],
+    "runId": "run_8cad74d2e11e97d7"
+  },
+  "closure_status": "green",
+  "finished_at": "2026-05-25T02:51:15.076Z"
+}

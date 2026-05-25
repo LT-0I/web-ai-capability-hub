@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-generate-file-pptx-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND size_bytes > 8192 AND filename ends with .pptx",
+  "started_at": "2026-05-25T02:32:23.935Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+    "examples/workflows/chatgpt-generate-file-pptx-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T02:32:23.935Z"
+}

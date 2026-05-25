@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "errorCode": "COMMAND_TIMEOUT",
+  "error_code": "COMMAND_TIMEOUT",
+  "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]').first() to be visible\u001b[22m\n",
+  "evidence": {
+    "tool": "webai_gemini_send_prompt",
+    "stage": "handler",
+    "message": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]').first() to be visible\u001b[22m\n",
+    "error_name": "TimeoutError"
+  }
+}

@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --url https://gemini.google.com/gem/coding-partner --reuse-conversation --prompt Say\ only\ OK --response-timeout-ms 90000 --timeout-ms 120000 --json

@@ -1,0 +1,605 @@
+{
+  "id": "gemini-generate-image-ext",
+  "service": "gemini",
+  "source": "G3",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/gemini-generate-image-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND size_bytes > 1024 AND sha256 non-empty",
+  "started_at": "2026-05-25T02:44:25.004Z",
+  "ok": false,
+  "closureOk": false,
+  "cause": "workflow-run-failed",
+  "errorCode": "TIMEOUT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-25T02:44:25.150Z",
+      "finished_at": "2026-05-25T02:44:26.093Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/gemini-generate-image-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "plan": {
+          "id": "gemini-generate-image-ext",
+          "target": "gemini",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T02:44:25.310Z",
+          "actions": [
+            {
+              "stepId": "invoke-cli",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:generate-image",
+                  "--profile",
+                  "gemini-9225",
+                  "--backend",
+                  "extension-assisted-cdp",
+                  "--prompt",
+                  "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+                  "--download-dir",
+                  "/tmp/explore-2026-05-25/gemini",
+                  "--json"
+                ],
+                "timeoutMs": 300000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "path",
+                      "nonempty": true
+                    },
+                    {
+                      "path": "sha256",
+                      "nonempty": true
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "gemini-generate-image-ext",
+            "target": "gemini",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Generate an image in Gemini and save the downloaded PNG",
+            "steps": [
+              {
+                "id": "invoke-cli",
+                "command": "<circular>",
+                "timeoutMs": 300000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "invoke-cli",
+            "ok": false,
+            "message": "command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:generate-image",
+                "--profile",
+                "gemini-9225",
+                "--backend",
+                "extension-assisted-cdp",
+                "--prompt",
+                "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+                "--download-dir",
+                "/tmp/explore-2026-05-25/gemini",
+                "--json"
+              ],
+              "exit_code": 1,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 736,
+              "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"dimensions\": null,\n  \"download_filename\": \"\",\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"Error fetching web content: Could not establish connection. Receiving end does not exist.\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "path": "",
+                "sha256": "",
+                "size_bytes": 0,
+                "dimensions": null,
+                "download_filename": "",
+                "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+                "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+                "message": "Error fetching web content: Could not establish connection. Receiving end does not exist."
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 1,
+                  "ok": false
+                },
+                "json_path": [
+                  {
+                    "path": "path",
+                    "actual": "",
+                    "ok": false,
+                    "reasons": [
+                      "empty"
+                    ]
+                  },
+                  {
+                    "path": "sha256",
+                    "actual": "",
+                    "ok": false,
+                    "reasons": [
+                      "empty"
+                    ]
+                  }
+                ]
+              },
+              "path": "",
+              "sha256": "",
+              "size_bytes": 0,
+              "dimensions": null,
+              "download_filename": "",
+              "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+              "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+              "message": "Error fetching web content: Could not establish connection. Receiving end does not exist."
+            }
+          }
+        ],
+        "runId": "run_d05b18951625cf00"
+      },
+      "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-generate-image-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T02:44:25.310Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:generate-image\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/gemini\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 300000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"path\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"sha256\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-generate-image-ext\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate an image in Gemini and save the downloaded PNG\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 300000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:generate-image\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 736,\n        \"stdout\": \"{\\n  \\\"path\\\": \\\"\\\",\\n  \\\"sha256\\\": \\\"\\\",\\n  \\\"size_bytes\\\": 0,\\n  \\\"dimensions\\\": null,\\n  \\\"download_filename\\\": \\\"\\\",\\n  \\\"errorCode\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"error_code\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"message\\\": \\\"Error fetching web content: Could not establish connection. Receiving end does not exist.\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"dimensions\": null,\n          \"download_filename\": \"\",\n          \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"message\": \"Error fetching web content: Could not establish connection. Receiving end does not exist.\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"sha256\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"dimensions\": null,\n        \"download_filename\": \"\",\n        \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"message\": \"Error fetching web content: Could not establish connection. Receiving end does not exist.\"\n      }\n    }\n  ],\n  \"runId\": \"run_d05b18951625cf00\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-05-25T02:44:26.093Z",
+      "finished_at": "2026-05-25T02:44:30.557Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/gemini-generate-image-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "plan": {
+          "id": "gemini-generate-image-ext",
+          "target": "gemini",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T02:44:26.244Z",
+          "actions": [
+            {
+              "stepId": "invoke-cli",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:generate-image",
+                  "--profile",
+                  "gemini-9225",
+                  "--backend",
+                  "extension-assisted-cdp",
+                  "--prompt",
+                  "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+                  "--download-dir",
+                  "/tmp/explore-2026-05-25/gemini",
+                  "--json"
+                ],
+                "timeoutMs": 300000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "path",
+                      "nonempty": true
+                    },
+                    {
+                      "path": "sha256",
+                      "nonempty": true
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "gemini-generate-image-ext",
+            "target": "gemini",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Generate an image in Gemini and save the downloaded PNG",
+            "steps": [
+              {
+                "id": "invoke-cli",
+                "command": "<circular>",
+                "timeoutMs": 300000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "invoke-cli",
+            "ok": false,
+            "message": "command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:generate-image",
+                "--profile",
+                "gemini-9225",
+                "--backend",
+                "extension-assisted-cdp",
+                "--prompt",
+                "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+                "--download-dir",
+                "/tmp/explore-2026-05-25/gemini",
+                "--json"
+              ],
+              "exit_code": 1,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 4263,
+              "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"dimensions\": null,\n  \"download_filename\": \"\",\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"Error filling element: Element with selector \\\"rich-textarea .ql-editor[contenteditable=\\\"true\\\"]\\\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "path": "",
+                "sha256": "",
+                "size_bytes": 0,
+                "dimensions": null,
+                "download_filename": "",
+                "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+                "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+                "message": "Error filling element: Element with selector \"rich-textarea .ql-editor[contenteditable=\"true\"]\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 1,
+                  "ok": false
+                },
+                "json_path": [
+                  {
+                    "path": "path",
+                    "actual": "",
+                    "ok": false,
+                    "reasons": [
+                      "empty"
+                    ]
+                  },
+                  {
+                    "path": "sha256",
+                    "actual": "",
+                    "ok": false,
+                    "reasons": [
+                      "empty"
+                    ]
+                  }
+                ]
+              },
+              "path": "",
+              "sha256": "",
+              "size_bytes": 0,
+              "dimensions": null,
+              "download_filename": "",
+              "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+              "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+              "message": "Error filling element: Element with selector \"rich-textarea .ql-editor[contenteditable=\"true\"]\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)"
+            }
+          }
+        ],
+        "runId": "run_b4d637a44d1c967c"
+      },
+      "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-generate-image-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T02:44:26.244Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:generate-image\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/gemini\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 300000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"path\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"sha256\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-generate-image-ext\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate an image in Gemini and save the downloaded PNG\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 300000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:generate-image\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 4263,\n        \"stdout\": \"{\\n  \\\"path\\\": \\\"\\\",\\n  \\\"sha256\\\": \\\"\\\",\\n  \\\"size_bytes\\\": 0,\\n  \\\"dimensions\\\": null,\\n  \\\"download_filename\\\": \\\"\\\",\\n  \\\"errorCode\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"error_code\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"message\\\": \\\"Error filling element: Element with selector \\\\\\\"rich-textarea .ql-editor[contenteditable=\\\\\\\"true\\\\\\\"]\\\\\\\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"dimensions\": null,\n          \"download_filename\": \"\",\n          \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"message\": \"Error filling element: Element with selector \\\"rich-textarea .ql-editor[contenteditable=\\\"true\\\"]\\\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"sha256\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"dimensions\": null,\n        \"download_filename\": \"\",\n        \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"message\": \"Error filling element: Element with selector \\\"rich-textarea .ql-editor[contenteditable=\\\"true\\\"]\\\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)\"\n      }\n    }\n  ],\n  \"runId\": \"run_b4d637a44d1c967c\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "gemini-9225",
+    "status": {
+      "profile": "gemini-9225",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9225,
+      "connected": true,
+      "launchedByPackage": false,
+      "processId": 1712347,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "AB929774CC368427D5108F1969B82F1D",
+          "title": "Exploring Apple Varieties and History - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/365dce552b020c8b",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "ED48360EA99AEC744A8021C33F2A68B4",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "9477E689C6EDC614EF539939A0C3DC0F",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e",
+          "type": "iframe",
+          "url": "blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "A008875AF8772180352B1D55F0F4E796",
+          "title": "Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/gem/coding-partner/2d96af2c3934c271",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "90FEB2142EA0B68E72E1585DAFD3041C",
+          "parentId": "A008875AF8772180352B1D55F0F4E796",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "Apps",
+          "type": "page",
+          "url": "https://gemini.google.com/apps",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "2F3D8296A77357A426217AE993C19CB0",
+          "parentId": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42",
+          "id": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E",
+          "id": "3CD057D01379E753B4725214C0CA181E",
+          "parentId": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9",
+          "id": "C55CB73F34730AD0B85E62349DE999D9",
+          "parentId": "3CD057D01379E753B4725214C0CA181E",
+          "title": "https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN",
+          "type": "iframe",
+          "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4",
+          "id": "CDC9032428814FC8BBA9D101647A94A4",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    "error": "{\n  \"profile\": \"gemini-9225\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/gemini-9225\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9225\",\n  \"cdpPort\": 9225,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 1712347,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"Exploring Apple Varieties and History - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/365dce552b020c8b\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"ED48360EA99AEC744A8021C33F2A68B4\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"9477E689C6EDC614EF539939A0C3DC0F\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e\",\n      \"type\": \"iframe\",\n      \"url\": \"blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/gem/coding-partner/2d96af2c3934c271\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"parentId\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"Apps\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/apps\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"2F3D8296A77357A426217AE993C19CB0\",\n      \"parentId\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"id\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\",\n      \"id\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"parentId\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\",\n      \"id\": \"C55CB73F34730AD0B85E62349DE999D9\",\n      \"parentId\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"title\": \"https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN\",\n      \"type\": \"iframe\",\n      \"url\": \"https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\",\n      \"id\": \"CDC9032428814FC8BBA9D101647A94A4\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/browser/8e919c0a-a019-43bc-bad4-9a93876890c0\"\n}\n"
+  },
+  "workflow_output": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-generate-image-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T02:44:26.244Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:generate-image",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--json"
+            ],
+            "timeoutMs": 300000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                },
+                {
+                  "path": "sha256",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-generate-image-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate an image in Gemini and save the downloaded PNG",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 300000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:generate-image",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 4263,
+          "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"dimensions\": null,\n  \"download_filename\": \"\",\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"Error filling element: Element with selector \\\"rich-textarea .ql-editor[contenteditable=\\\"true\\\"]\\\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "",
+            "sha256": "",
+            "size_bytes": 0,
+            "dimensions": null,
+            "download_filename": "",
+            "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+            "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+            "message": "Error filling element: Element with selector \"rich-textarea .ql-editor[contenteditable=\"true\"]\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              },
+              {
+                "path": "sha256",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              }
+            ]
+          },
+          "path": "",
+          "sha256": "",
+          "size_bytes": 0,
+          "dimensions": null,
+          "download_filename": "",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "Error filling element: Element with selector \"rich-textarea .ql-editor[contenteditable=\"true\"]\" is not a fillable element (must be INPUT, TEXTAREA, or SELECT)"
+        }
+      }
+    ],
+    "runId": "run_b4d637a44d1c967c"
+  },
+  "closure_status": "red",
+  "finished_at": "2026-05-25T02:44:30.557Z"
+}

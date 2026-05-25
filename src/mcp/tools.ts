@@ -214,13 +214,39 @@ function pageMatchesRequestedTab(pageUrl: string, requested?: string): boolean {
   }
 }
 
-async function activeManagedPage(browser: any, targetUrl?: string, requestedTab?: string): Promise<any> {
+function sleepMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isGeminiManagedTarget(targetUrl?: string, requested?: string): boolean {
+  const normalizedRequested = normalizeUrlLikeTarget(requested);
+  return Boolean(targetUrl?.includes("gemini.google.com") || normalizedRequested?.includes("gemini.google.com"));
+}
+
+async function activeManagedPage(browser: any, targetUrl?: string, requestedTab?: string, options: { pollForRequestedMs?: number; requireRequested?: boolean } = {}): Promise<any> {
   const contexts = browser.contexts?.() || [];
   const context = contexts[0] || await browser.newContext?.();
   if (!context) throw new Error("No browser context is available from the managed CDP connection.");
-  const pages = contexts.flatMap((ctx: any) => ctx.pages?.() || []);
+  const currentPages = () => {
+    const freshContexts = browser.contexts?.() || [];
+    const scopedContexts = freshContexts.length ? freshContexts : [context];
+    return scopedContexts.flatMap((ctx: any) => ctx.pages?.() || []);
+  };
+  let pages = currentPages();
   let page = pages.find((candidate: any) => pageMatchesRequestedTab(candidate.url?.() || "", requestedTab));
   let matchedRequested = Boolean(page);
+  if (!page && requestedTab && options.pollForRequestedMs) {
+    const deadline = Date.now() + options.pollForRequestedMs;
+    while (!page && Date.now() < deadline) {
+      await sleepMs(Math.min(250, Math.max(1, deadline - Date.now())));
+      pages = currentPages();
+      page = pages.find((candidate: any) => pageMatchesRequestedTab(candidate.url?.() || "", requestedTab));
+    }
+    matchedRequested = Boolean(page);
+  }
+  if (!page && requestedTab && options.requireRequested) {
+    throw new WebAiToolError(ConsumerErrorCodes.TARGET_PAGE_MISSING, `TAB_NOT_FOUND: requested tab was not found for ${requestedTab}`, { requested: requestedTab, targetUrl, poll_ms: options.pollForRequestedMs || 0 });
+  }
   if (!page) page = pages.find((candidate: any) => pageMatchesTargetUrl(candidate.url?.() || "", targetUrl));
   if (!page) page = pages.find((candidate: any) => isUsefulPageUrl(candidate.url?.() || "") && candidate.url?.() !== "about:blank");
   if (!page) page = pages.find((candidate: any) => isUsefulPageUrl(candidate.url?.() || ""));
@@ -241,11 +267,16 @@ async function activeManagedPage(browser: any, targetUrl?: string, requestedTab?
 
 export async function withManagedPage<T>(args: any, runtime: Required<BrowserToolRuntime>, targetUrl: string | undefined, fn: (page: any) => Promise<T>): Promise<T> {
   const profile = args.profile || process.env.WAH_DEFAULT_PROFILE || "default";
-  const status = await runtime.launcher.launch({ profile, url: targetUrl, cdpPort: args.cdpPort });
+  const requested = args.url || args.tab_url_contains;
+  const isGeminiTarget = isGeminiManagedTarget(targetUrl, requested);
+  const launchUrl = isGeminiTarget && args.reuse_conversation && requested ? undefined : targetUrl;
+  const status = await runtime.launcher.launch({ profile, url: launchUrl, cdpPort: args.cdpPort });
   const browser = await runtime.launcher.connectOverCdp(status);
   try {
-    const requested = args.url || args.tab_url_contains;
-    const page = await activeManagedPage(browser, targetUrl, requested);
+    const page = await activeManagedPage(browser, targetUrl, requested, {
+      pollForRequestedMs: isGeminiTarget && requested ? 5000 : 0,
+      requireRequested: Boolean(isGeminiTarget && args.reuse_conversation && requested)
+    });
     const forcedTarget = normalizeUrlLikeTarget(requested) || (targetUrl && (requested || args.__requireTargetSurface) ? targetUrl : undefined);
     const forcedMatches = requested ? pageMatchesRequestedTab(page.url?.() || "", requested) : pageMatchesTargetUrl(page.url?.() || "", forcedTarget);
     if (forcedTarget && !forcedMatches) {
@@ -511,8 +542,8 @@ const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Download full size im
 //      NEW browser page at https://docs.google.com/document/d/<id>/edit.
 const GEMINI_CANVAS_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Canvas")';
 const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]';
-const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"]';
-const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = 'button[data-test-id="export-to-docs-button"]';
+const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"], button[aria-label="Share and export canvas"]';
+const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = '[data-test-id="export-to-docs-button"]';
 const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
 // Veo video generation flow (same composer): Upload & tools → Create video
 // menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
@@ -1006,16 +1037,10 @@ function sendButtonSelector(service: WebAiService): string {
   return '[aria-label*="Send" i]';
 }
 
-async function waitForPromptCompletion(service: WebAiService, page: any, sentAt: number, assistantCountBefore: number, timeoutMs: number): Promise<{ completion_detected: boolean; wait_ms: number }> {
-  void sentAt;
-  const started = Date.now();
-  const elapsed = () => Date.now() - started;
-  const phaseATimeout = Math.min(20000, timeoutMs);
-  const stopSelector = stopButtonSelector(service);
-  const sendSelector = sendButtonSelector(service);
-  const assistantSelector = assistantMessageSelector(service);
-
-  if (service === "gemini") {
+async function waitForGeminiGenerationStart(page: any, stopSelector: string, assistantCountBefore: number, timeoutMs: number): Promise<boolean> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  const maxAttempts = 4;
+  for (let attempt = 0; attempt < maxAttempts && Date.now() < deadline; attempt++) {
     try {
       await page.waitForFunction?.(
         ({ stopSelector, turnSelector, assistantCountBefore }: any) => {
@@ -1025,40 +1050,114 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
           return stopVisible || turnCount > assistantCountBefore;
         },
         { stopSelector, turnSelector: GEMINI_TURN_SELECTOR, assistantCountBefore },
-        { timeout: phaseATimeout }
+        { timeout: Math.max(1, deadline - Date.now()) }
       );
+      return true;
     } catch (_error) {
+      const remaining = deadline - Date.now();
+      if (attempt >= maxAttempts - 1 || remaining < 750) return false;
+      await sleepMs(750);
+    }
+  }
+  return false;
+}
+
+async function waitForGeminiCompletionUi(page: any, stopSelector: string, sendSelector: string, regenerateSelector: string, timeoutMs: number): Promise<boolean> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  const maxAttempts = 4;
+  for (let attempt = 0; attempt < maxAttempts && Date.now() < deadline; attempt++) {
+    try {
+      await page.waitForFunction?.(
+        ({ stopSelector, sendSelector, regenerateSelector }: any) => {
+          const visible = (el: Element) => !!((el as HTMLElement).offsetWidth || (el as HTMLElement).offsetHeight || (el as HTMLElement).getClientRects().length);
+          const stopVisible = Array.from(document.querySelectorAll(stopSelector)).some(visible);
+          // Keep Send in the detector payload for traceability, but do NOT gate
+          // on it: Gemini leaves an empty composer with Send aria-disabled=true
+          // after completion.
+          document.querySelectorAll(sendSelector);
+          const regeneratePresent = Array.from(document.querySelectorAll(regenerateSelector)).some(visible);
+          const ready = regeneratePresent && !stopVisible;
+          const state = (window as any).__webAiCompletionStable || ((window as any).__webAiCompletionStable = { ready: false, since: Date.now() });
+          if (state.ready !== ready) {
+            state.ready = ready;
+            state.since = Date.now();
+          }
+          return ready && Date.now() - state.since >= 1500;
+        },
+        { stopSelector, sendSelector, regenerateSelector },
+        { timeout: Math.max(1, deadline - Date.now()) }
+      );
+      return true;
+    } catch (_error) {
+      const remaining = deadline - Date.now();
+      if (attempt >= maxAttempts - 1 || remaining < 750) return false;
+      await sleepMs(750);
+    }
+  }
+  return false;
+}
+
+async function geminiSnapshotVisibleTextLength(page: any): Promise<number | null | undefined> {
+  if (typeof page.context !== "function") return undefined;
+  const snapshot = await readPageSnapshot(page, { includePortals: true }).catch(() => null);
+  if (!snapshot) return null;
+  return (snapshot.visibleText || "").trim().length;
+}
+
+async function waitForGeminiCanonicalTextStable(page: any, timeoutMs: number): Promise<boolean> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let lastLength: number | null = null;
+  let stableSince = Date.now();
+  while (Date.now() < deadline) {
+    const textLength = await geminiSnapshotVisibleTextLength(page);
+    const now = Date.now();
+    if (textLength === undefined) return true;
+    if (textLength !== null) {
+      if (textLength !== lastLength) {
+        lastLength = textLength;
+        stableSince = now;
+      } else if (now - stableSince >= 2500) {
+        return true;
+      }
+    } else {
+      lastLength = null;
+      stableSince = now;
+    }
+    await sleepMs(Math.min(500, Math.max(1, deadline - Date.now())));
+  }
+  return false;
+}
+
+async function waitForGeminiStableCompletion(page: any, stopSelector: string, sendSelector: string, regenerateSelector: string, timeoutMs: number): Promise<boolean> {
+  const started = Date.now();
+  if (!await waitForGeminiCompletionUi(page, stopSelector, sendSelector, regenerateSelector, timeoutMs)) return false;
+  return waitForGeminiCanonicalTextStable(page, Math.max(1, timeoutMs - (Date.now() - started)));
+}
+
+async function waitForPromptCompletion(service: WebAiService, page: any, sentAt: number, assistantCountBefore: number, timeoutMs: number): Promise<{ completion_detected: boolean; wait_ms: number }> {
+  void sentAt;
+  const started = Date.now();
+  const elapsed = () => Date.now() - started;
+  const phaseATimeout = Math.min(service === "gemini" ? 60000 : 20000, timeoutMs);
+  const stopSelector = stopButtonSelector(service);
+  const sendSelector = sendButtonSelector(service);
+  const assistantSelector = assistantMessageSelector(service);
+
+  if (service === "gemini") {
+    if (!await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, phaseATimeout)) {
       return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
     }
 
     const remaining = Math.max(1, timeoutMs - elapsed());
-    try {
-      await page.waitForFunction?.(
-        ({ stopSelector, regenerateSelector }: any) => {
-          const visible = (el: Element) => !!((el as HTMLElement).offsetWidth || (el as HTMLElement).offsetHeight || (el as HTMLElement).getClientRects().length);
-          const stopVisible = Array.from(document.querySelectorAll(stopSelector)).some(visible);
-          // NOTE: do NOT gate on the Send button being enabled. After a Gemini
-          // response the composer is empty, so Send is aria-disabled="true"
-          // indefinitely; requiring it never converges. The regenerate-button
-          // (response-action toolbar) + no Stop + stable text is the reliable,
-          // sufficient completion signal (dom-probe-r2 §C, confirmed live r6).
-          const regeneratePresent = Array.from(document.querySelectorAll(regenerateSelector)).some(visible);
-          const stableTarget = document.querySelector("main") as HTMLElement | null;
-          const textLength = stableTarget?.textContent?.length || 0;
-          const state = (window as any).__webAiCompletionStable || ((window as any).__webAiCompletionStable = { length: -1, since: Date.now() });
-          if (state.length !== textLength) {
-            state.length = textLength;
-            state.since = Date.now();
-          }
-          return regeneratePresent && !stopVisible && Date.now() - state.since >= 1500;
-        },
-        { stopSelector, sendSelector, regenerateSelector: GEMINI_REGENERATE_BUTTON_SELECTOR },
-        { timeout: remaining }
-      );
+    // NOTE: do NOT gate on the Send button being enabled. After a Gemini
+    // response the composer is empty, so Send is aria-disabled="true"
+    // indefinitely; requiring it never converges. The response-action toolbar
+    // + no Stop + canonical-reader text stability is the reliable completion
+    // signal and also survives Gemini SPA execution-context churn.
+    if (await waitForGeminiStableCompletion(page, stopSelector, sendSelector, GEMINI_REGENERATE_BUTTON_SELECTOR, remaining)) {
       return { completion_detected: true, wait_ms: elapsed() };
-    } catch (_error) {
-      return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
     }
+    return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
   }
 
   try {

@@ -1,0 +1,142 @@
+{
+  "id": "gemini-gems-converse",
+  "target": "gemini",
+  "profile": "gemini-9225",
+  "mode": "managed-cdp",
+  "compiledAt": "2026-05-24T20:40:41.817Z",
+  "actions": [
+    {
+      "stepId": "open-gem-tab",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "send-gem-prompt",
+      "capability": "gemini-gems-converse-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "verify-gem-gate",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "final-text",
+      "action": {
+        "type": "extract",
+        "extract": "text",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [
+    "No exact compiler rule for capability 'gemini-gems-converse-mgr'. Falling back to read/observe action."
+  ],
+  "result": {
+    "type": "text"
+  },
+  "definition": {
+    "id": "gemini-gems-converse",
+    "service": "gemini",
+    "target": "gemini",
+    "capability_id": "gemini-gems-converse-mgr",
+    "mode": "managed-cdp",
+    "backend": "managed-cdp",
+    "profile": "gemini-9225",
+    "description": "Open a Gemini Gem URL and send a prompt on the Gem conversation surface via managed CDP.",
+    "conversation": {
+      "reuse_conversation": true,
+      "url": "https://gemini.google.com/gem/coding-partner"
+    },
+    "inputs": {
+      "gem_url": "https://gemini.google.com/gem/coding-partner",
+      "prompt": "Say only OK",
+      "response_timeout_ms": 90000
+    },
+    "steps": [
+      {
+        "id": "open-gem-tab",
+        "name": "Ensure the requested Gem URL exists as a managed-CDP tab before reuse-conversation sends",
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "browser:tab:alloc",
+          "--profile",
+          "gemini-9225",
+          "--url",
+          "${gem_url}",
+          "--tab-id",
+          "gemini-gems-converse",
+          "--json"
+        ]
+      },
+      {
+        "id": "send-gem-prompt",
+        "name": "Send a prompt through the Gemini Gem URL",
+        "use_capability": "gemini-gems-converse-mgr",
+        "confirmed": true,
+        "input": {
+          "url": "${gem_url}",
+          "prompt": "${prompt}",
+          "reuse_conversation": true,
+          "response_timeout_ms": 90000
+        },
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--url",
+          "${gem_url}",
+          "--reuse-conversation",
+          "--prompt",
+          "${prompt}",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ]
+      },
+      {
+        "id": "verify-gem-gate",
+        "action": "read",
+        "input": {
+          "gate": "response_text non-empty AND chat_url contains /gem/"
+        }
+      }
+    ],
+    "success_gate": "response_text non-empty AND chat_url contains /gem/",
+    "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-gems-converse-mgr.json",
+    "last_observed_status": "OK_MANAGED_CDP_ONLY",
+    "artifact": {
+      "type": "gemini_gem_conversation",
+      "gem_url": "https://gemini.google.com/gem/coding-partner",
+      "chat_url": "https://gemini.google.com/gem/coding-partner/2d96af2c3934c271"
+    },
+    "result": {
+      "type": "text"
+    }
+  }
+}

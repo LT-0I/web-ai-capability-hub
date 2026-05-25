@@ -1,0 +1,85 @@
+{
+  "cap_id": "claude-conversation-manage-mgr",
+  "service": "claude",
+  "profile": "claude-9224",
+  "backend": "managed-cdp",
+  "source": "L9",
+  "verified_by": "codex-bucket-L9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "started_at": "2026-05-24T19:01:19.310Z",
+  "completed_at": "2026-05-24T19:01:19.585Z",
+  "actual_cli_contract": {
+    "source_files": [
+      "src/mcp/schemas.ts",
+      "src/mcp/tools.ts",
+      "src/cli.ts"
+    ],
+    "supported_actions": [
+      "search",
+      "share",
+      "sidebar_options"
+    ],
+    "unsupported_requested_actions": [
+      "rename",
+      "delete"
+    ],
+    "unsupported_requested_flag": "new-title"
+  },
+  "commands": {
+    "step_a_send_prompt": {
+      "skipped": true,
+      "reason": "rename/delete fail schema validation; creating the temporary chat would be unrecoverable by the requested delete step in current CLI"
+    },
+    "step_b_rename": {
+      "command": "node dist/src/cli.js webai:claude:conversation-manage --profile claude-9224 --action rename --tab-url-contains about:blank --new-title probe-rename-test --json",
+      "started_at": "2026-05-24T19:01:19.310Z",
+      "completed_at": "2026-05-24T19:01:19.447Z",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.action must be one of search, share, sidebar_options\",\n  \"evidence\": {\n    \"tool\": \"webai_claude_conversation_manage\",\n    \"stage\": \"schema\",\n    \"message\": \"$.action must be one of search, share, sidebar_options\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+      "stderr": "",
+      "json": {
+        "ok": false,
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.action must be one of search, share, sidebar_options",
+        "evidence": {
+          "tool": "webai_claude_conversation_manage",
+          "stage": "schema",
+          "message": "$.action must be one of search, share, sidebar_options",
+          "error_name": "Error"
+        }
+      },
+      "error": null
+    },
+    "step_c_delete": {
+      "command": "node dist/src/cli.js webai:claude:conversation-manage --profile claude-9224 --action delete --tab-url-contains about:blank --json",
+      "started_at": "2026-05-24T19:01:19.447Z",
+      "completed_at": "2026-05-24T19:01:19.585Z",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.action must be one of search, share, sidebar_options\",\n  \"evidence\": {\n    \"tool\": \"webai_claude_conversation_manage\",\n    \"stage\": \"schema\",\n    \"message\": \"$.action must be one of search, share, sidebar_options\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+      "stderr": "",
+      "json": {
+        "ok": false,
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.action must be one of search, share, sidebar_options",
+        "evidence": {
+          "tool": "webai_claude_conversation_manage",
+          "stage": "schema",
+          "message": "$.action must be one of search, share, sidebar_options",
+          "error_name": "Error"
+        }
+      },
+      "error": null
+    }
+  },
+  "completion_gate": "rename ok === true AND delete ok === true",
+  "gate": {
+    "ok": false,
+    "rename_ok": false,
+    "delete_ok": false,
+    "reason": "Current webai_claude_conversation_manage schema only accepts action search/share/sidebar_options; rename/delete rejected before browser action. Step A send-prompt was intentionally skipped to avoid leaving an undeletable throwaway chat."
+  }
+}

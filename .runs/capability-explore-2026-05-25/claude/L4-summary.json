@@ -1,0 +1,27 @@
+{
+  "bucket": "L4",
+  "service": "claude",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "failures": 2,
+  "results": [
+    {
+      "id": "claude-generate-file-docx-ext",
+      "status": "FAIL_CLOSED_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-docx-ext.json",
+      "workflow": "examples/workflows/claude-claude-generate-file-docx-ext.yaml",
+      "artifact_path": null,
+      "size_bytes": 0,
+      "wall_ms": 22937
+    },
+    {
+      "id": "claude-generate-file-pptx-ext",
+      "status": "FAIL_CLOSED_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-pptx-ext.json",
+      "workflow": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+      "artifact_path": null,
+      "size_bytes": 0,
+      "wall_ms": 20250
+    }
+  ]
+}

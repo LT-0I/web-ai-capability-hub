@@ -1,0 +1,80 @@
+{
+  "id": "gemini-send-web-search-mgr",
+  "service": "gemini",
+  "bucket": "G1",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "tab_url_contains": "260e7fc538aef136",
+  "source": "capability-explore-2026-05-25/G1",
+  "verified_by": "codex-bucket-G1",
+  "started_at": "2026-05-24T17:11:39.262Z",
+  "finished_at": "2026-05-24T17:11:55.649Z",
+  "wall_ms": 16387,
+  "status": "FAIL_CLOSED_MANAGED",
+  "completion_gate": "response_text contains \"2026-05\" or a YYYY-MM-DD date.",
+  "completion_gate_passed": false,
+  "attempts": [
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --web-search --prompt \"What is today's date in YYYY-MM-DD?\" --response-timeout-ms 120000 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 5681,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_send_prompt\",\n    \"stage\": \"handler\",\n    \"message\": \"ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open\",\n    \"error_name\": \"Error\",\n    \"selector\": \"[role=\\\"menuitem\\\"][aria-label^=\\\"Upload files\\\"], [role=\\\"menuitemcheckbox\\\"]\",\n    \"cause\": \"page.waitForSelector: Timeout 5000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('[role=\\\"menuitem\\\"][aria-label^=\\\"Upload files\\\"], [role=\\\"menuitemcheckbox\\\"]') to be visible\\u001b[22m\\n\"\n  }\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open",
+        "evidence": {
+          "tool": "webai_gemini_send_prompt",
+          "stage": "handler",
+          "message": "ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open",
+          "error_name": "Error",
+          "selector": "[role=\"menuitem\"][aria-label^=\"Upload files\"], [role=\"menuitemcheckbox\"]",
+          "cause": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitem\"][aria-label^=\"Upload files\"], [role=\"menuitemcheckbox\"]') to be visible\u001b[22m\n"
+        }
+      },
+      "parse_error": null,
+      "attempt": 1,
+      "gate_passed": false
+    },
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --web-search --prompt \"What is today's date in YYYY-MM-DD?\" --response-timeout-ms 120000 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 5679,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_send_prompt\",\n    \"stage\": \"handler\",\n    \"message\": \"ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open\",\n    \"error_name\": \"Error\",\n    \"selector\": \"[role=\\\"menuitem\\\"][aria-label^=\\\"Upload files\\\"], [role=\\\"menuitemcheckbox\\\"]\",\n    \"cause\": \"page.waitForSelector: Timeout 5000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('[role=\\\"menuitem\\\"][aria-label^=\\\"Upload files\\\"], [role=\\\"menuitemcheckbox\\\"]') to be visible\\u001b[22m\\n\"\n  }\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open",
+        "evidence": {
+          "tool": "webai_gemini_send_prompt",
+          "stage": "handler",
+          "message": "ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open",
+          "error_name": "Error",
+          "selector": "[role=\"menuitem\"][aria-label^=\"Upload files\"], [role=\"menuitemcheckbox\"]",
+          "cause": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitem\"][aria-label^=\"Upload files\"], [role=\"menuitemcheckbox\"]') to be visible\u001b[22m\n"
+        }
+      },
+      "parse_error": null,
+      "attempt": 2,
+      "gate_passed": false
+    }
+  ],
+  "final": {
+    "ok": false,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "cause": "ELEMENT_NOT_FOUND: Gemini Upload & tools menu did not open"
+  }
+}

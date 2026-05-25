@@ -1,4 +1,5 @@
 const crypto = require("node:crypto");
+const child_process = require("node:child_process");
 import { ActionExecutor } from "../actions/executor";
 import { runArtifactClick, ArtifactClickOptions } from "../browser/artifactClick";
 import { acquireProfileLease, releaseProfileLease } from "../browser/profileLease";
@@ -7,7 +8,7 @@ import { CapabilityDatabase } from "../capabilities/database";
 import { redactValue, RedactionOptions } from "../trace/redact";
 import { verifyDocxMin } from "../verifiers/docxMin";
 import { WorkflowCompiler } from "./compiler";
-import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowFinalResult, WorkflowRunResult } from "./schema";
+import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowFinalResult, WorkflowGateSpec, WorkflowRunResult } from "./schema";
 import { ActionResult } from "../shared/types";
 
 function now(): string { return new Date().toISOString(); }
@@ -167,6 +168,14 @@ export class WorkflowExecutor {
 
 
   private async executeAction(item: CompiledWorkflowAction, options: WorkflowExecutorOptions, context: WorkflowExecutionContext): Promise<ActionResult> {
+    if (item.command) {
+      if (item.requiresApproval) {
+        return { ok: false, action: item.action, message: item.reason || "command step requires approval", data: { errorCode: "APPROVAL_REQUIRED", reason: item.reason } };
+      }
+      const resolvedArgv = (resolveTemplates(item.command.argv, context) as unknown[]).map((value) => String(value));
+      const resolvedEnv = item.command.env ? (resolveTemplates(item.command.env, context) as Record<string, string>) : undefined;
+      return await runCommandStep(item, resolvedArgv, resolvedEnv, item.command.gate, item.command.timeoutMs);
+    }
     const action = resolveTemplates(item.action, context) as any;
     if (action.type === "artifactClick") {
       const result = await runArtifactClick(actionOptions(action) as unknown as ArtifactClickOptions);
@@ -327,6 +336,146 @@ function actionOptions(action: any): Record<string, unknown> {
 
 function kebabToCamel(key: string): string { return key.replace(/-([a-z])/g, (_m, c) => c.toUpperCase()); }
 function isCustomWorkflowAction(type: string): boolean { return type === "artifactClick" || type === "verifyDocxMin"; }
+
+const COMMAND_STEP_DEFAULT_TIMEOUT_MS = 300000;
+
+async function runCommandStep(item: CompiledWorkflowAction, argv: string[], env: Record<string, string> | undefined, gate: WorkflowGateSpec | undefined, timeoutMs?: number): Promise<ActionResult> {
+  if (!argv.length) return { ok: false, action: item.action, message: "command step requires non-empty argv", data: { errorCode: "INVALID_COMMAND" } };
+  const startedAt = Date.now();
+  const limit = Math.max(1, Math.min(timeoutMs || COMMAND_STEP_DEFAULT_TIMEOUT_MS, 24 * 3600 * 1000));
+  const result = await new Promise<{ code: number; signal: string | null; stdout: string; stderr: string; timedOut: boolean }>((resolve) => {
+    const child: any = child_process.spawn(argv[0], argv.slice(1), { env: { ...process.env, ...(env || {}) }, stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = "";
+    let stderr = "";
+    let timedOut = false;
+    const timer: any = setTimeout(() => {
+      timedOut = true;
+      try { child.kill("SIGTERM"); } catch { /* noop */ }
+      const killTimer: any = setTimeout(() => { try { child.kill("SIGKILL"); } catch { /* noop */ } }, 5000);
+      if (typeof killTimer.unref === "function") killTimer.unref();
+    }, limit);
+    (child.stdout as any)?.on("data", (chunk: any) => { stdout += String(chunk); });
+    (child.stderr as any)?.on("data", (chunk: any) => { stderr += String(chunk); });
+    child.on("close", (code: number | null, signal: string | null) => {
+      clearTimeout(timer);
+      resolve({ code: code === null ? 1 : code, signal, stdout, stderr, timedOut });
+    });
+    child.on("error", (err: Error) => {
+      clearTimeout(timer);
+      resolve({ code: 1, signal: null, stdout, stderr: `${stderr}\n${err.message}`, timedOut: false });
+    });
+  });
+  const parsedStdout = parseStdoutJson(result.stdout, result.stderr);
+  const gateResult = evaluateCommandGate(gate, { exitCode: result.code, stdout: result.stdout, stderr: result.stderr, parsed: parsedStdout, timedOut: result.timedOut });
+  const elapsedMs = Date.now() - startedAt;
+  const data: Record<string, unknown> = {
+    argv,
+    exit_code: result.code,
+    signal: result.signal,
+    timed_out: result.timedOut,
+    elapsed_ms: elapsedMs,
+    stdout: result.stdout,
+    stderr: result.stderr,
+    stdout_parsed: parsedStdout,
+    gate: gateResult.detail
+  };
+  // Hoist parsed JSON keys (e.g. response_text, completion_detected) so closure-runner /
+  // workflow consumers can pick them up via shallow `valuesByKey` walks without
+  // having to descend into stdout_parsed explicitly.
+  if (parsedStdout && typeof parsedStdout === "object" && !Array.isArray(parsedStdout)) {
+    for (const [k, v] of Object.entries(parsedStdout)) {
+      if (k === "ok" || k === "argv" || k === "exit_code" || k === "signal" || k === "timed_out" || k === "elapsed_ms" || k === "stdout" || k === "stderr" || k === "stdout_parsed" || k === "gate") continue;
+      data[k] = v;
+    }
+  }
+  if (!gateResult.ok) data.errorCode = result.timedOut ? "COMMAND_TIMEOUT" : (parsedStdout && (parsedStdout as any).errorCode) || "COMMAND_GATE_FAILED";
+  return { ok: gateResult.ok, action: item.action, message: gateResult.message, data };
+}
+
+function parseStdoutJson(stdout: string, stderr: string): unknown {
+  const candidates = [stdout, stderr, `${stdout}\n${stderr}`].map((s) => String(s || "").trim()).filter(Boolean);
+  for (const text of candidates) { try { return JSON.parse(text); } catch { /* try next */ } }
+  for (const text of candidates) {
+    const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    for (let i = lines.length - 1; i >= 0; i--) { try { return JSON.parse(lines[i]); } catch { /* try previous */ } }
+  }
+  for (const text of candidates) {
+    const first = text.indexOf("{");
+    const last = text.lastIndexOf("}");
+    if (first >= 0 && last > first) { try { return JSON.parse(text.slice(first, last + 1)); } catch { /* fallthrough */ } }
+  }
+  return undefined;
+}
+
+function evaluateCommandGate(gate: WorkflowGateSpec | undefined, ctx: { exitCode: number; stdout: string; stderr: string; parsed: unknown; timedOut: boolean }): { ok: boolean; message: string; detail: Record<string, unknown> } {
+  const detail: Record<string, unknown> = {};
+  if (ctx.timedOut) return { ok: false, message: "command timed out", detail: { timed_out: true } };
+  if (!gate) {
+    const ok = ctx.exitCode === 0;
+    return { ok, message: ok ? "command completed (no gate; exit 0)" : `command exited ${ctx.exitCode} (no gate)`, detail: { default_exit_zero: true, exit_code: ctx.exitCode } };
+  }
+  const failures: string[] = [];
+  if (gate.exit_code !== undefined) {
+    const ok = ctx.exitCode === gate.exit_code;
+    detail.exit_code = { expected: gate.exit_code, actual: ctx.exitCode, ok };
+    if (!ok) failures.push(`exit_code ${ctx.exitCode} !== ${gate.exit_code}`);
+  }
+  if (gate.stdout_regex) {
+    let ok = false;
+    let regexError: string | undefined;
+    try { ok = new RegExp(gate.stdout_regex).test(ctx.stdout); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
+    detail.stdout_regex = { pattern: gate.stdout_regex, ok, regexError };
+    if (!ok) failures.push(`stdout_regex /${gate.stdout_regex}/ failed${regexError ? `: ${regexError}` : ""}`);
+  }
+  if (Array.isArray(gate.json_path) && gate.json_path.length > 0) {
+    const checks: Array<Record<string, unknown>> = [];
+    for (const check of gate.json_path) {
+      const actual = lookupJsonPath(ctx.parsed, check.path);
+      let ok = true;
+      const reasons: string[] = [];
+      if (check.equals !== undefined && !jsonEquals(actual, check.equals)) { ok = false; reasons.push(`!== ${JSON.stringify(check.equals)}`); }
+      if (check.nonempty === true && !jsonNonEmpty(actual)) { ok = false; reasons.push("empty"); }
+      if (check.regex) {
+        let matched = false;
+        let regexError: string | undefined;
+        try { matched = new RegExp(check.regex).test(typeof actual === "string" ? actual : JSON.stringify(actual ?? "")); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
+        if (!matched) { ok = false; reasons.push(`regex /${check.regex}/ failed${regexError ? `: ${regexError}` : ""}`); }
+      }
+      checks.push({ path: check.path, actual, ok, reasons: reasons.length ? reasons : undefined });
+      if (!ok) failures.push(`json_path ${check.path} ${reasons.join("; ")}`);
+    }
+    detail.json_path = checks;
+  }
+  const ok = failures.length === 0;
+  return { ok, message: ok ? "command gate passed" : `command gate failed: ${failures.join("; ")}`, detail };
+}
+
+function lookupJsonPath(value: unknown, expr: string): unknown {
+  if (value === undefined || value === null) return undefined;
+  let cursor: any = value;
+  const parts = expr.replace(/\[(\d+)\]/g, ".$1").split(".").filter(Boolean);
+  for (const part of parts) {
+    if (cursor === undefined || cursor === null) return undefined;
+    cursor = cursor[part];
+  }
+  return cursor;
+}
+
+function jsonEquals(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (typeof a !== typeof b) return false;
+  if (a && b && typeof a === "object") return JSON.stringify(a) === JSON.stringify(b);
+  return false;
+}
+
+function jsonNonEmpty(value: unknown): boolean {
+  if (value === undefined || value === null) return false;
+  if (typeof value === "string") return value.trim().length > 0;
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value === "object") return Object.keys(value as Record<string, unknown>).length > 0;
+  if (typeof value === "number") return Number.isFinite(value);
+  return !!value;
+}
 function workflowActionError(errorCode: string, message: string, evidence: Record<string, unknown> = {}): Error {
   const error: any = new Error(message);
   error.errorCode = errorCode;

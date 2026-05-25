@@ -1,0 +1,29 @@
+{
+  "id": "chatgpt-send-thinking-ext",
+  "service": "chatgpt",
+  "bucket": "C1",
+  "attempts": 1,
+  "command": "node dist/src/cli.js webai:chatgpt:send-prompt --profile chatgpt --backend extension-assisted-cdp --thinking --reuse-conversation --tab-url-contains \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\" --prompt \"Think step by step: 13 x 27 = ?\" --response-timeout-ms 120000 --json",
+  "exit_code": 0,
+  "wall_ms": 7328,
+  "cli_output": {
+    "response_text": "13 × 27 = 13 × (20 + 7) = 260 + 91 = 351",
+    "elapsed_ms": 7187,
+    "wait_ms": 5845,
+    "completion_detected": true,
+    "errorCode": null,
+    "model_used": "Heavy",
+    "reuse_conversation": true,
+    "conversation_id": "6a1330a0-42b4-83e8-82ec-2a0074744500",
+    "chat_url": "https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500"
+  },
+  "raw_output": "{\n  \"response_text\": \"13 × 27 = 13 × (20 + 7) = 260 + 91 = 351\",\n  \"elapsed_ms\": 7187,\n  \"wait_ms\": 5845,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Heavy\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": \"6a1330a0-42b4-83e8-82ec-2a0074744500\",\n  \"chat_url\": \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\"\n}\n\n__COMMAND_EXIT__=0\n__WALL_MS__=7328\n",
+  "completion_gate": "response_text contains 351 AND completion_detected === true",
+  "gate_eval": {
+    "response_text_contains_351": true,
+    "completion_detected_true": true
+  },
+  "ok": true,
+  "status": "OK_EXT_BACKEND",
+  "last_update": "2026-05-25"
+}

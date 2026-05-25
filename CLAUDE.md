@@ -20,8 +20,10 @@ sync. It does **not** do heavy implementation in-session.
 
 Heavy implementation, browser automation, deep repo refactors, and verification
 sweeps go to **Codex via OMX** (`omx exec`). Cross-model second opinions go through
-`omc ask <claude|codex|gemini>` or the `ccg` tri-model skill when adversarial
-validation matters.
+`omc ask <claude|codex>` or **`agy -p "<prompt>"`** for the Gemini-class lane.
+Local `gemini` CLI is **retired** — use `agy` instead (same surface; see §2.5).
+The `ccg` tri-model skill remains valid for adversarial validation but its Gemini
+lane should be reached via `agy` going forward.
 
 The orchestrator's outputs are: prompt files in `.omc/codex-prompts/`, launcher
 scripts in `/tmp/`, evidence reads from `.omc/codex-out/` and `.runs/...`, and
@@ -101,6 +103,35 @@ follow-up plans/skills. Code edits in `src/`, `tests/`, `configs/`, and
   `webSocketDebuggerUrl`, `profileDir`, `cookies`, `tokens`, `dom`, `html`,
   `screenshot`, etc.). When adding output fields, classify them in the
   `sensitive_fields` section before merging.
+
+### 2.5 Gemini-class advisor → use `agy`, not `gemini`
+
+Local `gemini` CLI is retired for this project. The replacement is **`agy`**
+(Google Antigravity), wired through `/home/l1u/.local/bin/agy →
+/home/l1u/agy-switch.sh` with six saved accounts and round-robin rotation.
+
+Surface mirrors gemini-cli's print mode:
+```bash
+agy -p "<prompt>"               # non-interactive print (default model: Gemini 3.5 Flash)
+agy --dangerously-skip-permissions -p "<prompt>"   # yolo equivalent
+agy next                        # rotate to next account (also triggers token refresh)
+agy whoami / agy list           # account inspection
+```
+
+Routing rules:
+- Direct CLI advisor / quick Gemini-class opinion / web-exploration probes →
+  `agy -p "..."`. Capture stdout to an artifact file like Codex outputs.
+- Tri-model `ccg` skill: the Gemini lane should be invoked as `agy` (Claude +
+  Codex unchanged).
+- `omc ask gemini` still shells out to the legacy `gemini` binary
+  (`run-provider-advisor.js` line 10). **Do not use it** for new work in this
+  repo; reach for `agy -p` instead. (A future OMC patch could remap that key to
+  `agy`, but that is a global OMC change, not authorized in this directive.)
+
+Auth note: if `agy -p` errors with "Authentication required", run `agy next` to
+rotate — it copies the next saved token into the active slot and the agy-real
+binary auto-refreshes on the next call. See user-memory
+`feedback_agy_replaces_gemini_cli.md`.
 
 ---
 
@@ -202,6 +233,9 @@ These have been tried, have failed, or have been explicitly forbidden by the use
   and resumable.
 - **`omx ask codex`.** Wrong. Local `omx ask` supports Claude and Gemini only.
   Use `omc ask codex` for advisor artifacts or `omx exec` for execution.
+- **Raw `gemini -p "..."` / `omc ask gemini` for new work.** Wrong. Local
+  `gemini` CLI is retired; use `agy -p "..."` instead. See §2.5 + user-memory
+  `feedback_agy_replaces_gemini_cli.md`.
 - **Force-shutdown a team without authorization.** Wrong.
   `omc team shutdown --force` / `omx team shutdown --force --confirm-issues`
   needs explicit user OK.

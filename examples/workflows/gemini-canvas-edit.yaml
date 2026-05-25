@@ -1,0 +1,26 @@
+# Rewritten 2026-05-25 from codex G6 draft. Renames to match cap id.
+id: gemini-canvas-edit-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Apply a length AI-edit on an existing Gemini canvas
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:canvas-edit
+      - --profile
+      - gemini-9225
+      - --tab-url-contains
+      - gemini.google.com
+      - --ai-action
+      - length
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: canvas_opened
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json

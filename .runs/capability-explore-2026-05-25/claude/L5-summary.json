@@ -1,0 +1,36 @@
+{
+  "bucket": "L5",
+  "service": "claude",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "failures": 1,
+  "results": [
+    {
+      "id": "claude-generate-file-py-ext",
+      "status": "OK_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-py-ext.json",
+      "workflow": "examples/workflows/claude-claude-generate-file-py-ext.yaml",
+      "artifact_path": "/tmp/explore-2026-05-25/claude/hello.py",
+      "size_bytes": 125,
+      "wall_ms": 15642
+    },
+    {
+      "id": "claude-generate-file-md-ext",
+      "status": "FAIL_CLOSED_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-md-ext.json",
+      "workflow": "examples/workflows/claude-claude-generate-file-md-ext.yaml",
+      "artifact_path": null,
+      "size_bytes": 0,
+      "wall_ms": 35264
+    },
+    {
+      "id": "claude-generate-file-csv-ext",
+      "status": "OK_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-csv-ext.json",
+      "workflow": "examples/workflows/claude-claude-generate-file-csv-ext.yaml",
+      "artifact_path": "/tmp/explore-2026-05-25/claude/scores.csv",
+      "size_bytes": 38,
+      "wall_ms": 15748
+    }
+  ]
+}

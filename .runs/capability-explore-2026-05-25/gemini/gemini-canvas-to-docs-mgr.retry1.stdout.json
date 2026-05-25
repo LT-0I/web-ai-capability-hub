@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "errorCode": "COMMAND_TIMEOUT",
+  "error_code": "COMMAND_TIMEOUT",
+  "error": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+  "evidence": {
+    "tool": "webai_gemini_canvas_to_docs",
+    "stage": "handler",
+    "message": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+    "error_name": "Error",
+    "timeout_ms": 180000
+  }
+}

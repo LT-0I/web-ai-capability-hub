@@ -1,0 +1,21 @@
+# Rewritten 2026-05-25 from codex G10 draft.
+id: gemini-workspace-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Inspect a Gemini workspace surface and return its summary shape
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:workspace
+      - --profile
+      - gemini-9225
+      - --surface
+      - gems
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 0
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json

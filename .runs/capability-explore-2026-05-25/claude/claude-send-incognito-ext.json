@@ -1,0 +1,60 @@
+{
+  "id": "claude-send-incognito-ext",
+  "service": "claude",
+  "bucket": "L2",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "OK_EXT_BACKEND",
+  "ok": true,
+  "completion_gate": "response_text non-empty AND chat_url contains \"incognito=\"",
+  "gate_eval": {
+    "response_text_nonempty": true,
+    "chat_url_contains_incognito": true,
+    "chat_url": "https://claude.ai/new?incognito="
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --incognito --prompt \"say only OK\" --response-timeout-ms 90000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 8197,
+      "stdout": "{\n  \"response_text\": \"Claude responded: OK\\n\\nOK\",\n  \"elapsed_ms\": 8061,\n  \"wait_ms\": 5160,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/new?incognito=\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "Claude responded: OK\n\nOK",
+        "elapsed_ms": 8061,
+        "wait_ms": 5160,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/new?incognito="
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --incognito --prompt \"say only OK\" --response-timeout-ms 90000 --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 8197,
+    "stdout": "{\n  \"response_text\": \"Claude responded: OK\\n\\nOK\",\n  \"elapsed_ms\": 8061,\n  \"wait_ms\": 5160,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/new?incognito=\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "response_text": "Claude responded: OK\n\nOK",
+      "elapsed_ms": 8061,
+      "wait_ms": 5160,
+      "completion_detected": true,
+      "errorCode": null,
+      "conversation_id": null,
+      "chat_url": "https://claude.ai/new?incognito="
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-send-incognito-ext.yaml",
+  "started_at": "2026-05-24T17:32:29.188Z",
+  "finished_at": "2026-05-24T17:32:37.387Z",
+  "wall_ms": 8199
+}

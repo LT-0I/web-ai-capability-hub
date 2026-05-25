@@ -1,0 +1,24 @@
+# Rewritten 2026-05-25 from codex C8 draft. FAIL_CLOSED_UNSUPPORTED (INVALID_ARGS / ELEMENT_NOT_FOUND); gate matches reproducible failure.
+id: chatgpt-pulse-onboard-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Attempt ChatGPT Pulse onboarding (fail-closed; current implementation rejects)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:pulse:onboard
+      - --profile
+      - chatgpt
+      - --response-timeout-ms
+      - "120000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-onboard-ext-fallback.json

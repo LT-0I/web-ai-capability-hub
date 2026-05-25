@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "errorCode": "COMMAND_TIMEOUT",
+  "error_code": "COMMAND_TIMEOUT",
+  "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://gemini.google.com/app\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "evidence": {
+    "tool": "webai_gemini_upload_and_query",
+    "stage": "handler",
+    "message": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://gemini.google.com/app\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "error_name": "TimeoutError"
+  }
+}

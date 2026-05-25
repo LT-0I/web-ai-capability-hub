@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-generate-file-docx-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-generate-file-docx-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND size_bytes > 4096 AND filename ends with .docx",
+  "started_at": "2026-05-25T02:50:14.328Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-generate-file-docx-ext.yaml",
+    "examples/workflows/chatgpt-generate-file-docx-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T02:50:14.328Z"
+}

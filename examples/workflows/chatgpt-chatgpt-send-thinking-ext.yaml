@@ -1,0 +1,31 @@
+# Rewritten 2026-05-25 from codex C1 draft. Schema: command-step workflow with mode: automatic.
+id: chatgpt-send-thinking-ext
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Send a Thinking prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:send-prompt
+      - --profile
+      - chatgpt
+      - --backend
+      - extension-assisted-cdp
+      - --thinking
+      - --prompt
+      - 'Think step by step: 13 x 27 = ?'
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "351"
+        - path: completion_detected
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-thinking-ext.json

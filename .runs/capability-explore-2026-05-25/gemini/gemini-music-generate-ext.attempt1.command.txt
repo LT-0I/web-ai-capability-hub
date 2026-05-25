@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:music:generate --profile gemini-9225 --backend extension-assisted-cdp --prompt "A short upbeat acoustic guitar loop, instrumental, 30 seconds" --confirmed --download-dir /tmp/explore-2026-05-25/gemini --timeout-ms 300000 --json

@@ -1,0 +1,19 @@
+{
+  "id": "gemini-canvas-edit-mgr",
+  "service": "gemini",
+  "source": "G6",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": null,
+  "closure_criterion": "ok === true AND canvas_html_after differs from canvas_html_before after Gemini Canvas length edit.",
+  "started_at": "2026-05-24T21:09:26.454Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/gemini-gemini-canvas-edit-mgr.yaml",
+    "examples/workflows/gemini-canvas-edit-mgr.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:26.454Z"
+}

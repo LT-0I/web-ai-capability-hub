@@ -62,7 +62,7 @@ function json<T>(value: T | undefined): string | null { return value === undefin
 function parseJson<T>(value: string | null | undefined, fallback: T): T { if (!value) return fallback; try { return JSON.parse(value); } catch { return fallback; } }
 function textForCapability(capability: CapabilityRecord): string { return [capability.name, capability.category, capability.description, JSON.stringify(capability.inputs || {}), JSON.stringify(capability.outputs || {}), JSON.stringify(capability.evidence || {})].join(" "); }
 
-const INTEGRATION_REGISTRY_STATUSES = new Set(["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE"]);
+const INTEGRATION_REGISTRY_STATUSES = new Set(["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE", "OK_EXT_BACKEND", "OK_MANAGED_CDP_ONLY", "OK_DEFERRED", "FAIL_CLOSED_EXT_BACKEND", "FAIL_CLOSED_MANAGED", "FAIL_CLOSED_UNSUPPORTED", "FAIL_CLOSED_COMMAND_TIMEOUT"]);
 function validateIntegrationStatus(status: string): void {
   if (!INTEGRATION_REGISTRY_STATUSES.has(status)) throw new Error(`Invalid integration registry status: ${status}`);
 }

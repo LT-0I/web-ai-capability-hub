@@ -1,0 +1,31 @@
+# Rewritten 2026-05-25 from codex C1 draft. Schema: command-step workflow with mode: automatic.
+id: chatgpt-send-web-search-ext
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Send a web-search prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:send-prompt
+      - --profile
+      - chatgpt
+      - --backend
+      - extension-assisted-cdp
+      - --web-search
+      - --prompt
+      - What's today's date?
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "20\\d{2}|May|5月|January|February|March|April|June|July|August|September|October|November|December"
+        - path: completion_detected
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-web-search-ext.json

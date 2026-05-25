@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains https://gemini.google.com/app --prompt Create\ a\ canvas\ with\ 3\ paragraphs\ about\ computer\ vision\ basics --response-timeout-ms 180000 --json 

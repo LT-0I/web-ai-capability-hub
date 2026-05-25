@@ -1,0 +1,58 @@
+{
+  "id": "chatgpt-deep-research-ext",
+  "target": "chatgpt",
+  "profile": "chatgpt",
+  "mode": "assisted",
+  "compiledAt": "2026-05-24T19:13:07.823Z",
+  "actions": [
+    {
+      "stepId": "step-1",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [],
+  "definition": {
+    "id": "chatgpt-deep-research-ext",
+    "service": "chatgpt",
+    "target": "chatgpt",
+    "capability_id": "chatgpt-deep-research-ext",
+    "mode": "assisted",
+    "backend": "extension-assisted-cdp",
+    "profile": "chatgpt",
+    "model": "Thinking",
+    "inputs": {
+      "prompt": "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+      "download_dir": "/tmp/explore-2026-05-25/chatgpt"
+    },
+    "steps": [
+      {
+        "name": "Run ChatGPT Deep Research and request a downloadable report",
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:deep-research",
+          "--profile",
+          "chatgpt",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/chatgpt",
+          "--response-timeout-ms",
+          "900000",
+          "--json"
+        ]
+      }
+    ],
+    "success_gate": "report path non-empty AND file exists AND size_bytes > 4096; if CLI does not surface a generated file, response_text contains at least 3 distinct framework names",
+    "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.json"
+  }
+}

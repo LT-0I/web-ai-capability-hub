@@ -1,0 +1,66 @@
+{
+  "id": "claude-send-web-search-ext",
+  "service": "claude",
+  "bucket": "L1",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "OK_EXT_BACKEND",
+  "ok": true,
+  "completion_gate": "response_text contains a date marker such as \"2026\", \"May\", or \"5月\"",
+  "gate_result": {
+    "ok": true,
+    "details": {
+      "contains_date_marker": true
+    }
+  },
+  "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --web-search --reuse-conversation --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --prompt \"What is today's date?\" --response-timeout-ms 120000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 8062,
+      "stdout": "{\n  \"response_text\": \"Claude responded: Today is Sunday, May 24, 2026.Today is Sunday, May 24, 2026.\",\n  \"elapsed_ms\": 7914,\n  \"wait_ms\": 5622,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Sonnet 4.6 Adaptive\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "Claude responded: Today is Sunday, May 24, 2026.Today is Sunday, May 24, 2026.",
+        "elapsed_ms": 7914,
+        "wait_ms": 5622,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "Sonnet 4.6 Adaptive",
+        "reuse_conversation": true,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --web-search --reuse-conversation --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --prompt \"What is today's date?\" --response-timeout-ms 120000 --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 8062,
+    "stdout": "{\n  \"response_text\": \"Claude responded: Today is Sunday, May 24, 2026.Today is Sunday, May 24, 2026.\",\n  \"elapsed_ms\": 7914,\n  \"wait_ms\": 5622,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Sonnet 4.6 Adaptive\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "response_text": "Claude responded: Today is Sunday, May 24, 2026.Today is Sunday, May 24, 2026.",
+      "elapsed_ms": 7914,
+      "wait_ms": 5622,
+      "completion_detected": true,
+      "errorCode": null,
+      "model_used": "Sonnet 4.6 Adaptive",
+      "reuse_conversation": true,
+      "conversation_id": null,
+      "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-send-web-search-ext.yaml",
+  "started_at": "2026-05-24T17:12:15.832Z",
+  "finished_at": "2026-05-24T17:12:23.895Z",
+  "wall_ms": 8063
+}

@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "errorCode": "INVALID_ARGS",
+  "error_code": "INVALID_ARGS",
+  "error": "$.surface is required",
+  "evidence": {
+    "tool": "webai_gemini_workspace",
+    "stage": "schema",
+    "message": "$.surface is required",
+    "error_name": "Error"
+  }
+}

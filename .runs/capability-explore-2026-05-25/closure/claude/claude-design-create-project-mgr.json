@@ -1,0 +1,19 @@
+{
+  "id": "claude-design-create-project-mgr",
+  "service": "claude",
+  "source": "L7",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": null,
+  "closure_criterion": "project_id non-empty AND project_url non-empty AND URL usable by downstream generate/get-html chain",
+  "started_at": "2026-05-24T21:09:09.217Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/claude-claude-design-create-project-mgr.yaml",
+    "examples/workflows/claude-design-create-project-mgr.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:09.217Z"
+}

@@ -3,7 +3,7 @@ const path = require("node:path");
 import { CapabilityDatabase } from "../../capabilities/database";
 import { IntegrationRegistryRecord, IntegrationRegistryStatus } from "../../capabilities/schemas";
 
-const VALID_STATUSES = new Set(["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE"]);
+const VALID_STATUSES = new Set(["IMPLEMENTED_GREEN", "EXPLORED_PATH_KNOWN", "UNEXPLORED", "IN_PROGRESS", "BLOCKED_NEEDS_USER", "OUT_OF_SCOPE", "OK_EXT_BACKEND", "OK_MANAGED_CDP_ONLY", "OK_DEFERRED", "FAIL_CLOSED_EXT_BACKEND", "FAIL_CLOSED_MANAGED", "FAIL_CLOSED_UNSUPPORTED", "FAIL_CLOSED_COMMAND_TIMEOUT"]);
 
 function now(): string { return new Date().toISOString(); }
 function stringValue(value: unknown): string | undefined { return typeof value === "string" && value.trim() ? value.trim() : undefined; }

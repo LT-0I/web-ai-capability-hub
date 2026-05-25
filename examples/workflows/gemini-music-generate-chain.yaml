@@ -1,0 +1,31 @@
+# Rewritten 2026-05-25 from codex G5 draft. NOTE: this id (gemini-music-generate-chain) doesn't map to any closure cap; it's left for reference but the new per-cap yamls (gemini-music-generate-ext, gemini-music-task-status-ext, gemini-music-download-track-ext) are what the closure runner picks up.
+id: gemini-music-generate-chain
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Three-step Gemini Music chain (generate -> poll -> download)
+steps:
+  - id: generate
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:music:generate
+      - --profile
+      - gemini-9225
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - "A short upbeat acoustic guitar loop, instrumental, 30 seconds"
+      - --confirmed
+      - --download-dir
+      - /tmp/explore-2026-05-25/gemini
+      - --timeout-ms
+      - "300000"
+      - --json
+    timeoutMs: 360000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: task_id
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-music-generate-ext.json

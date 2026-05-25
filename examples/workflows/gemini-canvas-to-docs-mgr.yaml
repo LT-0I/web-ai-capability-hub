@@ -1,0 +1,33 @@
+# Rewritten 2026-05-25 from codex G6 draft. FAIL_CLOSED_UNSUPPORTED with UNSUPPORTED_FEATURE.
+id: gemini-canvas-to-docs-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Attempt to export a Gemini Canvas to Google Docs (fail-closed; UNSUPPORTED_FEATURE)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:canvas-to-docs
+      - --profile
+      - gemini-9225
+      - --tab-url-contains
+      - gemini.google.com
+      - --prompt
+      - Generate a 200-word essay about deep learning, then export to Google Docs
+      - --title
+      - Capability Probe Doc
+      - --response-timeout-ms
+      - "300000"
+      - --timeout-ms
+      - "60000"
+      - --confirmed
+      - --json
+    timeoutMs: 360000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: docs_url
+          regex: "docs\\.google\\.com"
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.json

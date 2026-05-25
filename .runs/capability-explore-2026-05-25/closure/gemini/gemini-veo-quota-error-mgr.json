@@ -1,0 +1,19 @@
+{
+  "id": "gemini-veo-quota-error-mgr",
+  "service": "gemini",
+  "source": "G10",
+  "status": "OK_DEFERRED",
+  "workflow": null,
+  "closure_criterion": "Quota error code is EXTERNAL_QUOTA_EXHAUSTED or LOGIN_REQUIRED when quota is observed; otherwise OK_DEFERRED because configuration did not exhaust quota during probe.",
+  "started_at": "2026-05-24T21:09:34.048Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/gemini-gemini-veo-quota-error-mgr.yaml",
+    "examples/workflows/gemini-veo-quota-error-mgr.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:34.048Z"
+}

@@ -1,0 +1,176 @@
+{
+  "id": "chatgpt-generate-file-pptx-ext",
+  "service": "chatgpt",
+  "bucket": "C4",
+  "source": "capability-explore-2026-05-25/C4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "mcp_tool": "webai_chatgpt_generate_file",
+  "prompt": "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+  "expected_extension": "pptx",
+  "artifact_class": "document",
+  "download_dir": "/tmp/explore-2026-05-25/chatgpt",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:generate-file",
+    "--profile",
+    "chatgpt",
+    "--backend",
+    "extension-assisted-cdp",
+    "--prompt",
+    "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+    "--expected-extension",
+    "pptx",
+    "--download-dir",
+    "/tmp/explore-2026-05-25/chatgpt",
+    "--artifact-class",
+    "document",
+    "--json"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+        "--expected-extension",
+        "pptx",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "document",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.' '--expected-extension' 'pptx' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'document' '--json'",
+      "exit_code": 1,
+      "wall_ms": 8135,
+      "timed_out": false,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "UNKNOWN",
+        "error_code": "UNKNOWN",
+        "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+          "error_name": "Error",
+          "cause_type": "object"
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "filename_has_extension": false
+      },
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"UNKNOWN\",\n  \"error_code\": \"UNKNOWN\",\n  \"error\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n    \"error_name\": \"Error\",\n    \"cause_type\": \"object\"\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-pptx-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-pptx-ext.stderr.1.log"
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+        "--expected-extension",
+        "pptx",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "document",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.' '--expected-extension' 'pptx' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'document' '--json'",
+      "exit_code": 1,
+      "wall_ms": 2291,
+      "timed_out": false,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "UNKNOWN",
+        "error_code": "UNKNOWN",
+        "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+          "error_name": "Error",
+          "cause_type": "object"
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "filename_has_extension": false
+      },
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"UNKNOWN\",\n  \"error_code\": \"UNKNOWN\",\n  \"error\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n    \"error_name\": \"Error\",\n    \"cause_type\": \"object\"\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-pptx-ext.stdout.2.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-pptx-ext.stderr.2.log"
+    }
+  ],
+  "cli_output": {
+    "ok": false,
+    "errorCode": "UNKNOWN",
+    "error_code": "UNKNOWN",
+    "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+    "evidence": {
+      "tool": "webai_chatgpt_generate_file",
+      "stage": "handler",
+      "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+      "error_name": "Error",
+      "cause_type": "object"
+    }
+  },
+  "gate": {
+    "criteria": "path non-empty AND file exists AND size_bytes > 8192 AND filename ends with .pptx",
+    "passed": false,
+    "checks": {
+      "path_non_empty": false,
+      "file_exists": false,
+      "size_bytes_gt_min": false,
+      "stat_size_gt_min": false,
+      "filename_has_extension": false
+    },
+    "stat_size_bytes": 0,
+    "reported_size_bytes": 0
+  },
+  "errorCode": "UNKNOWN",
+  "cause": "attempt 1: UNKNOWN: page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o Call log: \u001b[2m - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m ; attempt 2: UNKNOWN: page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o Call log: \u001b[2m - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m ",
+  "artifact": null,
+  "workflow_recipe": "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+  "verified_by": "codex-bucket-C4",
+  "completion_gate": "path non-empty AND file exists AND size_bytes > 8192 AND filename ends with .pptx",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T17:58:12Z",
+  "wall_ms": 10427
+}

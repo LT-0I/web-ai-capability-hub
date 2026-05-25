@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-gpts-converse-ext-fallback",
+  "service": "chatgpt",
+  "source": "C10",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml",
+  "closure_criterion": "response_text non-empty AND completion_detected === true AND chat_url contains /g/g-",
+  "started_at": "2026-05-25T02:50:14.329Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml",
+    "examples/workflows/chatgpt-gpts-converse-ext-fallback.yaml"
+  ],
+  "finished_at": "2026-05-25T02:50:14.329Z"
+}

@@ -1,0 +1,57 @@
+{
+  "cap_id": "claude-workspace-mgr",
+  "service": "claude",
+  "profile": "claude-9224",
+  "backend": "managed-cdp",
+  "source": "L9",
+  "verified_by": "codex-bucket-L9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "started_at": "2026-05-24T19:01:19.585Z",
+  "completed_at": "2026-05-24T19:01:19.724Z",
+  "actual_cli_contract": {
+    "source_files": [
+      "src/mcp/schemas.ts",
+      "src/mcp/tools.ts",
+      "src/cli.ts"
+    ],
+    "supported_surfaces": [
+      "projects",
+      "integrations",
+      "skills",
+      "appearance",
+      "style_presets"
+    ],
+    "unsupported_requested_action": "list"
+  },
+  "commands": {
+    "list": {
+      "command": "node dist/src/cli.js webai:claude:workspace --profile claude-9224 --action list --json",
+      "started_at": "2026-05-24T19:01:19.585Z",
+      "completed_at": "2026-05-24T19:01:19.724Z",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.surface is required\",\n  \"evidence\": {\n    \"tool\": \"webai_claude_workspace\",\n    \"stage\": \"schema\",\n    \"message\": \"$.surface is required\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+      "stderr": "",
+      "json": {
+        "ok": false,
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.surface is required",
+        "evidence": {
+          "tool": "webai_claude_workspace",
+          "stage": "schema",
+          "message": "$.surface is required",
+          "error_name": "Error"
+        }
+      },
+      "error": null
+    }
+  },
+  "completion_gate": "returns workspaces array OR {ok:true, count:N}",
+  "gate": {
+    "ok": false,
+    "has_workspaces_array": false,
+    "has_ok_count_shape": false,
+    "reason": "Current webai_claude_workspace schema requires --surface projects|integrations|skills|appearance|style_presets and does not support --action list."
+  }
+}

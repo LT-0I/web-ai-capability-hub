@@ -28,6 +28,10 @@ export class WorkflowCompiler {
     const actions: CompiledWorkflowAction[] = [];
     const result = this.validateResultSpec(workflow.result, workflow.id);
     workflow.steps.forEach((step, index) => {
+      if (Array.isArray(step.command) && step.command.length > 0) {
+        actions.push(this.compileCommandStep(workflow, step, index));
+        return;
+      }
       const capabilityName = step.use_capability || step.capability;
       let capability: CapabilityRecord | undefined;
       if (capabilityName) capability = this.database.getCapabilityByName(workflow.target, capabilityName);
@@ -45,6 +49,26 @@ export class WorkflowCompiler {
     });
     if (result) this.appendFinalResultAction(actions, result);
     return { id: workflow.id, target: workflow.target, profile: workflow.profile, mode: workflow.mode, compiledAt: now(), actions, warnings, result, definition: workflow } as any;
+  }
+
+  private compileCommandStep(workflow: WorkflowDefinition, step: WorkflowStepDefinition, index: number): CompiledWorkflowAction {
+    const argv = step.command as string[];
+    const action: BrowserAction = { type: "wait" as any, confirmed: true } as BrowserAction;
+    (action as any).commandStep = true;
+    const mode = workflow.mode;
+    // Command steps are inherently risky (run arbitrary shell). Skip approval only when
+    // the workflow mode is explicitly "automatic" or the step is marked confirmed.
+    const autoApproved = mode === "automatic" || step.confirmed === true;
+    const requiresApproval = !autoApproved;
+    return {
+      stepId: stepId(step, index),
+      action,
+      requiresApproval,
+      reason: requiresApproval ? "command step requires explicit approval (set workflow mode: automatic or step confirmed: true)" : undefined,
+      resolvedSelectors: [],
+      idempotent: step.idempotent ?? false,
+      command: { argv, env: step.command_env, timeoutMs: step.timeoutMs, gate: step.gate }
+    };
   }
 
   private validate(input: any, source: string): WorkflowDefinition {

@@ -1,0 +1,60 @@
+{
+  "id": "chatgpt-pulse-get-ext-fallback",
+  "service": "chatgpt",
+  "bucket": "C8",
+  "source": "capability-explore-2026-05-25/C8",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "ok": true,
+  "backend": "managed-cdp",
+  "profile": "chatgpt",
+  "mcp_tool": "webai_chatgpt_pulse_get",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:pulse:get",
+    "--profile",
+    "chatgpt",
+    "--response-timeout-ms",
+    "120000",
+    "--json"
+  ],
+  "exit_code": 0,
+  "wall_ms": 4365,
+  "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.stdout.log",
+  "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.stderr.log",
+  "stdout_json": {
+    "route": "https://chatgpt.com/pulse",
+    "status": "ready",
+    "digest_text": "今天先看这份晨间速览，里面是你现在最该优先处理的供应链风险。 五月二十四日晨间速览 聚焦 GitHub 供应链告警、Fedora/Composer 安全修复，以及今天对多模型编排的优先动作。 这组我放在一起，是因为你最近一直在看模型编排和热切换的边界。 72小时无重大变更 已核对 Triton、vLLM、RAGFlow 和 PyTorch 的主要来源，近 72 小时未见会改动热切换语义的发布。 兼容性决策矩阵 给出 Triton、vLLM、RAGFlow、PyTorch 的升级要点和可直接运行的预检步骤，适合先在 staging 验证。 最近在想什么？我会记住并用于明天的更新。 我好奇... 我想了解更多... 请随时更新我... Share anything... 这部分更像动手清单，适合你这种会马上跑 staging 验证的人。 三步热切换烟测 单 GPU 机就能跑，包含冷启动、热切换、进程回收三步，带明确耗时阈值和判定标准。 统一插件清单 把 VRAM 预算、TTL 卸载和预热策略写进一份 YAML，再配 Triton 与进程管理示例。 这里我挑的是能直接放进 CI 的东西，省得你后面再补。 字节哈希确定性门禁 一份可直接放进 CI 的单文件脚本，固定随机种子、重复探测并在输出不一致时失败。 CI 插入位置说明 说明该门禁放在 GitHub Actions 的哪个位置，以及 Python 3.10/3.13、Torch、Triton 的适配注意点。 你更常想收到哪种更新？ 新方案发现 实战案例 风险提示 趋势解读 Get insights from your emails and calendar Let ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more Don't allow Allow 这两条我放在一起，是因为你一直在做 web 端自动化和边缘接入。 Web-AI 中台改进点 围绕浏览器自动化、统一认证和插件适配层，把 web-ai-capability-hub 做成更省 token 的本地能力底座。 Workers 的实用场景 把 CF Workers 当作低运维边缘服务，用在校验、轻量网关、内容变换和近用户缓存上。 最后这组偏研究和产业侧，我知道你最近也在看能落地的路线。 MemFlow 记忆编排研究 训练无关的三层记忆路由，目标是让小模型在长上下文任务里用更少 token 做得更稳。 无人机合规与 BVLOS 要点 梳理 Remote ID、BVLOS 审批和数据安全要求的变化，适合你做无人机产业可行性判断时先看。 今天就到这里。🙂 你最近在想什么？我会把它作为明天的灵感。",
+    "generated_hint": "A fresh update lands every morning"
+  },
+  "stdout_parse_error": null,
+  "stderr_tail": "",
+  "completion_gate": "CLI exits 0 and returns recognized Pulse data; for current tool contract, ready state requires digest_text non-empty (bucket requested cards/items, but this CLI emits digest_text).",
+  "gate": {
+    "passed": true,
+    "checks": {
+      "exit_code_0": true,
+      "stdout_json_parse_ok": true,
+      "ok_true_or_success_exit_without_ok_field": true,
+      "route_is_pulse": true,
+      "status_ready": true,
+      "digest_text_non_empty": true,
+      "cards_or_items_array_non_empty": false,
+      "current_tool_contract_digest_text_used_instead_of_cards_items": true
+    }
+  },
+  "artifact": {
+    "type": "pulse_digest",
+    "route": "https://chatgpt.com/pulse",
+    "pulse_status": "ready",
+    "generated_hint": "A fresh update lands every morning",
+    "digest_chars": 1179,
+    "digest_preview": "今天先看这份晨间速览，里面是你现在最该优先处理的供应链风险。 五月二十四日晨间速览 聚焦 GitHub 供应链告警、Fedora/Composer 安全修复，以及今天对多模型编排的优先动作。 这组我放在一起，是因为你最近一直在看模型编排和热切换的边界。 72小时无重大变更 已核对 Triton、vLLM、RAGFlow 和 PyTorch 的主要来源，近 72 小时未见会改动热切换语义的发布。 兼容性决策矩阵 给出 Triton、vLLM、RAGFlow、PyTorch 的升级要点和可直接运行的预检步骤，适合先在 "
+  },
+  "errorCode": null,
+  "cause": null,
+  "verified_by": "codex-bucket-C8",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T19:20:35.187Z"
+}

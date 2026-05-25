@@ -1,0 +1,112 @@
+{
+  "id": "chatgpt-canvas-create-export-ext",
+  "service": "chatgpt",
+  "bucket": "C6",
+  "source": "capability-explore-2026-05-25/C6",
+  "status": "OK_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "mcp_tool": "webai_chatgpt_canvas_export",
+  "steps": [
+    {
+      "id": "create_canvas",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:send-prompt",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--canvas",
+        "--prompt",
+        "Create a canvas document titled 'Probe Canvas' with 3 short paragraphs about machine learning history.",
+        "--response-timeout-ms",
+        "180000",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 50902,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.stepA.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.stepA.stderr.log",
+      "stdout_json": {
+        "response_text": "Created the canvas document titled “Probe Canvas.”",
+        "elapsed_ms": 50730,
+        "wait_ms": 32620,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "Heavy",
+        "reuse_conversation": false,
+        "conversation_id": "6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+        "chat_url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe"
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    },
+    {
+      "id": "export_canvas_md",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:canvas-export",
+        "--tab-url-contains",
+        "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+        "--format",
+        "md",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 1713,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.stepB.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.stepB.stderr.log",
+      "stdout_json": {
+        "path": "/tmp/explore-2026-05-25/chatgpt/probe_canvas.md",
+        "sha256": "c134a95ef0c666dab0071a9c3664b425d0a8401a27f8ce398993cadcf38ed71c",
+        "format": "md",
+        "byteSize": 1118
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    }
+  ],
+  "chat_url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+  "conversation_id": "6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+  "artifact": {
+    "type": "text/markdown",
+    "path": "/tmp/explore-2026-05-25/chatgpt/probe_canvas.md",
+    "relative_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.md",
+    "download_filename": "probe_canvas.md",
+    "size_bytes": 1118,
+    "byteSize": 1118,
+    "sha256": "c134a95ef0c666dab0071a9c3664b425d0a8401a27f8ce398993cadcf38ed71c",
+    "retained_sha256": "c134a95ef0c666dab0071a9c3664b425d0a8401a27f8ce398993cadcf38ed71c",
+    "preview": "# Probe Canvas\n\nMachine learning has roots in the mid-20th century, when early computer scientists began asking whether machines could learn from data rather than simply follow fixed instructions. In the 1950s and 1960s, researchers developed foundational ideas such as neural networks, perceptrons, and symbolic artificial intelligence, setting the stage for decades of experimentation.\n\nProgress came in waves. Interest rose when new algorithms showed promise, then cooled during periods when compu"
+  },
+  "completion_gate": "Step A response_text non-empty + canvas UI created/chat_url captured; Step B path non-empty AND file exists AND size_bytes > 64 AND file contains 'machine learning'",
+  "gate": {
+    "passed": true,
+    "checks": {
+      "stepA_exit_0": true,
+      "stepA_response_text_non_empty": true,
+      "stepA_completion_detected_true": true,
+      "stepA_chat_url_non_empty": true,
+      "stepA_conversation_id_non_empty": true,
+      "stepB_exit_0": true,
+      "stepB_path_non_empty": true,
+      "stepB_file_exists": true,
+      "stepB_size_bytes_gt_64": true,
+      "stepB_content_contains_machine_learning": true,
+      "retained_artifact_exists": true,
+      "retained_sha256_matches_export": true
+    }
+  },
+  "errorCode": null,
+  "cause": null,
+  "verified_by": "codex-bucket-C6",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T18:50:15.699Z",
+  "wall_ms": 52615
+}

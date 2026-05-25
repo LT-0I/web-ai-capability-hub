@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "errorCode": "COMMAND_TIMEOUT",
+  "error_code": "COMMAND_TIMEOUT",
+  "error": "page.waitForSelector: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitemcheckbox\"]:has-text(\"Deep research\")') to be visible\u001b[22m\n",
+  "evidence": {
+    "tool": "webai_gemini_deep_research",
+    "stage": "handler",
+    "message": "page.waitForSelector: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitemcheckbox\"]:has-text(\"Deep research\")') to be visible\u001b[22m\n",
+    "error_name": "TimeoutError"
+  }
+}

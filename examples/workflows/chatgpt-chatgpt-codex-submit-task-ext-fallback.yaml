@@ -1,0 +1,28 @@
+# Rewritten 2026-05-25 from codex C10 draft.
+# Per orchestrator note: result.type changed from 'task' (invalid) to 'text', and gate asserts task_id non-empty.
+id: chatgpt-codex-submit-task-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Submit a ChatGPT Codex task to the allow-listed env
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:codex:submit-task
+      - --profile
+      - chatgpt
+      - --env-name
+      - LT-0I/CN-
+      - --prompt
+      - Add a one-line comment to README.md
+      - --confirmed
+      - --json
+    timeoutMs: 300000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: task_id
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.json

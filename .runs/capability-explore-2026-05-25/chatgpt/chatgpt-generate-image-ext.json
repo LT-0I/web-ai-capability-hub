@@ -1,0 +1,97 @@
+{
+  "id": "chatgpt-generate-image-ext",
+  "service": "chatgpt",
+  "bucket": "C2",
+  "source": "capability-explore-2026-05-25/C2",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "image2",
+  "mcp_tool": "webai_chatgpt_generate_image",
+  "prompt": "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+  "download_dir": "/tmp/explore-2026-05-25/chatgpt",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-image",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--json"
+      ],
+      "exit_code": 1,
+      "wall_ms": 128051,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.stderr.1.log",
+      "stdout_json": {
+        "path": "",
+        "sha256": "",
+        "size_bytes": 0,
+        "dimensions": null,
+        "download_filename": "",
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "message": "COMMAND_TIMEOUT: chatgpt generated image toolbar did not render before timeout"
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-image",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--json"
+      ],
+      "exit_code": 1,
+      "wall_ms": 1085,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.stdout.2.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.stderr.2.log",
+      "stdout_json": {
+        "path": "",
+        "sha256": "",
+        "size_bytes": 0,
+        "dimensions": null,
+        "download_filename": "",
+        "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+        "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+        "message": "Error fetching web content: Could not establish connection. Receiving end does not exist."
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    }
+  ],
+  "gate": {
+    "criteria": "path non-empty AND file exists AND size_bytes > 1024 AND sha256 non-empty",
+    "passed": false,
+    "checks": {
+      "path_non_empty": false,
+      "file_exists": false,
+      "size_bytes_gt_1024": false,
+      "sha256_non_empty": false
+    }
+  },
+  "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+  "cause": "attempt 1: COMMAND_TIMEOUT: COMMAND_TIMEOUT: chatgpt generated image toolbar did not render before timeout; attempt 2: CHROME_EXTENSION_NOT_CONNECTED: Error fetching web content: Could not establish connection. Receiving end does not exist.",
+  "artifact": null,
+  "verified_by": "codex-bucket-C2",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T17:29:28.587059Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-pulse-onboard-ext-fallback",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C8",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/chatgpt-chatgpt-pulse-onboard-ext-fallback.yaml",
+  "closure_criterion": "ok === true AND onboarded === true AND final_status non-empty.",
+  "started_at": "2026-05-24T21:09:02.434Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-pulse-onboard-ext-fallback.yaml",
+    "examples/workflows/chatgpt-pulse-onboard-ext-fallback.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:02.434Z"
+}

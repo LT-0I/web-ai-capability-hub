@@ -1,0 +1,49 @@
+# Rewritten 2026-05-25 from codex G10 draft. Two-step send-prompt + reuse-conversation; runner gate looks for "apple" in any response_text.
+id: gemini-conversation-reuse-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover
+steps:
+  - id: create_conversation
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:send-prompt
+      - --profile
+      - gemini-9225
+      - --prompt
+      - First message about apples
+      - --response-timeout-ms
+      - "60000"
+      - --json
+    timeoutMs: 120000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          nonempty: true
+        - path: chat_url
+          nonempty: true
+  - id: reuse_conversation
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:send-prompt
+      - --profile
+      - gemini-9225
+      - --reuse-conversation
+      - --tab-url-contains
+      - "{{steps.create_conversation.chat_url}}"
+      - --prompt
+      - What was my first message about?
+      - --response-timeout-ms
+      - "60000"
+      - --json
+    timeoutMs: 120000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "(?i)apple"
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json

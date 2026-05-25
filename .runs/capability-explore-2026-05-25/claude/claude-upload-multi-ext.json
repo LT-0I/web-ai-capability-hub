@@ -1,0 +1,13 @@
+{
+  "files_uploaded_count": 3,
+  "attachment_names": [
+    "fileA.txt",
+    "fileB.txt",
+    "fileC.txt"
+  ],
+  "chat_url": "https://claude.ai/chat/ef076431-3e31-40a7-9d4a-1a5c557a92a0",
+  "response_text": "Claude responded: The three files contain the following unique first words: alpha (from fileA.\n\nThe three files contain the following unique first words: alpha (from fileA.txt), gamma (from fileC.txt), and beta (from fileB.txt).\n\nYou may have noticed the upload list showed six entries, but they were actually just three files listed twice each. After removing those duplicates, fileA.txt begins with \"alpha,\" fileB.txt begins with \"beta,\" and fileC.txt begins with \"gamma,\" giving us those three distinct first words.",
+  "wait_ms": 7542,
+  "completion_detected": true,
+  "errorCode": null
+}

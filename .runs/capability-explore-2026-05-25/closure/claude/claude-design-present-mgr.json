@@ -1,0 +1,19 @@
+{
+  "id": "claude-design-present-mgr",
+  "service": "claude",
+  "source": "L8",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": null,
+  "closure_criterion": "present_url non-empty AND URL contains /serve/ or ?file= AND curl GET returns 200",
+  "started_at": "2026-05-24T21:09:09.217Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/claude-claude-design-present-mgr.yaml",
+    "examples/workflows/claude-design-present-mgr.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:09.217Z"
+}

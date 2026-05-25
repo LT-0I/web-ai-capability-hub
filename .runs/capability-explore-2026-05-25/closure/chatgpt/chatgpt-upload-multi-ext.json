@@ -1,0 +1,146 @@
+{
+  "id": "chatgpt-upload-multi-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C3",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml",
+  "closure_criterion": "response_text contains \"alpha\" AND \"beta\" AND \"gamma\" AND attachment_names length == 3",
+  "started_at": "2026-05-24T21:09:06.956Z",
+  "ok": false,
+  "closureOk": false,
+  "cause": "Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target",
+  "errorCode": "INVALID_WORKFLOW",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-24T21:09:07.095Z",
+      "finished_at": "2026-05-24T21:09:07.580Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml --json",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "error": "Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target"
+      },
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"error\":\"Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target\"}\n"
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-05-24T21:09:07.580Z",
+      "finished_at": "2026-05-24T21:09:08.085Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml --json",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "error": "Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target"
+      },
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"error\":\"Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target\"}\n"
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "chatgpt",
+    "status": {
+      "profile": "chatgpt",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9223,
+      "connected": true,
+      "launchedByPackage": true,
+      "processId": 1710800,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "Canvas Document Creation",
+          "type": "page",
+          "url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "11BA805DCA390CE7F408A401E5E5D6ED",
+          "parentId": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop",
+          "type": "iframe",
+          "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A",
+          "faviconUrl": "data:image/svg+xml,%3csvg%20width='64'%20height='64'%20viewBox='0%200%2064%2064'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e%20.codex-favicon-glyph%20{%20fill:%20%230D0D0D;%20}%20@media%20(prefers-color-scheme:%20dark)%20{%20.codex-favicon-glyph%20{%20fill:%20%23FFFFFF;%20}%20}%20%3c/style%3e%3cpath%20class='codex-favicon-glyph'%20d='M42.6656%2036.5371C43.8406%2036.5371%2044.793%2037.4904%2044.7936%2038.6651C44.7936%2039.8405%2043.841%2040.7931%2042.6656%2040.7931H34.6656C33.4902%2040.7931%2032.5376%2039.8405%2032.5376%2038.6651C32.5382%2037.4904%2033.4909%2036.5371%2034.6656%2036.5371H42.6656Z'/%3e%3cpath%20class='codex-favicon-glyph'%20d='M21.5717%2023.5098C22.5793%2022.9059%2023.8859%2023.2336%2024.4904%2024.2411L28.4904%2030.9067C28.8942%2031.5804%2028.8946%2032.4238%2028.4904%2033.0974L24.4904%2039.763C23.8859%2040.7694%2022.5789%2041.0971%2021.5717%2040.4942C20.5642%2039.8897%2020.2365%2038.58%2020.8404%2037.5723L24.181%2032.0005L20.8404%2026.4286C20.2366%2025.4211%2020.5646%2024.1144%2021.5717%2023.5098Z'/%3e%3cpath%20class='codex-favicon-glyph'%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M28.8063%205.59961C32.3703%205.60028%2035.6359%206.89455%2038.1563%209.03087C38.9918%208.88012%2039.8561%208.79651%2040.7345%208.79647C48.7239%208.79891%2055.2023%2015.278%2055.2033%2023.2683C55.203%2024.1462%2055.1163%2025.0067%2054.9659%2025.8402C57.1035%2028.3618%2058.3998%2031.6309%2058.4001%2035.1964C58.3988%2041.4745%2054.3988%2046.8105%2048.8158%2048.8153C46.8113%2054.399%2041.4747%2058.3987%2035.1969%2058.3996C31.6316%2058.3996%2028.3652%2057.103%2025.8438%2054.9654C25.0097%2055.1161%2024.147%2055.2025%2023.2688%2055.2028C15.2783%2055.2018%208.80138%2048.7219%208.8001%2040.7308C8.80019%2039.8521%208.88355%2038.991%209.03447%2038.1558C7.04768%2035.8118%205.78874%2032.8233%205.62199%2029.5496L5.6001%2028.8027C5.6008%2022.5254%209.59856%2017.1834%2015.1813%2015.1777C17.1874%209.59484%2022.5292%205.59967%2028.8063%205.59961ZM28.8063%209.84959C24.0793%209.84966%2020.095%2013.0606%2018.9282%2017.4246C18.7317%2018.157%2018.1575%2018.7312%2017.4251%2018.9277C13.0628%2020.0951%209.85085%2024.0767%209.85008%2028.8027C9.85053%2031.6259%2010.9951%2034.182%2012.847%2036.0339C13.3812%2036.5702%2013.5893%2037.3526%2013.3939%2038.0841C13.1683%2038.9286%2013.0471%2039.8169%2013.047%2040.7308C13.0483%2046.3756%2017.6242%2050.9516%2023.2688%2050.9529C24.1829%2050.9526%2025.0736%2050.8348%2025.9189%2050.6089L26.197%2050.5529C26.8428%2050.4707%2027.4976%2050.6886%2027.9657%2051.1558C29.8177%2053.0073%2032.3739%2054.1494%2035.1969%2054.1497C39.923%2054.1487%2043.9051%2050.9382%2045.0721%2046.5746L45.1627%2046.3059C45.4139%2045.7023%2045.9335%2045.2431%2046.5751%2045.0716C50.938%2043.9046%2054.1521%2039.9222%2054.1534%2035.1964C54.1531%2032.3734%2053.0075%2029.8173%2051.1563%2027.9652C50.6209%2027.4292%2050.4142%2026.6473%2050.6094%2025.9152C50.8353%2025.0701%2050.9563%2024.1814%2050.9563%2023.2683C50.9553%2017.6236%2046.3758%2013.048%2040.7313%2013.0465C39.8158%2013.0466%2038.9249%2013.1648%2038.0814%2013.3902C37.3505%2013.5849%2036.5703%2013.3771%2036.0343%2012.8434C34.2987%2011.1081%2031.9459%209.99228%2029.3345%209.85897L28.8063%209.84959Z'/%3e%3c/svg%3e",
+          "id": "217F0F74C8D723DFD13387BB53D6876A",
+          "title": "Add comment to README.md",
+          "type": "page",
+          "url": "https://chatgpt.com/codex/cloud/tasks/task_e_6a135286d2dc832d95a125d8d09b2df9",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4",
+          "id": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08",
+          "id": "48CF4FD0F8678DD608E5735463637E08",
+          "parentId": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E",
+          "id": "9FAFF05EA3016CA7405FE180448C4E4E",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]",
+      "lease": {
+        "id": "lease_03bf8dcd78ed0416",
+        "profile_id": "chatgpt",
+        "run_id": "run_2f295602261c19e4",
+        "owner_pid": 821695,
+        "acquired_at": "2026-05-14T11:35:52.605Z",
+        "last_heartbeat_at": "2026-05-14T11:35:52.605Z",
+        "chrome_process_pid": 1210627,
+        "user_data_dir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt",
+        "released_at": null
+      }
+    },
+    "error": "{\n  \"profile\": \"chatgpt\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9223\",\n  \"cdpPort\": 9223,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 1710800,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"Canvas Document Creation\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"parentId\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop\",\n      \"type\": \"iframe\",\n      \"url\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\",\n      \"faviconUrl\": \"data:image/svg+xml,%3csvg%20width='64'%20height='64'%20viewBox='0%200%2064%2064'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e%20.codex-favicon-glyph%20{%20fill:%20%230D0D0D;%20}%20@media%20(prefers-color-scheme:%20dark)%20{%20.codex-favicon-glyph%20{%20fill:%20%23FFFFFF;%20}%20}%20%3c/style%3e%3cpath%20class='codex-favicon-glyph'%20d='M42.6656%2036.5371C43.8406%2036.5371%2044.793%2037.4904%2044.7936%2038.6651C44.7936%2039.8405%2043.841%2040.7931%2042.6656%2040.7931H34.6656C33.4902%2040.7931%2032.5376%2039.8405%2032.5376%2038.6651C32.5382%2037.4904%2033.4909%2036.5371%2034.6656%2036.5371H42.6656Z'/%3e%3cpath%20class='codex-favicon-glyph'%20d='M21.5717%2023.5098C22.5793%2022.9059%2023.8859%2023.2336%2024.4904%2024.2411L28.4904%2030.9067C28.8942%2031.5804%2028.8946%2032.4238%2028.4904%2033.0974L24.4904%2039.763C23.8859%2040.7694%2022.5789%2041.0971%2021.5717%2040.4942C20.5642%2039.8897%2020.2365%2038.58%2020.8404%2037.5723L24.181%2032.0005L20.8404%2026.4286C20.2366%2025.4211%2020.5646%2024.1144%2021.5717%2023.5098Z'/%3e%3cpath%20class='codex-favicon-glyph'%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M28.8063%205.59961C32.3703%205.60028%2035.6359%206.89455%2038.1563%209.03087C38.9918%208.88012%2039.8561%208.79651%2040.7345%208.79647C48.7239%208.79891%2055.2023%2015.278%2055.2033%2023.2683C55.203%2024.1462%2055.1163%2025.0067%2054.9659%2025.8402C57.1035%2028.3618%2058.3998%2031.6309%2058.4001%2035.1964C58.3988%2041.4745%2054.3988%2046.8105%2048.8158%2048.8153C46.8113%2054.399%2041.4747%2058.3987%2035.1969%2058.3996C31.6316%2058.3996%2028.3652%2057.103%2025.8438%2054.9654C25.0097%2055.1161%2024.147%2055.2025%2023.2688%2055.2028C15.2783%2055.2018%208.80138%2048.7219%208.8001%2040.7308C8.80019%2039.8521%208.88355%2038.991%209.03447%2038.1558C7.04768%2035.8118%205.78874%2032.8233%205.62199%2029.5496L5.6001%2028.8027C5.6008%2022.5254%209.59856%2017.1834%2015.1813%2015.1777C17.1874%209.59484%2022.5292%205.59967%2028.8063%205.59961ZM28.8063%209.84959C24.0793%209.84966%2020.095%2013.0606%2018.9282%2017.4246C18.7317%2018.157%2018.1575%2018.7312%2017.4251%2018.9277C13.0628%2020.0951%209.85085%2024.0767%209.85008%2028.8027C9.85053%2031.6259%2010.9951%2034.182%2012.847%2036.0339C13.3812%2036.5702%2013.5893%2037.3526%2013.3939%2038.0841C13.1683%2038.9286%2013.0471%2039.8169%2013.047%2040.7308C13.0483%2046.3756%2017.6242%2050.9516%2023.2688%2050.9529C24.1829%2050.9526%2025.0736%2050.8348%2025.9189%2050.6089L26.197%2050.5529C26.8428%2050.4707%2027.4976%2050.6886%2027.9657%2051.1558C29.8177%2053.0073%2032.3739%2054.1494%2035.1969%2054.1497C39.923%2054.1487%2043.9051%2050.9382%2045.0721%2046.5746L45.1627%2046.3059C45.4139%2045.7023%2045.9335%2045.2431%2046.5751%2045.0716C50.938%2043.9046%2054.1521%2039.9222%2054.1534%2035.1964C54.1531%2032.3734%2053.0075%2029.8173%2051.1563%2027.9652C50.6209%2027.4292%2050.4142%2026.6473%2050.6094%2025.9152C50.8353%2025.0701%2050.9563%2024.1814%2050.9563%2023.2683C50.9553%2017.6236%2046.3758%2013.048%2040.7313%2013.0465C39.8158%2013.0466%2038.9249%2013.1648%2038.0814%2013.3902C37.3505%2013.5849%2036.5703%2013.3771%2036.0343%2012.8434C34.2987%2011.1081%2031.9459%209.99228%2029.3345%209.85897L28.8063%209.84959Z'/%3e%3c/svg%3e\",\n      \"id\": \"217F0F74C8D723DFD13387BB53D6876A\",\n      \"title\": \"Add comment to README.md\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/codex/cloud/tasks/task_e_6a135286d2dc832d95a125d8d09b2df9\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"id\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\",\n      \"id\": \"48CF4FD0F8678DD608E5735463637E08\",\n      \"parentId\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"id\": \"9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/browser/66f09e41-c6ad-40c3-9e59-b540ac084dcf\",\n  \"lease\": {\n    \"id\": \"lease_03bf8dcd78ed0416\",\n    \"profile_id\": \"chatgpt\",\n    \"run_id\": \"run_2f295602261c19e4\",\n    \"owner_pid\": 821695,\n    \"acquired_at\": \"2026-05-14T11:35:52.605Z\",\n    \"last_heartbeat_at\": \"2026-05-14T11:35:52.605Z\",\n    \"chrome_process_pid\": 1210627,\n    \"user_data_dir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n    \"released_at\": null\n  }\n}\n"
+  },
+  "workflow_output": {
+    "ok": false,
+    "error": "Workflow examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml requires id and target"
+  },
+  "closure_status": "red",
+  "finished_at": "2026-05-24T21:09:08.086Z"
+}

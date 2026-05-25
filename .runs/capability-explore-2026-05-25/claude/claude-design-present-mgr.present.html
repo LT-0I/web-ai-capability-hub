@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html data-src-ver="a9c1d0d9" lang="en" data-om-id="a9c1d0d9:0">
+<head data-om-id="a9c1d0d9:1">
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{var j=["https://claude.ai","https://preview.claude.ai"];var x=true;var S=30000;var f=3000;document.addEventListener("DOMContentLoaded",()=>{const H=window.Babel;const G="om-src-id";if(H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[G])){H.registerPlugin(G,({types:Y})=>({visitor:{JSXOpeningElement(U,Q){const J=U.node;if(J.name&&J.name.type==="JSXMemberExpression")return;for(let V=0;V<J.attributes.length;V++){const L=J.attributes[V];if(L.type==="JSXAttribute"&&L.name&&L.name.name==="data-om-id")return}const W=Q.file&&Q.file.opts&&Q.file.opts.filename||"?";const Z=J.loc&&J.loc.start;const z=`jsx:${W}:${J.start??0}:${Z?Z.line:0}:${Z?Z.column+1:0}`;J.attributes.push(Y.jsxAttribute(Y.jsxIdentifier("data-om-id"),Y.stringLiteral(z)))}}}))}const k="om-text-extract";let A=false;if(x&&H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[k])){const Y=window.React;if(Y&&Y.useSyncExternalStore&&Y.createElement){A=true;const U={};const Q=new Set;let J=0;window.__omTextO=U;window.__omTextSet=(z)=>{for(const V in z){const L=z[V];if(L==null)delete U[V];else U[V]=L}J++;Q.forEach((V)=>V())};const W=(z)=>{Q.add(z);return()=>Q.delete(z)};const Z=()=>J;window.__OmT=function z(V){Y.useSyncExternalStore(W,Z,Z);return Y.createElement("span",{"data-om-text":V.i,className:"__om-t"},V.i in U?U[V.i]:V.children)};H.registerPlugin(k,({types:z})=>{const V={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const L={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const _=($,C)=>z.logicalExpression("??",z.memberExpression(z.logicalExpression("||",z.memberExpression(z.identifier("window"),z.identifier("__omTextO")),z.objectExpression([])),z.stringLiteral($),true),C);const E=($)=>$.file&&$.file.opts&&$.file.opts.filename||"?";const B=($)=>$.file&&$.file.code||"";const b=($,C)=>{const X=(F)=>F&&F.start!=null&&F.end!=null&&(F.type==="StringLiteral"||F.type==="TemplateLiteral"&&F.expressions.length===0)?[F.start,F.end]:null;const N=X(C);if(N)return N;if(C&&C.type==="Identifier"){const F=$.scope.getBinding(C.name);if(F&&F.constant&&F.path.node.type==="VariableDeclarator"){return X(F.path.node.init)}}return null};const M=($,C,X)=>{const N=$.node;let F=false;const w=(K,q)=>{F=true;return z.jsxElement(z.jsxOpeningElement(z.jsxIdentifier("__OmT"),[z.jsxAttribute(z.jsxIdentifier("i"),z.stringLiteral(K))],false),z.jsxClosingElement(z.jsxIdentifier("__OmT")),[q],false)};const D=N.children.map((K)=>{if(K.type==="JSXText"){if(K.start==null||K.end==null)return K;const q=X.slice(K.start,K.end);const R=q.length-q.trimStart().length;const m=q.length-q.trimEnd().length;if(R+m>=q.length)return K;return w(`txt:${C}:${K.start+R}:${K.end-m}`,K)}if(K.type==="JSXExpressionContainer"){const q=b($,K.expression);if(q)return w(`str:${C}:${q[0]}:${q[1]}`,K)}return K});if(F)N.children=D};return{visitor:{JSXOpeningElement($,C){const X=$.node;const N=E(C);const F={};for(let w=0;w<X.attributes.length;w++){const D=X.attributes[w];if(D.type!=="JSXAttribute"||!D.name)continue;const K=D.name.name;if(!L[K])continue;if(!D.value||D.value.type!=="StringLiteral")continue;if(D.value.start==null||D.value.end==null)continue;const q=`txt:${N}:${D.value.start}:${D.value.end}`;F[K]=q;D.value=z.jsxExpressionContainer(_(q,z.stringLiteral(D.value.value)))}if(Object.keys(F).length){X.attributes.push(z.jsxAttribute(z.jsxIdentifier("data-om-text-attrs"),z.stringLiteral(JSON.stringify(F))))}},JSXElement($,C){const X=$.node.openingElement;const N=X&&X.name&&X.name.name;if(N==="__OmT")return;if(typeof N==="string"&&V[N])return;M($,E(C),B(C))},JSXFragment($,C){M($,E(C),B(C))}}}})}}const u=A?["transform-react-jsx-source",G,k]:["transform-react-jsx-source",G];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((Y,U)=>{const Q=Y.getAttribute("data-plugins")||"";const J=u.filter((W)=>Q.indexOf(W)<0);if(J.length){Y.setAttribute("data-plugins",Q?`${Q},${J.join(",")}`:J.join(","))}if(!Y.hasAttribute("data-filename")){Y.setAttribute("data-filename",Y.getAttribute("src")||`inline-${U}`)}})});var y=window.parent;if(y&&y!==window){const H=(Q,J)=>{try{y.postMessage({__omelette_log:true,type:Q,data:J},"*")}catch{}};["log","warn","error"].forEach((Q)=>{const J=console[Q];console[Q]=(...W)=>{const Z=W.map((z)=>{try{return typeof z==="object"?JSON.stringify(z):String(z)}catch{try{return String(z)}catch{return"[unstringifiable]"}}}).join(" ");H(Q,Z);J.apply(console,W)}});window.addEventListener("error",(Q)=>{const J=Q.target;if(J&&J!==window&&J.tagName){const W=J.src||J.href||"";H("resource_error",`${J.tagName} failed to load: ${W}`)}else{H("error",`${Q.message||"Unknown error"} at ${Q.filename||"?"}:${Q.lineno||0}:${Q.colno||0}`)}},true);window.addEventListener("unhandledrejection",(Q)=>{const J=Q.reason;const W=J instanceof Error?`${J.message} ${J.stack}`:String(J);H("error",`Unhandled rejection: ${W}`)});const G=()=>{try{y.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(document.readyState==="complete")G();else window.addEventListener("load",G);if(window.ResizeObserver)new ResizeObserver(G).observe(document.documentElement);const k={};let A=0;window.claude={complete(Q){return new Promise((J,W)=>{if(!j.length){W(new Error("claude.complete: no parent origin"));return}const Z=`c${++A}`;const z=()=>setTimeout(()=>{delete k[Z];W(new Error(`claude.complete: no data for ${S/1000}s`))},S);const V=z();k[Z]={resolve:J,reject:W,text:"",t:V,arm:z};try{for(const L of j){y.postMessage({__om_api:true,id:Z,body:Q},L)}}catch(L){clearTimeout(V);delete k[Z];W(L)}})}};const u={};let Y=0;window.omelette={writeFile:(Q,J)=>new Promise((W,Z)=>{if(!j.length){W();return}const z=`f${++Y}`;const V=setTimeout(()=>{delete u[z];W()},f);u[z]={resolve:W,reject:Z,t:V};try{for(const L of j){y.postMessage({__om_file:true,id:z,op:"write",path:Q,content:J},L)}}catch{clearTimeout(V);delete u[z];W()}})};const U=(Q)=>{try{return JSON.stringify(Q)}catch{return JSON.stringify(String(Q))}};window.addEventListener("message",(Q)=>{if(j.indexOf(Q.origin)<0)return;if(Q.source!==y)return;const J=Q.data;if(!J)return;if(J.type==="omelette-preview-refresh"){if(typeof J.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(J.token))return;const z=Math.max(1,Math.floor((J.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+J.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+z;return}if(J.__om_file_r){const z=u[J.id];if(!z)return;clearTimeout(z.t);delete u[J.id];if(J.ok)z.resolve();else z.reject(new Error(J.error||"write failed"));return}if(J.__om_api_r){const z=k[J.id];if(!z)return;if(J.error!=null){clearTimeout(z.t);delete k[J.id];z.reject(new Error(J.error));return}if(J.chunk!=null){clearTimeout(z.t);z.t=z.arm();z.text+=J.chunk;return}if(J.done){clearTimeout(z.t);delete k[J.id];z.resolve(J.text!=null?J.text:z.text);return}return}if(!J.__om_eval)return;const W=J;const Z=(z)=>{Q.source.postMessage({...z,__om_eval_r:1,id:W.id},Q.origin)};try{const z=(0,eval)(W.code);if(z&&typeof z.then==="function"){z.then((V)=>Z({ok:1,v:U(V)}),(V)=>Z({ok:0,e:String(V)}))}else{Z({ok:1,v:U(z)})}}catch(z){Z({ok:0,e:String(z)})}})}})();
+</script>
+
+  <meta charset="UTF-8" data-om-id="a9c1d0d9:2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-om-id="a9c1d0d9:3" />
+  <title>Probe Cafe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" data-om-id="a9c1d0d9:4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-om-id="a9c1d0d9:5" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" data-om-id="a9c1d0d9:6" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        oklch(97% 0.012 58);
+      --bg-warm:   oklch(94% 0.018 60);
+      --ink:       oklch(15% 0.020 45);
+      --ink-mid:   oklch(40% 0.016 50);
+      --ink-soft:  oklch(62% 0.014 52);
+      --accent:    oklch(63% 0.11 60);
+      --accent-dk: oklch(48% 0.10 58);
+      --sage:      oklch(58% 0.08 148);
+      --rule:      oklch(82% 0.018 58);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      transition: color 0.4s;
+      text-decoration: none;
+    }
+    nav.scrolled .nav-logo { color: var(--ink); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.82);
+      transition: color 0.25s;
+    }
+    nav.scrolled .nav-links a { color: var(--ink-mid); }
+    .nav-links a:hover { color: var(--accent) !important; }
+
+    .nav-cta {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.9);
+      transition: all 0.25s;
+    }
+    nav.scrolled .nav-cta {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+      color: var(--bg) !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 80px 100px;
+      overflow: hidden;
+    }
+
+    .hero-image-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-image-placeholder svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        oklch(10% 0.02 45 / 0.55) 0%,
+        oklch(10% 0.02 45 / 0.72) 60%,
+        oklch(8% 0.02 45 / 0.88) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow span {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(64px, 8vw, 108px);
+      line-height: 0.92;
+      color: var(--bg);
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: oklch(88% 0.08 62);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 400px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dk);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .btn-ghost:hover { color: rgba(255,255,255,1); }
+    .btn-ghost svg { transition: transform 0.25s; }
+    .btn-ghost:hover svg { transform: translateX(3px); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      right: 80px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.4);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.25);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── INTRO BAND ── */
+    .intro-band {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 36px 80px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .intro-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .intro-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .intro-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .intro-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--rule);
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 120px 80px; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 64px;
+    }
+    .section-label span {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .section-label-line {
+      height: 1px;
+      width: 36px;
+      background: var(--accent);
+    }
+
+    /* ── FEATURES ── */
+    .features-section {
+      background: var(--bg-warm);
+    }
+
+    .features-header {
+      max-width: 560px;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(38px, 4.5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      font-weight: 300;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: var(--bg);
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: default;
+      transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .feature-card:hover { transform: translateY(-4px); }
+    .feature-card:hover::after { transform: scaleX(1); }
+
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .feature-icon-placeholder {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 32px;
+    }
+
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      font-weight: 300;
+    }
+
+    .feature-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.25s;
+    }
+    .feature-link:hover { gap: 14px; }
+
+    /* ── MENU TEASER ── */
+    .menu-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+
+    .menu-image-half {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .menu-content-half {
+      padding: 100px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--ink);
+    }
+
+    .menu-section .section-label span { color: oklch(70% 0.014 52); }
+
+    .menu-section .section-title { color: var(--bg); margin-bottom: 28px; }
+    .menu-section .section-body  { color: oklch(68% 0.014 52); margin-bottom: 48px; }
+
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid oklch(28% 0.016 45);
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid oklch(28% 0.016 45);
+      transition: padding-left 0.25s;
+      cursor: default;
+    }
+    .menu-item:hover { padding-left: 10px; }
+    .menu-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--bg);
+    }
+    .menu-item-sub {
+      font-size: 11px;
+      color: oklch(52% 0.014 52);
+      letter-spacing: 0.06em;
+    }
+    .menu-item-price {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+
+    .btn-outline-light {
+      display: inline-block;
+      padding: 14px 36px;
+      border: 1px solid oklch(40% 0.016 45);
+      color: var(--bg);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.25s;
+      margin-top: 40px;
+      width: fit-content;
+    }
+    .btn-outline-light:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--ink);
+    }
+
+    /* ── VISIT ── */
+    .visit-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 64px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .visit-block { display: flex; flex-direction: column; gap: 16px; }
+
+    .visit-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .visit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .visit-detail {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ink-mid);
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 80px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-socials a {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+    .footer-socials a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.22s; }
+    .fade-up-delay-3 { transition-delay: 0.34s; }
+  </style>
+</head>
+<body data-om-id="a9c1d0d9:7">
+
+  <!-- NAV -->
+  <nav id="main-nav" data-om-id="a9c1d0d9:8">
+    <a href="#" class="nav-logo" data-om-id="a9c1d0d9:9">Probe Café</a>
+    <ul class="nav-links" data-om-id="a9c1d0d9:10">
+      <li data-om-id="a9c1d0d9:11"><a href="#features" data-om-id="a9c1d0d9:12">Our Story</a></li>
+      <li data-om-id="a9c1d0d9:13"><a href="#menu" data-om-id="a9c1d0d9:14">Menu</a></li>
+      <li data-om-id="a9c1d0d9:15"><a href="#visit" data-om-id="a9c1d0d9:16">Visit</a></li>
+    </ul>
+    <a href="#visit" class="nav-cta" data-om-id="a9c1d0d9:17">Find Us</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero" data-om-id="a9c1d0d9:18">
+    <div class="hero-image-placeholder" aria-hidden="true" data-om-id="a9c1d0d9:19">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" data-om-id="a9c1d0d9:20">
+        <rect width="1440" height="900" fill="oklch(22% 0.025 45)" data-om-id="a9c1d0d9:21"/>
+        <!-- Warm diagonal stripe texture -->
+        <defs data-om-id="a9c1d0d9:22">
+          <pattern id="stripe" patternUnits="userSpaceOnUse" width="28" height="28" patternTransform="rotate(22)" data-om-id="a9c1d0d9:23">
+            <rect width="28" height="28" fill="oklch(20% 0.022 45)" data-om-id="a9c1d0d9:24"/>
+            <rect width="14" height="28" fill="oklch(24% 0.028 50)" data-om-id="a9c1d0d9:25"/>
+          </pattern>
+        </defs>
+        <rect width="1440" height="900" fill="url(#stripe)" opacity="0.7" data-om-id="a9c1d0d9:26"/>
+        <!-- Subtle vignette circles -->
+        <radialGradient id="vg" cx="35%" cy="60%" data-om-id="a9c1d0d9:27">
+          <stop offset="0%" stop-color="oklch(32% 0.04 55)" stop-opacity="0.5" data-om-id="a9c1d0d9:28"/>
+          <stop offset="100%" stop-color="oklch(10% 0.02 45)" stop-opacity="0" data-om-id="a9c1d0d9:29"/>
+        </radialGradient>
+        <rect width="1440" height="900" fill="url(#vg)" data-om-id="a9c1d0d9:30"/>
+        <!-- Placeholder label -->
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="monospace" font-size="13" fill="rgba(255,255,255,0.18)" letter-spacing="3" data-om-id="a9c1d0d9:31">
+          hero photograph — interior or overhead coffee shot
+        </text>
+      </svg>
+    </div>
+    <div class="hero-overlay" data-om-id="a9c1d0d9:32"></div>
+
+    <div class="hero-content" data-om-id="a9c1d0d9:33">
+      <div class="hero-eyebrow" data-om-id="a9c1d0d9:34">
+        <div class="hero-eyebrow-line" data-om-id="a9c1d0d9:35"></div>
+        <span data-om-id="a9c1d0d9:36">Specialty Coffee · Est. 2024</span>
+      </div>
+      <h1 class="hero-title" data-om-id="a9c1d0d9:37">
+        Where every<br data-om-id="a9c1d0d9:38"/>cup is a<br data-om-id="a9c1d0d9:39"/><em data-om-id="a9c1d0d9:40">question.</em>
+      </h1>
+      <p class="hero-sub" data-om-id="a9c1d0d9:41">
+        Probe Café is a quiet corner in the city built around curiosity, craft, and single-origin beans sourced from farmers we know by name.
+      </p>
+      <div class="hero-actions" data-om-id="a9c1d0d9:42">
+        <a href="#menu" class="btn-primary" data-om-id="a9c1d0d9:43">Explore the Menu</a>
+        <a href="#features" class="btn-ghost" data-om-id="a9c1d0d9:44">
+          Our approach
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none" data-om-id="a9c1d0d9:45">
+            <path d="M1 5h14M10 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" data-om-id="a9c1d0d9:46"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <span class="hero-scroll-hint" data-om-id="a9c1d0d9:47">Scroll</span>
+  </section>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band" data-om-id="a9c1d0d9:48">
+    <div class="intro-stat" data-om-id="a9c1d0d9:49">
+      <span class="intro-stat-num" data-om-id="a9c1d0d9:50">12</span>
+      <span class="intro-stat-label" data-om-id="a9c1d0d9:51">Origins</span>
+    </div>
+    <div class="intro-divider" data-om-id="a9c1d0d9:52"></div>
+    <div class="intro-stat" data-om-id="a9c1d0d9:53">
+      <span class="intro-stat-num" data-om-id="a9c1d0d9:54">6am</span>
+      <span class="intro-stat-label" data-om-id="a9c1d0d9:55">Daily Open</span>
+    </div>
+    <div class="intro-divider" data-om-id="a9c1d0d9:56"></div>
+    <div class="intro-stat" data-om-id="a9c1d0d9:57">
+      <span class="intro-stat-num" data-om-id="a9c1d0d9:58">3</span>
+      <span class="intro-stat-label" data-om-id="a9c1d0d9:59">Brew Methods</span>
+    </div>
+    <div class="intro-divider" data-om-id="a9c1d0d9:60"></div>
+    <div class="intro-stat" data-om-id="a9c1d0d9:61">
+      <span class="intro-stat-num" data-om-id="a9c1d0d9:62">100%</span>
+      <span class="intro-stat-label" data-om-id="a9c1d0d9:63">Direct Trade</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features" data-om-id="a9c1d0d9:64">
+    <div class="features-header" data-om-id="a9c1d0d9:65">
+      <div class="section-label" data-om-id="a9c1d0d9:66">
+        <div class="section-label-line" data-om-id="a9c1d0d9:67"></div>
+        <span data-om-id="a9c1d0d9:68">Why Probe</span>
+      </div>
+      <h2 class="section-title fade-up" data-om-id="a9c1d0d9:69">
+        Coffee as a lens for the&nbsp;world.
+      </h2>
+      <p class="section-body fade-up fade-up-delay-1" data-om-id="a9c1d0d9:70">
+        We believe the best cup of coffee asks as many questions as it answers. Probe is built on three principles.
+      </p>
+    </div>
+
+    <div class="features-grid" data-om-id="a9c1d0d9:71">
+
+      <!-- Feature 1 -->
+      <div class="feature-card fade-up" data-om-id="a9c1d0d9:72">
+        <span class="feature-num" data-om-id="a9c1d0d9:73">01</span>
+        <svg class="feature-icon-placeholder" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Origin icon" data-om-id="a9c1d0d9:74">
+          <circle cx="26" cy="26" r="25" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:75"/>
+          <circle cx="26" cy="26" r="8" stroke="oklch(63% 0.11 60)" stroke-width="1" stroke-dasharray="3 4" data-om-id="a9c1d0d9:76"/>
+          <line x1="26" y1="1" x2="26" y2="18" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:77"/>
+          <line x1="26" y1="34" x2="26" y2="51" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:78"/>
+          <line x1="1" y1="26" x2="18" y2="26" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:79"/>
+          <line x1="34" y1="26" x2="51" y2="26" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:80"/>
+        </svg>
+        <h3 class="feature-title" data-om-id="a9c1d0d9:81">Single Origin,<br data-om-id="a9c1d0d9:82"/>Traced to the Farm</h3>
+        <p class="feature-desc" data-om-id="a9c1d0d9:83">
+          Every bean we roast carries a passport — farm name, altitude, harvest date. We buy direct from producers in Ethiopia, Colombia, and Sumatra so the story travels with the cup.
+        </p>
+        <a href="#" class="feature-link" data-om-id="a9c1d0d9:84">
+          Our sourcing
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none" data-om-id="a9c1d0d9:85">
+            <path d="M1 4h12M9 1l4 3-4 3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" data-om-id="a9c1d0d9:86"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card fade-up fade-up-delay-1" data-om-id="a9c1d0d9:87">
+        <span class="feature-num" data-om-id="a9c1d0d9:88">02</span>
+        <svg class="feature-icon-placeholder" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Craft icon" data-om-id="a9c1d0d9:89">
+          <rect x="14" y="32" width="24" height="4" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:90"/>
+          <path d="M18 32V20a8 8 0 0 1 16 0v12" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:91"/>
+          <path d="M22 20c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="oklch(63% 0.11 60)" stroke-width="1" stroke-dasharray="2 3" data-om-id="a9c1d0d9:92"/>
+          <line x1="26" y1="4" x2="26" y2="12" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:93"/>
+          <path d="M20 36v8h12v-8" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:94"/>
+        </svg>
+        <h3 class="feature-title" data-om-id="a9c1d0d9:95">Dialled with<br data-om-id="a9c1d0d9:96"/>Precision</h3>
+        <p class="feature-desc" data-om-id="a9c1d0d9:97">
+          Our baristas treat extraction like a discipline. Grind size, water temperature, contact time — each variable is documented and refined weekly. No guesswork, only method.
+        </p>
+        <a href="#" class="feature-link" data-om-id="a9c1d0d9:98">
+          Our process
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none" data-om-id="a9c1d0d9:99">
+            <path d="M1 4h12M9 1l4 3-4 3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" data-om-id="a9c1d0d9:100"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card fade-up fade-up-delay-2" data-om-id="a9c1d0d9:101">
+        <span class="feature-num" data-om-id="a9c1d0d9:102">03</span>
+        <svg class="feature-icon-placeholder" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Space icon" data-om-id="a9c1d0d9:103">
+          <rect x="4" y="14" width="44" height="30" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:104"/>
+          <rect x="10" y="20" width="10" height="10" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:105"/>
+          <rect x="26" y="20" width="16" height="4" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:106"/>
+          <rect x="26" y="28" width="10" height="4" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:107"/>
+          <path d="M20 44V14" stroke="oklch(63% 0.11 60)" stroke-width="0.5" stroke-dasharray="3 4" data-om-id="a9c1d0d9:108"/>
+          <rect x="16" y="8" width="20" height="6" stroke="oklch(63% 0.11 60)" stroke-width="1" data-om-id="a9c1d0d9:109"/>
+        </svg>
+        <h3 class="feature-title" data-om-id="a9c1d0d9:110">A Space Made<br data-om-id="a9c1d0d9:111"/>for Slow Time</h3>
+        <p class="feature-desc" data-om-id="a9c1d0d9:112">
+          No rush, no upsells. The Probe interior is designed for long reads, light conversations, and the kind of focused work that only happens somewhere genuinely calm.
+        </p>
+        <a href="#" class="feature-link" data-om-id="a9c1d0d9:113">
+          Our space
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none" data-om-id="a9c1d0d9:114">
+            <path d="M1 4h12M9 1l4 3-4 3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" data-om-id="a9c1d0d9:115"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MENU TEASER -->
+  <div class="menu-section" id="menu" data-om-id="a9c1d0d9:116">
+    <div class="menu-image-half" data-om-id="a9c1d0d9:117">
+      <svg width="100%" height="100%" viewBox="0 0 720 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" data-om-id="a9c1d0d9:118">
+        <rect width="720" height="560" fill="oklch(28% 0.03 50)" data-om-id="a9c1d0d9:119"/>
+        <defs data-om-id="a9c1d0d9:120">
+          <pattern id="stripe2" patternUnits="userSpaceOnUse" width="22" height="22" patternTransform="rotate(-15)" data-om-id="a9c1d0d9:121">
+            <rect width="22" height="22" fill="oklch(26% 0.028 48)" data-om-id="a9c1d0d9:122"/>
+            <rect width="11" height="22" fill="oklch(30% 0.032 54)" data-om-id="a9c1d0d9:123"/>
+          </pattern>
+        </defs>
+        <rect width="720" height="560" fill="url(#stripe2)" opacity="0.65" data-om-id="a9c1d0d9:124"/>
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="monospace" font-size="12" fill="rgba(255,255,255,0.2)" letter-spacing="3" data-om-id="a9c1d0d9:125">
+          close-up product photography
+        </text>
+      </svg>
+    </div>
+
+    <div class="menu-content-half" data-om-id="a9c1d0d9:126">
+      <div class="section-label" data-om-id="a9c1d0d9:127">
+        <div class="section-label-line" data-om-id="a9c1d0d9:128"></div>
+        <span style="color: oklch(60% 0.014 52); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;" data-om-id="a9c1d0d9:129">The Menu</span>
+      </div>
+      <h2 class="section-title" style="color: var(--bg);" data-om-id="a9c1d0d9:130">A short list,<br data-om-id="a9c1d0d9:131"/>done properly.</h2>
+      <p class="section-body" style="color: oklch(58% 0.014 52); margin-bottom: 0;" data-om-id="a9c1d0d9:132">
+        We keep it simple. Rotating single-origin espresso, filter, and a handful of things to eat.
+      </p>
+
+      <div class="menu-items" style="margin-top: 44px;" data-om-id="a9c1d0d9:133">
+        <div class="menu-item" data-om-id="a9c1d0d9:134">
+          <div data-om-id="a9c1d0d9:135">
+            <div class="menu-item-name" data-om-id="a9c1d0d9:136">Espresso</div>
+            <div class="menu-item-sub" data-om-id="a9c1d0d9:137">rotating single-origin</div>
+          </div>
+          <span class="menu-item-price" data-om-id="a9c1d0d9:138">$4</span>
+        </div>
+        <div class="menu-item" data-om-id="a9c1d0d9:139">
+          <div data-om-id="a9c1d0d9:140">
+            <div class="menu-item-name" data-om-id="a9c1d0d9:141">Flat White</div>
+            <div class="menu-item-sub" data-om-id="a9c1d0d9:142">oat or whole milk</div>
+          </div>
+          <span class="menu-item-price" data-om-id="a9c1d0d9:143">$6</span>
+        </div>
+        <div class="menu-item" data-om-id="a9c1d0d9:144">
+          <div data-om-id="a9c1d0d9:145">
+            <div class="menu-item-name" data-om-id="a9c1d0d9:146">Filter</div>
+            <div class="menu-item-sub" data-om-id="a9c1d0d9:147">pour-over · batch · cold</div>
+          </div>
+          <span class="menu-item-price" data-om-id="a9c1d0d9:148">$5</span>
+        </div>
+        <div class="menu-item" data-om-id="a9c1d0d9:149">
+          <div data-om-id="a9c1d0d9:150">
+            <div class="menu-item-name" data-om-id="a9c1d0d9:151">Cortado</div>
+            <div class="menu-item-sub" data-om-id="a9c1d0d9:152">2:2 ratio, small and direct</div>
+          </div>
+          <span class="menu-item-price" data-om-id="a9c1d0d9:153">$5</span>
+        </div>
+        <div class="menu-item" data-om-id="a9c1d0d9:154">
+          <div data-om-id="a9c1d0d9:155">
+            <div class="menu-item-name" data-om-id="a9c1d0d9:156">Pastry of the Day</div>
+            <div class="menu-item-sub" data-om-id="a9c1d0d9:157">local bakery, changes daily</div>
+          </div>
+          <span class="menu-item-price" data-om-id="a9c1d0d9:158">$4</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-outline-light" data-om-id="a9c1d0d9:159">Full Menu</a>
+    </div>
+  </div>
+
+  <!-- VISIT -->
+  <section class="visit-section" id="visit" data-om-id="a9c1d0d9:160">
+    <div class="visit-block fade-up" data-om-id="a9c1d0d9:161">
+      <span class="visit-label" data-om-id="a9c1d0d9:162">Hours</span>
+      <div class="visit-title" data-om-id="a9c1d0d9:163">Open daily,<br data-om-id="a9c1d0d9:164"/>early to dusk.</div>
+      <div class="visit-detail" data-om-id="a9c1d0d9:165">
+        Monday – Friday<br data-om-id="a9c1d0d9:166"/>6:00 am – 6:00 pm<br data-om-id="a9c1d0d9:167"/><br data-om-id="a9c1d0d9:168"/>
+        Saturday – Sunday<br data-om-id="a9c1d0d9:169"/>7:00 am – 5:00 pm
+      </div>
+    </div>
+
+    <div class="visit-block fade-up fade-up-delay-1" data-om-id="a9c1d0d9:170">
+      <span class="visit-label" data-om-id="a9c1d0d9:171">Location</span>
+      <div class="visit-title" data-om-id="a9c1d0d9:172">In the heart<br data-om-id="a9c1d0d9:173"/>of the district.</div>
+      <div class="visit-detail" data-om-id="a9c1d0d9:174">
+        42 Meridian Lane<br data-om-id="a9c1d0d9:175"/>Ground Floor, The Shard Building<br data-om-id="a9c1d0d9:176"/>New York, NY 10013<br data-om-id="a9c1d0d9:177"/><br data-om-id="a9c1d0d9:178"/>
+        <a href="#" style="color: var(--accent); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;" data-om-id="a9c1d0d9:179">Get Directions →</a>
+      </div>
+    </div>
+
+    <div class="visit-block fade-up fade-up-delay-2" data-om-id="a9c1d0d9:180">
+      <span class="visit-label" data-om-id="a9c1d0d9:181">Contact</span>
+      <div class="visit-title" data-om-id="a9c1d0d9:182">Always glad<br data-om-id="a9c1d0d9:183"/>to hear from you.</div>
+      <div class="visit-detail" data-om-id="a9c1d0d9:184">
+        <a href="/cdn-cgi/l/email-protection#d8b0bdb4b4b798a8aab7babdbbb9bebdf6bbb7b5" style="color: var(--ink-mid); text-decoration: none; display: block; margin-bottom: 6px;" data-om-id="a9c1d0d9:185"><span class="__cf_email__" data-cfemail="dcb4b9b0b0b39cacaeb3beb9bfbdbab9f2bfb3b1">[email&#160;protected]</span></a>
+        <a href="tel:+12125550100" style="color: var(--ink-mid); text-decoration: none;" data-om-id="a9c1d0d9:186">+1 (212) 555-0100</a><br data-om-id="a9c1d0d9:187"/><br data-om-id="a9c1d0d9:188"/>
+        For wholesale and<br data-om-id="a9c1d0d9:189"/>event enquiries, please email.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-om-id="a9c1d0d9:190">
+    <span class="footer-logo" data-om-id="a9c1d0d9:191">Probe Café</span>
+    <span class="footer-copy" data-om-id="a9c1d0d9:192">© 2024 Probe Café. All rights reserved.</span>
+    <div class="footer-socials" data-om-id="a9c1d0d9:193">
+      <a href="#" data-om-id="a9c1d0d9:194">Instagram</a>
+      <a href="#" data-om-id="a9c1d0d9:195">Twitter</a>
+    </div>
+  </footer>
+
+  <!-- REACT: Tweaks Panel -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accentColor": "oklch(63% 0.11 60)",
+      "heroTagline": "Where every cup is a question.",
+      "fontStyle": "serif-display",
+      "darkNav": false
+    }/*EDITMODE-END*/;
+
+    function ProbeTweaks() {
+      const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => {
+        const root = document.documentElement;
+        root.style.setProperty('--accent', tweaks.accentColor);
+        root.style.setProperty('--accent-dk',
+          tweaks.accentColor.replace('63%', '48%').replace('0.11', '0.10')
+        );
+      }, [tweaks.accentColor]);
+
+      React.useEffect(() => {
+        const el = document.querySelector('.hero-title');
+        if (!el) return;
+        const [line1, , line2, , line3] = tweaks.heroTagline.split(' ');
+        // just update inner text simply
+        const words = tweaks.heroTagline.split(' ');
+        const split = Math.ceil(words.length / 3);
+        const l1 = words.slice(0, split).join(' ');
+        const l2 = words.slice(split, split * 2).join(' ');
+        const l3 = words.slice(split * 2).join(' ');
+        el.innerHTML = `${l1}<br/>${l2}<br/><em>${l3}</em>`;
+      }, [tweaks.heroTagline]);
+
+      return (
+        <TweaksPanel>
+          <TweakSection label="Brand">
+            <TweakColor
+              label="Accent Color"
+              value={tweaks.accentColor}
+              options={[
+                'oklch(63% 0.11 60)',
+                'oklch(58% 0.10 25)',
+                'oklch(58% 0.10 148)',
+                'oklch(58% 0.10 260)'
+              ]}
+              onChange={v => setTweak('accentColor', v)}
+            />
+          </TweakSection>
+          <TweakSection label="Copy">
+            <TweakText
+              label="Hero Tagline"
+              value={tweaks.heroTagline}
+              onChange={v => setTweak('heroTagline', v)}
+            />
+          </TweakSection>
+          <TweakSection label="Style">
+            <TweakRadio
+              label="Heading Style"
+              value={tweaks.fontStyle}
+              options={['serif-display', 'all-caps']}
+              onChange={v => {
+                setTweak('fontStyle', v);
+                const h2s = document.querySelectorAll('.section-title, .hero-title, .feature-title');
+                h2s.forEach(el => {
+                  if (v === 'all-caps') {
+                    el.style.fontStyle = 'normal';
+                    el.style.textTransform = 'uppercase';
+                    el.style.fontSize = '90%';
+                    el.style.letterSpacing = '0.06em';
+                  } else {
+                    el.style.fontStyle = '';
+                    el.style.textTransform = '';
+                    el.style.fontSize = '';
+                    el.style.letterSpacing = '';
+                  }
+                });
+              }}
+            />
+          </TweakSection>
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<ProbeTweaks />);
+  </script>
+
+  <!-- Nav scroll behavior + intersection observer -->
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Fade-up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+  <div id="tweaks-root" data-om-id="a9c1d0d9:196"></div>
+</body>
+</html>
+<script type="application/json" id="__om_srcmap">{"gen":"a9c1d0d9","entries":[{"id":"a9c1d0d9:0","tag":"html","openStart":16,"attrEnd":31,"openEnd":32,"closeStart":30987,"closeEnd":30994,"textRuns":[[32,33],[14261,14262],[30986,30987]],"parentId":null,"childIds":["a9c1d0d9:1","a9c1d0d9:7"]},{"id":"a9c1d0d9:1","tag":"head","openStart":33,"attrEnd":38,"openEnd":39,"closeStart":14254,"closeEnd":14261,"textRuns":[[39,42],[66,69],[141,144],[169,172],[233,236],[306,309],[492,496],[683,686],[881,884],[1071,1075],[14253,14254]],"parentId":"a9c1d0d9:0","childIds":["a9c1d0d9:2","a9c1d0d9:3","a9c1d0d9:4","a9c1d0d9:5","a9c1d0d9:6"]},{"id":"a9c1d0d9:2","tag":"meta","openStart":42,"attrEnd":63,"openEnd":66,"closeEnd":66,"textRuns":[],"parentId":"a9c1d0d9:1","childIds":[]},{"id":"a9c1d0d9:3","tag":"meta","openStart":69,"attrEnd":138,"openEnd":141,"closeEnd":141,"textRuns":[],"parentId":"a9c1d0d9:1","childIds":[]},{"id":"a9c1d0d9:4","tag":"link","openStart":172,"attrEnd":230,"openEnd":233,"closeEnd":233,"textRuns":[],"parentId":"a9c1d0d9:1","childIds":[]},{"id":"a9c1d0d9:5","tag":"link","openStart":236,"attrEnd":303,"openEnd":306,"closeEnd":306,"textRuns":[],"parentId":"a9c1d0d9:1","childIds":[]},{"id":"a9c1d0d9:6","tag":"link","openStart":309,"attrEnd":489,"openEnd":492,"closeEnd":492,"textRuns":[],"parentId":"a9c1d0d9:1","childIds":[]},{"id":"a9c1d0d9:7","tag":"body","openStart":14262,"attrEnd":14267,"openEnd":14268,"closeStart":30979,"closeEnd":30986,"textRuns":[[14268,14272],[14284,14287],[14581,14585],[14598,14601],[16907,16911],[16930,16933],[17643,17647],[17664,17667],[22457,22461],[22481,22484],[25384,25388],[25402,25405],[26841,26845],[26860,26863],[27117,27121],[27149,27152],[27210,27213],[30266,30270],[30322,30325],[30946,30950],[30978,30979]],"parentId":"a9c1d0d9:0","childIds":["a9c1d0d9:8","a9c1d0d9:18","a9c1d0d9:48","a9c1d0d9:64","a9c1d0d9:116","a9c1d0d9:160","a9c1d0d9:190","a9c1d0d9:196"]},{"id":"a9c1d0d9:8","tag":"nav","openStart":14287,"attrEnd":14305,"openEnd":14306,"closeStart":14575,"closeEnd":14581,"textRuns":[[14306,14311],[14355,14360],[14523,14528],[14572,14575]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:9","a9c1d0d9:10","a9c1d0d9:17"]},{"id":"a9c1d0d9:9","tag":"a","openStart":14311,"attrEnd":14339,"openEnd":14340,"closeStart":14351,"closeEnd":14355,"textRuns":[[14340,14351]],"parentId":"a9c1d0d9:8","childIds":[]},{"id":"a9c1d0d9:10","tag":"ul","openStart":14360,"attrEnd":14381,"openEnd":14382,"closeStart":14518,"closeEnd":14523,"textRuns":[[14382,14389],[14431,14438],[14471,14478],[14513,14518]],"parentId":"a9c1d0d9:8","childIds":["a9c1d0d9:11","a9c1d0d9:13","a9c1d0d9:15"]},{"id":"a9c1d0d9:11","tag":"li","openStart":14389,"attrEnd":14392,"openEnd":14393,"closeStart":14426,"closeEnd":14431,"textRuns":[],"parentId":"a9c1d0d9:10","childIds":["a9c1d0d9:12"]},{"id":"a9c1d0d9:12","tag":"a","openStart":14393,"attrEnd":14412,"openEnd":14413,"closeStart":14422,"closeEnd":14426,"textRuns":[[14413,14422]],"parentId":"a9c1d0d9:11","childIds":[]},{"id":"a9c1d0d9:13","tag":"li","openStart":14438,"attrEnd":14441,"openEnd":14442,"closeStart":14466,"closeEnd":14471,"textRuns":[],"parentId":"a9c1d0d9:10","childIds":["a9c1d0d9:14"]},{"id":"a9c1d0d9:14","tag":"a","openStart":14442,"attrEnd":14457,"openEnd":14458,"closeStart":14462,"closeEnd":14466,"textRuns":[[14458,14462]],"parentId":"a9c1d0d9:13","childIds":[]},{"id":"a9c1d0d9:15","tag":"li","openStart":14478,"attrEnd":14481,"openEnd":14482,"closeStart":14508,"closeEnd":14513,"textRuns":[],"parentId":"a9c1d0d9:10","childIds":["a9c1d0d9:16"]},{"id":"a9c1d0d9:16","tag":"a","openStart":14482,"attrEnd":14498,"openEnd":14499,"closeStart":14504,"closeEnd":14508,"textRuns":[[14499,14504]],"parentId":"a9c1d0d9:15","childIds":[]},{"id":"a9c1d0d9:17","tag":"a","openStart":14528,"attrEnd":14560,"openEnd":14561,"closeStart":14568,"closeEnd":14572,"textRuns":[[14561,14568]],"parentId":"a9c1d0d9:8","childIds":[]},{"id":"a9c1d0d9:18","tag":"section","openStart":14601,"attrEnd":14632,"openEnd":14633,"closeStart":16897,"closeEnd":16907,"textRuns":[[14633,14638],[15951,15956],[15988,15994],[16844,16850],[16894,16897]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:19","a9c1d0d9:32","a9c1d0d9:33","a9c1d0d9:47"]},{"id":"a9c1d0d9:19","tag":"div","openStart":14638,"attrEnd":14692,"openEnd":14693,"closeStart":15945,"closeEnd":15951,"textRuns":[[14693,14700],[15940,15945]],"parentId":"a9c1d0d9:18","childIds":["a9c1d0d9:20"]},{"id":"a9c1d0d9:20","tag":"svg","openStart":14700,"attrEnd":14799,"openEnd":14800,"closeStart":15934,"closeEnd":15940,"textRuns":[[14800,14809]],"parentId":"a9c1d0d9:19","childIds":["a9c1d0d9:21"]},{"id":"a9c1d0d9:21","tag":"rect","openStart":14809,"attrEnd":14867,"openEnd":14869,"textRuns":[[14869,14878],[14915,14924],[15222,15231]],"parentId":"a9c1d0d9:20","childIds":["a9c1d0d9:22","a9c1d0d9:26"]},{"id":"a9c1d0d9:22","tag":"defs","openStart":14924,"attrEnd":14929,"openEnd":14930,"closeStart":15215,"closeEnd":15222,"textRuns":[[14930,14941],[15206,15215]],"parentId":"a9c1d0d9:21","childIds":["a9c1d0d9:23"]},{"id":"a9c1d0d9:23","tag":"pattern","openStart":14941,"attrEnd":15044,"openEnd":15045,"closeStart":15196,"closeEnd":15206,"textRuns":[[15045,15058]],"parentId":"a9c1d0d9:22","childIds":["a9c1d0d9:24"]},{"id":"a9c1d0d9:24","tag":"rect","openStart":15058,"attrEnd":15113,"openEnd":15115,"textRuns":[[15115,15128]],"parentId":"a9c1d0d9:23","childIds":["a9c1d0d9:25"]},{"id":"a9c1d0d9:25","tag":"rect","openStart":15128,"attrEnd":15183,"openEnd":15185,"textRuns":[[15185,15196]],"parentId":"a9c1d0d9:24","childIds":[]},{"id":"a9c1d0d9:26","tag":"rect","openStart":15231,"attrEnd":15296,"openEnd":15298,"textRuns":[[15298,15307],[15339,15348],[15578,15587]],"parentId":"a9c1d0d9:21","childIds":["a9c1d0d9:27","a9c1d0d9:30"]},{"id":"a9c1d0d9:27","tag":"radialgradient","openStart":15348,"attrEnd":15389,"openEnd":15390,"closeStart":15561,"closeEnd":15578,"textRuns":[[15390,15401]],"parentId":"a9c1d0d9:26","childIds":["a9c1d0d9:28"]},{"id":"a9c1d0d9:28","tag":"stop","openStart":15401,"attrEnd":15469,"openEnd":15471,"textRuns":[[15471,15482]],"parentId":"a9c1d0d9:27","childIds":["a9c1d0d9:29"]},{"id":"a9c1d0d9:29","tag":"stop","openStart":15482,"attrEnd":15550,"openEnd":15552,"textRuns":[[15552,15561]],"parentId":"a9c1d0d9:28","childIds":[]},{"id":"a9c1d0d9:30","tag":"rect","openStart":15587,"attrEnd":15634,"openEnd":15636,"textRuns":[[15636,15645],[15671,15680],[15927,15934]],"parentId":"a9c1d0d9:26","childIds":["a9c1d0d9:31"]},{"id":"a9c1d0d9:31","tag":"text","openStart":15680,"attrEnd":15847,"openEnd":15848,"closeStart":15920,"closeEnd":15927,"textRuns":[[15848,15920]],"parentId":"a9c1d0d9:30","childIds":[]},{"id":"a9c1d0d9:32","tag":"div","openStart":15956,"attrEnd":15981,"openEnd":15982,"closeStart":15982,"closeEnd":15988,"textRuns":[],"parentId":"a9c1d0d9:18","childIds":[]},{"id":"a9c1d0d9:33","tag":"div","openStart":15994,"attrEnd":16019,"openEnd":16020,"closeStart":16838,"closeEnd":16844,"textRuns":[[16020,16027],[16163,16170],[16261,16268],[16442,16449],[16833,16838]],"parentId":"a9c1d0d9:18","childIds":["a9c1d0d9:34","a9c1d0d9:37","a9c1d0d9:41","a9c1d0d9:42"]},{"id":"a9c1d0d9:34","tag":"div","openStart":16027,"attrEnd":16052,"openEnd":16053,"closeStart":16157,"closeEnd":16163,"textRuns":[[16053,16062],[16099,16108],[16150,16157]],"parentId":"a9c1d0d9:33","childIds":["a9c1d0d9:35","a9c1d0d9:36"]},{"id":"a9c1d0d9:35","tag":"div","openStart":16062,"attrEnd":16092,"openEnd":16093,"closeStart":16093,"closeEnd":16099,"textRuns":[],"parentId":"a9c1d0d9:34","childIds":[]},{"id":"a9c1d0d9:36","tag":"span","openStart":16108,"attrEnd":16113,"openEnd":16114,"closeStart":16143,"closeEnd":16150,"textRuns":[[16114,16143]],"parentId":"a9c1d0d9:34","childIds":[]},{"id":"a9c1d0d9:37","tag":"h1","openStart":16170,"attrEnd":16192,"openEnd":16193,"closeStart":16256,"closeEnd":16261,"textRuns":[[16193,16213],[16218,16226],[16249,16256]],"parentId":"a9c1d0d9:33","childIds":["a9c1d0d9:38","a9c1d0d9:39","a9c1d0d9:40"]},{"id":"a9c1d0d9:38","tag":"br","openStart":16213,"attrEnd":16216,"openEnd":16218,"closeEnd":16218,"textRuns":[],"parentId":"a9c1d0d9:37","childIds":[]},{"id":"a9c1d0d9:39","tag":"br","openStart":16226,"attrEnd":16229,"openEnd":16231,"closeEnd":16231,"textRuns":[],"parentId":"a9c1d0d9:37","childIds":[]},{"id":"a9c1d0d9:40","tag":"em","openStart":16231,"attrEnd":16234,"openEnd":16235,"closeStart":16244,"closeEnd":16249,"textRuns":[[16235,16244]],"parentId":"a9c1d0d9:37","childIds":[]},{"id":"a9c1d0d9:41","tag":"p","openStart":16268,"attrEnd":16287,"openEnd":16288,"closeStart":16438,"closeEnd":16442,"textRuns":[[16288,16438]],"parentId":"a9c1d0d9:33","childIds":[]},{"id":"a9c1d0d9:42","tag":"div","openStart":16449,"attrEnd":16474,"openEnd":16475,"closeStart":16827,"closeEnd":16833,"textRuns":[[16475,16484],[16540,16549],[16820,16827]],"parentId":"a9c1d0d9:33","childIds":["a9c1d0d9:43","a9c1d0d9:44"]},{"id":"a9c1d0d9:43","tag":"a","openStart":16484,"attrEnd":16519,"openEnd":16520,"closeStart":16536,"closeEnd":16540,"textRuns":[[16520,16536]],"parentId":"a9c1d0d9:42","childIds":[]},{"id":"a9c1d0d9:44","tag":"a","openStart":16549,"attrEnd":16586,"openEnd":16587,"closeStart":16816,"closeEnd":16820,"textRuns":[[16587,16621],[16807,16816]],"parentId":"a9c1d0d9:42","childIds":["a9c1d0d9:45"]},{"id":"a9c1d0d9:45","tag":"svg","openStart":16621,"attrEnd":16680,"openEnd":16681,"closeStart":16801,"closeEnd":16807,"textRuns":[[16681,16694]],"parentId":"a9c1d0d9:44","childIds":["a9c1d0d9:46"]},{"id":"a9c1d0d9:46","tag":"path","openStart":16694,"attrEnd":16788,"openEnd":16790,"textRuns":[[16790,16801]],"parentId":"a9c1d0d9:45","childIds":[]},{"id":"a9c1d0d9:47","tag":"span","openStart":16850,"attrEnd":16880,"openEnd":16881,"closeStart":16887,"closeEnd":16894,"textRuns":[[16881,16887]],"parentId":"a9c1d0d9:18","childIds":[]},{"id":"a9c1d0d9:48","tag":"div","openStart":16933,"attrEnd":16956,"openEnd":16957,"closeStart":17637,"closeEnd":17643,"textRuns":[[16957,16962],[17094,17099],[17132,17137],[17273,17278],[17311,17316],[17452,17457],[17490,17495],[17634,17637]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:49","a9c1d0d9:52","a9c1d0d9:53","a9c1d0d9:56","a9c1d0d9:57","a9c1d0d9:60","a9c1d0d9:61"]},{"id":"a9c1d0d9:49","tag":"div","openStart":16962,"attrEnd":16985,"openEnd":16986,"closeStart":17088,"closeEnd":17094,"textRuns":[[16986,16993],[17031,17038],[17083,17088]],"parentId":"a9c1d0d9:48","childIds":["a9c1d0d9:50","a9c1d0d9:51"]},{"id":"a9c1d0d9:50","tag":"span","openStart":16993,"attrEnd":17021,"openEnd":17022,"closeStart":17024,"closeEnd":17031,"textRuns":[[17022,17024]],"parentId":"a9c1d0d9:49","childIds":[]},{"id":"a9c1d0d9:51","tag":"span","openStart":17038,"attrEnd":17068,"openEnd":17069,"closeStart":17076,"closeEnd":17083,"textRuns":[[17069,17076]],"parentId":"a9c1d0d9:49","childIds":[]},{"id":"a9c1d0d9:52","tag":"div","openStart":17099,"attrEnd":17125,"openEnd":17126,"closeStart":17126,"closeEnd":17132,"textRuns":[],"parentId":"a9c1d0d9:48","childIds":[]},{"id":"a9c1d0d9:53","tag":"div","openStart":17137,"attrEnd":17160,"openEnd":17161,"closeStart":17267,"closeEnd":17273,"textRuns":[[17161,17168],[17207,17214],[17262,17267]],"parentId":"a9c1d0d9:48","childIds":["a9c1d0d9:54","a9c1d0d9:55"]},{"id":"a9c1d0d9:54","tag":"span","openStart":17168,"attrEnd":17196,"openEnd":17197,"closeStart":17200,"closeEnd":17207,"textRuns":[[17197,17200]],"parentId":"a9c1d0d9:53","childIds":[]},{"id":"a9c1d0d9:55","tag":"span","openStart":17214,"attrEnd":17244,"openEnd":17245,"closeStart":17255,"closeEnd":17262,"textRuns":[[17245,17255]],"parentId":"a9c1d0d9:53","childIds":[]},{"id":"a9c1d0d9:56","tag":"div","openStart":17278,"attrEnd":17304,"openEnd":17305,"closeStart":17305,"closeEnd":17311,"textRuns":[],"parentId":"a9c1d0d9:48","childIds":[]},{"id":"a9c1d0d9:57","tag":"div","openStart":17316,"attrEnd":17339,"openEnd":17340,"closeStart":17446,"closeEnd":17452,"textRuns":[[17340,17347],[17384,17391],[17441,17446]],"parentId":"a9c1d0d9:48","childIds":["a9c1d0d9:58","a9c1d0d9:59"]},{"id":"a9c1d0d9:58","tag":"span","openStart":17347,"attrEnd":17375,"openEnd":17376,"closeStart":17377,"closeEnd":17384,"textRuns":[[17376,17377]],"parentId":"a9c1d0d9:57","childIds":[]},{"id":"a9c1d0d9:59","tag":"span","openStart":17391,"attrEnd":17421,"openEnd":17422,"closeStart":17434,"closeEnd":17441,"textRuns":[[17422,17434]],"parentId":"a9c1d0d9:57","childIds":[]},{"id":"a9c1d0d9:60","tag":"div","openStart":17457,"attrEnd":17483,"openEnd":17484,"closeStart":17484,"closeEnd":17490,"textRuns":[],"parentId":"a9c1d0d9:48","childIds":[]},{"id":"a9c1d0d9:61","tag":"div","openStart":17495,"attrEnd":17518,"openEnd":17519,"closeStart":17628,"closeEnd":17634,"textRuns":[[17519,17526],[17566,17573],[17623,17628]],"parentId":"a9c1d0d9:48","childIds":["a9c1d0d9:62","a9c1d0d9:63"]},{"id":"a9c1d0d9:62","tag":"span","openStart":17526,"attrEnd":17554,"openEnd":17555,"closeStart":17559,"closeEnd":17566,"textRuns":[[17555,17559]],"parentId":"a9c1d0d9:61","childIds":[]},{"id":"a9c1d0d9:63","tag":"span","openStart":17573,"attrEnd":17603,"openEnd":17604,"closeStart":17616,"closeEnd":17623,"textRuns":[[17604,17616]],"parentId":"a9c1d0d9:61","childIds":[]},{"id":"a9c1d0d9:64","tag":"section","openStart":17667,"attrEnd":17714,"openEnd":17715,"closeStart":22447,"closeEnd":22457,"textRuns":[[17715,17720],[18165,18171],[22444,22447]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:65","a9c1d0d9:71"]},{"id":"a9c1d0d9:65","tag":"div","openStart":17720,"attrEnd":17748,"openEnd":17749,"closeStart":18159,"closeEnd":18165,"textRuns":[[17749,17756],[17874,17881],[17972,17979],[18154,18159]],"parentId":"a9c1d0d9:64","childIds":["a9c1d0d9:66","a9c1d0d9:69","a9c1d0d9:70"]},{"id":"a9c1d0d9:66","tag":"div","openStart":17756,"attrEnd":17782,"openEnd":17783,"closeStart":17868,"closeEnd":17874,"textRuns":[[17783,17792],[17830,17839],[17861,17868]],"parentId":"a9c1d0d9:65","childIds":["a9c1d0d9:67","a9c1d0d9:68"]},{"id":"a9c1d0d9:67","tag":"div","openStart":17792,"attrEnd":17823,"openEnd":17824,"closeStart":17824,"closeEnd":17830,"textRuns":[],"parentId":"a9c1d0d9:66","childIds":[]},{"id":"a9c1d0d9:68","tag":"span","openStart":17839,"attrEnd":17844,"openEnd":17845,"closeStart":17854,"closeEnd":17861,"textRuns":[[17845,17854]],"parentId":"a9c1d0d9:66","childIds":[]},{"id":"a9c1d0d9:69","tag":"h2","openStart":17881,"attrEnd":17914,"openEnd":17915,"closeStart":17967,"closeEnd":17972,"textRuns":[[17915,17967]],"parentId":"a9c1d0d9:65","childIds":[]},{"id":"a9c1d0d9:70","tag":"p","openStart":17979,"attrEnd":18026,"openEnd":18027,"closeStart":18150,"closeEnd":18154,"textRuns":[[18027,18150]],"parentId":"a9c1d0d9:65","childIds":[]},{"id":"a9c1d0d9:71","tag":"div","openStart":18171,"attrEnd":18197,"openEnd":18198,"closeStart":22438,"closeEnd":22444,"textRuns":[[18198,18206],[18224,18231],[19634,19642],[19660,19667],[20985,20993],[21011,21018],[22432,22438]],"parentId":"a9c1d0d9:64","childIds":["a9c1d0d9:72","a9c1d0d9:87","a9c1d0d9:101"]},{"id":"a9c1d0d9:72","tag":"div","openStart":18231,"attrEnd":18264,"openEnd":18265,"closeStart":19628,"closeEnd":19634,"textRuns":[[18265,18274],[18309,18318],[19039,19048],[19116,19125],[19349,19358],[19621,19628]],"parentId":"a9c1d0d9:71","childIds":["a9c1d0d9:73","a9c1d0d9:74","a9c1d0d9:81","a9c1d0d9:83","a9c1d0d9:84"]},{"id":"a9c1d0d9:73","tag":"span","openStart":18274,"attrEnd":18299,"openEnd":18300,"closeStart":18302,"closeEnd":18309,"textRuns":[[18300,18302]],"parentId":"a9c1d0d9:72","childIds":[]},{"id":"a9c1d0d9:74","tag":"svg","openStart":18318,"attrEnd":18447,"openEnd":18448,"closeStart":19033,"closeEnd":19039,"textRuns":[[18448,18459]],"parentId":"a9c1d0d9:72","childIds":["a9c1d0d9:75"]},{"id":"a9c1d0d9:75","tag":"circle","openStart":18459,"attrEnd":18534,"openEnd":18536,"textRuns":[[18536,18547]],"parentId":"a9c1d0d9:74","childIds":["a9c1d0d9:76"]},{"id":"a9c1d0d9:76","tag":"circle","openStart":18547,"attrEnd":18644,"openEnd":18646,"textRuns":[[18646,18657]],"parentId":"a9c1d0d9:75","childIds":["a9c1d0d9:77"]},{"id":"a9c1d0d9:77","tag":"line","openStart":18657,"attrEnd":18738,"openEnd":18740,"textRuns":[[18740,18751]],"parentId":"a9c1d0d9:76","childIds":["a9c1d0d9:78"]},{"id":"a9c1d0d9:78","tag":"line","openStart":18751,"attrEnd":18833,"openEnd":18835,"textRuns":[[18835,18846]],"parentId":"a9c1d0d9:77","childIds":["a9c1d0d9:79"]},{"id":"a9c1d0d9:79","tag":"line","openStart":18846,"attrEnd":18927,"openEnd":18929,"textRuns":[[18929,18940]],"parentId":"a9c1d0d9:78","childIds":["a9c1d0d9:80"]},{"id":"a9c1d0d9:80","tag":"line","openStart":18940,"attrEnd":19022,"openEnd":19024,"textRuns":[[19024,19033]],"parentId":"a9c1d0d9:79","childIds":[]},{"id":"a9c1d0d9:81","tag":"h3","openStart":19048,"attrEnd":19073,"openEnd":19074,"closeStart":19111,"closeEnd":19116,"textRuns":[[19074,19088],[19093,19111]],"parentId":"a9c1d0d9:72","childIds":["a9c1d0d9:82"]},{"id":"a9c1d0d9:82","tag":"br","openStart":19088,"attrEnd":19091,"openEnd":19093,"closeEnd":19093,"textRuns":[],"parentId":"a9c1d0d9:81","childIds":[]},{"id":"a9c1d0d9:83","tag":"p","openStart":19125,"attrEnd":19148,"openEnd":19149,"closeStart":19345,"closeEnd":19349,"textRuns":[[19149,19345]],"parentId":"a9c1d0d9:72","childIds":[]},{"id":"a9c1d0d9:84","tag":"a","openStart":19358,"attrEnd":19390,"openEnd":19391,"closeStart":19617,"closeEnd":19621,"textRuns":[[19391,19425],[19608,19617]],"parentId":"a9c1d0d9:72","childIds":["a9c1d0d9:85"]},{"id":"a9c1d0d9:85","tag":"svg","openStart":19425,"attrEnd":19482,"openEnd":19483,"closeStart":19602,"closeEnd":19608,"textRuns":[[19483,19496]],"parentId":"a9c1d0d9:84","childIds":["a9c1d0d9:86"]},{"id":"a9c1d0d9:86","tag":"path","openStart":19496,"attrEnd":19589,"openEnd":19591,"textRuns":[[19591,19602]],"parentId":"a9c1d0d9:85","childIds":[]},{"id":"a9c1d0d9:87","tag":"div","openStart":19667,"attrEnd":19716,"openEnd":19717,"closeStart":20979,"closeEnd":20985,"textRuns":[[19717,19726],[19761,19770],[20407,20416],[20473,20482],[20701,20710],[20972,20979]],"parentId":"a9c1d0d9:71","childIds":["a9c1d0d9:88","a9c1d0d9:89","a9c1d0d9:95","a9c1d0d9:97","a9c1d0d9:98"]},{"id":"a9c1d0d9:88","tag":"span","openStart":19726,"attrEnd":19751,"openEnd":19752,"closeStart":19754,"closeEnd":19761,"textRuns":[[19752,19754]],"parentId":"a9c1d0d9:87","childIds":[]},{"id":"a9c1d0d9:89","tag":"svg","openStart":19770,"attrEnd":19898,"openEnd":19899,"closeStart":20401,"closeEnd":20407,"textRuns":[[19899,19910]],"parentId":"a9c1d0d9:87","childIds":["a9c1d0d9:90"]},{"id":"a9c1d0d9:90","tag":"rect","openStart":19910,"attrEnd":19996,"openEnd":19998,"textRuns":[[19998,20009]],"parentId":"a9c1d0d9:89","childIds":["a9c1d0d9:91"]},{"id":"a9c1d0d9:91","tag":"path","openStart":20009,"attrEnd":20091,"openEnd":20093,"textRuns":[[20093,20104]],"parentId":"a9c1d0d9:90","childIds":["a9c1d0d9:92"]},{"id":"a9c1d0d9:92","tag":"path","openStart":20104,"attrEnd":20214,"openEnd":20216,"textRuns":[[20216,20227]],"parentId":"a9c1d0d9:91","childIds":["a9c1d0d9:93"]},{"id":"a9c1d0d9:93","tag":"line","openStart":20227,"attrEnd":20308,"openEnd":20310,"textRuns":[[20310,20321]],"parentId":"a9c1d0d9:92","childIds":["a9c1d0d9:94"]},{"id":"a9c1d0d9:94","tag":"path","openStart":20321,"attrEnd":20390,"openEnd":20392,"textRuns":[[20392,20401]],"parentId":"a9c1d0d9:93","childIds":[]},{"id":"a9c1d0d9:95","tag":"h3","openStart":20416,"attrEnd":20441,"openEnd":20442,"closeStart":20468,"closeEnd":20473,"textRuns":[[20442,20454],[20459,20468]],"parentId":"a9c1d0d9:87","childIds":["a9c1d0d9:96"]},{"id":"a9c1d0d9:96","tag":"br","openStart":20454,"attrEnd":20457,"openEnd":20459,"closeEnd":20459,"textRuns":[],"parentId":"a9c1d0d9:95","childIds":[]},{"id":"a9c1d0d9:97","tag":"p","openStart":20482,"attrEnd":20505,"openEnd":20506,"closeStart":20697,"closeEnd":20701,"textRuns":[[20506,20697]],"parentId":"a9c1d0d9:87","childIds":[]},{"id":"a9c1d0d9:98","tag":"a","openStart":20710,"attrEnd":20742,"openEnd":20743,"closeStart":20968,"closeEnd":20972,"textRuns":[[20743,20776],[20959,20968]],"parentId":"a9c1d0d9:87","childIds":["a9c1d0d9:99"]},{"id":"a9c1d0d9:99","tag":"svg","openStart":20776,"attrEnd":20833,"openEnd":20834,"closeStart":20953,"closeEnd":20959,"textRuns":[[20834,20847]],"parentId":"a9c1d0d9:98","childIds":["a9c1d0d9:100"]},{"id":"a9c1d0d9:100","tag":"path","openStart":20847,"attrEnd":20940,"openEnd":20942,"textRuns":[[20942,20953]],"parentId":"a9c1d0d9:99","childIds":[]},{"id":"a9c1d0d9:101","tag":"div","openStart":21018,"attrEnd":21067,"openEnd":21068,"closeStart":22426,"closeEnd":22432,"textRuns":[[21068,21077],[21112,21121],[21862,21871],[21932,21941],[22150,22159],[22419,22426]],"parentId":"a9c1d0d9:71","childIds":["a9c1d0d9:102","a9c1d0d9:103","a9c1d0d9:110","a9c1d0d9:112","a9c1d0d9:113"]},{"id":"a9c1d0d9:102","tag":"span","openStart":21077,"attrEnd":21102,"openEnd":21103,"closeStart":21105,"closeEnd":21112,"textRuns":[[21103,21105]],"parentId":"a9c1d0d9:101","childIds":[]},{"id":"a9c1d0d9:103","tag":"svg","openStart":21121,"attrEnd":21249,"openEnd":21250,"closeStart":21856,"closeEnd":21862,"textRuns":[[21250,21261]],"parentId":"a9c1d0d9:101","childIds":["a9c1d0d9:104"]},{"id":"a9c1d0d9:104","tag":"rect","openStart":21261,"attrEnd":21347,"openEnd":21349,"textRuns":[[21349,21360]],"parentId":"a9c1d0d9:103","childIds":["a9c1d0d9:105"]},{"id":"a9c1d0d9:105","tag":"rect","openStart":21360,"attrEnd":21447,"openEnd":21449,"textRuns":[[21449,21460]],"parentId":"a9c1d0d9:104","childIds":["a9c1d0d9:106"]},{"id":"a9c1d0d9:106","tag":"rect","openStart":21460,"attrEnd":21546,"openEnd":21548,"textRuns":[[21548,21559]],"parentId":"a9c1d0d9:105","childIds":["a9c1d0d9:107"]},{"id":"a9c1d0d9:107","tag":"rect","openStart":21559,"attrEnd":21645,"openEnd":21647,"textRuns":[[21647,21658]],"parentId":"a9c1d0d9:106","childIds":["a9c1d0d9:108"]},{"id":"a9c1d0d9:108","tag":"path","openStart":21658,"attrEnd":21747,"openEnd":21749,"textRuns":[[21749,21760]],"parentId":"a9c1d0d9:107","childIds":["a9c1d0d9:109"]},{"id":"a9c1d0d9:109","tag":"rect","openStart":21760,"attrEnd":21845,"openEnd":21847,"textRuns":[[21847,21856]],"parentId":"a9c1d0d9:108","childIds":[]},{"id":"a9c1d0d9:110","tag":"h3","openStart":21871,"attrEnd":21896,"openEnd":21897,"closeStart":21927,"closeEnd":21932,"textRuns":[[21897,21909],[21914,21927]],"parentId":"a9c1d0d9:101","childIds":["a9c1d0d9:111"]},{"id":"a9c1d0d9:111","tag":"br","openStart":21909,"attrEnd":21912,"openEnd":21914,"closeEnd":21914,"textRuns":[],"parentId":"a9c1d0d9:110","childIds":[]},{"id":"a9c1d0d9:112","tag":"p","openStart":21941,"attrEnd":21964,"openEnd":21965,"closeStart":22146,"closeEnd":22150,"textRuns":[[21965,22146]],"parentId":"a9c1d0d9:101","childIds":[]},{"id":"a9c1d0d9:113","tag":"a","openStart":22159,"attrEnd":22191,"openEnd":22192,"closeStart":22415,"closeEnd":22419,"textRuns":[[22192,22223],[22406,22415]],"parentId":"a9c1d0d9:101","childIds":["a9c1d0d9:114"]},{"id":"a9c1d0d9:114","tag":"svg","openStart":22223,"attrEnd":22280,"openEnd":22281,"closeStart":22400,"closeEnd":22406,"textRuns":[[22281,22294]],"parentId":"a9c1d0d9:113","childIds":["a9c1d0d9:115"]},{"id":"a9c1d0d9:115","tag":"path","openStart":22294,"attrEnd":22387,"openEnd":22389,"textRuns":[[22389,22400]],"parentId":"a9c1d0d9:114","childIds":[]},{"id":"a9c1d0d9:116","tag":"div","openStart":22484,"attrEnd":22519,"openEnd":22520,"closeStart":25378,"closeEnd":25384,"textRuns":[[22520,22525],[23395,23401],[25375,25378]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:117","a9c1d0d9:126"]},{"id":"a9c1d0d9:117","tag":"div","openStart":22525,"attrEnd":22553,"openEnd":22554,"closeStart":23389,"closeEnd":23395,"textRuns":[[22554,22561],[23384,23389]],"parentId":"a9c1d0d9:116","childIds":["a9c1d0d9:118"]},{"id":"a9c1d0d9:118","tag":"svg","openStart":22561,"attrEnd":22686,"openEnd":22687,"closeStart":23378,"closeEnd":23384,"textRuns":[[22687,22696]],"parentId":"a9c1d0d9:117","childIds":["a9c1d0d9:119"]},{"id":"a9c1d0d9:119","tag":"rect","openStart":22696,"attrEnd":22752,"openEnd":22754,"textRuns":[[22754,22763],[23063,23072]],"parentId":"a9c1d0d9:118","childIds":["a9c1d0d9:120","a9c1d0d9:124"]},{"id":"a9c1d0d9:120","tag":"defs","openStart":22763,"attrEnd":22768,"openEnd":22769,"closeStart":23056,"closeEnd":23063,"textRuns":[[22769,22780],[23047,23056]],"parentId":"a9c1d0d9:119","childIds":["a9c1d0d9:121"]},{"id":"a9c1d0d9:121","tag":"pattern","openStart":22780,"attrEnd":22885,"openEnd":22886,"closeStart":23037,"closeEnd":23047,"textRuns":[[22886,22899]],"parentId":"a9c1d0d9:120","childIds":["a9c1d0d9:122"]},{"id":"a9c1d0d9:122","tag":"rect","openStart":22899,"attrEnd":22954,"openEnd":22956,"textRuns":[[22956,22969]],"parentId":"a9c1d0d9:121","childIds":["a9c1d0d9:123"]},{"id":"a9c1d0d9:123","tag":"rect","openStart":22969,"attrEnd":23024,"openEnd":23026,"textRuns":[[23026,23037]],"parentId":"a9c1d0d9:122","childIds":[]},{"id":"a9c1d0d9:124","tag":"rect","openStart":23072,"attrEnd":23138,"openEnd":23140,"textRuns":[[23140,23149],[23371,23378]],"parentId":"a9c1d0d9:119","childIds":["a9c1d0d9:125"]},{"id":"a9c1d0d9:125","tag":"text","openStart":23149,"attrEnd":23315,"openEnd":23316,"closeStart":23364,"closeEnd":23371,"textRuns":[[23316,23364]],"parentId":"a9c1d0d9:124","childIds":[]},{"id":"a9c1d0d9:126","tag":"div","openStart":23401,"attrEnd":23431,"openEnd":23432,"closeStart":25369,"closeEnd":25375,"textRuns":[[23432,23439],[23660,23667],[23756,23763],[23952,23960],[25305,25313],[25364,25369]],"parentId":"a9c1d0d9:116","childIds":["a9c1d0d9:127","a9c1d0d9:130","a9c1d0d9:132","a9c1d0d9:133","a9c1d0d9:159"]},{"id":"a9c1d0d9:127","tag":"div","openStart":23439,"attrEnd":23465,"openEnd":23466,"closeStart":23654,"closeEnd":23660,"textRuns":[[23466,23475],[23513,23522],[23647,23654]],"parentId":"a9c1d0d9:126","childIds":["a9c1d0d9:128","a9c1d0d9:129"]},{"id":"a9c1d0d9:128","tag":"div","openStart":23475,"attrEnd":23506,"openEnd":23507,"closeStart":23507,"closeEnd":23513,"textRuns":[],"parentId":"a9c1d0d9:127","childIds":[]},{"id":"a9c1d0d9:129","tag":"span","openStart":23522,"attrEnd":23631,"openEnd":23632,"closeStart":23640,"closeEnd":23647,"styleAttr":[23535,23630],"textRuns":[[23632,23640]],"parentId":"a9c1d0d9:127","childIds":[]},{"id":"a9c1d0d9:130","tag":"h2","openStart":23667,"attrEnd":23718,"openEnd":23719,"closeStart":23751,"closeEnd":23756,"styleAttr":[23700,23717],"textRuns":[[23719,23732],[23737,23751]],"parentId":"a9c1d0d9:126","childIds":["a9c1d0d9:131"]},{"id":"a9c1d0d9:131","tag":"br","openStart":23732,"attrEnd":23735,"openEnd":23737,"closeEnd":23737,"textRuns":[],"parentId":"a9c1d0d9:130","childIds":[]},{"id":"a9c1d0d9:132","tag":"p","openStart":23763,"attrEnd":23840,"openEnd":23841,"closeStart":23948,"closeEnd":23952,"styleAttr":[23794,23839],"textRuns":[[23841,23948]],"parentId":"a9c1d0d9:126","childIds":[]},{"id":"a9c1d0d9:133","tag":"div","openStart":23960,"attrEnd":24009,"openEnd":24010,"closeStart":25299,"closeEnd":25305,"styleAttr":[23991,24008],"textRuns":[[24010,24019],[24263,24272],[24513,24522],[24768,24777],[25025,25034],[25292,25299]],"parentId":"a9c1d0d9:126","childIds":["a9c1d0d9:134","a9c1d0d9:139","a9c1d0d9:144","a9c1d0d9:149","a9c1d0d9:154"]},{"id":"a9c1d0d9:134","tag":"div","openStart":24019,"attrEnd":24041,"openEnd":24042,"closeStart":24257,"closeEnd":24263,"textRuns":[[24042,24053],[24198,24209],[24248,24257]],"parentId":"a9c1d0d9:133","childIds":["a9c1d0d9:135","a9c1d0d9:138"]},{"id":"a9c1d0d9:135","tag":"div","openStart":24053,"attrEnd":24057,"openEnd":24058,"closeStart":24192,"closeEnd":24198,"textRuns":[[24058,24071],[24113,24126],[24181,24192]],"parentId":"a9c1d0d9:134","childIds":["a9c1d0d9:136","a9c1d0d9:137"]},{"id":"a9c1d0d9:136","tag":"div","openStart":24071,"attrEnd":24098,"openEnd":24099,"closeStart":24107,"closeEnd":24113,"textRuns":[[24099,24107]],"parentId":"a9c1d0d9:135","childIds":[]},{"id":"a9c1d0d9:137","tag":"div","openStart":24126,"attrEnd":24152,"openEnd":24153,"closeStart":24175,"closeEnd":24181,"textRuns":[[24153,24175]],"parentId":"a9c1d0d9:135","childIds":[]},{"id":"a9c1d0d9:138","tag":"span","openStart":24209,"attrEnd":24238,"openEnd":24239,"closeStart":24241,"closeEnd":24248,"textRuns":[[24239,24241]],"parentId":"a9c1d0d9:134","childIds":[]},{"id":"a9c1d0d9:139","tag":"div","openStart":24272,"attrEnd":24294,"openEnd":24295,"closeStart":24507,"closeEnd":24513,"textRuns":[[24295,24306],[24448,24459],[24498,24507]],"parentId":"a9c1d0d9:133","childIds":["a9c1d0d9:140","a9c1d0d9:143"]},{"id":"a9c1d0d9:140","tag":"div","openStart":24306,"attrEnd":24310,"openEnd":24311,"closeStart":24442,"closeEnd":24448,"textRuns":[[24311,24324],[24368,24381],[24431,24442]],"parentId":"a9c1d0d9:139","childIds":["a9c1d0d9:141","a9c1d0d9:142"]},{"id":"a9c1d0d9:141","tag":"div","openStart":24324,"attrEnd":24351,"openEnd":24352,"closeStart":24362,"closeEnd":24368,"textRuns":[[24352,24362]],"parentId":"a9c1d0d9:140","childIds":[]},{"id":"a9c1d0d9:142","tag":"div","openStart":24381,"attrEnd":24407,"openEnd":24408,"closeStart":24425,"closeEnd":24431,"textRuns":[[24408,24425]],"parentId":"a9c1d0d9:140","childIds":[]},{"id":"a9c1d0d9:143","tag":"span","openStart":24459,"attrEnd":24488,"openEnd":24489,"closeStart":24491,"closeEnd":24498,"textRuns":[[24489,24491]],"parentId":"a9c1d0d9:139","childIds":[]},{"id":"a9c1d0d9:144","tag":"div","openStart":24522,"attrEnd":24544,"openEnd":24545,"closeStart":24762,"closeEnd":24768,"textRuns":[[24545,24556],[24703,24714],[24753,24762]],"parentId":"a9c1d0d9:133","childIds":["a9c1d0d9:145","a9c1d0d9:148"]},{"id":"a9c1d0d9:145","tag":"div","openStart":24556,"attrEnd":24560,"openEnd":24561,"closeStart":24697,"closeEnd":24703,"textRuns":[[24561,24574],[24614,24627],[24686,24697]],"parentId":"a9c1d0d9:144","childIds":["a9c1d0d9:146","a9c1d0d9:147"]},{"id":"a9c1d0d9:146","tag":"div","openStart":24574,"attrEnd":24601,"openEnd":24602,"closeStart":24608,"closeEnd":24614,"textRuns":[[24602,24608]],"parentId":"a9c1d0d9:145","childIds":[]},{"id":"a9c1d0d9:147","tag":"div","openStart":24627,"attrEnd":24653,"openEnd":24654,"closeStart":24680,"closeEnd":24686,"textRuns":[[24654,24680]],"parentId":"a9c1d0d9:145","childIds":[]},{"id":"a9c1d0d9:148","tag":"span","openStart":24714,"attrEnd":24743,"openEnd":24744,"closeStart":24746,"closeEnd":24753,"textRuns":[[24744,24746]],"parentId":"a9c1d0d9:144","childIds":[]},{"id":"a9c1d0d9:149","tag":"div","openStart":24777,"attrEnd":24799,"openEnd":24800,"closeStart":25019,"closeEnd":25025,"textRuns":[[24800,24811],[24960,24971],[25010,25019]],"parentId":"a9c1d0d9:133","childIds":["a9c1d0d9:150","a9c1d0d9:153"]},{"id":"a9c1d0d9:150","tag":"div","openStart":24811,"attrEnd":24815,"openEnd":24816,"closeStart":24954,"closeEnd":24960,"textRuns":[[24816,24829],[24870,24883],[24943,24954]],"parentId":"a9c1d0d9:149","childIds":["a9c1d0d9:151","a9c1d0d9:152"]},{"id":"a9c1d0d9:151","tag":"div","openStart":24829,"attrEnd":24856,"openEnd":24857,"closeStart":24864,"closeEnd":24870,"textRuns":[[24857,24864]],"parentId":"a9c1d0d9:150","childIds":[]},{"id":"a9c1d0d9:152","tag":"div","openStart":24883,"attrEnd":24909,"openEnd":24910,"closeStart":24937,"closeEnd":24943,"textRuns":[[24910,24937]],"parentId":"a9c1d0d9:150","childIds":[]},{"id":"a9c1d0d9:153","tag":"span","openStart":24971,"attrEnd":25000,"openEnd":25001,"closeStart":25003,"closeEnd":25010,"textRuns":[[25001,25003]],"parentId":"a9c1d0d9:149","childIds":[]},{"id":"a9c1d0d9:154","tag":"div","openStart":25034,"attrEnd":25056,"openEnd":25057,"closeStart":25286,"closeEnd":25292,"textRuns":[[25057,25068],[25227,25238],[25277,25286]],"parentId":"a9c1d0d9:133","childIds":["a9c1d0d9:155","a9c1d0d9:158"]},{"id":"a9c1d0d9:155","tag":"div","openStart":25068,"attrEnd":25072,"openEnd":25073,"closeStart":25221,"closeEnd":25227,"textRuns":[[25073,25086],[25137,25150],[25210,25221]],"parentId":"a9c1d0d9:154","childIds":["a9c1d0d9:156","a9c1d0d9:157"]},{"id":"a9c1d0d9:156","tag":"div","openStart":25086,"attrEnd":25113,"openEnd":25114,"closeStart":25131,"closeEnd":25137,"textRuns":[[25114,25131]],"parentId":"a9c1d0d9:155","childIds":[]},{"id":"a9c1d0d9:157","tag":"div","openStart":25150,"attrEnd":25176,"openEnd":25177,"closeStart":25204,"closeEnd":25210,"textRuns":[[25177,25204]],"parentId":"a9c1d0d9:155","childIds":[]},{"id":"a9c1d0d9:158","tag":"span","openStart":25238,"attrEnd":25267,"openEnd":25268,"closeStart":25270,"closeEnd":25277,"textRuns":[[25268,25270]],"parentId":"a9c1d0d9:154","childIds":[]},{"id":"a9c1d0d9:159","tag":"a","openStart":25313,"attrEnd":25350,"openEnd":25351,"closeStart":25360,"closeEnd":25364,"textRuns":[[25351,25360]],"parentId":"a9c1d0d9:126","childIds":[]},{"id":"a9c1d0d9:160","tag":"section","openStart":25405,"attrEnd":25446,"openEnd":25447,"closeStart":26831,"closeEnd":26841,"textRuns":[[25447,25452],[25767,25773],[26257,26263],[26828,26831]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:161","a9c1d0d9:170","a9c1d0d9:180"]},{"id":"a9c1d0d9:161","tag":"div","openStart":25452,"attrEnd":25484,"openEnd":25485,"closeStart":25761,"closeEnd":25767,"textRuns":[[25485,25492],[25530,25537],[25598,25605],[25756,25761]],"parentId":"a9c1d0d9:160","childIds":["a9c1d0d9:162","a9c1d0d9:163","a9c1d0d9:165"]},{"id":"a9c1d0d9:162","tag":"span","openStart":25492,"attrEnd":25517,"openEnd":25518,"closeStart":25523,"closeEnd":25530,"textRuns":[[25518,25523]],"parentId":"a9c1d0d9:161","childIds":[]},{"id":"a9c1d0d9:163","tag":"div","openStart":25537,"attrEnd":25561,"openEnd":25562,"closeStart":25592,"closeEnd":25598,"textRuns":[[25562,25573],[25578,25592]],"parentId":"a9c1d0d9:161","childIds":["a9c1d0d9:164"]},{"id":"a9c1d0d9:164","tag":"br","openStart":25573,"attrEnd":25576,"openEnd":25578,"closeEnd":25578,"textRuns":[],"parentId":"a9c1d0d9:163","childIds":[]},{"id":"a9c1d0d9:165","tag":"div","openStart":25605,"attrEnd":25630,"openEnd":25631,"closeStart":25750,"closeEnd":25756,"textRuns":[[25631,25657],[25662,25681],[25691,25719],[25724,25750]],"parentId":"a9c1d0d9:161","childIds":["a9c1d0d9:166","a9c1d0d9:167","a9c1d0d9:168","a9c1d0d9:169"]},{"id":"a9c1d0d9:166","tag":"br","openStart":25657,"attrEnd":25660,"openEnd":25662,"closeEnd":25662,"textRuns":[],"parentId":"a9c1d0d9:165","childIds":[]},{"id":"a9c1d0d9:167","tag":"br","openStart":25681,"attrEnd":25684,"openEnd":25686,"closeEnd":25686,"textRuns":[],"parentId":"a9c1d0d9:165","childIds":[]},{"id":"a9c1d0d9:168","tag":"br","openStart":25686,"attrEnd":25689,"openEnd":25691,"closeEnd":25691,"textRuns":[],"parentId":"a9c1d0d9:165","childIds":[]},{"id":"a9c1d0d9:169","tag":"br","openStart":25719,"attrEnd":25722,"openEnd":25724,"closeEnd":25724,"textRuns":[],"parentId":"a9c1d0d9:165","childIds":[]},{"id":"a9c1d0d9:170","tag":"div","openStart":25773,"attrEnd":25821,"openEnd":25822,"closeStart":26251,"closeEnd":26257,"textRuns":[[25822,25829],[25870,25877],[25941,25948],[26246,26251]],"parentId":"a9c1d0d9:160","childIds":["a9c1d0d9:171","a9c1d0d9:172","a9c1d0d9:174"]},{"id":"a9c1d0d9:171","tag":"span","openStart":25829,"attrEnd":25854,"openEnd":25855,"closeStart":25863,"closeEnd":25870,"textRuns":[[25855,25863]],"parentId":"a9c1d0d9:170","childIds":[]},{"id":"a9c1d0d9:172","tag":"div","openStart":25877,"attrEnd":25901,"openEnd":25902,"closeStart":25935,"closeEnd":25941,"textRuns":[[25902,25914],[25919,25935]],"parentId":"a9c1d0d9:170","childIds":["a9c1d0d9:173"]},{"id":"a9c1d0d9:173","tag":"br","openStart":25914,"attrEnd":25917,"openEnd":25919,"closeEnd":25919,"textRuns":[],"parentId":"a9c1d0d9:172","childIds":[]},{"id":"a9c1d0d9:174","tag":"div","openStart":25948,"attrEnd":25973,"openEnd":25974,"closeStart":26240,"closeEnd":26246,"textRuns":[[25974,25999],[26004,26036],[26041,26059],[26069,26078],[26233,26240]],"parentId":"a9c1d0d9:170","childIds":["a9c1d0d9:175","a9c1d0d9:176","a9c1d0d9:177","a9c1d0d9:178","a9c1d0d9:179"]},{"id":"a9c1d0d9:175","tag":"br","openStart":25999,"attrEnd":26002,"openEnd":26004,"closeEnd":26004,"textRuns":[],"parentId":"a9c1d0d9:174","childIds":[]},{"id":"a9c1d0d9:176","tag":"br","openStart":26036,"attrEnd":26039,"openEnd":26041,"closeEnd":26041,"textRuns":[],"parentId":"a9c1d0d9:174","childIds":[]},{"id":"a9c1d0d9:177","tag":"br","openStart":26059,"attrEnd":26062,"openEnd":26064,"closeEnd":26064,"textRuns":[],"parentId":"a9c1d0d9:174","childIds":[]},{"id":"a9c1d0d9:178","tag":"br","openStart":26064,"attrEnd":26067,"openEnd":26069,"closeEnd":26069,"textRuns":[],"parentId":"a9c1d0d9:174","childIds":[]},{"id":"a9c1d0d9:179","tag":"a","openStart":26078,"attrEnd":26210,"openEnd":26211,"closeStart":26229,"closeEnd":26233,"styleAttr":[26097,26209],"textRuns":[[26211,26229]],"parentId":"a9c1d0d9:174","childIds":[]},{"id":"a9c1d0d9:180","tag":"div","openStart":26263,"attrEnd":26311,"openEnd":26312,"closeStart":26822,"closeEnd":26828,"textRuns":[[26312,26319],[26359,26366],[26430,26437],[26817,26822]],"parentId":"a9c1d0d9:160","childIds":["a9c1d0d9:181","a9c1d0d9:182","a9c1d0d9:184"]},{"id":"a9c1d0d9:181","tag":"span","openStart":26319,"attrEnd":26344,"openEnd":26345,"closeStart":26352,"closeEnd":26359,"textRuns":[[26345,26352]],"parentId":"a9c1d0d9:180","childIds":[]},{"id":"a9c1d0d9:182","tag":"div","openStart":26366,"attrEnd":26390,"openEnd":26391,"closeStart":26424,"closeEnd":26430,"textRuns":[[26391,26402],[26407,26424]],"parentId":"a9c1d0d9:180","childIds":["a9c1d0d9:183"]},{"id":"a9c1d0d9:183","tag":"br","openStart":26402,"attrEnd":26405,"openEnd":26407,"closeEnd":26407,"textRuns":[],"parentId":"a9c1d0d9:182","childIds":[]},{"id":"a9c1d0d9:184","tag":"div","openStart":26437,"attrEnd":26462,"openEnd":26463,"closeStart":26811,"closeEnd":26817,"textRuns":[[26463,26472],[26622,26631],[26743,26769],[26774,26811]],"parentId":"a9c1d0d9:180","childIds":["a9c1d0d9:185","a9c1d0d9:186","a9c1d0d9:187","a9c1d0d9:188","a9c1d0d9:189"]},{"id":"a9c1d0d9:185","tag":"a","openStart":26472,"attrEnd":26598,"openEnd":26599,"closeStart":26618,"closeEnd":26622,"styleAttr":[26516,26597],"textRuns":[[26599,26618]],"parentId":"a9c1d0d9:184","childIds":[]},{"id":"a9c1d0d9:186","tag":"a","openStart":26631,"attrEnd":26711,"openEnd":26712,"closeStart":26729,"closeEnd":26733,"styleAttr":[26665,26710],"textRuns":[[26712,26729]],"parentId":"a9c1d0d9:184","childIds":[]},{"id":"a9c1d0d9:187","tag":"br","openStart":26733,"attrEnd":26736,"openEnd":26738,"closeEnd":26738,"textRuns":[],"parentId":"a9c1d0d9:184","childIds":[]},{"id":"a9c1d0d9:188","tag":"br","openStart":26738,"attrEnd":26741,"openEnd":26743,"closeEnd":26743,"textRuns":[],"parentId":"a9c1d0d9:184","childIds":[]},{"id":"a9c1d0d9:189","tag":"br","openStart":26769,"attrEnd":26772,"openEnd":26774,"closeEnd":26774,"textRuns":[],"parentId":"a9c1d0d9:184","childIds":[]},{"id":"a9c1d0d9:190","tag":"footer","openStart":26863,"attrEnd":26870,"openEnd":26871,"closeStart":27108,"closeEnd":27117,"textRuns":[[26871,26876],[26920,26925],[26999,27004],[27105,27108]],"parentId":"a9c1d0d9:7","childIds":["a9c1d0d9:191","a9c1d0d9:192","a9c1d0d9:193"]},{"id":"a9c1d0d9:191","tag":"span","openStart":26876,"attrEnd":26901,"openEnd":26902,"closeStart":26913,"closeEnd":26920,"textRuns":[[26902,26913]],"parentId":"a9c1d0d9:190","childIds":[]},{"id":"a9c1d0d9:192","tag":"span","openStart":26925,"attrEnd":26950,"openEnd":26951,"closeStart":26992,"closeEnd":26999,"textRuns":[[26951,26992]],"parentId":"a9c1d0d9:190","childIds":[]},{"id":"a9c1d0d9:193","tag":"div","openStart":27004,"attrEnd":27031,"openEnd":27032,"closeStart":27099,"closeEnd":27105,"textRuns":[[27032,27039],[27064,27071],[27094,27099]],"parentId":"a9c1d0d9:190","childIds":["a9c1d0d9:194","a9c1d0d9:195"]},{"id":"a9c1d0d9:194","tag":"a","openStart":27039,"attrEnd":27050,"openEnd":27051,"closeStart":27060,"closeEnd":27064,"textRuns":[[27051,27060]],"parentId":"a9c1d0d9:193","childIds":[]},{"id":"a9c1d0d9:195","tag":"a","openStart":27071,"attrEnd":27082,"openEnd":27083,"closeStart":27090,"closeEnd":27094,"textRuns":[[27083,27090]],"parentId":"a9c1d0d9:193","childIds":[]},{"id":"a9c1d0d9:196","tag":"div","openStart":30950,"attrEnd":30971,"openEnd":30972,"closeStart":30972,"closeEnd":30978,"textRuns":[],"parentId":"a9c1d0d9:7","childIds":[]}],"literals":[[30393,30401],[30434,30440],[30479,30487],[30612,30620],[30767,30774],[30858,30875]]}</script>

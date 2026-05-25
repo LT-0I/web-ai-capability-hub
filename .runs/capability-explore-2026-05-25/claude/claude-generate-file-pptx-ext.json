@@ -1,0 +1,94 @@
+{
+  "id": "claude-generate-file-pptx-ext",
+  "service": "claude",
+  "bucket": "L4",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "ok": false,
+  "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.\" --expected-extension pptx --download-dir /tmp/explore-2026-05-25/claude --artifact-class document --json",
+  "completion_gate": "path non-empty + file exists + size_bytes > 8192 + filename ends with .pptx",
+  "gate_result": {
+    "ok": false,
+    "details": {
+      "path_nonempty": false,
+      "file_exists": false,
+      "size_bytes": 0,
+      "min_size_exclusive": 8192,
+      "expected_extension": "pptx",
+      "extension_matches": false
+    },
+    "artifact_path": null,
+    "download_filename": null,
+    "size_bytes": 0
+  },
+  "artifact": {
+    "class": "document",
+    "expected_extension": "pptx",
+    "path": null,
+    "download_filename": null,
+    "size_bytes": 0,
+    "sha256": null,
+    "gate": {
+      "ok": false,
+      "details": {
+        "path_nonempty": false,
+        "file_exists": false,
+        "size_bytes": 0,
+        "min_size_exclusive": 8192,
+        "expected_extension": "pptx",
+        "extension_matches": false
+      },
+      "artifact_path": null,
+      "download_filename": null,
+      "size_bytes": 0
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.\" --expected-extension pptx --download-dir /tmp/explore-2026-05-25/claude --artifact-class document --json",
+      "code": 1,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 20250,
+      "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"No element matched --button-selector\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "path": "",
+        "sha256": "",
+        "size_bytes": 0,
+        "artifact_name": "",
+        "download_filename": "",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "No element matched --button-selector"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.\" --expected-extension pptx --download-dir /tmp/explore-2026-05-25/claude --artifact-class document --json",
+    "code": 1,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 20250,
+    "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"No element matched --button-selector\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "path": "",
+      "sha256": "",
+      "size_bytes": 0,
+      "artifact_name": "",
+      "download_filename": "",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "error_code": "ELEMENT_NOT_FOUND",
+      "message": "No element matched --button-selector"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+  "started_at": "2026-05-24T17:51:39.544Z",
+  "finished_at": "2026-05-24T17:51:59.794Z",
+  "wall_ms": 20250
+}

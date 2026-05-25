@@ -1,0 +1,81 @@
+{
+  "id": "gemini-send-thinking-mgr",
+  "service": "gemini",
+  "bucket": "G1",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "tab_url_contains": "260e7fc538aef136",
+  "source": "capability-explore-2026-05-25/G1",
+  "verified_by": "codex-bucket-G1",
+  "started_at": "2026-05-24T17:11:33.412Z",
+  "finished_at": "2026-05-24T17:11:39.261Z",
+  "wall_ms": 5849,
+  "status": "FAIL_CLOSED_MANAGED",
+  "completion_gate": "response_text contains \"399\".",
+  "completion_gate_passed": false,
+  "attempts": [
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --thinking --prompt \"Think step by step: 19 × 21 = ?\" --response-timeout-ms 180000 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 417,
+      "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 274,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"MODEL_SELECTION_DRIFT\",\n  \"ok\": false,\n  \"service\": \"gemini\",\n  \"error_code\": \"MODEL_SELECTION_DRIFT\",\n  \"model_used\": null,\n  \"expected_model\": \"Thinking\",\n  \"chat_url\": \"https://gemini.google.com/app/260e7fc538aef136\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "",
+        "elapsed_ms": 274,
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "MODEL_SELECTION_DRIFT",
+        "ok": false,
+        "service": "gemini",
+        "error_code": "MODEL_SELECTION_DRIFT",
+        "model_used": null,
+        "expected_model": "Thinking",
+        "chat_url": "https://gemini.google.com/app/260e7fc538aef136"
+      },
+      "parse_error": null,
+      "attempt": 1,
+      "gate_passed": false
+    },
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --thinking --prompt \"Think step by step: 19 × 21 = ?\" --response-timeout-ms 180000 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 407,
+      "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 267,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"MODEL_SELECTION_DRIFT\",\n  \"ok\": false,\n  \"service\": \"gemini\",\n  \"error_code\": \"MODEL_SELECTION_DRIFT\",\n  \"model_used\": null,\n  \"expected_model\": \"Thinking\",\n  \"chat_url\": \"https://gemini.google.com/app/260e7fc538aef136\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "",
+        "elapsed_ms": 267,
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "MODEL_SELECTION_DRIFT",
+        "ok": false,
+        "service": "gemini",
+        "error_code": "MODEL_SELECTION_DRIFT",
+        "model_used": null,
+        "expected_model": "Thinking",
+        "chat_url": "https://gemini.google.com/app/260e7fc538aef136"
+      },
+      "parse_error": null,
+      "attempt": 2,
+      "gate_passed": false
+    }
+  ],
+  "final": {
+    "ok": false,
+    "errorCode": "MODEL_SELECTION_DRIFT",
+    "cause": "MODEL_SELECTION_DRIFT",
+    "response_text": "",
+    "completion_detected": false,
+    "model_used": null
+  }
+}

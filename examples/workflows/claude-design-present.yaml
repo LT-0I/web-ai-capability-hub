@@ -1,0 +1,29 @@
+id: claude-design-present
+target: claude
+profile: claude-9224
+mode: assisted
+description: Present an existing Claude Design project and verify the presentation HTML endpoint is reachable.
+steps:
+  - id: read-generated-design
+    action: read
+    input:
+      evidence: ".runs/capability-explore-2026-05-25/claude/claude-design-generate-mgr.json"
+      project_id: "baf06427-9e7a-41f7-8d8e-79da1a1ca344"
+      project_url: "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344"
+      file: "index.html"
+  - id: present-design
+    use_capability: claude-design-present-mgr
+    confirmed: true
+    input:
+      backend: "managed-cdp"
+      mcp_tool: "webai_claude_design_present"
+      project_url: "{{steps.read-generated-design.output.project_url}}"
+      file: "{{steps.read-generated-design.output.file}}"
+  - id: verify-public-html
+    action: read
+    input:
+      present_url: "{{steps.present-design.output.present_url}}"
+      gate: "present_url is non-empty, contains /serve/ or ?file=, and curl GET returns 200"
+result:
+  type: text/html
+  public_url: "{{steps.present-design.output.present_url}}"

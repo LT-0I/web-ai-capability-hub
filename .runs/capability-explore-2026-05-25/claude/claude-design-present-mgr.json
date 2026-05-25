@@ -1,0 +1,93 @@
+{
+  "id": "claude-design-present-mgr",
+  "service": "claude",
+  "bucket": "L8",
+  "backend": "managed-cdp",
+  "profile": "claude-9224",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "ok": true,
+  "source": "L8",
+  "verified_by": "codex-bucket-L8",
+  "mcp_tool": "webai_claude_design_present",
+  "completion_gate": "present_url non-empty AND URL contains /serve/ or ?file= AND curl GET returns 200",
+  "gate_result": {
+    "ok": true,
+    "details": {
+      "present_url_nonempty": true,
+      "url_contains_serve_or_file": true,
+      "curl_get_200": true,
+      "returned_tool_url_nonempty": true,
+      "returned_tool_url_contains_file": true,
+      "curl_html_byte_size": 83665,
+      "validated_url_kind": "present-mode /serve/index.html iframe URL",
+      "note": "The CLI returned the Claude Design present page URL; the curl-200 validation used the /serve/index.html URL observed from that present-mode iframe."
+    }
+  },
+  "project_id": "baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+  "project_url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+  "fileName": "index.html",
+  "present_url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?t=98b4c587a48da6749744f271842ea62019fd344f7f7b1c1cdbee2e8cc49f1ae0.9a23efa1-be5a-4da2-8039-74492ab9877e.04d3aeed-af72-4e95-9919-2e06f446f3c3.1779650508&srcmap=1",
+  "tool_presentUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+  "curl_validation": {
+    "command": "curl -4 --tlsv1.2 --http1.1 -sS -L --connect-timeout 20 -m 120 -H \"User-Agent: Mozilla/5.0\" -o <html> -w ... <present_url>",
+    "http_code": 200,
+    "saved_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.present.html",
+    "byteSize": 83665,
+    "sha256": "406a554b28ce2020907136c52d8183025b307caa11dd1e785bd4cd092e0a7970"
+  },
+  "attempts": [
+    {
+      "command": "node dist/src/cli.js webai:claude:design:present --profile claude-9224 --project-id \"<project_id>\" --file \"<fileName>\" --json",
+      "code": 1,
+      "stdout_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.raw.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.stderr.log",
+      "parsed": {
+        "ok": false,
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.project_url is required",
+        "evidence": {
+          "tool": "webai_claude_design_present",
+          "stage": "schema",
+          "message": "$.project_url is required",
+          "error_name": "Error"
+        }
+      },
+      "parse_error": null,
+      "note": "Original bucket command failed because the current CLI schema requires project_url, not project_id/file."
+    },
+    {
+      "command": "node dist/src/cli.js webai:claude:design:present --profile claude-9224 --project-url \"<project_url>\" --json",
+      "code": 0,
+      "stdout_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.raw3.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.stderr3.log",
+      "parsed": {
+        "presentUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:design:present --profile claude-9224 --project-url \"<project_url>\" --json",
+    "code": 0,
+    "stdout": "{\n  \"presentUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "presentUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-design-present.yaml",
+  "artifact": {
+    "type": "text/html",
+    "public_url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?t=98b4c587a48da6749744f271842ea62019fd344f7f7b1c1cdbee2e8cc49f1ae0.9a23efa1-be5a-4da2-8039-74492ab9877e.04d3aeed-af72-4e95-9919-2e06f446f3c3.1779650508&srcmap=1",
+    "returned_present_url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+    "curl_saved_path": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.present.html",
+    "byteSize": 83665,
+    "sha256": "406a554b28ce2020907136c52d8183025b307caa11dd1e785bd4cd092e0a7970",
+    "workflow": "examples/workflows/claude-design-present.yaml"
+  },
+  "upstream_evidence": ".runs/capability-explore-2026-05-25/claude/claude-design-generate-mgr.json",
+  "started_at": "2026-05-24T18:29:28.168Z",
+  "finished_at": "2026-05-24T18:56:44.717Z"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "gemini-deep-research-mgr",
+  "target": "gemini",
+  "profile": "gemini-9225",
+  "mode": "managed-cdp",
+  "compiledAt": "2026-05-24T20:34:35.840Z",
+  "actions": [
+    {
+      "stepId": "start-deep-research",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "verify-report-or-text",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [],
+  "definition": {
+    "id": "gemini-deep-research-mgr",
+    "service": "gemini",
+    "target": "gemini",
+    "capability_id": "gemini-deep-research-mgr",
+    "mode": "managed-cdp",
+    "backend": "managed-cdp",
+    "profile": "gemini-9225",
+    "conversation": {
+      "reuse_conversation": true,
+      "tab_url_contains": "260e7fc538aef136"
+    },
+    "preconditions": [
+      "Gemini model/mode is Pro; Deep research was not visible in the tool drawer under Flash-Lite during G8."
+    ],
+    "inputs": {
+      "prompt": "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+      "download_dir": "/tmp/explore-2026-05-25/gemini",
+      "response_timeout_ms": 900000
+    },
+    "steps": [
+      {
+        "id": "start-deep-research",
+        "name": "Start Gemini Deep Research in the hydrated managed-CDP conversation",
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:deep-research",
+          "--profile",
+          "gemini-9225",
+          "--reuse-conversation",
+          "--tab-url-contains",
+          "260e7fc538aef136",
+          "--prompt",
+          "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--response-timeout-ms",
+          "900000",
+          "--timeout-ms",
+          "900000",
+          "--confirmed",
+          "true",
+          "--json"
+        ]
+      },
+      {
+        "id": "verify-report-or-text",
+        "action": "read",
+        "input": {
+          "gate": "report path non-empty AND file exists AND size_bytes > 4096; OR response_text contains at least 3 framework names"
+        }
+      }
+    ],
+    "success_gate": "report path non-empty AND file exists AND size_bytes > 4096; OR response_text contains at least 3 framework names",
+    "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-deep-research-mgr.json",
+    "last_observed_status": "FAIL_CLOSED_COMMAND_TIMEOUT",
+    "last_observed_failure": "COMMAND_TIMEOUT",
+    "artifact": null
+  }
+}

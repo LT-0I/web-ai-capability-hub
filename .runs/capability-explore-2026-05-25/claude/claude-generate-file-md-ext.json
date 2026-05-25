@@ -1,0 +1,121 @@
+{
+  "id": "claude-generate-file-md-ext",
+  "service": "claude",
+  "bucket": "L5",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "ok": false,
+  "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.\" --expected-extension md --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+  "completion_gate": "path non-empty + file exists + size > 64 + content contains 'ClaudeCapProbe'",
+  "gate_result": {
+    "ok": false,
+    "details": {
+      "path_nonempty": false,
+      "file_exists": false,
+      "size_bytes": 0,
+      "min_size_exclusive": 64,
+      "contains": "ClaudeCapProbe",
+      "content_contains": false,
+      "expected_extension": "md",
+      "extension_matches": false,
+      "read_error": null
+    },
+    "artifact_path": null,
+    "download_filename": null,
+    "size_bytes": 0
+  },
+  "artifact": {
+    "class": "code",
+    "expected_extension": "md",
+    "path": null,
+    "download_filename": null,
+    "size_bytes": 0,
+    "sha256": null,
+    "gate": {
+      "ok": false,
+      "details": {
+        "path_nonempty": false,
+        "file_exists": false,
+        "size_bytes": 0,
+        "min_size_exclusive": 64,
+        "contains": "ClaudeCapProbe",
+        "content_contains": false,
+        "expected_extension": "md",
+        "extension_matches": false,
+        "read_error": null
+      },
+      "artifact_path": null,
+      "download_filename": null,
+      "size_bytes": 0
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.\" --expected-extension md --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+      "code": 1,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 17674,
+      "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"No element matched --button-selector\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "path": "",
+        "sha256": "",
+        "size_bytes": 0,
+        "artifact_name": "",
+        "download_filename": "",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "No element matched --button-selector"
+      },
+      "parse_error": null
+    },
+    {
+      "attempt": 2,
+      "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.\" --expected-extension md --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+      "code": 1,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 17590,
+      "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"No element matched --button-selector\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "path": "",
+        "sha256": "",
+        "size_bytes": 0,
+        "artifact_name": "",
+        "download_filename": "",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "No element matched --button-selector"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.\" --expected-extension md --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+    "code": 1,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 17590,
+    "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"No element matched --button-selector\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "path": "",
+      "sha256": "",
+      "size_bytes": 0,
+      "artifact_name": "",
+      "download_filename": "",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "error_code": "ELEMENT_NOT_FOUND",
+      "message": "No element matched --button-selector"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-generate-file-md-ext.yaml",
+  "started_at": "2026-05-24T17:55:43.067Z",
+  "finished_at": "2026-05-24T17:56:18.332Z",
+  "wall_ms": 35264
+}

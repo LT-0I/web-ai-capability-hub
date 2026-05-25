@@ -1,0 +1,19 @@
+{
+  "id": "gemini-music-generate-ext",
+  "service": "gemini",
+  "source": "G5",
+  "status": "OK_EXT_BACKEND",
+  "workflow": null,
+  "closure_criterion": "task_id non-empty OR track_url/conversation_url non-empty",
+  "started_at": "2026-05-24T21:09:30.874Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/gemini-gemini-music-generate-ext.yaml",
+    "examples/workflows/gemini-music-generate-ext.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:30.874Z"
+}

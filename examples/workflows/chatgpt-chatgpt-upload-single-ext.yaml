@@ -1,0 +1,32 @@
+# Rewritten 2026-05-25 from codex C3 draft. Schema: command-step workflow with mode: automatic.
+id: chatgpt-upload-single-ext
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Upload one text file to ChatGPT and ask a grounded question
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:upload-and-query
+      - --profile
+      - chatgpt
+      - --backend
+      - extension-assisted-cdp
+      - --file
+      - /tmp/explore-2026-05-25/fixtures/fileA.txt
+      - --prompt
+      - Quote the first 3 words of this file verbatim
+      - --response-timeout-ms
+      - "120000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "alpha"
+        - path: completion_detected
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-upload-single-ext.json

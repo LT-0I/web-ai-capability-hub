@@ -1,0 +1,38 @@
+{
+  "bucket": "L1",
+  "service": "claude",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+  "failures": 1,
+  "results": [
+    {
+      "id": "claude-send-basic-ext",
+      "status": "OK_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-basic-ext.json",
+      "workflow": "examples/workflows/claude-claude-send-basic-ext.yaml",
+      "wall_ms": 4646
+    },
+    {
+      "id": "claude-select-model-sonnet-ext",
+      "status": "FAIL_CLOSED_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-select-model-sonnet-ext.json",
+      "workflow": "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+      "wall_ms": 3398
+    },
+    {
+      "id": "claude-send-thinking-ext",
+      "status": "OK_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-thinking-ext.json",
+      "workflow": "examples/workflows/claude-claude-send-thinking-ext.yaml",
+      "wall_ms": 6999
+    },
+    {
+      "id": "claude-send-web-search-ext",
+      "status": "OK_EXT_BACKEND",
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-web-search-ext.json",
+      "workflow": "examples/workflows/claude-claude-send-web-search-ext.yaml",
+      "wall_ms": 8063
+    }
+  ]
+}

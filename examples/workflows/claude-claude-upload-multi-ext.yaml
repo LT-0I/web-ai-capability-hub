@@ -1,0 +1,38 @@
+# Rewritten 2026-05-25 from codex L3 draft.
+id: claude-upload-multi-ext
+target: claude
+profile: claude-9224
+mode: automatic
+description: Upload three text files to Claude and ask for each unique first word
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:upload-and-query
+      - --profile
+      - claude-9224
+      - --backend
+      - extension-assisted-cdp
+      - --file
+      - /tmp/explore-2026-05-25/fixtures/fileA.txt
+      - --file
+      - /tmp/explore-2026-05-25/fixtures/fileB.txt
+      - --file
+      - /tmp/explore-2026-05-25/fixtures/fileC.txt
+      - --prompt
+      - List the unique first word from each file
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "alpha"
+        - path: response_text
+          regex: "beta"
+        - path: response_text
+          regex: "gamma"
+evidence: .runs/capability-explore-2026-05-25/claude/claude-upload-multi-ext.json

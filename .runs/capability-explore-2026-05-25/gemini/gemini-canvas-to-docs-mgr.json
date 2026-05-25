@@ -1,0 +1,121 @@
+{
+  "id": "gemini-canvas-to-docs-mgr",
+  "service": "gemini",
+  "bucket": "G7",
+  "source": "G7",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_canvas_to_docs",
+  "prompt": "Generate a 200-word essay about deep learning, then export to Google Docs",
+  "title": "Capability Probe Doc",
+  "reuse_conversation": true,
+  "tab_url_contains": "f7ff55b09e8531d8",
+  "conversation_url": "https://gemini.google.com/app/f7ff55b09e8531d8",
+  "verified_by": "codex-bucket-G7",
+  "created_at": "2026-05-24T20:07:35.604Z",
+  "last_update": "2026-05-24",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "errorCode": "UNSUPPORTED_FEATURE",
+  "error_code": "UNSUPPORTED_FEATURE",
+  "docs_url": null,
+  "docs_doc_id": null,
+  "docs_url_http_status": null,
+  "curl_verified": false,
+  "completion_gate": "docs_url non-empty AND URL contains docs.google.com AND curl GET returns HTTP 200 or a 30x login redirect.",
+  "completion_gate_passed": false,
+  "attempts": [
+    {
+      "label": "retry1_existing_canvas_default_mcp_deadline",
+      "command_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry1.command.txt",
+      "exit_code": 1,
+      "wall_ms": 180133,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry1.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry1.stderr.log",
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "error": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+        "evidence": {
+          "tool": "webai_gemini_canvas_to_docs",
+          "stage": "handler",
+          "message": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+          "error_name": "Error",
+          "timeout_ms": 180000
+        }
+      },
+      "stderr_tail": ""
+    },
+    {
+      "label": "retry2_existing_canvas_extended_deadline_share_selector_timeout",
+      "command_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry2.command.txt",
+      "exit_code": 1,
+      "wall_ms": 301757,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry2.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry2.stderr.log",
+      "stdout_json": {
+        "docs_url": null,
+        "docs_doc_id": null,
+        "title": "Capability Probe Doc",
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "selector": "button[data-test-id=\"share-button\"]"
+      },
+      "stderr_tail": ""
+    },
+    {
+      "label": "retry3_share_aria_selector_patched_export_selector_drift",
+      "command_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry3.command.txt",
+      "exit_code": 1,
+      "wall_ms": 16582,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry3.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.retry3.stderr.log",
+      "stdout_json": {
+        "docs_url": null,
+        "docs_doc_id": null,
+        "title": "Capability Probe Doc",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "selector": "button[data-test-id=\"export-to-docs-button\"]"
+      },
+      "stderr_tail": ""
+    },
+    {
+      "label": "retry4_share_and_export_selectors_patched_no_docs_url",
+      "command_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.command.txt",
+      "exit_code": 1,
+      "wall_ms": 75778,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.stderr.log",
+      "stdout_json": {
+        "docs_url": null,
+        "docs_doc_id": null,
+        "title": "Capability Probe Doc",
+        "errorCode": "ARTIFACT_VERIFICATION_FAILED",
+        "error_code": "ARTIFACT_VERIFICATION_FAILED"
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "selector_updates": [
+    {
+      "file": "src/mcp/tools.ts",
+      "dist_file": "dist/src/mcp/tools.js",
+      "change": "GEMINI_CANVAS_SHARE_BUTTON_SELECTOR now also matches button[aria-label=\"Share and export canvas\"]."
+    },
+    {
+      "file": "src/mcp/tools.ts",
+      "dist_file": "dist/src/mcp/tools.js",
+      "change": "GEMINI_CANVAS_EXPORT_DOCS_SELECTOR now matches any [data-test-id=\"export-to-docs-button\"] element, not only button elements."
+    }
+  ],
+  "ui_evidence": {
+    "screenshot": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.after-timeout.png",
+    "manual_export_probe": "Manual CDP probe opened the Share and export canvas menu and clicked the Export to Docs element; a popup stayed at about:blank for 60s and no docs.google.com page appeared.",
+    "workspace_connect_text": "Gemini displayed: First, you'll need to connect Google Workspace to turn on this app. Google Workspace ... Connect."
+  },
+  "artifact": null,
+  "notes": "Fail-closed per bucket rule: the account/profile requires Google Workspace connection before Gemini can use Docs/Drive export. Clicking Connect is credential/permission-gated, so the run did not grant new account permissions. The CLI reached the Canvas export menu after selector drift patches, but no docs.google.com URL materialized."
+}

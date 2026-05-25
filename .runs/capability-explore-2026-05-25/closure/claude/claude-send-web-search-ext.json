@@ -1,0 +1,1611 @@
+{
+  "id": "claude-send-web-search-ext",
+  "service": "claude",
+  "source": "capability-explore-2026-05-25/L1",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/claude-claude-send-web-search-ext.yaml",
+  "closure_criterion": "response_text contains a date marker such as \"2026\", \"May\", or \"5月\"",
+  "started_at": "2026-05-24T21:09:20.984Z",
+  "ok": false,
+  "closureOk": false,
+  "cause": "web-search date gate failed",
+  "errorCode": "CLOSURE_CRITERION_MISMATCH",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-24T21:09:21.131Z",
+      "finished_at": "2026-05-24T21:09:22.107Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/claude-claude-send-web-search-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": true,
+      "closure_ok": false,
+      "closure_cause": "web-search date gate failed",
+      "parsed": {
+        "ok": true,
+        "plan": {
+          "id": "claude-claude-send-web-search-ext",
+          "target": "claude",
+          "profile": "<profile>",
+          "mode": "assisted",
+          "compiledAt": "2026-05-24T21:09:21.888Z",
+          "actions": [
+            {
+              "stepId": "claude-send-web-search-ext",
+              "capability": "claude-send-web-search-ext",
+              "action": {
+                "type": "extract",
+                "extract": "snapshot",
+                "confirmed": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false
+            }
+          ],
+          "warnings": [
+            "No exact compiler rule for capability 'claude-send-web-search-ext'. Falling back to read/observe action."
+          ],
+          "definition": {
+            "id": "claude-claude-send-web-search-ext",
+            "target": "claude",
+            "profile": "<profile>",
+            "mode": "assisted",
+            "description": "Claude send prompt with web search enabled via extension-assisted CDP",
+            "steps": [
+              {
+                "use_capability": "claude-send-web-search-ext",
+                "input": {
+                  "backend": "extension-assisted-cdp",
+                  "prompt": "What is today's date?",
+                  "web_search": true,
+                  "reuse_conversation": true,
+                  "response_timeout_ms": 120000,
+                  "tab_url_contains": "<chat_url from claude-send-basic-ext>"
+                }
+              }
+            ]
+          }
+        },
+        "results": [
+          {
+            "stepId": "claude-send-web-search-ext",
+            "ok": true,
+            "message": "Extracted snapshot",
+            "data": {
+              "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+              "title": "Capability Probe Design",
+              "timestamp": "2026-05-24T21:09:22.046Z",
+              "visibleText": "Capability Probe Design Design Files index.html Present Share B Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section. Hi-fi design Interactive prototype Updated todos Copying starter Updated todos ✓ ✓ #1 ✓ ✓ #2 Writing Building the landing page now — committing to this aesthetic: Type: Cormorant Garamond (display) + DM Sans (body) Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60) Mood: Spare, warm, specialty-coffee editorial Done, Verify The Probe Café landing page is live! Here's what's included: Nav — transparent over hero, turns solid + bordered on scroll Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade) 3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal Menu teaser — dark split layout with a live menu list and hover-slide items Visit section — Hours, Location, Contact in a clean 3-column grid Footer — minimal logo + socials Tweaks panel (toolbar toggle) lets you change: Accent color (caramel / red / sage / indigo) Hero tagline copy Heading style (serif display vs. all-caps) Drop in real photography to replace the striped placeholders whenever ready. Verifier agent check completed Reading, Editing Found it — useTweaks returns an array [values, setTweak], not an object. My destructuring used { tweaks, setTweak }. One-line fix: Done, Verify The Tweaks panel is fixed and the page is running clean. You can toggle it on from the toolbar to adjust the accent color, hero tagline, and heading style. Let me know if you'd like any changes to the layout, copy, or styling! Send Mark up M Edit E Hide tweaks Comments C 100%",
+              "elements": [
+                {
+                  "ref": "e1",
+                  "role": "link",
+                  "name": "Back to projects",
+                  "text": "",
+                  "selector": "a[aria-label=\"Back to projects\"]",
+                  "tagName": "a",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "href": "/design/",
+                    "aria-label": "Back to projects",
+                    "title": "Back to projects",
+                    "class": "sc-bQCIwN sc-fWXbGg jnthIK giVESF"
+                  },
+                  "selectorCandidates": [
+                    "a[aria-label=\"Back to projects\"]"
+                  ]
+                },
+                {
+                  "ref": "e2",
+                  "role": "button",
+                  "name": "Chat history",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Chat history",
+                    "data-testid": "nav-chat-history",
+                    "class": "sc-hKFxUR ewSksf"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e3",
+                  "role": "button",
+                  "name": "Present",
+                  "text": "Present",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Present",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e4",
+                  "role": "button",
+                  "name": "Share",
+                  "text": "Share",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "class": "sc-gtstET iPDDqo"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e5",
+                  "role": "button",
+                  "name": "Profile and connectors",
+                  "text": "B",
+                  "selector": "button[aria-label=\"Profile and connectors\"]",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "aria-label": "Profile and connectors",
+                    "title": "qYgwillardboothiist5@lobbyist.com",
+                    "class": "sc-jCPPab gYHyFx"
+                  },
+                  "selectorCandidates": [
+                    "button[aria-label=\"Profile and connectors\"]"
+                  ]
+                },
+                {
+                  "ref": "e6",
+                  "role": "textarea",
+                  "name": "Describe what you want to create...",
+                  "text": "",
+                  "selector": "textarea[placeholder=\"Describe what you want to create...\"]",
+                  "tagName": "textarea",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "data-testid": "chat-composer-input",
+                    "placeholder": "Describe what you want to create...",
+                    "rows": "3",
+                    "class": "sc-iklHWZ bwkhwC",
+                    "style": "font-size: 14px; height: 63px; overflow-y: hidden;"
+                  },
+                  "selectorCandidates": [
+                    "textarea[placeholder=\"Describe what you want to create...\"]"
+                  ]
+                },
+                {
+                  "ref": "e7",
+                  "role": "button",
+                  "name": "Add to chat",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Add to chat",
+                    "data-testid": "composer-import-button",
+                    "class": "sc-hKFxUR kcgBzM"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e8",
+                  "role": "button",
+                  "name": "Change model",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Change model",
+                    "data-testid": "model-selector-button",
+                    "class": "sc-gtstET ilRVAb",
+                    "style": "width: 28px; height: 28px; padding: 0px;"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e9",
+                  "role": "button",
+                  "name": "Start voice input (⌘G tap or hold)",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Start voice input (⌘G tap or hold)",
+                    "data-testid": "live-voice-mic-button",
+                    "class": "sc-hKFxUR kcgBzM"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e10",
+                  "role": "button",
+                  "name": "Send (Enter)",
+                  "text": "Send",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": true,
+                  "visible": true,
+                  "attributes": {
+                    "disabled": "",
+                    "title": "Send (Enter)",
+                    "data-testid": "chat-send-button",
+                    "class": "sc-gtstET bMerhb"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e11",
+                  "role": "button",
+                  "name": "Reload",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Reload",
+                    "class": "sc-eCAoTo cBIApg"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e12",
+                  "role": "button",
+                  "name": "Mark up (M)",
+                  "text": "Mark up M",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Mark up (M)",
+                    "data-testid": "mode-chat-about",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e13",
+                  "role": "button",
+                  "name": "Edit (E)",
+                  "text": "Edit E",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Edit (E)",
+                    "data-testid": "mode-edit",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e14",
+                  "role": "button",
+                  "name": "Hide tweaks",
+                  "text": "Hide tweaks",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e15",
+                  "role": "button",
+                  "name": "Comments (C)",
+                  "text": "Comments C",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Comments (C)",
+                    "data-testid": "mode-comment",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e16",
+                  "role": "button",
+                  "name": "Zoom level",
+                  "text": "100%",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Zoom level",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e17",
+                  "role": "iframe",
+                  "name": "",
+                  "text": "",
+                  "selector": "iframe",
+                  "tagName": "iframe",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "data-testid": "html-viewer-iframe",
+                    "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+                    "allow": "camera; microphone; geolocation",
+                    "sandbox": "allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-same-origin",
+                    "style": "width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; background: transparent; color-scheme: normal; opacity: 1; transition: opacity 120ms ease-out; transform: scale(1); transform-origin: left top;"
+                  },
+                  "selectorCandidates": [
+                    "iframe"
+                  ]
+                }
+              ],
+              "forms": [],
+              "tables": [],
+              "lists": [
+                {
+                  "ref": "l1",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Type: Cormorant Garamond (display) + DM Sans (body)",
+                    "Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60)",
+                    "Mood: Spare, warm, specialty-coffee editorial"
+                  ]
+                },
+                {
+                  "ref": "l2",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Nav — transparent over hero, turns solid + bordered on scroll",
+                    "Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator",
+                    "Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade)",
+                    "3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal",
+                    "Menu teaser — dark split layout with a live menu list and hover-slide items",
+                    "Visit section — Hours, Location, Contact in a clean 3-column grid",
+                    "Footer — minimal logo + socials"
+                  ]
+                },
+                {
+                  "ref": "l3",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Accent color (caramel / red / sage / indigo)",
+                    "Hero tagline copy",
+                    "Heading style (serif display vs. all-caps)"
+                  ]
+                }
+              ],
+              "iframes": [
+                {
+                  "ref": "i1",
+                  "src": "about:blank",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                },
+                {
+                  "ref": "i2",
+                  "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                },
+                {
+                  "ref": "i3",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                }
+              ],
+              "warnings": []
+            }
+          }
+        ],
+        "runId": "run_c266b8c8313c7680"
+      },
+      "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-claude-send-web-search-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"assisted\",\n    \"compiledAt\": \"2026-05-24T21:09:21.888Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"claude-send-web-search-ext\",\n        \"capability\": \"claude-send-web-search-ext\",\n        \"action\": {\n          \"type\": \"extract\",\n          \"extract\": \"snapshot\",\n          \"confirmed\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false\n      }\n    ],\n    \"warnings\": [\n      \"No exact compiler rule for capability 'claude-send-web-search-ext'. Falling back to read/observe action.\"\n    ],\n    \"definition\": {\n      \"id\": \"claude-claude-send-web-search-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"assisted\",\n      \"description\": \"Claude send prompt with web search enabled via extension-assisted CDP\",\n      \"steps\": [\n        {\n          \"use_capability\": \"claude-send-web-search-ext\",\n          \"input\": {\n            \"backend\": \"extension-assisted-cdp\",\n            \"prompt\": \"What is today's date?\",\n            \"web_search\": true,\n            \"reuse_conversation\": true,\n            \"response_timeout_ms\": 120000,\n            \"tab_url_contains\": \"<chat_url from claude-send-basic-ext>\"\n          }\n        }\n      ]\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"claude-send-web-search-ext\",\n      \"ok\": true,\n      \"message\": \"Extracted snapshot\",\n      \"data\": {\n        \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n        \"title\": \"Capability Probe Design\",\n        \"timestamp\": \"2026-05-24T21:09:22.046Z\",\n        \"visibleText\": \"Capability Probe Design Design Files index.html Present Share B Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section. Hi-fi design Interactive prototype Updated todos Copying starter Updated todos ✓ ✓ #1 ✓ ✓ #2 Writing Building the landing page now — committing to this aesthetic: Type: Cormorant Garamond (display) + DM Sans (body) Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60) Mood: Spare, warm, specialty-coffee editorial Done, Verify The Probe Café landing page is live! Here's what's included: Nav — transparent over hero, turns solid + bordered on scroll Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade) 3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal Menu teaser — dark split layout with a live menu list and hover-slide items Visit section — Hours, Location, Contact in a clean 3-column grid Footer — minimal logo + socials Tweaks panel (toolbar toggle) lets you change: Accent color (caramel / red / sage / indigo) Hero tagline copy Heading style (serif display vs. all-caps) Drop in real photography to replace the striped placeholders whenever ready. Verifier agent check completed Reading, Editing Found it — useTweaks returns an array [values, setTweak], not an object. My destructuring used { tweaks, setTweak }. One-line fix: Done, Verify The Tweaks panel is fixed and the page is running clean. You can toggle it on from the toolbar to adjust the accent color, hero tagline, and heading style. Let me know if you'd like any changes to the layout, copy, or styling! Send Mark up M Edit E Hide tweaks Comments C 100%\",\n        \"elements\": [\n          {\n            \"ref\": \"e1\",\n            \"role\": \"link\",\n            \"name\": \"Back to projects\",\n            \"text\": \"\",\n            \"selector\": \"a[aria-label=\\\"Back to projects\\\"]\",\n            \"tagName\": \"a\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"href\": \"/design/\",\n              \"aria-label\": \"Back to projects\",\n              \"title\": \"Back to projects\",\n              \"class\": \"sc-bQCIwN sc-fWXbGg jnthIK giVESF\"\n            },\n            \"selectorCandidates\": [\n              \"a[aria-label=\\\"Back to projects\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e2\",\n            \"role\": \"button\",\n            \"name\": \"Chat history\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Chat history\",\n              \"data-testid\": \"nav-chat-history\",\n              \"class\": \"sc-hKFxUR ewSksf\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e3\",\n            \"role\": \"button\",\n            \"name\": \"Present\",\n            \"text\": \"Present\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Present\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e4\",\n            \"role\": \"button\",\n            \"name\": \"Share\",\n            \"text\": \"Share\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"class\": \"sc-gtstET iPDDqo\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e5\",\n            \"role\": \"button\",\n            \"name\": \"Profile and connectors\",\n            \"text\": \"B\",\n            \"selector\": \"button[aria-label=\\\"Profile and connectors\\\"]\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"aria-label\": \"Profile and connectors\",\n              \"title\": \"qYgwillardboothiist5@lobbyist.com\",\n              \"class\": \"sc-jCPPab gYHyFx\"\n            },\n            \"selectorCandidates\": [\n              \"button[aria-label=\\\"Profile and connectors\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e6\",\n            \"role\": \"textarea\",\n            \"name\": \"Describe what you want to create...\",\n            \"text\": \"\",\n            \"selector\": \"textarea[placeholder=\\\"Describe what you want to create...\\\"]\",\n            \"tagName\": \"textarea\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"data-testid\": \"chat-composer-input\",\n              \"placeholder\": \"Describe what you want to create...\",\n              \"rows\": \"3\",\n              \"class\": \"sc-iklHWZ bwkhwC\",\n              \"style\": \"font-size: 14px; height: 63px; overflow-y: hidden;\"\n            },\n            \"selectorCandidates\": [\n              \"textarea[placeholder=\\\"Describe what you want to create...\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e7\",\n            \"role\": \"button\",\n            \"name\": \"Add to chat\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Add to chat\",\n              \"data-testid\": \"composer-import-button\",\n              \"class\": \"sc-hKFxUR kcgBzM\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e8\",\n            \"role\": \"button\",\n            \"name\": \"Change model\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Change model\",\n              \"data-testid\": \"model-selector-button\",\n              \"class\": \"sc-gtstET ilRVAb\",\n              \"style\": \"width: 28px; height: 28px; padding: 0px;\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e9\",\n            \"role\": \"button\",\n            \"name\": \"Start voice input (⌘G tap or hold)\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Start voice input (⌘G tap or hold)\",\n              \"data-testid\": \"live-voice-mic-button\",\n              \"class\": \"sc-hKFxUR kcgBzM\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e10\",\n            \"role\": \"button\",\n            \"name\": \"Send (Enter)\",\n            \"text\": \"Send\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": true,\n            \"visible\": true,\n            \"attributes\": {\n              \"disabled\": \"\",\n              \"title\": \"Send (Enter)\",\n              \"data-testid\": \"chat-send-button\",\n              \"class\": \"sc-gtstET bMerhb\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e11\",\n            \"role\": \"button\",\n            \"name\": \"Reload\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Reload\",\n              \"class\": \"sc-eCAoTo cBIApg\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e12\",\n            \"role\": \"button\",\n            \"name\": \"Mark up (M)\",\n            \"text\": \"Mark up M\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Mark up (M)\",\n              \"data-testid\": \"mode-chat-about\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e13\",\n            \"role\": \"button\",\n            \"name\": \"Edit (E)\",\n            \"text\": \"Edit E\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Edit (E)\",\n              \"data-testid\": \"mode-edit\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e14\",\n            \"role\": \"button\",\n            \"name\": \"Hide tweaks\",\n            \"text\": \"Hide tweaks\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e15\",\n            \"role\": \"button\",\n            \"name\": \"Comments (C)\",\n            \"text\": \"Comments C\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Comments (C)\",\n              \"data-testid\": \"mode-comment\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e16\",\n            \"role\": \"button\",\n            \"name\": \"Zoom level\",\n            \"text\": \"100%\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Zoom level\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e17\",\n            \"role\": \"iframe\",\n            \"name\": \"\",\n            \"text\": \"\",\n            \"selector\": \"iframe\",\n            \"tagName\": \"iframe\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"data-testid\": \"html-viewer-iframe\",\n              \"src\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap\",\n              \"allow\": \"camera; microphone; geolocation\",\n              \"sandbox\": \"allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-same-origin\",\n              \"style\": \"width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; background: transparent; color-scheme: normal; opacity: 1; transition: opacity 120ms ease-out; transform: scale(1); transform-origin: left top;\"\n            },\n            \"selectorCandidates\": [\n              \"iframe\"\n            ]\n          }\n        ],\n        \"forms\": [],\n        \"tables\": [],\n        \"lists\": [\n          {\n            \"ref\": \"l1\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Type: Cormorant Garamond (display) + DM Sans (body)\",\n              \"Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60)\",\n              \"Mood: Spare, warm, specialty-coffee editorial\"\n            ]\n          },\n          {\n            \"ref\": \"l2\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Nav — transparent over hero, turns solid + bordered on scroll\",\n              \"Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator\",\n              \"Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade)\",\n              \"3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal\",\n              \"Menu teaser — dark split layout with a live menu list and hover-slide items\",\n              \"Visit section — Hours, Location, Contact in a clean 3-column grid\",\n              \"Footer — minimal logo + socials\"\n            ]\n          },\n          {\n            \"ref\": \"l3\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Accent color (caramel / red / sage / indigo)\",\n              \"Hero tagline copy\",\n              \"Heading style (serif display vs. all-caps)\"\n            ]\n          }\n        ],\n        \"iframes\": [\n          {\n            \"ref\": \"i1\",\n            \"src\": \"about:blank\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          },\n          {\n            \"ref\": \"i2\",\n            \"src\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          },\n          {\n            \"ref\": \"i3\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          }\n        ],\n        \"warnings\": []\n      }\n    }\n  ],\n  \"runId\": \"run_c266b8c8313c7680\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-05-24T21:09:22.107Z",
+      "finished_at": "2026-05-24T21:09:22.990Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/claude-claude-send-web-search-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": true,
+      "closure_ok": false,
+      "closure_cause": "web-search date gate failed",
+      "parsed": {
+        "ok": true,
+        "plan": {
+          "id": "claude-claude-send-web-search-ext",
+          "target": "claude",
+          "profile": "<profile>",
+          "mode": "assisted",
+          "compiledAt": "2026-05-24T21:09:22.876Z",
+          "actions": [
+            {
+              "stepId": "claude-send-web-search-ext",
+              "capability": "claude-send-web-search-ext",
+              "action": {
+                "type": "extract",
+                "extract": "snapshot",
+                "confirmed": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false
+            }
+          ],
+          "warnings": [
+            "No exact compiler rule for capability 'claude-send-web-search-ext'. Falling back to read/observe action."
+          ],
+          "definition": {
+            "id": "claude-claude-send-web-search-ext",
+            "target": "claude",
+            "profile": "<profile>",
+            "mode": "assisted",
+            "description": "Claude send prompt with web search enabled via extension-assisted CDP",
+            "steps": [
+              {
+                "use_capability": "claude-send-web-search-ext",
+                "input": {
+                  "backend": "extension-assisted-cdp",
+                  "prompt": "What is today's date?",
+                  "web_search": true,
+                  "reuse_conversation": true,
+                  "response_timeout_ms": 120000,
+                  "tab_url_contains": "<chat_url from claude-send-basic-ext>"
+                }
+              }
+            ]
+          }
+        },
+        "results": [
+          {
+            "stepId": "claude-send-web-search-ext",
+            "ok": true,
+            "message": "Extracted snapshot",
+            "data": {
+              "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+              "title": "Capability Probe Design",
+              "timestamp": "2026-05-24T21:09:22.938Z",
+              "visibleText": "Capability Probe Design Design Files index.html Present Share B Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section. Hi-fi design Interactive prototype Updated todos Copying starter Updated todos ✓ ✓ #1 ✓ ✓ #2 Writing Building the landing page now — committing to this aesthetic: Type: Cormorant Garamond (display) + DM Sans (body) Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60) Mood: Spare, warm, specialty-coffee editorial Done, Verify The Probe Café landing page is live! Here's what's included: Nav — transparent over hero, turns solid + bordered on scroll Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade) 3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal Menu teaser — dark split layout with a live menu list and hover-slide items Visit section — Hours, Location, Contact in a clean 3-column grid Footer — minimal logo + socials Tweaks panel (toolbar toggle) lets you change: Accent color (caramel / red / sage / indigo) Hero tagline copy Heading style (serif display vs. all-caps) Drop in real photography to replace the striped placeholders whenever ready. Verifier agent check completed Reading, Editing Found it — useTweaks returns an array [values, setTweak], not an object. My destructuring used { tweaks, setTweak }. One-line fix: Done, Verify The Tweaks panel is fixed and the page is running clean. You can toggle it on from the toolbar to adjust the accent color, hero tagline, and heading style. Let me know if you'd like any changes to the layout, copy, or styling! Send Mark up M Edit E Hide tweaks Comments C 100%",
+              "elements": [
+                {
+                  "ref": "e1",
+                  "role": "link",
+                  "name": "Back to projects",
+                  "text": "",
+                  "selector": "a[aria-label=\"Back to projects\"]",
+                  "tagName": "a",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "href": "/design/",
+                    "aria-label": "Back to projects",
+                    "title": "Back to projects",
+                    "class": "sc-bQCIwN sc-fWXbGg jnthIK giVESF"
+                  },
+                  "selectorCandidates": [
+                    "a[aria-label=\"Back to projects\"]"
+                  ]
+                },
+                {
+                  "ref": "e2",
+                  "role": "button",
+                  "name": "Chat history",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Chat history",
+                    "data-testid": "nav-chat-history",
+                    "class": "sc-hKFxUR ewSksf"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e3",
+                  "role": "button",
+                  "name": "Present",
+                  "text": "Present",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Present",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e4",
+                  "role": "button",
+                  "name": "Share",
+                  "text": "Share",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "class": "sc-gtstET iPDDqo"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e5",
+                  "role": "button",
+                  "name": "Profile and connectors",
+                  "text": "B",
+                  "selector": "button[aria-label=\"Profile and connectors\"]",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "aria-label": "Profile and connectors",
+                    "title": "qYgwillardboothiist5@lobbyist.com",
+                    "class": "sc-jCPPab gYHyFx"
+                  },
+                  "selectorCandidates": [
+                    "button[aria-label=\"Profile and connectors\"]"
+                  ]
+                },
+                {
+                  "ref": "e6",
+                  "role": "textarea",
+                  "name": "Describe what you want to create...",
+                  "text": "",
+                  "selector": "textarea[placeholder=\"Describe what you want to create...\"]",
+                  "tagName": "textarea",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "data-testid": "chat-composer-input",
+                    "placeholder": "Describe what you want to create...",
+                    "rows": "3",
+                    "class": "sc-iklHWZ bwkhwC",
+                    "style": "font-size: 14px; height: 63px; overflow-y: hidden;"
+                  },
+                  "selectorCandidates": [
+                    "textarea[placeholder=\"Describe what you want to create...\"]"
+                  ]
+                },
+                {
+                  "ref": "e7",
+                  "role": "button",
+                  "name": "Add to chat",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Add to chat",
+                    "data-testid": "composer-import-button",
+                    "class": "sc-hKFxUR kcgBzM"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e8",
+                  "role": "button",
+                  "name": "Change model",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Change model",
+                    "data-testid": "model-selector-button",
+                    "class": "sc-gtstET ilRVAb",
+                    "style": "width: 28px; height: 28px; padding: 0px;"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e9",
+                  "role": "button",
+                  "name": "Start voice input (⌘G tap or hold)",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Start voice input (⌘G tap or hold)",
+                    "data-testid": "live-voice-mic-button",
+                    "class": "sc-hKFxUR kcgBzM"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e10",
+                  "role": "button",
+                  "name": "Send (Enter)",
+                  "text": "Send",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": true,
+                  "visible": true,
+                  "attributes": {
+                    "disabled": "",
+                    "title": "Send (Enter)",
+                    "data-testid": "chat-send-button",
+                    "class": "sc-gtstET bMerhb"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e11",
+                  "role": "button",
+                  "name": "Reload",
+                  "text": "",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Reload",
+                    "class": "sc-eCAoTo cBIApg"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e12",
+                  "role": "button",
+                  "name": "Mark up (M)",
+                  "text": "Mark up M",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Mark up (M)",
+                    "data-testid": "mode-chat-about",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e13",
+                  "role": "button",
+                  "name": "Edit (E)",
+                  "text": "Edit E",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Edit (E)",
+                    "data-testid": "mode-edit",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e14",
+                  "role": "button",
+                  "name": "Hide tweaks",
+                  "text": "Hide tweaks",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e15",
+                  "role": "button",
+                  "name": "Comments (C)",
+                  "text": "Comments C",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Comments (C)",
+                    "data-testid": "mode-comment",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e16",
+                  "role": "button",
+                  "name": "Zoom level",
+                  "text": "100%",
+                  "selector": "button",
+                  "tagName": "button",
+                  "value": "",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "title": "Zoom level",
+                    "class": "sc-gtstET LpSNA"
+                  },
+                  "selectorCandidates": [
+                    "button"
+                  ]
+                },
+                {
+                  "ref": "e17",
+                  "role": "iframe",
+                  "name": "",
+                  "text": "",
+                  "selector": "iframe",
+                  "tagName": "iframe",
+                  "disabled": false,
+                  "visible": true,
+                  "attributes": {
+                    "data-testid": "html-viewer-iframe",
+                    "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+                    "allow": "camera; microphone; geolocation",
+                    "sandbox": "allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-same-origin",
+                    "style": "width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; background: transparent; color-scheme: normal; opacity: 1; transition: opacity 120ms ease-out; transform: scale(1); transform-origin: left top;"
+                  },
+                  "selectorCandidates": [
+                    "iframe"
+                  ]
+                }
+              ],
+              "forms": [],
+              "tables": [],
+              "lists": [
+                {
+                  "ref": "l1",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Type: Cormorant Garamond (display) + DM Sans (body)",
+                    "Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60)",
+                    "Mood: Spare, warm, specialty-coffee editorial"
+                  ]
+                },
+                {
+                  "ref": "l2",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Nav — transparent over hero, turns solid + bordered on scroll",
+                    "Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator",
+                    "Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade)",
+                    "3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal",
+                    "Menu teaser — dark split layout with a live menu list and hover-slide items",
+                    "Visit section — Hours, Location, Contact in a clean 3-column grid",
+                    "Footer — minimal logo + socials"
+                  ]
+                },
+                {
+                  "ref": "l3",
+                  "selector": "ul",
+                  "ordered": false,
+                  "items": [
+                    "Accent color (caramel / red / sage / indigo)",
+                    "Hero tagline copy",
+                    "Heading style (serif display vs. all-caps)"
+                  ]
+                }
+              ],
+              "iframes": [
+                {
+                  "ref": "i1",
+                  "src": "about:blank",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                },
+                {
+                  "ref": "i2",
+                  "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                },
+                {
+                  "ref": "i3",
+                  "selector": "iframe",
+                  "accessible": false,
+                  "summary": "Iframe DOM requires frame-level access."
+                }
+              ],
+              "warnings": []
+            }
+          }
+        ],
+        "runId": "run_219afd743995bb1e"
+      },
+      "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-claude-send-web-search-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"assisted\",\n    \"compiledAt\": \"2026-05-24T21:09:22.876Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"claude-send-web-search-ext\",\n        \"capability\": \"claude-send-web-search-ext\",\n        \"action\": {\n          \"type\": \"extract\",\n          \"extract\": \"snapshot\",\n          \"confirmed\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false\n      }\n    ],\n    \"warnings\": [\n      \"No exact compiler rule for capability 'claude-send-web-search-ext'. Falling back to read/observe action.\"\n    ],\n    \"definition\": {\n      \"id\": \"claude-claude-send-web-search-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"assisted\",\n      \"description\": \"Claude send prompt with web search enabled via extension-assisted CDP\",\n      \"steps\": [\n        {\n          \"use_capability\": \"claude-send-web-search-ext\",\n          \"input\": {\n            \"backend\": \"extension-assisted-cdp\",\n            \"prompt\": \"What is today's date?\",\n            \"web_search\": true,\n            \"reuse_conversation\": true,\n            \"response_timeout_ms\": 120000,\n            \"tab_url_contains\": \"<chat_url from claude-send-basic-ext>\"\n          }\n        }\n      ]\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"claude-send-web-search-ext\",\n      \"ok\": true,\n      \"message\": \"Extracted snapshot\",\n      \"data\": {\n        \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n        \"title\": \"Capability Probe Design\",\n        \"timestamp\": \"2026-05-24T21:09:22.938Z\",\n        \"visibleText\": \"Capability Probe Design Design Files index.html Present Share B Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section. Hi-fi design Interactive prototype Updated todos Copying starter Updated todos ✓ ✓ #1 ✓ ✓ #2 Writing Building the landing page now — committing to this aesthetic: Type: Cormorant Garamond (display) + DM Sans (body) Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60) Mood: Spare, warm, specialty-coffee editorial Done, Verify The Probe Café landing page is live! Here's what's included: Nav — transparent over hero, turns solid + bordered on scroll Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade) 3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal Menu teaser — dark split layout with a live menu list and hover-slide items Visit section — Hours, Location, Contact in a clean 3-column grid Footer — minimal logo + socials Tweaks panel (toolbar toggle) lets you change: Accent color (caramel / red / sage / indigo) Hero tagline copy Heading style (serif display vs. all-caps) Drop in real photography to replace the striped placeholders whenever ready. Verifier agent check completed Reading, Editing Found it — useTweaks returns an array [values, setTweak], not an object. My destructuring used { tweaks, setTweak }. One-line fix: Done, Verify The Tweaks panel is fixed and the page is running clean. You can toggle it on from the toolbar to adjust the accent color, hero tagline, and heading style. Let me know if you'd like any changes to the layout, copy, or styling! Send Mark up M Edit E Hide tweaks Comments C 100%\",\n        \"elements\": [\n          {\n            \"ref\": \"e1\",\n            \"role\": \"link\",\n            \"name\": \"Back to projects\",\n            \"text\": \"\",\n            \"selector\": \"a[aria-label=\\\"Back to projects\\\"]\",\n            \"tagName\": \"a\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"href\": \"/design/\",\n              \"aria-label\": \"Back to projects\",\n              \"title\": \"Back to projects\",\n              \"class\": \"sc-bQCIwN sc-fWXbGg jnthIK giVESF\"\n            },\n            \"selectorCandidates\": [\n              \"a[aria-label=\\\"Back to projects\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e2\",\n            \"role\": \"button\",\n            \"name\": \"Chat history\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Chat history\",\n              \"data-testid\": \"nav-chat-history\",\n              \"class\": \"sc-hKFxUR ewSksf\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e3\",\n            \"role\": \"button\",\n            \"name\": \"Present\",\n            \"text\": \"Present\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Present\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e4\",\n            \"role\": \"button\",\n            \"name\": \"Share\",\n            \"text\": \"Share\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"class\": \"sc-gtstET iPDDqo\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e5\",\n            \"role\": \"button\",\n            \"name\": \"Profile and connectors\",\n            \"text\": \"B\",\n            \"selector\": \"button[aria-label=\\\"Profile and connectors\\\"]\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"aria-label\": \"Profile and connectors\",\n              \"title\": \"qYgwillardboothiist5@lobbyist.com\",\n              \"class\": \"sc-jCPPab gYHyFx\"\n            },\n            \"selectorCandidates\": [\n              \"button[aria-label=\\\"Profile and connectors\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e6\",\n            \"role\": \"textarea\",\n            \"name\": \"Describe what you want to create...\",\n            \"text\": \"\",\n            \"selector\": \"textarea[placeholder=\\\"Describe what you want to create...\\\"]\",\n            \"tagName\": \"textarea\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"data-testid\": \"chat-composer-input\",\n              \"placeholder\": \"Describe what you want to create...\",\n              \"rows\": \"3\",\n              \"class\": \"sc-iklHWZ bwkhwC\",\n              \"style\": \"font-size: 14px; height: 63px; overflow-y: hidden;\"\n            },\n            \"selectorCandidates\": [\n              \"textarea[placeholder=\\\"Describe what you want to create...\\\"]\"\n            ]\n          },\n          {\n            \"ref\": \"e7\",\n            \"role\": \"button\",\n            \"name\": \"Add to chat\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Add to chat\",\n              \"data-testid\": \"composer-import-button\",\n              \"class\": \"sc-hKFxUR kcgBzM\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e8\",\n            \"role\": \"button\",\n            \"name\": \"Change model\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Change model\",\n              \"data-testid\": \"model-selector-button\",\n              \"class\": \"sc-gtstET ilRVAb\",\n              \"style\": \"width: 28px; height: 28px; padding: 0px;\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e9\",\n            \"role\": \"button\",\n            \"name\": \"Start voice input (⌘G tap or hold)\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Start voice input (⌘G tap or hold)\",\n              \"data-testid\": \"live-voice-mic-button\",\n              \"class\": \"sc-hKFxUR kcgBzM\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e10\",\n            \"role\": \"button\",\n            \"name\": \"Send (Enter)\",\n            \"text\": \"Send\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": true,\n            \"visible\": true,\n            \"attributes\": {\n              \"disabled\": \"\",\n              \"title\": \"Send (Enter)\",\n              \"data-testid\": \"chat-send-button\",\n              \"class\": \"sc-gtstET bMerhb\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e11\",\n            \"role\": \"button\",\n            \"name\": \"Reload\",\n            \"text\": \"\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Reload\",\n              \"class\": \"sc-eCAoTo cBIApg\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e12\",\n            \"role\": \"button\",\n            \"name\": \"Mark up (M)\",\n            \"text\": \"Mark up M\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Mark up (M)\",\n              \"data-testid\": \"mode-chat-about\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e13\",\n            \"role\": \"button\",\n            \"name\": \"Edit (E)\",\n            \"text\": \"Edit E\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Edit (E)\",\n              \"data-testid\": \"mode-edit\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e14\",\n            \"role\": \"button\",\n            \"name\": \"Hide tweaks\",\n            \"text\": \"Hide tweaks\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e15\",\n            \"role\": \"button\",\n            \"name\": \"Comments (C)\",\n            \"text\": \"Comments C\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Comments (C)\",\n              \"data-testid\": \"mode-comment\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e16\",\n            \"role\": \"button\",\n            \"name\": \"Zoom level\",\n            \"text\": \"100%\",\n            \"selector\": \"button\",\n            \"tagName\": \"button\",\n            \"value\": \"\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"title\": \"Zoom level\",\n              \"class\": \"sc-gtstET LpSNA\"\n            },\n            \"selectorCandidates\": [\n              \"button\"\n            ]\n          },\n          {\n            \"ref\": \"e17\",\n            \"role\": \"iframe\",\n            \"name\": \"\",\n            \"text\": \"\",\n            \"selector\": \"iframe\",\n            \"tagName\": \"iframe\",\n            \"disabled\": false,\n            \"visible\": true,\n            \"attributes\": {\n              \"data-testid\": \"html-viewer-iframe\",\n              \"src\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap\",\n              \"allow\": \"camera; microphone; geolocation\",\n              \"sandbox\": \"allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-same-origin\",\n              \"style\": \"width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; background: transparent; color-scheme: normal; opacity: 1; transition: opacity 120ms ease-out; transform: scale(1); transform-origin: left top;\"\n            },\n            \"selectorCandidates\": [\n              \"iframe\"\n            ]\n          }\n        ],\n        \"forms\": [],\n        \"tables\": [],\n        \"lists\": [\n          {\n            \"ref\": \"l1\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Type: Cormorant Garamond (display) + DM Sans (body)\",\n              \"Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60)\",\n              \"Mood: Spare, warm, specialty-coffee editorial\"\n            ]\n          },\n          {\n            \"ref\": \"l2\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Nav — transparent over hero, turns solid + bordered on scroll\",\n              \"Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator\",\n              \"Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade)\",\n              \"3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal\",\n              \"Menu teaser — dark split layout with a live menu list and hover-slide items\",\n              \"Visit section — Hours, Location, Contact in a clean 3-column grid\",\n              \"Footer — minimal logo + socials\"\n            ]\n          },\n          {\n            \"ref\": \"l3\",\n            \"selector\": \"ul\",\n            \"ordered\": false,\n            \"items\": [\n              \"Accent color (caramel / red / sage / indigo)\",\n              \"Hero tagline copy\",\n              \"Heading style (serif display vs. all-caps)\"\n            ]\n          }\n        ],\n        \"iframes\": [\n          {\n            \"ref\": \"i1\",\n            \"src\": \"about:blank\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          },\n          {\n            \"ref\": \"i2\",\n            \"src\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          },\n          {\n            \"ref\": \"i3\",\n            \"selector\": \"iframe\",\n            \"accessible\": false,\n            \"summary\": \"Iframe DOM requires frame-level access.\"\n          }\n        ],\n        \"warnings\": []\n      }\n    }\n  ],\n  \"runId\": \"run_219afd743995bb1e\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "claude-9224",
+    "status": {
+      "profile": "claude-9224",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9224,
+      "connected": true,
+      "launchedByPackage": true,
+      "processId": 1711883,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "E82EA7AE3103DF198ABA9A31DBFC83D0",
+          "parentId": "3708716E293677AF74451C38A029AC99",
+          "title": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html",
+          "type": "iframe",
+          "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "3708716E293677AF74451C38A029AC99",
+          "title": "Capability Probe Design",
+          "type": "page",
+          "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html&present=1",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "B270FB6C884EEE54DD0273EB15DD1773",
+          "title": "Sample CSV with names and scores - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/dd287c5f-761d-4644-b192-fe2b1e0f85e8",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "ECAE05D45C28C698CD6D254AE6D31FAB",
+          "parentId": "B270FB6C884EEE54DD0273EB15DD1773",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "83C08D068EFF03B144C95B97AB3F622F",
+          "title": "ClaudeCapProbe README documentation - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/4b6ca81b-bb5b-46fb-bf2f-eb1620ee4e91",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "0F489AF288E786247C7261218AD7E40D",
+          "title": "Capability Probe Design",
+          "type": "page",
+          "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "9E274DCBFF3279A90650FFF16F0930A3",
+          "parentId": "0F489AF288E786247C7261218AD7E40D",
+          "title": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1",
+          "type": "iframe",
+          "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "6D63545E10743651E24F964D7BFA9929",
+          "title": "Python script printing hello claude probe - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/17a4248a-fcb0-47fc-a3f6-ff77f4c03f5d",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "845D3DFA8599CB2451992C8D04C93153",
+          "parentId": "8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "title": "Quantum computing overview document - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/1e155904-8db8-4489-baa0-e6587edf50ff",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "68E7266227B8BD5CEAB86B67B430BD62",
+          "title": "File content extraction - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/c0f6a958-1e72-4583-b257-ec7264c43ef0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "B9FA70F543733B6E69E106633CA0A8BD",
+          "title": "Extracting unique first words from files - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/ef076431-3e31-40a7-9d4a-1a5c557a92a0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "17F7794D9020F7B9FD811AB94DF25F56",
+          "title": "File verbatim quotation - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/87879199-b257-4e3d-9b47-ac5089b884fe",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "98DB306D36F448BE9FDA78ADBEEAC04E",
+          "title": "Machine learning overview - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "D817746EB5412059196064C2D641AA36",
+          "title": "Machine learning overview - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "1F8230C4A6C9606F448F64EFA7BBC439",
+          "parentId": "5B217D4F149824A038340568BD530FD6",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "5B217D4F149824A038340568BD530FD6",
+          "title": "Confirmation response - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC",
+          "id": "C212D2B53357D3BEC1F6728891688DAC",
+          "parentId": "B4D04C8E38950771A754102434EB2074",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074",
+          "id": "B4D04C8E38950771A754102434EB2074",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57",
+          "id": "CD9CDDBE8C26C262F65AD918C5752A57",
+          "title": "https://www.claudeusercontent.com/libs/pdf.worker.min.mjs",
+          "type": "worker",
+          "url": "https://www.claudeusercontent.com/libs/pdf.worker.min.mjs",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4",
+          "id": "B9D6C7AAEE33C47A895EC422D20102A4",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    "error": "{\n  \"profile\": \"claude-9224\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/claude-9224\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9224\",\n  \"cdpPort\": 9224,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 1711883,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"E82EA7AE3103DF198ABA9A31DBFC83D0\",\n      \"parentId\": \"3708716E293677AF74451C38A029AC99\",\n      \"title\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html\",\n      \"type\": \"iframe\",\n      \"url\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"3708716E293677AF74451C38A029AC99\",\n      \"title\": \"Capability Probe Design\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html&present=1\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"B270FB6C884EEE54DD0273EB15DD1773\",\n      \"title\": \"Sample CSV with names and scores - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/dd287c5f-761d-4644-b192-fe2b1e0f85e8\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"ECAE05D45C28C698CD6D254AE6D31FAB\",\n      \"parentId\": \"B270FB6C884EEE54DD0273EB15DD1773\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"83C08D068EFF03B144C95B97AB3F622F\",\n      \"title\": \"ClaudeCapProbe README documentation - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/4b6ca81b-bb5b-46fb-bf2f-eb1620ee4e91\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"0F489AF288E786247C7261218AD7E40D\",\n      \"title\": \"Capability Probe Design\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"9E274DCBFF3279A90650FFF16F0930A3\",\n      \"parentId\": \"0F489AF288E786247C7261218AD7E40D\",\n      \"title\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1\",\n      \"type\": \"iframe\",\n      \"url\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"6D63545E10743651E24F964D7BFA9929\",\n      \"title\": \"Python script printing hello claude probe - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/17a4248a-fcb0-47fc-a3f6-ff77f4c03f5d\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"845D3DFA8599CB2451992C8D04C93153\",\n      \"parentId\": \"8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"title\": \"Quantum computing overview document - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/1e155904-8db8-4489-baa0-e6587edf50ff\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"68E7266227B8BD5CEAB86B67B430BD62\",\n      \"title\": \"File content extraction - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/c0f6a958-1e72-4583-b257-ec7264c43ef0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"B9FA70F543733B6E69E106633CA0A8BD\",\n      \"title\": \"Extracting unique first words from files - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/ef076431-3e31-40a7-9d4a-1a5c557a92a0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"17F7794D9020F7B9FD811AB94DF25F56\",\n      \"title\": \"File verbatim quotation - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/87879199-b257-4e3d-9b47-ac5089b884fe\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"98DB306D36F448BE9FDA78ADBEEAC04E\",\n      \"title\": \"Machine learning overview - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"D817746EB5412059196064C2D641AA36\",\n      \"title\": \"Machine learning overview - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"1F8230C4A6C9606F448F64EFA7BBC439\",\n      \"parentId\": \"5B217D4F149824A038340568BD530FD6\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"5B217D4F149824A038340568BD530FD6\",\n      \"title\": \"Confirmation response - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC\",\n      \"id\": \"C212D2B53357D3BEC1F6728891688DAC\",\n      \"parentId\": \"B4D04C8E38950771A754102434EB2074\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074\",\n      \"id\": \"B4D04C8E38950771A754102434EB2074\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57\",\n      \"id\": \"CD9CDDBE8C26C262F65AD918C5752A57\",\n      \"title\": \"https://www.claudeusercontent.com/libs/pdf.worker.min.mjs\",\n      \"type\": \"worker\",\n      \"url\": \"https://www.claudeusercontent.com/libs/pdf.worker.min.mjs\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4\",\n      \"id\": \"B9D6C7AAEE33C47A895EC422D20102A4\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\"\n}\n"
+  },
+  "workflow_output": {
+    "ok": true,
+    "plan": {
+      "id": "claude-claude-send-web-search-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "assisted",
+      "compiledAt": "2026-05-24T21:09:22.876Z",
+      "actions": [
+        {
+          "stepId": "claude-send-web-search-ext",
+          "capability": "claude-send-web-search-ext",
+          "action": {
+            "type": "extract",
+            "extract": "snapshot",
+            "confirmed": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false
+        }
+      ],
+      "warnings": [
+        "No exact compiler rule for capability 'claude-send-web-search-ext'. Falling back to read/observe action."
+      ],
+      "definition": {
+        "id": "claude-claude-send-web-search-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "assisted",
+        "description": "Claude send prompt with web search enabled via extension-assisted CDP",
+        "steps": [
+          {
+            "use_capability": "claude-send-web-search-ext",
+            "input": {
+              "backend": "extension-assisted-cdp",
+              "prompt": "What is today's date?",
+              "web_search": true,
+              "reuse_conversation": true,
+              "response_timeout_ms": 120000,
+              "tab_url_contains": "<chat_url from claude-send-basic-ext>"
+            }
+          }
+        ]
+      }
+    },
+    "results": [
+      {
+        "stepId": "claude-send-web-search-ext",
+        "ok": true,
+        "message": "Extracted snapshot",
+        "data": {
+          "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+          "title": "Capability Probe Design",
+          "timestamp": "2026-05-24T21:09:22.938Z",
+          "visibleText": "Capability Probe Design Design Files index.html Present Share B Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section. Hi-fi design Interactive prototype Updated todos Copying starter Updated todos ✓ ✓ #1 ✓ ✓ #2 Writing Building the landing page now — committing to this aesthetic: Type: Cormorant Garamond (display) + DM Sans (body) Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60) Mood: Spare, warm, specialty-coffee editorial Done, Verify The Probe Café landing page is live! Here's what's included: Nav — transparent over hero, turns solid + bordered on scroll Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade) 3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal Menu teaser — dark split layout with a live menu list and hover-slide items Visit section — Hours, Location, Contact in a clean 3-column grid Footer — minimal logo + socials Tweaks panel (toolbar toggle) lets you change: Accent color (caramel / red / sage / indigo) Hero tagline copy Heading style (serif display vs. all-caps) Drop in real photography to replace the striped placeholders whenever ready. Verifier agent check completed Reading, Editing Found it — useTweaks returns an array [values, setTweak], not an object. My destructuring used { tweaks, setTweak }. One-line fix: Done, Verify The Tweaks panel is fixed and the page is running clean. You can toggle it on from the toolbar to adjust the accent color, hero tagline, and heading style. Let me know if you'd like any changes to the layout, copy, or styling! Send Mark up M Edit E Hide tweaks Comments C 100%",
+          "elements": [
+            {
+              "ref": "e1",
+              "role": "link",
+              "name": "Back to projects",
+              "text": "",
+              "selector": "a[aria-label=\"Back to projects\"]",
+              "tagName": "a",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "href": "/design/",
+                "aria-label": "Back to projects",
+                "title": "Back to projects",
+                "class": "sc-bQCIwN sc-fWXbGg jnthIK giVESF"
+              },
+              "selectorCandidates": [
+                "a[aria-label=\"Back to projects\"]"
+              ]
+            },
+            {
+              "ref": "e2",
+              "role": "button",
+              "name": "Chat history",
+              "text": "",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Chat history",
+                "data-testid": "nav-chat-history",
+                "class": "sc-hKFxUR ewSksf"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e3",
+              "role": "button",
+              "name": "Present",
+              "text": "Present",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Present",
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e4",
+              "role": "button",
+              "name": "Share",
+              "text": "Share",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "class": "sc-gtstET iPDDqo"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e5",
+              "role": "button",
+              "name": "Profile and connectors",
+              "text": "B",
+              "selector": "button[aria-label=\"Profile and connectors\"]",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "aria-label": "Profile and connectors",
+                "title": "qYgwillardboothiist5@lobbyist.com",
+                "class": "sc-jCPPab gYHyFx"
+              },
+              "selectorCandidates": [
+                "button[aria-label=\"Profile and connectors\"]"
+              ]
+            },
+            {
+              "ref": "e6",
+              "role": "textarea",
+              "name": "Describe what you want to create...",
+              "text": "",
+              "selector": "textarea[placeholder=\"Describe what you want to create...\"]",
+              "tagName": "textarea",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "data-testid": "chat-composer-input",
+                "placeholder": "Describe what you want to create...",
+                "rows": "3",
+                "class": "sc-iklHWZ bwkhwC",
+                "style": "font-size: 14px; height: 63px; overflow-y: hidden;"
+              },
+              "selectorCandidates": [
+                "textarea[placeholder=\"Describe what you want to create...\"]"
+              ]
+            },
+            {
+              "ref": "e7",
+              "role": "button",
+              "name": "Add to chat",
+              "text": "",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Add to chat",
+                "data-testid": "composer-import-button",
+                "class": "sc-hKFxUR kcgBzM"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e8",
+              "role": "button",
+              "name": "Change model",
+              "text": "",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Change model",
+                "data-testid": "model-selector-button",
+                "class": "sc-gtstET ilRVAb",
+                "style": "width: 28px; height: 28px; padding: 0px;"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e9",
+              "role": "button",
+              "name": "Start voice input (⌘G tap or hold)",
+              "text": "",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Start voice input (⌘G tap or hold)",
+                "data-testid": "live-voice-mic-button",
+                "class": "sc-hKFxUR kcgBzM"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e10",
+              "role": "button",
+              "name": "Send (Enter)",
+              "text": "Send",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": true,
+              "visible": true,
+              "attributes": {
+                "disabled": "",
+                "title": "Send (Enter)",
+                "data-testid": "chat-send-button",
+                "class": "sc-gtstET bMerhb"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e11",
+              "role": "button",
+              "name": "Reload",
+              "text": "",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Reload",
+                "class": "sc-eCAoTo cBIApg"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e12",
+              "role": "button",
+              "name": "Mark up (M)",
+              "text": "Mark up M",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Mark up (M)",
+                "data-testid": "mode-chat-about",
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e13",
+              "role": "button",
+              "name": "Edit (E)",
+              "text": "Edit E",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Edit (E)",
+                "data-testid": "mode-edit",
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e14",
+              "role": "button",
+              "name": "Hide tweaks",
+              "text": "Hide tweaks",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e15",
+              "role": "button",
+              "name": "Comments (C)",
+              "text": "Comments C",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Comments (C)",
+                "data-testid": "mode-comment",
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e16",
+              "role": "button",
+              "name": "Zoom level",
+              "text": "100%",
+              "selector": "button",
+              "tagName": "button",
+              "value": "",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "title": "Zoom level",
+                "class": "sc-gtstET LpSNA"
+              },
+              "selectorCandidates": [
+                "button"
+              ]
+            },
+            {
+              "ref": "e17",
+              "role": "iframe",
+              "name": "",
+              "text": "",
+              "selector": "iframe",
+              "tagName": "iframe",
+              "disabled": false,
+              "visible": true,
+              "attributes": {
+                "data-testid": "html-viewer-iframe",
+                "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+                "allow": "camera; microphone; geolocation",
+                "sandbox": "allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-same-origin",
+                "style": "width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; background: transparent; color-scheme: normal; opacity: 1; transition: opacity 120ms ease-out; transform: scale(1); transform-origin: left top;"
+              },
+              "selectorCandidates": [
+                "iframe"
+              ]
+            }
+          ],
+          "forms": [],
+          "tables": [],
+          "lists": [
+            {
+              "ref": "l1",
+              "selector": "ul",
+              "ordered": false,
+              "items": [
+                "Type: Cormorant Garamond (display) + DM Sans (body)",
+                "Palette: Warm off-white oklch(97% 0.012 58), espresso oklch(15% 0.02 45), caramel accent oklch(63% 0.11 60)",
+                "Mood: Spare, warm, specialty-coffee editorial"
+              ]
+            },
+            {
+              "ref": "l2",
+              "selector": "ul",
+              "ordered": false,
+              "items": [
+                "Nav — transparent over hero, turns solid + bordered on scroll",
+                "Hero — full-viewport with large italic serif headline, eyebrow tag, CTA pair, and animated scroll indicator",
+                "Stats band — 4 quick facts (12 origins, 6am open, 3 brew methods, 100% direct trade)",
+                "3-Feature section — Origin, Craft, Space — cards with hover lift + underline reveal",
+                "Menu teaser — dark split layout with a live menu list and hover-slide items",
+                "Visit section — Hours, Location, Contact in a clean 3-column grid",
+                "Footer — minimal logo + socials"
+              ]
+            },
+            {
+              "ref": "l3",
+              "selector": "ul",
+              "ordered": false,
+              "items": [
+                "Accent color (caramel / red / sage / indigo)",
+                "Hero tagline copy",
+                "Heading style (serif display vs. all-caps)"
+              ]
+            }
+          ],
+          "iframes": [
+            {
+              "ref": "i1",
+              "src": "about:blank",
+              "selector": "iframe",
+              "accessible": false,
+              "summary": "Iframe DOM requires frame-level access."
+            },
+            {
+              "ref": "i2",
+              "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+              "selector": "iframe",
+              "accessible": false,
+              "summary": "Iframe DOM requires frame-level access."
+            },
+            {
+              "ref": "i3",
+              "selector": "iframe",
+              "accessible": false,
+              "summary": "Iframe DOM requires frame-level access."
+            }
+          ],
+          "warnings": []
+        }
+      }
+    ],
+    "runId": "run_219afd743995bb1e"
+  },
+  "closure_status": "red",
+  "finished_at": "2026-05-24T21:09:22.990Z"
+}

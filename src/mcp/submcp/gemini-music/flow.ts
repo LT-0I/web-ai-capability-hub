@@ -12,7 +12,7 @@ export const MUSIC_DOWNLOAD_BTN_SELECTOR = 'button[aria-label="Download track"]'
 export const MUSIC_STOP_SELECTOR = 'button[aria-label="Stop response"]';
 export const MUSIC_DESELECT_SELECTOR = 'button[aria-label="Deselect Music"]';
 export const MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
-export const MUSIC_TOOLS_CREATE_ITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create music"), [role="menuitem"]:has-text("Create music")';
+export const MUSIC_TOOLS_CREATE_ITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create music")';
 
 export type GeminiMusicFormat = "mp3" | "video";
 export type ArtifactClickLike = (options: Record<string, unknown>) => Promise<any>;

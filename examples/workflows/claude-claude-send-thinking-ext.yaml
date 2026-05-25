@@ -1,0 +1,31 @@
+# Rewritten 2026-05-25 from codex L2 draft.
+id: claude-send-thinking-ext
+target: claude
+profile: claude-9224
+mode: automatic
+description: Claude thinking-mode arithmetic prompt
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:send-prompt
+      - --profile
+      - claude-9224
+      - --backend
+      - extension-assisted-cdp
+      - --thinking
+      - --prompt
+      - 'Think step by step: 17 x 23 = ?'
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "391"
+        - path: completion_detected
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/claude/claude-send-thinking-ext.json

@@ -1,0 +1,78 @@
+{
+  "id": "gemini-select-model-flash-mgr",
+  "service": "gemini",
+  "bucket": "G1",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "tab_url_contains": "260e7fc538aef136",
+  "source": "capability-explore-2026-05-25/G1",
+  "verified_by": "codex-bucket-G1",
+  "started_at": "2026-05-24T17:11:17.517Z",
+  "finished_at": "2026-05-24T17:11:33.410Z",
+  "wall_ms": 15893,
+  "status": "FAIL_CLOSED_MANAGED",
+  "completion_gate": "ok === true and model_used contains \"Flash\".",
+  "completion_gate_passed": false,
+  "attempts": [
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:select-model --profile gemini-9225 --model 3.5-flash --thinking-level standard --tab-url-contains 260e7fc538aef136 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 5452,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_select_model\",\n    \"stage\": \"handler\",\n    \"message\": \"ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found\",\n    \"error_name\": \"Error\",\n    \"selector\": \"button[aria-label=\\\"Open mode picker\\\"]\"\n  }\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+        "evidence": {
+          "tool": "webai_gemini_select_model",
+          "stage": "handler",
+          "message": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+          "error_name": "Error",
+          "selector": "button[aria-label=\"Open mode picker\"]"
+        }
+      },
+      "parse_error": null,
+      "attempt": 1,
+      "gate_passed": false
+    },
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:select-model --profile gemini-9225 --model 3.5-flash --thinking-level standard --tab-url-contains 260e7fc538aef136 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 5411,
+      "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_select_model\",\n    \"stage\": \"handler\",\n    \"message\": \"ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found\",\n    \"error_name\": \"Error\",\n    \"selector\": \"button[aria-label=\\\"Open mode picker\\\"]\"\n  }\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+        "evidence": {
+          "tool": "webai_gemini_select_model",
+          "stage": "handler",
+          "message": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+          "error_name": "Error",
+          "selector": "button[aria-label=\"Open mode picker\"]"
+        }
+      },
+      "parse_error": null,
+      "attempt": 2,
+      "gate_passed": false
+    }
+  ],
+  "final": {
+    "ok": false,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "cause": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found"
+  }
+}

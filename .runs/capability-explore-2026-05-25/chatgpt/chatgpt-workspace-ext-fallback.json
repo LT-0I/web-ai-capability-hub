@@ -1,0 +1,102 @@
+{
+  "cap_id": "chatgpt-workspace-ext-fallback",
+  "service": "chatgpt",
+  "profile": "chatgpt",
+  "backend": "managed-cdp",
+  "source": "C9",
+  "verified_by": "codex-bucket-C9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "started_at": "2026-05-24T19:26:26.726321Z",
+  "completed_at": "2026-05-24T19:26:26.984252Z",
+  "actual_cli_contract": {
+    "source_files": [
+      "src/mcp/schemas.ts",
+      "src/mcp/tools.ts",
+      "src/cli.ts"
+    ],
+    "supported_surfaces": [
+      "projects",
+      "gpts",
+      "tasks",
+      "apps",
+      "memory",
+      "personalization",
+      "data_controls"
+    ],
+    "supported_actions": [
+      "read",
+      "delete",
+      "delete_memory",
+      "grant_oauth",
+      "create"
+    ],
+    "unsupported_requested_action": "list",
+    "implementation_behavior": "workspace command is a surface reader; it does not expose a workspace listing action or workspaces/count output shape."
+  },
+  "commands": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "list": {
+          "command": "node dist/src/cli.js webai:chatgpt:workspace --profile chatgpt --action list --json",
+          "started_at": "2026-05-24T19:26:26.726332Z",
+          "completed_at": "2026-05-24T19:26:26.854934Z",
+          "duration_ms": 128,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_workspace\",\n    \"stage\": \"schema\",\n    \"message\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "INVALID_ARGS",
+            "error_code": "INVALID_ARGS",
+            "error": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+            "evidence": {
+              "tool": "webai_chatgpt_workspace",
+              "stage": "schema",
+              "message": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+              "error_name": "Error"
+            }
+          },
+          "json_parse_error": null,
+          "error": null
+        }
+      },
+      {
+        "attempt": 2,
+        "list": {
+          "command": "node dist/src/cli.js webai:chatgpt:workspace --profile chatgpt --action list --json",
+          "started_at": "2026-05-24T19:26:26.854990Z",
+          "completed_at": "2026-05-24T19:26:26.984196Z",
+          "duration_ms": 129,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_workspace\",\n    \"stage\": \"schema\",\n    \"message\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "INVALID_ARGS",
+            "error_code": "INVALID_ARGS",
+            "error": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+            "evidence": {
+              "tool": "webai_chatgpt_workspace",
+              "stage": "schema",
+              "message": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+              "error_name": "Error"
+            }
+          },
+          "json_parse_error": null,
+          "error": null
+        }
+      }
+    ]
+  },
+  "completion_gate": "returns workspaces array OR {ok:true, count:N}",
+  "gate": {
+    "ok": false,
+    "has_workspaces_array": false,
+    "has_ok_count_shape": false,
+    "reason": "Current webai_chatgpt_workspace schema requires --surface projects|gpts|tasks|apps|memory|personalization|data_controls and rejects --action list before browser execution."
+  },
+  "errorCode": "INVALID_ARGS"
+}

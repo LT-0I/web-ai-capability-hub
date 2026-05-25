@@ -1,0 +1,96 @@
+{
+  "id": "claude-generate-file-py-ext",
+  "service": "claude",
+  "bucket": "L5",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "OK_EXT_BACKEND",
+  "ok": true,
+  "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a Python script that prints 'hello claude probe'. Provide as a downloadable .py file.\" --expected-extension py --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+  "completion_gate": "path non-empty + file exists + size > 32 + content contains 'hello claude probe'",
+  "gate_result": {
+    "ok": true,
+    "details": {
+      "path_nonempty": true,
+      "file_exists": true,
+      "size_bytes": 125,
+      "min_size_exclusive": 32,
+      "contains": "hello claude probe",
+      "content_contains": true,
+      "expected_extension": "py",
+      "extension_matches": true,
+      "read_error": null
+    },
+    "artifact_path": "/tmp/explore-2026-05-25/claude/hello.py",
+    "download_filename": "hello.py",
+    "size_bytes": 125
+  },
+  "artifact": {
+    "class": "code",
+    "expected_extension": "py",
+    "path": "/tmp/explore-2026-05-25/claude/hello.py",
+    "download_filename": "hello.py",
+    "size_bytes": 125,
+    "sha256": "389b11316b04b4692776a0c47fe6ac1b5f9257e92f3b5f9ae84ca42b0cee50f6",
+    "gate": {
+      "ok": true,
+      "details": {
+        "path_nonempty": true,
+        "file_exists": true,
+        "size_bytes": 125,
+        "min_size_exclusive": 32,
+        "contains": "hello claude probe",
+        "content_contains": true,
+        "expected_extension": "py",
+        "extension_matches": true,
+        "read_error": null
+      },
+      "artifact_path": "/tmp/explore-2026-05-25/claude/hello.py",
+      "download_filename": "hello.py",
+      "size_bytes": 125
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a Python script that prints 'hello claude probe'. Provide as a downloadable .py file.\" --expected-extension py --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 15640,
+      "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/hello.py\",\n  \"sha256\": \"389b11316b04b4692776a0c47fe6ac1b5f9257e92f3b5f9ae84ca42b0cee50f6\",\n  \"size_bytes\": 125,\n  \"download_filename\": \"hello.py\",\n  \"artifact_name\": \"hello.py\",\n  \"errorCode\": null\n}\n",
+      "stderr": "",
+      "parsed": {
+        "path": "/tmp/explore-2026-05-25/claude/hello.py",
+        "sha256": "389b11316b04b4692776a0c47fe6ac1b5f9257e92f3b5f9ae84ca42b0cee50f6",
+        "size_bytes": 125,
+        "download_filename": "hello.py",
+        "artifact_name": "hello.py",
+        "errorCode": null
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:generate-file --profile claude-9224 --backend extension-assisted-cdp --prompt \"Write a Python script that prints 'hello claude probe'. Provide as a downloadable .py file.\" --expected-extension py --download-dir /tmp/explore-2026-05-25/claude --artifact-class code --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 15640,
+    "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/hello.py\",\n  \"sha256\": \"389b11316b04b4692776a0c47fe6ac1b5f9257e92f3b5f9ae84ca42b0cee50f6\",\n  \"size_bytes\": 125,\n  \"download_filename\": \"hello.py\",\n  \"artifact_name\": \"hello.py\",\n  \"errorCode\": null\n}\n",
+    "stderr": "",
+    "parsed": {
+      "path": "/tmp/explore-2026-05-25/claude/hello.py",
+      "sha256": "389b11316b04b4692776a0c47fe6ac1b5f9257e92f3b5f9ae84ca42b0cee50f6",
+      "size_bytes": 125,
+      "download_filename": "hello.py",
+      "artifact_name": "hello.py",
+      "errorCode": null
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-generate-file-py-ext.yaml",
+  "started_at": "2026-05-24T17:55:27.424Z",
+  "finished_at": "2026-05-24T17:55:43.067Z",
+  "wall_ms": 15642
+}

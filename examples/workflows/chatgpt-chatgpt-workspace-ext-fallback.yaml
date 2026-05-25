@@ -1,0 +1,24 @@
+# Rewritten 2026-05-25 from codex C9 draft. FAIL_CLOSED_UNSUPPORTED with INVALID_ARGS — --action list not in supported action set.
+id: chatgpt-workspace-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Attempt to list ChatGPT workspaces (fail-closed; schema rejects --action list)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:workspace
+      - --profile
+      - chatgpt
+      - --action
+      - list
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          equals: INVALID_ARGS
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-workspace-ext-fallback.json

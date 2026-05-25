@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "errorCode": "INVALID_ARGS",
+  "error_code": "INVALID_ARGS",
+  "error": "$.project_url is required",
+  "evidence": {
+    "tool": "webai_claude_design_present",
+    "stage": "schema",
+    "message": "$.project_url is required",
+    "error_name": "Error"
+  }
+}

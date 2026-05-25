@@ -1,0 +1,29 @@
+# Rewritten 2026-05-25 from codex L2 draft.
+id: claude-send-web-search-ext
+target: claude
+profile: claude-9224
+mode: automatic
+description: Claude web-search date prompt
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:send-prompt
+      - --profile
+      - claude-9224
+      - --backend
+      - extension-assisted-cdp
+      - --web-search
+      - --prompt
+      - What is today's date?
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "20\\d{2}|May|5月"
+evidence: .runs/capability-explore-2026-05-25/claude/claude-send-web-search-ext.json

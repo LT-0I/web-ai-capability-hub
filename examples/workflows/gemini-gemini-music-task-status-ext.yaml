@@ -1,0 +1,24 @@
+# New 2026-05-25 (was missing-workflow). Source: .runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json attempts[0].command.
+id: gemini-music-task-status-ext
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Poll Gemini Music task-status on an existing chat tab
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:music:task-status
+      - --profile
+      - gemini-9225
+      - --tab-url-contains
+      - gemini.google.com/app
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: status
+          regex: "(?i)complete"
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json

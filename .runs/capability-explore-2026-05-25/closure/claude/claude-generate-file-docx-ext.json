@@ -1,0 +1,18 @@
+{
+  "id": "claude-generate-file-docx-ext",
+  "service": "claude",
+  "source": "L4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/claude-claude-generate-file-docx-ext.yaml",
+  "closure_criterion": "path non-empty + file exists + size_bytes > 4096 + filename ends with .docx",
+  "started_at": "2026-05-24T21:09:11.252Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/claude-claude-generate-file-docx-ext.yaml",
+    "examples/workflows/claude-generate-file-docx-ext.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:11.252Z"
+}

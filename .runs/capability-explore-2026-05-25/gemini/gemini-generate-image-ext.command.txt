@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:generate-image --profile gemini-9225 --backend extension-assisted-cdp --reuse-conversation --tab-url-contains 260e7fc538aef136 --prompt A\ clean\ futuristic\ laboratory\ notebook\ icon\,\ blue\ and\ white\,\ transparent\ background --download-dir /tmp/explore-2026-05-25/gemini --json 

@@ -1,0 +1,32 @@
+# Rewritten 2026-05-25 from codex L3 draft.
+id: claude-upload-single-ext
+target: claude
+profile: claude-9224
+mode: automatic
+description: Upload one text file to Claude and ask a grounded question
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:upload-and-query
+      - --profile
+      - claude-9224
+      - --backend
+      - extension-assisted-cdp
+      - --file
+      - /tmp/explore-2026-05-25/fixtures/fileA.txt
+      - --prompt
+      - Quote the first 3 words of this file verbatim
+      - --response-timeout-ms
+      - "120000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "alpha"
+        - path: completion_detected
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/claude/claude-upload-single-ext.json

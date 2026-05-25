@@ -1,0 +1,216 @@
+{
+  "id": "chatgpt-generate-file-docx-ext",
+  "service": "chatgpt",
+  "bucket": "C4",
+  "source": "capability-explore-2026-05-25/C4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "mcp_tool": "webai_chatgpt_generate_file",
+  "prompt": "Write a one-page Word document titled 'Capability Probe Docx' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.",
+  "expected_extension": "docx",
+  "artifact_class": "document",
+  "download_dir": "/tmp/explore-2026-05-25/chatgpt",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:generate-file",
+    "--profile",
+    "chatgpt",
+    "--backend",
+    "extension-assisted-cdp",
+    "--prompt",
+    "Write a one-page Word document titled 'Capability Probe Docx' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.",
+    "--expected-extension",
+    "docx",
+    "--download-dir",
+    "/tmp/explore-2026-05-25/chatgpt",
+    "--artifact-class",
+    "document",
+    "--json"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Write a one-page Word document titled 'Capability Probe Docx' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.",
+        "--expected-extension",
+        "docx",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "document",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Write a one-page Word document titled '\"'\"'Capability Probe Docx'\"'\"' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.' '--expected-extension' 'docx' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'document' '--json'",
+      "exit_code": 1,
+      "wall_ms": 427901,
+      "timed_out": false,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "No element matched --button-selector",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "No element matched --button-selector",
+          "error_name": "Error",
+          "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type",
+          "pageUrl": "https://chatgpt.com/",
+          "frameCount": 3,
+          "triedFrames": [
+            {
+              "url": "https://chatgpt.com/",
+              "hadSelectorMatch": false
+            },
+            {
+              "url": "about:blank",
+              "hadSelectorMatch": false
+            },
+            {
+              "url": "https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c",
+              "hadSelectorMatch": false
+            }
+          ]
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "filename_has_extension": false
+      },
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"No element matched --button-selector\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"No element matched --button-selector\",\n    \"error_name\": \"Error\",\n    \"selector\": \"[data-message-author-role=\\\"assistant\\\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type\",\n    \"pageUrl\": \"https://chatgpt.com/\",\n    \"frameCount\": 3,\n    \"triedFrames\": [\n      {\n        \"url\": \"https://chatgpt.com/\",\n        \"hadSelectorMatch\": false\n      },\n      {\n        \"url\": \"about:blank\",\n        \"hadSelectorMatch\": false\n      },\n      {\n        \"url\": \"https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c\",\n        \"hadSelectorMatch\": false\n      }\n    ]\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-docx-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-docx-ext.stderr.1.log"
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Write a one-page Word document titled 'Capability Probe Docx' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.",
+        "--expected-extension",
+        "docx",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "document",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Write a one-page Word document titled '\"'\"'Capability Probe Docx'\"'\"' with 3 short paragraphs about quantum computing. Then provide it as a downloadable .docx file.' '--expected-extension' 'docx' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'document' '--json'",
+      "exit_code": 1,
+      "wall_ms": 427821,
+      "timed_out": false,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "No element matched --button-selector",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "No element matched --button-selector",
+          "error_name": "Error",
+          "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type",
+          "pageUrl": "https://chatgpt.com/c/<conversation-id>",
+          "frameCount": 2,
+          "triedFrames": [
+            {
+              "url": "https://chatgpt.com/c/<conversation-id>",
+              "hadSelectorMatch": false
+            },
+            {
+              "url": "https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c",
+              "hadSelectorMatch": false
+            }
+          ]
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "filename_has_extension": false
+      },
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"No element matched --button-selector\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"No element matched --button-selector\",\n    \"error_name\": \"Error\",\n    \"selector\": \"[data-message-author-role=\\\"assistant\\\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type\",\n    \"pageUrl\": \"https://chatgpt.com/c/<conversation-id>\",\n    \"frameCount\": 2,\n    \"triedFrames\": [\n      {\n        \"url\": \"https://chatgpt.com/c/<conversation-id>\",\n        \"hadSelectorMatch\": false\n      },\n      {\n        \"url\": \"https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c\",\n        \"hadSelectorMatch\": false\n      }\n    ]\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-docx-ext.stdout.2.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-docx-ext.stderr.2.log"
+    }
+  ],
+  "cli_output": {
+    "ok": false,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "error_code": "ELEMENT_NOT_FOUND",
+    "error": "No element matched --button-selector",
+    "evidence": {
+      "tool": "webai_chatgpt_generate_file",
+      "stage": "handler",
+      "message": "No element matched --button-selector",
+      "error_name": "Error",
+      "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type",
+      "pageUrl": "https://chatgpt.com/c/<conversation-id>",
+      "frameCount": 2,
+      "triedFrames": [
+        {
+          "url": "https://chatgpt.com/c/<conversation-id>",
+          "hadSelectorMatch": false
+        },
+        {
+          "url": "https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c",
+          "hadSelectorMatch": false
+        }
+      ]
+    }
+  },
+  "gate": {
+    "criteria": "path non-empty AND file exists AND size_bytes > 4096 AND filename ends with .docx",
+    "passed": false,
+    "checks": {
+      "path_non_empty": false,
+      "file_exists": false,
+      "size_bytes_gt_min": false,
+      "stat_size_gt_min": false,
+      "filename_has_extension": false
+    },
+    "stat_size_bytes": 0,
+    "reported_size_bytes": 0
+  },
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "cause": "attempt 1: ELEMENT_NOT_FOUND: No element matched --button-selector; attempt 2: ELEMENT_NOT_FOUND: No element matched --button-selector",
+  "artifact": null,
+  "workflow_recipe": "examples/workflows/chatgpt-chatgpt-generate-file-docx-ext.yaml",
+  "verified_by": "codex-bucket-C4",
+  "completion_gate": "path non-empty AND file exists AND size_bytes > 4096 AND filename ends with .docx",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T17:58:01Z",
+  "wall_ms": 855722
+}

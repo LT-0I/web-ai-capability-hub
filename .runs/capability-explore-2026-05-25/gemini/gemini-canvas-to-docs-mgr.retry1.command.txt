@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:canvas-to-docs --profile gemini-9225 --tab-url-contains f7ff55b09e8531d8 --prompt Generate\ a\ 200-word\ essay\ about\ deep\ learning\,\ then\ export\ to\ Google\ Docs --title Capability\ Probe\ Doc --response-timeout-ms 300000 --timeout-ms 60000 --reuse-conversation --json 

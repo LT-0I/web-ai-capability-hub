@@ -1,0 +1,72 @@
+{
+  "id": "gemini-music-download-track-ext",
+  "service": "gemini",
+  "bucket": "G5",
+  "source": "capability-explore-2026-05-25/G5",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "backend": "managed-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_music_download_track",
+  "prompt": "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+  "download_dir": "/tmp/explore-2026-05-25/gemini",
+  "verified_by": "codex-bucket-G5",
+  "completion_gate": "path/savedPath non-empty AND file exists AND filename ends with .mp3 AND size_bytes/byteSize > 8192",
+  "recipe_ref": "examples/workflows/gemini-music-generate-chain.yaml",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T19:33:51.858353Z",
+  "attempts": [
+    {
+      "label": "attempt1",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:gemini:music:download-track",
+        "--profile",
+        "gemini-9225",
+        "--tab-url-contains",
+        "https://gemini.google.com/app/260e7fc538aef136",
+        "--format",
+        "mp3",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/gemini",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 4421,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.attempt1.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.attempt1.stderr.log",
+      "stdout_json": {
+        "savedPath": "/tmp/explore-2026-05-25/gemini/Kitchen_Table_Pace.mp3",
+        "sha256": "dbefe6603e55b430e983354f8e91b9402f3221efd885276af5fdf22ba5b907f1",
+        "byteSize": 716459,
+        "format": "mp3"
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "task_id": "gemini_music_1779651112491",
+  "track_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "path": "/tmp/explore-2026-05-25/gemini/Kitchen_Table_Pace.mp3",
+  "gate": {
+    "passed": true,
+    "checks": {
+      "path_non_empty": true,
+      "file_exists": true,
+      "filename_mp3": true,
+      "size_bytes_gt_8192": true,
+      "exit_code_zero": true
+    }
+  },
+  "artifact": {
+    "type": "audio/mpeg",
+    "relative_path": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.mp3",
+    "path": "/tmp/explore-2026-05-25/gemini/Kitchen_Table_Pace.mp3",
+    "download_filename": "Kitchen_Table_Pace.mp3",
+    "size_bytes": 716459,
+    "sha256": "dbefe6603e55b430e983354f8e91b9402f3221efd885276af5fdf22ba5b907f1"
+  },
+  "errorCode": null,
+  "cause": null
+}

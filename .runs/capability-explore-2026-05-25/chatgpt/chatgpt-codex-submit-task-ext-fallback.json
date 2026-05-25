@@ -1,0 +1,129 @@
+{
+  "id": "chatgpt-codex-submit-task-ext-fallback",
+  "service": "chatgpt",
+  "bucket": "C10",
+  "source": "capability-explore-2026-05-25/C10",
+  "profile": "chatgpt",
+  "backend": "managed-cdp",
+  "mcp_tool": "webai_chatgpt_codex_submit_task",
+  "completed_at": "2026-05-24T19:34:02.571Z",
+  "attempts": [
+    {
+      "name": "list-envs",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:codex:list-envs",
+        "--profile",
+        "chatgpt",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 92531,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.list-envs.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.list-envs.stderr.log",
+      "stdout_json": {
+        "status": "ok",
+        "envs": [
+          {
+            "name": "LT-0I/CN-",
+            "repo": "LT-0I/CN-",
+            "env_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+            "github_url": "https://github.com/LT-0I/CN-",
+            "task_count": 15,
+            "creator": "CN-7cherrypie85arrow@gmail.comMay"
+          }
+        ]
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    },
+    {
+      "name": "submit-task",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:codex:submit-task",
+        "--profile",
+        "chatgpt",
+        "--env-name",
+        "LT-0I/CN-",
+        "--prompt",
+        "Add a one-line comment to README.md",
+        "--confirmed",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 7789,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.submit-task.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.submit-task.stderr.log",
+      "stdout_json": {
+        "task_id": "task_e_6a135286d2dc832d95a125d8d09b2df9",
+        "task_url": "https://chatgpt.com/codex/cloud/tasks/task_e_6a135286d2dc832d95a125d8d09b2df9",
+        "repo": "LT-0I/CN-",
+        "env": "LT-0I/CN-",
+        "env_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+        "status": "submitted"
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    },
+    {
+      "name": "task-status",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:codex:task-status",
+        "--profile",
+        "chatgpt",
+        "--task-id",
+        "task_e_6a135286d2dc832d95a125d8d09b2df9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 33353,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.task-status.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.task-status.stderr.log",
+      "stdout_json": {
+        "task_id": "task_e_6a135286d2dc832d95a125d8d09b2df9",
+        "repo": "LT-0I/CN-",
+        "env_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+        "status": "running",
+        "done": false,
+        "status_text": "Working on your task"
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    }
+  ],
+  "selected_env": {
+    "name": "LT-0I/CN-",
+    "repo": "LT-0I/CN-",
+    "env_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+    "github_url": "https://github.com/LT-0I/CN-",
+    "task_count": 15,
+    "creator": "CN-7cherrypie85arrow@gmail.comMay"
+  },
+  "task_id": "task_e_6a135286d2dc832d95a125d8d09b2df9",
+  "task_url": "https://chatgpt.com/codex/cloud/tasks/task_e_6a135286d2dc832d95a125d8d09b2df9",
+  "completion_gate": "list-envs returns at least one env; submit-task returns non-empty task_id; immediate task-status exits 0 and returns status payload without errorCode",
+  "gate_eval": {
+    "envs_non_empty": true,
+    "submit_task_id_non_empty": true,
+    "task_status_ok": true
+  },
+  "ok": true,
+  "status": "OK_MANAGED_CDP_ONLY",
+  "last_update": "2026-05-25",
+  "artifact": {
+    "type": "chatgpt_codex_task",
+    "env_name": "LT-0I/CN-",
+    "env_id": "6a07e4ffdafc8191b77e6cff2264cd9a",
+    "repo": "LT-0I/CN-",
+    "task_id": "task_e_6a135286d2dc832d95a125d8d09b2df9",
+    "task_url": "https://chatgpt.com/codex/cloud/tasks/task_e_6a135286d2dc832d95a125d8d09b2df9",
+    "status": "running",
+    "done": false,
+    "status_text": "Working on your task"
+  }
+}

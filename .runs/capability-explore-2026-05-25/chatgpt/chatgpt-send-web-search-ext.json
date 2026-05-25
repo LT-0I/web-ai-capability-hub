@@ -1,0 +1,29 @@
+{
+  "id": "chatgpt-send-web-search-ext",
+  "service": "chatgpt",
+  "bucket": "C1",
+  "attempts": 1,
+  "command": "node dist/src/cli.js webai:chatgpt:send-prompt --profile chatgpt --backend extension-assisted-cdp --web-search --reuse-conversation --tab-url-contains \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\" --prompt \"What's today's date?\" --response-timeout-ms 120000 --json",
+  "exit_code": 0,
+  "wall_ms": 12384,
+  "cli_output": {
+    "response_text": "Today’s date is May 24, 2026.\n",
+    "elapsed_ms": 12246,
+    "wait_ms": 10316,
+    "completion_detected": true,
+    "errorCode": null,
+    "model_used": "Heavy",
+    "reuse_conversation": true,
+    "conversation_id": "6a1330a0-42b4-83e8-82ec-2a0074744500",
+    "chat_url": "https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500"
+  },
+  "raw_output": "{\n  \"response_text\": \"Today’s date is May 24, 2026.\\n\",\n  \"elapsed_ms\": 12246,\n  \"wait_ms\": 10316,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Heavy\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": \"6a1330a0-42b4-83e8-82ec-2a0074744500\",\n  \"chat_url\": \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\"\n}\n\n__COMMAND_EXIT__=0\n__WALL_MS__=12384\n",
+  "completion_gate": "response_text contains a numeric/month date token such as 2026/May/5月 AND completion_detected === true",
+  "gate_eval": {
+    "response_text_contains_date_token": true,
+    "completion_detected_true": true
+  },
+  "ok": true,
+  "status": "OK_EXT_BACKEND",
+  "last_update": "2026-05-25"
+}

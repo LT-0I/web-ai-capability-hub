@@ -1,0 +1,30 @@
+# Rewritten 2026-05-25 from codex C7 draft. Deep research returns async task_id immediately.
+id: chatgpt-deep-research-ext
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Submit a ChatGPT Deep Research request and accept the queued task_id
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:deep-research
+      - --profile
+      - chatgpt
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report."
+      - --download-dir
+      - /tmp/explore-2026-05-25/chatgpt
+      - --response-timeout-ms
+      - "900000"
+      - --json
+    timeoutMs: 960000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: task_id
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.json

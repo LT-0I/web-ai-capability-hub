@@ -1,0 +1,79 @@
+{
+  "id": "claude-send-style-ext",
+  "service": "claude",
+  "bucket": "L2",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "OK_EXT_BACKEND",
+  "ok": true,
+  "completion_gate": "both runs completion_detected === true AND response_text non-empty AND response_text values differ",
+  "gate_eval": {
+    "all_completed": true,
+    "outputs_different": true,
+    "per_style": [
+      {
+        "style": "Concise",
+        "command_exit_zero": true,
+        "completion_detected": true,
+        "response_text_nonempty": true,
+        "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly …\n\nMachine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly programmed for each task.",
+        "chat_url": "https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed"
+      },
+      {
+        "style": "Explanatory",
+        "command_exit_zero": true,
+        "completion_detected": true,
+        "response_text_nonempty": true,
+        "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather …\n\nMachine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather than by following rules a human has explicitly written out for it.",
+        "chat_url": "https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c"
+      }
+    ],
+    "unsupported_feature_detected": false
+  },
+  "attempts": [
+    {
+      "style": "Concise",
+      "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --style Concise --prompt \"Tell me one sentence about machine learning.\" --response-timeout-ms 90000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 10227,
+      "stdout": "{\n  \"response_text\": \"Claude responded: Machine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly …\\n\\nMachine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly programmed for each task.\",\n  \"elapsed_ms\": 10091,\n  \"wait_ms\": 6513,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly …\n\nMachine learning is a branch of artificial intelligence in which algorithms learn patterns from data to make predictions or decisions without being explicitly programmed for each task.",
+        "elapsed_ms": 10091,
+        "wait_ms": 6513,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed"
+      },
+      "parse_error": null
+    },
+    {
+      "style": "Explanatory",
+      "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --style Explanatory --prompt \"Tell me one sentence about machine learning.\" --response-timeout-ms 90000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 10205,
+      "stdout": "{\n  \"response_text\": \"Claude responded: Machine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather …\\n\\nMachine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather than by following rules a human has explicitly written out for it.\",\n  \"elapsed_ms\": 10073,\n  \"wait_ms\": 6594,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather …\n\nMachine learning is a branch of artificial intelligence in which a computer program improves its performance on a task by discovering patterns in data, rather than by following rules a human has explicitly written out for it.",
+        "elapsed_ms": 10073,
+        "wait_ms": 6594,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c"
+      },
+      "parse_error": null
+    }
+  ],
+  "workflow": "examples/workflows/claude-claude-send-style-ext.yaml",
+  "started_at": "2026-05-24T17:32:37.388Z",
+  "finished_at": "2026-05-24T17:32:57.822Z",
+  "wall_ms": 20434
+}

@@ -1,0 +1,28 @@
+# Rewritten 2026-05-25 from codex L9 draft. FAIL_CLOSED_UNSUPPORTED with INVALID_ARGS (similar to ChatGPT Radix-portal kebab gating).
+id: claude-conversation-manage-mgr
+target: claude
+profile: claude-9224
+mode: automatic
+description: Attempt Claude conversation rename (fail-closed)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:conversation-manage
+      - --profile
+      - claude-9224
+      - --action
+      - rename
+      - --tab-url-contains
+      - claude.ai
+      - --new-title
+      - probe-rename-test
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/claude/claude-conversation-manage-mgr.json

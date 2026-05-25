@@ -1,0 +1,131 @@
+{
+  "cap_id": "chatgpt-conversation-manage-ext-fallback",
+  "service": "chatgpt",
+  "profile": "chatgpt",
+  "backend": "managed-cdp",
+  "source": "C9",
+  "verified_by": "codex-bucket-C9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "started_at": "2026-05-24T19:26:26.174443Z",
+  "completed_at": "2026-05-24T19:26:26.725947Z",
+  "actual_cli_contract": {
+    "source_files": [
+      "src/mcp/schemas.ts",
+      "src/mcp/tools.ts",
+      "src/cli.ts"
+    ],
+    "supported_actions_in_schema": [
+      "share",
+      "navigate_settings",
+      "rename",
+      "delete",
+      "archive",
+      "search",
+      "menu_enumerate"
+    ],
+    "requested_actions": [
+      "rename",
+      "delete"
+    ],
+    "implementation_behavior": "rename/delete/archive return HUMAN_HANDOFF_REQUIRED before browser execution because per-conversation kebab operations are Radix-portal gated",
+    "unsupported_requested_flag": "new-title is parsed by CLI but not mapped into webAiArgsFromCli/current tool implementation"
+  },
+  "commands": {
+    "step_a_send_prompt": {
+      "skipped": true,
+      "reason": "Source preflight and two CLI probes show requested rename/delete fail before browser action; creating the temporary chat would leave an undeletable throwaway conversation in this managed-CDP path."
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "step_b_rename": {
+          "command": "node dist/src/cli.js webai:chatgpt:conversation-manage --profile chatgpt --action rename --tab-url-contains about:blank --new-title probe-rename-test --json",
+          "started_at": "2026-05-24T19:26:26.174458Z",
+          "completed_at": "2026-05-24T19:26:26.316898Z",
+          "duration_ms": 142,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"error_code\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"reason\": \"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\n  \"action\": \"rename\"\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "HUMAN_HANDOFF_REQUIRED",
+            "error_code": "HUMAN_HANDOFF_REQUIRED",
+            "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+            "action": "rename"
+          },
+          "json_parse_error": null,
+          "error": null
+        },
+        "step_c_delete": {
+          "command": "node dist/src/cli.js webai:chatgpt:conversation-manage --profile chatgpt --action delete --tab-url-contains about:blank --json",
+          "started_at": "2026-05-24T19:26:26.316975Z",
+          "completed_at": "2026-05-24T19:26:26.457820Z",
+          "duration_ms": 140,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"error_code\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"reason\": \"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\n  \"action\": \"delete\"\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "HUMAN_HANDOFF_REQUIRED",
+            "error_code": "HUMAN_HANDOFF_REQUIRED",
+            "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+            "action": "delete"
+          },
+          "json_parse_error": null,
+          "error": null
+        }
+      },
+      {
+        "attempt": 2,
+        "step_b_rename": {
+          "command": "node dist/src/cli.js webai:chatgpt:conversation-manage --profile chatgpt --action rename --tab-url-contains about:blank --new-title probe-rename-test --json",
+          "started_at": "2026-05-24T19:26:26.457878Z",
+          "completed_at": "2026-05-24T19:26:26.596548Z",
+          "duration_ms": 138,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"error_code\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"reason\": \"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\n  \"action\": \"rename\"\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "HUMAN_HANDOFF_REQUIRED",
+            "error_code": "HUMAN_HANDOFF_REQUIRED",
+            "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+            "action": "rename"
+          },
+          "json_parse_error": null,
+          "error": null
+        },
+        "step_c_delete": {
+          "command": "node dist/src/cli.js webai:chatgpt:conversation-manage --profile chatgpt --action delete --tab-url-contains about:blank --json",
+          "started_at": "2026-05-24T19:26:26.596622Z",
+          "completed_at": "2026-05-24T19:26:26.725881Z",
+          "duration_ms": 129,
+          "exit_code": 1,
+          "signal": null,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"error_code\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"reason\": \"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\n  \"action\": \"delete\"\n}\n",
+          "stderr": "",
+          "json": {
+            "ok": false,
+            "errorCode": "HUMAN_HANDOFF_REQUIRED",
+            "error_code": "HUMAN_HANDOFF_REQUIRED",
+            "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+            "action": "delete"
+          },
+          "json_parse_error": null,
+          "error": null
+        }
+      }
+    ]
+  },
+  "completion_gate": "rename ok === true AND delete ok === true",
+  "gate": {
+    "ok": false,
+    "rename_ok": false,
+    "delete_ok": false,
+    "reason": "Current webai_chatgpt_conversation_manage returns HUMAN_HANDOFF_REQUIRED for rename/delete/archive; no ok:true rename/delete response was observed in two attempts."
+  },
+  "errorCode": "HUMAN_HANDOFF_REQUIRED"
+}

@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "error_code": "ELEMENT_NOT_FOUND",
+  "error": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+  "evidence": {
+    "tool": "webai_gemini_select_model",
+    "stage": "handler",
+    "message": "ELEMENT_NOT_FOUND: Gemini mode picker trigger was not found",
+    "error_name": "Error",
+    "selector": "button[aria-label=\"Open mode picker\"]"
+  }
+}

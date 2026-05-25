@@ -1,0 +1,144 @@
+{
+  "id": "gemini-gemini-conversation-reuse-mgr",
+  "target": "gemini",
+  "profile": "gemini-9225",
+  "mode": "assisted",
+  "compiledAt": "2026-05-24T20:52:00.388Z",
+  "actions": [
+    {
+      "stepId": "create-conversation",
+      "capability": "gemini-conversation-reuse-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "reuse-conversation",
+      "capability": "gemini-conversation-reuse-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "verify-context-reuse",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "final-text",
+      "action": {
+        "type": "extract",
+        "extract": "text",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [
+    "No exact compiler rule for capability 'gemini-conversation-reuse-mgr'. Falling back to read/observe action.",
+    "No exact compiler rule for capability 'gemini-conversation-reuse-mgr'. Falling back to read/observe action."
+  ],
+  "result": {
+    "type": "text"
+  },
+  "definition": {
+    "id": "gemini-gemini-conversation-reuse-mgr",
+    "service": "gemini",
+    "target": "gemini",
+    "capability_id": "gemini-conversation-reuse-mgr",
+    "mode": "assisted",
+    "backend": "managed-cdp",
+    "profile": "gemini-9225",
+    "description": "Create a Gemini conversation, then reuse that chat URL for a follow-up prompt and verify context carryover.",
+    "inputs": {
+      "first_prompt": "First message about apples",
+      "followup_prompt": "What was my first message about?",
+      "response_timeout_ms": 60000
+    },
+    "steps": [
+      {
+        "id": "create-conversation",
+        "name": "Send the first prompt to create a Gemini conversation URL",
+        "use_capability": "gemini-conversation-reuse-mgr",
+        "confirmed": true,
+        "input": {
+          "prompt": "${first_prompt}",
+          "response_timeout_ms": "${response_timeout_ms}"
+        },
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--prompt",
+          "${first_prompt}",
+          "--response-timeout-ms",
+          "${response_timeout_ms}",
+          "--json"
+        ]
+      },
+      {
+        "id": "reuse-conversation",
+        "name": "Reuse the first chat URL and ask Gemini to recall the first message topic",
+        "use_capability": "gemini-conversation-reuse-mgr",
+        "confirmed": true,
+        "input": {
+          "tab_url_contains": "${steps.create-conversation.chat_url}",
+          "prompt": "${followup_prompt}",
+          "reuse_conversation": true,
+          "response_timeout_ms": "${response_timeout_ms}"
+        },
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--reuse-conversation",
+          "--tab-url-contains",
+          "${steps.create-conversation.chat_url}",
+          "--prompt",
+          "${followup_prompt}",
+          "--response-timeout-ms",
+          "${response_timeout_ms}",
+          "--json"
+        ]
+      },
+      {
+        "id": "verify-context-reuse",
+        "action": "read",
+        "input": {
+          "gate": "Second response_text contains apple after --reuse-conversation targets the first chat URL."
+        }
+      }
+    ],
+    "success_gate": "Second response_text contains apple after --reuse-conversation targets the first chat URL.",
+    "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json",
+    "last_observed_status": "OK_MANAGED_CDP_ONLY",
+    "artifact": {
+      "type": "gemini_conversation_url"
+    },
+    "result": {
+      "type": "text"
+    }
+  }
+}

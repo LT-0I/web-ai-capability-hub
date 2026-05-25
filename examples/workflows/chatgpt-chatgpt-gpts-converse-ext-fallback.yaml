@@ -1,0 +1,29 @@
+# Rewritten 2026-05-25 from codex C10 draft. FAIL_CLOSED_UNSUPPORTED with MODEL_SELECTION_DRIFT.
+id: chatgpt-gpts-converse-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Attempt public GPT conversation (fail-closed; MODEL_SELECTION_DRIFT)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:send-prompt
+      - --profile
+      - chatgpt
+      - --url
+      - https://chatgpt.com/g/g-pmuQfob8d-image-generator
+      - --reuse-conversation
+      - --prompt
+      - Say only OK
+      - --response-timeout-ms
+      - "90000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          equals: MODEL_SELECTION_DRIFT
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.json

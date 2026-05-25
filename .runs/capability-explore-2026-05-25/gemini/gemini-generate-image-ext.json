@@ -1,0 +1,80 @@
+{
+  "id": "gemini-generate-image-ext",
+  "service": "gemini",
+  "bucket": "G3",
+  "source": "capability-explore-2026-05-25/G3",
+  "status": "OK_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_generate_image",
+  "prompt": "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+  "download_dir": "/tmp/explore-2026-05-25/gemini",
+  "reuse_conversation": true,
+  "tab_url_contains": "260e7fc538aef136",
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:gemini:generate-image",
+        "--profile",
+        "gemini-9225",
+        "--backend",
+        "extension-assisted-cdp",
+        "--reuse-conversation",
+        "--tab-url-contains",
+        "260e7fc538aef136",
+        "--prompt",
+        "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/gemini",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 42669,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.stderr.1.log",
+      "stdout_json": {
+        "path": "/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_rtw49prtw49prtw4.png",
+        "sha256": "0f94a1185f8e7b971a0105609df60286106d8a481cb22aa88e98b316e9516d45",
+        "size_bytes": 5352475,
+        "download_filename": "Gemini_Generated_Image_rtw49prtw49prtw4.png",
+        "dimensions": null,
+        "errorCode": null
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": ""
+    }
+  ],
+  "gate": {
+    "criteria": "path non-empty AND file exists AND size_bytes > 1024 AND sha256 non-empty",
+    "passed": true,
+    "checks": {
+      "path_non_empty": true,
+      "file_exists": true,
+      "size_bytes_gt_1024": true,
+      "sha256_non_empty": true
+    },
+    "output_sha256_matches_file": true
+  },
+  "artifact": {
+    "type": "image/png",
+    "relative_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.png",
+    "path": "/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_rtw49prtw49prtw4.png",
+    "download_filename": "Gemini_Generated_Image_rtw49prtw49prtw4.png",
+    "size_bytes": 5352475,
+    "sha256": "0f94a1185f8e7b971a0105609df60286106d8a481cb22aa88e98b316e9516d45"
+  },
+  "errorCode": null,
+  "cause": null,
+  "verified_by": "codex-bucket-G3",
+  "completion_gate": "path non-empty AND file exists AND size_bytes > 1024 AND sha256 non-empty",
+  "recipe_ref": "examples/workflows/gemini-generate-image-ext.yaml",
+  "sub_mcp_candidate": false,
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T19:14:28.864Z"
+}

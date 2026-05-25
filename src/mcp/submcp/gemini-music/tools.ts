@@ -101,6 +101,47 @@ async function activateMusicToolWithExtension(page: any, timeoutMs: number): Pro
     });
   }
 }
+
+async function fillMusicComposerWithExtension(page: any, prompt: string, timeoutMs: number): Promise<void> {
+  try {
+    await page.fill({ selector: MUSIC_COMPOSER_SELECTOR }, prompt, { timeoutMs });
+    return;
+  } catch (error: any) {
+    const message = error?.message || String(error);
+    if (!/contenteditable|not a fillable element|must be INPUT|TEXTAREA|SELECT/i.test(message) || typeof page.javascript !== "function") {
+      throw error;
+    }
+  }
+  if (typeof page.javascript === "function") {
+    await page.javascript(`
+const selector = ${JSON.stringify(MUSIC_COMPOSER_SELECTOR)};
+const value = ${JSON.stringify(prompt)};
+const el = document.querySelector(selector);
+if (!el) throw new Error("Gemini Music composer not found: " + selector);
+el.focus();
+const selection = window.getSelection && window.getSelection();
+if (selection) {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+let inserted = false;
+try {
+  inserted = document.execCommand && document.execCommand("insertText", false, value);
+} catch (_) {
+  inserted = false;
+}
+if (!inserted) el.textContent = value;
+el.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: value }));
+el.dispatchEvent(new Event("change", { bubbles: true }));
+return { filled: true, textLength: (el.textContent || "").length };
+`, timeoutMs);
+    return;
+  }
+}
+
 async function generateGeminiMusicWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
   assertPromptAllowed(String(effective.prompt || ""));
@@ -121,7 +162,7 @@ async function generateGeminiMusicWithExtensionBackend(args: any, runtime: Requi
 
     await activateMusicToolWithExtension(page, Number(effective.timeout_ms || 180000));
     await page.waitForSelector(MUSIC_COMPOSER_SELECTOR, { state: "visible", timeoutMs: Math.min(Number(effective.timeout_ms || 180000), 15000) });
-    await page.fill({ selector: MUSIC_COMPOSER_SELECTOR }, String(effective.prompt), { timeoutMs: Math.min(Number(effective.timeout_ms || 180000), 15000) });
+    await fillMusicComposerWithExtension(page, String(effective.prompt), Math.min(Number(effective.timeout_ms || 180000), 15000));
     await page.waitForSelector(MUSIC_SEND_SELECTOR, { state: "visible", timeoutMs: 5000 });
     await page.queryElements(MUSIC_SEND_SELECTOR, { limit: 3 });
     await page.click({ selector: MUSIC_SEND_SELECTOR }, { timeoutMs: 5000 });

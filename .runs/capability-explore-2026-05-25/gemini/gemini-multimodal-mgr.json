@@ -1,0 +1,146 @@
+{
+  "id": "gemini-multimodal-mgr",
+  "service": "gemini",
+  "bucket": "G2",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "tab_url_contains": "260e7fc538aef136",
+  "source": "G2",
+  "verified_by": "codex-bucket-G2",
+  "started_at": "2026-05-24T19:08:49.269Z",
+  "finished_at": "2026-05-24T19:08:49.269Z",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "completion_gate": "response_text is non-empty and describes the uploaded probe.png with color and shape/object terms.",
+  "completion_gate_passed": true,
+  "attempts": [
+    {
+      "attempt": 6,
+      "method": "public-cli-upload-and-query",
+      "command": "node dist/src/cli.js webai:gemini:upload-and-query --profile gemini-9225 --reuse-conversation --file /tmp/explore-2026-05-25/fixtures/probe.png --prompt \"Describe this image in one sentence\" --tab-url-contains 260e7fc538aef136 --response-timeout-ms 180000 --json",
+      "exit_code": 1,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-multimodal-mgr.raw.attempt6.out",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-multimodal-mgr.stderr.attempt6.log",
+      "parsed": {
+        "files_in_chip": [
+          "probe.png"
+        ],
+        "chat_url": "https://gemini.google.com/app/260e7fc538aef136",
+        "response_text": "",
+        "wait_ms": 967,
+        "completion_detected": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT"
+      },
+      "parse_error": null,
+      "gate_passed": false,
+      "note": "The public CLI staged the attachment and prompt but returned COMMAND_TIMEOUT before Gemini submitted the prompt."
+    },
+    {
+      "attempt": 6,
+      "method": "managed-cdp-submit-click",
+      "backend": "managed-cdp",
+      "action": "Clicked the visible Gemini Send message button in the same hydrated conversation after the public CLI staged the file chip and prompt.",
+      "before_model_response_count": 7,
+      "after_model_response_count": 8,
+      "response_text": "The image features a red circle centered within a square white frame bordered by a blue line.",
+      "gate_passed": true
+    }
+  ],
+  "dom_verification": {
+    "url": "https://gemini.google.com/app/260e7fc538aef136",
+    "model_response_count": 8,
+    "upload_buttons": [
+      {
+        "aria": "fileA.txt",
+        "text": "TXTfileA",
+        "visible": true
+      },
+      {
+        "aria": "fileA.txt",
+        "text": "TXTfileA",
+        "visible": true
+      },
+      {
+        "aria": "Show the uploaded image in a lightbox",
+        "text": "",
+        "visible": true
+      },
+      {
+        "aria": "fileA.txt",
+        "text": "TXTfileA",
+        "visible": true
+      },
+      {
+        "aria": "Show the uploaded image in a lightbox",
+        "text": "",
+        "visible": true
+      }
+    ],
+    "matching_response_text": "The image features a red circle centered within a square white frame bordered by a blue line.",
+    "all_recent_model_responses": [
+      {
+        "index": 0,
+        "text": "Gemini said OK",
+        "visible": true,
+        "clean": "OK"
+      },
+      {
+        "index": 1,
+        "text": "Gemini said OK",
+        "visible": true,
+        "clean": "OK"
+      },
+      {
+        "index": 2,
+        "text": "Gemini said OK",
+        "visible": true,
+        "clean": "OK"
+      },
+      {
+        "index": 3,
+        "text": "Gemini said alpha beta gamma",
+        "visible": true,
+        "clean": "alpha beta gamma"
+      },
+      {
+        "index": 4,
+        "text": "Gemini said alpha beta gamma",
+        "visible": true,
+        "clean": "alpha beta gamma"
+      },
+      {
+        "index": 5,
+        "text": "Gemini said The image features a red circle centered within a square white frame bordered by a blue line.",
+        "visible": true,
+        "clean": "The image features a red circle centered within a square white frame bordered by a blue line."
+      },
+      {
+        "index": 6,
+        "text": "Gemini said alpha beta gamma TXT",
+        "visible": true,
+        "clean": "alpha beta gamma TXT"
+      },
+      {
+        "index": 7,
+        "text": "Gemini said The image features a red circle centered within a square white frame bordered by a blue line.",
+        "visible": true,
+        "clean": "The image features a red circle centered within a square white frame bordered by a blue line."
+      }
+    ]
+  },
+  "final": {
+    "ok": true,
+    "response_text": "The image features a red circle centered within a square white frame bordered by a blue line.",
+    "completion_detected": true,
+    "files_in_chip": [
+      "probe.png"
+    ],
+    "chat_url": "https://gemini.google.com/app/260e7fc538aef136",
+    "errorCode": null
+  },
+  "notes": "Public CLI invocation included required --reuse-conversation. Managed-CDP fallback click was needed because the CLI returned before prompt submission even though the file chip and prompt were staged; final response was verified from the live Gemini DOM in the same conversation.",
+  "campaign": "capability-explore-2026-05-25"
+}

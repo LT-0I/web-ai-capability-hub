@@ -1,0 +1,127 @@
+{
+  "id": "chatgpt-deep-research-ext",
+  "service": "chatgpt",
+  "bucket": "C7",
+  "source": "capability-explore-2026-05-25/C7",
+  "status": "OK_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "mcp_tool": "webai_chatgpt_deep_research",
+  "prompt": "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:deep-research",
+    "--profile",
+    "chatgpt",
+    "--backend",
+    "extension-assisted-cdp",
+    "--prompt",
+    "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+    "--download-dir",
+    "/tmp/explore-2026-05-25/chatgpt",
+    "--response-timeout-ms",
+    "900000",
+    "--json"
+  ],
+  "cli_output": {
+    "task_id": "task_1779648782398_ec5bd2850ff1",
+    "status": "queued"
+  },
+  "task_id": "task_1779648782398_ec5bd2850ff1",
+  "chat_url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+  "conversation_id": "6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+  "response_text": "Research completed in 11m · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n citations · \n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n searches\n2025 年 1 月以来新发布的开源大语言模型框架研究简报\n2025 年 1 月以来新发布的开源大语言模型框架研究简报\n执行摘要\n\n按“官方公开首发日期可核验，且不早于 2025-01”这一严格口径，本报告收录三项证据链最完整的项目：NVIDIA Dynamo（2025-03-18）、AMD GAIA（2025-03-20）与 llm-d（2025-05-20）。三者分别代表了数据中心多节点推理编排层、本地/端侧 AI Agent 与 LLM 运行框架、以及 Kubernetes 原生分布式 LLM 推理栈三条不同路线。与 2024 年以前偏重“单机推理引擎”或“模型训练库”的项目相比，这批 2025 年后的新框架更强调 KV cache 路由与分层管理、跨加速器编排、批处理与工具调用、多模态支持，以及把“生产级部署路径”本身做成框架能力。\n1\n\n下载文件\n\nPDF 下载： llm_frameworks_since_2025_zh-CN.pdf\n\n结论总览\n\n按“首发日期明确可核验”与“确属 LLM 训练、推理、运行时或生产编排框架”双重标准，本报告最终列出三项：NVIDIA Dynamo、AMD GAIA、llm-d。其中，Dynamo 的核心是把 SGLang / TensorRT-LLM / vLLM 之类已有推理引擎提升为多节点协同系统；GAIA 的核心是把 本地推理、RAG、语音、MCP 和 Agent UI 做成端侧框架；llm-d 则定位于 Kubernetes 上的大规模 LLM 推理编排与优化栈。\n2\n\n比较表\n框架\t公开首发日期\t许可证\t主要语言\t模型兼容性\t硬件目标\t主仓库 URL\nNVIDIA Dynamo\t2025-03-18\tApache-2.0\tRust、Python（另含 Go）\t依赖 SGLang / TensorRT-LLM / vLLM；官方示例涵盖 Llama-3、DeepSeek-R1、Qwen3，并把多模态/视频工作负载纳入范围\tGPU 为主，面向 NVIDIA 多节点/数据中心部署\thttps://github.com/ai-dynamo/dynamo\nAMD GAIA\t2025-03-20\tMIT\tPython、C++（仓库另含 TS/JS）\t官方材料覆盖 Llama、Phi、Qwen、Qwen3-VL；SDK 可接 Lemonade、llama.cpp、Ollama、vLLM 与任意 OpenAI-compatible 后端\t本地 CPU/GPU/NPU；尤其针对 Ryzen AI 的 NPU+iGPU\thttps://github.com/amd/gaia\nllm-d\t2025-05-20\tApache-2.0\tShell、Python（另含 Makefile / Dockerfile）\t位于 vLLM / SGLang 等服务层之上；官方已验证 Llama-3、Llama-4、DeepSeek-R1、GPT-OSS\tGPU / TPU / XPU，并支持 CPU/磁盘作为 KV cache 分层\thttps://github.com/llm-d/llm-d\n\n表中字段整理自各项目官方首发页、官方仓库与官方文档。\n1\n\n框架详析\nNVIDIA Dynamo\n\n名称： NVIDIA Dynamo。\n公开首发日期： 2025-03-18；NVIDIA 技术博客明确写明在 GTC 2025 当天 “announced the release”，并称 “Starting today, NVIDIA Dynamo is available for developers on the GitHub repo”。\n许可证： Apache-2.0。\n主仓库： https://github.com/ai-dynamo/dynamo。\n1\n\n一句话总结： Dynamo 是位于 SGLang、TensorRT-LLM、vLLM 之上的数据中心级分布式推理编排层，目标不是替代这些引擎，而是把它们提升为可在多节点环境中协同工作的统一系统。\n2\n\n关键特性：\n\n将 prefill / decode 阶段解耦，并允许分别扩缩容。\n1\n提供 KV-aware routing，按 worker 负载与 KV cache 重叠度做请求路由。\n1\n提供多层 KV cache 与自动扩缩容能力。\n1\n与 SGLang、TensorRT-LLM、vLLM 直接协同。\n1\n官方预构建 recipe 已覆盖 Llama-3-70B、DeepSeek-R1、Qwen3-32B-FP8 等模型。\n2\nREADME 把 multimodal、tool calling、video generation workloads 明确列入适用范围。\n2\n\n主要语言： 官方 README 直接写明“Built in Rust for performance, Python for extensibility”；GitHub 语言分布显示 Rust 54.2%、Python 30.4%、Go 13.1%。\n2\n\n模型兼容性： Dynamo 的兼容性本质上来自其后端引擎接入层，因此应理解为“兼容 SGLang / TensorRT-LLM / vLLM 可跑的模型集合”。官方当前公开 recipe 和示例至少覆盖了 Llama-3、DeepSeek-R1、Qwen3，并把 多模态与视频生成列为工作负载类型，因此可以归纳为：主流 decoder-only Transformer、MoE 推理模型，以及由底层后端支持的多模态模型。\n2\n\n硬件目标： Dynamo 明显是 GPU-first 框架；官方表述从“单 GPU 到数千 GPU”扩展，并反复强调 GPU 动态调度、GPU 间异步传输、Blackwell/H200/GB200/GB300 等数据中心部署语境。\n1\n\n相对既有框架的显著差异： 它最重要的区别在于不再做“另一个单机推理引擎”，而是明确把自己定位成 orchestration layer above inference engines。也就是说，如果 vLLM、TensorRT-LLM、SGLang 解决的是单节点/单服务进程的推理效率，那么 Dynamo 解决的是多节点路由、缓存复用、SLA 规划和自动扩缩容。\n2\n\n公开首发判定备注： 在本次核验的官方首发博文、官方仓库 README 与官方构建/发布材料中，未见对更早私有版本的明确披露；因此本报告按 2025-03-18 的公开开源首发计。\n1\n\nAMD GAIA\n\n名称： AMD GAIA。\n公开首发日期： 2025-03-20；AMD 官方文章明确写明 “AMD has launched a new open-source project called GAIA”。\n许可证： MIT。\n主仓库： https://github.com/amd/gaia。\n3\n\n一句话总结： GAIA 是一个面向本地/端侧的 AI Agent 与 LLM 框架，把 本地推理、RAG、语音、MCP、Agent UI 和 Python / C++ SDK 集成为一个可直接嵌入的运行时。\n4\n\n关键特性：\n\n强调 100% local，把隐私、离线运行和气隙环境作为卖点。\n4\n官方文档同时提供 Python Framework 与 C++ Framework。\n5\n内置 Agent UI、文档问答（RAG）与本地索引能力。\n4\n集成 MCP，可让 agent 接入外部工具。\n4\n语音链路内置 Whisper ASR 与 Kokoro TTS。\n4\n文档中给出 Qwen3-VL-4B-Instruct-GGUF 的视觉语言示例，说明其至少具备一部分 VLM 工作流支持。\n6\n\n主要语言： 官方文档首页把 Python 与 C++ 明确列为完整 SDK；GitHub 语言分布则显示仓库还包含 TypeScript、JavaScript、HTML/CSS 等 UI 与集成代码。若按“框架主语言”理解，结论应为 Python + C++。\n5\n\n模型兼容性： AMD 首发博文明确提到 Llama 与 Phi 衍生模型；GAIA 功能文档和 Quickstart 又给出了 Llama-3.2-1B-Instruct-Hybrid、Qwen3.5-35B-A3B-GGUF、Qwen3-0.6B-GGUF、Qwen3-VL-4B-Instruct-GGUF 等实例。更关键的是，C++ Quickstart 写明其可连接 Lemonade、llama.cpp、Ollama、vLLM 以及任意 OpenAI-compatible server；因此从架构上看，它主要面向 decoder-only LLM，并可经后端扩展到部分 VLM。\n3\n\n硬件目标： GAIA 重点面向本地 CPU / GPU / NPU，尤其是 Ryzen AI 的 NPU + iGPU 加速路径；首发文章还区分了通用 Windows 版与 Ryzen AI 优化的 Hybrid 版，文档首页则把“NPU and GPU acceleration on Ryzen AI”列为核心卖点。\n3\n\n相对既有框架的显著差异： 与 Dynamo、llm-d 这类数据中心框架相比，GAIA 的差异在于它从一开始就把本地优先作为设计中心：不是只提供模型服务端或推理内核，而是把 agent loop、RAG、voice、MCP、桌面 UI、双语言 SDK 全部前置为框架一部分。\n4\n\n公开首发判定备注： GAIA 仓库许可证页写有 “Copyright(C) 2024-2026”，说明项目研发很可能早于 2025-03 的公开首发；但 AMD 官方首发文章明确把 2025-03-20 表述为“launch a new open-source project”，因此本报告按公开开源首发日计入。\n4\n\nllm-d\n\n名称： llm-d。\n公开首发日期： 2025-05-20；Red Hat 官方新闻稿写明 “launch of llm-d, a new open source project”。\n许可证： Apache-2.0。\n主仓库： https://github.com/llm-d/llm-d。\n7\n\n一句话总结： llm-d 是一个 Kubernetes-native 的高性能分布式 LLM 推理框架/栈，核心用途是在 vLLM、SGLang 等模型服务之上补齐智能路由、KV cache 管理、批处理、自动扩缩容与生产级部署路径。\n7\n\n关键特性：\n\nIntelligent Routing，含 prefix-cache / load-aware 调度。\n8\nAdvanced KV-Cache Management，支持分层卸载到 CPU 或磁盘。\n8\nPrefill / Decode 解耦 与面向超大 MoE 的 wide expert parallelism。\n8\n提供 OpenAI-compatible Batch APIs 与异步批处理。\n8\n通过 Helm-first 的模块化部署与官方“well-lit paths”基准路径降低生产落地门槛。\n9\n关注生产流量场景下的 flow control、autoscaling、SLO-aware 运维能力。\n8\n\n主要语言： GitHub 仓库语言分布显示 Shell 59.3%、Python 26.6%、Makefile 12.7%、Dockerfile 1.4%；因此按仓库主语言看，应写作 Shell + Python。\n8\n\n模型兼容性： llm-d 自身不是单独的模型执行内核，而是位于 vLLM / SGLang 和相关推理服务之上的编排层。官方博客已明确给出 Llama-3、Llama-4、DeepSeek-R1 的测试/基准，README 还把 GPT-OSS 列为大模型优化对象，因此它当前可归纳为：主流稠密 decoder-only 模型 + 大规模 MoE 推理模型，更广泛兼容性则取决于底层服务端。\n9\n\n硬件目标： 官方首页一开始就强调“most hardware accelerators”；后续 0.3 官方博客则把支持面明确扩展到 NVIDIA、Google TPU、Intel XPU，而 README 还引用了 AMD MI300X 的公开性能案例。因此，llm-d 的目标明显是跨加速器，同时将 CPU/磁盘 作为 KV cache 分层介质。\n10\n\n相对既有框架的显著差异： 相比 vLLM、SGLang 这类偏“模型服务端”框架，llm-d 的差异在于它把Kubernetes 上真实生产流量作为默认语境：不仅要快，还要有可验证的部署配方、可复现的 benchmarks、跨加速器路径、KV/offload/Batch/SLO 运维能力。这使它更像一个“分布式推理生产栈”，而非单一引擎。\n8\n\n公开首发判定备注： 在本次核验的官方新闻稿、README 与官方博客中，未见对更早私有发布形态的明确披露；因此本报告按 2025-05-20 的公开开源首发计。\n7\n\n方法说明\n\n本报告先以“官方公开首发日期可核验”作为硬门槛，优先检查项目 官方仓库 README、LICENSE、GitHub Releases、组织博客/首发新闻稿、官方文档；随后逐项交叉核验 公开首发日期、许可证、主仓库 URL、主要语言、模型兼容性、硬件目标。在“框架”定义上，我只保留以 LLM 训练、推理、运行时或生产编排为核心的软件栈，排除单一模型、只有论文没有稳定仓库证据链的项目，以及虽在 2025 仍活跃、但公开可见状态早于 2025-01 的框架；例如 veRL 的 PyPI 公开版本已出现在 2024-12-11，KTransformers 在 2024-12-25 已有公开 issue 活动，因此二者不纳入本次“2025-01 之后新发布”名单。\n1\n\n参考来源\n\n本报告优先采用官方/第一手资料：NVIDIA 官方技术博客与 Dynamo 官方仓库、Red Hat / llm-d 官方发布稿与项目站点、AMD 官方开发者文章与 GAIA 官方仓库/文档；补充核验则主要用于确认语言分布、许可证与已验证模型/硬件支持范围。\n1",
+  "detected_frameworks": [
+    "NVIDIA Dynamo",
+    "AMD GAIA",
+    "llm-d"
+  ],
+  "artifact": {
+    "type": "text/plain",
+    "relative_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext-report.txt",
+    "size_bytes": 11287,
+    "sha256": "79bbfa5a848515498c529c35aa3b682a9c4a39110202c9e9207cb6f7c2337dd5",
+    "ui_download_label": "llm_frameworks_since_2025_zh-CN.pdf",
+    "downloadable_report_link_detected": true,
+    "download_event_captured": false,
+    "note": "CLI returned an async queued task without a file path; Deep Research UI completed and exposed a PDF link. Fallback gate uses captured response_text containing three framework names."
+  },
+  "monitor": {
+    "path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.monitor.json",
+    "status": "text-ready",
+    "monitor_ts": "2026-05-24T19:12:25.494Z",
+    "ui_buttons": [
+      {
+        "i": 0,
+        "tag": "BUTTON",
+        "text": "Export",
+        "aria": "Export",
+        "href": null,
+        "download": null,
+        "disabled": false
+      },
+      {
+        "i": 1,
+        "tag": "BUTTON",
+        "text": "Expand",
+        "aria": "Expand",
+        "href": null,
+        "download": null,
+        "disabled": false
+      },
+      {
+        "i": 2,
+        "tag": "A",
+        "text": "llm_frameworks_since_2025_zh-CN.pdf",
+        "aria": null,
+        "href": "",
+        "download": null,
+        "disabled": false
+      },
+      {
+        "i": 3,
+        "tag": "BUTTON",
+        "text": "Copy table",
+        "aria": "Copy table",
+        "href": null,
+        "download": null,
+        "disabled": false
+      }
+    ]
+  },
+  "logs": {
+    "raw_stdout_stderr": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.raw.log",
+    "poll_jsonl": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.poll.jsonl",
+    "monitor_json": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.monitor.json",
+    "screenshots": [
+      ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.completed.png",
+      ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.reloaded.png"
+    ]
+  },
+  "gate": {
+    "criteria": "report file path non-empty AND file exists AND size_bytes > 4096; fallback if CLI has no generate-file behavior: response_text contains at least 3 distinct framework names",
+    "passed": true,
+    "checks": {
+      "cli_exit_0": true,
+      "cli_returned_task_id": true,
+      "cli_returned_report_path_non_empty": false,
+      "cli_report_file_exists": false,
+      "cli_report_size_gt_4096": false,
+      "cli_no_generate_file_behavior": true,
+      "deep_research_completed_within_900s": true,
+      "fallback_response_text_non_empty": true,
+      "fallback_response_text_contains_three_frameworks": true,
+      "detected_frameworks_count": 3,
+      "captured_report_text_size_gt_4096": true,
+      "ui_pdf_link_detected": true
+    }
+  },
+  "completion_gate": "report file path non-empty AND file exists AND size_bytes > 4096; fallback if CLI has no generate-file behavior: response_text contains at least 3 distinct framework names",
+  "errorCode": null,
+  "cause": null,
+  "verified_by": "codex-bucket-C7",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T19:12:25.495Z"
+}

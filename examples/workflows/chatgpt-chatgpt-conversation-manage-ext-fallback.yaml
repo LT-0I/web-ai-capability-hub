@@ -1,0 +1,28 @@
+# Rewritten 2026-05-25 from codex C9 draft. FAIL_CLOSED_UNSUPPORTED with HUMAN_HANDOFF_REQUIRED — Radix-portal kebab menu ops not CLI-automatable.
+id: chatgpt-conversation-manage-ext-fallback
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Attempt to rename a ChatGPT conversation (fail-closed; Radix-portal kebab menu)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:conversation-manage
+      - --profile
+      - chatgpt
+      - --action
+      - rename
+      - --tab-url-contains
+      - about:blank
+      - --new-title
+      - probe-rename-test
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          equals: HUMAN_HANDOFF_REQUIRED
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-conversation-manage-ext-fallback.json

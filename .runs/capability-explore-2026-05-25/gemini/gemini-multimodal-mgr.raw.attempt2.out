@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "errorCode": "UNKNOWN",
+  "error_code": "UNKNOWN",
+  "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://gemini.google.com/app\nCall log:\n\u001b[2m  - navigating to \"https://gemini.google.com/app\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "evidence": {
+    "tool": "webai_gemini_upload_and_query",
+    "stage": "handler",
+    "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://gemini.google.com/app\nCall log:\n\u001b[2m  - navigating to \"https://gemini.google.com/app\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "error_name": "Error",
+    "cause_type": "object"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "chatgpt-select-model-thinking-ext",
+  "service": "chatgpt",
+  "bucket": "C1",
+  "attempts": 1,
+  "command": "node dist/src/cli.js webai:chatgpt:select-model --profile chatgpt --backend extension-assisted-cdp --model \"Thinking\" --tab-url-contains \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\" --json",
+  "exit_code": 0,
+  "wall_ms": 701,
+  "cli_output": {
+    "ok": true,
+    "selected_model": "Thinking",
+    "selected_thinking_level": null,
+    "errorCode": null
+  },
+  "raw_output": "{\n  \"ok\": true,\n  \"selected_model\": \"Thinking\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n\n__COMMAND_EXIT__=0\n__WALL_MS__=701\n",
+  "completion_gate": "ok === true AND selected model/model_used contains Thinking/thinking/GPT-5 Thinking",
+  "gate_eval": {
+    "ok_true": true,
+    "model_name_contains_thinking": true,
+    "observed_model_field": "selected_model"
+  },
+  "ok": true,
+  "status": "OK_EXT_BACKEND",
+  "last_update": "2026-05-25"
+}

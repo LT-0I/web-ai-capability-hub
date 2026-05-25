@@ -1,0 +1,131 @@
+{
+  "id": "gemini-gemini-workspace-mgr",
+  "target": "gemini",
+  "profile": "gemini-9225",
+  "mode": "assisted",
+  "compiledAt": "2026-05-24T20:52:00.553Z",
+  "actions": [
+    {
+      "stepId": "inspect-gems",
+      "capability": "gemini-workspace-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "inspect-workspace-integration",
+      "capability": "gemini-workspace-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "verify-workspace-list",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "final-snapshot",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [
+    "No exact compiler rule for capability 'gemini-workspace-mgr'. Falling back to read/observe action.",
+    "No exact compiler rule for capability 'gemini-workspace-mgr'. Falling back to read/observe action."
+  ],
+  "result": {
+    "type": "snapshot"
+  },
+  "definition": {
+    "id": "gemini-gemini-workspace-mgr",
+    "service": "gemini",
+    "target": "gemini",
+    "capability_id": "gemini-workspace-mgr",
+    "mode": "assisted",
+    "backend": "managed-cdp",
+    "profile": "gemini-9225",
+    "description": "Inspect read-only Gemini workspace/settings surfaces and return a normalized workspace list/count evidence shape.",
+    "inputs": {
+      "surface": "workspace_integration"
+    },
+    "steps": [
+      {
+        "id": "inspect-gems",
+        "name": "Open Gemini Gems workspace surface",
+        "use_capability": "gemini-workspace-mgr",
+        "confirmed": true,
+        "input": {
+          "surface": "gems"
+        },
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:workspace",
+          "--profile",
+          "gemini-9225",
+          "--surface",
+          "gems",
+          "--json"
+        ]
+      },
+      {
+        "id": "inspect-workspace-integration",
+        "name": "Open Gemini Google Workspace integration surface",
+        "use_capability": "gemini-workspace-mgr",
+        "confirmed": true,
+        "input": {
+          "surface": "${surface}"
+        },
+        "command": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:workspace",
+          "--profile",
+          "gemini-9225",
+          "--surface",
+          "${surface}",
+          "--json"
+        ]
+      },
+      {
+        "id": "verify-workspace-list",
+        "action": "read",
+        "input": {
+          "gate": "Evidence returns workspaces array or {ok:true,count:N}."
+        }
+      }
+    ],
+    "success_gate": "Evidence returns workspaces array or {ok:true,count:N}.",
+    "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json",
+    "last_observed_status": "OK_MANAGED_CDP_ONLY",
+    "artifact": {
+      "type": "gemini_workspace_surface_summary"
+    },
+    "result": {
+      "type": "snapshot"
+    }
+  }
+}

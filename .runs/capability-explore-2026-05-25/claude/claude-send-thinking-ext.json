@@ -1,0 +1,67 @@
+{
+  "id": "claude-send-thinking-ext",
+  "service": "claude",
+  "bucket": "L1",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "OK_EXT_BACKEND",
+  "ok": true,
+  "completion_gate": "response_text contains \"391\" + completion_detected === true",
+  "gate_result": {
+    "ok": true,
+    "details": {
+      "contains_391": true,
+      "completion_detected": true
+    }
+  },
+  "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --thinking --reuse-conversation --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --prompt \"Think step by step: 17 × 23 = ?\" --response-timeout-ms 180000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 6998,
+      "stdout": "{\n  \"response_text\": \"Claude responded: 17 × 23:17 × 23:\\n17 × 20 = 340\\n17 × 3 = 51\\n340 + 51 = 391\",\n  \"elapsed_ms\": 6856,\n  \"wait_ms\": 5097,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Sonnet 4.6 Adaptive\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "Claude responded: 17 × 23:17 × 23:\n17 × 20 = 340\n17 × 3 = 51\n340 + 51 = 391",
+        "elapsed_ms": 6856,
+        "wait_ms": 5097,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "Sonnet 4.6 Adaptive",
+        "reuse_conversation": true,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:send-prompt --profile claude-9224 --backend extension-assisted-cdp --thinking --reuse-conversation --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --prompt \"Think step by step: 17 × 23 = ?\" --response-timeout-ms 180000 --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 6998,
+    "stdout": "{\n  \"response_text\": \"Claude responded: 17 × 23:17 × 23:\\n17 × 20 = 340\\n17 × 3 = 51\\n340 + 51 = 391\",\n  \"elapsed_ms\": 6856,\n  \"wait_ms\": 5097,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Sonnet 4.6 Adaptive\",\n  \"reuse_conversation\": true,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "response_text": "Claude responded: 17 × 23:17 × 23:\n17 × 20 = 340\n17 × 3 = 51\n340 + 51 = 391",
+      "elapsed_ms": 6856,
+      "wait_ms": 5097,
+      "completion_detected": true,
+      "errorCode": null,
+      "model_used": "Sonnet 4.6 Adaptive",
+      "reuse_conversation": true,
+      "conversation_id": null,
+      "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-send-thinking-ext.yaml",
+  "started_at": "2026-05-24T17:12:08.832Z",
+  "finished_at": "2026-05-24T17:12:15.831Z",
+  "wall_ms": 6999
+}

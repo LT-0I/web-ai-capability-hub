@@ -1,0 +1,83 @@
+{
+  "id": "gemini-canvas-to-docs-mgr",
+  "target": "gemini",
+  "profile": "gemini-9225",
+  "mode": "managed-cdp",
+  "compiledAt": "2026-05-24T20:08:23.237Z",
+  "actions": [
+    {
+      "stepId": "canvas-to-docs",
+      "capability": "gemini-canvas-to-docs-mgr",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "verify-docs-url",
+      "action": {
+        "type": "extract",
+        "extract": "snapshot",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    },
+    {
+      "stepId": "final-text",
+      "action": {
+        "type": "extract",
+        "extract": "text",
+        "confirmed": true
+      },
+      "requiresApproval": false,
+      "resolvedSelectors": [],
+      "idempotent": false
+    }
+  ],
+  "warnings": [
+    "No exact compiler rule for capability 'gemini-canvas-to-docs-mgr'. Falling back to read/observe action."
+  ],
+  "result": {
+    "type": "text",
+    "artifact": "docs_url"
+  },
+  "definition": {
+    "id": "gemini-canvas-to-docs-mgr",
+    "target": "gemini",
+    "profile": "gemini-9225",
+    "mode": "managed-cdp",
+    "description": "Generate a Gemini Canvas document and export it to a private Google Docs document.",
+    "steps": [
+      {
+        "id": "canvas-to-docs",
+        "use_capability": "gemini-canvas-to-docs-mgr",
+        "confirmed": true,
+        "input": {
+          "prompt": "Generate a 200-word essay about deep learning, then export to Google Docs",
+          "title": "Capability Probe Doc",
+          "reuse_conversation": true,
+          "tab_url_contains": "<chat-id>",
+          "response_timeout_ms": 300000,
+          "timeout_ms": 60000
+        }
+      },
+      {
+        "id": "verify-docs-url",
+        "action": "read",
+        "input": {
+          "gate": "docs_url non-empty and contains docs.google.com; curl GET returns HTTP 200 or a 30x login redirect"
+        }
+      }
+    ],
+    "result": {
+      "type": "text",
+      "artifact": "docs_url"
+    }
+  }
+}

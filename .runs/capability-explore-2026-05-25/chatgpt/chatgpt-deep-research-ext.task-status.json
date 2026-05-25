@@ -1,0 +1,24 @@
+{
+  "task_id": "task_1779648782398_ec5bd2850ff1",
+  "status": "done",
+  "progress_label": "Deep Research completed in ChatGPT UI; CLI task-status remained queue-only for this tool, so completion was verified from the Deep Research iframe report text.",
+  "result": {
+    "detected_frameworks": [
+      "NVIDIA Dynamo",
+      "AMD GAIA",
+      "llm-d"
+    ],
+    "artifact": {
+      "type": "text/plain",
+      "relative_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext-report.txt",
+      "size_bytes": 11287,
+      "sha256": "79bbfa5a848515498c529c35aa3b682a9c4a39110202c9e9207cb6f7c2337dd5",
+      "ui_download_label": "llm_frameworks_since_2025_zh-CN.pdf",
+      "downloadable_report_link_detected": true,
+      "download_event_captured": false,
+      "note": "CLI returned an async queued task without a file path; Deep Research UI completed and exposed a PDF link. Fallback gate uses captured response_text containing three framework names."
+    },
+    "chat_url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe"
+  },
+  "errorCode": null
+}

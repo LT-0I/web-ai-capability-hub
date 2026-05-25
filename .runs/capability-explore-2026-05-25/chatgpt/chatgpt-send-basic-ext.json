@@ -1,0 +1,30 @@
+{
+  "id": "chatgpt-send-basic-ext",
+  "service": "chatgpt",
+  "bucket": "C1",
+  "attempts": 1,
+  "command": "node dist/src/cli.js webai:chatgpt:send-prompt --profile chatgpt --backend extension-assisted-cdp --prompt \"say only the word OK\" --response-timeout-ms 90000 --json",
+  "exit_code": 0,
+  "wall_ms": 13161,
+  "cli_output": {
+    "response_text": "OK",
+    "elapsed_ms": 13024,
+    "wait_ms": 5920,
+    "completion_detected": true,
+    "errorCode": null,
+    "model_used": "Heavy",
+    "reuse_conversation": false,
+    "conversation_id": "6a1330a0-42b4-83e8-82ec-2a0074744500",
+    "chat_url": "https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500"
+  },
+  "raw_output": "{\n  \"response_text\": \"OK\",\n  \"elapsed_ms\": 13024,\n  \"wait_ms\": 5920,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"Heavy\",\n  \"reuse_conversation\": false,\n  \"conversation_id\": \"6a1330a0-42b4-83e8-82ec-2a0074744500\",\n  \"chat_url\": \"https://chatgpt.com/c/6a1330a0-42b4-83e8-82ec-2a0074744500\"\n}\n\n__COMMAND_EXIT__=0\n__WALL_MS__=13161\n",
+  "completion_gate": "response_text non-empty AND completion_detected === true AND conversation_id non-empty",
+  "gate_eval": {
+    "response_text_non_empty": true,
+    "completion_detected_true": true,
+    "conversation_id_non_empty": true
+  },
+  "ok": true,
+  "status": "OK_EXT_BACKEND",
+  "last_update": "2026-05-25"
+}

@@ -1,0 +1,24 @@
+# Rewritten 2026-05-25 from codex L9 draft. FAIL_CLOSED_UNSUPPORTED with INVALID_ARGS.
+id: claude-workspace-mgr
+target: claude
+profile: claude-9224
+mode: automatic
+description: Attempt to list Claude workspaces (fail-closed; schema rejects --action list)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:workspace
+      - --profile
+      - claude-9224
+      - --action
+      - list
+      - --json
+    timeoutMs: 60000
+    gate:
+      exit_code: 1
+      json_path:
+        - path: errorCode
+          equals: INVALID_ARGS
+evidence: .runs/capability-explore-2026-05-25/claude/claude-workspace-mgr.json

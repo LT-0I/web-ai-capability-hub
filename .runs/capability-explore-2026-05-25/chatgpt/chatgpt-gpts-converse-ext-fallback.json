@@ -1,0 +1,111 @@
+{
+  "id": "chatgpt-gpts-converse-ext-fallback",
+  "service": "chatgpt",
+  "bucket": "C10",
+  "source": "capability-explore-2026-05-25/C10",
+  "profile": "chatgpt",
+  "backend": "managed-cdp",
+  "mcp_tool": "webai_chatgpt_send_prompt",
+  "started_at": null,
+  "completed_at": "2026-05-24T19:30:30.614Z",
+  "attempts": [
+    {
+      "name": "primary_bucket_command",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:send-prompt",
+        "--profile",
+        "chatgpt",
+        "--url",
+        "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+        "--prompt",
+        "Say only OK",
+        "--response-timeout-ms",
+        "90000",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 21360,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.primary.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.primary.stderr.log",
+      "stdout_json": {
+        "response_text": "OK",
+        "elapsed_ms": 21210,
+        "wait_ms": 6326,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "Heavy",
+        "reuse_conversation": false,
+        "conversation_id": "6a1351ca-0c34-83e8-8b71-483d656071e5",
+        "chat_url": "https://chatgpt.com/c/6a1351ca-0c34-83e8-8b71-483d656071e5"
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": "",
+      "gate_eval": {
+        "response_text_non_empty": true,
+        "completion_detected_true": true,
+        "chat_url_contains_g": false
+      },
+      "ok": false
+    },
+    {
+      "name": "fallback_preserve_gpt_url_with_reuse_conversation",
+      "reason": "Current ChatGPT send-prompt implementation navigates to a fresh base chat unless reuse_conversation is true; preserving the GPT URL is required by the /g/g- completion gate.",
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:send-prompt",
+        "--profile",
+        "chatgpt",
+        "--url",
+        "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+        "--reuse-conversation",
+        "--prompt",
+        "Say only OK",
+        "--response-timeout-ms",
+        "90000",
+        "--json"
+      ],
+      "exit_code": 1,
+      "wall_ms": 1170,
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.fallback.stdout.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.fallback.stderr.log",
+      "stdout_json": {
+        "response_text": "",
+        "elapsed_ms": 1014,
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "MODEL_SELECTION_DRIFT",
+        "ok": false,
+        "service": "chatgpt",
+        "error_code": "MODEL_SELECTION_DRIFT",
+        "model_used": null,
+        "expected_model": "Thinking",
+        "conversation_id": null,
+        "chat_url": "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+        "reuse_conversation": false
+      },
+      "stdout_parse_error": null,
+      "stderr_tail": "",
+      "gate_eval": {
+        "response_text_non_empty": false,
+        "completion_detected_true": false,
+        "chat_url_contains_g": true
+      },
+      "ok": false
+    }
+  ],
+  "completion_gate": "response_text non-empty AND completion_detected === true AND chat_url contains /g/g-",
+  "gate_eval": {
+    "response_text_non_empty": false,
+    "completion_detected_true": false,
+    "chat_url_contains_g": true
+  },
+  "ok": false,
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "last_update": "2026-05-25",
+  "artifact": null,
+  "errorCode": "MODEL_SELECTION_DRIFT",
+  "cause": "GPT URL did not satisfy strict completion gate"
+}

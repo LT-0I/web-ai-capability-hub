@@ -1,0 +1,41 @@
+{
+  "id": "gemini-veo-quota-error-mgr",
+  "service": "gemini",
+  "bucket": "G10",
+  "source": "capability-explore-2026-05-25/G10",
+  "status": "OK_DEFERRED",
+  "backend": "extension-assisted-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_generate_video",
+  "verify_only": true,
+  "referenced_evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.json",
+  "referenced_bucket": "G4",
+  "observed_errorCode": "ELEMENT_NOT_FOUND",
+  "observed_status": "FAIL_CLOSED_EXT_BACKEND",
+  "observed_cause": "failed: ELEMENT_NOT_FOUND",
+  "quota_observed": false,
+  "prohibited_error_code": false,
+  "known_quota_contract_code": false,
+  "gate": {
+    "criteria": "If quota is observed, errorCode must be EXTERNAL_QUOTA_EXHAUSTED or LOGIN_REQUIRED and must not be COMMAND_TIMEOUT/UNKNOWN; if quota is not exhausted during probe, defer as OK_DEFERRED.",
+    "passed": true,
+    "checks": {
+      "g4_evidence_present": true,
+      "quota_observed": false,
+      "observed_errorCode": "ELEMENT_NOT_FOUND",
+      "not_command_timeout_or_unknown": true,
+      "known_quota_contract_code_if_observed": null
+    }
+  },
+  "artifact": null,
+  "verified_by": "codex-bucket-G10",
+  "completion_gate": "Quota error code is EXTERNAL_QUOTA_EXHAUSTED or LOGIN_REQUIRED when quota is observed; otherwise OK_DEFERRED because configuration did not exhaust quota during probe.",
+  "recipe_ref": null,
+  "sub_mcp_candidate": false,
+  "last_update": "2026-05-24",
+  "created_at": "2026-05-24T20:51:37.976Z",
+  "cause": "configuration did not exhaust quota during probe; G4 failed before quota with ELEMENT_NOT_FOUND",
+  "notes": "G4 evidence has quota_limited=false and errorCode=ELEMENT_NOT_FOUND, so quota exhaustion was not observed; no extra quota-consuming requests were launched."
+}

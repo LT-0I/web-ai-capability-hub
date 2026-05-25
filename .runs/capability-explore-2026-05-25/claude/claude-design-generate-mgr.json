@@ -1,0 +1,106 @@
+{
+  "id": "claude-design-generate-mgr",
+  "service": "claude",
+  "bucket": "L7",
+  "backend": "managed-cdp",
+  "profile": "claude-9224",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "ok": true,
+  "source": "L7",
+  "verified_by": "codex-bucket-L7",
+  "mcp_tool": "webai_claude_design_generate",
+  "completion_gate": "generate fileName non-empty AND get-html saved HTML exists with html length > 200 characters",
+  "gate_result": {
+    "ok": true,
+    "details": {
+      "fileName_nonempty": true,
+      "get_html_saved_path_exists": true,
+      "html_length_gt_200": true,
+      "html_length": 213186,
+      "fileName": "index.html",
+      "html_path": ".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html",
+      "iframeArtifactSha256": "5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576"
+    }
+  },
+  "project_id": "baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+  "project_url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+  "fileName": "index.html",
+  "chain_outputs": {
+    "create_project": {
+      "projectUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+      "projectId": "baf06427-9e7a-41f7-8d8e-79da1a1ca344"
+    },
+    "generate": {
+      "status": "generated",
+      "model_used": "sonnet",
+      "projectUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+      "fileName": "index.html"
+    },
+    "get_html": {
+      "iframeArtifactSha256": "5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576",
+      "savedPath": ".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html",
+      "byteSize": 213186,
+      "html_length": 213186,
+      "html_excerpt_start": "<!DOCTYPE html><html data-src-ver=\"94b4d0b9\" lang=\"en\" data-om-id=\"94b4d0b9:0\"><head data-om-id=\"94b4d0b9:1\">\n<style data-omelette-injected=\"\">html,body{background:transparent}</style><script data-omelette-injected=\"\">(()=>{var j=[\"https://claude.ai\",\"https://preview.claude.ai\"];var x=true;var S=300"
+    }
+  },
+  "attempts": [
+    {
+      "command": "node dist/src/cli.js webai:claude:design:generate --profile claude-9224 --project-url \"<projectUrl>\" --prompt \"Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section.\" --timeout-ms 300000 --response-timeout-ms 300000 --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "stdout": "{\n  \"status\": \"generated\",\n  \"model_used\": \"sonnet\",\n  \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n  \"fileName\": \"index.html\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "status": "generated",
+        "model_used": "sonnet",
+        "projectUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+        "fileName": "index.html"
+      },
+      "parse_error": null
+    },
+    {
+      "command": "node dist/src/cli.js webai:claude:design:get-html --profile claude-9224 --project-url \"<projectUrl>\" --download-dir \"<repo>/.runs/capability-explore-2026-05-25/claude\" --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "stdout": "{\n  \"iframeArtifactSha256\": \"5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576\",\n  \"savedPath\": \".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html\",\n  \"byteSize\": 213186,\n  \"html_length\": 213186,\n  \"html_excerpt_start\": \"<!DOCTYPE html><html data-src-ver=\\\"94b4d0b9\\\" lang=\\\"en\\\" data-om-id=\\\"94b4d0b9:0\\\"><head data-om-id=\\\"94b4d0b9:1\\\">\\n<style data-omelette-injected=\\\"\\\">html,body{background:transparent}</style><script data-omelette-injected=\\\"\\\">(()=>{var j=[\\\"https://claude.ai\\\",\\\"https://preview.claude.ai\\\"];var x=true;var S=300\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "iframeArtifactSha256": "5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576",
+        "savedPath": ".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html",
+        "byteSize": 213186,
+        "html_length": 213186,
+        "html_excerpt_start": "<!DOCTYPE html><html data-src-ver=\"94b4d0b9\" lang=\"en\" data-om-id=\"94b4d0b9:0\"><head data-om-id=\"94b4d0b9:1\">\n<style data-omelette-injected=\"\">html,body{background:transparent}</style><script data-omelette-injected=\"\">(()=>{var j=[\"https://claude.ai\",\"https://preview.claude.ai\"];var x=true;var S=300"
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:design:get-html --profile claude-9224 --project-url \"<projectUrl>\" --download-dir \"<repo>/.runs/capability-explore-2026-05-25/claude\" --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "{\n  \"iframeArtifactSha256\": \"5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576\",\n  \"savedPath\": \".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html\",\n  \"byteSize\": 213186,\n  \"html_length\": 213186,\n  \"html_excerpt_start\": \"<!DOCTYPE html><html data-src-ver=\\\"94b4d0b9\\\" lang=\\\"en\\\" data-om-id=\\\"94b4d0b9:0\\\"><head data-om-id=\\\"94b4d0b9:1\\\">\\n<style data-omelette-injected=\\\"\\\">html,body{background:transparent}</style><script data-omelette-injected=\\\"\\\">(()=>{var j=[\\\"https://claude.ai\\\",\\\"https://preview.claude.ai\\\"];var x=true;var S=300\"\n}\n",
+    "stderr": "",
+    "parsed": {
+      "iframeArtifactSha256": "5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576",
+      "savedPath": ".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html",
+      "byteSize": 213186,
+      "html_length": 213186,
+      "html_excerpt_start": "<!DOCTYPE html><html data-src-ver=\"94b4d0b9\" lang=\"en\" data-om-id=\"94b4d0b9:0\"><head data-om-id=\"94b4d0b9:1\">\n<style data-omelette-injected=\"\">html,body{background:transparent}</style><script data-omelette-injected=\"\">(()=>{var j=[\"https://claude.ai\",\"https://preview.claude.ai\"];var x=true;var S=300"
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-design-create-generate.yaml",
+  "artifact": {
+    "fileName": "index.html",
+    "html_path": ".runs/capability-explore-2026-05-25/claude/baf06427-9e7a-41f7-8d8e-79da1a1ca344-5ba1f7c17470.html",
+    "byteSize": 213186,
+    "sha256": "5ba1f7c1747058fb3ac1f759e6d53a6451700d3ae5ee92309eb81e682fa68576",
+    "workflow": "examples/workflows/claude-design-create-generate.yaml"
+  },
+  "started_at": "2026-05-24T18:27:09.188Z",
+  "finished_at": "2026-05-24T18:27:09.188Z"
+}

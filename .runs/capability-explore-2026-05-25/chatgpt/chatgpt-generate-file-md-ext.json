@@ -1,0 +1,207 @@
+{
+  "id": "chatgpt-generate-file-md-ext",
+  "service": "chatgpt",
+  "bucket": "C5",
+  "source": "capability-explore-2026-05-25/C5",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "ok": false,
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "mcp_tool": "webai_chatgpt_generate_file",
+  "prompt": "Write a markdown README explaining a fictional project 'CapProbe'. Provide as .md file.",
+  "expected_extension": "md",
+  "artifact_class": "code",
+  "download_dir": "/tmp/explore-2026-05-25/chatgpt",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:generate-file",
+    "--profile",
+    "chatgpt",
+    "--backend",
+    "extension-assisted-cdp",
+    "--prompt",
+    "Write a markdown README explaining a fictional project 'CapProbe'. Provide as .md file.",
+    "--expected-extension",
+    "md",
+    "--download-dir",
+    "/tmp/explore-2026-05-25/chatgpt",
+    "--artifact-class",
+    "code",
+    "--json"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Write a markdown README explaining a fictional project 'CapProbe'. Provide as .md file.",
+        "--expected-extension",
+        "md",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "code",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Write a markdown README explaining a fictional project '\"'\"'CapProbe'\"'\"'. Provide as .md file.' '--expected-extension' 'md' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'code' '--json'",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 399520,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "error": "No element matched --button-selector",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "No element matched --button-selector",
+          "error_name": "Error",
+          "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type",
+          "pageUrl": "https://chatgpt.com/c/<conversation-id>",
+          "frameCount": 3,
+          "triedFrames": [
+            {
+              "url": "https://chatgpt.com/c/<conversation-id>",
+              "hadSelectorMatch": false
+            },
+            {
+              "url": "about:blank",
+              "hadSelectorMatch": false
+            },
+            {
+              "url": "https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c",
+              "hadSelectorMatch": false
+            }
+          ]
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "content_contains": false,
+        "filename_has_extension": false
+      },
+      "artifact_path": null,
+      "download_filename": null,
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"error\": \"No element matched --button-selector\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"No element matched --button-selector\",\n    \"error_name\": \"Error\",\n    \"selector\": \"[data-message-author-role=\\\"assistant\\\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type\",\n    \"pageUrl\": \"https://chatgpt.com/c/<conversation-id>\",\n    \"frameCount\": 3,\n    \"triedFrames\": [\n      {\n        \"url\": \"https://chatgpt.com/c/<conversation-id>\",\n        \"hadSelectorMatch\": false\n      },\n      {\n        \"url\": \"about:blank\",\n        \"hadSelectorMatch\": false\n      },\n      {\n        \"url\": \"https://chatgpt.com/backend-api/sentinel/frame.html?sv=20260423af3c\",\n        \"hadSelectorMatch\": false\n      }\n    ]\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-md-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-md-ext.stderr.1.log"
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:chatgpt:generate-file",
+        "--profile",
+        "chatgpt",
+        "--backend",
+        "extension-assisted-cdp",
+        "--prompt",
+        "Write a markdown README explaining a fictional project 'CapProbe'. Provide as .md file.",
+        "--expected-extension",
+        "md",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/chatgpt",
+        "--artifact-class",
+        "code",
+        "--json"
+      ],
+      "command_text": "'node' 'dist/src/cli.js' 'webai:chatgpt:generate-file' '--profile' 'chatgpt' '--backend' 'extension-assisted-cdp' '--prompt' 'Write a markdown README explaining a fictional project '\"'\"'CapProbe'\"'\"'. Provide as .md file.' '--expected-extension' 'md' '--download-dir' '/tmp/explore-2026-05-25/chatgpt' '--artifact-class' 'code' '--json'",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 2070,
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "UNKNOWN",
+        "error_code": "UNKNOWN",
+        "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+        "evidence": {
+          "tool": "webai_chatgpt_generate_file",
+          "stage": "handler",
+          "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+          "error_name": "Error",
+          "cause_type": "object"
+        }
+      },
+      "stdout_parse_error": null,
+      "gate_passed": false,
+      "gate_checks": {
+        "path_non_empty": false,
+        "file_exists": false,
+        "size_bytes_gt_min": false,
+        "stat_size_gt_min": false,
+        "content_contains": false,
+        "filename_has_extension": false
+      },
+      "artifact_path": null,
+      "download_filename": null,
+      "stat_size_bytes": 0,
+      "reported_size_bytes": 0,
+      "stdout_tail": "{\n  \"ok\": false,\n  \"errorCode\": \"UNKNOWN\",\n  \"error_code\": \"UNKNOWN\",\n  \"error\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_generate_file\",\n    \"stage\": \"handler\",\n    \"message\": \"page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://chatgpt.com/?model=gpt-4o\\\", waiting until \\\"load\\\"\\u001b[22m\\n\",\n    \"error_name\": \"Error\",\n    \"cause_type\": \"object\"\n  }\n}\n",
+      "stderr_tail": "",
+      "stdout_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-md-ext.stdout.2.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-md-ext.stderr.2.log"
+    }
+  ],
+  "cli_output": {
+    "ok": false,
+    "errorCode": "UNKNOWN",
+    "error_code": "UNKNOWN",
+    "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+    "evidence": {
+      "tool": "webai_chatgpt_generate_file",
+      "stage": "handler",
+      "message": "page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o\nCall log:\n\u001b[2m  - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m\n",
+      "error_name": "Error",
+      "cause_type": "object"
+    }
+  },
+  "gate": {
+    "criteria": "path non-empty AND file exists AND size_bytes > 64 AND content contains 'CapProbe'",
+    "passed": false,
+    "checks": {
+      "path_non_empty": false,
+      "file_exists": false,
+      "size_bytes_gt_min": false,
+      "stat_size_gt_min": false,
+      "content_contains": false,
+      "filename_has_extension": false
+    },
+    "artifact_path": null,
+    "download_filename": null,
+    "stat_size_bytes": 0,
+    "reported_size_bytes": 0,
+    "contains": "CapProbe",
+    "read_error": null,
+    "content_preview": null
+  },
+  "errorCode": "UNKNOWN",
+  "cause": "attempt 1: ELEMENT_NOT_FOUND: No element matched --button-selector; attempt 2: UNKNOWN: page.goto: net::ERR_CONNECTION_CLOSED at https://chatgpt.com/?model=gpt-4o Call log: \u001b[2m - navigating to \"https://chatgpt.com/?model=gpt-4o\", waiting until \"load\"\u001b[22m ",
+  "artifact": null,
+  "workflow_recipe": "examples/workflows/chatgpt-chatgpt-generate-file-md-ext.yaml",
+  "verified_by": "codex-bucket-C5",
+  "completion_gate": "path non-empty AND file exists AND size_bytes > 64 AND content contains 'CapProbe'",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T18:40:13.798Z",
+  "wall_ms": 401590
+}

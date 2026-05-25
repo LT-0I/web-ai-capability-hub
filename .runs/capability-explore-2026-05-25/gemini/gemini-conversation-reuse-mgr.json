@@ -1,0 +1,142 @@
+{
+  "id": "gemini-conversation-reuse-mgr",
+  "service": "gemini",
+  "bucket": "G10",
+  "source": "capability-explore-2026-05-25/G10",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "backend": "managed-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_send_prompt",
+  "required_flag": "--reuse-conversation on the reuse send-prompt call",
+  "attempts": [
+    {
+      "phase": "create_conversation_clean_retry",
+      "command": "node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --prompt \"First message about apples for clean retry\" --response-timeout-ms 60000 --json",
+      "exit_code": 0,
+      "wall_ms": 22168,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step1.retry.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step1.retry.stderr.log",
+      "stdout_json": {
+        "response_text": "The Apple: A Quick OverviewApples are one of the most widely cultivated and consumed fruits in the world, renowned for their crisp texture and balance of sweet and tart flavors. They belong to the rose family (Rosaceae) and have been grown for thousands of years.Key Facts About ApplesOrigin: The wild ancestor of the domestic apple, Malus sieversii, originated in the mountains of Central Asia, specifically in modern-day Kazakhstan.Varieties: There are over 7,500 known cultivars of apples grown worldwide. Popular varieties include Honeycrisp, Granny Smith, Gala, and Fuji.Nutrition: They are an excellent source of dietary fiber (especially pectin) and vitamin C, and they are packed with antioxidants.Cultivation: Apple trees take four to five years to produce their first fruit and thrive in temperate zones where they can experience a required period of cold dormancy.Fun Fact: Because apple seeds contain a high degree of genetic variability, planting a seed from a specific apple (like a Honeycrisp) will not produce a tree that grows Honeycrisp apples. To get a specific variety, farmers must use grafting techniques!",
+        "elapsed_ms": 22018,
+        "wait_ms": 13765,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": false,
+        "chat_url": "https://gemini.google.com/app/13ac5bceeec46d25"
+      }
+    },
+    {
+      "phase": "reuse_conversation",
+      "command": "node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 'https://gemini.google.com/app/13ac5bceeec46d25' --prompt 'What was my first message about?' --response-timeout-ms 60000 --json",
+      "exit_code": 0,
+      "wall_ms": 13993,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step2.retry.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step2.retry.stderr.log",
+      "stdout_json": {
+        "response_text": "Your first message was about apples. Specifically, you wrote: \"First message about apples for clean retry.\"",
+        "elapsed_ms": 13847,
+        "wait_ms": 11930,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app/13ac5bceeec46d25"
+      }
+    }
+  ],
+  "non_gate_attempts": [
+    {
+      "phase": "initial_create_attempt_before_ui_settled",
+      "command": "node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --prompt \"First message about apples\" --response-timeout-ms 60000 --json",
+      "exit_code": 1,
+      "wall_ms": 12685,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step1.stdout.json",
+      "stdout_json": {
+        "response_text": "",
+        "elapsed_ms": 12543,
+        "wait_ms": 531,
+        "completion_detected": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "model_used": null,
+        "reuse_conversation": false,
+        "chat_url": "https://gemini.google.com/app"
+      }
+    },
+    {
+      "phase": "direct_send_rescue_diagnostic",
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.direct-send-step1.json",
+      "stdout_json": {
+        "ok": true,
+        "elapsed_ms": 22574,
+        "before": {
+          "url": "https://gemini.google.com/app",
+          "bodyText": "Conversation with Gemini\nHi Shark, what's the move?\n\nFirst message about apples\n\nPro\n\n\n",
+          "textboxes": [
+            "First message about apples",
+            ""
+          ]
+        },
+        "after": {
+          "url": "https://gemini.google.com/app/77f4fa1705dbc540",
+          "title": "Apples: Origins, Varieties, and Uses - Google Gemini",
+          "bodyText": "Conversation with Gemini\nYou said\n\nFirst message about apples\n\nGemini said\n\nMessage received! If we're kicking things off with apples, you've chosen a surprisingly complex fruit. They are one of the most cultivated and deeply researched crops in the world, belonging to the rose family (Rosaceae).\nOver 7,500 apple cultivars exist worldwide. Source: DaVita Kidney Care\n\nHere is a quick primer on what makes them so interesting:\n\nFast Facts\n\nOrigins: The wild ancestor of the modern domestic apple (Malus domestica) is Malus sieversii, a wild apple species that still grows in the mountains of Central Asia (specifically Kazakhstan).\n\nGenetic diversity: If you plant an apple seed, the resulting tree won't produce the same kind of apple as the parent. Because they are highly heterozygous, apples must be grafted to reliably produce a specific variety.\n\nRipening: Apples produce ethylene gas as they ripen. Storing them at room temperature makes them ripen up to 10 times faster than keeping them in the crisper drawer of your fridge.\n\nPopular Varieties Compared\n\nDifferent apples have distinct cellular structures that dictate how they hold up to heat or oxidation:\n\nVariety\tFlavor Profile\tBest Used For\nGranny Smith\tTart and crisp\tBaking (holds shape well), snacking\nHoneycrisp\tSweet, extremely juicy\tSnacking, salads\nFuji\tVery sweet, dense\tSnacking, making applesauce\nGala\tMildly sweet, floral\tSnacking, juicing\n\nWhere would you like to take this?\nBest apples for baking pies\nHow to grow apple trees\nNutritional breakdown\n\n\n\n\nPro\n\nGemini is AI and can make mistakes.",
+          "textboxes": [
+            "",
+            ""
+          ],
+          "modelResponses": [
+            "Gemini said Message received! If we're kicking things off with apples, you've chosen a surprisingly complex fruit. They are one of the most cultivated and deeply researched crops in the world, belonging to the rose family (Rosaceae). Over 7,500 apple cultivars exist worldwide. Source: DaVita Kidney Care Here is a quick primer on what makes them so interesting:Fast FactsOrigins: The wild ancestor of the modern domestic apple (Malus domestica) is Malus sieversii, a wild apple species that still grows in the mountains of Central Asia (specifically Kazakhstan).Genetic diversity: If you plant an apple seed, the resulting tree won't produce the same kind of apple as the parent. Because they are highly heterozygous, apples must be grafted to reliably produce a specific variety.Ripening: Apples produce ethylene gas as they ripen. Storing them at room temperature makes them ripen up to 10 times faster than keeping them in the crisper drawer of your fridge.Popular Varieties ComparedDifferent app",
+            "Message received! If we're kicking things off with apples, you've chosen a surprisingly complex fruit. They are one of the most cultivated and deeply researched crops in the world, belonging to the rose family (Rosaceae). Over 7,500 apple cultivars exist worldwide. Source: DaVita Kidney Care Here is a quick primer on what makes them so interesting:Fast FactsOrigins: The wild ancestor of the modern domestic apple (Malus domestica) is Malus sieversii, a wild apple species that still grows in the mountains of Central Asia (specifically Kazakhstan).Genetic diversity: If you plant an apple seed, the resulting tree won't produce the same kind of apple as the parent. Because they are highly heterozygous, apples must be grafted to reliably produce a specific variety.Ripening: Apples produce ethylene gas as they ripen. Storing them at room temperature makes them ripen up to 10 times faster than keeping them in the crisper drawer of your fridge.Popular Varieties ComparedDifferent apples have dis"
+          ]
+        }
+      }
+    },
+    {
+      "phase": "reuse_after_rescue_diagnostic",
+      "command": "node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 'https://gemini.google.com/app/77f4fa1705dbc540' --prompt 'What was my first message about?' --response-timeout-ms 60000 --json",
+      "exit_code": 0,
+      "wall_ms": 14350,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.step2.stdout.json",
+      "stdout_json": {
+        "response_text": "Your first message was about apples.",
+        "elapsed_ms": 14202,
+        "wait_ms": 12225,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app/77f4fa1705dbc540"
+      }
+    }
+  ],
+  "conversation_url": "https://gemini.google.com/app/13ac5bceeec46d25",
+  "response_text": "Your first message was about apples. Specifically, you wrote: \"First message about apples for clean retry.\"",
+  "gate": {
+    "criteria": "Second send-prompt uses --reuse-conversation with the first chat URL and response_text contains \"apple\".",
+    "passed": true,
+    "checks": {
+      "create_exit_zero": true,
+      "reuse_exit_zero": true,
+      "same_chat_url": true,
+      "reuse_flag_true": true,
+      "response_mentions_apple": true,
+      "completion_detected": true
+    }
+  },
+  "artifact": {
+    "type": "gemini_conversation_url",
+    "chat_url": "https://gemini.google.com/app/13ac5bceeec46d25"
+  },
+  "verified_by": "codex-bucket-G10",
+  "completion_gate": "Second response_text contains \"apple\" after --reuse-conversation targets the first chat URL.",
+  "recipe_ref": "examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml",
+  "sub_mcp_candidate": false,
+  "last_update": "2026-05-24",
+  "created_at": "2026-05-24T20:51:37.975Z",
+  "notes": "Clean retry used only CLI send-prompt calls for the gate; earlier non-gate diagnostic attempt is retained in evidence."
+}

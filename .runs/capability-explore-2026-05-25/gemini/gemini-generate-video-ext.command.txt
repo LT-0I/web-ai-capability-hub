@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:generate-video --profile gemini-9225 --backend extension-assisted-cdp --reuse-conversation --tab-url-contains 260e7fc538aef136 --prompt "A 5-second loop of a serene mountain landscape with soft camera pan" --download-dir /tmp/explore-2026-05-25/gemini --response-timeout-ms 600000 --json

@@ -1,0 +1,31 @@
+# Rewritten 2026-05-25 from codex G8 draft. FAIL_CLOSED_COMMAND_TIMEOUT.
+id: gemini-deep-research-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Submit Gemini Deep Research (fail-closed; COMMAND_TIMEOUT observed in G8)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:deep-research
+      - --profile
+      - gemini-9225
+      - --prompt
+      - "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report."
+      - --download-dir
+      - /tmp/explore-2026-05-25/gemini
+      - --response-timeout-ms
+      - "900000"
+      - --timeout-ms
+      - "900000"
+      - --confirmed
+      - --json
+    timeoutMs: 960000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: ok
+          equals: true
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-deep-research-mgr.json

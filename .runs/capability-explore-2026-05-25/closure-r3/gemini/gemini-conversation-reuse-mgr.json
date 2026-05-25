@@ -1,0 +1,946 @@
+{
+  "id": "gemini-conversation-reuse-mgr",
+  "service": "gemini",
+  "source": "G10",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": "examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml",
+  "closure_criterion": "Second response_text contains \"apple\" after --reuse-conversation targets the first chat URL.",
+  "started_at": "2026-05-25T03:00:19.333Z",
+  "ok": false,
+  "closureOk": false,
+  "cause": "workflow-run-failed",
+  "errorCode": "TIMEOUT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-25T03:00:19.483Z",
+      "finished_at": "2026-05-25T03:00:43.686Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "plan": {
+          "id": "gemini-conversation-reuse-mgr",
+          "target": "gemini",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T03:00:19.629Z",
+          "actions": [
+            {
+              "stepId": "create_conversation",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:send-prompt",
+                  "--profile",
+                  "gemini-9225",
+                  "--prompt",
+                  "First message about apples",
+                  "--response-timeout-ms",
+                  "60000",
+                  "--json"
+                ],
+                "timeoutMs": 120000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "response_text",
+                      "nonempty": true
+                    },
+                    {
+                      "path": "chat_url",
+                      "nonempty": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "stepId": "reuse_conversation",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:send-prompt",
+                  "--profile",
+                  "gemini-9225",
+                  "--reuse-conversation",
+                  "--tab-url-contains",
+                  "{{steps.create_conversation.chat_url}}",
+                  "--prompt",
+                  "What was my first message about?",
+                  "--response-timeout-ms",
+                  "60000",
+                  "--json"
+                ],
+                "timeoutMs": 120000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "response_text",
+                      "regex": "(?i)apple"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "gemini-conversation-reuse-mgr",
+            "target": "gemini",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover",
+            "steps": [
+              {
+                "id": "create_conversation",
+                "command": "<circular>",
+                "timeoutMs": 120000,
+                "gate": "<circular>"
+              },
+              {
+                "id": "reuse_conversation",
+                "command": "<circular>",
+                "timeoutMs": 120000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "create_conversation",
+            "ok": false,
+            "message": "command gate failed: exit_code 1 !== 0; json_path response_text empty",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:send-prompt",
+                "--profile",
+                "gemini-9225",
+                "--prompt",
+                "First message about apples",
+                "--response-timeout-ms",
+                "60000",
+                "--json"
+              ],
+              "exit_code": 1,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 7350,
+              "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 7201,\n  \"wait_ms\": 535,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "response_text": "",
+                "elapsed_ms": 7201,
+                "wait_ms": 535,
+                "completion_detected": false,
+                "errorCode": "COMMAND_TIMEOUT",
+                "error_code": "COMMAND_TIMEOUT",
+                "model_used": null,
+                "reuse_conversation": false,
+                "chat_url": "https://gemini.google.com/app"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 1,
+                  "ok": false
+                },
+                "json_path": [
+                  {
+                    "path": "response_text",
+                    "actual": "",
+                    "ok": false,
+                    "reasons": [
+                      "empty"
+                    ]
+                  },
+                  {
+                    "path": "chat_url",
+                    "actual": "https://gemini.google.com/app",
+                    "ok": true
+                  }
+                ]
+              },
+              "response_text": "",
+              "wait_ms": 535,
+              "completion_detected": false,
+              "errorCode": "COMMAND_TIMEOUT",
+              "error_code": "COMMAND_TIMEOUT",
+              "model_used": null,
+              "reuse_conversation": false,
+              "chat_url": "https://gemini.google.com/app"
+            }
+          },
+          {
+            "stepId": "reuse_conversation",
+            "ok": false,
+            "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:send-prompt",
+                "--profile",
+                "gemini-9225",
+                "--reuse-conversation",
+                "--tab-url-contains",
+                "https://gemini.google.com/app",
+                "--prompt",
+                "What was my first message about?",
+                "--response-timeout-ms",
+                "60000",
+                "--json"
+              ],
+              "exit_code": 1,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 16635,
+              "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"error\": \"locator.waitFor: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]').first() to be visible\\u001b[22m\\n\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_send_prompt\",\n    \"stage\": \"handler\",\n    \"message\": \"locator.waitFor: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]').first() to be visible\\u001b[22m\\n\",\n    \"error_name\": \"TimeoutError\"\n  }\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "ok": false,
+                "errorCode": "COMMAND_TIMEOUT",
+                "error_code": "COMMAND_TIMEOUT",
+                "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]').first() to be visible\u001b[22m\n",
+                "evidence": {
+                  "tool": "webai_gemini_send_prompt",
+                  "stage": "handler",
+                  "message": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]').first() to be visible\u001b[22m\n",
+                  "error_name": "TimeoutError"
+                }
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 1,
+                  "ok": false
+                },
+                "json_path": [
+                  {
+                    "path": "response_text",
+                    "ok": false,
+                    "reasons": [
+                      "regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group"
+                    ]
+                  }
+                ]
+              },
+              "errorCode": "COMMAND_TIMEOUT",
+              "error_code": "COMMAND_TIMEOUT",
+              "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]').first() to be visible\u001b[22m\n",
+              "evidence": "<circular>"
+            }
+          }
+        ],
+        "runId": "run_d8ee3a1e9b661aa2"
+      },
+      "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-conversation-reuse-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T03:00:19.629Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"create_conversation\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:send-prompt\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--prompt\",\n            \"First message about apples\",\n            \"--response-timeout-ms\",\n            \"60000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"chat_url\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      },\n      {\n        \"stepId\": \"reuse_conversation\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:send-prompt\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--reuse-conversation\",\n            \"--tab-url-contains\",\n            \"{{steps.create_conversation.chat_url}}\",\n            \"--prompt\",\n            \"What was my first message about?\",\n            \"--response-timeout-ms\",\n            \"60000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"(?i)apple\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-conversation-reuse-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover\",\n      \"steps\": [\n        {\n          \"id\": \"create_conversation\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        },\n        {\n          \"id\": \"reuse_conversation\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"create_conversation\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path response_text empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:send-prompt\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--prompt\",\n          \"First message about apples\",\n          \"--response-timeout-ms\",\n          \"60000\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 7350,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"\\\",\\n  \\\"elapsed_ms\\\": 7201,\\n  \\\"wait_ms\\\": 535,\\n  \\\"completion_detected\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"model_used\\\": null,\\n  \\\"reuse_conversation\\\": false,\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/app\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"\",\n          \"elapsed_ms\": 7201,\n          \"wait_ms\": 535,\n          \"completion_detected\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"model_used\": null,\n          \"reuse_conversation\": false,\n          \"chat_url\": \"https://gemini.google.com/app\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"chat_url\",\n              \"actual\": \"https://gemini.google.com/app\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"\",\n        \"wait_ms\": 535,\n        \"completion_detected\": false,\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"model_used\": null,\n        \"reuse_conversation\": false,\n        \"chat_url\": \"https://gemini.google.com/app\"\n      }\n    },\n    {\n      \"stepId\": \"reuse_conversation\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path response_text regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:send-prompt\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--reuse-conversation\",\n          \"--tab-url-contains\",\n          \"https://gemini.google.com/app\",\n          \"--prompt\",\n          \"What was my first message about?\",\n          \"--response-timeout-ms\",\n          \"60000\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 16635,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error\\\": \\\"locator.waitFor: Timeout 15000ms exceeded.\\\\nCall log:\\\\n\\\\u001b[2m  - waiting for locator('div[role=\\\\\\\"textbox\\\\\\\"][aria-label=\\\\\\\"Enter a prompt for Gemini\\\\\\\"][contenteditable=\\\\\\\"true\\\\\\\"][data-placeholder=\\\\\\\"Ask Gemini\\\\\\\"]').first() to be visible\\\\u001b[22m\\\\n\\\",\\n  \\\"evidence\\\": {\\n    \\\"tool\\\": \\\"webai_gemini_send_prompt\\\",\\n    \\\"stage\\\": \\\"handler\\\",\\n    \\\"message\\\": \\\"locator.waitFor: Timeout 15000ms exceeded.\\\\nCall log:\\\\n\\\\u001b[2m  - waiting for locator('div[role=\\\\\\\"textbox\\\\\\\"][aria-label=\\\\\\\"Enter a prompt for Gemini\\\\\\\"][contenteditable=\\\\\\\"true\\\\\\\"][data-placeholder=\\\\\\\"Ask Gemini\\\\\\\"]').first() to be visible\\\\u001b[22m\\\\n\\\",\\n    \\\"error_name\\\": \\\"TimeoutError\\\"\\n  }\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"error\": \"locator.waitFor: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]').first() to be visible\\u001b[22m\\n\",\n          \"evidence\": {\n            \"tool\": \"webai_gemini_send_prompt\",\n            \"stage\": \"handler\",\n            \"message\": \"locator.waitFor: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]').first() to be visible\\u001b[22m\\n\",\n            \"error_name\": \"TimeoutError\"\n          }\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group\"\n              ]\n            }\n          ]\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"error\": \"locator.waitFor: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]').first() to be visible\\u001b[22m\\n\",\n        \"evidence\": \"<circular>\"\n      }\n    }\n  ],\n  \"runId\": \"run_d8ee3a1e9b661aa2\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-05-25T03:00:43.686Z",
+      "finished_at": "2026-05-25T03:01:38.520Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "plan": {
+          "id": "gemini-conversation-reuse-mgr",
+          "target": "gemini",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T03:00:43.840Z",
+          "actions": [
+            {
+              "stepId": "create_conversation",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:send-prompt",
+                  "--profile",
+                  "gemini-9225",
+                  "--prompt",
+                  "First message about apples",
+                  "--response-timeout-ms",
+                  "60000",
+                  "--json"
+                ],
+                "timeoutMs": 120000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "response_text",
+                      "nonempty": true
+                    },
+                    {
+                      "path": "chat_url",
+                      "nonempty": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "stepId": "reuse_conversation",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:send-prompt",
+                  "--profile",
+                  "gemini-9225",
+                  "--reuse-conversation",
+                  "--tab-url-contains",
+                  "{{steps.create_conversation.chat_url}}",
+                  "--prompt",
+                  "What was my first message about?",
+                  "--response-timeout-ms",
+                  "60000",
+                  "--json"
+                ],
+                "timeoutMs": 120000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "response_text",
+                      "regex": "(?i)apple"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "gemini-conversation-reuse-mgr",
+            "target": "gemini",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover",
+            "steps": [
+              {
+                "id": "create_conversation",
+                "command": "<circular>",
+                "timeoutMs": 120000,
+                "gate": "<circular>"
+              },
+              {
+                "id": "reuse_conversation",
+                "command": "<circular>",
+                "timeoutMs": 120000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "create_conversation",
+            "ok": true,
+            "message": "command gate passed",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:send-prompt",
+                "--profile",
+                "gemini-9225",
+                "--prompt",
+                "First message about apples",
+                "--response-timeout-ms",
+                "60000",
+                "--json"
+              ],
+              "exit_code": 0,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 33648,
+              "stdout": "{\n  \"response_text\": \"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\"Father of Apples.\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\"Message\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\",\n  \"elapsed_ms\": 33496,\n  \"wait_ms\": 27461,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"First message about apples\",\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "response_text": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+                "elapsed_ms": 33496,
+                "wait_ms": 27461,
+                "completion_detected": true,
+                "errorCode": null,
+                "model_used": "First message about apples",
+                "reuse_conversation": false,
+                "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 0,
+                  "ok": true
+                },
+                "json_path": [
+                  {
+                    "path": "response_text",
+                    "actual": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+                    "ok": true
+                  },
+                  {
+                    "path": "chat_url",
+                    "actual": "https://gemini.google.com/app/a8d2915617412199",
+                    "ok": true
+                  }
+                ]
+              },
+              "response_text": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+              "wait_ms": 27461,
+              "completion_detected": true,
+              "errorCode": null,
+              "model_used": "First message about apples",
+              "reuse_conversation": false,
+              "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+            }
+          },
+          {
+            "stepId": "reuse_conversation",
+            "ok": false,
+            "message": "command gate failed: json_path response_text regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:send-prompt",
+                "--profile",
+                "gemini-9225",
+                "--reuse-conversation",
+                "--tab-url-contains",
+                "https://gemini.google.com/app/a8d2915617412199",
+                "--prompt",
+                "What was my first message about?",
+                "--response-timeout-ms",
+                "60000",
+                "--json"
+              ],
+              "exit_code": 0,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 20964,
+              "stdout": "{\n  \"response_text\": \"Your first message was literally just the phrase, \\\"First message about apples\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\",\n  \"elapsed_ms\": 20818,\n  \"wait_ms\": 14851,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "response_text": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+                "elapsed_ms": 20818,
+                "wait_ms": 14851,
+                "completion_detected": true,
+                "errorCode": null,
+                "model_used": null,
+                "reuse_conversation": true,
+                "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 0,
+                  "ok": true
+                },
+                "json_path": [
+                  {
+                    "path": "response_text",
+                    "actual": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+                    "ok": false,
+                    "reasons": [
+                      "regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group"
+                    ]
+                  }
+                ]
+              },
+              "response_text": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+              "wait_ms": 14851,
+              "completion_detected": true,
+              "errorCode": "COMMAND_GATE_FAILED",
+              "model_used": null,
+              "reuse_conversation": true,
+              "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+            }
+          }
+        ],
+        "runId": "run_19eb4ef3f7ef19c0"
+      },
+      "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-conversation-reuse-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T03:00:43.840Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"create_conversation\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:send-prompt\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--prompt\",\n            \"First message about apples\",\n            \"--response-timeout-ms\",\n            \"60000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"chat_url\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      },\n      {\n        \"stepId\": \"reuse_conversation\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:send-prompt\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--reuse-conversation\",\n            \"--tab-url-contains\",\n            \"{{steps.create_conversation.chat_url}}\",\n            \"--prompt\",\n            \"What was my first message about?\",\n            \"--response-timeout-ms\",\n            \"60000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"(?i)apple\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-conversation-reuse-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover\",\n      \"steps\": [\n        {\n          \"id\": \"create_conversation\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        },\n        {\n          \"id\": \"reuse_conversation\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"create_conversation\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:send-prompt\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--prompt\",\n          \"First message about apples\",\n          \"--response-timeout-ms\",\n          \"60000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 33648,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\\\\\"Father of Apples.\\\\\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\\\\\"Message\\\\\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\\\",\\n  \\\"elapsed_ms\\\": 33496,\\n  \\\"wait_ms\\\": 27461,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"model_used\\\": \\\"First message about apples\\\",\\n  \\\"reuse_conversation\\\": false,\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/app/a8d2915617412199\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\"Father of Apples.\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\"Message\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\",\n          \"elapsed_ms\": 33496,\n          \"wait_ms\": 27461,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"model_used\": \"First message about apples\",\n          \"reuse_conversation\": false,\n          \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\"Father of Apples.\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\"Message\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"chat_url\",\n              \"actual\": \"https://gemini.google.com/app/a8d2915617412199\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\"Father of Apples.\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\"Message\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\",\n        \"wait_ms\": 27461,\n        \"completion_detected\": true,\n        \"errorCode\": null,\n        \"model_used\": \"First message about apples\",\n        \"reuse_conversation\": false,\n        \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n      }\n    },\n    {\n      \"stepId\": \"reuse_conversation\",\n      \"ok\": false,\n      \"message\": \"command gate failed: json_path response_text regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:send-prompt\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--reuse-conversation\",\n          \"--tab-url-contains\",\n          \"https://gemini.google.com/app/a8d2915617412199\",\n          \"--prompt\",\n          \"What was my first message about?\",\n          \"--response-timeout-ms\",\n          \"60000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 20964,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"Your first message was literally just the phrase, \\\\\\\"First message about apples\\\\\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\\\",\\n  \\\"elapsed_ms\\\": 20818,\\n  \\\"wait_ms\\\": 14851,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"model_used\\\": null,\\n  \\\"reuse_conversation\\\": true,\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/app/a8d2915617412199\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"Your first message was literally just the phrase, \\\"First message about apples\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\",\n          \"elapsed_ms\": 20818,\n          \"wait_ms\": 14851,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"model_used\": null,\n          \"reuse_conversation\": true,\n          \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Your first message was literally just the phrase, \\\"First message about apples\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group\"\n              ]\n            }\n          ]\n        },\n        \"response_text\": \"Your first message was literally just the phrase, \\\"First message about apples\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\",\n        \"wait_ms\": 14851,\n        \"completion_detected\": true,\n        \"errorCode\": \"COMMAND_GATE_FAILED\",\n        \"model_used\": null,\n        \"reuse_conversation\": true,\n        \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n      }\n    }\n  ],\n  \"runId\": \"run_19eb4ef3f7ef19c0\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "gemini-9225",
+    "status": {
+      "profile": "gemini-9225",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9225,
+      "connected": true,
+      "launchedByPackage": false,
+      "processId": 1712347,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "B14654E5232ADCB4028567CD452E3F88",
+          "title": "Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app?hl=en",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AD6E17309E2A186E171C86B015E759C6",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "AD6E17309E2A186E171C86B015E759C6",
+          "parentId": "B14654E5232ADCB4028567CD452E3F88",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/gems/view",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4891B613857EF9D4C983C98D346F3DFD",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "4891B613857EF9D4C983C98D346F3DFD",
+          "parentId": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A5381D001A0C77AD3D2CBBEE7EEACCFD",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "A5381D001A0C77AD3D2CBBEE7EEACCFD",
+          "parentId": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "https://opal.google/_app/?lite=true&amp;color-scheme=dark",
+          "type": "iframe",
+          "url": "https://opal.google/_app/?lite=true&color-scheme=dark",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "AB929774CC368427D5108F1969B82F1D",
+          "title": "Exploring Apple Varieties and History - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/365dce552b020c8b",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "ED48360EA99AEC744A8021C33F2A68B4",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "9477E689C6EDC614EF539939A0C3DC0F",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e",
+          "type": "iframe",
+          "url": "blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "A008875AF8772180352B1D55F0F4E796",
+          "title": "Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/gem/coding-partner/2d96af2c3934c271",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "90FEB2142EA0B68E72E1585DAFD3041C",
+          "parentId": "A008875AF8772180352B1D55F0F4E796",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "Apps",
+          "type": "page",
+          "url": "https://gemini.google.com/apps",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "2F3D8296A77357A426217AE993C19CB0",
+          "parentId": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42",
+          "id": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E",
+          "id": "3CD057D01379E753B4725214C0CA181E",
+          "parentId": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9",
+          "id": "C55CB73F34730AD0B85E62349DE999D9",
+          "parentId": "3CD057D01379E753B4725214C0CA181E",
+          "title": "https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN",
+          "type": "iframe",
+          "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4",
+          "id": "CDC9032428814FC8BBA9D101647A94A4",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    "error": "{\n  \"profile\": \"gemini-9225\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/gemini-9225\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9225\",\n  \"cdpPort\": 9225,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 1712347,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"B14654E5232ADCB4028567CD452E3F88\",\n      \"title\": \"Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app?hl=en\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AD6E17309E2A186E171C86B015E759C6\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"AD6E17309E2A186E171C86B015E759C6\",\n      \"parentId\": \"B14654E5232ADCB4028567CD452E3F88\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/AD6E17309E2A186E171C86B015E759C6\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/gems/view\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4891B613857EF9D4C983C98D346F3DFD\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"4891B613857EF9D4C983C98D346F3DFD\",\n      \"parentId\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/4891B613857EF9D4C983C98D346F3DFD\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A5381D001A0C77AD3D2CBBEE7EEACCFD\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"A5381D001A0C77AD3D2CBBEE7EEACCFD\",\n      \"parentId\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"https://opal.google/_app/?lite=true&amp;color-scheme=dark\",\n      \"type\": \"iframe\",\n      \"url\": \"https://opal.google/_app/?lite=true&color-scheme=dark\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/A5381D001A0C77AD3D2CBBEE7EEACCFD\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"Exploring Apple Varieties and History - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/365dce552b020c8b\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"ED48360EA99AEC744A8021C33F2A68B4\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/ED48360EA99AEC744A8021C33F2A68B4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"9477E689C6EDC614EF539939A0C3DC0F\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e\",\n      \"type\": \"iframe\",\n      \"url\": \"blob:https://1uzjmbnt4vwl2a68i8wjrfgczbcjc087tvw9jekwczb0oq2qd7-h917864466.scf.usercontent.goog/2f9f4d23-bbd4-46ec-8896-a9e75f95f04e\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/9477E689C6EDC614EF539939A0C3DC0F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/gem/coding-partner/2d96af2c3934c271\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"parentId\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"Apps\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/apps\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"2F3D8296A77357A426217AE993C19CB0\",\n      \"parentId\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"id\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\",\n      \"id\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"parentId\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\",\n      \"id\": \"C55CB73F34730AD0B85E62349DE999D9\",\n      \"parentId\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"title\": \"https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN\",\n      \"type\": \"iframe\",\n      \"url\": \"https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\",\n      \"id\": \"CDC9032428814FC8BBA9D101647A94A4\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/browser/8e919c0a-a019-43bc-bad4-9a93876890c0\"\n}\n"
+  },
+  "workflow_output": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-conversation-reuse-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T03:00:43.840Z",
+      "actions": [
+        {
+          "stepId": "create_conversation",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:send-prompt",
+              "--profile",
+              "gemini-9225",
+              "--prompt",
+              "First message about apples",
+              "--response-timeout-ms",
+              "60000",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "chat_url",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "reuse_conversation",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:send-prompt",
+              "--profile",
+              "gemini-9225",
+              "--reuse-conversation",
+              "--tab-url-contains",
+              "{{steps.create_conversation.chat_url}}",
+              "--prompt",
+              "What was my first message about?",
+              "--response-timeout-ms",
+              "60000",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "(?i)apple"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-conversation-reuse-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover",
+        "steps": [
+          {
+            "id": "create_conversation",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "reuse_conversation",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "create_conversation",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "First message about apples",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 33648,
+          "stdout": "{\n  \"response_text\": \"If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \\\"Father of Apples.\\\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \\\"Message\\\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes\",\n  \"elapsed_ms\": 33496,\n  \"wait_ms\": 27461,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"First message about apples\",\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+            "elapsed_ms": 33496,
+            "wait_ms": 27461,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": "First message about apples",
+            "reuse_conversation": false,
+            "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+                "ok": true
+              },
+              {
+                "path": "chat_url",
+                "actual": "https://gemini.google.com/app/a8d2915617412199",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "If we're starting a conversation about apples, we have to start at the very beginning—long before they were baked into pies or pressed into cider. A modern descendant of ancient wild apples. Source: iStock The Original AppleEvery modern apple you've ever eaten can trace its roots back to the exact same place: the Tian Shan mountains of Kazakhstan.Around 8,000 BCE, wild apples (known scientifically as Malus sieversii) grew in massive forests there. The very name of Kazakhstan's largest city, Almaty, translates to \"Father of Apples.\" Bears and birds wandering through these forests ate the sweetest, largest fruit and scattered the seeds, acting as the very first apple breeders.The First \"Message\"If you're looking for the literal first message ever recorded about apples, that credit goes to the Sumerians. Around 3,000 BCE in ancient Mesopotamia, they carved the first known written records of the fruit onto clay tablets. These texts documented six distinct varieties, detailed early grafting procedures using bronze knives, and even recorded trade agreements where 100 bushels of apples were exchanged for silver.Want to know how they spread across the world?Yes",
+          "wait_ms": 27461,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "First message about apples",
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+        }
+      },
+      {
+        "stepId": "reuse_conversation",
+        "ok": false,
+        "message": "command gate failed: json_path response_text regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--reuse-conversation",
+            "--tab-url-contains",
+            "https://gemini.google.com/app/a8d2915617412199",
+            "--prompt",
+            "What was my first message about?",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 20964,
+          "stdout": "{\n  \"response_text\": \"Your first message was literally just the phrase, \\\"First message about apples\\\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.\",\n  \"elapsed_ms\": 20818,\n  \"wait_ms\": 14851,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app/a8d2915617412199\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+            "elapsed_ms": 20818,
+            "wait_ms": 14851,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": null,
+            "reuse_conversation": true,
+            "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+                "ok": false,
+                "reasons": [
+                  "regex /(?i)apple/ failed: Invalid regular expression: /(?i)apple/: Invalid group"
+                ]
+              }
+            ]
+          },
+          "response_text": "Your first message was literally just the phrase, \"First message about apples\"—which kicked off our chat about their origins in Kazakhstan and the ancient Sumerians.",
+          "wait_ms": 14851,
+          "completion_detected": true,
+          "errorCode": "COMMAND_GATE_FAILED",
+          "model_used": null,
+          "reuse_conversation": true,
+          "chat_url": "https://gemini.google.com/app/a8d2915617412199"
+        }
+      }
+    ],
+    "runId": "run_19eb4ef3f7ef19c0"
+  },
+  "closure_status": "red",
+  "finished_at": "2026-05-25T03:01:38.520Z"
+}

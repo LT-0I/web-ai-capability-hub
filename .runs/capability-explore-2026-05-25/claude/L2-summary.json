@@ -1,0 +1,25 @@
+{
+  "bucket": "L2",
+  "service": "claude",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "failures": 0,
+  "results": [
+    {
+      "capId": "claude-send-incognito-ext",
+      "status": "OK_EXT_BACKEND",
+      "ok": true,
+      "evidenceRel": ".runs/capability-explore-2026-05-25/claude/claude-send-incognito-ext.json",
+      "workflowRel": "examples/workflows/claude-claude-send-incognito-ext.yaml",
+      "wall_ms": 8199
+    },
+    {
+      "capId": "claude-send-style-ext",
+      "status": "OK_EXT_BACKEND",
+      "ok": true,
+      "evidenceRel": ".runs/capability-explore-2026-05-25/claude/claude-send-style-ext.json",
+      "workflowRel": "examples/workflows/claude-claude-send-style-ext.yaml",
+      "wall_ms": 20434
+    }
+  ]
+}

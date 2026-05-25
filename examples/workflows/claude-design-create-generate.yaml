@@ -1,0 +1,30 @@
+id: claude-design-create-generate
+target: claude
+profile: claude-9224
+mode: assisted
+description: Create a Claude Design project, generate a Probe Cafe landing page, and verify generated HTML is retrievable.
+steps:
+  - id: create-project
+    use_capability: claude-design-create-project-mgr
+    confirmed: true
+    input:
+      backend: "managed-cdp"
+      name: "Capability Probe Design"
+      fidelity: "high_fidelity"
+  - id: generate-landing-page
+    use_capability: claude-design-generate-mgr
+    confirmed: true
+    input:
+      backend: "managed-cdp"
+      project_url: "{{steps.create-project.output.projectUrl}}"
+      prompt: "Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section."
+      timeout_ms: 300000
+  - id: get-html
+    action: read
+    input:
+      mcp_tool: "webai_claude_design_get_html"
+      backend: "managed-cdp"
+      project_url: "{{steps.create-project.output.projectUrl}}"
+      gate: "savedPath exists and byteSize > 200"
+result:
+  type: text

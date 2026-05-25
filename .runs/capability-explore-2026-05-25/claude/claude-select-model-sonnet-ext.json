@@ -1,0 +1,74 @@
+{
+  "id": "claude-select-model-sonnet-ext",
+  "service": "claude",
+  "bucket": "L1",
+  "backend": "extension-assisted-cdp",
+  "profile": "claude-9224",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "ok": false,
+  "completion_gate": "ok === true AND model_used contains \"Sonnet\"",
+  "gate_result": {
+    "ok": false,
+    "details": {
+      "ok": true,
+      "model_used": ""
+    }
+  },
+  "chat_url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "node dist/src/cli.js webai:claude:select-model --profile claude-9224 --backend extension-assisted-cdp --model \"Sonnet 4.6\" --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 2349,
+      "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Sonnet 4.6\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": true,
+        "selected_model": "Sonnet 4.6",
+        "selected_thinking_level": null,
+        "errorCode": null
+      },
+      "parse_error": null
+    },
+    {
+      "attempt": 2,
+      "command": "node dist/src/cli.js webai:claude:select-model --profile claude-9224 --backend extension-assisted-cdp --model \"Sonnet 4.6\" --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --json",
+      "code": 0,
+      "signal": null,
+      "timed_out": false,
+      "wall_ms": 1049,
+      "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Sonnet 4.6\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+      "stderr": "",
+      "parsed": {
+        "ok": true,
+        "selected_model": "Sonnet 4.6",
+        "selected_thinking_level": null,
+        "errorCode": null
+      },
+      "parse_error": null
+    }
+  ],
+  "terminal_result": {
+    "command": "node dist/src/cli.js webai:claude:select-model --profile claude-9224 --backend extension-assisted-cdp --model \"Sonnet 4.6\" --tab-url-contains https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c --json",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "wall_ms": 1049,
+    "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Sonnet 4.6\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+    "stderr": "",
+    "parsed": {
+      "ok": true,
+      "selected_model": "Sonnet 4.6",
+      "selected_thinking_level": null,
+      "errorCode": null
+    },
+    "parse_error": null
+  },
+  "workflow": "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+  "started_at": "2026-05-24T17:12:05.434Z",
+  "finished_at": "2026-05-24T17:12:08.832Z",
+  "wall_ms": 3398
+}

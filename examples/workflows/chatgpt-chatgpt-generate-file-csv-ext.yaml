@@ -1,0 +1,32 @@
+# Rewritten 2026-05-25 from codex C5 draft. FAIL_CLOSED_EXT_BACKEND status; gate honors original success criteria.
+id: chatgpt-generate-file-csv-ext
+target: chatgpt
+profile: chatgpt
+mode: automatic
+description: Generate a downloadable .csv file in ChatGPT
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:chatgpt:generate-file
+      - --profile
+      - chatgpt
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.
+      - --expected-extension
+      - csv
+      - --download-dir
+      - /tmp/explore-2026-05-25/chatgpt
+      - --artifact-class
+      - code
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: path
+          nonempty: true
+evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-csv-ext.json

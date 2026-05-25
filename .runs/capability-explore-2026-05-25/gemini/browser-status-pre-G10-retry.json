@@ -1,0 +1,115 @@
+{
+  "profile": "gemini-9225",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "[REDACTED]",
+  "cdpEndpoint": "[REDACTED]",
+  "cdpPort": 9225,
+  "connected": true,
+  "launchedByPackage": false,
+  "processId": 1712347,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "A008875AF8772180352B1D55F0F4E796",
+      "title": "Gemini",
+      "type": "page",
+      "url": "https://gemini.google.com/gem/coding-partner/2d96af2c3934c271",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "90FEB2142EA0B68E72E1585DAFD3041C",
+      "parentId": "A008875AF8772180352B1D55F0F4E796",
+      "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+      "type": "iframe",
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "AB929774CC368427D5108F1969B82F1D",
+      "title": "Google Gemini",
+      "type": "page",
+      "url": "https://gemini.google.com/app",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "8E9AFCD47B744FE59C5DA231086AFD4D",
+      "title": "Gemini",
+      "type": "page",
+      "url": "https://gemini.google.com/gems/view",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/57475E85B0BDC8C036ECE402298FAF58",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "57475E85B0BDC8C036ECE402298FAF58",
+      "parentId": "8E9AFCD47B744FE59C5DA231086AFD4D",
+      "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+      "type": "iframe",
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8497C016FFADD460E41E3F4DE83BEEB3",
+      "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+      "id": "8497C016FFADD460E41E3F4DE83BEEB3",
+      "parentId": "8E9AFCD47B744FE59C5DA231086AFD4D",
+      "title": "https://opal.google/_app/?origin=https%3A%2F%2Fgemini.google.com&amp;color-scheme=dark&amp;Woe=true&amp;shellOrigin=https%3A%2F%2Fopal.google.com&amp;lite=true",
+      "type": "iframe",
+      "url": "https://opal.google/_app/?origin=https%3A%2F%2Fgemini.google.com&color-scheme=dark&Woe=true&shellOrigin=https%3A%2F%2Fopal.google.com&lite=true",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42",
+      "id": "4EA1AA2F9C4BED62C786A8544D070A42",
+      "title": "新标签页",
+      "type": "page",
+      "url": "chrome://newtab/",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E",
+      "id": "3CD057D01379E753B4725214C0CA181E",
+      "parentId": "4EA1AA2F9C4BED62C786A8544D070A42",
+      "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+      "type": "iframe",
+      "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9",
+      "id": "C55CB73F34730AD0B85E62349DE999D9",
+      "parentId": "3CD057D01379E753B4725214C0CA181E",
+      "title": "https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN",
+      "type": "iframe",
+      "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4",
+      "id": "CDC9032428814FC8BBA9D101647A94A4",
+      "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+      "type": "service_worker",
+      "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "[REDACTED]"
+}

@@ -1,0 +1,128 @@
+{
+  "id": "gemini-generate-video-ext",
+  "service": "gemini",
+  "bucket": "G4",
+  "source": "capability-explore-2026-05-25/G4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "backend": "extension-assisted-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_generate_video",
+  "prompt": "A 5-second loop of a serene mountain landscape with soft camera pan",
+  "download_dir": "/tmp/explore-2026-05-25/gemini",
+  "response_timeout_ms": 600000,
+  "reuse_conversation": true,
+  "tab_url_contains": "260e7fc538aef136",
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:gemini:generate-video",
+        "--profile",
+        "gemini-9225",
+        "--backend",
+        "extension-assisted-cdp",
+        "--reuse-conversation",
+        "--tab-url-contains",
+        "260e7fc538aef136",
+        "--prompt",
+        "A 5-second loop of a serene mountain landscape with soft camera pan",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/gemini",
+        "--response-timeout-ms",
+        "600000",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 196,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.stdout.1.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.stderr.1.log",
+      "stdout_json": {
+        "task_id": "task_1779650199193_58046fd4b0f8",
+        "status": "running",
+        "profile": "<profile>",
+        "lease_id": "lease_1779650199193_9735ee76",
+        "started_at": "2026-05-24T19:16:39.193Z"
+      },
+      "task_id": "task_1779650199193_58046fd4b0f8",
+      "task_status_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.task-status.1.json",
+      "task_status_json": {
+        "status": "failed",
+        "progress_label": "failed: ELEMENT_NOT_FOUND",
+        "result": {
+          "accounts_tried_count": 1
+        },
+        "errorCode": "ELEMENT_NOT_FOUND"
+      },
+      "stderr_tail": ""
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "webai:gemini:generate-video",
+        "--profile",
+        "gemini-9225",
+        "--backend",
+        "extension-assisted-cdp",
+        "--reuse-conversation",
+        "--tab-url-contains",
+        "260e7fc538aef136",
+        "--prompt",
+        "A 5-second loop of a serene mountain landscape with soft camera pan",
+        "--download-dir",
+        "/tmp/explore-2026-05-25/gemini",
+        "--response-timeout-ms",
+        "600000",
+        "--json"
+      ],
+      "exit_code": 0,
+      "wall_ms": 208,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.stdout.2.log",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.stderr.2.log",
+      "stdout_json": {
+        "task_id": "task_1779650265229_a95da180eb2f",
+        "status": "running",
+        "profile": "<profile>",
+        "lease_id": "lease_1779650265229_9a7ccf54",
+        "started_at": "2026-05-24T19:17:45.229Z"
+      },
+      "task_id": "task_1779650265229_a95da180eb2f",
+      "task_status_path": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.task-status.102.json",
+      "task_status_json": {
+        "status": "failed",
+        "progress_label": "failed: ELEMENT_NOT_FOUND",
+        "result": {
+          "accounts_tried_count": 1
+        },
+        "errorCode": "ELEMENT_NOT_FOUND"
+      },
+      "stderr_tail": ""
+    }
+  ],
+  "gate": {
+    "criteria": "path non-empty AND file exists AND filename ends with .mp4 AND size_bytes > 16384",
+    "passed": false,
+    "checks": {
+      "path_non_empty": false,
+      "file_exists": false,
+      "filename_mp4": false,
+      "size_bytes_gt_16384": false
+    }
+  },
+  "artifact": null,
+  "quota_limited": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "cause": "failed: ELEMENT_NOT_FOUND",
+  "verified_by": "codex-bucket-G4",
+  "completion_gate": "path non-empty AND file exists AND filename ends with .mp4 AND size_bytes > 16384",
+  "recipe_ref": "examples/workflows/gemini-generate-video-ext.yaml",
+  "sub_mcp_candidate": false,
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T19:20:14.491Z"
+}

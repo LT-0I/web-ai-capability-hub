@@ -1,0 +1,96 @@
+{
+  "id": "gemini-workspace-mgr",
+  "service": "gemini",
+  "bucket": "G10",
+  "source": "capability-explore-2026-05-25/G10",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "backend": "managed-cdp",
+  "profile": "gemini-9225",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "mcp_tool": "webai_gemini_workspace",
+  "ok": true,
+  "count": 2,
+  "workspaces": [
+    {
+      "surface": "gems",
+      "url": "https://gemini.google.com/gems/view",
+      "summary": "0 Gem conversation link(s) visible"
+    },
+    {
+      "surface": "workspace_integration",
+      "url": "https://gemini.google.com/apps",
+      "summary": "Google Workspace integration route opened (observe-only)"
+    }
+  ],
+  "attempts": [
+    {
+      "phase": "legacy_prompt_command",
+      "command": "node dist/src/cli.js webai:gemini:workspace --profile gemini-9225 --action list --json",
+      "exit_code": 1,
+      "wall_ms": 134,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.legacy.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.legacy.stderr.log",
+      "stdout_json": {
+        "ok": false,
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.surface is required",
+        "evidence": {
+          "tool": "webai_gemini_workspace",
+          "stage": "schema",
+          "message": "$.surface is required",
+          "error_name": "Error"
+        }
+      }
+    },
+    {
+      "phase": "current_schema_surface_gems",
+      "command": "node dist/src/cli.js webai:gemini:workspace --profile gemini-9225 --surface gems --json",
+      "exit_code": 0,
+      "wall_ms": 1586,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.gems.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.gems.stderr.log",
+      "stdout_json": {
+        "surface": "gems",
+        "url": "https://gemini.google.com/gems/view",
+        "summary": "0 Gem conversation link(s) visible"
+      }
+    },
+    {
+      "phase": "current_schema_surface_workspace_integration",
+      "command": "node dist/src/cli.js webai:gemini:workspace --profile gemini-9225 --surface workspace_integration --json",
+      "exit_code": 0,
+      "wall_ms": 1537,
+      "stdout_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.workspace_integration.stdout.json",
+      "stderr_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.workspace_integration.stderr.log",
+      "stdout_json": {
+        "surface": "workspace_integration",
+        "url": "https://gemini.google.com/apps",
+        "summary": "Google Workspace integration route opened (observe-only)"
+      }
+    }
+  ],
+  "gate": {
+    "criteria": "Evidence returns a workspaces array or {ok:true,count:N}.",
+    "passed": true,
+    "checks": {
+      "legacy_command_reports_schema_drift": true,
+      "current_surface_gems_exit_zero": true,
+      "current_surface_workspace_integration_exit_zero": true,
+      "workspaces_array": true,
+      "count_positive": true
+    }
+  },
+  "artifact": {
+    "type": "gemini_workspace_surface_summary",
+    "relative_path": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json"
+  },
+  "verified_by": "codex-bucket-G10",
+  "completion_gate": "Returns workspaces array or {ok:true,count:N}.",
+  "recipe_ref": "examples/workflows/gemini-gemini-workspace-mgr.yaml",
+  "sub_mcp_candidate": false,
+  "last_update": "2026-05-24",
+  "created_at": "2026-05-24T20:51:37.975Z",
+  "notes": "Prompt legacy command --action list is invalid in this build because the current schema requires --surface; verified current read-only surfaces and normalized them to the requested workspaces/count evidence shape."
+}

@@ -1,0 +1,74 @@
+{
+  "id": "gemini-send-basic-mgr",
+  "service": "gemini",
+  "bucket": "G1",
+  "profile": "gemini-9225",
+  "backend": "managed-cdp",
+  "cdp_port": 9225,
+  "native_port": 12308,
+  "conversation_url": "https://gemini.google.com/app/260e7fc538aef136",
+  "tab_url_contains": "260e7fc538aef136",
+  "source": "capability-explore-2026-05-25/G1",
+  "verified_by": "codex-bucket-G1",
+  "started_at": "2026-05-24T17:11:06.499Z",
+  "finished_at": "2026-05-24T17:11:17.516Z",
+  "wall_ms": 11017,
+  "status": "OK_MANAGED_CDP_ONLY",
+  "completion_gate": "response_text is non-empty and completion_detected === true.",
+  "completion_gate_passed": true,
+  "attempts": [
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --prompt \"say only the word OK\" --response-timeout-ms 90000 --json",
+      "exit_code": 1,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 2491,
+      "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 2343,\n  \"wait_ms\": 1041,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"model_used\": null,\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app/260e7fc538aef136\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "",
+        "elapsed_ms": 2343,
+        "wait_ms": 1041,
+        "completion_detected": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "model_used": null,
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app/260e7fc538aef136"
+      },
+      "parse_error": null,
+      "attempt": 1,
+      "gate_passed": false
+    },
+    {
+      "command": "/home/l1u/.nvm/versions/node/v24.14.0/bin/node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --reuse-conversation --tab-url-contains 260e7fc538aef136 --prompt \"say only the word OK\" --response-timeout-ms 90000 --json",
+      "exit_code": 0,
+      "signal": null,
+      "timed_out": false,
+      "error": null,
+      "wall_ms": 3500,
+      "stdout": "{\n  \"response_text\": \"OK\",\n  \"elapsed_ms\": 3352,\n  \"wait_ms\": 1522,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"say only the word OK\",\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app/260e7fc538aef136\"\n}\n",
+      "stderr": "",
+      "parsed": {
+        "response_text": "OK",
+        "elapsed_ms": 3352,
+        "wait_ms": 1522,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "say only the word OK",
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app/260e7fc538aef136"
+      },
+      "parse_error": null,
+      "attempt": 2,
+      "gate_passed": true
+    }
+  ],
+  "final": {
+    "ok": true,
+    "response_text": "OK",
+    "completion_detected": true,
+    "model_used": "say only the word OK"
+  }
+}

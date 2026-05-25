@@ -1,0 +1,27 @@
+# Rewritten 2026-05-25 from codex G1 draft. FAIL_CLOSED_MANAGED with MODEL_SELECTION_DRIFT.
+id: gemini-send-thinking-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Send a Gemini thinking arithmetic prompt (fail-closed; MODEL_SELECTION_DRIFT)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:send-prompt
+      - --profile
+      - gemini-9225
+      - --thinking
+      - --prompt
+      - 'Think step by step: 19 x 21 = ?'
+      - --response-timeout-ms
+      - "180000"
+      - --json
+    timeoutMs: 240000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "399"
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-send-thinking-mgr.json

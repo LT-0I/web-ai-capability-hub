@@ -1,0 +1,288 @@
+{
+  "id": "claude-upload-single-ext",
+  "service": "claude",
+  "source": "L3",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/claude-claude-upload-single-ext.yaml",
+  "closure_criterion": "response_text contains \"alpha\" AND attachment_names length == 1 AND completion_detected === true",
+  "started_at": "2026-05-24T21:09:24.719Z",
+  "ok": false,
+  "closureOk": false,
+  "cause": "Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target",
+  "errorCode": "INVALID_WORKFLOW",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-24T21:09:24.871Z",
+      "finished_at": "2026-05-24T21:09:25.659Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/claude-claude-upload-single-ext.yaml --json",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "error": "Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target"
+      },
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"error\":\"Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target\"}\n"
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-05-24T21:09:25.659Z",
+      "finished_at": "2026-05-24T21:09:26.453Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/claude-claude-upload-single-ext.yaml --json",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": false,
+      "closure_ok": false,
+      "closure_cause": "workflow-run-failed",
+      "parsed": {
+        "ok": false,
+        "error": "Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target"
+      },
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"error\":\"Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target\"}\n"
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "claude-9224",
+    "status": {
+      "profile": "claude-9224",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9224,
+      "connected": true,
+      "launchedByPackage": true,
+      "processId": 1711883,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "E82EA7AE3103DF198ABA9A31DBFC83D0",
+          "parentId": "3708716E293677AF74451C38A029AC99",
+          "title": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html",
+          "type": "iframe",
+          "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "3708716E293677AF74451C38A029AC99",
+          "title": "Capability Probe Design",
+          "type": "page",
+          "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html&present=1",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "B270FB6C884EEE54DD0273EB15DD1773",
+          "title": "Sample CSV with names and scores - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/dd287c5f-761d-4644-b192-fe2b1e0f85e8",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "ECAE05D45C28C698CD6D254AE6D31FAB",
+          "parentId": "B270FB6C884EEE54DD0273EB15DD1773",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "83C08D068EFF03B144C95B97AB3F622F",
+          "title": "ClaudeCapProbe README documentation - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/4b6ca81b-bb5b-46fb-bf2f-eb1620ee4e91",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "0F489AF288E786247C7261218AD7E40D",
+          "title": "Capability Probe Design",
+          "type": "page",
+          "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3",
+          "faviconUrl": "https://claude.ai/design/favicon.png",
+          "id": "9E274DCBFF3279A90650FFF16F0930A3",
+          "parentId": "0F489AF288E786247C7261218AD7E40D",
+          "title": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1",
+          "type": "iframe",
+          "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "6D63545E10743651E24F964D7BFA9929",
+          "title": "Python script printing hello claude probe - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/17a4248a-fcb0-47fc-a3f6-ff77f4c03f5d",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "845D3DFA8599CB2451992C8D04C93153",
+          "parentId": "8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "8F2B52FFB37E74DA6E3EE00CD74CD930",
+          "title": "Quantum computing overview document - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/1e155904-8db8-4489-baa0-e6587edf50ff",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "68E7266227B8BD5CEAB86B67B430BD62",
+          "title": "File content extraction - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/c0f6a958-1e72-4583-b257-ec7264c43ef0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "B9FA70F543733B6E69E106633CA0A8BD",
+          "title": "Extracting unique first words from files - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/ef076431-3e31-40a7-9d4a-1a5c557a92a0",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "17F7794D9020F7B9FD811AB94DF25F56",
+          "title": "File verbatim quotation - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/87879199-b257-4e3d-9b47-ac5089b884fe",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "98DB306D36F448BE9FDA78ADBEEAC04E",
+          "title": "Machine learning overview - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "D817746EB5412059196064C2D641AA36",
+          "title": "Machine learning overview - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "1F8230C4A6C9606F448F64EFA7BBC439",
+          "parentId": "5B217D4F149824A038340568BD530FD6",
+          "title": "https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true",
+          "type": "iframe",
+          "url": "https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6",
+          "faviconUrl": "https://claude.ai/favicon.ico",
+          "id": "5B217D4F149824A038340568BD530FD6",
+          "title": "Confirmation response - Claude",
+          "type": "page",
+          "url": "https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC",
+          "id": "C212D2B53357D3BEC1F6728891688DAC",
+          "parentId": "B4D04C8E38950771A754102434EB2074",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074",
+          "id": "B4D04C8E38950771A754102434EB2074",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57",
+          "id": "CD9CDDBE8C26C262F65AD918C5752A57",
+          "title": "https://www.claudeusercontent.com/libs/pdf.worker.min.mjs",
+          "type": "worker",
+          "url": "https://www.claudeusercontent.com/libs/pdf.worker.min.mjs",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4",
+          "id": "B9D6C7AAEE33C47A895EC422D20102A4",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]"
+    },
+    "error": "{\n  \"profile\": \"claude-9224\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/claude-9224\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9224\",\n  \"cdpPort\": 9224,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 1711883,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"E82EA7AE3103DF198ABA9A31DBFC83D0\",\n      \"parentId\": \"3708716E293677AF74451C38A029AC99\",\n      \"title\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html\",\n      \"type\": \"iframe\",\n      \"url\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/E82EA7AE3103DF198ABA9A31DBFC83D0\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"3708716E293677AF74451C38A029AC99\",\n      \"title\": \"Capability Probe Design\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html&present=1\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/3708716E293677AF74451C38A029AC99\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"B270FB6C884EEE54DD0273EB15DD1773\",\n      \"title\": \"Sample CSV with names and scores - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/dd287c5f-761d-4644-b192-fe2b1e0f85e8\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B270FB6C884EEE54DD0273EB15DD1773\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"ECAE05D45C28C698CD6D254AE6D31FAB\",\n      \"parentId\": \"B270FB6C884EEE54DD0273EB15DD1773\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/ECAE05D45C28C698CD6D254AE6D31FAB\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"83C08D068EFF03B144C95B97AB3F622F\",\n      \"title\": \"ClaudeCapProbe README documentation - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/4b6ca81b-bb5b-46fb-bf2f-eb1620ee4e91\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/83C08D068EFF03B144C95B97AB3F622F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"0F489AF288E786247C7261218AD7E40D\",\n      \"title\": \"Capability Probe Design\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/0F489AF288E786247C7261218AD7E40D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3\",\n      \"faviconUrl\": \"https://claude.ai/design/favicon.png\",\n      \"id\": \"9E274DCBFF3279A90650FFF16F0930A3\",\n      \"parentId\": \"0F489AF288E786247C7261218AD7E40D\",\n      \"title\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1\",\n      \"type\": \"iframe\",\n      \"url\": \"https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/9E274DCBFF3279A90650FFF16F0930A3\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"6D63545E10743651E24F964D7BFA9929\",\n      \"title\": \"Python script printing hello claude probe - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/17a4248a-fcb0-47fc-a3f6-ff77f4c03f5d\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/6D63545E10743651E24F964D7BFA9929\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"845D3DFA8599CB2451992C8D04C93153\",\n      \"parentId\": \"8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/845D3DFA8599CB2451992C8D04C93153\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"8F2B52FFB37E74DA6E3EE00CD74CD930\",\n      \"title\": \"Quantum computing overview document - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/1e155904-8db8-4489-baa0-e6587edf50ff\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/8F2B52FFB37E74DA6E3EE00CD74CD930\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"68E7266227B8BD5CEAB86B67B430BD62\",\n      \"title\": \"File content extraction - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/c0f6a958-1e72-4583-b257-ec7264c43ef0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/68E7266227B8BD5CEAB86B67B430BD62\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"B9FA70F543733B6E69E106633CA0A8BD\",\n      \"title\": \"Extracting unique first words from files - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/ef076431-3e31-40a7-9d4a-1a5c557a92a0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B9FA70F543733B6E69E106633CA0A8BD\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"17F7794D9020F7B9FD811AB94DF25F56\",\n      \"title\": \"File verbatim quotation - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/87879199-b257-4e3d-9b47-ac5089b884fe\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/17F7794D9020F7B9FD811AB94DF25F56\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"98DB306D36F448BE9FDA78ADBEEAC04E\",\n      \"title\": \"Machine learning overview - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/3f2b05b9-125c-494b-b72d-8ce7c3d37a9c\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/98DB306D36F448BE9FDA78ADBEEAC04E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"D817746EB5412059196064C2D641AA36\",\n      \"title\": \"Machine learning overview - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/140a7de6-3c20-4414-9c4f-bd7ed79710ed\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/D817746EB5412059196064C2D641AA36\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"1F8230C4A6C9606F448F64EFA7BBC439\",\n      \"parentId\": \"5B217D4F149824A038340568BD530FD6\",\n      \"title\": \"https://www.claudeusercontent.com/?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true\",\n      \"type\": \"iframe\",\n      \"url\": \"https://www.claudeusercontent.com/?domain=claude.ai&parentOrigin=https%3A%2F%2Fclaude.ai&errorReportingMode=parent&formattedSpreadsheets=true\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/1F8230C4A6C9606F448F64EFA7BBC439\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6\",\n      \"faviconUrl\": \"https://claude.ai/favicon.ico\",\n      \"id\": \"5B217D4F149824A038340568BD530FD6\",\n      \"title\": \"Confirmation response - Claude\",\n      \"type\": \"page\",\n      \"url\": \"https://claude.ai/chat/1af04e07-fb26-40e0-8eab-84cca503377c\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/5B217D4F149824A038340568BD530FD6\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC\",\n      \"id\": \"C212D2B53357D3BEC1F6728891688DAC\",\n      \"parentId\": \"B4D04C8E38950771A754102434EB2074\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/C212D2B53357D3BEC1F6728891688DAC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074\",\n      \"id\": \"B4D04C8E38950771A754102434EB2074\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B4D04C8E38950771A754102434EB2074\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57\",\n      \"id\": \"CD9CDDBE8C26C262F65AD918C5752A57\",\n      \"title\": \"https://www.claudeusercontent.com/libs/pdf.worker.min.mjs\",\n      \"type\": \"worker\",\n      \"url\": \"https://www.claudeusercontent.com/libs/pdf.worker.min.mjs\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/CD9CDDBE8C26C262F65AD918C5752A57\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4\",\n      \"id\": \"B9D6C7AAEE33C47A895EC422D20102A4\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/page/B9D6C7AAEE33C47A895EC422D20102A4\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\"\n}\n"
+  },
+  "workflow_output": {
+    "ok": false,
+    "error": "Workflow examples/workflows/claude-claude-upload-single-ext.yaml requires id and target"
+  },
+  "closure_status": "red",
+  "finished_at": "2026-05-24T21:09:26.453Z"
+}

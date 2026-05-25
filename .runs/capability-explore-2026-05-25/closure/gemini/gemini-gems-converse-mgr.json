@@ -1,0 +1,19 @@
+{
+  "id": "gemini-gems-converse-mgr",
+  "service": "gemini",
+  "source": "G9",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": null,
+  "closure_criterion": "response_text non-empty AND chat_url contains /gem/",
+  "started_at": "2026-05-24T21:09:28.215Z",
+  "ok": false,
+  "skipped": true,
+  "closure_status": "red",
+  "cause": "missing-workflow",
+  "errorCode": "MISSING_WORKFLOW",
+  "candidates": [
+    "examples/workflows/gemini-gemini-gems-converse-mgr.yaml",
+    "examples/workflows/gemini-gems-converse-mgr.yaml"
+  ],
+  "finished_at": "2026-05-24T21:09:28.215Z"
+}

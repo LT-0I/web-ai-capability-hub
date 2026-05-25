@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-conversation-manage-ext-fallback",
+  "service": "chatgpt",
+  "source": "C9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/chatgpt-chatgpt-conversation-manage-ext-fallback.yaml",
+  "closure_criterion": "rename ok === true AND delete ok === true",
+  "started_at": "2026-05-24T21:08:59.604Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-conversation-manage-ext-fallback.yaml",
+    "examples/workflows/chatgpt-conversation-manage-ext-fallback.yaml"
+  ],
+  "finished_at": "2026-05-24T21:08:59.604Z"
+}

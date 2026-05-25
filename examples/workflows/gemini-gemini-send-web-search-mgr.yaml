@@ -1,0 +1,27 @@
+# Rewritten 2026-05-25 from codex G1 draft. FAIL_CLOSED_MANAGED with ELEMENT_NOT_FOUND.
+id: gemini-send-web-search-mgr
+target: gemini
+profile: gemini-9225
+mode: automatic
+description: Send a Gemini web-search date prompt (fail-closed; ELEMENT_NOT_FOUND on tool drawer)
+steps:
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:send-prompt
+      - --profile
+      - gemini-9225
+      - --web-search
+      - --prompt
+      - What is today's date in YYYY-MM-DD?
+      - --response-timeout-ms
+      - "120000"
+      - --json
+    timeoutMs: 180000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: response_text
+          regex: "20\\d{2}"
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-send-web-search-mgr.json

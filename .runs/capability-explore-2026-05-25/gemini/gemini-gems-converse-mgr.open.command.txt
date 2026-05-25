@@ -1,0 +1,1 @@
+node dist/src/cli.js browser:launch --profile gemini-9225 --url https://gemini.google.com/gem/coding-partner --cdp-port 9225 --json

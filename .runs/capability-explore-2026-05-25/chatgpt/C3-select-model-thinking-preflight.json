@@ -1,0 +1,63 @@
+{
+  "id": "chatgpt-select-model-thinking-ext-preflight-C3",
+  "service": "chatgpt",
+  "bucket": "C3",
+  "source": "capability-explore-2026-05-25/C3",
+  "backend": "extension-assisted-cdp",
+  "profile": "chatgpt",
+  "model": "Thinking",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "webai:chatgpt:select-model",
+    "--profile",
+    "chatgpt",
+    "--backend",
+    "extension-assisted-cdp",
+    "--model",
+    "Thinking",
+    "--json"
+  ],
+  "attempt": {
+    "command": [
+      "node",
+      "dist/src/cli.js",
+      "webai:chatgpt:select-model",
+      "--profile",
+      "chatgpt",
+      "--backend",
+      "extension-assisted-cdp",
+      "--model",
+      "Thinking",
+      "--json"
+    ],
+    "exit_code": 0,
+    "wall_ms": 1583,
+    "stdout_json": {
+      "ok": true,
+      "selected_model": "Thinking",
+      "selected_thinking_level": null,
+      "errorCode": null
+    },
+    "stdout_parse_error": null,
+    "timed_out": false,
+    "stdout_tail": "{\n  \"ok\": true,\n  \"selected_model\": \"Thinking\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+    "stderr_tail": ""
+  },
+  "gate": {
+    "criteria": "ok === true AND selected model/model_used contains Thinking/thinking/GPT-5 Thinking",
+    "passed": true,
+    "checks": {
+      "exit_code_zero": true,
+      "ok_true": true,
+      "selected_model_contains_thinking": true
+    }
+  },
+  "ok": true,
+  "status": "OK_EXT_BACKEND",
+  "errorCode": null,
+  "cause": null,
+  "verified_by": "codex-bucket-C3",
+  "last_update": "2026-05-25",
+  "created_at": "2026-05-24T17:33:28Z"
+}

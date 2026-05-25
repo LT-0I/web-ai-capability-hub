@@ -1,0 +1,1 @@
+node dist/src/cli.js webai:gemini:send-prompt --profile gemini-9225 --prompt "First message about apples for clean retry" --response-timeout-ms 60000 --json

@@ -179,6 +179,8 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     url: asString(options.url),
     timeout_ms: asNumber(options["timeout-ms"] || options.timeoutMs),
     response_timeout_ms: asNumber(options["response-timeout-ms"] || options.responseTimeoutMs),
+    backend: asString(options.backend),
+    http_bridge_url: asString(options["http-bridge-url"] || options.httpBridgeUrl),
     reuse_conversation: asBoolean(options["reuse-conversation"] || options.reuseConversation),
     model: asString(options.model),
     thinking_level: asString(options["thinking-level"] || options.thinkingLevel),
@@ -1146,13 +1148,25 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
       if (!workflow) throw new Error(`workflow:run --resume could not find stored run ${resumeRunId}`);
       const workflowOptions = { ...options, profile: asString(options.profile) || workflow.profile || workflow.target };
       const workflowUrl = asString(options.url) || targetBaseUrl(workflow.target);
-      const result = await withManagedPage(async (page) => {
-        const downloads = new DownloadManager(path.join(process.cwd(), "data", "downloads"));
-        const executor = new WorkflowExecutor({ database: db, actionExecutor: new ActionExecutor({ getActivePage: () => page, openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; }, downloads }) });
-        return resumeRunId
-          ? executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction, inputs })
-          : executor.runFile(file as string, { dryRun: false, redaction, inputs });
-      }, workflowOptions, workflowUrl);
+      // Command-only workflows do not need a managed browser page; subprocesses make their
+      // own CDP connections as needed. Skipping withManagedPage avoids spawning a new
+      // Chrome when WAH_BROWSER_EXECUTABLE is locked down (e.g. closure runner).
+      const onlyCommandSteps = Array.isArray(workflow.steps) && workflow.steps.length > 0 && workflow.steps.every((step: any) => Array.isArray(step?.command) && step.command.length > 0);
+      let result: unknown;
+      if (onlyCommandSteps) {
+        const executor = new WorkflowExecutor({ database: db });
+        result = resumeRunId
+          ? await executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction, inputs })
+          : await executor.runFile(file as string, { dryRun: false, redaction, inputs });
+      } else {
+        result = await withManagedPage(async (page) => {
+          const downloads = new DownloadManager(path.join(process.cwd(), "data", "downloads"));
+          const executor = new WorkflowExecutor({ database: db, actionExecutor: new ActionExecutor({ getActivePage: () => page, openUrl: async (url) => { await page.goto(url, { waitUntil: "domcontentloaded" }); return page; }, downloads }) });
+          return resumeRunId
+            ? executor.resumeRun(resumeRunId, { dryRun: false, confirmReplay, redaction, inputs })
+            : executor.runFile(file as string, { dryRun: false, redaction, inputs });
+        }, workflowOptions, workflowUrl);
+      }
       output(redactForCli(result, options), options);
     }
     return;
