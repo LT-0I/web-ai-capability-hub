@@ -1,0 +1,18 @@
+{
+  "id": "research-database-search-dry-run",
+  "file": "examples/workflows/research-database-search-dry-run.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/research-database-search-dry-run.json",
+  "startedAt": "2026-05-25T16:32:29.078Z",
+  "finishedAt": "2026-05-25T16:32:41.330Z",
+  "durationMs": 12252,
+  "timeoutMs": 180000,
+  "exitCode": 1,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "UNKNOWN",
+  "message": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready at http://127.0.0.1:38191/json/version: connect ECONNREFUSED 127.0.0.1:38191\"}",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": null,
+  "stdoutTail": "",
+  "stderrTail": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready at http://127.0.0.1:38191/json/version: connect ECONNREFUSED 127.0.0.1:38191\"}\n"
+}

@@ -1,0 +1,163 @@
+{
+  "id": "chatgpt-generate-image-ext",
+  "file": "examples/workflows/chatgpt-generate-image-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/chatgpt-generate-image-ext.retry1.json",
+  "startedAt": "2026-05-25T16:33:38.696Z",
+  "finishedAt": "2026-05-25T16:33:48.960Z",
+  "durationMs": 10264,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-image-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:33:38.843Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\"",
+  "rateLimitedChatgpt": false,
+  "retryOf": ".runs/phase7-bucket-9/workflows/chatgpt-generate-image-ext.json",
+  "previousStatus": "FAIL",
+  "previousErrorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "chatgpt-generate-image-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:33:38.843Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:generate-image",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/chatgpt",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                },
+                {
+                  "path": "sha256",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-generate-image-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to generate an image in ChatGPT via the extension-assisted backend",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-image",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 10024,
+          "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"dimensions\": null,\n  \"download_filename\": \"\",\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"{\\\"success\\\":false,\\\"tabId\\\":740055997,\\\"engine\\\":\\\"cdp\\\",\\\"error\\\":{\\\"kind\\\":\\\"runtime_error\\\",\\\"message\\\":\\\"Error: waitForSelector timeout for [role=\\\\\\\"menuitemradio\\\\\\\"]:has-text(\\\\\\\"Create image\\\\\\\") state=visible\\\\n    at <anonymous>:41:7\\\",\\\"details\\\":{\\\"lineNumber\\\":0,\\\"columnNumber\\\":0}},\\\"metrics\\\":{\\\"elapsedMs\\\":8071}}\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "",
+            "sha256": "",
+            "size_bytes": 0,
+            "dimensions": null,
+            "download_filename": "",
+            "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+            "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+            "message": "{\"success\":false,\"tabId\":740055997,\"engine\":\"cdp\",\"error\":{\"kind\":\"runtime_error\",\"message\":\"Error: waitForSelector timeout for [role=\\\"menuitemradio\\\"]:has-text(\\\"Create image\\\") state=visible\\n    at <anonymous>:41:7\",\"details\":{\"lineNumber\":0,\"columnNumber\":0}},\"metrics\":{\"elapsedMs\":8071}}"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              },
+              {
+                "path": "sha256",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              }
+            ]
+          },
+          "path": "",
+          "sha256": "",
+          "size_bytes": 0,
+          "dimensions": null,
+          "download_filename": "",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "{\"success\":false,\"tabId\":740055997,\"engine\":\"cdp\",\"error\":{\"kind\":\"runtime_error\",\"message\":\"Error: waitForSelector timeout for [role=\\\"menuitemradio\\\"]:has-text(\\\"Create image\\\") state=visible\\n    at <anonymous>:41:7\",\"details\":{\"lineNumber\":0,\"columnNumber\":0}},\"metrics\":{\"elapsedMs\":8071}}"
+        }
+      }
+    ],
+    "runId": "run_d3bc2d41cc3bdf85"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-image-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:33:38.843Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:generate-image\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/chatgpt\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"path\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"sha256\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-generate-image-ext\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Attempt to generate an image in ChatGPT via the extension-assisted backend\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path path empty; json_path sha256 empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:generate-image\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"A clean futuristic laboratory notebook icon, blue and white, transparent background\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/chatgpt\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 10024,\n        \"stdout\": \"{\\n  \\\"path\\\": \\\"\\\",\\n  \\\"sha256\\\": \\\"\\\",\\n  \\\"size_bytes\\\": 0,\\n  \\\"dimensions\\\": null,\\n  \\\"download_filename\\\": \\\"\\\",\\n  \\\"errorCode\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"error_code\\\": \\\"CHROME_EXTENSION_NOT_CONNECTED\\\",\\n  \\\"message\\\": \\\"{\\\\\\\"success\\\\\\\":false,\\\\\\\"tabId\\\\\\\":740055997,\\\\\\\"engine\\\\\\\":\\\\\\\"cdp\\\\\\\",\\\\\\\"error\\\\\\\":{\\\\\\\"kind\\\\\\\":\\\\\\\"runtime_error\\\\\\\",\\\\\\\"message\\\\\\\":\\\\\\\"Error: waitForSelector timeout for [role=\\\\\\\\\\\\\\\"menuitemradio\\\\\\\\\\\\\\\"]:has-text(\\\\\\\\\\\\\\\"Create image\\\\\\\\\\\\\\\") state=visible\\\\\\\\n    at <anonymous>:41:7\\\\\\\",\\\\\\\"details\\\\\\\":{\\\\\\\"lineNumber\\\\\\\":0,\\\\\\\"columnNumber\\\\\\\":0}},\\\\\\\"metrics\\\\\\\":{\\\\\\\"elapsedMs\\\\\\\":8071}}\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"dimensions\": null,\n          \"download_filename\": \"\",\n          \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n          \"message\": \"{\\\"success\\\":false,\\\"tabId\\\":740055997,\\\"engine\\\":\\\"cdp\\\",\\\"error\\\":{\\\"kind\\\":\\\"runtime_error\\\",\\\"message\\\":\\\"Error: waitForSelector timeout for [role=\\\\\\\"menuitemradio\\\\\\\"]:has-text(\\\\\\\"Create image\\\\\\\") state=visible\\\\n    at <anonymous>:41:7\\\",\\\"details\\\":{\\\"lineNumber\\\":0,\\\"columnNumber\\\":0}},\\\"metrics\\\":{\\\"elapsedMs\\\":8071}}\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"sha256\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"dimensions\": null,\n        \"download_filename\": \"\",\n        \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n        \"message\": \"{\\\"success\\\":false,\\\"tabId\\\":740055997,\\\"engine\\\":\\\"cdp\\\",\\\"error\\\":{\\\"kind\\\":\\\"runtime_error\\\",\\\"message\\\":\\\"Error: waitForSelector timeout for [role=\\\\\\\"menuitemradio\\\\\\\"]:has-text(\\\\\\\"Create image\\\\\\\") state=visible\\\\n    at <anonymous>:41:7\\\",\\\"details\\\":{\\\"lineNumber\\\":0,\\\"columnNumber\\\":0}},\\\"metrics\\\":{\\\"elapsedMs\\\":8071}}\"\n      }\n    }\n  ],\n  \"runId\": \"run_d3bc2d41cc3bdf85\"\n}\n",
+  "stderrTail": ""
+}

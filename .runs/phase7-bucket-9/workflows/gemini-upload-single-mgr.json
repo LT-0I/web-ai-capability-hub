@@ -1,0 +1,151 @@
+{
+  "id": "gemini-upload-single-mgr",
+  "file": "examples/workflows/gemini-gemini-upload-single-mgr.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-upload-single-mgr.json",
+  "startedAt": "2026-05-25T16:30:32.233Z",
+  "finishedAt": "2026-05-25T16:30:48.739Z",
+  "durationMs": 16506,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-upload-single-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:32.394Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-upload-single-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:30:32.394Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:upload-and-query",
+              "--profile",
+              "gemini-9225",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--prompt",
+              "Quote the first 3 words of this file verbatim",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-upload-single-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload a text file to Gemini and verify a grounded quote",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-upload-single-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /alpha/ failed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:upload-and-query",
+            "--profile",
+            "gemini-9225",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--prompt",
+            "Quote the first 3 words of this file verbatim",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 16274,
+          "stdout": "{\n  \"files_in_chip\": [\n    \"fileA.txt\"\n  ],\n  \"chat_url\": \"https://gemini.google.com/app\",\n  \"ok\": false,\n  \"response_text\": \"\",\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: gemini prompt composer was not found\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "files_in_chip": [
+              "fileA.txt"
+            ],
+            "chat_url": "https://gemini.google.com/app",
+            "ok": false,
+            "response_text": "",
+            "wait_ms": 0,
+            "completion_detected": false,
+            "errorCode": "ELEMENT_NOT_FOUND",
+            "error_code": "ELEMENT_NOT_FOUND",
+            "message": "ELEMENT_NOT_FOUND: gemini prompt composer was not found"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "regex /alpha/ failed"
+                ]
+              }
+            ]
+          },
+          "files_in_chip": "<circular>",
+          "chat_url": "https://gemini.google.com/app",
+          "response_text": "",
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: gemini prompt composer was not found"
+        }
+      }
+    ],
+    "runId": "run_92841af6b7023b16"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-upload-single-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:32.394Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:upload-and-query\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n            \"--prompt\",\n            \"Quote the first 3 words of this file verbatim\",\n            \"--response-timeout-ms\",\n            \"180000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"alpha\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-upload-single-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Upload a text file to Gemini and verify a grounded quote\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-upload-single-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path response_text regex /alpha/ failed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:upload-and-query\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n          \"--prompt\",\n          \"Quote the first 3 words of this file verbatim\",\n          \"--response-timeout-ms\",\n          \"180000\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 16274,\n        \"stdout\": \"{\\n  \\\"files_in_chip\\\": [\\n    \\\"fileA.txt\\\"\\n  ],\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/app\\\",\\n  \\\"ok\\\": false,\\n  \\\"response_text\\\": \\\"\\\",\\n  \\\"wait_ms\\\": 0,\\n  \\\"completion_detected\\\": false,\\n  \\\"errorCode\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"error_code\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"message\\\": \\\"ELEMENT_NOT_FOUND: gemini prompt composer was not found\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"files_in_chip\": [\n            \"fileA.txt\"\n          ],\n          \"chat_url\": \"https://gemini.google.com/app\",\n          \"ok\": false,\n          \"response_text\": \"\",\n          \"wait_ms\": 0,\n          \"completion_detected\": false,\n          \"errorCode\": \"ELEMENT_NOT_FOUND\",\n          \"error_code\": \"ELEMENT_NOT_FOUND\",\n          \"message\": \"ELEMENT_NOT_FOUND: gemini prompt composer was not found\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /alpha/ failed\"\n              ]\n            }\n          ]\n        },\n        \"files_in_chip\": \"<circular>\",\n        \"chat_url\": \"https://gemini.google.com/app\",\n        \"response_text\": \"\",\n        \"wait_ms\": 0,\n        \"completion_detected\": false,\n        \"errorCode\": \"ELEMENT_NOT_FOUND\",\n        \"error_code\": \"ELEMENT_NOT_FOUND\",\n        \"message\": \"ELEMENT_NOT_FOUND: gemini prompt composer was not found\"\n      }\n    }\n  ],\n  \"runId\": \"run_92841af6b7023b16\"\n}\n",
+  "stderrTail": ""
+}

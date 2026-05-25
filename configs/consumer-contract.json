@@ -1,6 +1,6 @@
 {
-  "package_version": "1.0.0",
-  "contract_version": "consumer-contract-1.10.0",
+  "package_version": "2.0.0",
+  "contract_version": "consumer-contract-2.0.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -5231,6 +5231,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "consumer-contract-2.0.0 (2026-05-25 Chrome Extension #15 Phase 7 Bucket 9): breaking default-backend flip for all 40 webai_* tools from managed-cdp to extension-assisted-cdp. managed-cdp remains available as an explicit opt-in via backend: \"managed-cdp\"; default operation now requires the native messaging host installed by src/runtime/extension/installHost.ts. No commands or error codes added; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "Phase 7 Bucket 8 (same contract version consumer-contract-1.10.0): adds optional backend to webai_task_status, webai_gemini_music_download_track, and webai_gemini_music_task_status with enum managed-cdp | extension-assisted-cdp; webai_task_status may also accept profile/tab_url_contains for extension-polled Gemini Music task handles. No new commands, error codes, package bump, contract_version bump, graceful fallback, or managed-cdp path change; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "Phase 7 Bucket 7 (same contract version consumer-contract-1.10.0): adds optional backend to webai_chatgpt_canvas_export, webai_chatgpt_pulse_get, webai_chatgpt_pulse_onboard, webai_gemini_canvas_to_docs, webai_gemini_canvas_edit, webai_claude_design_create_project, webai_claude_design_generate, webai_claude_design_get_html, and webai_claude_design_present with enum managed-cdp | extension-assisted-cdp. No new commands, error codes, package bump, contract_version bump, graceful fallback, or managed-cdp path change; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "consumer-contract-1.9.0 (2026-05-24 Chrome Extension #15 Phase 4): adds optional backend to webai_chatgpt_generate_image with enum managed-cdp | extension-assisted-cdp. No new commands or error codes; package version remains 1.0.0 and lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",

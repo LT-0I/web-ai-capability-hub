@@ -1,6 +1,6 @@
 {
   "count": 195,
-  "captured_at": "2026-05-24T13:32:28.619Z",
+  "captured_at": "2026-05-25T15:02:41.375Z",
   "tools": [
     {
       "name": "browser_capture_site_map",
@@ -8464,7 +8464,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT canvas export routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT canvas export routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8493,7 +8494,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT Codex diff-read routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT Codex diff-read routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8519,7 +8521,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT Codex environment-list routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT Codex environment-list routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8561,7 +8564,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT Codex submit-task routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT Codex submit-task routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8591,7 +8595,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT Codex task-status routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT Codex task-status routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8645,7 +8650,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT conversation management routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT conversation management routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8682,7 +8688,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT deep-research routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT deep-research routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8749,7 +8756,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT generate-file routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT generate-file routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8804,7 +8812,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT image generation perception; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT image generation perception; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8842,7 +8851,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT pulse read routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT pulse read routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8874,7 +8884,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT pulse onboarding routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT pulse onboarding routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8919,7 +8930,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT model selection routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT model selection routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -8975,7 +8987,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT prompt routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT prompt routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9028,7 +9041,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT upload routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT upload routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9076,7 +9090,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for ChatGPT workspace routing; defaults to managed-cdp"
+            "description": "Browser backend for ChatGPT workspace routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9122,7 +9137,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude conversation management routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude conversation management routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9163,7 +9179,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude deep-research routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude deep-research routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9201,7 +9218,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude Design create-project routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude Design create-project routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9247,7 +9265,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude Design generate routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude Design generate routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9282,7 +9301,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude Design get-html routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude Design get-html routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9312,7 +9332,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude Design present routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude Design present routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9379,7 +9400,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude generate-file routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude generate-file routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9426,7 +9448,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude model selection routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude model selection routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9486,7 +9509,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude prompt routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude prompt routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9539,7 +9563,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude upload routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude upload routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9575,7 +9600,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Claude workspace routing; defaults to managed-cdp"
+            "description": "Browser backend for Claude workspace routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9632,7 +9658,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini canvas edit routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini canvas edit routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9684,7 +9711,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini canvas-to-docs routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini canvas-to-docs routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9732,7 +9760,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini conversation management routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini conversation management routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9773,7 +9802,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini deep-research routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini deep-research routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9826,7 +9856,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini image generation perception; defaults to managed-cdp"
+            "description": "Browser backend for Gemini image generation perception; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9880,7 +9911,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini video generation perception; defaults to managed-cdp"
+            "description": "Browser backend for Gemini video generation perception; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9923,7 +9955,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini Music download-track routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini Music download-track routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9966,7 +9999,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini Music perception; defaults to managed-cdp"
+            "description": "Browser backend for Gemini Music perception; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -9996,7 +10030,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini Music task-status routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini Music task-status routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -10041,7 +10076,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini model selection routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini model selection routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -10097,7 +10133,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini prompt routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini prompt routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -10150,7 +10187,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini upload routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini upload routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -10188,7 +10226,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for Gemini workspace routing; defaults to managed-cdp"
+            "description": "Browser backend for Gemini workspace routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [
@@ -10221,7 +10260,8 @@
               "managed-cdp",
               "extension-assisted-cdp"
             ],
-            "description": "Browser backend for task-status routing; defaults to managed-cdp"
+            "description": "Browser backend for task-status routing; defaults to extension-assisted-cdp",
+            "default": "extension-assisted-cdp"
           }
         },
         "required": [

@@ -1,0 +1,158 @@
+{
+  "id": "chatgpt-gpts-converse-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/chatgpt-gpts-converse-ext-fallback.json",
+  "startedAt": "2026-05-25T15:55:21.453Z",
+  "finishedAt": "2026-05-25T15:55:21.955Z",
+  "durationMs": 502,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-gpts-converse-ext-fallback\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "chatgpt-gpts-converse-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T15:55:21.642Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:send-prompt",
+              "--profile",
+              "chatgpt",
+              "--url",
+              "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+              "--reuse-conversation",
+              "--prompt",
+              "Say only OK",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "equals": "MODEL_SELECTION_DRIFT"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-gpts-converse-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt public GPT conversation (fail-closed; MODEL_SELECTION_DRIFT)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: json_path errorCode !== \"MODEL_SELECTION_DRIFT\"",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:send-prompt",
+            "--profile",
+            "chatgpt",
+            "--url",
+            "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+            "--reuse-conversation",
+            "--prompt",
+            "Say only OK",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 224,
+          "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 47,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"ok\": false,\n  \"service\": \"chatgpt\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"message\": \"No extension-assisted browser tab is available to claim\",\n  \"conversation_id\": null,\n  \"model_used\": null,\n  \"chat_url\": \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n  \"reuse_conversation\": false\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "",
+            "elapsed_ms": 47,
+            "wait_ms": 0,
+            "completion_detected": false,
+            "errorCode": "COMMAND_TIMEOUT",
+            "ok": false,
+            "service": "chatgpt",
+            "error_code": "COMMAND_TIMEOUT",
+            "message": "No extension-assisted browser tab is available to claim",
+            "conversation_id": null,
+            "model_used": null,
+            "chat_url": "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+            "reuse_conversation": false
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "COMMAND_TIMEOUT",
+                "ok": false,
+                "reasons": [
+                  "!== \"MODEL_SELECTION_DRIFT\""
+                ]
+              }
+            ]
+          },
+          "response_text": "",
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "service": "chatgpt",
+          "error_code": "COMMAND_TIMEOUT",
+          "message": "No extension-assisted browser tab is available to claim",
+          "conversation_id": null,
+          "model_used": null,
+          "chat_url": "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+          "reuse_conversation": false
+        }
+      }
+    ],
+    "runId": "run_c40f03c6cf7a5f13"
+  },
+  "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-gpts-converse-ext-fallback\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T15:55:21.642Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:send-prompt\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--url\",\n            \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n            \"--reuse-conversation\",\n            \"--prompt\",\n            \"Say only OK\",\n            \"--response-timeout-ms\",\n            \"90000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 1,\n            \"json_path\": [\n              {\n                \"path\": \"errorCode\",\n                \"equals\": \"MODEL_SELECTION_DRIFT\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-gpts-converse-ext-fallback\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Attempt public GPT conversation (fail-closed; MODEL_SELECTION_DRIFT)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: json_path errorCode !== \\\"MODEL_SELECTION_DRIFT\\\"\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:send-prompt\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--url\",\n          \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n          \"--reuse-conversation\",\n          \"--prompt\",\n          \"Say only OK\",\n          \"--response-timeout-ms\",\n          \"90000\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 224,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"\\\",\\n  \\\"elapsed_ms\\\": 47,\\n  \\\"wait_ms\\\": 0,\\n  \\\"completion_detected\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"ok\\\": false,\\n  \\\"service\\\": \\\"chatgpt\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"message\\\": \\\"No extension-assisted browser tab is available to claim\\\",\\n  \\\"conversation_id\\\": null,\\n  \\\"model_used\\\": null,\\n  \\\"chat_url\\\": \\\"https://chatgpt.com/g/g-pmuQfob8d-image-generator\\\",\\n  \\\"reuse_conversation\\\": false\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"\",\n          \"elapsed_ms\": 47,\n          \"wait_ms\": 0,\n          \"completion_detected\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"ok\": false,\n          \"service\": \"chatgpt\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"message\": \"No extension-assisted browser tab is available to claim\",\n          \"conversation_id\": null,\n          \"model_used\": null,\n          \"chat_url\": \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n          \"reuse_conversation\": false\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 1,\n            \"actual\": 1,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"errorCode\",\n              \"actual\": \"COMMAND_TIMEOUT\",\n              \"ok\": false,\n              \"reasons\": [\n                \"!== \\\"MODEL_SELECTION_DRIFT\\\"\"\n              ]\n            }\n          ]\n        },\n        \"response_text\": \"\",\n        \"wait_ms\": 0,\n        \"completion_detected\": false,\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"service\": \"chatgpt\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"message\": \"No extension-assisted browser tab is available to claim\",\n        \"conversation_id\": null,\n        \"model_used\": null,\n        \"chat_url\": \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n        \"reuse_conversation\": false\n      }\n    }\n  ],\n  \"runId\": \"run_c40f03c6cf7a5f13\"\n}\n",
+  "stderr": ""
+}

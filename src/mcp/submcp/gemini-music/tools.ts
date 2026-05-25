@@ -29,13 +29,17 @@ type GenerateArgs = { prompt: string; profile?: string; confirmed?: boolean; tab
 type DownloadArgs = { tab_url_contains: string; profile?: string; download_dir?: string; format?: GeminiMusicFormat };
 type StatusArgs = { tab_url_contains: string; profile?: string };
 
+function backendSchema(description: string): Record<string, unknown> {
+  return { ...scalar.enum(["managed-cdp", "extension-assisted-cdp"], description), default: "extension-assisted-cdp" };
+}
+
 const generateInput = objectSchema<GenerateArgs>({
   prompt: scalar.string("Benign instrumental track prompt for Gemini Music / Lyria"),
   profile: { ...scalar.string("Managed Gemini browser profile"), default: DEFAULT_MUSIC_PROFILE },
   confirmed: { ...scalar.boolean("Required true to send the music generation prompt"), default: false },
   tab_url_contains: scalar.string("Optional Gemini conversation URL fragment"),
   timeout_ms: scalar.number("Generation readiness timeout in milliseconds"),
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for Gemini Music perception; defaults to managed-cdp")
+  backend: backendSchema("Browser backend for Gemini Music perception; defaults to extension-assisted-cdp")
 }, ["prompt", "profile"]);
 
 const downloadInput = objectSchema<DownloadArgs>({
@@ -253,7 +257,7 @@ async function findGeminiMusicStatePage(page: any): Promise<any> {
 
 export async function webAiGeminiMusicGenerate(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
-  const backend = effective.backend || "managed-cdp";
+  const backend = effective.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return generateGeminiMusicWithExtensionBackend(effective, runtime);
   if (backend !== "managed-cdp") return musicErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_music_generate backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
   if (!effective.confirmed) return guardResponse("gemini_music_generate");

@@ -1,0 +1,125 @@
+{
+  "id": "chatgpt-generate-file-csv-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-generate-file-csv-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-csv-ext.json",
+  "startedAt": "2026-05-25T15:37:06.914Z",
+  "finishedAt": "2026-05-25T15:41:07.251Z",
+  "durationMs": 240337,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-csv-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "chatgpt-generate-file-csv-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T15:37:07.061Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:generate-file",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+              "--expected-extension",
+              "csv",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/chatgpt",
+              "--artifact-class",
+              "code",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-generate-file-csv-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a downloadable .csv file in ChatGPT",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-csv-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command timed out",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-file",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+            "--expected-extension",
+            "csv",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": "SIGTERM",
+          "timed_out": true,
+          "elapsed_ms": 240018,
+          "stdout": "",
+          "stderr": "",
+          "gate": {
+            "timed_out": true
+          },
+          "errorCode": "COMMAND_TIMEOUT"
+        }
+      }
+    ],
+    "runId": "run_9b793741aab255ec"
+  },
+  "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-csv-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T15:37:07.061Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:generate-file\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.\",\n            \"--expected-extension\",\n            \"csv\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/chatgpt\",\n            \"--artifact-class\",\n            \"code\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"path\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-generate-file-csv-ext\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate a downloadable .csv file in ChatGPT\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-csv-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:generate-file\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.\",\n          \"--expected-extension\",\n          \"csv\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/chatgpt\",\n          \"--artifact-class\",\n          \"code\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 240018,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_9b793741aab255ec\"\n}\n",
+  "stderr": ""
+}

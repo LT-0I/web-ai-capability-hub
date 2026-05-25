@@ -348,6 +348,25 @@ function artifactClickRunner(runtime: Required<BrowserToolRuntime>): typeof runA
   return (runtime as any).artifactClick || runArtifactClick;
 }
 
+function isCdpEndpointReadinessRace(error: any): boolean {
+  const message = errorMessageFromUnknown(error, "");
+  return /CDP endpoint did not become ready|connect ECONNREFUSED|ECONNREFUSED/i.test(message);
+}
+
+async function runArtifactClickWithCdpReadinessRetry(runtime: Required<BrowserToolRuntime>, options: Parameters<typeof runArtifactClick>[0], attempts = 3): Promise<Awaited<ReturnType<typeof runArtifactClick>>> {
+  let lastError: any;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    try {
+      return await artifactClickRunner(runtime)(options);
+    } catch (error) {
+      lastError = error;
+      if (attempt >= attempts - 1 || !isCdpEndpointReadinessRace(error)) throw error;
+      await extensionSleep(750 * (attempt + 1));
+    }
+  }
+  throw lastError;
+}
+
 interface WorkflowExecuteArgs {
   file?: string;
   workflow?: Record<string, unknown>;
@@ -556,7 +575,7 @@ export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'xpath=//*[@data-testid="f
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
 const GEMINI_MORE_TOOLS_SUBMENU_SELECTOR = 'button[aria-label="More tools"], [role="menuitem"]:has-text("More tools")';
 const GEMINI_CONVERSATION_MORE_OPTIONS_SELECTOR_PREFIX = 'button[aria-label^="More options for "]';
-const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Deep research")';
+const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Deep research"), [role="menuitemcheckbox"]:has-text("Deep Research"), [role="menuitem"]:has-text("Deep research"), [role="menuitem"]:has-text("Deep Research")';
 const GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Guided learning")';
 const GEMINI_SEND_MESSAGE_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
 const GEMINI_CANVAS_BODY_SELECTOR = 'xpath=(//div[@contenteditable="true"])[last()]';
@@ -600,16 +619,16 @@ const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-sw
 const CHATGPT_PRO_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"]';
 const CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Web search")';
 const CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR = 'button[aria-label="Search, click to remove"]';
-const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download")';
-const CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Deep research")';
-const CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR = 'button[aria-label="Deep research, click to remove"]';
+const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download"), button[aria-label*="Download" i], button[title*="Download" i], [role="button"]:has-text("Download")';
+const CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Deep research"), [role="menuitemcheckbox"]:has-text("Deep research"), [role="menuitem"]:has-text("Deep research"), [role="menuitemradio"]:has-text("Research"), [role="menuitemcheckbox"]:has-text("Research"), [role="menuitem"]:has-text("Research")';
+const CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR = 'button[aria-label*="Deep research" i][aria-label*="remove" i], button[aria-label*="Research" i][aria-label*="remove" i]';
 const CHATGPT_SHARE_BUTTON_SELECTOR = 'button[aria-label="Share"]';
 const CLAUDE_MODEL_SELECTOR = '[data-testid="model-selector-dropdown"]';
 const CLAUDE_ADAPTIVE_THINKING_SELECTOR = 'input[aria-label="Adaptive thinking"]';
-const CLAUDE_PLUS_MENU_SELECTOR = 'button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"]';
+const CLAUDE_PLUS_MENU_SELECTOR = 'button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"], button[aria-label*="Add files" i], button[aria-label*="Attach" i], button[data-testid*="upload" i], button[data-testid*="file" i]';
 const CLAUDE_PROMPT_SELECTOR = 'div[aria-label="Write your prompt to Claude"], [data-testid="chat-input"], [contenteditable="true"], #prompt-textarea';
 const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Web search")';
-const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Research")]';
+const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[(@role="menuitemcheckbox" or @role="menuitem")][contains(.,"Research")]';
 const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
 const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
 const GEMINI_MODE_PICKER_SELECTOR = GEMINI_MODE_PICKER_TRIGGER_SELECTOR;
@@ -1093,7 +1112,7 @@ function stopButtonSelector(service: WebAiService): string {
 
 function sendButtonSelector(service: WebAiService): string {
   if (service === "gemini") return 'button[aria-label="Send message"]';
-  if (service === "chatgpt") return 'button[data-testid="send-button"], button[aria-label*="Send" i]';
+  if (service === "chatgpt") return 'button[data-testid="composer-submit-button"], button[data-testid="send-button"], #composer-submit-button, button[aria-label*="Send" i], button[aria-label*="Submit" i], form button[type="submit"]';
   return '[aria-label*="Send" i]';
 }
 
@@ -2779,14 +2798,8 @@ async function uploadGeminiFilesWithExtension(page: any, resolved: string[], arg
   } catch (error: any) {
     throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menuitem was not found", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, cause: errorMessageFromUnknown(error, "") });
   }
-  const uploadSelector = 'input[type="file"]:not([accept^="image/"]):not([accept*="image/*"]), input[type="file"]';
-  try {
-    await page.waitForSelector(uploadSelector, { state: "attached", timeoutMs: 10000 });
-  } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload file input was not found before file attach", { selector: uploadSelector, cause: errorMessageFromUnknown(error, "") });
-  }
   for (const filePath of resolved) {
-    await page.uploadFile(uploadSelector, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
+    await page.uploadFile(GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
   }
   await waitForAttachmentReadyWithExtension(page, "gemini", resolved, Math.min(args.timeout_ms || 60000, 30000));
 }
@@ -3174,7 +3187,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
     const chatgptArtifactTimeoutMs = Math.min(Number(effective.timeout_ms || 480000), 480000);
-    const result = await artifactClickRunner(runtime)({
+    const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
       buttonSelector: '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type',
@@ -5726,7 +5739,7 @@ function deepResearchSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: str
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} deep-research routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} deep-research routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -5746,7 +5759,7 @@ function deepResearchErrorOutput(service: WebAiExtensionReadService, args: any, 
 
 function deepResearchLabel(service: WebAiExtensionReadService): string {
   if (service === "chatgpt") return "ChatGPT Deep research";
-  if (service === "claude") return "Claude Deep Research";
+  if (service === "claude") return "Claude Research";
   return "Gemini Deep research";
 }
 
@@ -5754,6 +5767,18 @@ function deepResearchPromptSelector(service: WebAiExtensionReadService): string 
   if (service === "claude") return CLAUDE_PROMPT_SELECTOR;
   if (service === "gemini") return GEMINI_IMAGE_PROMPT_SELECTOR;
   return serviceDefaults.chatgpt.promptSelector;
+}
+
+async function geminiDeepResearchModelDriftError(page: any): Promise<WebAiToolError | null> {
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: serviceDefaults.gemini.url, text: "" }));
+  if (/3\.1\s*Flash\s*Lite|Flash\s*Lite/i.test(snapshot.text || "")) {
+    return new WebAiToolError(
+      ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+      "Gemini Deep research is unavailable while the current model is 3.1 Flash Lite; select a Deep research-capable model such as 2.5 Pro before submitting.",
+      { selected_model: "3.1 Flash Lite", selector: GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, url: snapshot.url }
+    );
+  }
+  return null;
 }
 
 type ExtensionDeepResearchSubmitState = {
@@ -5943,6 +5968,10 @@ async function startGeminiDeepResearchWithExtensionBackend(args: any, runtime: R
     }
     await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
     await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
+    if (!(await extensionElementCount(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR))) {
+      const drift = await geminiDeepResearchModelDriftError(page);
+      if (drift) throw drift;
+    }
     await clickExtensionSelector(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "Gemini Deep research menuitemcheckbox was not found");
     const submitted = await fillAndSubmitDeepResearchWithExtension(page, "gemini", effective);
     persistDeepResearchTask(runtime.database, "gemini", effective, task_id, lease, submitted.chat_url);
@@ -5962,6 +5991,10 @@ function webAiBackendInvalidOutput(tool: string, backend: any): Record<string, u
     error_code: ConsumerErrorCodes.INVALID_ARGS,
     message: `${tool} backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`
   });
+}
+
+function webAiBackendSchema(description: string): Record<string, unknown> {
+  return { ...scalar.enum(["managed-cdp", "extension-assisted-cdp"], description), default: "extension-assisted-cdp" };
 }
 
 function chatgptCodexArgs(args: any): any {
@@ -6309,41 +6342,41 @@ async function readChatgptCodexDiffWithExtensionBackend(args: any, runtime: Requ
 
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return sendChatgptPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime));
   return sendPromptExtensionErrorOutput("chatgpt", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return sendPromptOnPage("claude", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return sendClaudePromptWithExtensionBackend(args, runtimeOrDefault(runtime));
   return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 
 export async function webAiChatgptCodexSubmitTask(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return submitChatgptCodexTaskWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiChatgptCodexSubmitTaskManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_codex_submit_task", backend);
 }
 
 export async function webAiChatgptCodexListEnvs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return listChatgptCodexEnvsWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiChatgptCodexListEnvsManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_codex_list_envs", backend);
 }
 
 export async function webAiChatgptCodexTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return readChatgptCodexTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiChatgptCodexTaskStatusManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_codex_task_status", backend);
 }
 
 export async function webAiChatgptCodexGetDiff(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return readChatgptCodexDiffWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiChatgptCodexGetDiffManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_codex_get_diff", backend);
@@ -6432,7 +6465,7 @@ function validateStandaloneSelectModelArgs(tool: string, args: any): Record<stri
 }
 
 export async function webAiChatgptSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return selectChatgptModelWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return selectChatgptModelWithManagedBackend(args, runtimeOrDefault(runtime));
   return selectModelBackendInvalid("webai_chatgpt_select_model", backend);
@@ -6471,7 +6504,7 @@ async function selectChatgptModelWithManagedBackend(args: any, runtime: Required
 }
 
 export async function webAiClaudeSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return selectClaudeModelWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return selectClaudeModelWithManagedBackend(args, runtimeOrDefault(runtime));
   return selectModelBackendInvalid("webai_claude_select_model", backend);
@@ -6510,7 +6543,7 @@ async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return selectGeminiModelWithManagedBackend(args, runtimeOrDefault(runtime));
   return selectModelBackendInvalid("webai_gemini_select_model", backend);
@@ -6583,139 +6616,139 @@ async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
   return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return uploadAndQueryWithExtensionBackend("chatgpt", args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return uploadAndQueryOnPage("chatgpt", args, runtimeOrDefault(runtime));
   return uploadExtensionErrorOutput("chatgpt", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return uploadAndQueryClaudeWithExtensionBackend(args, runtimeOrDefault(runtime));
   return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return uploadAndQueryWithExtensionBackend("gemini", args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime));
   return uploadExtensionErrorOutput("gemini", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return generateChatgptFileWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return generateFileOnPage("chatgpt", args, runtimeOrDefault(runtime));
   return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_file backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiClaudeGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return generateFileOnPage("claude", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return generateClaudeFileWithExtensionBackend(args, runtimeOrDefault(runtime));
   return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_generate_file backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return generateImageOnPage("chatgpt", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return generateChatgptImageWithExtensionBackend(args, runtimeOrDefault(runtime));
   return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return generateImageOnPage("gemini", args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return generateGeminiImageWithExtensionBackend(args, runtimeOrDefault(runtime));
   return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return canvasToDocsWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return canvasToDocs(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_canvas_to_docs", backend);
 }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "managed-cdp") return startGeminiVideoTask(args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return generateGeminiVideoWithExtensionBackend(args, runtimeOrDefault(runtime));
   return videoErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_video backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return exportChatgptCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return exportChatgptCanvas(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_canvas_export", backend);
 }
 export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return getChatgptPulseWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return getChatgptPulse(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_pulse_get", backend);
 }
 export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return onboardChatgptPulseWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return onboardChatgptPulse(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_pulse_onboard", backend);
 }
 export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return startChatgptDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return startChatgptDeepResearch(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_deep_research", backend);
 }
 export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return startClaudeDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return startClaudeDeepResearch(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_deep_research", backend);
 }
 export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return manageChatgptConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return manageChatgptConversation(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_conversation_manage", backend);
 }
 export async function webAiClaudeConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return manageClaudeConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return manageClaudeConversation(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_conversation_manage", backend);
 }
 export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return inspectChatgptWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return inspectChatgptWorkspace(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_chatgpt_workspace", backend);
 }
 export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return inspectClaudeWorkspace(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_workspace", backend);
 }
 export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return startGeminiDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return startGeminiDeepResearch(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_deep_research", backend);
 }
 export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return editGeminiCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return editGeminiCanvas(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_canvas_edit", backend);
 }
 export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return manageGeminiConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return manageGeminiConversation(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_conversation_manage", backend);
 }
 export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return inspectGeminiWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return inspectGeminiWorkspace(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_workspace", backend);
@@ -6872,14 +6905,14 @@ export async function webAiGeminiMusicGenerate(args: any, runtime?: BrowserToolR
 }
 
 export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_music_download_track", backend);
 }
 
 export async function webAiGeminiMusicTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiGeminiMusicTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiGeminiMusicTaskStatusManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_music_task_status", backend);
@@ -6915,35 +6948,35 @@ async function webAiTaskStatusWithExtensionBackend(args: any, runtime: Required<
 }
 
 export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiTaskStatusFromDatabase(args, runtime?.database || new CapabilityDatabase());
   return webAiBackendInvalidOutput("webai_task_status", backend);
 }
 
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignCreateProjectManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_create_project", backend);
 }
 
 export async function webAiClaudeDesignGenerate(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignGenerateManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_generate", backend);
 }
 
 export async function webAiClaudeDesignGetHtml(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignGetHtmlWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignGetHtmlManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_get_html", backend);
 }
 
 export async function webAiClaudeDesignPresent(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "managed-cdp";
+  const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignPresentManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_present", backend);
@@ -6953,7 +6986,7 @@ function sendPromptSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: strin
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} prompt routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} prompt routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -6961,7 +6994,7 @@ function selectModelSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: stri
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} model selection routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} model selection routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -6969,7 +7002,7 @@ function uploadSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): 
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} upload routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} upload routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -6977,7 +7010,7 @@ function generateFileSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: str
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} generate-file routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} generate-file routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -6985,7 +7018,7 @@ function readToolSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string,
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} ${noun} routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} ${noun} routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -6993,7 +7026,7 @@ function extensionDriverSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: 
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
     ...(json.properties || {}),
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} ${noun} routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} ${noun} routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -7009,7 +7042,7 @@ function conversationManageSchemaWithBackend<T>(schema: RuntimeSchema<T>, servic
   }
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp"; action: string }>({
     ...properties,
-    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} conversation management routing; defaults to managed-cdp`)
+    backend: webAiBackendSchema(`Browser backend for ${service} conversation management routing; defaults to extension-assisted-cdp`)
   }, json.required || []);
 }
 
@@ -7052,7 +7085,7 @@ const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
   ...(webAiTaskStatusJson.properties || {}),
   profile: scalar.string("Optional browser profile for extension-polled task status"),
   tab_url_contains: scalar.string("Optional conversation URL fragment for extension-polled task status"),
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for task-status routing; defaults to managed-cdp")
+  backend: webAiBackendSchema("Browser backend for task-status routing; defaults to extension-assisted-cdp")
 }, webAiTaskStatusJson.required || []);
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
@@ -7060,21 +7093,21 @@ const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, 
   branch: scalar.string("Optional branch selected in the already-bound LT-0I/CN- environment"),
   confirmed: { ...scalar.boolean("Required true to submit the Codex task"), default: false },
   profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex submit-task routing; defaults to managed-cdp")
+  backend: webAiBackendSchema("Browser backend for ChatGPT Codex submit-task routing; defaults to extension-assisted-cdp")
 }, ["prompt", "profile"]);
 const webAiChatgptCodexListEnvsWithBackendInput = objectSchema<Record<string, unknown>>({
   profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex environment-list routing; defaults to managed-cdp")
+  backend: webAiBackendSchema("Browser backend for ChatGPT Codex environment-list routing; defaults to extension-assisted-cdp")
 }, ["profile"]);
 const webAiChatgptCodexTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
   task_id: scalar.string("ChatGPT Codex task id"),
   profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex task-status routing; defaults to managed-cdp")
+  backend: webAiBackendSchema("Browser backend for ChatGPT Codex task-status routing; defaults to extension-assisted-cdp")
 }, ["task_id", "profile"]);
 const webAiChatgptCodexGetDiffWithBackendInput = objectSchema<Record<string, unknown>>({
   task_id: scalar.string("ChatGPT Codex task id whose completed LT-0I/CN- diff should be read"),
   profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
-  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex diff-read routing; defaults to managed-cdp")
+  backend: webAiBackendSchema("Browser backend for ChatGPT Codex diff-read routing; defaults to extension-assisted-cdp")
 }, ["task_id", "profile"]);
 
 const coreToolSpecs: ToolSpec[] = [

@@ -1,0 +1,136 @@
+{
+  "id": "claude-select-model-sonnet-ext",
+  "file": "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-select-model-sonnet-ext.json",
+  "startedAt": "2026-05-25T16:05:49.147Z",
+  "finishedAt": "2026-05-25T16:05:51.136Z",
+  "durationMs": 1989,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-select-model-sonnet-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:05:49.621Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:select-model",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--model",
+              "Sonnet 4.6",
+              "--tab-url-contains",
+              "claude.ai",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-select-model-sonnet-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to select Sonnet 4.6 model on a live Claude chat tab (fail-closed; current model selector does not surface model_used)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-select-model-sonnet-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:select-model",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--model",
+            "Sonnet 4.6",
+            "--tab-url-contains",
+            "claude.ai",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 1340,
+          "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Sonnet 4.6\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": true,
+            "selected_model": "Sonnet 4.6",
+            "selected_thinking_level": null,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "selected_model": "Sonnet 4.6",
+          "selected_thinking_level": null,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_2c09c67ae4deacb7"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-select-model-sonnet-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:05:49.621Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:select-model\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--model\",\n            \"Sonnet 4.6\",\n            \"--tab-url-contains\",\n            \"claude.ai\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"ok\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-select-model-sonnet-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Attempt to select Sonnet 4.6 model on a live Claude chat tab (fail-closed; current model selector does not surface model_used)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-select-model-sonnet-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:select-model\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--model\",\n          \"Sonnet 4.6\",\n          \"--tab-url-contains\",\n          \"claude.ai\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 1340,\n        \"stdout\": \"{\\n  \\\"ok\\\": true,\\n  \\\"selected_model\\\": \\\"Sonnet 4.6\\\",\\n  \\\"selected_thinking_level\\\": null,\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": true,\n          \"selected_model\": \"Sonnet 4.6\",\n          \"selected_thinking_level\": null,\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"ok\",\n              \"actual\": true,\n              \"ok\": true\n            }\n          ]\n        },\n        \"selected_model\": \"Sonnet 4.6\",\n        \"selected_thinking_level\": null,\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_2c09c67ae4deacb7\"\n}\n",
+  "stderr": ""
+}

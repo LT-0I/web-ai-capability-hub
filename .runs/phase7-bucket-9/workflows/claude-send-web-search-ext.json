@@ -1,0 +1,144 @@
+{
+  "id": "claude-send-web-search-ext",
+  "file": "examples/workflows/claude-claude-send-web-search-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-send-web-search-ext.json",
+  "startedAt": "2026-05-25T16:06:35.888Z",
+  "finishedAt": "2026-05-25T16:06:45.944Z",
+  "durationMs": 10056,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-send-web-search-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:06:36.049Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:send-prompt",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--web-search",
+              "--prompt",
+              "What is today's date?",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "20\\d{2}|May|5月"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-send-web-search-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Claude web-search date prompt",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-web-search-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--web-search",
+            "--prompt",
+            "What is today's date?",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 9806,
+          "stdout": "{\n  \"response_text\": \"Claude responded: Today is Monday, May 25, 2026.\\n\\nToday is Monday, May 25, 2026.\",\n  \"elapsed_ms\": 9661,\n  \"wait_ms\": 6380,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Claude responded: Today is Monday, May 25, 2026.\n\nToday is Monday, May 25, 2026.",
+            "elapsed_ms": 9661,
+            "wait_ms": 6380,
+            "completion_detected": true,
+            "errorCode": null,
+            "conversation_id": null,
+            "chat_url": "https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: Today is Monday, May 25, 2026.\n\nToday is Monday, May 25, 2026.",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "Claude responded: Today is Monday, May 25, 2026.\n\nToday is Monday, May 25, 2026.",
+          "wait_ms": 6380,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100"
+        }
+      }
+    ],
+    "runId": "run_8203c1b30164de93"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-send-web-search-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:06:36.049Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:send-prompt\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--web-search\",\n            \"--prompt\",\n            \"What is today's date?\",\n            \"--response-timeout-ms\",\n            \"180000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"20\\\\d{2}|May|5月\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-send-web-search-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Claude web-search date prompt\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-send-web-search-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:send-prompt\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--web-search\",\n          \"--prompt\",\n          \"What is today's date?\",\n          \"--response-timeout-ms\",\n          \"180000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 9806,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"Claude responded: Today is Monday, May 25, 2026.\\\\n\\\\nToday is Monday, May 25, 2026.\\\",\\n  \\\"elapsed_ms\\\": 9661,\\n  \\\"wait_ms\\\": 6380,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"conversation_id\\\": null,\\n  \\\"chat_url\\\": \\\"https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"Claude responded: Today is Monday, May 25, 2026.\\n\\nToday is Monday, May 25, 2026.\",\n          \"elapsed_ms\": 9661,\n          \"wait_ms\": 6380,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"conversation_id\": null,\n          \"chat_url\": \"https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: Today is Monday, May 25, 2026.\\n\\nToday is Monday, May 25, 2026.\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"Claude responded: Today is Monday, May 25, 2026.\\n\\nToday is Monday, May 25, 2026.\",\n        \"wait_ms\": 6380,\n        \"completion_detected\": true,\n        \"errorCode\": null,\n        \"conversation_id\": null,\n        \"chat_url\": \"https://claude.ai/chat/4fbcc922-e47a-4fd6-9817-8e30d4655100\"\n      }\n    }\n  ],\n  \"runId\": \"run_8203c1b30164de93\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,21 @@
+{
+  "id": "claude-design-present",
+  "file": "examples/workflows/claude-design-present.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-design-present.json",
+  "startedAt": "2026-05-25T16:07:51.884Z",
+  "finishedAt": "2026-05-25T16:08:22.529Z",
+  "durationMs": 30645,
+  "timeoutMs": 120000,
+  "exitCode": 1,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "UNKNOWN",
+  "message": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n",
+  "rateLimitedChatgpt": false,
+  "parsedStderr": {
+    "ok": false,
+    "error": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n"
+  },
+  "stdout": "",
+  "stderr": "{\"ok\":false,\"error\":\"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n\"}\n"
+}

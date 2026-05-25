@@ -1,0 +1,132 @@
+{
+  "id": "gemini-music-task-status-ext",
+  "file": "examples/workflows/gemini-gemini-music-task-status-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-music-task-status-ext.json",
+  "startedAt": "2026-05-25T16:29:21.287Z",
+  "finishedAt": "2026-05-25T16:29:37.649Z",
+  "durationMs": 16362,
+  "timeoutMs": 120000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_GATE_FAILED",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-task-status-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:21.449Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-music-task-status-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:29:21.449Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:task-status",
+              "--profile",
+              "gemini-9225",
+              "--tab-url-contains",
+              "gemini.google.com/app",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "status",
+                  "regex": "(?i)complete"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-music-task-status-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Poll Gemini Music task-status on an existing chat tab",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: json_path status regex /(?i)complete/ failed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:task-status",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "gemini.google.com/app",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 16107,
+          "stdout": "{\n  \"status\": \"error\",\n  \"download_ready\": false,\n  \"conversation_url\": \"https://gemini.google.com/app?hl=en\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "status": "error",
+            "download_ready": false,
+            "conversation_url": "https://gemini.google.com/app?hl=en",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "status",
+                "actual": "error",
+                "ok": false,
+                "reasons": [
+                  "regex /(?i)complete/ failed"
+                ]
+              }
+            ]
+          },
+          "status": "error",
+          "download_ready": false,
+          "conversation_url": "https://gemini.google.com/app?hl=en",
+          "errorCode": "COMMAND_GATE_FAILED"
+        }
+      }
+    ],
+    "runId": "run_a1105bed7c40135a"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-task-status-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:21.449Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:music:task-status\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--tab-url-contains\",\n            \"gemini.google.com/app\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 60000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"status\",\n                \"regex\": \"(?i)complete\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-music-task-status-ext\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Poll Gemini Music task-status on an existing chat tab\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 60000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: json_path status regex /(?i)complete/ failed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:music:task-status\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--tab-url-contains\",\n          \"gemini.google.com/app\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 16107,\n        \"stdout\": \"{\\n  \\\"status\\\": \\\"error\\\",\\n  \\\"download_ready\\\": false,\\n  \\\"conversation_url\\\": \\\"https://gemini.google.com/app?hl=en\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"status\": \"error\",\n          \"download_ready\": false,\n          \"conversation_url\": \"https://gemini.google.com/app?hl=en\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"status\",\n              \"actual\": \"error\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /(?i)complete/ failed\"\n              ]\n            }\n          ]\n        },\n        \"status\": \"error\",\n        \"download_ready\": false,\n        \"conversation_url\": \"https://gemini.google.com/app?hl=en\",\n        \"errorCode\": \"COMMAND_GATE_FAILED\"\n      }\n    }\n  ],\n  \"runId\": \"run_a1105bed7c40135a\"\n}\n",
+  "stderrTail": ""
+}

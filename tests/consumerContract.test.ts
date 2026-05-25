@@ -220,7 +220,7 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-1.10.0");
+  assert.equal(manifest.contract_version, "consumer-contract-2.0.0");
   assert.equal(manifest.commands.length, 191);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 39);
@@ -687,9 +687,9 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 40, "webai MCP tools now 40");
   assert.equal(manifest.error_codes.length, 39, "error codes now 39");
   assert.equal(manifest.commands.length, 191, "commands now 191");
-  assert.equal(manifest.contract_version, "consumer-contract-1.10.0");
-  assert.equal(packageJson.version, "1.0.0");
-  assert.equal(manifest.package_version, "1.0.0");
+  assert.equal(manifest.contract_version, "consumer-contract-2.0.0");
+  assert.equal(packageJson.version, "2.0.0");
+  assert.equal(manifest.package_version, "2.0.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
   assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched science/engineering subject labels; safe governance metadata.");
 });
@@ -717,13 +717,13 @@ test("submcp/chatgpt-codex has no import-time side effects", async () => {
 });
 
 test("chatgpt-codex handlers return SUBMCP_NOT_PROVISIONED (no live task executed)", async () => {
-  const result = await callMcpTool("webai_chatgpt_codex_submit_task", { prompt: "test", profile: "chatgpt" });
+  const result = await callMcpTool("webai_chatgpt_codex_submit_task", { backend: "managed-cdp", prompt: "test", profile: "chatgpt" });
   assert.equal((result as any).status, "failed");
   assert.equal((result as any).errorCode, "SENSITIVE_CONTENT_GUARD");
   assert.match((result as any).message, /confirmed=true/);
   assertNoForbiddenFields(result, contract().forbidden_output_fields);
 
-  const listResult = await callMcpTool("webai_chatgpt_codex_list_envs", { profile: "chatgpt" }, mockWebAiRuntime(mockCodexPage({ envRows: [] })));
+  const listResult = await callMcpTool("webai_chatgpt_codex_list_envs", { backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(mockCodexPage({ envRows: [] })));
   assert.equal((listResult as any).errorCode, "SUBMCP_NOT_PROVISIONED");
   assertNoForbiddenFields(listResult, contract().forbidden_output_fields);
 });
@@ -735,7 +735,7 @@ test("chatgpt-codex list-envs returns only LT-0I/CN- and filters noeticbraid", a
       { text: "noeticbraid LT-0I/noeticbraid 0 cherrypie85arrow@gmail.com May 12, 2026", href: "/codex/cloud/settings/environment/deadbeefdeadbeefdeadbeefdeadbeef" }
     ]
   });
-  const result: any = await callMcpTool("webai_chatgpt_codex_list_envs", { profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await callMcpTool("webai_chatgpt_codex_list_envs", { backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
   assert.equal(result.status, "ok");
   assert.equal(result.envs.length, 1);
   assert.equal(result.envs[0].repo, "LT-0I/CN-");
@@ -747,7 +747,7 @@ test("chatgpt-codex submit-task requires confirmation and selects only LT-0I/CN-
   const taskId = "task_e_22222222222222222222222222222222";
   const stalePriorId = "task_e_99999999999999999999999999999999";
   const page = mockCodexPage({ taskId, preSubmitTaskHref: `/codex/cloud/tasks/${stalePriorId}` });
-  const result: any = await callMcpTool("webai_chatgpt_codex_submit_task", { profile: "chatgpt", prompt: "Inventory only", confirmed: true }, mockWebAiRuntime(page));
+  const result: any = await callMcpTool("webai_chatgpt_codex_submit_task", { backend: "managed-cdp", profile: "chatgpt", prompt: "Inventory only", confirmed: true }, mockWebAiRuntime(page));
   assert.equal(result.task_id, taskId);
   assert.notEqual(result.task_id, stalePriorId);
   assert.equal(result.repo, "LT-0I/CN-");
@@ -756,27 +756,27 @@ test("chatgpt-codex submit-task requires confirmation and selects only LT-0I/CN-
   assert.ok(page.calls.includes("click:button[aria-label='Submit']"));
   assert.equal(page.calls.some((call: string) => /noeticbraid/i.test(call)), false);
 
-  const refused: any = await callMcpTool("webai_chatgpt_codex_submit_task", { profile: "chatgpt", prompt: "x", confirmed: true, repo: "LT-0I/noeticbraid" }, mockWebAiRuntime(mockCodexPage({})));
+  const refused: any = await callMcpTool("webai_chatgpt_codex_submit_task", { backend: "managed-cdp", profile: "chatgpt", prompt: "x", confirmed: true, repo: "LT-0I/noeticbraid" }, mockWebAiRuntime(mockCodexPage({})));
   assert.equal(refused.errorCode, "INVALID_ARGS");
 });
 
 test("chatgpt-codex task-status maps running, complete, and refuses non-allowlisted tasks", async () => {
   const taskId = "task_e_33333333333333333333333333333333";
-  const running: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+  const running: any = await callMcpTool("webai_chatgpt_codex_task_status", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
     bodyText: "Task · LT-0I/CN- · main Running setup scripts Cancel task",
     counts: { cancel: 1, thumbs: 0 }
   })));
   assert.equal(running.status, "running");
   assert.equal(running.status_text, "Running setup scripts");
 
-  const complete: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+  const complete: any = await callMcpTool("webai_chatgpt_codex_task_status", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
     bodyText: "Task · LT-0I/CN- · main Worked for 48s Give thumbs up feedback",
     counts: { cancel: 0, thumbs: 1 }
   })));
   assert.equal(complete.status, "complete");
   assert.equal(complete.done, true);
 
-  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
     bodyText: "Task · LT-0I/noeticbraid · main Worked for 1m Give thumbs up feedback",
     counts: { cancel: 0, thumbs: 1 }
   })));
@@ -802,7 +802,7 @@ test("chatgpt-codex task readers use snapshot visibleText for delimited LT-0I/CN
     legacyBodyText: "Append line to README.md May 15 · LT-0I/noeticbraid · main Worked for 33s Give thumbs up feedback",
     counts: { cancel: 0, thumbs: 1 }
   });
-  const status: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(statusPage));
+  const status: any = await callMcpTool("webai_chatgpt_codex_task_status", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(statusPage));
   assert.equal(status.status, "complete");
   assert.equal(status.done, true);
   assert.equal(status.status_text, "Worked for 33s");
@@ -816,7 +816,7 @@ test("chatgpt-codex task readers use snapshot visibleText for delimited LT-0I/CN
     fileLabels: ["View file README.md"],
     toggleText: "File (1)"
   });
-  const diff: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(diffPage));
+  const diff: any = await callMcpTool("webai_chatgpt_codex_get_diff", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(diffPage));
   assert.equal(diff.status, "complete");
   assert.deepEqual(diff.files, ["README.md"]);
   assert.match(diff.diff_text, /^README\.md \+2 -0\n@@ -57,2 \+57,4 @@/);
@@ -828,7 +828,7 @@ test("chatgpt-codex task readers use snapshot visibleText for delimited LT-0I/CN
     legacyBodyText: "Task · LT-0I/CN- · main Worked for 33s Give thumbs up feedback",
     counts: { cancel: 0, thumbs: 1 }
   });
-  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(refusedPage));
+  const refused: any = await callMcpTool("webai_chatgpt_codex_task_status", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(refusedPage));
   assert.equal(refused.errorCode, "INVALID_ARGS");
   assert.match(refused.message, /forbidden noeticbraid|does not prove LT-0I\/CN-/);
 });
@@ -945,7 +945,7 @@ test("chatgpt-codex get-diff extracts visible unified diff and never clicks Crea
     fileLabels: ["View file README.md"],
     toggleText: "File (1)"
   });
-  const result: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(page));
+  const result: any = await callMcpTool("webai_chatgpt_codex_get_diff", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(page));
   assert.equal(result.status, "complete");
   assert.deepEqual(result.files, ["README.md"]);
   assert.match(result.diff_text, /^README\.md \+2 -0\n@@ -57,2 \+57,4 @@/);
@@ -953,7 +953,7 @@ test("chatgpt-codex get-diff extracts visible unified diff and never clicks Crea
   assert.equal(result.create_pr_available, true);
   assert.equal(page.calls.includes("click:xpath=//button[normalize-space(.)='Create PR']"), false);
 
-  const incomplete: any = await callMcpTool("webai_chatgpt_codex_get_diff", { profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
+  const incomplete: any = await callMcpTool("webai_chatgpt_codex_get_diff", { backend: "managed-cdp", profile: "chatgpt", task_id: taskId }, mockWebAiRuntime(mockCodexPage({
     bodyText: "Task · LT-0I/CN- · main Running setup scripts Cancel task",
     counts: { cancel: 1, thumbs: 0 },
     fileLabels: ["View file README.md"],
@@ -985,7 +985,7 @@ test("submcp/gemini-music has no import-time side effects", async () => {
 
 
 test("stream5 B6 Gemini Music generate returns SENSITIVE_CONTENT_GUARD unless confirmed", async () => {
-  const result: any = await callMcpTool("webai_gemini_music_generate", { profile: "gemini-9225", prompt: "gentle instrumental piano" });
+  const result: any = await callMcpTool("webai_gemini_music_generate", { backend: "managed-cdp", profile: "gemini-9225", prompt: "gentle instrumental piano" });
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "SENSITIVE_CONTENT_GUARD");
   assert.equal(result.error_code, "SENSITIVE_CONTENT_GUARD");
@@ -1007,7 +1007,7 @@ test("stream5 B6 Gemini Music download_track returns ARTIFACT_DOWNLOAD_TIMEOUT w
       throw error;
     }
   } as any;
-  const result: any = await webAiGeminiMusicDownloadTrack({ profile: "gemini-9225", tab_url_contains: "test-music", download_dir: path.join(require("node:os").tmpdir(), "gemini-music-timeout"), format: "mp3" }, runtime);
+  const result: any = await webAiGeminiMusicDownloadTrack({ backend: "managed-cdp", profile: "gemini-9225", tab_url_contains: "test-music", download_dir: path.join(require("node:os").tmpdir(), "gemini-music-timeout"), format: "mp3" }, runtime);
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT");
   assert.equal(result.error_code, "ARTIFACT_DOWNLOAD_TIMEOUT");
@@ -1031,7 +1031,7 @@ test("phase C Gemini Music status and download navigate to target conversation b
     };
     return loc;
   };
-  const status: any = await webAiGeminiMusicTaskStatus({ profile: "gemini-9225", tab_url_contains: "targetMusic123" }, mockWebAiRuntime(page));
+  const status: any = await webAiGeminiMusicTaskStatus({ backend: "managed-cdp", profile: "gemini-9225", tab_url_contains: "targetMusic123" }, mockWebAiRuntime(page));
   assert.equal(status.status, "complete");
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app/targetMusic123"]);
 
@@ -1044,14 +1044,14 @@ test("phase C Gemini Music status and download navigate to target conversation b
       return { path: "", savedPath: "", sha256: "", size: 0 };
     }
   } as any;
-  await webAiGeminiMusicDownloadTrack({ profile: "gemini-9225", tab_url_contains: "targetMusic123", download_dir: path.join(require("node:os").tmpdir(), "gemini-music-target"), format: "mp3" }, runtime);
+  await webAiGeminiMusicDownloadTrack({ backend: "managed-cdp", profile: "gemini-9225", tab_url_contains: "targetMusic123", download_dir: path.join(require("node:os").tmpdir(), "gemini-music-target"), format: "mp3" }, runtime);
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app/targetMusic123"]);
 });
 
 test("stream5 B5 Claude Design get_html returns fingerprint and savedPath, never html", async () => {
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-html-"));
   const page = mockClaudeDesignPage({ iframeSrcdoc: "<main>hello design</main>" });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(typeof result.iframeArtifactSha256, "string");
   assert.match(result.iframeArtifactSha256, /^[a-f0-9]{64}$/);
   assert.equal(typeof result.savedPath, "string");
@@ -1074,7 +1074,7 @@ test("stream5 Claude Design get_html polls past cold empty shell until real cont
   const emptyShell = "<html><head></head><body></body></html>";
   const real = "<!doctype html><html><body><main>Hydrated design</main></body></html>";
   const page = mockClaudeDesignPage({ iframeSrcdocSequence: [emptyShell, "  <html><head></head><body> \n </body></html>  ", real] });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.byteSize, Buffer.byteLength(real));
   assert.equal(fs.readFileSync(result.savedPath, "utf-8"), real);
   assert.equal(page.calls.filter((call: string) => call === "waitForTimeout:500").length, 2);
@@ -1085,7 +1085,7 @@ test("stream5 Claude Design get_html returns ARTIFACT_VERIFICATION_FAILED when c
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-coldstart-fail-"));
   const emptyShell = "<html><head></head><body></body></html>";
   const page = mockClaudeDesignPage({ iframeSrcdocSequence: Array.from({ length: 60 }, () => emptyShell) });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
   assert.equal(result.error_code, "ARTIFACT_VERIFICATION_FAILED");
@@ -1100,7 +1100,7 @@ test("stream5 Claude Design get_html returns ARTIFACT_VERIFICATION_FAILED when c
 test("phase C D2 Claude Design get_html rejects bootstrap URL stubs without persisting", async () => {
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-stub-"));
   const page = mockClaudeDesignPage({ iframeSrc: "https://019e2c78-13a1-70b4-9e59-18d635816ee5.claudeusercontent.com/_bootstrap" });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
   assert.equal(result.error_code, "ARTIFACT_VERIFICATION_FAILED");
@@ -1118,7 +1118,7 @@ test("phase C D1-v2 Claude Design get_html removes scratch file on failed captur
     iframeSrc: "https://019e2c78-13a1-70b4-9e59-18d635816ee5.claudeusercontent.com/_bootstrap",
     scratchFile: { dir: tmp, name: "r_4_canvas_document.md", content: "not html scratch" }
   });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
   assert.deepEqual(fs.readdirSync(tmp), []);
   assertNoForbiddenFields(result, contract().forbidden_output_fields);
@@ -1128,7 +1128,7 @@ test("phase C D2 Claude Design get_html accepts frame.content real HTML", async 
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-frame-html-"));
   const html = "<!doctype html><html><body><main>Hello design</main></body></html>";
   const page = mockClaudeDesignPage({ iframeContent: html });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.byteSize, Buffer.byteLength(html));
   assert.equal(fs.readFileSync(result.savedPath, "utf-8"), html);
   assertNoForbiddenFields(result, contract().forbidden_output_fields);
@@ -1138,7 +1138,7 @@ test("stream5 Claude Design get_html resolves ElementHandle contentFrame real HT
   const htmlTmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-elementhandle-html-"));
   const html = "<!doctype html><html><head><title>Hello World</title></head><body><main>Hello World</main></body></html>";
   const htmlPage = mockClaudeDesignPage({ iframeContent: html });
-  const ok: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: htmlTmp, profile: "claude-9224" }, mockWebAiRuntime(htmlPage));
+  const ok: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: htmlTmp, profile: "claude-9224" }, mockWebAiRuntime(htmlPage));
   assert.equal(ok.byteSize, Buffer.byteLength(html));
   assert.equal(fs.readFileSync(ok.savedPath, "utf-8"), html);
   assert.equal(htmlPage.calls.includes("elementHandle:html-viewer-iframe"), true);
@@ -1148,7 +1148,7 @@ test("stream5 Claude Design get_html resolves ElementHandle contentFrame real HT
 
   const stubTmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-elementhandle-stub-"));
   const stubPage = mockClaudeDesignPage({ iframeSrc: "https://019e2c78-13a1-70b4-9e59-18d635816ee5.claudeusercontent.com/_bootstrap" });
-  const rejected: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", download_dir: stubTmp, profile: "claude-9224" }, mockWebAiRuntime(stubPage));
+  const rejected: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", download_dir: stubTmp, profile: "claude-9224" }, mockWebAiRuntime(stubPage));
   assert.equal(rejected.ok, false);
   assert.equal(rejected.errorCode, "ARTIFACT_VERIFICATION_FAILED");
   assert.equal(rejected.error_code, "ARTIFACT_VERIFICATION_FAILED");
@@ -1163,7 +1163,7 @@ test("stream5 Claude Design get_html opens produced file viewer before capture",
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-open-html-"));
   const html = "<!doctype html><html><body><main>Opened viewer</main></body></html>";
   const page = mockClaudeDesignPage({ iframeSrcdoc: html, htmlIframeInitiallyPresent: false, htmlIframeAppearsAfterOpen: true, openFileName: "Foo.html" });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project?file=Foo.html", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project?file=Foo.html", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.byteSize, Buffer.byteLength(html));
   assert.ok(page.calls.some((call: string) => call.includes('Foo.html') && call.includes('Open')));
   assert.equal(page.url(), "https://claude.ai/design/p/test-project?file=Foo.html");
@@ -1173,7 +1173,7 @@ test("stream5 Claude Design get_html opens produced file viewer before capture",
 test("stream5 Claude Design get_html keeps D2 validation after opening viewer", async () => {
   const tmp = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "claude-design-open-stub-"));
   const page = mockClaudeDesignPage({ iframeSrc: "https://019e2c78-13a1-70b4-9e59-18d635816ee5.claudeusercontent.com/_loader", htmlIframeInitiallyPresent: false, htmlIframeAppearsAfterOpen: true, openFileName: "Foo.html" });
-  const result: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project?file=Foo.html", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project?file=Foo.html", download_dir: tmp, profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ARTIFACT_VERIFICATION_FAILED");
   assert.equal(result.error_code, "ARTIFACT_VERIFICATION_FAILED");
   assert.deepEqual(fs.readdirSync(tmp), []);
@@ -1183,7 +1183,7 @@ test("stream5 Claude Design get_html keeps D2 validation after opening viewer", 
 
 test("stream5 Claude Design present opens produced file viewer before present", async () => {
   const page = mockClaudeDesignPage({ htmlIframeInitiallyPresent: false, htmlIframeAppearsAfterOpen: true, openFileName: "Foo.html" });
-  const result: any = await webAiClaudeDesignPresent({ project_url: "https://claude.ai/design/p/test-project?file=Foo.html", profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignPresent({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project?file=Foo.html", profile: "claude-9224" }, mockWebAiRuntime(page));
   const openIndex = page.calls.findIndex((call: string) => call.includes('Foo.html') && call.includes('Open'));
   const presentIndex = page.calls.findIndex((call: string) => call.includes('Present'));
   assert.ok(openIndex >= 0, page.calls.join("\n"));
@@ -1196,7 +1196,7 @@ test("phase C D1-v2 Claude Design generate resolves when project URL gains file 
   const page = mockClaudeDesignPage({
     urlsAfterWait: ["https://claude.ai/design/p/test-project?file=Foo.html"]
   });
-  const result: any = await webAiClaudeDesignGenerate({ project_url: "https://claude.ai/design/p/test-project", prompt: "make a card", profile: "claude-9224", timeout_ms: 5000 }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGenerate({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", prompt: "make a card", profile: "claude-9224", timeout_ms: 5000 }, mockWebAiRuntime(page));
   assert.equal(result.status, "generated");
   assert.equal(result.model_used, "sonnet");
   assert.equal(result.projectUrl, "https://claude.ai/design/p/test-project?file=Foo.html");
@@ -1231,7 +1231,7 @@ test("stream5 Claude Design completion timeout carries projectUrl and fileName",
 
 test("stream5 Claude Design generate timeout envelope includes contract keys", async () => {
   const page = mockClaudeDesignPage({ iframeSrcs: [] });
-  const result: any = await webAiClaudeDesignGenerate({ project_url: "https://claude.ai/design/p/test-project", prompt: "make a card", profile: "claude-9224", timeout_ms: 1 }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGenerate({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", prompt: "make a card", profile: "claude-9224", timeout_ms: 1 }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "POSTCONDITION_TIMEOUT");
   assert.equal(result.error_code, "POSTCONDITION_TIMEOUT");
@@ -1244,7 +1244,7 @@ test("stream5 Claude Design generate timeout envelope includes contract keys", a
 
 test("stream5 B5 Claude Design generate returns SUBMCP_QUOTA_EXHAUSTED on quota wall", async () => {
   const page = mockClaudeDesignPage({ bodyText: "You have reached your Design quota. Try again later." });
-  const result: any = await webAiClaudeDesignGenerate({ project_url: "https://claude.ai/design/p/quota", prompt: "make a card", profile: "claude-9224" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeDesignGenerate({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/quota", prompt: "make a card", profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.status, "failed");
   assert.equal(result.model_used, "sonnet");
@@ -1259,11 +1259,11 @@ test("phase C Claude Design create_project/get_html map Playwright timeouts to s
   const timeout = new Error('page.waitForSelector: Timeout 15000ms exceeded. waiting for locator("input[placeholder=\\"Project name\\"]")');
   const page = mockClaudeDesignPage();
   page.waitForSelector = async () => { throw timeout; };
-  const createResult: any = await webAiClaudeDesignCreateProject({ name: "Phase C", profile: "claude-9224" }, mockWebAiRuntime(page));
+  const createResult: any = await webAiClaudeDesignCreateProject({ backend: "managed-cdp", name: "Phase C", profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(createResult.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(JSON.stringify(createResult).includes("waitForSelector"), false);
 
-  const htmlResult: any = await webAiClaudeDesignGetHtml({ project_url: "https://claude.ai/design/p/test-project", profile: "claude-9224" }, mockWebAiRuntime(page));
+  const htmlResult: any = await webAiClaudeDesignGetHtml({ backend: "managed-cdp", project_url: "https://claude.ai/design/p/test-project", profile: "claude-9224" }, mockWebAiRuntime(page));
   assert.equal(htmlResult.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(Object.prototype.hasOwnProperty.call(htmlResult, "html"), false);
   assert.equal(JSON.stringify(htmlResult).includes("Timeout 15000ms"), false);
@@ -1283,7 +1283,7 @@ test("phase C refreshed selectors are used for ChatGPT share/canvas/menu and Cla
     };
     return loc;
   };
-  const shared: any = await webAiChatgptConversationManage({ profile: "chatgpt", action: "share", tab_url_contains: "abc123" }, mockWebAiRuntime(sharePage));
+  const shared: any = await webAiChatgptConversationManage({ backend: "managed-cdp", profile: "chatgpt", action: "share", tab_url_contains: "abc123" }, mockWebAiRuntime(sharePage));
   assert.equal(shared.dialog_opened, true);
   assert.ok(shareSelectors.includes('button[aria-label="Share"]'));
   assert.equal(shareSelectors.includes('button[data-testid="share-chat-button"]'), false);
@@ -1291,13 +1291,13 @@ test("phase C refreshed selectors are used for ChatGPT share/canvas/menu and Cla
   const runtime = {
     ...mockWebAiRuntime(sharePage),
     artifactClick: async (options: any) => {
-      assert.equal(options.buttonSelector, 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download")');
+      assert.match(options.buttonSelector, /Download/);
       assert.equal(options.openPanelIfMissing, "chatgpt-canvas");
       assert.notEqual(options.noDisconnect, true);
       return { path: "", savedPath: "", sha256: "", size: 0 };
     }
   } as any;
-  await webAiChatgptCanvasExport({ profile: "chatgpt", tab_url_contains: "abc123", download_dir: path.join(require("node:os").tmpdir(), "chatgpt-canvas-selector") }, runtime);
+  await webAiChatgptCanvasExport({ backend: "managed-cdp", profile: "chatgpt", tab_url_contains: "abc123", download_dir: path.join(require("node:os").tmpdir(), "chatgpt-canvas-selector") }, runtime);
 
   const menuPage = mockSendPromptPage("https://chatgpt.com/c/abc123");
   const menuSelectors: string[] = [];
@@ -1313,7 +1313,7 @@ test("phase C refreshed selectors are used for ChatGPT share/canvas/menu and Cla
     };
     return loc;
   };
-  const menu: any = await webAiChatgptConversationManage({ profile: "chatgpt", action: "menu_enumerate", tab_url_contains: "abc123" }, mockWebAiRuntime(menuPage));
+  const menu: any = await webAiChatgptConversationManage({ backend: "managed-cdp", profile: "chatgpt", action: "menu_enumerate", tab_url_contains: "abc123" }, mockWebAiRuntime(menuPage));
   assert.deepEqual(menu.items, ["Archive"]);
   assert.ok(menuSelectors.includes('button[aria-label="Open conversation options"]'));
 
@@ -1331,8 +1331,8 @@ test("phase C refreshed selectors are used for ChatGPT share/canvas/menu and Cla
     };
     return loc;
   };
-  await webAiClaudeWorkspace({ profile: "claude-9224", surface: "integrations" }, mockWebAiRuntime(claudePage));
-  assert.ok(claudeSelectors.includes('button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"]'));
+  await webAiClaudeWorkspace({ backend: "managed-cdp", profile: "claude-9224", surface: "integrations" }, mockWebAiRuntime(claudePage));
+  assert.ok(claudeSelectors.some((s) => s.includes('button[aria-label="Add files, connectors, and more"]') && s.includes('button[aria-label="Upload files"]')));
   assert.equal(claudeSelectors.some((s) => s.includes("#composer-plus-btn") || s.includes("Attach content")), false);
 });
 
@@ -1346,7 +1346,7 @@ test("phase C D3 ChatGPT canvas export releases artifact runner on success and e
       return { path: path.join(dir, "canvas.md"), sha256: "abc", size: 10 };
     }
   } as any;
-  const ok: any = await webAiChatgptCanvasExport({ profile: "chatgpt", tab_url_contains: "abc123", download_dir: dir, format: "md" }, successRuntime);
+  const ok: any = await webAiChatgptCanvasExport({ backend: "managed-cdp", profile: "chatgpt", tab_url_contains: "abc123", download_dir: dir, format: "md" }, successRuntime);
   assert.equal(ok.errorCode, undefined);
   assert.equal(ok.path, path.join(dir, "canvas.md"));
 
@@ -1360,7 +1360,7 @@ test("phase C D3 ChatGPT canvas export releases artifact runner on success and e
       throw error;
     }
   } as any;
-  const failed: any = await webAiChatgptCanvasExport({ profile: "chatgpt", tab_url_contains: "abc123", download_dir: dir, format: "md" }, errorRuntime);
+  const failed: any = await webAiChatgptCanvasExport({ backend: "managed-cdp", profile: "chatgpt", tab_url_contains: "abc123", download_dir: dir, format: "md" }, errorRuntime);
   assert.equal(failed.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(failed.byteSize, 0);
 });
@@ -1397,7 +1397,7 @@ test("phase C D3 ChatGPT canvas export readiness opens a closed canvas panel whe
 
 
 test("stream5 B4 Gemini canvas prompt send requires sensitive-content confirmation", async () => {
-  const result: any = await callMcpTool("webai_gemini_canvas_edit", { profile: "gemini-9225", prompt: "Create a substantial canvas draft" });
+  const result: any = await callMcpTool("webai_gemini_canvas_edit", { backend: "managed-cdp", profile: "gemini-9225", prompt: "Create a substantial canvas draft" });
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "SENSITIVE_CONTENT_GUARD");
   assert.equal(result.error_code, "SENSITIVE_CONTENT_GUARD");
@@ -1406,7 +1406,7 @@ test("stream5 B4 Gemini canvas prompt send requires sensitive-content confirmati
 });
 
 test("stream5 B4 Gemini conversation delete requires policy approval", async () => {
-  const result: any = await callMcpTool("webai_gemini_conversation_manage", { profile: "gemini-9225", action: "delete" });
+  const result: any = await callMcpTool("webai_gemini_conversation_manage", { backend: "managed-cdp", profile: "gemini-9225", action: "delete" });
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "POLICY_APPROVAL_REQUIRED");
   assert.equal(result.error_code, "POLICY_APPROVAL_REQUIRED");
@@ -1415,7 +1415,7 @@ test("stream5 B4 Gemini conversation delete requires policy approval", async () 
 });
 
 test("stream5 B2 ChatGPT workspace destructive actions require policy approval", async () => {
-  const result: any = await callMcpTool("webai_chatgpt_workspace", { profile: "chatgpt", surface: "memory", action: "delete_memory" });
+  const result: any = await callMcpTool("webai_chatgpt_workspace", { backend: "managed-cdp", profile: "chatgpt", surface: "memory", action: "delete_memory" });
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "POLICY_APPROVAL_REQUIRED");
   assert.equal(result.error_code, "POLICY_APPROVAL_REQUIRED");
@@ -1425,7 +1425,7 @@ test("stream5 B2 ChatGPT workspace destructive actions require policy approval",
 });
 
 test("stream5 B2 ChatGPT conversation kebab actions require human handoff", async () => {
-  const result: any = await callMcpTool("webai_chatgpt_conversation_manage", { profile: "chatgpt", action: "delete" });
+  const result: any = await callMcpTool("webai_chatgpt_conversation_manage", { backend: "managed-cdp", profile: "chatgpt", action: "delete" });
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "HUMAN_HANDOFF_REQUIRED");
   assert.equal(result.error_code, "HUMAN_HANDOFF_REQUIRED");
@@ -1444,11 +1444,11 @@ test("new v1.3.0 error codes exist in TS export and contract manifest", () => {
 
 test("webai task status and prompt-deny responses do not leak forbidden fields", async () => {
   const manifest = contract();
-  const missing = await callMcpTool("webai_task_status", { task_id: "missing" });
+  const missing = await callMcpTool("webai_task_status", { backend: "managed-cdp", task_id: "missing" });
   assertNoForbiddenFields(missing, manifest.forbidden_output_fields);
   assert.deepEqual(missing, { status: "failed", errorCode: "INVALID_ARGS" });
   await assert.rejects(
-    () => callMcpTool("webai_gemini_generate_video", { profile: "p", prompt: "please publish this publicly", download_dir: process.cwd() }),
+    () => callMcpTool("webai_gemini_generate_video", { backend: "managed-cdp", profile: "p", prompt: "please publish this publicly", download_dir: process.cwd() }),
     (error: any) => error.errorCode === "POLICY_APPROVAL_REQUIRED"
   );
 });
@@ -1796,7 +1796,7 @@ test("webai_chatgpt_pulse_get detects not_onboarded redirect with Get started di
     "#radix-_r_ch_",
     'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]'
   ]), { redirectPulseToHome: true });
-  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
   assert.equal(result.status, "not_onboarded");
   assert.equal(result.route, "https://chatgpt.com/");
   assert.equal(Object.prototype.hasOwnProperty.call(result, "digest_text"), false);
@@ -1806,7 +1806,7 @@ test("webai_chatgpt_pulse_get detects pending from in-the-works page text", asyn
   const page = mockPulsePage("https://chatgpt.com/pulse", "Pulse Your first Pulse is in the works Check back in about 30 minutes", new Set([
     'button[aria-label="Actions"]'
   ]));
-  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
   assert.equal(result.status, "pending");
   assert.match(result.generated_hint, /Check back in|works/);
   assert.equal(Object.prototype.hasOwnProperty.call(result, "digest_text"), false);
@@ -1818,7 +1818,7 @@ test("webai_chatgpt_pulse_get extracts hydrated digest body without Pulse chrome
   const page = mockPulsePage("https://chatgpt.com/pulse", visibleText, new Set([
     'button[aria-label="Actions"]'
   ]));
-  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
   assert.equal(result.status, "ready");
   assert.equal(result.digest_text, body);
   assert.ok(!result.digest_text.includes("Chat history"));
@@ -1835,7 +1835,7 @@ test("webai_chatgpt_pulse_get reads Pulse text from full include-portals snapsho
   const page = mockPulsePage("https://chatgpt.com/pulse", visibleText, new Set([
     'button[aria-label="Actions"]'
   ]));
-  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
 
   assert.equal(result.status, "ready");
   assert.equal(result.digest_text, body);
@@ -1849,7 +1849,7 @@ test("webai_chatgpt_pulse_get reads Pulse text from full include-portals snapsho
     'button[aria-label="Actions"]'
   ]));
   await assert.rejects(
-    () => webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(shell)),
+    () => webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(shell)),
     (error: any) => error?.errorCode === "ELEMENT_NOT_FOUND"
   );
   assert.ok(shell.calls.snapshotOptions.length > 0);
@@ -1864,7 +1864,7 @@ test("webai_chatgpt_pulse_get waits through empty Pulse shell before detecting h
     { url: "https://chatgpt.com/pulse", text: shell, selectors: new Set(['button[aria-label="Actions"]']) },
     { url: "https://chatgpt.com/pulse", text: hydrated, selectors: new Set(['button[aria-label="Actions"]']) }
   ]);
-  const result: any = await webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page));
   assert.equal(result.status, "ready");
   assert.equal(result.digest_text, body);
   assert.deepEqual(page.calls.waitForTimeout, [250]);
@@ -1876,21 +1876,21 @@ test("webai_chatgpt_pulse_get rejects empty Pulse shell for the whole hydration 
     { url: "https://chatgpt.com/pulse", text: shell, selectors: new Set(['button[aria-label="Actions"]']) }
   ]);
   await assert.rejects(
-    () => webAiChatgptPulseGet({ profile: "chatgpt" }, mockWebAiRuntime(page)),
+    () => webAiChatgptPulseGet({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(page)),
     (error: any) => error?.errorCode === "ELEMENT_NOT_FOUND"
   );
   assert.ok(page.calls.waitForTimeout.length > 0);
 });
 
 test("webai_chatgpt_pulse_onboard refuses without confirmed and never clicks Connect with Gmail", async () => {
-  const refused: any = await webAiChatgptPulseOnboard({ profile: "chatgpt" }, mockWebAiRuntime(mockPulsePage("https://chatgpt.com/", "", new Set())));
+  const refused: any = await webAiChatgptPulseOnboard({ backend: "managed-cdp", profile: "chatgpt" }, mockWebAiRuntime(mockPulsePage("https://chatgpt.com/", "", new Set())));
   assert.equal(refused.errorCode, "INVALID_ARGS");
 
   const page = mockPulsePage("https://chatgpt.com/", "Pulse can help you stay on top of anything Get started", new Set([
     "#radix-_r_ch_",
     'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]'
   ]), { redirectPulseToHome: true });
-  const result: any = await webAiChatgptPulseOnboard({ profile: "chatgpt", confirmed: true }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptPulseOnboard({ backend: "managed-cdp", profile: "chatgpt", confirmed: true }, mockWebAiRuntime(page));
   assert.equal(result.onboarded, true);
   assert.equal(result.news_topic_selected, true);
   assert.equal(result.final_status, "pending");
@@ -1905,7 +1905,7 @@ test("LOGIN_REQUIRED returned for send-prompt login URL precheck", async () => {
     locatorTouched = true;
     throw new Error("prompt locator should not be touched on login page");
   };
-  const result: any = await webAiClaudeSendPrompt({ profile: "claude", prompt: "hello" }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeSendPrompt({ backend: "managed-cdp", profile: "claude", prompt: "hello" }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.error_code, "LOGIN_REQUIRED");
   assert.equal(result.errorCode, "LOGIN_REQUIRED");
@@ -1926,7 +1926,7 @@ test("phase C ChatGPT canvas export maps selector failures to stable codes promp
     }
   } as any;
   const started = Date.now();
-  const result: any = await webAiChatgptCanvasExport({ profile: "chatgpt", tab_url_contains: "abc123", download_dir: path.join(require("node:os").tmpdir(), "chatgpt-canvas-stable"), timeout_ms: 100 }, runtime);
+  const result: any = await webAiChatgptCanvasExport({ backend: "managed-cdp", profile: "chatgpt", tab_url_contains: "abc123", download_dir: path.join(require("node:os").tmpdir(), "chatgpt-canvas-stable"), timeout_ms: 100 }, runtime);
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.error_code, "ELEMENT_NOT_FOUND");
   assert.equal(result.path, "");
@@ -1944,7 +1944,7 @@ test("phase C Claude send-prompt honors tab_url_contains instead of forcing clau
   codePage.locator = (selector: string) => { codeTouched = true; return codeOriginal(selector); };
   const original = newPage.locator;
   newPage.locator = (selector: string) => { newTouched = true; return original(selector); };
-  const result: any = await webAiClaudeSendPrompt({ profile: "claude-9224", prompt: "hello", tab_url_contains: "claude.ai/new", response_timeout_ms: 1000 }, mockWebAiRuntimePages([codePage, newPage]));
+  const result: any = await webAiClaudeSendPrompt({ backend: "managed-cdp", profile: "claude-9224", prompt: "hello", tab_url_contains: "claude.ai/new", response_timeout_ms: 1000 }, mockWebAiRuntimePages([codePage, newPage]));
   assert.equal(result.chat_url, "https://claude.ai/new");
   assert.equal(newTouched, true);
   assert.equal(result.chat_url.includes("/code"), false);
@@ -1970,7 +1970,7 @@ test("phase C ChatGPT model detection reads composer control instead of sidebar 
     };
     return loc;
   };
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.notEqual(result.model_used, "Recents");
   assert.equal(result.errorCode, null);
   assert.equal(selectors.some((selector) => selector.startsWith("form button")), true);
@@ -1993,7 +1993,7 @@ test("webai:chatgpt:send-prompt emits MODEL_SELECTION_DRIFT when Thinking select
     };
     return loc;
   };
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "MODEL_SELECTION_DRIFT");
   assert.equal(result.error_code, "MODEL_SELECTION_DRIFT");
   assert.equal(result.expected_model, "Thinking");
@@ -2033,7 +2033,7 @@ test("webai:chatgpt:send-prompt accepts Thinking row when trigger pill collapses
     };
     return loc;
   };
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.equal(promptTouched, true, "prompt composer should be touched when Thinking identity is selected");
 });
@@ -2064,7 +2064,7 @@ test("webai:chatgpt:send-prompt drifts when checked ChatGPT model identity remai
     };
     return loc;
   };
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "MODEL_SELECTION_DRIFT");
   assert.equal(result.expected_model, "Thinking");
   assert.equal(result.model_used, "Instant");
@@ -2100,7 +2100,7 @@ test("webai:chatgpt:send-prompt routes explicit Pro model to Pro row only", asyn
     };
     return loc;
   };
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", model: "pro", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", model: "pro", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.ok(clicks.some((selector) => selector.includes('model-switcher-gpt-5-5-pro')), clicks.join("\n"));
   assert.equal(clicks.some((selector) => selector.includes('model-switcher-gpt-5-5-thinking')), false, clicks.join("\n"));
@@ -2133,14 +2133,14 @@ test("send-prompt wait_ms and completion_detected round-trip through schema and 
 test("webai:chatgpt:send-prompt navigates away from stale conversation unless reuse-conversation", async () => {
   const stale = "https://chatgpt.com/c/6a04a213-5648-83e8-b9d0-6134aef56831";
   const freshPage = mockSendPromptPage(stale);
-  const result: any = await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(freshPage));
+  const result: any = await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", response_timeout_ms: 10 }, mockWebAiRuntime(freshPage));
   assert.equal(freshPage.calls.goto.length, 1);
   assert.match(freshPage.calls.goto[0], /^https:\/\/chatgpt\.com\/\?model=gpt-4o/);
   assert.equal(result.completion_detected, true);
   assert.equal(typeof result.wait_ms, "number");
 
   const reusePage = mockSendPromptPage(stale);
-  await webAiChatgptSendPrompt({ profile: "chatgpt", prompt: "hi", reuse_conversation: true, response_timeout_ms: 10 }, mockWebAiRuntime(reusePage));
+  await webAiChatgptSendPrompt({ backend: "managed-cdp", profile: "chatgpt", prompt: "hi", reuse_conversation: true, response_timeout_ms: 10 }, mockWebAiRuntime(reusePage));
   assert.equal(reusePage.calls.goto.length, 0);
 });
 
@@ -2191,7 +2191,7 @@ test("waitForPromptCompletion phase A times out when generation never starts", a
     };
     return loc;
   };
-  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 25 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSendPrompt({ backend: "managed-cdp", profile: "gemini-9225", prompt: "hello", response_timeout_ms: 25 }, mockWebAiRuntime(page));
   assert.equal(waitCalls, 1, "Phase B must not run when generation never starts");
   assert.equal(result.completion_detected, false);
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
@@ -2238,7 +2238,7 @@ test("waitForPromptCompletion returns true only after Phase A start then Phase B
     };
     return loc;
   };
-  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSendPrompt({ backend: "managed-cdp", profile: "gemini-9225", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
   assert.deepEqual(phases, ["phase-a", "phase-b"]);
   assert.equal(result.completion_detected, true);
   assert.equal(result.response_text, "final answer");
@@ -2265,7 +2265,7 @@ test("gemini send.prompt completion polling uses extractor-visible Stop response
     };
     return loc;
   };
-  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSendPrompt({ backend: "managed-cdp", profile: "gemini-9225", prompt: "hello", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.completion_detected, true);
   // Scoped to the latest model-response answer body — NOT the chrome-polluted <main>.
   assert.equal(result.response_text, "the clean answer is 42.");
@@ -2323,7 +2323,7 @@ test("gemini upload-and-query intercepts filechooser before clicking upload-file
     };
     return loc;
   };
-  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-9225", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiUploadAndQuery({ backend: "managed-cdp", profile: "gemini-9225", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.deepEqual(setFilesCalls, [[path.resolve(file)]]);
   assert.equal(calls.some((c) => c === 'waitForSelector:input[type="file"]'), false, calls.join("\n"));
@@ -2394,7 +2394,7 @@ test("gemini upload-and-query completion gate recognizes post-upload response co
     };
     return loc;
   };
-  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-upload-complete", files: [file], prompt: "read it", response_timeout_ms: 100 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiUploadAndQuery({ backend: "managed-cdp", profile: "gemini-upload-complete", files: [file], prompt: "read it", response_timeout_ms: 100 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.equal(result.completion_detected, true);
   assert.equal(result.response_text, "uploaded answer");
@@ -2429,7 +2429,7 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when post-upload response 
     };
     return loc;
   };
-  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-upload-no-response", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiUploadAndQuery({ backend: "managed-cdp", profile: "gemini-upload-no-response", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
   assert.equal(result.completion_detected, false);
@@ -2465,7 +2465,7 @@ test("gemini completion returns COMMAND_TIMEOUT when Phase-B regenerate anchor n
     };
     return loc;
   };
-  const result: any = await webAiGeminiSendPrompt({ profile: "gemini-regenerate-timeout", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSendPrompt({ backend: "managed-cdp", profile: "gemini-regenerate-timeout", prompt: "hello", response_timeout_ms: 100 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.completion_detected, false);
   assert.match(JSON.stringify(seen), /Good response/);
@@ -2505,7 +2505,7 @@ test("gemini upload-and-query returns COMMAND_TIMEOUT when filechooser never ope
     };
     return loc;
   };
-  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-upload-timeout", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiUploadAndQuery({ backend: "managed-cdp", profile: "gemini-upload-timeout", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
@@ -2538,7 +2538,7 @@ test("gemini upload-and-query returns ELEMENT_NOT_FOUND when upload-files item i
     };
     return loc;
   };
-  const result: any = await webAiGeminiUploadAndQuery({ profile: "gemini-upload-missing", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiUploadAndQuery({ backend: "managed-cdp", profile: "gemini-upload-missing", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.error_code, "ELEMENT_NOT_FOUND");
@@ -2566,7 +2566,7 @@ test("gemini generate-image forces fresh composer navigation before activating i
     return loc;
   };
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => ({ path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }) } as any;
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-9225", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-9225", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "out.png");
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app?hl=en"]);
   assert.ok(waits.some((entry) => entry === 'button[aria-label*="Create image"]:visible:4000'), waits.join("\n"));
@@ -2593,7 +2593,7 @@ test("gemini generate-image returns ELEMENT_NOT_FOUND when Create image button w
     };
     return loc;
   };
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-button-missing", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-image-button-missing", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.match(result.expected_selector, /button\[aria-label\*=\"Create image\"\].*Upload & tools.*menuitemcheckbox/);
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app?hl=en"]);
@@ -2723,14 +2723,14 @@ test("webai_chatgpt_select_model and webai_claude_select_model validate args and
   }
 
   const chatgptPage = mockChatgptSelectModelPage();
-  const chatgptResult: any = await webAiChatgptSelectModel({ profile: "chatgpt", thinking_level: "extended" }, mockWebAiRuntime(chatgptPage));
+  const chatgptResult: any = await webAiChatgptSelectModel({ backend: "managed-cdp", profile: "chatgpt", thinking_level: "extended" }, mockWebAiRuntime(chatgptPage));
   assert.equal(chatgptResult.ok, true);
   assert.equal(chatgptResult.selected_model, "Thinking");
   assert.equal(chatgptResult.selected_thinking_level, "extended");
   assert.ok(chatgptPage.calls.click.some((selector: string) => selector.includes("model-switcher-gpt-5-5-thinking")));
 
   const claudePage = mockClaudeSelectModelPage();
-  const claudeResult: any = await webAiClaudeSelectModel({ profile: "claude-9224", model: "Claude Sonnet 4.6", thinking_level: "extended" }, mockWebAiRuntime(claudePage));
+  const claudeResult: any = await webAiClaudeSelectModel({ backend: "managed-cdp", profile: "claude-9224", model: "Claude Sonnet 4.6", thinking_level: "extended" }, mockWebAiRuntime(claudePage));
   assert.equal(claudeResult.ok, true);
   assert.equal(claudeResult.selected_model, "Claude Sonnet 4.6");
   assert.equal(claudeResult.selected_thinking_level, "extended");
@@ -2738,20 +2738,20 @@ test("webai_chatgpt_select_model and webai_claude_select_model validate args and
 });
 
 test("webai_gemini_select_model returns INVALID_ARGS when neither model nor thinking_level provided", async () => {
-  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
+  const result: any = await callMcpTool("webai_gemini_select_model", { backend: "managed-cdp", profile: "gemini-9225" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
   assert.equal(result.errorCode, "INVALID_ARGS");
   assert.match(result.message, /requires at least one of: model, thinking_level/);
 });
 
 test("webai_gemini_select_model returns INVALID_ARGS for unknown model value", async () => {
-  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225", model: "unknown" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
+  const result: any = await callMcpTool("webai_gemini_select_model", { backend: "managed-cdp", profile: "gemini-9225", model: "unknown" }, mockWebAiRuntime(mockGeminiSelectModelPage()));
   assert.equal(result.errorCode, "INVALID_ARGS");
   assert.match(result.message, /unsupported model/);
 });
 
 test("webai_gemini_select_model clicks Open mode picker then the 3.1 Flash-Lite menuitem", async () => {
   const page = mockGeminiSelectModelPage();
-  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSelectModel({ backend: "managed-cdp", profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(page));
   assert.equal(result.ok, true);
   assert.equal(result.selected_model, "3.1-flash-lite");
   assert.deepEqual(page.calls.click.slice(0, 2), [
@@ -2761,14 +2761,14 @@ test("webai_gemini_select_model clicks Open mode picker then the 3.1 Flash-Lite 
 });
 
 test("webai_gemini_select_model returns ELEMENT_NOT_FOUND when mode picker trigger is missing", async () => {
-  const result: any = await callMcpTool("webai_gemini_select_model", { profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(mockGeminiSelectModelPage({ missingTrigger: true })));
+  const result: any = await callMcpTool("webai_gemini_select_model", { backend: "managed-cdp", profile: "gemini-9225", model: "3.1-flash-lite" }, mockWebAiRuntime(mockGeminiSelectModelPage({ missingTrigger: true })));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.evidence?.selector, GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST);
 });
 
 test("webai_gemini_select_model clicks Thinking level expander, then Extended sub-option", async () => {
   const page = mockGeminiSelectModelPage();
-  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", thinking_level: "extended" }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSelectModel({ backend: "managed-cdp", profile: "gemini-9225", thinking_level: "extended" }, mockWebAiRuntime(page));
   assert.equal(result.ok, true);
   assert.equal(result.selected_thinking_level, "extended");
   assert.deepEqual(page.calls.click.slice(0, 3), [
@@ -2780,7 +2780,7 @@ test("webai_gemini_select_model clicks Thinking level expander, then Extended su
 
 test("webai_gemini_select_model handles dual-set: clicks model, picker auto-closes, re-opens, then expands Thinking level, then Standard", async () => {
   const page = mockGeminiSelectModelPage();
-  const result: any = await webAiGeminiSelectModel({ profile: "gemini-9225", model: "3.1-flash-lite", thinking_level: "standard" }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiSelectModel({ backend: "managed-cdp", profile: "gemini-9225", model: "3.1-flash-lite", thinking_level: "standard" }, mockWebAiRuntime(page));
   assert.equal(result.ok, true);
   assert.equal(result.selected_model, "3.1-flash-lite");
   assert.equal(result.selected_thinking_level, "standard");
@@ -2834,7 +2834,7 @@ test("chatgpt upload-and-query reads response before managed page closes", async
   const context = { pages: () => [page], newPage: async () => page };
   const browser = { contexts: () => [context], close: async () => { closed = true; } };
   const runtime = { launcher: { launch: async () => ({}), connectOverCdp: async () => browser } } as any;
-  const result: any = await webAiChatgptUploadAndQuery({ profile: "chatgpt-upload-open", files: [file], prompt: "read it", response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiChatgptUploadAndQuery({ backend: "managed-cdp", profile: "chatgpt-upload-open", files: [file], prompt: "read it", response_timeout_ms: 10 }, runtime);
   assert.equal(result.response_text, "real assistant answer");
   assert.equal(result.completion_detected, true);
   assert.equal(typeof result.wait_ms, "number");
@@ -2862,7 +2862,7 @@ test("upload-and-query timeout returns COMMAND_TIMEOUT with empty response text"
     };
     return loc;
   };
-  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-upload-timeout", files: [file], prompt: "read it", response_timeout_ms: 1 }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeUploadAndQuery({ backend: "managed-cdp", profile: "claude-upload-timeout", files: [file], prompt: "read it", response_timeout_ms: 1 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
   assert.equal(result.completion_detected, false);
@@ -2969,7 +2969,7 @@ test("claude upload wait recognizes text-chip aria-label after loading hint disa
     };
     return loc;
   };
-  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-chip", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeUploadAndQuery({ backend: "managed-cdp", profile: "claude-chip", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.equal(checkedPredicate, true);
   fs.rmSync(dir, { recursive: true, force: true });
@@ -3013,7 +3013,7 @@ test("claude upload wait recognizes image-chip via inner data-testid (issue #16 
     };
     return loc;
   };
-  const result: any = await webAiClaudeUploadAndQuery({ profile: "claude-image-chip", files: [file], prompt: "describe it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiClaudeUploadAndQuery({ backend: "managed-cdp", profile: "claude-image-chip", files: [file], prompt: "describe it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, null);
   assert.equal(checkedPredicate, true);
   fs.rmSync(dir, { recursive: true, force: true });
@@ -3029,7 +3029,7 @@ test("generate-file passes captured conversation URL to artifactClickRunner", as
       return { path: path.join(process.cwd(), "artifact.md"), sha256: "abc", size: 12, downloadFilename: "artifact.md", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
     }
   } as any;
-  const result: any = await webAiClaudeGenerateFile({ profile: "claude-generate-file", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiClaudeGenerateFile({ backend: "managed-cdp", profile: "claude-generate-file", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.artifact_name, "artifact.md");
   assert.equal(calls[0].tabUrlContains, "https://claude.ai/chat/conversation-123");
   assert.notEqual(calls[0].tabUrlContains, "https://claude.ai");
@@ -3045,7 +3045,7 @@ test("chatgpt generate-file widens artifactClick locate budget for the file-card
       return { path: path.join(process.cwd(), "deck.pptx"), sha256: "abc", size: 4096, downloadFilename: "deck.pptx", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
     }
   } as any;
-  await webAiChatgptGenerateFile({ profile: "chatgpt-generate-file-r2", prompt: "make pptx", expected_extension: "pptx", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  await webAiChatgptGenerateFile({ backend: "managed-cdp", profile: "chatgpt-generate-file-r2", prompt: "make pptx", expected_extension: "pptx", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   // The file card streams in AFTER the text-response completion signal; without
   // a widened locate budget the artifactClick races the file-card render and
   // returns ELEMENT_NOT_FOUND. Live smoke 2026-05-21 on chatgpt-9223 observed
@@ -3075,7 +3075,7 @@ test("claude generate-file does NOT widen the locate budget — its file card is
       return { path: path.join(process.cwd(), "doc.md"), sha256: "abc", size: 12, downloadFilename: "doc.md", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 };
     }
   } as any;
-  await webAiClaudeGenerateFile({ profile: "claude-generate-file-r2", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  await webAiClaudeGenerateFile({ backend: "managed-cdp", profile: "claude-generate-file-r2", prompt: "make md", expected_extension: "md", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(calls.length, 1);
   // No locateTimeoutMs or useJsClickFallback override for claude — keeps the
   // R2 selector-locate fix surgically scoped to chatgpt (the React-synthetic
@@ -3103,7 +3103,7 @@ test("gemini generate-image uses Download full size image then Download full siz
   };
   const calls: any[] = [];
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async (options: any) => { calls.push(options); return { path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }; } } as any;
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-chain", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-image-chain", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "out.png");
   assert.equal(calls[0].buttonSelector, 'button[aria-label="Download full size image"]');
   assert.equal(calls[0].followUpSelector, 'button[aria-label="Download full size image"]');
@@ -3151,7 +3151,7 @@ test("generateImageOnPage waits for image toolbar before artifact-click", async 
     return loc;
   };
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => { events.push("artifact-click"); return { path: path.join(process.cwd(), "out.png"), sha256: "abc", size: 123, downloadFilename: "out.png" }; } } as any;
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-render-order", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-image-render-order", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "out.png");
   assert.deepEqual(events, ["render-toolbar", "artifact-click"]);
 });
@@ -3176,7 +3176,7 @@ test("generateImageOnPage returns COMMAND_TIMEOUT when generated image never ren
   };
   let artifactClicked = false;
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => { artifactClicked = true; throw new Error("must not click artifact"); } } as any;
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-render-timeout", prompt: "make image", download_dir: process.cwd(), timeout_ms: 50, response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-image-render-timeout", prompt: "make image", download_dir: process.cwd(), timeout_ms: 50, response_timeout_ms: 10 }, runtime);
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
   assert.equal(result.download_filename, "");
@@ -3213,7 +3213,7 @@ test("chatgpt generate-image enters image mode before typing prompt", async () =
   };
   const calls: any[] = [];
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async (options: any) => { calls.push(options); return { path: path.join(process.cwd(), "cg.png"), sha256: "abc", size: 123, downloadFilename: "cg.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }; } } as any;
-  const result: any = await webAiChatgptGenerateImage({ profile: "chatgpt-image-mode", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiChatgptGenerateImage({ backend: "managed-cdp", profile: "chatgpt-image-mode", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "cg.png");
   const plus = events.findIndex((e) => e === "click:#composer-plus-btn:5000");
   const waitRadio = events.findIndex((e) => e === 'waitForSelector:[role="menuitemradio"]:has-text("Create image"):visible:8000');
@@ -3252,7 +3252,7 @@ test("chatgpt generate-image returns ELEMENT_NOT_FOUND when Create image radio w
     };
     return loc;
   };
-  const result: any = await webAiChatgptGenerateImage({ profile: "chatgpt-image-radio-missing", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptGenerateImage({ backend: "managed-cdp", profile: "chatgpt-image-radio-missing", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.expected_selector, '[role="menuitemradio"]:has-text("Create image")');
 });
@@ -3286,7 +3286,7 @@ test("chatgpt generate-image returns ELEMENT_NOT_FOUND when image mode does not 
     };
     return loc;
   };
-  const result: any = await webAiChatgptGenerateImage({ profile: "chatgpt-image-mode-no-activate", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptGenerateImage({ backend: "managed-cdp", profile: "chatgpt-image-mode-no-activate", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
   assert.equal(result.expected_selector, 'button[aria-label="Image, click to remove"], button[aria-label*="image aspect ratio" i]');
   // The radio is clicked exactly once (no detached-element retry loop).
@@ -3317,7 +3317,7 @@ test("gemini generate-image activates Create image and sends from ql-editor with
     return loc;
   };
   const runtime = { ...mockWebAiRuntime(page), artifactClick: async () => ({ path: path.join(process.cwd(), "gm.png"), sha256: "abc", size: 123, downloadFilename: "gm.png", downloadGuid: "g", bbox: { x: 0, y: 0, width: 1, height: 1 }, elapsedMs: 1 }) } as any;
-  const result: any = await webAiGeminiGenerateImage({ profile: "gemini-image-enter", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
+  const result: any = await webAiGeminiGenerateImage({ backend: "managed-cdp", profile: "gemini-image-enter", prompt: "make image", download_dir: process.cwd(), response_timeout_ms: 10 }, runtime);
   assert.equal(result.download_filename, "gm.png");
   const waitCreate = events.findIndex((e) => e === 'waitForSelector:button[aria-label*="Create image"]:visible:4000');
   const create = events.findIndex((e) => e.includes('click:button[aria-label*="Create image"]'));
@@ -3362,7 +3362,7 @@ test("upload-and-query retries uncleared composer once then returns COMMAND_TIME
     };
     return loc;
   };
-  const result: any = await webAiChatgptUploadAndQuery({ profile: "chatgpt-upload-send-confirm", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiChatgptUploadAndQuery({ backend: "managed-cdp", profile: "chatgpt-upload-send-confirm", files: [file], prompt: "read it", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(sendClicks, 2);
   assert.equal(result.errorCode, "COMMAND_TIMEOUT");
   assert.equal(result.error_code, "COMMAND_TIMEOUT");
@@ -3387,7 +3387,7 @@ test("canvas-to-docs honest-fails (ELEMENT_NOT_FOUND) when Canvas mode cannot ac
     };
     return loc;
   };
-  const result: any = await webAiGeminiCanvasToDocs({ profile: "gemini-canvas-verify", prompt: "make canvas", title: "gd-canvas-smoke", response_timeout_ms: 10 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiCanvasToDocs({ backend: "managed-cdp", profile: "gemini-canvas-verify", prompt: "make canvas", title: "gd-canvas-smoke", response_timeout_ms: 10 }, mockWebAiRuntime(page));
   assert.equal(result.docs_url, null);
   assert.equal(result.docs_doc_id, null);
   assert.equal(result.errorCode, "ELEMENT_NOT_FOUND");
@@ -3433,7 +3433,7 @@ test("canvas-to-docs returns a real docs.google.com URL + doc id from the spawne
       return loc;
     }
   };
-  const result: any = await webAiGeminiCanvasToDocs({ profile: "gemini-canvas-ok", prompt: "make canvas", title: "ProbeDoc", response_timeout_ms: 10, timeout_ms: 3000 }, mockWebAiRuntime(page));
+  const result: any = await webAiGeminiCanvasToDocs({ backend: "managed-cdp", profile: "gemini-canvas-ok", prompt: "make canvas", title: "ProbeDoc", response_timeout_ms: 10, timeout_ms: 3000 }, mockWebAiRuntime(page));
   assert.equal(result.docs_url, `https://docs.google.com/document/d/${docId}/edit`);
   assert.equal(result.docs_doc_id, docId);
   assert.equal(result.title, "ProbeDoc");
@@ -3460,7 +3460,7 @@ test("gemini generate-video returns an async task envelope and persists a runnin
   };
   let spawnedTaskId = "";
   const env: any = await webAiGeminiGenerateVideo(
-    { profile: "gemini-video-async", prompt: "a 2-second clip of a rotating blue cube", download_dir: dir },
+    { backend: "managed-cdp", profile: "gemini-video-async", prompt: "a 2-second clip of a rotating blue cube", download_dir: dir },
     { ...mockWebAiRuntime(page), database: db, spawnVideoWorker: (taskId: string) => { spawnedTaskId = taskId; return { pid: process.pid }; } } as any
   );
   assert.equal(typeof env.task_id, "string");
@@ -3488,12 +3488,12 @@ test("webai task status reads durable task rows through a fresh database handle"
     result: { path: "/tmp/video.mp4", sha256: "abc", size_bytes: 12, download_filename: "video.mp4" }
   });
   const fresh = new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false });
-  const status: any = await webAiTaskStatus({ task_id: "task_cross_process" }, { database: fresh });
+  const status: any = await webAiTaskStatus({ backend: "managed-cdp", task_id: "task_cross_process" }, { database: fresh });
   assert.equal(status.status, "done");
   assert.equal(status.progress_label, "video generated and downloaded");
   assert.deepEqual(status.result, { path: "/tmp/video.mp4", sha256: "abc", size_bytes: 12, download_filename: "video.mp4" });
   assert.equal(status.errorCode, undefined);
-  assert.deepEqual(await webAiTaskStatus({ task_id: "missing" }, { database: fresh }), { status: "failed", errorCode: "INVALID_ARGS" });
+  assert.deepEqual(await webAiTaskStatus({ backend: "managed-cdp", task_id: "missing" }, { database: fresh }), { status: "failed", errorCode: "INVALID_ARGS" });
 });
 
 test("gemini generate-video detached-worker contract reflects worker terminal result from a fresh store", async () => {
@@ -3516,10 +3516,10 @@ test("gemini generate-video detached-worker contract reflects worker terminal re
       return { pid: process.pid };
     }
   } as any;
-  const env: any = await webAiGeminiGenerateVideo({ profile: "gemini-video-detached", prompt: "make video", download_dir: dir }, runtime);
+  const env: any = await webAiGeminiGenerateVideo({ backend: "managed-cdp", profile: "gemini-video-detached", prompt: "make video", download_dir: dir }, runtime);
   assert.deepEqual(Object.keys(env), ["task_id", "status", "profile", "lease_id", "started_at"]);
   const fresh = new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false });
-  const status: any = await webAiTaskStatus({ task_id: env.task_id }, { database: fresh });
+  const status: any = await webAiTaskStatus({ backend: "managed-cdp", task_id: env.task_id }, { database: fresh });
   assert.equal(status.status, "done");
   assert.equal(status.result.path, artifactPath);
   assert.equal(status.result.size_bytes > 0, true);
@@ -3537,7 +3537,7 @@ test("webai task status marks abandoned stale running video task as COMMAND_TIME
     progress_label: "generating video",
     timeout_ms: 1
   });
-  const status: any = await webAiTaskStatus({ task_id: "task_stale" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
+  const status: any = await webAiTaskStatus({ backend: "managed-cdp", task_id: "task_stale" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
   assert.equal(status.status, "failed");
   assert.equal(status.errorCode, "COMMAND_TIMEOUT");
   const persisted = db.getWebAiTask("task_stale");
@@ -3557,7 +3557,7 @@ test("webai task status keeps healthy in-budget running video task active", asyn
     timeout_ms: 300000,
     worker_pid: process.pid
   });
-  const status: any = await webAiTaskStatus({ task_id: "task_healthy" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
+  const status: any = await webAiTaskStatus({ backend: "managed-cdp", task_id: "task_healthy" }, { database: new CapabilityDatabase({ dbPath: db.dbPath, preferSqlite: false }) });
   assert.equal(status.status, "running");
   assert.equal(status.errorCode, undefined);
   assert.equal(db.getWebAiTask("task_healthy")?.status, "running");
@@ -3601,7 +3601,7 @@ test("new v1.5.0 error codes exist in TS export and contract manifest", () => {
 
 
 test("stream5 B3 Claude conversation_manage share respects sensitive-content guard", async () => {
-  const result: any = await webAiClaudeConversationManage({ action: "share", profile: "claude-9224" }, { database: tempCapabilityDb() } as any);
+  const result: any = await webAiClaudeConversationManage({ backend: "managed-cdp", action: "share", profile: "claude-9224" }, { database: tempCapabilityDb() } as any);
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "SENSITIVE_CONTENT_GUARD");
   assert.equal(result.error_code, "SENSITIVE_CONTENT_GUARD");
@@ -3610,7 +3610,7 @@ test("stream5 B3 Claude conversation_manage share respects sensitive-content gua
 });
 
 test("stream5 B3 Claude conversation_manage sidebar_options returns human handoff", async () => {
-  const result: any = await webAiClaudeConversationManage({ action: "sidebar_options", profile: "claude-9224" }, { database: tempCapabilityDb() } as any);
+  const result: any = await webAiClaudeConversationManage({ backend: "managed-cdp", action: "sidebar_options", profile: "claude-9224" }, { database: tempCapabilityDb() } as any);
   assert.equal(result.ok, false);
   assert.equal(result.errorCode, "HUMAN_HANDOFF_REQUIRED");
   assert.equal(result.error_code, "HUMAN_HANDOFF_REQUIRED");

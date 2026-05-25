@@ -57,7 +57,7 @@ function fakeExtensionPage(service: Service, calls: string[]) {
     click: async (target: any) => {
       const selector = selectorOf(target);
       calls.push(`${service}:click:${selector}`);
-      if (/send-button|Send message|Send/i.test(selector)) {
+      if (/composer-submit-button|send-button|Send message|Submit|button\[type="submit"\]|Send/i.test(selector)) {
         sent = true;
         promptText = "";
         assistantCount += 1;
@@ -150,4 +150,33 @@ test("phase7 bucket5 invalid backend returns INVALID_ARGS for all deep_research 
   assert.match(String(claude.message), /webai_claude_deep_research backend must be "managed-cdp" or "extension-assisted-cdp", got bogus/);
   assert.equal(gemini.errorCode, ConsumerErrorCodes.INVALID_ARGS);
   assert.match(String(gemini.message), /webai_gemini_deep_research backend must be "managed-cdp" or "extension-assisted-cdp", got bogus/);
+});
+
+test("phase7 bucket5 Gemini deep_research surfaces MODEL_SELECTION_DRIFT when Flash Lite hides the tool", async (t) => {
+  registerBackend("extension-assisted-cdp", () => ({
+    kind: "extension-assisted-cdp",
+    ping: async () => ({ ok: true, kind: "extension-assisted-cdp", connected: true }),
+    listTabs: async () => [],
+    newTab: async () => ({
+      navigate: async () => ({ url: "https://gemini.google.com/app?phase7b5=flash-lite" }),
+      textSnapshot: async () => ({
+        url: "https://gemini.google.com/app?phase7b5=flash-lite",
+        title: "Gemini",
+        text: "Gemini ready. Current model: 3.1 Flash Lite"
+      }),
+      waitForSelector: async (selector: string) => {
+        if (selector.includes("Not now")) throw new Error("optional dialog absent");
+        return undefined;
+      },
+      click: async () => undefined,
+      queryElements: async () => [],
+      finalize: async () => undefined
+    }),
+    finalize: async () => undefined
+  }) as any);
+  t.after(() => registerBackend("extension-assisted-cdp", createExtensionAssistedCdpBackend));
+
+  const result: any = await webAiGeminiDeepResearch({ profile: "p7-gemini-dr-flash-lite", prompt: "short research", confirmed: true, backend: "extension-assisted-cdp" }, {} as any);
+  assert.equal(result.errorCode, ConsumerErrorCodes.MODEL_SELECTION_DRIFT);
+  assert.match(String(result.message), /3\.1 Flash Lite/);
 });

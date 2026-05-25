@@ -1,0 +1,156 @@
+{
+  "id": "claude-generate-file-csv-ext",
+  "file": "examples/workflows/claude-claude-generate-file-csv-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-generate-file-csv-ext.json",
+  "startedAt": "2026-05-25T16:02:27.864Z",
+  "finishedAt": "2026-05-25T16:03:11.287Z",
+  "durationMs": 43423,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-csv-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "claude-generate-file-csv-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:02:28.017Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:generate-file",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+              "--expected-extension",
+              "csv",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/claude",
+              "--artifact-class",
+              "code",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-generate-file-csv-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a downloadable .csv file in Claude",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-csv-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path path empty",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+            "--expected-extension",
+            "csv",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 43114,
+          "stdout": "{\n  \"path\": \"\",\n  \"sha256\": \"\",\n  \"size_bytes\": 0,\n  \"artifact_name\": \"\",\n  \"download_filename\": \"\",\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "",
+            "sha256": "",
+            "size_bytes": 0,
+            "artifact_name": "",
+            "download_filename": "",
+            "errorCode": "COMMAND_TIMEOUT",
+            "error_code": "COMMAND_TIMEOUT",
+            "message": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              }
+            ]
+          },
+          "path": "",
+          "sha256": "",
+          "size_bytes": 0,
+          "artifact_name": "",
+          "download_filename": "",
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "message": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n"
+        }
+      }
+    ],
+    "runId": "run_d8a208f433cce674"
+  },
+  "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-csv-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:02:28.017Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:generate-file\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.\",\n            \"--expected-extension\",\n            \"csv\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/claude\",\n            \"--artifact-class\",\n            \"code\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"path\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-generate-file-csv-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate a downloadable .csv file in Claude\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-generate-file-csv-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path path empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:generate-file\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.\",\n          \"--expected-extension\",\n          \"csv\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/claude\",\n          \"--artifact-class\",\n          \"code\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 43114,\n        \"stdout\": \"{\\n  \\\"path\\\": \\\"\\\",\\n  \\\"sha256\\\": \\\"\\\",\\n  \\\"size_bytes\\\": 0,\\n  \\\"artifact_name\\\": \\\"\\\",\\n  \\\"download_filename\\\": \\\"\\\",\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"message\\\": \\\"browserType.connectOverCDP: Timeout 30000ms exceeded.\\\\nCall log:\\\\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\\\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\\\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\\\n\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"artifact_name\": \"\",\n          \"download_filename\": \"\",\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"artifact_name\": \"\",\n        \"download_filename\": \"\",\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\\n\"\n      }\n    }\n  ],\n  \"runId\": \"run_d8a208f433cce674\"\n}\n",
+  "stderr": ""
+}

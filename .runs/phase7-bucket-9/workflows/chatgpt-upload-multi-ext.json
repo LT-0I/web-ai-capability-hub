@@ -1,0 +1,189 @@
+{
+  "id": "chatgpt-upload-multi-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/chatgpt-upload-multi-ext.json",
+  "startedAt": "2026-05-25T15:56:35.590Z",
+  "finishedAt": "2026-05-25T15:57:08.193Z",
+  "durationMs": 32603,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-upload-multi-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "chatgpt-upload-multi-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T15:56:35.742Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:upload-and-query",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+              "--prompt",
+              "List the unique first word from each file",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "beta"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "gamma"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-upload-multi-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload three text files to ChatGPT and ask for each unique first word",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-upload-multi-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /alpha/ failed; json_path response_text regex /beta/ failed; json_path response_text regex /gamma/ failed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:upload-and-query",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+            "--prompt",
+            "List the unique first word from each file",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 32367,
+          "stdout": "{\n  \"conversation_id\": null,\n  \"attachment_names\": [\n    \"fileA.txt\",\n    \"fileB.txt\",\n    \"fileC.txt\"\n  ],\n  \"ok\": false,\n  \"response_text\": \"\",\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"message\": \"COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "conversation_id": null,
+            "attachment_names": [
+              "fileA.txt",
+              "fileB.txt",
+              "fileC.txt"
+            ],
+            "ok": false,
+            "response_text": "",
+            "wait_ms": 0,
+            "completion_detected": false,
+            "errorCode": "COMMAND_TIMEOUT",
+            "error_code": "COMMAND_TIMEOUT",
+            "message": "COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "regex /alpha/ failed"
+                ]
+              },
+              {
+                "path": "response_text",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "regex /beta/ failed"
+                ]
+              },
+              {
+                "path": "response_text",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "regex /gamma/ failed"
+                ]
+              }
+            ]
+          },
+          "conversation_id": null,
+          "attachment_names": "<circular>",
+          "response_text": "",
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "message": "COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send"
+        }
+      }
+    ],
+    "runId": "run_6392c53fe70ceb12"
+  },
+  "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-upload-multi-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T15:56:35.742Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:upload-and-query\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileB.txt\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileC.txt\",\n            \"--prompt\",\n            \"List the unique first word from each file\",\n            \"--response-timeout-ms\",\n            \"180000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"alpha\"\n              },\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"beta\"\n              },\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"gamma\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-upload-multi-ext\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Upload three text files to ChatGPT and ask for each unique first word\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-upload-multi-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path response_text regex /alpha/ failed; json_path response_text regex /beta/ failed; json_path response_text regex /gamma/ failed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:upload-and-query\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileB.txt\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileC.txt\",\n          \"--prompt\",\n          \"List the unique first word from each file\",\n          \"--response-timeout-ms\",\n          \"180000\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 32367,\n        \"stdout\": \"{\\n  \\\"conversation_id\\\": null,\\n  \\\"attachment_names\\\": [\\n    \\\"fileA.txt\\\",\\n    \\\"fileB.txt\\\",\\n    \\\"fileC.txt\\\"\\n  ],\\n  \\\"ok\\\": false,\\n  \\\"response_text\\\": \\\"\\\",\\n  \\\"wait_ms\\\": 0,\\n  \\\"completion_detected\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"message\\\": \\\"COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"conversation_id\": null,\n          \"attachment_names\": [\n            \"fileA.txt\",\n            \"fileB.txt\",\n            \"fileC.txt\"\n          ],\n          \"ok\": false,\n          \"response_text\": \"\",\n          \"wait_ms\": 0,\n          \"completion_detected\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"message\": \"COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /alpha/ failed\"\n              ]\n            },\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /beta/ failed\"\n              ]\n            },\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /gamma/ failed\"\n              ]\n            }\n          ]\n        },\n        \"conversation_id\": null,\n        \"attachment_names\": \"<circular>\",\n        \"response_text\": \"\",\n        \"wait_ms\": 0,\n        \"completion_detected\": false,\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"message\": \"COMMAND_TIMEOUT: chatgpt attachment did not finish processing before send\"\n      }\n    }\n  ],\n  \"runId\": \"run_6392c53fe70ceb12\"\n}\n",
+  "stderr": ""
+}

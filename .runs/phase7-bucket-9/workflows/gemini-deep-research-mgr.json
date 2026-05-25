@@ -1,0 +1,153 @@
+{
+  "id": "gemini-deep-research-mgr",
+  "file": "examples/workflows/gemini-deep-research-mgr.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-deep-research-mgr.json",
+  "startedAt": "2026-05-25T16:25:10.092Z",
+  "finishedAt": "2026-05-25T16:25:33.289Z",
+  "durationMs": 23197,
+  "timeoutMs": 1020000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-deep-research-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:25:10.258Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-deep-research-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:25:10.258Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:deep-research",
+              "--profile",
+              "gemini-9225",
+              "--prompt",
+              "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--response-timeout-ms",
+              "900000",
+              "--timeout-ms",
+              "900000",
+              "--confirmed",
+              "--json"
+            ],
+            "timeoutMs": 960000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-deep-research-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Submit Gemini Deep Research (fail-closed; COMMAND_TIMEOUT observed in G8)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 960000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-deep-research-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path ok !== true",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:deep-research",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--response-timeout-ms",
+            "900000",
+            "--timeout-ms",
+            "900000",
+            "--confirmed",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 22812,
+          "stdout": "{\n  \"ok\": false,\n  \"service\": \"gemini\",\n  \"status\": \"failed\",\n  \"chat_url\": \"https://gemini.google.com/app\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found\",\n  \"task_id\": \"task_1779726310438_2a707ad14760\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "service": "gemini",
+            "status": "failed",
+            "chat_url": "https://gemini.google.com/app",
+            "errorCode": "ELEMENT_NOT_FOUND",
+            "error_code": "ELEMENT_NOT_FOUND",
+            "message": "ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found",
+            "task_id": "task_1779726310438_2a707ad14760"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": false,
+                "ok": false,
+                "reasons": [
+                  "!== true"
+                ]
+              }
+            ]
+          },
+          "service": "gemini",
+          "status": "failed",
+          "chat_url": "https://gemini.google.com/app",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found",
+          "task_id": "task_1779726310438_2a707ad14760"
+        }
+      }
+    ],
+    "runId": "run_fd13fdbc8d028db8"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-deep-research-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:25:10.258Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:deep-research\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--prompt\",\n            \"Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/gemini\",\n            \"--response-timeout-ms\",\n            \"900000\",\n            \"--timeout-ms\",\n            \"900000\",\n            \"--confirmed\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 960000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"ok\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-deep-research-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Submit Gemini Deep Research (fail-closed; COMMAND_TIMEOUT observed in G8)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 960000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-deep-research-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path ok !== true\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:deep-research\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--prompt\",\n          \"Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--response-timeout-ms\",\n          \"900000\",\n          \"--timeout-ms\",\n          \"900000\",\n          \"--confirmed\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 22812,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"service\\\": \\\"gemini\\\",\\n  \\\"status\\\": \\\"failed\\\",\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/app\\\",\\n  \\\"errorCode\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"error_code\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"message\\\": \\\"ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found\\\",\\n  \\\"task_id\\\": \\\"task_1779726310438_2a707ad14760\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"service\": \"gemini\",\n          \"status\": \"failed\",\n          \"chat_url\": \"https://gemini.google.com/app\",\n          \"errorCode\": \"ELEMENT_NOT_FOUND\",\n          \"error_code\": \"ELEMENT_NOT_FOUND\",\n          \"message\": \"ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found\",\n          \"task_id\": \"task_1779726310438_2a707ad14760\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"ok\",\n              \"actual\": false,\n              \"ok\": false,\n              \"reasons\": [\n                \"!== true\"\n              ]\n            }\n          ]\n        },\n        \"service\": \"gemini\",\n        \"status\": \"failed\",\n        \"chat_url\": \"https://gemini.google.com/app\",\n        \"errorCode\": \"ELEMENT_NOT_FOUND\",\n        \"error_code\": \"ELEMENT_NOT_FOUND\",\n        \"message\": \"ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found\",\n        \"task_id\": \"task_1779726310438_2a707ad14760\"\n      }\n    }\n  ],\n  \"runId\": \"run_fd13fdbc8d028db8\"\n}\n",
+  "stderrTail": ""
+}

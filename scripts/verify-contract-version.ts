@@ -19,8 +19,8 @@ type ConsumerContract = {
   error_codes?: unknown[];
 };
 
-const EXPECTED_PACKAGE_VERSION = "1.0.0";
-const EXPECTED_CONTRACT_VERSION = "consumer-contract-1.10.0";
+const EXPECTED_PACKAGE_VERSION = "2.0.0";
+const EXPECTED_CONTRACT_VERSION = "consumer-contract-2.0.0";
 const EXPECTED_COMMANDS = 191;
 const EXPECTED_ERROR_CODES = 39;
 const EXPECTED_WEBAI_ROWS = 40;

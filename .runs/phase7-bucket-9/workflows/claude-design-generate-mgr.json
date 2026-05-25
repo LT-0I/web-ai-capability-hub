@@ -1,0 +1,215 @@
+{
+  "id": "claude-design-generate-mgr",
+  "file": "examples/workflows/claude-claude-design-generate-mgr.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-design-generate-mgr.json",
+  "startedAt": "2026-05-25T15:58:18.061Z",
+  "finishedAt": "2026-05-25T16:00:27.622Z",
+  "durationMs": 129561,
+  "timeoutMs": 420000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-design-generate-mgr\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "claude-design-generate-mgr",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T15:58:18.223Z",
+      "actions": [
+        {
+          "stepId": "generate",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:design:generate",
+              "--profile",
+              "claude-9224",
+              "--project-url",
+              "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+              "--prompt",
+              "Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section.",
+              "--timeout-ms",
+              "300000",
+              "--response-timeout-ms",
+              "300000",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "fileName",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "get_html",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:design:get-html",
+              "--profile",
+              "claude-9224",
+              "--project-url",
+              "{{steps.generate.projectUrl}}",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/claude-design",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "savedPath",
+                  "nonempty": true
+                },
+                {
+                  "path": "byteSize",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-design-generate-mgr",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a Claude Design HTML page on an existing project",
+        "steps": [
+          {
+            "id": "generate",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "get_html",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-design-generate-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "generate",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:design:generate",
+            "--profile",
+            "claude-9224",
+            "--project-url",
+            "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+            "--prompt",
+            "Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section.",
+            "--timeout-ms",
+            "300000",
+            "--response-timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 9268,
+          "stdout": "{\n  \"status\": \"generated\",\n  \"model_used\": \"sonnet\",\n  \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n  \"fileName\": \"index.html\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "status": "generated",
+            "model_used": "sonnet",
+            "projectUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+            "fileName": "index.html"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "fileName",
+                "actual": "index.html",
+                "ok": true
+              }
+            ]
+          },
+          "status": "generated",
+          "model_used": "sonnet",
+          "projectUrl": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+          "fileName": "index.html"
+        }
+      },
+      {
+        "stepId": "get_html",
+        "ok": false,
+        "message": "command timed out",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:design:get-html",
+            "--profile",
+            "claude-9224",
+            "--project-url",
+            "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude-design",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": "SIGTERM",
+          "timed_out": true,
+          "elapsed_ms": 120016,
+          "stdout": "",
+          "stderr": "",
+          "gate": {
+            "timed_out": true
+          },
+          "errorCode": "COMMAND_TIMEOUT"
+        }
+      }
+    ],
+    "runId": "run_a3fe2797e3ee247f"
+  },
+  "stdout": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-design-generate-mgr\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T15:58:18.223Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"generate\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:design:generate\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--project-url\",\n            \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n            \"--prompt\",\n            \"Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section.\",\n            \"--timeout-ms\",\n            \"300000\",\n            \"--response-timeout-ms\",\n            \"300000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 360000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"fileName\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      },\n      {\n        \"stepId\": \"get_html\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:design:get-html\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--project-url\",\n            \"{{steps.generate.projectUrl}}\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/claude-design\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"savedPath\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"byteSize\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-design-generate-mgr\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate a Claude Design HTML page on an existing project\",\n      \"steps\": [\n        {\n          \"id\": \"generate\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 360000,\n          \"gate\": \"<circular>\"\n        },\n        {\n          \"id\": \"get_html\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-design-generate-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"generate\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:generate\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n          \"--prompt\",\n          \"Generate a single-page landing site for a coffee shop named 'Probe Cafe'. Use modern minimal style with hero image and 3-feature section.\",\n          \"--timeout-ms\",\n          \"300000\",\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 9268,\n        \"stdout\": \"{\\n  \\\"status\\\": \\\"generated\\\",\\n  \\\"model_used\\\": \\\"sonnet\\\",\\n  \\\"projectUrl\\\": \\\"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\\\",\\n  \\\"fileName\\\": \\\"index.html\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"status\": \"generated\",\n          \"model_used\": \"sonnet\",\n          \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"fileName\": \"index.html\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"fileName\",\n              \"actual\": \"index.html\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"status\": \"generated\",\n        \"model_used\": \"sonnet\",\n        \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n        \"fileName\": \"index.html\"\n      }\n    },\n    {\n      \"stepId\": \"get_html\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:get-html\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/claude-design\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 120016,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_a3fe2797e3ee247f\"\n}\n",
+  "stderr": ""
+}

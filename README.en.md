@@ -7,9 +7,9 @@
 Catalog, query, and execute web-AI interface workflows and authorized
 research-database automation through visible, user-authorized browser sessions.
 
-[![version](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![contract](https://img.shields.io/badge/consumer--contract-1.10.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-661%2F661%20passing-success)](#)
+[![version](https://img.shields.io/badge/version-2.0.0-blue)](#)
+[![contract](https://img.shields.io/badge/consumer--contract-2.0.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
+[![tests](https://img.shields.io/badge/tests-677%2F677%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -19,9 +19,9 @@ research-database automation through visible, user-authorized browser sessions.
 
 ---
 
-> **Status — `v1.0.0` (first stable, reasonably feature-complete version).**
-> Public surface `consumer-contract-1.10.0`, package `1.0.0`. Clean build green,
-> full test suite **661/661 passing**. Apache-2.0, Node ≥ 20.
+> **Status — `v2.0.0` (Phase 7 extension-assisted-cdp default backend release).**
+> Public surface `consumer-contract-2.0.0`, package `2.0.0`. Clean build green,
+> full test suite **677/677 passing**. Apache-2.0, Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
 **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license
@@ -84,7 +84,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - 🗂️ **40-database research coverage** — AIAA, IEEE, ACM, Web of Science,
   Springer, ScienceDirect, IncoPat, Wanfang, and more — search/filter/export
   each.
-- ✅ **Reproducible** — clean build + 549/549 tests + zero orphan contract
+- ✅ **Reproducible** — clean build + 677/677 tests + zero orphan contract
   rows + all locks held.
 
 ## Public surface (consumer contract)
@@ -94,7 +94,7 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-1.10.0`, `package 1.0.0`; Chrome Extension #15 Phase 6: Gemini image/video/music add optional extension-assisted-cdp backends, with no new MCP tools or error codes):
+Current locks (`consumer-contract-2.0.0`, `package 2.0.0`; Chrome Extension #15 Phase 7: all 40 webai_ tools default to extension-assisted-cdp; managed-cdp remains explicit opt-in, with no new MCP tools or error codes):
 
 | Surface | Count |
 | --- | --- |
@@ -158,7 +158,7 @@ cd web-ai-capability-hub
 npm install
 npx playwright install chromium
 npm run build
-npm test                       # 549/549 passing
+npm test                       # 677/677 passing
 
 # launch a visible profile and complete login manually
 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
@@ -171,17 +171,17 @@ node dist/src/cli.js mcp
 
 ## Use as a standard MCP server
 
-GitHub Releases include `web-ai-research-automation-hub-1.0.0.tgz`. Consumers can install it and point their MCP client at the dedicated stdio binary:
+GitHub Releases include `web-ai-research-automation-hub-2.0.0.tgz`. Consumers can install it and point their MCP client at the dedicated stdio binary:
 
 ```bash
-npm i -g ./web-ai-research-automation-hub-1.0.0.tgz
+npm i -g ./web-ai-research-automation-hub-2.0.0.tgz
 web-ai-research-automation-hub-mcp
 ```
 
 Or run it without a global install:
 
 ```bash
-npx -y --package ./web-ai-research-automation-hub-1.0.0.tgz web-ai-research-automation-hub-mcp
+npx -y --package ./web-ai-research-automation-hub-2.0.0.tgz web-ai-research-automation-hub-mcp
 ```
 
 Generic `mcpServers` config (Claude Desktop uses the same shape in `claude_desktop_config.json`):

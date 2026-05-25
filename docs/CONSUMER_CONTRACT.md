@@ -1,12 +1,13 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v1.0.0
-Contract: `consumer-contract-1.10.0`
+Package: `web-ai-research-automation-hub` v2.0.0
+Contract: `consumer-contract-2.0.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-2.0.0 (2026-05-25 Chrome Extension #15 Phase 7 Bucket 9): breaking default-backend flip for all 40 `webai_*` tools from `managed-cdp` to `extension-assisted-cdp`. The managed CDP implementation remains present and reachable by passing `backend: "managed-cdp"` explicitly. Default operation now requires the native messaging host installed by `src/runtime/extension/installHost.ts`. No commands or error codes were added; 8-lock counts remain commands 191, `webai_` 40, `research_` 121, `wah_` 8, errors 39.
 - consumer-contract-1.10.0 (2026-05-24 Chrome Extension #15 Phase 6 Gemini + Claude lanes): no new commands or error codes; adds the opt-in `backend` optional argument (`managed-cdp` | `extension-assisted-cdp`) to six tools so Gemini image/video/music and Claude send/upload/generate-file can opt into the extension-assisted CDP path:
   - `webai_gemini_generate_image` gains `backend`.
   - `webai_gemini_generate_video` gains `backend`.
@@ -208,9 +209,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 1.10.0 webai MCP tools
+## Contract 2.0.0 webai MCP tools
 
-Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 1.10.0 keeps the 40 webai command rows from 1.9.0 and adds opt-in `backend` optional arguments to three Gemini tools (image/video/music) and three Claude tools (send-prompt/upload-and-query/generate-file); no new MCP tools or error codes are added in Chrome Extension Phase 6.
+Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 2.0.0 keeps the 40 webai command rows and flips every webai_ default backend to `extension-assisted-cdp`; callers that need the legacy browser path must pass `backend: "managed-cdp"` explicitly. No new MCP tools or error codes are added in Chrome Extension Phase 7.
 
 ### Original/B1 existing webai tools
 

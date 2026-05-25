@@ -1,0 +1,138 @@
+{
+  "id": "chatgpt-pulse-get-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-pulse-get-ext-fallback.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/chatgpt-pulse-get-ext-fallback.json",
+  "startedAt": "2026-05-25T15:55:21.956Z",
+  "finishedAt": "2026-05-25T15:55:25.796Z",
+  "durationMs": 3840,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-pulse-get-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T15:55:22.107Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:pulse:get",
+              "--profile",
+              "chatgpt",
+              "--response-timeout-ms",
+              "120000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "status",
+                  "equals": "ready"
+                },
+                {
+                  "path": "digest_text",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-pulse-get-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Read the current ChatGPT Pulse digest",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:pulse:get",
+            "--profile",
+            "chatgpt",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 3623,
+          "stdout": "{\n  \"route\": \"https://chatgpt.com/pulse\",\n  \"status\": \"ready\",\n  \"digest_text\": \"今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\\n美股假期速览\\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\\n美股收盘全景日报\\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\\n板块轮动快照\\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\\n半导体与 AI 主题地图\\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\\n广度确认与交易规则\\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\\n最近在想什么？我会记住并在明天的更新中呈现。\\n我想进一步了解...\\n接下来几天，我会...\\n持续为我更新...\\nShare anything...\\n个股这边把大盘股和流向放在一起，能少翻几层页面。\\n重点大盘股交易准备\\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\\nIR 与流向快查\\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\\nNVIDIA 驱动补丁提醒\\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\\n欧盟 AI 法案更新\\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\\n你更想让我长期补充哪类内容？\\n盈利质量\\n估值变化\\n上下游链条\\n风险预警\\nGet insights from your emails and calendar\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\nDon't allow\\nAllow\\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\\n明天可执行的三步\\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\\n今天就到这里 🍀\\n你最近在想什么？我会把它作为明天的灵感。\",\n  \"generated_hint\": \"A fresh update lands every morning\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "route": "https://chatgpt.com/pulse",
+            "status": "ready",
+            "digest_text": "今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\n美股假期速览\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\n美股收盘全景日报\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\n板块轮动快照\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\n半导体与 AI 主题地图\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\n广度确认与交易规则\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\n最近在想什么？我会记住并在明天的更新中呈现。\n我想进一步了解...\n接下来几天，我会...\n持续为我更新...\nShare anything...\n个股这边把大盘股和流向放在一起，能少翻几层页面。\n重点大盘股交易准备\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\nIR 与流向快查\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\nNVIDIA 驱动补丁提醒\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\n欧盟 AI 法案更新\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\n你更想让我长期补充哪类内容？\n盈利质量\n估值变化\n上下游链条\n风险预警\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\n明天可执行的三步\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\n今天就到这里 🍀\n你最近在想什么？我会把它作为明天的灵感。",
+            "generated_hint": "A fresh update lands every morning"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "status",
+                "actual": "ready",
+                "ok": true
+              },
+              {
+                "path": "digest_text",
+                "actual": "今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\n美股假期速览\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\n美股收盘全景日报\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\n板块轮动快照\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\n半导体与 AI 主题地图\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\n广度确认与交易规则\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\n最近在想什么？我会记住并在明天的更新中呈现。\n我想进一步了解...\n接下来几天，我会...\n持续为我更新...\nShare anything...\n个股这边把大盘股和流向放在一起，能少翻几层页面。\n重点大盘股交易准备\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\nIR 与流向快查\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\nNVIDIA 驱动补丁提醒\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\n欧盟 AI 法案更新\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\n你更想让我长期补充哪类内容？\n盈利质量\n估值变化\n上下游链条\n风险预警\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\n明天可执行的三步\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\n今天就到这里 🍀\n你最近在想什么？我会把它作为明天的灵感。",
+                "ok": true
+              }
+            ]
+          },
+          "route": "https://chatgpt.com/pulse",
+          "status": "ready",
+          "digest_text": "今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\n美股假期速览\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\n美股收盘全景日报\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\n板块轮动快照\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\n半导体与 AI 主题地图\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\n广度确认与交易规则\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\n最近在想什么？我会记住并在明天的更新中呈现。\n我想进一步了解...\n接下来几天，我会...\n持续为我更新...\nShare anything...\n个股这边把大盘股和流向放在一起，能少翻几层页面。\n重点大盘股交易准备\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\nIR 与流向快查\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\nNVIDIA 驱动补丁提醒\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\n欧盟 AI 法案更新\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\n你更想让我长期补充哪类内容？\n盈利质量\n估值变化\n上下游链条\n风险预警\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\n明天可执行的三步\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\n今天就到这里 🍀\n你最近在想什么？我会把它作为明天的灵感。",
+          "generated_hint": "A fresh update lands every morning"
+        }
+      }
+    ],
+    "runId": "run_f2268bd771a83b40"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"chatgpt-pulse-get-ext-fallback\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T15:55:22.107Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:pulse:get\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--response-timeout-ms\",\n            \"120000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"status\",\n                \"equals\": \"ready\"\n              },\n              {\n                \"path\": \"digest_text\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-pulse-get-ext-fallback\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Read the current ChatGPT Pulse digest\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:pulse:get\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--response-timeout-ms\",\n          \"120000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 3623,\n        \"stdout\": \"{\\n  \\\"route\\\": \\\"https://chatgpt.com/pulse\\\",\\n  \\\"status\\\": \\\"ready\\\",\\n  \\\"digest_text\\\": \\\"今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\\\\n美股假期速览\\\\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\\\\n美股收盘全景日报\\\\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\\\\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\\\\n板块轮动快照\\\\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\\\\n半导体与 AI 主题地图\\\\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\\\\n广度确认与交易规则\\\\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\\\\n最近在想什么？我会记住并在明天的更新中呈现。\\\\n我想进一步了解...\\\\n接下来几天，我会...\\\\n持续为我更新...\\\\nShare anything...\\\\n个股这边把大盘股和流向放在一起，能少翻几层页面。\\\\n重点大盘股交易准备\\\\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\\\\nIR 与流向快查\\\\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\\\\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\\\\nNVIDIA 驱动补丁提醒\\\\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\\\\n欧盟 AI 法案更新\\\\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\\\\n你更想让我长期补充哪类内容？\\\\n盈利质量\\\\n估值变化\\\\n上下游链条\\\\n风险预警\\\\nGet insights from your emails and calendar\\\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\\\nDon't allow\\\\nAllow\\\\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\\\\n明天可执行的三步\\\\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\\\\n今天就到这里 🍀\\\\n你最近在想什么？我会把它作为明天的灵感。\\\",\\n  \\\"generated_hint\\\": \\\"A fresh update lands every morning\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"route\": \"https://chatgpt.com/pulse\",\n          \"status\": \"ready\",\n          \"digest_text\": \"今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\\n美股假期速览\\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\\n美股收盘全景日报\\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\\n板块轮动快照\\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\\n半导体与 AI 主题地图\\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\\n广度确认与交易规则\\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\\n最近在想什么？我会记住并在明天的更新中呈现。\\n我想进一步了解...\\n接下来几天，我会...\\n持续为我更新...\\nShare anything...\\n个股这边把大盘股和流向放在一起，能少翻几层页面。\\n重点大盘股交易准备\\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\\nIR 与流向快查\\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\\nNVIDIA 驱动补丁提醒\\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\\n欧盟 AI 法案更新\\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\\n你更想让我长期补充哪类内容？\\n盈利质量\\n估值变化\\n上下游链条\\n风险预警\\nGet insights from your emails and calendar\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\nDon't allow\\nAllow\\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\\n明天可执行的三步\\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\\n今天就到这里 🍀\\n你最近在想什么？我会把它作为明天的灵感。\",\n          \"generated_hint\": \"A fresh update lands every morning\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"status\",\n              \"actual\": \"ready\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"digest_text\",\n              \"actual\": \"今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\\n美股假期速览\\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\\n美股收盘全景日报\\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\\n板块轮动快照\\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\\n半导体与 AI 主题地图\\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\\n广度确认与交易规则\\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\\n最近在想什么？我会记住并在明天的更新中呈现。\\n我想进一步了解...\\n接下来几天，我会...\\n持续为我更新...\\nShare anything...\\n个股这边把大盘股和流向放在一起，能少翻几层页面。\\n重点大盘股交易准备\\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\\nIR 与流向快查\\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\\nNVIDIA 驱动补丁提醒\\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\\n欧盟 AI 法案更新\\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\\n你更想让我长期补充哪类内容？\\n盈利质量\\n估值变化\\n上下游链条\\n风险预警\\nGet insights from your emails and calendar\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\nDon't allow\\nAllow\\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\\n明天可执行的三步\\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\\n今天就到这里 🍀\\n你最近在想什么？我会把它作为明天的灵感。\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"route\": \"https://chatgpt.com/pulse\",\n        \"status\": \"ready\",\n        \"digest_text\": \"今天先看休市后的美股基准盘面，方便你抓住接下来的复盘节奏。\\n美股假期速览\\n以 5/22 收盘为基准，整理道指、标普、纳指、利率、油价与 FedWatch，方便你先抓次日节奏。\\n美股收盘全景日报\\n完整列出指数、ETF、收益率、美元、商品与风险数据，并附可复现来源，适合做正式复盘。\\n板块轮动和广度一起看，最适合判断资金是不是在换方向。\\n板块轮动快照\\n按 1 日、5 日和 1 个月观察板块强弱，帮助你判断资金正在往哪边轮动。\\n半导体与 AI 主题地图\\n把 SMH、SOXX、IGV、CIBR、CLOU、AIQ、BOTZ 串起来看，快速分辨硬件、软件与机器人主题的强弱。\\n广度确认与交易规则\\n给出可直接复制的宽度表和确认阈值，方便你把市场广度转成明确的交易动作。\\n最近在想什么？我会记住并在明天的更新中呈现。\\n我想进一步了解...\\n接下来几天，我会...\\n持续为我更新...\\nShare anything...\\n个股这边把大盘股和流向放在一起，能少翻几层页面。\\n重点大盘股交易准备\\n汇总 NVDA、MSFT、AAPL、GOOGL、AMZN、META、TSLA 的当日状态，标出最值得盯的流向和催化。\\nIR 与流向快查\\n把官方 IR、SEC 与近期公告放在一起，省去逐站点搜索，重点先看 NVDA 的异常期权流。\\nAI 基础设施和合规放一起看，因为最近一个是机会，一个是边界。\\nNVIDIA 驱动补丁提醒\\n这是一条需要立刻留意的 GPU 安全更新，适合负责推理、虚拟化或镜像管理的人先处理。\\n欧盟 AI 法案更新\\n把欧盟 AI Act 的时间线和合规检查点讲清楚，适合做长期部署前的边界确认。\\n你更想让我长期补充哪类内容？\\n盈利质量\\n估值变化\\n上下游链条\\n风险预警\\nGet insights from your emails and calendar\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\nDon't allow\\nAllow\\n最后留三件轻量小事，正好接你最近想更快落地的节奏 ✨\\n明天可执行的三步\\n三件不重但能推进明天的动作，适合在忙碌日程里保住一点前进感。\\n今天就到这里 🍀\\n你最近在想什么？我会把它作为明天的灵感。\",\n        \"generated_hint\": \"A fresh update lands every morning\"\n      }\n    }\n  ],\n  \"runId\": \"run_f2268bd771a83b40\"\n}\n",
+  "stderr": ""
+}

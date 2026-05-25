@@ -152,7 +152,7 @@ test("webai_chatgpt_generate_file no longer rejects pptx pre-flight (issue #16 R
   // envelope. That envelope shape (browser was invoked AND error is not the
   // pre-flight pptx guard) is the contract we want to assert.
   const browserCalls = { count: 0 };
-  const result = await callMcpTool("webai_chatgpt_generate_file", {
+  const result = await callMcpTool("webai_chatgpt_generate_file", { backend: "managed-cdp",
     profile: "chatgpt-generate-file-pptx-no-longer-rejected",
     prompt: "Create a three-slide deck",
     expected_extension: "pptx",
@@ -167,7 +167,7 @@ test("webai_chatgpt_generate_file no longer rejects pptx pre-flight (issue #16 R
 
 test("webai_claude_generate_file rejects xlsx pre-flight without browser or artifact metadata", async () => {
   const browserCalls = { count: 0 };
-  const result = await callMcpTool("webai_claude_generate_file", {
+  const result = await callMcpTool("webai_claude_generate_file", { backend: "managed-cdp",
     profile: "claude-generate-file-xlsx-guard",
     prompt: "Create a spreadsheet",
     artifact_class: "document",

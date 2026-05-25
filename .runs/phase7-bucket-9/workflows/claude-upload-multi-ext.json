@@ -1,0 +1,177 @@
+{
+  "id": "claude-upload-multi-ext",
+  "file": "examples/workflows/claude-claude-upload-multi-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-upload-multi-ext.json",
+  "startedAt": "2026-05-25T16:06:45.944Z",
+  "finishedAt": "2026-05-25T16:07:00.394Z",
+  "durationMs": 14450,
+  "timeoutMs": 300000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-upload-multi-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:06:46.105Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:upload-and-query",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+              "--prompt",
+              "List the unique first word from each file",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "beta"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "gamma"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-upload-multi-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload three text files to Claude and ask for each unique first word",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-upload-multi-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:upload-and-query",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+            "--prompt",
+            "List the unique first word from each file",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 14219,
+          "stdout": "{\n  \"files_uploaded_count\": 3,\n  \"attachment_names\": [\n    \"fileA.txt\",\n    \"fileB.txt\",\n    \"fileC.txt\"\n  ],\n  \"chat_url\": \"https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3\",\n  \"response_text\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n  \"wait_ms\": 6473,\n  \"completion_detected\": true,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "files_uploaded_count": 3,
+            "attachment_names": [
+              "fileA.txt",
+              "fileB.txt",
+              "fileC.txt"
+            ],
+            "chat_url": "https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3",
+            "response_text": "Claude responded: Here are the unique first words from each file:\n\nHere are the unique first words from each file:\n\nfileA.txt: alpha\nfileB.txt: beta\nfileC.txt: gamma",
+            "wait_ms": 6473,
+            "completion_detected": true,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: Here are the unique first words from each file:\n\nHere are the unique first words from each file:\n\nfileA.txt: alpha\nfileB.txt: beta\nfileC.txt: gamma",
+                "ok": true
+              },
+              {
+                "path": "response_text",
+                "actual": "Claude responded: Here are the unique first words from each file:\n\nHere are the unique first words from each file:\n\nfileA.txt: alpha\nfileB.txt: beta\nfileC.txt: gamma",
+                "ok": true
+              },
+              {
+                "path": "response_text",
+                "actual": "Claude responded: Here are the unique first words from each file:\n\nHere are the unique first words from each file:\n\nfileA.txt: alpha\nfileB.txt: beta\nfileC.txt: gamma",
+                "ok": true
+              }
+            ]
+          },
+          "files_uploaded_count": 3,
+          "attachment_names": "<circular>",
+          "chat_url": "https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3",
+          "response_text": "Claude responded: Here are the unique first words from each file:\n\nHere are the unique first words from each file:\n\nfileA.txt: alpha\nfileB.txt: beta\nfileC.txt: gamma",
+          "wait_ms": 6473,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_d1b1a5221ec6b113"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-upload-multi-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:06:46.105Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:upload-and-query\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileB.txt\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileC.txt\",\n            \"--prompt\",\n            \"List the unique first word from each file\",\n            \"--response-timeout-ms\",\n            \"180000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 240000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"alpha\"\n              },\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"beta\"\n              },\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"gamma\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-upload-multi-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Upload three text files to Claude and ask for each unique first word\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 240000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-upload-multi-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:upload-and-query\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileB.txt\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileC.txt\",\n          \"--prompt\",\n          \"List the unique first word from each file\",\n          \"--response-timeout-ms\",\n          \"180000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 14219,\n        \"stdout\": \"{\\n  \\\"files_uploaded_count\\\": 3,\\n  \\\"attachment_names\\\": [\\n    \\\"fileA.txt\\\",\\n    \\\"fileB.txt\\\",\\n    \\\"fileC.txt\\\"\\n  ],\\n  \\\"chat_url\\\": \\\"https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3\\\",\\n  \\\"response_text\\\": \\\"Claude responded: Here are the unique first words from each file:\\\\n\\\\nHere are the unique first words from each file:\\\\n\\\\nfileA.txt: alpha\\\\nfileB.txt: beta\\\\nfileC.txt: gamma\\\",\\n  \\\"wait_ms\\\": 6473,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"files_uploaded_count\": 3,\n          \"attachment_names\": [\n            \"fileA.txt\",\n            \"fileB.txt\",\n            \"fileC.txt\"\n          ],\n          \"chat_url\": \"https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3\",\n          \"response_text\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n          \"wait_ms\": 6473,\n          \"completion_detected\": true,\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"files_uploaded_count\": 3,\n        \"attachment_names\": \"<circular>\",\n        \"chat_url\": \"https://claude.ai/chat/7ef397c0-0d63-4b61-bd67-08578cb62ee3\",\n        \"response_text\": \"Claude responded: Here are the unique first words from each file:\\n\\nHere are the unique first words from each file:\\n\\nfileA.txt: alpha\\nfileB.txt: beta\\nfileC.txt: gamma\",\n        \"wait_ms\": 6473,\n        \"completion_detected\": true,\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_d1b1a5221ec6b113\"\n}\n",
+  "stderr": ""
+}

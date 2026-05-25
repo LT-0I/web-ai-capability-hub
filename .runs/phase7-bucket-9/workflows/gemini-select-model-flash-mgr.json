@@ -1,0 +1,148 @@
+{
+  "id": "gemini-select-model-flash-mgr",
+  "file": "examples/workflows/gemini-gemini-select-model-flash-mgr.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-select-model-flash-mgr.json",
+  "startedAt": "2026-05-25T16:29:37.649Z",
+  "finishedAt": "2026-05-25T16:29:55.084Z",
+  "durationMs": 17435,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-select-model-flash-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:37.803Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"arg",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-select-model-flash-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:29:37.803Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:select-model",
+              "--profile",
+              "gemini-9225",
+              "--model",
+              "3.5-flash",
+              "--thinking-level",
+              "standard",
+              "--tab-url-contains",
+              "gemini.google.com",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-select-model-flash-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to select Gemini Flash model (fail-closed; ELEMENT_NOT_FOUND on model picker)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-select-model-flash-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path ok !== true",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:select-model",
+            "--profile",
+            "gemini-9225",
+            "--model",
+            "3.5-flash",
+            "--thinking-level",
+            "standard",
+            "--tab-url-contains",
+            "gemini.google.com",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 17001,
+          "stdout": "{\n  \"ok\": false,\n  \"selected_model\": null,\n  \"selected_thinking_level\": \"standard\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: Gemini prompt composer was not found\",\n  \"evidence\": {\n    \"selector\": \"div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]\",\n    \"cause\": \"{\\\"success\\\":false,\\\"tabId\\\":740055528,\\\"engine\\\":\\\"cdp\\\",\\\"error\\\":{\\\"kind\\\":\\\"runtime_error\\\",\\\"message\\\":\\\"Error: waitForSelector timeout for div[role=\\\\\\\"textbox\\\\\\\"][aria-label=\\\\\\\"Enter a prompt for Gemini\\\\\\\"][contenteditable=\\\\\\\"true\\\\\\\"][data-placeholder=\\\\\\\"Ask Gemini\\\\\\\"] state=visible\\\\n    at <anonymous>:41:7\\\",\\\"details\\\":{\\\"lineNumber\\\":0,\\\"columnNumber\\\":0}},\\\"metrics\\\":{\\\"elapsedMs\\\":15045}}\"\n  }\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "selected_model": null,
+            "selected_thinking_level": "standard",
+            "errorCode": "ELEMENT_NOT_FOUND",
+            "error_code": "ELEMENT_NOT_FOUND",
+            "message": "ELEMENT_NOT_FOUND: Gemini prompt composer was not found",
+            "evidence": {
+              "selector": "div[role=\"textbox\"][aria-label=\"Enter a prompt for Gemini\"][contenteditable=\"true\"][data-placeholder=\"Ask Gemini\"]",
+              "cause": "{\"success\":false,\"tabId\":740055528,\"engine\":\"cdp\",\"error\":{\"kind\":\"runtime_error\",\"message\":\"Error: waitForSelector timeout for div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"] state=visible\\n    at <anonymous>:41:7\",\"details\":{\"lineNumber\":0,\"columnNumber\":0}},\"metrics\":{\"elapsedMs\":15045}}"
+            }
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": false,
+                "ok": false,
+                "reasons": [
+                  "!== true"
+                ]
+              }
+            ]
+          },
+          "selected_model": null,
+          "selected_thinking_level": "standard",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini prompt composer was not found",
+          "evidence": "<circular>"
+        }
+      }
+    ],
+    "runId": "run_9a29e645961d2e45"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-select-model-flash-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:37.803Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:select-model\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--model\",\n            \"3.5-flash\",\n            \"--thinking-level\",\n            \"standard\",\n            \"--tab-url-contains\",\n            \"gemini.google.com\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"ok\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-select-model-flash-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Attempt to select Gemini Flash model (fail-closed; ELEMENT_NOT_FOUND on model picker)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-select-model-flash-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path ok !== true\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:select-model\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--model\",\n          \"3.5-flash\",\n          \"--thinking-level\",\n          \"standard\",\n          \"--tab-url-contains\",\n          \"gemini.google.com\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 17001,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"selected_model\\\": null,\\n  \\\"selected_thinking_level\\\": \\\"standard\\\",\\n  \\\"errorCode\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"error_code\\\": \\\"ELEMENT_NOT_FOUND\\\",\\n  \\\"message\\\": \\\"ELEMENT_NOT_FOUND: Gemini prompt composer was not found\\\",\\n  \\\"evidence\\\": {\\n    \\\"selector\\\": \\\"div[role=\\\\\\\"textbox\\\\\\\"][aria-label=\\\\\\\"Enter a prompt for Gemini\\\\\\\"][contenteditable=\\\\\\\"true\\\\\\\"][data-placeholder=\\\\\\\"Ask Gemini\\\\\\\"]\\\",\\n    \\\"cause\\\": \\\"{\\\\\\\"success\\\\\\\":false,\\\\\\\"tabId\\\\\\\":740055528,\\\\\\\"engine\\\\\\\":\\\\\\\"cdp\\\\\\\",\\\\\\\"error\\\\\\\":{\\\\\\\"kind\\\\\\\":\\\\\\\"runtime_error\\\\\\\",\\\\\\\"message\\\\\\\":\\\\\\\"Error: waitForSelector timeout for div[role=\\\\\\\\\\\\\\\"textbox\\\\\\\\\\\\\\\"][aria-label=\\\\\\\\\\\\\\\"Enter a prompt for Gemini\\\\\\\\\\\\\\\"][contenteditable=\\\\\\\\\\\\\\\"true\\\\\\\\\\\\\\\"][data-placeholder=\\\\\\\\\\\\\\\"Ask Gemini\\\\\\\\\\\\\\\"] state=visible\\\\\\\\n    at <anonymous>:41:7\\\\\\\",\\\\\\\"details\\\\\\\":{\\\\\\\"lineNumber\\\\\\\":0,\\\\\\\"columnNumber\\\\\\\":0}},\\\\\\\"metrics\\\\\\\":{\\\\\\\"elapsedMs\\\\\\\":15045}}\\\"\\n  }\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"selected_model\": null,\n          \"selected_thinking_level\": \"standard\",\n          \"errorCode\": \"ELEMENT_NOT_FOUND\",\n          \"error_code\": \"ELEMENT_NOT_FOUND\",\n          \"message\": \"ELEMENT_NOT_FOUND: Gemini prompt composer was not found\",\n          \"evidence\": {\n            \"selector\": \"div[role=\\\"textbox\\\"][aria-label=\\\"Enter a prompt for Gemini\\\"][contenteditable=\\\"true\\\"][data-placeholder=\\\"Ask Gemini\\\"]\",\n            \"cause\": \"{\\\"success\\\":false,\\\"tabId\\\":740055528,\\\"engine\\\":\\\"cdp\\\",\\\"error\\\":{\\\"kind\\\":\\\"runtime_error\\\",\\\"message\\\":\\\"Error: waitForSelector timeout for div[role=\\\\\\\"textbox\\\\\\\"][aria-label=\\\\\\\"Enter a prompt for Gemini\\\\\\\"][contenteditable=\\\\\\\"true\\\\\\\"][data-placeholder=\\\\\\\"Ask Gemini\\\\\\\"] state=visible\\\\n    at <anonymous>:41:7\\\",\\\"details\\\":{\\\"lineNumber\\\":0,\\\"columnNumber\\\":0}},\\\"metrics\\\":{\\\"elapsedMs\\\":15045}}\"\n          }\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"ok\",\n              \"actual\": false,\n              \"ok\": false,\n              \"reasons\": [\n                \"!== true\"\n              ]\n            }\n          ]\n        },\n        \"selected_model\": null,\n        \"selected_thinking_level\": \"standard\",\n        \"errorCode\": \"ELEMENT_NOT_FOUND\",\n        \"error_code\": \"ELEMENT_NOT_FOUND\",\n        \"message\": \"ELEMENT_NOT_FOUND: Gemini prompt composer was not found\",\n        \"evidence\": \"<circular>\"\n      }\n    }\n  ],\n  \"runId\": \"run_9a29e645961d2e45\"\n}\n",
+  "stderrTail": ""
+}

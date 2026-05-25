@@ -1,0 +1,159 @@
+{
+  "id": "gemini-gems-converse-mgr",
+  "file": "examples/workflows/gemini-gemini-gems-converse-mgr.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-gems-converse-mgr.json",
+  "startedAt": "2026-05-25T16:26:08.538Z",
+  "finishedAt": "2026-05-25T16:26:17.318Z",
+  "durationMs": 8780,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-gems-converse-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:26:08.688Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:send-prompt",
+              "--profile",
+              "gemini-9225",
+              "--url",
+              "https://gemini.google.com/gem/coding-partner",
+              "--reuse-conversation",
+              "--prompt",
+              "Say only OK",
+              "--response-timeout-ms",
+              "90000",
+              "--timeout-ms",
+              "120000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "chat_url",
+                  "regex": "/gem/"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-gems-converse-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Open a Gemini Gem URL and send a prompt",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-gems-converse-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--url",
+            "https://gemini.google.com/gem/coding-partner",
+            "--reuse-conversation",
+            "--prompt",
+            "Say only OK",
+            "--response-timeout-ms",
+            "90000",
+            "--timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 8547,
+          "stdout": "{\n  \"response_text\": \"OK\",\n  \"elapsed_ms\": 8403,\n  \"wait_ms\": 5193,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "OK",
+            "elapsed_ms": 8403,
+            "wait_ms": 5193,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": null,
+            "reuse_conversation": true,
+            "chat_url": "https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "OK",
+                "ok": true
+              },
+              {
+                "path": "chat_url",
+                "actual": "https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "OK",
+          "wait_ms": 5193,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": true,
+          "chat_url": "https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e"
+        }
+      }
+    ],
+    "runId": "run_edf8cb352255c649"
+  },
+  "stdoutTail": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"gemini-gems-converse-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:26:08.688Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:send-prompt\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--url\",\n            \"https://gemini.google.com/gem/coding-partner\",\n            \"--reuse-conversation\",\n            \"--prompt\",\n            \"Say only OK\",\n            \"--response-timeout-ms\",\n            \"90000\",\n            \"--timeout-ms\",\n            \"120000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"chat_url\",\n                \"regex\": \"/gem/\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-gems-converse-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Open a Gemini Gem URL and send a prompt\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-gems-converse-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:send-prompt\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--url\",\n          \"https://gemini.google.com/gem/coding-partner\",\n          \"--reuse-conversation\",\n          \"--prompt\",\n          \"Say only OK\",\n          \"--response-timeout-ms\",\n          \"90000\",\n          \"--timeout-ms\",\n          \"120000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 8547,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"OK\\\",\\n  \\\"elapsed_ms\\\": 8403,\\n  \\\"wait_ms\\\": 5193,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"model_used\\\": null,\\n  \\\"reuse_conversation\\\": true,\\n  \\\"chat_url\\\": \\\"https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"OK\",\n          \"elapsed_ms\": 8403,\n          \"wait_ms\": 5193,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"model_used\": null,\n          \"reuse_conversation\": true,\n          \"chat_url\": \"https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"OK\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"chat_url\",\n              \"actual\": \"https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"OK\",\n        \"wait_ms\": 5193,\n        \"completion_detected\": true,\n        \"errorCode\": null,\n        \"model_used\": null,\n        \"reuse_conversation\": true,\n        \"chat_url\": \"https://gemini.google.com/gem/coding-partner/5f6a520d8f0c049e\"\n      }\n    }\n  ],\n  \"runId\": \"run_edf8cb352255c649\"\n}\n",
+  "stderrTail": ""
+}

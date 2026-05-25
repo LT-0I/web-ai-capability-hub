@@ -178,7 +178,7 @@ test("startGeminiVideoTask rejects busy pool members before spawning worker", as
   const db = tempDb();
   db.upsertWebAiTask({ task_id: "task_busy", status: "running", profile: "B", lease_id: "lease_busy", started_at: new Date().toISOString() });
   await assert.rejects(
-    () => webAiGeminiGenerateVideo({ profile: "A", account_pool: "A,B", prompt: "video", download_dir: root }, { database: db, spawnVideoWorker: () => ({ pid: process.pid }) } as any),
+    () => webAiGeminiGenerateVideo({ backend: "managed-cdp", profile: "A", account_pool: "A,B", prompt: "video", download_dir: root }, { database: db, spawnVideoWorker: () => ({ pid: process.pid }) } as any),
     (error: any) => error?.errorCode === ConsumerErrorCodes.PROFILE_LEASE_BUSY
   );
 });
@@ -188,7 +188,7 @@ test("startGeminiVideoTask rejects malformed account_pool before spawning worker
   const db = tempDb();
   let spawned = false;
   await assert.rejects(
-    () => webAiGeminiGenerateVideo({ profile: "A", account_pool: "A,,B", prompt: "video", download_dir: root }, { database: db, spawnVideoWorker: () => { spawned = true; return { pid: process.pid }; } } as any),
+    () => webAiGeminiGenerateVideo({ backend: "managed-cdp", profile: "A", account_pool: "A,,B", prompt: "video", download_dir: root }, { database: db, spawnVideoWorker: () => { spawned = true; return { pid: process.pid }; } } as any),
     (error: any) => error?.errorCode === ConsumerErrorCodes.INVALID_ARGS
   );
   assert.equal(spawned, false);

@@ -1,0 +1,153 @@
+{
+  "id": "claude-send-incognito-ext",
+  "file": "examples/workflows/claude-claude-send-incognito-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-send-incognito-ext.json",
+  "startedAt": "2026-05-25T16:06:03.637Z",
+  "finishedAt": "2026-05-25T16:06:14.042Z",
+  "durationMs": 10405,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-send-incognito-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:06:03.787Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:send-prompt",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--incognito",
+              "--prompt",
+              "say only OK",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "chat_url",
+                  "regex": "incognito="
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-send-incognito-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Claude incognito-mode send-prompt",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-incognito-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--incognito",
+            "--prompt",
+            "say only OK",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 10090,
+          "stdout": "{\n  \"response_text\": \"Claude responded: OK\\n\\nOK\",\n  \"elapsed_ms\": 9936,\n  \"wait_ms\": 6216,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/new?incognito=\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Claude responded: OK\n\nOK",
+            "elapsed_ms": 9936,
+            "wait_ms": 6216,
+            "completion_detected": true,
+            "errorCode": null,
+            "conversation_id": null,
+            "chat_url": "https://claude.ai/new?incognito="
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: OK\n\nOK",
+                "ok": true
+              },
+              {
+                "path": "chat_url",
+                "actual": "https://claude.ai/new?incognito=",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "Claude responded: OK\n\nOK",
+          "wait_ms": 6216,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/new?incognito="
+        }
+      }
+    ],
+    "runId": "run_1f2634adc950bca1"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-send-incognito-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:06:03.787Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:send-prompt\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--incognito\",\n            \"--prompt\",\n            \"say only OK\",\n            \"--response-timeout-ms\",\n            \"90000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"nonempty\": true\n              },\n              {\n                \"path\": \"chat_url\",\n                \"regex\": \"incognito=\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-send-incognito-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Claude incognito-mode send-prompt\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-send-incognito-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:send-prompt\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--incognito\",\n          \"--prompt\",\n          \"say only OK\",\n          \"--response-timeout-ms\",\n          \"90000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 10090,\n        \"stdout\": \"{\\n  \\\"response_text\\\": \\\"Claude responded: OK\\\\n\\\\nOK\\\",\\n  \\\"elapsed_ms\\\": 9936,\\n  \\\"wait_ms\\\": 6216,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null,\\n  \\\"conversation_id\\\": null,\\n  \\\"chat_url\\\": \\\"https://claude.ai/new?incognito=\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"response_text\": \"Claude responded: OK\\n\\nOK\",\n          \"elapsed_ms\": 9936,\n          \"wait_ms\": 6216,\n          \"completion_detected\": true,\n          \"errorCode\": null,\n          \"conversation_id\": null,\n          \"chat_url\": \"https://claude.ai/new?incognito=\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: OK\\n\\nOK\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"chat_url\",\n              \"actual\": \"https://claude.ai/new?incognito=\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"response_text\": \"Claude responded: OK\\n\\nOK\",\n        \"wait_ms\": 6216,\n        \"completion_detected\": true,\n        \"errorCode\": null,\n        \"conversation_id\": null,\n        \"chat_url\": \"https://claude.ai/new?incognito=\"\n      }\n    }\n  ],\n  \"runId\": \"run_1f2634adc950bca1\"\n}\n",
+  "stderr": ""
+}

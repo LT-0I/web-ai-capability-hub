@@ -200,7 +200,7 @@ test("phase4/6 contract and MCP schema expose backend enum on opted-in image too
   assert.deepEqual(gemini.inputSchema.properties.backend.enum, ["managed-cdp", "extension-assisted-cdp"]);
 });
 
-test("phase4 tool routing uses extension backend only when explicitly requested", async (t) => {
+test("phase4 tool routing defaults to extension backend and keeps managed as explicit opt-in", async (t) => {
   let extensionFactoryCalls = 0;
   let managedLaunchCalls = 0;
   const fakePage = {
@@ -239,12 +239,10 @@ test("phase4 tool routing uses extension backend only when explicitly requested"
     () => webAiChatgptGenerateImage({ profile: "p4-managed", prompt: "make image", download_dir: tempDownloadDir(), backend: "managed-cdp" }, runtime),
     /managed path touched/
   );
-  await assert.rejects(
-    () => webAiChatgptGenerateImage({ profile: "p4-default", prompt: "make image", download_dir: tempDownloadDir() }, runtime),
-    /managed path touched/
-  );
-  assert.equal(extensionFactoryCalls, 1, "managed/default path must not construct extension backend");
-  assert.equal(managedLaunchCalls, 2);
+  const defaultResult: any = await webAiChatgptGenerateImage({ profile: "p4-default", prompt: "make image", download_dir: tempDownloadDir() }, runtime);
+  assert.equal(defaultResult.errorCode, null);
+  assert.equal(extensionFactoryCalls, 2, "explicit extension + default path both construct the extension backend");
+  assert.equal(managedLaunchCalls, 1);
 });
 
 test("phase4 no graceful fallback: unreachable HTTP endpoint surfaces CHROME_EXTENSION_NOT_CONNECTED", async () => {

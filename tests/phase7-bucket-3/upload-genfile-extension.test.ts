@@ -44,7 +44,7 @@ function fakeExtensionPage(service: Service, calls: string[]) {
     click: async (target: any) => {
       const selector = selectorOf(target);
       calls.push(`${service}:click:${selector}`);
-      if (selector.includes("send-button") || selector.includes("Send message")) sent = true;
+      if (/composer-submit-button|send-button|Send message|Submit|button\[type="submit"\]/i.test(selector)) sent = true;
     },
     fill: async (target: any, value: string) => {
       calls.push(`${service}:fill:${selectorOf(target)}:${value.slice(0, 16)}`);
@@ -105,6 +105,9 @@ test("phase7 bucket3 backend=extension-assisted-cdp routes ChatGPT upload, ChatG
       artifactCalls += 1;
       assert.equal(args.profile, "p7-chatgpt-genfile-ext");
       assert.equal(args.pageReadyEvidence.backend, "extension-assisted-cdp");
+      if (artifactCalls === 1) {
+        throw new Error("CDP endpoint did not become ready at http://127.0.0.1:46859/json/version: connect ECONNREFUSED 127.0.0.1:46859");
+      }
       const artifactPath = path.join(dir, "hello.py");
       fs.writeFileSync(artifactPath, "print('hello')\n", "utf8");
       return { path: artifactPath, sha256: "abc", size: 15, downloadFilename: "hello.py" };
@@ -121,10 +124,10 @@ test("phase7 bucket3 backend=extension-assisted-cdp routes ChatGPT upload, ChatG
   assert.equal(chatgptFile.download_filename, "hello.py");
   assert.equal(geminiUpload.errorCode, null);
   assert.deepEqual(geminiUpload.files_in_chip, ["fixture.txt"]);
-  assert.equal(artifactCalls, 1);
+  assert.equal(artifactCalls, 2);
   assert.deepEqual(calls.filter((entry) => entry.startsWith("new:")).sort(), ["new:chatgpt", "new:chatgpt", "new:gemini"]);
   assert.equal(calls.some((entry) => entry.includes(":upload:input#upload-files:fixture.txt")), true);
-  assert.equal(calls.some((entry) => entry.includes(":upload:input[type=\"file\"]") && entry.endsWith(":fixture.txt")), true);
+  assert.equal(calls.some((entry) => entry.includes(":upload:[role=\"menuitem\"][aria-label^=\"Upload files\"]") && entry.endsWith(":fixture.txt")), true);
 });
 
 test("phase7 bucket3 backend=managed-cdp still routes these tools to managed-cdp", async (t) => {

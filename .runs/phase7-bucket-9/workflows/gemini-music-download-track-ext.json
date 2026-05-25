@@ -1,0 +1,225 @@
+{
+  "id": "gemini-music-download-track-ext",
+  "file": "examples/workflows/gemini-gemini-music-download-track-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/gemini-music-download-track-ext.json",
+  "startedAt": "2026-05-25T16:26:20.158Z",
+  "finishedAt": "2026-05-25T16:29:04.808Z",
+  "durationMs": 164650,
+  "timeoutMs": 540000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-download-track-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:26:20.310Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"ensure_track\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          ",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-music-download-track-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:26:20.310Z",
+      "actions": [
+        {
+          "stepId": "ensure_track",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:generate",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A short calm acoustic guitar loop, instrumental, 30 seconds",
+              "--confirmed",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--timeout-ms",
+              "300000",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "conversation_url",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:download-track",
+              "--profile",
+              "gemini-9225",
+              "--tab-url-contains",
+              "{{steps.ensure_track.conversation_url}}",
+              "--format",
+              "mp3",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "savedPath",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-music-download-track-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a Gemini Music track, then download that finished track as MP3",
+        "steps": [
+          {
+            "id": "ensure_track",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "ensure_track",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short calm acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 43577,
+          "stdout": "{\n  \"task_id\": \"gemini_music_1779726423899\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/da44eedc51adb193\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3\",\n  \"sha256\": \"5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354\",\n  \"size_bytes\": 744609,\n  \"download_filename\": \"Morning_Tea_on_Cedar.mp3\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "task_id": "gemini_music_1779726423899",
+            "status": "complete",
+            "conversation_url": "https://gemini.google.com/app/da44eedc51adb193",
+            "path": "/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3",
+            "sha256": "5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354",
+            "size_bytes": 744609,
+            "download_filename": "Morning_Tea_on_Cedar.mp3",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "conversation_url",
+                "actual": "https://gemini.google.com/app/da44eedc51adb193",
+                "ok": true
+              }
+            ]
+          },
+          "task_id": "gemini_music_1779726423899",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/da44eedc51adb193",
+          "path": "/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3",
+          "sha256": "5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354",
+          "size_bytes": 744609,
+          "download_filename": "Morning_Tea_on_Cedar.mp3",
+          "errorCode": null
+        }
+      },
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command timed out",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:download-track",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "https://gemini.google.com/app/da44eedc51adb193",
+            "--format",
+            "mp3",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": "SIGTERM",
+          "timed_out": true,
+          "elapsed_ms": 120812,
+          "stdout": "",
+          "stderr": "",
+          "gate": {
+            "timed_out": true
+          },
+          "errorCode": "COMMAND_TIMEOUT"
+        }
+      }
+    ],
+    "runId": "run_f81e693141ba5b1b"
+  },
+  "stdoutTail": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-download-track-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:26:20.310Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"ensure_track\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:music:generate\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--prompt\",\n            \"A short calm acoustic guitar loop, instrumental, 30 seconds\",\n            \"--confirmed\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/gemini\",\n            \"--timeout-ms\",\n            \"300000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 360000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"conversation_url\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      },\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:music:download-track\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--tab-url-contains\",\n            \"{{steps.ensure_track.conversation_url}}\",\n            \"--format\",\n            \"mp3\",\n            \"--download-dir\",\n            \"/tmp/explore-2026-05-25/gemini\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"savedPath\",\n                \"nonempty\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-music-download-track-ext\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Generate a Gemini Music track, then download that finished track as MP3\",\n      \"steps\": [\n        {\n          \"id\": \"ensure_track\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 360000,\n          \"gate\": \"<circular>\"\n        },\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"ensure_track\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:music:generate\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"A short calm acoustic guitar loop, instrumental, 30 seconds\",\n          \"--confirmed\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 43577,\n        \"stdout\": \"{\\n  \\\"task_id\\\": \\\"gemini_music_1779726423899\\\",\\n  \\\"status\\\": \\\"complete\\\",\\n  \\\"conversation_url\\\": \\\"https://gemini.google.com/app/da44eedc51adb193\\\",\\n  \\\"path\\\": \\\"/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3\\\",\\n  \\\"sha256\\\": \\\"5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354\\\",\\n  \\\"size_bytes\\\": 744609,\\n  \\\"download_filename\\\": \\\"Morning_Tea_on_Cedar.mp3\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"task_id\": \"gemini_music_1779726423899\",\n          \"status\": \"complete\",\n          \"conversation_url\": \"https://gemini.google.com/app/da44eedc51adb193\",\n          \"path\": \"/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3\",\n          \"sha256\": \"5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354\",\n          \"size_bytes\": 744609,\n          \"download_filename\": \"Morning_Tea_on_Cedar.mp3\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"conversation_url\",\n              \"actual\": \"https://gemini.google.com/app/da44eedc51adb193\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"task_id\": \"gemini_music_1779726423899\",\n        \"status\": \"complete\",\n        \"conversation_url\": \"https://gemini.google.com/app/da44eedc51adb193\",\n        \"path\": \"/tmp/explore-2026-05-25/gemini/Morning_Tea_on_Cedar.mp3\",\n        \"sha256\": \"5a2db76595ddbc29661c21e34a80640dabb57af9c86d096eb362d3eaac0bb354\",\n        \"size_bytes\": 744609,\n        \"download_filename\": \"Morning_Tea_on_Cedar.mp3\",\n        \"errorCode\": null\n      }\n    },\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:music:download-track\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--tab-url-contains\",\n          \"https://gemini.google.com/app/da44eedc51adb193\",\n          \"--format\",\n          \"mp3\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 120812,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_f81e693141ba5b1b\"\n}\n",
+  "stderrTail": ""
+}

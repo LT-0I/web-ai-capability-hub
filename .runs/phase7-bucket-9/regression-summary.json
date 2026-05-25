@@ -1,0 +1,662 @@
+{
+  "generatedAt": "2026-05-25T16:35:29.912Z",
+  "total": 63,
+  "completed": 63,
+  "pass": 18,
+  "fail": 45,
+  "notRun": 0,
+  "chatgptRateLimit": 0,
+  "maxPossiblePass": 18,
+  "gateFailed": false,
+  "stopReason": "FINALIZE directive: all 63 workflows have a documented live-regression baseline; known live failures are deferred to the issue-fix-loop.",
+  "rows": [
+    {
+      "id": "chatgpt-canvas-create-export-ext",
+      "file": "examples/workflows/chatgpt-canvas-create-export-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 67566,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-canvas-create-export-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-canvas-create-export-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-codex-submit-task-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16007,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-codex-submit-task-ext-fallback.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-codex-submit-task-ext-fallback\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-conversation-manage-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-conversation-manage-ext-fallback.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 401,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-conversation-manage-ext-fallback.json",
+      "message": "ok"
+    },
+    {
+      "id": "chatgpt-generate-file-csv-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-csv-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 240337,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-csv-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-csv-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-generate-file-docx-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-docx-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 240312,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-docx-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-docx-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-generate-file-md-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-md-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 240353,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-md-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-md-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-generate-file-pptx-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 133228,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-pptx-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-pptx-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-generate-file-py-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-py-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 240307,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-file-py-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-file-py-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-gpts-converse-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 502,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-gpts-converse-ext-fallback.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-gpts-converse-ext-fallback\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-pulse-get-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-pulse-get-ext-fallback.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 3840,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-pulse-get-ext-fallback.json",
+      "message": "ok"
+    },
+    {
+      "id": "chatgpt-pulse-onboard-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-pulse-onboard-ext-fallback.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 387,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-pulse-onboard-ext-fallback.json",
+      "message": "ok"
+    },
+    {
+      "id": "chatgpt-select-model-thinking-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-select-model-thinking-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 22224,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-select-model-thinking-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-select-model-thinking-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-send-basic-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-send-basic-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16833,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-send-basic-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "chatgpt-send-thinking-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-send-thinking-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 23201,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-send-thinking-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-send-thinking-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-send-web-search-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-send-web-search-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 7145,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-send-web-search-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-send-web-search-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-upload-multi-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 32603,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-upload-multi-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-upload-multi-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-upload-single-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-upload-single-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 29579,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-upload-single-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-upload-single-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-workspace-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-workspace-ext-fallback.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 397,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-workspace-ext-fallback.json",
+      "message": "ok"
+    },
+    {
+      "id": "chatgpt-deep-research-ext",
+      "file": "examples/workflows/chatgpt-deep-research-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 22732,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-deep-research-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-deep-research-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "chatgpt-generate-image-ext",
+      "file": "examples/workflows/chatgpt-generate-image-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 10351,
+      "artifact": ".runs/phase7-bucket-9/workflows/chatgpt-generate-image-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"chatgpt-generate-image-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-conversation-manage-mgr",
+      "file": "examples/workflows/claude-claude-conversation-manage-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 403,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-conversation-manage-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-design-create-project-mgr",
+      "file": "examples/workflows/claude-claude-design-create-project-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 6401,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-design-create-project-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-design-generate-mgr",
+      "file": "examples/workflows/claude-claude-design-generate-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 129561,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-design-generate-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-design-generate-mgr\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-design-present-mgr",
+      "file": "examples/workflows/claude-claude-design-present-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 120240,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-design-present-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-design-present-mgr\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-generate-file-csv-ext",
+      "file": "examples/workflows/claude-claude-generate-file-csv-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 43423,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-generate-file-csv-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-csv-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-generate-file-docx-ext",
+      "file": "examples/workflows/claude-claude-generate-file-docx-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 40363,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-generate-file-docx-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-docx-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-generate-file-md-ext",
+      "file": "examples/workflows/claude-claude-generate-file-md-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 39186,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-generate-file-md-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-md-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-generate-file-pptx-ext",
+      "file": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 39811,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-generate-file-pptx-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-pptx-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-generate-file-py-ext",
+      "file": "examples/workflows/claude-claude-generate-file-py-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 38497,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-generate-file-py-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-generate-file-py-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-select-model-sonnet-ext",
+      "file": "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 1989,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-select-model-sonnet-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-send-basic-ext",
+      "file": "examples/workflows/claude-claude-send-basic-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 12500,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-send-basic-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-send-incognito-ext",
+      "file": "examples/workflows/claude-claude-send-incognito-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 10405,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-send-incognito-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-send-style-ext",
+      "file": "examples/workflows/claude-claude-send-style-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 18102,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-send-style-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-send-thinking-ext",
+      "file": "examples/workflows/claude-claude-send-thinking-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 3744,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-send-thinking-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"claude-send-thinking-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "claude-send-web-search-ext",
+      "file": "examples/workflows/claude-claude-send-web-search-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 10056,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-send-web-search-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-upload-multi-ext",
+      "file": "examples/workflows/claude-claude-upload-multi-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 14450,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-upload-multi-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-upload-single-ext",
+      "file": "examples/workflows/claude-claude-upload-single-ext.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 20647,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-upload-single-ext.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-workspace-mgr",
+      "file": "examples/workflows/claude-claude-workspace-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 370,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-workspace-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "claude-design-create-generate",
+      "file": "examples/workflows/claude-design-create-generate.yaml",
+      "status": "FAIL",
+      "errorCode": "UNKNOWN",
+      "rateLimitedChatgpt": false,
+      "durationMs": 30472,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-design-create-generate.json",
+      "message": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n"
+    },
+    {
+      "id": "claude-design-present",
+      "file": "examples/workflows/claude-design-present.yaml",
+      "status": "FAIL",
+      "errorCode": "UNKNOWN",
+      "rateLimitedChatgpt": false,
+      "durationMs": 30645,
+      "artifact": ".runs/phase7-bucket-9/workflows/claude-design-present.json",
+      "message": "browserType.connectOverCDP: Timeout 30000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\n  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n  - <ws connected> ws://127.0.0.1:9224/devtools/browser/5a5ef0bb-0704-4121-8b3f-6bfbb865377d\n"
+    },
+    {
+      "id": "gemini-canvas-edit-mgr",
+      "file": "examples/workflows/gemini-canvas-edit.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 2025,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-canvas-edit-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-canvas-edit-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\","
+    },
+    {
+      "id": "gemini-canvas-to-docs-mgr",
+      "file": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 123816,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-canvas-to-docs-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-canvas-to-docs-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:23:06.426Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": "
+    },
+    {
+      "id": "gemini-deep-research-mgr",
+      "file": "examples/workflows/gemini-deep-research-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 23197,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-deep-research-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-deep-research-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:25:10.258Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": ["
+    },
+    {
+      "id": "gemini-canvas-edit-mgr",
+      "file": "examples/workflows/gemini-gemini-canvas-edit-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 17572,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-canvas-edit-mgr--gemini-gemini-canvas-edit-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-canvas-edit-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:25:33.447Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n "
+    },
+    {
+      "id": "gemini-conversation-reuse-mgr",
+      "file": "examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 17675,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-conversation-reuse-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "gemini-gems-converse-mgr",
+      "file": "examples/workflows/gemini-gemini-gems-converse-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 8780,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-gems-converse-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "gemini-multimodal-mgr",
+      "file": "examples/workflows/gemini-gemini-multimodal-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 2839,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-multimodal-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-multimodal-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:26:17.479Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n  "
+    },
+    {
+      "id": "gemini-music-download-track-ext",
+      "file": "examples/workflows/gemini-gemini-music-download-track-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_TIMEOUT",
+      "rateLimitedChatgpt": false,
+      "durationMs": 164650,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-music-download-track-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-download-track-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:26:20.310Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"ensure_track\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          "
+    },
+    {
+      "id": "gemini-music-generate-ext",
+      "file": "examples/workflows/gemini-gemini-music-generate-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16477,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-music-generate-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-generate-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:04.964Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": "
+    },
+    {
+      "id": "gemini-music-task-status-ext",
+      "file": "examples/workflows/gemini-gemini-music-task-status-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "COMMAND_GATE_FAILED",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16362,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-music-task-status-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-task-status-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:21.449Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv"
+    },
+    {
+      "id": "gemini-select-model-flash-mgr",
+      "file": "examples/workflows/gemini-gemini-select-model-flash-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 17435,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-select-model-flash-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-select-model-flash-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:37.803Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"arg"
+    },
+    {
+      "id": "gemini-send-basic-mgr",
+      "file": "examples/workflows/gemini-gemini-send-basic-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 17428,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-send-basic-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-send-basic-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:29:55.234Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n  "
+    },
+    {
+      "id": "gemini-send-thinking-mgr",
+      "file": "examples/workflows/gemini-gemini-send-thinking-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 12440,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-send-thinking-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-send-thinking-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:12.670Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": ["
+    },
+    {
+      "id": "gemini-send-web-search-mgr",
+      "file": "examples/workflows/gemini-gemini-send-web-search-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 7278,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-send-web-search-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-send-web-search-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:25.110Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\":"
+    },
+    {
+      "id": "gemini-upload-single-mgr",
+      "file": "examples/workflows/gemini-gemini-upload-single-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16506,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-upload-single-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-upload-single-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:32.394Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": ["
+    },
+    {
+      "id": "gemini-veo-quota-error-mgr",
+      "file": "examples/workflows/gemini-gemini-veo-quota-error-mgr.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16204,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-veo-quota-error-mgr.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-veo-quota-error-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:30:48.897Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\":"
+    },
+    {
+      "id": "gemini-workspace-mgr",
+      "file": "examples/workflows/gemini-gemini-workspace-mgr.yaml",
+      "status": "PASS",
+      "errorCode": "",
+      "rateLimitedChatgpt": false,
+      "durationMs": 1307,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-workspace-mgr.json",
+      "message": "ok"
+    },
+    {
+      "id": "gemini-gems-converse-mgr",
+      "file": "examples/workflows/gemini-gems-converse.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 17243,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-gems-converse-mgr--gemini-gems-converse.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-gems-converse-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:31:06.409Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": ["
+    },
+    {
+      "id": "gemini-generate-image-ext",
+      "file": "examples/workflows/gemini-generate-image-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 20401,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-generate-image-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-generate-image-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:31:23.646Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": "
+    },
+    {
+      "id": "gemini-generate-video-ext",
+      "file": "examples/workflows/gemini-generate-video-ext.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16549,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-generate-video-ext.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-generate-video-ext\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:31:44.049Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": "
+    },
+    {
+      "id": "gemini-image-draft",
+      "file": "examples/workflows/gemini-image-draft.yaml",
+      "status": "FAIL",
+      "errorCode": "UNKNOWN",
+      "rateLimitedChatgpt": false,
+      "durationMs": 12243,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-image-draft.json",
+      "message": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready at http://127.0.0.1:36617/json/version: connect ECONNREFUSED 127.0.0.1:36617\"}"
+    },
+    {
+      "id": "gemini-music-generate-chain",
+      "file": "examples/workflows/gemini-music-generate-chain.yaml",
+      "status": "FAIL",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "rateLimitedChatgpt": false,
+      "durationMs": 16390,
+      "artifact": ".runs/phase7-bucket-9/workflows/gemini-music-generate-chain.json",
+      "message": "{\n  \"ok\": false,\n  \"plan\": {\n    \"id\": \"gemini-music-generate-chain\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:32:12.847Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"generate\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": "
+    },
+    {
+      "id": "research-database-search-dry-run",
+      "file": "examples/workflows/research-database-search-dry-run.yaml",
+      "status": "FAIL",
+      "errorCode": "UNKNOWN",
+      "rateLimitedChatgpt": false,
+      "durationMs": 12252,
+      "artifact": ".runs/phase7-bucket-9/workflows/research-database-search-dry-run.json",
+      "message": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready at http://127.0.0.1:38191/json/version: connect ECONNREFUSED 127.0.0.1:38191\"}"
+    }
+  ],
+  "errorCounts": {
+    "ELEMENT_NOT_FOUND": 18,
+    "CHROME_EXTENSION_NOT_CONNECTED": 7,
+    "COMMAND_TIMEOUT": 15,
+    "UNKNOWN": 4,
+    "COMMAND_GATE_FAILED": 1
+  },
+  "retrySummary": {
+    "attempted": 4,
+    "pass": 0,
+    "fail": 4,
+    "artifacts": [
+      ".runs/phase7-bucket-9/workflows/chatgpt-codex-submit-task-ext-fallback.retry1.json",
+      ".runs/phase7-bucket-9/workflows/chatgpt-generate-image-ext.retry1.json",
+      ".runs/phase7-bucket-9/workflows/claude-send-thinking-ext.retry1.json",
+      ".runs/phase7-bucket-9/workflows/gemini-canvas-edit-mgr.retry1.json"
+    ]
+  }
+}

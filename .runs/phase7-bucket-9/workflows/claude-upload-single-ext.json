@@ -1,0 +1,158 @@
+{
+  "id": "claude-upload-single-ext",
+  "file": "examples/workflows/claude-claude-upload-single-ext.yaml",
+  "outputFile": ".runs/phase7-bucket-9/workflows/claude-upload-single-ext.json",
+  "startedAt": "2026-05-25T16:07:00.394Z",
+  "finishedAt": "2026-05-25T16:07:21.041Z",
+  "durationMs": 20647,
+  "timeoutMs": 240000,
+  "exitCode": 0,
+  "signal": null,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-upload-single-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T16:07:00.548Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:upload-and-query",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--prompt",
+              "Quote the first 3 words of this file verbatim",
+              "--response-timeout-ms",
+              "120000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-upload-single-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload one text file to Claude and ask a grounded question",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-upload-single-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:upload-and-query",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--prompt",
+            "Quote the first 3 words of this file verbatim",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 20351,
+          "stdout": "{\n  \"files_uploaded_count\": 1,\n  \"attachment_names\": [\n    \"fileA.txt\"\n  ],\n  \"chat_url\": \"https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204\",\n  \"response_text\": \"Claude responded: \\\"alpha beta gamma\\\"\\n\\n\\\"alpha beta gamma\\\"\",\n  \"wait_ms\": 5225,\n  \"completion_detected\": true,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "files_uploaded_count": 1,
+            "attachment_names": [
+              "fileA.txt"
+            ],
+            "chat_url": "https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204",
+            "response_text": "Claude responded: \"alpha beta gamma\"\n\n\"alpha beta gamma\"",
+            "wait_ms": 5225,
+            "completion_detected": true,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: \"alpha beta gamma\"\n\n\"alpha beta gamma\"",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "files_uploaded_count": 1,
+          "attachment_names": "<circular>",
+          "chat_url": "https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204",
+          "response_text": "Claude responded: \"alpha beta gamma\"\n\n\"alpha beta gamma\"",
+          "wait_ms": 5225,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_7663483b65e579d6"
+  },
+  "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"claude-upload-single-ext\",\n    \"target\": \"claude\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T16:07:00.548Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:upload-and-query\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--file\",\n            \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n            \"--prompt\",\n            \"Quote the first 3 words of this file verbatim\",\n            \"--response-timeout-ms\",\n            \"120000\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 180000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"response_text\",\n                \"regex\": \"alpha\"\n              },\n              {\n                \"path\": \"completion_detected\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-upload-single-ext\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Upload one text file to Claude and ask a grounded question\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-upload-single-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:upload-and-query\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--file\",\n          \"/tmp/explore-2026-05-25/fixtures/fileA.txt\",\n          \"--prompt\",\n          \"Quote the first 3 words of this file verbatim\",\n          \"--response-timeout-ms\",\n          \"120000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 20351,\n        \"stdout\": \"{\\n  \\\"files_uploaded_count\\\": 1,\\n  \\\"attachment_names\\\": [\\n    \\\"fileA.txt\\\"\\n  ],\\n  \\\"chat_url\\\": \\\"https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204\\\",\\n  \\\"response_text\\\": \\\"Claude responded: \\\\\\\"alpha beta gamma\\\\\\\"\\\\n\\\\n\\\\\\\"alpha beta gamma\\\\\\\"\\\",\\n  \\\"wait_ms\\\": 5225,\\n  \\\"completion_detected\\\": true,\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"files_uploaded_count\": 1,\n          \"attachment_names\": [\n            \"fileA.txt\"\n          ],\n          \"chat_url\": \"https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204\",\n          \"response_text\": \"Claude responded: \\\"alpha beta gamma\\\"\\n\\n\\\"alpha beta gamma\\\"\",\n          \"wait_ms\": 5225,\n          \"completion_detected\": true,\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"response_text\",\n              \"actual\": \"Claude responded: \\\"alpha beta gamma\\\"\\n\\n\\\"alpha beta gamma\\\"\",\n              \"ok\": true\n            },\n            {\n              \"path\": \"completion_detected\",\n              \"actual\": true,\n              \"ok\": true\n            }\n          ]\n        },\n        \"files_uploaded_count\": 1,\n        \"attachment_names\": \"<circular>\",\n        \"chat_url\": \"https://claude.ai/chat/ec1ef9f1-a0be-44dc-ad32-758b4fed6204\",\n        \"response_text\": \"Claude responded: \\\"alpha beta gamma\\\"\\n\\n\\\"alpha beta gamma\\\"\",\n        \"wait_ms\": 5225,\n        \"completion_detected\": true,\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_7663483b65e579d6\"\n}\n",
+  "stderr": ""
+}
