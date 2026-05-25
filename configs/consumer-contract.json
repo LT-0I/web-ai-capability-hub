@@ -3667,7 +3667,8 @@
       "optional_args": [
         "repo",
         "branch",
-        "confirmed"
+        "confirmed",
+        "backend"
       ],
       "output_keys": {
         "always_present": [
@@ -3709,7 +3710,10 @@
           "message"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:codex:task-status",
@@ -3737,7 +3741,10 @@
           "message"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:codex:get-diff",
@@ -3766,7 +3773,10 @@
           "message"
         ]
       },
-      "may_contain_sensitive_local_fields": true
+      "may_contain_sensitive_local_fields": true,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:canvas-export",
@@ -5204,6 +5214,7 @@
     "Issue #12 (same contract version consumer-contract-1.5.0): webai_chatgpt_generate_file / webai_claude_generate_file / webai_chatgpt_canvas_export capture native downloadable DOCX (.docx) via the #10-R8/R9 pointer-follow path with an OOXML-package on-disk verifier (PK\\x03\\x04 + central directory + [Content_Types].xml + word/ part). .docx validated end-to-end.",
     "Issue #12 R2 (same contract version consumer-contract-1.5.0): webai_chatgpt_generate_file / webai_claude_generate_file reject expected_extension in {pptx,xlsx} pre-flight with INVALID_ARGS \u2014 the driven ChatGPT-web/Claude-web generate-file path does not reliably emit native downloadable .pptx/.xlsx (ChatGPT renders an image; Claude returns DOCX). Doc-driven: ChatGPT help center documents no driven downloadable pptx/xlsx generate-file affordance; Claude's is doc-claimed but live-unverified. Supported expected_extension on this path: docx plus code/text (py, md, csv, svg, html, mmd, pdf). No new tool, error code, output field, or arg; reuses INVALID_ARGS from the locked 32-code taxonomy; contract_version and package_version unchanged; locks 180/32/37/121 unchanged.",
     "Issue #16 R1 (same contract version consumer-contract-1.6.0): the #12 R2 pptx-rejection is REVERTED for webai_chatgpt_generate_file after a live probe (chatgpt-9223, 2026-05-21) confirmed ChatGPT web reliably produces a real downloadable .pptx file when the prompt explicitly requests one. The post-revamp file-card UI renders the artifact with an unnamed first icon button in the file-card header row whose click triggers GET backend-api/conversation/<id>/interpreter/download (JSON pointer hop-1) and GET backend-api/estuary/content (HTTP 200 application/vnd.openxmlformats-officedocument.presentationml.presentation, hop-2) and a real Browser.downloadWillBegin with the suggestedFilename \u2014 same shape as the #12 R1 docx path. CHATGPT_GENERATE_FILE_BUTTON_SELECTOR remapped from dead 'button.behavior-btn' to a structural anchor on the file-card header first-of-type button; src/browser/artifactClick.ts:349 OOXML-format trigger regex widened to also accept this new pattern. UNSUPPORTED_GENERATE_FILE_EXTS narrowed from {pptx,xlsx} to {xlsx} (xlsx remains rejected until independently probed). Supported expected_extension on this path: docx, pptx plus code/text (py, md, csv, svg, html, mmd, pdf). Additionally R1 fixes 3 selector drifts: Claude image-upload chip data-testid anchor (transient skeleton vs finalized filename-keyed wrapper), Gemini Veo activation (Material mdc-icon-button actionability requires force:true; menuitemcheckbox role; Deselect Videos pill rename), and Gemini Music activation (More-tools submenu removed \u2014 Music promoted to first-level menuitem; Deselect Music pill rename; Describe-your-track composer discriminator). No new tool, error code, output field, or arg; reuses INVALID_ARGS/COMMAND_TIMEOUT/ELEMENT_NOT_FOUND from the locked 32-code taxonomy; contract_version and package_version unchanged; locks 181/32/38/121 unchanged.",
-    "Phase 7 Bucket 5 (same contract version consumer-contract-1.10.0): adds optional backend to webai_chatgpt_deep_research, webai_claude_deep_research, and webai_gemini_deep_research with enum managed-cdp | extension-assisted-cdp. Adds optional chat_url success evidence for submit-only extension dispatch. No new commands, error codes, package bump, or contract_version bump; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39."
+    "Phase 7 Bucket 5 (same contract version consumer-contract-1.10.0): adds optional backend to webai_chatgpt_deep_research, webai_claude_deep_research, and webai_gemini_deep_research with enum managed-cdp | extension-assisted-cdp. Adds optional chat_url success evidence for submit-only extension dispatch. No new commands, error codes, package bump, or contract_version bump; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
+    "Phase 7 Bucket 6 (same contract version consumer-contract-1.10.0): adds optional backend to webai_chatgpt_codex_submit_task, webai_chatgpt_codex_list_envs, webai_chatgpt_codex_task_status, and webai_chatgpt_codex_get_diff with enum managed-cdp | extension-assisted-cdp. No new commands, error codes, package bump, contract_version bump, graceful fallback, or managed-cdp path change; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39."
   ]
 }

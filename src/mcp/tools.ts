@@ -93,9 +93,34 @@ import { wahTaskStatus, wahTaskStatusInput } from "../facade/wah/taskStatus";
 import { wahTaskCancel, wahTaskCancelInput } from "../facade/wah/taskCancel";
 import { wahTaskResume, wahTaskResumeInput } from "../facade/wah/taskResume";
 import { wahArtifactGet, wahArtifactGetInput } from "../facade/wah/artifactGet";
+import {
+  webAiChatgptCodexSubmitTask as webAiChatgptCodexSubmitTaskManaged,
+  webAiChatgptCodexListEnvs as webAiChatgptCodexListEnvsManaged,
+  webAiChatgptCodexTaskStatus as webAiChatgptCodexTaskStatusManaged,
+  webAiChatgptCodexGetDiff as webAiChatgptCodexGetDiffManaged
+} from "./submcp/chatgpt-codex/tools";
+import {
+  CODEX_ALLOWED_ENV_ID,
+  CODEX_ALLOWED_ENV_NAME,
+  CODEX_ALLOWED_GITHUB_URL,
+  CODEX_ALLOWED_REPO,
+  CODEX_COMPOSER_SELECTOR,
+  CODEX_ENVS_URL,
+  CODEX_ENV_PICK_SELECTOR,
+  CODEX_ENV_SELECTOR,
+  CODEX_FORBIDDEN_REPO_RE,
+  CODEX_SUBMIT_SELECTOR,
+  CODEX_URL,
+  allowlistError,
+  assertTaskId,
+  contractError,
+  notProvisioned,
+  pageTextProvesAllowedCodexTask,
+  parseAllowedEnvFromRow,
+  taskUrl
+} from "./submcp/chatgpt-codex/flow";
 export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
-export { webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiChatgptCodexCreateTask, webAiChatgptCodexListTasks } from "./submcp/chatgpt-codex/tools";
 export { wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet };
 export * from "./researchdb";
 
@@ -5139,6 +5164,349 @@ function webAiBackendInvalidOutput(tool: string, backend: any): Record<string, u
   });
 }
 
+function chatgptCodexArgs(args: any): any {
+  return { ...(args || {}), profile: String(args?.profile || "chatgpt") };
+}
+
+function chatgptCodexRepoGuard(repo?: unknown): Record<string, unknown> | null {
+  if (repo === undefined || repo === null || String(repo).trim() === "") return null;
+  return String(repo).trim() === CODEX_ALLOWED_REPO ? null : allowlistError(`ChatGPT Codex refused repo '${String(repo)}'; only ${CODEX_ALLOWED_REPO} is allowlisted.`);
+}
+
+function chatgptCodexErrorOutput(error: any): Record<string, unknown> {
+  const codeFromError = error?.errorCode || error?.error_code;
+  const errorCode = isConsumerErrorCode(codeFromError) ? codeFromError : webAiExtensionErrorCode(error);
+  return safeOutput(contractError(errorCode, errorMessageFromUnknown(error, "ChatGPT Codex sub-MCP operation failed")));
+}
+
+async function chatgptCodexExtensionEvaluate<T>(page: any, operation: string, body: string, extra: Record<string, unknown> = {}): Promise<T> {
+  if (typeof page.evaluateReadOnly !== "function") {
+    throw new WebAiToolError(ConsumerErrorCodes.CHROME_EXTENSION_DEBUGGER_UNAVAILABLE, "ChatGPT Codex extension page port does not expose evaluateReadOnly");
+  }
+  return await page.evaluateReadOnly(`((arg) => { ${body} })(arg)`, { operation, ...extra }) as T;
+}
+
+async function chatgptCodexExtensionNavigate(page: any, url: string, args: any): Promise<void> {
+  const timeoutMs = Math.min(args.timeout_ms || 60000, 30000);
+  if (typeof page.navigate === "function") {
+    await page.navigate(url, { waitUntil: "domcontentloaded", timeoutMs });
+    return;
+  }
+  if (typeof page.goto === "function") {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
+  }
+}
+
+async function openChatgptCodexExtensionPage(backend: any, args: any, url: string): Promise<any> {
+  const page = await backend.newTab({ url, profile: args.profile, background: false });
+  await chatgptCodexExtensionNavigate(page, url, args);
+  return page;
+}
+
+async function chatgptCodexExtensionText(page: any): Promise<string> {
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: "", text: "" }));
+  return String(snapshot.text || "");
+}
+
+async function chatgptCodexExtensionCurrentUrl(page: any): Promise<string> {
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: "", text: "" }));
+  return String(snapshot.url || "");
+}
+
+async function chatgptCodexSelectorText(page: any, selector: string): Promise<string> {
+  return await chatgptCodexExtensionEvaluate<string>(page, "selectorText", `
+    const selector = String(arg.selector || "");
+    const first = (selector) => {
+      if (selector.startsWith("xpath=")) {
+        return document.evaluate(selector.slice(6), document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      }
+      return document.querySelector(selector);
+    };
+    const node = first(selector);
+    return node ? String(node.innerText || node.textContent || node.value || "").replace(/\\s+/g, " ").trim() : "";
+  `, { selector });
+}
+
+async function chatgptCodexElementCount(page: any, selector: string): Promise<number> {
+  return await chatgptCodexExtensionEvaluate<number>(page, "elementCount", `
+    const selector = String(arg.selector || "");
+    if (selector.startsWith("xpath=")) {
+      const snapshot = document.evaluate(selector.slice(6), document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+      return snapshot.snapshotLength;
+    }
+    return document.querySelectorAll(selector).length;
+  `, { selector });
+}
+
+async function listAllowedEnvsFromExtensionPage(page: any): Promise<Array<Record<string, unknown>>> {
+  const rows = await chatgptCodexExtensionEvaluate<Array<{ text: string; href?: string }>>(page, "codexEnvRows", `
+    const compact = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+    return Array.from(document.querySelectorAll("tr")).map((row) => {
+      const link = row.querySelector("a[href*='/codex/cloud/settings/environment/']");
+      return { text: compact(row.innerText || row.textContent), href: link ? (link.href || link.getAttribute("href") || "") : "" };
+    });
+  `).catch(() => []);
+  const envs = rows
+    .map((row) => parseAllowedEnvFromRow(row.text, row.href || ""))
+    .filter((env): env is NonNullable<ReturnType<typeof parseAllowedEnvFromRow>> => !!env);
+  if (!envs.length) {
+    const text = await chatgptCodexExtensionText(page);
+    if (text.includes(CODEX_ALLOWED_REPO)) {
+      const parsed = parseAllowedEnvFromRow(text, `/codex/cloud/settings/environment/${CODEX_ALLOWED_ENV_ID}`);
+      if (parsed) envs.push(parsed);
+    }
+  }
+  return envs
+    .filter((env) => env.name === CODEX_ALLOWED_ENV_NAME && env.repo === CODEX_ALLOWED_REPO && env.env_id === CODEX_ALLOWED_ENV_ID)
+    .map((env) => ({
+      name: env.name,
+      repo: env.repo,
+      env_id: env.env_id,
+      github_url: env.github_url || CODEX_ALLOWED_GITHUB_URL,
+      ...(env.task_count !== undefined ? { task_count: env.task_count } : {}),
+      ...(env.creator !== undefined ? { creator: env.creator } : {}),
+      ...(env.created_at !== undefined ? { created_at: env.created_at } : {})
+    }));
+}
+
+function chatgptCodexTaskIdFromUrl(url: string): string | null {
+  return /(?:^|\/)tasks\/(task_e_[0-9a-f]{32})(?:[/?#]|$)/.exec(String(url || ""))?.[1] || null;
+}
+
+async function readChatgptCodexTopTaskCardId(page: any): Promise<string | null> {
+  const href = await chatgptCodexExtensionEvaluate<string>(page, "codexTopTaskHref", `
+    const link = document.querySelector('a[href*="/codex/cloud/tasks/task_e_"]');
+    return link ? String(link.href || link.getAttribute("href") || "") : "";
+  `).catch(() => "");
+  return chatgptCodexTaskIdFromUrl(href);
+}
+
+async function extractSubmittedChatgptCodexTaskId(page: any, preSubmitTopId: string | null, timeoutMs = 30000): Promise<string | null> {
+  const deadline = Date.now() + Math.max(0, timeoutMs);
+  for (;;) {
+    const fromUrl = chatgptCodexTaskIdFromUrl(await chatgptCodexExtensionCurrentUrl(page));
+    if (fromUrl && fromUrl !== preSubmitTopId) return fromUrl;
+    const topId = await readChatgptCodexTopTaskCardId(page);
+    if (topId && topId !== preSubmitTopId) return topId;
+    if (Date.now() >= deadline) {
+      if (!preSubmitTopId && topId) return topId;
+      return null;
+    }
+    await extensionSleep(1500);
+  }
+}
+
+async function selectAllowedChatgptCodexEnvWithExtension(page: any): Promise<Record<string, unknown> | null> {
+  await extensionClick(page, CODEX_ENV_SELECTOR, 15000);
+  await waitForExtensionSelector(page, "div[role='dialog']", 15000, "ChatGPT Codex environment dialog was not found").catch(() => undefined);
+  await extensionClick(page, CODEX_ENV_PICK_SELECTOR, 15000);
+  const selected = await chatgptCodexSelectorText(page, CODEX_ENV_SELECTOR);
+  if (selected !== CODEX_ALLOWED_ENV_NAME) {
+    return allowlistError(`ChatGPT Codex submit refused: selected environment was '${selected || "<empty>"}', expected '${CODEX_ALLOWED_ENV_NAME}'.`);
+  }
+  return null;
+}
+
+async function waitForChatgptCodexTaskHydrationWithExtension(page: any, timeoutMs = 60000): Promise<string> {
+  const deadline = Date.now() + Math.max(0, timeoutMs);
+  let text = await chatgptCodexExtensionText(page);
+  while (
+    (!text || (!pageTextProvesAllowedCodexTask(text) && !CODEX_FORBIDDEN_REPO_RE.test(text)))
+    && Date.now() < deadline
+  ) {
+    await extensionSleep(1500);
+    text = await chatgptCodexExtensionText(page);
+  }
+  return text;
+}
+
+async function assertChatgptCodexTaskAllowlistWithExtension(page: any): Promise<Record<string, unknown> | null> {
+  const text = await waitForChatgptCodexTaskHydrationWithExtension(page);
+  if (CODEX_FORBIDDEN_REPO_RE.test(text)) return allowlistError("ChatGPT Codex task refused: task page references forbidden noeticbraid repository.");
+  if (!pageTextProvesAllowedCodexTask(text)) return allowlistError("ChatGPT Codex task refused: task page does not prove LT-0I/CN- ownership.");
+  return null;
+}
+
+async function readChatgptCodexStatusWithExtension(page: any, taskId: string): Promise<Record<string, unknown>> {
+  const guard = await assertChatgptCodexTaskAllowlistWithExtension(page);
+  if (guard) return guard;
+  const text = await chatgptCodexExtensionText(page);
+  const cancelCount = await chatgptCodexElementCount(page, 'button[aria-label="Cancel task"]');
+  const thumbsCount = await chatgptCodexElementCount(page, 'button[aria-label="Give thumbs up feedback"]');
+  const worked = /\bWorked for\s+\d+\s*(?:ms|s|sec(?:onds?)?|m|min(?:utes?)?|h|hours?|d|days?)\b/i.exec(text)?.[0]?.trim() || await chatgptCodexSelectorText(page, "xpath=//button[contains(normalize-space(.),'Worked for')]");
+  const textShowsThumbs = /Give thumbs up feedback/.test(text);
+  const textShowsCancel = /Cancel task/.test(text);
+  if (/^Worked for\s+/.test(worked) && cancelCount === 0 && !textShowsCancel && (thumbsCount > 0 || textShowsThumbs)) {
+    return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "complete", done: true, status_text: worked };
+  }
+  const running = /\b(Starting container|Running setup scripts|Working on your task)\b/i.exec(text)?.[1] || "";
+  if (running || cancelCount > 0) {
+    return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "running", done: false, status_text: running || "Cancel task" };
+  }
+  return contractError(ConsumerErrorCodes.INVALID_ARGS, "ChatGPT Codex task status is not a known in-progress or terminal state.", { task_id: taskId });
+}
+
+function extractChatgptCodexFileCount(toggleText: string): number {
+  const match = /File\s*\((\d+)\)/i.exec(toggleText || "");
+  return match ? Number(match[1]) : 0;
+}
+
+function extractChatgptCodexDiffFromVisibleText(text: string): string {
+  const normalized = String(text || "").replace(/\r\n/g, "\n");
+  const hunkStart = normalized.indexOf("@@ -");
+  if (hunkStart < 0) return "";
+  const beforeHunk = normalized.slice(0, hunkStart);
+  const header = /([^\s·]+(?:\/[^\s·]+)*\s+\+\d+\s+-\d+)\s*$/.exec(beforeHunk)?.[1] || "";
+  let hunkText = normalized.slice(hunkStart).trim();
+  const terminators = [/\sLogs(?:\s|$)/, /\sSummary(?:\s|$)/, /\sCreate PR(?:\s|$)/, /\sArchive Task(?:\s|$)/, /\sShare task(?:\s|$)/];
+  let end = hunkText.length;
+  for (const marker of terminators) {
+    const match = marker.exec(hunkText);
+    if (match && match.index > 0) end = Math.min(end, match.index);
+  }
+  hunkText = hunkText.slice(0, end).trim();
+  return header ? `${header}\n${hunkText}` : hunkText;
+}
+
+async function chatgptCodexFileNamesWithExtension(page: any): Promise<string[]> {
+  const labels = await chatgptCodexExtensionEvaluate<string[]>(page, "codexFileButtonLabels", `
+    return Array.from(document.querySelectorAll('button[aria-label^="View file "]')).map((button) => String(button.getAttribute("aria-label") || ""));
+  `).catch(() => []);
+  return labels.map((label) => /^View file\s+(.+)$/.exec(label)?.[1]).filter((file): file is string => !!file);
+}
+
+async function chatgptCodexButtonTextCount(page: any, text: string): Promise<number> {
+  return await chatgptCodexExtensionEvaluate<number>(page, "codexButtonTextCount", `
+    const expected = String(arg.text || "").trim();
+    return Array.from(document.querySelectorAll("button")).filter((button) => String(button.innerText || button.textContent || "").replace(/\\s+/g, " ").trim() === expected).length;
+  `, { text }).catch(() => 0);
+}
+
+async function readChatgptCodexDiffWithExtension(page: any, taskId: string): Promise<Record<string, unknown>> {
+  const status = await readChatgptCodexStatusWithExtension(page, taskId);
+  if ((status as any).errorCode) {
+    const text = await chatgptCodexExtensionText(page);
+    const strictDoneProxy = pageTextProvesAllowedCodexTask(text) && /Worked for\s+/.test(text) && !/Cancel task/.test(text) && /Give thumbs up feedback/.test(text);
+    if (!strictDoneProxy) return status;
+  } else if ((status as any).status !== "complete") {
+    return contractError(ConsumerErrorCodes.INVALID_ARGS, "ChatGPT Codex diff is unavailable until task completion gate is satisfied.", { task_id: taskId });
+  }
+  const toggleText = await chatgptCodexSelectorText(page, 'button[aria-label="Toggle file list diffs"]');
+  const fileCount = extractChatgptCodexFileCount(toggleText);
+  const fileButtonCount = await chatgptCodexElementCount(page, 'button[aria-label^="View file "]');
+  if (fileCount < 1 || fileButtonCount < 1) return contractError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Codex changes panel is absent or empty.", { task_id: taskId });
+  await extensionClick(page, 'button[aria-label="Tab to view the code diff"]', 8000).catch(() => undefined);
+  const files = await chatgptCodexFileNamesWithExtension(page);
+  const text = await chatgptCodexExtensionText(page);
+  const diffText = extractChatgptCodexDiffFromVisibleText(text);
+  if (!diffText || !diffText.includes("@@ -")) return contractError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Codex unified diff text was not extractable from visibleText.", { task_id: taskId });
+  const createPrAvailable = await chatgptCodexButtonTextCount(page, "Create PR") > 0;
+  return { task_id: taskId, repo: CODEX_ALLOWED_REPO, env_id: CODEX_ALLOWED_ENV_ID, status: "complete", files, diff_text: diffText, create_pr_available: createPrAvailable };
+}
+
+async function submitChatgptCodexTaskWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = chatgptCodexArgs(args);
+  if (!effective.confirmed) {
+    return safeOutput(contractError(ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD, "ChatGPT Codex submit-task requires confirmed=true before clicking Submit.", { action: "chatgpt_codex_submit_task" }));
+  }
+  const repoRefusal = chatgptCodexRepoGuard(effective.repo);
+  if (repoRefusal) return safeOutput(repoRefusal);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptCodexExtensionPage(backend, effective, CODEX_URL);
+    const selectedError = await selectAllowedChatgptCodexEnvWithExtension(page);
+    if (selectedError) return safeOutput(selectedError);
+    await page.fill(extensionTarget(CODEX_COMPOSER_SELECTOR), String(effective.prompt || ""), { timeoutMs: Math.min(effective.timeout_ms || 60000, 15000) });
+    await waitForExtensionSelector(page, CODEX_SUBMIT_SELECTOR, 15000, "ChatGPT Codex Submit button was not found");
+    const preSubmitTopId = await readChatgptCodexTopTaskCardId(page);
+    await extensionClick(page, CODEX_SUBMIT_SELECTOR, 15000);
+    const taskId = await extractSubmittedChatgptCodexTaskId(page, preSubmitTopId);
+    if (!taskId) return safeOutput(contractError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "ChatGPT Codex submit did not expose a task_e_* task id after Submit."));
+    return safeOutput({ task_id: taskId, task_url: taskUrl(taskId), repo: CODEX_ALLOWED_REPO, env: CODEX_ALLOWED_ENV_NAME, env_id: CODEX_ALLOWED_ENV_ID, status: "submitted" });
+  } catch (error) {
+    return chatgptCodexErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function listChatgptCodexEnvsWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = chatgptCodexArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptCodexExtensionPage(backend, effective, CODEX_ENVS_URL);
+    const envs = await listAllowedEnvsFromExtensionPage(page);
+    if (!envs.length) return safeOutput(notProvisioned());
+    return safeOutput({ status: "ok", envs });
+  } catch (error) {
+    return chatgptCodexErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function readChatgptCodexTaskStatusWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = chatgptCodexArgs(args);
+  try { assertTaskId(String(effective.task_id)); }
+  catch (error) { return chatgptCodexErrorOutput(error); }
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptCodexExtensionPage(backend, effective, taskUrl(String(effective.task_id)));
+    return safeOutput(await readChatgptCodexStatusWithExtension(page, String(effective.task_id)));
+  } catch (error) {
+    return chatgptCodexErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function readChatgptCodexDiffWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = chatgptCodexArgs(args);
+  try { assertTaskId(String(effective.task_id)); }
+  catch (error) { return chatgptCodexErrorOutput(error); }
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptCodexExtensionPage(backend, effective, taskUrl(String(effective.task_id)));
+    return safeOutput(await readChatgptCodexDiffWithExtension(page, String(effective.task_id)));
+  } catch (error) {
+    return chatgptCodexErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
@@ -5152,6 +5520,37 @@ export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRunt
   if (backend === "extension-assisted-cdp") return sendClaudePromptWithExtensionBackend(args, runtimeOrDefault(runtime));
   return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
+
+export async function webAiChatgptCodexSubmitTask(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return submitChatgptCodexTaskWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiChatgptCodexSubmitTaskManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_codex_submit_task", backend);
+}
+
+export async function webAiChatgptCodexListEnvs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return listChatgptCodexEnvsWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiChatgptCodexListEnvsManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_codex_list_envs", backend);
+}
+
+export async function webAiChatgptCodexTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return readChatgptCodexTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiChatgptCodexTaskStatusManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_codex_task_status", backend);
+}
+
+export async function webAiChatgptCodexGetDiff(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return readChatgptCodexDiffWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiChatgptCodexGetDiffManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_codex_get_diff", backend);
+}
+
+export const webAiChatgptCodexCreateTask = webAiChatgptCodexSubmitTask;
+export const webAiChatgptCodexListTasks = webAiChatgptCodexGetDiff;
 
 const WEBAI_STANDALONE_THINKING_LEVELS = new Set(["auto", "extended"]);
 
@@ -5577,6 +5976,28 @@ const webAiGeminiWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiGemi
 const webAiChatgptDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiChatgptDeepResearchInput, "ChatGPT");
 const webAiClaudeDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiClaudeDeepResearchInput, "Claude");
 const webAiGeminiDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiGeminiDeepResearchInput, "Gemini");
+const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
+  prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
+  repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
+  branch: scalar.string("Optional branch selected in the already-bound LT-0I/CN- environment"),
+  confirmed: { ...scalar.boolean("Required true to submit the Codex task"), default: false },
+  profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex submit-task routing; defaults to managed-cdp")
+}, ["prompt", "profile"]);
+const webAiChatgptCodexListEnvsWithBackendInput = objectSchema<Record<string, unknown>>({
+  profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex environment-list routing; defaults to managed-cdp")
+}, ["profile"]);
+const webAiChatgptCodexTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
+  task_id: scalar.string("ChatGPT Codex task id"),
+  profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex task-status routing; defaults to managed-cdp")
+}, ["task_id", "profile"]);
+const webAiChatgptCodexGetDiffWithBackendInput = objectSchema<Record<string, unknown>>({
+  task_id: scalar.string("ChatGPT Codex task id whose completed LT-0I/CN- diff should be read"),
+  profile: { ...scalar.string("Managed ChatGPT browser profile"), default: "chatgpt" },
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for ChatGPT Codex diff-read routing; defaults to managed-cdp")
+}, ["task_id", "profile"]);
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -6021,7 +6442,37 @@ const coreToolSpecs: ToolSpec[] = [
   }
 ];
 
-export const toolSpecs: ToolSpec[] = [...coreToolSpecs, ...subMcpToolSpecs];
+const chatgptCodexToolSpecOverrides: Record<string, ToolSpec> = {
+  webai_chatgpt_codex_submit_task: {
+    name: "webai_chatgpt_codex_submit_task",
+    description: "Submit a confirmed ChatGPT Codex task to the hard-allowlisted LT-0I/CN- environment and return the task id.",
+    schema: webAiChatgptCodexSubmitTaskWithBackendInput,
+    handler: async (args, runtime) => webAiChatgptCodexSubmitTask(args, runtime)
+  },
+  webai_chatgpt_codex_list_envs: {
+    name: "webai_chatgpt_codex_list_envs",
+    description: "List only the hard-allowlisted ChatGPT Codex LT-0I/CN- environment; return SUBMCP_NOT_PROVISIONED if absent.",
+    schema: webAiChatgptCodexListEnvsWithBackendInput,
+    handler: async (args, runtime) => webAiChatgptCodexListEnvs(args, runtime)
+  },
+  webai_chatgpt_codex_task_status: {
+    name: "webai_chatgpt_codex_task_status",
+    description: "Read a ChatGPT Codex task status only when the task page proves LT-0I/CN- ownership.",
+    schema: webAiChatgptCodexTaskStatusWithBackendInput,
+    handler: async (args, runtime) => webAiChatgptCodexTaskStatus(args, runtime)
+  },
+  webai_chatgpt_codex_get_diff: {
+    name: "webai_chatgpt_codex_get_diff",
+    description: "Read the completed ChatGPT Codex unified diff for an allowlisted LT-0I/CN- task without clicking Create PR or other publish controls.",
+    schema: webAiChatgptCodexGetDiffWithBackendInput,
+    handler: async (args, runtime) => webAiChatgptCodexGetDiff(args, runtime)
+  }
+};
+
+export const toolSpecs: ToolSpec[] = [
+  ...coreToolSpecs,
+  ...subMcpToolSpecs.map((spec) => chatgptCodexToolSpecOverrides[spec.name] || spec)
+];
 
 export function listMcpTools(): McpToolDefinition[] {
   return toolSpecs.map((tool) => ({ name: tool.name, description: tool.description, inputSchema: tool.schema.toJsonSchema() }));

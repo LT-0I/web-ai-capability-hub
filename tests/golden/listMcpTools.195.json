@@ -8480,6 +8480,13 @@
             "type": "string",
             "description": "Managed ChatGPT browser profile",
             "default": "chatgpt"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT Codex diff-read routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8499,6 +8506,13 @@
             "type": "string",
             "description": "Managed ChatGPT browser profile",
             "default": "chatgpt"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT Codex environment-list routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8534,6 +8548,13 @@
             "type": "string",
             "description": "Managed ChatGPT browser profile",
             "default": "chatgpt"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT Codex submit-task routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8557,6 +8578,13 @@
             "type": "string",
             "description": "Managed ChatGPT browser profile",
             "default": "chatgpt"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT Codex task-status routing; defaults to managed-cdp"
           }
         },
         "required": [
