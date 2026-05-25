@@ -1,0 +1,18 @@
+{
+  "id": "gemini-send-web-search-mgr",
+  "service": "gemini",
+  "source": "capability-explore-2026-05-25/G1",
+  "status": "FAIL_CLOSED_MANAGED",
+  "workflow": "examples/workflows/gemini-gemini-send-web-search-mgr.yaml",
+  "closure_criterion": "response_text contains \"2026-05\" or a YYYY-MM-DD date.",
+  "started_at": "2026-05-25T07:24:08.389Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-send-web-search-mgr.yaml",
+    "examples/workflows/gemini-send-web-search-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T07:24:08.389Z"
+}

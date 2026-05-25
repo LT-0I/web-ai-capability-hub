@@ -1,0 +1,250 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "claude-send-style-ext",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T06:06:56.599Z",
+    "actions": [
+      {
+        "stepId": "send_concise",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Concise",
+            "--prompt",
+            "用一句话告诉我什么是机器学习。",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "send_explanatory",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Explanatory",
+            "--prompt",
+            "请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-send-style-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Send two Claude prompts with different styles and verify both return non-empty distinct responses",
+      "steps": [
+        {
+          "id": "send_concise",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "send_explanatory",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-style-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "send_concise",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--style",
+          "Concise",
+          "--prompt",
+          "用一句话告诉我什么是机器学习。",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 8725,
+        "stdout": "{\n  \"response_text\": \"Claude responded: 机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。\\n\\n机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。\",\n  \"elapsed_ms\": 8582,\n  \"wait_ms\": 5343,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/0da26e5a-5fab-4b3d-8bca-d6accad9788c\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Claude responded: 机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。",
+          "elapsed_ms": 8582,
+          "wait_ms": 5343,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/0da26e5a-5fab-4b3d-8bca-d6accad9788c"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Claude responded: 机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Claude responded: 机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过数据自动学习规律，从而无需明确编程就能做出预测或决策的技术。",
+        "wait_ms": 5343,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/0da26e5a-5fab-4b3d-8bca-d6accad9788c"
+      }
+    },
+    {
+      "stepId": "send_explanatory",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--style",
+          "Explanatory",
+          "--prompt",
+          "请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 24569,
+        "stdout": "{\n  \"response_text\": \"Claude responded: 机器学习的核心原理是让计算机从数据中自动\\\"学习\\\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\\\"猫\\\"或\\\"狗\\\"的图片——模型通过反复调整内部参数（即\\\"权重\\\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\\\"苹果\\\"实物与文字对应后，自然形成识别能力。深度学习…\\n\\n机器学习的核心原理是让计算机从数据中自动\\\"学习\\\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\\\"猫\\\"或\\\"狗\\\"的图片——模型通过反复调整内部参数（即\\\"权重\\\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\\\"苹果\\\"实物与文字对应后，自然形成识别能力。深度学习进一步模拟神经网络结构，让模型自动提取图像的边缘、纹理、形状等多层次特征，无需人工指定。\\n\\n机器学习已渗透日常生活的方方面面。医疗领域，谷歌 DeepMind 开发的 AlphaFold 通过学习海量蛋白质结构数据，成功预测了超过 2 亿种蛋白质的三维结构，将原本需要数年的实验压缩到数小时，极大加速了新药研发。金融领域，信用卡公司借助异常检测模型实时分析用户的消费地点、金额、频率等特征，一旦发现偏离历史行为模式便立即预警，每年为行业挽回数十亿美元损失。推荐算法则让 Spotify 的\\\"每周发现\\\"歌单精准击中用户口味，本质是协同过滤模型在数亿用户行为数据中寻找相似偏好。\\n\\n然而机器学习也有明显局限。其一是\\\"数据饥渴\\\"：模型性能高度依赖训练数据的质量与规模，若训练集存在偏差，结果就会失真——亚马逊曾因招聘算法在以男性为主的历史简历上训练，导致系统系统性降低女性候选人评分，最终被迫废弃。其二是可解释性差：深度神经网络往往是\\\"黑箱\\\"，医生难以接受一个无法说明理由的诊断建议。其三是泛化能力有限：模型在训练分布之外容易失效，自动驾驶系统在从未见过的极端天气或罕见路况下表现会骤然下降，这也是当前落地最大的工程挑战之一。\",\n  \"elapsed_ms\": 24427,\n  \"wait_ms\": 21210,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/46c7485e-14be-41f5-8adf-6ab25d8eab6c\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Claude responded: 机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习…\n\n机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习进一步模拟神经网络结构，让模型自动提取图像的边缘、纹理、形状等多层次特征，无需人工指定。\n\n机器学习已渗透日常生活的方方面面。医疗领域，谷歌 DeepMind 开发的 AlphaFold 通过学习海量蛋白质结构数据，成功预测了超过 2 亿种蛋白质的三维结构，将原本需要数年的实验压缩到数小时，极大加速了新药研发。金融领域，信用卡公司借助异常检测模型实时分析用户的消费地点、金额、频率等特征，一旦发现偏离历史行为模式便立即预警，每年为行业挽回数十亿美元损失。推荐算法则让 Spotify 的\"每周发现\"歌单精准击中用户口味，本质是协同过滤模型在数亿用户行为数据中寻找相似偏好。\n\n然而机器学习也有明显局限。其一是\"数据饥渴\"：模型性能高度依赖训练数据的质量与规模，若训练集存在偏差，结果就会失真——亚马逊曾因招聘算法在以男性为主的历史简历上训练，导致系统系统性降低女性候选人评分，最终被迫废弃。其二是可解释性差：深度神经网络往往是\"黑箱\"，医生难以接受一个无法说明理由的诊断建议。其三是泛化能力有限：模型在训练分布之外容易失效，自动驾驶系统在从未见过的极端天气或罕见路况下表现会骤然下降，这也是当前落地最大的工程挑战之一。",
+          "elapsed_ms": 24427,
+          "wait_ms": 21210,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/46c7485e-14be-41f5-8adf-6ab25d8eab6c"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Claude responded: 机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习…\n\n机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习进一步模拟神经网络结构，让模型自动提取图像的边缘、纹理、形状等多层次特征，无需人工指定。\n\n机器学习已渗透日常生活的方方面面。医疗领域，谷歌 DeepMind 开发的 AlphaFold 通过学习海量蛋白质结构数据，成功预测了超过 2 亿种蛋白质的三维结构，将原本需要数年的实验压缩到数小时，极大加速了新药研发。金融领域，信用卡公司借助异常检测模型实时分析用户的消费地点、金额、频率等特征，一旦发现偏离历史行为模式便立即预警，每年为行业挽回数十亿美元损失。推荐算法则让 Spotify 的\"每周发现\"歌单精准击中用户口味，本质是协同过滤模型在数亿用户行为数据中寻找相似偏好。\n\n然而机器学习也有明显局限。其一是\"数据饥渴\"：模型性能高度依赖训练数据的质量与规模，若训练集存在偏差，结果就会失真——亚马逊曾因招聘算法在以男性为主的历史简历上训练，导致系统系统性降低女性候选人评分，最终被迫废弃。其二是可解释性差：深度神经网络往往是\"黑箱\"，医生难以接受一个无法说明理由的诊断建议。其三是泛化能力有限：模型在训练分布之外容易失效，自动驾驶系统在从未见过的极端天气或罕见路况下表现会骤然下降，这也是当前落地最大的工程挑战之一。",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Claude responded: 机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习…\n\n机器学习的核心原理是让计算机从数据中自动\"学习\"规律，而非依靠人工编写明确规则。以监督学习为例：给模型输入大量带标签的训练数据——比如十万张标注为\"猫\"或\"狗\"的图片——模型通过反复调整内部参数（即\"权重\"），逐步最小化预测错误率。这一过程类似孩子认字：看到足够多的\"苹果\"实物与文字对应后，自然形成识别能力。深度学习进一步模拟神经网络结构，让模型自动提取图像的边缘、纹理、形状等多层次特征，无需人工指定。\n\n机器学习已渗透日常生活的方方面面。医疗领域，谷歌 DeepMind 开发的 AlphaFold 通过学习海量蛋白质结构数据，成功预测了超过 2 亿种蛋白质的三维结构，将原本需要数年的实验压缩到数小时，极大加速了新药研发。金融领域，信用卡公司借助异常检测模型实时分析用户的消费地点、金额、频率等特征，一旦发现偏离历史行为模式便立即预警，每年为行业挽回数十亿美元损失。推荐算法则让 Spotify 的\"每周发现\"歌单精准击中用户口味，本质是协同过滤模型在数亿用户行为数据中寻找相似偏好。\n\n然而机器学习也有明显局限。其一是\"数据饥渴\"：模型性能高度依赖训练数据的质量与规模，若训练集存在偏差，结果就会失真——亚马逊曾因招聘算法在以男性为主的历史简历上训练，导致系统系统性降低女性候选人评分，最终被迫废弃。其二是可解释性差：深度神经网络往往是\"黑箱\"，医生难以接受一个无法说明理由的诊断建议。其三是泛化能力有限：模型在训练分布之外容易失效，自动驾驶系统在从未见过的极端天气或罕见路况下表现会骤然下降，这也是当前落地最大的工程挑战之一。",
+        "wait_ms": 21210,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/46c7485e-14be-41f5-8adf-6ab25d8eab6c"
+      }
+    }
+  ],
+  "runId": "run_e7d50e5ee81fb655"
+}

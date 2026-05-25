@@ -1,0 +1,18 @@
+{
+  "id": "claude-generate-file-pptx-ext",
+  "service": "claude",
+  "source": "L4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+  "closure_criterion": "path non-empty + file exists + size_bytes > 8192 + filename ends with .pptx",
+  "started_at": "2026-05-25T05:46:21.229Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+    "examples/workflows/claude-generate-file-pptx-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T05:46:21.229Z"
+}

@@ -1,0 +1,525 @@
+{
+  "id": "gemini-workspace-mgr",
+  "service": "gemini",
+  "source": "G10",
+  "status": "OK_MANAGED_CDP_ONLY",
+  "workflow": "examples/workflows/gemini-gemini-workspace-mgr.yaml",
+  "closure_criterion": "Returns workspaces array or {ok:true,count:N}.",
+  "started_at": "2026-05-25T05:51:56.446Z",
+  "ok": true,
+  "closureOk": true,
+  "cause": "workspace array/count/summary gate failed",
+  "errorCode": "TIMEOUT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-25T05:51:56.601Z",
+      "finished_at": "2026-05-25T05:51:58.378Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/gemini-gemini-workspace-mgr.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": true,
+      "closure_ok": true,
+      "closure_cause": "workspace array/count/summary gate failed",
+      "parsed": {
+        "ok": true,
+        "plan": {
+          "id": "gemini-workspace-mgr",
+          "target": "gemini",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T05:51:56.752Z",
+          "actions": [
+            {
+              "stepId": "invoke-cli",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:gemini:workspace",
+                  "--profile",
+                  "gemini-9225",
+                  "--surface",
+                  "gems",
+                  "--json"
+                ],
+                "timeoutMs": 60000,
+                "gate": {
+                  "exit_code": 0
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "gemini-workspace-mgr",
+            "target": "gemini",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Inspect a Gemini workspace surface and return its summary shape",
+            "steps": [
+              {
+                "id": "invoke-cli",
+                "command": "<circular>",
+                "timeoutMs": 60000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "invoke-cli",
+            "ok": true,
+            "message": "command gate passed",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:gemini:workspace",
+                "--profile",
+                "gemini-9225",
+                "--surface",
+                "gems",
+                "--json"
+              ],
+              "exit_code": 0,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 1559,
+              "stdout": "{\n  \"surface\": \"gems\",\n  \"url\": \"https://gemini.google.com/gems/view\",\n  \"summary\": \"0 Gem conversation link(s) visible\"\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "surface": "gems",
+                "url": "https://gemini.google.com/gems/view",
+                "summary": "0 Gem conversation link(s) visible"
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 0,
+                  "ok": true
+                }
+              },
+              "surface": "gems",
+              "url": "https://gemini.google.com/gems/view",
+              "summary": "0 Gem conversation link(s) visible"
+            }
+          }
+        ],
+        "runId": "run_5ba0998c2d739613"
+      },
+      "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"gemini-workspace-mgr\",\n    \"target\": \"gemini\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T05:51:56.752Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:gemini:workspace\",\n            \"--profile\",\n            \"gemini-9225\",\n            \"--surface\",\n            \"gems\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 60000,\n          \"gate\": {\n            \"exit_code\": 0\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-workspace-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Inspect a Gemini workspace surface and return its summary shape\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 60000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:workspace\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--surface\",\n          \"gems\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 1559,\n        \"stdout\": \"{\\n  \\\"surface\\\": \\\"gems\\\",\\n  \\\"url\\\": \\\"https://gemini.google.com/gems/view\\\",\\n  \\\"summary\\\": \\\"0 Gem conversation link(s) visible\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"surface\": \"gems\",\n          \"url\": \"https://gemini.google.com/gems/view\",\n          \"summary\": \"0 Gem conversation link(s) visible\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          }\n        },\n        \"surface\": \"gems\",\n        \"url\": \"https://gemini.google.com/gems/view\",\n        \"summary\": \"0 Gem conversation link(s) visible\"\n      }\n    }\n  ],\n  \"runId\": \"run_5ba0998c2d739613\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "gemini-9225",
+    "status": {
+      "profile": "gemini-9225",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/gemini-9225",
+      "cdpEndpoint": "http://127.0.0.1:9225",
+      "cdpPort": 9225,
+      "connected": true,
+      "launchedByPackage": false,
+      "processId": 1712347,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8D8F16C8CA2B8F6962AD46E644CE29FC",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "8D8F16C8CA2B8F6962AD46E644CE29FC",
+          "title": "Video Generation Only - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/300b557ad6cc328e?hl=en",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/8D8F16C8CA2B8F6962AD46E644CE29FC"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EDC2857D5D04D22006A1258225060DD",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "4EDC2857D5D04D22006A1258225060DD",
+          "parentId": "8D8F16C8CA2B8F6962AD46E644CE29FC",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/4EDC2857D5D04D22006A1258225060DD"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/704557F2B638788657561FB3DA1E9DD4",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "704557F2B638788657561FB3DA1E9DD4",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "about:srcdoc",
+          "type": "iframe",
+          "url": "about:srcdoc",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/704557F2B638788657561FB3DA1E9DD4"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/F102D7F9EF10EAAA21469B33815218BC",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "F102D7F9EF10EAAA21469B33815218BC",
+          "parentId": "AB929774CC368427D5108F1969B82F1D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/F102D7F9EF10EAAA21469B33815218BC"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "AB929774CC368427D5108F1969B82F1D",
+          "title": "Upbeat Acoustic Guitar Loop Created - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/9bd37ea9e5fc6111",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8354ABB94A35C03221FF1797B972504A",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "8354ABB94A35C03221FF1797B972504A",
+          "title": "Futuristic Laboratory Notebook Icon Design - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/639356bee4849bb6?hl=en",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/8354ABB94A35C03221FF1797B972504A"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0BC666B6B7C5D8D1E75C720A8ED91BBC",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "0BC666B6B7C5D8D1E75C720A8ED91BBC",
+          "parentId": "8354ABB94A35C03221FF1797B972504A",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/0BC666B6B7C5D8D1E75C720A8ED91BBC"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0CC56D9AC46D1C4AB5CCF767D55AF6BA",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "0CC56D9AC46D1C4AB5CCF767D55AF6BA",
+          "parentId": "8354ABB94A35C03221FF1797B972504A",
+          "title": "about:srcdoc",
+          "type": "iframe",
+          "url": "about:srcdoc",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/0CC56D9AC46D1C4AB5CCF767D55AF6BA"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/BD83BBC3EBE67E2006FB2288F0E7D799",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "BD83BBC3EBE67E2006FB2288F0E7D799",
+          "title": "Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app?hl=en",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/BD83BBC3EBE67E2006FB2288F0E7D799"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9A1AAF778FF1B365231D49EAFD2F4B7C",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "9A1AAF778FF1B365231D49EAFD2F4B7C",
+          "parentId": "BD83BBC3EBE67E2006FB2288F0E7D799",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/9A1AAF778FF1B365231D49EAFD2F4B7C"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B4D24A4114C435EE9D4D0C59F21853D1",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "B4D24A4114C435EE9D4D0C59F21853D1",
+          "parentId": "B14654E5232ADCB4028567CD452E3F88",
+          "title": "about:srcdoc",
+          "type": "iframe",
+          "url": "about:srcdoc",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/B4D24A4114C435EE9D4D0C59F21853D1"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "B14654E5232ADCB4028567CD452E3F88",
+          "title": "Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ECA328FF9FEFBBC7E35DE2E35065086C",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "ECA328FF9FEFBBC7E35DE2E35065086C",
+          "parentId": "B14654E5232ADCB4028567CD452E3F88",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/ECA328FF9FEFBBC7E35DE2E35065086C"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9",
+          "id": "C55CB73F34730AD0B85E62349DE999D9",
+          "parentId": "3CD057D01379E753B4725214C0CA181E",
+          "title": "https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN",
+          "type": "iframe",
+          "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/E873FDEC97E34DCD6CC4219BCE253FB3",
+          "id": "E873FDEC97E34DCD6CC4219BCE253FB3",
+          "parentId": "3CD057D01379E753B4725214C0CA181E",
+          "title": "https://ogs.google.com/u/0/widget/account?baea=1&amp;cc=1&amp;amb=1&amp;pppea=1&amp;dpi=67911908&amp;eom=1&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=account&amp;pid=1&amp;spid=243&amp;hl=zh-CN",
+          "type": "iframe",
+          "url": "https://ogs.google.com/u/0/widget/account?baea=1&cc=1&amb=1&pppea=1&dpi=67911908&eom=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=account&pid=1&spid=243&hl=zh-CN",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/E873FDEC97E34DCD6CC4219BCE253FB3"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E",
+          "id": "3CD057D01379E753B4725214C0CA181E",
+          "parentId": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42",
+          "id": "4EA1AA2F9C4BED62C786A8544D070A42",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "2F3D8296A77357A426217AE993C19CB0",
+          "parentId": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "8E9AFCD47B744FE59C5DA231086AFD4D",
+          "title": "Apps",
+          "type": "page",
+          "url": "https://gemini.google.com/apps",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "90FEB2142EA0B68E72E1585DAFD3041C",
+          "parentId": "A008875AF8772180352B1D55F0F4E796",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "A008875AF8772180352B1D55F0F4E796",
+          "title": "Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/gem/coding-partner/2d96af2c3934c271",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2CC5A6813986AF3DDC803575B50F84C1",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "2CC5A6813986AF3DDC803575B50F84C1",
+          "parentId": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "https://opal.google/_app/?lite=true&amp;color-scheme=dark",
+          "type": "iframe",
+          "url": "https://opal.google/_app/?lite=true&color-scheme=dark",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/2CC5A6813986AF3DDC803575B50F84C1"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/BC2C1D167DE737EE8C93B55F577A600E",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "BC2C1D167DE737EE8C93B55F577A600E",
+          "parentId": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/BC2C1D167DE737EE8C93B55F577A600E"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "0291010895B0D4C0AA2D7BDDF278AF4F",
+          "title": "Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/gems/view",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A1081514E5FB234A15F552776B41BAFE",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "A1081514E5FB234A15F552776B41BAFE",
+          "parentId": "10EAD8B6E31DF26326D3B01B3B457036",
+          "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+          "type": "iframe",
+          "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/A1081514E5FB234A15F552776B41BAFE"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/10EAD8B6E31DF26326D3B01B3B457036",
+          "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+          "id": "10EAD8B6E31DF26326D3B01B3B457036",
+          "title": "A Simple OK - Google Gemini",
+          "type": "page",
+          "url": "https://gemini.google.com/app/b189e4460da2697b",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/10EAD8B6E31DF26326D3B01B3B457036"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4",
+          "id": "CDC9032428814FC8BBA9D101647A94A4",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9225/devtools/browser/8e919c0a-a019-43bc-bad4-9a93876890c0"
+    },
+    "error": "{\n  \"profile\": \"gemini-9225\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/gemini-9225\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9225\",\n  \"cdpPort\": 9225,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 1712347,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8D8F16C8CA2B8F6962AD46E644CE29FC\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"8D8F16C8CA2B8F6962AD46E644CE29FC\",\n      \"title\": \"Video Generation Only - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/300b557ad6cc328e?hl=en\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/8D8F16C8CA2B8F6962AD46E644CE29FC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EDC2857D5D04D22006A1258225060DD\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"4EDC2857D5D04D22006A1258225060DD\",\n      \"parentId\": \"8D8F16C8CA2B8F6962AD46E644CE29FC\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/4EDC2857D5D04D22006A1258225060DD\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/704557F2B638788657561FB3DA1E9DD4\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"704557F2B638788657561FB3DA1E9DD4\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"about:srcdoc\",\n      \"type\": \"iframe\",\n      \"url\": \"about:srcdoc\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/704557F2B638788657561FB3DA1E9DD4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/F102D7F9EF10EAAA21469B33815218BC\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"F102D7F9EF10EAAA21469B33815218BC\",\n      \"parentId\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/F102D7F9EF10EAAA21469B33815218BC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"AB929774CC368427D5108F1969B82F1D\",\n      \"title\": \"Upbeat Acoustic Guitar Loop Created - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/9bd37ea9e5fc6111\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/AB929774CC368427D5108F1969B82F1D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8354ABB94A35C03221FF1797B972504A\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"8354ABB94A35C03221FF1797B972504A\",\n      \"title\": \"Futuristic Laboratory Notebook Icon Design - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/639356bee4849bb6?hl=en\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/8354ABB94A35C03221FF1797B972504A\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0BC666B6B7C5D8D1E75C720A8ED91BBC\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"0BC666B6B7C5D8D1E75C720A8ED91BBC\",\n      \"parentId\": \"8354ABB94A35C03221FF1797B972504A\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/0BC666B6B7C5D8D1E75C720A8ED91BBC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0CC56D9AC46D1C4AB5CCF767D55AF6BA\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"0CC56D9AC46D1C4AB5CCF767D55AF6BA\",\n      \"parentId\": \"8354ABB94A35C03221FF1797B972504A\",\n      \"title\": \"about:srcdoc\",\n      \"type\": \"iframe\",\n      \"url\": \"about:srcdoc\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/0CC56D9AC46D1C4AB5CCF767D55AF6BA\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/BD83BBC3EBE67E2006FB2288F0E7D799\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"BD83BBC3EBE67E2006FB2288F0E7D799\",\n      \"title\": \"Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app?hl=en\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/BD83BBC3EBE67E2006FB2288F0E7D799\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/9A1AAF778FF1B365231D49EAFD2F4B7C\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"9A1AAF778FF1B365231D49EAFD2F4B7C\",\n      \"parentId\": \"BD83BBC3EBE67E2006FB2288F0E7D799\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/9A1AAF778FF1B365231D49EAFD2F4B7C\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B4D24A4114C435EE9D4D0C59F21853D1\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"B4D24A4114C435EE9D4D0C59F21853D1\",\n      \"parentId\": \"B14654E5232ADCB4028567CD452E3F88\",\n      \"title\": \"about:srcdoc\",\n      \"type\": \"iframe\",\n      \"url\": \"about:srcdoc\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/B4D24A4114C435EE9D4D0C59F21853D1\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"B14654E5232ADCB4028567CD452E3F88\",\n      \"title\": \"Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/B14654E5232ADCB4028567CD452E3F88\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/ECA328FF9FEFBBC7E35DE2E35065086C\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"ECA328FF9FEFBBC7E35DE2E35065086C\",\n      \"parentId\": \"B14654E5232ADCB4028567CD452E3F88\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/ECA328FF9FEFBBC7E35DE2E35065086C\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\",\n      \"id\": \"C55CB73F34730AD0B85E62349DE999D9\",\n      \"parentId\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"title\": \"https://ogs.google.com/u/0/widget/app?eom=1&amp;awwd=1&amp;gpa=3&amp;em=2&amp;dpi=67911908&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=app&amp;pid=1&amp;spid=243&amp;hl=zh-CN\",\n      \"type\": \"iframe\",\n      \"url\": \"https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=67911908&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=zh-CN\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/C55CB73F34730AD0B85E62349DE999D9\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/E873FDEC97E34DCD6CC4219BCE253FB3\",\n      \"id\": \"E873FDEC97E34DCD6CC4219BCE253FB3\",\n      \"parentId\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"title\": \"https://ogs.google.com/u/0/widget/account?baea=1&amp;cc=1&amp;amb=1&amp;pppea=1&amp;dpi=67911908&amp;eom=1&amp;origin=chrome-untrusted%3A%2F%2Fnew-tab-page&amp;origin=chrome%3A%2F%2Fnew-tab-page&amp;cn=account&amp;pid=1&amp;spid=243&amp;hl=zh-CN\",\n      \"type\": \"iframe\",\n      \"url\": \"https://ogs.google.com/u/0/widget/account?baea=1&cc=1&amb=1&pppea=1&dpi=67911908&eom=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=account&pid=1&spid=243&hl=zh-CN\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/E873FDEC97E34DCD6CC4219BCE253FB3\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\",\n      \"id\": \"3CD057D01379E753B4725214C0CA181E\",\n      \"parentId\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/3CD057D01379E753B4725214C0CA181E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"id\": \"4EA1AA2F9C4BED62C786A8544D070A42\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/4EA1AA2F9C4BED62C786A8544D070A42\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"2F3D8296A77357A426217AE993C19CB0\",\n      \"parentId\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/2F3D8296A77357A426217AE993C19CB0\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"8E9AFCD47B744FE59C5DA231086AFD4D\",\n      \"title\": \"Apps\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/apps\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/8E9AFCD47B744FE59C5DA231086AFD4D\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"90FEB2142EA0B68E72E1585DAFD3041C\",\n      \"parentId\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/90FEB2142EA0B68E72E1585DAFD3041C\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"A008875AF8772180352B1D55F0F4E796\",\n      \"title\": \"Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/gem/coding-partner/2d96af2c3934c271\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/A008875AF8772180352B1D55F0F4E796\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/2CC5A6813986AF3DDC803575B50F84C1\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"2CC5A6813986AF3DDC803575B50F84C1\",\n      \"parentId\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"https://opal.google/_app/?lite=true&amp;color-scheme=dark\",\n      \"type\": \"iframe\",\n      \"url\": \"https://opal.google/_app/?lite=true&color-scheme=dark\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/2CC5A6813986AF3DDC803575B50F84C1\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/BC2C1D167DE737EE8C93B55F577A600E\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"BC2C1D167DE737EE8C93B55F577A600E\",\n      \"parentId\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/BC2C1D167DE737EE8C93B55F577A600E\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"0291010895B0D4C0AA2D7BDDF278AF4F\",\n      \"title\": \"Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/gems/view\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/0291010895B0D4C0AA2D7BDDF278AF4F\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/A1081514E5FB234A15F552776B41BAFE\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"A1081514E5FB234A15F552776B41BAFE\",\n      \"parentId\": \"10EAD8B6E31DF26326D3B01B3B457036\",\n      \"title\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0\",\n      \"type\": \"iframe\",\n      \"url\": \"https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/A1081514E5FB234A15F552776B41BAFE\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9225/devtools/page/10EAD8B6E31DF26326D3B01B3B457036\",\n      \"faviconUrl\": \"https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg\",\n      \"id\": \"10EAD8B6E31DF26326D3B01B3B457036\",\n      \"title\": \"A Simple OK - Google Gemini\",\n      \"type\": \"page\",\n      \"url\": \"https://gemini.google.com/app/b189e4460da2697b\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/10EAD8B6E31DF26326D3B01B3B457036\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\",\n      \"id\": \"CDC9032428814FC8BBA9D101647A94A4\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/page/CDC9032428814FC8BBA9D101647A94A4\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9225/devtools/browser/8e919c0a-a019-43bc-bad4-9a93876890c0\"\n}\n"
+  },
+  "workflow_output": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-workspace-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T05:51:56.752Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:workspace",
+              "--profile",
+              "gemini-9225",
+              "--surface",
+              "gems",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 0
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-workspace-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Inspect a Gemini workspace surface and return its summary shape",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:workspace",
+            "--profile",
+            "gemini-9225",
+            "--surface",
+            "gems",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 1559,
+          "stdout": "{\n  \"surface\": \"gems\",\n  \"url\": \"https://gemini.google.com/gems/view\",\n  \"summary\": \"0 Gem conversation link(s) visible\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "surface": "gems",
+            "url": "https://gemini.google.com/gems/view",
+            "summary": "0 Gem conversation link(s) visible"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            }
+          },
+          "surface": "gems",
+          "url": "https://gemini.google.com/gems/view",
+          "summary": "0 Gem conversation link(s) visible"
+        }
+      }
+    ],
+    "runId": "run_5ba0998c2d739613"
+  },
+  "closure_status": "green",
+  "finished_at": "2026-05-25T05:51:58.378Z"
+}

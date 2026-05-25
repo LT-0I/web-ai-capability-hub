@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-generate-file-csv-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C5",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-generate-file-csv-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND size_bytes > 32 AND content contains 'name,score'",
+  "started_at": "2026-05-25T07:12:08.106Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-generate-file-csv-ext.yaml",
+    "examples/workflows/chatgpt-generate-file-csv-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T07:12:08.106Z"
+}

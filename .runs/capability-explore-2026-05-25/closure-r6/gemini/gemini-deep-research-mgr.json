@@ -1,0 +1,18 @@
+{
+  "id": "gemini-deep-research-mgr",
+  "service": "gemini",
+  "source": "G8",
+  "status": "FAIL_CLOSED_COMMAND_TIMEOUT",
+  "workflow": "examples/workflows/gemini-deep-research-mgr.yaml",
+  "closure_criterion": "report path non-empty AND exists AND size > 4096; OR response_text contains 3 framework names",
+  "started_at": "2026-05-25T05:23:46.574Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-deep-research-mgr.yaml",
+    "examples/workflows/gemini-deep-research-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T05:23:46.574Z"
+}

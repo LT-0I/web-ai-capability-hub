@@ -1,0 +1,18 @@
+{
+  "id": "claude-workspace-mgr",
+  "service": "claude",
+  "source": "L9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/claude-claude-workspace-mgr.yaml",
+  "closure_criterion": "returns workspaces array OR {ok:true, count:N}",
+  "started_at": "2026-05-25T07:17:59.939Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/claude-claude-workspace-mgr.yaml",
+    "examples/workflows/claude-workspace-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T07:17:59.939Z"
+}

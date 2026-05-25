@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-workspace-ext-fallback",
+  "service": "chatgpt",
+  "source": "C9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/chatgpt-chatgpt-workspace-ext-fallback.yaml",
+  "closure_criterion": "returns workspaces array OR {ok:true, count:N}",
+  "started_at": "2026-05-25T07:14:40.261Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-workspace-ext-fallback.yaml",
+    "examples/workflows/chatgpt-workspace-ext-fallback.yaml"
+  ],
+  "finished_at": "2026-05-25T07:14:40.261Z"
+}

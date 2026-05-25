@@ -1,0 +1,18 @@
+{
+  "id": "gemini-canvas-to-docs-mgr",
+  "service": "gemini",
+  "source": "G7",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+  "closure_criterion": "docs_url non-empty AND URL contains docs.google.com AND curl GET returns HTTP 200 or a 30x login redirect.",
+  "started_at": "2026-05-25T05:22:49.704Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-canvas-to-docs-mgr.yaml",
+    "examples/workflows/gemini-canvas-to-docs-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T05:22:49.704Z"
+}

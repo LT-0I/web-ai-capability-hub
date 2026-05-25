@@ -1,0 +1,228 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-music-download-track-ext",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T06:44:44.179Z",
+    "actions": [
+      {
+        "stepId": "ensure_track",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short calm acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "timeoutMs": 360000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "conversation_url",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:download-track",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "{{steps.ensure_track.conversation_url}}",
+            "--format",
+            "mp3",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "savedPath",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-music-download-track-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a Gemini Music track, then download that finished track as MP3",
+      "steps": [
+        {
+          "id": "ensure_track",
+          "command": "<circular>",
+          "timeoutMs": 360000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "ensure_track",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:generate",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "A short calm acoustic guitar loop, instrumental, 30 seconds",
+          "--confirmed",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--timeout-ms",
+          "300000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 46439,
+        "stdout": "{\n  \"task_id\": \"gemini_music_1779691530680\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/de8db3efc169da26\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3\",\n  \"sha256\": \"c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2\",\n  \"size_bytes\": 744609,\n  \"download_filename\": \"The_Orchard_Floor.mp3\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "task_id": "gemini_music_1779691530680",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/de8db3efc169da26",
+          "path": "/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3",
+          "sha256": "c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2",
+          "size_bytes": 744609,
+          "download_filename": "The_Orchard_Floor.mp3",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "conversation_url",
+              "actual": "https://gemini.google.com/app/de8db3efc169da26",
+              "ok": true
+            }
+          ]
+        },
+        "task_id": "gemini_music_1779691530680",
+        "status": "complete",
+        "conversation_url": "https://gemini.google.com/app/de8db3efc169da26",
+        "path": "/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3",
+        "sha256": "c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2",
+        "size_bytes": 744609,
+        "download_filename": "The_Orchard_Floor.mp3",
+        "errorCode": null
+      }
+    },
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:download-track",
+          "--profile",
+          "gemini-9225",
+          "--tab-url-contains",
+          "https://gemini.google.com/app/de8db3efc169da26",
+          "--format",
+          "mp3",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 3956,
+        "stdout": "{\n  \"savedPath\": \"/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3\",\n  \"sha256\": \"c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2\",\n  \"byteSize\": 744609,\n  \"format\": \"mp3\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "savedPath": "/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3",
+          "sha256": "c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2",
+          "byteSize": 744609,
+          "format": "mp3"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "savedPath",
+              "actual": "/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3",
+              "ok": true
+            }
+          ]
+        },
+        "savedPath": "/tmp/explore-2026-05-25/gemini/The_Orchard_Floor.mp3",
+        "sha256": "c4ca9a9576032e7ef1de631f9de42d17a59ede0d81246cf4cad426d6f3febfc2",
+        "byteSize": 744609,
+        "format": "mp3"
+      }
+    }
+  ],
+  "runId": "run_0e77482f3f4d6510"
+}

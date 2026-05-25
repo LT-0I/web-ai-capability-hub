@@ -1,0 +1,18 @@
+{
+  "id": "claude-select-model-sonnet-ext",
+  "service": "claude",
+  "source": "capability-explore-2026-05-25/L1",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+  "closure_criterion": "ok === true AND model_used contains \"Sonnet\"",
+  "started_at": "2026-05-25T05:20:27.632Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/claude-claude-select-model-sonnet-ext.yaml",
+    "examples/workflows/claude-select-model-sonnet-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T05:20:27.632Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "gemini-send-thinking-mgr",
+  "service": "gemini",
+  "source": "capability-explore-2026-05-25/G1",
+  "status": "FAIL_CLOSED_MANAGED",
+  "workflow": "examples/workflows/gemini-gemini-send-thinking-mgr.yaml",
+  "closure_criterion": "response_text contains \"399\".",
+  "started_at": "2026-05-25T05:26:49.508Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-send-thinking-mgr.yaml",
+    "examples/workflows/gemini-send-thinking-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T05:26:49.508Z"
+}

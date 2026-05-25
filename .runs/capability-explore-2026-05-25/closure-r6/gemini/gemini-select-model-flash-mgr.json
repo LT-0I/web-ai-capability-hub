@@ -1,0 +1,18 @@
+{
+  "id": "gemini-select-model-flash-mgr",
+  "service": "gemini",
+  "source": "capability-explore-2026-05-25/G1",
+  "status": "FAIL_CLOSED_MANAGED",
+  "workflow": "examples/workflows/gemini-gemini-select-model-flash-mgr.yaml",
+  "closure_criterion": "ok === true and model_used contains \"Flash\".",
+  "started_at": "2026-05-25T05:26:22.129Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-select-model-flash-mgr.yaml",
+    "examples/workflows/gemini-select-model-flash-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T05:26:22.129Z"
+}
