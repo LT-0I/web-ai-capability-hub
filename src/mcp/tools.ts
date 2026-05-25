@@ -119,7 +119,12 @@ import {
   parseAllowedEnvFromRow,
   taskUrl
 } from "./submcp/chatgpt-codex/flow";
-export { webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent } from "./submcp/claude-design/tools";
+import {
+  webAiClaudeDesignCreateProject as webAiClaudeDesignCreateProjectManaged,
+  webAiClaudeDesignGenerate as webAiClaudeDesignGenerateManaged,
+  webAiClaudeDesignGetHtml as webAiClaudeDesignGetHtmlManaged,
+  webAiClaudeDesignPresent as webAiClaudeDesignPresentManaged
+} from "./submcp/claude-design/tools";
 export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
 export { wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet };
 export * from "./researchdb";
@@ -4922,6 +4927,789 @@ async function manageGeminiConversationWithExtensionBackend(args: any, runtime: 
   return manageConversationWithExtensionBackend("gemini", args, runtime);
 }
 
+function extensionDriverErrorCode(service: WebAiExtensionReadService, error: any): ConsumerErrorCode {
+  return extensionReadErrorCode(service, error);
+}
+
+function chatgptCanvasExportErrorOutput(format: string, error: any): Record<string, unknown> {
+  const raw = error?.errorCode;
+  const message = errorMessageFromUnknown(error, "");
+  const errorCode = isConsumerErrorCode(raw)
+    ? raw
+    : /download|artifact.*timeout|timed out|timeout/i.test(message)
+      ? ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT
+      : extensionDriverErrorCode("chatgpt", error);
+  return safeOutput({
+    path: "",
+    sha256: "",
+    format,
+    byteSize: 0,
+    errorCode,
+    error_code: errorCode,
+    message: message || errorCode
+  });
+}
+
+async function exportChatgptCanvasWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = args || {};
+  const format = effective.format || "md";
+  const downloadDir = effective.download_dir || defaultWebAiDownloadDir();
+  try {
+    requireAbsoluteDir(downloadDir);
+    assertNotPublishDeniedLabel("Download", { tool: "webai.chatgpt.canvas_export" });
+  } catch (error: any) {
+    return chatgptCanvasExportErrorOutput(format, error);
+  }
+
+  const label = CHATGPT_CANVAS_FORMAT_LABELS[format] || CHATGPT_CANVAS_FORMAT_LABELS.md;
+  const profile = effective.profile || process.env.WAH_DEFAULT_PROFILE || "chatgpt";
+  const lease = acquireProfileLease(profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs({ ...effective, profile })
+    });
+    await backend.ping();
+    const page = await openChatgptExtensionPage(backend, { ...effective, profile, reuse_conversation: true });
+    const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: effective.tab_url_contains || serviceDefaults.chatgpt.url, text: "" }));
+    if (loginRequiredForService("chatgpt", snapshot.url || "")) {
+      return chatgptCanvasExportErrorOutput(format, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "ChatGPT login is required before canvas export"));
+    }
+    await page.assetsList().catch(() => []);
+    const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
+    const result = await artifactClickRunner(runtime)({
+      profile,
+      tabUrlContains: effective.tab_url_contains || snapshot.url || serviceDefaults.chatgpt.url,
+      buttonSelector: CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR,
+      followUpTextRegex: label,
+      downloadDir,
+      filenamePattern: format === "md" ? "\\.md$" : `\\.${format}$`,
+      timeoutMs: Math.min(Number(effective.timeout_ms || 60000), 60000),
+      openPanelIfMissing: "chatgpt-canvas",
+      pageReadyEvidence: {
+        backend: "extension-assisted-cdp",
+        capturedAt: bundle.capturedAt,
+        assetCount: bundle.assets.length
+      }
+    });
+    const rawResult: any = result;
+    const artifactPath = rawResult.path || rawResult.savedPath || "";
+    const stat = artifactPath && fs.existsSync(artifactPath) ? fs.statSync(artifactPath) : undefined;
+    return safeOutput({
+      path: artifactPath,
+      sha256: rawResult.sha256 || (artifactPath && fs.existsSync(artifactPath) ? sha256File(artifactPath) : ""),
+      format,
+      byteSize: rawResult.size_bytes ?? rawResult.sizeBytes ?? rawResult.size ?? stat?.size ?? 0
+    });
+  } catch (error: any) {
+    return chatgptCanvasExportErrorOutput(format, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(profile, lease);
+  }
+}
+
+async function extensionChatgptPulseDomState(page: any): Promise<{
+  route: string;
+  visibleText: string;
+  hasActions: boolean;
+  hasDialog: boolean;
+  hasGetStarted: boolean;
+}> {
+  return await page.evaluateReadOnly(`((arg) => {
+    const xpathCount = (expr) => {
+      try {
+        const result = document.evaluate(expr, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        return result.snapshotLength || 0;
+      } catch (_) {
+        return 0;
+      }
+    };
+    const cssCount = (selector) => {
+      try { return document.querySelectorAll(selector).length; } catch (_) { return 0; }
+    };
+    return {
+      route: location.href,
+      visibleText: String(document.body && (document.body.innerText || document.body.textContent) || ""),
+      hasActions: cssCount(arg.actionsSelector) > 0,
+      hasDialog: cssCount(arg.dialogSelector) > 0,
+      hasGetStarted: xpathCount('//div[@role="dialog"]//button[normalize-space(.)="Get started"]') > 0
+    };
+  })(arg)`, {
+    operation: "pulseState",
+    actionsSelector: CHATGPT_PULSE_ACTIONS_SELECTOR,
+    dialogSelector: CHATGPT_PULSE_ONBOARDING_DIALOG_SELECTOR
+  }) as any;
+}
+
+async function readChatgptPulseStateWithExtension(page: any): Promise<Record<string, unknown> | null> {
+  const dom = await extensionChatgptPulseDomState(page);
+  const route = dom.route || CHATGPT_PULSE_URL;
+  const visibleText = dom.visibleText || "";
+  const pending = CHATGPT_PULSE_PENDING_PHRASES.some((phrase) => visibleText.includes(phrase));
+
+  if (pulseUrlIsChatgptHome(route) && dom.hasDialog && dom.hasGetStarted) {
+    return safeOutput({ route, status: "not_onboarded", generated_hint: "Run webai_chatgpt_pulse_onboard with confirmed=true before reading Pulse." });
+  }
+  if (pulseUrlEndsWithPulse(route) && pending) {
+    const generated_hint = visibleText.includes("Check back in") ? "Check back in about 30 minutes" : "Your first Pulse is in the works";
+    return safeOutput({ route, status: "pending", generated_hint });
+  }
+  const digestText = extractChatgptPulseDigestText(visibleText);
+  if (pulseUrlEndsWithPulse(route) && dom.hasActions && !pending && hasSubstantiveChatgptPulseDigest(digestText)) {
+    return safeOutput({ route, status: "ready", digest_text: digestText, generated_hint: "A fresh update lands every morning" });
+  }
+  return null;
+}
+
+async function detectChatgptPulseStateWithExtension(page: any): Promise<Record<string, unknown>> {
+  const state = await readChatgptPulseStateWithExtension(page);
+  if (state) return state;
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: CHATGPT_PULSE_URL, text: "" }));
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse state did not match not_onboarded, pending, or ready detection gates", { route: snapshot.url || CHATGPT_PULSE_URL });
+}
+
+async function waitForChatgptPulseStateWithExtension(page: any, timeoutMs = CHATGPT_PULSE_HYDRATION_TIMEOUT_MS): Promise<Record<string, unknown>> {
+  const started = Date.now();
+  const budgetMs = Math.max(0, Number(timeoutMs || 0));
+  const maxAttempts = Math.max(1, Math.ceil(budgetMs / CHATGPT_PULSE_HYDRATION_POLL_MS) + 1);
+  let lastRoute = CHATGPT_PULSE_URL;
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const state = await readChatgptPulseStateWithExtension(page);
+    if (state) return state;
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: lastRoute, text: "" }));
+    lastRoute = snapshot.url || lastRoute;
+    if (Date.now() - started >= budgetMs || attempt === maxAttempts - 1) break;
+    await extensionSleep(CHATGPT_PULSE_HYDRATION_POLL_MS);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse state did not match not_onboarded, pending, or ready detection gates", { route: lastRoute });
+}
+
+function chatgptPulseErrorOutput(error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = extensionDriverErrorCode("chatgpt", error);
+  return safeOutput({
+    route: CHATGPT_PULSE_URL,
+    status: "failed",
+    generated_hint: "",
+    ok: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+async function openChatgptPulseExtensionPage(backend: any, args: any): Promise<any> {
+  const page = args.tab_url_contains
+    ? await backend.claimTab({ url: args.tab_url_contains, profile: args.profile })
+    : await backend.newTab({ url: CHATGPT_PULSE_URL, profile: args.profile, background: false });
+  await page.navigate(CHATGPT_PULSE_URL, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+  return page;
+}
+
+async function getChatgptPulseWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = pulseArgs(args || {});
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptPulseExtensionPage(backend, effective);
+    const deadline = Date.now() + Math.max(0, Number(effective.timeout_ms || 0));
+    for (;;) {
+      const state = await waitForChatgptPulseStateWithExtension(page);
+      if (!effective.wait_ready || state.status !== "pending" || Date.now() >= deadline) return state;
+      await extensionSleep(1000);
+    }
+  } catch (error: any) {
+    return chatgptPulseErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function clickPulseSelectorWithExtension(page: any, selector: string, message: string): Promise<void> {
+  try {
+    await extensionClick(page, selector, 8000);
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(error, "") });
+  }
+}
+
+async function pulseQuickNewsSelectedWithExtension(page: any): Promise<boolean> {
+  return Boolean(await page.evaluateReadOnly(`((arg) => {
+    try {
+      const result = document.evaluate('//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+      const node = result.singleNodeValue;
+      return !!node && node.getAttribute('aria-pressed') === 'true';
+    } catch (_) {
+      return false;
+    }
+  })(arg)`, { operation: "pulseQuickNewsSelected" }).catch(() => false));
+}
+
+async function onboardChatgptPulseWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  if (args?.confirmed !== true) {
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, reason: "--confirmed is required because Pulse onboarding is a durable account-state change" });
+  }
+  const effective = pulseArgs(args || {});
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptPulseExtensionPage(backend, effective);
+    const dom = await extensionChatgptPulseDomState(page);
+    if (!dom.hasDialog || !dom.hasGetStarted) {
+      const state = await detectChatgptPulseStateWithExtension(page);
+      if (state.status === "pending" || state.status === "ready") {
+        return safeOutput({ route: state.route, onboarded: true, news_topic_selected: false, final_status: state.status, note: "Pulse onboarding modal absent; account already onboarded." });
+      }
+      return state;
+    }
+
+    await clickPulseSelectorWithExtension(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Get started"]', "ChatGPT Pulse Get started button was not found");
+    await clickPulseSelectorWithExtension(page, 'xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")]', "ChatGPT Pulse Quick news recap focus chip was not found");
+    if (!(await pulseQuickNewsSelectedWithExtension(page))) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse Quick news recap chip did not become selected", { selector: 'xpath=//div[@role="dialog"]//button[contains(normalize-space(.),"Quick news recap")][@aria-pressed="true"]' });
+    }
+    await clickPulseSelectorWithExtension(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Next"]', "ChatGPT Pulse Next button was not found");
+    await clickPulseSelectorWithExtension(page, 'xpath=//div[@role="dialog"]//button[normalize-space(.)="Skip for now"]', "ChatGPT Pulse Skip for now button was not found");
+    await extensionSleep(500);
+    const finalState = await detectChatgptPulseStateWithExtension(page);
+    if (finalState.status === "not_onboarded") throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ChatGPT Pulse remained not_onboarded after onboarding steps", { route: finalState.route });
+    return safeOutput({ route: finalState.route, onboarded: true, news_topic_selected: true, final_status: finalState.status });
+  } catch (error: any) {
+    return chatgptPulseErrorOutput(error, { onboarded: false, news_topic_selected: false, final_status: "failed" });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function activateGeminiCanvasModeWithExtension(page: any, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS) });
+    await page.click({ selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(GEMINI_CANVAS_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.click({ selector: GEMINI_CANVAS_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas tool did not activate through the extension-assisted backend", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CANVAS_MENUITEM_SELECTOR} -> ${GEMINI_CANVAS_MODE_ACTIVE_SELECTOR}`, cause: errorMessageFromUnknown(error, "") });
+  }
+}
+
+async function submitGeminiCanvasPromptWithExtension(page: any, args: any): Promise<void> {
+  await activateGeminiCanvasModeWithExtension(page, args.timeout_ms || 60000);
+  await page.waitForSelector(GEMINI_IMAGE_PROMPT_SELECTOR, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
+  await page.fill({ selector: GEMINI_IMAGE_PROMPT_SELECTOR }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
+  await extensionSleep(250);
+  const sendSelector = sendButtonSelector("gemini");
+  await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
+  await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
+  await page.click({ selector: sendSelector }, { timeoutMs: 5000 });
+  await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeoutMs: args.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
+}
+
+async function awaitSpawnedDocsTabWithExtension(backend: any, timeoutMs: number): Promise<string | null> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  while (Date.now() <= deadline) {
+    const tabs = await backend.listTabs().catch(() => []);
+    for (const tab of tabs || []) {
+      const url = String(tab?.url || "");
+      if (GOOGLE_DOCS_URL_RE.test(url)) return url;
+    }
+    await extensionSleep(1000);
+  }
+  return null;
+}
+
+function geminiCanvasToDocsErrorOutput(args: any, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const title = args?.title || null;
+  const errorCode = extensionDriverErrorCode("gemini", error);
+  return safeOutput({
+    docs_url: null,
+    docs_doc_id: null,
+    title,
+    ok: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = geminiToolArgs(args || {});
+  assertPromptAllowed(effective.prompt);
+  try {
+    assertNotPublishDeniedLabel("Export to Docs", { tool: "webai.gemini.canvas_to_docs" });
+  } catch (error: any) {
+    return geminiCanvasToDocsErrorOutput(effective, error);
+  }
+  const title = effective.title || null;
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+    if (loginRequiredForService("gemini", snapshot.url || "")) {
+      return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas export"));
+    }
+    await submitGeminiCanvasPromptWithExtension(page, effective);
+    await page.click({ selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR }, { timeoutMs: 8000 });
+    await page.waitForSelector(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.click({ selector: GEMINI_CANVAS_EXPORT_DOCS_SELECTOR }, { timeoutMs: 8000 });
+    const docsUrl = await awaitSpawnedDocsTabWithExtension(backend, effective.timeout_ms || 45000);
+    const docId = docsUrl ? GOOGLE_DOCS_URL_RE.exec(docsUrl)?.[1] || null : null;
+    if (!docId || !docsUrl) {
+      return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini Canvas export did not spawn a docs.google.com document"));
+    }
+    return safeOutput({ docs_url: `https://docs.google.com/document/d/${docId}/edit`, docs_doc_id: docId, title, errorCode: null });
+  } catch (error: any) {
+    return geminiCanvasToDocsErrorOutput(effective, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function extensionWaitForDomSettled(page: any, timeoutMs = 1500, quietMs = 300): Promise<void> {
+  await page.evaluateReadOnly(`((arg) => new Promise((resolve) => {
+    const timeoutMs = Math.max(1, Number(arg.timeoutMs) || 1500);
+    const quietMs = Math.max(1, Number(arg.quietMs) || 300);
+    let done = false;
+    let timer = null;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      if (timer) clearTimeout(timer);
+      observer.disconnect();
+      resolve(true);
+    };
+    const observer = new MutationObserver(() => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(finish, quietMs);
+    });
+    observer.observe(document.body || document.documentElement, { childList: true, subtree: true, characterData: true });
+    timer = setTimeout(finish, quietMs);
+    setTimeout(finish, timeoutMs);
+  }))(arg)`, { operation: "domSettled", timeoutMs, quietMs }).catch(() => undefined);
+}
+
+async function extensionReadGeminiCanvasMarkup(page: any): Promise<string> {
+  const markup = await page.evaluateReadOnly(`((arg) => {
+    const xpath = '(//div[@contenteditable="true"])[last()]';
+    try {
+      const result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+      const node = result.singleNodeValue;
+      return node ? String(node.innerHTML || node.textContent || "") : "";
+    } catch (_) {
+      const nodes = Array.from(document.querySelectorAll('div[contenteditable="true"]'));
+      const node = nodes.length ? nodes[nodes.length - 1] : null;
+      return node ? String(node.innerHTML || node.textContent || "") : "";
+    }
+  })(arg)`, { operation: "canvasMarkup" }).catch(() => "");
+  return typeof markup === "string" ? markup : "";
+}
+
+function geminiCanvasEditErrorOutput(error: any): Record<string, unknown> {
+  const errorCode = extensionDriverErrorCode("gemini", error);
+  return safeOutput({
+    canvas_opened: false,
+    edit_applied: false,
+    ai_action_applied: false,
+    canvas_html_before: "",
+    canvas_html_after: "",
+    ok: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode)
+  });
+}
+
+async function editGeminiCanvasWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = geminiToolArgs(args || {});
+  if (effective.prompt) assertPromptAllowed(effective.prompt);
+  if (effective.edit_text) assertPromptAllowed(effective.edit_text);
+  if (effective.prompt && effective.confirmed !== true) {
+    return sensitiveContentGuard("Submitting a Gemini Canvas prompt requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "canvas_edit" });
+  }
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiPage(effective, backend, effective.prompt ? GEMINI_FRESH_COMPOSER_URL : serviceDefaults.gemini.url);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+    if (loginRequiredForService("gemini", snapshot.url || "")) {
+      return geminiCanvasEditErrorOutput(new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas edit"));
+    }
+
+    let canvas_opened = false;
+    let edit_applied = false;
+    let ai_action_applied = false;
+    let canvas_html_before = "";
+    let canvas_html_after = "";
+
+    if (effective.prompt) {
+      await submitGeminiCanvasPromptWithExtension(page, effective);
+      canvas_opened = true;
+      canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
+    }
+
+    if (effective.edit_text) {
+      if (!canvas_html_before) canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
+      await page.click(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), { timeoutMs: 8000 });
+      await page.fill(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), effective.edit_text, { timeoutMs: 8000 });
+      await extensionWaitForDomSettled(page);
+      edit_applied = true;
+      canvas_opened = true;
+      canvas_html_after = await extensionReadGeminiCanvasMarkup(page);
+    }
+
+    if (effective.ai_action) {
+      if (!canvas_html_before) canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
+      const label = effective.ai_action === "length" ? "Length" : effective.ai_action === "tone" ? "Tone" : "Suggest";
+      await page.click(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), { timeoutMs: 8000 });
+      await clickExtensionSelector(page, `button[aria-label="${label}"]`, 8000, `Gemini Canvas ${label} AI edit button was not found`);
+      await extensionWaitForDomSettled(page, 2500, 500);
+      ai_action_applied = true;
+      canvas_opened = true;
+      canvas_html_after = await extensionReadGeminiCanvasMarkup(page);
+    }
+
+    if (!canvas_html_after && canvas_html_before) canvas_html_after = canvas_html_before;
+    return safeOutput({ canvas_opened, edit_applied, ai_action_applied, canvas_html_before, canvas_html_after });
+  } catch (error: any) {
+    return geminiCanvasEditErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+const CLAUDE_DESIGN_URL = "https://claude.ai/design";
+const CLAUDE_DESIGN_COMPOSER_SELECTOR = 'textarea[data-testid="chat-composer-input"]';
+const CLAUDE_DESIGN_SEND_SELECTOR = '[data-testid="chat-send-button"]';
+const CLAUDE_DESIGN_HTML_IFRAME_SELECTOR = 'iframe[data-testid="html-viewer-iframe"], iframe[data-testid="present-mode-iframe"], iframe[src*="claudeusercontent.com"]';
+const CLAUDE_DESIGN_PRESENT_SELECTOR = 'xpath=//button[contains(.,"Present")]';
+const CLAUDE_DESIGN_FILE_OPEN_SELECTOR = 'xpath=//button[contains(normalize-space(.),"Open") and not(@data-testid)]';
+const CLAUDE_DESIGN_MODEL_SELECTOR = '[data-testid="model-selector-button"]';
+const CLAUDE_DESIGN_CREATE_BTN_SELECTOR = '[data-testid="create-project-button"]';
+const CLAUDE_DESIGN_PROJECT_NAME_SELECTOR = 'input[placeholder="Project name"]';
+const CLAUDE_DESIGN_DEFAULT_PROFILE = "claude-9224";
+const CLAUDE_DESIGN_SERVE_IFRAME_RE = /\/v1\/design\/projects\/[^/]+\/serve\//i;
+const CLAUDE_DESIGN_QUOTA_TEXT_RE = /quota|limit reached|usage limit|try again later|too many requests|rate limit/i;
+
+function claudeDesignArgs(args: any): any {
+  return { ...(args || {}), profile: String(args?.profile || CLAUDE_DESIGN_DEFAULT_PROFILE) };
+}
+
+function claudeDesignProjectId(projectUrl: string): string | null {
+  try { return /\/design\/p\/([^/?#]+)/.exec(new URL(projectUrl).pathname)?.[1] || null; }
+  catch { return /\/design\/p\/([^/?#]+)/.exec(projectUrl)?.[1] || null; }
+}
+
+function claudeDesignFileName(projectUrl: string): string | null {
+  try {
+    const parsed = new URL(projectUrl);
+    const file = parsed.searchParams.get("file") || "";
+    return /\.html$/i.test(file) ? file : null;
+  } catch {
+    return /[?&]file=([^&#]+\.html)/i.exec(projectUrl)?.[1] || null;
+  }
+}
+
+function claudeDesignErrorOutput(error: any, extra: Record<string, unknown>): Record<string, unknown> {
+  const isQuota = error?.errorCode === ConsumerErrorCodes.SUBMCP_QUOTA_EXHAUSTED || /SUBMCP_QUOTA_EXHAUSTED|quota/i.test(errorMessageFromUnknown(error, ""));
+  const errorCode = isQuota ? ConsumerErrorCodes.SUBMCP_QUOTA_EXHAUSTED : extensionDriverErrorCode("claude", error);
+  return safeOutput({
+    ok: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+async function claudeDesignAssertNotQuotaWithExtension(page: any): Promise<void> {
+  const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: CLAUDE_DESIGN_URL, text: "" }));
+  if (CLAUDE_DESIGN_QUOTA_TEXT_RE.test(snapshot.text || "")) {
+    throw new WebAiToolError(ConsumerErrorCodes.SUBMCP_QUOTA_EXHAUSTED, "Claude Design quota is exhausted");
+  }
+}
+
+async function currentExtensionUrl(page: any, fallback = ""): Promise<string> {
+  const url = await page.evaluateReadOnly(`((arg) => location.href)(arg)`, { operation: "currentUrl" }).catch(() => "");
+  if (typeof url === "string" && url) return url;
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: fallback, text: "" }));
+  return snapshot.url || fallback;
+}
+
+async function waitForExtensionUrl(page: any, pattern: RegExp, timeoutMs: number): Promise<string> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let current = "";
+  while (Date.now() <= deadline) {
+    current = await currentExtensionUrl(page, current);
+    if (pattern.test(current)) return current;
+    await extensionSleep(500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Expected extension tab URL did not materialize before timeout", { url: current, pattern: String(pattern) });
+}
+
+async function openClaudeDesignExtensionPage(backend: any, args: any, url: string): Promise<any> {
+  const timeoutMs = Math.min(args.timeout_ms || 60000, 30000);
+  const page = args.project_url || args.url || args.tab_url_contains
+    ? await backend.claimTab({ url: args.project_url || args.url || args.tab_url_contains || url, profile: args.profile })
+    : await backend.newTab({ url, profile: args.profile, background: false });
+  await page.navigate(url, { waitUntil: "domcontentloaded", timeoutMs });
+  return page;
+}
+
+async function designFileStateWithExtension(page: any): Promise<{ projectUrl: string; fileName: string; iframeSrc: string; hasIframe: boolean }> {
+  return await page.evaluateReadOnly(`((arg) => {
+    const iframe = (() => {
+      try { return document.querySelector(arg.iframeSelector); } catch (_) { return null; }
+    })();
+    const src = iframe ? String(iframe.getAttribute('src') || iframe.getAttribute('srcdoc') || '') : '';
+    const url = location.href;
+    const fromUrl = (() => {
+      try {
+        const parsed = new URL(url);
+        const file = parsed.searchParams.get('file') || '';
+        return /\\.html$/i.test(file) ? file : '';
+      } catch (_) {
+        const m = /[?&]file=([^&#]+\\.html)/i.exec(url);
+        return m ? m[1] : '';
+      }
+    })();
+    const fromSrc = (() => {
+      const m = /\\/serve\\/([^/?#]+\\.html)/i.exec(src);
+      return m ? m[1] : '';
+    })();
+    return { projectUrl: url, fileName: fromUrl || fromSrc, iframeSrc: src, hasIframe: !!iframe };
+  })(arg)`, { operation: "designFileState", iframeSelector: CLAUDE_DESIGN_HTML_IFRAME_SELECTOR }) as any;
+}
+
+async function waitForDesignFileCompletionWithExtension(page: any, projectUrl: string, timeoutMs: number): Promise<{ projectUrl: string; fileName: string }> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let latest: any = { projectUrl, fileName: "" };
+  while (Date.now() <= deadline) {
+    latest = await designFileStateWithExtension(page).catch(() => latest);
+    if (latest.fileName || CLAUDE_DESIGN_SERVE_IFRAME_RE.test(String(latest.iframeSrc || ""))) {
+      return { projectUrl: latest.projectUrl || projectUrl, fileName: latest.fileName || claudeDesignFileName(latest.projectUrl || projectUrl) || "design.html" };
+    }
+    await extensionSleep(1000);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Claude Design did not expose a generated /serve/<name>.html iframe before timeout", { projectUrl: latest.projectUrl || projectUrl });
+}
+
+async function ensureClaudeDesignViewerOpenWithExtension(page: any, projectUrl: string): Promise<void> {
+  const initial = await designFileStateWithExtension(page).catch(() => ({ hasIframe: false, fileName: "" }));
+  if (initial.hasIframe || claudeDesignFileName(await currentExtensionUrl(page, projectUrl))) return;
+  await extensionClick(page, CLAUDE_DESIGN_FILE_OPEN_SELECTOR, 8000);
+  const deadline = Date.now() + 30000;
+  while (Date.now() <= deadline) {
+    const state = await designFileStateWithExtension(page).catch(() => ({ hasIframe: false, fileName: "" }));
+    if (state.hasIframe || state.fileName) return;
+    await extensionSleep(500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Design ?file= viewer iframe was not found", { selector: CLAUDE_DESIGN_HTML_IFRAME_SELECTOR });
+}
+
+function isRealClaudeDesignHtmlMarkup(source: string): boolean {
+  const trimmed = String(source || "").trim();
+  if (!trimmed) return false;
+  if (/^https?:\/\/\S+\/(?:_bootstrap|_loader)(?:[?#].*)?$/i.test(trimmed)) return false;
+  return /<!doctype\s+html|<html[\s>]|<body[\s>]|<main[\s>]|<div[\s>]/i.test(trimmed);
+}
+
+async function readClaudeDesignIframeHtmlWithExtension(page: any): Promise<string> {
+  const source = await page.evaluateReadOnly(`((arg) => {
+    const iframe = (() => {
+      try { return document.querySelector(arg.iframeSelector); } catch (_) { return null; }
+    })();
+    if (!iframe) return "";
+    const srcdoc = iframe.getAttribute('srcdoc') || "";
+    if (srcdoc) return srcdoc;
+    try {
+      const doc = iframe.contentDocument;
+      const html = doc && doc.documentElement ? doc.documentElement.outerHTML : "";
+      if (html) return html;
+    } catch (_) {}
+    return iframe.getAttribute('src') || "";
+  })(arg)`, { operation: "designIframeHtml", iframeSelector: CLAUDE_DESIGN_HTML_IFRAME_SELECTOR }).catch(() => "");
+  return typeof source === "string" ? source : "";
+}
+
+async function webAiClaudeDesignCreateProjectWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = claudeDesignArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeDesignExtensionPage(backend, effective, CLAUDE_DESIGN_URL);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: CLAUDE_DESIGN_URL, text: "" }));
+    if (loginRequiredForService("claude", snapshot.url || "")) {
+      return claudeDesignErrorOutput(new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude login is required before Design project creation"), { projectUrl: "", projectId: null });
+    }
+    await claudeDesignAssertNotQuotaWithExtension(page);
+    await page.waitForSelector(CLAUDE_DESIGN_PROJECT_NAME_SELECTOR, { state: "visible", timeoutMs: 15000 });
+    await page.fill({ selector: CLAUDE_DESIGN_PROJECT_NAME_SELECTOR }, effective.name, { timeoutMs: 15000 });
+    await extensionClick(page, CLAUDE_DESIGN_CREATE_BTN_SELECTOR, 15000);
+    const projectUrl = await waitForExtensionUrl(page, /\/design\/p\//, 30000);
+    return safeOutput({ projectUrl, projectId: claudeDesignProjectId(projectUrl) });
+  } catch (error: any) {
+    return claudeDesignErrorOutput(error, { projectUrl: "", projectId: null });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function webAiClaudeDesignGenerateWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = claudeDesignArgs(args);
+  assertPromptAllowed(effective.prompt);
+  const modelUsed = String(effective.model || "sonnet");
+  const failure = (error?: any) => ({
+    status: "failed",
+    model_used: modelUsed,
+    projectUrl: String(error?.projectUrl || effective.project_url || ""),
+    fileName: String(error?.fileName || "")
+  });
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeDesignExtensionPage(backend, effective, effective.project_url);
+    await claudeDesignAssertNotQuotaWithExtension(page);
+    if (effective.model) {
+      await extensionClick(page, CLAUDE_DESIGN_MODEL_SELECTOR, 5000).catch(() => undefined);
+      const label = modelUsed === "haiku" ? "Haiku" : "Sonnet";
+      await extensionClick(page, `[role="menuitem"]:has-text("${label}"), [role="menuitemradio"]:has-text("${label}")`, 5000).catch(() => undefined);
+    }
+    await page.waitForSelector(CLAUDE_DESIGN_COMPOSER_SELECTOR, { state: "visible", timeoutMs: 15000 });
+    await page.fill({ selector: CLAUDE_DESIGN_COMPOSER_SELECTOR }, effective.prompt, { timeoutMs: 15000 });
+    await extensionClick(page, CLAUDE_DESIGN_SEND_SELECTOR, 15000);
+    const completion = await waitForDesignFileCompletionWithExtension(page, effective.project_url, effective.timeout_ms || 300000);
+    await claudeDesignAssertNotQuotaWithExtension(page);
+    return safeOutput({ status: "generated", model_used: modelUsed, projectUrl: completion.projectUrl, fileName: completion.fileName });
+  } catch (error: any) {
+    return claudeDesignErrorOutput(error, failure(error));
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function webAiClaudeDesignGetHtmlWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = claudeDesignArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeDesignExtensionPage(backend, effective, effective.project_url);
+    await claudeDesignAssertNotQuotaWithExtension(page);
+    await ensureClaudeDesignViewerOpenWithExtension(page, effective.project_url);
+    await page.waitForSelector(CLAUDE_DESIGN_HTML_IFRAME_SELECTOR, { state: "visible", timeoutMs: 30000 });
+    let source = "";
+    const deadline = Date.now() + 30000;
+    while (Date.now() <= deadline) {
+      source = await readClaudeDesignIframeHtmlWithExtension(page);
+      if (isRealClaudeDesignHtmlMarkup(source)) break;
+      await extensionSleep(500);
+    }
+    if (!source) throw new WebAiToolError(ConsumerErrorCodes.IFRAME_NOT_FOUND, "Claude Design HTML iframe has no srcdoc, content, or src attribute");
+    if (!isRealClaudeDesignHtmlMarkup(source)) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Claude Design iframe did not contain real HTML markup");
+    const bytes = Buffer.from(source, "utf-8");
+    const iframeArtifactSha256 = crypto.createHash("sha256").update(bytes).digest("hex");
+    const dir = path.resolve(effective.download_dir || defaultWebAiDownloadDir());
+    fs.mkdirSync(dir, { recursive: true });
+    const projectId = claudeDesignProjectId(effective.project_url) || "claude-design";
+    const savedPath = path.join(dir, `${projectId}-${iframeArtifactSha256.slice(0, 12)}.html`);
+    fs.writeFileSync(savedPath, bytes);
+    return safeOutput({ iframeArtifactSha256, savedPath, byteSize: bytes.length });
+  } catch (error: any) {
+    return claudeDesignErrorOutput(error, { iframeArtifactSha256: "", savedPath: "", byteSize: 0 });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function webAiClaudeDesignPresentWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = claudeDesignArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeDesignExtensionPage(backend, effective, effective.project_url);
+    await claudeDesignAssertNotQuotaWithExtension(page);
+    const current = await currentExtensionUrl(page, effective.project_url);
+    if (/[?&]present=1(?:[&#]|$)/i.test(current)) return safeOutput({ presentUrl: current });
+    await ensureClaudeDesignViewerOpenWithExtension(page, effective.project_url);
+    await extensionClick(page, CLAUDE_DESIGN_PRESENT_SELECTOR, 15000);
+    const deadline = Date.now() + 30000;
+    let presentUrl = "";
+    while (Date.now() <= deadline) {
+      const tabs = await backend.listTabs().catch(() => []);
+      const found = (tabs || []).find((tab: any) => /\/design\/p\/.+[?&]present=1/i.test(String(tab?.url || "")));
+      if (found?.url) { presentUrl = String(found.url); break; }
+      const pageUrl = await currentExtensionUrl(page, effective.project_url);
+      if (/[?&]present=1(?:[&#]|$)/i.test(pageUrl)) { presentUrl = pageUrl; break; }
+      await extensionSleep(500);
+    }
+    if (!presentUrl) throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Claude Design Present mode did not expose a presentation URL before timeout");
+    return safeOutput({ presentUrl });
+  } catch (error: any) {
+    return claudeDesignErrorOutput(error, { presentUrl: "" });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
 function deepResearchSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
   const json = schema.toJsonSchema();
   return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
@@ -5830,16 +6618,36 @@ export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolR
   if (backend === "extension-assisted-cdp") return generateGeminiImageWithExtensionBackend(args, runtimeOrDefault(runtime));
   return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
-export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return canvasToDocs(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return canvasToDocsWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return canvasToDocs(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_canvas_to_docs", backend);
+}
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "managed-cdp") return startGeminiVideoTask(args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return generateGeminiVideoWithExtensionBackend(args, runtimeOrDefault(runtime));
   return videoErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_video backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
-export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return exportChatgptCanvas(args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return getChatgptPulse(args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return onboardChatgptPulse(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return exportChatgptCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return exportChatgptCanvas(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_canvas_export", backend);
+}
+export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return getChatgptPulseWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return getChatgptPulse(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_pulse_get", backend);
+}
+export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return onboardChatgptPulseWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return onboardChatgptPulse(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_pulse_onboard", backend);
+}
 export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "extension-assisted-cdp") return startChatgptDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -5882,7 +6690,12 @@ export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRu
   if (backend === "managed-cdp") return startGeminiDeepResearch(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_deep_research", backend);
 }
-export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return editGeminiCanvas(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return editGeminiCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return editGeminiCanvas(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_canvas_edit", backend);
+}
 export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "extension-assisted-cdp") return manageGeminiConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -5901,6 +6714,34 @@ export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): 
   if (!record) return safeOutput({ status: "failed", errorCode: ConsumerErrorCodes.INVALID_ARGS });
   const current = maybeMarkStaleVideoTask(database, record);
   return safeOutput({ status: current.status, progress_label: current.progress_label, result: current.result, errorCode: current.errorCode });
+}
+
+export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiClaudeDesignCreateProjectManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_design_create_project", backend);
+}
+
+export async function webAiClaudeDesignGenerate(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiClaudeDesignGenerateManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_design_generate", backend);
+}
+
+export async function webAiClaudeDesignGetHtml(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiClaudeDesignGetHtmlWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiClaudeDesignGetHtmlManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_design_get_html", backend);
+}
+
+export async function webAiClaudeDesignPresent(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiClaudeDesignPresentManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_design_present", backend);
 }
 
 function sendPromptSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
@@ -5943,6 +6784,14 @@ function readToolSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string,
   }, json.required || []);
 }
 
+function extensionDriverSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string, noun: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} ${noun} routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
 function conversationManageSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp"; action: string }> {
   const json = schema.toJsonSchema();
   const properties = { ...(json.properties || {}) };
@@ -5957,6 +6806,12 @@ function conversationManageSchemaWithBackend<T>(schema: RuntimeSchema<T>, servic
     ...properties,
     backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} conversation management routing; defaults to managed-cdp`)
   }, json.required || []);
+}
+
+function subMcpSchema(name: string): RuntimeSchema<any> {
+  const spec = subMcpToolSpecs.find((tool) => tool.name === name);
+  if (!spec) throw new Error(`Missing sub-MCP schema for ${name}`);
+  return spec.schema;
 }
 
 const webAiChatgptSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiChatgptSendPromptInput, "ChatGPT");
@@ -5976,6 +6831,15 @@ const webAiGeminiWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiGemi
 const webAiChatgptDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiChatgptDeepResearchInput, "ChatGPT");
 const webAiClaudeDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiClaudeDeepResearchInput, "Claude");
 const webAiGeminiDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiGeminiDeepResearchInput, "Gemini");
+const webAiChatgptCanvasExportWithBackendInput = extensionDriverSchemaWithBackend(webAiChatgptCanvasExportInput, "ChatGPT", "canvas export");
+const webAiChatgptPulseGetWithBackendInput = extensionDriverSchemaWithBackend(webAiChatgptPulseGetInput, "ChatGPT", "pulse read");
+const webAiChatgptPulseOnboardWithBackendInput = extensionDriverSchemaWithBackend(webAiChatgptPulseOnboardInput, "ChatGPT", "pulse onboarding");
+const webAiGeminiCanvasToDocsWithBackendInput = extensionDriverSchemaWithBackend(webAiCanvasToDocsInput, "Gemini", "canvas-to-docs");
+const webAiGeminiCanvasEditWithBackendInput = extensionDriverSchemaWithBackend(webAiGeminiCanvasEditInput, "Gemini", "canvas edit");
+const webAiClaudeDesignCreateProjectWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_create_project"), "Claude Design", "create-project");
+const webAiClaudeDesignGenerateWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_generate"), "Claude Design", "generate");
+const webAiClaudeDesignGetHtmlWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_get_html"), "Claude Design", "get-html");
+const webAiClaudeDesignPresentWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_present"), "Claude Design", "present");
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -6136,7 +7000,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_canvas_to_docs",
     description: "Generate a Gemini Canvas and export it to Google Docs after publish-safety checks.",
-    schema: webAiCanvasToDocsInput,
+    schema: webAiGeminiCanvasToDocsWithBackendInput,
     handler: async (args, runtime) => webAiGeminiCanvasToDocs(args, runtime)
   },
   {
@@ -6154,7 +7018,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_canvas_edit",
     description: "Open or edit a Gemini Canvas using direct canvas-body edits or observe-only AI edit controls.",
-    schema: webAiGeminiCanvasEditInput,
+    schema: webAiGeminiCanvasEditWithBackendInput,
     handler: async (args, runtime) => webAiGeminiCanvasEdit(args, runtime)
   },
   {
@@ -6178,19 +7042,19 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_canvas_export",
     description: "Export an existing ChatGPT Canvas through the canvas Download dropdown, opening the canvas panel when available, and return artifact metadata.",
-    schema: webAiChatgptCanvasExportInput,
+    schema: webAiChatgptCanvasExportWithBackendInput,
     handler: async (args, runtime) => webAiChatgptCanvasExport(args, runtime)
   },
   {
     name: "webai_chatgpt_pulse_get",
     description: "Read the ChatGPT Pulse digest state without onboarding or synthesizing content.",
-    schema: webAiChatgptPulseGetInput,
+    schema: webAiChatgptPulseGetWithBackendInput,
     handler: async (args, runtime) => webAiChatgptPulseGet(args, runtime)
   },
   {
     name: "webai_chatgpt_pulse_onboard",
     description: "Run the confirmed ChatGPT Pulse onboarding flow and select Quick news recap without connecting Gmail.",
-    schema: webAiChatgptPulseOnboardInput,
+    schema: webAiChatgptPulseOnboardWithBackendInput,
     handler: async (args, runtime) => webAiChatgptPulseOnboard(args, runtime)
   },
   {
@@ -6442,7 +7306,7 @@ const coreToolSpecs: ToolSpec[] = [
   }
 ];
 
-const chatgptCodexToolSpecOverrides: Record<string, ToolSpec> = {
+const subMcpToolSpecOverrides: Record<string, ToolSpec> = {
   webai_chatgpt_codex_submit_task: {
     name: "webai_chatgpt_codex_submit_task",
     description: "Submit a confirmed ChatGPT Codex task to the hard-allowlisted LT-0I/CN- environment and return the task id.",
@@ -6466,12 +7330,36 @@ const chatgptCodexToolSpecOverrides: Record<string, ToolSpec> = {
     description: "Read the completed ChatGPT Codex unified diff for an allowlisted LT-0I/CN- task without clicking Create PR or other publish controls.",
     schema: webAiChatgptCodexGetDiffWithBackendInput,
     handler: async (args, runtime) => webAiChatgptCodexGetDiff(args, runtime)
+  },
+  webai_claude_design_create_project: {
+    name: "webai_claude_design_create_project",
+    description: "Create a Claude Design project in the in-process claude-design sub-MCP module.",
+    schema: webAiClaudeDesignCreateProjectWithBackendInput,
+    handler: async (args, runtime) => webAiClaudeDesignCreateProject(args, runtime)
+  },
+  webai_claude_design_generate: {
+    name: "webai_claude_design_generate",
+    description: "Generate a Claude Design artifact with Sonnet or Haiku only, waiting for the real /serve/<name>.html iframe readiness signal; Opus is intentionally unsupported.",
+    schema: webAiClaudeDesignGenerateWithBackendInput,
+    handler: async (args, runtime) => webAiClaudeDesignGenerate(args, runtime)
+  },
+  webai_claude_design_get_html: {
+    name: "webai_claude_design_get_html",
+    description: "Save and fingerprint verified real Claude Design HTML viewer markup without returning raw HTML; bootstrap/loader stubs fail artifact verification.",
+    schema: webAiClaudeDesignGetHtmlWithBackendInput,
+    handler: async (args, runtime) => webAiClaudeDesignGetHtml(args, runtime)
+  },
+  webai_claude_design_present: {
+    name: "webai_claude_design_present",
+    description: "Open Claude Design Present mode and return the spawned presentation URL.",
+    schema: webAiClaudeDesignPresentWithBackendInput,
+    handler: async (args, runtime) => webAiClaudeDesignPresent(args, runtime)
   }
 };
 
 export const toolSpecs: ToolSpec[] = [
   ...coreToolSpecs,
-  ...subMcpToolSpecs.map((spec) => chatgptCodexToolSpecOverrides[spec.name] || spec)
+  ...subMcpToolSpecs.map((spec) => subMcpToolSpecOverrides[spec.name] || spec)
 ];
 
 export function listMcpTools(): McpToolDefinition[] {

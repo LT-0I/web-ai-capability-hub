@@ -3495,7 +3495,8 @@
       },
       "may_contain_sensitive_local_fields": false,
       "optional_args": [
-        "model"
+        "model",
+        "backend"
       ]
     },
     {
@@ -3590,7 +3591,8 @@
         "edit_text",
         "ai_action",
         "tab_url_contains",
-        "confirmed"
+        "confirmed",
+        "backend"
       ]
     },
     {
@@ -3804,7 +3806,8 @@
         "format",
         "download_dir",
         "profile",
-        "timeout_ms"
+        "timeout_ms",
+        "backend"
       ]
     },
     {
@@ -3833,7 +3836,8 @@
       "optional_args": [
         "tab_id",
         "wait_ready",
-        "timeout_ms"
+        "timeout_ms",
+        "backend"
       ]
     },
     {
@@ -3863,7 +3867,8 @@
       },
       "may_contain_sensitive_local_fields": false,
       "optional_args": [
-        "tab_id"
+        "tab_id",
+        "backend"
       ]
     },
     {
@@ -4060,7 +4065,8 @@
         "profile"
       ],
       "optional_args": [
-        "fidelity"
+        "fidelity",
+        "backend"
       ],
       "output_keys": {
         "always_present": [
@@ -4088,7 +4094,8 @@
       ],
       "optional_args": [
         "model",
-        "timeout_ms"
+        "timeout_ms",
+        "backend"
       ],
       "output_keys": {
         "always_present": [
@@ -4117,7 +4124,8 @@
         "profile"
       ],
       "optional_args": [
-        "download_dir"
+        "download_dir",
+        "backend"
       ],
       "output_keys": {
         "always_present": [
@@ -4153,7 +4161,10 @@
           "error_code"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:gemini:music:generate",
@@ -5206,6 +5217,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "Phase 7 Bucket 7 (same contract version consumer-contract-1.10.0): adds optional backend to webai_chatgpt_canvas_export, webai_chatgpt_pulse_get, webai_chatgpt_pulse_onboard, webai_gemini_canvas_to_docs, webai_gemini_canvas_edit, webai_claude_design_create_project, webai_claude_design_generate, webai_claude_design_get_html, and webai_claude_design_present with enum managed-cdp | extension-assisted-cdp. No new commands, error codes, package bump, contract_version bump, graceful fallback, or managed-cdp path change; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "consumer-contract-1.9.0 (2026-05-24 Chrome Extension #15 Phase 4): adds optional backend to webai_chatgpt_generate_image with enum managed-cdp | extension-assisted-cdp. No new commands or error codes; package version remains 1.0.0 and lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "consumer-contract-1.5.0 (2026-05-16): deliberate breaking rename of the prior institution-specific import surface to research:inventory:import / research_inventory_import / ResearchDbImporter.importInventorySeed; package version is now 0.7.0.",
     "consumer-contract-1.5.0 (2026-05-15): chatgpt-codex placeholder tools are now live for the hard-allowlisted LT-0I/CN- Codex environment only; submit-task requires confirmed=true; get-diff may return code diff_text and never clicks Create PR. Webai count remains 37.",

@@ -8458,6 +8458,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT canvas export routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8829,6 +8836,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Maximum wait in milliseconds when wait_ready is true; defaults to 0"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT pulse read routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -8854,6 +8868,13 @@
           "confirmed": {
             "type": "boolean",
             "description": "Required true; Pulse onboarding is a durable account-state change"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT pulse onboarding routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9174,6 +9195,13 @@
             "type": "string",
             "description": "Managed Claude Design browser profile",
             "default": "claude-9224"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude Design create-project routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9213,6 +9241,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Generation timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude Design generate routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9241,6 +9276,13 @@
             "type": "string",
             "description": "Managed Claude Design browser profile",
             "default": "claude-9224"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude Design get-html routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9264,6 +9306,13 @@
             "type": "string",
             "description": "Managed Claude Design browser profile",
             "default": "claude-9224"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude Design present routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9577,6 +9626,13 @@
           "response_timeout_ms": {
             "type": "number",
             "description": "Maximum wait for Canvas ready controls"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini canvas edit routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9622,6 +9678,13 @@
           "reuse_conversation": {
             "type": "boolean",
             "description": "ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini canvas-to-docs routing; defaults to managed-cdp"
           }
         },
         "required": [
