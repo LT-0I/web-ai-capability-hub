@@ -28,9 +28,9 @@ test("codemod gate: grep 'new ManagedBrowserLauncher' returns ZERO matches outsi
     `codemod left direct 'new ManagedBrowserLauncher()' calls outside profilePool.ts:\n${offenders.join("\n")}`);
 });
 
-test("185-superset proof: every entry in listMcpTools.185.archived.json is present byte-identical in listMcpTools.203.json", () => {
+test("185-superset proof: every entry in listMcpTools.185.archived.json is present byte-identical in listMcpTools.216.json", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.203.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.216.json"), "utf8"));
   const archivedByName = new Map<string, any>((archived.tools || []).map((t: any) => [t.name, t]));
   const currentByName = new Map<string, any>((current.tools || []).map((t: any) => [t.name, t]));
   const missing: string[] = [];
@@ -56,18 +56,18 @@ test("185-superset proof: every entry in listMcpTools.185.archived.json is prese
       changed.push({ name, reason: "byte-mismatch" });
     }
   }
-  assert.deepEqual(missing, [], `the following 185 baseline tools are MISSING from .203: ${missing.join(",")}`);
+  assert.deepEqual(missing, [], `the following 185 baseline tools are MISSING from .216: ${missing.join(",")}`);
   assert.deepEqual(changed, [],
-    `the following 185 baseline tools were CHANGED in .203 (description / inputSchema drift): ${changed.map((c) => c.name).join(",")}`);
+    `the following 185 baseline tools were CHANGED in .216 (description / inputSchema drift): ${changed.map((c) => c.name).join(",")}`);
 });
 
-test("203 - 185 = exactly 18 new tools: 8 wah_* plus 2 W1 webai selectors plus 8 literature tools", () => {
+test("216 - 185 = exactly 31 new tools: 8 wah_* plus 2 W1 webai selectors plus 21 literature tools", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.203.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.216.json"), "utf8"));
   const archivedNames = new Set<string>((archived.tools || []).map((t: any) => t.name));
   const currentNames = new Set<string>((current.tools || []).map((t: any) => t.name));
   const added = [...currentNames].filter((n) => !archivedNames.has(n));
-  assert.equal(added.length, 18, `expected exactly 18 added tools, got ${added.length}: ${added.join(",")}`);
+  assert.equal(added.length, 31, `expected exactly 31 added tools, got ${added.length}: ${added.join(",")}`);
   const expected = [
     "webai_chatgpt_select_model",
     "webai_claude_select_model",
@@ -86,14 +86,27 @@ test("203 - 185 = exactly 18 new tools: 8 wah_* plus 2 W1 webai selectors plus 8
     "webai_mdpi_download_pdf",
     "webai_pubscholar_download_pdf",
     "webai_scielo_download_pdf",
-    "webai_scoap3_download_pdf"
+    "webai_scoap3_download_pdf",
+    "webai_aip_download_pdf",
+    "webai_aps_download_pdf",
+    "webai_iop_download_pdf",
+    "webai_optica_download_pdf",
+    "webai_opticsjournal_download_pdf",
+    "webai_siam_download_pdf",
+    "webai_aiaa_download_pdf",
+    "webai_asce_download_pdf",
+    "webai_asme_download_pdf",
+    "webai_ieee_download_pdf",
+    "webai_iest_download_pdf",
+    "webai_iet_download_pdf",
+    "webai_sae_download_pdf"
   ];
   assert.deepEqual(added.sort(), expected.sort(), "added tool names must match P1 wah_* + W1 selector + Phase 8 literature tools");
 });
 
-test("snapshot counts: archived=185, current=203 (= 185 + 8 wah_* + 2 W1 selectors + 8 literature tools)", () => {
+test("snapshot counts: archived=185, current=216 (= 185 + 8 wah_* + 2 W1 selectors + 21 literature tools)", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.203.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.216.json"), "utf8"));
   assert.equal(archived.tools.length, 185, `185 archived snapshot must contain 185 tools, got ${archived.tools.length}`);
-  assert.equal(current.tools.length, 203, `current 203 snapshot must contain 203 tools, got ${current.tools.length}`);
+  assert.equal(current.tools.length, 216, `current 216 snapshot must contain 216 tools, got ${current.tools.length}`);
 });

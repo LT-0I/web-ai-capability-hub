@@ -20,6 +20,19 @@ function loadBuiltInDriversOnce(): void {
   require("../../mcp/submcp/literature/pubscholar");
   require("../../mcp/submcp/literature/scielo");
   require("../../mcp/submcp/literature/inspirehep");
+  require("../../mcp/submcp/literature/aip");
+  require("../../mcp/submcp/literature/aps");
+  require("../../mcp/submcp/literature/iop");
+  require("../../mcp/submcp/literature/optica");
+  require("../../mcp/submcp/literature/opticsjournal");
+  require("../../mcp/submcp/literature/siam");
+  require("../../mcp/submcp/literature/aiaa");
+  require("../../mcp/submcp/literature/asce");
+  require("../../mcp/submcp/literature/asme");
+  require("../../mcp/submcp/literature/ieee");
+  require("../../mcp/submcp/literature/iest");
+  require("../../mcp/submcp/literature/iet");
+  require("../../mcp/submcp/literature/sae");
 }
 
 export function registerLiteratureDriver(db_slug: string, driver: LiteratureDriver): void {

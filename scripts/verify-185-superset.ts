@@ -4,7 +4,7 @@ const path = require('node:path');
 function read(file) { return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), file), 'utf8')); }
 const oldPath = fs.existsSync(path.resolve(process.cwd(), 'tests/golden/listMcpTools.185.archived.json')) ? 'tests/golden/listMcpTools.185.archived.json' : 'tests/golden/listMcpTools.185.json';
 const oldSnap = read(oldPath);
-const newSnap = read('tests/golden/listMcpTools.203.json');
+const newSnap = read('tests/golden/listMcpTools.216.json');
 const oldMap = new Map(oldSnap.tools.map((tool) => [tool.name, tool]));
 const newMap = new Map(newSnap.tools.map((tool) => [tool.name, tool]));
 const schemaEvolvedWebaiTools = new Set([
@@ -42,7 +42,14 @@ for (const [name, tool] of oldMap) {
   else if (JSON.stringify(normalizeForCompare(name, tool)) !== JSON.stringify(normalizeForCompare(name, next))) changed.push(name);
 }
 const added = [...newMap.keys()].filter((name) => !oldMap.has(name)).sort();
-const expected = ['webai_chatgpt_select_model','webai_claude_select_model','wah_adapter_health','wah_artifact_get','wah_capability_query','wah_policy_explain','wah_task_cancel','wah_task_resume','wah_task_start','wah_task_status','webai_literature_task_status','webai_arxiv_download_pdf','webai_frontiers_download_pdf','webai_inspirehep_download_pdf','webai_mdpi_download_pdf','webai_pubscholar_download_pdf','webai_scielo_download_pdf','webai_scoap3_download_pdf'].sort();
+const expected = [
+  'webai_chatgpt_select_model','webai_claude_select_model','wah_adapter_health','wah_artifact_get','wah_capability_query','wah_policy_explain',
+  'wah_task_cancel','wah_task_resume','wah_task_start','wah_task_status',
+  'webai_literature_task_status',
+  'webai_arxiv_download_pdf','webai_frontiers_download_pdf','webai_inspirehep_download_pdf','webai_mdpi_download_pdf','webai_pubscholar_download_pdf','webai_scielo_download_pdf','webai_scoap3_download_pdf',
+  'webai_aip_download_pdf','webai_aps_download_pdf','webai_iop_download_pdf','webai_optica_download_pdf','webai_opticsjournal_download_pdf','webai_siam_download_pdf',
+  'webai_aiaa_download_pdf','webai_asce_download_pdf','webai_asme_download_pdf','webai_ieee_download_pdf','webai_iest_download_pdf','webai_iet_download_pdf','webai_sae_download_pdf'
+].sort();
 const ok = removed.length === 0 && changed.length === 0 && JSON.stringify(added) === JSON.stringify(expected);
 console.log(JSON.stringify({ ok, oldPath, old_count: oldSnap.tools.length, new_count: newSnap.tools.length, added, removed, changed }, null, 2));
 if (!ok) process.exitCode = 1;

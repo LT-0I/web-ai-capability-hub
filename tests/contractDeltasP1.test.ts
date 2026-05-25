@@ -22,8 +22,8 @@ test("P3 contract: package_version = 2.1.0, contract_version = consumer-contract
   assert.equal(CONTRACT.contract_version, "consumer-contract-2.1.0");
 });
 
-test("P1 contract: commands.length === 199", () => {
-  assert.equal(CONTRACT.commands.length, 199);
+test("P1 contract: commands.length === 212", () => {
+  assert.equal(CONTRACT.commands.length, 212);
 });
 
 test("P1 contract: error_codes.length === 40", () => {
@@ -48,9 +48,9 @@ test("P1 contract: every wah_* command row has cli_name, mcp_name, ts_export, ou
   }
 });
 
-test("P1 contract: webai_ row count is 48 after Phase 8 Bucket B", () => {
+test("P1 contract: webai_ row count is 61 after Phase 8 Bucket C", () => {
   const webai = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && c.mcp_name.startsWith("webai_"));
-  assert.equal(webai.length, 48);
+  assert.equal(webai.length, 61);
 });
 
 test("P1 contract: research_ row count is UNCHANGED at 121", () => {
@@ -81,9 +81,9 @@ test("P1/P2/extension/phase8 contract: error_codes ordering appends literature q
 
 test("P1 contract: no existing 181-row mcp_name was renamed or removed", () => {
   const wahCount = CONTRACT.commands.filter((c: any) => c.mcp_name.startsWith("wah_")).length;
-  // 199 - 8 wah_* - 2 W1 selectors - 8 Phase 8 literature tools should give 181 originals; cross-check
+  // 212 - 8 wah_* - 2 W1 selectors - 21 Phase 8 literature tools should give 181 originals; cross-check
   const w1SelectorCount = CONTRACT.commands.filter((c: any) => ["webai_chatgpt_select_model", "webai_claude_select_model"].includes(c.mcp_name)).length;
-  const phase8Count = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && /^webai_(literature_task_status|(?:arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep)_download_pdf)$/.test(c.mcp_name)).length;
+  const phase8Count = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && /^webai_(literature_task_status|(?:arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep|aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae)_download_pdf)$/.test(c.mcp_name)).length;
   assert.equal(CONTRACT.commands.length - wahCount - w1SelectorCount - phase8Count, 181);
 });
 

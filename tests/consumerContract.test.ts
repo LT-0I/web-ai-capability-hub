@@ -10,7 +10,7 @@ import { waitForArtifactPageReady } from "../src/browser/artifactClick";
 import { main } from "../src/cli";
 import { CapabilityDatabase } from "../src/capabilities/database";
 import { listMcpResources } from "../src/mcp/resources";
-import { activateGeminiVideoMode, callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptSelectModel, webAiClaudeSelectModel, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, webAiLiteratureTaskStatus, webAiArxivDownloadPdf, webAiScoap3DownloadPdf, webAiMdpiDownloadPdf, webAiFrontiersDownloadPdf, webAiPubscholarDownloadPdf, webAiScieloDownloadPdf, webAiInspirehepDownloadPdf, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport, wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet } from "../src/mcp/tools";
+import { activateGeminiVideoMode, callMcpTool, listMcpTools, webAiChatgptSendPrompt, webAiClaudeSendPrompt, webAiGeminiSendPrompt, webAiChatgptSelectModel, webAiClaudeSelectModel, webAiGeminiSelectModel, webAiChatgptUploadAndQuery, webAiClaudeUploadAndQuery, webAiGeminiUploadAndQuery, webAiChatgptGenerateFile, webAiClaudeGenerateFile, webAiChatgptGenerateImage, webAiGeminiGenerateImage, webAiGeminiCanvasToDocs, webAiGeminiGenerateVideo, webAiChatgptCanvasExport, webAiChatgptPulseGet, webAiChatgptPulseOnboard, webAiChatgptDeepResearch, webAiClaudeDeepResearch, webAiChatgptConversationManage, webAiClaudeConversationManage, webAiChatgptWorkspace, webAiClaudeWorkspace, webAiGeminiDeepResearch, webAiGeminiCanvasEdit, webAiGeminiConversationManage, webAiGeminiWorkspace, webAiClaudeDesignCreateProject, webAiClaudeDesignGenerate, webAiClaudeDesignGetHtml, webAiClaudeDesignPresent, webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus, webAiChatgptCodexSubmitTask, webAiChatgptCodexListEnvs, webAiChatgptCodexTaskStatus, webAiChatgptCodexGetDiff, webAiTaskStatus, webAiLiteratureTaskStatus, webAiArxivDownloadPdf, webAiScoap3DownloadPdf, webAiMdpiDownloadPdf, webAiFrontiersDownloadPdf, webAiPubscholarDownloadPdf, webAiScieloDownloadPdf, webAiInspirehepDownloadPdf, webAiAipDownloadPdf, webAiApsDownloadPdf, webAiIopDownloadPdf, webAiOpticaDownloadPdf, webAiOpticsjournalDownloadPdf, webAiSiamDownloadPdf, webAiAiaaDownloadPdf, webAiAsceDownloadPdf, webAiAsmeDownloadPdf, webAiIeeeDownloadPdf, webAiIestDownloadPdf, webAiIetDownloadPdf, webAiSaeDownloadPdf, researchAiaaSearch, researchAiaaFilter, researchAiaaExport, researchWosSearch, researchWosFilter, researchWosExport, researchAcmSearch, researchAcmFilter, researchAcmExport, researchIeeeSearch, researchIeeeFilter, researchIeeeExport, researchAcsSearch, researchAcsFilter, researchAcsExport, researchAsmeSearch, researchAsmeFilter, researchAsmeExport, researchRscSearch, researchRscFilter, researchRscExport, researchWileySearch, researchWileyFilter, researchWileyExport, researchAsceSearch, researchAsceFilter, researchAsceExport, researchIopSearch, researchIopFilter, researchIopExport, researchTandfSearch, researchTandfFilter, researchTandfExport, researchSaeSearch, researchSaeFilter, researchSaeExport, researchScienceDirectSearch, researchScienceDirectFilter, researchScienceDirectExport, researchApsSearch, researchApsFilter, researchApsExport, researchEmeraldSearch, researchEmeraldFilter, researchEmeraldExport, researchCambridgeSearch, researchCambridgeFilter, researchCambridgeExport, researchSpringerSearch, researchSpringerFilter, researchSpringerExport, researchNatureSearch, researchNatureFilter, researchNatureExport, researchIetSearch, researchIetFilter, researchIetExport, researchAipSearch, researchAipFilter, researchAipExport, researchMdpiSearch, researchMdpiFilter, researchMdpiExport, researchOpticaSearch, researchOpticaFilter, researchOpticaExport, researchProquestSearch, researchProquestFilter, researchProquestExport, researchFrontiersSearch, researchFrontiersFilter, researchFrontiersExport, researchArxivSearch, researchArxivFilter, researchArxivExport, researchSiamSearch, researchSiamFilter, researchSiamExport, researchDegruyterSearch, researchDegruyterFilter, researchDegruyterExport, researchWorldsciSearch, researchWorldsciFilter, researchWorldsciExport, researchRoyalSocSearch, researchRoyalSocFilter, researchRoyalSocExport, researchScoap3Search, researchScoap3Filter, researchScoap3Export, researchDblpSearch, researchDblpFilter, researchDblpExport, researchScieloSearch, researchScieloFilter, researchScieloExport, researchInspirehepSearch, researchInspirehepFilter, researchInspirehepExport, researchPubscholarSearch, researchPubscholarFilter, researchPubscholarExport, researchOpticsjournalSearch, researchOpticsjournalFilter, researchOpticsjournalExport, researchCrcSearch, researchCrcFilter, researchCrcExport, researchCellpressSearch, researchCellpressFilter, researchCellpressExport, researchIestSearch, researchIestFilter, researchIestExport, researchIncopatSearch, researchIncopatFilter, researchIncopatExport, researchWanfangSearch, researchWanfangFilter, researchWanfangExport, wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet } from "../src/mcp/tools";
 import { isRealHtmlMarkup, waitForDesignFileCompletion } from "../src/mcp/submcp/claude-design/flow";
 import { subMcpToolSpecs } from "../src/mcp/submcp";
 import { bestEffortMarkVideoTaskBootstrapFailure } from "../src/mcp/videoWorker";
@@ -221,7 +221,7 @@ test("consumer contract manifest is internally consistent", async () => {
 
   assert.equal(manifest.package_version, packageJson.version);
   assert.equal(manifest.contract_version, "consumer-contract-2.1.0");
-  assert.equal(manifest.commands.length, 199);
+  assert.equal(manifest.commands.length, 212);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 40);
 
@@ -273,7 +273,7 @@ test("consumer contract manifest is internally consistent", async () => {
 });
 
 
-const expectedWebaiToolCount = 48; // Phase 8 Bucket B: prior 41 webai tools + seven literature PDF download drivers
+const expectedWebaiToolCount = 61; // Phase 8 Bucket C: prior 48 webai tools + thirteen paywalled literature PDF download drivers
 
 const webAiCodexTools = [
   { cli: "webai:chatgpt:codex:submit-task", mcp: "webai_chatgpt_codex_submit_task", ts: "webAiChatgptCodexSubmitTask", fn: webAiChatgptCodexSubmitTask, maturity: "experimental", safety: "mutate" },
@@ -326,7 +326,20 @@ const webAiV13Tools = [
   { cli: "webai:frontiers:download-pdf", mcp: "webai_frontiers_download_pdf", ts: "webAiFrontiersDownloadPdf", fn: webAiFrontiersDownloadPdf },
   { cli: "webai:pubscholar:download-pdf", mcp: "webai_pubscholar_download_pdf", ts: "webAiPubscholarDownloadPdf", fn: webAiPubscholarDownloadPdf },
   { cli: "webai:scielo:download-pdf", mcp: "webai_scielo_download_pdf", ts: "webAiScieloDownloadPdf", fn: webAiScieloDownloadPdf },
-  { cli: "webai:inspirehep:download-pdf", mcp: "webai_inspirehep_download_pdf", ts: "webAiInspirehepDownloadPdf", fn: webAiInspirehepDownloadPdf }
+  { cli: "webai:inspirehep:download-pdf", mcp: "webai_inspirehep_download_pdf", ts: "webAiInspirehepDownloadPdf", fn: webAiInspirehepDownloadPdf },
+  { cli: "webai:aip:download-pdf", mcp: "webai_aip_download_pdf", ts: "webAiAipDownloadPdf", fn: webAiAipDownloadPdf },
+  { cli: "webai:aps:download-pdf", mcp: "webai_aps_download_pdf", ts: "webAiApsDownloadPdf", fn: webAiApsDownloadPdf },
+  { cli: "webai:iop:download-pdf", mcp: "webai_iop_download_pdf", ts: "webAiIopDownloadPdf", fn: webAiIopDownloadPdf },
+  { cli: "webai:optica:download-pdf", mcp: "webai_optica_download_pdf", ts: "webAiOpticaDownloadPdf", fn: webAiOpticaDownloadPdf },
+  { cli: "webai:opticsjournal:download-pdf", mcp: "webai_opticsjournal_download_pdf", ts: "webAiOpticsjournalDownloadPdf", fn: webAiOpticsjournalDownloadPdf },
+  { cli: "webai:siam:download-pdf", mcp: "webai_siam_download_pdf", ts: "webAiSiamDownloadPdf", fn: webAiSiamDownloadPdf },
+  { cli: "webai:aiaa:download-pdf", mcp: "webai_aiaa_download_pdf", ts: "webAiAiaaDownloadPdf", fn: webAiAiaaDownloadPdf },
+  { cli: "webai:asce:download-pdf", mcp: "webai_asce_download_pdf", ts: "webAiAsceDownloadPdf", fn: webAiAsceDownloadPdf },
+  { cli: "webai:asme:download-pdf", mcp: "webai_asme_download_pdf", ts: "webAiAsmeDownloadPdf", fn: webAiAsmeDownloadPdf },
+  { cli: "webai:ieee:download-pdf", mcp: "webai_ieee_download_pdf", ts: "webAiIeeeDownloadPdf", fn: webAiIeeeDownloadPdf },
+  { cli: "webai:iest:download-pdf", mcp: "webai_iest_download_pdf", ts: "webAiIestDownloadPdf", fn: webAiIestDownloadPdf },
+  { cli: "webai:iet:download-pdf", mcp: "webai_iet_download_pdf", ts: "webAiIetDownloadPdf", fn: webAiIetDownloadPdf },
+  { cli: "webai:sae:download-pdf", mcp: "webai_sae_download_pdf", ts: "webAiSaeDownloadPdf", fn: webAiSaeDownloadPdf }
 ];
 
 const wahFacadeTools = [
@@ -386,7 +399,7 @@ test("stream5 B1 contract optional_args round-trip for webai model/control param
     assert.ok(row, `${mcp} contract row missing`);
     for (const param of params) assert.ok(row.optional_args?.includes(param), `${mcp} optional_args missing ${param}`);
   }
-  assert.equal(expectedWebaiToolCount, 48);
+  assert.equal(expectedWebaiToolCount, 61);
 });
 
 test("consumer contract v1.7.1 webai tools round-trip through CLI, MCP, and TS exports", () => {
@@ -435,7 +448,7 @@ test("p1 wah facade tools round-trip through contract, CLI, MCP, and TS exports"
   const mcpToolNames = new Set(listMcpTools().map((tool) => tool.name));
   const byMcp = new Map(manifest.commands.map((command: any) => [command.mcp_name, command]));
 
-  assert.equal(manifest.commands.length, 199, "Phase 8 Bucket B command lock must be 199");
+  assert.equal(manifest.commands.length, 212, "Phase 8 Bucket C command lock must be 212");
   assert.ok(byMcp.has("wah_capability_query"), "wah_capability_query command row missing");
   assert.ok(byMcp.has("wah_adapter_health"), "wah_adapter_health command row missing");
   assert.ok(byMcp.has("wah_policy_explain"), "wah_policy_explain command row missing");
@@ -465,13 +478,13 @@ test("p1 wah_task_start supports dry_run input in contract and MCP schema", () =
   assert.equal((tool.inputSchema as any).properties.dry_run.type, "boolean");
 });
 
-test("stream5 plus issue14 surface: webai tool count is exactly 48", () => {
+test("stream5 plus issue14 surface: webai tool count is exactly 61", () => {
   const manifest = contract();
   const webaiCommands = manifest.commands.filter(
     (c: any) => String(c.mcp_name || "").startsWith("webai_")
   );
   assert.equal(webaiCommands.length, expectedWebaiToolCount,
-    `Expected 48 webai tools; got ${webaiCommands.length}. Phase 8 Bucket B reconciliation required.`);
+    `Expected 61 webai tools; got ${webaiCommands.length}. Phase 8 Bucket C reconciliation required.`);
   const subMcpTools = webaiCommands.filter(
     (c: any) => ["webai_claude_design_", "webai_gemini_music_", "webai_chatgpt_codex_"].some((prefix) => String(c.mcp_name || "").startsWith(prefix))
   );
@@ -492,10 +505,10 @@ test("stream5 plus issue14 surface: webai tool count is exactly 48", () => {
   const mainServerNewTools = webaiCommands.filter(
     (c: any) => !originalTools.has(c.mcp_name) && !subMcpTools.includes(c)
   );
-  assert.equal(mainServerNewTools.length, 24,
-    `Expected 24 new main-server tools; got ${mainServerNewTools.length}`);
+  assert.equal(mainServerNewTools.length, 37,
+    `Expected 37 new main-server tools; got ${mainServerNewTools.length}`);
   assert.equal(originalWebaiTools.length + mainServerNewTools.length + subMcpTools.length, expectedWebaiToolCount,
-    "Expected Stream #5 plus W1 split plus Phase 8 Bucket B to total 48 (13 pre-existing + 24 main-server + 11 sub-MCP)");
+    "Expected Stream #5 plus W1 split plus Phase 8 Buckets B/C to total 61 (13 pre-existing + 37 main-server + 11 sub-MCP)");
 });
 
 test("phase8 final error_codes count is 40", () => {
@@ -691,12 +704,12 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
     assert.equal(typeof item.fn, "function", `${item.ts} missing TS export`);
   }
   assert.equal(mcpToolNames.filter((name) => /^research_(aiaa|wos|acm|ieee|acs|asme|rsc|wiley|asce|iop|tandf|sae|sciencedirect|aps|emerald|cambridge|springer|nature|iet|aip|mdpi|optica|proquest|frontiers|arxiv|siam|degruyter|worldsci|royalsoc|scoap3|dblp|scielo|inspirehep|pubscholar|opticsjournal|crc|cellpress|iest|incopat|wanfang)_(search|filter|export)$/.test(name)).length, 120, "120 per-DB research_ tools in listMcpTools()");
-  assert.equal(expectedWebaiToolCount, 48, "expectedWebaiToolCount now 48");
+  assert.equal(expectedWebaiToolCount, 61, "expectedWebaiToolCount now 61");
   assert.equal(subMcpToolNames.length, 11, "webai sub-MCP tools still 11");
-  assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 48, "webai command rows now 48");
-  assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 48, "webai MCP tools now 48");
+  assert.equal(manifest.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 61, "webai command rows now 61");
+  assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 61, "webai MCP tools now 61");
   assert.equal(manifest.error_codes.length, 40, "error codes now 40");
-  assert.equal(manifest.commands.length, 199, "commands now 199");
+  assert.equal(manifest.commands.length, 212, "commands now 212");
   assert.equal(manifest.contract_version, "consumer-contract-2.1.0");
   assert.equal(packageJson.version, "2.1.0");
   assert.equal(manifest.package_version, "2.1.0");

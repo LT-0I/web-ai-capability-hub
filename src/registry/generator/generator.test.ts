@@ -11,12 +11,12 @@ test("generator skeleton returns no generated specs for an empty manifest set", 
 });
 
 test("golden MCP tool snapshot has the expected minimal shape", () => {
-  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.203.json");
+  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.216.json");
   const golden = JSON.parse(fs.readFileSync(goldenPath, "utf8")) as {
     tools: Array<Record<string, unknown>>;
   };
 
-  assert.equal(golden.tools.length, 203);
+  assert.equal(golden.tools.length, 216);
   for (const [index, tool] of golden.tools.entries()) {
     assert.equal(typeof tool.name, "string", `tools[${index}].name`);
     assert.equal(typeof tool.description, "string", `tools[${index}].description`);
@@ -24,9 +24,9 @@ test("golden MCP tool snapshot has the expected minimal shape", () => {
   }
 });
 
-test("MCP golden migration preserves P1 wah facade tools plus W1 selectors plus literature tools", () => {
+test("MCP golden migration preserves P1 wah facade tools plus W1 selectors plus Phase 8 literature tools", () => {
   const oldPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.185.archived.json");
-  const newPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.203.json");
+  const newPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.216.json");
   const oldGolden = JSON.parse(fs.readFileSync(oldPath, "utf8")) as { tools: Array<Record<string, unknown>> };
   const newGolden = JSON.parse(fs.readFileSync(newPath, "utf8")) as { tools: Array<Record<string, unknown>> };
   const oldByName = new Map(oldGolden.tools.map((tool) => [tool.name, tool]));
@@ -56,7 +56,20 @@ test("MCP golden migration preserves P1 wah facade tools plus W1 selectors plus 
     "webai_mdpi_download_pdf",
     "webai_pubscholar_download_pdf",
     "webai_scielo_download_pdf",
-    "webai_scoap3_download_pdf"
+    "webai_scoap3_download_pdf",
+    "webai_aip_download_pdf",
+    "webai_aps_download_pdf",
+    "webai_iop_download_pdf",
+    "webai_optica_download_pdf",
+    "webai_opticsjournal_download_pdf",
+    "webai_siam_download_pdf",
+    "webai_aiaa_download_pdf",
+    "webai_asce_download_pdf",
+    "webai_asme_download_pdf",
+    "webai_ieee_download_pdf",
+    "webai_iest_download_pdf",
+    "webai_iet_download_pdf",
+    "webai_sae_download_pdf"
   ].sort());
   assert.deepEqual(removed, []);
   assert.deepEqual(changed, []);

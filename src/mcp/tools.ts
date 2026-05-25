@@ -79,7 +79,8 @@ import {
   webAiGeminiWorkspaceInput,
   webAiTaskStatusInput,
   webAiLiteratureTaskStatusInput,
-  webAiLiteratureDownloadPdfInput
+  webAiLiteratureDownloadPdfInput,
+  webAiPaywalledLiteratureDownloadPdfInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
@@ -94,6 +95,19 @@ import { webAiFrontiersDownloadPdf } from "./submcp/literature/frontiers";
 import { webAiPubscholarDownloadPdf } from "./submcp/literature/pubscholar";
 import { webAiScieloDownloadPdf } from "./submcp/literature/scielo";
 import { webAiInspirehepDownloadPdf } from "./submcp/literature/inspirehep";
+import { webAiAipDownloadPdf } from "./submcp/literature/aip";
+import { webAiApsDownloadPdf } from "./submcp/literature/aps";
+import { webAiIopDownloadPdf } from "./submcp/literature/iop";
+import { webAiOpticaDownloadPdf } from "./submcp/literature/optica";
+import { webAiOpticsjournalDownloadPdf } from "./submcp/literature/opticsjournal";
+import { webAiSiamDownloadPdf } from "./submcp/literature/siam";
+import { webAiAiaaDownloadPdf } from "./submcp/literature/aiaa";
+import { webAiAsceDownloadPdf } from "./submcp/literature/asce";
+import { webAiAsmeDownloadPdf } from "./submcp/literature/asme";
+import { webAiIeeeDownloadPdf } from "./submcp/literature/ieee";
+import { webAiIestDownloadPdf } from "./submcp/literature/iest";
+import { webAiIetDownloadPdf } from "./submcp/literature/iet";
+import { webAiSaeDownloadPdf } from "./submcp/literature/sae";
 
 export {
   webAiArxivDownloadPdf,
@@ -102,7 +116,20 @@ export {
   webAiFrontiersDownloadPdf,
   webAiPubscholarDownloadPdf,
   webAiScieloDownloadPdf,
-  webAiInspirehepDownloadPdf
+  webAiInspirehepDownloadPdf,
+  webAiAipDownloadPdf,
+  webAiApsDownloadPdf,
+  webAiIopDownloadPdf,
+  webAiOpticaDownloadPdf,
+  webAiOpticsjournalDownloadPdf,
+  webAiSiamDownloadPdf,
+  webAiAiaaDownloadPdf,
+  webAiAsceDownloadPdf,
+  webAiAsmeDownloadPdf,
+  webAiIeeeDownloadPdf,
+  webAiIestDownloadPdf,
+  webAiIetDownloadPdf,
+  webAiSaeDownloadPdf
 };
 
 import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
@@ -7148,6 +7175,7 @@ const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
 }, webAiTaskStatusJson.required || []);
 const webAiLiteratureTaskStatusSchema = webAiLiteratureTaskStatusInput;
 const webAiLiteratureDownloadPdfSchema = webAiLiteratureDownloadPdfInput;
+const webAiPaywalledLiteratureDownloadPdfSchema = webAiPaywalledLiteratureDownloadPdfInput;
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -7394,6 +7422,84 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Resolve an INSPIREHEP record to its arXiv mirror or document PDF and download it, honoring the literature queue quota.",
     schema: webAiLiteratureDownloadPdfSchema,
     handler: async (args) => webAiInspirehepDownloadPdf(args)
+  },
+  {
+    name: "webai_aip_download_pdf",
+    description: "Download an AIP Publishing PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAipDownloadPdf(args)
+  },
+  {
+    name: "webai_aps_download_pdf",
+    description: "Download an APS Journals PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiApsDownloadPdf(args)
+  },
+  {
+    name: "webai_iop_download_pdf",
+    description: "Download an IOPscience PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiIopDownloadPdf(args)
+  },
+  {
+    name: "webai_optica_download_pdf",
+    description: "Download an Optica Publishing Group PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiOpticaDownloadPdf(args)
+  },
+  {
+    name: "webai_opticsjournal_download_pdf",
+    description: "Download an Opticsjournal PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiOpticsjournalDownloadPdf(args)
+  },
+  {
+    name: "webai_siam_download_pdf",
+    description: "Download a SIAM Publications PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiSiamDownloadPdf(args)
+  },
+  {
+    name: "webai_aiaa_download_pdf",
+    description: "Download an AIAA Aerospace Research Central PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAiaaDownloadPdf(args)
+  },
+  {
+    name: "webai_asce_download_pdf",
+    description: "Download an ASCE Library PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAsceDownloadPdf(args)
+  },
+  {
+    name: "webai_asme_download_pdf",
+    description: "Download an ASME Digital Collection PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAsmeDownloadPdf(args)
+  },
+  {
+    name: "webai_ieee_download_pdf",
+    description: "Download an IEEE Xplore PDF through an authenticated research browser profile, honoring the literature queue quota; hard paywalls may time out.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiIeeeDownloadPdf(args)
+  },
+  {
+    name: "webai_iest_download_pdf",
+    description: "Download a Journal of the IEST PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiIestDownloadPdf(args)
+  },
+  {
+    name: "webai_iet_download_pdf",
+    description: "Download an IET Digital Library PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiIetDownloadPdf(args)
+  },
+  {
+    name: "webai_sae_download_pdf",
+    description: "Download an SAE publication PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiSaeDownloadPdf(args)
   },
   {
     name: "webai_chatgpt_canvas_export",
