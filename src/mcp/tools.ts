@@ -125,7 +125,18 @@ import {
   webAiClaudeDesignGetHtml as webAiClaudeDesignGetHtmlManaged,
   webAiClaudeDesignPresent as webAiClaudeDesignPresentManaged
 } from "./submcp/claude-design/tools";
-export { webAiGeminiMusicGenerate, webAiGeminiMusicDownloadTrack, webAiGeminiMusicTaskStatus } from "./submcp/gemini-music/tools";
+import {
+  webAiGeminiMusicGenerate as webAiGeminiMusicGenerateManaged,
+  webAiGeminiMusicDownloadTrack as webAiGeminiMusicDownloadTrackManaged,
+  webAiGeminiMusicTaskStatus as webAiGeminiMusicTaskStatusManaged
+} from "./submcp/gemini-music/tools";
+import {
+  GEMINI_MUSIC_URL,
+  MUSIC_DOWNLOAD_BTN_SELECTOR,
+  MUSIC_STOP_SELECTOR,
+  GeminiMusicFormat,
+  stepDownloadTrack
+} from "./submcp/gemini-music/flow";
 export { wahCapabilityQuery, wahAdapterHealth, wahPolicyExplain, wahTaskStart, wahTaskStatus, wahTaskCancel, wahTaskResume, wahArtifactGet };
 export * from "./researchdb";
 
@@ -6708,12 +6719,205 @@ export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRunti
   if (backend === "managed-cdp") return inspectGeminiWorkspace(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_gemini_workspace", backend);
 }
-export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const database = runtime?.database || new CapabilityDatabase();
+
+const DEFAULT_GEMINI_MUSIC_PROFILE = "gemini-9225";
+
+function geminiMusicArgs(args: any): any {
+  return { ...(args || {}), profile: String(args?.profile || DEFAULT_GEMINI_MUSIC_PROFILE) };
+}
+
+function geminiMusicTargetUrlForTab(tabUrlContains?: unknown): string {
+  const value = typeof tabUrlContains === "string" ? tabUrlContains.trim() : "";
+  if (!value) return GEMINI_MUSIC_URL;
+  if (/^https?:\/\//i.test(value)) return value;
+  if (/^[A-Za-z0-9_-]{6,}$/.test(value)) return `https://gemini.google.com/app/${value}`;
+  return GEMINI_MUSIC_URL;
+}
+
+async function openGeminiMusicPollingExtensionPage(backend: any, args: any): Promise<any> {
+  const requested = args.url || args.tab_url_contains;
+  const target = geminiMusicTargetUrlForTab(requested);
+  const timeoutMs = Math.min(args.timeout_ms || 60000, 30000);
+  const page = requested
+    ? await backend.newTab({ url: target, profile: args.profile, background: false })
+    : await backend.claimTab({ url: GEMINI_MUSIC_URL, profile: args.profile });
+  await page.navigate(target, { waitUntil: "domcontentloaded", timeoutMs });
+  return page;
+}
+
+async function extensionSelectorPresent(page: any, selector: string): Promise<boolean> {
+  try {
+    if (typeof page.queryElements === "function") {
+      const elements = await page.queryElements(selector, { limit: 1 });
+      return Array.isArray(elements) && elements.length > 0;
+    }
+    if (typeof page.evaluateReadOnly === "function") {
+      return Boolean(await page.evaluateReadOnly(`(() => {
+        try { return document.querySelectorAll(arg.selector).length > 0; }
+        catch (_) { return false; }
+      })()`, { selector }));
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+function geminiMusicDownloadErrorOutput(args: any, error: any): Record<string, unknown> {
+  const errorCode = webAiExtensionErrorCode(error);
+  return safeOutput({
+    ok: false,
+    savedPath: "",
+    sha256: "",
+    byteSize: 0,
+    format: (args?.format as GeminiMusicFormat | undefined) || "mp3",
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode)
+  });
+}
+
+function geminiMusicStatusErrorOutput(error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = webAiExtensionErrorCode(error);
+  return safeOutput({
+    ok: false,
+    status: "error",
+    download_ready: false,
+    conversation_url: "",
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+async function webAiGeminiMusicDownloadTrackWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiMusicArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openGeminiMusicPollingExtensionPage(backend, effective);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: geminiMusicTargetUrlForTab(effective.tab_url_contains), text: "" }));
+    if (loginRequiredForService("gemini", snapshot.url || "")) {
+      return safeOutput({
+        ok: false,
+        savedPath: "",
+        sha256: "",
+        byteSize: 0,
+        format: (effective.format as GeminiMusicFormat | undefined) || "mp3",
+        errorCode: ConsumerErrorCodes.LOGIN_REQUIRED,
+        error_code: ConsumerErrorCodes.LOGIN_REQUIRED,
+        message: "Gemini login is required before music download"
+      });
+    }
+    const tabUrlContains = effective.tab_url_contains || snapshot.url || GEMINI_MUSIC_URL;
+    const result = await stepDownloadTrack({ url: () => snapshot.url || tabUrlContains }, {
+      profile: effective.profile,
+      tabUrlContains,
+      downloadDir: effective.download_dir as string | undefined,
+      format: (effective.format as GeminiMusicFormat | undefined) || "mp3",
+      artifactClick: (runtime as any).artifactClick
+    });
+    return safeOutput(result);
+  } catch (error: any) {
+    return geminiMusicDownloadErrorOutput(effective, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function webAiGeminiMusicTaskStatusWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = geminiMusicArgs(args);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openGeminiMusicPollingExtensionPage(backend, effective);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: geminiMusicTargetUrlForTab(effective.tab_url_contains), text: "" }));
+    const conversation_url = snapshot.url || effective.tab_url_contains || GEMINI_MUSIC_URL;
+    if (loginRequiredForService("gemini", conversation_url)) {
+      return geminiMusicStatusErrorOutput(new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before music task status"), { conversation_url });
+    }
+    await page.waitForSelector?.(`${MUSIC_DOWNLOAD_BTN_SELECTOR}, ${MUSIC_STOP_SELECTOR}`, {
+      state: "visible",
+      timeoutMs: Math.min(effective.timeout_ms || 60000, 15000)
+    }).catch?.(() => undefined);
+    const downloadReady = await extensionSelectorPresent(page, MUSIC_DOWNLOAD_BTN_SELECTOR);
+    const generating = await extensionSelectorPresent(page, MUSIC_STOP_SELECTOR);
+    if (downloadReady) return safeOutput({ status: "complete", download_ready: true, conversation_url, errorCode: null });
+    if (generating) return safeOutput({ status: "generating", download_ready: false, conversation_url, errorCode: null });
+    return safeOutput({ status: "error", download_ready: false, conversation_url, errorCode: null });
+  } catch (error: any) {
+    return geminiMusicStatusErrorOutput(error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+export async function webAiGeminiMusicGenerate(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  return webAiGeminiMusicGenerateManaged(args, runtimeOrDefault(runtime));
+}
+
+export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_music_download_track", backend);
+}
+
+export async function webAiGeminiMusicTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiGeminiMusicTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiGeminiMusicTaskStatusManaged(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_music_task_status", backend);
+}
+
+function webAiTaskStatusFromDatabase(args: any, database: CapabilityDatabase): Record<string, unknown> {
   const record = database.getWebAiTask(args.task_id);
   if (!record) return safeOutput({ status: "failed", errorCode: ConsumerErrorCodes.INVALID_ARGS });
   const current = maybeMarkStaleVideoTask(database, record);
   return safeOutput({ status: current.status, progress_label: current.progress_label, result: current.result, errorCode: current.errorCode });
+}
+
+function webAiTaskStatusRecordResult(record?: WebAiTaskRecord): Record<string, unknown> {
+  return isRecord(record?.result) ? record!.result as Record<string, unknown> : {};
+}
+
+async function webAiTaskStatusWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const database = runtime.database || new CapabilityDatabase();
+  const taskId = String(args?.task_id || "");
+  const record = database.getWebAiTask(taskId);
+  const result = webAiTaskStatusRecordResult(record);
+  const tabUrlContains = args?.tab_url_contains || result.conversation_url || result.chat_url || result.url;
+  if (taskId.startsWith("gemini_music_") || /gemini\.google\.com\/app/i.test(String(tabUrlContains || ""))) {
+    const musicStatus = await webAiGeminiMusicTaskStatusWithExtensionBackend({
+      ...args,
+      profile: args?.profile || record?.profile || DEFAULT_GEMINI_MUSIC_PROFILE,
+      tab_url_contains: tabUrlContains,
+      backend: "extension-assisted-cdp"
+    }, runtime);
+    return safeOutput({ task_id: taskId, ...musicStatus });
+  }
+  return webAiTaskStatusFromDatabase(args, database);
+}
+
+export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return webAiTaskStatusWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return webAiTaskStatusFromDatabase(args, runtime?.database || new CapabilityDatabase());
+  return webAiBackendInvalidOutput("webai_task_status", backend);
 }
 
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
@@ -6840,6 +7044,15 @@ const webAiClaudeDesignCreateProjectWithBackendInput = extensionDriverSchemaWith
 const webAiClaudeDesignGenerateWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_generate"), "Claude Design", "generate");
 const webAiClaudeDesignGetHtmlWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_get_html"), "Claude Design", "get-html");
 const webAiClaudeDesignPresentWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_claude_design_present"), "Claude Design", "present");
+const webAiGeminiMusicDownloadTrackWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_gemini_music_download_track"), "Gemini Music", "download-track");
+const webAiGeminiMusicTaskStatusWithBackendInput = extensionDriverSchemaWithBackend(subMcpSchema("webai_gemini_music_task_status"), "Gemini Music", "task-status");
+const webAiTaskStatusJson = webAiTaskStatusInput.toJsonSchema();
+const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
+  ...(webAiTaskStatusJson.properties || {}),
+  profile: scalar.string("Optional browser profile for extension-polled task status"),
+  tab_url_contains: scalar.string("Optional conversation URL fragment for extension-polled task status"),
+  backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], "Browser backend for task-status routing; defaults to managed-cdp")
+}, webAiTaskStatusJson.required || []);
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -7036,7 +7249,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_task_status",
     description: "Return status/result metadata for an async webai task.",
-    schema: webAiTaskStatusInput,
+    schema: webAiTaskStatusWithBackendInput,
     handler: async (args, runtime) => webAiTaskStatus(args, runtime)
   },
   {
@@ -7307,6 +7520,18 @@ const coreToolSpecs: ToolSpec[] = [
 ];
 
 const subMcpToolSpecOverrides: Record<string, ToolSpec> = {
+  webai_gemini_music_download_track: {
+    name: "webai_gemini_music_download_track",
+    description: "Download a Gemini Music track via the required two-stage CDP artifact-click menu (MP3 or video).",
+    schema: webAiGeminiMusicDownloadTrackWithBackendInput,
+    handler: async (args, runtime) => webAiGeminiMusicDownloadTrack(args, runtime)
+  },
+  webai_gemini_music_task_status: {
+    name: "webai_gemini_music_task_status",
+    description: "Inspect Gemini Music browser state for download-ready vs still-generating status.",
+    schema: webAiGeminiMusicTaskStatusWithBackendInput,
+    handler: async (args, runtime) => webAiGeminiMusicTaskStatus(args, runtime)
+  },
   webai_chatgpt_codex_submit_task: {
     name: "webai_chatgpt_codex_submit_task",
     description: "Submit a confirmed ChatGPT Codex task to the hard-allowlisted LT-0I/CN- environment and return the task id.",

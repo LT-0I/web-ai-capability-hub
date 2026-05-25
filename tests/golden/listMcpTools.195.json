@@ -9917,6 +9917,13 @@
             ],
             "description": "Music artifact format",
             "default": "mp3"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini Music download-track routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9983,6 +9990,13 @@
             "type": "string",
             "description": "Managed Gemini browser profile",
             "default": "gemini-9225"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini Music task-status routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -10193,6 +10207,21 @@
           "task_id": {
             "type": "string",
             "description": "Task id returned by an async webai tool"
+          },
+          "profile": {
+            "type": "string",
+            "description": "Optional browser profile for extension-polled task status"
+          },
+          "tab_url_contains": {
+            "type": "string",
+            "description": "Optional conversation URL fragment for extension-polled task status"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for task-status routing; defaults to managed-cdp"
           }
         },
         "required": [

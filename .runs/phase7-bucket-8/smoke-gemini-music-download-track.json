@@ -1,0 +1,35 @@
+{
+  "argv": [
+    "node",
+    "dist/src/cli.js",
+    "webai:gemini:music:download-track",
+    "--profile",
+    "gemini-9225",
+    "--tab-url-contains",
+    "https://gemini.google.com/app/119b2a177a8017ef",
+    "--download-dir",
+    "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/phase7-bucket-8/downloads",
+    "--format",
+    "mp3",
+    "--backend",
+    "extension-assisted-cdp",
+    "--timeout-ms",
+    "120000",
+    "--json"
+  ],
+  "task_id": "gemini_music_1779683236609",
+  "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef",
+  "profile": "gemini-9225",
+  "started_at": "2026-05-25T13:40:12Z",
+  "exit_code": 0,
+  "stdout": "{\n  \"savedPath\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/phase7-bucket-8/downloads/Coffee_and_Wildflowers.mp3\",\n  \"sha256\": \"bdc86976edd5ef2b2082491672403e44c09d54ffd2ff562abe48bb78950503c7\",\n  \"byteSize\": 724547,\n  \"format\": \"mp3\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "stdout_parsed": {
+    "savedPath": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/phase7-bucket-8/downloads/Coffee_and_Wildflowers.mp3",
+    "sha256": "bdc86976edd5ef2b2082491672403e44c09d54ffd2ff562abe48bb78950503c7",
+    "byteSize": 724547,
+    "format": "mp3"
+  },
+  "elapsed_ms": 6904
+}

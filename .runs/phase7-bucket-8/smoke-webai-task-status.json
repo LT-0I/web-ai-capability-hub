@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "node",
+    "dist/src/cli.js",
+    "webai:task-status",
+    "--task-id",
+    "gemini_music_1779683236609",
+    "--profile",
+    "gemini-9225",
+    "--tab-url-contains",
+    "https://gemini.google.com/app/119b2a177a8017ef",
+    "--backend",
+    "extension-assisted-cdp",
+    "--timeout-ms",
+    "60000",
+    "--json"
+  ],
+  "task_id": "gemini_music_1779683236609",
+  "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef",
+  "profile": "gemini-9225",
+  "started_at": "2026-05-25T13:40:06Z",
+  "exit_code": 0,
+  "stdout": "{\n  \"task_id\": \"gemini_music_1779683236609\",\n  \"status\": \"complete\",\n  \"download_ready\": true,\n  \"conversation_url\": \"https://gemini.google.com/app/119b2a177a8017ef\",\n  \"errorCode\": null\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "stdout_parsed": {
+    "task_id": "gemini_music_1779683236609",
+    "status": "complete",
+    "download_ready": true,
+    "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef",
+    "errorCode": null
+  },
+  "elapsed_ms": 3293
+}
