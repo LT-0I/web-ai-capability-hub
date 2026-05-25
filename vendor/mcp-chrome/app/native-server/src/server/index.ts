@@ -22,7 +22,7 @@ import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { randomUUID } from 'node:crypto';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
-import { getMcpServer } from '../mcp/mcp-server';
+import { createMcpServer } from '../mcp/mcp-server';
 
 // ============================================================
 // Types
@@ -162,7 +162,7 @@ export class Server {
           this.transportsMap.delete(transport.sessionId);
         });
 
-        const server = getMcpServer();
+        const server = createMcpServer();
         await server.connect(transport);
 
         reply.raw.write(':\n\n');
@@ -216,7 +216,7 @@ export class Server {
             this.transportsMap.delete(transport.sessionId);
           }
         };
-        await getMcpServer().connect(transport);
+        await createMcpServer().connect(transport);
       } else {
         reply.code(HTTP_STATUS.BAD_REQUEST).send({ error: ERROR_MESSAGES.INVALID_MCP_REQUEST });
         return;

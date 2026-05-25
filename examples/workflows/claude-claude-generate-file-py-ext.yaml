@@ -15,7 +15,7 @@ steps:
       - --backend
       - extension-assisted-cdp
       - --prompt
-      - Write a Python script that prints 'hello claude probe'. Provide as a downloadable .py file.
+      - Write a Python script that prints 'hello claude probe' and includes one short comment. Provide as a downloadable .py file.
       - --expected-extension
       - py
       - --download-dir

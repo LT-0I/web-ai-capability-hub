@@ -592,6 +592,7 @@ const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
   'button[aria-label="Open mode picker"][disabled]'
 ];
 const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
+const GEMINI_MIN_NO_RESPONSE_WAIT_MS = 8000;
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -1151,6 +1152,12 @@ async function waitForGeminiStableCompletion(page: any, stopSelector: string, se
   return waitForGeminiCanonicalTextStable(page, Math.max(1, timeoutMs - (Date.now() - started)));
 }
 
+async function waitForGeminiNoResponseFloor(started: number, timeoutMs: number): Promise<void> {
+  const floorMs = Math.min(timeoutMs, GEMINI_MIN_NO_RESPONSE_WAIT_MS);
+  const remaining = floorMs - (Date.now() - started);
+  if (remaining > 0) await sleepMs(remaining);
+}
+
 async function waitForPromptCompletion(service: WebAiService, page: any, sentAt: number, assistantCountBefore: number, timeoutMs: number): Promise<{ completion_detected: boolean; wait_ms: number }> {
   void sentAt;
   const started = Date.now();
@@ -1162,6 +1169,14 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
 
   if (service === "gemini") {
     if (!await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, phaseATimeout)) {
+      await waitForGeminiNoResponseFloor(started, timeoutMs);
+      const retryTimeout = Math.min(5000, Math.max(0, timeoutMs - elapsed()));
+      if (retryTimeout > 0 && await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, retryTimeout)) {
+        const remaining = Math.max(1, timeoutMs - elapsed());
+        if (await waitForGeminiStableCompletion(page, stopSelector, sendSelector, GEMINI_REGENERATE_BUTTON_SELECTOR, remaining)) {
+          return { completion_detected: true, wait_ms: elapsed() };
+        }
+      }
       return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
     }
 
@@ -1172,6 +1187,11 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
     // + no Stop + canonical-reader text stability is the reliable completion
     // signal and also survives Gemini SPA execution-context churn.
     if (await waitForGeminiStableCompletion(page, stopSelector, sendSelector, GEMINI_REGENERATE_BUTTON_SELECTOR, remaining)) {
+      return { completion_detected: true, wait_ms: elapsed() };
+    }
+    await waitForGeminiNoResponseFloor(started, timeoutMs);
+    const retryTimeout = Math.max(0, timeoutMs - elapsed());
+    if (retryTimeout > 0 && await waitForGeminiStableCompletion(page, stopSelector, sendSelector, GEMINI_REGENERATE_BUTTON_SELECTOR, retryTimeout)) {
       return { completion_detected: true, wait_ms: elapsed() };
     }
     return { completion_detected: false, wait_ms: Math.min(elapsed(), timeoutMs) };
@@ -1287,6 +1307,7 @@ async function pendingStateVisible(service: WebAiService, page: any, assistantCo
 
 async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, box: any, prompt: string, assistantCountBefore: number, forceEnterToSend = false): Promise<void> {
   const sendSelector = sendButtonSelector(service);
+  const started = Date.now();
   const attemptSend = async () => {
     if (forceEnterToSend) { await page.keyboard?.press("Enter"); return; }
     const sendButton = page.locator?.(sendSelector).first?.();
@@ -1299,6 +1320,15 @@ async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, b
     if (await pendingStateVisible(service, page, assistantCountBefore)) return;
     const stillPresent = await promptStillPresent(box, prompt);
     if (stillPresent === false || stillPresent === undefined) return;
+  }
+  if (service === "gemini") {
+    const deadline = started + GEMINI_MIN_NO_RESPONSE_WAIT_MS;
+    while (Date.now() < deadline) {
+      if (await pendingStateVisible(service, page, assistantCountBefore)) return;
+      const stillPresent = await promptStillPresent(box, prompt);
+      if (stillPresent === false || stillPresent === undefined) return;
+      await sleepMs(Math.min(250, Math.max(1, deadline - Date.now())));
+    }
   }
   throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Prompt did not submit: composer still contained prompt text after retry", { selector: sendSelector });
 }

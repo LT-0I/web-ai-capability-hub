@@ -17,7 +17,7 @@ steps:
       - --style
       - Concise
       - --prompt
-      - Tell me one sentence about machine learning.
+      - 用一句话告诉我什么是机器学习。
       - --response-timeout-ms
       - "90000"
       - --json
@@ -41,7 +41,7 @@ steps:
       - --style
       - Explanatory
       - --prompt
-      - Tell me one sentence about machine learning.
+      - 请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。
       - --response-timeout-ms
       - "90000"
       - --json

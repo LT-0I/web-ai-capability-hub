@@ -3,8 +3,31 @@ id: gemini-music-download-track-ext
 target: gemini
 profile: gemini-9225
 mode: automatic
-description: Download a finished Gemini Music track as MP3
+description: Generate a Gemini Music track, then download that finished track as MP3
 steps:
+  - id: ensure_track
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:music:generate
+      - --profile
+      - gemini-9225
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - "A short calm acoustic guitar loop, instrumental, 30 seconds"
+      - --confirmed
+      - --download-dir
+      - /tmp/explore-2026-05-25/gemini
+      - --timeout-ms
+      - "300000"
+      - --json
+    timeoutMs: 360000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: conversation_url
+          nonempty: true
   - id: invoke-cli
     command:
       - node
@@ -13,7 +36,7 @@ steps:
       - --profile
       - gemini-9225
       - --tab-url-contains
-      - gemini.google.com/app
+      - "{{steps.ensure_track.conversation_url}}"
       - --format
       - mp3
       - --download-dir
