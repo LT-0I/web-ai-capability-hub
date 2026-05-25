@@ -4897,6 +4897,239 @@ async function manageGeminiConversationWithExtensionBackend(args: any, runtime: 
   return manageConversationWithExtensionBackend("gemini", args, runtime);
 }
 
+function deepResearchSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} deep-research routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
+function deepResearchErrorOutput(service: WebAiExtensionReadService, args: any, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = extensionReadErrorCode(service, error);
+  return safeOutput({
+    ok: false,
+    service,
+    status: "failed",
+    chat_url: targetUrlFor(service, args || {}),
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+function deepResearchLabel(service: WebAiExtensionReadService): string {
+  if (service === "chatgpt") return "ChatGPT Deep research";
+  if (service === "claude") return "Claude Deep Research";
+  return "Gemini Deep research";
+}
+
+function deepResearchPromptSelector(service: WebAiExtensionReadService): string {
+  if (service === "claude") return CLAUDE_PROMPT_SELECTOR;
+  if (service === "gemini") return GEMINI_IMAGE_PROMPT_SELECTOR;
+  return serviceDefaults.chatgpt.promptSelector;
+}
+
+type ExtensionDeepResearchSubmitState = {
+  url: string;
+  promptPresent: boolean;
+  stopVisible: boolean;
+  assistantCount: number;
+};
+
+async function extensionDeepResearchSubmitState(page: any, service: WebAiExtensionReadService, prompt: string): Promise<ExtensionDeepResearchSubmitState> {
+  return await page.evaluateReadOnly(`((arg) => {
+    const qsa = (selector) => {
+      try { return Array.from(document.querySelectorAll(selector)); } catch (_) { return []; }
+    };
+    const visible = (el) => {
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return style && style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
+    };
+    const compact = (value) => String(value || '').replace(/\\s+/g, ' ').trim();
+    const promptNeedle = compact(arg.prompt);
+    const promptPresent = qsa(arg.promptSelector).some((node) => {
+      const anyNode = node;
+      const text = compact(anyNode.value || node.textContent || node.innerText || node.getAttribute('aria-label') || '');
+      return promptNeedle && text.includes(promptNeedle);
+    });
+    return {
+      url: location.href,
+      promptPresent,
+      stopVisible: qsa(arg.stopSelector).some(visible),
+      assistantCount: qsa(arg.assistantSelector).length
+    };
+  })(arg)`, {
+    prompt,
+    promptSelector: deepResearchPromptSelector(service),
+    stopSelector: stopButtonSelector(service),
+    assistantSelector: assistantMessageSelector(service)
+  }) as ExtensionDeepResearchSubmitState;
+}
+
+function deepResearchUrlIndicatesSubmitted(service: WebAiExtensionReadService, beforeUrl: string, currentUrl: string): boolean {
+  if (!currentUrl || currentUrl === beforeUrl) return false;
+  if (service === "chatgpt") return /\/c\/[^/?#]+/.test(currentUrl);
+  if (service === "claude") return /\/(?:chat|c)\/[^/?#]+/.test(currentUrl);
+  return /\/app\/[^/?#]+/.test(currentUrl);
+}
+
+async function waitForDeepResearchExtensionSubmit(page: any, service: WebAiExtensionReadService, prompt: string, before: ExtensionDeepResearchSubmitState, timeoutMs: number): Promise<{ chat_url: string; wait_ms: number }> {
+  const started = Date.now();
+  const deadline = started + Math.max(1, timeoutMs);
+  let latest = before;
+  while (Date.now() <= deadline) {
+    latest = await extensionDeepResearchSubmitState(page, service, prompt).catch(() => latest);
+    const urlSubmitted = deepResearchUrlIndicatesSubmitted(service, before.url, latest.url);
+    const promptCleared = before.promptPresent === true && latest.promptPresent === false;
+    const generationStarted = latest.stopVisible || latest.assistantCount > before.assistantCount;
+    if (urlSubmitted || promptCleared || generationStarted) {
+      return { chat_url: latest.url || before.url || serviceDefaults[service].url, wait_ms: Date.now() - started };
+    }
+    await extensionSleep(500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, `${deepResearchLabel(service)} prompt did not submit before timeout`, {
+    before_url: before.url,
+    last_url: latest.url,
+    prompt_present: latest.promptPresent,
+    assistant_count_before: before.assistantCount,
+    assistant_count_after: latest.assistantCount
+  });
+}
+
+async function fillAndSubmitDeepResearchWithExtension(page: any, service: WebAiExtensionReadService, args: any): Promise<{ chat_url: string; wait_ms: number }> {
+  const selector = deepResearchPromptSelector(service);
+  const timeoutMs = Math.min(args.timeout_ms || 60000, 15000);
+  await waitForExtensionSelector(page, selector, timeoutMs, `${deepResearchLabel(service)} prompt composer was not found`);
+  await page.fill({ selector }, args.prompt, { timeoutMs });
+  await extensionSleep(250);
+  const before = await extensionDeepResearchSubmitState(page, service, args.prompt).catch(async () => {
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor(service, args), text: "" }));
+    return { url: snapshot.url || targetUrlFor(service, args), promptPresent: true, stopVisible: false, assistantCount: 0 };
+  });
+  const sendSelector = sendButtonSelector(service);
+  await waitForExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
+  await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
+  await clickExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
+  return waitForDeepResearchExtensionSubmit(page, service, args.prompt, before, responseTimeoutMs(args));
+}
+
+function persistDeepResearchTask(database: CapabilityDatabase, service: WebAiExtensionReadService, args: any, taskId: string, lease: string, chatUrl: string): void {
+  const record: WebAiTaskRecord = {
+    task_id: taskId,
+    status: "queued",
+    profile: args.profile,
+    lease_id: lease,
+    started_at: new Date().toISOString(),
+    progress_label: `queued ${deepResearchLabel(service)} task`,
+    timeout_ms: args.timeout_ms || 1800000,
+    result: { chat_url: chatUrl, backend: "extension-assisted-cdp" }
+  };
+  database.upsertWebAiTask(record);
+}
+
+async function startChatgptDeepResearchWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = args || {};
+  assertPromptAllowed(effective.prompt);
+  const lease = acquireProfileLease(effective.profile);
+  const task_id = safeTaskId();
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptExtensionPage(backend, effective);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("chatgpt", effective), text: "" }));
+    if (loginRequiredForService("chatgpt", snapshot.url || "")) {
+      return deepResearchErrorOutput("chatgpt", effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "ChatGPT login is required before Deep research"), { task_id, chat_url: snapshot.url || targetUrlFor("chatgpt", effective) });
+    }
+    await waitForExtensionSelector(page, serviceDefaults.chatgpt.promptSelector, Math.min(effective.timeout_ms || 60000, 15000), "ChatGPT prompt composer was not found");
+    await selectChatgptModelWithExtension(page, "Thinking");
+    await clickExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
+    await clickExtensionSelector(page, CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Deep research menuitemradio was not found");
+    await waitForExtensionSelector(page, CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR, 8000, "ChatGPT Deep research mode did not expose its active pill");
+    const submitted = await fillAndSubmitDeepResearchWithExtension(page, "chatgpt", effective);
+    persistDeepResearchTask(runtime.database, "chatgpt", effective, task_id, lease, submitted.chat_url);
+    return safeOutput({ task_id, status: "queued", chat_url: submitted.chat_url, wait_ms: submitted.wait_ms, errorCode: null });
+  } catch (error: any) {
+    return deepResearchErrorOutput("chatgpt", effective, error, { task_id });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function startClaudeDeepResearchWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = claudeToolArgs(args || {});
+  assertPromptAllowed(effective.prompt);
+  const lease = acquireProfileLease(effective.profile);
+  const task_id = safeTaskId();
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeExtensionPage(backend, effective);
+    const login = await assertClaudeExtensionLoggedIn(page, Date.now());
+    if (login) {
+      return deepResearchErrorOutput("claude", effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude login is required before Deep Research"), { task_id, chat_url: login.chat_url || targetUrlFor("claude", effective) });
+    }
+    if (effective.model) await selectClaudeModelWithExtension(page, effective.model);
+    await clickExtensionSelector(page, CLAUDE_PLUS_MENU_SELECTOR, 5000, "Claude composer plus menu button was not found");
+    await page.waitForSelector(CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await extensionClick(page, CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000);
+    const submitted = await fillAndSubmitDeepResearchWithExtension(page, "claude", effective);
+    persistDeepResearchTask(runtime.database, "claude", effective, task_id, lease, submitted.chat_url);
+    return safeOutput({ task_id, status: "queued", chat_url: submitted.chat_url, wait_ms: submitted.wait_ms, errorCode: null });
+  } catch (error: any) {
+    return deepResearchErrorOutput("claude", effective, error, { task_id });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function startGeminiDeepResearchWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  const effective = geminiToolArgs(args || {});
+  assertPromptAllowed(effective.prompt);
+  if (effective.confirmed !== true) {
+    return sensitiveContentGuard("Submitting Gemini Deep research requires explicit human confirmation: pass confirmed: true / --confirmed true.", { action: "deep_research" });
+  }
+  const lease = acquireProfileLease(effective.profile);
+  const task_id = safeTaskId();
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+    if (loginRequiredForService("gemini", snapshot.url || "")) {
+      return deepResearchErrorOutput("gemini", effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Deep research"), { task_id, chat_url: snapshot.url || targetUrlFor("gemini", effective) });
+    }
+    await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
+    await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
+    await clickExtensionSelector(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "Gemini Deep research menuitemcheckbox was not found");
+    const submitted = await fillAndSubmitDeepResearchWithExtension(page, "gemini", effective);
+    persistDeepResearchTask(runtime.database, "gemini", effective, task_id, lease, submitted.chat_url);
+    return safeOutput({ task_id, status: "queued", chat_url: submitted.chat_url, wait_ms: submitted.wait_ms, errorCode: null });
+  } catch (error: any) {
+    return deepResearchErrorOutput("gemini", effective, error, { task_id });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
 function webAiBackendInvalidOutput(tool: string, backend: any): Record<string, unknown> {
   return safeOutput({
     ok: false,
@@ -5208,8 +5441,18 @@ export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolR
 export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return exportChatgptCanvas(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return getChatgptPulse(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return onboardChatgptPulse(args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startChatgptDeepResearch(args, runtimeOrDefault(runtime)); }
-export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startClaudeDeepResearch(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return startChatgptDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return startChatgptDeepResearch(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_deep_research", backend);
+}
+export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return startClaudeDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return startClaudeDeepResearch(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_deep_research", backend);
+}
 export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "extension-assisted-cdp") return manageChatgptConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -5234,7 +5477,12 @@ export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRunti
   if (backend === "managed-cdp") return inspectClaudeWorkspace(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_workspace", backend);
 }
-export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiDeepResearch(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return startGeminiDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return startGeminiDeepResearch(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_deep_research", backend);
+}
 export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return editGeminiCanvas(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
@@ -5326,6 +5574,9 @@ const webAiGeminiConversationManageWithBackendInput = conversationManageSchemaWi
 const webAiChatgptWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiChatgptWorkspaceInput, "ChatGPT", "workspace");
 const webAiClaudeWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiClaudeWorkspaceInput, "Claude", "workspace");
 const webAiGeminiWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiGeminiWorkspaceInput, "Gemini", "workspace");
+const webAiChatgptDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiChatgptDeepResearchInput, "ChatGPT");
+const webAiClaudeDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiClaudeDeepResearchInput, "Claude");
+const webAiGeminiDeepResearchWithBackendInput = deepResearchSchemaWithBackend(webAiGeminiDeepResearchInput, "Gemini");
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -5476,7 +5727,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_deep_research",
     description: "Start a Gemini Deep research task and return a task id immediately; poll with webai_task_status.",
-    schema: webAiGeminiDeepResearchInput,
+    schema: webAiGeminiDeepResearchWithBackendInput,
     handler: async (args, runtime) => webAiGeminiDeepResearch(args, runtime)
   },
   {
@@ -5524,13 +5775,13 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_deep_research",
     description: "Start a ChatGPT Deep research task and return a task id immediately; poll with webai_task_status.",
-    schema: webAiChatgptDeepResearchInput,
+    schema: webAiChatgptDeepResearchWithBackendInput,
     handler: async (args, runtime) => webAiChatgptDeepResearch(args, runtime)
   },
   {
     name: "webai_claude_deep_research",
     description: "Start a Claude Deep Research task and return a task id immediately; poll with webai_task_status.",
-    schema: webAiClaudeDeepResearchInput,
+    schema: webAiClaudeDeepResearchWithBackendInput,
     handler: async (args, runtime) => webAiClaudeDeepResearch(args, runtime)
   },
   {

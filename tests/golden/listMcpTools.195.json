@@ -8641,6 +8641,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT deep-research routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9101,6 +9108,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude deep-research routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9662,6 +9676,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini deep-research routing; defaults to managed-cdp"
           }
         },
         "required": [
