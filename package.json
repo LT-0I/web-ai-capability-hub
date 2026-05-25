@@ -1,6 +1,6 @@
 {
   "name": "web-ai-research-automation-hub",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Local-first managed CDP browser capability database and workflow hub for AI agents, web AI services, and authorized research databases.",
   "type": "commonjs",
   "main": "dist/src/index.js",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run generate:tools && tsc -p tsconfig.json && node scripts/copy-runtime-configs.ts",
-    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js dist/tests/post-refactor-w1/*.test.js dist/tests/phase3-extension-adapter/*.test.js dist/tests/phase4-chatgpt-mvp/*.test.js dist/tests/phase5-hardening/*.test.js dist/tests/phase6-multi-service/*.test.js dist/tests/phase6-claude-lane/*.test.js dist/tests/phase7-bucket-1/*.test.js",
+    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js dist/tests/post-refactor-w1/*.test.js dist/tests/phase3-extension-adapter/*.test.js dist/tests/phase4-chatgpt-mvp/*.test.js dist/tests/phase5-hardening/*.test.js dist/tests/phase6-multi-service/*.test.js dist/tests/phase6-claude-lane/*.test.js dist/tests/phase7-bucket-1/*.test.js dist/tests/phase8-bucket-a/*.test.js",
     "mcp": "node dist/src/cli.js mcp",
     "browser:start": "node dist/src/cli.js browser:start",
     "browser:open": "node dist/src/cli.js browser:open",
@@ -57,16 +57,14 @@
     "pino": "^9.4.0",
     "playwright": "^1.48.2",
     "yaml": "^2.5.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "better-sqlite3": "^12.10.0"
   },
   "devDependencies": {
+    "@types/jscodeshift": "^0.11.11",
     "@types/node": "^22.7.4",
-    "typescript": "^5.6.3",
     "jscodeshift": "^17.3.0",
-    "@types/jscodeshift": "^0.11.11"
-  },
-  "optionalDependencies": {
-    "better-sqlite3": "^11.9.1"
+    "typescript": "^5.6.3"
   },
   "files": [
     "dist/",

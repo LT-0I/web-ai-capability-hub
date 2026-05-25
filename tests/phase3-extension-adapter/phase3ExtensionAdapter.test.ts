@@ -261,9 +261,9 @@ test("phase3 contract: all 3 new error codes exist in JSON manifest, TS enum, an
     assert.equal(ConsumerErrorCodes[code], code, `${code} must round-trip through ConsumerErrorCodes object`);
     assert.ok(docs.includes(`\`${code}\``), `${code} must be referenced in docs/CONSUMER_CONTRACT.md`);
   }
-  assert.equal(manifest.contract_version, "consumer-contract-2.0.0", "contract version must be bumped to 1.10.0");
-  assert.equal(manifest.error_codes.length, 39, "contract error_codes length must be 39");
-  assert.equal(CONSUMER_ERROR_CODES.length, 39, "TS error code list length must be 39");
+  assert.equal(manifest.contract_version, "consumer-contract-2.1.0", "contract version must be bumped to 2.1.0");
+  assert.equal(manifest.error_codes.length, 40, "contract error_codes length must be 40");
+  assert.equal(CONSUMER_ERROR_CODES.length, 40, "TS error code list length must be 40");
 });
 
 // -----------------------------------------------------------------------------

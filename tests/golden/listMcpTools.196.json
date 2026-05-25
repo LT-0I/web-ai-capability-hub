@@ -1,6 +1,6 @@
 {
-  "count": 195,
-  "captured_at": "2026-05-25T15:02:41.375Z",
+  "count": 196,
+  "captured_at": "2026-05-25T17:00:19.281Z",
   "tools": [
     {
       "name": "browser_capture_site_map",
@@ -10233,6 +10233,23 @@
         "required": [
           "surface",
           "profile"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "webai_literature_task_status",
+      "description": "Return status/result metadata for a queued academic literature download task.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Task id returned by an academic literature download queue request"
+          }
+        },
+        "required": [
+          "task_id"
         ],
         "additionalProperties": true
       }

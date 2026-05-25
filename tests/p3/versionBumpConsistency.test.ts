@@ -7,22 +7,22 @@ const PKG = JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json"),
 const CONTRACT = JSON.parse(fs.readFileSync(path.join(process.cwd(), "configs/consumer-contract.json"), "utf8"));
 const VERIFY = fs.readFileSync(path.join(process.cwd(), "scripts/verify-contract-version.ts"), "utf8");
 
-test("p3: package.json version is 2.0.0", () => {
-  assert.equal(PKG.version, "2.0.0");
+test("p3: package.json version is 2.1.0", () => {
+  assert.equal(PKG.version, "2.1.0");
 });
 
-test("p3: consumer-contract.json package_version is 2.0.0", () => {
-  assert.equal(CONTRACT.package_version, "2.0.0");
+test("p3: consumer-contract.json package_version is 2.1.0", () => {
+  assert.equal(CONTRACT.package_version, "2.1.0");
 });
 
-test("p3: consumer-contract.json contract_version is consumer-contract-2.0.0 after Chrome Extension Phase 7", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-2.0.0");
+test("p3: consumer-contract.json contract_version is consumer-contract-2.1.0 after Phase 8 Bucket A", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-2.1.0");
 });
 
-test("p3: scripts/verify-contract-version.ts EXPECTED_PACKAGE_VERSION === '2.0.0'", () => {
-  assert.match(VERIFY, /EXPECTED_PACKAGE_VERSION\s*=\s*"2\.0\.0"/);
+test("p3: scripts/verify-contract-version.ts EXPECTED_PACKAGE_VERSION === '2.1.0'", () => {
+  assert.match(VERIFY, /EXPECTED_PACKAGE_VERSION\s*=\s*"2\.1\.0"/);
 });
 
-test("p3: scripts/verify-contract-version.ts EXPECTED_CONTRACT_VERSION === 'consumer-contract-2.0.0'", () => {
-  assert.match(VERIFY, /EXPECTED_CONTRACT_VERSION\s*=\s*"consumer-contract-2\.0\.0"/);
+test("p3: scripts/verify-contract-version.ts EXPECTED_CONTRACT_VERSION === 'consumer-contract-2.1.0'", () => {
+  assert.match(VERIFY, /EXPECTED_CONTRACT_VERSION\s*=\s*"consumer-contract-2\.1\.0"/);
 });

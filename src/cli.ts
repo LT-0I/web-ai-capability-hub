@@ -96,6 +96,7 @@ function consumerErrorCodeFromResult(value: unknown): string | undefined {
   if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
   const record = value as Record<string, unknown>;
   const code = record.errorCode || record.error_code;
+  if (record.ok === true && code === ConsumerErrorCodes.LITERATURE_QUEUED) return undefined;
   return isConsumerErrorCode(code) ? code : undefined;
 }
 function cliExitCodeForErrorCode(errorCode: string | undefined): number {
@@ -217,6 +218,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
   if (files.length) base.files = files;
   for (const key of Object.keys(base)) if (base[key] === undefined) delete base[key];
   if (command === "webai:task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:task-status requires --task-id <id>");
+  if (command === "webai:literature-task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:literature-task-status requires --task-id <id>");
   return base;
 }
 
@@ -261,7 +263,8 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:claude:design:generate": "webai_claude_design_generate",
     "webai:claude:design:get-html": "webai_claude_design_get_html",
     "webai:claude:design:present": "webai_claude_design_present",
-    "webai:task-status": "webai_task_status"
+    "webai:task-status": "webai_task_status",
+    "webai:literature-task-status": "webai_literature_task_status"
   };
   return map[command];
 }
@@ -888,6 +891,7 @@ MCP and compatibility commands:
   webai:claude:design:get-html --profile claude-9224 --project-url <url> [--download-dir <abs>] [--output-json]
   webai:claude:design:present --profile claude-9224 --project-url <url> [--output-json]
   webai:task-status --task-id <id> [--output-json]
+  webai:literature-task-status --task-id <id> [--output-json]
   mcp
   mcp:tools [--json]
   mcp:resources [--json]

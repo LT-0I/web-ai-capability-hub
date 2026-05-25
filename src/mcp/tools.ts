@@ -77,13 +77,15 @@ import {
   webAiGeminiCanvasEditInput,
   webAiGeminiConversationManageInput,
   webAiGeminiWorkspaceInput,
-  webAiTaskStatusInput
+  webAiTaskStatusInput,
+  webAiLiteratureTaskStatusInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
 import { subMcpToolSpecs } from "./submcp/index";
 import { ForbiddenOutputFieldError, assertNoForbidden, stripForbidden } from "./forbiddenFields";
 import { GeminiQuotaStateStore } from "../browser/geminiQuotaStateStore";
+import { getLiteratureTaskStatus } from "../runtime/literature/queue";
 
 import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
 import { wahAdapterHealth, wahAdapterHealthInput } from "../facade/wah/adapterHealth";
@@ -6954,6 +6956,45 @@ export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): 
   return webAiBackendInvalidOutput("webai_task_status", backend);
 }
 
+export async function webAiLiteratureTaskStatus(args: any): Promise<unknown> {
+  const taskId = String(args?.task_id || "");
+  const record = getLiteratureTaskStatus(taskId);
+  if (!record) {
+    return safeOutput({
+      ok: false,
+      task_id: taskId,
+      status: "fail",
+      db_slug: "",
+      doc_id: "",
+      queued_at: 0,
+      started_at: null,
+      completed_at: null,
+      result_path: null,
+      error: "task not found",
+      errorCode: ConsumerErrorCodes.INVALID_ARGS,
+      message: "Literature download task not found"
+    });
+  }
+  return safeOutput({
+    ok: record.status !== "fail",
+    task_id: record.task_id,
+    status: record.status,
+    db_slug: record.db_slug,
+    doc_id: record.doc_id,
+    queued_at: record.queued_at,
+    started_at: record.started_at,
+    completed_at: record.completed_at,
+    result_path: record.result_path,
+    error: record.error,
+    errorCode: record.status === "fail" ? ConsumerErrorCodes.UNKNOWN : null,
+    message: record.status === "done"
+      ? "Literature download completed"
+      : record.status === "fail"
+        ? "Literature download failed"
+        : "Literature download task is pending"
+  });
+}
+
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7087,6 +7128,7 @@ const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
   tab_url_contains: scalar.string("Optional conversation URL fragment for extension-polled task status"),
   backend: webAiBackendSchema("Browser backend for task-status routing; defaults to extension-assisted-cdp")
 }, webAiTaskStatusJson.required || []);
+const webAiLiteratureTaskStatusSchema = webAiLiteratureTaskStatusInput;
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -7285,6 +7327,12 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Return status/result metadata for an async webai task.",
     schema: webAiTaskStatusWithBackendInput,
     handler: async (args, runtime) => webAiTaskStatus(args, runtime)
+  },
+  {
+    name: "webai_literature_task_status",
+    description: "Return status/result metadata for a queued academic literature download task.",
+    schema: webAiLiteratureTaskStatusSchema,
+    handler: async (args) => webAiLiteratureTaskStatus(args)
   },
   {
     name: "webai_chatgpt_canvas_export",

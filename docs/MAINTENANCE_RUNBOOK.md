@@ -178,3 +178,17 @@ The "cadence" for this runbook is operator-driven: run Flow A + Flow B on a
 schedule, or on the first RED. Closing Step 5 every cycle keeps
 `integration_registry` — the authoritative source — in lockstep with shipped
 behavior, which is the exact failure mode this runbook exists to prevent.
+
+
+---
+
+### Literature worker daemon (Phase 8)
+
+Start (foreground): `node dist/src/literature-worker.js`
+Start (background): `nohup node dist/src/literature-worker.js > /tmp/lit-worker.log 2>&1 &`
+Inspect queue: `sqlite3 data/literature-queue.sqlite 'SELECT status, COUNT(*) FROM download_queue GROUP BY status'`
+Inspect 24h ledger: `sqlite3 data/literature-rate-limit.sqlite 'SELECT db_slug, COUNT(*) FROM download_ledger WHERE downloaded_at > strftime("%s","now","-24 hours")*1000 GROUP BY db_slug'`
+Stop: SIGTERM the process; in-flight downloads finish; new claims stop.
+
+Schemas + cap (20/DB/24h) are immutable from caller's perspective.
+DO NOT bypass the ledger "just for testing" — tests hit the ledger too.

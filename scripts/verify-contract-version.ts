@@ -19,11 +19,11 @@ type ConsumerContract = {
   error_codes?: unknown[];
 };
 
-const EXPECTED_PACKAGE_VERSION = "2.0.0";
-const EXPECTED_CONTRACT_VERSION = "consumer-contract-2.0.0";
-const EXPECTED_COMMANDS = 191;
-const EXPECTED_ERROR_CODES = 39;
-const EXPECTED_WEBAI_ROWS = 40;
+const EXPECTED_PACKAGE_VERSION = "2.1.0";
+const EXPECTED_CONTRACT_VERSION = "consumer-contract-2.1.0";
+const EXPECTED_COMMANDS = 192;
+const EXPECTED_ERROR_CODES = 40;
+const EXPECTED_WEBAI_ROWS = 41;
 const EXPECTED_RESEARCH_ROWS = 121;
 
 function readJson<T>(repoRoot: string, relPath: string): T {

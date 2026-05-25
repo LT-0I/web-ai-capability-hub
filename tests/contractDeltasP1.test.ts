@@ -17,17 +17,17 @@ const EXPECTED_WAH_NAMES = [
   "wah_artifact_get"
 ];
 
-test("P3 contract: package_version = 2.0.0, contract_version = consumer-contract-2.0.0", () => {
-  assert.equal(CONTRACT.package_version, "2.0.0");
-  assert.equal(CONTRACT.contract_version, "consumer-contract-2.0.0");
+test("P3 contract: package_version = 2.1.0, contract_version = consumer-contract-2.1.0", () => {
+  assert.equal(CONTRACT.package_version, "2.1.0");
+  assert.equal(CONTRACT.contract_version, "consumer-contract-2.1.0");
 });
 
-test("P1 contract: commands.length === 191", () => {
-  assert.equal(CONTRACT.commands.length, 191);
+test("P1 contract: commands.length === 192", () => {
+  assert.equal(CONTRACT.commands.length, 192);
 });
 
-test("P1 contract: error_codes.length === 39", () => {
-  assert.equal(CONTRACT.error_codes.length, 39);
+test("P1 contract: error_codes.length === 40", () => {
+  assert.equal(CONTRACT.error_codes.length, 40);
 });
 
 test("P1 contract: exactly 8 commands with mcp_name starting wah_", () => {
@@ -48,9 +48,9 @@ test("P1 contract: every wah_* command row has cli_name, mcp_name, ts_export, ou
   }
 });
 
-test("P1 contract: webai_ row count is 40 after W1 selectors", () => {
+test("P1 contract: webai_ row count is 41 after Phase 8 Bucket A", () => {
   const webai = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && c.mcp_name.startsWith("webai_"));
-  assert.equal(webai.length, 40);
+  assert.equal(webai.length, 41);
 });
 
 test("P1 contract: research_ row count is UNCHANGED at 121", () => {
@@ -62,26 +62,29 @@ test("P1 contract: error_codes includes UI_DRIFT_DETECTED and HEAL_CONFIDENCE_LO
   // error_codes is a flat string[] in this contract version
   assert.ok(CONTRACT.error_codes.includes("UI_DRIFT_DETECTED"), "UI_DRIFT_DETECTED missing");
   assert.ok(CONTRACT.error_codes.includes("HEAL_CONFIDENCE_LOW"), "HEAL_CONFIDENCE_LOW missing");
+  assert.ok(CONTRACT.error_codes.includes("LITERATURE_QUEUED"), "LITERATURE_QUEUED missing");
 });
 
-test("P1/P2/extension contract: error_codes ordering appends extension bridge codes after lease codes", () => {
-  const last7 = CONTRACT.error_codes.slice(-7);
-  assert.deepEqual(last7, [
+test("P1/P2/extension/phase8 contract: error_codes ordering appends literature queue after extension bridge codes", () => {
+  const last8 = CONTRACT.error_codes.slice(-8);
+  assert.deepEqual(last8, [
     "UI_DRIFT_DETECTED",
     "HEAL_CONFIDENCE_LOW",
     "PROFILE_LEASE_TIMEOUT",
     "TAB_LEASE_EXPIRED",
     "CHROME_EXTENSION_NOT_CONNECTED",
     "CHROME_EXTENSION_PERMISSION_DENIED",
-    "CHROME_EXTENSION_DEBUGGER_UNAVAILABLE"
+    "CHROME_EXTENSION_DEBUGGER_UNAVAILABLE",
+    "LITERATURE_QUEUED"
   ]);
 });
 
 test("P1 contract: no existing 181-row mcp_name was renamed or removed", () => {
   const wahCount = CONTRACT.commands.filter((c: any) => c.mcp_name.startsWith("wah_")).length;
-  // 189 - 8 wah_* should give 181 originals; cross-check
+  // 192 - 8 wah_* - 2 W1 selectors - 1 Phase 8 literature tool should give 181 originals; cross-check
   const w1SelectorCount = CONTRACT.commands.filter((c: any) => ["webai_chatgpt_select_model", "webai_claude_select_model"].includes(c.mcp_name)).length;
-  assert.equal(CONTRACT.commands.length - wahCount - w1SelectorCount, 181);
+  const phase8Count = CONTRACT.commands.filter((c: any) => c.mcp_name === "webai_literature_task_status").length;
+  assert.equal(CONTRACT.commands.length - wahCount - w1SelectorCount - phase8Count, 181);
 });
 
 test("P1 contract: every command has the standard required keys", () => {

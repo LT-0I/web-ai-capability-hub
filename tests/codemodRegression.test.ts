@@ -28,9 +28,9 @@ test("codemod gate: grep 'new ManagedBrowserLauncher' returns ZERO matches outsi
     `codemod left direct 'new ManagedBrowserLauncher()' calls outside profilePool.ts:\n${offenders.join("\n")}`);
 });
 
-test("185-superset proof: every entry in listMcpTools.185.archived.json is present byte-identical in listMcpTools.195.json", () => {
+test("185-superset proof: every entry in listMcpTools.185.archived.json is present byte-identical in listMcpTools.196.json", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.195.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.196.json"), "utf8"));
   const archivedByName = new Map<string, any>((archived.tools || []).map((t: any) => [t.name, t]));
   const currentByName = new Map<string, any>((current.tools || []).map((t: any) => [t.name, t]));
   const missing: string[] = [];
@@ -56,18 +56,18 @@ test("185-superset proof: every entry in listMcpTools.185.archived.json is prese
       changed.push({ name, reason: "byte-mismatch" });
     }
   }
-  assert.deepEqual(missing, [], `the following 185 baseline tools are MISSING from .195: ${missing.join(",")}`);
+  assert.deepEqual(missing, [], `the following 185 baseline tools are MISSING from .196: ${missing.join(",")}`);
   assert.deepEqual(changed, [],
-    `the following 185 baseline tools were CHANGED in .195 (description / inputSchema drift): ${changed.map((c) => c.name).join(",")}`);
+    `the following 185 baseline tools were CHANGED in .196 (description / inputSchema drift): ${changed.map((c) => c.name).join(",")}`);
 });
 
-test("195 - 185 = exactly 10 new tools: 8 wah_* plus 2 W1 webai selectors", () => {
+test("196 - 185 = exactly 11 new tools: 8 wah_* plus 2 W1 webai selectors plus literature status", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.195.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.196.json"), "utf8"));
   const archivedNames = new Set<string>((archived.tools || []).map((t: any) => t.name));
   const currentNames = new Set<string>((current.tools || []).map((t: any) => t.name));
   const added = [...currentNames].filter((n) => !archivedNames.has(n));
-  assert.equal(added.length, 10, `expected exactly 10 added tools, got ${added.length}: ${added.join(",")}`);
+  assert.equal(added.length, 11, `expected exactly 11 added tools, got ${added.length}: ${added.join(",")}`);
   const expected = [
     "webai_chatgpt_select_model",
     "webai_claude_select_model",
@@ -78,14 +78,15 @@ test("195 - 185 = exactly 10 new tools: 8 wah_* plus 2 W1 webai selectors", () =
     "wah_task_cancel",
     "wah_task_resume",
     "wah_task_start",
-    "wah_task_status"
+    "wah_task_status",
+    "webai_literature_task_status"
   ];
-  assert.deepEqual(added.sort(), expected.sort(), "added tool names must match P1 wah_* + W1 selector ledger");
+  assert.deepEqual(added.sort(), expected.sort(), "added tool names must match P1 wah_* + W1 selector + Phase 8 literature ledger");
 });
 
-test("snapshot counts: archived=185, current=195 (= 185 + 8 wah_* + 2 W1 selectors)", () => {
+test("snapshot counts: archived=185, current=196 (= 185 + 8 wah_* + 2 W1 selectors + 1 literature status)", () => {
   const archived = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.185.archived.json"), "utf8"));
-  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.195.json"), "utf8"));
+  const current = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "tests", "golden", "listMcpTools.196.json"), "utf8"));
   assert.equal(archived.tools.length, 185, `185 archived snapshot must contain 185 tools, got ${archived.tools.length}`);
-  assert.equal(current.tools.length, 195, `current 195 snapshot must contain 195 tools, got ${current.tools.length}`);
+  assert.equal(current.tools.length, 196, `current 196 snapshot must contain 196 tools, got ${current.tools.length}`);
 });
