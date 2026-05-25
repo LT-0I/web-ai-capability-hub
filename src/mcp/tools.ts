@@ -1213,7 +1213,8 @@ async function waitForPromptCompletion(service: WebAiService, page: any, sentAt:
     if (!await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, phaseATimeout)) {
       await waitForGeminiNoResponseFloor(started, timeoutMs);
       const retryTimeout = Math.min(5000, Math.max(0, timeoutMs - elapsed()));
-      if (retryTimeout > 0 && await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, retryTimeout)) {
+      // Skip tiny post-floor retries: matches waitForGeminiGenerationStart's 750 ms useful-budget threshold.
+      if (retryTimeout >= 750 && await waitForGeminiGenerationStart(page, stopSelector, assistantCountBefore, retryTimeout)) {
         const remaining = Math.max(1, timeoutMs - elapsed());
         if (await waitForGeminiStableCompletion(page, stopSelector, sendSelector, GEMINI_REGENERATE_BUTTON_SELECTOR, remaining)) {
           return { completion_detected: true, wait_ms: elapsed() };
