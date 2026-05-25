@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run generate:tools && tsc -p tsconfig.json && node scripts/copy-runtime-configs.ts",
-    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js dist/tests/post-refactor-w1/*.test.js dist/tests/phase3-extension-adapter/*.test.js dist/tests/phase4-chatgpt-mvp/*.test.js dist/tests/phase5-hardening/*.test.js dist/tests/phase6-multi-service/*.test.js dist/tests/phase6-claude-lane/*.test.js",
+    "test": "npm run build && node --test dist/tests/*.test.js dist/tests/golden/*.test.js dist/tests/p2/*.test.js dist/tests/p3/*.test.js dist/tests/post-refactor-w1/*.test.js dist/tests/phase3-extension-adapter/*.test.js dist/tests/phase4-chatgpt-mvp/*.test.js dist/tests/phase5-hardening/*.test.js dist/tests/phase6-multi-service/*.test.js dist/tests/phase6-claude-lane/*.test.js dist/tests/phase7-bucket-1/*.test.js",
     "mcp": "node dist/src/cli.js mcp",
     "browser:start": "node dist/src/cli.js browser:start",
     "browser:open": "node dist/src/cli.js browser:open",

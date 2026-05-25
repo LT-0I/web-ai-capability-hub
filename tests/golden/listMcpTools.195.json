@@ -8891,6 +8891,13 @@
           "reuse_conversation": {
             "type": "boolean",
             "description": "ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT prompt routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9885,6 +9892,13 @@
           "reuse_conversation": {
             "type": "boolean",
             "description": "ChatGPT only: continue the existing conversation instead of navigating to a fresh chat first"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini prompt routing; defaults to managed-cdp"
           }
         },
         "required": [

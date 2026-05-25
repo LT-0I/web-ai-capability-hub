@@ -1999,6 +1999,35 @@ function extensionErrorCode(error: any, fallback: ConsumerErrorCode = ConsumerEr
   return isConsumerErrorCode(error?.errorCode) ? error.errorCode : fallback;
 }
 
+function sendPromptExtensionErrorOutput(service: WebAiService, args: any, started: number, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = extensionErrorCode(error, ConsumerErrorCodes.COMMAND_TIMEOUT);
+  return safeOutput(sendPromptBase(service, targetUrlFor(service, args || {}), started, {
+    ok: false,
+    service,
+    response_text: "",
+    wait_ms: 0,
+    completion_detected: false,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  }));
+}
+
+async function openChatgptExtensionPage(backend: any, args: any): Promise<any> {
+  const requested = args.url || args.tab_url_contains;
+  const requestedUrl = normalizeUrlLikeTarget(requested);
+  const page = (args.reuse_conversation || requested)
+    ? await backend.claimTab({ url: requested || serviceDefaults.chatgpt.url })
+    : await backend.newTab({ url: CHATGPT_FRESH_URL, background: false });
+  if (requestedUrl) {
+    await page.navigate(requestedUrl, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+  } else if (!args.reuse_conversation && !requested) {
+    await page.navigate(CHATGPT_FRESH_URL, { waitUntil: "load", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
+  }
+  return page;
+}
+
 async function extensionGeminiPage(args: any, backend: any, freshUrl = GEMINI_FRESH_COMPOSER_URL): Promise<any> {
   const requested = args.url || args.tab_url_contains;
   const requestedUrl = normalizeUrlLikeTarget(requested);
@@ -2086,6 +2115,223 @@ async function extensionTextSnapshot(page: any, selector?: string): Promise<{ ur
 
 async function extensionSleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function extensionSelectorAlternatives(selector: string): string[] {
+  return selector.split(/\s*,\s*/).map((item) => item.trim()).filter(Boolean);
+}
+
+async function waitForExtensionSelector(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
+  let lastError: any;
+  for (const candidate of extensionSelectorAlternatives(selector)) {
+    try {
+      await page.waitForSelector(candidate, { state: "visible", timeoutMs });
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(lastError, "") });
+}
+
+async function clickExtensionSelector(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
+  let lastError: any;
+  for (const candidate of extensionSelectorAlternatives(selector)) {
+    try {
+      await page.waitForSelector(candidate, { state: "visible", timeoutMs: Math.min(timeoutMs, 5000) });
+      await page.click(extensionTarget(candidate), { timeoutMs });
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(lastError, "") });
+}
+
+async function extensionElementCount(page: any, selector: string): Promise<number> {
+  let count = 0;
+  for (const candidate of extensionSelectorAlternatives(selector)) {
+    count += (await page.queryElements(candidate, { limit: 50 }).catch(() => [])).length;
+  }
+  return count;
+}
+
+async function selectChatgptModelWithExtension(page: any, expected: string): Promise<void> {
+  await clickExtensionSelector(page, CHATGPT_MODEL_BUTTON_SELECTOR, 5000, "ChatGPT model selector was not found");
+  const itemSelector = chatgptMenuItemSelectorForModel(expected);
+  await clickExtensionSelector(page, itemSelector, 8000, `ChatGPT model option was not found: ${expected}`);
+}
+
+async function enableChatgptWebSearchWithExtension(page: any): Promise<void> {
+  if (await extensionElementCount(page, CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR)) return;
+  await clickExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
+  await clickExtensionSelector(page, CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Web search menuitemradio was not found");
+}
+
+async function selectGeminiModelWithExtension(page: any, expected: string): Promise<void> {
+  await clickExtensionSelector(page, GEMINI_MODE_PICKER_SELECTOR, 5000, "Gemini mode picker trigger was not found");
+  const selector = GEMINI_MODEL_OPTION_TEMPLATES[expected] || `[role="menuitem"]:has-text("${expected.replace(/"/g, '\\"')}")`;
+  await clickExtensionSelector(page, selector, 8000, `Gemini model option was not found: ${expected}`);
+}
+
+async function enableGeminiWebSearchWithExtension(page: any): Promise<void> {
+  await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
+  await clickExtensionSelector(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "Gemini Google Search menuitemcheckbox was not found");
+}
+
+async function applyExtensionPreSendOptions(service: "chatgpt" | "gemini", args: any, page: any): Promise<void> {
+  if (service === "chatgpt") {
+    const expected = typeof args.model === "string" && args.model.trim() ? normalizeModelTier(service, args) : null;
+    if (expected) await selectChatgptModelWithExtension(page, expected);
+    if (args.web_search) await enableChatgptWebSearchWithExtension(page);
+    if (args.canvas && typeof args.prompt === "string" && !/^\s*use canvas to write\b/i.test(args.prompt)) args.prompt = `Use canvas to write ${args.prompt}`;
+    return;
+  }
+  const expected = normalizeModelTier(service, args);
+  if (expected) await selectGeminiModelWithExtension(page, expected);
+  if (args.web_search) await enableGeminiWebSearchWithExtension(page);
+}
+
+type ExtensionPromptState = {
+  url: string;
+  assistantCount: number;
+  latestText: string;
+  stopVisible: boolean;
+  doneVisible: boolean;
+};
+
+async function extensionPromptState(page: any, service: "chatgpt" | "gemini"): Promise<ExtensionPromptState> {
+  return await page.evaluateReadOnly(`((arg) => {
+    const qsa = (selector) => {
+      try { return Array.from(document.querySelectorAll(selector)); } catch (_) { return []; }
+    };
+    const visible = (el) => {
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return style && style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
+    };
+    const clean = (text) => String(text || '')
+      .replace(/^\\s*Show thinking\\s*/i, '')
+      .replace(/^\\s*Gemini said\\s*/i, '')
+      .replace(/\\s*Sources\\s*$/i, '')
+      .trim();
+    const turns = qsa(arg.latestSelector || arg.assistantSelector);
+    const latest = turns.length ? turns[turns.length - 1] : null;
+    let latestText = '';
+    if (latest && Array.isArray(arg.innerSelectors)) {
+      for (let i = 0; i < arg.innerSelectors.length; i += 1) {
+        const node = latest.querySelector(arg.innerSelectors[i]);
+        const text = clean(node && node.textContent);
+        if (text) { latestText = text; break; }
+      }
+    }
+    if (!latestText) latestText = clean(latest && latest.textContent);
+    return {
+      url: location.href,
+      assistantCount: turns.length,
+      latestText,
+      stopVisible: qsa(arg.stopSelector).some(visible),
+      doneVisible: arg.doneSelector ? qsa(arg.doneSelector).some(visible) : false
+    };
+  })(arg)`, {
+    assistantSelector: assistantMessageSelector(service),
+    latestSelector: service === "gemini" ? GEMINI_LATEST_RESPONSE_SELECTOR : assistantMessageSelector(service),
+    innerSelectors: service === "gemini" ? GEMINI_RESPONSE_TEXT_INNER_SELECTORS : [],
+    stopSelector: stopButtonSelector(service),
+    doneSelector: service === "gemini" ? GEMINI_REGENERATE_BUTTON_SELECTOR : ""
+  }) as ExtensionPromptState;
+}
+
+async function waitForExtensionPromptCompletion(page: any, service: "chatgpt" | "gemini", assistantCountBefore: number, timeoutMs: number): Promise<{ completion_detected: boolean; wait_ms: number; response_text: string; chat_url: string }> {
+  const started = Date.now();
+  const deadline = started + Math.max(1, timeoutMs);
+  let generationStarted = false;
+  let lastText = "";
+  let stableSince = 0;
+  let latest: ExtensionPromptState = { url: serviceDefaults[service].url, assistantCount: assistantCountBefore, latestText: "", stopVisible: false, doneVisible: false };
+
+  while (Date.now() <= deadline) {
+    latest = await extensionPromptState(page, service).catch(() => latest);
+    generationStarted = generationStarted || latest.stopVisible || latest.assistantCount > assistantCountBefore;
+    if (generationStarted && latest.latestText) {
+      if (latest.latestText === lastText) {
+        if (!stableSince) stableSince = Date.now();
+      } else {
+        lastText = latest.latestText;
+        stableSince = Date.now();
+      }
+      const stable = Date.now() - stableSince >= 1500;
+      const done = service === "gemini" ? latest.doneVisible || (!latest.stopVisible && stable) : !latest.stopVisible && stable;
+      if (done) return { completion_detected: true, wait_ms: Date.now() - started, response_text: latest.latestText, chat_url: latest.url || serviceDefaults[service].url };
+    }
+    await extensionSleep(500);
+  }
+
+  return { completion_detected: false, wait_ms: Date.now() - started, response_text: latest.latestText || "", chat_url: latest.url || serviceDefaults[service].url };
+}
+
+async function sendPromptInExtensionPage(service: "chatgpt" | "gemini", args: any, page: any, started = Date.now()): Promise<Record<string, unknown>> {
+  assertPromptAllowed(args.prompt);
+  const timeout = args.timeout_ms || 60000;
+  const completionTimeout = responseTimeoutMs(args);
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor(service, args), text: "" }));
+  if (loginRequiredForService(service, snapshot.url || "")) {
+    return safeOutput(sendPromptBase(service, snapshot.url || targetUrlFor(service, args), started, {
+      ok: false,
+      service,
+      errorCode: ConsumerErrorCodes.LOGIN_REQUIRED,
+      error_code: ConsumerErrorCodes.LOGIN_REQUIRED
+    }));
+  }
+
+  if (service === "gemini") {
+    await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
+  }
+  await applyExtensionPreSendOptions(service, args, page);
+
+  const selector = args.__promptSelector || serviceDefaults[service].promptSelector;
+  await waitForExtensionSelector(page, selector, Math.min(timeout, 15000), `${service} prompt composer was not found`);
+  const before = await extensionPromptState(page, service).catch(() => ({
+    url: snapshot.url || targetUrlFor(service, args),
+    assistantCount: 0,
+    latestText: "",
+    stopVisible: false,
+    doneVisible: false
+  }));
+  await page.fill({ selector }, args.prompt, { timeoutMs: Math.min(timeout, 15000) });
+  await extensionSleep(250);
+  const sendSelector = sendButtonSelector(service);
+  await waitForExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
+  await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
+  const sentAt = Date.now();
+  await clickExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
+
+  const wait = await waitForExtensionPromptCompletion(page, service, before.assistantCount, completionTimeout);
+  const chatUrl = wait.chat_url || before.url || snapshot.url || targetUrlFor(service, args);
+  if (!wait.completion_detected || !wait.response_text.trim()) {
+    return safeOutput(sendPromptBase(service, chatUrl, started, {
+      response_text: "",
+      wait_ms: wait.wait_ms || Date.now() - sentAt,
+      completion_detected: false,
+      errorCode: ConsumerErrorCodes.COMMAND_TIMEOUT,
+      error_code: ConsumerErrorCodes.COMMAND_TIMEOUT,
+      model_used: null,
+      reuse_conversation: Boolean(args.reuse_conversation)
+    }));
+  }
+
+  const base = sendPromptBase(service, chatUrl, started, {
+    response_text: wait.response_text,
+    wait_ms: wait.wait_ms,
+    completion_detected: true,
+    errorCode: null,
+    model_used: null,
+    reuse_conversation: Boolean(args.reuse_conversation)
+  });
+  if (service === "chatgpt") base.reuse_conversation = Boolean(args.reuse_conversation || chatUrl === before.url);
+  if (service === "gemini") base.reuse_conversation = Boolean(args.reuse_conversation);
+  return safeOutput(base);
 }
 
 async function openClaudeExtensionPage(backend: any, args: any): Promise<any> {
@@ -2381,6 +2627,50 @@ async function sendClaudePromptWithExtensionBackend(args: any, runtime: Required
     return await sendClaudePromptInExtensionPage(effective, page, started);
   } catch (error: any) {
     return claudeSendExtensionErrorOutput(effective, started, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function sendChatgptPromptWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = args || {};
+  const started = Date.now();
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptExtensionPage(backend, effective);
+    return await sendPromptInExtensionPage("chatgpt", effective, page, started);
+  } catch (error: any) {
+    return sendPromptExtensionErrorOutput("chatgpt", effective, started, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function sendGeminiPromptWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = geminiToolArgs(args || {});
+  const started = Date.now();
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
+    return await sendPromptInExtensionPage("gemini", effective, page, started);
+  } catch (error: any) {
+    return sendPromptExtensionErrorOutput("gemini", effective, started, error);
   } finally {
     await backend?.finalize?.().catch?.(() => undefined);
     releaseProfileLease(effective.profile, lease);
@@ -3965,7 +4255,12 @@ async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRu
 }
 
 
-export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return sendChatgptPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return sendPromptOnPage("chatgpt", args, runtimeOrDefault(runtime));
+  return sendPromptExtensionErrorOutput("chatgpt", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+}
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
   if (backend === "managed-cdp") return sendPromptOnPage("claude", args, runtimeOrDefault(runtime));
@@ -4156,7 +4451,12 @@ export async function webAiGeminiSelectModel(args: any, runtime: Required<Browse
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
-export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
+  return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+}
 export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return uploadAndQueryOnPage("chatgpt", args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
@@ -4211,6 +4511,17 @@ export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): 
   const current = maybeMarkStaleVideoTask(database, record);
   return safeOutput({ status: current.status, progress_label: current.progress_label, result: current.result, errorCode: current.errorCode });
 }
+
+function sendPromptSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} prompt routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
+const webAiChatgptSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiChatgptSendPromptInput, "ChatGPT");
+const webAiGeminiSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiGeminiSendPromptInput, "Gemini");
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -4271,7 +4582,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_send_prompt",
     description: "Send a prompt to ChatGPT and return redacted response metadata.",
-    schema: webAiChatgptSendPromptInput,
+    schema: webAiChatgptSendPromptWithBackendInput,
     handler: async (args, runtime) => webAiChatgptSendPrompt(args, runtime)
   },
   {
@@ -4295,7 +4606,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_send_prompt",
     description: "Send a prompt to Gemini and return redacted response metadata.",
-    schema: webAiGeminiSendPromptInput,
+    schema: webAiGeminiSendPromptWithBackendInput,
     handler: async (args, runtime) => webAiGeminiSendPrompt(args, runtime)
   },
   {
