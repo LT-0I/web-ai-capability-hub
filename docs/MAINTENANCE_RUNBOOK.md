@@ -37,9 +37,10 @@ cycle just walks this flow.
    version bump**. Never weaken a test to make it pass.
 6. **Authoritative source must be re-synced last.** Code + contract is not
    "done" until `docs/capability-library.json` is updated AND re-imported into
-   the SQLite `integration_registry` (memory
-   `project_capability_library_source_of_truth`). This step was the gap that
-   prompted this runbook — it is now Step 5 below, mandatory.
+   the SQLite `integration_registry` (memories
+   `project_capability_library_source_of_truth` and
+   `feedback_maintenance_runbook`). This step was the gap that prompted this
+   runbook — it is now Step 5 below, mandatory.
 7. **Browser launch discipline.** `browser:launch --profile <name> --cdp-port
    <port>`, never `browser:start`. Claude lane = `claude-9224` (port 9224).
    Serialize the three chrome launches (SingletonLock race). Relaunch needs
@@ -131,19 +132,25 @@ Same backbone, DB-specific detection:
 A change is not done until the capability ledger reflects it.
 
 1. Edit the affected entry in `docs/capability-library.json`: bump
-   `last_update`, append the change + commit hash to `evidence`, update `notes`.
-   Do **not** inject stray `webai_` / `research_` tokens into `notes` — the
-   importer scrapes those into `mcp_tool`.
+   `last_update`, append the change + commit hash to `evidence`, update `notes`
+   or add new rows when the contract adds new surfaces. Keep `status` within the
+   importer-supported integration-registry enum unless the same change also
+   updates the schema, importer, and tests. Do **not** inject stray `webai_` /
+   `research_` tokens into `notes` — the importer scrapes those into
+   `mcp_tool`.
 2. Re-import the full seed into the SQLite `integration_registry` (upsert by
    `feature_id`). CLI: `node dist/src/cli.js capability:library:import
    docs/capability-library.json --json` once `dist` is built; or replicate
    `CapabilityLibraryImporter` logic faithfully (same
    `recordsFrom`/`featureIdFrom`/`statusFrom`/`mcpToolFrom` + the
    `ON CONFLICT(feature_id) DO UPDATE` upsert).
-3. Verify: row count unchanged (upsert, no dup/loss), all `imported_at`
-   refreshed to today, the target row's `status` / `mcp_tool` correct, status
-   distribution unchanged. `.sqlite` is a git-untracked data artifact (not
-   committed); `docs/capability-library.json` IS committed.
+3. Verify: row count matches the seed feature count (unchanged for pure upserts,
+   increased exactly by the intended number for new rows), all `imported_at`
+   refreshed to today, target rows' `status` / `mcp_tool` correct, and status
+   distribution changes only by the intended deltas. `.sqlite` is a
+   git-untracked data artifact (not committed); `docs/capability-library.json`
+   IS committed. Record this verification in the acceptance artifact whenever a
+   prompt mentions capability-library or integration-registry sync.
 
 > Runtime capability snapshots (`capability:update` / `capability:query`) are a
 > separate, lower-stakes refresh of the `capabilities` table and do **not**
@@ -164,7 +171,7 @@ A change is not done until the capability ledger reflects it.
 - [ ] `.omc/codex-prompts/<task>.md` → `omx exec` (serialize; §2.4 in-prompt)
 - [ ] Gate: clean build + full test + locks + git scope
 - [ ] Exactly one re-smoke → commit
-- [ ] **Step 5**: capability-library.json edit + integration_registry re-import + verify
+- [ ] **Step 5**: capability-library.json edit + integration_registry re-import + row-count/status/mcp_tool verify
 - [ ] Honest walls reported, never faked; no fallback/synthesis; no test weakened
 - [ ] New durable lesson? → encode via `omc:learner` + memory pointer
 
@@ -183,6 +190,8 @@ behavior, which is the exact failure mode this runbook exists to prevent.
 ---
 
 ### Literature worker daemon (Phase 8)
+
+Full caller/operator migration notes live in `docs/MIGRATION_v2.1.md`.
 
 Start (foreground): `node dist/src/literature-worker.js`
 Start (background): `nohup node dist/src/literature-worker.js > /tmp/lit-worker.log 2>&1 &`

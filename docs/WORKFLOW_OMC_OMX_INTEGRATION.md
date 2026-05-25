@@ -935,6 +935,26 @@ reference-repo state. If a future session cannot discover one of these tools,
 that dispatch must say the server is unavailable and use a verified fallback
 instead of recommending an inactive tool.
 
+## H. Literature workflow
+
+Use the Phase 8 literature lane when a caller needs a governed local PDF
+artifact from one of the 40 research database download surfaces. The caller
+flow is intentionally small:
+
+1. Call `webai_<db>_download_pdf` with `doc_id` and any driver-specific
+   optional fields (`pdf_url`, `profile`, `output_dir`, `cdp_port`).
+2. If the response has `errorCode === "LITERATURE_QUEUED"`, keep the returned
+   `task_id` and poll `webai_literature_task_status({ task_id })` every 60s.
+3. When the status response has `status === "done"`, read `result_path` for the
+   local file under `data/literature-downloads/<db>/`. If status is `fail`,
+   branch on the returned `error`/`errorCode` and do not synthesize an artifact.
+
+Operator prerequisites: build `dist`, keep `node dist/src/literature-worker.js`
+running when queued work is expected, and preserve the 20/DB/24h ledger. `dblp`
+and `wos` are bibliographic-only pseudo-drivers and intentionally return
+`INVALID_ARGS`; resolve metadata to the publisher driver instead. See
+`docs/MIGRATION_v2.1.md` for the full matrix and daemon runbook.
+
 ---
 
 *Last updated alongside CLAUDE.md and the `.omc/skills/web-ai-*/SKILL.md`

@@ -7,6 +7,7 @@ This document is generated from `configs/consumer-contract.json`, the authoritat
 
 ## Release notes
 
+- consumer-contract-2.1.0 (2026-05-25 Phase 8 literature downloads): adds `webai_literature_task_status`, the 40-tool `webai_<db>_download_pdf` family, and `LITERATURE_QUEUED` as an info/non-fatal queued-download code (`ok=true`). Literature downloads use a per-DB 20/24h ledger and local-only artifact storage under `data/literature-downloads/<db>/`. No package or contract-version bump beyond the existing 2.1.0 cut; 8-lock counts remain commands 232, `webai_` 81, `research_` 121, `wah_` 8, errors 40.
 - consumer-contract-2.0.0 (2026-05-25 Chrome Extension #15 Phase 7 Bucket 9): breaking default-backend flip for all 40 `webai_*` tools from `managed-cdp` to `extension-assisted-cdp`. The managed CDP implementation remains present and reachable by passing `backend: "managed-cdp"` explicitly. Default operation now requires the native messaging host installed by `src/runtime/extension/installHost.ts`. No commands or error codes were added; 8-lock counts remain commands 191, `webai_` 40, `research_` 121, `wah_` 8, errors 39.
 - consumer-contract-1.10.0 (2026-05-24 Chrome Extension #15 Phase 6 Gemini + Claude lanes): no new commands or error codes; adds the opt-in `backend` optional argument (`managed-cdp` | `extension-assisted-cdp`) to six tools so Gemini image/video/music and Claude send/upload/generate-file can opt into the extension-assisted CDP path:
   - `webai_gemini_generate_image` gains `backend`.
@@ -209,9 +210,9 @@ Stable JSON keys are exactly:
 | `verify:docx-min` | n/a | `verifyDocxMin` | experimental | read | yes |
 | `browser:audit` | n/a | `auditProfiles` | experimental | read | yes |
 
-## Contract 2.0.0 webai MCP tools
+## Contract 2.x webai MCP tools
 
-Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing + 16 main-server (+2 Pulse + 3 standalone model selectors) + 11 sub-MCP. Contract 2.0.0 keeps the 40 webai command rows and flips every webai_ default backend to `extension-assisted-cdp`; callers that need the legacy browser path must pass `backend: "managed-cdp"` explicitly. No new MCP tools or error codes are added in Chrome Extension Phase 7.
+Generated from the manifest: Contract 2.0.0 kept the 40 Phase-7 `webai_*` command rows (13 pre-existing + 16 main-server, including Pulse/model selectors, + 11 sub-MCP) and flipped their default backend to `extension-assisted-cdp`; callers that need the legacy browser path must pass `backend: "managed-cdp"` explicitly. Contract 2.1.0 adds the literature lane described below, bringing the locked `webai_` count to 81.
 
 ### Original/B1 existing webai tools
 
@@ -348,6 +349,39 @@ Generated from the manifest: 40 current `webai_*` command rows: 13 pre-existing 
 
 The returned `task_id` is a durable async handle that outlives any single orchestrate or MCP call: it is DB-backed and resolved by a detached, `unref`'d worker whose lifetime is independent of the initiating call and consumer orchestration window. A consumer whose orchestrate window closes before video resolution must retain the `task_id` and resolve it later with `webai:task-status`; `status:"running"` at orchestrate end means an outstanding handle, not non-delivery. The mutually-exclusive terminal outcomes are normalized distinctly: `status:"done"` plus `result` with a governed `path`, `sha256`, and `size_bytes` means the artifact was delivered; `status:"failed"` with `errorCode:"PLAN_OR_QUOTA_REQUIRED"` means capability/quota denial; `status:"failed"` with `errorCode:"COMMAND_TIMEOUT"` means an honest runtime-latency cap (default `300000` ms plus 60s reaper grace), not a capability denial, so re-queue or raise `timeout_ms`. `status:"failed"` with `errorCode:"ELEMENT_NOT_FOUND"` is a genuine automation-defect terminal that the hub fixes at root; it is not a runtime cap, not a deliverable, and not a documented acceptable async outcome. This clarifies the polling/handle contract only; adds no command, output key, error code, or contract version bump.
 
+### Literature download
+
+Phase 8 v2.1 adds a separate literature PDF download lane documented in
+`docs/MIGRATION_v2.1.md`. The 40 database-specific MCP tools use the
+`webai_<db>_download_pdf` naming pattern and accept at least `doc_id`;
+paywalled/session drivers may also accept `pdf_url`, `profile`, `output_dir`,
+and `cdp_port`. Successful direct responses return a local PDF `path`, `size`,
+`sha256`, `task_id: null`, and `errorCode: null`. Artifacts are stored only on
+the local operator filesystem under `data/literature-downloads/<db>/`.
+
+The database slugs are:
+
+```text
+arxiv, scoap3, mdpi, frontiers, pubscholar, scielo, inspirehep,
+aip, aps, iop, optica, opticsjournal, siam, aiaa, asce, asme, ieee, iest, iet, sae,
+acs, cellpress, nature, rsc, royalsoc, cambridge, degruyter, emerald, sciencedirect, springer, tandf, wiley,
+acm, crc, dblp, incopat, proquest, wanfang, worldsci, wos
+```
+
+The queue/cap contract is consumer-stable: each DB has a hard cap of 20
+successful downloads per rolling 24-hour window. When the cap is exhausted,
+the driver returns `ok: true`, `errorCode: "LITERATURE_QUEUED"`, and a durable
+`task_id`; callers poll `webai_literature_task_status({ task_id })` every 60
+seconds until `status` is `done` or `fail`. On `done`, `result_path` is the
+local file path.
+
+`LITERATURE_QUEUED` is informational, not a failure. Consumers should not treat
+it like a terminal error and should persist the returned `task_id`.
+
+Per-DB caveats: `dblp` and `wos` are bibliographic-only pseudo-drivers. They
+return `INVALID_ARGS` with guidance to use metadata resolution plus the
+appropriate publisher driver; they do not synthesize a PDF path.
+
 `webai:gemini:music:task-status` and `webai:chatgpt:codex:task-status` follow the same bounded-polling principle. Music task status has terminal statuses `{complete, error}` and non-terminal status `generating`; codex task status has terminal status `{complete}`, non-terminal status `{running}`, and returns `INVALID_ARGS` for an unknown task. Every MCP poll call is additionally bounded by `withMcpToolDeadline` (default `180000` ms, hard maximum `600000` ms); a poll that exceeds that deadline fails with `COMMAND_TIMEOUT`, so no polling loop is a hub-side infinite wait. This is a clarification only and does not add commands, output keys, error codes, or a contract version bump.
 
 ### Consumption & pinning
@@ -441,7 +475,7 @@ The safe `consumer:health` surface is designed not to emit those fields, but dow
 
 ## Error code taxonomy
 
-Consumer-stable error codes (39):
+Consumer-stable error codes (40):
 
 - `HUB_NOT_BUILT`
 - `BROWSER_NOT_LAUNCHED`
@@ -466,6 +500,7 @@ Consumer-stable error codes (39):
 - `PROFILE_LEASE_BUSY`
 - `SAFE_OUTPUT_REDACTION_REQUIRED`
 - `PLAN_OR_QUOTA_REQUIRED`
+- `LITERATURE_QUEUED`
 - `MODEL_SELECTION_DRIFT`
 - `ARTIFACT_MODE_UNSUPPORTED`
 - `AUTO_PUBLISH_DETECTED`
@@ -495,6 +530,8 @@ PID was still alive, so the runtime force-released it instead of hiding the
 stuck owner. `TAB_LEASE_EXPIRED` means an active tab lease for the same URL
 pattern had elapsed when a new tab acquire arrived; consumers should retry after
 observing the surfaced code rather than assuming a tab was selected silently.
+
+`LITERATURE_QUEUED` means a literature download request was accepted but deferred by the per-database 20/24h cap. It is an informational code on an `ok: true` response; callers should poll `webai_literature_task_status` with the returned `task_id` and read `result_path` after `status:"done"`.
 
 `message` remains human-readable and may change wording within a contract major version. Consumers should branch on `errorCode`, not `message`.
 
