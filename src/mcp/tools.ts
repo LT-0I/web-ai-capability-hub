@@ -1308,6 +1308,12 @@ async function pendingStateVisible(service: WebAiService, page: any, assistantCo
 async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, box: any, prompt: string, assistantCountBefore: number, forceEnterToSend = false): Promise<void> {
   const sendSelector = sendButtonSelector(service);
   const started = Date.now();
+  // Gemini hydrates Send button ~700ms after composer fill (R8 probe 2026-05-25).
+  // Without this prime-wait both attemptSend calls run before count>0, both
+  // press Enter, and Gemini contenteditable swallows Enter as a no-op — the
+  // 8s floor loop then polls passively and times out. Prime the wait once;
+  // already-visible buttons (ChatGPT/Claude steady-state) return ~immediately.
+  if (!forceEnterToSend) await page.waitForSelector?.(sendSelector, { state: "visible", timeout: 3000 }).catch(() => undefined);
   const attemptSend = async () => {
     if (forceEnterToSend) { await page.keyboard?.press("Enter"); return; }
     const sendButton = page.locator?.(sendSelector).first?.();
