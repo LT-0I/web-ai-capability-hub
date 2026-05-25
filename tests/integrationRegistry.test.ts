@@ -80,8 +80,8 @@ test("integration registry mcp_tool tokens are bidirectionally consistent with c
   }
 
   const webaiCommands = contract().commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_"));
-  assert.equal(webaiCommands.length, 41);
-  const infrastructureOnly = new Set(["webai_literature_task_status"]);
+  assert.equal(webaiCommands.length, 48);
+  const infrastructureOnly = new Set(["webai_literature_task_status", "webai_arxiv_download_pdf", "webai_scoap3_download_pdf", "webai_mdpi_download_pdf", "webai_frontiers_download_pdf", "webai_pubscholar_download_pdf", "webai_scielo_download_pdf", "webai_inspirehep_download_pdf"]);
   for (const command of webaiCommands) {
     if (infrastructureOnly.has(command.mcp_name)) continue;
     assert.ok(rowTokens.has(command.mcp_name), `contract command missing from integration registry: ${command.mcp_name}`);

@@ -173,15 +173,15 @@ test("phase5 allowed-origins generation produces Chrome extension origin URLs", 
 test("phase8 contract guard reflects package, contract, and 8-lock counts", () => {
   const packageJson = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "package.json"), "utf8"));
   const contract = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "configs/consumer-contract.json"), "utf8"));
-  const golden = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "tests/golden/listMcpTools.196.json"), "utf8"));
+  const golden = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "tests/golden/listMcpTools.203.json"), "utf8"));
 
   assert.equal(packageJson.version, "2.1.0");
   assert.equal(contract.package_version, "2.1.0");
   assert.equal(contract.contract_version, "consumer-contract-2.1.0");
-  assert.equal(contract.commands.length, 192);
+  assert.equal(contract.commands.length, 199);
   assert.equal(contract.error_codes.length, 40);
-  assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 41);
+  assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 48);
   assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("research_")).length, 121);
   assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("wah_")).length, 8);
-  assert.equal(golden.tools.length, 196);
+  assert.equal(golden.tools.length, 203);
 });

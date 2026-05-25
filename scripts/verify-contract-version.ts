@@ -21,9 +21,9 @@ type ConsumerContract = {
 
 const EXPECTED_PACKAGE_VERSION = "2.1.0";
 const EXPECTED_CONTRACT_VERSION = "consumer-contract-2.1.0";
-const EXPECTED_COMMANDS = 192;
+const EXPECTED_COMMANDS = 199;
 const EXPECTED_ERROR_CODES = 40;
-const EXPECTED_WEBAI_ROWS = 41;
+const EXPECTED_WEBAI_ROWS = 48;
 const EXPECTED_RESEARCH_ROWS = 121;
 
 function readJson<T>(repoRoot: string, relPath: string): T {

@@ -4313,6 +4313,202 @@
       "may_contain_sensitive_local_fields": false
     },
     {
+      "cli_name": "webai:arxiv:download-pdf",
+      "mcp_name": "webai_arxiv_download_pdf",
+      "ts_export": "webAiArxivDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:scoap3:download-pdf",
+      "mcp_name": "webai_scoap3_download_pdf",
+      "ts_export": "webAiScoap3DownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:mdpi:download-pdf",
+      "mcp_name": "webai_mdpi_download_pdf",
+      "ts_export": "webAiMdpiDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:frontiers:download-pdf",
+      "mcp_name": "webai_frontiers_download_pdf",
+      "ts_export": "webAiFrontiersDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:pubscholar:download-pdf",
+      "mcp_name": "webai_pubscholar_download_pdf",
+      "ts_export": "webAiPubscholarDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:scielo:download-pdf",
+      "mcp_name": "webai_scielo_download_pdf",
+      "ts_export": "webAiScieloDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
+      "cli_name": "webai:inspirehep:download-pdf",
+      "mcp_name": "webai_inspirehep_download_pdf",
+      "ts_export": "webAiInspirehepDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "profile",
+        "output_dir"
+      ]
+    },
+    {
       "cli_name": "wah:capability:query",
       "mcp_name": "wah_capability_query",
       "ts_export": "wahCapabilityQuery",
@@ -5260,6 +5456,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "Phase 8 Bucket B (same contract version consumer-contract-2.1.0): adds seven open-access webai_<db>_download_pdf direct-fetch literature drivers for arxiv, scoap3, mdpi, frontiers, pubscholar, scielo, and inspirehep. No package or contract_version bump; no new error codes; 8-lock counts commands 199, webai_ 48, research_ 121, wah_ 8, errors 40.",
     "consumer-contract-2.1.0 (2026-05-25 Phase 8 Bucket A): adds webai_literature_task_status, LITERATURE_QUEUED (info/non-fatal; ok=true queued download requests), SQLite literature queue + 20/DB/24h ledger foundation, and standalone literature worker daemon. No per-DB download drivers yet; existing 121 research_* contracts unchanged. 8-lock counts commands 192, webai_ 41, research_ 121, wah_ 8, errors 40.",
     "consumer-contract-2.0.0 (2026-05-25 Chrome Extension #15 Phase 7 Bucket 9): breaking default-backend flip for all 40 webai_* tools from managed-cdp to extension-assisted-cdp. managed-cdp remains available as an explicit opt-in via backend: \"managed-cdp\"; default operation now requires the native messaging host installed by src/runtime/extension/installHost.ts. No commands or error codes added; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",
     "Phase 7 Bucket 8 (same contract version consumer-contract-1.10.0): adds optional backend to webai_task_status, webai_gemini_music_download_track, and webai_gemini_music_task_status with enum managed-cdp | extension-assisted-cdp; webai_task_status may also accept profile/tab_url_contains for extension-polled Gemini Music task handles. No new commands, error codes, package bump, contract_version bump, graceful fallback, or managed-cdp path change; 8-lock counts remain commands 191, webai_ 40, research_ 121, wah_ 8, errors 39.",

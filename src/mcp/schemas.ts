@@ -420,5 +420,11 @@ export const webAiLiteratureTaskStatusInput = objectSchema<{ task_id: string }>(
   task_id: scalar.string("Task id returned by an academic literature download queue request")
 }, ["task_id"]);
 
+export const webAiLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; profile?: string; output_dir?: string }>({
+  doc_id: scalar.string("DOI, URL, or database-native article identifier to download as an open-access PDF"),
+  profile: scalar.string("Optional profile accepted for webai surface uniformity; not used by direct-fetch open-access drivers"),
+  output_dir: scalar.string("Optional output directory; defaults to data/literature-downloads/<db>/")
+}, ["doc_id"]);
+
 export const generatedManifestInput = objectSchema<Record<string, unknown>>({}, []);
 export const generatedManifestOutput = objectSchema<Record<string, unknown>>({}, []);

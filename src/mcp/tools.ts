@@ -78,7 +78,8 @@ import {
   webAiGeminiConversationManageInput,
   webAiGeminiWorkspaceInput,
   webAiTaskStatusInput,
-  webAiLiteratureTaskStatusInput
+  webAiLiteratureTaskStatusInput,
+  webAiLiteratureDownloadPdfInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
@@ -86,6 +87,23 @@ import { subMcpToolSpecs } from "./submcp/index";
 import { ForbiddenOutputFieldError, assertNoForbidden, stripForbidden } from "./forbiddenFields";
 import { GeminiQuotaStateStore } from "../browser/geminiQuotaStateStore";
 import { getLiteratureTaskStatus } from "../runtime/literature/queue";
+import { webAiArxivDownloadPdf } from "./submcp/literature/arxiv";
+import { webAiScoap3DownloadPdf } from "./submcp/literature/scoap3";
+import { webAiMdpiDownloadPdf } from "./submcp/literature/mdpi";
+import { webAiFrontiersDownloadPdf } from "./submcp/literature/frontiers";
+import { webAiPubscholarDownloadPdf } from "./submcp/literature/pubscholar";
+import { webAiScieloDownloadPdf } from "./submcp/literature/scielo";
+import { webAiInspirehepDownloadPdf } from "./submcp/literature/inspirehep";
+
+export {
+  webAiArxivDownloadPdf,
+  webAiScoap3DownloadPdf,
+  webAiMdpiDownloadPdf,
+  webAiFrontiersDownloadPdf,
+  webAiPubscholarDownloadPdf,
+  webAiScieloDownloadPdf,
+  webAiInspirehepDownloadPdf
+};
 
 import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
 import { wahAdapterHealth, wahAdapterHealthInput } from "../facade/wah/adapterHealth";
@@ -7129,6 +7147,7 @@ const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
   backend: webAiBackendSchema("Browser backend for task-status routing; defaults to extension-assisted-cdp")
 }, webAiTaskStatusJson.required || []);
 const webAiLiteratureTaskStatusSchema = webAiLiteratureTaskStatusInput;
+const webAiLiteratureDownloadPdfSchema = webAiLiteratureDownloadPdfInput;
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -7333,6 +7352,48 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Return status/result metadata for a queued academic literature download task.",
     schema: webAiLiteratureTaskStatusSchema,
     handler: async (args) => webAiLiteratureTaskStatus(args)
+  },
+  {
+    name: "webai_arxiv_download_pdf",
+    description: "Download an open-access arXiv PDF by arXiv id, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiArxivDownloadPdf(args)
+  },
+  {
+    name: "webai_scoap3_download_pdf",
+    description: "Download an open-access SCOAP3 PDF by article id or direct URL, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiScoap3DownloadPdf(args)
+  },
+  {
+    name: "webai_mdpi_download_pdf",
+    description: "Download an open-access MDPI article PDF by article id, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiMdpiDownloadPdf(args)
+  },
+  {
+    name: "webai_frontiers_download_pdf",
+    description: "Download an open-access Frontiers article PDF by article path, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiFrontiersDownloadPdf(args)
+  },
+  {
+    name: "webai_pubscholar_download_pdf",
+    description: "Resolve and download an open-access PubScholar article PDF from its record page, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiPubscholarDownloadPdf(args)
+  },
+  {
+    name: "webai_scielo_download_pdf",
+    description: "Download an open-access SciELO PDF from a journal/article PID pair, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiScieloDownloadPdf(args)
+  },
+  {
+    name: "webai_inspirehep_download_pdf",
+    description: "Resolve an INSPIREHEP record to its arXiv mirror or document PDF and download it, honoring the literature queue quota.",
+    schema: webAiLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiInspirehepDownloadPdf(args)
   },
   {
     name: "webai_chatgpt_canvas_export",

@@ -1,7 +1,7 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v2.0.0
-Contract: `consumer-contract-2.0.0`
+Package: `web-ai-research-automation-hub` v2.1.0
+Contract: `consumer-contract-2.1.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 

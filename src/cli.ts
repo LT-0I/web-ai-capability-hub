@@ -191,6 +191,8 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     canvas: asBoolean(options.canvas),
     style: asString(options.style),
     download_dir: asString(options["download-dir"] || options.downloadDir),
+    output_dir: asString(options["output-dir"] || options.outputDir),
+    doc_id: asString(options["doc-id"] || options.docId || options.doc_id),
     expected_extension: asString(options["expected-extension"] || options.expectedExtension),
     artifact_class: asString(options["artifact-class"] || options.artifactClass),
     title: asString(options.title),
@@ -219,6 +221,9 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
   for (const key of Object.keys(base)) if (base[key] === undefined) delete base[key];
   if (command === "webai:task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:task-status requires --task-id <id>");
   if (command === "webai:literature-task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:literature-task-status requires --task-id <id>");
+  if (/^webai:(arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep):download-pdf$/.test(command) && !base.doc_id) {
+    throw new Error(`INVALID_ARGS: ${command} requires --doc-id <id>`);
+  }
   return base;
 }
 
@@ -264,7 +269,14 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:claude:design:get-html": "webai_claude_design_get_html",
     "webai:claude:design:present": "webai_claude_design_present",
     "webai:task-status": "webai_task_status",
-    "webai:literature-task-status": "webai_literature_task_status"
+    "webai:literature-task-status": "webai_literature_task_status",
+    "webai:arxiv:download-pdf": "webai_arxiv_download_pdf",
+    "webai:scoap3:download-pdf": "webai_scoap3_download_pdf",
+    "webai:mdpi:download-pdf": "webai_mdpi_download_pdf",
+    "webai:frontiers:download-pdf": "webai_frontiers_download_pdf",
+    "webai:pubscholar:download-pdf": "webai_pubscholar_download_pdf",
+    "webai:scielo:download-pdf": "webai_scielo_download_pdf",
+    "webai:inspirehep:download-pdf": "webai_inspirehep_download_pdf"
   };
   return map[command];
 }
@@ -892,6 +904,7 @@ MCP and compatibility commands:
   webai:claude:design:present --profile claude-9224 --project-url <url> [--output-json]
   webai:task-status --task-id <id> [--output-json]
   webai:literature-task-status --task-id <id> [--output-json]
+  webai:arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep:download-pdf --doc-id <id> [--output-dir <dir>] [--profile <name>] [--output-json]
   mcp
   mcp:tools [--json]
   mcp:resources [--json]
