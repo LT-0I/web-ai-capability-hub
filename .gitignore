@@ -102,3 +102,11 @@ vendor/mcp-chrome/**/.wxt/
 vendor/mcp-chrome/**/.pnpm-store/
 vendor/mcp-chrome/**/*.crx
 vendor/mcp-chrome/**/*.zip
+
+# Playwright MCP cache (regenerable, per-session)
+.playwright-mcp/
+
+# Codex working dirs that leak outside root .omc/ (root .omc rules above
+# are intentional with skill exceptions; these nested instances are scratch).
+.runs/**/.omc/
+vendor/**/.omc/

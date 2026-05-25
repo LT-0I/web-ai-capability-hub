@@ -396,3 +396,25 @@ touch ".runs/capability-explore-2026-05-25/${SERVICE}/_lane-done.marker"
 - **Push 授权**: 用户已显式确认（"A+"）Stage 6 自动 push 到 origin/main 是被授权的，延续 Phase 6 的 push 先例。
 
 启动后，所有自治判断遵循 §4 表格。任何超出表格的情况一律 STOP 写 blocker。
+
+---
+
+## 8. CLOSEOUT (2026-05-25)
+
+**Status: COMPLETE — closure final 34/0 (all reds green).**
+
+- Stage 1-6 all shipped per plan; campaign-wide commits live between `4c4c6e2`
+  (Stage 6 initial push) and `c90a39c` (B-blocker final fix).
+- Closure round results:
+  - r1-r5: 22 → 6 reds (commits a76f5cd .. e4a5be2 chain).
+  - r6/r7: same reds (runner clones, not new fixes).
+  - r8 codex bulk: 6 → 1 (e4a5be2, vendor MCP singleton → factory + Gemini
+    8s floor + 3 workflow yaml repairs).
+  - r9 surgical: 1 → 0 (c90a39c, Send-button hydration prime; R8
+    production-mimic probe at d54d78e proved the timing bug).
+- 8-lock contract held throughout: pkg `1.0.0` / contract `consumer-contract-1.10.0`
+  / 191 cli commands / 39 error codes / 40 `webai_` / 121 `research_` / 8 `wah_` /
+  `tests/golden/listMcpTools.195.json`.
+- npm test: 674/674 pass on HEAD.
+- Memory persisted: `feedback_gemini_send_button_hydration.md` captures the
+  ~700ms post-fill hydration lesson for future Gemini submit-flow work.
