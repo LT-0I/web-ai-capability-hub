@@ -80,7 +80,8 @@ import {
   webAiTaskStatusInput,
   webAiLiteratureTaskStatusInput,
   webAiLiteratureDownloadPdfInput,
-  webAiPaywalledLiteratureDownloadPdfInput
+  webAiPaywalledLiteratureDownloadPdfInput,
+  webAiBibliographicOnlyLiteratureDownloadPdfInput
 } from "./schemas";
 import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, WorkflowRunResult } from "../workflows/schema";
 import { WebAiTaskRecord, WebAiTaskStatus } from "../capabilities/schemas";
@@ -120,6 +121,14 @@ import { webAiSciencedirectDownloadPdf } from "./submcp/literature/sciencedirect
 import { webAiSpringerDownloadPdf } from "./submcp/literature/springer";
 import { webAiTandfDownloadPdf } from "./submcp/literature/tandf";
 import { webAiWileyDownloadPdf } from "./submcp/literature/wiley";
+import { webAiAcmDownloadPdf } from "./submcp/literature/acm";
+import { webAiCrcDownloadPdf } from "./submcp/literature/crc";
+import { webAiDblpDownloadPdf } from "./submcp/literature/dblp";
+import { webAiIncopatDownloadPdf } from "./submcp/literature/incopat";
+import { webAiProquestDownloadPdf } from "./submcp/literature/proquest";
+import { webAiWanfangDownloadPdf } from "./submcp/literature/wanfang";
+import { webAiWorldsciDownloadPdf } from "./submcp/literature/worldsci";
+import { webAiWosDownloadPdf } from "./submcp/literature/wos";
 
 export {
   webAiArxivDownloadPdf,
@@ -153,7 +162,15 @@ export {
   webAiSciencedirectDownloadPdf,
   webAiSpringerDownloadPdf,
   webAiTandfDownloadPdf,
-  webAiWileyDownloadPdf
+  webAiWileyDownloadPdf,
+  webAiAcmDownloadPdf,
+  webAiCrcDownloadPdf,
+  webAiDblpDownloadPdf,
+  webAiIncopatDownloadPdf,
+  webAiProquestDownloadPdf,
+  webAiWanfangDownloadPdf,
+  webAiWorldsciDownloadPdf,
+  webAiWosDownloadPdf
 };
 
 import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
@@ -7200,6 +7217,7 @@ const webAiTaskStatusWithBackendInput = objectSchema<Record<string, unknown>>({
 const webAiLiteratureTaskStatusSchema = webAiLiteratureTaskStatusInput;
 const webAiLiteratureDownloadPdfSchema = webAiLiteratureDownloadPdfInput;
 const webAiPaywalledLiteratureDownloadPdfSchema = webAiPaywalledLiteratureDownloadPdfInput;
+const webAiBibliographicOnlyLiteratureDownloadPdfSchema = webAiBibliographicOnlyLiteratureDownloadPdfInput;
 const webAiChatgptCodexSubmitTaskWithBackendInput = objectSchema<Record<string, unknown>>({
   prompt: scalar.string("ChatGPT Codex task prompt; submitted only to the allowlisted LT-0I/CN- environment"),
   repo: scalar.string("Must be LT-0I/CN- when supplied; other repositories are refused"),
@@ -7596,6 +7614,54 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Download a Wiley Online Library PDF through an authenticated research browser profile, honoring the literature queue quota.",
     schema: webAiPaywalledLiteratureDownloadPdfSchema,
     handler: async (args) => webAiWileyDownloadPdf(args)
+  },
+  {
+    name: "webai_acm_download_pdf",
+    description: "Download an ACM Digital Library PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAcmDownloadPdf(args)
+  },
+  {
+    name: "webai_crc_download_pdf",
+    description: "Download a CRC Press / Taylor & Francis book PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiCrcDownloadPdf(args)
+  },
+  {
+    name: "webai_dblp_download_pdf",
+    description: "Return an INVALID_ARGS diagnostic because dblp is bibliographic-only and does not serve PDFs.",
+    schema: webAiBibliographicOnlyLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiDblpDownloadPdf(args)
+  },
+  {
+    name: "webai_incopat_download_pdf",
+    description: "Download an IncoPat patent PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiIncopatDownloadPdf(args)
+  },
+  {
+    name: "webai_proquest_download_pdf",
+    description: "Download a ProQuest dissertation PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiProquestDownloadPdf(args)
+  },
+  {
+    name: "webai_wanfang_download_pdf",
+    description: "Download a Wanfang Data literature PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiWanfangDownloadPdf(args)
+  },
+  {
+    name: "webai_worldsci_download_pdf",
+    description: "Download a World Scientific PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiWorldsciDownloadPdf(args)
+  },
+  {
+    name: "webai_wos_download_pdf",
+    description: "Return an INVALID_ARGS diagnostic because Web of Science is bibliographic/metadata-only and does not serve PDFs.",
+    schema: webAiBibliographicOnlyLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiWosDownloadPdf(args)
   },
   {
     name: "webai_chatgpt_canvas_export",

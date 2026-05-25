@@ -33,6 +33,14 @@ function loadBuiltInDriversOnce(): void {
   require("../../mcp/submcp/literature/iest");
   require("../../mcp/submcp/literature/iet");
   require("../../mcp/submcp/literature/sae");
+  require("../../mcp/submcp/literature/acm");
+  require("../../mcp/submcp/literature/crc");
+  require("../../mcp/submcp/literature/dblp");
+  require("../../mcp/submcp/literature/incopat");
+  require("../../mcp/submcp/literature/proquest");
+  require("../../mcp/submcp/literature/wanfang");
+  require("../../mcp/submcp/literature/worldsci");
+  require("../../mcp/submcp/literature/wos");
 }
 
 export function registerLiteratureDriver(db_slug: string, driver: LiteratureDriver): void {

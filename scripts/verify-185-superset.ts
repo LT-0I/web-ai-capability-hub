@@ -4,7 +4,7 @@ const path = require('node:path');
 function read(file) { return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), file), 'utf8')); }
 const oldPath = fs.existsSync(path.resolve(process.cwd(), 'tests/golden/listMcpTools.185.archived.json')) ? 'tests/golden/listMcpTools.185.archived.json' : 'tests/golden/listMcpTools.185.json';
 const oldSnap = read(oldPath);
-const newSnap = read('tests/golden/listMcpTools.228.json');
+const newSnap = read('tests/golden/listMcpTools.236.json');
 const oldMap = new Map(oldSnap.tools.map((tool) => [tool.name, tool]));
 const newMap = new Map(newSnap.tools.map((tool) => [tool.name, tool]));
 const schemaEvolvedWebaiTools = new Set([
@@ -50,7 +50,8 @@ const expected = [
   'webai_aip_download_pdf','webai_aps_download_pdf','webai_iop_download_pdf','webai_optica_download_pdf','webai_opticsjournal_download_pdf','webai_siam_download_pdf',
   'webai_aiaa_download_pdf','webai_asce_download_pdf','webai_asme_download_pdf','webai_ieee_download_pdf','webai_iest_download_pdf','webai_iet_download_pdf','webai_sae_download_pdf',
   'webai_acs_download_pdf','webai_cellpress_download_pdf','webai_nature_download_pdf','webai_rsc_download_pdf','webai_royalsoc_download_pdf','webai_cambridge_download_pdf',
-  'webai_degruyter_download_pdf','webai_emerald_download_pdf','webai_sciencedirect_download_pdf','webai_springer_download_pdf','webai_tandf_download_pdf','webai_wiley_download_pdf'
+  'webai_degruyter_download_pdf','webai_emerald_download_pdf','webai_sciencedirect_download_pdf','webai_springer_download_pdf','webai_tandf_download_pdf','webai_wiley_download_pdf',
+  'webai_acm_download_pdf','webai_crc_download_pdf','webai_dblp_download_pdf','webai_incopat_download_pdf','webai_proquest_download_pdf','webai_wanfang_download_pdf','webai_worldsci_download_pdf','webai_wos_download_pdf'
 ].sort();
 const ok = removed.length === 0 && changed.length === 0 && JSON.stringify(added) === JSON.stringify(expected);
 console.log(JSON.stringify({ ok, oldPath, old_count: oldSnap.tools.length, new_count: newSnap.tools.length, added, removed, changed }, null, 2));

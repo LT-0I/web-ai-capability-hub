@@ -5259,6 +5259,234 @@
       ]
     },
     {
+      "cli_name": "webai:acm:download-pdf",
+      "mcp_name": "webai_acm_download_pdf",
+      "ts_export": "webAiAcmDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:crc:download-pdf",
+      "mcp_name": "webai_crc_download_pdf",
+      "ts_export": "webAiCrcDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:dblp:download-pdf",
+      "mcp_name": "webai_dblp_download_pdf",
+      "ts_export": "webAiDblpDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
+      "cli_name": "webai:incopat:download-pdf",
+      "mcp_name": "webai_incopat_download_pdf",
+      "ts_export": "webAiIncopatDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:proquest:download-pdf",
+      "mcp_name": "webai_proquest_download_pdf",
+      "ts_export": "webAiProquestDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:wanfang:download-pdf",
+      "mcp_name": "webai_wanfang_download_pdf",
+      "ts_export": "webAiWanfangDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:worldsci:download-pdf",
+      "mcp_name": "webai_worldsci_download_pdf",
+      "ts_export": "webAiWorldsciDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:wos:download-pdf",
+      "mcp_name": "webai_wos_download_pdf",
+      "ts_export": "webAiWosDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false
+    },
+    {
       "cli_name": "wah:capability:query",
       "mcp_name": "wah_capability_query",
       "ts_export": "wahCapabilityQuery",
@@ -6206,6 +6434,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "Phase 8 Bucket E (same contract version consumer-contract-2.1.0): adds eight webai_<db>_download_pdf literature drivers for acm, crc, dblp, incopat, proquest, wanfang, worldsci, and wos. Paywalled/session-authenticated drivers use existing pdf_url/profile/output_dir/cdp_port shape where appropriate; acm/worldsci direct DOI PDF URLs and incopat patent PDF URLs are resolved into authenticated browser downloads. dblp and wos are bibliographic-only and honestly return INVALID_ARGS pointing callers to research_<db>_get_metadata and the appropriate publisher driver. No package or contract_version bump; no new error codes; 8-lock counts commands 232, webai_ 81, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket D (same contract version consumer-contract-2.1.0): adds twelve paywalled browser-session webai_<db>_download_pdf literature drivers for acs, cellpress, nature, rsc, royalsoc, cambridge, degruyter, emerald, sciencedirect, springer, tandf, and wiley. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 224, webai_ 73, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket C (same contract version consumer-contract-2.1.0): adds thirteen paywalled browser-session webai_<db>_download_pdf literature drivers for aip, aps, iop, optica, opticsjournal, siam, aiaa, asce, asme, ieee, iest, iet, and sae. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 212, webai_ 61, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket B (same contract version consumer-contract-2.1.0): adds seven open-access webai_<db>_download_pdf direct-fetch literature drivers for arxiv, scoap3, mdpi, frontiers, pubscholar, scielo, and inspirehep. No package or contract_version bump; no new error codes; 8-lock counts commands 199, webai_ 48, research_ 121, wah_ 8, errors 40.",

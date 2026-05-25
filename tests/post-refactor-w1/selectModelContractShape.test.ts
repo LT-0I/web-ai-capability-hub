@@ -6,7 +6,7 @@ import { listMcpTools } from "../../src/mcp/tools";
 
 const CONTRACT_PATH = path.resolve(process.cwd(), "configs/consumer-contract.json");
 const CONTRACT = JSON.parse(fs.readFileSync(CONTRACT_PATH, "utf-8"));
-const GOLDEN_PATH = path.resolve(process.cwd(), "tests/golden/listMcpTools.228.json");
+const GOLDEN_PATH = path.resolve(process.cwd(), "tests/golden/listMcpTools.236.json");
 const GOLDEN = JSON.parse(fs.readFileSync(GOLDEN_PATH, "utf-8"));
 
 const W1_CASES = [
@@ -40,11 +40,11 @@ test("W1: chatgpt+claude select_model contract rows mirror gemini's shape", () =
   }
 });
 
-test("Phase8: contract bumped to 2.1.0 with 224 commands and 73 webai_ rows", () => {
+test("Phase8: contract remains 2.1.0 with 232 commands and 81 webai_ rows", () => {
   assert.equal(CONTRACT.contract_version, "consumer-contract-2.1.0");
-  assert.equal(CONTRACT.commands.length, 224);
+  assert.equal(CONTRACT.commands.length, 232);
   const webai = CONTRACT.commands.filter((c: any) => typeof c.mcp_name === "string" && c.mcp_name.startsWith("webai_"));
-  assert.equal(webai.length, 73);
+  assert.equal(webai.length, 81);
 });
 
 test("W1: both new tools surfaced via listMcpTools() with input schemas", () => {
@@ -65,12 +65,12 @@ test("W1: both new tools surfaced via listMcpTools() with input schemas", () => 
   }
 });
 
-test("W1: golden listMcpTools.228.json contains both new tools alphabetically", () => {
+test("W1: golden listMcpTools.236.json contains both new tools alphabetically", () => {
   const names = GOLDEN.tools.map((t: any) => t.name);
   for (const c of W1_CASES) {
     assert.ok(names.includes(c.mcp), `golden missing ${c.mcp}`);
   }
-  assert.equal(GOLDEN.tools.length, 228);
+  assert.equal(GOLDEN.tools.length, 236);
   const webaiNames = names.filter((n: string) => n.startsWith("webai_"));
   const sorted = [...webaiNames].sort();
   assert.deepEqual(webaiNames, sorted, "webai_ tools in golden are not alphabetically sorted");
