@@ -3619,7 +3619,8 @@
       "optional_args": [
         "tab_url_contains",
         "query",
-        "confirmed"
+        "confirmed",
+        "backend"
       ]
     },
     {
@@ -3646,7 +3647,10 @@
           "action"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:chatgpt:codex:submit-task",
@@ -3933,7 +3937,8 @@
       "optional_args": [
         "tab_url_contains",
         "surface",
-        "query"
+        "query",
+        "backend"
       ]
     },
     {
@@ -3964,7 +3969,8 @@
       "optional_args": [
         "query",
         "tab_url_contains",
-        "confirmed"
+        "confirmed",
+        "backend"
       ]
     },
     {
@@ -3991,7 +3997,10 @@
           "action"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:claude:workspace",
@@ -4017,7 +4026,10 @@
           "action"
         ]
       },
-      "may_contain_sensitive_local_fields": false
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "backend"
+      ]
     },
     {
       "cli_name": "webai:claude:design:create-project",

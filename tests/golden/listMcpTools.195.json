@@ -8580,7 +8580,8 @@
               "delete",
               "archive",
               "search",
-              "menu_enumerate"
+              "menu_enumerate",
+              "list"
             ],
             "description": "Conversation management action; menu_enumerate uses the in-chat header options button and search uses Control+k; destructive actions return HUMAN_HANDOFF_REQUIRED"
           },
@@ -8603,6 +8604,13 @@
           "query": {
             "type": "string",
             "description": "Search query for Control+k conversation search"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT conversation management routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9006,6 +9014,13 @@
               "create"
             ],
             "description": "Optional action; destructive/mutating actions return POLICY_APPROVAL_REQUIRED"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT workspace routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9025,7 +9040,8 @@
             "enum": [
               "search",
               "share",
-              "sidebar_options"
+              "sidebar_options",
+              "list"
             ],
             "description": "Claude conversation management action"
           },
@@ -9044,6 +9060,13 @@
           "confirmed": {
             "type": "boolean",
             "description": "Required true for opening Claude share controls"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude conversation management routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9455,6 +9478,13 @@
           "profile": {
             "type": "string",
             "description": "Managed browser profile name; defaults to claude-9224"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude workspace routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9571,7 +9601,8 @@
               "share",
               "search",
               "delete",
-              "rename"
+              "rename",
+              "list"
             ],
             "description": "Gemini conversation management action; mutating actions return POLICY_APPROVAL_REQUIRED"
           },
@@ -9590,6 +9621,13 @@
           "confirmed": {
             "type": "boolean",
             "description": "Required true for opening Gemini share controls"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini conversation management routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -10018,6 +10056,13 @@
           "profile": {
             "type": "string",
             "description": "Managed browser profile name; defaults to gemini-9225"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini workspace routing; defaults to managed-cdp"
           }
         },
         "required": [

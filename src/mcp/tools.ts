@@ -4636,6 +4636,276 @@ async function inspectGeminiWorkspace(args: any, runtime: Required<BrowserToolRu
   });
 }
 
+type WebAiExtensionReadService = "chatgpt" | "claude" | "gemini";
+
+function extensionServiceArgs(service: WebAiExtensionReadService, args: any): any {
+  if (service === "claude") return claudeToolArgs(args || {});
+  if (service === "gemini") return geminiToolArgs(args || {});
+  return args || {};
+}
+
+function extensionBridgeUrlForService(service: WebAiExtensionReadService, args: any): string {
+  return service === "claude" ? claudeExtensionHttpBridgeUrl(args) : extensionHttpBridgeUrlForArgs(args);
+}
+
+function extensionReadErrorCode(service: WebAiExtensionReadService, error: any): ConsumerErrorCode {
+  return service === "claude" ? claudeExtensionErrorCode(error) : webAiExtensionErrorCode(error);
+}
+
+function extensionWorkspaceRoute(service: WebAiExtensionReadService, args: any): string {
+  if (service === "chatgpt") return workspaceRoute(args.surface);
+  if (service === "claude") return CLAUDE_WORKSPACE_ROUTES[args.surface] || serviceDefaults.claude.url;
+  return geminiWorkspaceRoute(args.surface);
+}
+
+function extensionConversationTarget(service: WebAiExtensionReadService, args: any): string {
+  if (service === "gemini") return geminiConversationTarget(args.tab_url_contains);
+  if (service === "claude") return normalizeUrlLikeTarget(args.tab_url_contains) || serviceDefaults.claude.url;
+  return normalizeUrlLikeTarget(args.tab_url_contains) || serviceDefaults.chatgpt.url;
+}
+
+async function openExtensionUrl(service: WebAiExtensionReadService, backend: any, args: any, url: string): Promise<any> {
+  const timeoutMs = Math.min(args.timeout_ms || 60000, 30000);
+  const requested = args.url || args.tab_url_contains;
+  const requestedUrl = normalizeUrlLikeTarget(requested);
+  const targetUrl = requestedUrl || url;
+  const page = requested
+    ? await backend.claimTab({ url: requested, profile: args.profile })
+    : await backend.newTab({ url: targetUrl, profile: args.profile, background: false });
+  await page.navigate(targetUrl, { waitUntil: "domcontentloaded", timeoutMs });
+  return page;
+}
+
+function extensionLoginRequiredOutput(service: WebAiExtensionReadService, url: string): Record<string, unknown> {
+  return safeOutput({
+    ok: false,
+    service,
+    url,
+    errorCode: ConsumerErrorCodes.LOGIN_REQUIRED,
+    error_code: ConsumerErrorCodes.LOGIN_REQUIRED,
+    message: `${service} login is required before workspace/conversation read`
+  });
+}
+
+function extensionReadErrorOutput(service: WebAiExtensionReadService, args: any, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
+  const errorCode = extensionReadErrorCode(service, error);
+  return safeOutput({
+    ok: false,
+    service,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode),
+    ...extra
+  });
+}
+
+function extensionConversationListSelectors(service: WebAiExtensionReadService): string[] {
+  if (service === "chatgpt") return ['a[href^="/c/"]', 'a[href*="/c/"]', 'nav a[href]'];
+  if (service === "claude") return ['a[href*="/chat/"]', 'a[href*="/c/"]', 'a[href]'];
+  return ['#conversations-list-0 a', 'a[href^="/app/"]', 'a[href*="/app/"]'];
+}
+
+function extensionWorkspaceListSelectors(service: WebAiExtensionReadService, surface: string): string[] {
+  if (service === "chatgpt") {
+    if (surface === "gpts") return ['a[href^="/g/g-"]', 'a[href*="/g/g-"]', 'main a[href]'];
+    return ['a[href^="/c/"]', 'a[href*="/c/"]', 'main a[href]', 'nav a[href]'];
+  }
+  if (service === "claude") {
+    if (surface === "projects") return ['a[href*="/project"]', 'a[href*="/projects"]', 'main a[href]'];
+    return ['main a[href]', '[role="menuitem"]', 'button'];
+  }
+  if (surface === "gems") return ['a[aria-label^="Start a new conversation with Gem:"]', 'a[href*="/gem"]', 'main a[href]'];
+  return ['main a[href]', 'mat-slide-toggle', '[role="switch"]', 'button'];
+}
+
+async function extensionReadItems(page: any, selectors: string[], limit = 25): Promise<Array<{ text: string; href?: string; aria_label?: string; title?: string; role?: string }>> {
+  const expression = `(() => {
+    const selectors = Array.isArray(arg && arg.selectors) ? arg.selectors : [];
+    const limit = Number(arg && arg.limit) || 25;
+    const visible = (el) => {
+      if (!el || !el.getBoundingClientRect) return false;
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return style && style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+    };
+    const compact = (value) => String(value || '').replace(/\\s+/g, ' ').trim();
+    const out = [];
+    const seen = new Set();
+    for (const selector of selectors) {
+      let nodes = [];
+      try { nodes = Array.from(document.querySelectorAll(selector)); } catch (_) { nodes = []; }
+      for (const node of nodes) {
+        if (!visible(node)) continue;
+        const text = compact(node.innerText || node.textContent || node.getAttribute('aria-label') || node.getAttribute('title'));
+        const href = node.href || node.getAttribute('href') || '';
+        const aria = compact(node.getAttribute('aria-label'));
+        const title = compact(node.getAttribute('title'));
+        const role = compact(node.getAttribute('role'));
+        if (!text && !href && !aria && !title) continue;
+        const key = [text, href, aria, title, role].join('\\u0000');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push({
+          text: text.slice(0, 240),
+          ...(href ? { href } : {}),
+          ...(aria ? { aria_label: aria.slice(0, 240) } : {}),
+          ...(title ? { title: title.slice(0, 240) } : {}),
+          ...(role ? { role } : {})
+        });
+        if (out.length >= limit) return out;
+      }
+    }
+    return out;
+  })()`;
+  const raw = await page.evaluateReadOnly(expression, { selectors, limit });
+  return Array.isArray(raw) ? raw.filter((item) => item && typeof item === "object") : [];
+}
+
+async function inspectWorkspaceWithExtensionBackend(service: WebAiExtensionReadService, args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = extensionServiceArgs(service, args);
+  const action = effective.action || "read";
+  if (service === "chatgpt" && !["read", "list"].includes(action)) {
+    return policyApprovalRequired("ChatGPT workspace destructive or mutating operations require explicit human approval and are not performed by this tool.", { surface: effective.surface, action });
+  }
+  const url = extensionWorkspaceRoute(service, effective);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionBridgeUrlForService(service, effective)
+    });
+    await backend.ping();
+    const page = await openExtensionUrl(service, backend, effective, url);
+    const snapshot = await extensionTextSnapshot(page);
+    if (!(service === "gemini" && effective.surface === "audio_overview") && loginRequiredForService(service, snapshot.url || "")) {
+      return extensionLoginRequiredOutput(service, snapshot.url || url);
+    }
+    const items = await extensionReadItems(page, extensionWorkspaceListSelectors(service, effective.surface));
+    const summary = items.length ? `${items.length} visible workspace item(s)` : `${effective.surface} route opened`;
+    return safeOutput({ surface: effective.surface, url: snapshot.url || url, summary, errorCode: null });
+  } catch (error: any) {
+    return extensionReadErrorOutput(service, effective, error, { surface: effective.surface, url, summary: "" });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function manageConversationWithExtensionBackend(service: WebAiExtensionReadService, args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const effective = extensionServiceArgs(service, args);
+  const action = effective.action || "list";
+  if (service === "chatgpt" && ["rename", "delete", "archive"].includes(action)) {
+    return humanHandoffRequired("Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.", { action });
+  }
+  if (service === "claude" && action === "sidebar_options") {
+    return humanHandoffRequired("Claude sidebar kebab opens a Radix portal that is not reliably snapshot-accessible from the CLI.", { action: "sidebar_options", reason: "sidebar_kebab_radix_portal_unreliable" });
+  }
+  if (service === "gemini" && ["delete", "rename"].includes(action)) {
+    return policyApprovalRequired("Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.", { action });
+  }
+  if ((service === "claude" || service === "gemini") && action === "share" && effective.confirmed !== true) {
+    const label = service === "claude" ? "Claude" : "Gemini";
+    return sensitiveContentGuard(`Opening ${label} conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.`, { action: "share" });
+  }
+
+  const target = service === "chatgpt" && action === "navigate_settings"
+    ? chatgptSettingsRoute(effective.surface)
+    : extensionConversationTarget(service, effective);
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionBridgeUrlForService(service, effective)
+    });
+    await backend.ping();
+    const page = await openExtensionUrl(service, backend, effective, target);
+    const snapshot = await extensionTextSnapshot(page);
+    if (loginRequiredForService(service, snapshot.url || "")) return extensionLoginRequiredOutput(service, snapshot.url || target);
+
+    if (action === "list" || action === "search") {
+      const allItems = await extensionReadItems(page, extensionConversationListSelectors(service));
+      const query = typeof effective.query === "string" ? effective.query.trim().toLowerCase() : "";
+      const results = query ? allItems.filter((item) => `${item.text} ${item.href || ""} ${item.aria_label || ""}`.toLowerCase().includes(query)) : allItems;
+      return safeOutput({
+        action,
+        url: snapshot.url || target,
+        items: results.map((item) => ({ ...item })),
+        results: results.map((item) => ({ ...item })),
+        results_count: results.length,
+        errorCode: null
+      });
+    }
+
+    if (service === "chatgpt" && action === "navigate_settings") {
+      return safeOutput({ action, url: snapshot.url || target, surface: effective.surface || "personalization", errorCode: null });
+    }
+
+    if (action === "share") {
+      const selector = service === "chatgpt"
+        ? CHATGPT_SHARE_BUTTON_SELECTOR
+        : service === "claude"
+          ? CLAUDE_SHARE_BUTTON_SELECTOR
+          : GEMINI_SHARE_CONVERSATION_BUTTON_SELECTOR;
+      await clickExtensionSelector(page, selector, Math.min(effective.timeout_ms || 60000, 8000), `${service} share conversation button was not found`);
+      return safeOutput({ action, dialog_opened: true, url: snapshot.url || target, conversationId: service === "gemini" ? null : (service === "claude" ? claudeConversationIdFromUrl(snapshot.url || "") : conversationIdFromUrl(snapshot.url || "")), errorCode: null });
+    }
+
+    if (action === "menu_enumerate") {
+      if (service === "chatgpt") {
+        await clickExtensionSelector(page, 'button[aria-label="Open conversation options"]', 8000, "ChatGPT in-chat header conversation options button was not found");
+      } else if (service === "gemini") {
+        await clickExtensionSelector(page, '[aria-label^="More options for"], button:has-text("More")', 8000, "Gemini conversation options button was not found");
+      }
+      const items = await extensionReadItems(page, ['[role="menuitem"]', '[role="menu"] button', '.mat-mdc-menu-panel button']);
+      return safeOutput({ action, url: snapshot.url || target, items, errorCode: null });
+    }
+
+    return extensionReadErrorOutput(service, effective, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `Unsupported ${service} conversation action: ${action}`), { action, url: snapshot.url || target });
+  } catch (error: any) {
+    return extensionReadErrorOutput(service, effective, error, { action, url: target, items: [], results: [] });
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function inspectChatgptWorkspaceWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return inspectWorkspaceWithExtensionBackend("chatgpt", args, runtime);
+}
+
+async function inspectClaudeWorkspaceWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return inspectWorkspaceWithExtensionBackend("claude", args, runtime);
+}
+
+async function inspectGeminiWorkspaceWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return inspectWorkspaceWithExtensionBackend("gemini", args, runtime);
+}
+
+async function manageChatgptConversationWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return manageConversationWithExtensionBackend("chatgpt", args, runtime);
+}
+
+async function manageClaudeConversationWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return manageConversationWithExtensionBackend("claude", args, runtime);
+}
+
+async function manageGeminiConversationWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  return manageConversationWithExtensionBackend("gemini", args, runtime);
+}
+
+function webAiBackendInvalidOutput(tool: string, backend: any): Record<string, unknown> {
+  return safeOutput({
+    ok: false,
+    errorCode: ConsumerErrorCodes.INVALID_ARGS,
+    error_code: ConsumerErrorCodes.INVALID_ARGS,
+    message: `${tool} backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`
+  });
+}
+
 
 export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "managed-cdp";
@@ -4940,14 +5210,44 @@ export async function webAiChatgptPulseGet(args: any, runtime?: BrowserToolRunti
 export async function webAiChatgptPulseOnboard(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return onboardChatgptPulse(args, runtimeOrDefault(runtime)); }
 export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startChatgptDeepResearch(args, runtimeOrDefault(runtime)); }
 export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startClaudeDeepResearch(args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageChatgptConversation(args, runtimeOrDefault(runtime)); }
-export async function webAiClaudeConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageClaudeConversation(args, runtimeOrDefault(runtime)); }
-export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectChatgptWorkspace(args, runtimeOrDefault(runtime)); }
-export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectClaudeWorkspace(args, runtimeOrDefault(runtime)); }
+export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return manageChatgptConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return manageChatgptConversation(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_conversation_manage", backend);
+}
+export async function webAiClaudeConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return manageClaudeConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return manageClaudeConversation(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_conversation_manage", backend);
+}
+export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return inspectChatgptWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return inspectChatgptWorkspace(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_chatgpt_workspace", backend);
+}
+export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return inspectClaudeWorkspace(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_claude_workspace", backend);
+}
 export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return startGeminiDeepResearch(args, runtimeOrDefault(runtime)); }
 export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return editGeminiCanvas(args, runtimeOrDefault(runtime)); }
-export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return manageGeminiConversation(args, runtimeOrDefault(runtime)); }
-export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> { return inspectGeminiWorkspace(args, runtimeOrDefault(runtime)); }
+export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return manageGeminiConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return manageGeminiConversation(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_conversation_manage", backend);
+}
+export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return inspectGeminiWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return inspectGeminiWorkspace(args, runtimeOrDefault(runtime));
+  return webAiBackendInvalidOutput("webai_gemini_workspace", backend);
+}
 export async function webAiTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const database = runtime?.database || new CapabilityDatabase();
   const record = database.getWebAiTask(args.task_id);
@@ -4988,6 +5288,30 @@ function generateFileSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: str
   }, json.required || []);
 }
 
+function readToolSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string, noun: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} ${noun} routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
+function conversationManageSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp"; action: string }> {
+  const json = schema.toJsonSchema();
+  const properties = { ...(json.properties || {}) };
+  const action = properties.action;
+  if (Array.isArray(action?.enum) && !action.enum.includes("list")) {
+    properties.action = {
+      ...action,
+      enum: [...action.enum, "list"]
+    };
+  }
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp"; action: string }>({
+    ...properties,
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} conversation management routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
 const webAiChatgptSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiChatgptSendPromptInput, "ChatGPT");
 const webAiGeminiSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiGeminiSendPromptInput, "Gemini");
 const webAiChatgptSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiChatgptSelectModelInput, "ChatGPT");
@@ -4996,6 +5320,12 @@ const webAiGeminiSelectModelWithBackendInput = selectModelSchemaWithBackend(webA
 const webAiChatgptUploadAndQueryWithBackendInput = uploadSchemaWithBackend(webAiUploadAndQueryInput, "ChatGPT");
 const webAiGeminiUploadAndQueryWithBackendInput = uploadSchemaWithBackend(webAiUploadAndQueryInput, "Gemini");
 const webAiChatgptGenerateFileWithBackendInput = generateFileSchemaWithBackend(webAiGenerateFileInput, "ChatGPT");
+const webAiChatgptConversationManageWithBackendInput = conversationManageSchemaWithBackend(webAiChatgptConversationManageInput, "ChatGPT");
+const webAiClaudeConversationManageWithBackendInput = conversationManageSchemaWithBackend(webAiClaudeConversationManageInput, "Claude");
+const webAiGeminiConversationManageWithBackendInput = conversationManageSchemaWithBackend(webAiGeminiConversationManageInput, "Gemini");
+const webAiChatgptWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiChatgptWorkspaceInput, "ChatGPT", "workspace");
+const webAiClaudeWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiClaudeWorkspaceInput, "Claude", "workspace");
+const webAiGeminiWorkspaceWithBackendInput = readToolSchemaWithBackend(webAiGeminiWorkspaceInput, "Gemini", "workspace");
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -5158,13 +5488,13 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_conversation_manage",
     description: "Enumerate Gemini conversation menu items, guard sharing, or search conversations without mutating data.",
-    schema: webAiGeminiConversationManageInput,
+    schema: webAiGeminiConversationManageWithBackendInput,
     handler: async (args, runtime) => webAiGeminiConversationManage(args, runtime)
   },
   {
     name: "webai_gemini_workspace",
     description: "Navigate read-only Gemini workspace/settings surfaces and return a short summary.",
-    schema: webAiGeminiWorkspaceInput,
+    schema: webAiGeminiWorkspaceWithBackendInput,
     handler: async (args, runtime) => webAiGeminiWorkspace(args, runtime)
   },
   {
@@ -5206,25 +5536,25 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_conversation_manage",
     description: "Open ChatGPT share dialog or navigate read-only settings surfaces; kebab-gated operations return human handoff.",
-    schema: webAiChatgptConversationManageInput,
+    schema: webAiChatgptConversationManageWithBackendInput,
     handler: async (args, runtime) => webAiChatgptConversationManage(args, runtime)
   },
   {
     name: "webai_claude_conversation_manage",
     description: "Search Claude conversations, guard sharing behind explicit confirmation, or report sidebar kebab handoff.",
-    schema: webAiClaudeConversationManageInput,
+    schema: webAiClaudeConversationManageWithBackendInput,
     handler: async (args, runtime) => webAiClaudeConversationManage(args, runtime)
   },
   {
     name: "webai_chatgpt_workspace",
     description: "Navigate read-only ChatGPT workspace/settings surfaces and return a short summary.",
-    schema: webAiChatgptWorkspaceInput,
+    schema: webAiChatgptWorkspaceWithBackendInput,
     handler: async (args, runtime) => webAiChatgptWorkspace(args, runtime)
   },
   {
     name: "webai_claude_workspace",
     description: "Navigate read-only Claude workspace/settings surfaces and return a short summary.",
-    schema: webAiClaudeWorkspaceInput,
+    schema: webAiClaudeWorkspaceWithBackendInput,
     handler: async (args, runtime) => webAiClaudeWorkspace(args, runtime)
   },
   {
