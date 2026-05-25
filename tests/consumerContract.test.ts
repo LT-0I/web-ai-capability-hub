@@ -2599,7 +2599,7 @@ test("gemini generate-image returns ELEMENT_NOT_FOUND when Create image button w
   assert.deepEqual(page.calls.goto, ["https://gemini.google.com/app?hl=en"]);
 });
 
-const GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST = 'button[aria-label="Open mode picker"]';
+const GEMINI_MODE_PICKER_TRIGGER_SELECTOR_FOR_TEST = 'button[data-test-id="bard-mode-menu-button"], button[aria-label^="Open mode picker"]';
 const GEMINI_FLASH_LITE_OPTION_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Fastest answers")';
 const GEMINI_THINKING_EXPANDER_SELECTOR_FOR_TEST = '[role="menuitem"][aria-label*="Thinking level"], [role="menuitem"]:has-text("Thinking level")';
 const GEMINI_THINKING_STANDARD_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Best for most questions")';
@@ -2689,7 +2689,7 @@ test("webai_gemini_select_model is registered in contract with the 6 expected ar
   assert.equal(row.cli_name, "webai:gemini:select-model");
   assert.equal(row.ts_export, "webAiGeminiSelectModel");
   assert.deepEqual(row.required_args, ["profile"]);
-  assert.deepEqual(row.optional_args, ["model", "thinking_level"]);
+  assert.deepEqual(row.optional_args, ["model", "thinking_level", "backend"]);
   assert.deepEqual(row.output_keys.always_present, ["ok", "selected_model", "selected_thinking_level", "errorCode"]);
   assert.deepEqual(row.output_keys.optional, []);
   assert.ok(listMcpTools().some((tool) => tool.name === "webai_gemini_select_model"));
@@ -2707,7 +2707,7 @@ test("webai_chatgpt_select_model and webai_claude_select_model are registered in
     assert.equal(row.cli_name, item.cli);
     assert.equal(row.ts_export, item.ts);
     assert.deepEqual(row.required_args, ["profile"]);
-    assert.deepEqual(row.optional_args, ["model", "thinking_level"]);
+    assert.deepEqual(row.optional_args, ["model", "thinking_level", "backend"]);
     assert.deepEqual(row.output_keys.always_present, ["ok", "selected_model", "selected_thinking_level", "errorCode"]);
     assert.deepEqual(row.output_keys.optional, []);
     assert.ok(listMcpTools().some((tool) => tool.name === item.mcp));

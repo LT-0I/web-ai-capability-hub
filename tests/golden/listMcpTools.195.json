@@ -8842,6 +8842,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Optional command timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for ChatGPT model selection routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9285,6 +9292,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Optional command timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Claude model selection routing; defaults to managed-cdp"
           }
         },
         "required": [
@@ -9843,6 +9857,13 @@
           "timeout_ms": {
             "type": "number",
             "description": "Optional command timeout in milliseconds"
+          },
+          "backend": {
+            "enum": [
+              "managed-cdp",
+              "extension-assisted-cdp"
+            ],
+            "description": "Browser backend for Gemini model selection routing; defaults to managed-cdp"
           }
         },
         "required": [

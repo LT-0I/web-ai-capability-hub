@@ -464,7 +464,8 @@ const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-c
 const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
 const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
-const GEMINI_MODE_PICKER_TRIGGER_SELECTOR = 'button[aria-label="Open mode picker"]';
+const GEMINI_MODE_PICKER_TRIGGER_SELECTOR = 'button[data-test-id="bard-mode-menu-button"], button[aria-label^="Open mode picker"]';
+const GEMINI_MODE_PICKER_EXPANDED_SELECTOR = 'button[data-test-id="bard-mode-menu-button"][aria-expanded="true"], button[aria-label^="Open mode picker"][aria-expanded="true"]';
 
 // Model menuitems — disambiguated by their UNIQUE descriptor suffix (not the model
 // tier alone) so that future "3.5 Flash-Lite" cannot silently match "3.5 Flash".
@@ -570,7 +571,7 @@ const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text(
 const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Research")]';
 const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
 const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
-const GEMINI_MODE_PICKER_SELECTOR = 'button[aria-label="Open mode picker"]';
+const GEMINI_MODE_PICKER_SELECTOR = GEMINI_MODE_PICKER_TRIGGER_SELECTOR;
 const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
 const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Videos"]';
@@ -2174,6 +2175,13 @@ async function selectGeminiModelWithExtension(page: any, expected: string): Prom
   await clickExtensionSelector(page, selector, 8000, `Gemini model option was not found: ${expected}`);
 }
 
+async function selectGeminiThinkingLevelWithExtension(page: any, thinkingLevel: string): Promise<void> {
+  await clickExtensionSelector(page, GEMINI_MODE_PICKER_SELECTOR, 5000, "Gemini mode picker trigger was not found");
+  await clickExtensionSelector(page, GEMINI_THINKING_EXPANDER_SELECTOR, 8000, "Gemini Thinking level expander was not found");
+  const selector = GEMINI_THINKING_OPTION_TEMPLATES[thinkingLevel];
+  await clickExtensionSelector(page, selector, 8000, `Gemini thinking_level option ${thinkingLevel} not found`);
+}
+
 async function enableGeminiWebSearchWithExtension(page: any): Promise<void> {
   await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
   await clickExtensionSelector(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "Gemini Google Search menuitemcheckbox was not found");
@@ -2671,6 +2679,147 @@ async function sendGeminiPromptWithExtensionBackend(args: any, runtime: Required
     return await sendPromptInExtensionPage("gemini", effective, page, started);
   } catch (error: any) {
     return sendPromptExtensionErrorOutput("gemini", effective, started, error);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function selectChatgptModelWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const invalid = validateStandaloneSelectModelArgs("webai_chatgpt_select_model", args);
+  if (invalid) return invalid;
+  const effective = args || {};
+  const requestedThinkingLevel = effective.thinking_level ? String(effective.thinking_level) : null;
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  let selectedModel: string | null = null;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await openChatgptExtensionPage(backend, effective);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("chatgpt", effective), text: "" }));
+    if (loginRequiredForService("chatgpt", snapshot.url || "")) {
+      return selectModelToolError(
+        new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "ChatGPT login is required before model selection"),
+        selectedModel,
+        requestedThinkingLevel
+      );
+    }
+    await waitForExtensionSelector(page, serviceDefaults.chatgpt.promptSelector, Math.min(effective.timeout_ms || 60000, 15000), "ChatGPT prompt composer was not found");
+    const modelFromArg = effective.model ? normalizeModelTier("chatgpt", { model: effective.model }) || String(effective.model).trim() : null;
+    const expectedModel = modelFromArg || (requestedThinkingLevel === "extended" ? "Thinking" : null);
+    if (expectedModel) {
+      await selectChatgptModelWithExtension(page, expectedModel);
+      selectedModel = expectedModel;
+    }
+    return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: requestedThinkingLevel, errorCode: null });
+  } catch (error: any) {
+    return selectModelExtensionErrorOutput(error, selectedModel, requestedThinkingLevel);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+async function selectClaudeModelWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const invalid = validateStandaloneSelectModelArgs("webai_claude_select_model", args);
+  if (invalid) return invalid;
+  const effective = args || {};
+  const requestedThinkingLevel = effective.thinking_level ? String(effective.thinking_level) : null;
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  let selectedModel: string | null = null;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
+    });
+    await backend.ping();
+    const page = await openClaudeExtensionPage(backend, effective);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("claude", effective), text: "" }));
+    if (loginRequiredForService("claude", snapshot.url || "")) {
+      return selectModelToolError(
+        new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude login is required before model selection"),
+        selectedModel,
+        requestedThinkingLevel
+      );
+    }
+    await waitForExtensionSelector(page, CLAUDE_MODEL_SELECTOR, Math.min(effective.timeout_ms || 60000, 15000), "Claude model selector was not found");
+    if (effective.model) {
+      selectedModel = String(effective.model).trim();
+      await selectClaudeModelWithExtension(page, selectedModel);
+    }
+    if (requestedThinkingLevel === "extended") {
+      await setClaudeAdaptiveThinkingWithExtension(page);
+    }
+    return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: requestedThinkingLevel, errorCode: null });
+  } catch (error: any) {
+    return selectModelExtensionErrorOutput(error, selectedModel, requestedThinkingLevel);
+  } finally {
+    await backend?.finalize?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
+  }
+}
+
+function validateGeminiExtensionSelectModelArgs(args: any): Record<string, unknown> | null {
+  if (!args?.profile || typeof args.profile !== "string") {
+    return selectModelInvalidArgs("webai_gemini_select_model", "requires profile");
+  }
+  if (!args.model && !args.thinking_level) {
+    return selectModelInvalidArgs("webai_gemini_select_model", "requires at least one of: model, thinking_level");
+  }
+  if (args.model !== undefined && (typeof args.model !== "string" || !args.model.trim())) {
+    return selectModelInvalidArgs("webai_gemini_select_model", "model must be a non-empty picker label");
+  }
+  if (args.thinking_level !== undefined && !GEMINI_THINKING_OPTION_TEMPLATES[String(args.thinking_level)]) {
+    return selectModelInvalidArgs("webai_gemini_select_model", `unsupported thinking_level "${args.thinking_level}" (allowed: standard, extended)`);
+  }
+  return null;
+}
+
+async function selectGeminiModelWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+  void runtime;
+  const invalid = validateGeminiExtensionSelectModelArgs(args);
+  if (invalid) return invalid;
+  const effective = geminiToolArgs(args || {});
+  const requestedThinkingLevel = effective.thinking_level ? String(effective.thinking_level) : null;
+  const lease = acquireProfileLease(effective.profile);
+  let backend: any;
+  let selectedModel: string | null = null;
+  let selectedThinkingLevel: string | null = null;
+  try {
+    backend = getBackend("extension-assisted-cdp", {
+      transport: "http",
+      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+    });
+    await backend.ping();
+    const page = await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
+    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+    if (loginRequiredForService("gemini", snapshot.url || "")) {
+      return selectModelToolError(
+        new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before model selection"),
+        selectedModel,
+        requestedThinkingLevel
+      );
+    }
+    await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
+    await waitForExtensionSelector(page, serviceDefaults.gemini.promptSelector, Math.min(effective.timeout_ms || 60000, 15000), "Gemini prompt composer was not found");
+    if (effective.model) {
+      selectedModel = String(effective.model).trim();
+      await selectGeminiModelWithExtension(page, selectedModel);
+    }
+    if (requestedThinkingLevel) {
+      await selectGeminiThinkingLevelWithExtension(page, requestedThinkingLevel);
+      selectedThinkingLevel = requestedThinkingLevel;
+    }
+    return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: selectedThinkingLevel, errorCode: null });
+  } catch (error: any) {
+    return selectModelExtensionErrorOutput(error, selectedModel, selectedThinkingLevel || requestedThinkingLevel);
   } finally {
     await backend?.finalize?.().catch?.(() => undefined);
     releaseProfileLease(effective.profile, lease);
@@ -4305,6 +4454,32 @@ function selectModelToolError(error: WebAiToolError, selectedModel: string | nul
   });
 }
 
+function selectModelExtensionErrorCode(error: any): ConsumerErrorCode {
+  if (isConsumerErrorCode(error?.errorCode)) return error.errorCode;
+  if (isConsumerErrorCode(error?.code)) return error.code;
+  const message = errorMessageFromUnknown(error, "");
+  if (/timeout|timed out/i.test(message)) return ConsumerErrorCodes.COMMAND_TIMEOUT;
+  if (/selector|element|not found/i.test(message)) return ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+  return classifyChromeExtensionBridgeError(error);
+}
+
+function selectModelExtensionErrorOutput(error: any, selectedModel: string | null = null, selectedThinkingLevel: string | null = null): Record<string, unknown> {
+  if (error instanceof WebAiToolError) return selectModelToolError(error, selectedModel, selectedThinkingLevel);
+  const errorCode = selectModelExtensionErrorCode(error);
+  return safeOutput({
+    ok: false,
+    selected_model: selectedModel,
+    selected_thinking_level: selectedThinkingLevel,
+    errorCode,
+    error_code: errorCode,
+    message: errorMessageFromUnknown(error, errorCode)
+  });
+}
+
+function selectModelBackendInvalid(tool: string, backend: any): Record<string, unknown> {
+  return selectModelInvalidArgs(tool, `backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+}
+
 function validateStandaloneSelectModelArgs(tool: string, args: any): Record<string, unknown> | null {
   if (!args?.profile || typeof args.profile !== "string") {
     return selectModelInvalidArgs(tool, "requires profile");
@@ -4321,7 +4496,14 @@ function validateStandaloneSelectModelArgs(tool: string, args: any): Record<stri
   return null;
 }
 
-export async function webAiChatgptSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+export async function webAiChatgptSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return selectChatgptModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return selectChatgptModelWithManagedBackend(args, runtimeOrDefault(runtime));
+  return selectModelBackendInvalid("webai_chatgpt_select_model", backend);
+}
+
+async function selectChatgptModelWithManagedBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const invalid = validateStandaloneSelectModelArgs("webai_chatgpt_select_model", args);
   if (invalid) return invalid;
   const lease = acquireProfileLease(args.profile);
@@ -4353,7 +4535,14 @@ export async function webAiChatgptSelectModel(args: any, runtime: Required<Brows
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
-export async function webAiClaudeSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+export async function webAiClaudeSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return selectClaudeModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return selectClaudeModelWithManagedBackend(args, runtimeOrDefault(runtime));
+  return selectModelBackendInvalid("webai_claude_select_model", backend);
+}
+
+async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const invalid = validateStandaloneSelectModelArgs("webai_claude_select_model", args);
   if (invalid) return invalid;
   const lease = acquireProfileLease(args.profile);
@@ -4385,7 +4574,14 @@ export async function webAiClaudeSelectModel(args: any, runtime: Required<Browse
   } finally { releaseProfileLease(args.profile, lease); }
 }
 
-export async function webAiGeminiSelectModel(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
+export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const backend = args?.backend || "managed-cdp";
+  if (backend === "extension-assisted-cdp") return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "managed-cdp") return selectGeminiModelWithManagedBackend(args, runtimeOrDefault(runtime));
+  return selectModelBackendInvalid("webai_gemini_select_model", backend);
+}
+
+async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   if (!args.model && !args.thinking_level) {
     return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: "webai_gemini_select_model requires at least one of: model, thinking_level" });
   }
@@ -4411,7 +4607,7 @@ export async function webAiGeminiSelectModel(args: any, runtime: Required<Browse
         const expanded = await trigger.getAttribute("aria-expanded").catch(() => null);
         if (expanded !== "true") {
           await trigger.click({ timeout: 5000 });
-          await page.waitForSelector(`${GEMINI_MODE_PICKER_TRIGGER_SELECTOR}[aria-expanded="true"], [role="menuitem"]`, { state: "visible", timeout: 5000 });
+          await page.waitForSelector(`${GEMINI_MODE_PICKER_EXPANDED_SELECTOR}, [role="menuitem"]`, { state: "visible", timeout: 5000 });
         }
       };
       let selected_model: string | null = null;
@@ -4520,8 +4716,19 @@ function sendPromptSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: strin
   }, json.required || []);
 }
 
+function selectModelSchemaWithBackend<T>(schema: RuntimeSchema<T>, service: string): RuntimeSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }> {
+  const json = schema.toJsonSchema();
+  return objectSchema<T & { backend?: "managed-cdp" | "extension-assisted-cdp" }>({
+    ...(json.properties || {}),
+    backend: scalar.enum(["managed-cdp", "extension-assisted-cdp"], `Browser backend for ${service} model selection routing; defaults to managed-cdp`)
+  }, json.required || []);
+}
+
 const webAiChatgptSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiChatgptSendPromptInput, "ChatGPT");
 const webAiGeminiSendPromptWithBackendInput = sendPromptSchemaWithBackend(webAiGeminiSendPromptInput, "Gemini");
+const webAiChatgptSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiChatgptSelectModelInput, "ChatGPT");
+const webAiClaudeSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiClaudeSelectModelInput, "Claude");
+const webAiGeminiSelectModelWithBackendInput = selectModelSchemaWithBackend(webAiGeminiSelectModelInput, "Gemini");
 
 const coreToolSpecs: ToolSpec[] = [
 
@@ -4588,7 +4795,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_chatgpt_select_model",
     description: "Select a ChatGPT model and/or thinking level without sending a prompt.",
-    schema: webAiChatgptSelectModelInput,
+    schema: webAiChatgptSelectModelWithBackendInput,
     handler: async (args, runtime) => webAiChatgptSelectModel(args, runtime)
   },
   {
@@ -4600,7 +4807,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_claude_select_model",
     description: "Select a Claude model and/or thinking level without sending a prompt.",
-    schema: webAiClaudeSelectModelInput,
+    schema: webAiClaudeSelectModelWithBackendInput,
     handler: async (args, runtime) => webAiClaudeSelectModel(args, runtime)
   },
   {
@@ -4612,7 +4819,7 @@ const coreToolSpecs: ToolSpec[] = [
   {
     name: "webai_gemini_select_model",
     description: "Select a Gemini model and/or thinking level without sending a prompt.",
-    schema: webAiGeminiSelectModelInput,
+    schema: webAiGeminiSelectModelWithBackendInput,
     handler: async (args, runtime) => webAiGeminiSelectModel(args, runtime)
   },
   {

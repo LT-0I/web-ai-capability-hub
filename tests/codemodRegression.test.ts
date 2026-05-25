@@ -38,7 +38,7 @@ test("185-superset proof: every entry in listMcpTools.185.archived.json is prese
   for (const [name, expected] of archivedByName) {
     const actual = currentByName.get(name);
     if (!actual) { missing.push(name); continue; }
-    if (["webai_chatgpt_send_prompt", "webai_gemini_send_prompt", "webai_chatgpt_generate_image", "webai_gemini_generate_image", "webai_gemini_generate_video", "webai_gemini_music_generate", "webai_claude_send_prompt", "webai_claude_upload_and_query", "webai_claude_generate_file"].includes(name)) {
+    if (["webai_chatgpt_send_prompt", "webai_gemini_send_prompt", "webai_chatgpt_select_model", "webai_claude_select_model", "webai_gemini_select_model", "webai_chatgpt_generate_image", "webai_gemini_generate_image", "webai_gemini_generate_video", "webai_gemini_music_generate", "webai_claude_send_prompt", "webai_claude_upload_and_query", "webai_claude_generate_file"].includes(name)) {
       const normalized = JSON.parse(JSON.stringify(actual));
       assert.deepEqual(normalized.inputSchema?.properties?.backend?.enum, ["managed-cdp", "extension-assisted-cdp"]);
       delete normalized.inputSchema?.properties?.backend;
