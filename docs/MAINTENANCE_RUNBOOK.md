@@ -190,5 +190,12 @@ Inspect queue: `sqlite3 data/literature-queue.sqlite 'SELECT status, COUNT(*) FR
 Inspect 24h ledger: `sqlite3 data/literature-rate-limit.sqlite 'SELECT db_slug, COUNT(*) FROM download_ledger WHERE downloaded_at > strftime("%s","now","-24 hours")*1000 GROUP BY db_slug'`
 Stop: SIGTERM the process; in-flight downloads finish; new claims stop.
 
+Worker pacing:
+- Default claimed-task jitter is 30-180s (`30000-180000ms`) to avoid bursty
+  publisher traffic.
+- Tests and controlled local smoke runs may override this with
+  `LITERATURE_WORKER_JITTER_MIN_MS` and `LITERATURE_WORKER_JITTER_MAX_MS`
+  (for example `10` / `50`).
+
 Schemas + cap (20/DB/24h) are immutable from caller's perspective.
 DO NOT bypass the ledger "just for testing" — tests hit the ledger too.

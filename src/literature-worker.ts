@@ -11,8 +11,13 @@ import {
 import { getLiteratureDriver } from "./runtime/literature/drivers";
 
 const SCAN_INTERVAL_MS = 5000;
-const MIN_JITTER_MS = 30_000;
-const MAX_JITTER_MS = 180_000;
+export const LITERATURE_WORKER_JITTER_MIN_MS_ENV = "LITERATURE_WORKER_JITTER_MIN_MS";
+export const LITERATURE_WORKER_JITTER_MAX_MS_ENV = "LITERATURE_WORKER_JITTER_MAX_MS";
+export const DEFAULT_LITERATURE_WORKER_JITTER_MIN_MS = 30_000;
+export const DEFAULT_LITERATURE_WORKER_JITTER_MAX_MS = 180_000;
+// Production default intentionally jitters each claimed task by 30-180s
+// (30000-180000ms) to avoid bursty publisher traffic. Tests may override this
+// with LITERATURE_WORKER_JITTER_MIN_MS / LITERATURE_WORKER_JITTER_MAX_MS.
 
 let stopping = false;
 const busyDbSlugs = new Set<string>();
@@ -27,27 +32,44 @@ function log(message: string, fields: Record<string, unknown> = {}): void {
   console.log(JSON.stringify({ ts: new Date().toISOString(), component: "literature-worker", message, ...fields }));
 }
 
-function jitterMs(): number {
-  return MIN_JITTER_MS + Math.floor(Math.random() * (MAX_JITTER_MS - MIN_JITTER_MS + 1));
+function readNonNegativeIntegerEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (raw == null || raw === "") return fallback;
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed) || parsed < 0) return fallback;
+  return Math.floor(parsed);
+}
+
+export function literatureWorkerJitterRangeForInternalUse(): { min_ms: number; max_ms: number } {
+  const min_ms = readNonNegativeIntegerEnv(LITERATURE_WORKER_JITTER_MIN_MS_ENV, DEFAULT_LITERATURE_WORKER_JITTER_MIN_MS);
+  const requestedMax = readNonNegativeIntegerEnv(LITERATURE_WORKER_JITTER_MAX_MS_ENV, DEFAULT_LITERATURE_WORKER_JITTER_MAX_MS);
+  return { min_ms, max_ms: Math.max(min_ms, requestedMax) };
+}
+
+export function literatureWorkerJitterMsForInternalUse(random: () => number = Math.random): number {
+  const { min_ms, max_ms } = literatureWorkerJitterRangeForInternalUse();
+  return min_ms + Math.floor(random() * (max_ms - min_ms + 1));
 }
 
 function sleep(ms: number): Promise<void> {
   if (stopping) return Promise.resolve();
   return new Promise((resolve) => {
+    let wake: () => void = () => undefined;
     const timer = setTimeout(() => {
-      if (wakeScanner === resolve) wakeScanner = null;
+      if (wakeScanner === wake) wakeScanner = null;
       resolve();
     }, ms);
-    wakeScanner = () => {
+    wake = () => {
       clearTimeout(timer);
-      if (wakeScanner === resolve) wakeScanner = null;
+      if (wakeScanner === wake) wakeScanner = null;
       resolve();
     };
+    wakeScanner = wake;
   });
 }
 
 async function runClaimedTask(db_slug: string, task: { task_id: string; doc_id: string; requested_url: string | null }): Promise<void> {
-  const delay = jitterMs();
+  const delay = literatureWorkerJitterMsForInternalUse();
   log("task claimed; waiting jitter before driver", { db_slug, task_id: task.task_id, delay_ms: delay });
   await new Promise((resolve) => setTimeout(resolve, delay));
   try {
@@ -64,6 +86,7 @@ async function runClaimedTask(db_slug: string, task: { task_id: string; doc_id: 
     log("task failed", { db_slug, task_id: task.task_id, error: message });
   } finally {
     busyDbSlugs.delete(db_slug);
+    if (wakeScanner) wakeScanner();
   }
 }
 
@@ -107,7 +130,8 @@ function installSignalHandlers(): void {
 export async function runLiteratureWorker(): Promise<void> {
   installSignalHandlers();
   const reverted = resetRunningLiteratureTasks(now());
-  log("started", { scan_interval_ms: SCAN_INTERVAL_MS, jitter_min_ms: MIN_JITTER_MS, jitter_max_ms: MAX_JITTER_MS, reverted_running_tasks: reverted });
+  const jitter = literatureWorkerJitterRangeForInternalUse();
+  log("started", { scan_interval_ms: SCAN_INTERVAL_MS, jitter_min_ms: jitter.min_ms, jitter_max_ms: jitter.max_ms, reverted_running_tasks: reverted });
   while (!stopping) {
     await scanOnce();
     await sleep(SCAN_INTERVAL_MS);
