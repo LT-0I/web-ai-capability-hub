@@ -423,7 +423,7 @@ function evaluateCommandGate(gate: WorkflowGateSpec | undefined, ctx: { exitCode
   if (gate.stdout_regex) {
     let ok = false;
     let regexError: string | undefined;
-    try { ok = new RegExp(gate.stdout_regex).test(ctx.stdout); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
+    try { ok = compileWorkflowRegex(gate.stdout_regex).test(ctx.stdout); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
     detail.stdout_regex = { pattern: gate.stdout_regex, ok, regexError };
     if (!ok) failures.push(`stdout_regex /${gate.stdout_regex}/ failed${regexError ? `: ${regexError}` : ""}`);
   }
@@ -438,7 +438,7 @@ function evaluateCommandGate(gate: WorkflowGateSpec | undefined, ctx: { exitCode
       if (check.regex) {
         let matched = false;
         let regexError: string | undefined;
-        try { matched = new RegExp(check.regex).test(typeof actual === "string" ? actual : JSON.stringify(actual ?? "")); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
+        try { matched = compileWorkflowRegex(check.regex).test(typeof actual === "string" ? actual : JSON.stringify(actual ?? "")); } catch (error) { regexError = error instanceof Error ? error.message : String(error); }
         if (!matched) { ok = false; reasons.push(`regex /${check.regex}/ failed${regexError ? `: ${regexError}` : ""}`); }
       }
       checks.push({ path: check.path, actual, ok, reasons: reasons.length ? reasons : undefined });
@@ -448,6 +448,13 @@ function evaluateCommandGate(gate: WorkflowGateSpec | undefined, ctx: { exitCode
   }
   const ok = failures.length === 0;
   return { ok, message: ok ? "command gate passed" : `command gate failed: ${failures.join("; ")}`, detail };
+}
+
+function compileWorkflowRegex(pattern: string): RegExp {
+  const inlineFlags = /^\(\?([imsu]+)\)([\s\S]*)$/.exec(pattern);
+  if (!inlineFlags) return new RegExp(pattern);
+  const flags = Array.from(new Set(inlineFlags[1].split(""))).join("");
+  return new RegExp(inlineFlags[2], flags);
 }
 
 function lookupJsonPath(value: unknown, expr: string): unknown {

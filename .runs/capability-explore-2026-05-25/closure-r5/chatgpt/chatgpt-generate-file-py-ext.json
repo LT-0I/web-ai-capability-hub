@@ -1,0 +1,18 @@
+{
+  "id": "chatgpt-generate-file-py-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C5",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-generate-file-py-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND size_bytes > 32 AND content contains 'hello capability probe'",
+  "started_at": "2026-05-25T04:46:33.890Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/chatgpt-chatgpt-generate-file-py-ext.yaml",
+    "examples/workflows/chatgpt-generate-file-py-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T04:46:33.890Z"
+}

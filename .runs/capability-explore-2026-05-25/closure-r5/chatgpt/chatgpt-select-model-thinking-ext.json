@@ -1,0 +1,358 @@
+{
+  "id": "chatgpt-select-model-thinking-ext",
+  "service": "chatgpt",
+  "source": "capability-explore-2026-05-25/C1",
+  "status": "OK_EXT_BACKEND",
+  "workflow": "examples/workflows/chatgpt-chatgpt-select-model-thinking-ext.yaml",
+  "closure_criterion": "ok === true AND selected model/model_used contains Thinking/thinking/GPT-5 Thinking",
+  "started_at": "2026-05-25T04:46:37.840Z",
+  "ok": true,
+  "closureOk": true,
+  "cause": "thinking model gate failed",
+  "errorCode": "TIMEOUT",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-05-25T04:46:37.983Z",
+      "finished_at": "2026-05-25T04:46:47.928Z",
+      "command": "node dist/src/cli.js workflow:run examples/workflows/chatgpt-chatgpt-select-model-thinking-ext.yaml --json",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "workflow_ok": true,
+      "closure_ok": true,
+      "closure_cause": "thinking model gate failed",
+      "parsed": {
+        "ok": true,
+        "plan": {
+          "id": "chatgpt-select-model-thinking-ext",
+          "target": "chatgpt",
+          "profile": "<profile>",
+          "mode": "automatic",
+          "compiledAt": "2026-05-25T04:46:38.129Z",
+          "actions": [
+            {
+              "stepId": "invoke-cli",
+              "action": {
+                "type": "wait",
+                "confirmed": true,
+                "commandStep": true
+              },
+              "requiresApproval": false,
+              "resolvedSelectors": [],
+              "idempotent": false,
+              "command": {
+                "argv": [
+                  "node",
+                  "dist/src/cli.js",
+                  "webai:chatgpt:select-model",
+                  "--profile",
+                  "chatgpt",
+                  "--backend",
+                  "extension-assisted-cdp",
+                  "--model",
+                  "Thinking",
+                  "--tab-url-contains",
+                  "chatgpt.com",
+                  "--json"
+                ],
+                "timeoutMs": 120000,
+                "gate": {
+                  "exit_code": 0,
+                  "json_path": [
+                    {
+                      "path": "ok",
+                      "equals": true
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "warnings": [],
+          "definition": {
+            "id": "chatgpt-select-model-thinking-ext",
+            "target": "chatgpt",
+            "profile": "<profile>",
+            "mode": "automatic",
+            "description": "Select the Thinking model on a live ChatGPT main-chat tab",
+            "steps": [
+              {
+                "id": "invoke-cli",
+                "command": "<circular>",
+                "timeoutMs": 120000,
+                "gate": "<circular>"
+              }
+            ],
+            "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-select-model-thinking-ext.json"
+          }
+        },
+        "results": [
+          {
+            "stepId": "invoke-cli",
+            "ok": true,
+            "message": "command gate passed",
+            "data": {
+              "argv": [
+                "node",
+                "dist/src/cli.js",
+                "webai:chatgpt:select-model",
+                "--profile",
+                "chatgpt",
+                "--backend",
+                "extension-assisted-cdp",
+                "--model",
+                "Thinking",
+                "--tab-url-contains",
+                "chatgpt.com",
+                "--json"
+              ],
+              "exit_code": 0,
+              "signal": null,
+              "timed_out": false,
+              "elapsed_ms": 9645,
+              "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Thinking\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+              "stderr": "",
+              "stdout_parsed": {
+                "ok": true,
+                "selected_model": "Thinking",
+                "selected_thinking_level": null,
+                "errorCode": null
+              },
+              "gate": {
+                "exit_code": {
+                  "expected": 0,
+                  "actual": 0,
+                  "ok": true
+                },
+                "json_path": [
+                  {
+                    "path": "ok",
+                    "actual": true,
+                    "ok": true
+                  }
+                ]
+              },
+              "selected_model": "Thinking",
+              "selected_thinking_level": null,
+              "errorCode": null
+            }
+          }
+        ],
+        "runId": "run_4396f143f5d0b163"
+      },
+      "stdout": "{\n  \"ok\": true,\n  \"plan\": {\n    \"id\": \"chatgpt-select-model-thinking-ext\",\n    \"target\": \"chatgpt\",\n    \"profile\": \"<profile>\",\n    \"mode\": \"automatic\",\n    \"compiledAt\": \"2026-05-25T04:46:38.129Z\",\n    \"actions\": [\n      {\n        \"stepId\": \"invoke-cli\",\n        \"action\": {\n          \"type\": \"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:chatgpt:select-model\",\n            \"--profile\",\n            \"chatgpt\",\n            \"--backend\",\n            \"extension-assisted-cdp\",\n            \"--model\",\n            \"Thinking\",\n            \"--tab-url-contains\",\n            \"chatgpt.com\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"ok\",\n                \"equals\": true\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"chatgpt-select-model-thinking-ext\",\n      \"target\": \"chatgpt\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Select the Thinking model on a live ChatGPT main-chat tab\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/chatgpt/chatgpt-select-model-thinking-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:chatgpt:select-model\",\n          \"--profile\",\n          \"chatgpt\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--model\",\n          \"Thinking\",\n          \"--tab-url-contains\",\n          \"chatgpt.com\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 9645,\n        \"stdout\": \"{\\n  \\\"ok\\\": true,\\n  \\\"selected_model\\\": \\\"Thinking\\\",\\n  \\\"selected_thinking_level\\\": null,\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": true,\n          \"selected_model\": \"Thinking\",\n          \"selected_thinking_level\": null,\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"ok\",\n              \"actual\": true,\n              \"ok\": true\n            }\n          ]\n        },\n        \"selected_model\": \"Thinking\",\n        \"selected_thinking_level\": null,\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_4396f143f5d0b163\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "preflight": {
+    "ok": true,
+    "profile": "chatgpt",
+    "status": {
+      "profile": "chatgpt",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "[REDACTED]",
+      "cdpEndpoint": "[REDACTED]",
+      "cdpPort": 9223,
+      "connected": true,
+      "launchedByPackage": true,
+      "processId": 1710800,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "Canvas Document Creation",
+          "type": "page",
+          "url": "https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "11BA805DCA390CE7F408A401E5E5D6ED",
+          "parentId": "C39B8B3DF6CEB6184196FA8FDBD32015",
+          "title": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop",
+          "type": "iframe",
+          "url": "https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A",
+          "faviconUrl": "https://chatgpt.com/favicon.ico",
+          "id": "217F0F74C8D723DFD13387BB53D6876A",
+          "title": "ChatGPT",
+          "type": "page",
+          "url": "https://chatgpt.com/pulse",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4",
+          "id": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08",
+          "id": "48CF4FD0F8678DD608E5735463637E08",
+          "parentId": "CDD31278CAB862F366BDC3913C7FB4B4",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E",
+          "id": "9FAFF05EA3016CA7405FE180448C4E4E",
+          "title": "Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "type": "service_worker",
+          "url": "chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js",
+          "webSocketDebuggerUrl": "[REDACTED]"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "[REDACTED]",
+      "lease": {
+        "id": "lease_7602f5ea1b0331c2",
+        "profile_id": "chatgpt",
+        "run_id": "run_a4523ea5bbdfa9f2",
+        "owner_pid": 2564527,
+        "acquired_at": "2026-05-25T02:29:45.693Z",
+        "last_heartbeat_at": "2026-05-25T02:29:45.693Z",
+        "chrome_process_pid": 1710800,
+        "user_data_dir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt",
+        "released_at": null
+      }
+    },
+    "error": "{\n  \"profile\": \"chatgpt\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9223\",\n  \"cdpPort\": 9223,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 1710800,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"Canvas Document Creation\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/c/6a1347c2-ef74-83e8-8fb7-8f8c9923ddfe\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/C39B8B3DF6CEB6184196FA8FDBD32015\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"11BA805DCA390CE7F408A401E5E5D6ED\",\n      \"parentId\": \"C39B8B3DF6CEB6184196FA8FDBD32015\",\n      \"title\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&amp;darkModeType=increased&amp;locale=en-US&amp;deviceType=desktop\",\n      \"type\": \"iframe\",\n      \"url\": \"https://connector_openai_deep_research.web-sandbox.oaiusercontent.com/?app=chatgpt&darkModeType=increased&locale=en-US&deviceType=desktop\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/11BA805DCA390CE7F408A401E5E5D6ED\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\",\n      \"faviconUrl\": \"https://chatgpt.com/favicon.ico\",\n      \"id\": \"217F0F74C8D723DFD13387BB53D6876A\",\n      \"title\": \"ChatGPT\",\n      \"type\": \"page\",\n      \"url\": \"https://chatgpt.com/pulse\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/217F0F74C8D723DFD13387BB53D6876A\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"id\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/CDD31278CAB862F366BDC3913C7FB4B4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\",\n      \"id\": \"48CF4FD0F8678DD608E5735463637E08\",\n      \"parentId\": \"CDD31278CAB862F366BDC3913C7FB4B4\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/48CF4FD0F8678DD608E5735463637E08\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/worker_app.html?ws=127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"id\": \"9FAFF05EA3016CA7405FE180448C4E4E\",\n      \"title\": \"Service Worker chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"type\": \"service_worker\",\n      \"url\": \"chrome-extension://igplopbocmmecededjcmgioiocjdlcof/background.js\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/page/9FAFF05EA3016CA7405FE180448C4E4E\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9223/devtools/browser/66f09e41-c6ad-40c3-9e59-b540ac084dcf\",\n  \"lease\": {\n    \"id\": \"lease_7602f5ea1b0331c2\",\n    \"profile_id\": \"chatgpt\",\n    \"run_id\": \"run_a4523ea5bbdfa9f2\",\n    \"owner_pid\": 2564527,\n    \"acquired_at\": \"2026-05-25T02:29:45.693Z\",\n    \"last_heartbeat_at\": \"2026-05-25T02:29:45.693Z\",\n    \"chrome_process_pid\": 1710800,\n    \"user_data_dir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/chatgpt\",\n    \"released_at\": null\n  }\n}\n"
+  },
+  "workflow_output": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-select-model-thinking-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-25T04:46:38.129Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:select-model",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--model",
+              "Thinking",
+              "--tab-url-contains",
+              "chatgpt.com",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-select-model-thinking-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Select the Thinking model on a live ChatGPT main-chat tab",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-select-model-thinking-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:select-model",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--model",
+            "Thinking",
+            "--tab-url-contains",
+            "chatgpt.com",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 9645,
+          "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"Thinking\",\n  \"selected_thinking_level\": null,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": true,
+            "selected_model": "Thinking",
+            "selected_thinking_level": null,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "selected_model": "Thinking",
+          "selected_thinking_level": null,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_4396f143f5d0b163"
+  },
+  "closure_status": "green",
+  "finished_at": "2026-05-25T04:46:47.928Z"
+}

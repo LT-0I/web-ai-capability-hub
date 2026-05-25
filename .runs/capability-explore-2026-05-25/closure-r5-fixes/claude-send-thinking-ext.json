@@ -1,0 +1,149 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "claude-send-thinking-ext",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:21:53.327Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--thinking",
+            "--prompt",
+            "Think step by step: 17 x 23 = ?",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "391"
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-send-thinking-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Claude thinking-mode arithmetic prompt",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-thinking-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /391/ failed; json_path completion_detected !== true",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--thinking",
+          "--prompt",
+          "Think step by step: 17 x 23 = ?",
+          "--response-timeout-ms",
+          "180000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 30613,
+        "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 30475,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"ok\": false,\n  \"service\": \"claude\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"Error resolving XPath: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received\",\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/new\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "",
+          "elapsed_ms": 30475,
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "ok": false,
+          "service": "claude",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "Error resolving XPath: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/new"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "regex /391/ failed"
+              ]
+            },
+            {
+              "path": "completion_detected",
+              "actual": false,
+              "ok": false,
+              "reasons": [
+                "!== true"
+              ]
+            }
+          ]
+        },
+        "response_text": "",
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+        "service": "claude",
+        "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+        "message": "Error resolving XPath: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/new"
+      }
+    }
+  ],
+  "runId": "run_e76723f242e55a2f"
+}

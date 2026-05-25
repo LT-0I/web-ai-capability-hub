@@ -550,6 +550,7 @@ const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)
 // video player with button[aria-label="Download video"] (class
 // download-button) renders. ~105s observed for an 8s clip on Fast tier.
 const GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video"), [role="menuitem"]:has-text("Create video")';
+const GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create video")';
 const CHATGPT_MODEL_BUTTON_SELECTOR = 'form button[aria-haspopup="menu"]:has-text("Thinking"), form button[aria-haspopup="menu"]:has-text("Instant"), form button[aria-haspopup="menu"]:has-text("Extended Pro"), form button[aria-haspopup="menu"]:has-text("Heavy"), button.__composer-pill[aria-haspopup="menu"], main form button[id^="radix-"][aria-haspopup="menu"], #composer-background button[aria-haspopup="menu"]';
 const CHATGPT_SELECTED_MODEL_MENUITEM_SELECTOR = '[role="menu"] [role="menuitemradio"][aria-checked="true"], [role="menuitemradio"][aria-checked="true"]';
 const CHATGPT_INSTANT_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5"][role="menuitemradio"]';
@@ -565,7 +566,7 @@ const CLAUDE_MODEL_SELECTOR = '[data-testid="model-selector-dropdown"]';
 const CLAUDE_ADAPTIVE_THINKING_SELECTOR = 'input[aria-label="Adaptive thinking"]';
 const CLAUDE_PLUS_MENU_SELECTOR = 'button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"]';
 const CLAUDE_PROMPT_SELECTOR = 'div[aria-label="Write your prompt to Claude"], [data-testid="chat-input"], [contenteditable="true"], #prompt-textarea';
-const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Web search")]';
+const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Web search")';
 const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[@role="menuitemcheckbox"][contains(.,"Research")]';
 const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
 const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
@@ -657,6 +658,22 @@ function loginRequiredResponse(service: WebAiService, page: any, started: number
 async function navigateChatgptFreshIfNeeded(page: any, args: any): Promise<void> {
   if (args.reuse_conversation) return;
   await page.goto?.(CHATGPT_FRESH_URL, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
+  await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
+}
+
+function isChatgptChatSurface(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    if (!/(^|\.)chatgpt\.com$/i.test(parsed.hostname)) return false;
+    return parsed.pathname === "/" || parsed.pathname === "/new" || /^\/c(\/|$)/.test(parsed.pathname);
+  } catch {
+    return false;
+  }
+}
+
+async function ensureChatgptChatSurface(page: any, args: any): Promise<void> {
+  if (isChatgptChatSurface(String(page.url?.() || ""))) return;
+  await page.goto?.(serviceDefaults.chatgpt.url, { waitUntil: "load", timeout: Math.min(args.timeout_ms || 60000, 30000) });
   await page.waitForLoadState?.("networkidle", { timeout: 15000 }).catch(() => page.waitForLoadState?.("load", { timeout: 15000 }).catch(() => undefined));
 }
 
@@ -1286,6 +1303,44 @@ async function sendPromptAndConfirmSubmitted(service: WebAiService, page: any, b
   throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Prompt did not submit: composer still contained prompt text after retry", { selector: sendSelector });
 }
 
+async function fillPromptBox(page: any, box: any, selector: string, prompt: string): Promise<void> {
+  await box.fill?.(prompt).catch(async () => { await box.click(); await page.keyboard?.type(prompt); });
+  const presentAfterFill = await promptStillPresent(box, prompt);
+  if (presentAfterFill) return;
+  await box.click?.().catch(() => undefined);
+  await page.keyboard?.press(process.platform === "darwin" ? "Meta+A" : "Control+A").catch?.(() => undefined);
+  await page.keyboard?.type(prompt).catch?.(() => undefined);
+  const presentAfterKeyboard = await promptStillPresent(box, prompt);
+  if (presentAfterKeyboard) return;
+  await box.evaluate?.((el: HTMLElement, value: string) => {
+    el.focus();
+    const selection = window.getSelection && window.getSelection();
+    if (selection) {
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    let inserted = false;
+    try { inserted = document.execCommand && document.execCommand("insertText", false, value); } catch { inserted = false; }
+    if (!inserted) el.textContent = value;
+    el.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: value }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+  }, prompt).catch(async () => {
+    await page.evaluate?.(({ selector, value }: { selector: string; value: string }) => {
+      const el = document.querySelector(selector) as HTMLElement | null;
+      if (!el) throw new Error("composer not found");
+      el.focus();
+      let inserted = false;
+      try { inserted = document.execCommand && document.execCommand("insertText", false, value); } catch { inserted = false; }
+      if (!inserted) el.textContent = value;
+      el.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: value }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    }, { selector, value: prompt });
+  });
+}
+
 async function waitForGeneratedImageRendered(service: "chatgpt" | "gemini", page: any, timeoutMs: number): Promise<void> {
   const imageSelector = service === "chatgpt" ? CHATGPT_IMAGE_RENDERED_SELECTOR : GEMINI_IMAGE_RENDERED_SELECTOR;
   const budgetMs = Math.min(120000, timeoutMs || 120000);
@@ -1707,7 +1762,7 @@ async function sendPromptInExistingPage(service: WebAiService, args: any, page: 
   const box = page.locator(selector).first();
   await box.waitFor({ state: "visible", timeout: Math.min(timeout, 15000) });
   if (loginRequiredForService(service, page.url?.() || "")) return loginRequiredResponse(service, page, started);
-  await box.fill?.(args.prompt).catch(async () => { await box.click(); await page.keyboard?.type(args.prompt); });
+  await fillPromptBox(page, box, selector, args.prompt);
   const sentAt = Date.now();
   try {
     await sendPromptAndConfirmSubmitted(service, page, box, args.prompt, assistantCountBefore, Boolean(args.__forceEnterToSend));
@@ -2043,8 +2098,14 @@ async function activateGeminiVideoModeWithExtension(page: any, timeoutMs: number
   try {
     await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS) });
     await page.click({ selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
+    try {
+      await page.waitForSelector(GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 2500 });
+    } catch {
+      await page.waitForSelector(GEMINI_MORE_TOOLS_SUBMENU_SELECTOR, { state: "visible", timeoutMs: 5000 });
+      await page.click({ selector: GEMINI_MORE_TOOLS_SUBMENU_SELECTOR }, { timeoutMs: 5000 });
+    }
+    await page.waitForSelector(GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.click({ selector: GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
     await page.waitForSelector(GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
   } catch (error: any) {
     throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video tool did not activate through the extension-assisted backend", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: error?.message || String(error) });
@@ -2068,15 +2129,21 @@ async function selectClaudeModelWithExtension(page: any, expected: string): Prom
   const labels = claudeModelLabels(expected);
   let lastError: any;
   for (const label of labels) {
-    const selector = claudeModelMenuItemSelector(label);
-    try {
-      await extensionClick(page, selector, 5000);
-      return;
-    } catch (error) {
-      lastError = error;
+    const escaped = label.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    for (const selector of [
+      `[role="menuitemradio"]:has-text("${escaped}")`,
+      `[role="menuitem"]:has-text("${escaped}")`,
+      `button:has-text("${escaped}")`
+    ]) {
+      try {
+        await extensionClick(page, selector, 5000);
+        return;
+      } catch (error) {
+        lastError = error;
+      }
     }
   }
-  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Claude model option was not found: ${expected}`, { selector: labels.map(claudeModelMenuItemSelector).join(" OR "), cause: errorMessageFromUnknown(lastError, "") });
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Claude model option was not found: ${expected}`, { selector: labels.join(" OR "), cause: errorMessageFromUnknown(lastError, "") });
 }
 
 async function setClaudeAdaptiveThinkingWithExtension(page: any): Promise<void> {
@@ -2092,7 +2159,21 @@ async function setClaudeAdaptiveThinkingWithExtension(page: any): Promise<void> 
     return;
   }
   await extensionClick(page, CLAUDE_MODEL_SELECTOR, 5000);
-  await extensionClick(page, `xpath=//*[@role="menuitem" or @role="menuitemradio" or @role="menuitemcheckbox" or self::button][contains(normalize-space(.), 'Adaptive thinking')]`, 5000);
+  let lastError: any;
+  for (const selector of [
+    '[role="menuitemcheckbox"]:has-text("Adaptive thinking")',
+    '[role="menuitemradio"]:has-text("Adaptive thinking")',
+    '[role="menuitem"]:has-text("Adaptive thinking")',
+    'button:has-text("Adaptive thinking")'
+  ]) {
+    try {
+      await extensionClick(page, selector, 5000);
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Adaptive thinking menu item was not found", { selector: "Adaptive thinking", cause: errorMessageFromUnknown(lastError, "") });
 }
 
 async function enableClaudeWebSearchWithExtension(page: any): Promise<void> {
@@ -3184,6 +3265,7 @@ async function startChatgptDeepResearch(args: any, runtime: Required<BrowserTool
   const task_id = safeTaskId();
   try {
     return await withManagedPage(args, runtime, targetUrlFor("chatgpt", args), async (page) => {
+      await ensureChatgptChatSurface(page, args);
       await waitForHydratedSurface(page, serviceDefaults.chatgpt.promptSelector, Math.min(args.timeout_ms || 60000, 15000));
       if (loginRequiredForService("chatgpt", page.url?.() || "")) return loginRequiredResponse("chatgpt", page, Date.now());
       const selection = await selectChatgptModel(page, "Thinking");
@@ -3670,6 +3752,14 @@ async function editGeminiCanvas(args: any, runtime: Required<BrowserToolRuntime>
     let canvas_opened = false;
     let edit_applied = false;
     let ai_action_applied = false;
+    let canvas_html_before = "";
+    let canvas_html_after = "";
+    const readCanvasMarkup = async (): Promise<string> => {
+      const body = page.locator(GEMINI_CANVAS_BODY_SELECTOR).last?.() || page.locator(GEMINI_CANVAS_BODY_SELECTOR).first();
+      await body.waitFor?.({ state: "visible", timeout: 15000 });
+      const markup = await body.evaluate?.((el: HTMLElement) => el.innerHTML || el.textContent || "").catch(() => "");
+      return typeof markup === "string" ? markup : "";
+    };
     if (effective.prompt) {
       await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
       if (loginRequiredForService("gemini", page.url?.() || "")) return loginRequiredResponse("gemini", page, Date.now());
@@ -3680,25 +3770,33 @@ async function editGeminiCanvas(args: any, runtime: Required<BrowserToolRuntime>
       await clickGeminiSendMessage(page);
       await page.waitForSelector?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
       canvas_opened = true;
+      canvas_html_before = await readCanvasMarkup().catch(() => "");
     }
     if (effective.edit_text) {
       const body = page.locator(GEMINI_CANVAS_BODY_SELECTOR).last?.() || page.locator(GEMINI_CANVAS_BODY_SELECTOR).first();
       await body.waitFor?.({ state: "visible", timeout: 15000 });
+      if (!canvas_html_before) canvas_html_before = await readCanvasMarkup().catch(() => "");
       await body.click?.();
       await page.keyboard?.type(effective.edit_text);
+      await page.waitForTimeout?.(500).catch(() => undefined);
       edit_applied = true;
       canvas_opened = true;
+      canvas_html_after = await readCanvasMarkup().catch(() => "");
     }
     if (effective.ai_action) {
       const label = effective.ai_action === "length" ? "Length" : effective.ai_action === "tone" ? "Tone" : "Suggest";
       const body = page.locator(GEMINI_CANVAS_BODY_SELECTOR).last?.() || page.locator(GEMINI_CANVAS_BODY_SELECTOR).first();
+      if (!canvas_html_before) canvas_html_before = await readCanvasMarkup().catch(() => "");
       await body.click?.();
       await page.keyboard?.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
       await requireAndClick(page, `button[aria-label="${label}"]`, `Gemini Canvas ${label} AI edit button was not found`);
+      await page.waitForTimeout?.(1500).catch(() => undefined);
       ai_action_applied = true;
       canvas_opened = true;
+      canvas_html_after = await readCanvasMarkup().catch(() => "");
     }
-    return safeOutput({ canvas_opened, edit_applied, ai_action_applied });
+    if (!canvas_html_after && canvas_html_before) canvas_html_after = canvas_html_before;
+    return safeOutput({ canvas_opened, edit_applied, ai_action_applied, canvas_html_before, canvas_html_after });
   });
 }
 
@@ -3899,6 +3997,8 @@ export async function webAiChatgptSelectModel(args: any, runtime: Required<Brows
   const requestedThinkingLevel = args.thinking_level ? String(args.thinking_level) : null;
   try {
     return await withManagedPage(args, runtime, targetUrlFor("chatgpt", args), async (page) => {
+      await ensureChatgptChatSurface(page, args);
+      await waitForHydratedSurface(page, serviceDefaults.chatgpt.promptSelector, Math.min(args.timeout_ms || 60000, 15000));
       const modelFromArg = args.model ? normalizeModelTier("chatgpt", { model: args.model }) || String(args.model).trim() : null;
       const expectedModel = modelFromArg || (requestedThinkingLevel === "extended" ? "Thinking" : null);
       let selected_model: string | null = null;

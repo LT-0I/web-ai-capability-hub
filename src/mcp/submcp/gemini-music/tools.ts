@@ -14,6 +14,7 @@ import {
   MUSIC_SEND_SELECTOR,
   MUSIC_STOP_SELECTOR,
   MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR,
+  MUSIC_MORE_TOOLS_SUBMENU_SELECTOR,
   GeminiMusicFormat,
   MUSIC_DESELECT_SELECTOR,
   MUSIC_TOOLS_CREATE_ITEM_SELECTOR,
@@ -90,6 +91,12 @@ async function activateMusicToolWithExtension(page: any, timeoutMs: number): Pro
   try {
     await page.waitForSelector(MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, 15000) });
     await page.click({ selector: MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
+    try {
+      await page.waitForSelector(MUSIC_TOOLS_CREATE_ITEM_SELECTOR, { state: "visible", timeoutMs: 2500 });
+    } catch {
+      await page.waitForSelector(MUSIC_MORE_TOOLS_SUBMENU_SELECTOR, { state: "visible", timeoutMs: 5000 });
+      await page.click({ selector: MUSIC_MORE_TOOLS_SUBMENU_SELECTOR }, { timeoutMs: 5000 });
+    }
     await page.waitForSelector(MUSIC_TOOLS_CREATE_ITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
     await page.click({ selector: MUSIC_TOOLS_CREATE_ITEM_SELECTOR }, { timeoutMs: 8000 });
     await page.waitForSelector(MUSIC_DESELECT_SELECTOR, { state: "visible", timeoutMs: 15000 });
@@ -226,6 +233,24 @@ async function visible(page: any, selector: string): Promise<boolean> {
   } catch { return false; }
 }
 
+async function candidateGeminiMusicPages(page: any): Promise<any[]> {
+  const pages = typeof page.context === "function" ? (page.context()?.pages?.() || []) : [];
+  const seen = new Set<any>();
+  return [page, ...pages].filter((candidate) => {
+    if (!candidate || seen.has(candidate)) return false;
+    seen.add(candidate);
+    const url = String(candidate.url?.() || "");
+    return /gemini\.google\.com\/app/i.test(url);
+  });
+}
+
+async function findGeminiMusicStatePage(page: any): Promise<any> {
+  const pages = await candidateGeminiMusicPages(page);
+  for (const candidate of pages) if (await visible(candidate, MUSIC_DOWNLOAD_BTN_SELECTOR)) return candidate;
+  for (const candidate of pages) if (await visible(candidate, MUSIC_STOP_SELECTOR)) return candidate;
+  return page;
+}
+
 export async function webAiGeminiMusicGenerate(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
   const backend = effective.backend || "managed-cdp";
@@ -247,23 +272,32 @@ export async function webAiGeminiMusicGenerate(args: any, runtime: Required<Brow
 
 export async function webAiGeminiMusicDownloadTrack(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
-  return withManagedPage(effective, runtime, targetUrlForTab(effective.tab_url_contains as string | undefined), async (page) => stepDownloadTrack(page, {
+  return withManagedPage(effective, runtime, targetUrlForTab(effective.tab_url_contains as string | undefined), async (page) => {
+    const musicPage = await findGeminiMusicStatePage(page);
+    const requestedTab = String(effective.tab_url_contains || "");
+    const tabUrlContains = requestedTab && !/^https?:\/\/gemini\.google\.com\/app\/?$/i.test(requestedTab) && requestedTab !== "gemini.google.com/app"
+      ? requestedTab
+      : String(musicPage.url?.() || requestedTab);
+    return stepDownloadTrack(musicPage, {
     profile: effective.profile,
-    tabUrlContains: String(effective.tab_url_contains),
+    tabUrlContains,
     downloadDir: effective.download_dir as string | undefined,
     format: (effective.format as GeminiMusicFormat | undefined) || "mp3",
     artifactClick: (runtime as any).artifactClick
-  }));
+    });
+  });
 }
 
 export async function webAiGeminiMusicTaskStatus(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = withDefaultProfile(args);
   return withManagedPage(effective, runtime, targetUrlForTab(effective.tab_url_contains as string | undefined), async (page) => {
-    const downloadReady = await visible(page, MUSIC_DOWNLOAD_BTN_SELECTOR);
-    const generating = await visible(page, MUSIC_STOP_SELECTOR);
-    if (downloadReady) return { status: "complete", download_ready: true };
-    if (generating) return { status: "generating", download_ready: false };
-    return { status: "error", download_ready: false };
+    const musicPage = await findGeminiMusicStatePage(page);
+    const downloadReady = await visible(musicPage, MUSIC_DOWNLOAD_BTN_SELECTOR);
+    const generating = await visible(musicPage, MUSIC_STOP_SELECTOR);
+    const conversation_url = musicPage.url?.() || effective.tab_url_contains || GEMINI_MUSIC_URL;
+    if (downloadReady) return { status: "complete", download_ready: true, conversation_url };
+    if (generating) return { status: "generating", download_ready: false, conversation_url };
+    return { status: "error", download_ready: false, conversation_url };
   });
 }
 

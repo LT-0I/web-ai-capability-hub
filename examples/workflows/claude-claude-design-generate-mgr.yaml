@@ -5,7 +5,7 @@ profile: claude-9224
 mode: automatic
 description: Generate a Claude Design HTML page on an existing project
 steps:
-  - id: invoke-cli
+  - id: generate
     command:
       - node
       - dist/src/cli.js
@@ -26,5 +26,25 @@ steps:
       exit_code: 0
       json_path:
         - path: fileName
+          nonempty: true
+  - id: get_html
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:claude:design:get-html
+      - --profile
+      - claude-9224
+      - --project-url
+      - "{{steps.generate.projectUrl}}"
+      - --download-dir
+      - /tmp/explore-2026-05-25/claude-design
+      - --json
+    timeoutMs: 120000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: savedPath
+          nonempty: true
+        - path: byteSize
           nonempty: true
 evidence: .runs/capability-explore-2026-05-25/claude/claude-design-generate-mgr.json

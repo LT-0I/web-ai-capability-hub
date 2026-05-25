@@ -1,0 +1,94 @@
+[closure] targets=56 run_root=.runs/capability-explore-2026-05-25/closure-r5
+[closure] run chatgpt/chatgpt-canvas-create-export-ext -> examples/workflows/chatgpt-canvas-create-export-ext.yaml
+[closure] green chatgpt/chatgpt-canvas-create-export-ext
+[closure] run chatgpt/chatgpt-codex-submit-task-ext-fallback -> examples/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.yaml
+[closure] green chatgpt/chatgpt-codex-submit-task-ext-fallback
+[closure] skip previously-failed chatgpt/chatgpt-conversation-manage-ext-fallback
+[closure] run chatgpt/chatgpt-deep-research-ext -> examples/workflows/chatgpt-deep-research-ext.yaml
+[closure] red chatgpt/chatgpt-deep-research-ext cause=workflow-run-failed code=TIMEOUT
+[closure] skip previously-failed chatgpt/chatgpt-generate-file-csv-ext
+[closure] skip previously-failed chatgpt/chatgpt-generate-file-docx-ext
+[closure] skip previously-failed chatgpt/chatgpt-generate-file-md-ext
+[closure] skip previously-failed chatgpt/chatgpt-generate-file-pptx-ext
+[closure] skip previously-failed chatgpt/chatgpt-generate-file-py-ext
+[closure] skip previously-failed chatgpt/chatgpt-generate-image-ext
+[closure] skip previously-failed chatgpt/chatgpt-gpts-converse-ext-fallback
+[closure] run chatgpt/chatgpt-pulse-get-ext-fallback -> examples/workflows/chatgpt-chatgpt-pulse-get-ext-fallback.yaml
+[closure] green chatgpt/chatgpt-pulse-get-ext-fallback
+[closure] skip previously-failed chatgpt/chatgpt-pulse-onboard-ext-fallback
+[closure] run chatgpt/chatgpt-select-model-thinking-ext -> examples/workflows/chatgpt-chatgpt-select-model-thinking-ext.yaml
+[closure] green chatgpt/chatgpt-select-model-thinking-ext
+[closure] run chatgpt/chatgpt-send-basic-ext -> examples/workflows/chatgpt-chatgpt-send-basic-ext.yaml
+[closure] green chatgpt/chatgpt-send-basic-ext
+[closure] run chatgpt/chatgpt-send-thinking-ext -> examples/workflows/chatgpt-chatgpt-send-thinking-ext.yaml
+[closure] green chatgpt/chatgpt-send-thinking-ext
+[closure] run chatgpt/chatgpt-send-web-search-ext -> examples/workflows/chatgpt-chatgpt-send-web-search-ext.yaml
+[closure] green chatgpt/chatgpt-send-web-search-ext
+[closure] run chatgpt/chatgpt-upload-multi-ext -> examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml
+[closure] green chatgpt/chatgpt-upload-multi-ext
+[closure] run chatgpt/chatgpt-upload-single-ext -> examples/workflows/chatgpt-chatgpt-upload-single-ext.yaml
+[closure] green chatgpt/chatgpt-upload-single-ext
+[closure] skip previously-failed chatgpt/chatgpt-workspace-ext-fallback
+[closure] skip previously-failed claude/claude-conversation-manage-mgr
+[closure] run claude/claude-design-create-project-mgr -> examples/workflows/claude-claude-design-create-project-mgr.yaml
+[closure] green claude/claude-design-create-project-mgr
+[closure] run claude/claude-design-generate-mgr -> examples/workflows/claude-claude-design-generate-mgr.yaml
+[closure] green claude/claude-design-generate-mgr
+[closure] run claude/claude-design-present-mgr -> examples/workflows/claude-claude-design-present-mgr.yaml
+[closure] red claude/claude-design-present-mgr cause=workflow-run-failed code=TIMEOUT
+[closure] run claude/claude-generate-file-csv-ext -> examples/workflows/claude-claude-generate-file-csv-ext.yaml
+[closure] green claude/claude-generate-file-csv-ext
+[closure] skip previously-failed claude/claude-generate-file-docx-ext
+[closure] skip previously-failed claude/claude-generate-file-md-ext
+[closure] skip previously-failed claude/claude-generate-file-pptx-ext
+[closure] run claude/claude-generate-file-py-ext -> examples/workflows/claude-claude-generate-file-py-ext.yaml
+[closure] green claude/claude-generate-file-py-ext
+[closure] skip previously-failed claude/claude-select-model-sonnet-ext
+[closure] run claude/claude-send-basic-ext -> examples/workflows/claude-claude-send-basic-ext.yaml
+[closure] green claude/claude-send-basic-ext
+[closure] run claude/claude-send-incognito-ext -> examples/workflows/claude-claude-send-incognito-ext.yaml
+[closure] green claude/claude-send-incognito-ext
+[closure] run claude/claude-send-style-ext -> examples/workflows/claude-claude-send-style-ext.yaml
+[closure] green claude/claude-send-style-ext
+[closure] run claude/claude-send-thinking-ext -> examples/workflows/claude-claude-send-thinking-ext.yaml
+[closure] green claude/claude-send-thinking-ext
+[closure] run claude/claude-send-web-search-ext -> examples/workflows/claude-claude-send-web-search-ext.yaml
+[closure] green claude/claude-send-web-search-ext
+[closure] run claude/claude-upload-multi-ext -> examples/workflows/claude-claude-upload-multi-ext.yaml
+[closure] green claude/claude-upload-multi-ext
+[closure] run claude/claude-upload-single-ext -> examples/workflows/claude-claude-upload-single-ext.yaml
+[closure] green claude/claude-upload-single-ext
+[closure] skip previously-failed claude/claude-workspace-mgr
+[closure] run gemini/gemini-canvas-edit-mgr -> examples/workflows/gemini-gemini-canvas-edit-mgr.yaml
+[closure] green gemini/gemini-canvas-edit-mgr
+[closure] skip previously-failed gemini/gemini-canvas-to-docs-mgr
+[closure] run gemini/gemini-conversation-reuse-mgr -> examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml
+[closure] red gemini/gemini-conversation-reuse-mgr cause=workflow-run-failed code=TIMEOUT
+[closure] skip previously-failed gemini/gemini-deep-research-mgr
+[closure] run gemini/gemini-gems-converse-mgr -> examples/workflows/gemini-gemini-gems-converse-mgr.yaml
+[closure] green gemini/gemini-gems-converse-mgr
+[closure] run gemini/gemini-generate-image-ext -> examples/workflows/gemini-generate-image-ext.yaml
+[closure] red gemini/gemini-generate-image-ext cause=workflow-run-failed code=TIMEOUT
+[closure] skip previously-failed gemini/gemini-generate-video-ext
+[closure] run gemini/gemini-multimodal-mgr -> examples/workflows/gemini-gemini-multimodal-mgr.yaml
+[closure] green gemini/gemini-multimodal-mgr
+[closure] run gemini/gemini-music-download-track-ext -> examples/workflows/gemini-gemini-music-download-track-ext.yaml
+[closure] green gemini/gemini-music-download-track-ext
+[closure] run gemini/gemini-music-generate-ext -> examples/workflows/gemini-gemini-music-generate-ext.yaml
+[closure] red gemini/gemini-music-generate-ext cause=workflow-run-failed code=TIMEOUT
+[closure] run gemini/gemini-music-task-status-ext -> examples/workflows/gemini-gemini-music-task-status-ext.yaml
+[closure] green gemini/gemini-music-task-status-ext
+[closure] skip previously-failed gemini/gemini-select-model-flash-mgr
+[closure] run gemini/gemini-send-basic-mgr -> examples/workflows/gemini-gemini-send-basic-mgr.yaml
+[closure] green gemini/gemini-send-basic-mgr
+[closure] skip previously-failed gemini/gemini-send-thinking-mgr
+[closure] skip previously-failed gemini/gemini-send-web-search-mgr
+[closure] run gemini/gemini-upload-single-mgr -> examples/workflows/gemini-gemini-upload-single-mgr.yaml
+[closure] green gemini/gemini-upload-single-mgr
+[closure] run gemini/gemini-veo-quota-error-mgr -> examples/workflows/gemini-gemini-veo-quota-error-mgr.yaml
+[closure] red gemini/gemini-veo-quota-error-mgr cause=workflow-run-failed code=TIMEOUT
+[closure] run gemini/gemini-workspace-mgr -> examples/workflows/gemini-gemini-workspace-mgr.yaml
+[closure] green gemini/gemini-workspace-mgr
+[closure] wrote .runs/capability-explore-2026-05-25/closure-r5/closure-results.jsonl
+[closure] wrote .runs/capability-explore-2026-05-25/closure-r5-report.md
+[closure] updated docs/capability-library.json

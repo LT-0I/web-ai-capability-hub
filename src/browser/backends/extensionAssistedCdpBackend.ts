@@ -69,6 +69,18 @@ function assertVendorSuccess(payload: any, wireMethod: string): void {
   }
 }
 
+function isTransientBridgeDisconnect(error: any): boolean {
+  const text = `${error?.message || ""}\n${JSON.stringify(error?.details || error?.payload || error?.data || "")}`;
+  return /message channel closed|Receiving end does not exist|Extension context invalidated|context invalidated|port closed/i.test(text);
+}
+
+function isSafeVendorRetry(method: string): boolean {
+  return method === VENDOR_BROWSER_TOOL_NAMES.JAVASCRIPT
+    || method === VENDOR_BROWSER_TOOL_NAMES.WEB_FETCHER
+    || method === VENDOR_BROWSER_TOOL_NAMES.GET_WINDOWS_AND_TABS
+    || method === VENDOR_BROWSER_TOOL_NAMES.SWITCH_TAB;
+}
+
 function normalizeTab(raw: any): BrowserTabInfo | undefined {
   if (!raw) return undefined;
   const tabId = raw.tabId ?? raw.id;
@@ -352,10 +364,34 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
 
   async fill(target: BrowserElementTarget, value: string | number | boolean, options: BrowserFillOptions = {}): Promise<void> {
     const resolved = await this.resolveTextSelector(target);
-    await this.vendorRequest(VENDOR_BROWSER_TOOL_NAMES.FILL, withTabScope({
-      ...resolved,
-      value
-    }, this.tabId, this.windowId), options.timeoutMs);
+    try {
+      await this.vendorRequest(VENDOR_BROWSER_TOOL_NAMES.FILL, withTabScope({
+        ...resolved,
+        value
+      }, this.tabId, this.windowId), options.timeoutMs);
+      return;
+    } catch (error: any) {
+      const message = error?.message || String(error);
+      if (!/not a fillable element|must be INPUT|TEXTAREA|SELECT/i.test(message)) throw error;
+      const selector = (resolved as any)?.selector;
+      if (typeof selector !== "string" || !selector) throw error;
+      // contenteditable div fallback: vendor FILL rejects non-INPUT/TEXTAREA/SELECT,
+      // but Claude/Gemini composers are contenteditable. Mirror gemini-music execCommand insertText path.
+      await this.javascript(`
+const value = ${JSON.stringify(String(value))};
+const el = document.querySelector(${JSON.stringify(selector)});
+if (!el) throw new Error("contenteditable fill: element not found");
+el.focus();
+const sel = window.getSelection && window.getSelection();
+if (sel) { const r = document.createRange(); r.selectNodeContents(el); r.collapse(false); sel.removeAllRanges(); sel.addRange(r); }
+let inserted = false;
+try { inserted = document.execCommand && document.execCommand("insertText", false, value); } catch (_) { inserted = false; }
+if (!inserted) el.textContent = value;
+el.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: value }));
+el.dispatchEvent(new Event("change", { bubbles: true }));
+return { filled: true, textLength: (el.textContent || "").length };
+`, options.timeoutMs);
+    }
   }
 
   async uploadFile(selector: string, filePath: string, options: { timeoutMs?: number; multiple?: boolean } = {}): Promise<void> {
@@ -422,7 +458,25 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
 
   private async vendorRequest(method: DesignTabMethod extends never ? never : string, params: Record<string, unknown>, timeoutMs?: number): Promise<any> {
     const client = this.requireClient();
-    const response = await client.request(method as any, params, timeoutMs === undefined ? undefined : { timeoutMs });
+    const requestOptions = timeoutMs === undefined ? undefined : { timeoutMs };
+    let done = false;
+    const keepAlive = setInterval(() => {
+      if (done) return;
+      client.ping({ timeoutMs: 3000 }).catch(() => undefined);
+    }, 10_000);
+    let response: unknown;
+    try {
+      try {
+        response = await client.request(method as any, params, requestOptions);
+      } catch (error) {
+        if (!isSafeVendorRetry(method) || !isTransientBridgeDisconnect(error)) throw error;
+        await client.connect?.({ heartbeat: false }).catch(() => undefined);
+        response = await client.request(method as any, params, requestOptions);
+      }
+    } finally {
+      done = true;
+      clearInterval(keepAlive);
+    }
     const payload = parseToolPayload(response);
     assertVendorSuccess(payload, method);
     return payload;

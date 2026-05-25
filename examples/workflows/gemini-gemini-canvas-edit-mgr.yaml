@@ -3,7 +3,7 @@ id: gemini-canvas-edit-mgr
 target: gemini
 profile: gemini-9225
 mode: automatic
-description: Apply a length AI-edit on an existing Gemini canvas
+description: Create a Gemini canvas and apply an edit so before/after HTML can be compared
 steps:
   - id: invoke-cli
     command:
@@ -12,10 +12,13 @@ steps:
       - webai:gemini:canvas-edit
       - --profile
       - gemini-9225
-      - --tab-url-contains
-      - gemini.google.com
-      - --ai-action
-      - length
+      - --prompt
+      - "Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app."
+      - --confirmed
+      - --edit-text
+      - " Add a closing sentence about espresso."
+      - --response-timeout-ms
+      - "90000"
       - --json
     timeoutMs: 180000
     gate:
@@ -23,4 +26,8 @@ steps:
       json_path:
         - path: canvas_opened
           equals: true
+        - path: canvas_html_before
+          nonempty: true
+        - path: canvas_html_after
+          nonempty: true
 evidence: .runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json

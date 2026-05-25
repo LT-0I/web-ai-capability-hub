@@ -1,0 +1,20 @@
+✔ workflow compiler copies result spec and appends final screenshot/text actions (1.548683ms)
+✔ workflow executor computes screenshot and text finalResult from action results (31.226406ms)
+✔ resume skips succeeded idempotent steps and runs the next step after crash (111.648482ms)
+✔ resume refuses prior successful non-idempotent steps without confirmation (32.297349ms)
+✔ resume refuses idempotency hash mismatch (4.656035ms)
+✔ World Scientific URL builders preserve verified Literatum query, facet, and citation parameters (1.143863ms)
+✔ World Scientific result/count parsing works from deterministic fixture DOM (1.788451ms)
+✔ World Scientific visible-text fallback extracts DOI records without live network (0.522761ms)
+✔ Web of Science URL builder preserves verified advanced-search route and optional query metadata (0.942926ms)
+✔ Web of Science result count parsing works from deterministic title and body fixtures (0.306842ms)
+✔ Web of Science HTML item parser extracts deterministic summary records (1.888342ms)
+✔ Web of Science visible-text fallback extracts deterministic result rows (0.910952ms)
+ℹ tests 674
+ℹ suites 0
+ℹ pass 674
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270317.424403

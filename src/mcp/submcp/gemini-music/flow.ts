@@ -12,6 +12,7 @@ export const MUSIC_DOWNLOAD_BTN_SELECTOR = 'button[aria-label="Download track"]'
 export const MUSIC_STOP_SELECTOR = 'button[aria-label="Stop response"]';
 export const MUSIC_DESELECT_SELECTOR = 'button[aria-label="Deselect Music"]';
 export const MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
+export const MUSIC_MORE_TOOLS_SUBMENU_SELECTOR = 'button[aria-label="More tools"], [role="menuitem"]:has-text("More tools")';
 export const MUSIC_TOOLS_CREATE_ITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Create music")';
 
 export type GeminiMusicFormat = "mp3" | "video";
@@ -70,9 +71,17 @@ async function openGeminiMusicUploadToolsMenu(page: any): Promise<void> {
     throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Upload & tools button was not found (${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR}) ${safeErrorMessage(error)}`);
   }
   try {
-    await waitForVisible(page, '[role="menuitem"][aria-label^="Upload files"], [role="menuitemcheckbox"]', 5000);
+    await waitForVisible(page, '[role="menuitem"][aria-label^="Upload files"], [role="menuitemcheckbox"], button[aria-label="More tools"]', 5000);
   } catch (error: any) {
-    throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Upload & tools menu did not open ([role="menuitem"][aria-label^="Upload files"], [role="menuitemcheckbox"]) ${safeErrorMessage(error)}`);
+    throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Upload & tools menu did not open ([role="menuitem"][aria-label^="Upload files"], [role="menuitemcheckbox"], button[aria-label="More tools"]) ${safeErrorMessage(error)}`);
+  }
+  if (!(await selectorVisible(page, MUSIC_TOOLS_CREATE_ITEM_SELECTOR))) {
+    try {
+      await requireAndClick(page, MUSIC_MORE_TOOLS_SUBMENU_SELECTOR, "Gemini Music More tools sub-menu trigger was not found", 5000);
+      await waitForVisible(page, MUSIC_TOOLS_CREATE_ITEM_SELECTOR, 5000);
+    } catch (error: any) {
+      throw new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music More tools sub-menu did not expose Create music (${MUSIC_MORE_TOOLS_SUBMENU_SELECTOR} -> ${MUSIC_TOOLS_CREATE_ITEM_SELECTOR}) ${safeErrorMessage(error)}`);
+    }
   }
 }
 async function fillComposer(page: any, selector: string, value: string): Promise<void> {

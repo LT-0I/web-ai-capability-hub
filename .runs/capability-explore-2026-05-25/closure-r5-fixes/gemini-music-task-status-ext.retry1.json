@@ -1,0 +1,110 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-music-task-status-ext",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:28:08.987Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:task-status",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "gemini.google.com/app",
+            "--json"
+          ],
+          "timeoutMs": 60000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "status",
+                "regex": "(?i)complete"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-music-task-status-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Poll Gemini Music task-status on an existing chat tab",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 60000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:task-status",
+          "--profile",
+          "gemini-9225",
+          "--tab-url-contains",
+          "gemini.google.com/app",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 751,
+        "stdout": "{\n  \"status\": \"complete\",\n  \"download_ready\": true,\n  \"conversation_url\": \"https://gemini.google.com/app/119b2a177a8017ef\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "status": "complete",
+          "download_ready": true,
+          "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "status",
+              "actual": "complete",
+              "ok": true
+            }
+          ]
+        },
+        "status": "complete",
+        "download_ready": true,
+        "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef"
+      }
+    }
+  ],
+  "runId": "run_da655608a3ed72e2"
+}

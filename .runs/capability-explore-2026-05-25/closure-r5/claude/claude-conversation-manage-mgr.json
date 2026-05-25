@@ -1,0 +1,18 @@
+{
+  "id": "claude-conversation-manage-mgr",
+  "service": "claude",
+  "source": "L9",
+  "status": "FAIL_CLOSED_UNSUPPORTED",
+  "workflow": "examples/workflows/claude-claude-conversation-manage-mgr.yaml",
+  "closure_criterion": "rename ok === true AND delete ok === true",
+  "started_at": "2026-05-25T04:49:10.406Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/claude-claude-conversation-manage-mgr.yaml",
+    "examples/workflows/claude-conversation-manage-mgr.yaml"
+  ],
+  "finished_at": "2026-05-25T04:49:10.406Z"
+}

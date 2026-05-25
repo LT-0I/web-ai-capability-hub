@@ -1,0 +1,152 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "gemini-canvas-edit-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:28:27.326Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:canvas-edit",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "Create a short editable canvas note with two bullet points about coffee brewing.",
+            "--confirmed",
+            "--edit-text",
+            " Add a closing sentence about espresso.",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "canvas_opened",
+                "equals": true
+              },
+              {
+                "path": "canvas_html_before",
+                "nonempty": true
+              },
+              {
+                "path": "canvas_html_after",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-canvas-edit-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Create a Gemini canvas and apply an edit so before/after HTML can be compared",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path canvas_opened !== true; json_path canvas_html_before empty; json_path canvas_html_after empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:canvas-edit",
+          "--profile",
+          "gemini-9225",
+          "--prompt",
+          "Create a short editable canvas note with two bullet points about coffee brewing.",
+          "--confirmed",
+          "--edit-text",
+          " Add a closing sentence about espresso.",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 114914,
+        "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"error\": \"page.waitForSelector: Timeout 90000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('button[data-test-id=\\\"share-button\\\"], button[aria-label=\\\"Share and export canvas\\\"]') to be visible\\u001b[22m\\n\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_canvas_edit\",\n    \"stage\": \"handler\",\n    \"message\": \"page.waitForSelector: Timeout 90000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('button[data-test-id=\\\"share-button\\\"], button[aria-label=\\\"Share and export canvas\\\"]') to be visible\\u001b[22m\\n\",\n    \"error_name\": \"TimeoutError\"\n  }\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "ok": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "error": "page.waitForSelector: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[data-test-id=\"share-button\"], button[aria-label=\"Share and export canvas\"]') to be visible\u001b[22m\n",
+          "evidence": {
+            "tool": "webai_gemini_canvas_edit",
+            "stage": "handler",
+            "message": "page.waitForSelector: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[data-test-id=\"share-button\"], button[aria-label=\"Share and export canvas\"]') to be visible\u001b[22m\n",
+            "error_name": "TimeoutError"
+          }
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "canvas_opened",
+              "ok": false,
+              "reasons": [
+                "!== true"
+              ]
+            },
+            {
+              "path": "canvas_html_before",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            },
+            {
+              "path": "canvas_html_after",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            }
+          ]
+        },
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "error": "page.waitForSelector: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[data-test-id=\"share-button\"], button[aria-label=\"Share and export canvas\"]') to be visible\u001b[22m\n",
+        "evidence": "<circular>"
+      }
+    }
+  ],
+  "runId": "run_1690b971b0c740a7"
+}

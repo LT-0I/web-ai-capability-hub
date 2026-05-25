@@ -1,0 +1,245 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "gemini-conversation-reuse-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:18:00.705Z",
+    "actions": [
+      {
+        "stepId": "create_conversation",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "First message about apples",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "chat_url",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "reuse_conversation",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--reuse-conversation",
+            "--tab-url-contains",
+            "{{steps.create_conversation.chat_url}}",
+            "--prompt",
+            "What was my first message about?",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "(?i)apple"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-conversation-reuse-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover",
+      "steps": [
+        {
+          "id": "create_conversation",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "reuse_conversation",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "create_conversation",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path response_text empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--prompt",
+          "First message about apples",
+          "--response-timeout-ms",
+          "60000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 7586,
+        "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 7428,\n  \"wait_ms\": 594,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "",
+          "elapsed_ms": 7428,
+          "wait_ms": 594,
+          "completion_detected": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            },
+            {
+              "path": "chat_url",
+              "actual": "https://gemini.google.com/app",
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "",
+        "wait_ms": 594,
+        "completion_detected": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "model_used": null,
+        "reuse_conversation": false,
+        "chat_url": "https://gemini.google.com/app"
+      }
+    },
+    {
+      "stepId": "reuse_conversation",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /(?i)apple/ failed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--reuse-conversation",
+          "--tab-url-contains",
+          "https://gemini.google.com/app",
+          "--prompt",
+          "What was my first message about?",
+          "--response-timeout-ms",
+          "60000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 68892,
+        "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 68734,\n  \"wait_ms\": 60000,\n  \"completion_detected\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"model_used\": \"First message about apples\",\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "",
+          "elapsed_ms": 68734,
+          "wait_ms": 60000,
+          "completion_detected": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "model_used": "First message about apples",
+          "reuse_conversation": true,
+          "chat_url": "https://gemini.google.com/app"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "regex /(?i)apple/ failed"
+              ]
+            }
+          ]
+        },
+        "response_text": "",
+        "wait_ms": 60000,
+        "completion_detected": false,
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "model_used": "First message about apples",
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app"
+      }
+    }
+  ],
+  "runId": "run_e30b01e293d4b8f9"
+}

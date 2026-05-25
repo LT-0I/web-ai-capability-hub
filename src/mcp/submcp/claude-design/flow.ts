@@ -7,7 +7,7 @@ import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 export const DESIGN_URL = "https://claude.ai/design";
 export const DESIGN_COMPOSER_SELECTOR = 'textarea[data-testid="chat-composer-input"]';
 export const DESIGN_SEND_SELECTOR = '[data-testid="chat-send-button"]';
-export const DESIGN_HTML_IFRAME_SELECTOR = 'iframe[data-testid="html-viewer-iframe"]';
+export const DESIGN_HTML_IFRAME_SELECTOR = 'iframe[data-testid="html-viewer-iframe"], iframe[data-testid="present-mode-iframe"], iframe[src*="claudeusercontent.com"]';
 export const DESIGN_PRESENT_SELECTOR = 'xpath=//button[contains(.,"Present")]';
 export const DESIGN_FILE_OPEN_SELECTOR = 'xpath=//button[contains(normalize-space(.),"Open") and not(@data-testid)]';
 export const DESIGN_MODEL_SELECTOR = '[data-testid="model-selector-button"]';
@@ -322,6 +322,10 @@ export async function stepCreateProject(runtime: Required<BrowserToolRuntime>, a
 export async function stepGenerate(runtime: Required<BrowserToolRuntime>, args: { project_url: string; prompt: string; model?: "sonnet" | "haiku"; profile?: string; timeout_ms?: number; cdpPort?: number }): Promise<{ model_used: string; projectUrl: string; fileName: string }> {
   const effective = { ...args, profile: args.profile || DEFAULT_DESIGN_PROFILE, __requireTargetSurface: true };
   return withManagedPage(effective, runtime, args.project_url, async (page) => {
+    if (/\/design\/p\/[^/?#]+.*(?:[?&](?:file|present)=)/i.test(String(page.url?.() || ""))) {
+      await page.goto?.(args.project_url, { waitUntil: "domcontentloaded", timeout: 30000 });
+      await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+    }
     await assertNotQuotaExhausted(page);
     const modelKey = args.model || "sonnet";
     await page.waitForSelector?.(DESIGN_MODEL_SELECTOR, { state: "visible", timeout: 15000 }).catch(() => undefined);
@@ -379,6 +383,7 @@ export async function stepPresent(runtime: Required<BrowserToolRuntime>, args: {
   const effective = { ...args, profile: args.profile || DEFAULT_DESIGN_PROFILE, __requireTargetSurface: true };
   return withManagedPage(effective, runtime, args.project_url, async (page) => {
     await assertNotQuotaExhausted(page);
+    if (/[?&]present=1(?:[&#]|$)/i.test(String(page.url?.() || ""))) return { presentUrl: page.url?.() || args.project_url };
     await ensureDesignViewerOpen(page, args.project_url);
     const context = typeof page.context === "function" ? page.context() : undefined;
     const pagePromise = context?.waitForEvent ? context.waitForEvent("page", { timeout: 30000 }).catch(() => null) : Promise.resolve(null);

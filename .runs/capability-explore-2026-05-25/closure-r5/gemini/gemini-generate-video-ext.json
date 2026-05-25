@@ -1,0 +1,18 @@
+{
+  "id": "gemini-generate-video-ext",
+  "service": "gemini",
+  "source": "G4",
+  "status": "FAIL_CLOSED_EXT_BACKEND",
+  "workflow": "examples/workflows/gemini-generate-video-ext.yaml",
+  "closure_criterion": "path non-empty AND file exists AND filename ends with .mp4 AND size_bytes > 16384",
+  "started_at": "2026-05-25T04:54:54.726Z",
+  "ok": true,
+  "skipped": true,
+  "closure_status": "previously-failed",
+  "cause": "previously-failed-closed",
+  "candidates": [
+    "examples/workflows/gemini-gemini-generate-video-ext.yaml",
+    "examples/workflows/gemini-generate-video-ext.yaml"
+  ],
+  "finished_at": "2026-05-25T04:54:54.726Z"
+}

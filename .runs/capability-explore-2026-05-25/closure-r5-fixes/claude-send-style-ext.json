@@ -1,0 +1,250 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "claude-send-style-ext",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:17:34.520Z",
+    "actions": [
+      {
+        "stepId": "send_concise",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Concise",
+            "--prompt",
+            "Tell me one sentence about machine learning.",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "send_explanatory",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Explanatory",
+            "--prompt",
+            "Tell me one sentence about machine learning.",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-send-style-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Send two Claude prompts with different styles and verify both return non-empty distinct responses",
+      "steps": [
+        {
+          "id": "send_concise",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "send_explanatory",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-style-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "send_concise",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--style",
+          "Concise",
+          "--prompt",
+          "Tell me one sentence about machine learning.",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 8584,
+        "stdout": "{\n  \"response_text\": \"Claude is respondingYou said: Tell me one sentence about machine learning.Tell me one sentence about machine learning.21:17MachClaude is AI and can make mistakes. Please double-check responses.\",\n  \"elapsed_ms\": 8439,\n  \"wait_ms\": 4105,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/a7735629-5b52-4a21-89c1-5080b1738101\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Claude is respondingYou said: Tell me one sentence about machine learning.Tell me one sentence about machine learning.21:17MachClaude is AI and can make mistakes. Please double-check responses.",
+          "elapsed_ms": 8439,
+          "wait_ms": 4105,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/a7735629-5b52-4a21-89c1-5080b1738101"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Claude is respondingYou said: Tell me one sentence about machine learning.Tell me one sentence about machine learning.21:17MachClaude is AI and can make mistakes. Please double-check responses.",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Claude is respondingYou said: Tell me one sentence about machine learning.Tell me one sentence about machine learning.21:17MachClaude is AI and can make mistakes. Please double-check responses.",
+        "wait_ms": 4105,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/a7735629-5b52-4a21-89c1-5080b1738101"
+      }
+    },
+    {
+      "stepId": "send_explanatory",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--style",
+          "Explanatory",
+          "--prompt",
+          "Tell me one sentence about machine learning.",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 9760,
+        "stdout": "{\n  \"response_text\": \"Claude responded: Machine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather th…\\n\\nMachine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather than following explicitly programmed rules.\",\n  \"elapsed_ms\": 9621,\n  \"wait_ms\": 6458,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/4632b2ac-50ba-492e-ae8b-4ca7d986a560\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather th…\n\nMachine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather than following explicitly programmed rules.",
+          "elapsed_ms": 9621,
+          "wait_ms": 6458,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/4632b2ac-50ba-492e-ae8b-4ca7d986a560"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Claude responded: Machine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather th…\n\nMachine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather than following explicitly programmed rules.",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Claude responded: Machine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather th…\n\nMachine learning is a branch of artificial intelligence in which a computer system improves its performance on a task by identifying patterns in data rather than following explicitly programmed rules.",
+        "wait_ms": 6458,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/4632b2ac-50ba-492e-ae8b-4ca7d986a560"
+      }
+    }
+  ],
+  "runId": "run_9cf9211e836aa39f"
+}

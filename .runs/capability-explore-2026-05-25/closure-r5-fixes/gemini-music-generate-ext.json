@@ -1,0 +1,134 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-music-generate-ext",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:26:19.067Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "timeoutMs": 360000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "task_id",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-music-generate-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a Gemini Music track via extension-assisted backend",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 360000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-generate-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:generate",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+          "--confirmed",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--timeout-ms",
+          "300000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 57512,
+        "stdout": "{\n  \"task_id\": \"gemini_music_1779683236609\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/119b2a177a8017ef\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Coffee_and_Wildflowers.mp3\",\n  \"sha256\": \"bdc86976edd5ef2b2082491672403e44c09d54ffd2ff562abe48bb78950503c7\",\n  \"size_bytes\": 724547,\n  \"download_filename\": \"Coffee_and_Wildflowers.mp3\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "task_id": "gemini_music_1779683236609",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef",
+          "path": "/tmp/explore-2026-05-25/gemini/Coffee_and_Wildflowers.mp3",
+          "sha256": "bdc86976edd5ef2b2082491672403e44c09d54ffd2ff562abe48bb78950503c7",
+          "size_bytes": 724547,
+          "download_filename": "Coffee_and_Wildflowers.mp3",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "task_id",
+              "actual": "gemini_music_1779683236609",
+              "ok": true
+            }
+          ]
+        },
+        "task_id": "gemini_music_1779683236609",
+        "status": "complete",
+        "conversation_url": "https://gemini.google.com/app/119b2a177a8017ef",
+        "path": "/tmp/explore-2026-05-25/gemini/Coffee_and_Wildflowers.mp3",
+        "sha256": "bdc86976edd5ef2b2082491672403e44c09d54ffd2ff562abe48bb78950503c7",
+        "size_bytes": 724547,
+        "download_filename": "Coffee_and_Wildflowers.mp3",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_3ea1ea443f03d902"
+}

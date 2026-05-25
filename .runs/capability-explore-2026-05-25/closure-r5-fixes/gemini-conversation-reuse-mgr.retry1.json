@@ -1,0 +1,235 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-conversation-reuse-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-25T04:20:30.640Z",
+    "actions": [
+      {
+        "stepId": "create_conversation",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "First message about apples",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "chat_url",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "reuse_conversation",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--reuse-conversation",
+            "--tab-url-contains",
+            "{{steps.create_conversation.chat_url}}",
+            "--prompt",
+            "What was my first message about?",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "(?i)apple"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-conversation-reuse-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Create a Gemini conversation about apples, then reuse the chat URL to verify context carryover",
+      "steps": [
+        {
+          "id": "create_conversation",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "reuse_conversation",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-conversation-reuse-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "create_conversation",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--prompt",
+          "First message about apples",
+          "--response-timeout-ms",
+          "60000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 36726,
+        "stdout": "{\n  \"response_text\": \"Apples it is! They are one of the most widely cultivated and versatile tree fruits in the world. Common apple varieties. Source: The Kitchn With over 7,500 known cultivars globally, there's an apple for almost every flavor profile and culinary need—from the tart, crisp snap of a Granny Smith (perfect for baking because it holds its shape) to the incredibly sweet and juicy Fuji or Honeycrisp, which are ideal for eating fresh out of hand.They also have a fascinating botanical history. All modern domestic apples (Malus domestica) trace their genetic roots back to a wild ancestor, Malus sieversii, which still grows in the mountains of Central Asia in southern Kazakhstan.Are you looking for something specific about apples?Yes\",\n  \"elapsed_ms\": 36580,\n  \"wait_ms\": 27833,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": \"What was my first message about?\",\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app/6bd28c3644357534\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Apples it is! They are one of the most widely cultivated and versatile tree fruits in the world. Common apple varieties. Source: The Kitchn With over 7,500 known cultivars globally, there's an apple for almost every flavor profile and culinary need—from the tart, crisp snap of a Granny Smith (perfect for baking because it holds its shape) to the incredibly sweet and juicy Fuji or Honeycrisp, which are ideal for eating fresh out of hand.They also have a fascinating botanical history. All modern domestic apples (Malus domestica) trace their genetic roots back to a wild ancestor, Malus sieversii, which still grows in the mountains of Central Asia in southern Kazakhstan.Are you looking for something specific about apples?Yes",
+          "elapsed_ms": 36580,
+          "wait_ms": 27833,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "What was my first message about?",
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/6bd28c3644357534"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Apples it is! They are one of the most widely cultivated and versatile tree fruits in the world. Common apple varieties. Source: The Kitchn With over 7,500 known cultivars globally, there's an apple for almost every flavor profile and culinary need—from the tart, crisp snap of a Granny Smith (perfect for baking because it holds its shape) to the incredibly sweet and juicy Fuji or Honeycrisp, which are ideal for eating fresh out of hand.They also have a fascinating botanical history. All modern domestic apples (Malus domestica) trace their genetic roots back to a wild ancestor, Malus sieversii, which still grows in the mountains of Central Asia in southern Kazakhstan.Are you looking for something specific about apples?Yes",
+              "ok": true
+            },
+            {
+              "path": "chat_url",
+              "actual": "https://gemini.google.com/app/6bd28c3644357534",
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Apples it is! They are one of the most widely cultivated and versatile tree fruits in the world. Common apple varieties. Source: The Kitchn With over 7,500 known cultivars globally, there's an apple for almost every flavor profile and culinary need—from the tart, crisp snap of a Granny Smith (perfect for baking because it holds its shape) to the incredibly sweet and juicy Fuji or Honeycrisp, which are ideal for eating fresh out of hand.They also have a fascinating botanical history. All modern domestic apples (Malus domestica) trace their genetic roots back to a wild ancestor, Malus sieversii, which still grows in the mountains of Central Asia in southern Kazakhstan.Are you looking for something specific about apples?Yes",
+        "wait_ms": 27833,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": "What was my first message about?",
+        "reuse_conversation": false,
+        "chat_url": "https://gemini.google.com/app/6bd28c3644357534"
+      }
+    },
+    {
+      "stepId": "reuse_conversation",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--reuse-conversation",
+          "--tab-url-contains",
+          "https://gemini.google.com/app/6bd28c3644357534",
+          "--prompt",
+          "What was my first message about?",
+          "--response-timeout-ms",
+          "60000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 23020,
+        "stdout": "{\n  \"response_text\": \"Your first message was about apples.\",\n  \"elapsed_ms\": 22869,\n  \"wait_ms\": 14481,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": true,\n  \"chat_url\": \"https://gemini.google.com/app/6bd28c3644357534\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Your first message was about apples.",
+          "elapsed_ms": 22869,
+          "wait_ms": 14481,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": true,
+          "chat_url": "https://gemini.google.com/app/6bd28c3644357534"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Your first message was about apples.",
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Your first message was about apples.",
+        "wait_ms": 14481,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": true,
+        "chat_url": "https://gemini.google.com/app/6bd28c3644357534"
+      }
+    }
+  ],
+  "runId": "run_e82ca5b1558d315c"
+}
