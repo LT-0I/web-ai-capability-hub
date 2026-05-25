@@ -80,12 +80,13 @@ test("integration registry mcp_tool tokens are bidirectionally consistent with c
   }
 
   const webaiCommands = contract().commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_"));
-  assert.equal(webaiCommands.length, 61);
+  assert.equal(webaiCommands.length, 73);
   const infrastructureOnly = new Set([
     "webai_literature_task_status",
     "webai_arxiv_download_pdf", "webai_scoap3_download_pdf", "webai_mdpi_download_pdf", "webai_frontiers_download_pdf", "webai_pubscholar_download_pdf", "webai_scielo_download_pdf", "webai_inspirehep_download_pdf",
     "webai_aip_download_pdf", "webai_aps_download_pdf", "webai_iop_download_pdf", "webai_optica_download_pdf", "webai_opticsjournal_download_pdf", "webai_siam_download_pdf",
-    "webai_aiaa_download_pdf", "webai_asce_download_pdf", "webai_asme_download_pdf", "webai_ieee_download_pdf", "webai_iest_download_pdf", "webai_iet_download_pdf", "webai_sae_download_pdf"
+    "webai_aiaa_download_pdf", "webai_asce_download_pdf", "webai_asme_download_pdf", "webai_ieee_download_pdf", "webai_iest_download_pdf", "webai_iet_download_pdf", "webai_sae_download_pdf",
+    "webai_acs_download_pdf", "webai_cellpress_download_pdf", "webai_nature_download_pdf", "webai_rsc_download_pdf", "webai_royalsoc_download_pdf", "webai_cambridge_download_pdf", "webai_degruyter_download_pdf", "webai_emerald_download_pdf", "webai_sciencedirect_download_pdf", "webai_springer_download_pdf", "webai_tandf_download_pdf", "webai_wiley_download_pdf"
   ]);
   for (const command of webaiCommands) {
     if (infrastructureOnly.has(command.mcp_name)) continue;

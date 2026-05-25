@@ -223,7 +223,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
   for (const key of Object.keys(base)) if (base[key] === undefined) delete base[key];
   if (command === "webai:task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:task-status requires --task-id <id>");
   if (command === "webai:literature-task-status" && !base.task_id) throw new Error("INVALID_ARGS: webai:literature-task-status requires --task-id <id>");
-  if (/^webai:(arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep|aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae):download-pdf$/.test(command) && !base.doc_id) {
+  if (/^webai:(arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep|aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae|acs|cellpress|nature|rsc|royalsoc|cambridge|degruyter|emerald|sciencedirect|springer|tandf|wiley):download-pdf$/.test(command) && !base.doc_id) {
     throw new Error(`INVALID_ARGS: ${command} requires --doc-id <id>`);
   }
   return base;
@@ -291,7 +291,19 @@ function webAiMcpNameFromCli(command: string): string | undefined {
     "webai:ieee:download-pdf": "webai_ieee_download_pdf",
     "webai:iest:download-pdf": "webai_iest_download_pdf",
     "webai:iet:download-pdf": "webai_iet_download_pdf",
-    "webai:sae:download-pdf": "webai_sae_download_pdf"
+    "webai:sae:download-pdf": "webai_sae_download_pdf",
+    "webai:acs:download-pdf": "webai_acs_download_pdf",
+    "webai:cellpress:download-pdf": "webai_cellpress_download_pdf",
+    "webai:nature:download-pdf": "webai_nature_download_pdf",
+    "webai:rsc:download-pdf": "webai_rsc_download_pdf",
+    "webai:royalsoc:download-pdf": "webai_royalsoc_download_pdf",
+    "webai:cambridge:download-pdf": "webai_cambridge_download_pdf",
+    "webai:degruyter:download-pdf": "webai_degruyter_download_pdf",
+    "webai:emerald:download-pdf": "webai_emerald_download_pdf",
+    "webai:sciencedirect:download-pdf": "webai_sciencedirect_download_pdf",
+    "webai:springer:download-pdf": "webai_springer_download_pdf",
+    "webai:tandf:download-pdf": "webai_tandf_download_pdf",
+    "webai:wiley:download-pdf": "webai_wiley_download_pdf"
   };
   return map[command];
 }
@@ -920,7 +932,7 @@ MCP and compatibility commands:
   webai:task-status --task-id <id> [--output-json]
   webai:literature-task-status --task-id <id> [--output-json]
   webai:arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep:download-pdf --doc-id <id> [--output-dir <dir>] [--profile <name>] [--output-json]
-  webai:aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae:download-pdf --doc-id <id> --pdf-url <url> [--profile research-<db>] [--cdp-port <port>] [--output-dir <dir>] [--output-json]
+  webai:aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae|acs|cellpress|nature|rsc|royalsoc|cambridge|degruyter|emerald|sciencedirect|springer|tandf|wiley:download-pdf --doc-id <id> --pdf-url <url> [--profile research-<db>] [--cdp-port <port>] [--output-dir <dir>] [--output-json]
   mcp
   mcp:tools [--json]
   mcp:resources [--json]

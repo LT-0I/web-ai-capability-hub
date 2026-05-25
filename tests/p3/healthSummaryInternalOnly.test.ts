@@ -8,7 +8,7 @@ import { listMcpTools } from "../../src/mcp/tools";
 const CONTRACT = JSON.parse(fs.readFileSync(path.join(process.cwd(), "configs/consumer-contract.json"), "utf8"));
 
 test("p3: getHealthSummary() returns a HealthSummary shape with profilePool/tabLease/driftEvents/cancel/build keys", () => {
-  const summary = getHealthSummary({ listMcpToolsFn: () => new Array(216).fill(null) });
+  const summary = getHealthSummary({ listMcpToolsFn: () => new Array(228).fill(null) });
   assert.ok(summary && typeof summary === "object");
   assert.ok("profile_pool" in summary);
   assert.ok("tab_lease" in summary);
@@ -19,7 +19,7 @@ test("p3: getHealthSummary() returns a HealthSummary shape with profilePool/tabL
   assert.equal(typeof summary.tab_lease.active_count, "number");
   assert.equal(typeof summary.drift_events.total_rows, "number");
   assert.equal(typeof summary.cancel.total_cancel_requests_last_24h, "number");
-  assert.equal(summary.build.list_mcp_tools_count, 216);
+  assert.equal(summary.build.list_mcp_tools_count, 228);
   assert.equal(summary.build.package_version, "2.1.0");
   assert.equal(summary.build.contract_version, "consumer-contract-2.1.0");
 });

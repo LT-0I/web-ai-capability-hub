@@ -108,6 +108,18 @@ import { webAiIeeeDownloadPdf } from "./submcp/literature/ieee";
 import { webAiIestDownloadPdf } from "./submcp/literature/iest";
 import { webAiIetDownloadPdf } from "./submcp/literature/iet";
 import { webAiSaeDownloadPdf } from "./submcp/literature/sae";
+import { webAiAcsDownloadPdf } from "./submcp/literature/acs";
+import { webAiCellpressDownloadPdf } from "./submcp/literature/cellpress";
+import { webAiNatureDownloadPdf } from "./submcp/literature/nature";
+import { webAiRscDownloadPdf } from "./submcp/literature/rsc";
+import { webAiRoyalsocDownloadPdf } from "./submcp/literature/royalsoc";
+import { webAiCambridgeDownloadPdf } from "./submcp/literature/cambridge";
+import { webAiDegruyterDownloadPdf } from "./submcp/literature/degruyter";
+import { webAiEmeraldDownloadPdf } from "./submcp/literature/emerald";
+import { webAiSciencedirectDownloadPdf } from "./submcp/literature/sciencedirect";
+import { webAiSpringerDownloadPdf } from "./submcp/literature/springer";
+import { webAiTandfDownloadPdf } from "./submcp/literature/tandf";
+import { webAiWileyDownloadPdf } from "./submcp/literature/wiley";
 
 export {
   webAiArxivDownloadPdf,
@@ -129,7 +141,19 @@ export {
   webAiIeeeDownloadPdf,
   webAiIestDownloadPdf,
   webAiIetDownloadPdf,
-  webAiSaeDownloadPdf
+  webAiSaeDownloadPdf,
+  webAiAcsDownloadPdf,
+  webAiCellpressDownloadPdf,
+  webAiNatureDownloadPdf,
+  webAiRscDownloadPdf,
+  webAiRoyalsocDownloadPdf,
+  webAiCambridgeDownloadPdf,
+  webAiDegruyterDownloadPdf,
+  webAiEmeraldDownloadPdf,
+  webAiSciencedirectDownloadPdf,
+  webAiSpringerDownloadPdf,
+  webAiTandfDownloadPdf,
+  webAiWileyDownloadPdf
 };
 
 import { wahCapabilityQuery, wahCapabilityQueryInput } from "../facade/wah/capabilityQuery";
@@ -7500,6 +7524,78 @@ const coreToolSpecs: ToolSpec[] = [
     description: "Download an SAE publication PDF through an authenticated research browser profile, honoring the literature queue quota.",
     schema: webAiPaywalledLiteratureDownloadPdfSchema,
     handler: async (args) => webAiSaeDownloadPdf(args)
+  },
+  {
+    name: "webai_acs_download_pdf",
+    description: "Download an ACS Publications PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiAcsDownloadPdf(args)
+  },
+  {
+    name: "webai_cellpress_download_pdf",
+    description: "Download a Cell Press PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiCellpressDownloadPdf(args)
+  },
+  {
+    name: "webai_nature_download_pdf",
+    description: "Download a Nature PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiNatureDownloadPdf(args)
+  },
+  {
+    name: "webai_rsc_download_pdf",
+    description: "Download a Royal Society of Chemistry PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiRscDownloadPdf(args)
+  },
+  {
+    name: "webai_royalsoc_download_pdf",
+    description: "Download a Royal Society Publishing PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiRoyalsocDownloadPdf(args)
+  },
+  {
+    name: "webai_cambridge_download_pdf",
+    description: "Download a Cambridge Core PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiCambridgeDownloadPdf(args)
+  },
+  {
+    name: "webai_degruyter_download_pdf",
+    description: "Download a De Gruyter Brill PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiDegruyterDownloadPdf(args)
+  },
+  {
+    name: "webai_emerald_download_pdf",
+    description: "Download an Emerald Insight PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiEmeraldDownloadPdf(args)
+  },
+  {
+    name: "webai_sciencedirect_download_pdf",
+    description: "Download a ScienceDirect PDF through an authenticated research browser profile, honoring the literature queue quota; institutional access gates may surface ELEMENT_NOT_FOUND.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiSciencedirectDownloadPdf(args)
+  },
+  {
+    name: "webai_springer_download_pdf",
+    description: "Download a SpringerLink PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiSpringerDownloadPdf(args)
+  },
+  {
+    name: "webai_tandf_download_pdf",
+    description: "Download a Taylor & Francis Online PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiTandfDownloadPdf(args)
+  },
+  {
+    name: "webai_wiley_download_pdf",
+    description: "Download a Wiley Online Library PDF through an authenticated research browser profile, honoring the literature queue quota.",
+    schema: webAiPaywalledLiteratureDownloadPdfSchema,
+    handler: async (args) => webAiWileyDownloadPdf(args)
   },
   {
     name: "webai_chatgpt_canvas_export",

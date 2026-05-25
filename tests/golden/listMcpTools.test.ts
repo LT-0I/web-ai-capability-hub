@@ -15,7 +15,7 @@ function minimalToolProjection() {
 }
 
 test("listMcpTools golden snapshot preserves the current MCP surface", () => {
-  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.216.json");
+  const goldenPath = path.resolve(process.cwd(), "tests/golden/listMcpTools.228.json");
   const expected = JSON.parse(fs.readFileSync(goldenPath, "utf8")) as {
     count: number;
     captured_at: string;
@@ -27,6 +27,6 @@ test("listMcpTools golden snapshot preserves the current MCP surface", () => {
   assert.deepEqual(
     actual,
     expectedWithoutCapture,
-    "listMcpTools() drifted from tests/golden/listMcpTools.216.json; regenerate only for an approved contract-surface change"
+    "listMcpTools() drifted from tests/golden/listMcpTools.228.json; regenerate only for an approved contract-surface change"
   );
 });

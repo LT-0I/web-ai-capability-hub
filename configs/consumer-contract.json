@@ -4899,6 +4899,366 @@
       ]
     },
     {
+      "cli_name": "webai:acs:download-pdf",
+      "mcp_name": "webai_acs_download_pdf",
+      "ts_export": "webAiAcsDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:cellpress:download-pdf",
+      "mcp_name": "webai_cellpress_download_pdf",
+      "ts_export": "webAiCellpressDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:nature:download-pdf",
+      "mcp_name": "webai_nature_download_pdf",
+      "ts_export": "webAiNatureDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:rsc:download-pdf",
+      "mcp_name": "webai_rsc_download_pdf",
+      "ts_export": "webAiRscDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:royalsoc:download-pdf",
+      "mcp_name": "webai_royalsoc_download_pdf",
+      "ts_export": "webAiRoyalsocDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:cambridge:download-pdf",
+      "mcp_name": "webai_cambridge_download_pdf",
+      "ts_export": "webAiCambridgeDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:degruyter:download-pdf",
+      "mcp_name": "webai_degruyter_download_pdf",
+      "ts_export": "webAiDegruyterDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:emerald:download-pdf",
+      "mcp_name": "webai_emerald_download_pdf",
+      "ts_export": "webAiEmeraldDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:sciencedirect:download-pdf",
+      "mcp_name": "webai_sciencedirect_download_pdf",
+      "ts_export": "webAiSciencedirectDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:springer:download-pdf",
+      "mcp_name": "webai_springer_download_pdf",
+      "ts_export": "webAiSpringerDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:tandf:download-pdf",
+      "mcp_name": "webai_tandf_download_pdf",
+      "ts_export": "webAiTandfDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
+      "cli_name": "webai:wiley:download-pdf",
+      "mcp_name": "webai_wiley_download_pdf",
+      "ts_export": "webAiWileyDownloadPdf",
+      "maturity": "experimental",
+      "safety_class": "mutate",
+      "required_args": [
+        "doc_id"
+      ],
+      "output_keys": {
+        "always_present": [
+          "ok",
+          "task_id",
+          "path",
+          "sha256",
+          "size",
+          "downloaded_at",
+          "errorCode",
+          "message"
+        ],
+        "optional": []
+      },
+      "may_contain_sensitive_local_fields": false,
+      "optional_args": [
+        "pdf_url",
+        "profile",
+        "output_dir",
+        "cdp_port"
+      ]
+    },
+    {
       "cli_name": "wah:capability:query",
       "mcp_name": "wah_capability_query",
       "ts_export": "wahCapabilityQuery",
@@ -5846,6 +6206,7 @@
     "wanfang.format": "Wanfang Data export format selected for the research database workflow."
   },
   "release_notes": [
+    "Phase 8 Bucket D (same contract version consumer-contract-2.1.0): adds twelve paywalled browser-session webai_<db>_download_pdf literature drivers for acs, cellpress, nature, rsc, royalsoc, cambridge, degruyter, emerald, sciencedirect, springer, tandf, and wiley. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 224, webai_ 73, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket C (same contract version consumer-contract-2.1.0): adds thirteen paywalled browser-session webai_<db>_download_pdf literature drivers for aip, aps, iop, optica, opticsjournal, siam, aiaa, asce, asme, ieee, iest, iet, and sae. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 212, webai_ 61, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket B (same contract version consumer-contract-2.1.0): adds seven open-access webai_<db>_download_pdf direct-fetch literature drivers for arxiv, scoap3, mdpi, frontiers, pubscholar, scielo, and inspirehep. No package or contract_version bump; no new error codes; 8-lock counts commands 199, webai_ 48, research_ 121, wah_ 8, errors 40.",
     "consumer-contract-2.1.0 (2026-05-25 Phase 8 Bucket A): adds webai_literature_task_status, LITERATURE_QUEUED (info/non-fatal; ok=true queued download requests), SQLite literature queue + 20/DB/24h ledger foundation, and standalone literature worker daemon. No per-DB download drivers yet; existing 121 research_* contracts unchanged. 8-lock counts commands 192, webai_ 41, research_ 121, wah_ 8, errors 40.",

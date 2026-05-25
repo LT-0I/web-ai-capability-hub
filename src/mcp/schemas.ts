@@ -427,8 +427,8 @@ export const webAiLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; pr
 }, ["doc_id"]);
 
 export const webAiPaywalledLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; pdf_url?: string; profile?: string; output_dir?: string; cdp_port?: number }>({
-  doc_id: scalar.string("DOI, URL, or database-native article identifier; if metadata resolution is unavailable, pass pdf_url"),
-  pdf_url: scalar.string("Publisher PDF or article URL to open in the authenticated research browser profile"),
+  doc_id: scalar.string("DOI, URL, or database-native article identifier; if existing metadata resolution is unavailable, pass pdf_url"),
+  pdf_url: scalar.string("Publisher PDF or article URL to open in the authenticated research browser profile; URL patterns are never synthesized silently"),
   profile: scalar.string("Authenticated managed browser profile; defaults to research-<db> and must already have institutional access when required"),
   output_dir: scalar.string("Optional output directory; defaults to data/literature-downloads/<db>/"),
   cdp_port: scalar.number("Optional CDP port override for the authenticated research browser profile")
