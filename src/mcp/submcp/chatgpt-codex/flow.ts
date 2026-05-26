@@ -8,7 +8,7 @@ export const CODEX_BRANCH_SELECTOR = "button[aria-label='Search for your branch'
 export const CODEX_ENV_SELECTOR = "button[aria-label='View all code environments']";
 export const CODEX_VERSIONS_SELECTOR = "button[aria-label^='Open versions number selector']";
 export const CODEX_SUBMIT_SELECTOR = "button[aria-label='Submit']";
-export const CODEX_ENV_PICK_SELECTOR = "xpath=//div[@role='dialog']//button[normalize-space(.)='LT-0I/CN-']";
+export const CODEX_ENV_PICK_SELECTOR = "xpath=//button[normalize-space(.)='LT-0I/CN-' or .//*[normalize-space(.)='LT-0I/CN-']]";
 export const CODEX_TASK_ID_RE = /^task_e_[0-9a-f]{32}$/;
 export const CODEX_ALLOWED_ENV_NAME = "LT-0I/CN-";
 export const CODEX_ALLOWED_REPO = "LT-0I/CN-";

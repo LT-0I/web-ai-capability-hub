@@ -591,6 +591,29 @@ function targetUrlFor(service: WebAiService, args: any): string {
   return normalizeUrlLikeTarget(args.url) || normalizeUrlLikeTarget(args.tab_url_contains) || serviceDefaults[service].url;
 }
 
+function isChatgptCustomGptUrl(url: string): boolean {
+  try {
+    const parsed = new URL(String(url || ""));
+    return /(^|\.)chatgpt\.com$/i.test(parsed.hostname) && /^\/g\//.test(parsed.pathname);
+  } catch {
+    return /^https?:\/\/chatgpt\.com\/g\//i.test(String(url || ""));
+  }
+}
+
+function chatgptCustomGptUnsupportedOutput(args: any, started: number, url: string): Record<string, unknown> {
+  return safeOutput(sendPromptBase("chatgpt", url || targetUrlFor("chatgpt", args || {}), started, {
+    ok: false,
+    service: "chatgpt",
+    response_text: "",
+    completion_detected: false,
+    errorCode: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    error_code: ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
+    expected_model: "main ChatGPT chat",
+    model_used: "custom GPT",
+    message: "ChatGPT custom GPT conversations are fail-closed on the extension-assisted send-prompt path"
+  }));
+}
+
 const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
 const CHATGPT_FRESH_URL = "https://chatgpt.com/?model=gpt-4o";
 const CLAUDE_FRESH_URL = "https://claude.ai/new";
@@ -2213,9 +2236,17 @@ function sendPromptExtensionErrorOutput(service: WebAiService, args: any, starte
 async function openChatgptExtensionPage(backend: any, args: any): Promise<any> {
   const requested = args.url || args.tab_url_contains;
   const requestedUrl = normalizeUrlLikeTarget(requested);
-  const page = (args.reuse_conversation || requested)
-    ? await backend.claimTab({ url: requested || serviceDefaults.chatgpt.url })
-    : await backend.newTab({ url: CHATGPT_FRESH_URL, background: false });
+  let page: any;
+  if (args.reuse_conversation || requested) {
+    try {
+      page = await backend.claimTab({ url: requested || serviceDefaults.chatgpt.url, profile: args.profile });
+    } catch (error: any) {
+      if (!requestedUrl || !/No extension-assisted browser tab is available to claim/i.test(errorMessageFromUnknown(error, ""))) throw error;
+      page = await backend.newTab({ url: requestedUrl, profile: args.profile, background: false });
+    }
+  } else {
+    page = await backend.newTab({ url: CHATGPT_FRESH_URL, profile: args.profile, background: false });
+  }
   if (requestedUrl) {
     await page.navigate(requestedUrl, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
   } else if (!args.reuse_conversation && !requested) {
@@ -2386,16 +2417,118 @@ async function extensionElementCount(page: any, selector: string): Promise<numbe
   return count;
 }
 
+async function chatgptDispatchClickWithJavascript(page: any, selectors: string[], timeoutMs: number): Promise<void> {
+  if (typeof page?.javascript !== "function") {
+    throw new Error("extension page does not expose mutating javascript");
+  }
+  await page.javascript(`
+const arg = ${JSON.stringify({ selectors, timeoutMs })};
+const clean = (value) => String(value || '').trim();
+const parseHasText = (raw) => {
+  raw = String(raw || '');
+  const token = ':has-text(';
+  const idx = raw.lastIndexOf(token);
+  if (idx < 0 || !raw.endsWith(')')) return { base: raw, text: null };
+  const base = clean(raw.slice(0, idx)) || '*';
+  let text = raw.slice(idx + token.length, -1).trim();
+  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) {
+    text = text.slice(1, -1);
+  }
+  return { base, text: clean(text).toLowerCase() };
+};
+const visible = (el) => {
+  if (!el) return false;
+  const style = window.getComputedStyle(el);
+  const rect = el.getBoundingClientRect();
+  return !!style && style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
+};
+const actionable = (el) => visible(el) && el.getAttribute('aria-disabled') !== 'true' && !(el instanceof HTMLButtonElement && el.disabled);
+const xpathNodes = (raw) => {
+  const xpath = String(raw).slice('xpath='.length);
+  const snapshot = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+  const nodes = [];
+  for (let i = 0; i < snapshot.snapshotLength; i += 1) {
+    const node = snapshot.snapshotItem(i);
+    if (node instanceof Element) nodes.push(node);
+  }
+  return nodes;
+};
+const cssNodes = (raw) => {
+  const { base, text } = parseHasText(raw);
+  const nodes = Array.from(document.querySelectorAll(base));
+  if (text === null) return nodes;
+  return nodes.filter((el) => clean(el.innerText || el.textContent).toLowerCase().includes(text));
+};
+const candidates = () => {
+  for (const raw of arg.selectors || []) {
+    let nodes = [];
+    try { nodes = String(raw).startsWith('xpath=') ? xpathNodes(raw) : cssNodes(raw); } catch (_) { nodes = []; }
+    const target = nodes.find(actionable);
+    if (target) return { target, selector: raw };
+  }
+  return null;
+};
+const dispatchClick = (target) => {
+  target.scrollIntoView({ block: 'center', inline: 'center' });
+  try { target.focus({ preventScroll: true }); } catch (_) {}
+  const rect = target.getBoundingClientRect();
+  const x = rect.left + Math.max(1, rect.width / 2);
+  const y = rect.top + Math.max(1, rect.height / 2);
+  const mouse = { bubbles: true, cancelable: true, view: window, button: 0, buttons: 1, clientX: x, clientY: y };
+  const mouseUp = { bubbles: true, cancelable: true, view: window, button: 0, buttons: 0, clientX: x, clientY: y };
+  const pointer = { ...mouse, pointerId: 1, pointerType: 'mouse', isPrimary: true };
+  const pointerUp = { ...mouseUp, pointerId: 1, pointerType: 'mouse', isPrimary: true };
+  if (typeof PointerEvent === 'function') target.dispatchEvent(new PointerEvent('pointerover', pointer));
+  target.dispatchEvent(new MouseEvent('mouseover', mouse));
+  if (typeof PointerEvent === 'function') target.dispatchEvent(new PointerEvent('pointerdown', pointer));
+  target.dispatchEvent(new MouseEvent('mousedown', mouse));
+  if (typeof PointerEvent === 'function') target.dispatchEvent(new PointerEvent('pointerup', pointerUp));
+  target.dispatchEvent(new MouseEvent('mouseup', mouseUp));
+  target.dispatchEvent(new MouseEvent('click', mouseUp));
+};
+const deadline = Date.now() + Math.max(1, Number(arg.timeoutMs || 5000));
+let found = null;
+while (Date.now() <= deadline) {
+  found = candidates();
+  if (found && actionable(found.target)) break;
+  await new Promise((resolve) => setTimeout(resolve, 100));
+}
+if (!found || !actionable(found.target)) {
+  throw new Error('ChatGPT extension selector not visible: ' + (arg.selectors || []).join(' | '));
+}
+dispatchClick(found.target);
+return { clicked: true, selector: found.selector, text: clean(found.target.innerText || found.target.textContent), ariaExpanded: found.target.getAttribute('aria-expanded') };
+`, timeoutMs);
+}
+
+async function clickChatgptExtensionSelector(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
+  const selectors = extensionSelectorAlternatives(selector);
+  if (typeof page?.javascript === "function") {
+    try {
+      await chatgptDispatchClickWithJavascript(page, selectors, timeoutMs);
+      return;
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(error, "") });
+    }
+  }
+  await clickExtensionSelector(page, selector, timeoutMs, message);
+}
+
 async function selectChatgptModelWithExtension(page: any, expected: string): Promise<void> {
-  await clickExtensionSelector(page, CHATGPT_MODEL_BUTTON_SELECTOR, 5000, "ChatGPT model selector was not found");
   const itemSelector = chatgptMenuItemSelectorForModel(expected);
-  await clickExtensionSelector(page, itemSelector, 8000, `ChatGPT model option was not found: ${expected}`);
+  if (!(await extensionElementCount(page, itemSelector))) {
+    await clickChatgptExtensionSelector(page, CHATGPT_MODEL_BUTTON_SELECTOR, 5000, "ChatGPT model selector was not found");
+  }
+  await clickChatgptExtensionSelector(page, itemSelector, 8000, `ChatGPT model option was not found: ${expected}`);
 }
 
 async function enableChatgptWebSearchWithExtension(page: any): Promise<void> {
   if (await extensionElementCount(page, CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR)) return;
-  await clickExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
-  await clickExtensionSelector(page, CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Web search menuitemradio was not found");
+  if (!(await extensionElementCount(page, CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR))) {
+    await clickChatgptExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
+  }
+  await clickChatgptExtensionSelector(page, CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Web search menuitemradio was not found");
+  await waitForExtensionSelector(page, CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR, 8000, "ChatGPT Web search mode did not expose its active pill");
 }
 
 async function selectGeminiModelWithExtension(page: any, expected: string): Promise<void> {
@@ -2426,7 +2559,8 @@ async function enableGeminiWebSearchWithExtension(page: any): Promise<void> {
 
 async function applyExtensionPreSendOptions(service: "chatgpt" | "gemini", args: any, page: any): Promise<void> {
   if (service === "chatgpt") {
-    const expected = typeof args.model === "string" && args.model.trim() ? normalizeModelTier(service, args) : null;
+    const explicitModel = typeof args.model === "string" && args.model.trim();
+    const expected = explicitModel ? normalizeModelTier(service, args) : (args.thinking ? "Thinking" : null);
     if (expected) await selectChatgptModelWithExtension(page, expected);
     if (args.web_search) await enableChatgptWebSearchWithExtension(page);
     if (args.canvas && typeof args.prompt === "string" && !/^\s*use canvas to write\b/i.test(args.prompt)) args.prompt = `Use canvas to write ${args.prompt}`;
@@ -2530,6 +2664,12 @@ async function sendPromptInExtensionPage(service: "chatgpt" | "gemini", args: an
       error_code: ConsumerErrorCodes.LOGIN_REQUIRED
     }));
   }
+  if (service === "chatgpt") {
+    const currentUrl = snapshot.url || targetUrlFor(service, args);
+    if (isChatgptCustomGptUrl(currentUrl) || isChatgptCustomGptUrl(targetUrlFor(service, args))) {
+      return chatgptCustomGptUnsupportedOutput(args, started, currentUrl);
+    }
+  }
 
   if (service === "gemini") {
     await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
@@ -2551,7 +2691,8 @@ async function sendPromptInExtensionPage(service: "chatgpt" | "gemini", args: an
   await waitForExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
   await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
   const sentAt = Date.now();
-  await clickExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
+  if (service === "chatgpt") await clickChatgptExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
+  else await clickExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
 
   const wait = await waitForExtensionPromptCompletion(page, service, before.assistantCount, completionTimeout);
   const chatUrl = wait.chat_url || before.url || snapshot.url || targetUrlFor(service, args);
@@ -2879,7 +3020,7 @@ async function waitForAttachmentReadyWithExtension(page: any, service: "chatgpt"
     const sendButtons = qsa(arg.sendSelector);
     const sendReady = sendButtons.some((button) => visible(button) && button.getAttribute('aria-disabled') !== 'true' && !(button instanceof HTMLButtonElement && button.disabled));
     const filesReady = expected.size > 0 && Array.from(expected).every((name) => seen.has(name));
-    const ready = filesReady && (arg.service === 'gemini' || sendReady);
+    const ready = filesReady;
     return { ready, seen: Array.from(seen), sendReady };
   })()`;
   let lastState: any = { ready: false, seen: [], sendReady: false };
@@ -3387,16 +3528,17 @@ async function generateChatgptImageWithExtensionBackend(args: any, runtime: Requ
     }
 
     await page.waitForSelector(serviceDefaults.chatgpt.promptSelector, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
-    await page.click({ selector: CHATGPT_IMAGE_MENU_BUTTON_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: CHATGPT_CREATE_IMAGE_RADIO_SELECTOR }, { timeoutMs: 8000 });
+    if (!(await extensionElementCount(page, CHATGPT_CREATE_IMAGE_RADIO_SELECTOR))) {
+      await clickChatgptExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 8000, "ChatGPT composer image-mode menu button was not found");
+    }
+    await clickChatgptExtensionSelector(page, CHATGPT_CREATE_IMAGE_RADIO_SELECTOR, 8000, "ChatGPT Create image menuitemradio was not found");
     await page.waitForSelector(CHATGPT_IMAGE_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: 8000 });
 
     await page.fill({ selector: serviceDefaults.chatgpt.promptSelector }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
     const sendSelector = sendButtonSelector("chatgpt");
-    await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
+    await waitForExtensionSelector(page, sendSelector, 5000, "chatgpt send button was not found");
     await page.queryElements(sendSelector, { limit: 3 });
-    await page.click({ selector: sendSelector }, { timeoutMs: 5000 });
+    await clickChatgptExtensionSelector(page, sendSelector, 5000, "chatgpt send button was not found");
     await page.waitForSelector(CHATGPT_IMAGE_RENDERED_SELECTOR, { state: "visible", timeoutMs: args.timeout_ms || 120000 });
     const imageCandidates = await page.queryElements(CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR, { limit: 5 });
     if (!imageCandidates.length) {
@@ -6009,7 +6151,8 @@ async function fillAndSubmitDeepResearchWithExtension(page: any, service: WebAiE
   const sendSelector = sendButtonSelector(service);
   await waitForExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
   await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
-  await clickExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
+  if (service === "chatgpt") await clickChatgptExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
+  else await clickExtensionSelector(page, sendSelector, 5000, `${deepResearchLabel(service)} send button was not found`);
   return waitForDeepResearchExtensionSubmit(page, service, args.prompt, before, responseTimeoutMs(args));
 }
 
@@ -6046,8 +6189,10 @@ async function startChatgptDeepResearchWithExtensionBackend(args: any, runtime: 
     }
     await waitForExtensionSelector(page, serviceDefaults.chatgpt.promptSelector, Math.min(effective.timeout_ms || 60000, 15000), "ChatGPT prompt composer was not found");
     await selectChatgptModelWithExtension(page, "Thinking");
-    await clickExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
-    await clickExtensionSelector(page, CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Deep research menuitemradio was not found");
+    if (!(await extensionElementCount(page, CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR))) {
+      await clickChatgptExtensionSelector(page, CHATGPT_IMAGE_MENU_BUTTON_SELECTOR, 5000, "ChatGPT composer plus menu button was not found");
+    }
+    await clickChatgptExtensionSelector(page, CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "ChatGPT Deep research menuitemradio was not found");
     await waitForExtensionSelector(page, CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR, 8000, "ChatGPT Deep research mode did not expose its active pill");
     const submitted = await fillAndSubmitDeepResearchWithExtension(page, "chatgpt", effective);
     persistDeepResearchTask(runtime.database, "chatgpt", effective, task_id, lease, submitted.chat_url);
@@ -6272,9 +6417,9 @@ async function extractSubmittedChatgptCodexTaskId(page: any, preSubmitTopId: str
 }
 
 async function selectAllowedChatgptCodexEnvWithExtension(page: any): Promise<Record<string, unknown> | null> {
-  await extensionClick(page, CODEX_ENV_SELECTOR, 15000);
+  await clickChatgptExtensionSelector(page, CODEX_ENV_SELECTOR, 15000, "ChatGPT Codex environment selector was not found");
   await waitForExtensionSelector(page, "div[role='dialog']", 15000, "ChatGPT Codex environment dialog was not found").catch(() => undefined);
-  await extensionClick(page, CODEX_ENV_PICK_SELECTOR, 15000);
+  await clickChatgptExtensionSelector(page, CODEX_ENV_PICK_SELECTOR, 15000, "ChatGPT Codex allowlisted environment was not found");
   const selected = await chatgptCodexSelectorText(page, CODEX_ENV_SELECTOR);
   if (selected !== CODEX_ALLOWED_ENV_NAME) {
     return allowlistError(`ChatGPT Codex submit refused: selected environment was '${selected || "<empty>"}', expected '${CODEX_ALLOWED_ENV_NAME}'.`);
