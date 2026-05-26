@@ -1,0 +1,19 @@
+{
+  "name": "claude-design-generate-mgr",
+  "file": "examples/workflows/claude-claude-design-generate-mgr.yaml",
+  "pass": false,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T11:02:01.707Z",
+  "finishedAt": "2026-05-26T11:04:06.708Z",
+  "durationMs": 125001,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/claude-design-generate-mgr.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/claude-design-generate-mgr.stderr",
+  "stdoutTail": "\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 4652,\n        \"stdout\": \"{\\n  \\\"status\\\": \\\"generated\\\",\\n  \\\"model_used\\\": \\\"sonnet\\\",\\n  \\\"projectUrl\\\": \\\"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\\\",\\n  \\\"fileName\\\": \\\"index.html\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"status\": \"generated\",\n          \"model_used\": \"sonnet\",\n          \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"fileName\": \"index.html\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"fileName\",\n              \"actual\": \"index.html\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"status\": \"generated\",\n        \"model_used\": \"sonnet\",\n        \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n        \"fileName\": \"index.html\"\n      }\n    },\n    {\n      \"stepId\": \"get_html\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:get-html\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/claude-design\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 120007,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_cef2445ef51d20a6\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": false
+  },
+  "parsedStderrSummary": null
+}

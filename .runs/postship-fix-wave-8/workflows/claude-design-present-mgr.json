@@ -1,0 +1,92 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "claude-design-present-mgr",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T11:04:16.882Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:design:present",
+            "--profile",
+            "claude-9224",
+            "--project-url",
+            "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "presentUrl",
+                "regex": "/serve/|\\?file="
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-design-present-mgr",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Present an existing Claude Design project",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command timed out",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:design:present",
+          "--profile",
+          "claude-9224",
+          "--project-url",
+          "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": "SIGTERM",
+        "timed_out": true,
+        "elapsed_ms": 120015,
+        "stdout": "",
+        "stderr": "",
+        "gate": {
+          "timed_out": true
+        },
+        "errorCode": "COMMAND_TIMEOUT"
+      }
+    }
+  ],
+  "runId": "run_6442263f532e1812"
+}

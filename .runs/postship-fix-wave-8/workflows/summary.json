@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-05-26T11:09:58.633Z",
+  "passCount": 3,
+  "total": 10,
+  "results": [
+    {
+      "name": "gemini-canvas-edit",
+      "file": "examples/workflows/gemini-canvas-edit.yaml",
+      "pass": true,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T10:53:21.757Z",
+      "finishedAt": "2026-05-26T10:54:23.970Z",
+      "durationMs": 62213,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-edit.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-edit.stderr",
+      "stdoutTail": "          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"gemini-canvas-edit-mgr\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Apply a length AI-edit on an existing Gemini canvas\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 180000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:canvas-edit\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--tab-url-contains\",\n          \"gemini.google.com\",\n          \"--ai-action\",\n          \"length\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 61946,\n        \"stdout\": \"{\\n  \\\"canvas_opened\\\": true,\\n  \\\"edit_applied\\\": false,\\n  \\\"ai_action_applied\\\": true,\\n  \\\"canvas_html_before\\\": \\\"\\\",\\n  \\\"canvas_html_after\\\": \\\"\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"canvas_opened\": true,\n          \"edit_applied\": false,\n          \"ai_action_applied\": true,\n          \"canvas_html_before\": \"\",\n          \"canvas_html_after\": \"\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"canvas_opened\",\n              \"actual\": true,\n              \"ok\": true\n            }\n          ]\n        },\n        \"canvas_opened\": true,\n        \"edit_applied\": false,\n        \"ai_action_applied\": true,\n        \"canvas_html_before\": \"\",\n        \"canvas_html_after\": \"\"\n      }\n    }\n  ],\n  \"runId\": \"run_53b6cd8ee8dcba4f\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": true
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "gemini-canvas-to-docs-mgr",
+      "file": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+      "pass": false,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T10:54:33.980Z",
+      "finishedAt": "2026-05-26T10:57:34.400Z",
+      "durationMs": 180420,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-to-docs-mgr.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-to-docs-mgr.stderr",
+      "stdoutTail": "  \"Generate a 200-word essay about deep learning, then export to Google Docs\",\n          \"--title\",\n          \"Capability Probe Doc\",\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--timeout-ms\",\n          \"60000\",\n          \"--confirmed\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 180153,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n  \\\"evidence\\\": {\\n    \\\"tool\\\": \\\"webai_gemini_canvas_to_docs\\\",\\n    \\\"stage\\\": \\\"handler\\\",\\n    \\\"message\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n    \\\"error_name\\\": \\\"Error\\\",\\n    \\\"timeout_ms\\\": 180000\\n  }\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n          \"evidence\": {\n            \"tool\": \"webai_gemini_canvas_to_docs\",\n            \"stage\": \"handler\",\n            \"message\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n            \"error_name\": \"Error\",\n            \"timeout_ms\": 180000\n          }\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"docs_url\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /docs\\\\.google\\\\.com/ failed\"\n              ]\n            }\n          ]\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n        \"evidence\": \"<circular>\"\n      }\n    }\n  ],\n  \"runId\": \"run_7b991c0de1d338e9\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": false
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "gemini-gemini-canvas-edit-mgr",
+      "file": "examples/workflows/gemini-gemini-canvas-edit-mgr.yaml",
+      "pass": false,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T10:57:44.410Z",
+      "finishedAt": "2026-05-26T10:59:28.950Z",
+      "durationMs": 104540,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-gemini-canvas-edit-mgr.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-gemini-canvas-edit-mgr.stderr",
+      "stdoutTail": "    \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:canvas-edit\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--prompt\",\n          \"Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app.\",\n          \"--confirmed\",\n          \"--edit-text\",\n          \" Add a closing sentence about espresso.\",\n          \"--response-timeout-ms\",\n          \"90000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 104291,\n        \"stdout\": \"{\\n  \\\"canvas_opened\\\": true,\\n  \\\"edit_applied\\\": true,\\n  \\\"ai_action_applied\\\": false,\\n  \\\"canvas_html_before\\\": \\\"\\\",\\n  \\\"canvas_html_after\\\": \\\"\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"canvas_opened\": true,\n          \"edit_applied\": true,\n          \"ai_action_applied\": false,\n          \"canvas_html_before\": \"\",\n          \"canvas_html_after\": \"\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"canvas_opened\",\n              \"actual\": true,\n              \"ok\": true\n            },\n            {\n              \"path\": \"canvas_html_before\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"canvas_html_after\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"canvas_opened\": true,\n        \"edit_applied\": true,\n        \"ai_action_applied\": false,\n        \"canvas_html_before\": \"\",\n        \"canvas_html_after\": \"\",\n        \"errorCode\": \"COMMAND_GATE_FAILED\"\n      }\n    }\n  ],\n  \"runId\": \"run_9811d9a7458380d6\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": false
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "gemini-generate-video-ext",
+      "file": "examples/workflows/gemini-generate-video-ext.yaml",
+      "pass": true,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T10:59:38.952Z",
+      "finishedAt": "2026-05-26T11:00:52.235Z",
+      "durationMs": 73283,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-generate-video-ext.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-generate-video-ext.stderr",
+      "stdoutTail": " ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-generate-video-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:generate-video\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"A 5-second loop of a serene mountain landscape with soft camera pan\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--response-timeout-ms\",\n          \"600000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 72994,\n        \"stdout\": \"{\\n  \\\"path\\\": \\\"/tmp/explore-2026-05-25/gemini/mp.mp4\\\",\\n  \\\"sha256\\\": \\\"c93873bb7b0b0b16074484de36fc693166c4729d8d9568e6419d3230150c7a95\\\",\\n  \\\"size_bytes\\\": 4293350,\\n  \\\"download_filename\\\": \\\"mp.mp4\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"/tmp/explore-2026-05-25/gemini/mp.mp4\",\n          \"sha256\": \"c93873bb7b0b0b16074484de36fc693166c4729d8d9568e6419d3230150c7a95\",\n          \"size_bytes\": 4293350,\n          \"download_filename\": \"mp.mp4\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"/tmp/explore-2026-05-25/gemini/mp.mp4\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"path\": \"/tmp/explore-2026-05-25/gemini/mp.mp4\",\n        \"sha256\": \"c93873bb7b0b0b16074484de36fc693166c4729d8d9568e6419d3230150c7a95\",\n        \"size_bytes\": 4293350,\n        \"download_filename\": \"mp.mp4\",\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_76646aff95477edf\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": true
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "gemini-music-generate-chain",
+      "file": "examples/workflows/gemini-music-generate-chain.yaml",
+      "pass": true,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:01:02.241Z",
+      "finishedAt": "2026-05-26T11:01:51.696Z",
+      "durationMs": 49455,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-music-generate-chain.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-music-generate-chain.stderr",
+      "stdoutTail": "    \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 49197,\n        \"stdout\": \"{\\n  \\\"task_id\\\": \\\"gemini_music_1779793311639\\\",\\n  \\\"status\\\": \\\"complete\\\",\\n  \\\"conversation_url\\\": \\\"https://gemini.google.com/app/663005cd699290e1\\\",\\n  \\\"path\\\": \\\"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\\\",\\n  \\\"sha256\\\": \\\"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\\\",\\n  \\\"size_bytes\\\": 744609,\\n  \\\"download_filename\\\": \\\"Porch_Swing_Sunrise.mp3\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"task_id\": \"gemini_music_1779793311639\",\n          \"status\": \"complete\",\n          \"conversation_url\": \"https://gemini.google.com/app/663005cd699290e1\",\n          \"path\": \"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\",\n          \"sha256\": \"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\",\n          \"size_bytes\": 744609,\n          \"download_filename\": \"Porch_Swing_Sunrise.mp3\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"task_id\",\n              \"actual\": \"gemini_music_1779793311639\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"task_id\": \"gemini_music_1779793311639\",\n        \"status\": \"complete\",\n        \"conversation_url\": \"https://gemini.google.com/app/663005cd699290e1\",\n        \"path\": \"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\",\n        \"sha256\": \"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\",\n        \"size_bytes\": 744609,\n        \"download_filename\": \"Porch_Swing_Sunrise.mp3\",\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_9e0b77f55386ad84\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": true
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "claude-design-generate-mgr",
+      "file": "examples/workflows/claude-claude-design-generate-mgr.yaml",
+      "pass": false,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:02:01.707Z",
+      "finishedAt": "2026-05-26T11:04:06.708Z",
+      "durationMs": 125001,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/claude-design-generate-mgr.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/claude-design-generate-mgr.stderr",
+      "stdoutTail": "\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 4652,\n        \"stdout\": \"{\\n  \\\"status\\\": \\\"generated\\\",\\n  \\\"model_used\\\": \\\"sonnet\\\",\\n  \\\"projectUrl\\\": \\\"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\\\",\\n  \\\"fileName\\\": \\\"index.html\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"status\": \"generated\",\n          \"model_used\": \"sonnet\",\n          \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"fileName\": \"index.html\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"fileName\",\n              \"actual\": \"index.html\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"status\": \"generated\",\n        \"model_used\": \"sonnet\",\n        \"projectUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n        \"fileName\": \"index.html\"\n      }\n    },\n    {\n      \"stepId\": \"get_html\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:get-html\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/claude-design\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 120007,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_cef2445ef51d20a6\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": false
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "claude-design-present-mgr",
+      "file": "examples/workflows/claude-claude-design-present-mgr.yaml",
+      "pass": false,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:04:16.718Z",
+      "finishedAt": "2026-05-26T11:06:16.978Z",
+      "durationMs": 120260,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/claude-design-present-mgr.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/claude-design-present-mgr.stderr",
+      "stdoutTail": "\"wait\",\n          \"confirmed\": true,\n          \"commandStep\": true\n        },\n        \"requiresApproval\": false,\n        \"resolvedSelectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:design:present\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--project-url\",\n            \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"presentUrl\",\n                \"regex\": \"/serve/|\\\\?file=\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-design-present-mgr\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Present an existing Claude Design project\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command timed out\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:present\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": \"SIGTERM\",\n        \"timed_out\": true,\n        \"elapsed_ms\": 120015,\n        \"stdout\": \"\",\n        \"stderr\": \"\",\n        \"gate\": {\n          \"timed_out\": true\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\"\n      }\n    }\n  ],\n  \"runId\": \"run_6442263f532e1812\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": false
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "claude-generate-file-pptx-ext",
+      "file": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+      "pass": false,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:06:26.988Z",
+      "finishedAt": "2026-05-26T11:07:07.112Z",
+      "durationMs": 40124,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/claude-generate-file-pptx-ext.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/claude-generate-file-pptx-ext.stderr",
+      "stdoutTail": "ttp://127.0.0.1:9224\\\\u001b[22m\\\\n\\\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\\\u001b[22m\\\\n\\\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\\\u001b[22m\\\\n\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"artifact_name\": \"\",\n          \"download_filename\": \"\",\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\u001b[22m\\n\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"artifact_name\": \"\",\n        \"download_filename\": \"\",\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\u001b[22m\\n\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\"\n      }\n    }\n  ],\n  \"runId\": \"run_540bd411dedf3ef4\"\n}\n",
+      "stderrTail": "",
+      "parsedStdoutSummary": {
+        "ok": false
+      },
+      "parsedStderrSummary": null
+    },
+    {
+      "name": "gemini-image-draft",
+      "file": "examples/workflows/gemini-image-draft.yaml",
+      "pass": false,
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:07:17.122Z",
+      "finishedAt": "2026-05-26T11:09:17.730Z",
+      "durationMs": 120608,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-image-draft.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-image-draft.stderr",
+      "stdoutTail": "",
+      "stderrTail": "{\"ok\":false,\"error\":\"locator.click: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for getByRole('button', { name: /image/i })\\u001b[22m\\n\"}\n",
+      "parsedStdoutSummary": null,
+      "parsedStderrSummary": {
+        "ok": false,
+        "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /image/i })\u001b[22m\n"
+      }
+    },
+    {
+      "name": "research-database-search-dry-run",
+      "file": "examples/workflows/research-database-search-dry-run.yaml",
+      "pass": false,
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "startedAt": "2026-05-26T11:09:27.740Z",
+      "finishedAt": "2026-05-26T11:09:58.633Z",
+      "durationMs": 30893,
+      "stdoutPath": ".runs/postship-fix-wave-8/workflows/research-database-search-dry-run.json",
+      "stderrPath": ".runs/postship-fix-wave-8/workflows/research-database-search-dry-run.stderr",
+      "stdoutTail": "",
+      "stderrTail": "{\"ok\":false,\"error\":\"locator.fill: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for getByRole('textbox', { name: /search/i }).or(getByRole('searchbox', { name: /search/i })).first()\\u001b[22m\\n\"}\n",
+      "parsedStdoutSummary": null,
+      "parsedStderrSummary": {
+        "ok": false,
+        "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: /search/i }).or(getByRole('searchbox', { name: /search/i })).first()\u001b[22m\n"
+      }
+    }
+  ]
+}

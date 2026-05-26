@@ -1,0 +1,48 @@
+{
+  "name": "gemini",
+  "port": 9225,
+  "capturedAt": "2026-05-26T10:08:04.386Z",
+  "ok": true,
+  "pages": [
+    {
+      "url": "https://gemini.google.com/app",
+      "title": "Google Gemini",
+      "frameCount": 3,
+      "frames": [
+        {
+          "url": "https://gemini.google.com/app",
+          "name": ""
+        },
+        {
+          "url": "https://gemini.google.com/_/bscframe",
+          "name": ""
+        },
+        {
+          "url": "",
+          "name": ""
+        }
+      ],
+      "iframeCount": 2
+    },
+    {
+      "url": "https://gemini.google.com/app/fcc728134824794e?hl=en",
+      "title": "Video Generation Only - Google Gemini",
+      "frameCount": 3,
+      "frames": [
+        {
+          "url": "https://gemini.google.com/app/fcc728134824794e?hl=en",
+          "name": ""
+        },
+        {
+          "url": "https://gemini.google.com/_/bscframe",
+          "name": ""
+        },
+        {
+          "url": "",
+          "name": ""
+        }
+      ],
+      "iframeCount": 2
+    }
+  ]
+}

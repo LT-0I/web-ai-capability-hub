@@ -1,0 +1,19 @@
+{
+  "name": "gemini-canvas-to-docs-mgr",
+  "file": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+  "pass": false,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T10:54:33.980Z",
+  "finishedAt": "2026-05-26T10:57:34.400Z",
+  "durationMs": 180420,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-to-docs-mgr.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-canvas-to-docs-mgr.stderr",
+  "stdoutTail": "  \"Generate a 200-word essay about deep learning, then export to Google Docs\",\n          \"--title\",\n          \"Capability Probe Doc\",\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--timeout-ms\",\n          \"60000\",\n          \"--confirmed\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 180153,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n  \\\"evidence\\\": {\\n    \\\"tool\\\": \\\"webai_gemini_canvas_to_docs\\\",\\n    \\\"stage\\\": \\\"handler\\\",\\n    \\\"message\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n    \\\"error_name\\\": \\\"Error\\\",\\n    \\\"timeout_ms\\\": 180000\\n  }\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n          \"evidence\": {\n            \"tool\": \"webai_gemini_canvas_to_docs\",\n            \"stage\": \"handler\",\n            \"message\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n            \"error_name\": \"Error\",\n            \"timeout_ms\": 180000\n          }\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"docs_url\",\n              \"ok\": false,\n              \"reasons\": [\n                \"regex /docs\\\\.google\\\\.com/ failed\"\n              ]\n            }\n          ]\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n        \"evidence\": \"<circular>\"\n      }\n    }\n  ],\n  \"runId\": \"run_7b991c0de1d338e9\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": false
+  },
+  "parsedStderrSummary": null
+}

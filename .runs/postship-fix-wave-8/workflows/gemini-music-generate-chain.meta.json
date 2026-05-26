@@ -1,0 +1,19 @@
+{
+  "name": "gemini-music-generate-chain",
+  "file": "examples/workflows/gemini-music-generate-chain.yaml",
+  "pass": true,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T11:01:02.241Z",
+  "finishedAt": "2026-05-26T11:01:51.696Z",
+  "durationMs": 49455,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-music-generate-chain.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-music-generate-chain.stderr",
+  "stdoutTail": "    \"--download-dir\",\n          \"/tmp/explore-2026-05-25/gemini\",\n          \"--timeout-ms\",\n          \"300000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 49197,\n        \"stdout\": \"{\\n  \\\"task_id\\\": \\\"gemini_music_1779793311639\\\",\\n  \\\"status\\\": \\\"complete\\\",\\n  \\\"conversation_url\\\": \\\"https://gemini.google.com/app/663005cd699290e1\\\",\\n  \\\"path\\\": \\\"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\\\",\\n  \\\"sha256\\\": \\\"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\\\",\\n  \\\"size_bytes\\\": 744609,\\n  \\\"download_filename\\\": \\\"Porch_Swing_Sunrise.mp3\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"task_id\": \"gemini_music_1779793311639\",\n          \"status\": \"complete\",\n          \"conversation_url\": \"https://gemini.google.com/app/663005cd699290e1\",\n          \"path\": \"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\",\n          \"sha256\": \"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\",\n          \"size_bytes\": 744609,\n          \"download_filename\": \"Porch_Swing_Sunrise.mp3\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"task_id\",\n              \"actual\": \"gemini_music_1779793311639\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"task_id\": \"gemini_music_1779793311639\",\n        \"status\": \"complete\",\n        \"conversation_url\": \"https://gemini.google.com/app/663005cd699290e1\",\n        \"path\": \"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\",\n        \"sha256\": \"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\",\n        \"size_bytes\": 744609,\n        \"download_filename\": \"Porch_Swing_Sunrise.mp3\",\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_9e0b77f55386ad84\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": true
+  },
+  "parsedStderrSummary": null
+}

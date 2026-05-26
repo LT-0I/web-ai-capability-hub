@@ -1,0 +1,20 @@
+{
+  "name": "gemini-image-draft",
+  "file": "examples/workflows/gemini-image-draft.yaml",
+  "pass": false,
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T11:07:17.122Z",
+  "finishedAt": "2026-05-26T11:09:17.730Z",
+  "durationMs": 120608,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-image-draft.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-image-draft.stderr",
+  "stdoutTail": "",
+  "stderrTail": "{\"ok\":false,\"error\":\"locator.click: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for getByRole('button', { name: /image/i })\\u001b[22m\\n\"}\n",
+  "parsedStdoutSummary": null,
+  "parsedStderrSummary": {
+    "ok": false,
+    "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /image/i })\u001b[22m\n"
+  }
+}

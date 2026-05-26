@@ -1,0 +1,338 @@
+{
+  "provider": "gemini",
+  "port": 9225,
+  "capturedAt": "2026-05-26T10:17:11.054Z",
+  "ok": true,
+  "urlBefore": "https://gemini.google.com/app",
+  "titleBefore": "Google Gemini",
+  "canvasCount": 1,
+  "canvasCheckedBefore": "false",
+  "sendCount": 1,
+  "frameNavigations": [
+    {
+      "t": 1779790636447,
+      "url": "https://gemini.google.com/app/550232a2a64e6825",
+      "name": ""
+    }
+  ],
+  "readyAtMs": 12879,
+  "events": [
+    {
+      "t": 0,
+      "label": "initial",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 797,
+      "label": "tools-opened",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 1926,
+      "label": "canvas-toggled",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 2448,
+      "label": "prompt-filled",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 2565,
+      "label": "prompt-sent",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 4570,
+      "label": "poll-change",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    },
+    {
+      "t": 12879,
+      "label": "ready-detected",
+      "frames": [
+        {
+          "index": 0,
+          "src": "/_/bscframe",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": "complete",
+          "href": "https://gemini.google.com/_/bscframe",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+          "title": null,
+          "testid": null,
+          "visible": false,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://gemini.google.com/app/550232a2a64e6825",
+        "https://gemini.google.com/_/bscframe",
+        ""
+      ]
+    }
+  ],
+  "urlAfter": "https://gemini.google.com/app/550232a2a64e6825",
+  "titleAfter": "Google Gemini"
+}

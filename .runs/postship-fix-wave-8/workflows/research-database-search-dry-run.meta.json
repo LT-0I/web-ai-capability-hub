@@ -1,0 +1,20 @@
+{
+  "name": "research-database-search-dry-run",
+  "file": "examples/workflows/research-database-search-dry-run.yaml",
+  "pass": false,
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T11:09:27.740Z",
+  "finishedAt": "2026-05-26T11:09:58.633Z",
+  "durationMs": 30893,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/research-database-search-dry-run.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/research-database-search-dry-run.stderr",
+  "stdoutTail": "",
+  "stderrTail": "{\"ok\":false,\"error\":\"locator.fill: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for getByRole('textbox', { name: /search/i }).or(getByRole('searchbox', { name: /search/i })).first()\\u001b[22m\\n\"}\n",
+  "parsedStdoutSummary": null,
+  "parsedStderrSummary": {
+    "ok": false,
+    "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: /search/i }).or(getByRole('searchbox', { name: /search/i })).first()\u001b[22m\n"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "gemini-gemini-canvas-edit-mgr",
+  "file": "examples/workflows/gemini-gemini-canvas-edit-mgr.yaml",
+  "pass": false,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T10:57:44.410Z",
+  "finishedAt": "2026-05-26T10:59:28.950Z",
+  "durationMs": 104540,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/gemini-gemini-canvas-edit-mgr.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/gemini-gemini-canvas-edit-mgr.stderr",
+  "stdoutTail": "    \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:canvas-edit\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--prompt\",\n          \"Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app.\",\n          \"--confirmed\",\n          \"--edit-text\",\n          \" Add a closing sentence about espresso.\",\n          \"--response-timeout-ms\",\n          \"90000\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 104291,\n        \"stdout\": \"{\\n  \\\"canvas_opened\\\": true,\\n  \\\"edit_applied\\\": true,\\n  \\\"ai_action_applied\\\": false,\\n  \\\"canvas_html_before\\\": \\\"\\\",\\n  \\\"canvas_html_after\\\": \\\"\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"canvas_opened\": true,\n          \"edit_applied\": true,\n          \"ai_action_applied\": false,\n          \"canvas_html_before\": \"\",\n          \"canvas_html_after\": \"\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"canvas_opened\",\n              \"actual\": true,\n              \"ok\": true\n            },\n            {\n              \"path\": \"canvas_html_before\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            },\n            {\n              \"path\": \"canvas_html_after\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"canvas_opened\": true,\n        \"edit_applied\": true,\n        \"ai_action_applied\": false,\n        \"canvas_html_before\": \"\",\n        \"canvas_html_after\": \"\",\n        \"errorCode\": \"COMMAND_GATE_FAILED\"\n      }\n    }\n  ],\n  \"runId\": \"run_9811d9a7458380d6\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": false
+  },
+  "parsedStderrSummary": null
+}

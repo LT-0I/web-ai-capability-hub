@@ -1,0 +1,134 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-music-generate-chain",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T11:01:02.425Z",
+    "actions": [
+      {
+        "stepId": "generate",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "timeoutMs": 360000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "task_id",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-music-generate-chain",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Three-step Gemini Music chain (generate -> poll -> download)",
+      "steps": [
+        {
+          "id": "generate",
+          "command": "<circular>",
+          "timeoutMs": 360000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-generate-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "generate",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:generate",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+          "--confirmed",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--timeout-ms",
+          "300000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 49197,
+        "stdout": "{\n  \"task_id\": \"gemini_music_1779793311639\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/663005cd699290e1\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3\",\n  \"sha256\": \"f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001\",\n  \"size_bytes\": 744609,\n  \"download_filename\": \"Porch_Swing_Sunrise.mp3\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "task_id": "gemini_music_1779793311639",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/663005cd699290e1",
+          "path": "/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3",
+          "sha256": "f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001",
+          "size_bytes": 744609,
+          "download_filename": "Porch_Swing_Sunrise.mp3",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "task_id",
+              "actual": "gemini_music_1779793311639",
+              "ok": true
+            }
+          ]
+        },
+        "task_id": "gemini_music_1779793311639",
+        "status": "complete",
+        "conversation_url": "https://gemini.google.com/app/663005cd699290e1",
+        "path": "/tmp/explore-2026-05-25/gemini/Porch_Swing_Sunrise.mp3",
+        "sha256": "f023244a083a605e73d728ec130763c271cd138634c1a76d6ce75566f77dd001",
+        "size_bytes": 744609,
+        "download_filename": "Porch_Swing_Sunrise.mp3",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_9e0b77f55386ad84"
+}

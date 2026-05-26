@@ -1,0 +1,149 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "gemini-canvas-edit-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T10:57:44.572Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:canvas-edit",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app.",
+            "--confirmed",
+            "--edit-text",
+            " Add a closing sentence about espresso.",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "canvas_opened",
+                "equals": true
+              },
+              {
+                "path": "canvas_html_before",
+                "nonempty": true
+              },
+              {
+                "path": "canvas_html_after",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-canvas-edit-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Create a Gemini canvas and apply an edit so before/after HTML can be compared",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: json_path canvas_html_before empty; json_path canvas_html_after empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:canvas-edit",
+          "--profile",
+          "gemini-9225",
+          "--prompt",
+          "Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app.",
+          "--confirmed",
+          "--edit-text",
+          " Add a closing sentence about espresso.",
+          "--response-timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 104291,
+        "stdout": "{\n  \"canvas_opened\": true,\n  \"edit_applied\": true,\n  \"ai_action_applied\": false,\n  \"canvas_html_before\": \"\",\n  \"canvas_html_after\": \"\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "canvas_opened": true,
+          "edit_applied": true,
+          "ai_action_applied": false,
+          "canvas_html_before": "",
+          "canvas_html_after": ""
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "canvas_opened",
+              "actual": true,
+              "ok": true
+            },
+            {
+              "path": "canvas_html_before",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            },
+            {
+              "path": "canvas_html_after",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            }
+          ]
+        },
+        "canvas_opened": true,
+        "edit_applied": true,
+        "ai_action_applied": false,
+        "canvas_html_before": "",
+        "canvas_html_after": "",
+        "errorCode": "COMMAND_GATE_FAILED"
+      }
+    }
+  ],
+  "runId": "run_9811d9a7458380d6"
+}

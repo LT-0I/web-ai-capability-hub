@@ -1,0 +1,118 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-canvas-edit-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T10:53:21.917Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:canvas-edit",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "gemini.google.com",
+            "--ai-action",
+            "length",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "canvas_opened",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-canvas-edit-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Apply a length AI-edit on an existing Gemini canvas",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-edit-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:canvas-edit",
+          "--profile",
+          "gemini-9225",
+          "--tab-url-contains",
+          "gemini.google.com",
+          "--ai-action",
+          "length",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 61946,
+        "stdout": "{\n  \"canvas_opened\": true,\n  \"edit_applied\": false,\n  \"ai_action_applied\": true,\n  \"canvas_html_before\": \"\",\n  \"canvas_html_after\": \"\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "canvas_opened": true,
+          "edit_applied": false,
+          "ai_action_applied": true,
+          "canvas_html_before": "",
+          "canvas_html_after": ""
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "canvas_opened",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "canvas_opened": true,
+        "edit_applied": false,
+        "ai_action_applied": true,
+        "canvas_html_before": "",
+        "canvas_html_after": ""
+      }
+    }
+  ],
+  "runId": "run_53b6cd8ee8dcba4f"
+}

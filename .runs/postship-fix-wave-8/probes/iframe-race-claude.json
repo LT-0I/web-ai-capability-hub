@@ -1,0 +1,340 @@
+{
+  "provider": "claude",
+  "port": 9224,
+  "capturedAt": "2026-05-26T10:17:37.496Z",
+  "ok": true,
+  "frameNavigations": [
+    {
+      "t": 1779790659212,
+      "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+      "name": ""
+    },
+    {
+      "t": 1779790659748,
+      "url": "about:blank",
+      "name": ""
+    },
+    {
+      "t": 1779790659848,
+      "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+      "name": ""
+    },
+    {
+      "t": 1779790661147,
+      "url": "about:blank",
+      "name": ""
+    },
+    {
+      "t": 1779790661198,
+      "url": "about:blank",
+      "name": ""
+    },
+    {
+      "t": 1779790666212,
+      "url": "about:blank",
+      "name": ""
+    },
+    {
+      "t": 1779790666269,
+      "url": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+      "name": ""
+    },
+    {
+      "t": 1779790667528,
+      "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+      "name": ""
+    },
+    {
+      "t": 1779790668026,
+      "url": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1",
+      "name": ""
+    }
+  ],
+  "promptCount": 0,
+  "sendCount": 0,
+  "sendError": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Send Message\"], button[aria-label=\"Send message\"], button:has(svg)').last()\u001b[22m\n",
+  "readyAtMs": 21207,
+  "events": [
+    {
+      "t": 4189,
+      "label": "project-opened",
+      "frames": [
+        {
+          "index": 0,
+          "src": null,
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+        "about:blank"
+      ]
+    },
+    {
+      "t": 9189,
+      "label": "prompt-filled",
+      "frames": [
+        {
+          "index": 0,
+          "src": "about:blank",
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 40,
+            "width": 154,
+            "height": 90
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+          "title": null,
+          "testid": "html-viewer-iframe",
+          "visible": true,
+          "rect": {
+            "x": 400,
+            "y": 79,
+            "width": 880,
+            "height": 522
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 2,
+          "src": null,
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+        "about:blank",
+        "about:blank",
+        ""
+      ]
+    },
+    {
+      "t": 19197,
+      "label": "prompt-sent",
+      "frames": [
+        {
+          "index": 0,
+          "src": "about:blank",
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 40,
+            "width": 154,
+            "height": 90
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+          "title": null,
+          "testid": "html-viewer-iframe",
+          "visible": true,
+          "rect": {
+            "x": 400,
+            "y": 79,
+            "width": 880,
+            "height": 522
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 2,
+          "src": null,
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+        "about:blank",
+        "about:blank",
+        "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1"
+      ]
+    },
+    {
+      "t": 21207,
+      "label": "poll-change",
+      "frames": [
+        {
+          "index": 0,
+          "src": "about:blank",
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 40,
+            "width": 154,
+            "height": 90
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+          "title": null,
+          "testid": "html-viewer-iframe",
+          "visible": true,
+          "rect": {
+            "x": 400,
+            "y": 79,
+            "width": 880,
+            "height": 522
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 2,
+          "src": null,
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+        "about:blank",
+        "about:blank",
+        "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1"
+      ]
+    },
+    {
+      "t": 21207,
+      "label": "ready-detected",
+      "frames": [
+        {
+          "index": 0,
+          "src": "about:blank",
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 40,
+            "width": 154,
+            "height": 90
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 1,
+          "src": "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/_bootstrap",
+          "title": null,
+          "testid": "html-viewer-iframe",
+          "visible": true,
+          "rect": {
+            "x": 400,
+            "y": 79,
+            "width": 880,
+            "height": 522
+          },
+          "ready": null,
+          "href": null,
+          "textLen": 0,
+          "error": null
+        },
+        {
+          "index": 2,
+          "src": null,
+          "title": null,
+          "testid": null,
+          "visible": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "ready": "complete",
+          "href": "about:blank",
+          "textLen": 0,
+          "error": null
+        }
+      ],
+      "frameUrls": [
+        "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+        "about:blank",
+        "about:blank",
+        "https://baf06427-9e7a-41f7-8d8e-79da1a1ca344.claudeusercontent.com/v1/design/projects/baf06427-9e7a-41f7-8d8e-79da1a1ca344/serve/index.html?srcmap=1"
+      ]
+    }
+  ],
+  "urlAfter": "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html",
+  "titleAfter": "Capability Probe Design"
+}

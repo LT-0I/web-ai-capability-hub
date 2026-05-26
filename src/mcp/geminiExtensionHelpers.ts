@@ -92,8 +92,11 @@ async function mutatePage(page: any, fn: (arg: any) => unknown, arg?: unknown, t
 async function waitForPageSelector(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
   try {
     if (typeof page?.locator === "function") {
-      await page.locator(selector).first().waitFor({ state: "visible", timeout: timeoutMs });
-      return;
+      const locator = page.locator(selector).first();
+      if (typeof locator?.waitFor === "function") {
+        await locator.waitFor({ state: "visible", timeout: timeoutMs });
+        return;
+      }
     }
     await page.waitForSelector(selector, { state: "visible", timeoutMs });
   } catch (error: any) {

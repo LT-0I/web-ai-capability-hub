@@ -794,6 +794,10 @@ function generateFileLocateTimeoutMs(format: string): number {
   return String(format || "").toLowerCase() === "pptx" ? 180000 : 120000;
 }
 
+function generateFileDownloadTimeoutMs(format: string): number {
+  return String(format || "").toLowerCase() === "pptx" ? 120000 : 60000;
+}
+
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
   return Number.isFinite(value) && value > 0 ? value : DEFAULT_RESPONSE_TIMEOUT_MS;
@@ -1832,31 +1836,43 @@ async function activateGeminiCanvasMode(page: any): Promise<void> {
 }
 
 export async function activateGeminiVideoMode(page: any): Promise<void> {
+  if (typeof page?.evaluate !== "function" && typeof page?.evaluateReadOnly !== "function" && typeof page?.textSnapshot !== "function") {
+    try {
+      await page.waitForSelector?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, cause: error?.message || String(error) });
+    }
+    const opener = page.locator?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR).first?.();
+    if (!opener || !(await opener.count?.().catch(() => 0))) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR });
+    }
+    await opener.click?.({ force: true });
+    try {
+      await page.waitForSelector?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+    } catch (error: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, cause: error?.message || String(error) });
+    }
+    const menuItem = page.locator?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR).first?.();
+    if (!menuItem || !(await menuItem.count?.().catch(() => 0))) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR });
+    }
+    await menuItem.click?.();
+    try {
+      await page.waitForSelector?.(GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+      return;
+    } catch (error: any) {
+      await throwIfGeminiVideoQuotaExhausted(page, 8000);
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video tool did not activate from Upload & tools menu", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: error?.message || String(error) });
+    }
+  }
   try {
-    await page.waitForSelector?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
-  } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, cause: error?.message || String(error) });
-  }
-  const opener = page.locator?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR).first?.();
-  if (!opener || !(await opener.count?.().catch(() => 0))) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Upload & tools button was not found", { selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR });
-  }
-  await opener.click?.({ force: true });
-  try {
-    await page.waitForSelector?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
-  } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR, cause: error?.message || String(error) });
-  }
-  const menuItem = page.locator?.(GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR).first?.();
-  if (!menuItem || !(await menuItem.count?.().catch(() => 0))) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menu item was not found", { selector: GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR });
-  }
-  await menuItem.click?.();
-  try {
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Create video", 1, GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS);
     await page.waitForSelector?.(GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
   } catch (error: any) {
     await throwIfGeminiVideoQuotaExhausted(page, 8000);
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video tool did not activate from Upload & tools menu", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: error?.message || String(error) });
+    if (isConsumerErrorCode(error?.errorCode)) throw error;
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menuitemcheckbox did not report aria-checked=true", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: errorMessageFromUnknown(error, "") });
   }
 }
 
@@ -2567,6 +2583,36 @@ async function clickChatgptExtensionSelector(page: any, selector: string, timeou
     }
   }
   await clickExtensionSelector(page, selector, timeoutMs, message);
+}
+
+async function clickExtensionSelectorWithJavascript(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
+  const selectors = extensionSelectorAlternatives(selector);
+  if (typeof page?.javascript !== "function") return clickExtensionSelector(page, selector, timeoutMs, message);
+  try {
+    await chatgptDispatchClickWithJavascript(page, selectors, timeoutMs);
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(error, "") });
+  }
+}
+
+async function withProfileCdpPage<T>(
+  runtime: Required<BrowserToolRuntime>,
+  profile: string,
+  matches: (url: string) => boolean,
+  fn: (page: any, browser: any) => Promise<T>
+): Promise<T> {
+  const status = await runtime.launcher.status(profile);
+  if (!status.connected) throw new WebAiToolError(ConsumerErrorCodes.BROWSER_NOT_LAUNCHED, `CDP endpoint is not connected for profile ${profile}`, { profile, cdpEndpoint: status.cdpEndpoint, lastError: status.lastError });
+  const browser = await runtime.launcher.connectOverCdp(status);
+  try {
+    const pages = browser.contexts().flatMap((context: any) => context.pages());
+    const page = pages.find((candidate: any) => matches(String(candidate.url?.() || ""))) || pages[0];
+    if (!page) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `No CDP page matched profile ${profile}`);
+    await page.bringToFront?.().catch?.(() => undefined);
+    return await fn(page, browser);
+  } finally {
+    await browser?.close?.().catch?.(() => undefined);
+  }
 }
 
 async function selectChatgptModelWithExtension(page: any, expected: string): Promise<void> {
@@ -3473,13 +3519,14 @@ async function generateClaudeFileWithExtensionBackend(args: any, runtime: Requir
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
     const buttonSelector = CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR;
     const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
+    const downloadTimeoutMs = generateFileDownloadTimeoutMs(effective.expected_extension);
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || serviceDefaults.claude.url,
       buttonSelector,
       downloadDir: effective.download_dir,
       filenamePattern: `\\.${effective.expected_extension}$`,
-      timeoutMs: Math.min(Number(effective.timeout_ms || 60000), 60000),
+      timeoutMs: Math.min(Number(effective.timeout_ms || downloadTimeoutMs), downloadTimeoutMs),
       locateTimeoutMs,
       pageReadyEvidence: {
         backend: "extension-assisted-cdp",
@@ -5644,8 +5691,88 @@ async function submitGeminiCanvasPromptWithExtension(page: any, args: any): Prom
   const sendSelector = sendButtonSelector("gemini");
   await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
   await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
-  await page.click({ selector: sendSelector }, { timeoutMs: 5000 });
+  await clickExtensionSelectorWithJavascript(page, sendSelector, 8000, "Gemini Send message button was not found");
   await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeoutMs: args.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS });
+}
+
+function isRealGeminiCanvasMarkup(source: string): boolean {
+  const trimmed = String(source || "").trim();
+  if (/IdentityRotateCookies|boq-identity|accounts\.google\.com/i.test(trimmed)) return false;
+  return /<!doctype\s+html|<html[\s>]|<body[\s>]|<main[\s>]|<div[\s>]|<h1[\s>]/i.test(trimmed);
+}
+
+async function readGeminiCanvasMarkupFromCdpPage(page: any, timeoutMs = 30000): Promise<string> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let latest = "";
+  while (Date.now() <= deadline) {
+    const mainFrame = typeof page.mainFrame === "function" ? page.mainFrame() : null;
+    for (const frame of typeof page.frames === "function" ? page.frames() : []) {
+      if (mainFrame && frame === mainFrame) continue;
+      const frameUrl = String(frame.url?.() || "");
+      if (/accounts\.google\.com|\/_\/bscframe/i.test(frameUrl)) continue;
+      const html = typeof frame.content === "function" ? await frame.content().catch(() => "") : "";
+      if (typeof html === "string" && isRealGeminiCanvasMarkup(html) && html.length > latest.length) latest = html;
+    }
+    if (isRealGeminiCanvasMarkup(latest)) return latest;
+    const monacoText = await page.locator(".monaco-editor .view-lines").first().innerText({ timeout: 1000 }).catch(() => "");
+    const normalized = String(monacoText || "").replace(/\u00a0/g, " ");
+    if (isRealGeminiCanvasMarkup(normalized)) return normalized;
+    if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
+    else await extensionSleep(500);
+  }
+  return latest;
+}
+
+async function readGeminiCanvasMarkupWithCdp(runtime: Required<BrowserToolRuntime>, profile: string, timeoutMs = 30000): Promise<string> {
+  return withProfileCdpPage(runtime, profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
+    return readGeminiCanvasMarkupFromCdpPage(page, timeoutMs);
+  });
+}
+
+async function waitForGeminiCanvasReadyCdp(page: any, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: Math.max(1, timeoutMs) });
+  } catch (error: any) {
+    throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini Canvas did not finish rendering before timeout", { selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, cause: error?.message || String(error) });
+  }
+}
+
+async function prepareGeminiCanvasCdpPage(page: any, effective: any, fresh: boolean): Promise<void> {
+  if (fresh) {
+    await navigateGeminiFreshIfNeeded(page, { ...effective, __forceFreshComposer: true });
+  } else if (!/gemini\.google\.com\/app/i.test(String(page.url?.() || ""))) {
+    await page.goto?.(serviceDefaults.gemini.url, { waitUntil: "domcontentloaded", timeout: Math.min(effective.timeout_ms || 60000, 30000) });
+    await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+  }
+  await page.bringToFront?.().catch?.(() => undefined);
+  if (loginRequiredForService("gemini", page.url?.() || "")) {
+    throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas action");
+  }
+}
+
+async function submitGeminiCanvasPromptOnCdpPage(page: any, effective: any, prompt: string, timeoutMs: number, activateCanvas: boolean): Promise<void> {
+  if (activateCanvas) await activateGeminiCanvasMode(page);
+  const started = Date.now();
+  const result = await sendPromptInExistingPage("gemini", {
+    ...effective,
+    prompt,
+    __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR,
+    __forceEnterToSend: true,
+    __expectImageResponse: true
+  }, page, started);
+  if (result?.errorCode) {
+    throw new WebAiToolError(String(result.errorCode), String(result.message || result.errorCode), { result });
+  }
+  await waitForGeminiCanvasReadyCdp(page, timeoutMs);
+}
+
+async function submitGeminiCanvasInstructionWithExtension(page: any, instruction: string, timeoutMs: number): Promise<void> {
+  await page.waitForSelector(GEMINI_IMAGE_PROMPT_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs || 60000, 15000) });
+  await page.fill({ selector: GEMINI_IMAGE_PROMPT_SELECTOR }, instruction, { timeoutMs: Math.min(timeoutMs || 60000, 15000) });
+  await extensionSleep(GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS);
+  const sendSelector = sendButtonSelector("gemini");
+  await clickExtensionSelectorWithJavascript(page, sendSelector, 8000, "Gemini Send message button was not found");
+  await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeoutMs });
 }
 
 async function awaitSpawnedDocsTabWithExtension(backend: any, timeoutMs: number): Promise<string | null> {
@@ -5677,7 +5804,6 @@ function geminiCanvasToDocsErrorOutput(args: any, error: any, extra: Record<stri
 }
 
 async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
-  void runtime;
   const effective = geminiToolArgs(args || {});
   assertPromptAllowed(effective.prompt);
   try {
@@ -5694,21 +5820,21 @@ async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<Bro
       httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
     });
     await backend.ping();
-    const page = await extensionGeminiPage(effective, backend, GEMINI_FRESH_COMPOSER_URL);
-    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
-    if (loginRequiredForService("gemini", snapshot.url || "")) {
-      return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas export"));
-    }
-    await submitGeminiCanvasPromptWithExtension(page, effective);
-    await page.click({ selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: GEMINI_CANVAS_EXPORT_DOCS_SELECTOR }, { timeoutMs: 8000 });
-    const docsUrl = await awaitSpawnedDocsTabWithExtension(backend, effective.timeout_ms || 45000);
-    const docId = docsUrl ? GOOGLE_DOCS_URL_RE.exec(docsUrl)?.[1] || null : null;
-    if (!docId || !docsUrl) {
-      return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini Canvas export did not spawn a docs.google.com document"));
-    }
-    return safeOutput({ docs_url: `https://docs.google.com/document/d/${docId}/edit`, docs_doc_id: docId, title, errorCode: null });
+    return await withProfileCdpPage(runtime, effective.profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
+      await prepareGeminiCanvasCdpPage(page, effective, true);
+      await submitGeminiCanvasPromptOnCdpPage(page, effective, effective.prompt, effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS, true);
+      await requireAndClick(page, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, "Gemini Canvas share/export button was not found");
+      await page.waitForSelector?.(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeout: 8000 });
+      await requireAndClick(page, GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, "Gemini Canvas export-to-Docs menuitem was not found");
+      const spawned = await awaitSpawnedDocsPage(page, effective.timeout_ms || 45000);
+      const docsUrl = spawned?.url || null;
+      const docId = docsUrl ? GOOGLE_DOCS_URL_RE.exec(docsUrl)?.[1] || null : null;
+      if (spawned?.docPage && typeof spawned.docPage.close === "function") await spawned.docPage.close().catch(() => undefined);
+      if (!docId || !docsUrl) {
+        return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini Canvas export did not spawn a docs.google.com document"));
+      }
+      return safeOutput({ docs_url: `https://docs.google.com/document/d/${docId}/edit`, docs_doc_id: docId, title, errorCode: null });
+    });
   } catch (error: any) {
     return geminiCanvasToDocsErrorOutput(effective, error);
   } finally {
@@ -5772,7 +5898,6 @@ function geminiCanvasEditErrorOutput(error: any): Record<string, unknown> {
 }
 
 async function editGeminiCanvasWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
-  void runtime;
   const effective = geminiToolArgs(args || {});
   if (effective.prompt) assertPromptAllowed(effective.prompt);
   if (effective.edit_text) assertPromptAllowed(effective.edit_text);
@@ -5787,47 +5912,52 @@ async function editGeminiCanvasWithExtensionBackend(args: any, runtime: Required
       httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
     });
     await backend.ping();
-    const page = await extensionGeminiPage(effective, backend, effective.prompt ? GEMINI_FRESH_COMPOSER_URL : serviceDefaults.gemini.url);
-    const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
-    if (loginRequiredForService("gemini", snapshot.url || "")) {
-      return geminiCanvasEditErrorOutput(new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas edit"));
-    }
+    return await withProfileCdpPage(runtime, effective.profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
+      await prepareGeminiCanvasCdpPage(page, effective, Boolean(effective.prompt));
 
-    let canvas_opened = false;
-    let edit_applied = false;
-    let ai_action_applied = false;
-    let canvas_html_before = "";
-    let canvas_html_after = "";
+      let canvas_opened = false;
+      let edit_applied = false;
+      let ai_action_applied = false;
+      let canvas_html_before = "";
+      let canvas_html_after = "";
+      const readCanvasMarkup = async () => readGeminiCanvasMarkupFromCdpPage(page, 30000).catch(() => "");
 
-    if (effective.prompt) {
-      await submitGeminiCanvasPromptWithExtension(page, effective);
-      canvas_opened = true;
-      canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
-    }
+      if (effective.prompt) {
+        await submitGeminiCanvasPromptOnCdpPage(page, effective, effective.prompt, effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS, true);
+        canvas_opened = true;
+        canvas_html_before = await readCanvasMarkup();
+      }
 
-    if (effective.edit_text) {
-      if (!canvas_html_before) canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
-      await page.click(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), { timeoutMs: 8000 });
-      await page.fill(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), effective.edit_text, { timeoutMs: 8000 });
-      await extensionWaitForDomSettled(page);
-      edit_applied = true;
-      canvas_opened = true;
-      canvas_html_after = await extensionReadGeminiCanvasMarkup(page);
-    }
+      if (effective.edit_text) {
+        if (!canvas_html_before) canvas_html_before = await readCanvasMarkup();
+        await submitGeminiCanvasPromptOnCdpPage(
+          page,
+          effective,
+          `Update the current Canvas by applying this edit exactly: ${String(effective.edit_text)}`,
+          effective.response_timeout_ms || effective.timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS,
+          false
+        );
+        edit_applied = true;
+        canvas_opened = true;
+        canvas_html_after = await readCanvasMarkup();
+      }
 
-    if (effective.ai_action) {
-      if (!canvas_html_before) canvas_html_before = await extensionReadGeminiCanvasMarkup(page);
-      const label = effective.ai_action === "length" ? "Length" : effective.ai_action === "tone" ? "Tone" : "Suggest";
-      await page.click(extensionTarget(GEMINI_CANVAS_BODY_SELECTOR), { timeoutMs: 8000 });
-      await clickExtensionSelector(page, `button[aria-label="${label}"]`, 8000, `Gemini Canvas ${label} AI edit button was not found`);
-      await extensionWaitForDomSettled(page, 2500, 500);
-      ai_action_applied = true;
-      canvas_opened = true;
-      canvas_html_after = await extensionReadGeminiCanvasMarkup(page);
-    }
+      if (effective.ai_action) {
+        if (!canvas_html_before) canvas_html_before = await readCanvasMarkup();
+        const instruction = effective.ai_action === "length"
+          ? "Make the current Canvas longer while preserving its subject."
+          : effective.ai_action === "tone"
+            ? "Improve the tone of the current Canvas while preserving its meaning."
+            : "Apply one concise improvement suggestion to the current Canvas.";
+        await submitGeminiCanvasPromptOnCdpPage(page, effective, instruction, effective.response_timeout_ms || effective.timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS, false);
+        ai_action_applied = true;
+        canvas_opened = true;
+        canvas_html_after = await readCanvasMarkup();
+      }
 
-    if (!canvas_html_after && canvas_html_before) canvas_html_after = canvas_html_before;
-    return safeOutput({ canvas_opened, edit_applied, ai_action_applied, canvas_html_before, canvas_html_after });
+      if (!canvas_html_after && canvas_html_before) canvas_html_after = canvas_html_before;
+      return safeOutput({ canvas_opened, edit_applied, ai_action_applied, canvas_html_before, canvas_html_after });
+    });
   } catch (error: any) {
     return geminiCanvasEditErrorOutput(error);
   } finally {
@@ -5965,7 +6095,7 @@ async function ensureClaudeDesignViewerOpenWithExtension(page: any, projectUrl: 
       await extensionSleep(500);
     }
   }
-  await extensionClick(page, CLAUDE_DESIGN_FILE_OPEN_SELECTOR, 8000);
+  await clickExtensionSelectorWithJavascript(page, CLAUDE_DESIGN_FILE_OPEN_SELECTOR, 8000, "Claude Design generated file Open control was not found");
   const deadline = Date.now() + 30000;
   while (Date.now() <= deadline) {
     const state = await designFileStateWithExtension(page).catch(() => ({ hasIframe: false, fileName: "" }));
@@ -5998,6 +6128,52 @@ async function readClaudeDesignIframeHtmlWithExtension(page: any): Promise<strin
     return iframe.getAttribute('src') || "";
   })(arg)`, { operation: "designIframeHtml", iframeSelector: CLAUDE_DESIGN_HTML_IFRAME_SELECTOR }).catch(() => "");
   return typeof source === "string" ? source : "";
+}
+
+async function readClaudeDesignIframeHtmlWithCdp(runtime: Required<BrowserToolRuntime>, profile: string, projectUrl: string, timeoutMs = 30000): Promise<string> {
+  const projectId = claudeDesignProjectId(projectUrl);
+  return withProfileCdpPage(runtime, profile, (url) => {
+    if (!/claude\.ai\/design\/p\//i.test(url)) return false;
+    return !projectId || url.includes(projectId);
+  }, async (page) => {
+    const deadline = Date.now() + Math.max(1, timeoutMs);
+    let latest = "";
+    while (Date.now() <= deadline) {
+      for (const frame of page.frames()) {
+        const frameUrl = String(frame.url?.() || "");
+        if (!/claudeusercontent\.com|\/serve\//i.test(frameUrl) && frame === page.mainFrame?.()) continue;
+        const html = typeof frame.content === "function" ? await frame.content().catch(() => "") : "";
+        if (typeof html === "string" && isRealClaudeDesignHtmlMarkup(html) && html.length > latest.length) latest = html;
+      }
+      if (isRealClaudeDesignHtmlMarkup(latest)) return latest;
+      if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
+      else await extensionSleep(500);
+    }
+    return latest;
+  });
+}
+
+async function clickClaudeDesignPresentWithCdp(runtime: Required<BrowserToolRuntime>, profile: string, projectUrl: string, timeoutMs = 30000): Promise<string> {
+  const projectId = claudeDesignProjectId(projectUrl);
+  return withProfileCdpPage(runtime, profile, (url) => {
+    if (!/claude\.ai\/design\/p\//i.test(url)) return false;
+    return !projectId || url.includes(projectId);
+  }, async (page, browser) => {
+    const current = String(page.url?.() || "");
+    if (/[?&]present=1(?:[&#]|$)/i.test(current) || /\/serve\//i.test(current)) return current;
+    await page.locator('button:has-text("Present")').first().click({ timeout: Math.min(timeoutMs, 15000) });
+    const deadline = Date.now() + Math.max(1, timeoutMs);
+    while (Date.now() <= deadline) {
+      const pages = browser.contexts().flatMap((context: any) => context.pages());
+      for (const candidate of pages) {
+        const url = String(candidate.url?.() || "");
+        if ((/[?&]present=1(?:[&#]|$)/i.test(url) || /\/serve\//i.test(url)) && (!projectId || url.includes(projectId))) return url;
+      }
+      if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
+      else await extensionSleep(500);
+    }
+    throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Claude Design Present mode did not expose a presentation URL before timeout");
+  });
 }
 
 async function webAiClaudeDesignCreateProjectWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
@@ -6058,7 +6234,7 @@ async function webAiClaudeDesignGenerateWithExtensionBackend(args: any, runtime:
     }
     await page.waitForSelector(CLAUDE_DESIGN_COMPOSER_SELECTOR, { state: "visible", timeoutMs: 15000 });
     await page.fill({ selector: CLAUDE_DESIGN_COMPOSER_SELECTOR }, effective.prompt, { timeoutMs: 15000 });
-    await extensionClick(page, CLAUDE_DESIGN_SEND_SELECTOR, 15000);
+    await clickExtensionSelectorWithJavascript(page, CLAUDE_DESIGN_SEND_SELECTOR, 15000, "Claude Design send button was not found");
     const completion = await waitForDesignFileCompletionWithExtension(page, effective.project_url, effective.timeout_ms || 300000);
     await claudeDesignAssertNotQuotaWithExtension(page);
     return safeOutput({ status: "generated", model_used: modelUsed, projectUrl: completion.projectUrl, fileName: completion.fileName });
@@ -6088,7 +6264,8 @@ async function webAiClaudeDesignGetHtmlWithExtensionBackend(args: any, runtime: 
     let source = "";
     const deadline = Date.now() + 30000;
     while (Date.now() <= deadline) {
-      source = await readClaudeDesignIframeHtmlWithExtension(page);
+      source = await readClaudeDesignIframeHtmlWithCdp(runtime, effective.profile, effective.project_url, 5000).catch(() => "");
+      if (!source) source = await readClaudeDesignIframeHtmlWithExtension(page);
       if (isRealClaudeDesignHtmlMarkup(source)) break;
       await extensionSleep(500);
     }
@@ -6126,7 +6303,9 @@ async function webAiClaudeDesignPresentWithExtensionBackend(args: any, runtime: 
     const current = await currentExtensionUrl(page, effective.project_url);
     if (/[?&]present=1(?:[&#]|$)/i.test(current)) return safeOutput({ presentUrl: current });
     await ensureClaudeDesignViewerOpenWithExtension(page, effective.project_url);
-    await extensionClick(page, CLAUDE_DESIGN_PRESENT_SELECTOR, 15000);
+    const directPresentUrl = await clickClaudeDesignPresentWithCdp(runtime, effective.profile, effective.project_url, 30000).catch(() => "");
+    if (directPresentUrl) return safeOutput({ presentUrl: directPresentUrl });
+    await clickExtensionSelectorWithJavascript(page, CLAUDE_DESIGN_PRESENT_SELECTOR, 15000, "Claude Design Present button was not found");
     const deadline = Date.now() + 30000;
     let presentUrl = "";
     while (Date.now() <= deadline) {

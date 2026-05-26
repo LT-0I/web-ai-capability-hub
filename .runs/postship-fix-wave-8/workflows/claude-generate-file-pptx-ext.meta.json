@@ -1,0 +1,19 @@
+{
+  "name": "claude-generate-file-pptx-ext",
+  "file": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+  "pass": false,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "startedAt": "2026-05-26T11:06:26.988Z",
+  "finishedAt": "2026-05-26T11:07:07.112Z",
+  "durationMs": 40124,
+  "stdoutPath": ".runs/postship-fix-wave-8/workflows/claude-generate-file-pptx-ext.json",
+  "stderrPath": ".runs/postship-fix-wave-8/workflows/claude-generate-file-pptx-ext.stderr",
+  "stdoutTail": "ttp://127.0.0.1:9224\\\\u001b[22m\\\\n\\\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\\\u001b[22m\\\\n\\\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\\\u001b[22m\\\\n\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"path\": \"\",\n          \"sha256\": \"\",\n          \"size_bytes\": 0,\n          \"artifact_name\": \"\",\n          \"download_filename\": \"\",\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\u001b[22m\\n\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"actual\": \"\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"path\": \"\",\n        \"sha256\": \"\",\n        \"size_bytes\": 0,\n        \"artifact_name\": \"\",\n        \"download_filename\": \"\",\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"message\": \"browserType.connectOverCDP: Timeout 30000ms exceeded.\\nCall log:\\n\\u001b[2m  - <ws preparing> retrieving websocket url from http://127.0.0.1:9224\\u001b[22m\\n\\u001b[2m  - <ws connecting> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\\u001b[2m  - <ws connected> ws://127.0.0.1:9224/devtools/browser/b1a76872-dab4-400e-96cb-5571fa373275\\u001b[22m\\n\"\n      }\n    }\n  ],\n  \"runId\": \"run_540bd411dedf3ef4\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": false
+  },
+  "parsedStderrSummary": null
+}

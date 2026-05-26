@@ -1,0 +1,67 @@
+{
+  "capturedAt": "2026-05-26T10:11:42.551Z",
+  "url": "https://gemini.google.com/app",
+  "before": {
+    "uploadTools": 1
+  },
+  "after": {
+    "items": [
+      {
+        "i": 0,
+        "tag": "BUTTON",
+        "role": "menuitem",
+        "aria": "Upload files. Documents, data, code files",
+        "checked": null,
+        "text": "Upload files",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      },
+      {
+        "i": 1,
+        "tag": "BUTTON",
+        "role": "menuitem",
+        "aria": "Add from Drive. Sheets, Docs, Slides",
+        "checked": null,
+        "text": "Add from Drive",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      },
+      {
+        "i": 2,
+        "tag": "BUTTON",
+        "role": "menuitemcheckbox",
+        "aria": null,
+        "checked": "false",
+        "text": "Create image",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      },
+      {
+        "i": 3,
+        "tag": "BUTTON",
+        "role": "menuitemcheckbox",
+        "aria": null,
+        "checked": "false",
+        "text": "Create video",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      },
+      {
+        "i": 4,
+        "tag": "BUTTON",
+        "role": "menuitemcheckbox",
+        "aria": null,
+        "checked": "false",
+        "text": "Canvas",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      },
+      {
+        "i": 5,
+        "tag": "BUTTON",
+        "role": "menuitemcheckbox",
+        "aria": null,
+        "checked": "false",
+        "text": "Deep research",
+        "cls": "mat-mdc-list-item mdc-list-item mat-mdc-tooltip-trigger mat-mdc-list-item-intera"
+      }
+    ],
+    "createImageCount": 1,
+    "uploadImageCount": 1
+  }
+}
