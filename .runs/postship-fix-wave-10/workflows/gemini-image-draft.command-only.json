@@ -1,0 +1,281 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-image-draft",
+    "target": "gemini",
+    "profile": "gemini-9225",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T14:19:37.711Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:generate-image",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "timeoutMs": 300000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              },
+              {
+                "path": "sha256",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "compile-shape-type-compat",
+        "action": {
+          "type": "type",
+          "text": " ",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "-e",
+            "process.exit(0)"
+          ],
+          "timeoutMs": 10000,
+          "gate": {
+            "exit_code": 0
+          }
+        }
+      },
+      {
+        "stepId": "compile-shape-readback-compat",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "-e",
+            "process.exit(0)"
+          ],
+          "timeoutMs": 10000,
+          "gate": {
+            "exit_code": 0
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-image-draft",
+      "target": "gemini",
+      "profile": "gemini-9225",
+      "mode": "automatic",
+      "description": "Generate an image in Gemini through the standard Create-image flow",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:generate-image",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "timeoutMs": 300000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              },
+              {
+                "path": "sha256",
+                "nonempty": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "compile-shape-type-compat",
+          "action": "type",
+          "text": " ",
+          "command": [
+            "node",
+            "-e",
+            "process.exit(0)"
+          ],
+          "timeoutMs": 10000,
+          "gate": {
+            "exit_code": 0
+          }
+        },
+        {
+          "id": "compile-shape-readback-compat",
+          "command": [
+            "node",
+            "-e",
+            "process.exit(0)"
+          ],
+          "timeoutMs": 10000,
+          "gate": {
+            "exit_code": 0
+          }
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:generate-image",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 82917,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/gemini/network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg\",\n  \"sha256\": \"9c3930a1ed40d5c81a119742f046b7dc4ddd1062221a427e3bfa1d48059e0fe6\",\n  \"size_bytes\": 196026,\n  \"download_filename\": \"network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg\",\n  \"WARN\": \"follow-up download control not found, but the governed artifact was delivered by the browser\",\n  \"dimensions\": null,\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/gemini/network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg",
+          "sha256": "9c3930a1ed40d5c81a119742f046b7dc4ddd1062221a427e3bfa1d48059e0fe6",
+          "size_bytes": 196026,
+          "download_filename": "network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg",
+          "WARN": "follow-up download control not found, but the governed artifact was delivered by the browser",
+          "dimensions": null,
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/gemini/network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg",
+              "ok": true
+            },
+            {
+              "path": "sha256",
+              "actual": "9c3930a1ed40d5c81a119742f046b7dc4ddd1062221a427e3bfa1d48059e0fe6",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/gemini/network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg",
+        "sha256": "9c3930a1ed40d5c81a119742f046b7dc4ddd1062221a427e3bfa1d48059e0fe6",
+        "size_bytes": 196026,
+        "download_filename": "network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg",
+        "WARN": "follow-up download control not found, but the governed artifact was delivered by the browser",
+        "dimensions": null,
+        "errorCode": null
+      }
+    },
+    {
+      "stepId": "compile-shape-type-compat",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "-e",
+          "process.exit(0)"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 18,
+        "stdout": "",
+        "stderr": "",
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          }
+        }
+      }
+    },
+    {
+      "stepId": "compile-shape-readback-compat",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "-e",
+          "process.exit(0)"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 20,
+        "stdout": "",
+        "stderr": "",
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          }
+        }
+      }
+    }
+  ],
+  "runId": "run_e130ec22bad36804"
+}

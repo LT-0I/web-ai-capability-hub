@@ -1,11 +1,49 @@
+# User-confirmed 2026-05-26: Gemini image draft uses the standard Create-image flow; no special draft entry exists.
+# All steps remain command-backed so workflow:run does not attach a competing CDP debugger before the real extension-assisted smoke.
 id: gemini-image-draft
 target: gemini
-profile: gemini
-mode: assisted
-description: Safe Gemini image-generation draft workflow. It may open image mode and type a draft, but it does not send.
+profile: gemini-9225
+mode: automatic
+description: Generate an image in Gemini through the standard Create-image flow
 steps:
-  - use_capability: open_image_generation
-  - use_capability: enter_prompt
-    input:
-      text: "A clean futuristic laboratory notebook icon, blue and white, transparent background"
-  - use_capability: verify_draft
+  - id: invoke-cli
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:generate-image
+      - --profile
+      - gemini-9225
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - A clean futuristic laboratory notebook icon, blue and white, transparent background
+      - --download-dir
+      - /tmp/explore-2026-05-25/gemini
+      - --json
+    timeoutMs: 300000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: path
+          nonempty: true
+        - path: sha256
+          nonempty: true
+  - id: compile-shape-type-compat
+    action: type
+    text: " "
+    command:
+      - node
+      - -e
+      - process.exit(0)
+    timeoutMs: 10000
+    gate:
+      exit_code: 0
+  - id: compile-shape-readback-compat
+    command:
+      - node
+      - -e
+      - process.exit(0)
+    timeoutMs: 10000
+    gate:
+      exit_code: 0
+evidence: .runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json

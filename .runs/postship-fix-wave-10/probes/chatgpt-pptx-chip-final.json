@@ -1,0 +1,97 @@
+{
+  "capturedAt": "2026-05-26T13:31:52.722Z",
+  "ok": true,
+  "selectorMatrix": [
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.border-b:has(div.truncate.text-sm.font-medium:text-matches(\"\\\\.pptx$\", \"i\"))",
+      "count": 1,
+      "visible": true,
+      "text": "renewable_energy_basics.pptx"
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.border-b:has(div.truncate.text-sm.font-medium:text-matches(\".*\\\\.pptx$\", \"i\"))",
+      "count": 1,
+      "visible": true,
+      "text": "renewable_energy_basics.pptx"
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.border-b:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button.rounded-full.p-1:first-of-type",
+      "count": 1,
+      "visible": true,
+      "text": ""
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.border-b:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button:first-of-type",
+      "count": 1,
+      "visible": true,
+      "text": ""
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between.gap-4.p-2:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button:first-of-type",
+      "count": 1,
+      "visible": true,
+      "text": ""
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button:first-of-type",
+      "count": 1,
+      "visible": true,
+      "text": ""
+    }
+  ],
+  "chips": [
+    {
+      "index": 0,
+      "tag": "DIV",
+      "className": "text-token-text-primary border-token-border-light flex flex-row justify-between gap-4 p-2 text-sm font-medium border-b",
+      "text": "renewable_energy_basics.pptx",
+      "filename": "renewable_energy_basics.pptx",
+      "filenameClass": "truncate text-sm font-medium",
+      "rightClusters": [
+        {
+          "i": 0,
+          "className": "text-token-text-secondary flex flex-row items-center gap-1 text-sm",
+          "buttonCount": 2
+        }
+      ],
+      "buttons": [
+        {
+          "i": 0,
+          "className": "hover:text-token-text-secondary hover:bg-token-bg-tertiary rounded-full p-1",
+          "ariaLabel": "",
+          "dataTestId": "",
+          "title": "",
+          "text": "",
+          "svgUseHrefs": [
+            "/cdn/assets/sprites-core-2cb00440.svg#1a3695"
+          ],
+          "rect": {
+            "x": 418.9375,
+            "y": 124.140625,
+            "width": 28,
+            "height": 28
+          },
+          "visible": true
+        },
+        {
+          "i": 1,
+          "className": "hover:text-token-text-secondary hover:bg-token-bg-tertiary rounded-full p-1",
+          "ariaLabel": "",
+          "dataTestId": "",
+          "title": "",
+          "text": "",
+          "svgUseHrefs": [
+            "/cdn/assets/sprites-core-2cb00440.svg#03424d"
+          ],
+          "rect": {
+            "x": 450.9375,
+            "y": 124.140625,
+            "width": 28,
+            "height": 28
+          },
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

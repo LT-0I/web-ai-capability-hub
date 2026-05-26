@@ -1,0 +1,157 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "claude-generate-file-pptx-ext",
+    "target": "claude",
+    "profile": "claude-9224",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T14:06:01.592Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.",
+            "--expected-extension",
+            "pptx",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "document",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-generate-file-pptx-ext",
+      "target": "claude",
+      "profile": "claude-9224",
+      "mode": "automatic",
+      "description": "Generate a downloadable .pptx file in Claude",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.",
+            "--expected-extension",
+            "pptx",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "document",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-pptx-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:generate-file",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.",
+          "--expected-extension",
+          "pptx",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/claude",
+          "--artifact-class",
+          "document",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 135834,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/Renewable_Energy_Basics.pptx\",\n  \"sha256\": \"43f5da5e9da9f2594fc22ef07479fa980d854c464dc78efd9801a979ba647451\",\n  \"size_bytes\": 201042,\n  \"download_filename\": \"Renewable_Energy_Basics.pptx\",\n  \"artifact_name\": \"Renewable_Energy_Basics.pptx\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/claude/Renewable_Energy_Basics.pptx",
+          "sha256": "43f5da5e9da9f2594fc22ef07479fa980d854c464dc78efd9801a979ba647451",
+          "size_bytes": 201042,
+          "download_filename": "Renewable_Energy_Basics.pptx",
+          "artifact_name": "Renewable_Energy_Basics.pptx",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/claude/Renewable_Energy_Basics.pptx",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/claude/Renewable_Energy_Basics.pptx",
+        "sha256": "43f5da5e9da9f2594fc22ef07479fa980d854c464dc78efd9801a979ba647451",
+        "size_bytes": 201042,
+        "download_filename": "Renewable_Energy_Basics.pptx",
+        "artifact_name": "Renewable_Energy_Basics.pptx",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_6fe9c6f08c368449"
+}

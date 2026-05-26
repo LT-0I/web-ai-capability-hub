@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "chatgpt-codex-submit-task-ext-fallback",
+    "target": "chatgpt",
+    "profile": "chatgpt",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T14:06:00.611Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:codex:submit-task",
+            "--profile",
+            "chatgpt",
+            "--env-name",
+            "LT-0I/CN-",
+            "--prompt",
+            "Add a one-line comment to README.md",
+            "--confirmed",
+            "--json"
+          ],
+          "timeoutMs": 300000,
+          "gate": {
+            "exit_code": 1,
+            "json_path": [
+              {
+                "path": "errorCode",
+                "equals": "ELEMENT_NOT_FOUND"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-codex-submit-task-ext-fallback",
+      "target": "chatgpt",
+      "profile": "chatgpt",
+      "mode": "automatic",
+      "description": "Assert inline ChatGPT Codex task submission is unavailable (sidebar-only Codex entry)",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:codex:submit-task",
+            "--profile",
+            "chatgpt",
+            "--env-name",
+            "LT-0I/CN-",
+            "--prompt",
+            "Add a one-line comment to README.md",
+            "--confirmed",
+            "--json"
+          ],
+          "timeoutMs": 300000,
+          "gate": {
+            "exit_code": 1,
+            "json_path": [
+              {
+                "path": "errorCode",
+                "equals": "ELEMENT_NOT_FOUND"
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:codex:submit-task",
+          "--profile",
+          "chatgpt",
+          "--env-name",
+          "LT-0I/CN-",
+          "--prompt",
+          "Add a one-line comment to README.md",
+          "--confirmed",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 692,
+        "stdout": "{\n  \"ok\": false,\n  \"status\": \"failed\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "ok": false,
+          "status": "failed",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 1,
+            "actual": 1,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "errorCode",
+              "actual": "ELEMENT_NOT_FOUND",
+              "ok": true
+            }
+          ]
+        },
+        "status": "failed",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found"
+      }
+    }
+  ],
+  "runId": "run_4821a88e16af0494"
+}

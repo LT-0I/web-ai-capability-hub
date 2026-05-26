@@ -10,6 +10,7 @@ import { CompiledWorkflowAction, WorkflowActionPlan, WorkflowDefinition, Workflo
 function now(): string { return new Date().toISOString(); }
 function scalar(value: unknown): string | undefined { return typeof value === "string" ? value : undefined; }
 function stepId(step: WorkflowStepDefinition, index: number): string { return step.id || step.use_capability || step.capability || step.action || `step-${index + 1}`; }
+const BROWSER_ACTION_TYPES = new Set(["open", "click", "type", "press", "select", "hover", "select-text", "drag", "upload", "wait", "scroll", "extract", "download", "screenshot"]);
 
 export class WorkflowCompiler {
   constructor(private database = new CapabilityDatabase(), private safety = new SafetyPolicy()) {}
@@ -53,7 +54,14 @@ export class WorkflowCompiler {
 
   private compileCommandStep(workflow: WorkflowDefinition, step: WorkflowStepDefinition, index: number): CompiledWorkflowAction {
     const argv = step.command as string[];
-    const action: BrowserAction = { type: "wait" as any, confirmed: true } as BrowserAction;
+    const actionType = step.action && BROWSER_ACTION_TYPES.has(step.action) ? step.action as BrowserAction["type"] : "wait";
+    const action: BrowserAction = {
+      type: actionType,
+      selector: step.selector,
+      target: step.target as any,
+      text: scalar(step.text !== undefined ? step.text : step.input?.text),
+      confirmed: true
+    } as BrowserAction;
     (action as any).commandStep = true;
     const mode = workflow.mode;
     // Command steps are inherently risky (run arbitrary shell). Skip approval only when

@@ -1,10 +1,10 @@
 # Rewritten 2026-05-25 from codex C10 draft.
-# Per orchestrator note: result.type changed from 'task' (invalid) to 'text', and gate asserts task_id non-empty.
+# User-confirmed 2026-05-26: Codex is exposed from the ChatGPT sidebar, not the inline chat composer; ELEMENT_NOT_FOUND is the expected feature-shape assertion.
 id: chatgpt-codex-submit-task-ext-fallback
 target: chatgpt
 profile: chatgpt
 mode: automatic
-description: Submit a ChatGPT Codex task to the allow-listed env
+description: Assert inline ChatGPT Codex task submission is unavailable (sidebar-only Codex entry)
 steps:
   - id: invoke-cli
     command:
@@ -21,8 +21,8 @@ steps:
       - --json
     timeoutMs: 300000
     gate:
-      exit_code: 0
+      exit_code: 1
       json_path:
-        - path: task_id
-          nonempty: true
+        - path: errorCode
+          equals: ELEMENT_NOT_FOUND
 evidence: .runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.json

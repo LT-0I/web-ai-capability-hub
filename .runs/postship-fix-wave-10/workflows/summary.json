@@ -1,0 +1,94 @@
+{
+  "ok": true,
+  "pass": 3,
+  "total": 5,
+  "threshold": 3,
+  "generatedAt": "2026-05-26T14:12:35.143Z",
+  "results": [
+    {
+      "key": "chatgpt-codex-submit-task-ext-fallback",
+      "file": "examples/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.yaml",
+      "service": "chatgpt",
+      "attempt": 1,
+      "startedAt": "2026-05-26T14:06:00.450Z",
+      "endedAt": "2026-05-26T14:06:01.392Z",
+      "exitCode": 0,
+      "ok": true,
+      "jsonOk": true,
+      "runId": "run_4821a88e16af0494",
+      "stdoutPath": ".runs/postship-fix-wave-10/workflows/chatgpt-codex-submit-task-ext-fallback.json",
+      "stderrPath": ".runs/postship-fix-wave-10/workflows/chatgpt-codex-submit-task-ext-fallback.stderr",
+      "errorCode": "ELEMENT_NOT_FOUND",
+      "had429": false,
+      "chatgptTabCleanup": {
+        "endpoint": "http://127.0.0.1:9223",
+        "closed": 0,
+        "errors": []
+      }
+    },
+    {
+      "key": "claude-generate-file-pptx-ext",
+      "file": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+      "service": "claude",
+      "attempt": 1,
+      "startedAt": "2026-05-26T14:06:01.427Z",
+      "endedAt": "2026-05-26T14:08:17.492Z",
+      "exitCode": 0,
+      "ok": true,
+      "jsonOk": true,
+      "runId": "run_6fe9c6f08c368449",
+      "stdoutPath": ".runs/postship-fix-wave-10/workflows/claude-generate-file-pptx-ext.json",
+      "stderrPath": ".runs/postship-fix-wave-10/workflows/claude-generate-file-pptx-ext.stderr",
+      "had429": false
+    },
+    {
+      "key": "gemini-image-draft",
+      "file": "examples/workflows/gemini-image-draft.yaml",
+      "service": "gemini",
+      "attempt": 1,
+      "startedAt": "2026-05-26T14:08:27.493Z",
+      "endedAt": "2026-05-26T14:08:29.823Z",
+      "exitCode": 1,
+      "ok": false,
+      "stdoutPath": ".runs/postship-fix-wave-10/workflows/gemini-image-draft.json",
+      "stderrPath": ".runs/postship-fix-wave-10/workflows/gemini-image-draft.stderr",
+      "had429": false
+    },
+    {
+      "key": "chatgpt-generate-file-pptx-ext",
+      "file": "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+      "service": "chatgpt",
+      "attempt": 1,
+      "startedAt": "2026-05-26T14:08:39.831Z",
+      "endedAt": "2026-05-26T14:11:48.002Z",
+      "exitCode": 0,
+      "ok": false,
+      "jsonOk": false,
+      "runId": "run_e1af1443df4db86f",
+      "stdoutPath": ".runs/postship-fix-wave-10/workflows/chatgpt-generate-file-pptx-ext.json",
+      "stderrPath": ".runs/postship-fix-wave-10/workflows/chatgpt-generate-file-pptx-ext.stderr",
+      "errorCode": "COMMAND_TIMEOUT",
+      "had429": false,
+      "chatgptTabCleanup": {
+        "endpoint": "http://127.0.0.1:9223",
+        "closed": 1,
+        "errors": []
+      }
+    },
+    {
+      "key": "claude-design-generate-mgr",
+      "file": "examples/workflows/claude-claude-design-generate-mgr.yaml",
+      "service": "claude",
+      "attempt": 1,
+      "startedAt": "2026-05-26T14:11:48.005Z",
+      "endedAt": "2026-05-26T14:12:25.140Z",
+      "exitCode": 0,
+      "ok": true,
+      "jsonOk": true,
+      "runId": "run_c1da5cbb4bd5f068",
+      "stdoutPath": ".runs/postship-fix-wave-10/workflows/claude-design-generate-mgr.json",
+      "stderrPath": ".runs/postship-fix-wave-10/workflows/claude-design-generate-mgr.stderr",
+      "had429": false
+    }
+  ]
+}

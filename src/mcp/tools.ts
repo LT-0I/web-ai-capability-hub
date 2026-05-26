@@ -768,7 +768,11 @@ const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
 const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
 const GEMINI_MIN_NO_RESPONSE_WAIT_MS = 8000;
 const GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS = 700;
-const CHATGPT_GENERATED_FILE_READY_SELECTOR = [
+const CHATGPT_GENERATED_FILE_CHIP_DOWNLOAD_SELECTOR = [
+  '[data-message-author-role="assistant"] div.border-b:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button.rounded-full.p-1:first-of-type',
+  '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) div.items-center.gap-1 > button:first-of-type'
+].join(", ");
+const CHATGPT_GENERATED_FILE_INLINE_READY_SELECTOR = [
   '[data-message-author-role="assistant"] button.behavior-btn',
   '[data-message-author-role="assistant"] [data-attachment]',
   '[data-message-author-role="assistant"] [data-attachment-type="file"]',
@@ -776,8 +780,12 @@ const CHATGPT_GENERATED_FILE_READY_SELECTOR = [
   '[data-message-author-role="assistant"] a[href*="/interpreter/download"]',
   '[data-message-author-role="assistant"] a[href*="/estuary/content"]',
   '[data-message-author-role="assistant"] button[aria-label*="Download" i]',
-  '[data-message-author-role="assistant"] [role="button"][aria-label*="Download" i]',
-  '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
+  '[data-message-author-role="assistant"] [role="button"][aria-label*="Download" i]'
+].join(", ");
+const CHATGPT_GENERATED_FILE_INLINE_DOWNLOAD_SELECTOR = CHATGPT_GENERATED_FILE_INLINE_READY_SELECTOR;
+const CHATGPT_GENERATED_FILE_READY_SELECTOR = [
+  CHATGPT_GENERATED_FILE_CHIP_DOWNLOAD_SELECTOR,
+  CHATGPT_GENERATED_FILE_INLINE_READY_SELECTOR
 ].join(", ");
 const CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR = CHATGPT_GENERATED_FILE_READY_SELECTOR;
 const CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR = [
@@ -2453,15 +2461,64 @@ async function waitForExtensionSelector(page: any, selector: string, timeoutMs: 
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(lastError, "") });
 }
 
-async function waitForChatgptGeneratedFileReadyWithExtension(page: any, timeoutMs: number): Promise<void> {
+function normalizedExpectedExtension(value: unknown): string {
+  return String(value || "").trim().toLowerCase().replace(/^\.+/, "");
+}
+
+interface ChatgptGeneratedFileDownloadShape {
+  shape: "chip" | "inline";
+  buttonSelector: string;
+  buttonAncestorText?: string;
+}
+
+async function chatgptGeneratedFileChipCountWithExtension(page: any, expectedExtension: string): Promise<number> {
+  const extension = normalizedExpectedExtension(expectedExtension);
+  if (!extension) return 0;
+  const count = await page.evaluateReadOnly(`((arg) => {
+  const ext = String(arg.extension || '').toLowerCase();
+  const clean = (value) => String(value || '').replace(/\\s+/g, ' ').trim();
+  return Array.from(document.querySelectorAll('[data-message-author-role="assistant"] div.border-b, [data-message-author-role="assistant"] div.flex.flex-row.justify-between'))
+    .filter((chip) => {
+      const name = clean(chip.querySelector('div.truncate.text-sm.font-medium')?.textContent || '');
+      if (!name.toLowerCase().endsWith('.' + ext)) return false;
+      const cluster = chip.querySelector('div.items-center.gap-1');
+      return !!cluster && cluster.querySelectorAll('button').length >= 1;
+    }).length;
+})(arg)`, { extension });
+  return Number.isFinite(Number(count)) ? Number(count) : 0;
+}
+
+async function waitForChatgptGeneratedFileDownloadShapeWithExtension(page: any, expectedExtension: string, timeoutMs: number): Promise<ChatgptGeneratedFileDownloadShape> {
+  const extension = normalizedExpectedExtension(expectedExtension);
+  const chipBudgetMs = ["pptx", "docx"].includes(extension)
+    ? Math.min(Math.max(1, timeoutMs), extension === "pptx" ? 120000 : 45000)
+    : Math.min(Math.max(1, timeoutMs), 5000);
+  const chipDeadline = Date.now() + chipBudgetMs;
+  while (Date.now() <= chipDeadline) {
+    if (await chatgptGeneratedFileChipCountWithExtension(page, extension).catch(() => 0)) {
+      await extensionSleep(5000);
+      return {
+        shape: "chip",
+        buttonSelector: CHATGPT_GENERATED_FILE_CHIP_DOWNLOAD_SELECTOR,
+        buttonAncestorText: `.${extension}`
+      };
+    }
+    await extensionSleep(Math.min(500, Math.max(1, chipDeadline - Date.now())));
+  }
+
+  const inlineTimeoutMs = Math.max(1, timeoutMs - chipBudgetMs);
   try {
-    await page.waitForSelector(CHATGPT_GENERATED_FILE_READY_SELECTOR, { state: "visible", timeoutMs });
+    await waitForExtensionSelector(page, CHATGPT_GENERATED_FILE_INLINE_READY_SELECTOR, inlineTimeoutMs, "ChatGPT inline generated file download control was not found after response completion");
     await extensionSleep(5000);
+    return {
+      shape: "inline",
+      buttonSelector: CHATGPT_GENERATED_FILE_INLINE_DOWNLOAD_SELECTOR
+    };
   } catch (error: any) {
     throw new WebAiToolError(
       ConsumerErrorCodes.ELEMENT_NOT_FOUND,
       "ChatGPT generated file chip/link was not found after response completion",
-      { selector: CHATGPT_GENERATED_FILE_READY_SELECTOR, cause: errorMessageFromUnknown(error, "") }
+      { selector: `${CHATGPT_GENERATED_FILE_CHIP_DOWNLOAD_SELECTOR} OR ${CHATGPT_GENERATED_FILE_INLINE_READY_SELECTOR}`, cause: errorMessageFromUnknown(error, "") }
     );
   }
 }
@@ -3577,7 +3634,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     if (promptResult.errorCode) {
       return fileErrorOutput(promptResult.errorCode as ConsumerErrorCode, promptResult.error_code ? String(promptResult.error_code) : "ChatGPT generate-file prompt failed before download");
     }
-    await waitForChatgptGeneratedFileReadyWithExtension(page, locateTimeoutMs);
+    const downloadShape = await waitForChatgptGeneratedFileDownloadShapeWithExtension(page, effective.expected_extension, locateTimeoutMs);
     const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: promptResult.chat_url || targetUrlFor("chatgpt", effective), text: "" }));
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
@@ -3585,7 +3642,8 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
-      buttonSelector: CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR,
+      buttonSelector: downloadShape.buttonSelector,
+      ...(downloadShape.buttonAncestorText ? { buttonAncestorText: downloadShape.buttonAncestorText } : {}),
       downloadDir: effective.download_dir,
       filenamePattern: `\\.${effective.expected_extension}$`,
       timeoutMs: chatgptArtifactTimeoutMs,
@@ -3597,7 +3655,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
         assetCount: bundle.assets.length
       }
     }).catch((error: any) => {
-      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR, locateTimeoutMs);
+      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, downloadShape.buttonSelector, locateTimeoutMs);
       throw error;
     });
     return artifactClickResultToSafeOutput(result, { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
@@ -6164,6 +6222,104 @@ function isRealClaudeDesignHtmlMarkup(source: string): boolean {
   return /<!doctype\s+html|<html[\s>]|<body[\s>]|<main[\s>]|<div[\s>]/i.test(trimmed);
 }
 
+const CLAUDE_DESIGN_HTML_FILE_ROW_SELECTOR = '[data-webai-claude-design-html-row="true"]';
+const CLAUDE_DESIGN_HTML_FILE_MORE_SELECTOR = `${CLAUDE_DESIGN_HTML_FILE_ROW_SELECTOR} button[title="More"]`;
+const CLAUDE_DESIGN_DOWNLOAD_MENU_SELECTOR = '[role="menu"] button:has-text("Download"), button:has-text("Download")';
+
+function safeDownloadedBasename(name: string, fallback: string): string {
+  const cleaned = path.basename(String(name || fallback)).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_").trim();
+  return cleaned || fallback;
+}
+
+async function markClaudeDesignHtmlFileRow(page: any, preferredFileName: string | null, timeoutMs: number): Promise<void> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let lastCandidates: unknown[] = [];
+  while (Date.now() <= deadline) {
+    const result = await page.evaluate?.((arg: any) => {
+      const clean = (value: unknown) => String(value || "").replace(/\s+/g, " ").trim();
+      const preferred = clean(arg.preferredFileName || "").toLowerCase();
+      const rows = Array.from(document.querySelectorAll("div")).map((el: Element) => {
+        const text = clean((el as HTMLElement).innerText || el.textContent || "");
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        return {
+          el,
+          text,
+          rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+          buttonCount: el.querySelectorAll("button").length,
+          className: (el as HTMLElement).className || "",
+          tag: el.tagName
+        };
+      }).filter((candidate: any) => {
+        const text = String(candidate.text || "");
+        if (!/\.html\b/i.test(text) || !/HTML page/i.test(text)) return false;
+        if (preferred && !text.toLowerCase().includes(preferred)) return false;
+        return candidate.buttonCount >= 1
+          && candidate.rect.width >= 200
+          && candidate.rect.height >= 30
+          && candidate.rect.height <= 100
+          && candidate.rect.x >= 250;
+      }).sort((a: any, b: any) => a.rect.height - b.rect.height || a.rect.width - b.rect.width);
+      document.querySelectorAll("[data-webai-claude-design-html-row]").forEach((el) => el.removeAttribute("data-webai-claude-design-html-row"));
+      const chosen = rows[0];
+      if (!chosen) {
+        return { found: false, candidates: rows.slice(0, 5).map(({ el: _el, ...item }: any) => item) };
+      }
+      chosen.el.setAttribute("data-webai-claude-design-html-row", "true");
+      return { found: true, chosen: { text: chosen.text, rect: chosen.rect, className: chosen.className, tag: chosen.tag } };
+    }, { preferredFileName }).catch((error: any) => ({ found: false, error: errorMessageFromUnknown(error, "") }));
+    if (result?.found) return;
+    lastCandidates = Array.isArray(result?.candidates) ? result.candidates : lastCandidates;
+    if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
+    else await extensionSleep(500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Design HTML file row was not found in the project file list", { selector: "div:has(.html HTML page)", candidates: lastCandidates });
+}
+
+async function downloadClaudeDesignHtmlWithHoverMenuCdp(runtime: Required<BrowserToolRuntime>, profile: string, projectUrl: string, downloadDir: string, timeoutMs = 90000): Promise<{ savedPath: string; byteSize: number; iframeArtifactSha256: string }> {
+  const projectId = claudeDesignProjectId(projectUrl) || "claude-design";
+  const preferredFileName = claudeDesignFileName(projectUrl);
+  const projectListUrl = projectUrl.replace(/[?#].*$/, "");
+  return withProfileCdpPage(runtime, profile, (url) => {
+    if (!/claude\.ai\/design\/p\//i.test(url)) return false;
+    return !projectId || url.includes(projectId);
+  }, async (page) => {
+    await page.goto?.(projectListUrl, { waitUntil: "domcontentloaded", timeout: Math.min(timeoutMs, 30000) });
+    await page.waitForLoadState?.("domcontentloaded", { timeout: Math.min(timeoutMs, 15000) }).catch(() => undefined);
+    await page.keyboard?.press?.("Escape").catch(() => undefined);
+    if (loginRequiredForService("claude", String(page.url?.() || ""))) {
+      throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude login is required before Design file download");
+    }
+    await markClaudeDesignHtmlFileRow(page, preferredFileName, Math.min(timeoutMs, 30000));
+    const row = page.locator(CLAUDE_DESIGN_HTML_FILE_ROW_SELECTOR).first();
+    await row.hover({ timeout: Math.min(timeoutMs, 10000) });
+    const more = page.locator(CLAUDE_DESIGN_HTML_FILE_MORE_SELECTOR).first();
+    await more.waitFor?.({ state: "visible", timeout: Math.min(timeoutMs, 10000) }).catch(() => undefined);
+    await more.click({ timeout: Math.min(timeoutMs, 10000) });
+    const downloadButton = page.locator(CLAUDE_DESIGN_DOWNLOAD_MENU_SELECTOR).first();
+    await downloadButton.waitFor?.({ state: "visible", timeout: Math.min(timeoutMs, 10000) }).catch(() => undefined);
+    const downloadPromise = page.waitForEvent("download", { timeout: Math.min(timeoutMs, 60000) });
+    await downloadButton.click({ timeout: Math.min(timeoutMs, 10000) });
+    const download = await downloadPromise;
+    const dir = path.resolve(downloadDir || defaultWebAiDownloadDir());
+    fs.mkdirSync(dir, { recursive: true });
+    const suggested = typeof download.suggestedFilename === "function" ? download.suggestedFilename() : "";
+    const tempPath = path.join(dir, safeDownloadedBasename(suggested, `${projectId}-download.html`));
+    await download.saveAs(tempPath);
+    const bytes = fs.readFileSync(tempPath);
+    const source = bytes.toString("utf-8");
+    if (!isRealClaudeDesignHtmlMarkup(source)) {
+      throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Claude Design downloaded file did not contain real HTML markup", { path: tempPath, byteSize: bytes.length });
+    }
+    const iframeArtifactSha256 = crypto.createHash("sha256").update(bytes).digest("hex");
+    const savedPath = path.join(dir, `${projectId}-${iframeArtifactSha256.slice(0, 12)}.html`);
+    if (path.resolve(savedPath) !== path.resolve(tempPath)) {
+      if (fs.existsSync(savedPath)) fs.rmSync(savedPath, { force: true });
+      fs.renameSync(tempPath, savedPath);
+    }
+    return { iframeArtifactSha256, savedPath, byteSize: bytes.length };
+  });
+}
+
 async function readClaudeDesignIframeHtmlWithExtension(page: any): Promise<string> {
   const source = await page.evaluateReadOnly(`((arg) => {
     const iframe = (() => {
@@ -6309,17 +6465,13 @@ async function webAiClaudeDesignGetHtmlWithExtensionBackend(args: any, runtime: 
   const effective = claudeDesignArgs(args);
   const lease = acquireProfileLease(effective.profile);
   try {
-    const source = await readClaudeDesignIframeHtmlWithCdp(runtime, effective.profile, effective.project_url, Math.min(effective.timeout_ms || 90000, 90000));
-    if (!source) throw new WebAiToolError(ConsumerErrorCodes.IFRAME_NOT_FOUND, "Claude Design HTML iframe has no srcdoc, content, or src attribute");
-    if (!isRealClaudeDesignHtmlMarkup(source)) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Claude Design iframe did not contain real HTML markup");
-    const bytes = Buffer.from(source, "utf-8");
-    const iframeArtifactSha256 = crypto.createHash("sha256").update(bytes).digest("hex");
-    const dir = path.resolve(effective.download_dir || defaultWebAiDownloadDir());
-    fs.mkdirSync(dir, { recursive: true });
-    const projectId = claudeDesignProjectId(effective.project_url) || "claude-design";
-    const savedPath = path.join(dir, `${projectId}-${iframeArtifactSha256.slice(0, 12)}.html`);
-    fs.writeFileSync(savedPath, bytes);
-    return safeOutput({ iframeArtifactSha256, savedPath, byteSize: bytes.length });
+    return safeOutput(await downloadClaudeDesignHtmlWithHoverMenuCdp(
+      runtime,
+      effective.profile,
+      effective.project_url,
+      effective.download_dir || defaultWebAiDownloadDir(),
+      Math.min(effective.timeout_ms || 90000, 90000)
+    ));
   } catch (error: any) {
     return claudeDesignErrorOutput(error, { iframeArtifactSha256: "", savedPath: "", byteSize: 0 });
   } finally {
@@ -8546,6 +8698,10 @@ const MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS: Record<string, number> = {
   webai_chatgpt_generate_image: 600000,
   webai_gemini_generate_image: 600000
 };
+const MCP_TOOL_INVOCATION_FORMAT_TIMEOUT_OVERRIDES_MS: Record<string, Record<string, number>> = {
+  webai_claude_generate_file: { pptx: 360000 },
+  webai_chatgpt_generate_file: { pptx: 900000 }
+};
 
 interface HonestErrorEnvelope {
   ok: false;
@@ -8565,12 +8721,17 @@ class McpInvocationDeadlineError extends Error {
   }
 }
 
-function mcpToolInvocationTimeoutMs(tool?: string): number {
+function mcpToolInvocationTimeoutMs(tool?: string, args?: unknown): number {
   for (const key of MCP_TOOL_TIMEOUT_ENV_KEYS) {
     const raw = process.env[key];
     if (!raw) continue;
     const parsed = Number(raw);
     if (Number.isFinite(parsed) && parsed > 0) return Math.min(Math.max(Math.floor(parsed), 1000), MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
+  }
+  const expectedExtension = isRecord(args) ? normalizedExpectedExtension(args.expected_extension) : "";
+  const formatOverride = tool && expectedExtension ? MCP_TOOL_INVOCATION_FORMAT_TIMEOUT_OVERRIDES_MS[tool]?.[expectedExtension] : undefined;
+  if (formatOverride) {
+    return Math.min(formatOverride, MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
   }
   if (tool && MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS[tool]) {
     return Math.min(MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS[tool], MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS);
@@ -8578,8 +8739,7 @@ function mcpToolInvocationTimeoutMs(tool?: string): number {
   return DEFAULT_MCP_TOOL_INVOCATION_TIMEOUT_MS;
 }
 
-async function withMcpToolDeadline<T>(tool: string, run: () => Promise<T>): Promise<T> {
-  const timeoutMs = mcpToolInvocationTimeoutMs(tool);
+async function runWithMcpToolDeadline<T>(tool: string, timeoutMs: number, run: () => Promise<T>): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   const timeout = new Promise<never>((_resolve, reject) => {
     timer = setTimeout(() => reject(new McpInvocationDeadlineError(tool, timeoutMs)), timeoutMs);
@@ -8590,6 +8750,16 @@ async function withMcpToolDeadline<T>(tool: string, run: () => Promise<T>): Prom
   } finally {
     if (timer) clearTimeout(timer);
   }
+}
+
+async function withMcpToolDeadline<T>(tool: string, run: () => Promise<T>): Promise<T> {
+  const timeoutMs = mcpToolInvocationTimeoutMs(tool);
+  return runWithMcpToolDeadline(tool, timeoutMs, run);
+}
+
+async function withMcpToolDeadlineForArgs<T>(tool: string, args: unknown, run: () => Promise<T>): Promise<T> {
+  const timeoutMs = mcpToolInvocationTimeoutMs(tool, args);
+  return runWithMcpToolDeadline(tool, timeoutMs, run);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -8825,7 +8995,7 @@ export async function callMcpTool(name: string, args: unknown, runtime?: Browser
     if (typeof parsed.target === "string") resolvedRuntime.session.setTarget(parsed.target);
     else if (typeof parsed.site === "string") resolvedRuntime.session.setTarget(parsed.site);
     stage = "handler";
-    const result = await withMcpToolDeadline(name, () => spec.handler(parsed, resolvedRuntime));
+    const result = await withMcpToolDeadlineForArgs(name, parsed, () => spec.handler(parsed, resolvedRuntime));
     stage = "contract";
     return validateMcpToolResult(name, result);
   } catch (error) {

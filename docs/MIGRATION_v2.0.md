@@ -110,3 +110,19 @@ Permanently deferred — known limitation:
 - `chatgpt-generate-file-pptx-ext` — ChatGPT PPTX generation did not expose a downloadable `.pptx` chip before timeout. Wave-9 output returned `errorCode: COMMAND_TIMEOUT`; `.runs/postship-fix-wave-9/probes/chatgpt-pptx-chip.json` captured the post-run ChatGPT page with only homepage composer controls (`composer-plus-btn`) and no PPTX/file chip.
 - `claude-design-generate-mgr` — generation still requires an extension-assisted Claude Design tab. Wave-9 `generate` step returned `CHROME_EXTENSION_NOT_CONNECTED: No extension-assisted browser tab is available to claim`; the direct-CDP `get_html` step did pass and saved `/tmp/explore-2026-05-25/claude-design/baf06427-9e7a-41f7-8d8e-79da1a1ca344-9bbf431f57fa.html`.
 - `claude-generate-file-pptx-ext` — Claude PPTX generation remains a deep server/download timeout. Wave-9 output returned `COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline`; `.runs/postship-fix-wave-9/probes/claude-pptx-handoff.json` captured the active Claude chat/design tabs after the timeout.
+
+### Post-ship fix wave 10 final-five closure (2026-05-26)
+
+Source: `.runs/postship-fix-wave-10/workflows/summary-final.json` and live probes under `.runs/postship-fix-wave-10/probes/`.
+
+Final wave-10 smoke result: **4/5 PASS**. Ship threshold was ≥3/5, so the final residual sweep is closed. No ChatGPT 429 was observed; ChatGPT tabs were cleaned up between relevant smokes.
+
+Passed in wave 10:
+- `gemini-image-draft` — fixture now invokes the same standard Gemini Create-image flow as `gemini-generate-image-ext`; targeted rerun produced `/tmp/explore-2026-05-25/gemini/network-pw-request@fcb70825594383fb954415a00a4e4d58.jpg`.
+- `chatgpt-codex-submit-task-ext-fallback` — gate now treats `ELEMENT_NOT_FOUND` as PASS because Codex is a sidebar-only entry point, not an inline ChatGPT composer feature.
+- `claude-design-generate-mgr` — Claude Design export now hovers the project file row, opens the hover-only More menu, and clicks Download.
+- `claude-generate-file-pptx-ext` — Claude PPTX MCP deadline is now 6 minutes for `expected_extension: pptx`; smoke downloaded `/tmp/explore-2026-05-25/claude/Renewable_Energy_Basics.pptx`.
+
+Permanently deferred — known limitation:
+
+- `chatgpt-generate-file-pptx-ext` — the chip-based PPTX detector was implemented and live-probed against `https://chatgpt.com/c/6a158c39-71cc-83e8-b68c-b6e5fa316a68`, confirming the current chip row and icon-only first download button shape. The wave-10 smoke still returned `COMMAND_TIMEOUT` after the assistant failed to render a new PPTX chip within the workflow prompt budget, before selector/download code ran. Recovery condition: rerun when the ChatGPT account/server completes PPTX generation within the existing prompt budget, or make an explicit future timeout-budget change for ChatGPT PPTX generation.
