@@ -3,7 +3,7 @@ import { BrowserAction } from "../shared/types";
 export type WorkflowMode = "assisted" | "manual-approval" | "dry-run" | "automatic";
 
 export interface WorkflowResultSpec {
-  type: "screenshot" | "download" | "text" | "snapshot" | "none";
+  type: "screenshot" | "download" | "text" | "text/html" | "snapshot" | "none";
 }
 
 export interface WorkflowFinalResult {

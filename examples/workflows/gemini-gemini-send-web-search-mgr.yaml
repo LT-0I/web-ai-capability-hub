@@ -14,7 +14,7 @@ steps:
       - gemini-9225
       - --web-search
       - --prompt
-      - What is today's date in YYYY-MM-DD?
+      - List 3 AI safety events from 2026 so far. Include the year 2026 in each item.
       - --response-timeout-ms
       - "120000"
       - --json

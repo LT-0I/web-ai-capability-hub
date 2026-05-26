@@ -62,6 +62,37 @@ function httpGetJson<T = any>(url: string, timeoutMs = 1500): Promise<T> {
   });
 }
 
+function sleepMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isCdpEndpointReadinessError(error: unknown): boolean {
+  return /CDP endpoint did not become ready|ECONNREFUSED|ECONNRESET|ECONNABORTED|socket hang up/i.test(errorMessage(error));
+}
+
+export async function pollForCdpReady(host: string, port: number, budgetMs = 5000, intervalMs = 100): Promise<any> {
+  const endpoint = jsonEndpoint(host, port);
+  const started = Date.now();
+  const budget = Math.max(1, budgetMs);
+  const deadline = started + budget;
+  let lastError: unknown;
+  do {
+    try {
+      return await httpGetJson(endpoint, Math.min(1500, Math.max(100, deadline - Date.now())));
+    } catch (error) {
+      lastError = error;
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) break;
+      await sleepMs(Math.min(Math.max(1, intervalMs), remaining));
+    }
+  } while (Date.now() <= deadline);
+  throw new Error(`CDP endpoint did not become ready within ${budget}ms (${endpoint}): ${errorMessage(lastError)}`);
+}
+
 export function buildLaunchArguments(options: Required<Pick<ManagedBrowserLaunchOptions, "cdpHost" | "cdpPort">> & { profileDir: string; url?: string; extraArgs?: string[]; extensionAssisted?: boolean; extensionPath?: string }): string[] {
   const args = [
     `--remote-debugging-address=${options.cdpHost}`,
@@ -94,13 +125,7 @@ export async function findFreePort(host = "127.0.0.1"): Promise<number> {
 }
 
 export async function waitForCdpVersion(host: string, port: number, timeoutMs = 12000): Promise<any> {
-  const deadline = Date.now() + timeoutMs;
-  let lastError: unknown;
-  while (Date.now() < deadline) {
-    try { return await httpGetJson(jsonEndpoint(host, port)); }
-    catch (error) { lastError = error; await new Promise((resolve) => setTimeout(resolve, 250)); }
-  }
-  throw new Error(`CDP endpoint did not become ready at ${jsonEndpoint(host, port)}: ${lastError instanceof Error ? lastError.message : String(lastError)}`);
+  return pollForCdpReady(host, port, timeoutMs, 250);
 }
 
 export async function readCdpPages(host: string, port: number): Promise<CdpPageInfo[]> {
@@ -217,8 +242,25 @@ export class ManagedBrowserLauncher {
     const playwright = optionalRequire<any>("playwright");
     if (!playwright?.chromium?.connectOverCDP) throw new Error("Playwright is not installed. Run npm install before connecting over CDP.");
     if (process.env.PW_CHROMIUM_ATTACH_TO_OTHER === undefined) process.env.PW_CHROMIUM_ATTACH_TO_OTHER = "1";
-    this.playwrightBrowser = await playwright.chromium.connectOverCDP(status.cdpEndpoint);
-    return this.playwrightBrowser;
+    const { host, port } = endpointHostAndPort(status.cdpEndpoint, process.env.WAH_CDP_HOST || "127.0.0.1", status.cdpPort);
+    const budgetMs = 5000;
+    const deadline = Date.now() + budgetMs;
+    let lastError: unknown;
+    for (;;) {
+      try {
+        await pollForCdpReady(host, port, Math.max(1, deadline - Date.now()), 100);
+        this.playwrightBrowser = await playwright.chromium.connectOverCDP(status.cdpEndpoint);
+        return this.playwrightBrowser;
+      } catch (error) {
+        lastError = error;
+        if (!isCdpEndpointReadinessError(error) || Date.now() >= deadline) break;
+        await sleepMs(Math.min(100, Math.max(1, deadline - Date.now())));
+      }
+    }
+    if (isCdpEndpointReadinessError(lastError)) {
+      throw new Error(`CDP endpoint did not become ready within ${budgetMs}ms (${status.cdpEndpoint}): ${errorMessage(lastError)}`);
+    }
+    throw lastError;
   }
 
   async close(profile = process.env.WAH_DEFAULT_PROFILE || "default", mode: BrowserCloseMode = "disconnect"): Promise<ManagedBrowserStatus> {

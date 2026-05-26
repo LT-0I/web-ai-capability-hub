@@ -16,7 +16,7 @@ steps:
       - extension-assisted-cdp
       - --web-search
       - --prompt
-      - What's today's date?
+      - List 3 AI safety events from 2026 so far. Include the year 2026 in each item.
       - --response-timeout-ms
       - "180000"
       - --json

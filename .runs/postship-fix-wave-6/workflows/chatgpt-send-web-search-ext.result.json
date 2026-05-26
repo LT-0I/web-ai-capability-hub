@@ -1,0 +1,17 @@
+{
+  "id": "chatgpt-send-web-search-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-send-web-search-ext.yaml",
+  "cluster": "H#58",
+  "attempt": 1,
+  "startedAt": "2026-05-26T09:15:41.362Z",
+  "finishedAt": "2026-05-26T09:15:52.111Z",
+  "exitCode": 0,
+  "signal": null,
+  "ok": false,
+  "rateLimited": false,
+  "runId": "run_4b08916b80ecd989",
+  "outputJson": ".runs/postship-fix-wave-6/workflows/chatgpt-send-web-search-ext.json",
+  "stdout": ".runs/postship-fix-wave-6/workflows/chatgpt-send-web-search-ext.stdout",
+  "stderr": ".runs/postship-fix-wave-6/workflows/chatgpt-send-web-search-ext.stderr",
+  "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /20\\d{2}|May|5月|January|February|March|April|June|July|August|September|October|November|December/ failed; json_path completion_detected !== true"
+}

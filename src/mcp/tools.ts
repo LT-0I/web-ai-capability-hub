@@ -785,7 +785,9 @@ const CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR = [
   '[data-testid*="download" i] button',
   'button:has-text("Download")'
 ].join(", ");
-const CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS = 90000;
+function generateFileLocateTimeoutMs(format: string): number {
+  return String(format || "").toLowerCase() === "pptx" ? 180000 : 60000;
+}
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -3452,7 +3454,7 @@ async function generateClaudeFileWithExtensionBackend(args: any, runtime: Requir
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
     const buttonSelector = CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR;
-    const locateTimeoutMs = Math.min(Number(effective.timeout_ms || CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS), CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS);
+    const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || serviceDefaults.claude.url,
@@ -3512,6 +3514,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
     const chatgptArtifactTimeoutMs = Math.min(Number(effective.timeout_ms || 480000), 480000);
+    const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
@@ -3519,7 +3522,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
       downloadDir: effective.download_dir,
       filenamePattern: `\\.${effective.expected_extension}$`,
       timeoutMs: chatgptArtifactTimeoutMs,
-      locateTimeoutMs: 360000,
+      locateTimeoutMs,
       useJsClickFallback: true,
       pageReadyEvidence: {
         backend: "extension-assisted-cdp",
@@ -3527,7 +3530,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
         assetCount: bundle.assets.length
       }
     }).catch((error: any) => {
-      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR, 360000);
+      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR, locateTimeoutMs);
       throw error;
     });
     return artifactClickResultToSafeOutput(result, { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
@@ -3721,7 +3724,7 @@ async function generateGeminiVideoWithExtensionBackend(args: any, runtime: Requi
     await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
     await page.queryElements(sendSelector, { limit: 3 });
     await page.click({ selector: sendSelector }, { timeoutMs: 5000 });
-    await page.waitForSelector(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, { state: "visible", timeoutMs: args.timeout_ms || 300000 });
+    await waitForGeminiVideoDownloadOrQuota(page, args.timeout_ms || 300000);
     const videoCandidates = await page.queryElements(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, { limit: 5 });
     if (!videoCandidates.length) {
       return videoErrorOutput(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini generated video did not render before timeout", { expected_selector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR });
@@ -3801,20 +3804,9 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;
-    // #16 R2 (2026-05-21): for ChatGPT pptx in Heavy/Thinking model paths, the
-    // assistant turn can stream for several minutes BEFORE the file-card
-    // emits — first observed 3m 20s end-to-end on chatgpt-9223 (smoke
-    // .runs/issue-fix-loop/issue16-r2-smoke/02-chatgpt-pptx-v2.json), then
-    // consumer cycle#26 (smoke 09, 2026-05-21) measured the file-card
-    // streaming in at 6-9 min from prompt-send on a fresh Thinking-class run
-    // — so the locate budget must run for ~6 min before declaring
-    // ELEMENT_NOT_FOUND. The shipped 60s overall ceiling and 30s locate
-    // budget both race the model. Widen both for ChatGPT specifically (locate
-    // 360s, overall 480s) so the post-text-response file-card stream has room
-    // to land. The outer MCP deadline is bumped to 900s in tandem
-    // (MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS). Claude generate-file is
-    // unchanged because its file card emits inline with the response (no
-    // separate post-stream window).
+    // The managed-CDP ChatGPT path keeps its established wider locate window for
+    // the post-response file-card render race; the extension-assisted drivers use
+    // the format-aware locate budget above.
     const chatgptArtifactTimeoutMs = Math.min(Number(args.timeout_ms || 480000), 480000);
     const artifactOptions = {
       profile: args.profile,
@@ -4006,44 +3998,101 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
 // button[aria-label="Download video"] renders -> CDP artifact-click downloads
 // the file. ~105s observed for an 8s clip on Fast tier. Honest terminal
 // errorCode (no synthesis) when any stage genuinely fails.
+async function geminiVideoVisibleText(page: any): Promise<string> {
+  if (typeof page.textSnapshot === "function") {
+    const extensionSnapshot = await page.textSnapshot().catch(() => null);
+    if (typeof extensionSnapshot?.text === "string") return extensionSnapshot.text;
+    if (typeof extensionSnapshot?.visibleText === "string") return extensionSnapshot.visibleText;
+  }
+  const snapshot = await readPageSnapshot(page, { includePortals: true }).catch(() => null);
+  return typeof snapshot?.visibleText === "string" ? snapshot.visibleText : "";
+}
+
+async function geminiVideoSelectorCount(page: any, selector: string): Promise<number> {
+  const locator = page.locator?.(selector);
+  if (locator?.count) return await locator.count().catch(() => 0) || 0;
+  const elements = typeof page.queryElements === "function" ? await page.queryElements(selector, { limit: 1 }).catch(() => []) : [];
+  return Array.isArray(elements) ? elements.length : 0;
+}
+
+async function geminiVideoDelay(page: any, ms: number): Promise<void> {
+  if (ms <= 0) return;
+  if (typeof page.waitForTimeout === "function") {
+    await page.waitForTimeout(ms).catch(() => undefined);
+    return;
+  }
+  await extensionSleep(ms);
+}
+
+async function readGeminiVideoQuotaSignal(page: any): Promise<{ selector: string; evidence: Record<string, unknown> } | null> {
+  const visibleText = await geminiVideoVisibleText(page);
+  const quotaMatch = GEMINI_VIDEO_QUOTA_RE.exec(visibleText);
+  if (!quotaMatch) return null;
+  const disabledSelectors: string[] = [];
+  for (const selector of GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS) {
+    const count = await geminiVideoSelectorCount(page, selector);
+    if (count > 0) disabledSelectors.push(selector);
+  }
+  const index = Math.max(0, visibleText.toLowerCase().indexOf(quotaMatch[0].toLowerCase()));
+  const excerpt = visibleText.slice(Math.max(0, index - 80), Math.min(visibleText.length, index + quotaMatch[0].length + 120)).replace(/\s+/g, " ").trim();
+  return {
+    selector: disabledSelectors.length ? `${GEMINI_VIDEO_QUOTA_TEXT_SIGNAL} AND ${disabledSelectors[0]}` : GEMINI_VIDEO_QUOTA_TEXT_SIGNAL,
+    evidence: {
+      quota_text_match: quotaMatch[0],
+      disabled_composer_selector: disabledSelectors[0] || null,
+      visible_text_excerpt: excerpt
+    }
+  };
+}
+
 async function detectGeminiVideoQuotaExhausted(page: any, timeoutMs = 8000): Promise<{ selector: string; evidence: Record<string, unknown> } | null> {
   const startedAt = Date.now();
   const budgetMs = Math.min(8000, Math.max(1, timeoutMs));
   do {
-    const snapshot = await readPageSnapshot(page, { includePortals: true }).catch(() => null);
-    const visibleText = typeof snapshot?.visibleText === "string" ? snapshot.visibleText : "";
-    const quotaMatch = GEMINI_VIDEO_QUOTA_RE.exec(visibleText);
-    let disabledSelector: string | null = null;
-    for (const selector of GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS) {
-      const count = await page.locator?.(selector).count?.().catch(() => 0) || 0;
-      if (count > 0) {
-        disabledSelector = selector;
-        break;
-      }
-    }
-    if (quotaMatch && disabledSelector) {
-      const index = Math.max(0, visibleText.toLowerCase().indexOf(quotaMatch[0].toLowerCase()));
-      const excerpt = visibleText.slice(Math.max(0, index - 80), Math.min(visibleText.length, index + quotaMatch[0].length + 120)).replace(/\s+/g, " ").trim();
-      return {
-        selector: `${GEMINI_VIDEO_QUOTA_TEXT_SIGNAL} AND ${disabledSelector}`,
-        evidence: {
-          quota_text_match: quotaMatch[0],
-          disabled_composer_selector: disabledSelector,
-          visible_text_excerpt: excerpt
-        }
-      };
-    }
+    const quota = await readGeminiVideoQuotaSignal(page);
+    if (quota) return quota;
     const remaining = budgetMs - (Date.now() - startedAt);
     if (remaining <= 0) break;
-    await page.waitForTimeout?.(Math.min(250, remaining)).catch(() => undefined);
+    await geminiVideoDelay(page, Math.min(250, remaining));
   } while (Date.now() - startedAt < budgetMs);
   return null;
+}
+
+async function pollForVeoQuotaError(page: any, deadlineMs: number): Promise<void> {
+  const quota = await detectGeminiVideoQuotaExhausted(page, deadlineMs);
+  if (!quota) return;
+  throw new WebAiToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "Gemini Veo video-generation quota exhausted", { selector: quota.selector, evidence: quota.evidence });
 }
 
 async function throwIfGeminiVideoQuotaExhausted(page: any, timeoutMs = 8000): Promise<void> {
   const quota = await detectGeminiVideoQuotaExhausted(page, timeoutMs);
   if (!quota) return;
   throw new WebAiToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "Gemini Veo video-generation quota exhausted", { selector: quota.selector, evidence: quota.evidence });
+}
+
+async function waitForGeminiVideoDownloadOrQuota(page: any, timeoutMs: number): Promise<void> {
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let lastError: any;
+  while (Date.now() <= deadline) {
+    await pollForVeoQuotaError(page, 1);
+    if (await geminiVideoSelectorCount(page, GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR) > 0) return;
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) break;
+    const slice = Math.min(1000, remaining);
+    if (typeof page.waitForSelector === "function") {
+      try {
+        const waitOptions = typeof page.textSnapshot === "function" ? { state: "visible", timeoutMs: slice } : { state: "visible", timeout: slice };
+        await page.waitForSelector(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, waitOptions);
+        return;
+      } catch (error) {
+        lastError = error;
+      }
+    } else {
+      await geminiVideoDelay(page, slice);
+    }
+  }
+  await throwIfGeminiVideoQuotaExhausted(page, 8000);
+  throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini video did not finish generating before timeout", { selector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, cause: lastError?.message || String(lastError || "") });
 }
 
 async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserToolRuntime>, record: WebAiTaskRecord): Promise<void> {
@@ -4066,9 +4115,10 @@ async function runGeminiVideoGeneration(args: any, runtime: Required<BrowserTool
     if (result.errorCode) throw new WebAiToolError(String(result.errorCode), "Gemini video prompt failed before generation started");
     record.progress_label = "generating video (this can take 1-2 min)";
     try {
-      await page.waitForSelector?.(GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, { state: "visible", timeout: timeoutMs });
+      await waitForGeminiVideoDownloadOrQuota(page, timeoutMs);
     } catch (error: any) {
       await throwIfGeminiVideoQuotaExhausted(page, 8000);
+      if (error instanceof WebAiToolError) throw error;
       throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini video did not finish generating before timeout", { selector: GEMINI_VIDEO_DOWNLOAD_BUTTON_SELECTOR, cause: error?.message || String(error) });
     }
     const settled = page.url?.();

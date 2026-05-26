@@ -81,12 +81,12 @@ export class WorkflowCompiler {
   private validateResultSpec(result: WorkflowResultSpec | undefined, workflowId: string): WorkflowResultSpec | undefined {
     if (!result) return undefined;
     if (!result.type) throw new Error(`Workflow ${workflowId} result requires type`);
-    if (!["screenshot", "download", "text", "snapshot", "none"].includes(result.type)) throw new Error(`Workflow ${workflowId} result.type is not supported: ${result.type}`);
+    if (!["screenshot", "download", "text", "text/html", "snapshot", "none"].includes(result.type)) throw new Error(`Workflow ${workflowId} result.type is not supported: ${result.type}`);
     return result;
   }
 
   private appendFinalResultAction(actions: CompiledWorkflowAction[], result: WorkflowResultSpec): void {
-    if (result.type === "none" || result.type === "download") return;
+    if (result.type === "none" || result.type === "download" || result.type === "text/html") return;
     const action: BrowserAction = result.type === "screenshot"
       ? { type: "screenshot", confirmed: true }
       : { type: "extract", extract: result.type, confirmed: true };

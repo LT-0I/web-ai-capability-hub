@@ -232,6 +232,12 @@ export class WorkflowExecutor {
       const text = typeof match.result.data === "string" ? match.result.data : match.result.data === undefined ? undefined : JSON.stringify(match.result.data);
       return { kind: "text", text, sourceStepId: match.result.stepId };
     }
+    if (spec.type === "text/html") {
+      const match = lastMatching((_action, result) => htmlStringFromData(result.data) !== undefined);
+      if (!match) return { kind: "text/html" };
+      const text = htmlStringFromData(match.result.data);
+      return { kind: "text/html", text, data: text, sourceStepId: match.result.stepId };
+    }
     if (spec.type === "snapshot") {
       const match = lastMatching((action) => action.action.type === "extract" && (action.action.extract || "snapshot") === "snapshot");
       return match ? { kind: "snapshot", data: match.result.data, sourceStepId: match.result.stepId } : { kind: "snapshot" };
@@ -273,6 +279,16 @@ function pathFromData(data: unknown): string | undefined {
   if (typeof record.savedPath === "string") return record.savedPath;
   if (typeof record.screenshotPath === "string") return record.screenshotPath;
   if (typeof record.downloadPath === "string") return record.downloadPath;
+  return undefined;
+}
+
+function htmlStringFromData(data: unknown): string | undefined {
+  if (typeof data === "string") return data;
+  if (!data || typeof data !== "object") return undefined;
+  const record = data as Record<string, unknown>;
+  for (const key of ["html", "text_html", "textHtml", "content", "stdout"]) {
+    if (typeof record[key] === "string") return record[key] as string;
+  }
   return undefined;
 }
 

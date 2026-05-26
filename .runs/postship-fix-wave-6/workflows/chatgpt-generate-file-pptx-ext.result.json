@@ -1,0 +1,17 @@
+{
+  "id": "chatgpt-generate-file-pptx-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml",
+  "cluster": "F",
+  "attempt": 1,
+  "startedAt": "2026-05-26T09:12:56.632Z",
+  "finishedAt": "2026-05-26T09:15:06.141Z",
+  "exitCode": 0,
+  "signal": null,
+  "ok": false,
+  "rateLimited": false,
+  "runId": "run_87d1b826101eb963",
+  "outputJson": ".runs/postship-fix-wave-6/workflows/chatgpt-generate-file-pptx-ext.json",
+  "stdout": ".runs/postship-fix-wave-6/workflows/chatgpt-generate-file-pptx-ext.stdout",
+  "stderr": ".runs/postship-fix-wave-6/workflows/chatgpt-generate-file-pptx-ext.stderr",
+  "message": "command gate failed: exit_code 1 !== 0; json_path path empty"
+}

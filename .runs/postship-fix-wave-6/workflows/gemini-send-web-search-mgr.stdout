@@ -1,0 +1,133 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "gemini-send-web-search-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T09:10:51.857Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--web-search",
+            "--prompt",
+            "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "20\\d{2}"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-send-web-search-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Send a Gemini web-search date prompt (fail-closed; ELEMENT_NOT_FOUND on tool drawer)",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-send-web-search-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path response_text regex /20\\d{2}/ failed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--web-search",
+          "--prompt",
+          "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+          "--response-timeout-ms",
+          "120000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 3229,
+        "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 3067,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"ok\": false,\n  \"service\": \"gemini\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus\",\n  \"model_used\": null,\n  \"chat_url\": \"https://gemini.google.com/app\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "",
+          "elapsed_ms": 3067,
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "ok": false,
+          "service": "gemini",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus",
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "regex /20\\d{2}/ failed"
+              ]
+            }
+          ]
+        },
+        "response_text": "",
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "service": "gemini",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus",
+        "model_used": null,
+        "chat_url": "https://gemini.google.com/app"
+      }
+    }
+  ],
+  "runId": "run_a67c8717dd418c0b"
+}
