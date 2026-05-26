@@ -219,6 +219,14 @@ import {
   webAiGeminiMusicTaskStatus as webAiGeminiMusicTaskStatusManaged
 } from "./submcp/gemini-music/tools";
 import {
+  dismissGeminiOverlay,
+  ensureGeminiToolsAvailable,
+  geminiModelOptionSelector,
+  isSupportedGeminiModelOption,
+  selectGeminiModelOption,
+  toggleGeminiTool
+} from "./geminiExtensionHelpers";
+import {
   GEMINI_MUSIC_URL,
   MUSIC_DOWNLOAD_BTN_SELECTOR,
   MUSIC_STOP_SELECTOR,
@@ -610,18 +618,14 @@ const GEMINI_REGENERATE_BUTTON_SELECTOR = 'button[aria-label="Good response"]';
 const GEMINI_LATEST_RESPONSE_SELECTOR = "model-response";
 const GEMINI_RESPONSE_TEXT_INNER_SELECTORS = [".model-response-text", "message-content", ".markdown"];
 const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
-const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_UPLOAD_FILES_SELECTOR = "button[data-test-id=\"local-images-files-uploader-button\"]";
+const GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR = '[role="menuitem"][aria-label^="Upload files"]';
 const GEMINI_MODE_PICKER_TRIGGER_SELECTOR = 'button[data-test-id="bard-mode-menu-button"], button[aria-label^="Open mode picker"]';
 const GEMINI_MODE_PICKER_EXPANDED_SELECTOR = 'button[data-test-id="bard-mode-menu-button"][aria-expanded="true"], button[aria-label^="Open mode picker"][aria-expanded="true"]';
 
-// Model menuitems — disambiguated by their UNIQUE descriptor suffix (not the model
-// tier alone) so that future "3.5 Flash-Lite" cannot silently match "3.5 Flash".
-// :text-is() proved too strict against the live DOM (menuitem text is split across
-// two child nodes; Playwright doesn't normalize across the line break), so we use
-// :has-text() on the descriptor string which is unique per option.
-// Localization risk acknowledged (English-only labels; if Gemini ships localized
-// labels this needs revisit).
+// Managed-CDP model selection keeps the descriptor anchors that existing
+// contract tests lock. Extension-assisted selection uses geminiExtensionHelpers
+// for the live-probed literal 3.1/3.5 menuitem selectors.
 const GEMINI_MODEL_OPTION_TEMPLATES: Record<string, string> = {
   "3.1-flash-lite": '[role="menuitem"]:has-text("Fastest answers")',
   "3.5-flash":      '[role="menuitem"]:has-text("All-around help")',
@@ -661,9 +665,9 @@ const CHATGPT_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Edit image"]';
 export const CHATGPT_IMAGE_OPEN_VIEWER_SELECTOR = '[class*="imagegen-image"] [role="button"][aria-labelledby], [id^="image-"] [role="button"][aria-labelledby], img[alt^="Generated image" i]';
 export const CHATGPT_IMAGE_DOWNLOAD_BUTTON_SELECTOR = 'xpath=//*[@data-testid="fullscreen-shell-header-content"]//button[@aria-label="Save" or @aria-label="Download" or contains(translate(@aria-label,"DOWNLOAD","download"),"download")] | //*[contains(@class,"pointer-events-auto")][.//button[@aria-label="Edit image"]]//button[not(@aria-label="Edit image") and not(contains(translate(@aria-label,"SHARE","share"),"share"))][last()]';
 const GEMINI_CREATE_IMAGE_BUTTON_SELECTOR = 'button[aria-label*="Create image"]';
-const GEMINI_MORE_TOOLS_SUBMENU_SELECTOR = 'button[aria-label="More tools"], [role="menuitem"]:has-text("More tools")';
+const GEMINI_MORE_TOOLS_SUBMENU_SELECTOR = 'button[data-test-id="more-tools-button"]';
 const GEMINI_CONVERSATION_MORE_OPTIONS_SELECTOR_PREFIX = 'button[aria-label^="More options for "]';
-const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Deep research"), [role="menuitemcheckbox"]:has-text("Deep Research"), [role="menuitem"]:has-text("Deep research"), [role="menuitem"]:has-text("Deep Research")';
+const GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Deep research")';
 const GEMINI_GUIDED_LEARNING_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Guided learning")';
 const GEMINI_SEND_MESSAGE_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
 const GEMINI_CANVAS_BODY_SELECTOR = 'xpath=(//div[@contenteditable="true"])[last()]';
@@ -720,7 +724,7 @@ const CLAUDE_DEEP_RESEARCH_MENUITEM_SELECTOR = 'xpath=//*[(@role="menuitemcheckb
 const CLAUDE_SEARCH_LINK_SELECTOR = 'a[aria-label="Search"]';
 const CLAUDE_SHARE_BUTTON_SELECTOR = '[data-testid*="share" i], button[aria-label="Share"], button:has-text("Share")';
 const GEMINI_MODE_PICKER_SELECTOR = GEMINI_MODE_PICKER_TRIGGER_SELECTOR;
-const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search"), [role="menuitemcheckbox"]:has-text("Search")';
+const GEMINI_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Google Search")';
 const GEMINI_CREATE_VIDEO_ZERO_STATE_SELECTOR = 'button[aria-label="Create video, button, tap to use tool"], intent-card button.card-zero-state[aria-label*="Create video" i]';
 const GEMINI_VIDEO_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Videos"]';
 // #16 R2 (2026-05-21): when Videos tool mode is active, the composer's
@@ -742,6 +746,7 @@ const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
 ];
 const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
 const GEMINI_MIN_NO_RESPONSE_WAIT_MS = 8000;
+const GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS = 700;
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -888,7 +893,6 @@ function normalizeModelTier(service: WebAiService, args: any): string | null {
     return raw;
   }
   if (service === "claude") return raw || null;
-  if (args.thinking) return "Thinking";
   return raw || null;
 }
 
@@ -1079,7 +1083,8 @@ async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boo
   const picker = page.locator?.(GEMINI_MODE_PICKER_SELECTOR).first?.();
   if (!picker || !(await picker.count?.().catch(() => 0))) return { ok: false, actual: null, expected };
   await robustClickLocator(page, picker, GEMINI_MODE_PICKER_SELECTOR, { timeout: 5000 });
-  const selector = `xpath=//*[@role="menuitem" or @role="menuitemradio" or self::button][contains(normalize-space(.),"${expected.replace(/"/g, '\\"')}")]`;
+  const selector = geminiModelOptionSelector(expected)
+    || `xpath=//*[@role="menuitem" or @role="menuitemradio" or self::button][contains(normalize-space(.),"${expected.replace(/"/g, '\\"')}")]`;
   try { await page.waitForSelector?.(selector, { state: "visible", timeout: 8000 }); } catch {}
   const item = page.locator?.(selector).first?.();
   if (!item || !(await item.count?.().catch(() => 0))) return { ok: false, actual: await locatorText(picker), expected };
@@ -1087,6 +1092,26 @@ async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boo
   await page.waitForTimeout?.(250).catch(() => undefined);
   const actual = ((await picker.textContent?.().catch(() => "") || "") as string).trim();
   return { ok: modelLabelMatches(expected, actual), actual, expected };
+}
+
+async function selectGeminiThinkingLevel(page: any, thinkingLevel: string): Promise<void> {
+  const picker = page.locator?.(GEMINI_MODE_PICKER_SELECTOR).first?.();
+  if (!picker || !(await picker.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini mode picker trigger was not found", { selector: GEMINI_MODE_PICKER_SELECTOR });
+  }
+  await robustClickLocator(page, picker, GEMINI_MODE_PICKER_SELECTOR, { timeout: 5000 });
+  const expander = page.locator?.(GEMINI_THINKING_EXPANDER_SELECTOR).first?.();
+  if (!expander || !(await expander.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Thinking level expander was not found", { selector: GEMINI_THINKING_EXPANDER_SELECTOR });
+  }
+  await robustClickLocator(page, expander, GEMINI_THINKING_EXPANDER_SELECTOR, { timeout: 5000 });
+  const selector = GEMINI_THINKING_OPTION_TEMPLATES[thinkingLevel];
+  const item = page.locator?.(selector).first?.();
+  if (!item || !(await item.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini thinking_level option ${thinkingLevel} not found`, { selector });
+  }
+  await robustClickLocator(page, item, selector, { timeout: 5000 });
+  await page.waitForTimeout?.(250).catch(() => undefined);
 }
 
 async function setClaudeAdaptiveThinking(page: any): Promise<void> {
@@ -1140,8 +1165,19 @@ async function enableClaudeWebSearch(page: any): Promise<void> {
 
 async function enableGeminiWebSearch(page: any): Promise<void> {
   await openGeminiUploadToolsMenu(page, { exposeMoreTools: false });
-  try { await page.waitForSelector?.(GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
-  await requireAndClick(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, "Gemini Google Search menuitemcheckbox was not found");
+  const found = page.locator?.(GEMINI_WEB_SEARCH_MENUITEM_SELECTOR).first?.();
+  if (found && (await found.count?.().catch(() => 0))) {
+    await requireAndClick(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, "Gemini Google Search menuitemcheckbox was not found");
+    return;
+  }
+  await requireAndClick(page, GEMINI_MORE_TOOLS_SUBMENU_SELECTOR, "Gemini More tools sub-menu trigger was not found").catch(() => undefined);
+  const foundLevel2 = page.locator?.(GEMINI_WEB_SEARCH_MENUITEM_SELECTOR).first?.();
+  if (foundLevel2 && (await foundLevel2.count?.().catch(() => 0))) {
+    await requireAndClick(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, "Gemini Google Search menuitemcheckbox was not found");
+    return;
+  }
+  await dismissGeminiOverlay(page);
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Web Search toggle was not found in the live-probed Upload & tools menus", { selector: GEMINI_WEB_SEARCH_MENUITEM_SELECTOR });
 }
 
 async function applyPreSendOptions(service: WebAiService, args: any, page: any, started: number): Promise<Record<string, unknown> | null> {
@@ -1168,6 +1204,7 @@ async function applyPreSendOptions(service: WebAiService, args: any, page: any, 
     const selection = await selectGeminiModel(page, expected);
     if (!selection.ok) return modelSelectionDriftResponse(service, page, started, selection.expected, selection.actual);
   }
+  if (args.thinking) await selectGeminiThinkingLevel(page, "extended");
   if (args.web_search) await enableGeminiWebSearch(page);
   return null;
 }
@@ -2190,9 +2227,17 @@ async function openChatgptExtensionPage(backend: any, args: any): Promise<any> {
 async function extensionGeminiPage(args: any, backend: any, freshUrl = GEMINI_FRESH_COMPOSER_URL): Promise<any> {
   const requested = args.url || args.tab_url_contains;
   const requestedUrl = normalizeUrlLikeTarget(requested);
-  const page = (args.reuse_conversation || requested)
-    ? await backend.claimTab({ url: requested || serviceDefaults.gemini.url })
-    : await backend.newTab({ url: freshUrl, background: false });
+  let page: any;
+  if (args.reuse_conversation || requested) {
+    try {
+      page = await backend.claimTab({ url: requested || serviceDefaults.gemini.url });
+    } catch (error: any) {
+      if (!requestedUrl || !/No extension-assisted browser tab is available to claim/i.test(errorMessageFromUnknown(error, ""))) throw error;
+      page = await backend.newTab({ url: requestedUrl, profile: args.profile, background: false });
+    }
+  } else {
+    page = await backend.newTab({ url: freshUrl, profile: args.profile, background: false });
+  }
   if (requestedUrl) {
     await page.navigate(requestedUrl, { waitUntil: "domcontentloaded", timeoutMs: Math.min(args.timeout_ms || 60000, 30000) });
   } else if (!args.reuse_conversation && !requested) {
@@ -2354,9 +2399,7 @@ async function enableChatgptWebSearchWithExtension(page: any): Promise<void> {
 }
 
 async function selectGeminiModelWithExtension(page: any, expected: string): Promise<void> {
-  await clickExtensionSelector(page, GEMINI_MODE_PICKER_SELECTOR, 5000, "Gemini mode picker trigger was not found");
-  const selector = GEMINI_MODEL_OPTION_TEMPLATES[expected] || `[role="menuitem"]:has-text("${expected.replace(/"/g, '\\"')}")`;
-  await clickExtensionSelector(page, selector, 8000, `Gemini model option was not found: ${expected}`);
+  await selectGeminiModelOption(page, expected, 8000);
 }
 
 async function selectGeminiThinkingLevelWithExtension(page: any, thinkingLevel: string): Promise<void> {
@@ -2368,7 +2411,17 @@ async function selectGeminiThinkingLevelWithExtension(page: any, thinkingLevel: 
 
 async function enableGeminiWebSearchWithExtension(page: any): Promise<void> {
   await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
-  await clickExtensionSelector(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "Gemini Google Search menuitemcheckbox was not found");
+  if (await extensionElementCount(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR)) {
+    await clickExtensionSelector(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "Gemini Google Search menuitemcheckbox was not found");
+    return;
+  }
+  await clickExtensionSelector(page, GEMINI_MORE_TOOLS_SUBMENU_SELECTOR, 3000, "Gemini More tools button was not found").catch(() => undefined);
+  if (await extensionElementCount(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR)) {
+    await clickExtensionSelector(page, GEMINI_WEB_SEARCH_MENUITEM_SELECTOR, 8000, "Gemini Google Search menuitemcheckbox was not found");
+    return;
+  }
+  await dismissGeminiOverlay(page);
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Web Search toggle was not found in the live-probed Upload & tools menus", { selector: GEMINI_WEB_SEARCH_MENUITEM_SELECTOR });
 }
 
 async function applyExtensionPreSendOptions(service: "chatgpt" | "gemini", args: any, page: any): Promise<void> {
@@ -2381,6 +2434,7 @@ async function applyExtensionPreSendOptions(service: "chatgpt" | "gemini", args:
   }
   const expected = normalizeModelTier(service, args);
   if (expected) await selectGeminiModelWithExtension(page, expected);
+  if (args.thinking) await selectGeminiThinkingLevelWithExtension(page, "extended");
   if (args.web_search) await enableGeminiWebSearchWithExtension(page);
 }
 
@@ -2492,7 +2546,7 @@ async function sendPromptInExtensionPage(service: "chatgpt" | "gemini", args: an
     doneVisible: false
   }));
   await page.fill({ selector }, args.prompt, { timeoutMs: Math.min(timeout, 15000) });
-  await extensionSleep(250);
+  await extensionSleep(service === "gemini" ? GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS : 250);
   const sendSelector = sendButtonSelector(service);
   await waitForExtensionSelector(page, sendSelector, 5000, `${service} send button was not found`);
   await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
@@ -2547,42 +2601,22 @@ async function openClaudeExtensionPage(backend: any, args: any): Promise<any> {
 }
 
 async function activateGeminiImageModeWithExtension(page: any, timeoutMs: number): Promise<void> {
-  const imagePillSelector = 'button[aria-label="Deselect Images"]';
   try {
-    await page.waitForSelector(GEMINI_CREATE_IMAGE_BUTTON_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, 4000) });
-    await page.click({ selector: GEMINI_CREATE_IMAGE_BUTTON_SELECTOR }, { timeoutMs: 5000 });
-    await page.waitForSelector(imagePillSelector, { state: "visible", timeoutMs: 5000 });
-    return;
-  } catch {
-    // Fall through to the Upload & tools menu path. The zero-state chip is not
-    // present once Gemini has already mounted the normal composer.
-  }
-  try {
-    await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, 15000) });
-    await page.click({ selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(imagePillSelector, { state: "visible", timeoutMs: 8000 });
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Create image", 1, Math.min(timeoutMs || 60000, 15000));
   } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image tool did not activate through the extension-assisted backend", { selector: `${GEMINI_CREATE_IMAGE_BUTTON_SELECTOR} OR ${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR} -> ${imagePillSelector}`, cause: error?.message || String(error) });
+    if (isConsumerErrorCode(error?.errorCode)) throw error;
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create image menuitemcheckbox did not report aria-checked=true", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_IMAGE_MENUITEM_SELECTOR}`, cause: error?.message || String(error) });
   }
 }
 
 async function activateGeminiVideoModeWithExtension(page: any, timeoutMs: number): Promise<void> {
   try {
-    await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS) });
-    await page.click({ selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
-    try {
-      await page.waitForSelector(GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 2500 });
-    } catch {
-      await page.waitForSelector(GEMINI_MORE_TOOLS_SUBMENU_SELECTOR, { state: "visible", timeoutMs: 5000 });
-      await page.click({ selector: GEMINI_MORE_TOOLS_SUBMENU_SELECTOR }, { timeoutMs: 5000 });
-    }
-    await page.waitForSelector(GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_VIDEO_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Create video", 1, Math.min(timeoutMs || 300000, 15000));
   } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video tool did not activate through the extension-assisted backend", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_MENUITEM_SELECTOR} -> ${GEMINI_VIDEO_MODE_ACTIVE_SELECTOR}`, cause: error?.message || String(error) });
+    if (isConsumerErrorCode(error?.errorCode)) throw error;
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Create video menuitemcheckbox did not report aria-checked=true", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CREATE_VIDEO_EXTENSION_MENUITEM_SELECTOR}`, cause: error?.message || String(error) });
   }
 }
 async function assertClaudeExtensionLoggedIn(page: any, started: number): Promise<Record<string, unknown> | null> {
@@ -2844,12 +2878,13 @@ async function waitForAttachmentReadyWithExtension(page: any, service: "chatgpt"
     }
     const sendButtons = qsa(arg.sendSelector);
     const sendReady = sendButtons.some((button) => visible(button) && button.getAttribute('aria-disabled') !== 'true' && !(button instanceof HTMLButtonElement && button.disabled));
-    const ready = expected.size > 0 && Array.from(expected).every((name) => seen.has(name)) && sendReady;
+    const filesReady = expected.size > 0 && Array.from(expected).every((name) => seen.has(name));
+    const ready = filesReady && (arg.service === 'gemini' || sendReady);
     return { ready, seen: Array.from(seen), sendReady };
   })()`;
   let lastState: any = { ready: false, seen: [], sendReady: false };
   while (Date.now() <= deadline) {
-    lastState = await page.evaluateReadOnly(expression, { filenames, sendSelector }).catch(() => lastState);
+    lastState = await page.evaluateReadOnly(expression, { filenames, sendSelector, service }).catch(() => lastState);
     if (lastState?.ready) return;
     await extensionSleep(500);
   }
@@ -2882,14 +2917,34 @@ async function uploadGeminiFilesWithExtension(page: any, resolved: string[], arg
   }
   await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
   try {
-    await page.waitForSelector(GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
+    await page.waitForSelector(GEMINI_UPLOAD_FILES_SELECTOR, { state: "visible", timeoutMs: 8000 });
   } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menuitem was not found", { selector: GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, cause: errorMessageFromUnknown(error, "") });
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload-files menuitem was not found", { selector: GEMINI_UPLOAD_FILES_SELECTOR, cause: errorMessageFromUnknown(error, "") });
+  }
+  await clickExtensionSelector(page, GEMINI_UPLOAD_FILES_SELECTOR, 8000, "Gemini upload-files menuitem was not found");
+  const uploadInputSelectors = ['input[type="file"][name="Filedata"]', 'input[type="file"]'];
+  let uploadInputSelector = "";
+  let lastInputError: any;
+  for (const selector of uploadInputSelectors) {
+    try {
+      await page.waitForSelector(selector, { state: "attached", timeoutMs: 8000 });
+      uploadInputSelector = selector;
+      break;
+    } catch (error) {
+      lastInputError = error;
+    }
+  }
+  if (!uploadInputSelector) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini upload file input was not found after clicking Upload files", { selector: uploadInputSelectors.join(", "), cause: errorMessageFromUnknown(lastInputError, "") });
   }
   for (const filePath of resolved) {
-    await page.uploadFile(GEMINI_UPLOAD_FILES_MENUITEM_SELECTOR, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
+    await page.uploadFile(uploadInputSelector, filePath, { timeoutMs: Math.min(args.timeout_ms || 60000, 30000), multiple: resolved.length > 1 });
   }
-  await waitForAttachmentReadyWithExtension(page, "gemini", resolved, Math.min(args.timeout_ms || 60000, 30000));
+  // Gemini keeps Send disabled until prompt text is present, so the generic
+  // attachment readiness gate cannot require sendReady before the prompt is
+  // filled. Give the hidden file input change event a short settle window; the
+  // subsequent send path waits for the hydrated Send button after filling.
+  await extensionSleep(1000);
 }
 
 async function uploadAndQueryWithExtensionBackend(service: "chatgpt" | "gemini", args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
@@ -3094,6 +3149,9 @@ function validateGeminiExtensionSelectModelArgs(args: any): Record<string, unkno
   }
   if (args.model !== undefined && (typeof args.model !== "string" || !args.model.trim())) {
     return selectModelInvalidArgs("webai_gemini_select_model", "model must be a non-empty picker label");
+  }
+  if (args.model !== undefined && !isSupportedGeminiModelOption(args.model)) {
+    return selectModelInvalidArgs("webai_gemini_select_model", `unsupported model "${args.model}" (allowed: 3.1-flash-lite, 3.5-flash, 3.1-pro)`);
   }
   if (args.thinking_level !== undefined && !GEMINI_THINKING_OPTION_TEMPLATES[String(args.thinking_level)]) {
     return selectModelInvalidArgs("webai_gemini_select_model", `unsupported thinking_level "${args.thinking_level}" (allowed: standard, extended)`);
@@ -3407,6 +3465,7 @@ async function generateGeminiImageWithExtensionBackend(args: any, runtime: Requi
     await activateGeminiImageModeWithExtension(page, args.timeout_ms || 60000);
     await page.waitForSelector(GEMINI_IMAGE_PROMPT_SELECTOR, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
     await page.fill({ selector: GEMINI_IMAGE_PROMPT_SELECTOR }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
+    await extensionSleep(GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS);
     const sendSelector = sendButtonSelector("gemini");
     await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
     await page.queryElements(sendSelector, { limit: 3 });
@@ -3474,6 +3533,7 @@ async function generateGeminiVideoWithExtensionBackend(args: any, runtime: Requi
     }
     await page.waitForSelector(GEMINI_VIDEO_PROMPT_SELECTOR, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 300000, 15000) });
     await page.fill({ selector: GEMINI_VIDEO_PROMPT_SELECTOR }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 300000, 15000) });
+    await extensionSleep(GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS);
     const sendSelector = sendButtonSelector("gemini");
     await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
     await page.queryElements(sendSelector, { limit: 3 });
@@ -5312,13 +5372,11 @@ async function onboardChatgptPulseWithExtensionBackend(args: any, runtime: Requi
 
 async function activateGeminiCanvasModeWithExtension(page: any, timeoutMs: number): Promise<void> {
   try {
-    await page.waitForSelector(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS) });
-    await page.click({ selector: GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_CANVAS_MENUITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: GEMINI_CANVAS_MENUITEM_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, { state: "visible", timeoutMs: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Canvas", 1, Math.min(timeoutMs || 60000, 15000));
   } catch (error: any) {
-    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas tool did not activate through the extension-assisted backend", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CANVAS_MENUITEM_SELECTOR} -> ${GEMINI_CANVAS_MODE_ACTIVE_SELECTOR}`, cause: errorMessageFromUnknown(error, "") });
+    if (isConsumerErrorCode(error?.errorCode)) throw error;
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas menuitemcheckbox did not report aria-checked=true", { selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CANVAS_MENUITEM_SELECTOR}`, cause: errorMessageFromUnknown(error, "") });
   }
 }
 
@@ -5326,7 +5384,7 @@ async function submitGeminiCanvasPromptWithExtension(page: any, args: any): Prom
   await activateGeminiCanvasModeWithExtension(page, args.timeout_ms || 60000);
   await page.waitForSelector(GEMINI_IMAGE_PROMPT_SELECTOR, { state: "visible", timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
   await page.fill({ selector: GEMINI_IMAGE_PROMPT_SELECTOR }, args.prompt, { timeoutMs: Math.min(args.timeout_ms || 60000, 15000) });
-  await extensionSleep(250);
+  await extensionSleep(GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS);
   const sendSelector = sendButtonSelector("gemini");
   await page.waitForSelector(sendSelector, { state: "visible", timeoutMs: 5000 });
   await page.queryElements(sendSelector, { limit: 3 }).catch(() => []);
@@ -5862,8 +5920,8 @@ async function geminiDeepResearchModelDriftError(page: any): Promise<WebAiToolEr
   if (/3\.1\s*Flash\s*Lite|Flash\s*Lite/i.test(snapshot.text || "")) {
     return new WebAiToolError(
       ConsumerErrorCodes.MODEL_SELECTION_DRIFT,
-      "Gemini Deep research is unavailable while the current model is 3.1 Flash Lite; select a Deep research-capable model such as 2.5 Pro before submitting.",
-      { selected_model: "3.1 Flash Lite", selector: GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, url: snapshot.url }
+      "Gemini Deep research is unavailable while the current model is 3.1 Flash Lite / Flash-Lite; select 3.5 Flash before submitting.",
+      { selected_model: "3.1 Flash Lite", selector: GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, url: snapshot.url, target_model: "3.5 Flash" }
     );
   }
   return null;
@@ -5943,7 +6001,7 @@ async function fillAndSubmitDeepResearchWithExtension(page: any, service: WebAiE
   const timeoutMs = Math.min(args.timeout_ms || 60000, 15000);
   await waitForExtensionSelector(page, selector, timeoutMs, `${deepResearchLabel(service)} prompt composer was not found`);
   await page.fill({ selector }, args.prompt, { timeoutMs });
-  await extensionSleep(250);
+  await extensionSleep(service === "gemini" ? GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS : 250);
   const before = await extensionDeepResearchSubmitState(page, service, args.prompt).catch(async () => {
     const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor(service, args), text: "" }));
     return { url: snapshot.url || targetUrlFor(service, args), promptPresent: true, stopVisible: false, assistantCount: 0 };
@@ -6055,15 +6113,11 @@ async function startGeminiDeepResearchWithExtensionBackend(args: any, runtime: R
       return deepResearchErrorOutput("gemini", effective, new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Deep research"), { task_id, chat_url: snapshot.url || targetUrlFor("gemini", effective) });
     }
     await clickExtensionSelector(page, 'button:has-text("Not now")', 1000, "Gemini optional dialog was not found").catch(() => undefined);
-    await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
-    if (!(await extensionElementCount(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR))) {
-      const drift = await geminiDeepResearchModelDriftError(page);
-      if (drift) throw drift;
-    }
-    await clickExtensionSelector(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, 8000, "Gemini Deep research menuitemcheckbox was not found");
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Deep research", 1, Math.min(effective.timeout_ms || 60000, 15000));
     const submitted = await fillAndSubmitDeepResearchWithExtension(page, "gemini", effective);
     persistDeepResearchTask(runtime.database, "gemini", effective, task_id, lease, submitted.chat_url);
-    return safeOutput({ task_id, status: "queued", chat_url: submitted.chat_url, wait_ms: submitted.wait_ms, errorCode: null });
+    return safeOutput({ ok: true, task_id, status: "queued", chat_url: submitted.chat_url, wait_ms: submitted.wait_ms, errorCode: null });
   } catch (error: any) {
     return deepResearchErrorOutput("gemini", effective, error, { task_id });
   } finally {
@@ -6641,7 +6695,7 @@ async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<
   if (!args.model && !args.thinking_level) {
     return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: "webai_gemini_select_model requires at least one of: model, thinking_level" });
   }
-  if (args.model && !GEMINI_MODEL_OPTION_TEMPLATES[args.model]) {
+  if (args.model && !isSupportedGeminiModelOption(args.model)) {
     return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `webai_gemini_select_model: unsupported model "${args.model}" (allowed: 3.1-flash-lite, 3.5-flash, 3.1-pro)` });
   }
   if (args.thinking_level && !GEMINI_THINKING_OPTION_TEMPLATES[args.thinking_level]) {
@@ -6671,9 +6725,10 @@ async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<
 
       if (args.model) {
         await openPicker();
-        const opt = page.locator(GEMINI_MODEL_OPTION_TEMPLATES[args.model]).first();
+        const modelSelector = GEMINI_MODEL_OPTION_TEMPLATES[args.model] || geminiModelOptionSelector(args.model);
+        const opt = page.locator(modelSelector).first();
         await opt.waitFor({ state: "visible", timeout: 5000 }).catch(() => {
-          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini model option ${args.model} not found`, { selector: GEMINI_MODEL_OPTION_TEMPLATES[args.model] });
+          throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Gemini model option ${args.model} not found`, { selector: modelSelector });
         });
         await opt.click({ timeout: 5000 });
         selected_model = args.model;

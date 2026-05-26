@@ -7,6 +7,7 @@ import { runArtifactClick } from "../../../browser/artifactClick";
 import { defaultHttpBridgeUrlForProfile } from "../../../runtime/extension/httpBridgeClient";
 import { assertPromptAllowed } from "../../../safety/promptDeny";
 import { BrowserToolRuntime, ToolSpec, acquireProfileLease, releaseProfileLease, withManagedPage } from "../../tools";
+import { ensureGeminiToolsAvailable, toggleGeminiTool } from "../../geminiExtensionHelpers";
 import {
   GEMINI_MUSIC_URL,
   MUSIC_COMPOSER_SELECTOR,
@@ -16,7 +17,6 @@ import {
   MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR,
   MUSIC_MORE_TOOLS_SUBMENU_SELECTOR,
   GeminiMusicFormat,
-  MUSIC_DESELECT_SELECTOR,
   MUSIC_TOOLS_CREATE_ITEM_SELECTOR,
   stepActivateMusicTool,
   stepDownloadTrack,
@@ -93,22 +93,13 @@ async function extensionGeminiMusicPage(args: any, backend: any): Promise<any> {
 }
 async function activateMusicToolWithExtension(page: any, timeoutMs: number): Promise<void> {
   try {
-    await page.waitForSelector(MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeoutMs: Math.min(timeoutMs, 15000) });
-    await page.click({ selector: MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR }, { timeoutMs: 8000 });
-    try {
-      await page.waitForSelector(MUSIC_TOOLS_CREATE_ITEM_SELECTOR, { state: "visible", timeoutMs: 2500 });
-    } catch {
-      await page.waitForSelector(MUSIC_MORE_TOOLS_SUBMENU_SELECTOR, { state: "visible", timeoutMs: 5000 });
-      await page.click({ selector: MUSIC_MORE_TOOLS_SUBMENU_SELECTOR }, { timeoutMs: 5000 });
-    }
-    await page.waitForSelector(MUSIC_TOOLS_CREATE_ITEM_SELECTOR, { state: "visible", timeoutMs: 8000 });
-    await page.click({ selector: MUSIC_TOOLS_CREATE_ITEM_SELECTOR }, { timeoutMs: 8000 });
-    await page.waitForSelector(MUSIC_DESELECT_SELECTOR, { state: "visible", timeoutMs: 15000 });
+    await ensureGeminiToolsAvailable(page);
+    await toggleGeminiTool(page, "Create music", 2, Math.min(timeoutMs || 180000, 15000));
   } catch (error: any) {
     const message = error?.message || String(error);
-    throw Object.assign(new Error(`${ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music tool did not activate through the extension-assisted backend (${message})`), {
-      errorCode: ConsumerErrorCodes.ELEMENT_NOT_FOUND,
-      evidence: { selector: `${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${MUSIC_TOOLS_CREATE_ITEM_SELECTOR} -> ${MUSIC_DESELECT_SELECTOR}` }
+    throw Object.assign(new Error(`${error?.errorCode || ConsumerErrorCodes.ELEMENT_NOT_FOUND}: Gemini Music Create music menuitemcheckbox did not report aria-checked=true (${message})`), {
+      errorCode: error?.errorCode || ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+      evidence: { selector: `${MUSIC_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${MUSIC_MORE_TOOLS_SUBMENU_SELECTOR} -> ${MUSIC_TOOLS_CREATE_ITEM_SELECTOR}` }
     });
   }
 }
@@ -174,6 +165,7 @@ async function generateGeminiMusicWithExtensionBackend(args: any, runtime: Requi
     await activateMusicToolWithExtension(page, Number(effective.timeout_ms || 180000));
     await page.waitForSelector(MUSIC_COMPOSER_SELECTOR, { state: "visible", timeoutMs: Math.min(Number(effective.timeout_ms || 180000), 15000) });
     await fillMusicComposerWithExtension(page, String(effective.prompt), Math.min(Number(effective.timeout_ms || 180000), 15000));
+    await new Promise((resolve) => setTimeout(resolve, 700));
     await page.waitForSelector(MUSIC_SEND_SELECTOR, { state: "visible", timeoutMs: 5000 });
     await page.queryElements(MUSIC_SEND_SELECTOR, { limit: 3 });
     await page.click({ selector: MUSIC_SEND_SELECTOR }, { timeoutMs: 5000 });
