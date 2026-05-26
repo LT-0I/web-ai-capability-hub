@@ -1,0 +1,140 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "claude-send-thinking-ext",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T07:02:30.152Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--model",
+            "Sonnet 4.6",
+            "--thinking",
+            "--prompt",
+            "Think step by step: 17 x 23 = ?",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "391"
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-send-thinking-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Claude thinking-mode arithmetic prompt",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-thinking-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:send-prompt",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--model",
+          "Sonnet 4.6",
+          "--thinking",
+          "--prompt",
+          "Think step by step: 17 x 23 = ?",
+          "--response-timeout-ms",
+          "180000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 9630,
+        "stdout": "{\n  \"response_text\": \"Claude responded: 17 × 23\\n\\n17 × 23\\n\\nBreak it apart: 17 × 20 = 340, and 17 × 3 = 51.\\n\\n340 + 51 = 391\",\n  \"elapsed_ms\": 9483,\n  \"wait_ms\": 5577,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/2361003f-6678-4ecc-b65e-6aceeb2bf790\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "Claude responded: 17 × 23\n\n17 × 23\n\nBreak it apart: 17 × 20 = 340, and 17 × 3 = 51.\n\n340 + 51 = 391",
+          "elapsed_ms": 9483,
+          "wait_ms": 5577,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/2361003f-6678-4ecc-b65e-6aceeb2bf790"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "Claude responded: 17 × 23\n\n17 × 23\n\nBreak it apart: 17 × 20 = 340, and 17 × 3 = 51.\n\n340 + 51 = 391",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "Claude responded: 17 × 23\n\n17 × 23\n\nBreak it apart: 17 × 20 = 340, and 17 × 3 = 51.\n\n340 + 51 = 391",
+        "wait_ms": 5577,
+        "completion_detected": true,
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/2361003f-6678-4ecc-b65e-6aceeb2bf790"
+      }
+    }
+  ],
+  "runId": "run_27aa048c81f8cc78"
+}

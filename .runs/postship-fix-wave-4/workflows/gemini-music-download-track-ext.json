@@ -1,0 +1,236 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "gemini-music-download-track-ext",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T07:02:19.465Z",
+    "actions": [
+      {
+        "stepId": "ensure_track",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short calm acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "timeoutMs": 360000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "conversation_url",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:download-track",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "{{steps.ensure_track.conversation_url}}",
+            "--format",
+            "mp3",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "savedPath",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-music-download-track-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a Gemini Music track, then download that finished track as MP3",
+      "steps": [
+        {
+          "id": "ensure_track",
+          "command": "<circular>",
+          "timeoutMs": 360000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "ensure_track",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path conversation_url empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:generate",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "A short calm acoustic guitar loop, instrumental, 30 seconds",
+          "--confirmed",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--timeout-ms",
+          "300000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 170,
+        "stdout": "{\n  \"task_id\": \"\",\n  \"status\": \"error\",\n  \"conversation_url\": \"\",\n  \"ok\": false,\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"fetch failed\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "task_id": "",
+          "status": "error",
+          "conversation_url": "",
+          "ok": false,
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "fetch failed"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "conversation_url",
+              "actual": "",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            }
+          ]
+        },
+        "task_id": "",
+        "status": "error",
+        "conversation_url": "",
+        "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+        "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+        "message": "fetch failed"
+      }
+    },
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path savedPath empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:music:download-track",
+          "--profile",
+          "gemini-9225",
+          "--tab-url-contains",
+          "",
+          "--format",
+          "mp3",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 146,
+        "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.tab_url_contains is required\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_music_download_track\",\n    \"stage\": \"schema\",\n    \"message\": \"$.tab_url_contains is required\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "ok": false,
+          "errorCode": "INVALID_ARGS",
+          "error_code": "INVALID_ARGS",
+          "error": "$.tab_url_contains is required",
+          "evidence": {
+            "tool": "webai_gemini_music_download_track",
+            "stage": "schema",
+            "message": "$.tab_url_contains is required",
+            "error_name": "Error"
+          }
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "savedPath",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            }
+          ]
+        },
+        "errorCode": "INVALID_ARGS",
+        "error_code": "INVALID_ARGS",
+        "error": "$.tab_url_contains is required",
+        "evidence": "<circular>"
+      }
+    }
+  ],
+  "runId": "run_71c1eaa5160c21c4"
+}

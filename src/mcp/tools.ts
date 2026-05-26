@@ -449,18 +449,16 @@ function isCdpEndpointReadinessRace(error: any): boolean {
   return /CDP endpoint did not become ready|connect ECONNREFUSED|ECONNREFUSED/i.test(message);
 }
 
-async function runArtifactClickWithCdpReadinessRetry(runtime: Required<BrowserToolRuntime>, options: Parameters<typeof runArtifactClick>[0], attempts = 3): Promise<Awaited<ReturnType<typeof runArtifactClick>>> {
-  let lastError: any;
-  for (let attempt = 0; attempt < attempts; attempt++) {
+async function runArtifactClickWithCdpReadinessRetry(runtime: Required<BrowserToolRuntime>, options: Parameters<typeof runArtifactClick>[0], retryBudgetMs = 5000): Promise<Awaited<ReturnType<typeof runArtifactClick>>> {
+  const deadline = Date.now() + Math.max(0, Math.min(retryBudgetMs, 5000));
+  for (;;) {
     try {
       return await artifactClickRunner(runtime)(options);
     } catch (error) {
-      lastError = error;
-      if (attempt >= attempts - 1 || !isCdpEndpointReadinessRace(error)) throw error;
-      await extensionSleep(750 * (attempt + 1));
+      if (!isCdpEndpointReadinessRace(error) || Date.now() >= deadline) throw error;
+      await extensionSleep(Math.min(100, Math.max(1, deadline - Date.now())));
     }
   }
-  throw lastError;
 }
 
 interface WorkflowExecuteArgs {
@@ -770,6 +768,24 @@ const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
 const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
 const GEMINI_MIN_NO_RESPONSE_WAIT_MS = 8000;
 const GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS = 700;
+const CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR = [
+  '[data-message-author-role="assistant"] a[download]',
+  '[data-message-author-role="assistant"] a[href*="/interpreter/download"]',
+  '[data-message-author-role="assistant"] a[href*="/estuary/content"]',
+  '[data-message-author-role="assistant"] button[aria-label*="Download" i]',
+  '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
+].join(", ");
+const CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR = [
+  'button[aria-label^="Download" i]',
+  'button[aria-label*="Download" i]',
+  '[role="button"][aria-label*="Download" i]',
+  'a[aria-label*="Download" i]',
+  'a[download]',
+  'button[data-testid*="download" i]',
+  '[data-testid*="download" i] button',
+  'button:has-text("Download")'
+].join(", ");
+const CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS = 90000;
 
 function responseTimeoutMs(args: any): number {
   const value = Number(args.response_timeout_ms ?? args.responseTimeoutMs ?? DEFAULT_RESPONSE_TIMEOUT_MS);
@@ -1261,7 +1277,7 @@ function stopButtonSelector(service: WebAiService): string {
 function sendButtonSelector(service: WebAiService): string {
   if (service === "gemini") return 'button[aria-label="Send message"]';
   if (service === "chatgpt") return 'button[data-testid="composer-submit-button"], button[data-testid="send-button"], #composer-submit-button, button[aria-label*="Send" i], button[aria-label*="Submit" i], form button[type="submit"]';
-  return '[aria-label*="Send" i]';
+  return 'button[data-testid="chat-send-button"], button[data-testid="send-button"], [data-testid="chat-send-button"], [data-testid="send-button"], button[aria-label*="Send" i], [aria-label*="Send" i], button[aria-label*="Submit" i], [aria-label*="Submit" i], form button[type="submit"]';
 }
 
 async function waitForGeminiGenerationStart(page: any, stopSelector: string, assistantCountBefore: number, timeoutMs: number): Promise<boolean> {
@@ -2197,6 +2213,25 @@ function fileErrorOutput(errorCode: ConsumerErrorCode, message: string, extra: R
     message,
     ...extra
   });
+}
+
+function isArtifactDownloadControlMissing(error: any): boolean {
+  const code = error?.errorCode || error?.code;
+  const message = errorMessageFromUnknown(error, "");
+  return code === ConsumerErrorCodes.ELEMENT_NOT_FOUND
+    || /No element matched --button-selector|button-selector|download control.*not found/i.test(message);
+}
+
+function generatedFileDownloadTimeoutError(service: "ChatGPT" | "Claude", error: any, selector: string, timeoutMs: number): WebAiToolError {
+  return new WebAiToolError(
+    ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT,
+    `${service} generated file download control did not appear before timeout`,
+    {
+      ...(error?.evidence && typeof error.evidence === "object" ? error.evidence : {}),
+      selector,
+      timeoutMs
+    }
+  );
 }
 
 function extensionHttpBridgeUrlForArgs(args: any): string {
@@ -3416,21 +3451,24 @@ async function generateClaudeFileWithExtensionBackend(args: any, runtime: Requir
     const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: promptResult.chat_url || targetUrlFor("claude", effective), text: "" }));
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
-    const buttonSelector = effective.artifact_class === "document"
-      ? 'button[aria-label="Download"]'
-      : `button[aria-label^="Download"]`;
-    const result = await artifactClickRunner(runtime)({
+    const buttonSelector = CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR;
+    const locateTimeoutMs = Math.min(Number(effective.timeout_ms || CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS), CLAUDE_GENERATED_FILE_LOCATE_TIMEOUT_MS);
+    const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || serviceDefaults.claude.url,
       buttonSelector,
       downloadDir: effective.download_dir,
       filenamePattern: `\\.${effective.expected_extension}$`,
       timeoutMs: Math.min(Number(effective.timeout_ms || 60000), 60000),
+      locateTimeoutMs,
       pageReadyEvidence: {
         backend: "extension-assisted-cdp",
         capturedAt: bundle.capturedAt,
         assetCount: bundle.assets.length
       }
+    }).catch((error: any) => {
+      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("Claude", error, buttonSelector, locateTimeoutMs);
+      throw error;
     });
     return artifactClickResultToSafeOutput(result, { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } catch (error: any) {
@@ -3477,7 +3515,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
-      buttonSelector: '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type',
+      buttonSelector: CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR,
       downloadDir: effective.download_dir,
       filenamePattern: `\\.${effective.expected_extension}$`,
       timeoutMs: chatgptArtifactTimeoutMs,
@@ -3488,6 +3526,9 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
         capturedAt: bundle.capturedAt,
         assetCount: bundle.assets.length
       }
+    }).catch((error: any) => {
+      if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR, 360000);
+      throw error;
     });
     return artifactClickResultToSafeOutput(result, { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } catch (error: any) {
@@ -3756,7 +3797,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
     // diagnostic ARTIFACT_DOWNLOAD_TIMEOUT identifying the file-card render
     // race, instead of leaking the generic ELEMENT_NOT_FOUND.
     const buttonSelector = service === "chatgpt"
-      ? '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
+      ? CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR
       : args.artifact_class === "document"
         ? 'button[aria-label="Download"]'
         : `button[aria-label^="Download"]`;
@@ -3775,7 +3816,7 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
     // unchanged because its file card emits inline with the response (no
     // separate post-stream window).
     const chatgptArtifactTimeoutMs = Math.min(Number(args.timeout_ms || 480000), 480000);
-    const result = await artifactClickRunner(runtime)({
+    const artifactOptions = {
       profile: args.profile,
       tabUrlContains: args.tab_url_contains || conversationUrl || serviceDefaults[service].url,
       buttonSelector,
@@ -3787,7 +3828,10 @@ async function generateFileOnPage(service: "chatgpt" | "claude", args: any, runt
       // CDP Input.dispatchMouseEvent — confirmed live). The chip's onClick
       // is idempotent so the dual-fire produces a single download.
       ...(service === "chatgpt" ? { locateTimeoutMs: 360000, useJsClickFallback: true } : {})
-    });
+    };
+    const result = service === "chatgpt"
+      ? await runArtifactClickWithCdpReadinessRetry(runtime, artifactOptions)
+      : await artifactClickRunner(runtime)(artifactOptions);
     return artifactClickResultToSafeOutput(result, service === "chatgpt" ? { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") } : { artifact_name: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } finally { releaseProfileLease(args.profile, lease); }
 }
@@ -5830,7 +5874,8 @@ async function waitForDesignFileCompletionWithExtension(page: any, projectUrl: s
   let latest: any = { projectUrl, fileName: "" };
   while (Date.now() <= deadline) {
     latest = await designFileStateWithExtension(page).catch(() => latest);
-    if (latest.fileName || CLAUDE_DESIGN_SERVE_IFRAME_RE.test(String(latest.iframeSrc || ""))) {
+    const hasServedIframe = CLAUDE_DESIGN_SERVE_IFRAME_RE.test(String(latest.iframeSrc || ""));
+    if (hasServedIframe || (latest.hasIframe && latest.fileName)) {
       return { projectUrl: latest.projectUrl || projectUrl, fileName: latest.fileName || claudeDesignFileName(latest.projectUrl || projectUrl) || "design.html" };
     }
     await extensionSleep(1000);
@@ -5840,7 +5885,16 @@ async function waitForDesignFileCompletionWithExtension(page: any, projectUrl: s
 
 async function ensureClaudeDesignViewerOpenWithExtension(page: any, projectUrl: string): Promise<void> {
   const initial = await designFileStateWithExtension(page).catch(() => ({ hasIframe: false, fileName: "" }));
-  if (initial.hasIframe || claudeDesignFileName(await currentExtensionUrl(page, projectUrl))) return;
+  if (initial.hasIframe) return;
+  const current = await currentExtensionUrl(page, projectUrl);
+  if (claudeDesignFileName(current)) {
+    const viewerDeadline = Date.now() + 30000;
+    while (Date.now() <= viewerDeadline) {
+      const state = await designFileStateWithExtension(page).catch(() => ({ hasIframe: false, fileName: "" }));
+      if (state.hasIframe) return;
+      await extensionSleep(500);
+    }
+  }
   await extensionClick(page, CLAUDE_DESIGN_FILE_OPEN_SELECTOR, 8000);
   const deadline = Date.now() + 30000;
   while (Date.now() <= deadline) {
@@ -7143,7 +7197,10 @@ async function webAiGeminiMusicDownloadTrackWithExtensionBackend(args: any, runt
       tabUrlContains,
       downloadDir: effective.download_dir as string | undefined,
       format: (effective.format as GeminiMusicFormat | undefined) || "mp3",
-      artifactClick: (runtime as any).artifactClick
+      timeoutMs: Number(effective.timeout_ms || 90000),
+      locateTimeoutMs: Number(effective.locate_timeout_ms || 45000),
+      prerenderWaitMs: 2500,
+      artifactClick: (options: Record<string, unknown>) => runArtifactClickWithCdpReadinessRetry(runtime, options as any)
     });
     return safeOutput(result);
   } catch (error: any) {

@@ -128,10 +128,12 @@ export async function waitForTrackReady(page: any, timeoutMs = 180000): Promise<
   throw new Error(`${ConsumerErrorCodes.COMMAND_TIMEOUT}: Gemini music generation did not finish before timeout`);
 }
 
-export async function stepDownloadTrack(page: any, args: { profile: string; tabUrlContains: string; downloadDir?: string; format?: GeminiMusicFormat; artifactClick?: ArtifactClickLike }): Promise<Record<string, unknown>> {
+export async function stepDownloadTrack(page: any, args: { profile: string; tabUrlContains: string; downloadDir?: string; format?: GeminiMusicFormat; timeoutMs?: number; locateTimeoutMs?: number; prerenderWaitMs?: number; artifactClick?: ArtifactClickLike }): Promise<Record<string, unknown>> {
   const format = args.format || "mp3";
   const downloadDir = ensureDownloadDir(args.downloadDir);
   const followUpTextRegex = format === "mp3" ? "MP3" : "Video";
+  const timeoutMs = Math.min(Number(args.timeoutMs || 60000), 120000);
+  const locateTimeoutMs = Math.min(Number(args.locateTimeoutMs || 20000), timeoutMs);
   try {
     const result = await (args.artifactClick || runArtifactClick)({
       profile: args.profile,
@@ -140,9 +142,9 @@ export async function stepDownloadTrack(page: any, args: { profile: string; tabU
       followUpTextRegex,
       downloadDir,
       filenamePattern: format === "mp3" ? "\\.mp3$" : "\\.(mp4|webm|mov|m4v)$",
-      timeoutMs: 60000,
-      locateTimeoutMs: 20000,
-      prerenderWaitMs: 1500,
+      timeoutMs,
+      locateTimeoutMs,
+      prerenderWaitMs: Number(args.prerenderWaitMs || 1500),
       noDisconnect: true
     });
     const savedPath = result.path || result.savedPath || "";

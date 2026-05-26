@@ -1,0 +1,132 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "claude-generate-file-md-ext",
+    "target": "claude",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T06:58:50.484Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.",
+            "--expected-extension",
+            "md",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "claude-generate-file-md-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a downloadable .md file in Claude",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-md-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:claude:generate-file",
+          "--profile",
+          "claude-9224",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "Write a markdown README about a project 'ClaudeCapProbe'. Provide as .md file.",
+          "--expected-extension",
+          "md",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/claude",
+          "--artifact-class",
+          "code",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 38360,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/README.md\",\n  \"sha256\": \"8e01e6e9b834e3af5d1a433121cd8088516ee8724b29991513cf9c8adb70e292\",\n  \"size_bytes\": 5017,\n  \"download_filename\": \"README.md\",\n  \"artifact_name\": \"README.md\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/claude/README.md",
+          "sha256": "8e01e6e9b834e3af5d1a433121cd8088516ee8724b29991513cf9c8adb70e292",
+          "size_bytes": 5017,
+          "download_filename": "README.md",
+          "artifact_name": "README.md",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/claude/README.md",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/claude/README.md",
+        "sha256": "8e01e6e9b834e3af5d1a433121cd8088516ee8724b29991513cf9c8adb70e292",
+        "size_bytes": 5017,
+        "download_filename": "README.md",
+        "artifact_name": "README.md",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_a5270cc200669d41"
+}
