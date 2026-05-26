@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-26",
+  "services": {
+    "chatgpt": {
+      "status": "skipped",
+      "reason": "data/site-maps/ has no baseline files; snapshot:capture requires a headed/live browser and no DISPLAY/browser was available; live chrome launch deferred by wave constraints"
+    },
+    "claude": {
+      "status": "skipped",
+      "reason": "data/site-maps/ has no baseline files; snapshot:capture requires a headed/live browser and no DISPLAY/browser was available; live chrome launch deferred by wave constraints"
+    },
+    "gemini": {
+      "status": "skipped",
+      "reason": "data/site-maps/ has no baseline files; snapshot:capture requires a headed/live browser and no DISPLAY/browser was available; live chrome launch deferred by wave constraints"
+    }
+  },
+  "baseline_dir": "data/site-maps/",
+  "baseline_file_count": 0,
+  "drift_count": null,
+  "risk_summary": "No snapshot diff produced; defer cheap drift pre-detection until baseline files and an already-running browser are available."
+}

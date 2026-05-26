@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "CHECK constraint failed: status IN ('IMPLEMENTED_GREEN','EXPLORED_PATH_KNOWN','UNEXPLORED','IN_PROGRESS','BLOCKED_NEEDS_USER','OUT_OF_SCOPE')",
+  "resolution": "Refreshed the untracked data/capability-hub.sqlite integration_registry CHECK constraint from docs/capability-library.json status_enum, then reran the official capability:library:import successfully."
+}

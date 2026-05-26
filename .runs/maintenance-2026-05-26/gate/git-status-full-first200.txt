@@ -1,0 +1,64 @@
+ M .omc/codex-out/postship-fix-wave-10-final-five.md
+ M .omc/codex-out/postship-fix-wave-3-chatgpt-selectors-and-gpts.md
+ M .omc/codex-out/postship-fix-wave-5-final-validation.md
+ M .omc/codex-out/postship-fix-wave-7-chatgpt-detector-rewrite.md
+ M .omc/codex-out/postship-fix-wave-9-final-residual.md
+ M docs/capability-library.json
+?? .runs/maintenance-2026-05-26/
+?? .runs/postship-fix-wave-1/
+?? .runs/postship-fix-wave-10/commit-message.txt
+?? .runs/postship-fix-wave-10/probes/chatgpt-pptx-chip-deep.json
+?? .runs/postship-fix-wave-10/probes/chatgpt-pptx-chip.json
+?? .runs/postship-fix-wave-10/probes/claude-design-dom-contexts.json
+?? .runs/postship-fix-wave-10/run-five-workflows.js
+?? .runs/postship-fix-wave-10/workflows/gemini-image-draft.json
+?? .runs/postship-fix-wave-10/workflows/gemini-image-draft.retry.json
+?? .runs/postship-fix-wave-10/workflows/gemini-image-draft.retry.stderr
+?? .runs/postship-fix-wave-10/workflows/gemini-image-draft.stderr
+?? .runs/postship-fix-wave-10/workflows/summary-infra-first-run.json
+?? .runs/postship-fix-wave-2-v2/probes/
+?? .runs/postship-fix-wave-2-v2/workflows/
+?? .runs/postship-fix-wave-2/
+?? .runs/postship-fix-wave-3/probes/
+?? .runs/postship-fix-wave-3/workflows/chatgpt-canvas-create-export-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-canvas-create-export-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-select-model-thinking-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-select-model-thinking-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-send-thinking-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-send-thinking-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-send-web-search-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-send-web-search-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-upload-multi-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-upload-multi-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-upload-single-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-chatgpt-upload-single-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-deep-research-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-deep-research-ext.stderr
+?? .runs/postship-fix-wave-3/workflows/chatgpt-generate-image-ext.json
+?? .runs/postship-fix-wave-3/workflows/chatgpt-generate-image-ext.stderr
+?? .runs/postship-fix-wave-6/chrome-manual-display.err
+?? .runs/postship-fix-wave-6/chrome-manual-display.out
+?? .runs/postship-fix-wave-6/chrome-manual.err
+?? .runs/postship-fix-wave-6/chrome-manual.out
+?? .runs/postship-fix-wave-6/npm-test-full.txt
+?? .runs/postship-fix-wave-6/run-eight-workflows.js
+?? .runs/postship-fix-wave-8/run-ten-workflows.js
+?? .runs/postship-fix-wave-9/probes/claude-initial-dom.json
+?? .runs/postship-fix-wave-9/probes/gemini-initial-dom.json
+?? .runs/postship-fix-wave-9/probes/manual-claude-setsid.err
+?? .runs/postship-fix-wave-9/probes/manual-claude-setsid.out
+?? .runs/postship-fix-wave-9/probes/manual-gemini-launch-display.err
+?? .runs/postship-fix-wave-9/probes/manual-gemini-launch-display.out
+?? .runs/postship-fix-wave-9/probes/manual-gemini-launch.err
+?? .runs/postship-fix-wave-9/probes/manual-gemini-launch.out
+?? .runs/postship-fix-wave-9/probes/manual-gemini-nohup.err
+?? .runs/postship-fix-wave-9/probes/manual-gemini-nohup.out
+?? .runs/postship-fix-wave-9/probes/manual-gemini-setsid.err
+?? .runs/postship-fix-wave-9/probes/manual-gemini-setsid.out
+?? .runs/postship-fix-wave-9/probes/pages-chatgpt.json
+?? .runs/postship-fix-wave-9/probes/pages-claude.json
+?? .runs/postship-fix-wave-9/probes/pages-gemini.json

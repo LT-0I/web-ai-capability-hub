@@ -1,0 +1,63 @@
+{
+  "dbPath": "data/capability-hub.sqlite",
+  "source": "docs/capability-library.json status_enum",
+  "statuses": [
+    "BLOCKED_NEEDS_USER",
+    "EXPLORED_PATH_KNOWN",
+    "FAIL_CLOSED_COMMAND_TIMEOUT",
+    "FAIL_CLOSED_EXT_BACKEND",
+    "FAIL_CLOSED_MANAGED",
+    "FAIL_CLOSED_UNSUPPORTED",
+    "IMPLEMENTED_GREEN",
+    "IN_PROGRESS",
+    "OK_DEFERRED",
+    "OK_EXT_BACKEND",
+    "OK_MANAGED_CDP_ONLY",
+    "OUT_OF_SCOPE",
+    "UNEXPLORED"
+  ],
+  "before": {
+    "sql": "CREATE TABLE integration_registry (\n  feature_id TEXT PRIMARY KEY,\n  service TEXT NOT NULL,\n  name TEXT NOT NULL,\n  status TEXT NOT NULL,\n  mcp_tool TEXT,\n  raw TEXT NOT NULL,\n  imported_at TEXT NOT NULL,\n  CHECK(status IN ('IMPLEMENTED_GREEN','EXPLORED_PATH_KNOWN','UNEXPLORED','IN_PROGRESS','BLOCKED_NEEDS_USER','OUT_OF_SCOPE'))\n)"
+  },
+  "beforeCount": 79,
+  "beforeStatuses": [
+    {
+      "status": "BLOCKED_NEEDS_USER",
+      "count": 5
+    },
+    {
+      "status": "EXPLORED_PATH_KNOWN",
+      "count": 1
+    },
+    {
+      "status": "IMPLEMENTED_GREEN",
+      "count": 65
+    },
+    {
+      "status": "OUT_OF_SCOPE",
+      "count": 8
+    }
+  ],
+  "after": {
+    "sql": "CREATE TABLE integration_registry (\n    feature_id TEXT PRIMARY KEY,\n    service TEXT NOT NULL,\n    name TEXT NOT NULL,\n    status TEXT NOT NULL,\n    mcp_tool TEXT,\n    raw TEXT NOT NULL,\n    imported_at TEXT NOT NULL,\n    CHECK(status IN ('BLOCKED_NEEDS_USER','EXPLORED_PATH_KNOWN','FAIL_CLOSED_COMMAND_TIMEOUT','FAIL_CLOSED_EXT_BACKEND','FAIL_CLOSED_MANAGED','FAIL_CLOSED_UNSUPPORTED','IMPLEMENTED_GREEN','IN_PROGRESS','OK_DEFERRED','OK_EXT_BACKEND','OK_MANAGED_CDP_ONLY','OUT_OF_SCOPE','UNEXPLORED'))\n  )"
+  },
+  "afterCount": 79,
+  "afterStatuses": [
+    {
+      "status": "BLOCKED_NEEDS_USER",
+      "count": 5
+    },
+    {
+      "status": "EXPLORED_PATH_KNOWN",
+      "count": 1
+    },
+    {
+      "status": "IMPLEMENTED_GREEN",
+      "count": 65
+    },
+    {
+      "status": "OUT_OF_SCOPE",
+      "count": 8
+    }
+  ]
+}

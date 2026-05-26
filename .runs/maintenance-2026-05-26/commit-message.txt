@@ -1,0 +1,11 @@
+webai: maintenance cycle 2026-05-26 — Phase 8 capability-library audit + integration_registry re-sync
+
+Refresh the Phase 8 driver ledger so the editable catalog and imported registry agree on the shipped download-PDF capability rows.
+
+Constraint: Wave 11 scope allowed catalog, registry, run artifacts, and acceptance output only; package, contract, golden, and error-code locks stayed fixed.
+Rejected: Adding missing research_ catalog rows in this wave | Step 2 was read-only and later research DB smoke waves own that surface.
+Confidence: high
+Scope-risk: narrow
+Directive: Normalize broader catalog parity separately; exact audits still flag research_ absence and combined webai_ mcp_tool rows.
+Tested: rm -rf dist && npm run build; npm test (731/731); 8-lock final spot check; capability:library:import row-count/imported_at/status verification.
+Not-tested: Snapshot capture/diff for ChatGPT, Claude, and Gemini; skipped because no site-map baselines and no already-running headed browser were available under this wave's no-launch constraint.

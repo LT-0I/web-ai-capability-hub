@@ -1,0 +1,78 @@
+{
+  "db_path": "data/capability-hub.sqlite",
+  "seed_feature_count": 175,
+  "db_row_count": 175,
+  "row_count_matches": true,
+  "imported_date_histogram": {
+    "2026-05-26": 175
+  },
+  "all_imported_at_2026_05_26": true,
+  "status_histogram": [
+    {
+      "status": "BLOCKED_NEEDS_USER",
+      "count": 5
+    },
+    {
+      "status": "EXPLORED_PATH_KNOWN",
+      "count": 1
+    },
+    {
+      "status": "FAIL_CLOSED_COMMAND_TIMEOUT",
+      "count": 1
+    },
+    {
+      "status": "FAIL_CLOSED_EXT_BACKEND",
+      "count": 11
+    },
+    {
+      "status": "FAIL_CLOSED_MANAGED",
+      "count": 3
+    },
+    {
+      "status": "FAIL_CLOSED_UNSUPPORTED",
+      "count": 9
+    },
+    {
+      "status": "IMPLEMENTED_GREEN",
+      "count": 67
+    },
+    {
+      "status": "OK_DEFERRED",
+      "count": 37
+    },
+    {
+      "status": "OK_EXT_BACKEND",
+      "count": 19
+    },
+    {
+      "status": "OK_MANAGED_CDP_ONLY",
+      "count": 14
+    },
+    {
+      "status": "OUT_OF_SCOPE",
+      "count": 8
+    }
+  ],
+  "mismatches_count": 0,
+  "mismatches": [],
+  "spot_checks": [
+    {
+      "feature_id": "chatgpt-upload-and-query",
+      "mcp_tool": "webai_chatgpt_upload_and_query",
+      "status": "IMPLEMENTED_GREEN",
+      "matches_seed": true
+    },
+    {
+      "feature_id": "chatgpt-voice-mode",
+      "mcp_tool": null,
+      "status": "BLOCKED_NEEDS_USER",
+      "matches_seed": true
+    },
+    {
+      "feature_id": "gemini-conversation-reuse-mgr",
+      "mcp_tool": "webai_gemini_send_prompt",
+      "status": "OK_MANAGED_CDP_ONLY",
+      "matches_seed": true
+    }
+  ]
+}

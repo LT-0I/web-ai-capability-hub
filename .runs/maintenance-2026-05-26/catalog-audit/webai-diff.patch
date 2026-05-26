@@ -1,0 +1,36 @@
+--- /tmp/webai-mcp-shipped.txt	2026-05-26 07:47:10.164123642 -0700
++++ /tmp/webai-library-declared.txt	2026-05-26 07:47:10.169123631 -0700
+@@ -9,15 +9,14 @@
+ webai_cambridge_download_pdf
+ webai_cellpress_download_pdf
+ webai_chatgpt_canvas_export
+-webai_chatgpt_codex_get_diff
+-webai_chatgpt_codex_list_envs
++webai_chatgpt_codex_list_envs, webai_chatgpt_codex_submit_task, webai_chatgpt_codex_task_status, webai_chatgpt_codex_get_diff
+ webai_chatgpt_codex_submit_task
+-webai_chatgpt_codex_task_status
+ webai_chatgpt_conversation_manage
+ webai_chatgpt_deep_research
+ webai_chatgpt_generate_file
+ webai_chatgpt_generate_image
+ webai_chatgpt_pulse_get
++webai_chatgpt_pulse_get, webai_chatgpt_pulse_onboard
+ webai_chatgpt_pulse_onboard
+ webai_chatgpt_select_model
+ webai_chatgpt_send_prompt
+@@ -27,7 +26,6 @@
+ webai_claude_deep_research
+ webai_claude_design_create_project
+ webai_claude_design_generate
+-webai_claude_design_get_html
+ webai_claude_design_present
+ webai_claude_generate_file
+ webai_claude_select_model
+@@ -58,7 +56,6 @@
+ webai_incopat_download_pdf
+ webai_inspirehep_download_pdf
+ webai_iop_download_pdf
+-webai_literature_task_status
+ webai_mdpi_download_pdf
+ webai_nature_download_pdf
+ webai_optica_download_pdf

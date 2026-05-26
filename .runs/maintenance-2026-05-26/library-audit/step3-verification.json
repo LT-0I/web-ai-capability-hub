@@ -1,0 +1,22 @@
+{
+  "row_count": 40,
+  "missing_feature_id": 0,
+  "mismatched_feature_id": 0,
+  "bad_last_update": 0,
+  "missing_evidence_line": 0,
+  "status_not_in_enum": 0,
+  "status_histogram": [
+    {
+      "status": "FAIL_CLOSED_UNSUPPORTED",
+      "count": 2
+    },
+    {
+      "status": "IMPLEMENTED_GREEN",
+      "count": 2
+    },
+    {
+      "status": "OK_DEFERRED",
+      "count": 36
+    }
+  ]
+}
