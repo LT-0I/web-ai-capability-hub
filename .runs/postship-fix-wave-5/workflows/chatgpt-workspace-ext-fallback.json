@@ -1,0 +1,136 @@
+{
+  "id": "chatgpt-workspace-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-workspace-ext-fallback.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-workspace-ext-fallback.json",
+  "startedAt": "2026-05-26T08:11:32Z",
+  "finishedAt": "2026-05-26T08:11:32Z",
+  "durationMs": 413,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-workspace-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:11:32.229Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:workspace",
+              "--profile",
+              "chatgpt",
+              "--action",
+              "list",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "equals": "INVALID_ARGS"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-workspace-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to list ChatGPT workspaces (fail-closed; schema rejects --action list)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-workspace-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:workspace",
+            "--profile",
+            "chatgpt",
+            "--action",
+            "list",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 154,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_workspace\",\n    \"stage\": \"schema\",\n    \"message\": \"$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "errorCode": "INVALID_ARGS",
+            "error_code": "INVALID_ARGS",
+            "error": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+            "evidence": {
+              "tool": "webai_chatgpt_workspace",
+              "stage": "schema",
+              "message": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+              "error_name": "Error"
+            }
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "INVALID_ARGS",
+                "ok": true
+              }
+            ]
+          },
+          "errorCode": "INVALID_ARGS",
+          "error_code": "INVALID_ARGS",
+          "error": "$.surface is required; $.action must be one of read, delete, delete_memory, grant_oauth, create",
+          "evidence": "<circular>"
+        }
+      }
+    ],
+    "runId": "run_6bc6fdbf674a21e1"
+  }
+}

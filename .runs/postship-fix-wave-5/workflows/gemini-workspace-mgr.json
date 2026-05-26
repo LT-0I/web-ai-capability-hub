@@ -1,0 +1,117 @@
+{
+  "id": "gemini-workspace-mgr",
+  "file": "examples/workflows/gemini-gemini-workspace-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-workspace-mgr.json",
+  "startedAt": "2026-05-26T07:28:40Z",
+  "finishedAt": "2026-05-26T07:28:41Z",
+  "durationMs": 1174,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-workspace-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:28:40.789Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:workspace",
+              "--profile",
+              "gemini-9225",
+              "--surface",
+              "gems",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 0
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-workspace-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Inspect a Gemini workspace surface and return its summary shape",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-workspace-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:workspace",
+            "--profile",
+            "gemini-9225",
+            "--surface",
+            "gems",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 931,
+          "stdout": "{\n  \"surface\": \"gems\",\n  \"url\": \"https://gemini.google.com/gems/view\",\n  \"summary\": \"gems route opened\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "surface": "gems",
+            "url": "https://gemini.google.com/gems/view",
+            "summary": "gems route opened",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            }
+          },
+          "surface": "gems",
+          "url": "https://gemini.google.com/gems/view",
+          "summary": "gems route opened",
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_7c0aa7510ce358c3"
+  }
+}

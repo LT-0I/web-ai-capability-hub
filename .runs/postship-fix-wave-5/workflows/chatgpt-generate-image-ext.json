@@ -1,0 +1,153 @@
+{
+  "id": "chatgpt-generate-image-ext",
+  "file": "examples/workflows/chatgpt-generate-image-ext.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-generate-image-ext.json",
+  "startedAt": "2026-05-26T08:12:40Z",
+  "finishedAt": "2026-05-26T08:14:13Z",
+  "durationMs": 93245,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-generate-image-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:12:40.900Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:generate-image",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/chatgpt",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                },
+                {
+                  "path": "sha256",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-generate-image-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to generate an image in ChatGPT via the extension-assisted backend",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-image-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-image",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 92982,
+          "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/chatgpt/network-pageres-0.png\",\n  \"sha256\": \"464b3e287ba74279f4c0c0a6b79ae58b281a49dc856b65dd81a387b78b1101c1\",\n  \"size_bytes\": 1391437,\n  \"download_filename\": \"network-pageres-0.png\",\n  \"WARN\": \"follow-up download control not found, but the governed artifact was delivered by the browser\",\n  \"dimensions\": null,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "/tmp/explore-2026-05-25/chatgpt/network-pageres-0.png",
+            "sha256": "464b3e287ba74279f4c0c0a6b79ae58b281a49dc856b65dd81a387b78b1101c1",
+            "size_bytes": 1391437,
+            "download_filename": "network-pageres-0.png",
+            "WARN": "follow-up download control not found, but the governed artifact was delivered by the browser",
+            "dimensions": null,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "/tmp/explore-2026-05-25/chatgpt/network-pageres-0.png",
+                "ok": true
+              },
+              {
+                "path": "sha256",
+                "actual": "464b3e287ba74279f4c0c0a6b79ae58b281a49dc856b65dd81a387b78b1101c1",
+                "ok": true
+              }
+            ]
+          },
+          "path": "/tmp/explore-2026-05-25/chatgpt/network-pageres-0.png",
+          "sha256": "464b3e287ba74279f4c0c0a6b79ae58b281a49dc856b65dd81a387b78b1101c1",
+          "size_bytes": 1391437,
+          "download_filename": "network-pageres-0.png",
+          "WARN": "follow-up download control not found, but the governed artifact was delivered by the browser",
+          "dimensions": null,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_9196afa058484593"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "claude-generate-file-docx-ext",
+  "file": "examples/workflows/claude-claude-generate-file-docx-ext.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-generate-file-docx-ext.json",
+  "startedAt": "2026-05-26T07:34:32Z",
+  "finishedAt": "2026-05-26T07:35:19Z",
+  "durationMs": 47023,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-generate-file-docx-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:34:32.164Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:generate-file",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Write a one-page Word document titled 'Claude Capability Probe Docx' with 3 short paragraphs about quantum computing. Deliver as a downloadable .docx file.",
+              "--expected-extension",
+              "docx",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/claude",
+              "--artifact-class",
+              "document",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-generate-file-docx-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a downloadable .docx file in Claude",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-docx-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Write a one-page Word document titled 'Claude Capability Probe Docx' with 3 short paragraphs about quantum computing. Deliver as a downloadable .docx file.",
+            "--expected-extension",
+            "docx",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "document",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 46755,
+          "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/Claude_Capability_Probe_Docx.docx\",\n  \"sha256\": \"19bb54d2c31b9763871875314352cb149014a1dd221d216416b6b31cc7a7165a\",\n  \"size_bytes\": 9681,\n  \"download_filename\": \"Claude_Capability_Probe_Docx.docx\",\n  \"artifact_name\": \"Claude_Capability_Probe_Docx.docx\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "/tmp/explore-2026-05-25/claude/Claude_Capability_Probe_Docx.docx",
+            "sha256": "19bb54d2c31b9763871875314352cb149014a1dd221d216416b6b31cc7a7165a",
+            "size_bytes": 9681,
+            "download_filename": "Claude_Capability_Probe_Docx.docx",
+            "artifact_name": "Claude_Capability_Probe_Docx.docx",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "/tmp/explore-2026-05-25/claude/Claude_Capability_Probe_Docx.docx",
+                "ok": true
+              }
+            ]
+          },
+          "path": "/tmp/explore-2026-05-25/claude/Claude_Capability_Probe_Docx.docx",
+          "sha256": "19bb54d2c31b9763871875314352cb149014a1dd221d216416b6b31cc7a7165a",
+          "size_bytes": 9681,
+          "download_filename": "Claude_Capability_Probe_Docx.docx",
+          "artifact_name": "Claude_Capability_Probe_Docx.docx",
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_65318cf0dd266779"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "id": "gemini-music-download-track-ext",
+  "file": "examples/workflows/gemini-gemini-music-download-track-ext.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-music-download-track-ext.json",
+  "startedAt": "2026-05-26T07:20:45Z",
+  "finishedAt": "2026-05-26T07:21:53Z",
+  "durationMs": 68006,
+  "timeoutMs": 570000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-music-download-track-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:20:45.822Z",
+      "actions": [
+        {
+          "stepId": "ensure_track",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:generate",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A short calm acoustic guitar loop, instrumental, 30 seconds",
+              "--confirmed",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--timeout-ms",
+              "300000",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "conversation_url",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:download-track",
+              "--profile",
+              "gemini-9225",
+              "--tab-url-contains",
+              "{{steps.ensure_track.conversation_url}}",
+              "--format",
+              "mp3",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "savedPath",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-music-download-track-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a Gemini Music track, then download that finished track as MP3",
+        "steps": [
+          {
+            "id": "ensure_track",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-download-track-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "ensure_track",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short calm acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 59694,
+          "stdout": "{\n  \"task_id\": \"gemini_music_1779780105546\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/8fbf16d8b0a7909e\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3\",\n  \"sha256\": \"829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07\",\n  \"size_bytes\": 744609,\n  \"download_filename\": \"Softwood_Morning.mp3\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "task_id": "gemini_music_1779780105546",
+            "status": "complete",
+            "conversation_url": "https://gemini.google.com/app/8fbf16d8b0a7909e",
+            "path": "/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3",
+            "sha256": "829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07",
+            "size_bytes": 744609,
+            "download_filename": "Softwood_Morning.mp3",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "conversation_url",
+                "actual": "https://gemini.google.com/app/8fbf16d8b0a7909e",
+                "ok": true
+              }
+            ]
+          },
+          "task_id": "gemini_music_1779780105546",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/8fbf16d8b0a7909e",
+          "path": "/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3",
+          "sha256": "829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07",
+          "size_bytes": 744609,
+          "download_filename": "Softwood_Morning.mp3",
+          "errorCode": null
+        }
+      },
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:download-track",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "https://gemini.google.com/app/8fbf16d8b0a7909e",
+            "--format",
+            "mp3",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 8031,
+          "stdout": "{\n  \"savedPath\": \"/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3\",\n  \"sha256\": \"829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07\",\n  \"byteSize\": 744609,\n  \"format\": \"mp3\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "savedPath": "/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3",
+            "sha256": "829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07",
+            "byteSize": 744609,
+            "format": "mp3"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "savedPath",
+                "actual": "/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3",
+                "ok": true
+              }
+            ]
+          },
+          "savedPath": "/tmp/explore-2026-05-25/gemini/Softwood_Morning.mp3",
+          "sha256": "829ae4d2a8c33a715af72ef6ca178a2d55eafb23f116468f42b018c22ed8ba07",
+          "byteSize": 744609,
+          "format": "mp3"
+        }
+      }
+    ],
+    "runId": "run_aa9ba39e58d96c88"
+  }
+}

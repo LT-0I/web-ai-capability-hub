@@ -1,10 +1,37 @@
 # New 2026-05-25 (was missing-workflow). Source: .runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json attempts[0].command.
+# Fixed 2026-05-26: create a fresh music task first; task-status is a stateful poll and
+# the regression runner cannot assume a prior YAML left an in-flight Gemini Music tab.
 id: gemini-music-task-status-ext
 target: gemini
 profile: gemini-9225
 mode: automatic
-description: Poll Gemini Music task-status on an existing chat tab
+description: Generate a Gemini Music track, then poll that track's task-status
 steps:
+  - id: ensure_track
+    command:
+      - node
+      - dist/src/cli.js
+      - webai:gemini:music:generate
+      - --profile
+      - gemini-9225
+      - --backend
+      - extension-assisted-cdp
+      - --prompt
+      - "A short upbeat acoustic guitar loop, instrumental, 30 seconds"
+      - --confirmed
+      - --download-dir
+      - /tmp/explore-2026-05-25/gemini
+      - --timeout-ms
+      - "300000"
+      - --json
+    timeoutMs: 360000
+    gate:
+      exit_code: 0
+      json_path:
+        - path: task_id
+          nonempty: true
+        - path: conversation_url
+          nonempty: true
   - id: invoke-cli
     command:
       - node
@@ -13,7 +40,7 @@ steps:
       - --profile
       - gemini-9225
       - --tab-url-contains
-      - gemini.google.com/app
+      - "{{steps.ensure_track.conversation_url}}"
       - --json
     timeoutMs: 60000
     gate:

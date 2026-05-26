@@ -1,0 +1,136 @@
+{
+  "id": "chatgpt-pulse-onboard-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-pulse-onboard-ext-fallback.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-pulse-onboard-ext-fallback.json",
+  "startedAt": "2026-05-26T08:06:44Z",
+  "finishedAt": "2026-05-26T08:06:44Z",
+  "durationMs": 410,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-pulse-onboard-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:06:44.425Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:pulse:onboard",
+              "--profile",
+              "chatgpt",
+              "--response-timeout-ms",
+              "120000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-pulse-onboard-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt ChatGPT Pulse onboarding (fail-closed; current implementation rejects)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-onboard-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:pulse:onboard",
+            "--profile",
+            "chatgpt",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 152,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.confirmed is required\",\n  \"evidence\": {\n    \"tool\": \"webai_chatgpt_pulse_onboard\",\n    \"stage\": \"schema\",\n    \"message\": \"$.confirmed is required\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "errorCode": "INVALID_ARGS",
+            "error_code": "INVALID_ARGS",
+            "error": "$.confirmed is required",
+            "evidence": {
+              "tool": "webai_chatgpt_pulse_onboard",
+              "stage": "schema",
+              "message": "$.confirmed is required",
+              "error_name": "Error"
+            }
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "INVALID_ARGS",
+                "ok": true
+              }
+            ]
+          },
+          "errorCode": "INVALID_ARGS",
+          "error_code": "INVALID_ARGS",
+          "error": "$.confirmed is required",
+          "evidence": "<circular>"
+        }
+      }
+    ],
+    "runId": "run_7767357f7620f071"
+  }
+}

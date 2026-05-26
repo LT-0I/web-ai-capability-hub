@@ -1,0 +1,156 @@
+{
+  "id": "gemini-canvas-to-docs-mgr",
+  "file": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-canvas-to-docs-mgr.json",
+  "startedAt": "2026-05-26T07:16:26Z",
+  "finishedAt": "2026-05-26T07:18:33Z",
+  "durationMs": 126854,
+  "timeoutMs": 450000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "FAIL",
+  "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+  "message": "command gate failed: exit_code 1 !== 0; json_path docs_url regex /docs\\.google\\.com/ failed",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-canvas-to-docs-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:16:26.818Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:canvas-to-docs",
+              "--profile",
+              "gemini-9225",
+              "--tab-url-contains",
+              "gemini.google.com",
+              "--prompt",
+              "Generate a 200-word essay about deep learning, then export to Google Docs",
+              "--title",
+              "Capability Probe Doc",
+              "--response-timeout-ms",
+              "300000",
+              "--timeout-ms",
+              "60000",
+              "--confirmed",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "docs_url",
+                  "regex": "docs\\.google\\.com"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-canvas-to-docs-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to export a Gemini Canvas to Google Docs (fail-closed; UNSUPPORTED_FEATURE)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path docs_url regex /docs\\.google\\.com/ failed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:canvas-to-docs",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "gemini.google.com",
+            "--prompt",
+            "Generate a 200-word essay about deep learning, then export to Google Docs",
+            "--title",
+            "Capability Probe Doc",
+            "--response-timeout-ms",
+            "300000",
+            "--timeout-ms",
+            "60000",
+            "--confirmed",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 126590,
+          "stdout": "{\n  \"docs_url\": null,\n  \"docs_doc_id\": null,\n  \"title\": \"Capability Probe Doc\",\n  \"ok\": false,\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"Error calling tool: Request timed out after 120000ms\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "docs_url": null,
+            "docs_doc_id": null,
+            "title": "Capability Probe Doc",
+            "ok": false,
+            "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+            "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+            "message": "Error calling tool: Request timed out after 120000ms"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "docs_url",
+                "actual": null,
+                "ok": false,
+                "reasons": [
+                  "regex /docs\\.google\\.com/ failed"
+                ]
+              }
+            ]
+          },
+          "docs_url": null,
+          "docs_doc_id": null,
+          "title": "Capability Probe Doc",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "Error calling tool: Request timed out after 120000ms"
+        }
+      }
+    ],
+    "runId": "run_9d3c6caefa9b08b5"
+  }
+}

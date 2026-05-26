@@ -1,0 +1,139 @@
+{
+  "id": "chatgpt-pulse-get-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-pulse-get-ext-fallback.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-pulse-get-ext-fallback.json",
+  "startedAt": "2026-05-26T08:06:11Z",
+  "finishedAt": "2026-05-26T08:06:14Z",
+  "durationMs": 2783,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-pulse-get-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:06:11.623Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:pulse:get",
+              "--profile",
+              "chatgpt",
+              "--response-timeout-ms",
+              "120000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "status",
+                  "equals": "ready"
+                },
+                {
+                  "path": "digest_text",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-pulse-get-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Read the current ChatGPT Pulse digest",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-pulse-get-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:pulse:get",
+            "--profile",
+            "chatgpt",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 2528,
+          "stdout": "{\n  \"route\": \"https://chatgpt.com/pulse\",\n  \"status\": \"ready\",\n  \"digest_text\": \"我先把今天最该看的市场脉络理顺，方便你抓住交易重点。\\n美股收盘快照与均线位置\\n基准日 2026-05-22 的主要指数、ETF 代理成交量和 20/50/100/200 日均线关系，便于快速核对强弱。\\n广度与波动率的交易含义\\n把 A/D、McClellan、VIX 期限结构和 Put/Call 串起来看，判断风险偏好仍强但短线动量略疲。\\nGet insights from your emails and calendar\\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\\nDon't allow\\nAllow\\n市场宽度复盘与一手来源\\n按成分股相对 20/50/100/200 日均线的超越比例汇总，S&P、纳指与小盘的参与度一目了然。\\n利率与商品的宏观快照\\n10Y 突破 4.50% 后，久期压力、能源通胀和 BTC 波动都需要一起看。\\n关键宏观数值与阈值\\n把 2Y、10Y、30Y、FedWatch、DXY、黄金、原油和 BTC 放在同一张表里，方便做仓位检查。\\n半导体财报摘录速览\\n以 NVIDIA、AMD、Micron、ASML 的公司 IR 和 8-K 为主，先看营收、EPS 和管理层口径。\\n未来三日财报与排班\\n你关心的大票近期没有重磅披露，下一步更适合盯 IR 日历、8-K 和指引变化。\\n这一段我想顺着半导体强势往下看，顺便盯住机房和安全链条。🔎\\nAI 主线的扩散路径\\n半导体仍领跑，但资金正向 AI ETF、网络安全与云端主题外溢，轮动方向开始更清楚。\\n数据中心用电的短线信号\\n从电力许可、GPU 采购、PPA 到机房融资，抓住 AI 带来的可观察交易线索。\\n最近在想些什么？我会记住并在明天的更新中使用。\\n我很好奇...\\n我想了解更多...\\n请随时更新我关于...\\nShare anything...\\n最后我把你反复提到的开源 LLM 也收拢一下，省得每次重找。\\n开源 LLM 框架精选\\n整理近年的主流开源编排框架，帮你少做试错，先把时间投到最值得深挖的几项。\\n可商用开源模型清单\\n这份维护中的清单适合反复翻查，能省下每次确认许可证和可用模型的时间。\\n试用开源模型的轻检查\\n六步小清单覆盖许可、成本、吞吐、测试、延迟和安全限制，适合快速上手。\\n今天就到这里。✨\\n最近在想什么？我会把它作为明天的灵感。\",\n  \"generated_hint\": \"A fresh update lands every morning\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "route": "https://chatgpt.com/pulse",
+            "status": "ready",
+            "digest_text": "我先把今天最该看的市场脉络理顺，方便你抓住交易重点。\n美股收盘快照与均线位置\n基准日 2026-05-22 的主要指数、ETF 代理成交量和 20/50/100/200 日均线关系，便于快速核对强弱。\n广度与波动率的交易含义\n把 A/D、McClellan、VIX 期限结构和 Put/Call 串起来看，判断风险偏好仍强但短线动量略疲。\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n市场宽度复盘与一手来源\n按成分股相对 20/50/100/200 日均线的超越比例汇总，S&P、纳指与小盘的参与度一目了然。\n利率与商品的宏观快照\n10Y 突破 4.50% 后，久期压力、能源通胀和 BTC 波动都需要一起看。\n关键宏观数值与阈值\n把 2Y、10Y、30Y、FedWatch、DXY、黄金、原油和 BTC 放在同一张表里，方便做仓位检查。\n半导体财报摘录速览\n以 NVIDIA、AMD、Micron、ASML 的公司 IR 和 8-K 为主，先看营收、EPS 和管理层口径。\n未来三日财报与排班\n你关心的大票近期没有重磅披露，下一步更适合盯 IR 日历、8-K 和指引变化。\n这一段我想顺着半导体强势往下看，顺便盯住机房和安全链条。🔎\nAI 主线的扩散路径\n半导体仍领跑，但资金正向 AI ETF、网络安全与云端主题外溢，轮动方向开始更清楚。\n数据中心用电的短线信号\n从电力许可、GPU 采购、PPA 到机房融资，抓住 AI 带来的可观察交易线索。\n最近在想些什么？我会记住并在明天的更新中使用。\n我很好奇...\n我想了解更多...\n请随时更新我关于...\nShare anything...\n最后我把你反复提到的开源 LLM 也收拢一下，省得每次重找。\n开源 LLM 框架精选\n整理近年的主流开源编排框架，帮你少做试错，先把时间投到最值得深挖的几项。\n可商用开源模型清单\n这份维护中的清单适合反复翻查，能省下每次确认许可证和可用模型的时间。\n试用开源模型的轻检查\n六步小清单覆盖许可、成本、吞吐、测试、延迟和安全限制，适合快速上手。\n今天就到这里。✨\n最近在想什么？我会把它作为明天的灵感。",
+            "generated_hint": "A fresh update lands every morning"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "status",
+                "actual": "ready",
+                "ok": true
+              },
+              {
+                "path": "digest_text",
+                "actual": "我先把今天最该看的市场脉络理顺，方便你抓住交易重点。\n美股收盘快照与均线位置\n基准日 2026-05-22 的主要指数、ETF 代理成交量和 20/50/100/200 日均线关系，便于快速核对强弱。\n广度与波动率的交易含义\n把 A/D、McClellan、VIX 期限结构和 Put/Call 串起来看，判断风险偏好仍强但短线动量略疲。\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n市场宽度复盘与一手来源\n按成分股相对 20/50/100/200 日均线的超越比例汇总，S&P、纳指与小盘的参与度一目了然。\n利率与商品的宏观快照\n10Y 突破 4.50% 后，久期压力、能源通胀和 BTC 波动都需要一起看。\n关键宏观数值与阈值\n把 2Y、10Y、30Y、FedWatch、DXY、黄金、原油和 BTC 放在同一张表里，方便做仓位检查。\n半导体财报摘录速览\n以 NVIDIA、AMD、Micron、ASML 的公司 IR 和 8-K 为主，先看营收、EPS 和管理层口径。\n未来三日财报与排班\n你关心的大票近期没有重磅披露，下一步更适合盯 IR 日历、8-K 和指引变化。\n这一段我想顺着半导体强势往下看，顺便盯住机房和安全链条。🔎\nAI 主线的扩散路径\n半导体仍领跑，但资金正向 AI ETF、网络安全与云端主题外溢，轮动方向开始更清楚。\n数据中心用电的短线信号\n从电力许可、GPU 采购、PPA 到机房融资，抓住 AI 带来的可观察交易线索。\n最近在想些什么？我会记住并在明天的更新中使用。\n我很好奇...\n我想了解更多...\n请随时更新我关于...\nShare anything...\n最后我把你反复提到的开源 LLM 也收拢一下，省得每次重找。\n开源 LLM 框架精选\n整理近年的主流开源编排框架，帮你少做试错，先把时间投到最值得深挖的几项。\n可商用开源模型清单\n这份维护中的清单适合反复翻查，能省下每次确认许可证和可用模型的时间。\n试用开源模型的轻检查\n六步小清单覆盖许可、成本、吞吐、测试、延迟和安全限制，适合快速上手。\n今天就到这里。✨\n最近在想什么？我会把它作为明天的灵感。",
+                "ok": true
+              }
+            ]
+          },
+          "route": "https://chatgpt.com/pulse",
+          "status": "ready",
+          "digest_text": "我先把今天最该看的市场脉络理顺，方便你抓住交易重点。\n美股收盘快照与均线位置\n基准日 2026-05-22 的主要指数、ETF 代理成交量和 20/50/100/200 日均线关系，便于快速核对强弱。\n广度与波动率的交易含义\n把 A/D、McClellan、VIX 期限结构和 Put/Call 串起来看，判断风险偏好仍强但短线动量略疲。\nGet insights from your emails and calendar\nLet ChatGPT proactively read Gmail and Google Calendar and give you helpful info. Learn more\nDon't allow\nAllow\n市场宽度复盘与一手来源\n按成分股相对 20/50/100/200 日均线的超越比例汇总，S&P、纳指与小盘的参与度一目了然。\n利率与商品的宏观快照\n10Y 突破 4.50% 后，久期压力、能源通胀和 BTC 波动都需要一起看。\n关键宏观数值与阈值\n把 2Y、10Y、30Y、FedWatch、DXY、黄金、原油和 BTC 放在同一张表里，方便做仓位检查。\n半导体财报摘录速览\n以 NVIDIA、AMD、Micron、ASML 的公司 IR 和 8-K 为主，先看营收、EPS 和管理层口径。\n未来三日财报与排班\n你关心的大票近期没有重磅披露，下一步更适合盯 IR 日历、8-K 和指引变化。\n这一段我想顺着半导体强势往下看，顺便盯住机房和安全链条。🔎\nAI 主线的扩散路径\n半导体仍领跑，但资金正向 AI ETF、网络安全与云端主题外溢，轮动方向开始更清楚。\n数据中心用电的短线信号\n从电力许可、GPU 采购、PPA 到机房融资，抓住 AI 带来的可观察交易线索。\n最近在想些什么？我会记住并在明天的更新中使用。\n我很好奇...\n我想了解更多...\n请随时更新我关于...\nShare anything...\n最后我把你反复提到的开源 LLM 也收拢一下，省得每次重找。\n开源 LLM 框架精选\n整理近年的主流开源编排框架，帮你少做试错，先把时间投到最值得深挖的几项。\n可商用开源模型清单\n这份维护中的清单适合反复翻查，能省下每次确认许可证和可用模型的时间。\n试用开源模型的轻检查\n六步小清单覆盖许可、成本、吞吐、测试、延迟和安全限制，适合快速上手。\n今天就到这里。✨\n最近在想什么？我会把它作为明天的灵感。",
+          "generated_hint": "A fresh update lands every morning"
+        }
+      }
+    ],
+    "runId": "run_40c7083e0eb3a4d0"
+  }
+}

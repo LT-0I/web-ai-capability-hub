@@ -1,0 +1,158 @@
+{
+  "id": "chatgpt-gpts-converse-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-gpts-converse-ext-fallback.json",
+  "startedAt": "2026-05-26T08:05:39Z",
+  "finishedAt": "2026-05-26T08:05:41Z",
+  "durationMs": 1461,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-gpts-converse-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:05:40.133Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:send-prompt",
+              "--profile",
+              "chatgpt",
+              "--url",
+              "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+              "--reuse-conversation",
+              "--prompt",
+              "Say only OK",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "equals": "MODEL_SELECTION_DRIFT"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-gpts-converse-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt public GPT conversation (fail-closed; MODEL_SELECTION_DRIFT)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-gpts-converse-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:send-prompt",
+            "--profile",
+            "chatgpt",
+            "--url",
+            "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+            "--reuse-conversation",
+            "--prompt",
+            "Say only OK",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 1206,
+          "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 1045,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"MODEL_SELECTION_DRIFT\",\n  \"ok\": false,\n  \"service\": \"chatgpt\",\n  \"error_code\": \"MODEL_SELECTION_DRIFT\",\n  \"expected_model\": \"main ChatGPT chat\",\n  \"model_used\": \"custom GPT\",\n  \"message\": \"ChatGPT custom GPT conversations are fail-closed on the extension-assisted send-prompt path\",\n  \"conversation_id\": null,\n  \"chat_url\": \"https://chatgpt.com/g/g-pmuQfob8d-image-generator\",\n  \"reuse_conversation\": false\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "",
+            "elapsed_ms": 1045,
+            "wait_ms": 0,
+            "completion_detected": false,
+            "errorCode": "MODEL_SELECTION_DRIFT",
+            "ok": false,
+            "service": "chatgpt",
+            "error_code": "MODEL_SELECTION_DRIFT",
+            "expected_model": "main ChatGPT chat",
+            "model_used": "custom GPT",
+            "message": "ChatGPT custom GPT conversations are fail-closed on the extension-assisted send-prompt path",
+            "conversation_id": null,
+            "chat_url": "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+            "reuse_conversation": false
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "MODEL_SELECTION_DRIFT",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "",
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "MODEL_SELECTION_DRIFT",
+          "service": "chatgpt",
+          "error_code": "MODEL_SELECTION_DRIFT",
+          "expected_model": "main ChatGPT chat",
+          "model_used": "custom GPT",
+          "message": "ChatGPT custom GPT conversations are fail-closed on the extension-assisted send-prompt path",
+          "conversation_id": null,
+          "chat_url": "https://chatgpt.com/g/g-pmuQfob8d-image-generator",
+          "reuse_conversation": false
+        }
+      }
+    ],
+    "runId": "run_2589789d9b231433"
+  }
+}

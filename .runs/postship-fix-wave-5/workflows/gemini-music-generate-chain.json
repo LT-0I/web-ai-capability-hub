@@ -1,0 +1,156 @@
+{
+  "id": "gemini-music-generate-chain",
+  "file": "examples/workflows/gemini-music-generate-chain.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-music-generate-chain.json",
+  "startedAt": "2026-05-26T07:32:45Z",
+  "finishedAt": "2026-05-26T07:32:59Z",
+  "durationMs": 13757,
+  "timeoutMs": 450000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "command gate failed: exit_code 1 !== 0; json_path task_id empty",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "gemini-music-generate-chain",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:32:45.743Z",
+      "actions": [
+        {
+          "stepId": "generate",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:generate",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+              "--confirmed",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--timeout-ms",
+              "300000",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "task_id",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-music-generate-chain",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Three-step Gemini Music chain (generate -> poll -> download)",
+        "steps": [
+          {
+            "id": "generate",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-generate-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "generate",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path task_id empty",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 13498,
+          "stdout": "{\n  \"task_id\": \"\",\n  \"status\": \"error\",\n  \"conversation_url\": \"\",\n  \"ok\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: Gemini Music Create music menuitemcheckbox did not report aria-checked=true (ELEMENT_NOT_FOUND: Gemini Create music menuitemcheckbox was not found)\",\n  \"evidence\": {\n    \"selector\": \"button[aria-label=\\\"Upload & tools\\\"] -> button[data-test-id=\\\"more-tools-button\\\"] -> [role=\\\"menuitemcheckbox\\\"]:has-text(\\\"Create music\\\")\"\n  }\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "task_id": "",
+            "status": "error",
+            "conversation_url": "",
+            "ok": false,
+            "errorCode": "ELEMENT_NOT_FOUND",
+            "error_code": "ELEMENT_NOT_FOUND",
+            "message": "ELEMENT_NOT_FOUND: Gemini Music Create music menuitemcheckbox did not report aria-checked=true (ELEMENT_NOT_FOUND: Gemini Create music menuitemcheckbox was not found)",
+            "evidence": {
+              "selector": "button[aria-label=\"Upload & tools\"] -> button[data-test-id=\"more-tools-button\"] -> [role=\"menuitemcheckbox\"]:has-text(\"Create music\")"
+            }
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "task_id",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "empty"
+                ]
+              }
+            ]
+          },
+          "task_id": "",
+          "status": "error",
+          "conversation_url": "",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini Music Create music menuitemcheckbox did not report aria-checked=true (ELEMENT_NOT_FOUND: Gemini Create music menuitemcheckbox was not found)",
+          "evidence": "<circular>"
+        }
+      }
+    ],
+    "runId": "run_63ba4250a7f56fd7"
+  }
+}

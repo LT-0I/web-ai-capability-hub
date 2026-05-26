@@ -1,0 +1,151 @@
+{
+  "id": "gemini-generate-image-ext",
+  "file": "examples/workflows/gemini-generate-image-ext.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-generate-image-ext.json",
+  "startedAt": "2026-05-26T07:29:11Z",
+  "finishedAt": "2026-05-26T07:29:54Z",
+  "durationMs": 42677,
+  "timeoutMs": 390000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-generate-image-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:29:11.587Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:generate-image",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--json"
+            ],
+            "timeoutMs": 300000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                },
+                {
+                  "path": "sha256",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-generate-image-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate an image in Gemini and save the downloaded PNG",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 300000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-generate-image-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:generate-image",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A clean futuristic laboratory notebook icon, blue and white, transparent background",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 42433,
+          "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_agm1iuagm1iuagm1.png\",\n  \"sha256\": \"418d31e74bb0c5a3e28c7f3c5f613625aa636b595718a4ef84a7a104fa4c5ceb\",\n  \"size_bytes\": 6346750,\n  \"download_filename\": \"Gemini_Generated_Image_agm1iuagm1iuagm1.png\",\n  \"dimensions\": null,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_agm1iuagm1iuagm1.png",
+            "sha256": "418d31e74bb0c5a3e28c7f3c5f613625aa636b595718a4ef84a7a104fa4c5ceb",
+            "size_bytes": 6346750,
+            "download_filename": "Gemini_Generated_Image_agm1iuagm1iuagm1.png",
+            "dimensions": null,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_agm1iuagm1iuagm1.png",
+                "ok": true
+              },
+              {
+                "path": "sha256",
+                "actual": "418d31e74bb0c5a3e28c7f3c5f613625aa636b595718a4ef84a7a104fa4c5ceb",
+                "ok": true
+              }
+            ]
+          },
+          "path": "/tmp/explore-2026-05-25/gemini/Gemini_Generated_Image_agm1iuagm1iuagm1.png",
+          "sha256": "418d31e74bb0c5a3e28c7f3c5f613625aa636b595718a4ef84a7a104fa4c5ceb",
+          "size_bytes": 6346750,
+          "download_filename": "Gemini_Generated_Image_agm1iuagm1iuagm1.png",
+          "dimensions": null,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_ce6eb9bbc12a1236"
+  }
+}

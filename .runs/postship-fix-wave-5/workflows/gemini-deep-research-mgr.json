@@ -1,0 +1,147 @@
+{
+  "id": "gemini-deep-research-mgr",
+  "file": "examples/workflows/gemini-deep-research-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-deep-research-mgr.json",
+  "startedAt": "2026-05-26T07:18:43Z",
+  "finishedAt": "2026-05-26T07:18:53Z",
+  "durationMs": 10050,
+  "timeoutMs": 1050000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-deep-research-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:18:43.708Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:deep-research",
+              "--profile",
+              "gemini-9225",
+              "--prompt",
+              "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--response-timeout-ms",
+              "900000",
+              "--timeout-ms",
+              "900000",
+              "--confirmed",
+              "--json"
+            ],
+            "timeoutMs": 960000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-deep-research-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Submit Gemini Deep Research (fail-closed; COMMAND_TIMEOUT observed in G8)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 960000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-deep-research-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:deep-research",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "Quick deep research: list 3 recent open-source LLM frameworks since 2025-01, one-sentence each. Deliver as a downloadable report.",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--response-timeout-ms",
+            "900000",
+            "--timeout-ms",
+            "900000",
+            "--confirmed",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 9664,
+          "stdout": "{\n  \"ok\": true,\n  \"task_id\": \"task_1779779924033_2c0b744d0f89\",\n  \"status\": \"queued\",\n  \"chat_url\": \"https://gemini.google.com/app?hl=en\",\n  \"wait_ms\": 25,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": true,
+            "task_id": "task_1779779924033_2c0b744d0f89",
+            "status": "queued",
+            "chat_url": "https://gemini.google.com/app?hl=en",
+            "wait_ms": 25,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "task_id": "task_1779779924033_2c0b744d0f89",
+          "status": "queued",
+          "chat_url": "https://gemini.google.com/app?hl=en",
+          "wait_ms": 25,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_d18d7a58917eb105"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "id": "chatgpt-upload-multi-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-upload-multi-ext.json",
+  "startedAt": "2026-05-26T08:09:51Z",
+  "finishedAt": "2026-05-26T08:10:10Z",
+  "durationMs": 19027,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-upload-multi-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:09:51.955Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:upload-and-query",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+              "--prompt",
+              "List the unique first word from each file",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "beta"
+                },
+                {
+                  "path": "response_text",
+                  "regex": "gamma"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-upload-multi-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload three text files to ChatGPT and ask for each unique first word",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-upload-multi-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:upload-and-query",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileB.txt",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileC.txt",
+            "--prompt",
+            "List the unique first word from each file",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 18704,
+          "stdout": "{\n  \"conversation_id\": \"6a155551-ffe8-83e8-b7dc-7e6db73abd57\",\n  \"attachment_names\": [\n    \"fileA.txt\",\n    \"fileB.txt\",\n    \"fileC.txt\"\n  ],\n  \"response_text\": \"alpha\\nbeta\\ngamma\",\n  \"wait_ms\": 10183,\n  \"completion_detected\": true,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "conversation_id": "6a155551-ffe8-83e8-b7dc-7e6db73abd57",
+            "attachment_names": [
+              "fileA.txt",
+              "fileB.txt",
+              "fileC.txt"
+            ],
+            "response_text": "alpha\nbeta\ngamma",
+            "wait_ms": 10183,
+            "completion_detected": true,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "alpha\nbeta\ngamma",
+                "ok": true
+              },
+              {
+                "path": "response_text",
+                "actual": "alpha\nbeta\ngamma",
+                "ok": true
+              },
+              {
+                "path": "response_text",
+                "actual": "alpha\nbeta\ngamma",
+                "ok": true
+              }
+            ]
+          },
+          "conversation_id": "6a155551-ffe8-83e8-b7dc-7e6db73abd57",
+          "attachment_names": "<circular>",
+          "response_text": "alpha\nbeta\ngamma",
+          "wait_ms": 10183,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_3914c70200f2fed2"
+  }
+}

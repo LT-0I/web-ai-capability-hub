@@ -1,0 +1,144 @@
+{
+  "id": "gemini-upload-single-mgr",
+  "file": "examples/workflows/gemini-gemini-upload-single-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-upload-single-mgr.json",
+  "startedAt": "2026-05-26T07:26:07Z",
+  "finishedAt": "2026-05-26T07:26:20Z",
+  "durationMs": 12384,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-upload-single-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:26:08.106Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:upload-and-query",
+              "--profile",
+              "gemini-9225",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+              "--prompt",
+              "Quote the first 3 words of this file verbatim",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "alpha"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-upload-single-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload a text file to Gemini and verify a grounded quote",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-upload-single-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:upload-and-query",
+            "--profile",
+            "gemini-9225",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/fileA.txt",
+            "--prompt",
+            "Quote the first 3 words of this file verbatim",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 12145,
+          "stdout": "{\n  \"files_in_chip\": [\n    \"fileA.txt\"\n  ],\n  \"chat_url\": \"https://gemini.google.com/app/63f0fb4a779f317b?hl=en\",\n  \"response_text\": \"alpha beta gamma\",\n  \"wait_ms\": 4070,\n  \"completion_detected\": true,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "files_in_chip": [
+              "fileA.txt"
+            ],
+            "chat_url": "https://gemini.google.com/app/63f0fb4a779f317b?hl=en",
+            "response_text": "alpha beta gamma",
+            "wait_ms": 4070,
+            "completion_detected": true,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "alpha beta gamma",
+                "ok": true
+              }
+            ]
+          },
+          "files_in_chip": "<circular>",
+          "chat_url": "https://gemini.google.com/app/63f0fb4a779f317b?hl=en",
+          "response_text": "alpha beta gamma",
+          "wait_ms": 4070,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_d6596dea806c0bce"
+  }
+}

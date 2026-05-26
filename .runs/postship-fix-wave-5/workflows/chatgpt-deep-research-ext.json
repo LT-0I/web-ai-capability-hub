@@ -1,0 +1,144 @@
+{
+  "id": "chatgpt-deep-research-ext",
+  "file": "examples/workflows/chatgpt-deep-research-ext.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-deep-research-ext.json",
+  "startedAt": "2026-05-26T08:12:02Z",
+  "finishedAt": "2026-05-26T08:12:10Z",
+  "durationMs": 8189,
+  "timeoutMs": 1050000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-deep-research-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:12:02.671Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:deep-research",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/chatgpt",
+              "--response-timeout-ms",
+              "900000",
+              "--json"
+            ],
+            "timeoutMs": 960000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "task_id",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-deep-research-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Submit a ChatGPT Deep Research request and accept the queued task_id",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 960000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-deep-research-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:deep-research",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Quick deep research: list 3 recent open-source LLM frameworks released since 2025-01, with a one-sentence summary each. Deliver as a downloadable report.",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--response-timeout-ms",
+            "900000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 7950,
+          "stdout": "{\n  \"task_id\": \"task_1779783122849_166a0bb68fb9\",\n  \"status\": \"queued\",\n  \"chat_url\": \"https://chatgpt.com/\",\n  \"wait_ms\": 41,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "task_id": "task_1779783122849_166a0bb68fb9",
+            "status": "queued",
+            "chat_url": "https://chatgpt.com/",
+            "wait_ms": 41,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "task_id",
+                "actual": "task_1779783122849_166a0bb68fb9",
+                "ok": true
+              }
+            ]
+          },
+          "task_id": "task_1779783122849_166a0bb68fb9",
+          "status": "queued",
+          "chat_url": "https://chatgpt.com/",
+          "wait_ms": 41,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_b327639cfd18c3e9"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "claude-design-present-mgr",
+  "file": "examples/workflows/claude-claude-design-present-mgr.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-design-present-mgr.json",
+  "startedAt": "2026-05-26T07:33:45Z",
+  "finishedAt": "2026-05-26T07:33:46Z",
+  "durationMs": 487,
+  "timeoutMs": 210000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "FAIL",
+  "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+  "message": "command gate failed: exit_code 1 !== 0; json_path presentUrl regex //serve/|\\?file=/ failed",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "claude-design-present-mgr",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:33:45.998Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:design:present",
+              "--profile",
+              "claude-9224",
+              "--project-url",
+              "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "presentUrl",
+                  "regex": "/serve/|\\?file="
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-design-present-mgr",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Present an existing Claude Design project",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command gate failed: exit_code 1 !== 0; json_path presentUrl regex //serve/|\\?file=/ failed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:design:present",
+            "--profile",
+            "claude-9224",
+            "--project-url",
+            "https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 230,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"error_code\": \"CHROME_EXTENSION_NOT_CONNECTED\",\n  \"message\": \"No extension-assisted browser tab is available to claim\",\n  \"presentUrl\": \"\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+            "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+            "message": "No extension-assisted browser tab is available to claim",
+            "presentUrl": ""
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 1,
+              "ok": false
+            },
+            "json_path": [
+              {
+                "path": "presentUrl",
+                "actual": "",
+                "ok": false,
+                "reasons": [
+                  "regex //serve/|\\?file=/ failed"
+                ]
+              }
+            ]
+          },
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "No extension-assisted browser tab is available to claim",
+          "presentUrl": ""
+        }
+      }
+    ],
+    "runId": "run_7a019b835aa075ef"
+  }
+}

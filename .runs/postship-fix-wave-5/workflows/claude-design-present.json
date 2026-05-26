@@ -1,0 +1,19 @@
+{
+  "id": "claude-design-present",
+  "file": "examples/workflows/claude-design-present.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-design-present.json",
+  "startedAt": "2026-05-26T07:41:48Z",
+  "finishedAt": "2026-05-26T07:41:48Z",
+  "durationMs": 483,
+  "timeoutMs": 450000,
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "status": "FAIL",
+  "errorCode": "UNKNOWN",
+  "message": "{\"ok\":false,\"error\":\"Workflow claude-design-present result.type is not supported: text/html\"}",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": null
+}

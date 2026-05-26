@@ -1,0 +1,316 @@
+[2026-05-26T07:16:15Z] loaded 63 workflows; order=gemini:gemini-canvas-edit-mgr,gemini:gemini-canvas-to-docs-mgr,gemini:gemini-deep-research-mgr,gemini:gemini-canvas-edit-mgr,gemini:gemini-conversation-reuse-mgr,gemini:gemini-gems-converse-mgr,gemini:gemini-multimodal-mgr,gemini:gemini-music-download-track-ext,gemini:gemini-music-generate-ext,gemini:gemini-music-task-status-ext,gemini:gemini-select-model-flash-mgr,gemini:gemini-send-basic-mgr,gemini:gemini-send-thinking-mgr,gemini:gemini-send-web-search-mgr,gemini:gemini-upload-single-mgr,gemini:gemini-veo-quota-error-mgr,gemini:gemini-workspace-mgr,gemini:gemini-gems-converse-mgr,gemini:gemini-generate-image-ext,gemini:gemini-generate-video-ext,gemini:gemini-image-draft,gemini:gemini-music-generate-chain,claude:claude-conversation-manage-mgr,claude:claude-design-create-project-mgr,claude:claude-design-generate-mgr,claude:claude-design-present-mgr,claude:claude-generate-file-csv-ext,claude:claude-generate-file-docx-ext,claude:claude-generate-file-md-ext,claude:claude-generate-file-pptx-ext,claude:claude-generate-file-py-ext,claude:claude-select-model-sonnet-ext,claude:claude-send-basic-ext,claude:claude-send-incognito-ext,claude:claude-send-style-ext,claude:claude-send-thinking-ext,claude:claude-send-web-search-ext,claude:claude-upload-multi-ext,claude:claude-upload-single-ext,claude:claude-workspace-mgr,claude:claude-design-create-generate,claude:claude-design-present,other:research-database-search-dry-run,chatgpt:chatgpt-canvas-create-export-ext,chatgpt:chatgpt-codex-submit-task-ext-fallback,chatgpt:chatgpt-conversation-manage-ext-fallback,chatgpt:chatgpt-generate-file-csv-ext,chatgpt:chatgpt-generate-file-docx-ext,chatgpt:chatgpt-generate-file-md-ext,chatgpt:chatgpt-generate-file-pptx-ext,chatgpt:chatgpt-generate-file-py-ext,chatgpt:chatgpt-gpts-converse-ext-fallback,chatgpt:chatgpt-pulse-get-ext-fallback,chatgpt:chatgpt-pulse-onboard-ext-fallback,chatgpt:chatgpt-select-model-thinking-ext,chatgpt:chatgpt-send-basic-ext,chatgpt:chatgpt-send-thinking-ext,chatgpt:chatgpt-send-web-search-ext,chatgpt:chatgpt-upload-multi-ext,chatgpt:chatgpt-upload-single-ext,chatgpt:chatgpt-workspace-ext-fallback,chatgpt:chatgpt-deep-research-ext,chatgpt:chatgpt-generate-image-ext
+[2026-05-26T07:16:15Z] cleanup before 1/63 gemini-canvas-edit-mgr: {"chatgpt": {"closed": 7, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 6, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:16:15Z] run 1/63 gemini gemini-canvas-edit-mgr (examples/workflows/gemini-canvas-edit.yaml) timeout=270000ms
+[2026-05-26T07:16:16Z] result 1/63 gemini-canvas-edit-mgr: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=1588ms artifact=.runs/postship-fix-wave-5/workflows/gemini-canvas-edit-mgr.json
+[2026-05-26T07:16:16Z] cleanup after 1/63 gemini-canvas-edit-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:16:16Z] sleeping 10s before next yaml
+[2026-05-26T07:16:26Z] cleanup before 2/63 gemini-canvas-to-docs-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:16:26Z] run 2/63 gemini gemini-canvas-to-docs-mgr (examples/workflows/gemini-canvas-to-docs-mgr.yaml) timeout=450000ms
+[2026-05-26T07:18:33Z] result 2/63 gemini-canvas-to-docs-mgr: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=126854ms artifact=.runs/postship-fix-wave-5/workflows/gemini-canvas-to-docs-mgr.json
+[2026-05-26T07:18:33Z] cleanup after 2/63 gemini-canvas-to-docs-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": true, "kept": 0, "ready": true}}
+[2026-05-26T07:18:33Z] sleeping 10s before next yaml
+[2026-05-26T07:18:43Z] cleanup before 3/63 gemini-deep-research-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:18:43Z] run 3/63 gemini gemini-deep-research-mgr (examples/workflows/gemini-deep-research-mgr.yaml) timeout=1050000ms
+[2026-05-26T07:18:53Z] result 3/63 gemini-deep-research-mgr: PASS  duration=10050ms artifact=.runs/postship-fix-wave-5/workflows/gemini-deep-research-mgr.json
+[2026-05-26T07:18:53Z] cleanup after 3/63 gemini-deep-research-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:18:53Z] sleeping 10s before next yaml
+[2026-05-26T07:19:03Z] cleanup before 4/63 gemini-canvas-edit-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:19:03Z] run 4/63 gemini gemini-canvas-edit-mgr (examples/workflows/gemini-gemini-canvas-edit-mgr.yaml) timeout=270000ms
+[2026-05-26T07:19:24Z] result 4/63 gemini-canvas-edit-mgr: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=21064ms artifact=.runs/postship-fix-wave-5/workflows/gemini-canvas-edit-mgr--gemini-gemini-canvas-edit-mgr.json
+[2026-05-26T07:19:24Z] cleanup after 4/63 gemini-canvas-edit-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:19:24Z] sleeping 10s before next yaml
+[2026-05-26T07:19:34Z] cleanup before 5/63 gemini-conversation-reuse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:19:34Z] run 5/63 gemini gemini-conversation-reuse-mgr (examples/workflows/gemini-gemini-conversation-reuse-mgr.yaml) timeout=330000ms
+[2026-05-26T07:19:52Z] result 5/63 gemini-conversation-reuse-mgr: PASS  duration=18085ms artifact=.runs/postship-fix-wave-5/workflows/gemini-conversation-reuse-mgr.json
+[2026-05-26T07:19:52Z] cleanup after 5/63 gemini-conversation-reuse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:19:52Z] sleeping 10s before next yaml
+[2026-05-26T07:20:02Z] cleanup before 6/63 gemini-gems-converse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:20:02Z] run 6/63 gemini gemini-gems-converse-mgr (examples/workflows/gemini-gemini-gems-converse-mgr.yaml) timeout=270000ms
+[2026-05-26T07:20:12Z] result 6/63 gemini-gems-converse-mgr: PASS  duration=9652ms artifact=.runs/postship-fix-wave-5/workflows/gemini-gems-converse-mgr.json
+[2026-05-26T07:20:12Z] cleanup after 6/63 gemini-gems-converse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:20:12Z] sleeping 10s before next yaml
+[2026-05-26T07:20:22Z] cleanup before 7/63 gemini-multimodal-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:20:22Z] run 7/63 gemini gemini-multimodal-mgr (examples/workflows/gemini-gemini-multimodal-mgr.yaml) timeout=330000ms
+[2026-05-26T07:20:35Z] result 7/63 gemini-multimodal-mgr: PASS  duration=13220ms artifact=.runs/postship-fix-wave-5/workflows/gemini-multimodal-mgr.json
+[2026-05-26T07:20:35Z] cleanup after 7/63 gemini-multimodal-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:20:35Z] sleeping 10s before next yaml
+[2026-05-26T07:20:45Z] cleanup before 8/63 gemini-music-download-track-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:20:45Z] run 8/63 gemini gemini-music-download-track-ext (examples/workflows/gemini-gemini-music-download-track-ext.yaml) timeout=570000ms
+[2026-05-26T07:21:53Z] result 8/63 gemini-music-download-track-ext: PASS  duration=68006ms artifact=.runs/postship-fix-wave-5/workflows/gemini-music-download-track-ext.json
+[2026-05-26T07:21:53Z] cleanup after 8/63 gemini-music-download-track-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": true, "kept": 0, "ready": true}}
+[2026-05-26T07:21:53Z] sleeping 10s before next yaml
+[2026-05-26T07:22:03Z] cleanup before 9/63 gemini-music-generate-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:22:03Z] run 9/63 gemini gemini-music-generate-ext (examples/workflows/gemini-gemini-music-generate-ext.yaml) timeout=450000ms
+[2026-05-26T07:23:32Z] result 9/63 gemini-music-generate-ext: PASS  duration=88857ms artifact=.runs/postship-fix-wave-5/workflows/gemini-music-generate-ext.json
+[2026-05-26T07:23:32Z] cleanup after 9/63 gemini-music-generate-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": true, "kept": 0, "ready": true}}
+[2026-05-26T07:23:32Z] sleeping 10s before next yaml
+[2026-05-26T07:23:42Z] cleanup before 10/63 gemini-music-task-status-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:23:42Z] run 10/63 gemini gemini-music-task-status-ext (examples/workflows/gemini-gemini-music-task-status-ext.yaml) timeout=510000ms
+[2026-05-26T07:24:35Z] result 10/63 gemini-music-task-status-ext: PASS  duration=52808ms artifact=.runs/postship-fix-wave-5/workflows/gemini-music-task-status-ext.json
+[2026-05-26T07:24:35Z] cleanup after 10/63 gemini-music-task-status-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": true, "kept": 0, "ready": true}}
+[2026-05-26T07:24:35Z] sleeping 10s before next yaml
+[2026-05-26T07:24:45Z] cleanup before 11/63 gemini-select-model-flash-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:24:45Z] run 11/63 gemini gemini-select-model-flash-mgr (examples/workflows/gemini-gemini-select-model-flash-mgr.yaml) timeout=210000ms
+[2026-05-26T07:24:53Z] result 11/63 gemini-select-model-flash-mgr: PASS  duration=8454ms artifact=.runs/postship-fix-wave-5/workflows/gemini-select-model-flash-mgr.json
+[2026-05-26T07:24:53Z] cleanup after 11/63 gemini-select-model-flash-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:24:53Z] sleeping 10s before next yaml
+[2026-05-26T07:25:03Z] cleanup before 12/63 gemini-send-basic-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:03Z] run 12/63 gemini gemini-send-basic-mgr (examples/workflows/gemini-gemini-send-basic-mgr.yaml) timeout=270000ms
+[2026-05-26T07:25:12Z] result 12/63 gemini-send-basic-mgr: PASS  duration=8345ms artifact=.runs/postship-fix-wave-5/workflows/gemini-send-basic-mgr.json
+[2026-05-26T07:25:12Z] cleanup after 12/63 gemini-send-basic-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:12Z] sleeping 10s before next yaml
+[2026-05-26T07:25:22Z] cleanup before 13/63 gemini-send-thinking-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:22Z] run 13/63 gemini gemini-send-thinking-mgr (examples/workflows/gemini-gemini-send-thinking-mgr.yaml) timeout=330000ms
+[2026-05-26T07:25:43Z] result 13/63 gemini-send-thinking-mgr: PASS  duration=20950ms artifact=.runs/postship-fix-wave-5/workflows/gemini-send-thinking-mgr.json
+[2026-05-26T07:25:43Z] cleanup after 13/63 gemini-send-thinking-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:43Z] sleeping 10s before next yaml
+[2026-05-26T07:25:53Z] cleanup before 14/63 gemini-send-web-search-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:53Z] run 14/63 gemini gemini-send-web-search-mgr (examples/workflows/gemini-gemini-send-web-search-mgr.yaml) timeout=270000ms
+[2026-05-26T07:25:57Z] result 14/63 gemini-send-web-search-mgr: FAIL ELEMENT_NOT_FOUND duration=4712ms artifact=.runs/postship-fix-wave-5/workflows/gemini-send-web-search-mgr.json
+[2026-05-26T07:25:57Z] cleanup after 14/63 gemini-send-web-search-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:25:57Z] sleeping 10s before next yaml
+[2026-05-26T07:26:07Z] cleanup before 15/63 gemini-upload-single-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:26:07Z] run 15/63 gemini gemini-upload-single-mgr (examples/workflows/gemini-gemini-upload-single-mgr.yaml) timeout=330000ms
+[2026-05-26T07:26:20Z] result 15/63 gemini-upload-single-mgr: PASS  duration=12384ms artifact=.runs/postship-fix-wave-5/workflows/gemini-upload-single-mgr.json
+[2026-05-26T07:26:20Z] cleanup after 15/63 gemini-upload-single-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:26:20Z] sleeping 10s before next yaml
+[2026-05-26T07:26:30Z] cleanup before 16/63 gemini-veo-quota-error-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:26:30Z] run 16/63 gemini gemini-veo-quota-error-mgr (examples/workflows/gemini-gemini-veo-quota-error-mgr.yaml) timeout=210000ms
+[2026-05-26T07:28:30Z] result 16/63 gemini-veo-quota-error-mgr: FAIL COMMAND_TIMEOUT duration=120265ms artifact=.runs/postship-fix-wave-5/workflows/gemini-veo-quota-error-mgr.json
+[2026-05-26T07:28:30Z] cleanup after 16/63 gemini-veo-quota-error-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:28:30Z] sleeping 10s before next yaml
+[2026-05-26T07:28:40Z] cleanup before 17/63 gemini-workspace-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:28:40Z] run 17/63 gemini gemini-workspace-mgr (examples/workflows/gemini-gemini-workspace-mgr.yaml) timeout=180000ms
+[2026-05-26T07:28:41Z] result 17/63 gemini-workspace-mgr: PASS  duration=1174ms artifact=.runs/postship-fix-wave-5/workflows/gemini-workspace-mgr.json
+[2026-05-26T07:28:41Z] cleanup after 17/63 gemini-workspace-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:28:41Z] sleeping 10s before next yaml
+[2026-05-26T07:28:51Z] cleanup before 18/63 gemini-gems-converse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:28:51Z] run 18/63 gemini gemini-gems-converse-mgr (examples/workflows/gemini-gems-converse.yaml) timeout=270000ms
+[2026-05-26T07:29:01Z] result 18/63 gemini-gems-converse-mgr: PASS  duration=9618ms artifact=.runs/postship-fix-wave-5/workflows/gemini-gems-converse-mgr--gemini-gems-converse.json
+[2026-05-26T07:29:01Z] cleanup after 18/63 gemini-gems-converse-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:29:01Z] sleeping 10s before next yaml
+[2026-05-26T07:29:11Z] cleanup before 19/63 gemini-generate-image-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:29:11Z] run 19/63 gemini gemini-generate-image-ext (examples/workflows/gemini-generate-image-ext.yaml) timeout=390000ms
+[2026-05-26T07:29:54Z] result 19/63 gemini-generate-image-ext: PASS  duration=42677ms artifact=.runs/postship-fix-wave-5/workflows/gemini-generate-image-ext.json
+[2026-05-26T07:29:54Z] cleanup after 19/63 gemini-generate-image-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:29:54Z] sleeping 10s before next yaml
+[2026-05-26T07:30:04Z] cleanup before 20/63 gemini-generate-video-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:30:04Z] run 20/63 gemini gemini-generate-video-ext (examples/workflows/gemini-generate-video-ext.yaml) timeout=990000ms
+[2026-05-26T07:32:13Z] result 20/63 gemini-generate-video-ext: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=129186ms artifact=.runs/postship-fix-wave-5/workflows/gemini-generate-video-ext.json
+[2026-05-26T07:32:13Z] cleanup after 20/63 gemini-generate-video-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 1, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:32:13Z] sleeping 10s before next yaml
+[2026-05-26T07:32:23Z] cleanup before 21/63 gemini-image-draft: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:32:23Z] run 21/63 gemini gemini-image-draft (examples/workflows/gemini-image-draft.yaml) timeout=450000ms
+[2026-05-26T07:32:35Z] result 21/63 gemini-image-draft: FAIL UNKNOWN duration=12240ms artifact=.runs/postship-fix-wave-5/workflows/gemini-image-draft.json
+[2026-05-26T07:32:35Z] cleanup after 21/63 gemini-image-draft: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:32:35Z] sleeping 10s before next yaml
+[2026-05-26T07:32:45Z] cleanup before 22/63 gemini-music-generate-chain: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:32:45Z] run 22/63 gemini gemini-music-generate-chain (examples/workflows/gemini-music-generate-chain.yaml) timeout=450000ms
+[2026-05-26T07:32:59Z] result 22/63 gemini-music-generate-chain: FAIL ELEMENT_NOT_FOUND duration=13757ms artifact=.runs/postship-fix-wave-5/workflows/gemini-music-generate-chain.json
+[2026-05-26T07:32:59Z] cleanup after 22/63 gemini-music-generate-chain: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:32:59Z] sleeping 10s before next yaml
+[2026-05-26T07:33:09Z] cleanup before 23/63 claude-conversation-manage-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:09Z] run 23/63 claude claude-conversation-manage-mgr (examples/workflows/claude-claude-conversation-manage-mgr.yaml) timeout=180000ms
+[2026-05-26T07:33:09Z] result 23/63 claude-conversation-manage-mgr: PASS  duration=381ms artifact=.runs/postship-fix-wave-5/workflows/claude-conversation-manage-mgr.json
+[2026-05-26T07:33:09Z] cleanup after 23/63 claude-conversation-manage-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:09Z] sleeping 10s before next yaml
+[2026-05-26T07:33:19Z] cleanup before 24/63 claude-design-create-project-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:19Z] run 24/63 claude claude-design-create-project-mgr (examples/workflows/claude-claude-design-create-project-mgr.yaml) timeout=270000ms
+[2026-05-26T07:33:25Z] result 24/63 claude-design-create-project-mgr: PASS  duration=5343ms artifact=.runs/postship-fix-wave-5/workflows/claude-design-create-project-mgr.json
+[2026-05-26T07:33:25Z] cleanup after 24/63 claude-design-create-project-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:25Z] sleeping 10s before next yaml
+[2026-05-26T07:33:35Z] cleanup before 25/63 claude-design-generate-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:35Z] run 25/63 claude claude-design-generate-mgr (examples/workflows/claude-claude-design-generate-mgr.yaml) timeout=570000ms
+[2026-05-26T07:33:35Z] result 25/63 claude-design-generate-mgr: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=706ms artifact=.runs/postship-fix-wave-5/workflows/claude-design-generate-mgr.json
+[2026-05-26T07:33:35Z] cleanup after 25/63 claude-design-generate-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:35Z] sleeping 10s before next yaml
+[2026-05-26T07:33:45Z] cleanup before 26/63 claude-design-present-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:45Z] run 26/63 claude claude-design-present-mgr (examples/workflows/claude-claude-design-present-mgr.yaml) timeout=210000ms
+[2026-05-26T07:33:46Z] result 26/63 claude-design-present-mgr: FAIL CHROME_EXTENSION_NOT_CONNECTED duration=487ms artifact=.runs/postship-fix-wave-5/workflows/claude-design-present-mgr.json
+[2026-05-26T07:33:46Z] cleanup after 26/63 claude-design-present-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:46Z] sleeping 10s before next yaml
+[2026-05-26T07:33:56Z] cleanup before 27/63 claude-generate-file-csv-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:33:56Z] run 27/63 claude claude-generate-file-csv-ext (examples/workflows/claude-claude-generate-file-csv-ext.yaml) timeout=330000ms
+[2026-05-26T07:34:21Z] result 27/63 claude-generate-file-csv-ext: PASS  duration=25652ms artifact=.runs/postship-fix-wave-5/workflows/claude-generate-file-csv-ext.json
+[2026-05-26T07:34:21Z] cleanup after 27/63 claude-generate-file-csv-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:34:21Z] sleeping 10s before next yaml
+[2026-05-26T07:34:32Z] cleanup before 28/63 claude-generate-file-docx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:34:32Z] run 28/63 claude claude-generate-file-docx-ext (examples/workflows/claude-claude-generate-file-docx-ext.yaml) timeout=330000ms
+[2026-05-26T07:35:19Z] result 28/63 claude-generate-file-docx-ext: PASS  duration=47023ms artifact=.runs/postship-fix-wave-5/workflows/claude-generate-file-docx-ext.json
+[2026-05-26T07:35:19Z] cleanup after 28/63 claude-generate-file-docx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:35:19Z] sleeping 10s before next yaml
+[2026-05-26T07:35:29Z] cleanup before 29/63 claude-generate-file-md-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:35:29Z] run 29/63 claude claude-generate-file-md-ext (examples/workflows/claude-claude-generate-file-md-ext.yaml) timeout=330000ms
+[2026-05-26T07:36:06Z] result 29/63 claude-generate-file-md-ext: PASS  duration=37052ms artifact=.runs/postship-fix-wave-5/workflows/claude-generate-file-md-ext.json
+[2026-05-26T07:36:06Z] cleanup after 29/63 claude-generate-file-md-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:36:06Z] sleeping 10s before next yaml
+[2026-05-26T07:36:16Z] cleanup before 30/63 claude-generate-file-pptx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:36:16Z] run 30/63 claude claude-generate-file-pptx-ext (examples/workflows/claude-claude-generate-file-pptx-ext.yaml) timeout=330000ms
+[2026-05-26T07:38:00Z] result 30/63 claude-generate-file-pptx-ext: FAIL ARTIFACT_DOWNLOAD_TIMEOUT duration=104085ms artifact=.runs/postship-fix-wave-5/workflows/claude-generate-file-pptx-ext.json
+[2026-05-26T07:38:00Z] cleanup after 30/63 claude-generate-file-pptx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:00Z] sleeping 10s before next yaml
+[2026-05-26T07:38:10Z] cleanup before 31/63 claude-generate-file-py-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:10Z] run 31/63 claude claude-generate-file-py-ext (examples/workflows/claude-claude-generate-file-py-ext.yaml) timeout=330000ms
+[2026-05-26T07:38:30Z] result 31/63 claude-generate-file-py-ext: PASS  duration=20256ms artifact=.runs/postship-fix-wave-5/workflows/claude-generate-file-py-ext.json
+[2026-05-26T07:38:30Z] cleanup after 31/63 claude-generate-file-py-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:30Z] sleeping 10s before next yaml
+[2026-05-26T07:38:40Z] cleanup before 32/63 claude-select-model-sonnet-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:40Z] run 32/63 claude claude-select-model-sonnet-ext (examples/workflows/claude-claude-select-model-sonnet-ext.yaml) timeout=210000ms
+[2026-05-26T07:38:41Z] result 32/63 claude-select-model-sonnet-ext: PASS  duration=1466ms artifact=.runs/postship-fix-wave-5/workflows/claude-select-model-sonnet-ext.json
+[2026-05-26T07:38:41Z] cleanup after 32/63 claude-select-model-sonnet-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:41Z] sleeping 10s before next yaml
+[2026-05-26T07:38:51Z] cleanup before 33/63 claude-send-basic-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:38:51Z] run 33/63 claude claude-send-basic-ext (examples/workflows/claude-claude-send-basic-ext.yaml) timeout=270000ms
+[2026-05-26T07:39:01Z] result 33/63 claude-send-basic-ext: PASS  duration=9773ms artifact=.runs/postship-fix-wave-5/workflows/claude-send-basic-ext.json
+[2026-05-26T07:39:01Z] cleanup after 33/63 claude-send-basic-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:01Z] sleeping 10s before next yaml
+[2026-05-26T07:39:11Z] cleanup before 34/63 claude-send-incognito-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:11Z] run 34/63 claude claude-send-incognito-ext (examples/workflows/claude-claude-send-incognito-ext.yaml) timeout=270000ms
+[2026-05-26T07:39:21Z] result 34/63 claude-send-incognito-ext: PASS  duration=10183ms artifact=.runs/postship-fix-wave-5/workflows/claude-send-incognito-ext.json
+[2026-05-26T07:39:21Z] cleanup after 34/63 claude-send-incognito-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:21Z] sleeping 10s before next yaml
+[2026-05-26T07:39:31Z] cleanup before 35/63 claude-send-style-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:31Z] run 35/63 claude claude-send-style-ext (examples/workflows/claude-claude-send-style-ext.yaml) timeout=450000ms
+[2026-05-26T07:39:49Z] result 35/63 claude-send-style-ext: PASS  duration=17945ms artifact=.runs/postship-fix-wave-5/workflows/claude-send-style-ext.json
+[2026-05-26T07:39:49Z] cleanup after 35/63 claude-send-style-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 2, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:49Z] sleeping 10s before next yaml
+[2026-05-26T07:39:59Z] cleanup before 36/63 claude-send-thinking-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:39:59Z] run 36/63 claude claude-send-thinking-ext (examples/workflows/claude-claude-send-thinking-ext.yaml) timeout=330000ms
+[2026-05-26T07:40:11Z] result 36/63 claude-send-thinking-ext: PASS  duration=11135ms artifact=.runs/postship-fix-wave-5/workflows/claude-send-thinking-ext.json
+[2026-05-26T07:40:11Z] cleanup after 36/63 claude-send-thinking-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:40:11Z] sleeping 10s before next yaml
+[2026-05-26T07:40:21Z] cleanup before 37/63 claude-send-web-search-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:40:21Z] run 37/63 claude claude-send-web-search-ext (examples/workflows/claude-claude-send-web-search-ext.yaml) timeout=330000ms
+[2026-05-26T07:40:29Z] result 37/63 claude-send-web-search-ext: PASS  duration=8651ms artifact=.runs/postship-fix-wave-5/workflows/claude-send-web-search-ext.json
+[2026-05-26T07:40:29Z] cleanup after 37/63 claude-send-web-search-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:40:29Z] sleeping 10s before next yaml
+[2026-05-26T07:40:39Z] cleanup before 38/63 claude-upload-multi-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:40:39Z] run 38/63 claude claude-upload-multi-ext (examples/workflows/claude-claude-upload-multi-ext.yaml) timeout=330000ms
+[2026-05-26T07:40:54Z] result 38/63 claude-upload-multi-ext: PASS  duration=14497ms artifact=.runs/postship-fix-wave-5/workflows/claude-upload-multi-ext.json
+[2026-05-26T07:40:54Z] cleanup after 38/63 claude-upload-multi-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:40:54Z] sleeping 10s before next yaml
+[2026-05-26T07:41:04Z] cleanup before 39/63 claude-upload-single-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:04Z] run 39/63 claude claude-upload-single-ext (examples/workflows/claude-claude-upload-single-ext.yaml) timeout=270000ms
+[2026-05-26T07:41:16Z] result 39/63 claude-upload-single-ext: PASS  duration=12612ms artifact=.runs/postship-fix-wave-5/workflows/claude-upload-single-ext.json
+[2026-05-26T07:41:16Z] cleanup after 39/63 claude-upload-single-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:16Z] sleeping 10s before next yaml
+[2026-05-26T07:41:26Z] cleanup before 40/63 claude-workspace-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:26Z] run 40/63 claude claude-workspace-mgr (examples/workflows/claude-claude-workspace-mgr.yaml) timeout=180000ms
+[2026-05-26T07:41:27Z] result 40/63 claude-workspace-mgr: PASS  duration=414ms artifact=.runs/postship-fix-wave-5/workflows/claude-workspace-mgr.json
+[2026-05-26T07:41:27Z] cleanup after 40/63 claude-workspace-mgr: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:27Z] sleeping 10s before next yaml
+[2026-05-26T07:41:37Z] cleanup before 41/63 claude-design-create-generate: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:37Z] run 41/63 claude claude-design-create-generate (examples/workflows/claude-design-create-generate.yaml) timeout=630000ms
+[2026-05-26T07:41:38Z] result 41/63 claude-design-create-generate: PASS  duration=785ms artifact=.runs/postship-fix-wave-5/workflows/claude-design-create-generate.json
+[2026-05-26T07:41:38Z] cleanup after 41/63 claude-design-create-generate: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:38Z] sleeping 10s before next yaml
+[2026-05-26T07:41:48Z] cleanup before 42/63 claude-design-present: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:48Z] run 42/63 claude claude-design-present (examples/workflows/claude-design-present.yaml) timeout=450000ms
+[2026-05-26T07:41:48Z] result 42/63 claude-design-present: FAIL UNKNOWN duration=483ms artifact=.runs/postship-fix-wave-5/workflows/claude-design-present.json
+[2026-05-26T07:41:48Z] cleanup after 42/63 claude-design-present: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:48Z] sleeping 10s before next yaml
+[2026-05-26T07:41:58Z] cleanup before 43/63 research-database-search-dry-run: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:41:58Z] run 43/63 other research-database-search-dry-run (examples/workflows/research-database-search-dry-run.yaml) timeout=330000ms
+[2026-05-26T07:42:10Z] result 43/63 research-database-search-dry-run: FAIL UNKNOWN duration=12255ms artifact=.runs/postship-fix-wave-5/workflows/research-database-search-dry-run.json
+[2026-05-26T07:42:10Z] cleanup after 43/63 research-database-search-dry-run: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:42:11Z] sleeping 30s before next yaml
+[2026-05-26T07:42:41Z] cleanup before 44/63 chatgpt-canvas-create-export-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:42:41Z] run 44/63 chatgpt chatgpt-canvas-create-export-ext (examples/workflows/chatgpt-canvas-create-export-ext.yaml) timeout=450000ms
+[2026-05-26T07:43:29Z] result 44/63 chatgpt-canvas-create-export-ext: FAIL ELEMENT_NOT_FOUND duration=48054ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-canvas-create-export-ext.json
+[2026-05-26T07:43:29Z] cleanup after 44/63 chatgpt-canvas-create-export-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:43:29Z] sleeping 30s before next yaml
+[2026-05-26T07:43:59Z] cleanup before 45/63 chatgpt-codex-submit-task-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:43:59Z] run 45/63 chatgpt chatgpt-codex-submit-task-ext-fallback (examples/workflows/chatgpt-chatgpt-codex-submit-task-ext-fallback.yaml) timeout=390000ms
+[2026-05-26T07:43:59Z] result 45/63 chatgpt-codex-submit-task-ext-fallback: FAIL ELEMENT_NOT_FOUND duration=781ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-codex-submit-task-ext-fallback.json
+[2026-05-26T07:43:59Z] cleanup after 45/63 chatgpt-codex-submit-task-ext-fallback: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:43:59Z] sleeping 30s before next yaml
+[2026-05-26T07:44:29Z] cleanup before 46/63 chatgpt-conversation-manage-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:44:29Z] run 46/63 chatgpt chatgpt-conversation-manage-ext-fallback (examples/workflows/chatgpt-chatgpt-conversation-manage-ext-fallback.yaml) timeout=180000ms
+[2026-05-26T07:44:30Z] result 46/63 chatgpt-conversation-manage-ext-fallback: PASS  duration=396ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-conversation-manage-ext-fallback.json
+[2026-05-26T07:44:30Z] cleanup after 46/63 chatgpt-conversation-manage-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:44:30Z] sleeping 30s before next yaml
+[2026-05-26T07:45:00Z] cleanup before 47/63 chatgpt-generate-file-csv-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:45:00Z] run 47/63 chatgpt chatgpt-generate-file-csv-ext (examples/workflows/chatgpt-chatgpt-generate-file-csv-ext.yaml) timeout=330000ms
+[2026-05-26T07:49:00Z] result 47/63 chatgpt-generate-file-csv-ext: FAIL COMMAND_TIMEOUT duration=240292ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-file-csv-ext.json
+[2026-05-26T07:49:00Z] cleanup after 47/63 chatgpt-generate-file-csv-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:49:00Z] sleeping 30s before next yaml
+[2026-05-26T07:49:30Z] cleanup before 48/63 chatgpt-generate-file-docx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:49:30Z] run 48/63 chatgpt chatgpt-generate-file-docx-ext (examples/workflows/chatgpt-chatgpt-generate-file-docx-ext.yaml) timeout=330000ms
+[2026-05-26T07:53:30Z] result 48/63 chatgpt-generate-file-docx-ext: FAIL COMMAND_TIMEOUT duration=240274ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-file-docx-ext.json
+[2026-05-26T07:53:30Z] cleanup after 48/63 chatgpt-generate-file-docx-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:53:30Z] sleeping 30s before next yaml
+[2026-05-26T07:54:00Z] cleanup before 49/63 chatgpt-generate-file-md-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:54:00Z] run 49/63 chatgpt chatgpt-generate-file-md-ext (examples/workflows/chatgpt-chatgpt-generate-file-md-ext.yaml) timeout=330000ms
+[2026-05-26T07:58:01Z] result 49/63 chatgpt-generate-file-md-ext: FAIL COMMAND_TIMEOUT duration=240375ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-file-md-ext.json
+[2026-05-26T07:58:01Z] cleanup after 49/63 chatgpt-generate-file-md-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:58:01Z] sleeping 30s before next yaml
+[2026-05-26T07:58:31Z] cleanup before 50/63 chatgpt-generate-file-pptx-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T07:58:31Z] run 50/63 chatgpt chatgpt-generate-file-pptx-ext (examples/workflows/chatgpt-chatgpt-generate-file-pptx-ext.yaml) timeout=330000ms
+[2026-05-26T08:00:39Z] result 50/63 chatgpt-generate-file-pptx-ext: FAIL COMMAND_TIMEOUT duration=128311ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-file-pptx-ext.json
+[2026-05-26T08:00:39Z] cleanup after 50/63 chatgpt-generate-file-pptx-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:00:39Z] sleeping 30s before next yaml
+[2026-05-26T08:01:09Z] cleanup before 51/63 chatgpt-generate-file-py-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:01:09Z] run 51/63 chatgpt chatgpt-generate-file-py-ext (examples/workflows/chatgpt-chatgpt-generate-file-py-ext.yaml) timeout=330000ms
+[2026-05-26T08:05:09Z] result 51/63 chatgpt-generate-file-py-ext: FAIL COMMAND_TIMEOUT duration=240273ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-file-py-ext.json
+[2026-05-26T08:05:09Z] cleanup after 51/63 chatgpt-generate-file-py-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:05:09Z] sleeping 30s before next yaml
+[2026-05-26T08:05:39Z] cleanup before 52/63 chatgpt-gpts-converse-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:05:39Z] run 52/63 chatgpt chatgpt-gpts-converse-ext-fallback (examples/workflows/chatgpt-chatgpt-gpts-converse-ext-fallback.yaml) timeout=270000ms
+[2026-05-26T08:05:41Z] result 52/63 chatgpt-gpts-converse-ext-fallback: PASS  duration=1461ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-gpts-converse-ext-fallback.json
+[2026-05-26T08:05:41Z] cleanup after 52/63 chatgpt-gpts-converse-ext-fallback: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:05:41Z] sleeping 30s before next yaml
+[2026-05-26T08:06:11Z] cleanup before 53/63 chatgpt-pulse-get-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:06:11Z] run 53/63 chatgpt chatgpt-pulse-get-ext-fallback (examples/workflows/chatgpt-chatgpt-pulse-get-ext-fallback.yaml) timeout=270000ms
+[2026-05-26T08:06:14Z] result 53/63 chatgpt-pulse-get-ext-fallback: PASS  duration=2783ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-pulse-get-ext-fallback.json
+[2026-05-26T08:06:14Z] cleanup after 53/63 chatgpt-pulse-get-ext-fallback: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:06:14Z] sleeping 30s before next yaml
+[2026-05-26T08:06:44Z] cleanup before 54/63 chatgpt-pulse-onboard-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:06:44Z] run 54/63 chatgpt chatgpt-pulse-onboard-ext-fallback (examples/workflows/chatgpt-chatgpt-pulse-onboard-ext-fallback.yaml) timeout=270000ms
+[2026-05-26T08:06:44Z] result 54/63 chatgpt-pulse-onboard-ext-fallback: PASS  duration=410ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-pulse-onboard-ext-fallback.json
+[2026-05-26T08:06:44Z] cleanup after 54/63 chatgpt-pulse-onboard-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:06:44Z] sleeping 30s before next yaml
+[2026-05-26T08:07:14Z] cleanup before 55/63 chatgpt-select-model-thinking-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:07:14Z] run 55/63 chatgpt chatgpt-select-model-thinking-ext (examples/workflows/chatgpt-chatgpt-select-model-thinking-ext.yaml) timeout=210000ms
+[2026-05-26T08:07:17Z] result 55/63 chatgpt-select-model-thinking-ext: PASS  duration=2449ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-select-model-thinking-ext.json
+[2026-05-26T08:07:17Z] cleanup after 55/63 chatgpt-select-model-thinking-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:07:17Z] sleeping 30s before next yaml
+[2026-05-26T08:07:47Z] cleanup before 56/63 chatgpt-send-basic-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:07:47Z] run 56/63 chatgpt chatgpt-send-basic-ext (examples/workflows/chatgpt-chatgpt-send-basic-ext.yaml) timeout=270000ms
+[2026-05-26T08:07:58Z] result 56/63 chatgpt-send-basic-ext: PASS  duration=11303ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-send-basic-ext.json
+[2026-05-26T08:07:58Z] cleanup after 56/63 chatgpt-send-basic-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:07:58Z] sleeping 30s before next yaml
+[2026-05-26T08:08:28Z] cleanup before 57/63 chatgpt-send-thinking-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:08:28Z] run 57/63 chatgpt chatgpt-send-thinking-ext (examples/workflows/chatgpt-chatgpt-send-thinking-ext.yaml) timeout=330000ms
+[2026-05-26T08:08:41Z] result 57/63 chatgpt-send-thinking-ext: PASS  duration=12903ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-send-thinking-ext.json
+[2026-05-26T08:08:41Z] cleanup after 57/63 chatgpt-send-thinking-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:08:41Z] sleeping 30s before next yaml
+[2026-05-26T08:09:11Z] cleanup before 58/63 chatgpt-send-web-search-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:09:11Z] run 58/63 chatgpt chatgpt-send-web-search-ext (examples/workflows/chatgpt-chatgpt-send-web-search-ext.yaml) timeout=330000ms
+[2026-05-26T08:09:21Z] result 58/63 chatgpt-send-web-search-ext: FAIL ELEMENT_NOT_FOUND duration=10334ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-send-web-search-ext.json
+[2026-05-26T08:09:21Z] cleanup after 58/63 chatgpt-send-web-search-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:09:21Z] sleeping 30s before next yaml
+[2026-05-26T08:09:51Z] cleanup before 59/63 chatgpt-upload-multi-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:09:51Z] run 59/63 chatgpt chatgpt-upload-multi-ext (examples/workflows/chatgpt-chatgpt-upload-multi-ext.yaml) timeout=330000ms
+[2026-05-26T08:10:10Z] result 59/63 chatgpt-upload-multi-ext: PASS  duration=19027ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-upload-multi-ext.json
+[2026-05-26T08:10:10Z] cleanup after 59/63 chatgpt-upload-multi-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:10:10Z] sleeping 30s before next yaml
+[2026-05-26T08:10:40Z] cleanup before 60/63 chatgpt-upload-single-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:10:40Z] run 60/63 chatgpt chatgpt-upload-single-ext (examples/workflows/chatgpt-chatgpt-upload-single-ext.yaml) timeout=270000ms
+[2026-05-26T08:11:02Z] result 60/63 chatgpt-upload-single-ext: PASS  duration=21199ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-upload-single-ext.json
+[2026-05-26T08:11:02Z] cleanup after 60/63 chatgpt-upload-single-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:11:02Z] sleeping 30s before next yaml
+[2026-05-26T08:11:32Z] cleanup before 61/63 chatgpt-workspace-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:11:32Z] run 61/63 chatgpt chatgpt-workspace-ext-fallback (examples/workflows/chatgpt-chatgpt-workspace-ext-fallback.yaml) timeout=180000ms
+[2026-05-26T08:11:32Z] result 61/63 chatgpt-workspace-ext-fallback: PASS  duration=413ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-workspace-ext-fallback.json
+[2026-05-26T08:11:32Z] cleanup after 61/63 chatgpt-workspace-ext-fallback: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:11:32Z] sleeping 30s before next yaml
+[2026-05-26T08:12:02Z] cleanup before 62/63 chatgpt-deep-research-ext: {"chatgpt": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:12:02Z] run 62/63 chatgpt chatgpt-deep-research-ext (examples/workflows/chatgpt-deep-research-ext.yaml) timeout=1050000ms
+[2026-05-26T08:12:10Z] result 62/63 chatgpt-deep-research-ext: PASS  duration=8189ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-deep-research-ext.json
+[2026-05-26T08:12:10Z] cleanup after 62/63 chatgpt-deep-research-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:12:10Z] sleeping 30s before next yaml
+[2026-05-26T08:12:40Z] cleanup before 63/63 chatgpt-generate-image-ext: {"chatgpt": {"closed": 1, "created_home": true, "kept": 0, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:12:40Z] run 63/63 chatgpt chatgpt-generate-image-ext (examples/workflows/chatgpt-generate-image-ext.yaml) timeout=270000ms
+[2026-05-26T08:14:13Z] result 63/63 chatgpt-generate-image-ext: PASS  duration=93245ms artifact=.runs/postship-fix-wave-5/workflows/chatgpt-generate-image-ext.json
+[2026-05-26T08:14:13Z] cleanup after 63/63 chatgpt-generate-image-ext: {"chatgpt": {"closed": 1, "created_home": false, "kept": 1, "ready": true}, "claude": {"closed": 0, "created_home": false, "kept": 1, "ready": true}, "gemini": {"closed": 0, "created_home": false, "kept": 1, "ready": true}}
+[2026-05-26T08:14:14Z] complete: PASS=42/63

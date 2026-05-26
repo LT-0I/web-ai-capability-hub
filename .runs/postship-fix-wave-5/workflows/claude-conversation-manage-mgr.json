@@ -1,0 +1,144 @@
+{
+  "id": "claude-conversation-manage-mgr",
+  "file": "examples/workflows/claude-claude-conversation-manage-mgr.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-conversation-manage-mgr.json",
+  "startedAt": "2026-05-26T07:33:09Z",
+  "finishedAt": "2026-05-26T07:33:09Z",
+  "durationMs": 381,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-conversation-manage-mgr",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:33:09.505Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:conversation-manage",
+              "--profile",
+              "claude-9224",
+              "--action",
+              "rename",
+              "--tab-url-contains",
+              "claude.ai",
+              "--new-title",
+              "probe-rename-test",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-conversation-manage-mgr",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt Claude conversation rename (fail-closed)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-conversation-manage-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:conversation-manage",
+            "--profile",
+            "claude-9224",
+            "--action",
+            "rename",
+            "--tab-url-contains",
+            "claude.ai",
+            "--new-title",
+            "probe-rename-test",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 148,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"error_code\": \"INVALID_ARGS\",\n  \"error\": \"$.action must be one of search, share, sidebar_options, list\",\n  \"evidence\": {\n    \"tool\": \"webai_claude_conversation_manage\",\n    \"stage\": \"schema\",\n    \"message\": \"$.action must be one of search, share, sidebar_options, list\",\n    \"error_name\": \"Error\"\n  }\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "errorCode": "INVALID_ARGS",
+            "error_code": "INVALID_ARGS",
+            "error": "$.action must be one of search, share, sidebar_options, list",
+            "evidence": {
+              "tool": "webai_claude_conversation_manage",
+              "stage": "schema",
+              "message": "$.action must be one of search, share, sidebar_options, list",
+              "error_name": "Error"
+            }
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "INVALID_ARGS",
+                "ok": true
+              }
+            ]
+          },
+          "errorCode": "INVALID_ARGS",
+          "error_code": "INVALID_ARGS",
+          "error": "$.action must be one of search, share, sidebar_options, list",
+          "evidence": "<circular>"
+        }
+      }
+    ],
+    "runId": "run_38f517d21fab3b5f"
+  }
+}

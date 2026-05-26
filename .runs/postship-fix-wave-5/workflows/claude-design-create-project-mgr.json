@@ -1,0 +1,135 @@
+{
+  "id": "claude-design-create-project-mgr",
+  "file": "examples/workflows/claude-claude-design-create-project-mgr.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-design-create-project-mgr.json",
+  "startedAt": "2026-05-26T07:33:19Z",
+  "finishedAt": "2026-05-26T07:33:25Z",
+  "durationMs": 5343,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-design-create-project-mgr",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:33:19.906Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:design:create-project",
+              "--profile",
+              "claude-9224",
+              "--name",
+              "Capability Probe Design",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "projectId",
+                  "nonempty": true
+                },
+                {
+                  "path": "projectUrl",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-design-create-project-mgr",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Create a Claude Design project via managed CDP",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-design-create-project-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:design:create-project",
+            "--profile",
+            "claude-9224",
+            "--name",
+            "Capability Probe Design",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 4985,
+          "stdout": "{\n  \"projectUrl\": \"https://claude.ai/design/p/367c6514-69b7-47c2-bdac-cd9417b9bd7b\",\n  \"projectId\": \"367c6514-69b7-47c2-bdac-cd9417b9bd7b\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "projectUrl": "https://claude.ai/design/p/367c6514-69b7-47c2-bdac-cd9417b9bd7b",
+            "projectId": "367c6514-69b7-47c2-bdac-cd9417b9bd7b"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "projectId",
+                "actual": "367c6514-69b7-47c2-bdac-cd9417b9bd7b",
+                "ok": true
+              },
+              {
+                "path": "projectUrl",
+                "actual": "https://claude.ai/design/p/367c6514-69b7-47c2-bdac-cd9417b9bd7b",
+                "ok": true
+              }
+            ]
+          },
+          "projectUrl": "https://claude.ai/design/p/367c6514-69b7-47c2-bdac-cd9417b9bd7b",
+          "projectId": "367c6514-69b7-47c2-bdac-cd9417b9bd7b"
+        }
+      }
+    ],
+    "runId": "run_efe56fad8cfb0cf7"
+  }
+}

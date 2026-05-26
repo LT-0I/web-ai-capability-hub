@@ -1,0 +1,161 @@
+{
+  "id": "claude-send-basic-ext",
+  "file": "examples/workflows/claude-claude-send-basic-ext.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-send-basic-ext.json",
+  "startedAt": "2026-05-26T07:38:51Z",
+  "finishedAt": "2026-05-26T07:39:01Z",
+  "durationMs": 9773,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-send-basic-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:38:52.155Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:send-prompt",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "say only the word OK",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                },
+                {
+                  "path": "chat_url",
+                  "regex": "claude\\.ai/"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-send-basic-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Claude send basic prompt via extension-assisted CDP",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-basic-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "say only the word OK",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 9497,
+          "stdout": "{\n  \"response_text\": \"Claude responded: OK\\n\\nOK\",\n  \"elapsed_ms\": 9345,\n  \"wait_ms\": 6596,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/507f99a1-4709-4305-a02b-eff473af51d2\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Claude responded: OK\n\nOK",
+            "elapsed_ms": 9345,
+            "wait_ms": 6596,
+            "completion_detected": true,
+            "errorCode": null,
+            "conversation_id": null,
+            "chat_url": "https://claude.ai/chat/507f99a1-4709-4305-a02b-eff473af51d2"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: OK\n\nOK",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              },
+              {
+                "path": "chat_url",
+                "actual": "https://claude.ai/chat/507f99a1-4709-4305-a02b-eff473af51d2",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "Claude responded: OK\n\nOK",
+          "wait_ms": 6596,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/507f99a1-4709-4305-a02b-eff473af51d2"
+        }
+      }
+    ],
+    "runId": "run_a72b8139a477bb1e"
+  }
+}

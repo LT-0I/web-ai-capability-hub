@@ -1,0 +1,150 @@
+{
+  "id": "gemini-send-basic-mgr",
+  "file": "examples/workflows/gemini-gemini-send-basic-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-send-basic-mgr.json",
+  "startedAt": "2026-05-26T07:25:03Z",
+  "finishedAt": "2026-05-26T07:25:12Z",
+  "durationMs": 8345,
+  "timeoutMs": 270000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-send-basic-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:25:04.063Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:send-prompt",
+              "--profile",
+              "gemini-9225",
+              "--prompt",
+              "say only the word OK",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-send-basic-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Send a minimal prompt to Gemini and verify completion",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-send-basic-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--prompt",
+            "say only the word OK",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 8081,
+          "stdout": "{\n  \"response_text\": \"OK\",\n  \"elapsed_ms\": 7923,\n  \"wait_ms\": 4090,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app/d543cb9e2e920def?hl=en\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "OK",
+            "elapsed_ms": 7923,
+            "wait_ms": 4090,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": null,
+            "reuse_conversation": false,
+            "chat_url": "https://gemini.google.com/app/d543cb9e2e920def?hl=en"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "OK",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "OK",
+          "wait_ms": 4090,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/d543cb9e2e920def?hl=en"
+        }
+      }
+    ],
+    "runId": "run_1550dc9ec9b65ba3"
+  }
+}

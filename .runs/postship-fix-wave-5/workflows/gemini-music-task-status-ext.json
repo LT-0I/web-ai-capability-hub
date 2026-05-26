@@ -1,0 +1,247 @@
+{
+  "id": "gemini-music-task-status-ext",
+  "file": "examples/workflows/gemini-gemini-music-task-status-ext.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-music-task-status-ext.json",
+  "startedAt": "2026-05-26T07:23:42Z",
+  "finishedAt": "2026-05-26T07:24:35Z",
+  "durationMs": 52808,
+  "timeoutMs": 510000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-music-task-status-ext",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:23:42.722Z",
+      "actions": [
+        {
+          "stepId": "ensure_track",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:generate",
+              "--profile",
+              "gemini-9225",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+              "--confirmed",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/gemini",
+              "--timeout-ms",
+              "300000",
+              "--json"
+            ],
+            "timeoutMs": 360000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "task_id",
+                  "nonempty": true
+                },
+                {
+                  "path": "conversation_url",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:music:task-status",
+              "--profile",
+              "gemini-9225",
+              "--tab-url-contains",
+              "{{steps.ensure_track.conversation_url}}",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "status",
+                  "regex": "(?i)complete"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-music-task-status-ext",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a Gemini Music track, then poll that track's task-status",
+        "steps": [
+          {
+            "id": "ensure_track",
+            "command": "<circular>",
+            "timeoutMs": 360000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-music-task-status-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "ensure_track",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:generate",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "A short upbeat acoustic guitar loop, instrumental, 30 seconds",
+            "--confirmed",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--timeout-ms",
+            "300000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 47184,
+          "stdout": "{\n  \"task_id\": \"gemini_music_1779780269919\",\n  \"status\": \"complete\",\n  \"conversation_url\": \"https://gemini.google.com/app/d9e3735a9d42b625\",\n  \"path\": \"/tmp/explore-2026-05-25/gemini/Coffee_On_The_Dock.mp3\",\n  \"sha256\": \"439a52c4251c1d3f996d89398e7ef476d915769400fe196fe8fd357a0651c674\",\n  \"size_bytes\": 744609,\n  \"download_filename\": \"Coffee_On_The_Dock.mp3\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "task_id": "gemini_music_1779780269919",
+            "status": "complete",
+            "conversation_url": "https://gemini.google.com/app/d9e3735a9d42b625",
+            "path": "/tmp/explore-2026-05-25/gemini/Coffee_On_The_Dock.mp3",
+            "sha256": "439a52c4251c1d3f996d89398e7ef476d915769400fe196fe8fd357a0651c674",
+            "size_bytes": 744609,
+            "download_filename": "Coffee_On_The_Dock.mp3",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "task_id",
+                "actual": "gemini_music_1779780269919",
+                "ok": true
+              },
+              {
+                "path": "conversation_url",
+                "actual": "https://gemini.google.com/app/d9e3735a9d42b625",
+                "ok": true
+              }
+            ]
+          },
+          "task_id": "gemini_music_1779780269919",
+          "status": "complete",
+          "conversation_url": "https://gemini.google.com/app/d9e3735a9d42b625",
+          "path": "/tmp/explore-2026-05-25/gemini/Coffee_On_The_Dock.mp3",
+          "sha256": "439a52c4251c1d3f996d89398e7ef476d915769400fe196fe8fd357a0651c674",
+          "size_bytes": 744609,
+          "download_filename": "Coffee_On_The_Dock.mp3",
+          "errorCode": null
+        }
+      },
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:music:task-status",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "https://gemini.google.com/app/d9e3735a9d42b625",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 5290,
+          "stdout": "{\n  \"status\": \"complete\",\n  \"download_ready\": true,\n  \"conversation_url\": \"https://gemini.google.com/app/d9e3735a9d42b625\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "status": "complete",
+            "download_ready": true,
+            "conversation_url": "https://gemini.google.com/app/d9e3735a9d42b625",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "status",
+                "actual": "complete",
+                "ok": true
+              }
+            ]
+          },
+          "status": "complete",
+          "download_ready": true,
+          "conversation_url": "https://gemini.google.com/app/d9e3735a9d42b625",
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_d54cc3dd2cbe456a"
+  }
+}

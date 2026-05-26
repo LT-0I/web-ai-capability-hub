@@ -1,0 +1,268 @@
+{
+  "id": "claude-send-style-ext",
+  "file": "examples/workflows/claude-claude-send-style-ext.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-send-style-ext.json",
+  "startedAt": "2026-05-26T07:39:31Z",
+  "finishedAt": "2026-05-26T07:39:49Z",
+  "durationMs": 17945,
+  "timeoutMs": 450000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-send-style-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:39:32.149Z",
+      "actions": [
+        {
+          "stepId": "send_concise",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:send-prompt",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--style",
+              "Concise",
+              "--prompt",
+              "用一句话告诉我什么是机器学习。",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "stepId": "send_explanatory",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:send-prompt",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--style",
+              "Explanatory",
+              "--prompt",
+              "请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。",
+              "--response-timeout-ms",
+              "90000",
+              "--json"
+            ],
+            "timeoutMs": 180000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                },
+                {
+                  "path": "completion_detected",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-send-style-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Send two Claude prompts with different styles and verify both return non-empty distinct responses",
+        "steps": [
+          {
+            "id": "send_concise",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          },
+          {
+            "id": "send_explanatory",
+            "command": "<circular>",
+            "timeoutMs": 180000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-send-style-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "send_concise",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Concise",
+            "--prompt",
+            "用一句话告诉我什么是机器学习。",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 10474,
+          "stdout": "{\n  \"response_text\": \"Claude responded: 机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。\\n\\n机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。\",\n  \"elapsed_ms\": 10321,\n  \"wait_ms\": 7567,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/93a25a1e-1fd7-4943-9365-dacaf05edab1\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Claude responded: 机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。",
+            "elapsed_ms": 10321,
+            "wait_ms": 7567,
+            "completion_detected": true,
+            "errorCode": null,
+            "conversation_id": null,
+            "chat_url": "https://claude.ai/chat/93a25a1e-1fd7-4943-9365-dacaf05edab1"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Claude responded: 机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "Claude responded: 机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。\n\n机器学习是让计算机通过从数据中自动学习规律和模式，从而无需明确编程就能做出预测或决策的技术。",
+          "wait_ms": 7567,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/93a25a1e-1fd7-4943-9365-dacaf05edab1"
+        }
+      },
+      {
+        "stepId": "send_explanatory",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:send-prompt",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--style",
+            "Explanatory",
+            "--prompt",
+            "请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。",
+            "--response-timeout-ms",
+            "90000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 7196,
+          "stdout": "{\n  \"response_text\": \"You said: 请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。00:39\",\n  \"elapsed_ms\": 7041,\n  \"wait_ms\": 3110,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"conversation_id\": null,\n  \"chat_url\": \"https://claude.ai/chat/2d871a05-4e16-4a14-ab17-3afb7ecf600e\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "You said: 请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。00:39",
+            "elapsed_ms": 7041,
+            "wait_ms": 3110,
+            "completion_detected": true,
+            "errorCode": null,
+            "conversation_id": null,
+            "chat_url": "https://claude.ai/chat/2d871a05-4e16-4a14-ab17-3afb7ecf600e"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "You said: 请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。00:39",
+                "ok": true
+              },
+              {
+                "path": "completion_detected",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "You said: 请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。请用 3 段、每段 80 字以上、举具体例子，详细解释机器学习的原理、应用、和局限。00:39",
+          "wait_ms": 3110,
+          "completion_detected": true,
+          "errorCode": null,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/2d871a05-4e16-4a14-ab17-3afb7ecf600e"
+        }
+      }
+    ],
+    "runId": "run_be2919489ceb5d54"
+  }
+}

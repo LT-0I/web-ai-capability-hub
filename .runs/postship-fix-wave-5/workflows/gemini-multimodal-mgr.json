@@ -1,0 +1,144 @@
+{
+  "id": "gemini-multimodal-mgr",
+  "file": "examples/workflows/gemini-gemini-multimodal-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-multimodal-mgr.json",
+  "startedAt": "2026-05-26T07:20:22Z",
+  "finishedAt": "2026-05-26T07:20:35Z",
+  "durationMs": 13220,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-multimodal-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:20:22.588Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:upload-and-query",
+              "--profile",
+              "gemini-9225",
+              "--file",
+              "/tmp/explore-2026-05-25/fixtures/probe.png",
+              "--prompt",
+              "Describe this image in one sentence, including dominant color and shape.",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-multimodal-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Upload a PNG to Gemini and verify a multimodal description",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-multimodal-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:upload-and-query",
+            "--profile",
+            "gemini-9225",
+            "--file",
+            "/tmp/explore-2026-05-25/fixtures/probe.png",
+            "--prompt",
+            "Describe this image in one sentence, including dominant color and shape.",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 12969,
+          "stdout": "{\n  \"files_in_chip\": [\n    \"probe.png\"\n  ],\n  \"chat_url\": \"https://gemini.google.com/app/a9381c384c3fa954?hl=en\",\n  \"response_text\": \"The image is a solid, uniform square of a vibrant coral or salmon pink color.\",\n  \"wait_ms\": 5130,\n  \"completion_detected\": true,\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "files_in_chip": [
+              "probe.png"
+            ],
+            "chat_url": "https://gemini.google.com/app/a9381c384c3fa954?hl=en",
+            "response_text": "The image is a solid, uniform square of a vibrant coral or salmon pink color.",
+            "wait_ms": 5130,
+            "completion_detected": true,
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "The image is a solid, uniform square of a vibrant coral or salmon pink color.",
+                "ok": true
+              }
+            ]
+          },
+          "files_in_chip": "<circular>",
+          "chat_url": "https://gemini.google.com/app/a9381c384c3fa954?hl=en",
+          "response_text": "The image is a solid, uniform square of a vibrant coral or salmon pink color.",
+          "wait_ms": 5130,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_db7316e299c2ab16"
+  }
+}

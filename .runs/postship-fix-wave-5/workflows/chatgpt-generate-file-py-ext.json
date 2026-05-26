@@ -1,0 +1,126 @@
+{
+  "id": "chatgpt-generate-file-py-ext",
+  "file": "examples/workflows/chatgpt-chatgpt-generate-file-py-ext.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-generate-file-py-ext.json",
+  "startedAt": "2026-05-26T08:01:09Z",
+  "finishedAt": "2026-05-26T08:05:09Z",
+  "durationMs": 240273,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "FAIL",
+  "errorCode": "COMMAND_TIMEOUT",
+  "message": "command timed out",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": false,
+    "plan": {
+      "id": "chatgpt-generate-file-py-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T08:01:09.845Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:generate-file",
+              "--profile",
+              "chatgpt",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Write a Python script that prints 'hello capability probe'. Provide as a downloadable .py file.",
+              "--expected-extension",
+              "py",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/chatgpt",
+              "--artifact-class",
+              "code",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-generate-file-py-ext",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a downloadable .py file in ChatGPT",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-py-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": false,
+        "message": "command timed out",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-file",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Write a Python script that prints 'hello capability probe'. Provide as a downloadable .py file.",
+            "--expected-extension",
+            "py",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": "SIGTERM",
+          "timed_out": true,
+          "elapsed_ms": 240020,
+          "stdout": "",
+          "stderr": "",
+          "gate": {
+            "timed_out": true
+          },
+          "errorCode": "COMMAND_TIMEOUT"
+        }
+      }
+    ],
+    "runId": "run_f6fa8c8173d57bc7"
+  }
+}

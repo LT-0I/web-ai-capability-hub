@@ -1,0 +1,137 @@
+{
+  "id": "gemini-select-model-flash-mgr",
+  "file": "examples/workflows/gemini-gemini-select-model-flash-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-select-model-flash-mgr.json",
+  "startedAt": "2026-05-26T07:24:45Z",
+  "finishedAt": "2026-05-26T07:24:53Z",
+  "durationMs": 8454,
+  "timeoutMs": 210000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-select-model-flash-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:24:45.589Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:select-model",
+              "--profile",
+              "gemini-9225",
+              "--model",
+              "3.5-flash",
+              "--thinking-level",
+              "standard",
+              "--tab-url-contains",
+              "gemini.google.com",
+              "--json"
+            ],
+            "timeoutMs": 120000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "ok",
+                  "equals": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-select-model-flash-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to select Gemini Flash model (fail-closed; ELEMENT_NOT_FOUND on model picker)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 120000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-select-model-flash-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:select-model",
+            "--profile",
+            "gemini-9225",
+            "--model",
+            "3.5-flash",
+            "--thinking-level",
+            "standard",
+            "--tab-url-contains",
+            "gemini.google.com",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 8209,
+          "stdout": "{\n  \"ok\": true,\n  \"selected_model\": \"3.5-flash\",\n  \"selected_thinking_level\": \"standard\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": true,
+            "selected_model": "3.5-flash",
+            "selected_thinking_level": "standard",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "ok",
+                "actual": true,
+                "ok": true
+              }
+            ]
+          },
+          "selected_model": "3.5-flash",
+          "selected_thinking_level": "standard",
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_9f18c3585e743b41"
+  }
+}

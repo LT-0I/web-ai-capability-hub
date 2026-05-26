@@ -1,0 +1,139 @@
+{
+  "id": "chatgpt-conversation-manage-ext-fallback",
+  "file": "examples/workflows/chatgpt-chatgpt-conversation-manage-ext-fallback.yaml",
+  "service": "chatgpt",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/chatgpt-conversation-manage-ext-fallback.json",
+  "startedAt": "2026-05-26T07:44:29Z",
+  "finishedAt": "2026-05-26T07:44:30Z",
+  "durationMs": 396,
+  "timeoutMs": 180000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "chatgpt-conversation-manage-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:44:30.069Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:chatgpt:conversation-manage",
+              "--profile",
+              "chatgpt",
+              "--action",
+              "rename",
+              "--tab-url-contains",
+              "about:blank",
+              "--new-title",
+              "probe-rename-test",
+              "--json"
+            ],
+            "timeoutMs": 60000,
+            "gate": {
+              "exit_code": 1,
+              "json_path": [
+                {
+                  "path": "errorCode",
+                  "equals": "HUMAN_HANDOFF_REQUIRED"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "chatgpt-conversation-manage-ext-fallback",
+        "target": "chatgpt",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Attempt to rename a ChatGPT conversation (fail-closed; Radix-portal kebab menu)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 60000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-conversation-manage-ext-fallback.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:conversation-manage",
+            "--profile",
+            "chatgpt",
+            "--action",
+            "rename",
+            "--tab-url-contains",
+            "about:blank",
+            "--new-title",
+            "probe-rename-test",
+            "--json"
+          ],
+          "exit_code": 1,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 155,
+          "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"error_code\": \"HUMAN_HANDOFF_REQUIRED\",\n  \"reason\": \"Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.\",\n  \"action\": \"rename\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "ok": false,
+            "errorCode": "HUMAN_HANDOFF_REQUIRED",
+            "error_code": "HUMAN_HANDOFF_REQUIRED",
+            "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+            "action": "rename"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 1,
+              "actual": 1,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "errorCode",
+                "actual": "HUMAN_HANDOFF_REQUIRED",
+                "ok": true
+              }
+            ]
+          },
+          "errorCode": "HUMAN_HANDOFF_REQUIRED",
+          "error_code": "HUMAN_HANDOFF_REQUIRED",
+          "reason": "Per-conversation kebab menu operations are Radix-portal gated and are not CLI-automatable.",
+          "action": "rename"
+        }
+      }
+    ],
+    "runId": "run_a3d51d5e97ff02bf"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "claude-generate-file-csv-ext",
+  "file": "examples/workflows/claude-claude-generate-file-csv-ext.yaml",
+  "service": "claude",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/claude-generate-file-csv-ext.json",
+  "startedAt": "2026-05-26T07:33:56Z",
+  "finishedAt": "2026-05-26T07:34:21Z",
+  "durationMs": 25652,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "claude-generate-file-csv-ext",
+      "target": "claude",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:33:56.484Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:claude:generate-file",
+              "--profile",
+              "claude-9224",
+              "--backend",
+              "extension-assisted-cdp",
+              "--prompt",
+              "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+              "--expected-extension",
+              "csv",
+              "--download-dir",
+              "/tmp/explore-2026-05-25/claude",
+              "--artifact-class",
+              "code",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "path",
+                  "nonempty": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "claude-generate-file-csv-ext",
+        "target": "claude",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Generate a downloadable .csv file in Claude",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/claude/claude-generate-file-csv-ext.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:claude:generate-file",
+            "--profile",
+            "claude-9224",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+            "--expected-extension",
+            "csv",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/claude",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 25404,
+          "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/claude/data.csv\",\n  \"sha256\": \"c8d3a4334d4cae3d897463ac5c2d5a6909c9d9e3e057f8a64aa6ea21dc8b503e\",\n  \"size_bytes\": 36,\n  \"download_filename\": \"data.csv\",\n  \"artifact_name\": \"data.csv\",\n  \"errorCode\": null\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "path": "/tmp/explore-2026-05-25/claude/data.csv",
+            "sha256": "c8d3a4334d4cae3d897463ac5c2d5a6909c9d9e3e057f8a64aa6ea21dc8b503e",
+            "size_bytes": 36,
+            "download_filename": "data.csv",
+            "artifact_name": "data.csv",
+            "errorCode": null
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "path",
+                "actual": "/tmp/explore-2026-05-25/claude/data.csv",
+                "ok": true
+              }
+            ]
+          },
+          "path": "/tmp/explore-2026-05-25/claude/data.csv",
+          "sha256": "c8d3a4334d4cae3d897463ac5c2d5a6909c9d9e3e057f8a64aa6ea21dc8b503e",
+          "size_bytes": 36,
+          "download_filename": "data.csv",
+          "artifact_name": "data.csv",
+          "errorCode": null
+        }
+      }
+    ],
+    "runId": "run_bd970cf3bda49e9a"
+  }
+}

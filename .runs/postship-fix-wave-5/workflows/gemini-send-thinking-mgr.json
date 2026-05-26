@@ -1,0 +1,143 @@
+{
+  "id": "gemini-send-thinking-mgr",
+  "file": "examples/workflows/gemini-gemini-send-thinking-mgr.yaml",
+  "service": "gemini",
+  "outputFile": ".runs/postship-fix-wave-5/workflows/gemini-send-thinking-mgr.json",
+  "startedAt": "2026-05-26T07:25:22Z",
+  "finishedAt": "2026-05-26T07:25:43Z",
+  "durationMs": 20950,
+  "timeoutMs": 330000,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "status": "PASS",
+  "errorCode": "",
+  "message": "ok",
+  "rateLimitedChatgpt": false,
+  "attempt": 0,
+  "parsedStdout": {
+    "ok": true,
+    "plan": {
+      "id": "gemini-send-thinking-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "compiledAt": "2026-05-26T07:25:22.414Z",
+      "actions": [
+        {
+          "stepId": "invoke-cli",
+          "action": {
+            "type": "wait",
+            "confirmed": true,
+            "commandStep": true
+          },
+          "requiresApproval": false,
+          "resolvedSelectors": [],
+          "idempotent": false,
+          "command": {
+            "argv": [
+              "node",
+              "dist/src/cli.js",
+              "webai:gemini:send-prompt",
+              "--profile",
+              "gemini-9225",
+              "--thinking",
+              "--prompt",
+              "Think step by step: 19 x 21 = ?",
+              "--response-timeout-ms",
+              "180000",
+              "--json"
+            ],
+            "timeoutMs": 240000,
+            "gate": {
+              "exit_code": 0,
+              "json_path": [
+                {
+                  "path": "response_text",
+                  "regex": "399"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "warnings": [],
+      "definition": {
+        "id": "gemini-send-thinking-mgr",
+        "target": "gemini",
+        "profile": "<profile>",
+        "mode": "automatic",
+        "description": "Send a Gemini thinking arithmetic prompt (fail-closed; MODEL_SELECTION_DRIFT)",
+        "steps": [
+          {
+            "id": "invoke-cli",
+            "command": "<circular>",
+            "timeoutMs": 240000,
+            "gate": "<circular>"
+          }
+        ],
+        "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-send-thinking-mgr.json"
+      }
+    },
+    "results": [
+      {
+        "stepId": "invoke-cli",
+        "ok": true,
+        "message": "command gate passed",
+        "data": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--thinking",
+            "--prompt",
+            "Think step by step: 19 x 21 = ?",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "exit_code": 0,
+          "signal": null,
+          "timed_out": false,
+          "elapsed_ms": 20615,
+          "stdout": "{\n  \"response_text\": \"Pythonprint(19 * 21)\\n\\n\\nCode output399\\n\\nTo solve 19×21 step by step, we can use an easy mental math technique called the difference of squares.Here is how it works:Step 1: Find the middle number\\nNotice that both 19 and 21 are exactly 1 away from the number 20.19=20−121=20+1Step 2: Rewrite the equation\\nWe can substitute these into our original problem:(20−1)×(20+1)Step 3: Use the difference of squares formula\\nThe algebraic identity for the difference of squares states that (a−b)(a+b)=a2−b2. In this case, let a=20 and b=1:202−12Step 4: Square the numbers202=40012=1Step 5: Subtract to find the final answer400−1=399Therefore, 19×21=399.\",\n  \"elapsed_ms\": 20464,\n  \"wait_ms\": 10239,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"chat_url\": \"https://gemini.google.com/app/a2a103f2ab601149?hl=en\"\n}\n",
+          "stderr": "",
+          "stdout_parsed": {
+            "response_text": "Pythonprint(19 * 21)\n\n\nCode output399\n\nTo solve 19×21 step by step, we can use an easy mental math technique called the difference of squares.Here is how it works:Step 1: Find the middle number\nNotice that both 19 and 21 are exactly 1 away from the number 20.19=20−121=20+1Step 2: Rewrite the equation\nWe can substitute these into our original problem:(20−1)×(20+1)Step 3: Use the difference of squares formula\nThe algebraic identity for the difference of squares states that (a−b)(a+b)=a2−b2. In this case, let a=20 and b=1:202−12Step 4: Square the numbers202=40012=1Step 5: Subtract to find the final answer400−1=399Therefore, 19×21=399.",
+            "elapsed_ms": 20464,
+            "wait_ms": 10239,
+            "completion_detected": true,
+            "errorCode": null,
+            "model_used": null,
+            "reuse_conversation": false,
+            "chat_url": "https://gemini.google.com/app/a2a103f2ab601149?hl=en"
+          },
+          "gate": {
+            "exit_code": {
+              "expected": 0,
+              "actual": 0,
+              "ok": true
+            },
+            "json_path": [
+              {
+                "path": "response_text",
+                "actual": "Pythonprint(19 * 21)\n\n\nCode output399\n\nTo solve 19×21 step by step, we can use an easy mental math technique called the difference of squares.Here is how it works:Step 1: Find the middle number\nNotice that both 19 and 21 are exactly 1 away from the number 20.19=20−121=20+1Step 2: Rewrite the equation\nWe can substitute these into our original problem:(20−1)×(20+1)Step 3: Use the difference of squares formula\nThe algebraic identity for the difference of squares states that (a−b)(a+b)=a2−b2. In this case, let a=20 and b=1:202−12Step 4: Square the numbers202=40012=1Step 5: Subtract to find the final answer400−1=399Therefore, 19×21=399.",
+                "ok": true
+              }
+            ]
+          },
+          "response_text": "Pythonprint(19 * 21)\n\n\nCode output399\n\nTo solve 19×21 step by step, we can use an easy mental math technique called the difference of squares.Here is how it works:Step 1: Find the middle number\nNotice that both 19 and 21 are exactly 1 away from the number 20.19=20−121=20+1Step 2: Rewrite the equation\nWe can substitute these into our original problem:(20−1)×(20+1)Step 3: Use the difference of squares formula\nThe algebraic identity for the difference of squares states that (a−b)(a+b)=a2−b2. In this case, let a=20 and b=1:202−12Step 4: Square the numbers202=40012=1Step 5: Subtract to find the final answer400−1=399Therefore, 19×21=399.",
+          "wait_ms": 10239,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/a2a103f2ab601149?hl=en"
+        }
+      }
+    ],
+    "runId": "run_8925ab501bf3024a"
+  }
+}

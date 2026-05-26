@@ -46,6 +46,9 @@ cycle just walks this flow.
    Serialize the three chrome launches (SingletonLock race). Relaunch needs
    `DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority` or Cloudflare blocks
    the live UI.
+   After restarting Chrome on 9224, purge any `.runs/.../ws-url-cache` if
+   present; stale cached WebSocket URLs can make managed-CDP Claude Design
+   one-offs fail with `connectOverCDP` timeouts until re-pinned.
 8. **Cheap models.** Sonnet for orchestration; ChatGPT Thinking-class, never
    Pro; Opus-4.7-max only for hard non-converging probe/subagent work.
 9. **Doc-driven inventory.** Feature scope comes from each service's own help
