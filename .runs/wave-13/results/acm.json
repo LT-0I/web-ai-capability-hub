@@ -1,0 +1,31 @@
+{
+  "db": "acm",
+  "kind": "paywalled",
+  "profile": "research-acm",
+  "publisher": "acm",
+  "doc_id": "10.1145/3613904.3642251",
+  "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/3613904.3642251",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/acm/10.1145_3613904.3642251.pdf",
+  "sha256": "a0e1ed23bd8f4ef600bed2d9308e96dc63d469ae5d0d1d64eea897fd57c94c6a",
+  "size": 8226058,
+  "downloaded_at": 1779813226455,
+  "duration_ms": 8449,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/acm/10.1145_3613904.3642251.pdf\",\n  \"sha256\": \"a0e1ed23bd8f4ef600bed2d9308e96dc63d469ae5d0d1d64eea897fd57c94c6a\",\n  \"size\": 8226058,\n  \"downloaded_at\": 1779813226455,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "ACM Digital Library DOI PDF; preflight application/pdf",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-acm\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-acm/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

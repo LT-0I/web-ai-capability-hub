@@ -1,0 +1,31 @@
+{
+  "db": "nature",
+  "kind": "paywalled",
+  "profile": "research-nature",
+  "publisher": "springernature",
+  "doc_id": "10.1038/s41467-024-44779-1",
+  "pdf_url": "https://www.nature.com/articles/s41467-024-44779-1.pdf",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/nature/10.1038_s41467-024-44779-1.pdf",
+  "sha256": "783bb4ab0b0047822293ce4d829338fff5ed5be0f85000b41c3269642cb9edf9",
+  "size": 12092510,
+  "downloaded_at": 1779815168609,
+  "duration_ms": 8393,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/nature/10.1038_s41467-024-44779-1.pdf\",\n  \"sha256\": \"783bb4ab0b0047822293ce4d829338fff5ed5be0f85000b41c3269642cb9edf9\",\n  \"size\": 12092510,\n  \"downloaded_at\": 1779815168609,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "Nature Communications open-access DOI PDF from nature.com search; curl preflight application/pdf",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-nature\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

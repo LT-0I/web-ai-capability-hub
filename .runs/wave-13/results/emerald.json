@@ -1,0 +1,31 @@
+{
+  "db": "emerald",
+  "kind": "paywalled",
+  "profile": "research-emerald",
+  "publisher": "emerald",
+  "doc_id": "10.1108/OIR-08-2021-0430",
+  "pdf_url": "https://www.emerald.com/insight/content/doi/10.1108/OIR-08-2021-0430/full/pdf",
+  "classification": "URL_RESOLVE_FAIL",
+  "ok": false,
+  "errorCode": "ARTIFACT_VERIFICATION_FAILED",
+  "message": "Paywalled literature download did not produce a PDF artifact",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 14418,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_VERIFICATION_FAILED\",\n  \"message\": \"Paywalled literature download did not produce a PDF artifact\"\n}\n",
+  "stderr": "",
+  "source": "Emerald Insight DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-emerald\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-emerald/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

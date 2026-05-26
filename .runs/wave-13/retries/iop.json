@@ -1,0 +1,31 @@
+{
+  "db": "iop",
+  "kind": "paywalled",
+  "profile": "research-iop",
+  "publisher": "iop",
+  "doc_id": "10.3847/1538-4357/ad1ab3",
+  "pdf_url": "https://iopscience.iop.org/article/10.3847/1538-4357/ad1ab3/pdf",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iop/10.3847_1538-4357_ad1ab3.pdf",
+  "sha256": "ccd7d40da9dcec975844d108f8444a0868f32b8e97f9e2d2478b79fe342a0ab7",
+  "size": 648735,
+  "downloaded_at": 1779815150071,
+  "duration_ms": 9418,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iop/10.3847_1538-4357_ad1ab3.pdf\",\n  \"sha256\": \"ccd7d40da9dcec975844d108f8444a0868f32b8e97f9e2d2478b79fe342a0ab7\",\n  \"size\": 648735,\n  \"downloaded_at\": 1779815150071,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "IOPscience article PDF; curl preflight application/pdf",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-iop\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-iop/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

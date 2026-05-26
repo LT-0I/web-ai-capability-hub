@@ -1,0 +1,31 @@
+{
+  "db": "worldsci",
+  "kind": "paywalled",
+  "profile": "research-worldsci",
+  "publisher": "worldsci",
+  "doc_id": "10.1142/S0219493724500096",
+  "pdf_url": "https://www.worldscientific.com/doi/pdf/10.1142/S0219493724500096",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/worldsci/10.1142_S0219493724500096.pdf",
+  "sha256": "08f77b41c9b4dafeaf01b4aa6daadd095c962dfe91ae0ccb3faf275a59c8f41c",
+  "size": 360284,
+  "downloaded_at": 1779815449128,
+  "duration_ms": 11178,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/worldsci/10.1142_S0219493724500096.pdf\",\n  \"sha256\": \"08f77b41c9b4dafeaf01b4aa6daadd095c962dfe91ae0ccb3faf275a59c8f41c\",\n  \"size\": 360284,\n  \"downloaded_at\": 1779815449128,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "World Scientific DOI PDF from CiNii search result; curl preflight application/pdf",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-worldsci\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-worldsci/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

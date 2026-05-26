@@ -1,0 +1,31 @@
+{
+  "db": "cellpress",
+  "kind": "paywalled",
+  "profile": "research-cellpress",
+  "publisher": "elsevier",
+  "doc_id": "S2211-1247(24)00001-6",
+  "pdf_url": "https://www.cell.com/cell-reports/pdf/S2211-1247(24)00001-6.pdf",
+  "classification": "URL_RESOLVE_FAIL",
+  "ok": false,
+  "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+  "message": "Cell Press browser-session PDF download failed: page.goto: net::ERR_TOO_MANY_REDIRECTS at https://www.cell.com/cell-reports/pdf/S2211-1247(24)00001-6.pdf\nCall log:\n\u001b[2m  - navigating to \"https://www.cell.com/cell-reports/pdf/S2211-1247(24)00001-6.pdf\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 7661,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_DOWNLOAD_TIMEOUT\",\n  \"message\": \"Cell Press browser-session PDF download failed: page.goto: net::ERR_TOO_MANY_REDIRECTS at https://www.cell.com/cell-reports/pdf/S2211-1247(24)00001-6.pdf\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://www.cell.com/cell-reports/pdf/S2211-1247(24)00001-6.pdf\\\", waiting until \\\"domcontentloaded\\\"\\u001b[22m\\n\"\n}\n",
+  "stderr": "",
+  "source": "Cell Reports PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-cellpress\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-cellpress/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

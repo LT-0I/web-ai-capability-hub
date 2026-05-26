@@ -1,0 +1,31 @@
+{
+  "db": "iest",
+  "kind": "paywalled",
+  "profile": "research-iest",
+  "publisher": "iest",
+  "doc_id": "10.17764/1098-4321.61.1.1",
+  "pdf_url": "https://jiest.kglmeridian.com/view/journals/jiet/61/1/article-p1.xml",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iest/10.17764_1098-4321.61.1.1.pdf",
+  "sha256": "ac337745321df2d114d1d01299f657efcff83a366d5ea0aed658b685d3d92a48",
+  "size": 1203454,
+  "downloaded_at": 1779813591239,
+  "duration_ms": 10173,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iest/10.17764_1098-4321.61.1.1.pdf\",\n  \"sha256\": \"ac337745321df2d114d1d01299f657efcff83a366d5ea0aed658b685d3d92a48\",\n  \"size\": 1203454,\n  \"downloaded_at\": 1779813591239,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "Journal of the IEST article page with Download PDF affordance",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-iest\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-iest/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

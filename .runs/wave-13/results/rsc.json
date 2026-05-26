@@ -1,0 +1,31 @@
+{
+  "db": "rsc",
+  "kind": "paywalled",
+  "profile": "research-rsc",
+  "publisher": "rsc",
+  "doc_id": "10.1039/D4RA01816H",
+  "pdf_url": "https://pubs.rsc.org/en/content/articlepdf/2024/ra/d4ra01816h",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/rsc/10.1039_D4RA01816H.pdf",
+  "sha256": "3f135d11474cda3844a2e438dc197706fc21da289cfc9f9abf3d89ca3bddfb50",
+  "size": 752735,
+  "downloaded_at": 1779813933361,
+  "duration_ms": 10029,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/rsc/10.1039_D4RA01816H.pdf\",\n  \"sha256\": \"3f135d11474cda3844a2e438dc197706fc21da289cfc9f9abf3d89ca3bddfb50\",\n  \"size\": 752735,\n  \"downloaded_at\": 1779813933361,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "RSC Advances article PDF; preflight application/pdf",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-rsc\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-rsc/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

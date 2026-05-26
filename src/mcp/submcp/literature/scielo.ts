@@ -13,7 +13,8 @@ export function resolveScieloPdfUrl(doc_id: string): string {
   }
   const journal = parts[0];
   const pid = parts.slice(1).join("/");
-  return `https://www.scielo.br/j/${encodeURIComponent(journal)}/a/${encodePathPreservingSlash(pid)}/?lang=en&format=pdf`;
+  if (/^pid[A-Za-z0-9]+$/.test(pid)) return `https://www.scielo.br/j/${encodeURIComponent(journal)}/a/${encodePathPreservingSlash(pid)}/?lang=en&format=pdf`;
+  return `https://www.scielo.br/j/${encodeURIComponent(journal)}/a/${encodePathPreservingSlash(pid)}/?format=pdf`;
 }
 
 export async function webAiScieloDownloadPdf(args: Partial<LiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

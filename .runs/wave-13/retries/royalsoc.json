@@ -1,0 +1,31 @@
+{
+  "db": "royalsoc",
+  "kind": "paywalled",
+  "profile": "research-royalsoc",
+  "publisher": "royalsoc",
+  "doc_id": "10.1098/rsos.230523",
+  "pdf_url": "https://royalsocietypublishing.org/doi/pdf/10.1098/rsos.230523",
+  "classification": "SELECTOR_DRIFT",
+  "ok": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "Royal Society Publishing PDF/download link was not found and no direct PDF download started",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 60881,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"Royal Society Publishing PDF/download link was not found and no direct PDF download started\"\n}\n",
+  "stderr": "",
+  "source": "Royal Society Open Science DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-royalsoc\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-royalsoc/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

@@ -16,7 +16,9 @@ function pageUrlFor(doc_id: string): string {
 function pdfHrefFromHtml(html: string): string | null {
   const dataPdf = /data-pdf-url=["']([^"']+)["']/i.exec(html)?.[1];
   if (dataPdf) return htmlDecode(dataPdf);
-  const anchor = /<a\b(?=[^>]*class=["'][^"']*pdf-download[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+  const anchor = /<a\b(?=[^>]*class=["'][^"']*(?:pdf-download|download-pdf|fulltext|full-text)[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+    || /<a\b(?=[^>]*(?:title|aria-label)=["'][^"']*(?:PDF|全文|下载)[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+    || /["'](?:pdfUrl|pdf_url|downloadUrl|download_url)["']\s*:\s*["']([^"']+)["']/i.exec(html)?.[1]
     || /<a\b(?=[^>]*href=["']([^"']+\.pdf(?:\?[^"']*)?)["'])[^>]*>/i.exec(html)?.[1];
   return anchor ? htmlDecode(anchor) : null;
 }
@@ -25,6 +27,7 @@ export async function resolvePubscholarPdfUrl(doc_id: string): Promise<string | 
   const pageUrl = pageUrlFor(doc_id);
   const response = await fetch(pageUrl, { headers: { "Accept": "text/html,application/xhtml+xml" } });
   if (!response.ok) throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, `PubScholar article page returned HTTP ${response.status}`, { doc_id, status: response.status, url: pageUrl });
+  if (/application\/pdf/i.test(response.headers.get("content-type") || "") || /\.pdf(?:$|[?#])/i.test(response.url || pageUrl)) return response.url || pageUrl;
   const html = await response.text();
   const href = pdfHrefFromHtml(html);
   if (!href) throw new LiteratureDownloadError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "PubScholar PDF link was not found in article page", { doc_id, url: pageUrl });

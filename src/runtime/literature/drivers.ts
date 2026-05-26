@@ -33,6 +33,18 @@ function loadBuiltInDriversOnce(): void {
   require("../../mcp/submcp/literature/iest");
   require("../../mcp/submcp/literature/iet");
   require("../../mcp/submcp/literature/sae");
+  require("../../mcp/submcp/literature/acs");
+  require("../../mcp/submcp/literature/cellpress");
+  require("../../mcp/submcp/literature/nature");
+  require("../../mcp/submcp/literature/rsc");
+  require("../../mcp/submcp/literature/royalsoc");
+  require("../../mcp/submcp/literature/cambridge");
+  require("../../mcp/submcp/literature/degruyter");
+  require("../../mcp/submcp/literature/emerald");
+  require("../../mcp/submcp/literature/sciencedirect");
+  require("../../mcp/submcp/literature/springer");
+  require("../../mcp/submcp/literature/tandf");
+  require("../../mcp/submcp/literature/wiley");
   require("../../mcp/submcp/literature/acm");
   require("../../mcp/submcp/literature/crc");
   require("../../mcp/submcp/literature/dblp");

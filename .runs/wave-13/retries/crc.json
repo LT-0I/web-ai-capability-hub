@@ -1,0 +1,31 @@
+{
+  "db": "crc",
+  "kind": "paywalled",
+  "profile": "research-crc",
+  "publisher": "taylorfrancis",
+  "doc_id": "10.1080/0361526X.2022.2040233",
+  "pdf_url": "https://www.tandfonline.com/doi/pdf/10.1080/0361526X.2022.2040233",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/crc/10.1080_0361526X.2022.2040233.pdf",
+  "sha256": "520963ac9db4ecddb0ac4c15eb0c933289f6577d6e351f52f8862ca23ba4fc12",
+  "size": 576762,
+  "downloaded_at": 1779817031092,
+  "duration_ms": 7871,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/crc/10.1080_0361526X.2022.2040233.pdf\",\n  \"sha256\": \"520963ac9db4ecddb0ac4c15eb0c933289f6577d6e351f52f8862ca23ba4fc12\",\n  \"size\": 576762,\n  \"downloaded_at\": 1779817031092,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "CRC/Taylor & Francis smoke using Taylor & Francis direct PDF verified by tandf driver",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-crc\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-crc/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

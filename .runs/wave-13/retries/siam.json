@@ -1,0 +1,31 @@
+{
+  "db": "siam",
+  "kind": "paywalled",
+  "profile": "research-siam",
+  "publisher": "siam",
+  "doc_id": "10.1137/23M1560687",
+  "pdf_url": "https://epubs.siam.org/doi/pdf/10.1137/23M1560687",
+  "classification": "URL_RESOLVE_FAIL",
+  "ok": false,
+  "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+  "message": "SIAM Publications PDF download did not complete within 60s after CDP click",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 28150,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_DOWNLOAD_TIMEOUT\",\n  \"message\": \"SIAM Publications PDF download did not complete within 60s after CDP click\"\n}\n",
+  "stderr": "",
+  "source": "SIAM DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-siam\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-siam/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

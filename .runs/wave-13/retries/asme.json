@@ -1,0 +1,31 @@
+{
+  "db": "asme",
+  "kind": "paywalled",
+  "profile": "research-asme",
+  "publisher": "asme",
+  "doc_id": "10.1115/1.4055678",
+  "pdf_url": "https://asmedigitalcollection.asme.org/fluidsengineering/article-pdf/146/1/011101/7154414/fe_146_01_011101.pdf",
+  "classification": "SELECTOR_DRIFT",
+  "ok": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "ASME Digital Collection PDF/download link was not found and no direct PDF download started",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 60730,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ASME Digital Collection PDF/download link was not found and no direct PDF download started\"\n}\n",
+  "stderr": "",
+  "source": "ASME Digital Collection article PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-asme\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-asme/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

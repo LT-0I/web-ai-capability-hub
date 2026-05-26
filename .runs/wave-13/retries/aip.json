@@ -1,0 +1,31 @@
+{
+  "db": "aip",
+  "kind": "paywalled",
+  "profile": "research-aip",
+  "publisher": "aip",
+  "doc_id": "10.1063/5.0193074",
+  "pdf_url": "https://pubs.aip.org/aip/adv/article-pdf/14/1/015001/19492006/015001_1_5.0193074.pdf",
+  "classification": "URL_RESOLVE_FAIL",
+  "ok": false,
+  "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+  "message": "AIP Publishing Scitation PDF download did not complete within 60s after CDP click",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 60824,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_DOWNLOAD_TIMEOUT\",\n  \"message\": \"AIP Publishing Scitation PDF download did not complete within 60s after CDP click\"\n}\n",
+  "stderr": "",
+  "source": "AIP Advances DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-aip\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-aip/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

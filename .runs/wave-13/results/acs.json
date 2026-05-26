@@ -1,0 +1,31 @@
+{
+  "db": "acs",
+  "kind": "paywalled",
+  "profile": "research-acs",
+  "publisher": "acs",
+  "doc_id": "10.1021/acsomega.4c02770",
+  "pdf_url": "https://pubs.acs.org/doi/pdf/10.1021/acsomega.4c02770",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/acs/10.1021_acsomega.4c02770.pdf",
+  "sha256": "d51d37e5eff41e698e4d352ab4c811a9d5f7387cf09f49638c620626c01c3c97",
+  "size": 3009741,
+  "downloaded_at": 1779813244640,
+  "duration_ms": 8021,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/acs/10.1021_acsomega.4c02770.pdf\",\n  \"sha256\": \"d51d37e5eff41e698e4d352ab4c811a9d5f7387cf09f49638c620626c01c3c97\",\n  \"size\": 3009741,\n  \"downloaded_at\": 1779813244640,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "ACS Omega DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-acs\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

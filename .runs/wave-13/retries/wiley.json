@@ -1,0 +1,31 @@
+{
+  "db": "wiley",
+  "kind": "paywalled",
+  "profile": "research-wiley",
+  "publisher": "wiley",
+  "doc_id": "10.1002/advs.202408416",
+  "pdf_url": "https://advanced.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202408416",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/wiley/10.1002_advs.202408416.pdf",
+  "sha256": "32a1396e126e00e54f36a6e0db2dc86b489008cbd15759137d01a0777a55a336",
+  "size": 7040069,
+  "downloaded_at": 1779816573431,
+  "duration_ms": 7011,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/wiley/10.1002_advs.202408416.pdf\",\n  \"sha256\": \"32a1396e126e00e54f36a6e0db2dc86b489008cbd15759137d01a0777a55a336\",\n  \"size\": 7040069,\n  \"downloaded_at\": 1779816573431,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "Wiley Advanced Science direct PDF verified live on 2026-05-26",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-wiley\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

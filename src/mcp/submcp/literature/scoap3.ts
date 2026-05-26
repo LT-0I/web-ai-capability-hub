@@ -7,11 +7,16 @@ function fileUrlFromRecord(record: any): string | null {
   const candidates = [
     ...(Array.isArray(record?.files) ? record.files : []),
     ...(Array.isArray(record?.metadata?.files) ? record.metadata.files : []),
+    ...(Array.isArray(record?.metadata?._files) ? record.metadata._files : []),
     ...(Array.isArray(record?.metadata?.documents) ? record.metadata.documents : []),
     ...(Array.isArray(record?.documents) ? record.documents : [])
   ];
-  const first = candidates.find((item: any) => typeof item?.url === "string" && /\.pdf(?:$|[?#])|pdf/i.test(item.url)) || candidates.find((item: any) => typeof item?.url === "string");
-  return first?.url || null;
+  const urlFor = (item: any): string | null => item?.url || item?.file || (item?.key ? `https://scoap3-prod-backend.s3.cern.ch/media/${item.key}` : null);
+  const first = candidates.find((item: any) => {
+    const candidate = urlFor(item);
+    return typeof candidate === "string" && /\.pdf(?:$|[?#])|pdf/i.test(candidate);
+  }) || candidates.find((item: any) => typeof urlFor(item) === "string");
+  return first ? urlFor(first) : null;
 }
 
 export async function resolveScoap3PdfUrl(doc_id: string): Promise<string | null> {

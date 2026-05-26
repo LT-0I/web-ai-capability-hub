@@ -1,0 +1,31 @@
+{
+  "db": "wos",
+  "kind": "invalid_args_expected",
+  "profile": "research-wos",
+  "publisher": "wos",
+  "doc_id": "WOS:000000000000000",
+  "pdf_url": null,
+  "classification": "INVALID_ARGS_EXPECTED",
+  "ok": false,
+  "errorCode": "INVALID_ARGS",
+  "message": "wos is bibliographic/metadata-only; use the resolved DOI URL from research_wos_get_metadata to call the appropriate publisher driver (e.g. webai_acm_download_pdf, webai_wiley_download_pdf, ...)",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 151,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"message\": \"wos is bibliographic/metadata-only; use the resolved DOI URL from research_wos_get_metadata to call the appropriate publisher driver (e.g. webai_acm_download_pdf, webai_wiley_download_pdf, ...)\"\n}\n",
+  "stderr": "",
+  "source": "bibliographic-only pseudo-driver",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-wos\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

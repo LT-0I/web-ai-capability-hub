@@ -1,0 +1,31 @@
+{
+  "db": "degruyter",
+  "kind": "paywalled",
+  "profile": "research-degruyter",
+  "publisher": "degruyter",
+  "doc_id": "10.1515/nanoph-2023-0798",
+  "pdf_url": "https://www.degruyter.com/document/doi/10.1515/nanoph-2023-0798/pdf",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/degruyter/10.1515_nanoph-2023-0798.pdf",
+  "sha256": "699380d2344261983fe2f57fbb901a705f8064a61f34448a404e9bc7562b0877",
+  "size": 2204452,
+  "downloaded_at": 1779813461407,
+  "duration_ms": 18753,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/degruyter/10.1515_nanoph-2023-0798.pdf\",\n  \"sha256\": \"699380d2344261983fe2f57fbb901a705f8064a61f34448a404e9bc7562b0877\",\n  \"size\": 2204452,\n  \"downloaded_at\": 1779813461407,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "De Gruyter Brill DOI PDF candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-degruyter\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-degruyter/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

@@ -224,25 +224,74 @@ async function dispatchCdpClick(pageCdp: any, box: { x: number; y: number; width
   await pageCdp.send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", buttons: 0, clickCount: 1 });
 }
 
-async function navigateForDownload(page: any, url: string): Promise<void> {
+async function navigateForDownload(page: any, url: string): Promise<any | null> {
   try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await page.waitForLoadState?.("domcontentloaded", { timeout: 5000 }).catch(() => undefined);
+    return response || null;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     // Chromium reports net::ERR_ABORTED for successful attachment downloads.
     if (!/ERR_ABORTED|Download is starting/i.test(message)) throw error;
+    return null;
   }
-  await page.waitForLoadState?.("domcontentloaded", { timeout: 5000 }).catch(() => undefined);
+}
+
+function responseHeader(response: any, name: string): string {
+  try {
+    return String(response?.headers?.()?.[name.toLowerCase()] || "");
+  } catch {
+    return "";
+  }
+}
+
+async function inlinePdfCompletedDownload(page: any, response: any, downloadDir: string, docId: string, resolvedUrl: string): Promise<CompletedDownload | null> {
+  const responseUrl = String(response?.url?.() || resolvedUrl);
+  const contentType = responseHeader(response, "content-type");
+  if (!/application\/pdf/i.test(contentType) && !/\.pdf(?:$|[?#])/i.test(responseUrl)) return null;
+  let buffer: Buffer | null = null;
+  try {
+    const body = await response?.body?.();
+    if (body) buffer = Buffer.from(body);
+  } catch {
+    // Fall through to the browser-context request path; it carries the active profile cookies.
+  }
+  if (!buffer || buffer.subarray(0, 5).toString() !== "%PDF-") {
+    const request = page.context?.()?.request;
+    const apiResponse = request?.get ? await request.get(responseUrl, { timeout: 60000 } as any) : null;
+    if (apiResponse?.ok?.()) buffer = Buffer.from(await apiResponse.body());
+  }
+  if (!buffer?.length) return null;
+  ensureDir(downloadDir);
+  const filePath = path.resolve(downloadDir, `inline-${Date.now()}-${safePdfBasename(docId)}`);
+  fs.writeFileSync(filePath, buffer);
+  return { filePath, url: responseUrl };
 }
 
 function finalizeDownloadedPdf(downloaded: CompletedDownload, outputDir: string, docId: string, resolvedUrl: string): LiteratureDownloadedPdf {
   const target = targetPdfPath(outputDir, docId);
   ensureDir(path.dirname(target));
   if (fs.existsSync(target) && path.resolve(downloaded.filePath) !== target) fs.rmSync(target, { force: true });
-  if (path.resolve(downloaded.filePath) !== target) fs.renameSync(downloaded.filePath, target);
-  const size = fs.statSync(target).size;
-  if (size <= 0) throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Paywalled literature PDF download was empty", { path: target, resolved_url: resolvedUrl });
+  const downloadedPath = path.resolve(downloaded.filePath);
+  const size = fs.statSync(downloadedPath).size;
+  if (size <= 0) throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Paywalled literature PDF download was empty", { path: downloadedPath, resolved_url: resolvedUrl });
+  const header = fs.readFileSync(downloadedPath, { encoding: null, flag: "r" }).subarray(0, 5).toString("utf8");
+  if (header !== "%PDF-") throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Paywalled literature download did not produce a PDF artifact", { path: downloadedPath, resolved_url: resolvedUrl });
+  if (downloadedPath !== target) fs.renameSync(downloadedPath, target);
   return { path: target, sha256: sha256File(target), size, downloaded_at: now(), resolved_url: resolvedUrl };
+}
+
+function tryFinalizeDownloadedPdf(downloaded: CompletedDownload | null, outputDir: string, docId: string, resolvedUrl: string, ignoredFiles: Set<string>): LiteratureDownloadedPdf | null {
+  if (!downloaded) return null;
+  try {
+    return finalizeDownloadedPdf(downloaded, outputDir, docId, resolvedUrl);
+  } catch (error) {
+    if (error instanceof LiteratureDownloadError && error.errorCode === ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED) {
+      ignoredFiles.add(path.resolve(downloaded.filePath));
+      return null;
+    }
+    throw error;
+  }
 }
 
 export async function downloadPaywalledLiteraturePdfToDisk(
@@ -271,16 +320,21 @@ export async function downloadPaywalledLiteraturePdfToDisk(
     const { pageCdp, events } = await armDownloadBehavior(browser, page, outputDir);
     const started = now();
 
-    await navigateForDownload(page, resolvedUrl);
+    const navigationResponse = await navigateForDownload(page, resolvedUrl);
     const direct = await waitForDownload(outputDir, before, events, 5000);
-    if (direct) return finalizeDownloadedPdf(direct, outputDir, docId, resolvedUrl);
+    const finalizedDirect = tryFinalizeDownloadedPdf(direct, outputDir, docId, resolvedUrl, before);
+    if (finalizedDirect) return finalizedDirect;
+    const inlinePdf = await inlinePdfCompletedDownload(page, navigationResponse, outputDir, docId, resolvedUrl);
+    const finalizedInline = tryFinalizeDownloadedPdf(inlinePdf, outputDir, docId, resolvedUrl, before);
+    if (finalizedInline) return finalizedInline;
 
     const clickable = await findClickableHandle(page, config.selectors);
     if (clickable) {
       await dispatchCdpClick(pageCdp, clickable.box);
       const remaining = Math.max(1, 60000 - (now() - started));
       const clickedDownload = await waitForDownload(outputDir, before, events, remaining);
-      if (clickedDownload) return finalizeDownloadedPdf(clickedDownload, outputDir, docId, resolvedUrl);
+      const finalizedClicked = tryFinalizeDownloadedPdf(clickedDownload, outputDir, docId, resolvedUrl, before);
+      if (finalizedClicked) return finalizedClicked;
       throw new LiteratureDownloadError(
         ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT,
         `${config.display_name} PDF download did not complete within 60s after CDP click`,
@@ -289,7 +343,8 @@ export async function downloadPaywalledLiteraturePdfToDisk(
     }
 
     const lateDirect = await waitForDownload(outputDir, before, events, Math.max(1, 60000 - (now() - started)));
-    if (lateDirect) return finalizeDownloadedPdf(lateDirect, outputDir, docId, resolvedUrl);
+    const finalizedLateDirect = tryFinalizeDownloadedPdf(lateDirect, outputDir, docId, resolvedUrl, before);
+    if (finalizedLateDirect) return finalizedLateDirect;
     throw new LiteratureDownloadError(
       ConsumerErrorCodes.ELEMENT_NOT_FOUND,
       `${config.display_name} PDF/download link was not found and no direct PDF download started`,

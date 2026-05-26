@@ -1,0 +1,31 @@
+{
+  "db": "iet",
+  "kind": "paywalled",
+  "profile": "research-iet",
+  "publisher": "wiley",
+  "doc_id": "10.1049/esi2.12151",
+  "pdf_url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdfdirect/10.1049/esi2.12151",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iet/10.1049_esi2.12151.pdf",
+  "sha256": "50999247441388b8f150654c596a9971c506f1aeba15a398e976d660af0edbdd",
+  "size": 3733786,
+  "downloaded_at": 1779815130481,
+  "duration_ms": 7424,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/iet/10.1049_esi2.12151.pdf\",\n  \"sha256\": \"50999247441388b8f150654c596a9971c506f1aeba15a398e976d660af0edbdd\",\n  \"size\": 3733786,\n  \"downloaded_at\": 1779815130481,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "IET/Wiley OA DOI PDF candidate",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-iet\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-iet/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

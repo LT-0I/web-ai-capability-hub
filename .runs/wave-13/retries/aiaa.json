@@ -1,0 +1,31 @@
+{
+  "db": "aiaa",
+  "kind": "paywalled",
+  "profile": "research-aiaa",
+  "publisher": "aiaa",
+  "doc_id": "10.2514/1.J063456",
+  "pdf_url": "https://arc.aiaa.org/doi/pdf/10.2514/1.J063456",
+  "classification": "GREEN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/aiaa/10.2514_1.J063456.pdf",
+  "sha256": "1e6ac24948f7e0b1a91f939d0968c9d34b430a5a1a2e078d4f9542bedea4d3d8",
+  "size": 24753508,
+  "downloaded_at": 1779814758190,
+  "duration_ms": 15246,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/aiaa/10.2514_1.J063456.pdf\",\n  \"sha256\": \"1e6ac24948f7e0b1a91f939d0968c9d34b430a5a1a2e078d4f9542bedea4d3d8\",\n  \"size\": 24753508,\n  \"downloaded_at\": 1779814758190,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "AIAA Journal DOI PDF candidate",
+  "pdf_magic": "%PDF-",
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-aiaa\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-aiaa/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

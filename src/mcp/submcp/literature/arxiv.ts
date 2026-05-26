@@ -130,6 +130,9 @@ export async function downloadLiteraturePdfToDisk(
   if (buffer.length === 0) {
     throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, `${db_slug} PDF download was empty`, { db_slug, doc_id, url: resolved_url });
   }
+  if (buffer.subarray(0, 5).toString("utf8") !== "%PDF-") {
+    throw new LiteratureDownloadError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, `${db_slug} download did not produce a PDF artifact`, { db_slug, doc_id, url: resolved_url, content_type: response.headers.get("content-type") });
+  }
   ensureDir(output_dir);
   const target = downloadTargetPath(output_dir, doc_id);
   fs.writeFileSync(target, buffer);

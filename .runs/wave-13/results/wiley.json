@@ -1,0 +1,31 @@
+{
+  "db": "wiley",
+  "kind": "paywalled",
+  "profile": "research-wiley",
+  "publisher": "wiley",
+  "doc_id": "10.1002/advs.202408416",
+  "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202408416",
+  "classification": "URL_RESOLVE_FAIL",
+  "ok": false,
+  "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+  "message": "Wiley Online Library browser-session PDF download failed: CDP endpoint did not become ready within 12000ms (http://127.0.0.1:42571/json/version): connect ECONNREFUSED 127.0.0.1:42571",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 12175,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_DOWNLOAD_TIMEOUT\",\n  \"message\": \"Wiley Online Library browser-session PDF download failed: CDP endpoint did not become ready within 12000ms (http://127.0.0.1:42571/json/version): connect ECONNREFUSED 127.0.0.1:42571\"\n}\n",
+  "stderr": "",
+  "source": "Wiley Advanced Science OA DOI candidate",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-wiley\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

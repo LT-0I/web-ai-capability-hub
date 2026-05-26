@@ -1,0 +1,31 @@
+{
+  "db": "springer",
+  "kind": "paywalled",
+  "profile": "research-springer",
+  "publisher": "springernature",
+  "doc_id": "10.1186/s12859-024-05742-5",
+  "pdf_url": "https://bmcbioinformatics.biomedcentral.com/counter/pdf/10.1186/s12859-024-05742-5.pdf",
+  "classification": "FAIL_UNKNOWN",
+  "ok": true,
+  "errorCode": null,
+  "message": "Literature PDF downloaded",
+  "path": "<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/springer/10.1186_s12859-024-05742-5.pdf",
+  "sha256": "e107f7be5d074b611eb4577e93b1be49a27d453da0003c8c9dd885f448c68d56",
+  "size": 1601651,
+  "downloaded_at": 1779814074491,
+  "duration_ms": 8108,
+  "exit_status": 0,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/wave-13/downloads/springer/10.1186_s12859-024-05742-5.pdf\",\n  \"sha256\": \"e107f7be5d074b611eb4577e93b1be49a27d453da0003c8c9dd885f448c68d56\",\n  \"size\": 1601651,\n  \"downloaded_at\": 1779814074491,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "source": "Springer/BMC DOI PDF; live smoke prechecked GREEN",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-springer\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-springer/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}

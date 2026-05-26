@@ -1,0 +1,31 @@
+{
+  "db": "ieee",
+  "kind": "paywalled",
+  "profile": "research-ieee",
+  "publisher": "ieee",
+  "doc_id": "10.1109/ACCESS.2024.3393844",
+  "pdf_url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10508585",
+  "classification": "SELECTOR_DRIFT",
+  "ok": false,
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "IEEE Xplore PDF/download link was not found and no direct PDF download started",
+  "path": null,
+  "sha256": null,
+  "size": null,
+  "downloaded_at": null,
+  "duration_ms": 60765,
+  "exit_status": 1,
+  "signal": null,
+  "spawn_error": null,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"IEEE Xplore PDF/download link was not found and no direct PDF download started\"\n}\n",
+  "stderr": "",
+  "source": "IEEE Access arnumber/DOI from search result",
+  "pdf_magic": null,
+  "close": {
+    "status": 0,
+    "signal": null,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-ieee\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-ieee/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "error": null
+  }
+}
