@@ -1,0 +1,239 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "chatgpt-canvas-create-export-ext",
+    "target": "chatgpt",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T09:49:41.703Z",
+    "actions": [
+      {
+        "stepId": "create_canvas",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:send-prompt",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--canvas",
+            "--prompt",
+            "Create a canvas document titled 'Probe Canvas' with 3 short paragraphs about machine learning history.",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "nonempty": true
+              },
+              {
+                "path": "chat_url",
+                "nonempty": true
+              },
+              {
+                "path": "conversation_id",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stepId": "export_canvas_md",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:canvas-export",
+            "--tab-url-contains",
+            "{{steps.create_canvas.chat_url}}",
+            "--format",
+            "md",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--json"
+          ],
+          "timeoutMs": 120000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-canvas-create-export-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Create a Canvas document in ChatGPT and export it as Markdown",
+      "steps": [
+        {
+          "id": "create_canvas",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        },
+        {
+          "id": "export_canvas_md",
+          "command": "<circular>",
+          "timeoutMs": 120000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-canvas-create-export-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "create_canvas",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:send-prompt",
+          "--profile",
+          "chatgpt",
+          "--backend",
+          "extension-assisted-cdp",
+          "--canvas",
+          "--prompt",
+          "Create a canvas document titled 'Probe Canvas' with 3 short paragraphs about machine learning history.",
+          "--response-timeout-ms",
+          "180000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 16208,
+        "stdout": "{\n  \"response_text\": \"已在 canvas 中创建文档 “Probe Canvas”，包含 3 个关于机器学习历史的短段落。\",\n  \"elapsed_ms\": 16053,\n  \"wait_ms\": 8765,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"conversation_id\": \"6a156cb7-fb74-83e8-8d4b-470e9a87bf53\",\n  \"chat_url\": \"https://chatgpt.com/c/<conversation-id>\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "已在 canvas 中创建文档 “Probe Canvas”，包含 3 个关于机器学习历史的短段落。",
+          "elapsed_ms": 16053,
+          "wait_ms": 8765,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "conversation_id": "6a156cb7-fb74-83e8-8d4b-470e9a87bf53",
+          "chat_url": "https://chatgpt.com/c/6a156cb7-fb74-83e8-8d4b-470e9a87bf53"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "已在 canvas 中创建文档 “Probe Canvas”，包含 3 个关于机器学习历史的短段落。",
+              "ok": true
+            },
+            {
+              "path": "chat_url",
+              "actual": "https://chatgpt.com/c/<conversation-id>",
+              "ok": true
+            },
+            {
+              "path": "conversation_id",
+              "actual": "6a156cb7-fb74-83e8-8d4b-470e9a87bf53",
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "已在 canvas 中创建文档 “Probe Canvas”，包含 3 个关于机器学习历史的短段落。",
+        "wait_ms": 8765,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": false,
+        "conversation_id": "6a156cb7-fb74-83e8-8d4b-470e9a87bf53",
+        "chat_url": "https://chatgpt.com/c/6a156cb7-fb74-83e8-8d4b-470e9a87bf53"
+      }
+    },
+    {
+      "stepId": "export_canvas_md",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:canvas-export",
+          "--tab-url-contains",
+          "https://chatgpt.com/c/<conversation-id>",
+          "--format",
+          "md",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/chatgpt",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 7778,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/chatgpt/probe_canvas.md\",\n  \"sha256\": \"4a8b32c6650fba9d8d7625ec43e4400eb904242b8d73d70177618a73a30ac76a\",\n  \"format\": \"md\",\n  \"byteSize\": 975\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/chatgpt/probe_canvas.md",
+          "sha256": "4a8b32c6650fba9d8d7625ec43e4400eb904242b8d73d70177618a73a30ac76a",
+          "format": "md",
+          "byteSize": 975
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/chatgpt/probe_canvas.md",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/chatgpt/probe_canvas.md",
+        "sha256": "4a8b32c6650fba9d8d7625ec43e4400eb904242b8d73d70177618a73a30ac76a",
+        "format": "md",
+        "byteSize": 975
+      }
+    }
+  ],
+  "runId": "run_d8c3615f8b36e97c"
+}

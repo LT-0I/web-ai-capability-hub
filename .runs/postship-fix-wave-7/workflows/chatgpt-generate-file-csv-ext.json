@@ -1,0 +1,132 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "chatgpt-generate-file-csv-ext",
+    "target": "chatgpt",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T09:41:18.535Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-file",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+            "--expected-extension",
+            "csv",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--artifact-class",
+            "code",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-generate-file-csv-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a downloadable .csv file in ChatGPT",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-csv-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:generate-file",
+          "--profile",
+          "chatgpt",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "Generate a small CSV with header 'name,score' and 3 data rows. Provide as .csv file.",
+          "--expected-extension",
+          "csv",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/chatgpt",
+          "--artifact-class",
+          "code",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 29497,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/chatgpt/small_scores(1).csv\",\n  \"sha256\": \"bb3260607b5386c9c9e667f19297dbced6362d2db538d945e2a748c0839952f4\",\n  \"size_bytes\": 38,\n  \"download_filename\": \"small_scores(1).csv\",\n  \"suggested_filename\": \"small_scores(1).csv\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/chatgpt/small_scores(1).csv",
+          "sha256": "bb3260607b5386c9c9e667f19297dbced6362d2db538d945e2a748c0839952f4",
+          "size_bytes": 38,
+          "download_filename": "small_scores(1).csv",
+          "suggested_filename": "small_scores(1).csv",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/chatgpt/small_scores(1).csv",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/chatgpt/small_scores(1).csv",
+        "sha256": "bb3260607b5386c9c9e667f19297dbced6362d2db538d945e2a748c0839952f4",
+        "size_bytes": 38,
+        "download_filename": "small_scores(1).csv",
+        "suggested_filename": "small_scores(1).csv",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_510a6cbc2bbb304e"
+}

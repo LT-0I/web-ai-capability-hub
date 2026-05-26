@@ -731,8 +731,8 @@ const CHATGPT_INSTANT_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-swi
 const CHATGPT_THINKING_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5-thinking"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5-thinking"][role="menuitemradio"], [role="menuitemradio"]:has-text("Thinking")';
 const CHATGPT_PRO_MENUITEM_SELECTOR = '[role="menu"] [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"], [data-testid="model-switcher-gpt-5-5-pro"][role="menuitemradio"]';
 const CHATGPT_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Web search")';
-const CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR = 'button[aria-label="Search, click to remove"]';
-const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'button[aria-haspopup="menu"]:has-text("Download"), button:has-text("Download"), button[aria-label*="Download" i], button[title*="Download" i], [role="button"]:has-text("Download")';
+const CHATGPT_WEB_SEARCH_ACTIVE_SELECTOR = 'button[aria-label="Search, click to remove"], button[aria-label*="Search" i][aria-label*="remove" i]';
+const CHATGPT_CANVAS_DOWNLOAD_BUTTON_SELECTOR = 'main button[aria-haspopup="menu"]:has-text("Download")';
 const CHATGPT_DEEP_RESEARCH_MENUITEM_SELECTOR = '[role="menuitemradio"]:has-text("Deep research"), [role="menuitemcheckbox"]:has-text("Deep research"), [role="menuitem"]:has-text("Deep research"), [role="menuitemradio"]:has-text("Research"), [role="menuitemcheckbox"]:has-text("Research"), [role="menuitem"]:has-text("Research")';
 const CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR = 'button[aria-label*="Deep research" i][aria-label*="remove" i], button[aria-label*="Research" i][aria-label*="remove" i]';
 const CHATGPT_SHARE_BUTTON_SELECTOR = 'button[aria-label="Share"]';
@@ -768,13 +768,18 @@ const GEMINI_VIDEO_DISABLED_COMPOSER_SELECTORS = [
 const GEMINI_VIDEO_QUOTA_RE = /(?:reached your video generation limit|video generation limit)/i;
 const GEMINI_MIN_NO_RESPONSE_WAIT_MS = 8000;
 const GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS = 700;
-const CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR = [
+const CHATGPT_GENERATED_FILE_READY_SELECTOR = [
+  '[data-message-author-role="assistant"] button.behavior-btn',
+  '[data-message-author-role="assistant"] [data-attachment]',
+  '[data-message-author-role="assistant"] [data-attachment-type="file"]',
   '[data-message-author-role="assistant"] a[download]',
   '[data-message-author-role="assistant"] a[href*="/interpreter/download"]',
   '[data-message-author-role="assistant"] a[href*="/estuary/content"]',
   '[data-message-author-role="assistant"] button[aria-label*="Download" i]',
+  '[data-message-author-role="assistant"] [role="button"][aria-label*="Download" i]',
   '[data-message-author-role="assistant"] div.flex.flex-row.justify-between:has(div.truncate.text-sm.font-medium) button:first-of-type'
 ].join(", ");
+const CHATGPT_GENERATED_FILE_DOWNLOAD_SELECTOR = CHATGPT_GENERATED_FILE_READY_SELECTOR;
 const CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR = [
   'button[aria-label^="Download" i]',
   'button[aria-label*="Download" i]',
@@ -786,7 +791,7 @@ const CLAUDE_GENERATED_FILE_DOWNLOAD_SELECTOR = [
   'button:has-text("Download")'
 ].join(", ");
 function generateFileLocateTimeoutMs(format: string): number {
-  return String(format || "").toLowerCase() === "pptx" ? 180000 : 60000;
+  return String(format || "").toLowerCase() === "pptx" ? 180000 : 120000;
 }
 
 function responseTimeoutMs(args: any): number {
@@ -2432,6 +2437,19 @@ async function waitForExtensionSelector(page: any, selector: string, timeoutMs: 
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, { selector, cause: errorMessageFromUnknown(lastError, "") });
 }
 
+async function waitForChatgptGeneratedFileReadyWithExtension(page: any, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector(CHATGPT_GENERATED_FILE_READY_SELECTOR, { state: "visible", timeoutMs });
+    await extensionSleep(5000);
+  } catch (error: any) {
+    throw new WebAiToolError(
+      ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+      "ChatGPT generated file chip/link was not found after response completion",
+      { selector: CHATGPT_GENERATED_FILE_READY_SELECTOR, cause: errorMessageFromUnknown(error, "") }
+    );
+  }
+}
+
 async function clickExtensionSelector(page: any, selector: string, timeoutMs: number, message: string): Promise<void> {
   let lastError: any;
   for (const candidate of extensionSelectorAlternatives(selector)) {
@@ -3506,15 +3524,17 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     });
     await backend.ping();
     const page = await openChatgptExtensionPage(backend, effective);
-    const promptResult = await sendPromptInExtensionPage("chatgpt", effective, page, started);
+    const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
+    const promptArgs = { ...effective, response_timeout_ms: Math.max(responseTimeoutMs(effective), locateTimeoutMs) };
+    const promptResult = await sendPromptInExtensionPage("chatgpt", promptArgs, page, started);
     if (promptResult.errorCode) {
       return fileErrorOutput(promptResult.errorCode as ConsumerErrorCode, promptResult.error_code ? String(promptResult.error_code) : "ChatGPT generate-file prompt failed before download");
     }
+    await waitForChatgptGeneratedFileReadyWithExtension(page, locateTimeoutMs);
     const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: promptResult.chat_url || targetUrlFor("chatgpt", effective), text: "" }));
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
     const chatgptArtifactTimeoutMs = Math.min(Number(effective.timeout_ms || 480000), 480000);
-    const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
     const result = await runArtifactClickWithCdpReadinessRetry(runtime, {
       profile: effective.profile,
       tabUrlContains: effective.tab_url_contains || snapshot.url || promptResult.chat_url || serviceDefaults.chatgpt.url,
@@ -6521,6 +6541,10 @@ async function extractSubmittedChatgptCodexTaskId(page: any, preSubmitTopId: str
 }
 
 async function selectAllowedChatgptCodexEnvWithExtension(page: any): Promise<Record<string, unknown> | null> {
+  await waitForExtensionSelector(page, CODEX_COMPOSER_SELECTOR, 30000, "ChatGPT Codex composer was not found");
+  await waitForExtensionSelector(page, CODEX_ENV_SELECTOR, 30000, "ChatGPT Codex environment selector was not found");
+  const selectedBefore = await chatgptCodexSelectorText(page, CODEX_ENV_SELECTOR);
+  if (selectedBefore === CODEX_ALLOWED_ENV_NAME) return null;
   await clickChatgptExtensionSelector(page, CODEX_ENV_SELECTOR, 15000, "ChatGPT Codex environment selector was not found");
   await waitForExtensionSelector(page, "div[role='dialog']", 15000, "ChatGPT Codex environment dialog was not found").catch(() => undefined);
   await clickChatgptExtensionSelector(page, CODEX_ENV_PICK_SELECTOR, 15000, "ChatGPT Codex allowlisted environment was not found");

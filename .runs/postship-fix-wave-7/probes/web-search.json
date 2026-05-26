@@ -1,0 +1,425 @@
+{
+  "probedAt": "2026-05-26T09:27:19.326Z",
+  "prompt": "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+  "stages": [
+    {
+      "stage": "menu-open",
+      "clickedSelector": "",
+      "url": "https://chatgpt.com/",
+      "title": "ChatGPT",
+      "at": "2026-05-26T09:27:22.177Z",
+      "menuMatrix": [
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[data-testid*=\"search\" i]",
+          "count": 0,
+          "first": null
+        }
+      ],
+      "activeMatrix": [
+        {
+          "selector": "button[aria-label=\"Search, click to remove\"]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "button[aria-label*=\"Search\" i][aria-label*=\"remove\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "button[aria-label*=\"web\" i][aria-label*=\"remove\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "form button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'form button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "#composer-background button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '#composer-background button:has-text(\"Search\")' is not a valid selector."
+        }
+      ],
+      "menuish": [
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable gap-1.5 w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable gap-1.5 w-full\" data-sidebar-item=\"true\" type=\"button\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><span class=\"sr-only\">Search chats</span></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable w-full\" data-sidebar-item=\"true\" type=\"button\" data-revealed=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">Search chats</div></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"box-trim-text-0.25 inline-flex whitespace-pre *:inline-flex *:font-sans *:not-last:after:px-0.5 *:not-last:after:content-['+'] touch:hidden sr-only\"><kbd aria-label=\"Control\"><span class=\"min-w-[1em]\">Ctrl</span></kbd><kbd><span class=\"min-w-[1em]\">K</span></kbd></div></div></button>"
+        },
+        {
+          "tag": "DIV",
+          "role": "menuitemradio",
+          "ariaLabel": null,
+          "ariaChecked": "false",
+          "dataTestId": null,
+          "text": "Deep research",
+          "className": "group __menu-item",
+          "outerHTML": "<div role=\"menuitemradio\" aria-checked=\"false\" tabindex=\"0\" class=\"group __menu-item\" data-state=\"unchecked\" data-orientation=\"vertical\" data-radix-collection-item=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#5d3112\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">Deep research</div></div></div><div class=\"trailing\" data-trailing-style=\"radio-check\"><div class=\"icon-sm group-radix-state-checked:hidden\"></div></div></div>"
+        },
+        {
+          "tag": "DIV",
+          "role": "menuitemradio",
+          "ariaLabel": null,
+          "ariaChecked": "false",
+          "dataTestId": null,
+          "text": "Web search",
+          "className": "group __menu-item",
+          "outerHTML": "<div role=\"menuitemradio\" aria-checked=\"false\" tabindex=\"0\" class=\"group __menu-item\" data-state=\"unchecked\" data-orientation=\"vertical\" data-radix-collection-item=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">Web search</div></div></div><div class=\"trailing\" data-trailing-style=\"radio-check\"><div class=\"icon-sm group-radix-state-checked:hidden\"></div></div></div>"
+        }
+      ],
+      "finalAssistantText": "",
+      "finalAssistantHTML": "",
+      "bodyTail": "Skip to content Chat history ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words Math Calculation Steps Math and Canvas Tasks Shark Pro Ready when you are. Thinking Add photos & files Ctrl U Recent files Create image Deep research Web search More Projects Add files and more / Add files and more /"
+    },
+    {
+      "stage": "after-activate",
+      "clickedSelector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+      "url": "https://chatgpt.com/",
+      "title": "ChatGPT",
+      "at": "2026-05-26T09:27:23.324Z",
+      "menuMatrix": [
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[data-testid*=\"search\" i]",
+          "count": 0,
+          "first": null
+        }
+      ],
+      "activeMatrix": [
+        {
+          "selector": "button[aria-label=\"Search, click to remove\"]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Search, click to remove",
+            "ariaChecked": null,
+            "dataTestId": null,
+            "text": "Search",
+            "className": "__composer-pill group",
+            "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[aria-label*=\"Search\" i][aria-label*=\"remove\" i]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Search, click to remove",
+            "ariaChecked": null,
+            "dataTestId": null,
+            "text": "Search",
+            "className": "__composer-pill group",
+            "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[aria-label*=\"web\" i][aria-label*=\"remove\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "form button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'form button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "#composer-background button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '#composer-background button:has-text(\"Search\")' is not a valid selector."
+        }
+      ],
+      "menuish": [
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable gap-1.5 w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable gap-1.5 w-full\" data-sidebar-item=\"true\" type=\"button\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><span class=\"sr-only\">Search chats</span></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable w-full\" data-sidebar-item=\"true\" type=\"button\" data-revealed=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">Search chats</div></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"box-trim-text-0.25 inline-flex whitespace-pre *:inline-flex *:font-sans *:not-last:after:px-0.5 *:not-last:after:content-['+'] touch:hidden sr-only\"><kbd aria-label=\"Control\"><span class=\"min-w-[1em]\">Ctrl</span></kbd><kbd><span class=\"min-w-[1em]\">K</span></kbd></div></div></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Search, click to remove",
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search",
+          "className": "__composer-pill group",
+          "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+        }
+      ],
+      "finalAssistantText": "",
+      "finalAssistantHTML": "",
+      "bodyTail": "Skip to content Chat history ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words Math Calculation Steps Math and Canvas Tasks Shark Pro Ready when you are. Search Thinking Ama Awards 2026 Danica Patrick Joe Mantegna Garden Grove Evacuation"
+    },
+    {
+      "stage": "after-response",
+      "clickedSelector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+      "url": "https://chatgpt.com/c/6a15677b-9cec-83e8-b995-ce5ac9c0cb81",
+      "title": "2026 AI Safety Events",
+      "at": "2026-05-26T09:27:43.786Z",
+      "menuMatrix": [
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemradio\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemradio\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitemcheckbox\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitemcheckbox\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"menuitem\"]:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"menuitem\"]:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Web search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Web search\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "[data-testid*=\"search\" i]",
+          "count": 0,
+          "first": null
+        }
+      ],
+      "activeMatrix": [
+        {
+          "selector": "button[aria-label=\"Search, click to remove\"]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Search, click to remove",
+            "ariaChecked": null,
+            "dataTestId": null,
+            "text": "Search",
+            "className": "__composer-pill group",
+            "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[aria-label*=\"Search\" i][aria-label*=\"remove\" i]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Search, click to remove",
+            "ariaChecked": null,
+            "dataTestId": null,
+            "text": "Search",
+            "className": "__composer-pill group",
+            "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[aria-label*=\"web\" i][aria-label*=\"remove\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "form button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'form button:has-text(\"Search\")' is not a valid selector."
+        },
+        {
+          "selector": "#composer-background button:has-text(\"Search\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '#composer-background button:has-text(\"Search\")' is not a valid selector."
+        }
+      ],
+      "menuish": [
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable gap-1.5 w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable gap-1.5 w-full\" data-sidebar-item=\"true\" type=\"button\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><span class=\"sr-only\">Search chats</span></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search chats",
+          "className": "group __menu-item hoverable w-full",
+          "outerHTML": "<button tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable w-full\" data-sidebar-item=\"true\" type=\"button\" data-revealed=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ac6d36\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">Search chats</div></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"box-trim-text-0.25 inline-flex whitespace-pre *:inline-flex *:font-sans *:not-last:after:px-0.5 *:not-last:after:content-['+'] touch:hidden sr-only\"><kbd aria-label=\"Control\"><span class=\"min-w-[1em]\">Ctrl</span></kbd><kbd><span class=\"min-w-[1em]\">K</span></kbd></div></div></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Search, click to remove",
+          "ariaChecked": null,
+          "dataTestId": null,
+          "text": "Search",
+          "className": "__composer-pill group",
+          "outerHTML": "<button type=\"button\" class=\"__composer-pill group\" data-tone=\"accent\" aria-label=\"Search, click to remove\"><div class=\"__composer-pill-icon\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" class=\"icon\" aria-label=\"\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#6b0d8c\" fill=\"currentColor\"></use></svg></div><span class=\"max-w-40 truncate [[data-collapse-labels]_&amp;]:sr-only\">Search</span><div class=\"__composer-pill-remove\" inert=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" aria-hidden=\"true\" class=\"icon-sm\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#23ce94\" fill=\"currentColor\"></use></svg></div></button>"
+        }
+      ],
+      "finalAssistantText": "2026 — International AI Safety Report published: On February 3, 2026, the International AI Safety Report assessed general-purpose AI capabilities, emerging risks, and risk-management options, with input from 100+ independent experts nominated by 30+ countries and organizations. International AI Safety Report +1 2026 — India AI Impact Summit / New Delhi Declaration: In February 2026, participants gathered in New Delhi for the AI Impact Summit, where the declaration emphasized “secure, trustworthy and robust AI” as foundational for trust and societal benefit. 印度外交部 +1 2026 — U.S. CAISI frontier-model safety/testing expansion: In May 2026, the U.S. Commerce Department’s Center for AI Standards and Innovation expanded agreements with Google DeepMind, Microsoft, and xAI for early access and national-security evaluations of advanced AI models. Nextgov/FCW +1",
+      "finalAssistantHTML": "<div data-message-author-role=\"assistant\" data-message-id=\"c28b27f2-212f-4d60-9943-d95c04095cbb\" data-turn-start-message=\"true\" dir=\"auto\" tabindex=\"0\" data-message-model-slug=\"gpt-5-5-thinking\" class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;]:mt-1\"><div class=\"flex w-full flex-col gap-1 empty:hidden\"><div class=\"markdown prose dark:prose-invert wrap-break-word w-full light markdown-new-styling\"><ol data-start=\"0\" data-end=\"943\">\n<li data-section-id=\"ggaa1y\" data-start=\"0\" data-end=\"323\">\n<p data-start=\"3\" data-end=\"323\"><strong data-start=\"3\" data-end=\"55\">2026 — International AI Safety Report published:</strong> On February 3, 2026, the International AI Safety Report assessed general-purpose AI capabilities, emerging risks, and risk-management options, with input from 100+ independent experts nominated by 30+ countries and organizations. <span class=\"\" data-state=\"closed\"><span class=\"ms-1 inline-flex max-w-full items-center select-none relative top-[-0.094rem] animate-[show_150ms_ease-in]\" data-testid=\"webpage-citation-pill\" style=\"width: 107px;\"><a href=\"https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026?utm_source=chatgpt.com\" target=\"_blank\" rel=\"noopener\" alt=\"https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026?utm_source=chatgpt.com\" class=\"flex overflow-hidden rounded-xl text-[9px] font-medium h-4.5 px-2 transition-colors duration-150 ease-in-out bg-token-text-primary! text-token-main-surface-primary! select-none\" style=\"max-width: 107px;\"><span class=\"relative start-0 bottom-0 flex h-full w-full items-center\"><span class=\"flex h-4 w-full items-center justify-between\" style=\"opacity: 1; transform: none;\"><span class=\"max-w-[15ch] grow truncate overflow-hidden text-center\">International AI Safety Report</span><span class=\"-me-1 flex h-full items-center rounded-full px-1 text-[#8F8F8F] text-token-main-surface-tertiary\">+1</span></span></span></a></span></span></p>\n</li>\n<li data-section-id=\"19d0yp4\" data-start=\"325\" data-end=\"620\">\n<p data-start=\"328\" data-end=\"620\"><strong data-start=\"328\" data-end=\"386\">2026 — India AI Impact Summit / New Delhi Declaration:</strong> In February 2026, participants gathered in New Delhi for the AI Impact Summit, where the declaration emphasized “secure, trustworthy and robust AI” as foundational for trust and societal benefit. <span class=\"\" data-state=\"closed\"><span class=\"ms-1 inline-flex max-w-full items-center select-none relative top-[-0.094rem] animate-[show_150ms_ease-in]\" data-testid=\"webpage-citation-pill\" style=\"width: 75px;\"><a href=\"https://www.mea.gov.in/bilateral-documents.htm?dtl%2F40809=&amp;utm_source=chatgpt.com\" target=\"_blank\" rel=\"noopener\" alt=\"https://www.mea.gov.in/bilateral-documents.htm?dtl%2F40809=&amp;utm_source=chatgpt.com\" class=\"flex overflow-hidden rounded-xl text-[9px] font-medium h-4.5 px-2 transition-colors duration-150 ease-in-out text-token-text-secondary! bg-[#F4F4F4]! dark:bg-[#303030]! select-none\" style=\"max-width: 75px;\"><span class=\"relative start-0 bottom-0 flex h-full w-full items-center\"><span class=\"flex h-4 w-full items-center justify-between\" style=\"opacity: 1; transform: none;\"><span class=\"max-w-[15ch] grow truncate overflow-hidden text-center\">印度外交部</span><span class=\"-me-1 flex h-full items-center rounded-full px-1 text-[#8F8F8F]\">+1</span></span></span></a></span></span></p>\n</li>\n<li data-section-id=\"1cifcgf\" data-start=\"622\" data-end=\"943\">\n<p data-start=\"625\" data-end=\"943\"><strong data-start=\"625\" data-end=\"687\">2026 — U.S. CAISI frontier-model safety/testing expansion:</strong> In May 2026, the U.S. Commerce Department’s Center for AI Standards and Innovation expanded agreements with Google DeepMind, Microsoft, and xAI for early access and national-security evaluations of advanced AI models. <span class=\"\" data-state=\"closed\"><span class=\"ms-1 inline-flex max-w-full items-center select-none relative top-[-0.094rem] animate-[show_150ms_ease-in]\" data-testid=\"webpage-citation-pill\" style=\"width: 87px;\"><a href=\"https://www.nextgov.com/artificial-intelligence/2026/05/commerce-ai-center-will-evaluate-google-deepmind-microsoft-and-xai-models/413349/?utm_source=chatgpt.com\" target=\"_blank\" rel=\"noopener\" alt=\"https://www.nextgov.com/artificial-intelligence/2026/05/commerce-ai-center-will-evaluate-google-deepmind-microsoft-and-xai-models/413349/?utm_source=chatgpt.com\" class=\"flex overflow-hidden rounded-xl text-[9px] font-medium h-4.5 px-2 transition-colors duration-150 ease-in-out text-token-text-secondary! bg-[#F4F4F4]! dark:bg-[#303030]! select-none\" style=\"max-width: 87px;\"><span class=\"relative start-0 bottom-0 flex h-full w-full items-center\"><span class=\"flex h-4 w-full items-center justify-between\" style=\"opacity: 1; transform: none;\"><span class=\"max-w-[15ch] grow truncate overflow-hidden text-center\">Nextgov/FCW</span><span class=\"-me-1 flex h-full items-center rounded-full px-1 text-[#8F8F8F]\">+1</span></span></span></a></span></span></p>\n</li>\n</ol>\n</div></div></div>",
+      "bodyTail": "Skip to content Chat history ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents 2026 AI Safety Events CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words Math Calculation Steps Shark Pro Share List 3 AI safety events from 2026 so far. Include the year 2026 in each item. 我会用最新网页来源核对 2026 年截至目前的事件，并确保每条都明确写出“2026”。 Thought for 12s 2026 — International AI Safety Report published: On February 3, 2026, the International AI Safety Report assessed general-purpose AI capabilities, emerging risks, and risk-management options, with input from 100+ independent experts nominated by 30+ countries and organizations. International AI Safety Report +1 2026 — India AI Impact Summit / New Delhi Declaration: In February 2026, participants gathered in New Delhi for the AI Impact Summit, where the declaration emphasized “secure, trustworthy and robust AI” as foundational for trust and societal benefit. 印度外交部 +1 2026 — U.S. CAISI frontier-model safety/testing expansion: In May 2026, the U.S. Commerce Department’s Center for AI Standards and Innovation expanded agreements with Google DeepMind, Microsoft, and xAI for early access and national-security evaluations of advanced AI models. Nextgov/FCW +1 Sources Search Thinking ChatGPT can make mistakes. Check important info."
+    }
+  ],
+  "clickedSelector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+  "activeFound": [
+    {
+      "selector": "button[aria-label=\"Search, click to remove\"]",
+      "count": 1
+    },
+    {
+      "selector": "button[aria-label*=\"Search\" i][aria-label*=\"remove\" i]",
+      "count": 1
+    },
+    {
+      "selector": "form button:has-text(\"Search\")",
+      "count": 1
+    }
+  ],
+  "sentSelector": "button[data-testid=\"send-button\"]",
+  "completion": {
+    "completion_detected": true,
+    "wait_ms": 19399,
+    "response_text": "2026 — International AI Safety Report published: On February 3, 2026, the International AI Safety Report assessed general-purpose AI capabilities, emerging risks, and risk-management options, with input from 100+ independent experts nominated by 30+ countries and organizations. \nInternational AI Safety Report\n+1\n\n2026 — India AI Impact Summit / New Delhi Declaration: In February 2026, participants gathered in New Delhi for the AI Impact Summit, where the declaration emphasized “secure, trustworthy and robust AI” as foundational for trust and societal benefit. \n印度外交部\n+1\n\n2026 — U.S. CAISI frontier-model safety/testing expansion: In May 2026, the U.S. Commerce Department’s Center for AI Standards and Innovation expanded agreements with Google DeepMind, Microsoft, and xAI for early access and national-security evaluations of advanced AI models. \nNextgov/FCW\n+1"
+  },
+  "recommended": {
+    "menuSelector": "[role=\"menuitemradio\"]:has-text(\"Web search\")",
+    "activeSelector": "button[aria-label=\"Search, click to remove\"]"
+  }
+}

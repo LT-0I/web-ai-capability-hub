@@ -1,0 +1,75 @@
+{
+  "probedAt": "2026-05-26T09:25:25.693Z",
+  "url": "https://chatgpt.com/c/6a156684-74c4-83e8-94b4-d2f3966eecf7",
+  "title": "CSV File Generation",
+  "assistantMessageCount": 2,
+  "finalAssistantText": "Done: download the CSV file.",
+  "finalAssistantHTML": "<div data-message-author-role=\"assistant\" data-message-id=\"0ff54414-2267-4467-b975-29aff78f539d\" dir=\"auto\" data-message-model-slug=\"gpt-5-5-thinking\" class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;]:mt-1\" data-turn-start-message=\"true\" tabindex=\"0\"><div class=\"flex w-full flex-col gap-1 empty:hidden\"><div class=\"markdown prose dark:prose-invert wrap-break-word w-full light markdown-new-styling\"><p data-start=\"0\" data-end=\"64\" data-is-last-node=\"\" data-is-only-node=\"\">Done: <span class=\"\" data-state=\"closed\"><button class=\"behavior-btn hover:entity-accent focus-visible:focus-ring entity-underline inline cursor-pointer appearance-none border-0 bg-transparent p-0 text-start align-baseline text-inherit\" type=\"button\">download the CSV file</button></span>.</p></div></div></div>",
+  "selectorMatrix": [
+    {
+      "selector": "[data-message-author-role=\"assistant\"] [data-attachment]",
+      "count": 0,
+      "error": null,
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] [data-attachment-type=\"file\"]",
+      "count": 0,
+      "error": null,
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] a[download]",
+      "count": 0,
+      "error": null,
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] [role=\"button\"][aria-label*=\"Download\"]",
+      "count": 0,
+      "error": null,
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] button.behavior-btn:has-text(\"download\")",
+      "count": 0,
+      "error": "Failed to execute 'querySelectorAll' on 'Document': '[data-message-author-role=\"assistant\"] button.behavior-btn:has-text(\"download\")' is not a valid selector.",
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] button:has-text(\"download the CSV file\")",
+      "count": 0,
+      "error": "Failed to execute 'querySelectorAll' on 'Document': '[data-message-author-role=\"assistant\"] button:has-text(\"download the CSV file\")' is not a valid selector.",
+      "first": null
+    },
+    {
+      "selector": "[data-message-author-role=\"assistant\"] button:has-text(\"download\")",
+      "count": 0,
+      "error": "Failed to execute 'querySelectorAll' on 'Document': '[data-message-author-role=\"assistant\"] button:has-text(\"download\")' is not a valid selector.",
+      "first": null
+    }
+  ],
+  "finalAssistantInteractive": [
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "ariaLabel": null,
+      "dataTestId": null,
+      "dataAttachment": null,
+      "dataAttachmentType": null,
+      "href": null,
+      "download": null,
+      "type": "button",
+      "className": "behavior-btn hover:entity-accent focus-visible:focus-ring entity-underline inline cursor-pointer appearance-none border-0 bg-transparent p-0 text-start align-baseline text-inherit",
+      "text": "download the CSV file",
+      "outerHTML": "<button class=\"behavior-btn hover:entity-accent focus-visible:focus-ring entity-underline inline cursor-pointer appearance-none border-0 bg-transparent p-0 text-start align-baseline text-inherit\" type=\"button\">download the CSV file</button>"
+    }
+  ],
+  "liveDownloadClick": {
+    "selector": "[data-message-author-role=\"assistant\"] button.behavior-btn:has-text(\"download\")",
+    "downloadedFilename": "three_rows.csv",
+    "downloadDir": "/tmp/probe-chatgpt-download",
+    "observedVia": "Playwright page.waitForEvent(download) after clicking live button"
+  },
+  "recommendedSelector": "[data-message-author-role=\"assistant\"] button.behavior-btn:has-text(\"download\"), [data-message-author-role=\"assistant\"] a[download], [data-message-author-role=\"assistant\"] [role=\"button\"][aria-label*=\"Download\"]"
+}

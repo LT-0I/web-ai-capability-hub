@@ -1,0 +1,903 @@
+{
+  "probedAt": "2026-05-26T09:31:06.207Z",
+  "prompt": "Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history.",
+  "sentSelector": "button[data-testid=\"send-button\"]",
+  "completion": {
+    "completion_detected": true,
+    "wait_ms": 10888,
+    "response_text": "Done."
+  },
+  "chatUrl": "https://chatgpt.com/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+  "stages": [
+    {
+      "stage": "after-response",
+      "extra": {},
+      "at": "2026-05-26T09:31:22.130Z",
+      "url": "https://chatgpt.com/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+      "title": "Probe Canvas Wave 7",
+      "downloadMatrix": [
+        {
+          "selector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button[aria-haspopup=\"menu\"]:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button[aria-label*=\"Download\" i]",
+          "count": 2,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Open conversation options for Python Script Download",
+            "ariaExpanded": "false",
+            "title": null,
+            "dataTestId": "history-item-21-options",
+            "text": "",
+            "className": "__menu-item-trailing-btn",
+            "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[title*=\"Download\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Export\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Export\")' is not a valid selector."
+        },
+        {
+          "selector": "button[aria-label*=\"Export\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Export\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Export\")' is not a valid selector."
+        }
+      ],
+      "openCanvasMatrix": [
+        {
+          "selector": "button[aria-label*=\"canvas\" i]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Open conversation options for Probe Canvas Wave 7",
+            "ariaExpanded": "false",
+            "title": null,
+            "dataTestId": "history-item-0-options",
+            "text": "",
+            "className": "__menu-item-trailing-btn",
+            "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "a[aria-label*=\"canvas\" i]",
+          "count": 1,
+          "first": {
+            "tag": "A",
+            "role": null,
+            "ariaLabel": "Probe Canvas Wave 7",
+            "ariaExpanded": null,
+            "title": null,
+            "dataTestId": null,
+            "text": "Probe Canvas Wave 7",
+            "className": "group __menu-item hoverable transition-opacity duration-150",
+            "outerHTML": "<a tabindex=\"0\" data-active=\"\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Probe Canvas Wave 7\" data-sidebar-item=\"true\" href=\"/c/6a15685c-5510-83e8-b2cc-cdeeec924736\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Probe Canvas Wave 7</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+          }
+        },
+        {
+          "selector": "[role=\"button\"][aria-label*=\"canvas\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "button:has-text(\"Open in canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Open in canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "a:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'a:has-text(\"Canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Canvas\")' is not a valid selector."
+        }
+      ],
+      "interesting": [
+        {
+          "tag": "NAV",
+          "role": null,
+          "ariaLabel": "Chat history",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents Probe Canvas Wave 7 2026 AI Safety Events CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words",
+          "className": "group/scrollport relative flex min-h-0 w-full flex-1 flex-col overflow-y-auto",
+          "outerHTML": "<nav class=\"group/scrollport relative flex min-h-0 w-full flex-1 flex-col overflow-y-auto\" aria-label=\"Chat history\" data-scrolled-from-end=\"\"><div class=\"sticky top-0 z-30 bg-(--sidebar-surface-primary)\"><div class=\"touch:px-1.5 px-2\"><div id=\"sidebar-header\" class=\"h-header-height flex items-center justify-between\"><a class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 touch:w-auto w-auto px-2.5\" data-sidebar-item=\"true\" aria-label=\"Home\" href=\"/\" data-discover=\"true\"><span class=\"header-wordmark text-lg whitespace-nowrap\"><span>ChatGPT</span></span></a><div class=\"flex items-center gap-0\"><button class=\"text-token-text-tertiary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 no-draggable cursor-w-resize rtl:cursor-e-resize\" aria-expanded=\"false\" aria-controls=\"stage-slideover-sidebar\" aria-label=\"Close sidebar\" data-testid=\"close-sidebar-button\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" data-rtl-flip=\"\" class=\"icon max-md:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#836f7a\" fill=\"currentColor\"></use></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon md:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#85f94b\" fill=\"currentColor\"></use></svg></button></div></div></div></div><div class=\"relative h-0\"><!--&--><div aria-hidden=\"true\" data-edge=\"true\" class=\"pointer-events-none h-px w-px absolute top-0\"></div><div aria-hidden=\"true\" data-edge=\"true\" class=\"pointer-events-none h-px w-px absolute top-0\" style=\"display: none !important;\"></div><!--/&--></div><div class=\"pt-(--sidebar-section-first-margin-top) last:mb-5 bg-token-main-surface-primary tall:sticky tall:top-header-height tall:z-20 not-tall:relative [--sticky-spacer:6px]\"><ul class=\"m-0 list-none p-0\"><li class=\"list-none\"><a tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable\" data-testid=\"create-new-chat-button\" data-sidebar-item=\"true\" href=\"/\" data-discover=\"true\" data-revealed=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#3a5c87\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">New chat</div></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"box-trim-text-0.25 inline-flex whitespace-pre *:inline-flex *:font-sans *:not-la"
+        },
+        {
+          "tag": "A",
+          "role": null,
+          "ariaLabel": "Probe Canvas Wave 7",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": "/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+          "text": "Probe Canvas Wave 7",
+          "className": "group __menu-item hoverable transition-opacity duration-150",
+          "outerHTML": "<a tabindex=\"0\" data-active=\"\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Probe Canvas Wave 7\" data-sidebar-item=\"true\" href=\"/c/6a15685c-5510-83e8-b2cc-cdeeec924736\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Probe Canvas Wave 7</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Open conversation options for Probe Canvas Wave 7",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": "history-item-0-options",
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "A",
+          "role": null,
+          "ariaLabel": "Python Script Download",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": "/c/6a154348-e608-83e8-874b-25463971df58",
+          "text": "Python Script Download",
+          "className": "group __menu-item hoverable transition-opacity duration-150",
+          "outerHTML": "<a tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Python Script Download\" data-sidebar-item=\"true\" href=\"/c/6a154348-e608-83e8-874b-25463971df58\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Python Script Download</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Open conversation options for Python Script Download",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": "history-item-21-options",
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Download apps",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0.5! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&>div]:h-full [&>div]:w-full [&>div]:rounded-lg [&>div]:p-0!",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0.5! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&amp;&gt;div]:h-full [&amp;&gt;div]:w-full [&amp;&gt;div]:rounded-lg [&amp;&gt;div]:p-0!\" aria-controls=\"_R_55mlalcsqooceicl35_\" aria-expanded=\"false\" aria-haspopup=\"menu\" data-state=\"closed\" style=\"anchor-name:--anchor-_R_55mlalcsqooceicl35_\" aria-label=\"Download apps\" type=\"button\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#bb27a0\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "thread-header-right-actions-container",
+          "href": null,
+          "text": "Share",
+          "className": "flex items-center justify-center gap-3 overflow-x-hidden",
+          "outerHTML": "<div class=\"flex items-center justify-center gap-3 overflow-x-hidden\" data-testid=\"thread-header-right-actions-container\"><div class=\"shrink-0\"></div><div class=\"flex items-center justify-end [scrollbar-width:none] overflow-x-hidden\" data-testid=\"thread-header-right-actions\"><div class=\"flex items-center\" id=\"conversation-header-actions\"><button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button><div class=\"flex items-center\"><span class=\"\" data-state=\"closed\"><button class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\" style=\"view-transition-name: var(--vt-thread-header-open-canvas);\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#a35fbc\" fill=\"currentColor\"></use></svg></button></span><div class=\"relative\" type=\"button\" id=\"radix-_r_89_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><button aria-label=\"Open conversation options\" data-testid=\"conversation-options-button\" class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></button></div></div></div></div></div>"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "thread-header-right-actions",
+          "href": null,
+          "text": "Share",
+          "className": "flex items-center justify-end [scrollbar-width:none] overflow-x-hidden",
+          "outerHTML": "<div class=\"flex items-center justify-end [scrollbar-width:none] overflow-x-hidden\" data-testid=\"thread-header-right-actions\"><div class=\"flex items-center\" id=\"conversation-header-actions\"><button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button><div class=\"flex items-center\"><span class=\"\" data-state=\"closed\"><button class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\" style=\"view-transition-name: var(--vt-thread-header-open-canvas);\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#a35fbc\" fill=\"currentColor\"></use></svg></button></span><div class=\"relative\" type=\"button\" id=\"radix-_r_89_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><button aria-label=\"Open conversation options\" data-testid=\"conversation-options-button\" class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></button></div></div></div></div>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Share",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "share-chat-button",
+          "href": null,
+          "text": "Share",
+          "className": "btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden",
+          "outerHTML": "<button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button>"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "conversation-turn-1",
+          "href": null,
+          "text": "Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history.",
+          "className": "text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&:has([data-writing-block])>*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-(--header-height)",
+          "outerHTML": "<section class=\"text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-(--header-height)\" dir=\"auto\" data-turn-id=\"f5c0b85c-633c-4f75-835a-aad092380c51\" data-turn-id-container=\"f5c0b85c-633c-4f75-835a-aad092380c51\" data-testid=\"conversation-turn-1\" data-scroll-anchor=\"false\" data-turn=\"user\"><h4 class=\"sr-only select-none\">You said:</h4><div class=\"text-base my-auto mx-auto pt-3 [--thread-content-margin:var(--thread-content-margin-xs,calc(var(--spacing)*4))] @w-sm/main:[--thread-content-margin:var(--thread-content-margin-sm,calc(var(--spacing)*6))] @w-lg/main:[--thread-content-margin:var(--thread-content-margin-lg,calc(var(--spacing)*16))] px-(--thread-content-margin)\"><div class=\"[--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col\"><div class=\"flex max-w-full flex-col gap-4 grow\"><div data-message-author-role=\"user\" data-message-id=\"f5c0b85c-633c-4f75-835a-aad092380c51\" dir=\"auto\" class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;]:mt-1\"><div class=\"flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start\"><div class=\"user-message-bubble-color corner-superellipse/0.98 relative min-w-0 overflow-hidden rounded-[22px] px-4 py-2.5 leading-6 max-w-(--user-chat-width,70%)\"><div class=\"max-w-full min-w-0 [overflow-wrap:anywhere] whitespace-pre-wrap\">Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history.</div></div></div></div></div><div class=\"z-0 flex justify-end\"><div aria-label=\"Your message actions\" class=\"touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1 flex flex-wrap items-center gap-y-4 p-1 select-none focus-within:transition-none hover:transition-none touch:pointer-events-auto touch:opacity-100 duration-300 group-hover/turn-messages:delay-300 pointer-events-none opacity-0 motion-safe:transition-opacity group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:opacity-100 group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:opacity-100 has-data-[state=open]:pointer-events-auto has-data-[state=open]:opacity-100\" role=\"group\" tabindex=\"-1\" style=\"mask-position: 0% 0%;\"><button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy message\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.s"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy message",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "copy-turn-action-button",
+          "href": null,
+          "text": "",
+          "className": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+          "outerHTML": "<button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy message\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg></span></button>"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "conversation-turn-2",
+          "href": null,
+          "text": "Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These methods helped machine learning become more practical for tasks like classification, forecasting, and data analysis. The 2000s and 2010s brought massive datasets, faster hardware, and deep learning models that transformed speech recognition, computer vision, translation, and recommendation systems. Today, machine learning continues to shape artificial intelligence by powering systems that learn from data at enormous scale. Thought for 5s Done.",
+          "className": "text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&:has([data-writing-block])>*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]",
+          "outerHTML": "<section class=\"text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]\" dir=\"auto\" data-turn-id=\"request-WEB:64a7da35-a0a8-4495-a34b-57cdcf75e0c9-0\" data-turn-id-container=\"request-WEB:64a7da35-a0a8-4495-a34b-57cdcf75e0c9-0\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"false\" data-turn=\"assistant\"><h4 class=\"sr-only select-none\">ChatGPT said:</h4><div class=\"text-base my-auto mx-auto pb-10 [--thread-content-margin:var(--thread-content-margin-xs,calc(var(--spacing)*4))] @w-sm/main:[--thread-content-margin:var(--thread-content-margin-sm,calc(var(--spacing)*6))] @w-lg/main:[--thread-content-margin:var(--thread-content-margin-lg,calc(var(--spacing)*16))] px-(--thread-content-margin)\"><div class=\"[--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn\"><div class=\"flex max-w-full flex-col gap-4 grow\"><div class=\"flex flex-col gap-2 not-first:mt-2\"><div id=\"textdoc-message-6a156862b6fc8191a0894acffeab3ed7\" class=\"popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none\" style=\"margin-bottom: 16px; height: auto; opacity: 1; transform: none;\"><div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"curren"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Copy",
+          "className": "flex gap-1 items-center select-none px-1.5 py-1",
+          "outerHTML": "<button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Download",
+          "className": "hover:bg-transparent focus-visible:bg-transparent",
+          "outerHTML": "<button type=\"button\" id=\"radix-_r_8p_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Download",
+          "className": "flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50",
+          "outerHTML": "<button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy response",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "copy-turn-action-button",
+          "href": null,
+          "text": "",
+          "className": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+          "outerHTML": "<button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy response\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg></span></button>"
+        }
+      ],
+      "finalAssistantText": "Done.",
+      "bodyTail": "Skip to content Chat history ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents Probe Canvas Wave 7 2026 AI Safety Events CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words Shark Pro Share Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history. Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These methods helped machine learning become more practical for tasks like classification, forecasting, and data analysis. The 2000s and 2010s brought massive datasets, faster hardware, and deep learning models that transformed speech recognition, computer vision, translation, and recommendation systems. Today, machine learning continues to shape artificial intelligence by powering systems that learn from data at enormous scale. Thought for 5s Done. Thinking ChatGPT can make mistakes. Check important info."
+    },
+    {
+      "stage": "download-menu-open",
+      "extra": {
+        "downloadSelector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")"
+      },
+      "at": "2026-05-26T09:31:23.309Z",
+      "url": "https://chatgpt.com/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+      "title": "Probe Canvas Wave 7",
+      "downloadMatrix": [
+        {
+          "selector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button[aria-haspopup=\"menu\"]:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button[aria-label*=\"Download\" i]",
+          "count": 2,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Open conversation options for Python Script Download",
+            "ariaExpanded": "false",
+            "title": null,
+            "dataTestId": "history-item-21-options",
+            "text": "",
+            "className": "__menu-item-trailing-btn",
+            "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "button[title*=\"Download\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Download\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Download\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Export\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Export\")' is not a valid selector."
+        },
+        {
+          "selector": "button[aria-label*=\"Export\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Export\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Export\")' is not a valid selector."
+        }
+      ],
+      "openCanvasMatrix": [
+        {
+          "selector": "button[aria-label*=\"canvas\" i]",
+          "count": 1,
+          "first": {
+            "tag": "BUTTON",
+            "role": null,
+            "ariaLabel": "Open conversation options for Probe Canvas Wave 7",
+            "ariaExpanded": "false",
+            "title": null,
+            "dataTestId": "history-item-0-options",
+            "text": "",
+            "className": "__menu-item-trailing-btn",
+            "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+          }
+        },
+        {
+          "selector": "a[aria-label*=\"canvas\" i]",
+          "count": 1,
+          "first": {
+            "tag": "A",
+            "role": null,
+            "ariaLabel": "Probe Canvas Wave 7",
+            "ariaExpanded": null,
+            "title": null,
+            "dataTestId": null,
+            "text": "Probe Canvas Wave 7",
+            "className": "group __menu-item hoverable transition-opacity duration-150",
+            "outerHTML": "<a tabindex=\"0\" data-active=\"\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Probe Canvas Wave 7\" data-sidebar-item=\"true\" href=\"/c/6a15685c-5510-83e8-b2cc-cdeeec924736\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Probe Canvas Wave 7</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+          }
+        },
+        {
+          "selector": "[role=\"button\"][aria-label*=\"canvas\" i]",
+          "count": 0,
+          "first": null
+        },
+        {
+          "selector": "button:has-text(\"Open in canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Open in canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "button:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'button:has-text(\"Canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "a:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': 'a:has-text(\"Canvas\")' is not a valid selector."
+        },
+        {
+          "selector": "[role=\"button\"]:has-text(\"Canvas\")",
+          "count": 0,
+          "error": "Failed to execute 'querySelectorAll' on 'Document': '[role=\"button\"]:has-text(\"Canvas\")' is not a valid selector."
+        }
+      ],
+      "interesting": [
+        {
+          "tag": "NAV",
+          "role": null,
+          "ariaLabel": "Chat history",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents Probe Canvas Wave 7 2026 AI Safety Events CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words",
+          "className": "group/scrollport relative flex min-h-0 w-full flex-1 flex-col overflow-y-auto",
+          "outerHTML": "<nav class=\"group/scrollport relative flex min-h-0 w-full flex-1 flex-col overflow-y-auto\" aria-label=\"Chat history\" data-scrolled-from-end=\"\"><div class=\"sticky top-0 z-30 bg-(--sidebar-surface-primary)\"><div class=\"touch:px-1.5 px-2\"><div id=\"sidebar-header\" class=\"h-header-height flex items-center justify-between\"><a class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 touch:w-auto w-auto px-2.5\" data-sidebar-item=\"true\" aria-label=\"Home\" href=\"/\" data-discover=\"true\"><span class=\"header-wordmark text-lg whitespace-nowrap\"><span>ChatGPT</span></span></a><div class=\"flex items-center gap-0\"><button class=\"text-token-text-tertiary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50 no-draggable cursor-w-resize rtl:cursor-e-resize\" aria-expanded=\"false\" aria-controls=\"stage-slideover-sidebar\" aria-label=\"Close sidebar\" data-testid=\"close-sidebar-button\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" data-rtl-flip=\"\" class=\"icon max-md:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#836f7a\" fill=\"currentColor\"></use></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon md:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#85f94b\" fill=\"currentColor\"></use></svg></button></div></div></div></div><div class=\"relative h-0\"><!--&--><div aria-hidden=\"true\" data-edge=\"true\" class=\"pointer-events-none h-px w-px absolute top-0\"></div><div aria-hidden=\"true\" data-edge=\"true\" class=\"pointer-events-none h-px w-px absolute top-0\" style=\"display: none !important;\"></div><!--/&--></div><div class=\"pt-(--sidebar-section-first-margin-top) last:mb-5 bg-token-main-surface-primary tall:sticky tall:top-header-height tall:z-20 not-tall:relative [--sticky-spacer:6px]\"><ul class=\"m-0 list-none p-0\"><li class=\"list-none\"><a tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable\" data-testid=\"create-new-chat-button\" data-sidebar-item=\"true\" href=\"/\" data-discover=\"true\" data-revealed=\"\"><div class=\"flex min-w-0 items-center gap-1.5\"><div class=\"flex items-center justify-center [opacity:var(--menu-item-icon-opacity,1)] icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#3a5c87\" fill=\"currentColor\"></use></svg></div><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\">New chat</div></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"box-trim-text-0.25 inline-flex whitespace-pre *:inline-flex *:font-sans *:not-la"
+        },
+        {
+          "tag": "A",
+          "role": null,
+          "ariaLabel": "Probe Canvas Wave 7",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": "/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+          "text": "Probe Canvas Wave 7",
+          "className": "group __menu-item hoverable transition-opacity duration-150",
+          "outerHTML": "<a tabindex=\"0\" data-active=\"\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Probe Canvas Wave 7\" data-sidebar-item=\"true\" href=\"/c/6a15685c-5510-83e8-b2cc-cdeeec924736\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Probe Canvas Wave 7</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Open conversation options for Probe Canvas Wave 7",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": "history-item-0-options",
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-0-options\" data-conversation-options-trigger=\"6a15685c-5510-83e8-b2cc-cdeeec924736\" aria-label=\"Open conversation options for Probe Canvas Wave 7\" type=\"button\" id=\"radix-_r_8c_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "A",
+          "role": null,
+          "ariaLabel": "Python Script Download",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": "/c/6a154348-e608-83e8-874b-25463971df58",
+          "text": "Python Script Download",
+          "className": "group __menu-item hoverable transition-opacity duration-150",
+          "outerHTML": "<a tabindex=\"0\" data-fill=\"\" class=\"group __menu-item hoverable transition-opacity duration-150\" draggable=\"true\" aria-label=\"Python Script Download\" data-sidebar-item=\"true\" href=\"/c/6a154348-e608-83e8-874b-25463971df58\" data-discover=\"true\"><div class=\"flex min-w-0 grow items-center gap-2.5\"><div class=\"truncate\"><span class=\"\" dir=\"auto\">Python Script Download</span></div></div><div class=\"trailing highlight text-token-text-tertiary\"><div class=\"flex items-center gap-2\"><button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button></div></div></a>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Open conversation options for Python Script Download",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": "history-item-21-options",
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn\" data-testid=\"history-item-21-options\" data-conversation-options-trigger=\"6a154348-e608-83e8-874b-25463971df58\" aria-label=\"Open conversation options for Python Script Download\" type=\"button\" id=\"radix-_r_5b_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Download apps",
+          "ariaExpanded": "false",
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "",
+          "className": "__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0.5! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&>div]:h-full [&>div]:w-full [&>div]:rounded-lg [&>div]:p-0!",
+          "outerHTML": "<button tabindex=\"0\" data-trailing-button=\"\" class=\"__menu-item-trailing-btn no-draggable hover:*:bg-token-interactive-bg-secondary-hover keyboard-focused:*:bg-token-interactive-bg-secondary-hover touch:h-10! touch:min-h-10! touch:w-10! my-0! ms-0! me-0.5! h-9! min-h-9! w-9! self-center! rounded-lg! p-0! [&amp;&gt;div]:h-full [&amp;&gt;div]:w-full [&amp;&gt;div]:rounded-lg [&amp;&gt;div]:p-0!\" aria-controls=\"_R_55mlalcsqooceicl35_\" aria-expanded=\"false\" aria-haspopup=\"menu\" data-state=\"closed\" style=\"anchor-name:--anchor-_R_55mlalcsqooceicl35_\" aria-label=\"Download apps\" type=\"button\"><div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#bb27a0\" fill=\"currentColor\"></use></svg></div></button>"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "thread-header-right-actions-container",
+          "href": null,
+          "text": "Share",
+          "className": "flex items-center justify-center gap-3 overflow-x-hidden",
+          "outerHTML": "<div class=\"flex items-center justify-center gap-3 overflow-x-hidden\" data-testid=\"thread-header-right-actions-container\"><div class=\"shrink-0\"></div><div class=\"flex items-center justify-end [scrollbar-width:none] overflow-x-hidden\" data-testid=\"thread-header-right-actions\"><div class=\"flex items-center\" id=\"conversation-header-actions\"><button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button><div class=\"flex items-center\"><span class=\"\" data-state=\"closed\"><button class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\" style=\"view-transition-name: var(--vt-thread-header-open-canvas);\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#a35fbc\" fill=\"currentColor\"></use></svg></button></span><div class=\"relative\" type=\"button\" id=\"radix-_r_89_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><button aria-label=\"Open conversation options\" data-testid=\"conversation-options-button\" class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></button></div></div></div></div></div>"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "thread-header-right-actions",
+          "href": null,
+          "text": "Share",
+          "className": "flex items-center justify-end [scrollbar-width:none] overflow-x-hidden",
+          "outerHTML": "<div class=\"flex items-center justify-end [scrollbar-width:none] overflow-x-hidden\" data-testid=\"thread-header-right-actions\"><div class=\"flex items-center\" id=\"conversation-header-actions\"><button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button><div class=\"flex items-center\"><span class=\"\" data-state=\"closed\"><button class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\" style=\"view-transition-name: var(--vt-thread-header-open-canvas);\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#a35fbc\" fill=\"currentColor\"></use></svg></button></span><div class=\"relative\" type=\"button\" id=\"radix-_r_89_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\"><button aria-label=\"Open conversation options\" data-testid=\"conversation-options-button\" class=\"text-token-text-primary contrast-high:not-dark:keyboard-focused:focus-ring no-draggable hover:bg-token-surface-hover keyboard-focused:bg-token-surface-hover touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg outline-none disabled:opacity-50\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#f6d0e2\" fill=\"currentColor\"></use></svg></button></div></div></div></div>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Share",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "share-chat-button",
+          "href": null,
+          "text": "Share",
+          "className": "btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden",
+          "outerHTML": "<button class=\"btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-ghost keyboard-focused:bg-token-surface-hover text-token-text-primary hover:bg-token-surface-hover rounded-lg max-sm:hidden\" aria-label=\"Share\" data-testid=\"share-chat-button\" style=\"view-transition-name: var(--vt_share_chat_wide_button);\"><div class=\"flex w-full items-center justify-center gap-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-label=\"\" class=\"-ms-0.5 icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#630ca2\" fill=\"currentColor\"></use></svg>Share</div></button>"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "conversation-turn-1",
+          "href": null,
+          "text": "Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history.",
+          "className": "text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&:has([data-writing-block])>*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-(--header-height)",
+          "outerHTML": "<section class=\"text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-(--header-height)\" dir=\"auto\" data-turn-id=\"f5c0b85c-633c-4f75-835a-aad092380c51\" data-turn-id-container=\"f5c0b85c-633c-4f75-835a-aad092380c51\" data-testid=\"conversation-turn-1\" data-scroll-anchor=\"false\" data-turn=\"user\"><h4 class=\"sr-only select-none\">You said:</h4><div class=\"text-base my-auto mx-auto pt-3 [--thread-content-margin:var(--thread-content-margin-xs,calc(var(--spacing)*4))] @w-sm/main:[--thread-content-margin:var(--thread-content-margin-sm,calc(var(--spacing)*6))] @w-lg/main:[--thread-content-margin:var(--thread-content-margin-lg,calc(var(--spacing)*16))] px-(--thread-content-margin)\"><div class=\"[--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col\"><div class=\"flex max-w-full flex-col gap-4 grow\"><div data-message-author-role=\"user\" data-message-id=\"f5c0b85c-633c-4f75-835a-aad092380c51\" dir=\"auto\" class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;]:mt-1\"><div class=\"flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start\"><div class=\"user-message-bubble-color corner-superellipse/0.98 relative min-w-0 overflow-hidden rounded-[22px] px-4 py-2.5 leading-6 max-w-(--user-chat-width,70%)\"><div class=\"max-w-full min-w-0 [overflow-wrap:anywhere] whitespace-pre-wrap\">Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history.</div></div></div></div></div><div class=\"z-0 flex justify-end\"><div aria-label=\"Your message actions\" class=\"touch:-me-2 touch:-ms-3.5 -ms-2.5 -me-1 flex flex-wrap items-center gap-y-4 p-1 select-none focus-within:transition-none hover:transition-none touch:pointer-events-auto touch:opacity-100 duration-300 group-hover/turn-messages:delay-300 pointer-events-none opacity-0 motion-safe:transition-opacity group-hover/turn-messages:pointer-events-auto group-hover/turn-messages:opacity-100 group-focus-within/turn-messages:pointer-events-auto group-focus-within/turn-messages:opacity-100 has-data-[state=open]:pointer-events-auto has-data-[state=open]:opacity-100\" role=\"group\" tabindex=\"-1\" style=\"mask-position: 0% 0%;\"><button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy message\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.s"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy message",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "copy-turn-action-button",
+          "href": null,
+          "text": "",
+          "className": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+          "outerHTML": "<button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy message\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg></span></button>"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "conversation-turn-2",
+          "href": null,
+          "text": "Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These methods helped machine learning become more practical for tasks like classification, forecasting, and data analysis. The 2000s and 2010s brought massive datasets, faster hardware, and deep learning models that transformed speech recognition, computer vision, translation, and recommendation systems. Today, machine learning continues to shape artificial intelligence by powering systems that learn from data at enormous scale. Thought for 5s Done.",
+          "className": "text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&:has([data-writing-block])>*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]",
+          "outerHTML": "<section class=\"text-token-text-primary w-full focus:outline-none has-data-writing-block:pointer-events-none [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]\" dir=\"auto\" data-turn-id=\"request-WEB:64a7da35-a0a8-4495-a34b-57cdcf75e0c9-0\" data-turn-id-container=\"request-WEB:64a7da35-a0a8-4495-a34b-57cdcf75e0c9-0\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"false\" data-turn=\"assistant\"><h4 class=\"sr-only select-none\">ChatGPT said:</h4><div class=\"text-base my-auto mx-auto pb-10 [--thread-content-margin:var(--thread-content-margin-xs,calc(var(--spacing)*4))] @w-sm/main:[--thread-content-margin:var(--thread-content-margin-sm,calc(var(--spacing)*6))] @w-lg/main:[--thread-content-margin:var(--thread-content-margin-lg,calc(var(--spacing)*16))] px-(--thread-content-margin)\"><div class=\"[--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn\"><div class=\"flex max-w-full flex-col gap-4 grow\"><div class=\"flex flex-col gap-2 not-first:mt-2\"><div id=\"textdoc-message-6a156862b6fc8191a0894acffeab3ed7\" class=\"popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none\" style=\"margin-bottom: 16px; height: auto; opacity: 1; transform: none;\"><div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"curren"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Copy",
+          "className": "flex gap-1 items-center select-none px-1.5 py-1",
+          "outerHTML": "<button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": "true",
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Download",
+          "className": "hover:bg-transparent focus-visible:bg-transparent",
+          "outerHTML": "<button type=\"button\" id=\"radix-_r_8p_\" aria-haspopup=\"menu\" aria-expanded=\"true\" data-state=\"open\" class=\"hover:bg-transparent focus-visible:bg-transparent\" aria-controls=\"radix-_r_8q_\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Download",
+          "className": "flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50",
+          "outerHTML": "<button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button>"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Copy response",
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": "copy-turn-action-button",
+          "href": null,
+          "text": "",
+          "className": "text-token-text-secondary hover:bg-token-bg-secondary rounded-lg",
+          "outerHTML": "<button class=\"text-token-text-secondary hover:bg-token-bg-secondary rounded-lg\" aria-label=\"Copy response\" data-testid=\"copy-turn-action-button\" data-state=\"closed\"><span class=\"flex items-center justify-center touch:w-10 h-8 w-8\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg></span></button>"
+        },
+        {
+          "tag": "DIV",
+          "role": "menuitem",
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "PDF Document (.pdf)",
+          "className": "group __menu-item",
+          "outerHTML": "<div role=\"menuitem\" tabindex=\"0\" class=\"group __menu-item\" data-orientation=\"vertical\" data-radix-collection-item=\"\"><div class=\"flex min-w-0 grow items-center gap-2.5\">PDF Document (.pdf)</div></div>"
+        },
+        {
+          "tag": "DIV",
+          "role": "menuitem",
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Microsoft Word Document (.docx)",
+          "className": "group __menu-item",
+          "outerHTML": "<div role=\"menuitem\" tabindex=\"0\" class=\"group __menu-item\" data-orientation=\"vertical\" data-radix-collection-item=\"\"><div class=\"flex min-w-0 grow items-center gap-2.5\">Microsoft Word Document (.docx)</div></div>"
+        },
+        {
+          "tag": "DIV",
+          "role": "menuitem",
+          "ariaLabel": null,
+          "ariaExpanded": null,
+          "title": null,
+          "dataTestId": null,
+          "href": null,
+          "text": "Markdown Document (.md)",
+          "className": "group __menu-item",
+          "outerHTML": "<div role=\"menuitem\" tabindex=\"0\" class=\"group __menu-item\" data-orientation=\"vertical\" data-radix-collection-item=\"\"><div class=\"flex min-w-0 grow items-center gap-2.5\">Markdown Document (.md)</div></div>"
+        }
+      ],
+      "finalAssistantText": "Done.",
+      "bodyTail": "Skip to content Chat history ChatGPT New chat Search chats Library Apps Codex More GPTs Scholar GPT Explore GPTs Projects New project 1浏览器自动化（读取+操作） 无人车产品手册书写 RL0511 noeticbraidvshermes 机械臂 More Recents Probe Canvas Wave 7 2026 AI Safety Events CSV File Generation Renewable Energy PPT PPTX Renewable Energy Basics Open-source LLM frameworks 2025 Notebook Icon Request Quote first 3 words List first words Math Step-by-Step User requests OK only Renewable Energy PPT Python 脚本下载 Nature Skills 项目解析 Word 双栏公式排版 CapProbe 项目说明书 量子计算文档下载 生成CSV文件 机器学习历史文档 Open-source LLM Frameworks Renewable Energy PPT Python Script Download CapProbe README 生成 New chat 生成CSV文件 Futuristic Lab Notebook Icon List first words Quote first 3 words Shark Pro Share Use canvas to write a document titled 'Probe Canvas Wave 7' with 3 short paragraphs about machine learning history. Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These methods helped machine learning become more practical for tasks like classification, forecasting, and data analysis. The 2000s and 2010s brought massive datasets, faster hardware, and deep learning models that transformed speech recognition, computer vision, translation, and recommendation systems. Today, machine learning continues to shape artificial intelligence by powering systems that learn from data at enormous scale. Thought for 5s Done. Thinking ChatGPT can make mistakes. Check important info. PDF Document (.pdf) Microsoft Word Document (.docx) Markdown Document (.md)"
+    }
+  ],
+  "beforeCounts": [
+    {
+      "s": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+      "n": 1
+    },
+    {
+      "s": "button:has-text(\"Download\")",
+      "n": 2
+    },
+    {
+      "s": "button[aria-label*=\"Download\" i]",
+      "n": 2
+    },
+    {
+      "s": "button[title*=\"Download\" i]",
+      "n": 0
+    },
+    {
+      "s": "[role=\"button\"]:has-text(\"Download\")",
+      "n": 0
+    },
+    {
+      "s": "button:has-text(\"Export\")",
+      "n": 0
+    },
+    {
+      "s": "button[aria-label*=\"Export\" i]",
+      "n": 0
+    },
+    {
+      "s": "[role=\"button\"]:has-text(\"Export\")",
+      "n": 0
+    }
+  ],
+  "afterOpenCounts": [
+    {
+      "s": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+      "n": 1
+    },
+    {
+      "s": "button:has-text(\"Download\")",
+      "n": 2
+    },
+    {
+      "s": "button[aria-label*=\"Download\" i]",
+      "n": 2
+    },
+    {
+      "s": "button[title*=\"Download\" i]",
+      "n": 0
+    },
+    {
+      "s": "[role=\"button\"]:has-text(\"Download\")",
+      "n": 0
+    },
+    {
+      "s": "button:has-text(\"Export\")",
+      "n": 0
+    },
+    {
+      "s": "button[aria-label*=\"Export\" i]",
+      "n": 0
+    },
+    {
+      "s": "[role=\"button\"]:has-text(\"Export\")",
+      "n": 0
+    }
+  ],
+  "downloadSelector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+  "recommended": {
+    "downloadSelector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+    "openCanvasSelector": null
+  },
+  "exactDownloadProbe": {
+    "at": "2026-05-26T09:32:49.765Z",
+    "chatUrl": "https://chatgpt.com/c/6a15685c-5510-83e8-b2cc-cdeeec924736",
+    "selectors": [
+      {
+        "selector": "main button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+        "count": 1,
+        "first": {
+          "tag": "BUTTON",
+          "aria": null,
+          "expanded": "false",
+          "text": "Download",
+          "html": "<button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>",
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "hover:bg-transparent focus-visible:bg-transparent",
+              "text": "Download",
+              "html": "<button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "hover:text-token-text-primary",
+              "text": "Download",
+              "html": "<div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button></div>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "flex items-center justify-end",
+              "text": "Copy Edit Download",
+              "html": "<div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button></div></div>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6",
+              "text": "Probe Canvas Wave 7 Copy Edit Download",
+              "html": "<div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]",
+              "text": "Probe Canvas Wave 7 Copy Edit Download",
+              "html": "<div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:b"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none",
+              "text": "Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These method",
+              "html": "<div id=\"textdoc-message-6a156862b6fc8191a0894acffeab3ed7\" class=\"popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none\" style=\"margin-bottom: 16px; height: auto; opacity: 1; transform: none;\"><div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><"
+            }
+          ]
+        }
+      },
+      {
+        "selector": "[data-testid*=\"canvas\" i] button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+        "count": 0,
+        "first": null
+      },
+      {
+        "selector": "button[aria-haspopup=\"menu\"]:has-text(\"Download\")",
+        "count": 1,
+        "first": {
+          "tag": "BUTTON",
+          "aria": null,
+          "expanded": "false",
+          "text": "Download",
+          "html": "<button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>",
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "hover:bg-transparent focus-visible:bg-transparent",
+              "text": "Download",
+              "html": "<button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "hover:text-token-text-primary",
+              "text": "Download",
+              "html": "<div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button></div>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "flex items-center justify-end",
+              "text": "Copy Edit Download",
+              "html": "<div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-allowed disabled:opacity-50\"><span class=\"block sm:hidden\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#1a3695\" fill=\"currentColor\"></use></svg></span></span><span class=\"hidden sm:block\">Download</span></button></button></div></div>"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6",
+              "text": "Probe Canvas Wave 7 Copy Edit Download",
+              "html": "<div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:bg-transparent\"><button class=\"flex items-center gap-1 px-1.5 py-1 select-none disabled:cursor-not-"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]",
+              "text": "Probe Canvas Wave 7 Copy Edit Download",
+              "html": "<div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md block sm:hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#cf3864\" fill=\"currentColor\"></use></svg></span><span class=\"hidden sm:block\">Edit</span></button></div><div class=\"hover:text-token-text-primary\"><button type=\"button\" id=\"radix-_r_5u_\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" class=\"hover:bg-transparent focus-visible:b"
+            },
+            {
+              "tag": "DIV",
+              "role": null,
+              "aria": null,
+              "test": null,
+              "cls": "popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none",
+              "text": "Probe Canvas Wave 7 Copy Edit Download Probe Canvas Wave 7 Machine learning began as an effort to make computers improve through experience rather than explicit instructions. Early work in the 1950s and 1960s explored symbolic reasoning, pattern recognition, and simple neural networks, laying the foundation for later breakthroughs. In the 1980s and 1990s, researchers refined techniques such as decision trees, support vector machines, and backpropagation for training neural networks. These method",
+              "html": "<div id=\"textdoc-message-6a156862b6fc8191a0894acffeab3ed7\" class=\"popover bg-token-bg-primary dark:bg-token-bg-elevated-secondary border-token-border-default dark:border-token-border-light relative z-0 border [--canvas-bg:var(--bg-primary)] dark:[--canvas-bg:var(--bg-elevated-secondary)] overflow-visible cursor-text font-regular rounded-3xl w-full w-full pt-1 pb-3 sm:max-w-none\" style=\"margin-bottom: 16px; height: auto; opacity: 1; transform: none;\"><div class=\"@w-xl/main:top-0 sticky top-(--header-height) z-20 overflow-hidden rounded-[inherit]\"><div class=\"text-token-text-secondary bg-token-bg-primary/80 dark:bg-token-bg-elevated-secondary/80 z-20 flex w-full items-center justify-between gap-3 px-4 py-3 font-sans text-sm font-normal backdrop-blur-sm sm:px-6\"><div class=\"flex min-w-0 items-center gap-2 truncate\"><div class=\"flex items-center gap-1\"><span class=\"min-w-0 truncate text-token-text-primary font-semibold\">Probe Canvas Wave 7</span></div></div><div class=\"flex items-center justify-end\"><div class=\"hover:text-token-text-primary\"><button type=\"button\" class=\"flex gap-1 items-center select-none px-1.5 py-1\" aria-label=\"Copy\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" aria-hidden=\"true\" class=\"icon-md hidden\"><use href=\"/cdn/assets/sprites-core-2cb00440.svg#ce3544\" fill=\"currentColor\"></use></svg>Copy</button></div><div class=\"hover:text-token-text-primary\"><button class=\"flex items-center px-1.5 py-1 select-none\"><span class=\"\" data-state=\"closed\"><"
+            }
+          ]
+        }
+      },
+      {
+        "selector": "main button[aria-label=\"Download\"]",
+        "count": 0,
+        "first": null
+      },
+      {
+        "selector": "main button[aria-label*=\"Download\" i]",
+        "count": 0,
+        "first": null
+      }
+    ]
+  }
+}

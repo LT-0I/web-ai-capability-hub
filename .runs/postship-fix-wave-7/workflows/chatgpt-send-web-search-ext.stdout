@@ -1,0 +1,140 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "chatgpt-send-web-search-ext",
+    "target": "chatgpt",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T09:51:07.256Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:send-prompt",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--web-search",
+            "--prompt",
+            "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+            "--response-timeout-ms",
+            "180000",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "response_text",
+                "regex": "20\\d{2}|May|5月|January|February|March|April|June|July|August|September|October|November|December"
+              },
+              {
+                "path": "completion_detected",
+                "equals": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-send-web-search-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Send a web-search prompt in ChatGPT (creates a fresh conversation if no chat_url is wired)",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-send-web-search-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:send-prompt",
+          "--profile",
+          "chatgpt",
+          "--backend",
+          "extension-assisted-cdp",
+          "--web-search",
+          "--prompt",
+          "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+          "--response-timeout-ms",
+          "180000",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 45710,
+        "stdout": "{\n  \"response_text\": \"As of May 26, 2026, here are 3 AI safety–related events from 2026 so far:\\n\\n\\nJanuary 21, 2026 — TIME100 AI roundtable in Davos: AI leaders and researchers discussed responsible innovation, safeguards, child safety, regulation, and alignment concerns during the World Economic Forum week. 时代杂志\\n\\n\\nFebruary 24–25, 2026 — IASEAI Conference 2026: The International Association for Safe and Ethical AI held its main conference with talks, panels, presentations, and posters on AI safety, ethics, and governance. IASEAI\\n\\n\\nMay 25, 2026 — Vatican presentation of Magnifica humanitas on AI: Pope Leo XIV released and presented an encyclical on safeguarding the human person in the age of AI; speakers included Anthropic co-founder Christopher Olah, who emphasized broader oversight beyond Big Tech. vaticannews.va\",\n  \"elapsed_ms\": 45556,\n  \"wait_ms\": 29476,\n  \"completion_detected\": true,\n  \"errorCode\": null,\n  \"model_used\": null,\n  \"reuse_conversation\": false,\n  \"conversation_id\": \"6a156d16-540c-83e8-b518-4290f480ebbc\",\n  \"chat_url\": \"https://chatgpt.com/c/<conversation-id>\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "As of May 26, 2026, here are 3 AI safety–related events from 2026 so far:\n\n\nJanuary 21, 2026 — TIME100 AI roundtable in Davos: AI leaders and researchers discussed responsible innovation, safeguards, child safety, regulation, and alignment concerns during the World Economic Forum week. 时代杂志\n\n\nFebruary 24–25, 2026 — IASEAI Conference 2026: The International Association for Safe and Ethical AI held its main conference with talks, panels, presentations, and posters on AI safety, ethics, and governance. IASEAI\n\n\nMay 25, 2026 — Vatican presentation of Magnifica humanitas on AI: Pope Leo XIV released and presented an encyclical on safeguarding the human person in the age of AI; speakers included Anthropic co-founder Christopher Olah, who emphasized broader oversight beyond Big Tech. vaticannews.va",
+          "elapsed_ms": 45556,
+          "wait_ms": 29476,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "conversation_id": "6a156d16-540c-83e8-b518-4290f480ebbc",
+          "chat_url": "https://chatgpt.com/c/6a156d16-540c-83e8-b518-4290f480ebbc"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "response_text",
+              "actual": "As of May 26, 2026, here are 3 AI safety–related events from 2026 so far:\n\n\nJanuary 21, 2026 — TIME100 AI roundtable in Davos: AI leaders and researchers discussed responsible innovation, safeguards, child safety, regulation, and alignment concerns during the World Economic Forum week. 时代杂志\n\n\nFebruary 24–25, 2026 — IASEAI Conference 2026: The International Association for Safe and Ethical AI held its main conference with talks, panels, presentations, and posters on AI safety, ethics, and governance. IASEAI\n\n\nMay 25, 2026 — Vatican presentation of Magnifica humanitas on AI: Pope Leo XIV released and presented an encyclical on safeguarding the human person in the age of AI; speakers included Anthropic co-founder Christopher Olah, who emphasized broader oversight beyond Big Tech. vaticannews.va",
+              "ok": true
+            },
+            {
+              "path": "completion_detected",
+              "actual": true,
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "As of May 26, 2026, here are 3 AI safety–related events from 2026 so far:\n\n\nJanuary 21, 2026 — TIME100 AI roundtable in Davos: AI leaders and researchers discussed responsible innovation, safeguards, child safety, regulation, and alignment concerns during the World Economic Forum week. 时代杂志\n\n\nFebruary 24–25, 2026 — IASEAI Conference 2026: The International Association for Safe and Ethical AI held its main conference with talks, panels, presentations, and posters on AI safety, ethics, and governance. IASEAI\n\n\nMay 25, 2026 — Vatican presentation of Magnifica humanitas on AI: Pope Leo XIV released and presented an encyclical on safeguarding the human person in the age of AI; speakers included Anthropic co-founder Christopher Olah, who emphasized broader oversight beyond Big Tech. vaticannews.va",
+        "wait_ms": 29476,
+        "completion_detected": true,
+        "errorCode": null,
+        "model_used": null,
+        "reuse_conversation": false,
+        "conversation_id": "6a156d16-540c-83e8-b518-4290f480ebbc",
+        "chat_url": "https://chatgpt.com/c/6a156d16-540c-83e8-b518-4290f480ebbc"
+      }
+    }
+  ],
+  "runId": "run_af8feb5358547028"
+}
