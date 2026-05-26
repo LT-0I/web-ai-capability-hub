@@ -1,0 +1,4859 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "research-database-search-dry-run",
+    "target": "cnki",
+    "profile": "<profile>",
+    "mode": "assisted",
+    "compiledAt": "2026-05-26T12:02:09.739Z",
+    "actions": [
+      {
+        "stepId": "enter_search_query",
+        "capability": "enter_search_query",
+        "action": {
+          "type": "type",
+          "target": {
+            "role": "textbox",
+            "name": "search"
+          },
+          "text": "machine learning literature review"
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false
+      },
+      {
+        "stepId": "read_results_metadata",
+        "capability": "read_results_metadata",
+        "action": {
+          "type": "extract",
+          "extract": "snapshot",
+          "confirmed": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false
+      }
+    ],
+    "warnings": [
+      "No exact compiler rule for capability 'read_results_metadata'. Falling back to read/observe action."
+    ],
+    "definition": {
+      "id": "research-database-search-dry-run",
+      "target": "cnki",
+      "profile": "<profile>",
+      "mode": "assisted",
+      "description": "Dry-run example for authorized research database search.",
+      "steps": [
+        {
+          "use_capability": "enter_search_query",
+          "input": {
+            "query": "machine learning literature review"
+          }
+        },
+        {
+          "use_capability": "read_results_metadata"
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "stepId": "enter_search_query",
+      "ok": true,
+      "message": "Typed into textarea#txt_SearchText, textarea[name=\"txt_SearchText\"], textarea[placeholder*=\"中文文献\"]",
+      "data": {
+        "selector": "textarea#txt_SearchText, textarea[name=\"txt_SearchText\"], textarea[placeholder*=\"中文文献\"]"
+      }
+    },
+    {
+      "stepId": "read_results_metadata",
+      "ok": true,
+      "message": "Extracted snapshot",
+      "data": {
+        "url": "https://www.cnki.net/",
+        "title": "中国知网",
+        "timestamp": "2026-05-26T12:02:09.944Z",
+        "visibleText": "× 01234 手机版 读者服务 作者服务 出版服务 产品解决方案 学术评价 联系我们 帮助 南京航空航天大学 个人登录 旧版入口 充值 会员 检 索 CNKI AI 主题 ▼ 检索 高级检索 > 出版物检索 > 增强检索 学术期刊 学位论文 会议 报纸 年鉴 专利 标准 成果 学术辑刊 图书 文库 法律法规 工具书 中国引文库 学术图片 学术视频 音频 统计数据AI知数 政府文件 科技报告 OA CNKI AI AI深度研究 文献计量 个人查重 AIGC检测 科研诚信 知网研学 知网书店 知网文库 我要投稿 翻译助手 智能排版 智能写作 作者服务 更多 网络首发 自然科学 换一换 思想理论 换一换 人文社科 换一换 下载热榜 全部 自然科学 社会科学 哲学与人文科学 周 月 1 科斯理论视角下我国用水权制度演进与改革方向 田贵良 《水利经济》 2025-05-30 2 刑事案件事实的实质判断 张明楷 《中国刑事法杂志》 2026-04-23 3 基于Ansys的气动机械臂关键结构静动态特性仿真与优化设计 王春政 《凿岩机械气动工具》 2026-04-20 4 妊娠期糖尿病复发率与复发危险因素的Meta分析 孙俊 《中国妇幼保健》 2026-05-09 5 基于改进YOLO11的无人机海上搜救目标检测模型 张雨轩 《传感器与微系统》 2026-04-27 6 基于SpringBoot和Vue的高校勤工助学岗位管理系统 轩金丽 《电脑编程技巧与维护》 2026-04-28 7 中小学生近视影响因素的Logistic回归与随机森林模型对比研究 金丽娜 《职业与健康》 2026-05-06 8 燕麦幼苗响应干旱胁迫的生理与转录组学分析 何雨飞 《草地学报》 2026-04-27 9 面向大熊猫目标检测的生成-检测统一方法 刘祯 《中国图象图形学报》 2026-05-11 10 基于深度学习的多模态数据融合技术在口腔疾病中的应用及研究进展 何沁轩 《口腔疾病防治》 2026-05-09 热词榜 周 月 1 人工智能 热度值5808 2 耐心资本 热度值4734 3 数字化转型 热度值3265 4 数字经济 热度值2973 5 新质生产力 热度值2205 6 绿色金融 热度值2107 7 数字普惠金融 热度值2093 8 供应链韧性 热度值1993 9 盈利能力分析 热度值1909 10 数据资产 热度值1868 Recommendation 知网推荐 主编推荐 图书推荐 最新 热门 CNKI Updates 知网动态 了解更多 04-28 2026 诚邀参加2026年“陶行知教育思想理论研究与创新实践”学术研讨会！ 2026年6月27日至30日，2026年“陶行知教育思想理论研究与创新实践”学术研讨会将于南京举办！ 04-27 2026 《管理世界》大讲堂2026年第四期来啦! 本期嘉宾来自：温州商学院、南京大学、复旦大学、同济大学、上海人工智能实验室、浙江工商大学、湖南大学、南开大学、清华大学及中国人民大学。 04-21 2026 第五届全民阅读大会“江右书旅”——知网邀您共赴书香之约 2026年全民阅读大会即将在江西南昌拉开帷幕，由咪咕数媒、中国知网、京东、帆书、凯叔讲故事多方共同搭建的线上主会场——“江右书旅”互动专区已于4月10日正式上线，中国知网诚邀全国读者共赴一场有温度、有回响的书香盛宴。 04-20 2026 “学术成果汇编”征稿启事 “学术成果汇编”由中国知网推出，汇编作者本人/他人知网收录文献，以纸质图书或电子图书形式出版，并同步上线知网各平台。 04-15 2026 《基层农技推广》征稿啦 《基层农技推广》面向农业院校师生、农技推广人员、农业从业者、农业领域管理人员等征稿啦！ 诚邀参加2026年“陶行知教育思想理论研究与创新实践”学术研讨会！ 《管理世界》大讲堂2026年第四期来啦! 第五届全民阅读大会“江右书旅”——知网邀您共赴书香之约 “学术成果汇编”征稿启事 《基层农技推广》征稿啦 展师能·塑名师“创意写作赋能写作教育”论文、课例征集活动正式启动 “2026科研诚信公益大讲堂——大学生毕业论文写作指导系列讲座之第二讲：论文撰写与答辩”重磅开讲！ 出版级人工翻译母语润色，为知识全球传播保驾护航！ 中国知网博士学术专著丛书征稿启事 中国知网高被引学者个人成果汇编/学术专著征稿函 New Products 新品速递 CNKI Claw全新上线 CNKI Claw助你读懂海量文献，构建知识体系，守护科研初心，让深度探索不再孤独！ [查看详情] 2026-05-22 公文大模型（政知通）重磅升级 面向党政机关、科研院所和企事业单位提供调研助手、智能公文写作、智能公文核稿、智能查重比对... [查看详情] 2025-12-26 标准质量评估服务平台重磅发布！ 标准质量评估服务平台集成全量标准资源，以提升标准制定质量为核心，聚焦于标准质量的专业评估... [查看详情] 2025-12-16 CAJX阅读器云服务版 CAJX阅读器云服务版是最新打造的桌面级在线阅读服务，提供在线全文翻译、格式转换等系列实用... [查看详情] 2025-12-08 读者服务 购买知网卡 充值中心 我的CNKI 帮助中心 CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器 特色服务 手机知网 知网书店 知网文库 知网阅读 客户服务 订卡热线：400-819-9993 服务热线：400-810-9888 在线咨询：service.cnki.net 邮件咨询：help@cnki.net 监督举报 违法和不良信息举报电话：400-062-8866 违法和不良信息举报邮箱：jubao@cnki.net 合规举报邮箱：zwhegui-tsjb@cnki.net 服务监督：400-819-1966（fwjd.cnki.net） 新浪微博客服 官方微信 关于我们 CNKI 荣誉 客服中心 用户建议 知网招聘 知网推广 © 1998-2026 中国知网（CNKI） 京ICP备11019815号-4 京ICP证040431号 网络出版服务许可证网出证(京)字第416号出版物经营许可证 京公网安备11010802020460号 互联网宗教信息服务许可证：京（2026）0000014 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供. 在线咨询 拖动下方拼图完成验证 安全验证",
+        "elements": [
+          {
+            "ref": "e1",
+            "role": "link",
+            "name": "×",
+            "text": "×",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "close-adv",
+              "href": "javascript:void(0);"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e2",
+            "role": "link",
+            "name": "",
+            "text": "",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://au.cnki.net/author/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e3",
+            "role": "link",
+            "name": "手机版",
+            "text": "手机版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e4",
+            "role": "link",
+            "name": "全球学术快报>>",
+            "text": "全球学术快报>>",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://m.cnki.net/mcnkidown/index.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e5",
+            "role": "link",
+            "name": "手机知网>>",
+            "text": "手机知网>>",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wap.cnki.net/cnkiclient.aspx",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e6",
+            "role": "link",
+            "name": "读者服务",
+            "text": "读者服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e7",
+            "role": "link",
+            "name": "进入读者服务 >",
+            "text": "进入读者服务 >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://member.cnki.net/reader",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e8",
+            "role": "link",
+            "name": "CNKI AI",
+            "text": "CNKI AI",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ai.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e9",
+            "role": "link",
+            "name": "科技查新",
+            "text": "科技查新",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://chaxin.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e10",
+            "role": "link",
+            "name": "翻译助手",
+            "text": "翻译助手",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://dict.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e11",
+            "role": "link",
+            "name": "个人查重服务",
+            "text": "个人查重服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cx.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e12",
+            "role": "link",
+            "name": "CNKI学术情报",
+            "text": "CNKI学术情报",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://qb.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e13",
+            "role": "link",
+            "name": "AI智能备课",
+            "text": "AI智能备课",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://aibk.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e14",
+            "role": "link",
+            "name": "个人AIGC检测",
+            "text": "个人AIGC检测",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cx.cnki.net/aigc",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e15",
+            "role": "link",
+            "name": "个人智能排版",
+            "text": "个人智能排版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://pb.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e16",
+            "role": "link",
+            "name": "个人智能审校",
+            "text": "个人智能审校",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://sj.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e17",
+            "role": "link",
+            "name": "知网文库",
+            "text": "知网文库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wenku.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e18",
+            "role": "link",
+            "name": "知网书店",
+            "text": "知网书店",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://book.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e19",
+            "role": "link",
+            "name": "智赢广告",
+            "text": "智赢广告",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://a.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e20",
+            "role": "link",
+            "name": "赛事星",
+            "text": "赛事星",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://saishi.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e21",
+            "role": "link",
+            "name": "WExpt",
+            "text": "WExpt",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wexpt.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e22",
+            "role": "link",
+            "name": "知网号",
+            "text": "知网号",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zwh.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e23",
+            "role": "link",
+            "name": "知网阅读",
+            "text": "知网阅读",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://mall.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e24",
+            "role": "link",
+            "name": "知网空间",
+            "text": "知网空间",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cnki.com.cn",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e25",
+            "role": "link",
+            "name": "学术搜索",
+            "text": "学术搜索",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://scholar.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e26",
+            "role": "link",
+            "name": "知网研学",
+            "text": "知网研学",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://x.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e27",
+            "role": "link",
+            "name": "研学智得AI",
+            "text": "研学智得AI",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://x.cnki.net/web/yx-web-activity/closebeta.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e28",
+            "role": "link",
+            "name": "学科资源包",
+            "text": "学科资源包",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://x.cnki.net/xmrd/#/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e29",
+            "role": "link",
+            "name": "作者服务",
+            "text": "作者服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e30",
+            "role": "link",
+            "name": "进入作者服务 >",
+            "text": "进入作者服务 >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/subpages/authorservice.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e31",
+            "role": "link",
+            "name": "学术精要",
+            "text": "学术精要",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xsjy.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e32",
+            "role": "link",
+            "name": "中国学术会议网",
+            "text": "中国学术会议网",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://conf.cnki.net/Home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e33",
+            "role": "link",
+            "name": "学术大讲堂（知网视频）",
+            "text": "学术大讲堂（知网视频）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://k.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e34",
+            "role": "link",
+            "name": "CNKI写作投稿平台",
+            "text": "CNKI写作投稿平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xztg.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e35",
+            "role": "link",
+            "name": "知网智能写作",
+            "text": "知网智能写作",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://aidoc.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e36",
+            "role": "link",
+            "name": "论文智能排版",
+            "text": "论文智能排版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://author.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e37",
+            "role": "link",
+            "name": "双语出版（翻译与润色）",
+            "text": "双语出版（翻译与润色）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://sycb.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e38",
+            "role": "link",
+            "name": "学位论文征稿启事",
+            "text": "学位论文征稿启事",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://piccache.cnki.net/index/images2009/other/2024/thesis_collecting_notice.pdf",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e39",
+            "role": "link",
+            "name": "会议论文征稿启事",
+            "text": "会议论文征稿启事",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://au.cnki.net/act/callForPaper",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e40",
+            "role": "link",
+            "name": "原创出版",
+            "text": "原创出版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yccb.cnki.net/#/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e41",
+            "role": "link",
+            "name": "作者服务平台（成果认领与权益服务）",
+            "text": "作者服务平台（成果认领与权益服务）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://au.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e42",
+            "role": "link",
+            "name": "全国高被引学者（查询与认证）",
+            "text": "全国高被引学者（查询与认证）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xs.cnki.net/List/HCS_List",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e43",
+            "role": "link",
+            "name": "学位论文领取稿酬通告",
+            "text": "学位论文领取稿酬通告",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://piccache.cnki.net/index/images2009/other/2023/thesis_remuneration_notice.pdf",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e44",
+            "role": "link",
+            "name": "出版服务",
+            "text": "出版服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e45",
+            "role": "link",
+            "name": "进入出版服务 >",
+            "text": "进入出版服务 >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/subpages/publishservice.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e46",
+            "role": "link",
+            "name": "腾云期刊出版平台",
+            "text": "腾云期刊出版平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cbptapp.cnki.net/findcb",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e47",
+            "role": "link",
+            "name": "学术不端文献检测系统",
+            "text": "学术不端文献检测系统",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://check.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e48",
+            "role": "link",
+            "name": "AI编辑助手（审校工具）",
+            "text": "AI编辑助手（审校工具）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://aibot.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e49",
+            "role": "link",
+            "name": "双语数据库",
+            "text": "双语数据库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://jtp.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e50",
+            "role": "link",
+            "name": "个刊统计（期刊影响力提升）",
+            "text": "个刊统计（期刊影响力提升）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://jif.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e51",
+            "role": "link",
+            "name": "学术期刊网络首发出版发布系统",
+            "text": "学术期刊网络首发出版发布系统",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://caj.cnki.net/login",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e52",
+            "role": "link",
+            "name": "学术期刊印后上网提交平台",
+            "text": "学术期刊印后上网提交平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://fast.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e53",
+            "role": "link",
+            "name": "学术评价支撑平台",
+            "text": "学术评价支撑平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xs.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e54",
+            "role": "link",
+            "name": "学位论文首发出版平台",
+            "text": "学位论文首发出版平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://thesis.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e55",
+            "role": "link",
+            "name": "学位论文提交服务系统",
+            "text": "学位论文提交服务系统",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://dss.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e56",
+            "role": "link",
+            "name": "博硕学位论文统计",
+            "text": "博硕学位论文统计",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cdmdpj.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e57",
+            "role": "link",
+            "name": "会议论文提交系统",
+            "text": "会议论文提交系统",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://fast.cnki.net/WebFirstHY/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e58",
+            "role": "link",
+            "name": "会议论文授权工具",
+            "text": "会议论文授权工具",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://autool.cnki.net/accredit-web",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e59",
+            "role": "link",
+            "name": "腾云全流程数字出版平台",
+            "text": "腾云全流程数字出版平台",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://dp.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e60",
+            "role": "link",
+            "name": "图书评价",
+            "text": "图书评价",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cbad.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e61",
+            "role": "link",
+            "name": "知网出版规范",
+            "text": "知网出版规范",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://piccache.cnki.net/index/images2009/other/2026/qcnki327.1-2026.pdf",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e62",
+            "role": "link",
+            "name": "网络首发",
+            "text": "网络首发",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cajn.cnki.net/cajn/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e63",
+            "role": "link",
+            "name": "CNKI OPEN",
+            "text": "CNKI OPEN",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cnkiopen.net/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e64",
+            "role": "link",
+            "name": "产品解决方案",
+            "text": "产品解决方案",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e65",
+            "role": "link",
+            "name": "进入产品解决方案 >",
+            "text": "进入产品解决方案 >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/subpages/productsolution.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e66",
+            "role": "link",
+            "name": "全球学术快报·学科版",
+            "text": "全球学术快报·学科版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://express.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e67",
+            "role": "link",
+            "name": "精品科普",
+            "text": "精品科普",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kepu.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e68",
+            "role": "link",
+            "name": "精品文艺",
+            "text": "精品文艺",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wenyi.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e69",
+            "role": "link",
+            "name": "精品文化",
+            "text": "精品文化",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wenhua.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e70",
+            "role": "link",
+            "name": "汉语大辞典&康熙字典",
+            "text": "汉语大辞典&康熙字典",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://hd.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e71",
+            "role": "link",
+            "name": "食品安全检测方法",
+            "text": "食品安全检测方法",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ftm.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e72",
+            "role": "link",
+            "name": "外文资源总库",
+            "text": "外文资源总库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://scholar.cnki.net/new",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e73",
+            "role": "link",
+            "name": "个人/机构馆",
+            "text": "个人/机构馆",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://elib.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e74",
+            "role": "link",
+            "name": "知识资源数据行业创新中心",
+            "text": "知识资源数据行业创新中心",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zszy.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e75",
+            "role": "link",
+            "name": "党政知识",
+            "text": "党政知识",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://gov.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e76",
+            "role": "link",
+            "name": "党建学习",
+            "text": "党建学习",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://dj.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e77",
+            "role": "link",
+            "name": "金融知识",
+            "text": "金融知识",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://finance.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e78",
+            "role": "link",
+            "name": "智能公文",
+            "text": "智能公文",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://gw.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e79",
+            "role": "link",
+            "name": "公共文化",
+            "text": "公共文化",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://r.cnki.net/index/lib/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e80",
+            "role": "link",
+            "name": "智慧文博",
+            "text": "智慧文博",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://r.cnki.net/index/zwwb/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e81",
+            "role": "link",
+            "name": "乡村振兴",
+            "text": "乡村振兴",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xczx.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e82",
+            "role": "link",
+            "name": "舆情情报",
+            "text": "舆情情报",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yuqing.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e83",
+            "role": "link",
+            "name": "数据治理",
+            "text": "数据治理",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://bigdata.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e84",
+            "role": "link",
+            "name": "科技创新",
+            "text": "科技创新",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kc.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e85",
+            "role": "link",
+            "name": "专利分析",
+            "text": "专利分析",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://aipat.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e86",
+            "role": "link",
+            "name": "科技情报",
+            "text": "科技情报",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kjqy.cnki.net/intell/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e87",
+            "role": "link",
+            "name": "OKMS",
+            "text": "OKMS",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://okms.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e88",
+            "role": "link",
+            "name": "数字标准",
+            "text": "数字标准",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://dsi.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e89",
+            "role": "link",
+            "name": "法律智库",
+            "text": "法律智库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://law.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e90",
+            "role": "link",
+            "name": "智慧办案",
+            "text": "智慧办案",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cichpro.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e91",
+            "role": "link",
+            "name": "智慧立法",
+            "text": "智慧立法",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://lifa.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e92",
+            "role": "link",
+            "name": "政报公报",
+            "text": "政报公报",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zhengbao.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e93",
+            "role": "link",
+            "name": "医院总库",
+            "text": "医院总库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://chkd.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e94",
+            "role": "link",
+            "name": "知医网药",
+            "text": "知医网药",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yiyao.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e95",
+            "role": "link",
+            "name": "临床诊疗",
+            "text": "临床诊疗",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yiyao.cnki.net/fzzl.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e96",
+            "role": "link",
+            "name": "药物警戒",
+            "text": "药物警戒",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://pvls.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e97",
+            "role": "link",
+            "name": "科研诚信",
+            "text": "科研诚信",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://check.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e98",
+            "role": "link",
+            "name": "本科教学",
+            "text": "本科教学",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://co.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e99",
+            "role": "link",
+            "name": "研究生管理",
+            "text": "研究生管理",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://q.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e100",
+            "role": "link",
+            "name": "学科建设",
+            "text": "学科建设",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://gj.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e101",
+            "role": "link",
+            "name": "科研管理",
+            "text": "科研管理",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ky.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e102",
+            "role": "link",
+            "name": "人事评审",
+            "text": "人事评审",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://check.cnki.net/scheck",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e103",
+            "role": "link",
+            "name": "职业教育",
+            "text": "职业教育",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zyjs.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e104",
+            "role": "link",
+            "name": "基础教育",
+            "text": "基础教育",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cfed.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e105",
+            "role": "link",
+            "name": "经济社会",
+            "text": "经济社会",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://data.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e106",
+            "role": "link",
+            "name": "数据交易",
+            "text": "数据交易",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zszy.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e107",
+            "role": "link",
+            "name": "华知大模型",
+            "text": "华知大模型",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://huazhi.cnki.net/#/sw",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e108",
+            "role": "link",
+            "name": "学术评价",
+            "text": "学术评价",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e109",
+            "role": "link",
+            "name": "进入学术评价 >",
+            "text": "进入学术评价 >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://eval.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e110",
+            "role": "link",
+            "name": "中国引文库",
+            "text": "中国引文库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ref.cnki.net/refnew/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e111",
+            "role": "link",
+            "name": "成果统计（学术知析）",
+            "text": "成果统计（学术知析）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xszx.cnki.net/home",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e112",
+            "role": "link",
+            "name": "论文评价（学术精要）",
+            "text": "论文评价（学术精要）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xsjy.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e113",
+            "role": "link",
+            "name": "期刊评价",
+            "text": "期刊评价",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cjcr.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e114",
+            "role": "link",
+            "name": "中外科研基金",
+            "text": "中外科研基金",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://fund.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e115",
+            "role": "link",
+            "name": "评价报告与榜单",
+            "text": "评价报告与榜单",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://eval.cnki.net/ItemListSummary.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e116",
+            "role": "link",
+            "name": "个刊统计",
+            "text": "个刊统计",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://jif.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e117",
+            "role": "link",
+            "name": "世界期刊评价（WJCI报告）",
+            "text": "世界期刊评价（WJCI报告）",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wjci.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e118",
+            "role": "link",
+            "name": "全国高被引学者",
+            "text": "全国高被引学者",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xs.cnki.net/List/HCS_List",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e119",
+            "role": "link",
+            "name": "期刊影响力提升服务",
+            "text": "期刊影响力提升服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://eval.cnki.net/Info/JournalIDZT_PJItem",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e120",
+            "role": "link",
+            "name": "学者成果检索服务",
+            "text": "学者成果检索服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://eval.cnki.net/Info/Person_PJItem",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e121",
+            "role": "link",
+            "name": "学科评价服务",
+            "text": "学科评价服务",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://eval.cnki.net/Info/SUB_PJItem",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e122",
+            "role": "link",
+            "name": "联系我们",
+            "text": "联系我们",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/subpages/contactus.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e123",
+            "role": "link",
+            "name": "帮助",
+            "text": "帮助",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://service.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e124",
+            "role": "textbox",
+            "name": "请输入用户名",
+            "text": "",
+            "selector": "input[placeholder=\"请输入用户名\"]",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "text",
+              "tabindex": "1",
+              "placeholder": "请输入用户名",
+              "class": "ecp_userName"
+            },
+            "selectorCandidates": [
+              "input[placeholder=\"请输入用户名\"]"
+            ]
+          },
+          {
+            "ref": "e125",
+            "role": "textbox",
+            "name": "请输入密码",
+            "text": "",
+            "selector": "input[placeholder=\"请输入密码\"]",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "password",
+              "placeholder": "请输入密码",
+              "tabindex": "2",
+              "class": "ecp_passWord"
+            },
+            "selectorCandidates": [
+              "input[placeholder=\"请输入密码\"]"
+            ]
+          },
+          {
+            "ref": "e126",
+            "role": "textbox",
+            "name": "请输入手机号码",
+            "text": "",
+            "selector": "input[placeholder=\"请输入手机号码\"]",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "text",
+              "placeholder": "请输入手机号码",
+              "tabindex": "1",
+              "maxlength": "11",
+              "class": "ecp_phone"
+            },
+            "selectorCandidates": [
+              "input[placeholder=\"请输入手机号码\"]"
+            ]
+          },
+          {
+            "ref": "e127",
+            "role": "textbox",
+            "name": "请输入验证码",
+            "text": "",
+            "selector": "input[placeholder=\"请输入验证码\"]",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "text",
+              "maxlength": "6",
+              "placeholder": "请输入验证码",
+              "oninput": "this.value  = this.value.replace(/[^0-9]/g,  '')",
+              "tabindex": "2",
+              "class": "ecp_code"
+            },
+            "selectorCandidates": [
+              "input[placeholder=\"请输入验证码\"]"
+            ]
+          },
+          {
+            "ref": "e128",
+            "role": "checkbox",
+            "name": "自动登录",
+            "text": "",
+            "selector": "#ecpAutoLogin",
+            "tagName": "input",
+            "value": "on",
+            "checked": true,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "tabindex": "3",
+              "type": "checkbox",
+              "id": "ecpAutoLogin",
+              "class": "ecp_checkedutoLogin"
+            },
+            "selectorCandidates": [
+              "#ecpAutoLogin"
+            ]
+          },
+          {
+            "ref": "e129",
+            "role": "checkbox",
+            "name": "登录即同意",
+            "text": "",
+            "selector": "#agreement",
+            "tagName": "input",
+            "value": "on",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "checkbox",
+              "class": "ecp-account-login",
+              "tabindex": "5",
+              "id": "agreement"
+            },
+            "selectorCandidates": [
+              "#agreement"
+            ]
+          },
+          {
+            "ref": "e130",
+            "role": "button",
+            "name": "登录",
+            "text": "登录",
+            "selector": "button",
+            "tagName": "button",
+            "value": "",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "ECP_UserLOgin ecp-account-login",
+              "tabindex": "8",
+              "onclick": "ECP_PersonalLogin()"
+            },
+            "selectorCandidates": [
+              "button"
+            ]
+          },
+          {
+            "ref": "e131",
+            "role": "textbox",
+            "name": "请输入机构名",
+            "text": "",
+            "selector": "input[placeholder=\"请输入机构名\"]",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "text",
+              "placeholder": "请输入机构名",
+              "tabindex": "1",
+              "class": "ecp_unitName"
+            },
+            "selectorCandidates": [
+              "input[placeholder=\"请输入机构名\"]"
+            ]
+          },
+          {
+            "ref": "e132",
+            "role": "checkbox",
+            "name": "自动登录",
+            "text": "",
+            "selector": "#ecpUnitAutoLogin",
+            "tagName": "input",
+            "value": "on",
+            "checked": true,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "checkbox",
+              "tabindex": "3",
+              "id": "ecpUnitAutoLogin",
+              "class": "ecp_unit_autoLogin ecp_checkedutoLogin1"
+            },
+            "selectorCandidates": [
+              "#ecpUnitAutoLogin"
+            ]
+          },
+          {
+            "ref": "e133",
+            "role": "checkbox",
+            "name": "登录即同意",
+            "text": "",
+            "selector": "#agreementUnit",
+            "tagName": "input",
+            "value": "on",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "checkbox",
+              "tabindex": "4",
+              "id": "agreementUnit"
+            },
+            "selectorCandidates": [
+              "#agreementUnit"
+            ]
+          },
+          {
+            "ref": "e134",
+            "role": "button",
+            "name": "校外访问 >",
+            "text": "校外访问 >",
+            "selector": "button",
+            "tagName": "button",
+            "value": "",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "ecp_schoolVisit",
+              "tabindex": "8",
+              "onclick": "Ecp_To_Fsso()"
+            },
+            "selectorCandidates": [
+              "button"
+            ]
+          },
+          {
+            "ref": "e135",
+            "role": "button",
+            "name": "IP登录 >",
+            "text": "IP登录 >",
+            "selector": "button",
+            "tagName": "button",
+            "value": "",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "ecp_IPLogin",
+              "tabindex": "9",
+              "onclick": "Ecp_AutoIPLogin()"
+            },
+            "selectorCandidates": [
+              "button"
+            ]
+          },
+          {
+            "ref": "e136",
+            "role": "link",
+            "name": "立即开通",
+            "text": "立即开通",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "Ecp_members_link1",
+              "href": "https://member.cnki.net/kcenter/aipluscard/mbuy?tt=2",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e137",
+            "role": "iframe",
+            "name": "",
+            "text": "",
+            "selector": "#Ecp_top_login_realNameFrame",
+            "tagName": "iframe",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "id": "Ecp_top_login_realNameFrame",
+              "style": "width: 600px; height: 480px; border: none",
+              "src": ""
+            },
+            "selectorCandidates": [
+              "#Ecp_top_login_realNameFrame"
+            ]
+          },
+          {
+            "ref": "e138",
+            "role": "link",
+            "name": "取消",
+            "text": "取消",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "onclick": "Ecp_LoginResult();",
+              "class": "btn btn-cancel"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e139",
+            "role": "link",
+            "name": "启用",
+            "text": "启用",
+            "selector": "#ecpover_open",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "id": "ecpover_open",
+              "class": "btn"
+            },
+            "selectorCandidates": [
+              "#ecpover_open"
+            ]
+          },
+          {
+            "ref": "e140",
+            "role": "link",
+            "name": "oversea.cnki.net >",
+            "text": "oversea.cnki.net >",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://oversea.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e141",
+            "role": "link",
+            "name": "关闭",
+            "text": "关闭",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "onclick": "Ecp_LoginResult();",
+              "class": "btn"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e142",
+            "role": "link",
+            "name": "旧版入口",
+            "text": "旧版入口",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/old/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e143",
+            "role": "link",
+            "name": "充值",
+            "text": "充值",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e144",
+            "role": "link",
+            "name": "充值中心",
+            "text": "充值中心",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://zhifu.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e145",
+            "role": "link",
+            "name": "购买知网卡",
+            "text": "购买知网卡",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://vipcard.cnki.net/ec/skwd/skwd.htm",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e146",
+            "role": "link",
+            "name": "会员",
+            "text": "会员",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://mall.cnki.net/user/user.html",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e147",
+            "role": "link",
+            "name": "SU$%=|",
+            "text": "主题",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "SU$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e148",
+            "role": "link",
+            "name": "TKA$%=|",
+            "text": "篇关摘",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "TKA$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e149",
+            "role": "link",
+            "name": "KY$=|",
+            "text": "关键词",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "KY$=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e150",
+            "role": "link",
+            "name": "TI$%=|",
+            "text": "篇名",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "TI$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e151",
+            "role": "link",
+            "name": "FT$%=|",
+            "text": "全文",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "FT$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e152",
+            "role": "link",
+            "name": "AU$=|",
+            "text": "作者",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "AU$=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e153",
+            "role": "link",
+            "name": "FI$=|",
+            "text": "第一作者",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "FI$=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e154",
+            "role": "link",
+            "name": "RP$%=|",
+            "text": "通讯作者",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "RP$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e155",
+            "role": "link",
+            "name": "AF$%",
+            "text": "作者单位",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "AF$%"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e156",
+            "role": "link",
+            "name": "FU$%|",
+            "text": "基金",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "FU$%|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e157",
+            "role": "link",
+            "name": "AB$%=|",
+            "text": "摘要",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "AB$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e158",
+            "role": "link",
+            "name": "CO$%=|",
+            "text": "小标题",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "CO$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e159",
+            "role": "link",
+            "name": "RF$%=|",
+            "text": "参考文献",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "RF$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e160",
+            "role": "link",
+            "name": "CLC$=|??",
+            "text": "分类号",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "CLC$=|??"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e161",
+            "role": "link",
+            "name": "LY$%=|",
+            "text": "文献来源",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "LY$%=|"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e162",
+            "role": "link",
+            "name": "DOI$=|?",
+            "text": "DOI",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "value": "DOI$=|?"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e163",
+            "role": "textarea",
+            "name": "中文文献、外文文献",
+            "text": "",
+            "selector": "#txt_SearchText",
+            "tagName": "textarea",
+            "value": "machine learning literature review",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "search-input",
+              "id": "txt_SearchText",
+              "name": "txt_SearchText",
+              "type": "text",
+              "autocomplete": "off",
+              "placeholder": "中文文献、外文文献",
+              "maxlength": "100",
+              "rows": "2"
+            },
+            "selectorCandidates": [
+              "#txt_SearchText"
+            ]
+          },
+          {
+            "ref": "e164",
+            "role": "link",
+            "name": "",
+            "text": "",
+            "selector": "#voiceBtn",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "voice-btn",
+              "id": "voiceBtn",
+              "href": "javascript:void(0);",
+              "tabindex": "0",
+              "style": ""
+            },
+            "selectorCandidates": [
+              "#voiceBtn"
+            ]
+          },
+          {
+            "ref": "e165",
+            "role": "link",
+            "name": "高级检索 >",
+            "text": "高级检索 >",
+            "selector": "#highSearch",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/starter/advanced",
+              "target": "_blank",
+              "id": "highSearch"
+            },
+            "selectorCandidates": [
+              "#highSearch"
+            ]
+          },
+          {
+            "ref": "e166",
+            "role": "link",
+            "name": "出版物检索 >",
+            "text": "出版物检索 >",
+            "selector": "#naviSearch",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://navi.cnki.net/knavi",
+              "target": "_blank",
+              "id": "naviSearch"
+            },
+            "selectorCandidates": [
+              "#naviSearch"
+            ]
+          },
+          {
+            "ref": "e167",
+            "role": "link",
+            "name": "增强检索",
+            "text": "增强检索",
+            "selector": "#enhanceSearch",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ai.cnki.net/aisearch",
+              "target": "_blank",
+              "id": "enhanceSearch",
+              "class": "enhance-search"
+            },
+            "selectorCandidates": [
+              "#enhanceSearch"
+            ]
+          },
+          {
+            "ref": "e168",
+            "role": "link",
+            "name": "学术期刊",
+            "text": "学术期刊",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/journal",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e169",
+            "role": "link",
+            "name": "学位论文",
+            "text": "学位论文",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/dissertation",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e170",
+            "role": "link",
+            "name": "会议",
+            "text": "会议",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/conference",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e171",
+            "role": "link",
+            "name": "报纸",
+            "text": "报纸",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/ccnd",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e172",
+            "role": "link",
+            "name": "年鉴",
+            "text": "年鉴",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/cyfd",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e173",
+            "role": "link",
+            "name": "专利",
+            "text": "专利",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/patent",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e174",
+            "role": "link",
+            "name": "标准",
+            "text": "标准",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/standard",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e175",
+            "role": "link",
+            "name": "成果",
+            "text": "成果",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/achievements",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e176",
+            "role": "link",
+            "name": "学术辑刊",
+            "text": "学术辑刊",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/ccjd",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e177",
+            "role": "link",
+            "name": "图书",
+            "text": "图书",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://kns.cnki.net/res/category/book",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e178",
+            "role": "link",
+            "name": "文库",
+            "text": "文库",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://wenku.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e179",
+            "role": "link",
+            "name": "法律法规",
+            "text": "法律法规",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://lawpro.cnki.net/inds/advsearch?ES8LPH01Aw4ZFCVwCvh5Kn4zqnJ1PxwCGGUiOoNlycTCTXEH1Z7bvSTxfXxCacnkimmd2FMsOWGI8LvFnvyH19rs2DytdIIrUOL6ott",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e180",
+            "role": "link",
+            "name": "工具书",
+            "text": "工具书",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e181",
+            "role": "link",
+            "name": "学术图片",
+            "text": "学术图片",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e182",
+            "role": "link",
+            "name": "学术视频",
+            "text": "学术视频",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e183",
+            "role": "link",
+            "name": "音频",
+            "text": "音频",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e184",
+            "role": "link",
+            "name": "统计数据",
+            "text": "统计数据",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)",
+              "onclick": "LinkDb(this, 'https://data.cnki.net/')"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e185",
+            "role": "link",
+            "name": "政府文件",
+            "text": "政府文件",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e186",
+            "role": "link",
+            "name": "科技报告",
+            "text": "科技报告",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e187",
+            "role": "link",
+            "name": "OA",
+            "text": "OA",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e188",
+            "role": "textarea",
+            "name": "CNKI AI 专注科研学习，助您高效探索。请提出您的问题",
+            "text": "",
+            "selector": "#txt_SearchText_ai",
+            "tagName": "textarea",
+            "value": "",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "name": "txt_SearchText_ai",
+              "id": "txt_SearchText_ai",
+              "placeholder": "CNKI AI 专注科研学习，助您高效探索。请提出您的问题",
+              "rows": "3",
+              "maxlength": "500"
+            },
+            "selectorCandidates": [
+              "#txt_SearchText_ai"
+            ]
+          },
+          {
+            "ref": "e189",
+            "role": "button",
+            "name": "检索",
+            "text": "",
+            "selector": "input",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "search-btn-ai",
+              "type": "button",
+              "title": "检索"
+            },
+            "selectorCandidates": [
+              "input"
+            ]
+          },
+          {
+            "ref": "e190",
+            "role": "link",
+            "name": "",
+            "text": "",
+            "selector": "#voiceBtnAI",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "voice-btn",
+              "id": "voiceBtnAI",
+              "href": "javascript:;",
+              "tabindex": "0",
+              "style": ""
+            },
+            "selectorCandidates": [
+              "#voiceBtnAI"
+            ]
+          },
+          {
+            "ref": "e191",
+            "role": "link",
+            "name": "文献计量",
+            "text": "文献计量",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e192",
+            "role": "link",
+            "name": "智能研读",
+            "text": "智能研读",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e193",
+            "role": "link",
+            "name": "辅助创作",
+            "text": "辅助创作",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e194",
+            "role": "link",
+            "name": "学术趋势",
+            "text": "学术趋势",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e195",
+            "role": "link",
+            "name": "全文翻译",
+            "text": "全文翻译",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e196",
+            "role": "link",
+            "name": "学术PPT",
+            "text": "学术PPT",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e197",
+            "role": "link",
+            "name": "AI深度研究",
+            "text": "AI深度研究",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://ai.cnki.net/deepresearch",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e198",
+            "role": "link",
+            "name": "个人查重",
+            "text": "个人查重",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cx.cnki.net",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e199",
+            "role": "link",
+            "name": "AIGC检测",
+            "text": "AIGC检测",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://cx.cnki.net/aigc",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e200",
+            "role": "link",
+            "name": "我要投稿",
+            "text": "我要投稿",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://xztg.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e201",
+            "role": "link",
+            "name": "智能排版",
+            "text": "智能排版",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://author.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e202",
+            "role": "link",
+            "name": "智能写作",
+            "text": "智能写作",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://aidoc.cnki.net/",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e203",
+            "role": "textbox",
+            "name": "",
+            "text": "",
+            "selector": "input",
+            "tagName": "input",
+            "value": "",
+            "checked": false,
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "type": "text",
+              "maxlength": "15"
+            },
+            "selectorCandidates": [
+              "input"
+            ]
+          },
+          {
+            "ref": "e204",
+            "role": "button",
+            "name": "",
+            "text": "",
+            "selector": "button",
+            "tagName": "button",
+            "value": "",
+            "disabled": false,
+            "visible": true,
+            "attributes": {},
+            "selectorCandidates": [
+              "button"
+            ]
+          },
+          {
+            "ref": "e205",
+            "role": "link",
+            "name": "确定",
+            "text": "确定",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "btn-sure",
+              "href": "javascript:void(0)"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e206",
+            "role": "link",
+            "name": "科斯理论视角下我国用水权制度演进与改革方向",
+            "text": "科斯理论视角下我国用水权制度演进与改革方向",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=04f479c36bb8c3f548d0930305541efb9859cdd39b4aec56215935f3204f25920bc9b429e8451aef646eaf280ca2d1479439ad201739ea7aee32ee6cb45976a9ce041c82d72ac7d3dcd23d448f020ef7b86666c737f58cac02c4c6a5ccc6e4dd7d1189636d322f61f8634f2b3408263cf7cbc7810d85eb35607369736ea6b577488eda9b896fe4f99273e0ecbd0a6223276090c4b44b45e4456dd3eaea04ea5b4cc03ef60a0bb8bd2606801d7402bdaec9977edf4fcb8ff61a8161c39308fae50da2ddc3e49a02f32e2452c90945af05b843e0ce7697183d",
+              "target": "_blank",
+              "title": "科斯理论视角下我国用水权制度演进与改革方向"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e207",
+            "role": "link",
+            "name": "田贵良",
+            "text": "田贵良",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "田贵良",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=04fa4fa857fd82c17a186ee0b1eeedc4b1229565eefb5b17242faaf9b0b2917073e218e2445c2dac8cfc9eb1a52c7d8051269e3d40bdf8db5fcdbea54c86ed3b4e9c6cd1ec223908e2c1b46b2073a2ebe22ddc0d592e493d0827a3df5f6ae657d1044927f6c75bcf8e0fe9aa18a671f950bb2b239c2019a24c3a80189844415429d0c8f7fc225be247b08ab7b9f4b53adbc4ff748d33085370dec3eeacc186bfe889866b0ba6673e5dc733ce5e9d8887b635e6da808b57d4b3614366f2039407338dd9caf8951344",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e208",
+            "role": "link",
+            "name": "《水利经济》",
+            "text": "《水利经济》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《水利经济》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04c10a1ef6e0e0c2788947a0d00d1301ac80430f1201b0c0c94ae0f260a6815569af74fab700b092848f4741d026baec12a69ab5ad04a13bc296b90b9a9e09e23a2e19c70ca9536b5aea3c5e1464a296f12f83bb1a31980f07a45a8b1a1579db94f1b140c1ebeeb9fdca121051cc6f98aa432a1d1bd448278b0d9c8237057890e20fdfa31bdf3191f409876b1282cdb89d09bfd26eb6723b6e6ce7344b099e544a52f1d14a01bf283e853d1ac4406611c26de8a1ee37c769af700c954eb48457f9028e8afcf841b95c2fd72bbd9edbdd0e66",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e209",
+            "role": "link",
+            "name": "刑事案件事实的实质判断",
+            "text": "刑事案件事实的实质判断",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=048aa2ab3533b696e945693e350e043c611424a4eaef02862e70904701a3c154e86587b9700e2efd171ee90ea2cdcf8f3ee9d004e23d80c7d928e9530596814dc2b2226938f2ce4e23e62a1335248fb9c834a023ddedfaf0013205dafd5d21cc81b25dd47a2fe3be472a43d8b4af94efd9bcb00677d0e25dae6d1c239a7a1f5382f1f83ccddb4ef3948fa13b40d18f343e6880bc9985ceab4daaea26135d1557fca461076107e6487292042e5c78e26bfc6429b61cc16ea02ef1da2c0dd2dac7e82db390968f076089fca37a0ba3b67830387b9bdc7c56b7",
+              "target": "_blank",
+              "title": "刑事案件事实的实质判断"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e210",
+            "role": "link",
+            "name": "张明楷",
+            "text": "张明楷",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "张明楷",
+              "href": "https://link.cnki.net/rankinglist/author?cate=so&range=0&id=049e51db8eb01d2beba87e14ef207f95e0f0ec40d1ecc6627f820ccc6c0bd39dfc77f5d6a3ac8495e5bed39c00da8ea5f6e931cffa9d76ec7befe946eef81295997fbd9599cfd16a8d901fb37d4d6825680f2d1ba79d56b1cedc21f03b2f0ef05c31274fbee7b72bc85c2d18a1d91fdc8e5677c738c268daa207c0b577af0d745e440be40ce2f034dcf84d53d744178e15571cef8fb62f7313bdfe4328172410363cd50fdbeea8712438cdd63201d15292497717043789cc6c310a2eb06d170f8c5b9a0f5f9eee0a",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e211",
+            "role": "link",
+            "name": "《中国刑事法杂志》",
+            "text": "《中国刑事法杂志》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《中国刑事法杂志》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=so&range=0&id=04db7c6ea56422e5b032d1db6ae6bea2c95b4ce8463d6616b719dc04246c87b40a0d4cedbb3a101916f6e3e126d05fc1c0888caeefebfc9862ea63ae4df3b18175bedf93841d1ac370ae8093505d0cc917f2a3b8ed7b06c1a5354d24fbd25d33820f314b0cec601eab8fa6e4dfdd6a6a02ee5fb5161dad87affd325d0f5f30d5d2ca12a022c5ceea844aab079a5662c60bd4b60771df358acc28d9f70e0e9674806e366b8916b03956345f1f4f5f7b16c0e0790c52a56772c72caeadca69b70b2478c4866394da732941e3017d55247e1ab5",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e212",
+            "role": "link",
+            "name": "基于Ansys的气动机械臂关键结构静动态特性仿真与优化设计",
+            "text": "基于Ansys的气动机械臂关键结构静动态特性仿真与优化设计",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=043ae1d949539ee799af3fa48029bd7e2f799738bd1343902c487a3869556cae251274fd64a6982c0ea4c144ecdd0288e54a891dcc23fca259ba362894066e66cdb602dbeee784bad0b71706e039b324c29e2a523ef6ca898b4e9d5f6f19ef25d23d75414ad27b7d388fedbd7e0d788d1341efcfd9b1c30db348b45f439e8d25308c43ec7a2def9c31a7e05953ea03233c465a1f86a7016d23cd03bd9849f2103935562a9b56105802b87efd0b8875a0b3c73066a071dde1d8a6b9df187902d0bc65324a59abd62f406b29ed1b6a065ed613c532658c108a",
+              "target": "_blank",
+              "title": "基于Ansys的气动机械臂关键结构静动态特性仿真与优化设计"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e213",
+            "role": "link",
+            "name": "王春政",
+            "text": "王春政",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "王春政",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=04f0943684ccc0d61f622384c99f76e1c1a89ca85c0aa1cadf4d755cd5fa8045765376825ae9f0d4af94f9530c9b64412a6a14fb3e272681bafe90f5a10918e8b37af239d0105d85d007db890eeff804f799788f210c7c3130fbbc8b64c19332e1641068c434300cfb977a63fb006897b04b26ee66ffcbf03b191b2d460817ecde3cf61224bf8402167841da9afb21b242d4f8caf0cf905887750d9e81456ad38c0fb9d9f6ae79dd1b41d8058269b58c930e2a37506ffd5b5783d0a5bf0476d2f08ce0d8882c090f",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e214",
+            "role": "link",
+            "name": "《凿岩机械气动工具》",
+            "text": "《凿岩机械气动工具》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《凿岩机械气动工具》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=0493488e79aa2a0403980c63e6145a6c1d953586760958fdbade12d7c0795eddd919a38422b37c895ffe08d21fb26ca385e2b071111868bbb30931cace49d933b5a5f379739bba00f92802c6298929373ed080270a46755be6601520cc941c5c765f0acb79c7de5b651537dc942ebc13c6e05e5e91d1a1746b8af7dda9f94b5fab2c737ec37457d124876cf476f58f55136c88c3c6a5bd0e2ac1c6cc910a088ba819ee82f3e2e65136de502e62da53ad9985fa88d54c4df37f6121b9efadd8a7fe49623273cc8c4a12b678fa3bcc689a3576",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e215",
+            "role": "link",
+            "name": "妊娠期糖尿病复发率与复发危险因素的Meta分析",
+            "text": "妊娠期糖尿病复发率与复发危险因素的Meta分析",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=045b6693c2a30562ba0418a22f0faac996dbbabb0fe256303e30e0a4d20363a9e69585b2986107945c32935a1ddbbd8a5b90de3e34705af06ab6ac33544f9392411a49b48877fda615954fb663f2c38c4fc5c5fe55f55bcd1e5c3e93d180fea4b142ce88cb23a4e2eb2caa0fe26184d883c494f7a58865f02aaac6cdde1129d4ddd69354128f1d08ed7ed5b1b5e58efe88e7f0a740b147c1b027fd9f40ae290679fe7ba2fd1b3a55ebf4726f6d088d9a05d07f1d4e9e4c1b69324ad176041828295ee9f7c72616b640855312a4266aaba6a84a738e85216f",
+              "target": "_blank",
+              "title": "妊娠期糖尿病复发率与复发危险因素的Meta分析"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e216",
+            "role": "link",
+            "name": "孙俊",
+            "text": "孙俊",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "孙俊",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=04b7a68878254219e7748e15e66e2919e8110df47291a1fdf87fe40ef33365f67034cbbf9fdd12895ffb1573b1ba802f2bcbf2e780c9b29dd75c03b3ec2e3fcc8b9cd6ff2ea80bb040188d4eeb89eb4fdf2a09473ed20d23d8ae0cfd7d6106b776c160d983fa2bf67dd06932fe467f1c17d4dd5fe147790cb822fabc8e156b1b9761572db0aeb253c2c1c60d32ad0adafe9c93d25ffe68ca5480c44cc5956f8827ac4f2d84edff19ce8b4c40c7bfda34342d70d1f55f34a486d2d581a46dd5d56756c6ee61",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e217",
+            "role": "link",
+            "name": "《中国妇幼保健》",
+            "text": "《中国妇幼保健》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《中国妇幼保健》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=0498539c3c80dfa5dd45a2fd8820b7b88d138769cedb15a8715cef7036970c52914e2815bf92c43c7be95200a6b3fd543ed902e8f02ec7cb9209b02ba313d12a97ef48d845ed90ba44471bd3f170b0bec0c3c237e26347693b5f54cc4655105d619126d9ee803449568b8bc8175b3a68ce6d417f026db16de75ebe918dcad9b6978b1ff1f1f9bb07d213d433d8848c4b963c76bed771c87649ee8c9e0fb29d3bf70e2addfa27277c991e319d85e02a955371fdebe54e1a49806196f8e24d3c6736745b4fd05b006843bcf92037b27dd51f85",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e218",
+            "role": "link",
+            "name": "基于改进YOLO11的无人机海上搜救目标检测模型",
+            "text": "基于改进YOLO11的无人机海上搜救目标检测模型",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=04b6abba61c1aeb79d281e31a1e226466918c58eaca1ec38c34e138aa2daf382b3ea6e8467c304ab97203b5746d5cf8d6468da89a0a9bd88ef1d9363cdded85d5f6fca10cfe567920e9bea49122e40d1ce61bb10474a1209e5d46d2fcab8b98ba83bc6f2de63c9e962e5dcf9ef2f758bad22fea1d378d06590f8054c9f1540585b0636597d1a7baff52886f002dfb32e3ee0487563a5d6605b33ee85df8d3ec082ea407a65ee691b2644e847476e633f2a64b68bd6835291b1ab69ccb917c5dd1c2f8e48d60f3b8cb28fac632f1d0bd706f2e000f9718bca",
+              "target": "_blank",
+              "title": "基于改进YOLO11的无人机海上搜救目标检测模型"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e219",
+            "role": "link",
+            "name": "张雨轩",
+            "text": "张雨轩",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "张雨轩",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=041cec46a96cca0b315a25bdb61aa5d8f5198e6f9d87b5b558b1b19e4ea5cef86f58fd9418e4bc6f4c06dafb29bf728379091a758101f28b6fed76d8f00b92c383255ddff3651f37327e4574e89359368a12253a6e5590eba6714a084dfed296f810a078fb80fc0f34614bc0b0b196672c7724bca4013ca2567570e0c34c9e9b2313fc9654ee92a9e7569048643fedefa270005e107dce841b0e2db0a900127787f25ae4a4dc5596619b9b146c57a47c59719a473aa4986ab12af31983d28e0fb63222ba5dbaa757",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e220",
+            "role": "link",
+            "name": "《传感器与微系统》",
+            "text": "《传感器与微系统》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《传感器与微系统》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04a88dc7029d8b649f7f45475e36cdff5506cfc6aa430e6d2eb86691b35dcb93080dfa05438383c85afec395c179beccf7487abfdb52d34be22098decc1760c29e4d2f1bbd1f255861b77d353c6371a9b51d31da433a9394ce0070be6d30b699987dc533cc6ce6b33ed7886d981a7d275d61bb9fcb37617e35baff67872dba42fdc5df1a258725720158e643337d394814cff02318861a59f4b71acbc1071f8188317540553f294e088afa5aade436413cdd9a6f67dfac943a1f3cc724d2d7a135a2a78452ba98ab0c63fc84e9324fe278d5",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e221",
+            "role": "link",
+            "name": "基于SpringBoot和Vue的高校勤工助学岗位管理系统",
+            "text": "基于SpringBoot和Vue的高校勤工助学岗位管理系统",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=042a7798f5e68017338b736f58dc2c561e532c6544813ff2e7aeaf00225a58d1e3facee641e62df41303f1bbcc32c9466025dcf33f9590f2e486d7578f6d6e77396e2169efaa883efe061791075f06684bc2169bfe462d4a8e09884569d6e6e040018177ab16f79c32e4bf273308a5f3df6bd3c96ab145cc1b478b3ca08502db1bedcb9e074d55de0d8dec339490b266622af71ca0d5d6cf1bfd3c7711dd65b40166d1ea7dd91f5627faad5870602a1feb36b76ec7a1ad87c0e285260d088086a1fb7a5ad29c421f99fefcd59c97572e598649cae49b9184",
+              "target": "_blank",
+              "title": "基于SpringBoot和Vue的高校勤工助学岗位管理系统"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e222",
+            "role": "link",
+            "name": "轩金丽",
+            "text": "轩金丽",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "轩金丽",
+              "href": "https://link.cnki.net/rankinglist/author?cate=so&range=0&id=0403940831b3b9e1f6ee611f49d7e290b91b00f559499c142ad3fcb6436cbd72f8b53261b74a07823c32099dd33e5a5c2fd578b3517d32220c973b580f11cecc6f5d5c19c5b78bc667342eda477c25c68f179a6f665bf24e4caf71a025d757ce394349bdcd36b1a6aea8ed0cad191130b52c096fd242e9c0940b832546f63177f2be2d4ab81b149f4c17d365440d30a25c5b48055c27e976c8e2eb7ffe2bbc0c4bd6306213ec62cd967e80cf5501ea0e80e561ea5b1429454a513d8459c48fe80ffa598518656a4d",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e223",
+            "role": "link",
+            "name": "《电脑编程技巧与维护》",
+            "text": "《电脑编程技巧与维护》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《电脑编程技巧与维护》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=so&range=0&id=045cc9187def2cd11c59329595557d0aa62c2933ee7332583419bbc1df5a6924f2e6b3f40bcbc1d67e38699ec436a8ea2e6731b60cee5ed81be0bc4595c6277cb1126ce40252f736b5818411dcd1af94d9478504a28335d453c6f88f00f4604f9a0279d65cb2954bba27a858a5165309365d32dab4b888284be3009bf5e8ffc82c5ff36badf4e97f8beab5eed14ff6804d720663b5452f5648d2b7b19156f049523a96c924f8cac85ec252b0cd73c9088dcf6dee7378c12bd3423bfc3fa81d9e41b0bbaf02068c84d89230233f563ed40fcc",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e224",
+            "role": "link",
+            "name": "中小学生近视影响因素的Logistic回归与随机森林模型对比研究",
+            "text": "中小学生近视影响因素的Logistic回归与随机森林模型对比研究",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=04fdc49e9b068e98db5a024d0f15ddc713946d50c36e86c35522de930806f36405c68b3c7d2abdbcfe899dd4f5a256bf4c3e7101b8f4c7ca3ecbf00fedc20ac5e5d1d7525c2d59e09882b280645f8a42c134c87eb7586789c604124c73f34a81cbb25afa3863a2b830bd2e9daa0a3d01b37c9a68b117253c88a822217acabce7a534154c1f345771d94503b760f656102bc2f49dd4a8d7a79cb496b90e116640806a1edcfe7bb3c0e5b43f47d56d7776b93ec595c8d00413f239da825b5614bddc1ceb9956b84770811450c631823545969ce312dc0f8acd9477",
+              "target": "_blank",
+              "title": "中小学生近视影响因素的Logistic回归与随机森林模型对比研究"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e225",
+            "role": "link",
+            "name": "金丽娜",
+            "text": "金丽娜",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "金丽娜",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=04bbeeac1ec7e10e162c13a98c23d4e7f22e59caf3ba6bba91ba20cd6bc1352c0d2a6205f9a8c2bcdf5a8ffbb2fca8b4470fc7f9cebcebc49d431bb2fa3ca242b1fa18de58108021be39d75116663646a0ef2da9d381d442464bddfad7438483ed93b52fb93c706394ac71221c68518d35d92d585a10072a2b8b07d4602f597eadb780e3d29ccdc15e9f6c30d1c0a322a5ac54721da3d8a1c65bb2eb8886a4130b97eea07781cfc2d68e09af6ddcd01a15184f18769a11a294fa190accd473def32a10397c078fe9",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e226",
+            "role": "link",
+            "name": "《职业与健康》",
+            "text": "《职业与健康》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《职业与健康》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04bf1e8d104dbe0e202e57f058e07a08059c697605989916f49627e4f2c365529d1f443d43984be06c6a591ea70c8f8c6c6e8620dbe46678ce0765bb5b159d84176cbe52ed196320dd5d3a2c7aa7b3a8bbcabb132a7116bf5d621b03c14839bd4358663cf5961b67ec691d3d116da2c50481757a6839407bf8922f9f345c7d20b1a4005bcfa74d54cc288c794402125486f720afb64e9b5af02317b606893949615031d9ec27f92410dc5b965d2f8cc0b0f7906828974194788a5f702bfaa14e6061d64d394a7e546c4f1800ea2658162506",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e227",
+            "role": "link",
+            "name": "燕麦幼苗响应干旱胁迫的生理与转录组学分析",
+            "text": "燕麦幼苗响应干旱胁迫的生理与转录组学分析",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=04e561de6c27dda5017e3064db0e97ba3fae49860ed48e15f2b446c24cc94d48c053e93baf8e98c4a025ae70527a65d211f252fabc653d12cf4522a721e14c35d1fbde76431e7aff7340d304e93e02c4ff980b66e8bb642e1f406797a3cdeef5ba9ca7221b472f7c6504c566dd0a16eadcda27cde761b1a4c208c4289f011248f3add32419820e87d9fb69169214a353dd5bc9b7648e9aac8d425592d0c96d2e1de6d2ac7c1ab6c54ec6c32d33f7d6f7b67c3c8f8681db46637532b187fc970bff0d6e21972e9f344c3299b3fec2fe255ebfa0329dc0601a3444",
+              "target": "_blank",
+              "title": "燕麦幼苗响应干旱胁迫的生理与转录组学分析"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e228",
+            "role": "link",
+            "name": "何雨飞",
+            "text": "何雨飞",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "何雨飞",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=043e46d8bc52a5c90bd5855d496cda5e84d54298fef98318da478d1d39087592a0f3e6803c447fd76b7856224e5ac7e0d0a8bb83e5e960668cb61fcb44cdd619144d67e59bb0ee1fc7449f2656b16375bdfcc00d8997206710913285054270a10fc5a29b1d40c74778ec54969e5d53fa3eb1f6e5f1e52c1ac86d620856e7ee05e36405c69475a07061e9ccf3443409a941a699fc86d66a3f3895e9342d9f28a3f59fca0d4916205b763158cda1f120c0b2cbcf0acdafda88c5a1ac2dc03dea4c6d2f6ceaf51e8e32",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e229",
+            "role": "link",
+            "name": "《草地学报》",
+            "text": "《草地学报》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《草地学报》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04f06e69b8b11afc04366c7eb02bb57ff86937074d2f3c55660e6dd114f9b73326de398d899898c8e870e5e3d0b24a4ef95a0127453b29cf7b1f78c147b05bfbeec7e3d4f14d3230fabccb5a907c2b12c020b73ed428a5b5a786a8c0044d5fb5bf0b2d2a505ce125a0e6fa8d763be66ac2ed0a1bca89eb546a0b97cbbf7ce2d9c447902b6eae7b24413eacfe6e18baa0c709c8bc3e2c140244f067d22cfd030dabb9aad2cbe5f555104dc0f51f5b21139599a4a36a6eaade83f8ec300ca24a7193ba5a7574f045fefceda1e10da9ea632787",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e230",
+            "role": "link",
+            "name": "面向大熊猫目标检测的生成-检测统一方法",
+            "text": "面向大熊猫目标检测的生成-检测统一方法",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=0479348dad27684fc0efaf0746d6bb49d2848fa1a97e8cb1ce079b2d74bb44e8af0f6f433516753800599eefd69e02b8b6c1590e7d10f57cc0990808ebed37b3a8b426ac16a1e3daa93896f7ad4ba17878c952319af7fa429aecdb614c21c69127addc551c065d66f7e5fa8a4ce56d4abd6179389405fcd3d715d2a97e5a7f46ee99aef8645c2c5ddbd281372c7ec16401b02b133cf8e40b75bfa5d613c851fb43df1620dc72d49c2ad58240eac41d1642e09436600eaaf6967f5ced932a3c74c4db7ade7cf3bf9d5a61d9756fcb1e5017af0229cd7086b327a9",
+              "target": "_blank",
+              "title": "面向大熊猫目标检测的生成-检测统一方法"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e231",
+            "role": "link",
+            "name": "刘祯",
+            "text": "刘祯",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "刘祯",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=041929f078fb3b71ce7c78b91c8000089a3160dd5cce7e7cfc35001384face5e6ca0965bc56ea82f7c32eccad83a3965f75aacc0b773d95363ae85c6b1d636d127f47468ac028ffd1ff2ab15e5eeb1d618801686e6d74909193f376e190004790c4051012b103e5dde4b1158993e5b6912798c99e47be9aca3d6c186d97874e932712006febae0376f2f4f3edfcc6d5335d5558846eb63139cb893c81411b05c114de650ed1a98da9bdd9c398f69f8e3b4c48162f14f91822b01d98d416d40731b6619f41e",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e232",
+            "role": "link",
+            "name": "《中国图象图形学报》",
+            "text": "《中国图象图形学报》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《中国图象图形学报》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04bba4106bcb7142286d3eb6ac99483688c5ea52e608b21c65df4c940e29855b4aa0b656bfe351505fb2d5d82a037c398671c0db6b2fe9ea5fffd98b971a44a9e8812e8cd8956a6cf25d1873cdd2eee2eda417ddd8e7e2d32f2a0f78f0286e671e2b561e59401ccffc957025c641aea12620ab3bca3f0925ea05f0174faed83570440961e70ba729e885231ed9ffa730fffd9b39b35ed15c9eda991a93b5b0985f18ce30de89827b82de6779a4f19e3ffd4b5e619f77ad77541a60d16a07d88ea6b51b3cba9141830af49f425303c4d3c779",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e233",
+            "role": "link",
+            "name": "基于深度学习的多模态数据融合技术在口腔疾病中的应用及研究进展",
+            "text": "基于深度学习的多模态数据融合技术在口腔疾病中的应用及研究进展",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/article?cate=all&range=0&id=04178226f28715d9a492d7889c8c49d13f2f21c17a9fcb7442afa7a9bbc5d124899972b64d5f5603a3b99340efdbd2206ddbdf055647cefa5c3ce537d8cf1265a5a5ce002bdffee4d9d06125824b1168510b3cdbb61bd4bf2d34896a6d1427f81023e7c032701b41e2094e70eb9a58681d6daa38fa8488a5dd8309eb051ddb2bbe39bd998b233c1fc1051b37120ebdbf7f7b24ff38024c6ae498595bb7816fa048af775ed74b3dfe201f31afee97a9604209f1363f735797b7c775a94b039f38437896665259f2ee3bc5237c47531d288bb298d6590200b22738bd",
+              "target": "_blank",
+              "title": "基于深度学习的多模态数据融合技术在口腔疾病中的应用及研究进展"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e234",
+            "role": "link",
+            "name": "何沁轩",
+            "text": "何沁轩",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "何沁轩",
+              "href": "https://link.cnki.net/rankinglist/author?cate=na&range=0&id=04d6cb0723116499ad62efde80702c9dee8e81dc1526e0290a297cd78e7cb1e047a2081b5c99aa98850e773e80b1479821e9af301e11be10fbf66eed9962c35ae6fdad96a63fe9c90a91fa59a77c51a2e2a9b55da490720042737dfcdf92deddc6618e65468fe6057862a02532c8bd4282bcf60409812d0ec9e60907afdfccac6612cc633a8bf8adc9e7413c8eba1f901ca3e5dd74e02c2d4786ab664275adeb3227c4f4febae55464bf29adc7cdec5d7274f1c966878651520e411a28f18d2c7b6709d713e97680",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e235",
+            "role": "link",
+            "name": "《口腔疾病防治》",
+            "text": "《口腔疾病防治》",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "title": "《口腔疾病防治》",
+              "href": "https://link.cnki.net/rankinglist/navi?cate=na&range=0&id=04780557b7e69ac39d21639e9c6a9d95f03cb1fd33c224cafd79ee268e3c690c773d5022c528478f858d84ed2cc9b54d89023ddc1618cfb8e758dc1e3d14988e213c584bc1cbcd1a9ef9672dcdedda60c6becee7124b2c1bc956798d6cd2b2beeb6a1de7e3963a29e18c057dd3ce7a328b4acf9baab127b884b28d3cf782d98946481447c0be4b5e148d93ae3b73c2f5f7bbdacbfbed0c858e38388f0912f26dd8a1516bb302f29352a9c5521d3f168dc1a3c8ede7f12d94003393f95dfd6c41940a802537629cbc6b99afe728e08bea1e41",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e236",
+            "role": "link",
+            "name": "人工智能",
+            "text": "人工智能",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=04f8f09c1068bb0e8c4e9c99d8eaaff91bc9a278a8b7fd885cee50580eacc09e6704df45d4becfbb5ce28ab6b1727e476e32b87f73dd2198fb8195a0aaf0f743a795063a4e33b1470d7d6c866b7ff2438b3c55244cd2e0053804ad9d267a675aa8b768673bdd31153f787221d7288da70fe9247fe9dc23d12000288114645f6c11b6b4698fa96ccb40ea7a2c9ae82a7bc5d311395d9281345cbf47a8170d0d307c0d3804",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e237",
+            "role": "link",
+            "name": "耐心资本",
+            "text": "耐心资本",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=044cdfe1c8f4b8fb85729de5a82c3416f2b45b8b5a533d877e67a5a9f7feabd768117e3deb6c84d633d581c9a4c7d88c358dd54defd9ba6ecbf759d407c1f1b51b40a7c92a2a168ec9c8d7bc759926352f653561cef4002b2e806f6986579b4c5f88cb139c528a9c5e9a493c85f1c2af48cfdc1a6db8fa1613145210b59f54926df122d153ff936689656cc837a2f5d24a5d19e01ae3d5585bc8871051ffba1ccb9f007e",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e238",
+            "role": "link",
+            "name": "数字化转型",
+            "text": "数字化转型",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=041d2a4171d31004a26c885b3c9aed6a6701a92d1c5b99ffe5fc2ca7bd6c939e267425883ebebfed145def698f9c6c216e9f4529d0e9cee90eb284d187d16f52adc75ec41c93f0aa2bd6ce533cf10eeb437538f9332a890cdb985a42156b6eecaeefc5971d080e6067cd2cea83b5e6148a58a73e8692bfc1e6b6c9e0901335e6e37b93bbf81bd78474892d1d653b6c66077b305a56b3959faedaa719dd70272f028eb242ed85bb",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e239",
+            "role": "link",
+            "name": "数字经济",
+            "text": "数字经济",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=04bca5761b16c5a192ed81b313e6b43b2f4f196e848327f7572950542bcf6ae70fa3e0b7597e79f05b02cf23f1ba867e4abf50906b16f96889764f12bcc1b198ff4910258998cfe16248429296ad8b171159a307e50dad1a9dbb258cc8a8ca01f612c082e50f9769a8f79bbc95c69725f2971f3124c7c20bac0c9df74e14986b461960ed295a4f5a426ba9f677106a329e1274bf688bca70fa753a8f750f86b0a2fef754",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e240",
+            "role": "link",
+            "name": "新质生产力",
+            "text": "新质生产力",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=0472783343058e8cfd3905879dff485e886cbcbfe7968a50c88e1ad4274fa50f23dbb0e05ff9f82478ce3d53029cee068abd04dd305d2d2db9db586c18f6c771d6460f76a7bff8b02dab07b278a03fea504c96d04ef1948cb0b821c8dbf807e4decd0f83d0cfe434be5c099f6c8c2733c9a14b02d2b93a66ba06770e214f908218da84def5e021a51f1c78d6d91ab589bc7bf0947b76a4983ec28a7bc793539f4a45fb2e209e24",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e241",
+            "role": "link",
+            "name": "绿色金融",
+            "text": "绿色金融",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=04aa3ace017840f229dc9aa52dcc0b5c98e60f52d3867e067689e7001e32fced428ddcba6b38402333c565c22dcaa9cbafcde66d8e9d246072e43bc59eeea2183a559aaa32bde86cd90bbdf9369a17758b082f78c0eea096d783d97b75bf3e740a2a07982f78e16524cf1a425dff2712ee9b6a8a91a8f0209df9702405139a987c03c3de29c20ba1f59012b445c5d290e22b598fa13eef123fa8641c54dc4d1c9a548702",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e242",
+            "role": "link",
+            "name": "数字普惠金融",
+            "text": "数字普惠金融",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=04b5a2bd6c8e94dda59598f093ee31001fae70f59d5fbc6c5a49c40ac1a691581b51acf77087a24f82869cad7126cb8ae75ee953335772d2648020a96e146482cc31549c97e98b33f1a9e499d956e86771db123fce02d0e138b87a1d0f69dd26860465d04689517d6945f1415e9f56a563ecef17b3c48f5dc75486c3d919916aed5787793b3dcaba2f801add2dfb5d2d162890bccfd87d72e0ef12ec67f75f163c9d70bd65c448e94389",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e243",
+            "role": "link",
+            "name": "供应链韧性",
+            "text": "供应链韧性",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=044a00e7ac15af6b959a1a38e35699e69f8a5f8e56ffd3b80ddd0ac3e2909cdc0944c5dd1c3424f265ebc63bc862732dc1aabb4f869905935438a25fa8a7e5f80e28a98edfa3a066667ea79ae95e38399790a2b4f4a64cd113a720e642b217892c8e6f55608eecb5525bea4f08f4afcf19c81c1828f5539c1c366b345f7316ba3a8fceb6fdc2d25365fa3da4e4d519044c88141cec6282a1a301beb6c1756397f02d84f5a6fb2f",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e244",
+            "role": "link",
+            "name": "盈利能力分析",
+            "text": "盈利能力分析",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=045d3b68996fe47e1e4913f12a5545f0c8d2b0939d259b2cce83dc93995c7cb3f8c65890f9bb78c9ccbec3597c484977536112f4ebdf87ddea57f15ab037e08d13711173ed274d912be92953ea86287c9487b21bf64dc869d9bf4608b75aa8fe2c8aa8d5f2a6c1d9ad45b27b891d1e91eaf68140a8e09aac12a7fae3b14324c61e1075ea151bc5331fd6e63a95f5008884bcb0ea35977f4cfb3ff101732231d76f5cace25c7aecb1f9e8",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e245",
+            "role": "link",
+            "name": "数据资产",
+            "text": "数据资产",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://link.cnki.net/rankinglist/hotword?range=0&id=04163999cad0020db7ab4323cb7e504f82601930ac754036b1bba16b20511253218c01b0b294f16ffa35f08bb8d031f587f1e8f46cb2d7a42d0402d2df8f6341779bbbb6fc99cd49543b6cc37382fccd8c65e510b5fa3a7f3f38e2f3cf1c97595e3d612ec4f7f6e6dfc10d2b7cd3fef32eea8259f87fa76643bbe25dfc9a2eacdc952183b3d3cb8401fbf8b2f63658b69312004a8f94d2029915e13f8ce802be07e75c48e2",
+              "target": "_blank"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e246",
+            "role": "link",
+            "name": "中国阅读 全民阅读蓝皮书 第一卷",
+            "text": "中国阅读 全民阅读蓝皮书 第一卷",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787506819442001&type=book",
+              "target": "_blank",
+              "title": "中国阅读 全民阅读蓝皮书 第一卷"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e247",
+            "role": "link",
+            "name": "中国书籍出版社",
+            "text": "中国书籍出版社",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-source",
+              "href": "https://thinker.cnki.net/bookstore/search/result?field=出版者&word=中国书籍出版社",
+              "target": "_blank",
+              "title": "中国书籍出版社"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e248",
+            "role": "link",
+            "name": "中国阅读 全民阅读蓝皮书 第二卷",
+            "text": "中国阅读 全民阅读蓝皮书 第二卷",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787506826044001&type=book",
+              "target": "_blank",
+              "title": "中国阅读 全民阅读蓝皮书 第二卷"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e249",
+            "role": "link",
+            "name": "图书馆阅读推广研究",
+            "text": "图书馆阅读推广研究",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787505437975000&type=book",
+              "target": "_blank",
+              "title": "图书馆阅读推广研究"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e250",
+            "role": "link",
+            "name": "朝华出版社",
+            "text": "朝华出版社",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-source",
+              "href": "https://thinker.cnki.net/bookstore/search/result?field=出版者&word=朝华出版社",
+              "target": "_blank",
+              "title": "朝华出版社"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e251",
+            "role": "link",
+            "name": "图书馆阅读推广基础理论",
+            "text": "图书馆阅读推广基础理论",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787505437913000&type=book",
+              "target": "_blank",
+              "title": "图书馆阅读推广基础理论"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e252",
+            "role": "link",
+            "name": "图书馆阅读推广基础工作",
+            "text": "图书馆阅读推广基础工作",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787505437968000&type=book",
+              "target": "_blank",
+              "title": "图书馆阅读推广基础工作"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e253",
+            "role": "link",
+            "name": "图书馆儿童阅读推广",
+            "text": "图书馆儿童阅读推广",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "class": "item-title",
+              "href": "https://thinker.cnki.net/bookStore/Book/bookdetail?bookcode=9787505437920000&type=book",
+              "target": "_blank",
+              "title": "图书馆儿童阅读推广"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e254",
+            "role": "link",
+            "name": "了解更多",
+            "text": "了解更多",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://www.cnki.net/subpages/news.html",
+              "target": "_blank",
+              "class": "more",
+              "data-tag": "trends"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e255",
+            "role": "link",
+            "name": "诚邀参加2026年“陶行知教育思想理论研究与创新实践”学术研讨会！",
+            "text": "诚邀参加2026年“陶行知教育思想理论研究与创新实践”学术研讨会！",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://mp.weixin.qq.com/s/-L5Szo7UbRFnbNaal8eyTA",
+              "target": "_blank",
+              "title": "诚邀参加2026年“陶行知教育思想理论研究与创新实践”学术研讨会！"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e256",
+            "role": "link",
+            "name": "《管理世界》大讲堂2026年第四期来啦!",
+            "text": "《管理世界》大讲堂2026年第四期来啦!",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://k.cnki.net/themeInfo/1987",
+              "target": "_blank",
+              "title": "《管理世界》大讲堂2026年第四期来啦!"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e257",
+            "role": "link",
+            "name": "第五届全民阅读大会“江右书旅”——知网邀您共赴书香之约",
+            "text": "第五届全民阅读大会“江右书旅”——知网邀您共赴书香之约",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yuedu.cnki.net/jiangxi.html",
+              "target": "_blank",
+              "title": "第五届全民阅读大会“江右书旅”——知网邀您共赴书香之约"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          },
+          {
+            "ref": "e258",
+            "role": "link",
+            "name": "“学术成果汇编”征稿启事",
+            "text": "“学术成果汇编”征稿启事",
+            "selector": "a",
+            "tagName": "a",
+            "disabled": false,
+            "visible": true,
+            "attributes": {
+              "href": "https://yccb.cnki.net/#/article-detail?id=9898b6f8-6ac2-4fab-8ec1-fa9502041850&type=5&hideSearch=1",
+              "target": "_blank",
+              "title": "“学术成果汇编”征稿启事"
+            },
+            "selectorCandidates": [
+              "a"
+            ]
+          }
+        ],
+        "forms": [],
+        "tables": [],
+        "lists": [
+          {
+            "ref": "l1",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "ref": "l2",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          {
+            "ref": "l3",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "",
+              "手机版",
+              "全球学术快报>>(机构用户)",
+              "手机知网>>(个人读者)",
+              "读者服务",
+              "作者服务",
+              "出版服务",
+              "产品解决方案",
+              "学术评价",
+              "联系我们",
+              "帮助"
+            ]
+          },
+          {
+            "ref": "l4",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "全球学术快报>>(机构用户)",
+              "手机知网>>(个人读者)"
+            ]
+          },
+          {
+            "ref": "l5",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "我的账户",
+              "作者服务",
+              "退出"
+            ]
+          },
+          {
+            "ref": "l6",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "您的机构账户为：",
+              "南京航空航天大学",
+              "退出"
+            ]
+          },
+          {
+            "ref": "l7",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "QQ登录",
+              "微信登录",
+              "微博登录"
+            ]
+          },
+          {
+            "ref": "l8",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "旧版入口",
+              "充值",
+              "充值中心",
+              "购买知网卡",
+              "会员"
+            ]
+          },
+          {
+            "ref": "l9",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "充值中心",
+              "购买知网卡"
+            ]
+          },
+          {
+            "ref": "l10",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "检 索",
+              "CNKI AI"
+            ]
+          },
+          {
+            "ref": "l11",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "主题",
+              "篇关摘",
+              "关键词",
+              "篇名",
+              "全文",
+              "作者",
+              "第一作者",
+              "通讯作者",
+              "作者单位",
+              "基金",
+              "摘要",
+              "小标题",
+              "参考文献",
+              "分类号",
+              "文献来源",
+              "DOI"
+            ]
+          },
+          {
+            "ref": "l12",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "学术期刊",
+              "学位论文",
+              "会议",
+              "报纸",
+              "年鉴",
+              "专利",
+              "标准",
+              "成果",
+              "学术辑刊",
+              "图书",
+              "文库",
+              "法律法规"
+            ]
+          },
+          {
+            "ref": "l13",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "工具书",
+              "中国引文库",
+              "学术图片",
+              "学术视频",
+              "音频",
+              "统计数据AI知数",
+              "政府文件",
+              "科技报告",
+              "OA"
+            ]
+          },
+          {
+            "ref": "l14",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "全库问答",
+              "核心期刊",
+              "中英文献",
+              "我的资料"
+            ]
+          },
+          {
+            "ref": "l15",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "文献计量",
+              "智能研读",
+              "辅助创作",
+              "学术趋势",
+              "全文翻译",
+              "学术PPT"
+            ]
+          },
+          {
+            "ref": "l16",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "CNKI AI",
+              "AI深度研究",
+              "文献计量",
+              "个人查重",
+              "AIGC检测",
+              "科研诚信",
+              "知网研学",
+              "知网书店",
+              "知网文库",
+              "我要投稿",
+              "翻译助手",
+              "智能排版",
+              "智能写作",
+              "作者服务",
+              "更多"
+            ]
+          },
+          {
+            "ref": "l17",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "热门服务",
+              "数字出版服务",
+              "行业增值服务",
+              "个人用户服务"
+            ]
+          },
+          {
+            "ref": "l21",
+            "selector": "#articleRecommend",
+            "ordered": false,
+            "items": [
+              "1 科斯理论视角下我国用水权制度演进与改革方向 田贵良 《水利经济》 2025-05-30",
+              "2 刑事案件事实的实质判断 张明楷 《中国刑事法杂志》 2026-04-23",
+              "3 基于Ansys的气动机械臂关键结构静动态特性仿真与优化设计 王春政 《凿岩机械气动工具》 2026-04-20",
+              "4 妊娠期糖尿病复发率与复发危险因素的Meta分析 孙俊 《中国妇幼保健》 2026-05-09",
+              "5 基于改进YOLO11的无人机海上搜救目标检测模型 张雨轩 《传感器与微系统》 2026-04-27",
+              "6 基于SpringBoot和Vue的高校勤工助学岗位管理系统 轩金丽 《电脑编程技巧与维护》 2026-04-28",
+              "7 中小学生近视影响因素的Logistic回归与随机森林模型对比研究 金丽娜 《职业与健康》 2026-05-06",
+              "8 燕麦幼苗响应干旱胁迫的生理与转录组学分析 何雨飞 《草地学报》 2026-04-27",
+              "9 面向大熊猫目标检测的生成-检测统一方法 刘祯 《中国图象图形学报》 2026-05-11",
+              "10 基于深度学习的多模态数据融合技术在口腔疾病中的应用及研究进展 何沁轩 《口腔疾病防治》 2026-05-09"
+            ]
+          },
+          {
+            "ref": "l22",
+            "selector": "#hotSearch",
+            "ordered": false,
+            "items": [
+              "1 人工智能 热度值5808",
+              "2 耐心资本 热度值4734",
+              "3 数字化转型 热度值3265",
+              "4 数字经济 热度值2973",
+              "5 新质生产力 热度值2205",
+              "6 绿色金融 热度值2107",
+              "7 数字普惠金融 热度值2093",
+              "8 供应链韧性 热度值1993",
+              "9 盈利能力分析 热度值1909",
+              "10 数据资产 热度值1868"
+            ]
+          },
+          {
+            "ref": "l23",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "CNKI Claw全新上线 CNKI Claw助你读懂海量文献，构建知识体系，守护科研初心，让深度探索不再孤独！ [查看详情] 2026-05-22",
+              "公文大模型（政知通）重磅升级 面向党政机关、科研院所和企事业单位提供调研助手、智能公文写作、智能公文核稿、智能查重比对... [查看详情] 2025-12-26",
+              "标准质量评估服务平台重磅发布！ 标准质量评估服务平台集成全量标准资源，以提升标准制定质量为核心，聚焦于标准质量的专业评估... [查看详情] 2025-12-16",
+              "CAJX阅读器云服务版 CAJX阅读器云服务版是最新打造的桌面级在线阅读服务，提供在线全文翻译、格式转换等系列实用... [查看详情] 2025-12-08"
+            ]
+          },
+          {
+            "ref": "l24",
+            "selector": "ul",
+            "ordered": false,
+            "items": [
+              "读者服务 购买知网卡 充值中心 我的CNKI 帮助中心",
+              "CNKI常用软件下载 CAJViewer浏览器 知网研学（原E-Study） 下载中心 标准阅读器",
+              "特色服务 手机知网 知网书店 知网文库 知网阅读",
+              "客户服务 订卡热线：400-819-9993 服务热线：400-810-9888 在线咨询：service.cnki.net 邮件咨询：help@cnki.net",
+              "监督举报 违法和不良信息举报电话：400-062-8866 违法和不良信息举报邮箱：jubao@cnki.net 合规举报邮箱：zwhegui-tsjb@cnki.net 服务监督：400-819-1966（fwjd.cnki.net）",
+              "新浪微博客服 官方微信"
+            ]
+          }
+        ],
+        "iframes": [
+          {
+            "ref": "i1",
+            "selector": "#Ecp_top_login_realNameFrame",
+            "accessible": false,
+            "summary": "Iframe DOM requires frame-level access."
+          },
+          {
+            "ref": "i2",
+            "selector": "#certificateIframe",
+            "accessible": false,
+            "summary": "Iframe DOM requires frame-level access."
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "runId": "run_b141a34ee9d0d0f3"
+}

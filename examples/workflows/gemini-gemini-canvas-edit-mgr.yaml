@@ -13,10 +13,10 @@ steps:
       - --profile
       - gemini-9225
       - --prompt
-      - "Use Canvas to create a short editable document titled Coffee Brewing Tips with two bullet points. Do not use Google Keep or any external app."
+      - "Use Canvas to draft a simple HTML page with a heading \"Wave 9 Canvas Fixture\" and one paragraph. Do not open external apps."
       - --confirmed
       - --edit-text
-      - " Add a closing sentence about espresso."
+      - "Change the heading text to \"Wave 9 Canvas Fixture Updated\" and keep the paragraph."
       - --response-timeout-ms
       - "90000"
       - --json

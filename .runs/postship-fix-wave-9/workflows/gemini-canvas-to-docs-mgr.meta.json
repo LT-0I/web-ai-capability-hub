@@ -1,0 +1,24 @@
+{
+  "name": "gemini-canvas-to-docs-mgr",
+  "cluster": "A",
+  "file": "examples/workflows/gemini-canvas-to-docs-mgr.yaml",
+  "attempt": 1,
+  "pass": true,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "deferredRateLimit": false,
+  "startedAt": "2026-05-26T12:02:46.427Z",
+  "finishedAt": "2026-05-26T12:03:03.108Z",
+  "durationMs": 16681,
+  "stdoutPath": ".runs/postship-fix-wave-9/workflows/gemini-canvas-to-docs-mgr.json",
+  "stderrPath": ".runs/postship-fix-wave-9/workflows/gemini-canvas-to-docs-mgr.stderr",
+  "stdoutTail": "r\",\n      \"target\": \"gemini\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Attempt to export a Gemini Canvas to Google Docs (fail-closed; UNSUPPORTED_FEATURE)\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 360000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:gemini:canvas-to-docs\",\n          \"--profile\",\n          \"gemini-9225\",\n          \"--tab-url-contains\",\n          \"gemini.google.com\",\n          \"--prompt\",\n          \"Generate a 200-word essay about deep learning, then export to Google Docs\",\n          \"--title\",\n          \"Capability Probe Doc\",\n          \"--response-timeout-ms\",\n          \"300000\",\n          \"--timeout-ms\",\n          \"60000\",\n          \"--confirmed\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 16428,\n        \"stdout\": \"{\\n  \\\"docs_url\\\": \\\"https://docs.google.com/document/d/1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo/edit\\\",\\n  \\\"docs_doc_id\\\": \\\"1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo\\\",\\n  \\\"title\\\": \\\"Capability Probe Doc\\\",\\n  \\\"errorCode\\\": null\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"docs_url\": \"https://docs.google.com/document/d/1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo/edit\",\n          \"docs_doc_id\": \"1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo\",\n          \"title\": \"Capability Probe Doc\",\n          \"errorCode\": null\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"docs_url\",\n              \"actual\": \"https://docs.google.com/document/d/1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo/edit\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"docs_url\": \"https://docs.google.com/document/d/1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo/edit\",\n        \"docs_doc_id\": \"1_L4zFm0huJuylAdJ34c-sEV734GOrtvqX85S-a5zxGo\",\n        \"title\": \"Capability Probe Doc\",\n        \"errorCode\": null\n      }\n    }\n  ],\n  \"runId\": \"run_683dd96bdb2b6ee3\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": true,
+    "id": "gemini-canvas-to-docs-mgr",
+    "runId": "run_683dd96bdb2b6ee3"
+  },
+  "parsedStderrSummary": null
+}

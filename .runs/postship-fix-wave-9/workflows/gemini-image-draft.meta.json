@@ -1,0 +1,22 @@
+{
+  "name": "gemini-image-draft",
+  "cluster": "D",
+  "file": "examples/workflows/gemini-image-draft.yaml",
+  "attempt": 1,
+  "pass": false,
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "deferredRateLimit": false,
+  "startedAt": "2026-05-26T12:00:13.445Z",
+  "finishedAt": "2026-05-26T12:01:59.333Z",
+  "durationMs": 105888,
+  "stdoutPath": ".runs/postship-fix-wave-9/workflows/gemini-image-draft.json",
+  "stderrPath": ".runs/postship-fix-wave-9/workflows/gemini-image-draft.stderr",
+  "stdoutTail": "",
+  "stderrTail": "{\"ok\":false,\"error\":\"locator.click: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for locator('button[aria-label=\\\"Upload & tools\\\"]').first()\\u001b[22m\\n\"}\n",
+  "parsedStdoutSummary": null,
+  "parsedStderrSummary": {
+    "ok": false
+  }
+}

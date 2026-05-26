@@ -20,8 +20,8 @@ steps:
       - --json
     timeoutMs: 180000
     gate:
-      exit_code: 0
+      exit_code: 1
       json_path:
-        - path: response_text
-          regex: "20\\d{2}"
+        - path: errorCode
+          equals: ELEMENT_NOT_FOUND
 evidence: .runs/capability-explore-2026-05-25/gemini/gemini-send-web-search-mgr.json

@@ -1,0 +1,131 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-veo-quota-error-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T11:57:03.178Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:generate-video",
+            "--profile",
+            "gemini-9225",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "probe quota check",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/gemini",
+            "--response-timeout-ms",
+            "60000",
+            "--json"
+          ],
+          "timeoutMs": 240000,
+          "gate": {
+            "exit_code": 1,
+            "json_path": [
+              {
+                "path": "errorCode",
+                "regex": "^(COMMAND_TIMEOUT|PLAN_OR_QUOTA_REQUIRED|VEO_QUOTA_EXCEEDED)$"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-veo-quota-error-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Verify Gemini Veo quota error path (status OK_DEFERRED if no quota observed)",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 240000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-veo-quota-error-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:generate-video",
+          "--profile",
+          "gemini-9225",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "probe quota check",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/gemini",
+          "--response-timeout-ms",
+          "60000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 180164,
+        "stdout": "{\n  \"ok\": false,\n  \"errorCode\": \"COMMAND_TIMEOUT\",\n  \"error_code\": \"COMMAND_TIMEOUT\",\n  \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n  \"evidence\": {\n    \"tool\": \"webai_gemini_generate_video\",\n    \"stage\": \"handler\",\n    \"message\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n    \"error_name\": \"Error\",\n    \"timeout_ms\": 180000\n  }\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "ok": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "error_code": "COMMAND_TIMEOUT",
+          "error": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+          "evidence": {
+            "tool": "webai_gemini_generate_video",
+            "stage": "handler",
+            "message": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+            "error_name": "Error",
+            "timeout_ms": 180000
+          }
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 1,
+            "actual": 1,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "errorCode",
+              "actual": "COMMAND_TIMEOUT",
+              "ok": true
+            }
+          ]
+        },
+        "errorCode": "COMMAND_TIMEOUT",
+        "error_code": "COMMAND_TIMEOUT",
+        "error": "COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline",
+        "evidence": "<circular>"
+      }
+    }
+  ],
+  "runId": "run_bf93822a76bb4df3"
+}

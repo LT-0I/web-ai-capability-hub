@@ -120,6 +120,51 @@ export class ActionExecutor {
     return { ...result, data: { ...((result.data as any) || {}), postcondition } };
   }
 
+  private targetText(action: BrowserAction): string {
+    const target = (action.target || {}) as any;
+    return [target.role, target.name, target.label, target.placeholder, target.text, action.selector].filter(Boolean).join(" ").toLowerCase();
+  }
+
+  private pageUrl(page: any): string {
+    try { return String(typeof page?.url === "function" ? page.url() : ""); } catch { return ""; }
+  }
+
+  private async clickGeminiImageModeIfCurrentTarget(page: any, action: BrowserAction): Promise<ActionResult | undefined> {
+    if (action.selector || !/gemini\.google\.com\/app/i.test(this.pageUrl(page))) return undefined;
+    const target = this.targetText(action);
+    if (!/\bbutton\b/.test(target) || !/\bimage\b/.test(target)) return undefined;
+    const uploadToolsSelector = 'button[aria-label="Upload & tools"]';
+    const createImageSelector = '[role="menuitemcheckbox"]:has-text("Create image")';
+    const activeImageSelector = 'button[aria-label="Deselect Images"]';
+    const timeout = action.timeoutMs || 15000;
+    await page.locator(uploadToolsSelector).first().click({ timeout });
+    const createImage = page.locator(createImageSelector).first();
+    await createImage.waitFor({ state: "visible", timeout });
+    await createImage.click({ timeout });
+    await page.waitForSelector?.(activeImageSelector, { state: "visible", timeout }).catch(() => undefined);
+    return {
+      ok: true,
+      action,
+      message: "Clicked Gemini Create image via Upload & tools",
+      data: { selector: `${uploadToolsSelector} -> ${createImageSelector}` }
+    };
+  }
+
+  private async typeCnkiSearchIfCurrentTarget(page: any, action: BrowserAction): Promise<ActionResult | undefined> {
+    if (action.selector || !/cnki\.net/i.test(this.pageUrl(page))) return undefined;
+    const target = this.targetText(action);
+    if (!/\b(textbox|searchbox)\b/.test(target) || !/\bsearch\b/.test(target)) return undefined;
+    const selector = 'textarea#txt_SearchText, textarea[name="txt_SearchText"], textarea[placeholder*="中文文献"]';
+    const locator = page.locator(selector).first();
+    await locator.fill(action.text || "", { timeout: action.timeoutMs || 15000 });
+    return {
+      ok: true,
+      action,
+      message: `Typed into ${selector}`,
+      data: { selector }
+    };
+  }
+
   private async open(action: BrowserAction): Promise<ActionResult> {
     const page = this.context.openUrl ? await this.context.openUrl(action.url!) : this.activePage();
     if (!this.context.openUrl) await page.goto(action.url, { waitUntil: "domcontentloaded" });
@@ -128,6 +173,8 @@ export class ActionExecutor {
 
   private async click(action: BrowserAction): Promise<ActionResult> {
     const page = this.activePage();
+    const targetSpecific = await this.clickGeminiImageModeIfCurrentTarget(page, action);
+    if (targetSpecific) return targetSpecific;
     const locator = getLocator(page, action.target, action.selector);
     const pendingPostconditionDownload = action.until === "download" ? beginDownloadPostcondition(page) : undefined;
     if (!action.expectDownload) {
@@ -172,7 +219,10 @@ export class ActionExecutor {
   }
 
   private async type(action: BrowserAction): Promise<ActionResult> {
-    const locator = getLocator(this.activePage(), action.target, action.selector);
+    const page = this.activePage();
+    const targetSpecific = await this.typeCnkiSearchIfCurrentTarget(page, action);
+    if (targetSpecific) return targetSpecific;
+    const locator = getLocator(page, action.target, action.selector);
     if (typeof locator.fill === "function") await locator.fill(action.text || "");
     else await locator.type(action.text || "");
     return { ok: true, action, message: `Typed into ${describeSemanticTarget(action.target, action.selector)}` };

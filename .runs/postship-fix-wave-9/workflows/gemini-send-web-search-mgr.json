@@ -1,0 +1,130 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-send-web-search-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T11:56:48.046Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:send-prompt",
+            "--profile",
+            "gemini-9225",
+            "--web-search",
+            "--prompt",
+            "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+            "--response-timeout-ms",
+            "120000",
+            "--json"
+          ],
+          "timeoutMs": 180000,
+          "gate": {
+            "exit_code": 1,
+            "json_path": [
+              {
+                "path": "errorCode",
+                "equals": "ELEMENT_NOT_FOUND"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-send-web-search-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Send a Gemini web-search date prompt (fail-closed; ELEMENT_NOT_FOUND on tool drawer)",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 180000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-send-web-search-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:send-prompt",
+          "--profile",
+          "gemini-9225",
+          "--web-search",
+          "--prompt",
+          "List 3 AI safety events from 2026 so far. Include the year 2026 in each item.",
+          "--response-timeout-ms",
+          "120000",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 4886,
+        "stdout": "{\n  \"response_text\": \"\",\n  \"elapsed_ms\": 4734,\n  \"wait_ms\": 0,\n  \"completion_detected\": false,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"ok\": false,\n  \"service\": \"gemini\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus\",\n  \"model_used\": null,\n  \"chat_url\": \"https://gemini.google.com/app\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "response_text": "",
+          "elapsed_ms": 4734,
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "ok": false,
+          "service": "gemini",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus",
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 1,
+            "actual": 1,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "errorCode",
+              "actual": "ELEMENT_NOT_FOUND",
+              "ok": true
+            }
+          ]
+        },
+        "response_text": "",
+        "wait_ms": 0,
+        "completion_detected": false,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "service": "gemini",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "ELEMENT_NOT_FOUND: Gemini Web Search toggle was not found in the live-probed Upload & tools menus",
+        "model_used": null,
+        "chat_url": "https://gemini.google.com/app"
+      }
+    }
+  ],
+  "runId": "run_e8b2adc9c44e7105"
+}

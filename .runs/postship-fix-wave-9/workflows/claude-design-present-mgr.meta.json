@@ -1,0 +1,24 @@
+{
+  "name": "claude-design-present-mgr",
+  "cluster": "E",
+  "file": "examples/workflows/claude-claude-design-present-mgr.yaml",
+  "attempt": 1,
+  "pass": true,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "deferredRateLimit": false,
+  "startedAt": "2026-05-26T12:07:58.523Z",
+  "finishedAt": "2026-05-26T12:09:29.586Z",
+  "durationMs": 91063,
+  "stdoutPath": ".runs/postship-fix-wave-9/workflows/claude-design-present-mgr.json",
+  "stderrPath": ".runs/postship-fix-wave-9/workflows/claude-design-present-mgr.stderr",
+  "stdoutTail": "lectors\": [],\n        \"idempotent\": false,\n        \"command\": {\n          \"argv\": [\n            \"node\",\n            \"dist/src/cli.js\",\n            \"webai:claude:design:present\",\n            \"--profile\",\n            \"claude-9224\",\n            \"--project-url\",\n            \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n            \"--json\"\n          ],\n          \"timeoutMs\": 120000,\n          \"gate\": {\n            \"exit_code\": 0,\n            \"json_path\": [\n              {\n                \"path\": \"presentUrl\",\n                \"regex\": \"/serve/|\\\\?file=\"\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"warnings\": [],\n    \"definition\": {\n      \"id\": \"claude-design-present-mgr\",\n      \"target\": \"claude\",\n      \"profile\": \"<profile>\",\n      \"mode\": \"automatic\",\n      \"description\": \"Present an existing Claude Design project\",\n      \"steps\": [\n        {\n          \"id\": \"invoke-cli\",\n          \"command\": \"<circular>\",\n          \"timeoutMs\": 120000,\n          \"gate\": \"<circular>\"\n        }\n      ],\n      \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-design-present-mgr.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": true,\n      \"message\": \"command gate passed\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:design:present\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--project-url\",\n          \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344\",\n          \"--json\"\n        ],\n        \"exit_code\": 0,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 90790,\n        \"stdout\": \"{\\n  \\\"presentUrl\\\": \\\"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\\\"\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"presentUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\"\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 0,\n            \"ok\": true\n          },\n          \"json_path\": [\n            {\n              \"path\": \"presentUrl\",\n              \"actual\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\",\n              \"ok\": true\n            }\n          ]\n        },\n        \"presentUrl\": \"https://claude.ai/design/p/baf06427-9e7a-41f7-8d8e-79da1a1ca344?file=index.html\"\n      }\n    }\n  ],\n  \"runId\": \"run_5884d0a3321f45f3\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": true,
+    "id": "claude-design-present-mgr",
+    "runId": "run_5884d0a3321f45f3"
+  },
+  "parsedStderrSummary": null
+}

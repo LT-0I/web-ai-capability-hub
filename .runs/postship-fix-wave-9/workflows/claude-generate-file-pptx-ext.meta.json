@@ -1,0 +1,26 @@
+{
+  "name": "claude-generate-file-pptx-ext",
+  "cluster": "F",
+  "file": "examples/workflows/claude-claude-generate-file-pptx-ext.yaml",
+  "attempt": 1,
+  "pass": false,
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "deferredRateLimit": false,
+  "startedAt": "2026-05-26T12:09:39.619Z",
+  "finishedAt": "2026-05-26T12:12:40.013Z",
+  "durationMs": 180394,
+  "stdoutPath": ".runs/postship-fix-wave-9/workflows/claude-generate-file-pptx-ext.json",
+  "stderrPath": ".runs/postship-fix-wave-9/workflows/claude-generate-file-pptx-ext.stderr",
+  "stdoutTail": "  \"evidence\": \".runs/capability-explore-2026-05-25/claude/claude-generate-file-pptx-ext.json\"\n    }\n  },\n  \"results\": [\n    {\n      \"stepId\": \"invoke-cli\",\n      \"ok\": false,\n      \"message\": \"command gate failed: exit_code 1 !== 0; json_path path empty\",\n      \"data\": {\n        \"argv\": [\n          \"node\",\n          \"dist/src/cli.js\",\n          \"webai:claude:generate-file\",\n          \"--profile\",\n          \"claude-9224\",\n          \"--backend\",\n          \"extension-assisted-cdp\",\n          \"--prompt\",\n          \"Create a 5-slide pptx presentation about renewable energy basics. Deliver as a downloadable .pptx.\",\n          \"--expected-extension\",\n          \"pptx\",\n          \"--download-dir\",\n          \"/tmp/explore-2026-05-25/claude\",\n          \"--artifact-class\",\n          \"document\",\n          \"--json\"\n        ],\n        \"exit_code\": 1,\n        \"signal\": null,\n        \"timed_out\": false,\n        \"elapsed_ms\": 180151,\n        \"stdout\": \"{\\n  \\\"ok\\\": false,\\n  \\\"errorCode\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error_code\\\": \\\"COMMAND_TIMEOUT\\\",\\n  \\\"error\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n  \\\"evidence\\\": {\\n    \\\"tool\\\": \\\"webai_claude_generate_file\\\",\\n    \\\"stage\\\": \\\"handler\\\",\\n    \\\"message\\\": \\\"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\\\",\\n    \\\"error_name\\\": \\\"Error\\\",\\n    \\\"timeout_ms\\\": 180000\\n  }\\n}\\n\",\n        \"stderr\": \"\",\n        \"stdout_parsed\": {\n          \"ok\": false,\n          \"errorCode\": \"COMMAND_TIMEOUT\",\n          \"error_code\": \"COMMAND_TIMEOUT\",\n          \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n          \"evidence\": {\n            \"tool\": \"webai_claude_generate_file\",\n            \"stage\": \"handler\",\n            \"message\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n            \"error_name\": \"Error\",\n            \"timeout_ms\": 180000\n          }\n        },\n        \"gate\": {\n          \"exit_code\": {\n            \"expected\": 0,\n            \"actual\": 1,\n            \"ok\": false\n          },\n          \"json_path\": [\n            {\n              \"path\": \"path\",\n              \"ok\": false,\n              \"reasons\": [\n                \"empty\"\n              ]\n            }\n          ]\n        },\n        \"errorCode\": \"COMMAND_TIMEOUT\",\n        \"error_code\": \"COMMAND_TIMEOUT\",\n        \"error\": \"COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline\",\n        \"evidence\": \"<circular>\"\n      }\n    }\n  ],\n  \"runId\": \"run_3da6f0da3f93d1f8\"\n}\n",
+  "stderrTail": "",
+  "parsedStdoutSummary": {
+    "ok": false,
+    "id": "claude-generate-file-pptx-ext",
+    "errorCode": "COMMAND_TIMEOUT",
+    "message": "command gate failed: exit_code 1 !== 0; json_path path empty",
+    "runId": "run_3da6f0da3f93d1f8"
+  },
+  "parsedStderrSummary": null
+}

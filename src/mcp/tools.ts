@@ -446,11 +446,11 @@ function artifactClickRunner(runtime: Required<BrowserToolRuntime>): typeof runA
 
 function isCdpEndpointReadinessRace(error: any): boolean {
   const message = errorMessageFromUnknown(error, "");
-  return /CDP endpoint did not become ready|connect ECONNREFUSED|ECONNREFUSED/i.test(message);
+  return /CDP endpoint did not become ready|connect ECONNREFUSED|ECONNREFUSED|connectOverCDP.*Timeout|Timeout.*connectOverCDP/i.test(message);
 }
 
-async function runArtifactClickWithCdpReadinessRetry(runtime: Required<BrowserToolRuntime>, options: Parameters<typeof runArtifactClick>[0], retryBudgetMs = 5000): Promise<Awaited<ReturnType<typeof runArtifactClick>>> {
-  const deadline = Date.now() + Math.max(0, Math.min(retryBudgetMs, 5000));
+async function runArtifactClickWithCdpReadinessRetry(runtime: Required<BrowserToolRuntime>, options: Parameters<typeof runArtifactClick>[0], retryBudgetMs = 45000): Promise<Awaited<ReturnType<typeof runArtifactClick>>> {
+  const deadline = Date.now() + Math.max(0, Math.min(retryBudgetMs, 45000));
   for (;;) {
     try {
       return await artifactClickRunner(runtime)(options);
@@ -717,7 +717,7 @@ const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Download full size im
 const GEMINI_CANVAS_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Canvas")';
 const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]';
 const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"], button[aria-label="Share and export canvas"]';
-const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = '[data-test-id="export-to-docs-button"]';
+const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = '[data-test-id="export-to-docs-button"], [data-testid="export-to-docs-button"], export-to-docs-button, gem-menu-item[data-test-id="export-to-docs-button"]';
 const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
 // Veo video generation flow (same composer): Upload & tools → Create video
 // menuitemcheckbox; in-progress copy "Generating your video…"; when ready a
@@ -3987,6 +3987,26 @@ async function awaitSpawnedDocsPage(page: any, timeoutMs: number): Promise<{ url
   return null;
 }
 
+function geminiCanvasToDocsDocumentPrompt(prompt: string): string {
+  const raw = String(prompt || "").trim();
+  const stripped = raw
+    .replace(/,?\s*then\s+export\s+to\s+Google\s+Docs\.?/ig, "")
+    .replace(/\bexport\s+(?:it\s+)?to\s+Google\s+Docs\b\.?/ig, "")
+    .trim();
+  const base = stripped || raw || "a short editable document";
+  if (/editable document/i.test(raw) && /not code|not an app/i.test(raw)) return raw;
+  return `Use Canvas to draft an editable document for this request: ${base}. Make it a document, not code or an app. Do not open external apps.`;
+}
+
+function geminiCanvasToDocsReadyTimeoutMs(args: any): number {
+  const value = Number(args?.response_timeout_ms);
+  const configured = Number.isFinite(value) && value > 0 ? value : DEFAULT_RESPONSE_TIMEOUT_MS;
+  // Command/MCP wrappers in the regression matrix may enforce a 180s ceiling;
+  // keep the live Canvas-ready wait below that ceiling so selector/account
+  // errors are surfaced as contract JSON instead of a killed process.
+  return Math.min(configured, 150000);
+}
+
 async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   assertPromptAllowed(args.prompt);
   // "Export to Docs" creates a PRIVATE Doc in the user's own Drive - it is not
@@ -4015,12 +4035,13 @@ async function canvasToDocs(args: any, runtime: Required<BrowserToolRuntime>): P
       //    would always COMMAND_TIMEOUT. Use the same __expectImageResponse
       //    short-circuit the (GREEN) image path uses, then gate completion on
       //    the Canvas-ready signal: the "Share and export canvas" button.
-      const result = await sendPromptInExistingPage("gemini", { ...args, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __forceEnterToSend: true, __expectImageResponse: true }, page, Date.now());
+      const docsPrompt = geminiCanvasToDocsDocumentPrompt(args.prompt);
+      const canvasReadyTimeout = geminiCanvasToDocsReadyTimeoutMs(args);
+      const result = await sendPromptInExistingPage("gemini", { ...args, prompt: docsPrompt, __promptSelector: GEMINI_IMAGE_PROMPT_SELECTOR, __forceEnterToSend: true, __expectImageResponse: true }, page, Date.now());
       if (result.errorCode) return safeOutput({ docs_url: null, docs_doc_id: null, title, errorCode: result.errorCode, ...(result.error_code ? { error_code: result.error_code } : {}) });
       // 3. Wait for the Canvas document to finish rendering (its share/export
       //    button is the authoritative "Canvas ready" marker), then open the
       //    export menu and click "Export to Docs".
-      const canvasReadyTimeout = Number(args.response_timeout_ms) > 0 ? Number(args.response_timeout_ms) : DEFAULT_RESPONSE_TIMEOUT_MS;
       let shared = false;
       try {
         // Canvas-ready gate: if the share/export button never renders within
@@ -5822,7 +5843,9 @@ async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<Bro
     await backend.ping();
     return await withProfileCdpPage(runtime, effective.profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
       await prepareGeminiCanvasCdpPage(page, effective, true);
-      await submitGeminiCanvasPromptOnCdpPage(page, effective, effective.prompt, effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS, true);
+      const docsPrompt = geminiCanvasToDocsDocumentPrompt(effective.prompt);
+      const canvasReadyTimeout = geminiCanvasToDocsReadyTimeoutMs(effective);
+      await submitGeminiCanvasPromptOnCdpPage(page, effective, docsPrompt, canvasReadyTimeout, true);
       await requireAndClick(page, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, "Gemini Canvas share/export button was not found");
       await page.waitForSelector?.(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeout: 8000 });
       await requireAndClick(page, GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, "Gemini Canvas export-to-Docs menuitem was not found");
@@ -5998,6 +6021,22 @@ function claudeDesignFileName(projectUrl: string): string | null {
   }
 }
 
+function claudeDesignViewerUrl(projectUrl: string): string {
+  if (claudeDesignFileName(projectUrl)) return projectUrl;
+  try {
+    const parsed = new URL(projectUrl);
+    parsed.searchParams.set("file", "index.html");
+    return parsed.toString();
+  } catch {
+    const sep = projectUrl.includes("?") ? "&" : "?";
+    return `${projectUrl}${sep}file=index.html`;
+  }
+}
+
+function isClaudeDesignPresentUrl(url: string): boolean {
+  return /[?&]present=1(?:[&#]|$)/i.test(url) || /\/serve\//i.test(url);
+}
+
 function claudeDesignErrorOutput(error: any, extra: Record<string, unknown>): Record<string, unknown> {
   const isQuota = error?.errorCode === ConsumerErrorCodes.SUBMCP_QUOTA_EXHAUSTED || /SUBMCP_QUOTA_EXHAUSTED|quota/i.test(errorMessageFromUnknown(error, ""));
   const errorCode = isQuota ? ConsumerErrorCodes.SUBMCP_QUOTA_EXHAUSTED : extensionDriverErrorCode("claude", error);
@@ -6105,6 +6144,19 @@ async function ensureClaudeDesignViewerOpenWithExtension(page: any, projectUrl: 
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude Design ?file= viewer iframe was not found", { selector: CLAUDE_DESIGN_HTML_IFRAME_SELECTOR });
 }
 
+async function openClaudeDesignViewerWithCdp(page: any, projectUrl: string, timeoutMs = 30000): Promise<void> {
+  const viewerUrl = claudeDesignViewerUrl(projectUrl);
+  const current = String(page.url?.() || "");
+  const projectId = claudeDesignProjectId(projectUrl);
+  if (!current.includes(viewerUrl) && (!projectId || !current.includes(projectId) || !claudeDesignFileName(current))) {
+    await page.goto?.(viewerUrl, { waitUntil: "domcontentloaded", timeout: Math.min(timeoutMs, 30000) });
+  }
+  await page.waitForLoadState?.("domcontentloaded", { timeout: Math.min(timeoutMs, 15000) }).catch(() => undefined);
+  if (loginRequiredForService("claude", String(page.url?.() || ""))) {
+    throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude login is required before Design viewer access");
+  }
+}
+
 function isRealClaudeDesignHtmlMarkup(source: string): boolean {
   const trimmed = String(source || "").trim();
   if (!trimmed) return false;
@@ -6136,6 +6188,7 @@ async function readClaudeDesignIframeHtmlWithCdp(runtime: Required<BrowserToolRu
     if (!/claude\.ai\/design\/p\//i.test(url)) return false;
     return !projectId || url.includes(projectId);
   }, async (page) => {
+    await openClaudeDesignViewerWithCdp(page, projectUrl, timeoutMs);
     const deadline = Date.now() + Math.max(1, timeoutMs);
     let latest = "";
     while (Date.now() <= deadline) {
@@ -6159,19 +6212,25 @@ async function clickClaudeDesignPresentWithCdp(runtime: Required<BrowserToolRunt
     if (!/claude\.ai\/design\/p\//i.test(url)) return false;
     return !projectId || url.includes(projectId);
   }, async (page, browser) => {
+    await openClaudeDesignViewerWithCdp(page, projectUrl, timeoutMs);
     const current = String(page.url?.() || "");
-    if (/[?&]present=1(?:[&#]|$)/i.test(current) || /\/serve\//i.test(current)) return current;
-    await page.locator('button:has-text("Present")').first().click({ timeout: Math.min(timeoutMs, 15000) });
+    if (isClaudeDesignPresentUrl(current)) return current;
+    await page.locator('button:has-text("Present")').first().click({ timeout: Math.min(timeoutMs, 15000) }).catch(() => undefined);
     const deadline = Date.now() + Math.max(1, timeoutMs);
+    let iframeUrl = "";
     while (Date.now() <= deadline) {
       const pages = browser.contexts().flatMap((context: any) => context.pages());
       for (const candidate of pages) {
         const url = String(candidate.url?.() || "");
-        if ((/[?&]present=1(?:[&#]|$)/i.test(url) || /\/serve\//i.test(url)) && (!projectId || url.includes(projectId))) return url;
+        if (isClaudeDesignPresentUrl(url) && (!projectId || url.includes(projectId))) return url;
+        if (!iframeUrl && claudeDesignFileName(url) && (!projectId || url.includes(projectId))) iframeUrl = url;
       }
+      const hasIframe = await page.locator?.(CLAUDE_DESIGN_HTML_IFRAME_SELECTOR).first?.().isVisible?.({ timeout: 500 }).catch(() => false);
+      if (hasIframe && !iframeUrl) iframeUrl = String(page.url?.() || "");
       if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
       else await extensionSleep(500);
     }
+    if (iframeUrl) return iframeUrl;
     throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Claude Design Present mode did not expose a presentation URL before timeout");
   });
 }
@@ -6247,28 +6306,10 @@ async function webAiClaudeDesignGenerateWithExtensionBackend(args: any, runtime:
 }
 
 async function webAiClaudeDesignGetHtmlWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
-  void runtime;
   const effective = claudeDesignArgs(args);
   const lease = acquireProfileLease(effective.profile);
-  let backend: any;
   try {
-    backend = getBackend("extension-assisted-cdp", {
-      transport: "http",
-      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
-    });
-    await backend.ping();
-    const page = await openClaudeDesignExtensionPage(backend, effective, effective.project_url);
-    await claudeDesignAssertNotQuotaWithExtension(page);
-    await ensureClaudeDesignViewerOpenWithExtension(page, effective.project_url);
-    await page.waitForSelector(CLAUDE_DESIGN_HTML_IFRAME_SELECTOR, { state: "visible", timeoutMs: 30000 });
-    let source = "";
-    const deadline = Date.now() + 30000;
-    while (Date.now() <= deadline) {
-      source = await readClaudeDesignIframeHtmlWithCdp(runtime, effective.profile, effective.project_url, 5000).catch(() => "");
-      if (!source) source = await readClaudeDesignIframeHtmlWithExtension(page);
-      if (isRealClaudeDesignHtmlMarkup(source)) break;
-      await extensionSleep(500);
-    }
+    const source = await readClaudeDesignIframeHtmlWithCdp(runtime, effective.profile, effective.project_url, Math.min(effective.timeout_ms || 90000, 90000));
     if (!source) throw new WebAiToolError(ConsumerErrorCodes.IFRAME_NOT_FOUND, "Claude Design HTML iframe has no srcdoc, content, or src attribute");
     if (!isRealClaudeDesignHtmlMarkup(source)) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Claude Design iframe did not contain real HTML markup");
     const bytes = Buffer.from(source, "utf-8");
@@ -6282,46 +6323,19 @@ async function webAiClaudeDesignGetHtmlWithExtensionBackend(args: any, runtime: 
   } catch (error: any) {
     return claudeDesignErrorOutput(error, { iframeArtifactSha256: "", savedPath: "", byteSize: 0 });
   } finally {
-    await backend?.finalize?.().catch?.(() => undefined);
     releaseProfileLease(effective.profile, lease);
   }
 }
 
 async function webAiClaudeDesignPresentWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
-  void runtime;
   const effective = claudeDesignArgs(args);
   const lease = acquireProfileLease(effective.profile);
-  let backend: any;
   try {
-    backend = getBackend("extension-assisted-cdp", {
-      transport: "http",
-      httpBridgeUrl: claudeExtensionHttpBridgeUrl(effective)
-    });
-    await backend.ping();
-    const page = await openClaudeDesignExtensionPage(backend, effective, effective.project_url);
-    await claudeDesignAssertNotQuotaWithExtension(page);
-    const current = await currentExtensionUrl(page, effective.project_url);
-    if (/[?&]present=1(?:[&#]|$)/i.test(current)) return safeOutput({ presentUrl: current });
-    await ensureClaudeDesignViewerOpenWithExtension(page, effective.project_url);
-    const directPresentUrl = await clickClaudeDesignPresentWithCdp(runtime, effective.profile, effective.project_url, 30000).catch(() => "");
-    if (directPresentUrl) return safeOutput({ presentUrl: directPresentUrl });
-    await clickExtensionSelectorWithJavascript(page, CLAUDE_DESIGN_PRESENT_SELECTOR, 15000, "Claude Design Present button was not found");
-    const deadline = Date.now() + 30000;
-    let presentUrl = "";
-    while (Date.now() <= deadline) {
-      const tabs = await backend.listTabs().catch(() => []);
-      const found = (tabs || []).find((tab: any) => /\/design\/p\/.+[?&]present=1/i.test(String(tab?.url || "")));
-      if (found?.url) { presentUrl = String(found.url); break; }
-      const pageUrl = await currentExtensionUrl(page, effective.project_url);
-      if (/[?&]present=1(?:[&#]|$)/i.test(pageUrl)) { presentUrl = pageUrl; break; }
-      await extensionSleep(500);
-    }
-    if (!presentUrl) throw new WebAiToolError(ConsumerErrorCodes.POSTCONDITION_TIMEOUT, "Claude Design Present mode did not expose a presentation URL before timeout");
+    const presentUrl = await clickClaudeDesignPresentWithCdp(runtime, effective.profile, effective.project_url, Math.min(effective.timeout_ms || 90000, 90000));
     return safeOutput({ presentUrl });
   } catch (error: any) {
     return claudeDesignErrorOutput(error, { presentUrl: "" });
   } finally {
-    await backend?.finalize?.().catch?.(() => undefined);
     releaseProfileLease(effective.profile, lease);
   }
 }

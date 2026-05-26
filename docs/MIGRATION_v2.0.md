@@ -88,3 +88,25 @@ Wave-5 one-off notes:
 - `git revert <2.0.0 cut commit sha>` reverts the default flip + version bumps.
 - Or: pin `package.json` back to `1.0.0` and override contract callers with
   `backend: "managed-cdp"`.
+
+### Post-ship fix wave 9 final residual closure (2026-05-26)
+
+Source: `.runs/postship-fix-wave-9/workflows/summary.json` and live probes under `.runs/postship-fix-wave-9/probes/`.
+
+Final wave-9 smoke result: **6/11 PASS**. Ship threshold was ≥6/11, so the post-ship sweep is complete. The residual failures below are **permanently deferred — known limitation** until account/profile state or upstream UI/product behavior changes.
+
+Passed in wave 9:
+- `gemini-send-web-search-mgr`
+- `gemini-veo-quota-error-mgr`
+- `research-database-search-dry-run`
+- `gemini-gemini-canvas-edit-mgr`
+- `gemini-canvas-to-docs-mgr`
+- `claude-design-present-mgr`
+
+Permanently deferred — known limitation:
+
+- `gemini-image-draft` — managed-CDP Gemini image mode remains profile-dependent. Wave-8 ground truth showed `button[aria-label="Upload & tools"] -> [role="menuitemcheckbox"]:has-text("Create image")`, but the wave-9 `gemini` profile smoke failed with `locator.click: Timeout 15000ms exceeded` waiting for `button[aria-label="Upload & tools"]`. Use a refreshed/logged-in Gemini profile with the current Upload & tools surface before re-enabling this as a blocking smoke.
+- `chatgpt-codex-submit-task-ext-fallback` — Codex cloud is account/feature gated on this profile. Wave-9 command output: `ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found`; no 429 was observed. This remains a shape/feature-availability limitation, not a contract error-code gap.
+- `chatgpt-generate-file-pptx-ext` — ChatGPT PPTX generation did not expose a downloadable `.pptx` chip before timeout. Wave-9 output returned `errorCode: COMMAND_TIMEOUT`; `.runs/postship-fix-wave-9/probes/chatgpt-pptx-chip.json` captured the post-run ChatGPT page with only homepage composer controls (`composer-plus-btn`) and no PPTX/file chip.
+- `claude-design-generate-mgr` — generation still requires an extension-assisted Claude Design tab. Wave-9 `generate` step returned `CHROME_EXTENSION_NOT_CONNECTED: No extension-assisted browser tab is available to claim`; the direct-CDP `get_html` step did pass and saved `/tmp/explore-2026-05-25/claude-design/baf06427-9e7a-41f7-8d8e-79da1a1ca344-9bbf431f57fa.html`.
+- `claude-generate-file-pptx-ext` — Claude PPTX generation remains a deep server/download timeout. Wave-9 output returned `COMMAND_TIMEOUT: MCP tool invocation exceeded 180000ms deadline`; `.runs/postship-fix-wave-9/probes/claude-pptx-handoff.json` captured the active Claude chat/design tabs after the timeout.

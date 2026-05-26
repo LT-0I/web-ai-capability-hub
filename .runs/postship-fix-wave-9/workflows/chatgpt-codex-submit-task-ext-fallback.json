@@ -1,0 +1,121 @@
+{
+  "ok": false,
+  "plan": {
+    "id": "chatgpt-codex-submit-task-ext-fallback",
+    "target": "chatgpt",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T12:03:33.316Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:codex:submit-task",
+            "--profile",
+            "chatgpt",
+            "--env-name",
+            "LT-0I/CN-",
+            "--prompt",
+            "Add a one-line comment to README.md",
+            "--confirmed",
+            "--json"
+          ],
+          "timeoutMs": 300000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "task_id",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-codex-submit-task-ext-fallback",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Submit a ChatGPT Codex task to the allow-listed env",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 300000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-codex-submit-task-ext-fallback.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": false,
+      "message": "command gate failed: exit_code 1 !== 0; json_path task_id empty",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:codex:submit-task",
+          "--profile",
+          "chatgpt",
+          "--env-name",
+          "LT-0I/CN-",
+          "--prompt",
+          "Add a one-line comment to README.md",
+          "--confirmed",
+          "--json"
+        ],
+        "exit_code": 1,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 1492,
+        "stdout": "{\n  \"ok\": false,\n  \"status\": \"failed\",\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"error_code\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found\"\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "ok": false,
+          "status": "failed",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found"
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 1,
+            "ok": false
+          },
+          "json_path": [
+            {
+              "path": "task_id",
+              "ok": false,
+              "reasons": [
+                "empty"
+              ]
+            }
+          ]
+        },
+        "status": "failed",
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "error_code": "ELEMENT_NOT_FOUND",
+        "message": "ELEMENT_NOT_FOUND: ChatGPT Codex composer was not found"
+      }
+    }
+  ],
+  "runId": "run_6d6a8b51d8b4df84"
+}

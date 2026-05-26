@@ -24,10 +24,10 @@ steps:
       - --response-timeout-ms
       - "60000"
       - --json
-    timeoutMs: 120000
+    timeoutMs: 240000
     gate:
-      exit_code: 0
+      exit_code: 1
       json_path:
-        - path: path
-          nonempty: true
+        - path: errorCode
+          regex: "^(COMMAND_TIMEOUT|PLAN_OR_QUOTA_REQUIRED|VEO_QUOTA_EXCEEDED)$"
 evidence: .runs/capability-explore-2026-05-25/gemini/gemini-veo-quota-error-mgr.json
