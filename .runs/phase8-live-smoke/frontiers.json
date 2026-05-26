@@ -1,0 +1,35 @@
+{
+  "db": "frontiers",
+  "fixture": "articles/10.3389/fphys.2024.001/full",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/frontiers",
+  "args": [
+    "dist/src/cli.js",
+    "webai:frontiers:download-pdf",
+    "--doc-id",
+    "articles/10.3389/fphys.2024.001/full",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/frontiers",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:17.053Z",
+  "durationMs": 1539,
+  "command": "timeout 90 node dist/src/cli.js webai:frontiers:download-pdf --doc-id articles/10.3389/fphys.2024.001/full --output-dir /tmp/phase8-live-smoke-2026-05-25/frontiers --output-json",
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ARTIFACT_DOWNLOAD_TIMEOUT\",\n  \"message\": \"frontiers PDF fetch returned HTTP 404\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": false,
+    "task_id": null,
+    "path": null,
+    "sha256": null,
+    "size": null,
+    "downloaded_at": null,
+    "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+    "message": "frontiers PDF fetch returned HTTP 404"
+  },
+  "classification": "TIMEOUT",
+  "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+  "message": "frontiers PDF fetch returned HTTP 404"
+}

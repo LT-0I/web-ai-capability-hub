@@ -1,0 +1,39 @@
+{
+  "db": "aps",
+  "fixture": "10.1000/test-probe",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/aps",
+  "args": [
+    "dist/src/cli.js",
+    "webai:aps:download-pdf",
+    "--doc-id",
+    "10.1000/test-probe",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/aps",
+    "--pdf-url",
+    "https://doi.org/10.1000/test-probe",
+    "--profile",
+    "research-aps-phase8-live-smoke-missing",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:16.799Z",
+  "durationMs": 254,
+  "command": "timeout 90 node dist/src/cli.js webai:aps:download-pdf --doc-id 10.1000/test-probe --output-dir /tmp/phase8-live-smoke-2026-05-25/aps --pdf-url https://doi.org/10.1000/test-probe --profile research-aps-phase8-live-smoke-missing --output-json",
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"PROFILE_NOT_FOUND\",\n  \"message\": \"Authenticated research browser profile \\\"research-aps-phase8-live-smoke-missing\\\" is not registered or initialized; refusing to spawn a fresh logged-out Chrome for paywalled literature download\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": false,
+    "task_id": null,
+    "path": null,
+    "sha256": null,
+    "size": null,
+    "downloaded_at": null,
+    "errorCode": "PROFILE_NOT_FOUND",
+    "message": "Authenticated research browser profile \"research-aps-phase8-live-smoke-missing\" is not registered or initialized; refusing to spawn a fresh logged-out Chrome for paywalled literature download"
+  },
+  "classification": "NO_AUTH",
+  "errorCode": "PROFILE_NOT_FOUND",
+  "message": "Authenticated research browser profile \"research-aps-phase8-live-smoke-missing\" is not registered or initialized; refusing to spawn a fresh logged-out Chrome for paywalled literature download"
+}

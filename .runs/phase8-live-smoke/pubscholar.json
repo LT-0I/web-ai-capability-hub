@@ -1,0 +1,35 @@
+{
+  "db": "pubscholar",
+  "fixture": "test-probe-2026-05-25",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/pubscholar",
+  "args": [
+    "dist/src/cli.js",
+    "webai:pubscholar:download-pdf",
+    "--doc-id",
+    "test-probe-2026-05-25",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/pubscholar",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:17.491Z",
+  "durationMs": 413,
+  "command": "timeout 90 node dist/src/cli.js webai:pubscholar:download-pdf --doc-id test-probe-2026-05-25 --output-dir /tmp/phase8-live-smoke-2026-05-25/pubscholar --output-json",
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"PubScholar PDF link was not found in article page\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": false,
+    "task_id": null,
+    "path": null,
+    "sha256": null,
+    "size": null,
+    "downloaded_at": null,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "message": "PubScholar PDF link was not found in article page"
+  },
+  "classification": "URL_RESOLVE_FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "PubScholar PDF link was not found in article page"
+}

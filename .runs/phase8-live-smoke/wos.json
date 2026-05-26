@@ -1,0 +1,35 @@
+{
+  "db": "wos",
+  "fixture": "test-probe-2026-05-25",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/wos",
+  "args": [
+    "dist/src/cli.js",
+    "webai:wos:download-pdf",
+    "--doc-id",
+    "test-probe-2026-05-25",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/wos",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:18.097Z",
+  "durationMs": 149,
+  "command": "timeout 90 node dist/src/cli.js webai:wos:download-pdf --doc-id test-probe-2026-05-25 --output-dir /tmp/phase8-live-smoke-2026-05-25/wos --output-json",
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"INVALID_ARGS\",\n  \"message\": \"wos is bibliographic/metadata-only; use the resolved DOI URL from research_wos_get_metadata to call the appropriate publisher driver (e.g. webai_acm_download_pdf, webai_wiley_download_pdf, ...)\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": false,
+    "task_id": null,
+    "path": null,
+    "sha256": null,
+    "size": null,
+    "downloaded_at": null,
+    "errorCode": "INVALID_ARGS",
+    "message": "wos is bibliographic/metadata-only; use the resolved DOI URL from research_wos_get_metadata to call the appropriate publisher driver (e.g. webai_acm_download_pdf, webai_wiley_download_pdf, ...)"
+  },
+  "classification": "INVALID_ARGS_EXPECTED",
+  "errorCode": "INVALID_ARGS",
+  "message": "wos is bibliographic/metadata-only; use the resolved DOI URL from research_wos_get_metadata to call the appropriate publisher driver (e.g. webai_acm_download_pdf, webai_wiley_download_pdf, ...)"
+}

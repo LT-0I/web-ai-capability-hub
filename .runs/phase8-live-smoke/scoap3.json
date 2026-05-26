@@ -1,0 +1,35 @@
+{
+  "db": "scoap3",
+  "fixture": "74531",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/scoap3",
+  "args": [
+    "dist/src/cli.js",
+    "webai:scoap3:download-pdf",
+    "--doc-id",
+    "74531",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/scoap3",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:17.665Z",
+  "durationMs": 2494,
+  "command": "timeout 90 node dist/src/cli.js webai:scoap3:download-pdf --doc-id 74531 --output-dir /tmp/phase8-live-smoke-2026-05-25/scoap3 --output-json",
+  "exitCode": 1,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": false,\n  \"task_id\": null,\n  \"path\": null,\n  \"sha256\": null,\n  \"size\": null,\n  \"downloaded_at\": null,\n  \"errorCode\": \"ELEMENT_NOT_FOUND\",\n  \"message\": \"SCOAP3 record did not contain files[0].url\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": false,
+    "task_id": null,
+    "path": null,
+    "sha256": null,
+    "size": null,
+    "downloaded_at": null,
+    "errorCode": "ELEMENT_NOT_FOUND",
+    "message": "SCOAP3 record did not contain files[0].url"
+  },
+  "classification": "URL_RESOLVE_FAIL",
+  "errorCode": "ELEMENT_NOT_FOUND",
+  "message": "SCOAP3 record did not contain files[0].url"
+}

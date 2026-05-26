@@ -1,0 +1,44 @@
+{
+  "db": "arxiv",
+  "fixture": "2401.04088",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/arxiv",
+  "args": [
+    "dist/src/cli.js",
+    "webai:arxiv:download-pdf",
+    "--doc-id",
+    "2401.04088",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/arxiv",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:16.800Z",
+  "durationMs": 1337,
+  "command": "timeout 90 node dist/src/cli.js webai:arxiv:download-pdf --doc-id 2401.04088 --output-dir /tmp/phase8-live-smoke-2026-05-25/arxiv --output-json",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"/tmp/phase8-live-smoke-2026-05-25/arxiv/2401.04088.pdf\",\n  \"sha256\": \"f8bbf0e9d979b7a8ce7be65119266545a229a85b57e077d8bd048e458bb642da\",\n  \"size\": 2475990,\n  \"downloaded_at\": 1779779478117,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": true,
+    "task_id": null,
+    "path": "/tmp/phase8-live-smoke-2026-05-25/arxiv/2401.04088.pdf",
+    "sha256": "f8bbf0e9d979b7a8ce7be65119266545a229a85b57e077d8bd048e458bb642da",
+    "size": 2475990,
+    "downloaded_at": 1779779478117,
+    "errorCode": null,
+    "message": "Literature PDF downloaded"
+  },
+  "classification": "GREEN",
+  "errorCode": null,
+  "message": "Literature PDF downloaded (2401.04088.pdf 2475990 bytes)",
+  "outputFile": {
+    "path": "/tmp/phase8-live-smoke-2026-05-25/arxiv/2401.04088.pdf",
+    "size": 2475990,
+    "sha256": "f8bbf0e9d979b7a8ce7be65119266545a229a85b57e077d8bd048e458bb642da"
+  },
+  "artifactCheck": {
+    "pdfMagicOk": true,
+    "checkedAt": "2026-05-26T07:12:39.713Z"
+  }
+}

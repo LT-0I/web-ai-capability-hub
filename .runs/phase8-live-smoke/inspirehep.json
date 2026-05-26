@@ -1,0 +1,44 @@
+{
+  "db": "inspirehep",
+  "fixture": "1234567",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/inspirehep",
+  "args": [
+    "dist/src/cli.js",
+    "webai:inspirehep:download-pdf",
+    "--doc-id",
+    "1234567",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/inspirehep",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:17.206Z",
+  "durationMs": 23972,
+  "command": "timeout 90 node dist/src/cli.js webai:inspirehep:download-pdf --doc-id 1234567 --output-dir /tmp/phase8-live-smoke-2026-05-25/inspirehep --output-json",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"/tmp/phase8-live-smoke-2026-05-25/inspirehep/1234567.pdf\",\n  \"sha256\": \"f474f405e12d6aabaac7628e917e180a26d6e1ecd6be4b7c6a28a5dbce91c91f\",\n  \"size\": 1386119,\n  \"downloaded_at\": 1779779501128,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": true,
+    "task_id": null,
+    "path": "/tmp/phase8-live-smoke-2026-05-25/inspirehep/1234567.pdf",
+    "sha256": "f474f405e12d6aabaac7628e917e180a26d6e1ecd6be4b7c6a28a5dbce91c91f",
+    "size": 1386119,
+    "downloaded_at": 1779779501128,
+    "errorCode": null,
+    "message": "Literature PDF downloaded"
+  },
+  "classification": "GREEN",
+  "errorCode": null,
+  "message": "Literature PDF downloaded (1234567.pdf 1386119 bytes)",
+  "outputFile": {
+    "path": "/tmp/phase8-live-smoke-2026-05-25/inspirehep/1234567.pdf",
+    "size": 1386119,
+    "sha256": "f474f405e12d6aabaac7628e917e180a26d6e1ecd6be4b7c6a28a5dbce91c91f"
+  },
+  "artifactCheck": {
+    "pdfMagicOk": true,
+    "checkedAt": "2026-05-26T07:12:39.713Z"
+  }
+}

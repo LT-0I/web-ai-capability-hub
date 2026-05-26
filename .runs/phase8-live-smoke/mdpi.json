@@ -1,0 +1,45 @@
+{
+  "db": "mdpi",
+  "fixture": "2076-3417/15/1/2",
+  "outputDir": "/tmp/phase8-live-smoke-2026-05-25/mdpi",
+  "args": [
+    "dist/src/cli.js",
+    "webai:mdpi:download-pdf",
+    "--doc-id",
+    "2076-3417/15/1/2",
+    "--output-dir",
+    "/tmp/phase8-live-smoke-2026-05-25/mdpi",
+    "--output-json"
+  ],
+  "startedAt": "2026-05-26T07:11:17.338Z",
+  "durationMs": 1445,
+  "command": "timeout 90 node dist/src/cli.js webai:mdpi:download-pdf --doc-id 2076-3417/15/1/2 --output-dir /tmp/phase8-live-smoke-2026-05-25/mdpi --output-json",
+  "exitCode": 0,
+  "signal": null,
+  "timedOut": false,
+  "stdout": "{\n  \"ok\": true,\n  \"task_id\": null,\n  \"path\": \"/tmp/phase8-live-smoke-2026-05-25/mdpi/2076-3417-15-1-2.pdf\",\n  \"sha256\": \"d5688a5542336d6ac0730378f75c77253dd17792de823c250a35c4a7881526b9\",\n  \"size\": 2217,\n  \"downloaded_at\": 1779779478701,\n  \"errorCode\": null,\n  \"message\": \"Literature PDF downloaded\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "ok": true,
+    "task_id": null,
+    "path": "/tmp/phase8-live-smoke-2026-05-25/mdpi/2076-3417-15-1-2.pdf",
+    "sha256": "d5688a5542336d6ac0730378f75c77253dd17792de823c250a35c4a7881526b9",
+    "size": 2217,
+    "downloaded_at": 1779779478701,
+    "errorCode": null,
+    "message": "Literature PDF downloaded"
+  },
+  "classification": "URL_RESOLVE_FAIL",
+  "errorCode": null,
+  "message": "Tool returned ok but saved non-PDF artifact at /tmp/phase8-live-smoke-2026-05-25/mdpi/2076-3417-15-1-2.pdf",
+  "outputFile": {
+    "path": "/tmp/phase8-live-smoke-2026-05-25/mdpi/2076-3417-15-1-2.pdf",
+    "size": 2217,
+    "sha256": "d5688a5542336d6ac0730378f75c77253dd17792de823c250a35c4a7881526b9"
+  },
+  "artifactCheck": {
+    "pdfMagicOk": false,
+    "checkedAt": "2026-05-26T07:12:39.713Z"
+  },
+  "previousClassification": "GREEN"
+}
