@@ -13,10 +13,10 @@ steps:
       - --profile
       - gemini-9225
       - --prompt
-      - "Use Canvas to draft a simple HTML page with a heading \"Wave 9 Canvas Fixture\" and one paragraph. Do not open external apps."
+      - "Use Canvas to draft an editable document titled \"Wave 12 Canvas Fixture\". Include a heading \"Wave 12 Canvas Fixture\" and one short paragraph about reliable automation. Make it a document, not code or an app. Do not open external apps."
       - --confirmed
       - --edit-text
-      - "Change the heading text to \"Wave 9 Canvas Fixture Updated\" and keep the paragraph."
+      - "Change the heading text to \"Wave 12 Canvas Fixture Updated\" and keep the paragraph."
       - --response-timeout-ms
       - "90000"
       - --json

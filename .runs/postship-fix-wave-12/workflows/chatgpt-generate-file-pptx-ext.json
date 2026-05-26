@@ -1,0 +1,144 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "chatgpt-generate-file-pptx-ext",
+    "target": "chatgpt",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T15:26:54.208Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:chatgpt:generate-file",
+            "--profile",
+            "chatgpt",
+            "--backend",
+            "extension-assisted-cdp",
+            "--prompt",
+            "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+            "--expected-extension",
+            "pptx",
+            "--download-dir",
+            "/tmp/explore-2026-05-25/chatgpt",
+            "--artifact-class",
+            "document",
+            "--json"
+          ],
+          "timeoutMs": 420000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "path",
+                "nonempty": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "chatgpt-generate-file-pptx-ext",
+      "target": "chatgpt",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Generate a downloadable .pptx file in ChatGPT via the driver ZIP-bundle strategy",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 420000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/chatgpt/chatgpt-generate-file-pptx-ext.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:chatgpt:generate-file",
+          "--profile",
+          "chatgpt",
+          "--backend",
+          "extension-assisted-cdp",
+          "--prompt",
+          "Create a 5-slide pptx presentation about renewable energy basics, with one title slide and 4 content slides. Deliver as a downloadable .pptx.",
+          "--expected-extension",
+          "pptx",
+          "--download-dir",
+          "/tmp/explore-2026-05-25/chatgpt",
+          "--artifact-class",
+          "document",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 302389,
+        "stdout": "{\n  \"path\": \"/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics.pptx\",\n  \"sha256\": \"07a7dc579ff1fda2180b12336a83c6661dc75168be93a34823d1df3c45e83b74\",\n  \"size_bytes\": 8210720,\n  \"download_filename\": \"renewable_energy_basics.pptx\",\n  \"artifact_name\": \"renewable_energy_basics.pptx\",\n  \"suggested_filename\": \"renewable_energy_basics.pptx\",\n  \"zip_path\": \"/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics_bundle.zip\",\n  \"zip_sha256\": \"a00cb0a0ef4e40bbc11f7afb76741504eb6ef12e6396c45f72123a205bd543e5\",\n  \"zip_download_filename\": \"renewable_energy_basics_bundle.zip\",\n  \"zip_entry_name\": \"renewable_energy_basics.pptx\",\n  \"extracted_from_zip\": true,\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "path": "/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics.pptx",
+          "sha256": "07a7dc579ff1fda2180b12336a83c6661dc75168be93a34823d1df3c45e83b74",
+          "size_bytes": 8210720,
+          "download_filename": "renewable_energy_basics.pptx",
+          "artifact_name": "renewable_energy_basics.pptx",
+          "suggested_filename": "renewable_energy_basics.pptx",
+          "zip_path": "/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics_bundle.zip",
+          "zip_sha256": "a00cb0a0ef4e40bbc11f7afb76741504eb6ef12e6396c45f72123a205bd543e5",
+          "zip_download_filename": "renewable_energy_basics_bundle.zip",
+          "zip_entry_name": "renewable_energy_basics.pptx",
+          "extracted_from_zip": true,
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "path",
+              "actual": "/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics.pptx",
+              "ok": true
+            }
+          ]
+        },
+        "path": "/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics.pptx",
+        "sha256": "07a7dc579ff1fda2180b12336a83c6661dc75168be93a34823d1df3c45e83b74",
+        "size_bytes": 8210720,
+        "download_filename": "renewable_energy_basics.pptx",
+        "artifact_name": "renewable_energy_basics.pptx",
+        "suggested_filename": "renewable_energy_basics.pptx",
+        "zip_path": "/tmp/explore-2026-05-25/chatgpt/renewable_energy_basics_bundle.zip",
+        "zip_sha256": "a00cb0a0ef4e40bbc11f7afb76741504eb6ef12e6396c45f72123a205bd543e5",
+        "zip_download_filename": "renewable_energy_basics_bundle.zip",
+        "zip_entry_name": "renewable_energy_basics.pptx",
+        "extracted_from_zip": true,
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_21183eb9ff2cfd24"
+}

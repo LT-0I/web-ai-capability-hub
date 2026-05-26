@@ -1,9 +1,9 @@
-# Rewritten 2026-05-25 from codex C4 draft. FAIL_CLOSED_EXT_BACKEND status; gate honors original success criteria.
+# Rewritten 2026-05-25 from codex C4 draft. Wave 12 driver bundles PPTX+summary.md as ZIP, then extracts PPTX.
 id: chatgpt-generate-file-pptx-ext
 target: chatgpt
 profile: chatgpt
 mode: automatic
-description: Generate a downloadable .pptx file in ChatGPT
+description: Generate a downloadable .pptx file in ChatGPT via the driver ZIP-bundle strategy
 steps:
   - id: invoke-cli
     command:
@@ -23,7 +23,7 @@ steps:
       - --artifact-class
       - document
       - --json
-    timeoutMs: 240000
+    timeoutMs: 420000
     gate:
       exit_code: 0
       json_path:

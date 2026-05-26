@@ -1,0 +1,130 @@
+{
+  "ok": true,
+  "plan": {
+    "id": "gemini-canvas-to-docs-mgr",
+    "target": "gemini",
+    "profile": "<profile>",
+    "mode": "automatic",
+    "compiledAt": "2026-05-26T15:32:14.814Z",
+    "actions": [
+      {
+        "stepId": "invoke-cli",
+        "action": {
+          "type": "wait",
+          "confirmed": true,
+          "commandStep": true
+        },
+        "requiresApproval": false,
+        "resolvedSelectors": [],
+        "idempotent": false,
+        "command": {
+          "argv": [
+            "node",
+            "dist/src/cli.js",
+            "webai:gemini:canvas-to-docs",
+            "--profile",
+            "gemini-9225",
+            "--tab-url-contains",
+            "gemini.google.com",
+            "--prompt",
+            "Generate a 200-word essay about deep learning, then export to Google Docs",
+            "--title",
+            "Capability Probe Doc",
+            "--response-timeout-ms",
+            "300000",
+            "--timeout-ms",
+            "60000",
+            "--confirmed",
+            "--json"
+          ],
+          "timeoutMs": 360000,
+          "gate": {
+            "exit_code": 0,
+            "json_path": [
+              {
+                "path": "docs_url",
+                "regex": "docs\\.google\\.com"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "definition": {
+      "id": "gemini-canvas-to-docs-mgr",
+      "target": "gemini",
+      "profile": "<profile>",
+      "mode": "automatic",
+      "description": "Export a Gemini Canvas document to Google Docs through the Canvas share/export menu",
+      "steps": [
+        {
+          "id": "invoke-cli",
+          "command": "<circular>",
+          "timeoutMs": 360000,
+          "gate": "<circular>"
+        }
+      ],
+      "evidence": ".runs/capability-explore-2026-05-25/gemini/gemini-canvas-to-docs-mgr.json"
+    }
+  },
+  "results": [
+    {
+      "stepId": "invoke-cli",
+      "ok": true,
+      "message": "command gate passed",
+      "data": {
+        "argv": [
+          "node",
+          "dist/src/cli.js",
+          "webai:gemini:canvas-to-docs",
+          "--profile",
+          "gemini-9225",
+          "--tab-url-contains",
+          "gemini.google.com",
+          "--prompt",
+          "Generate a 200-word essay about deep learning, then export to Google Docs",
+          "--title",
+          "Capability Probe Doc",
+          "--response-timeout-ms",
+          "300000",
+          "--timeout-ms",
+          "60000",
+          "--confirmed",
+          "--json"
+        ],
+        "exit_code": 0,
+        "signal": null,
+        "timed_out": false,
+        "elapsed_ms": 21719,
+        "stdout": "{\n  \"docs_url\": \"https://docs.google.com/document/d/13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU/edit\",\n  \"docs_doc_id\": \"13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU\",\n  \"title\": \"Capability Probe Doc\",\n  \"errorCode\": null\n}\n",
+        "stderr": "",
+        "stdout_parsed": {
+          "docs_url": "https://docs.google.com/document/d/13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU/edit",
+          "docs_doc_id": "13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU",
+          "title": "Capability Probe Doc",
+          "errorCode": null
+        },
+        "gate": {
+          "exit_code": {
+            "expected": 0,
+            "actual": 0,
+            "ok": true
+          },
+          "json_path": [
+            {
+              "path": "docs_url",
+              "actual": "https://docs.google.com/document/d/13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU/edit",
+              "ok": true
+            }
+          ]
+        },
+        "docs_url": "https://docs.google.com/document/d/13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU/edit",
+        "docs_doc_id": "13RL0lWNbQ2XHJuCff--UNIoGTmH7IsTipUdItVVnqjU",
+        "title": "Capability Probe Doc",
+        "errorCode": null
+      }
+    }
+  ],
+  "runId": "run_70b7c30aa3fb8987"
+}

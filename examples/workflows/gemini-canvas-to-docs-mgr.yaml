@@ -1,9 +1,9 @@
-# Rewritten 2026-05-25 from codex G6 draft. FAIL_CLOSED_UNSUPPORTED with UNSUPPORTED_FEATURE.
+# Rewritten 2026-05-25 from codex G6 draft. Wave 12 drives Canvas share/export -> Export to Docs.
 id: gemini-canvas-to-docs-mgr
 target: gemini
 profile: gemini-9225
 mode: automatic
-description: Attempt to export a Gemini Canvas to Google Docs (fail-closed; UNSUPPORTED_FEATURE)
+description: Export a Gemini Canvas document to Google Docs through the Canvas share/export menu
 steps:
   - id: invoke-cli
     command:

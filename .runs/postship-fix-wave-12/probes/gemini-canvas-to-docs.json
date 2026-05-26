@@ -1,0 +1,341 @@
+{
+  "capturedAt": "2026-05-26T15:08:27.034Z",
+  "cdp": "http://127.0.0.1:9225",
+  "prompt": "Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps.",
+  "ok": true,
+  "activation": {
+    "alreadyActive": false,
+    "beforeChecked": "false"
+  },
+  "shareButton": {
+    "selector": "[data-test-id=\"share-button\"] button",
+    "rootKind": "page",
+    "frameUrl": "https://gemini.google.com/app/2dbeada0ec521739",
+    "text": ""
+  },
+  "frameScanBeforeShare": [
+    {
+      "frameUrl": "https://gemini.google.com/app/2dbeada0ec521739",
+      "count": 13,
+      "items": [
+        {
+          "tag": "BARD-SIDENAV-CONTAINER",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "bard-sidenav-container",
+          "text": "Conversation with Gemini You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. Gemini said I have drafted the Wave 12 Export Probe document on wind power for you. It provides",
+          "className": "",
+          "outerHTML": "<bard-sidenav-container _ngcontent-ng-c2351109136=\"\" data-test-id=\"bard-sidenav-container\" _nghost-ng-c3522183994=\"\"><bard-sidenav _ngcontent-ng-c2351109136=\"\" role=\"navigation\" _nghost-ng-c2457904541=\"\" class=\"ng-tns-c2457904541-3 ng-trigger ng-trigger-widthTransition collapsed mystuff-side-nav-update disable-onload-animations ng-star-inserted\" aria-label=\"Side Navigation\" jslog=\"173918;track:impression,attention\" style=\"width: var(--bard-sidenav-closed-width);\" data-hveid=\"0\" decode-data-ved=\"1\" data-ved=\"0CAAQ3s4KahcKEwj0oPnwndeUAxUAAAAAHQAAAAAQBg\"><!----><side-navigation-content _ngcontent-ng-c2351109136=\"\" class=\"ia-redesign rail lr26 sidenav-mavatar-migration-enabled ng-star-inserted\" _nghost-ng-c1668143411=\"\" style=\"--side-nav-transition-duration: 300ms; --side-nav-open-close-animation-curve: cubic-bezier(0.2, 0, 0, 1); --side-nav-open-item-opacity-duration: 150ms; --side-nav-open-item-opacity-delay: 100ms; --side-nav-close-item-opacity-duration: 100ms; --side-nav-open-close-opacity-animation-curve: cubic-bezier(0, 0, 0, 0);\"><div _ngcontent-ng-c1668143411=\"\" class=\"sidenav-with-history-container disable-onload-animations collapsed side-nav-mystuff-update ng-star-inserted co"
+        },
+        {
+          "tag": "INFINITE-SCROLLER",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "chat-history-container",
+          "text": "You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. Gemini said I have drafted the Wave 12 Export Probe document on wind power for you. It provides a concise summary of off",
+          "className": "chat-history enable-2026q1-formatting-improvements enable-lr26-markdown-styling lm immersives-open",
+          "outerHTML": "<infinite-scroller _ngcontent-ng-c2444055489=\"\" data-test-id=\"chat-history-container\" class=\"chat-history enable-2026q1-formatting-improvements enable-lr26-markdown-styling lm immersives-open\" _nghost-ng-c3013894376=\"\" jslog=\"268632;track:impression,attention\" data-lhcontainer=\"1\" data-hveid=\"1\"><!----><!----><!----><!----><!----><!----><!----><!----><!----><div _ngcontent-ng-c2444055489=\"\" class=\"conversation-container message-actions-hover-boundary ng-star-inserted\" id=\"6879e019069d4a81\" style=\"min-height: 430px;\"><user-query _ngcontent-ng-c2444055489=\"\" _nghost-ng-c508734966=\"\" class=\"ng-star-inserted\"><span _ngcontent-ng-c508734966=\"\" class=\"user-query-container\"><user-query-content _ngcontent-ng-c508734966=\"\" class=\"user-query-container enable-2026q1-formatting-improvements enable-luminous-prompt-bubble enable-luminous-edit-box-updates\" _nghost-ng-c3505741425=\"\" style=\"--max-lines-for-collapse-count: 5;\"><div _ngcontent-ng-c3505741425=\"\" class=\"user-query-container\"><div _ngcontent-ng-c3505741425=\"\" class=\"file-preview-container ng-star-inserted\"><!----><!----><!----><!----><!----><!----></div><!----><div _ngcontent-ng-c3505741425=\"\" class=\"query-content ng-star-inserted\" id=\""
+        },
+        {
+          "tag": "SPAN",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "luminous-collapsed-bubble",
+          "text": "You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps.",
+          "className": "user-query-bubble-with-background enable-2026q1-formatting-improvements ng-star-inserted",
+          "outerHTML": "<span _ngcontent-ng-c3505741425=\"\" data-test-id=\"luminous-collapsed-bubble\" class=\"user-query-bubble-with-background enable-2026q1-formatting-improvements ng-star-inserted\"><!----><span _ngcontent-ng-c3505741425=\"\" class=\"horizontal-container ng-star-inserted\"><div _ngcontent-ng-c3505741425=\"\" role=\"heading\" aria-level=\"2\" class=\"query-text gds-body-l\" dir=\"ltr\"><span _ngcontent-ng-c3505741425=\"\" class=\"cdk-visually-hidden screen-reader-user-query-label\"> You said </span><p _ngcontent-ng-c3505741425=\"\" class=\"query-text-line ng-star-inserted\"> Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. <!----><!----><!----></p><!----></div><!----></span><!----><!----></span>"
+        },
+        {
+          "tag": "GEM-PROCESSING-CARD",
+          "role": "status",
+          "ariaLabel": null,
+          "dataTestId": "gem-processing-card",
+          "text": "Wave 12 Export Probe Generating...",
+          "className": "selected processing gem-shimmer-active ng-star-inserted",
+          "outerHTML": "<gem-processing-card _ngcontent-ng-c2705009947=\"\" data-test-id=\"gem-processing-card\" _nghost-ng-c2144417598=\"\" jslog=\"275420;track:impression,attention;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;56fdd199312815e2&quot;],null,null,null,null,null,null,null,null,null,null,null,[2]]\" role=\"status\" aria-live=\"polite\" class=\"selected processing gem-shimmer-active ng-star-inserted\" data-hveid=\"0\" decode-data-ved=\"1\" data-ved=\"0CAAQ3OcQahcKEwj0oPnwndeUAxUAAAAAHQAAAAAQHQ\"><div _ngcontent-ng-c2144417598=\"\" class=\"container\"><div _ngcontent-ng-c2144417598=\"\" class=\"header\"><gem-icon _ngcontent-ng-c2144417598=\"\" size=\"xlarge\" class=\"status-icon\" _nghost-ng-c206654976=\"\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-xl lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"article\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"article\"></mat-icon><!----><!----><!----></gem-icon><span _ngcontent-ng-c2144417598=\"\" class=\"card-title gds-body-l\">Wave 12 Export Probe</span></div><div _ngconte"
+        },
+        {
+          "tag": "GEM-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "retry-without-tool-button",
+          "text": "Try again without Canvas",
+          "className": "retry-without-tool-button gem-button gem-button-badge-size-small gem-button-size-small gem-button-type-on-surface lm-enabled ng-star-inserted",
+          "outerHTML": "<gem-button _ngcontent-ng-c2929843354=\"\" theme=\"lm\" type=\"onSurface\" data-test-id=\"retry-without-tool-button\" class=\"retry-without-tool-button gem-button gem-button-badge-size-small gem-button-size-small gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c2305901243=\"\"><!----><button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" jslog=\"253022;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,null,null,null,null,null,1,null,null,null,0]];mutable:true\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-m\"> Try again without Canvas </span><!----></span><!----></span><!----><span class=\"mat-focus-indicator\"></span><span class=\"mat-mdc-button-touch-"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": null,
+          "text": "Try again without Canvas",
+          "className": "mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted",
+          "outerHTML": "<button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" jslog=\"253022;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,null,null,null,null,null,1,null,null,null,0]];mutable:true\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-m\"> Try again without Canvas </span><!----></span><!----></span><!----><span class=\"mat-focus-indicator\"></span><span class=\"mat-mdc-button-touch-target\"></span></button>"
+        },
+        {
+          "tag": "GEM-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "deselect-drawer-item-gem-button",
+          "text": "Canvas",
+          "className": "selected-item-gem-button ng-tns-c3823147327-8 pointer-auto gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-tonal lm-enabled has-icon has-secondary-icon ng-star-inserted",
+          "outerHTML": "<gem-button _ngcontent-ng-c3823147327=\"\" type=\"tonal\" size=\"xsmall\" data-test-id=\"deselect-drawer-item-gem-button\" class=\"selected-item-gem-button ng-tns-c3823147327-8 pointer-auto gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-tonal lm-enabled has-icon has-secondary-icon ng-star-inserted\" _nghost-ng-c2305901243=\"\" style=\"\"><!----><button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" aria-label=\"Deselect Canvas\" jslog=\"305700;track:generic_click,impression\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><gem-icon _ngcontent-ng-c2305901243=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-s lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Deselect Canvas",
+          "dataTestId": null,
+          "text": "Canvas",
+          "className": "mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted",
+          "outerHTML": "<button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" aria-label=\"Deselect Canvas\" jslog=\"305700;track:generic_click,impression\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><gem-icon _ngcontent-ng-c2305901243=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-s lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"canvas\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"canvas\"></mat-icon><!----><!----><!----></gem-icon><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-s\">Canvas</span><gem-icon _ngcontent-ng-c2305901243=\"\" class=\"on-focus-secondary-icon ng-star-inserted\" _nghost-ng-c206654976=\"\"><mat-icon"
+        },
+        {
+          "tag": "SHARE-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "consolidated-share-button",
+          "text": "",
+          "className": "ng-star-inserted",
+          "outerHTML": "<share-button _ngcontent-ng-c777040646=\"\" gemmenutrigger=\"\" cdkoverlayorigin=\"\" data-test-id=\"consolidated-share-button\" _nghost-ng-c2149246061=\"\" tabindex=\"0\" aria-disabled=\"false\" aria-haspopup=\"true\" aria-expanded=\"false\" aria-controls=\"ng-menu-a86264-4\" class=\"ng-star-inserted\"><!----><!----><gem-icon-button _ngcontent-ng-c2149246061=\"\" theme=\"lm\" type=\"onSurface\" size=\"xsmall\" gemtooltipposition=\"below\" data-test-id=\"share-button\" class=\"mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-disabled gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c890751806=\"\" aria-expanded=\"false\"><!----><button _ngcontent-ng-c890751806=\"\" maticonbutton=\"\" matbadgeposition=\"after\" class=\"mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-mdc-button-disabled mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-centered=\"\" mat-ripple-loader-disabled=\"\" aria-label=\"\" jslog=\"250628;track:generic_click,impression;BardVeMetadataKey:[n"
+        },
+        {
+          "tag": "GEM-ICON-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "share-button",
+          "text": "",
+          "className": "mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-disabled gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted",
+          "outerHTML": "<gem-icon-button _ngcontent-ng-c2149246061=\"\" theme=\"lm\" type=\"onSurface\" size=\"xsmall\" gemtooltipposition=\"below\" data-test-id=\"share-button\" class=\"mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-disabled gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c890751806=\"\" aria-expanded=\"false\"><!----><button _ngcontent-ng-c890751806=\"\" maticonbutton=\"\" matbadgeposition=\"after\" class=\"mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-mdc-button-disabled mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-centered=\"\" mat-ripple-loader-disabled=\"\" aria-label=\"\" jslog=\"250628;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,null,&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\" disabled=\""
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "canvas-create-task-menu",
+          "text": "Create",
+          "className": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-mdc-menu-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-disabled",
+          "outerHTML": "<button _ngcontent-ng-c3003748861=\"\" mat-flat-button=\"\" color=\"primary\" data-test-id=\"canvas-create-task-menu\" class=\"mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-mdc-menu-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-disabled\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-disabled=\"\" jslog=\"252206;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,null,&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\" disabled=\"true\" aria-haspopup=\"menu\" aria-expanded=\"false\" aria-describedby=\"cdk-describedby-message-ng-1-33\" cdk-describedby-host=\"ng-1\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c3003748861=\"\">Create</span><!----></span><mat-icon _ngcontent-ng-c3003748861=\"\" role=\"img\" iconpositionend=\"\" fonticon=\"keyboard_arrow_down\" class=\"mat-icon notranslate goo"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "scroll-container",
+          "text": "Wave 12 Export Probe: Offshore Wind Transmission The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewab",
+          "className": "container ng-star-inserted",
+          "outerHTML": "<div _ngcontent-ng-c2351576655=\"\" cdkscrollable=\"\" data-test-id=\"scroll-container\" class=\"container ng-star-inserted\" jslog=\"275419;track:impression,attention\" data-lhcontainer=\"1\" data-hveid=\"12\"><response-container _ngcontent-ng-c2351576655=\"\" class=\"response-container ng-tns-c1904847269-15 reduced-bottom-padding enable-2026q1-formatting-improvements enable-lr26-response-chrome-updates enable-luminous-sources ng-star-inserted\" _nghost-ng-c1904847269=\"\"><div _ngcontent-ng-c1904847269=\"\" class=\"response-container response-container-with-gpi ng-tns-c1904847269-15\" jslog=\"173900;track:impression,attention\" data-hveid=\"13\"><!----><!----><!----><div _ngcontent-ng-c1904847269=\"\" class=\"presented-response-container ng-tns-c1904847269-15\" jslog=\"283401;track:impression,attention\" data-hveid=\"14\"><!----><div _ngcontent-ng-c1904847269=\"\" class=\"response-container-content ng-tns-c1904847269-15\"><!----><!----><!----><!----><!----><!----><!----><immersive-editor _ngcontent-ng-c2351576655=\"\" data-test-id=\"immersive-editor\" class=\"immersive-editor ng-star-inserted\" _nghost-ng-c2378680081=\"\" id=\"extended-response-message-content\" style=\"\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor-"
+        },
+        {
+          "tag": "IMMERSIVE-EDITOR",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "immersive-editor",
+          "text": "Wave 12 Export Probe: Offshore Wind Transmission The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewab",
+          "className": "immersive-editor ng-star-inserted",
+          "outerHTML": "<immersive-editor _ngcontent-ng-c2351576655=\"\" data-test-id=\"immersive-editor\" class=\"immersive-editor ng-star-inserted\" _nghost-ng-c2378680081=\"\" id=\"extended-response-message-content\" style=\"\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor-container\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor markdown stronger\" id=\"extended-response-markdown-content\"><div contenteditable=\"true\" translate=\"no\" class=\"ProseMirror\" aria-label=\"Canvas editor\" aria-busy=\"true\" data-disable-editing=\"false\"><h1>Wave 12 Export Probe: Offshore Wind Transmission</h1><p>The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewable infrastructure.</p><p>The probe specifically evaluates high-voltage direct current (HVDC) submarine cables, designed to export massive multi-gigawatt loads back to the mainland grid with minimal power loss. Preliminary data indicates that while extreme marine environments present deployment challenges, the consistent velocity of offshore winds yields up to 40% higher"
+        }
+      ]
+    },
+    {
+      "frameUrl": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "count": 0,
+      "items": []
+    },
+    {
+      "frameUrl": "https://gemini.google.com/_/bscframe",
+      "count": 0,
+      "items": []
+    }
+  ],
+  "exportButton": {
+    "selector": "[data-test-id=\"export-to-docs-button\"]",
+    "rootKind": "page",
+    "frameUrl": "https://gemini.google.com/app/2dbeada0ec521739",
+    "text": "Export to Docs"
+  },
+  "frameScanAfterMenu": [
+    {
+      "frameUrl": "https://gemini.google.com/app/2dbeada0ec521739",
+      "count": 18,
+      "items": [
+        {
+          "tag": "BARD-SIDENAV-CONTAINER",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "bard-sidenav-container",
+          "text": "Conversation with Gemini You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. Gemini said I have drafted the Wave 12 Export Probe document on wind power for you. It provides",
+          "className": "",
+          "outerHTML": "<bard-sidenav-container _ngcontent-ng-c2351109136=\"\" data-test-id=\"bard-sidenav-container\" _nghost-ng-c3522183994=\"\"><bard-sidenav _ngcontent-ng-c2351109136=\"\" role=\"navigation\" _nghost-ng-c2457904541=\"\" class=\"ng-tns-c2457904541-3 ng-trigger ng-trigger-widthTransition collapsed mystuff-side-nav-update disable-onload-animations ng-star-inserted\" aria-label=\"Side Navigation\" jslog=\"173918;track:impression,attention\" style=\"width: var(--bard-sidenav-closed-width);\" data-hveid=\"0\" decode-data-ved=\"1\" data-ved=\"0CAAQ3s4KahcKEwj0oPnwndeUAxUAAAAAHQAAAAAQBg\"><!----><side-navigation-content _ngcontent-ng-c2351109136=\"\" class=\"ia-redesign rail lr26 sidenav-mavatar-migration-enabled ng-star-inserted\" _nghost-ng-c1668143411=\"\" style=\"--side-nav-transition-duration: 300ms; --side-nav-open-close-animation-curve: cubic-bezier(0.2, 0, 0, 1); --side-nav-open-item-opacity-duration: 150ms; --side-nav-open-item-opacity-delay: 100ms; --side-nav-close-item-opacity-duration: 100ms; --side-nav-open-close-opacity-animation-curve: cubic-bezier(0, 0, 0, 0);\"><div _ngcontent-ng-c1668143411=\"\" class=\"sidenav-with-history-container disable-onload-animations collapsed side-nav-mystuff-update ng-star-inserted co"
+        },
+        {
+          "tag": "INFINITE-SCROLLER",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "chat-history-container",
+          "text": "You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. Gemini said I have drafted the Wave 12 Export Probe document on wind power for you. It provides a concise summary of off",
+          "className": "chat-history enable-2026q1-formatting-improvements enable-lr26-markdown-styling lm immersives-open",
+          "outerHTML": "<infinite-scroller _ngcontent-ng-c2444055489=\"\" data-test-id=\"chat-history-container\" class=\"chat-history enable-2026q1-formatting-improvements enable-lr26-markdown-styling lm immersives-open\" _nghost-ng-c3013894376=\"\" jslog=\"268632;track:impression,attention\" data-lhcontainer=\"1\" data-hveid=\"1\"><!----><!----><!----><!----><!----><!----><!----><!----><!----><div _ngcontent-ng-c2444055489=\"\" class=\"conversation-container message-actions-hover-boundary ng-star-inserted\" id=\"6879e019069d4a81\" style=\"min-height: 430px;\"><user-query _ngcontent-ng-c2444055489=\"\" _nghost-ng-c508734966=\"\" class=\"ng-star-inserted\"><span _ngcontent-ng-c508734966=\"\" class=\"user-query-container\"><user-query-content _ngcontent-ng-c508734966=\"\" class=\"user-query-container enable-2026q1-formatting-improvements enable-luminous-prompt-bubble enable-luminous-edit-box-updates\" _nghost-ng-c3505741425=\"\" style=\"--max-lines-for-collapse-count: 5;\"><div _ngcontent-ng-c3505741425=\"\" class=\"user-query-container\"><div _ngcontent-ng-c3505741425=\"\" class=\"file-preview-container ng-star-inserted\"><!----><!----><!----><!----><!----><!----></div><!----><div _ngcontent-ng-c3505741425=\"\" class=\"query-content ng-star-inserted\" id=\""
+        },
+        {
+          "tag": "SPAN",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "luminous-collapsed-bubble",
+          "text": "You said Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps.",
+          "className": "user-query-bubble-with-background enable-2026q1-formatting-improvements ng-star-inserted",
+          "outerHTML": "<span _ngcontent-ng-c3505741425=\"\" data-test-id=\"luminous-collapsed-bubble\" class=\"user-query-bubble-with-background enable-2026q1-formatting-improvements ng-star-inserted\"><!----><span _ngcontent-ng-c3505741425=\"\" class=\"horizontal-container ng-star-inserted\"><div _ngcontent-ng-c3505741425=\"\" role=\"heading\" aria-level=\"2\" class=\"query-text gds-body-l\" dir=\"ltr\"><span _ngcontent-ng-c3505741425=\"\" class=\"cdk-visually-hidden screen-reader-user-query-label\"> You said </span><p _ngcontent-ng-c3505741425=\"\" class=\"query-text-line ng-star-inserted\"> Use Canvas to draft an editable document titled Wave 12 Export Probe about wind power. Make it a concise 120-word document, not code or an app. Do not open external apps. <!----><!----><!----></p><!----></div><!----></span><!----><!----></span>"
+        },
+        {
+          "tag": "GEM-PROCESSING-CARD",
+          "role": "status",
+          "ariaLabel": null,
+          "dataTestId": "gem-processing-card",
+          "text": "Wave 12 Export Probe May 26, 8:08 AM",
+          "className": "selected ng-star-inserted completed",
+          "outerHTML": "<gem-processing-card _ngcontent-ng-c2705009947=\"\" data-test-id=\"gem-processing-card\" _nghost-ng-c2144417598=\"\" jslog=\"275420;track:impression,attention;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;56fdd199312815e2&quot;],null,null,null,null,null,null,null,null,null,null,null,[2]]\" role=\"status\" aria-live=\"polite\" class=\"selected ng-star-inserted completed\" data-hveid=\"0\" decode-data-ved=\"1\" data-ved=\"0CAAQ3OcQahcKEwj0oPnwndeUAxUAAAAAHQAAAAAQIA\"><div _ngcontent-ng-c2144417598=\"\" class=\"container\"><div _ngcontent-ng-c2144417598=\"\" class=\"header\"><gem-icon _ngcontent-ng-c2144417598=\"\" size=\"xlarge\" class=\"status-icon\" _nghost-ng-c206654976=\"\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-xl lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"article\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"article\"></mat-icon><!----><!----><!----></gem-icon><span _ngcontent-ng-c2144417598=\"\" class=\"card-title gds-body-l\">Wave 12 Export Probe</span></div><div _ngcontent-ng-c2144417598=\"\""
+        },
+        {
+          "tag": "GEM-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "retry-without-tool-button",
+          "text": "Try again without Canvas",
+          "className": "retry-without-tool-button gem-button gem-button-badge-size-small gem-button-size-small gem-button-type-on-surface lm-enabled ng-star-inserted",
+          "outerHTML": "<gem-button _ngcontent-ng-c2929843354=\"\" theme=\"lm\" type=\"onSurface\" data-test-id=\"retry-without-tool-button\" class=\"retry-without-tool-button gem-button gem-button-badge-size-small gem-button-size-small gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c2305901243=\"\"><!----><button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" jslog=\"253022;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,null,null,null,null,null,1,null,null,null,0]];mutable:true\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-m\"> Try again without Canvas </span><!----></span><!----></span><!----><span class=\"mat-focus-indicator\"></span><span class=\"mat-mdc-button-touch-"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": null,
+          "text": "Try again without Canvas",
+          "className": "mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted",
+          "outerHTML": "<button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-mdc-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" jslog=\"253022;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,null,null,null,null,null,1,null,null,null,0]];mutable:true\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-m\"> Try again without Canvas </span><!----></span><!----></span><!----><span class=\"mat-focus-indicator\"></span><span class=\"mat-mdc-button-touch-target\"></span></button>"
+        },
+        {
+          "tag": "GEM-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "deselect-drawer-item-gem-button",
+          "text": "Canvas",
+          "className": "selected-item-gem-button ng-tns-c3823147327-8 pointer-auto gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-tonal lm-enabled has-icon has-secondary-icon ng-star-inserted",
+          "outerHTML": "<gem-button _ngcontent-ng-c3823147327=\"\" type=\"tonal\" size=\"xsmall\" data-test-id=\"deselect-drawer-item-gem-button\" class=\"selected-item-gem-button ng-tns-c3823147327-8 pointer-auto gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-tonal lm-enabled has-icon has-secondary-icon ng-star-inserted\" _nghost-ng-c2305901243=\"\" style=\"\"><!----><button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" aria-label=\"Deselect Canvas\" jslog=\"305700;track:generic_click,impression\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><gem-icon _ngcontent-ng-c2305901243=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-s lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Deselect Canvas",
+          "dataTestId": null,
+          "text": "Canvas",
+          "className": "mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted",
+          "outerHTML": "<button _ngcontent-ng-c2305901243=\"\" matbadgeposition=\"after\" class=\"mdc-button mat-mdc-button-base mat-badge mat-tonal-button mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" aria-label=\"Deselect Canvas\" jslog=\"305700;track:generic_click,impression\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c2305901243=\"\" class=\"gem-button-content ng-star-inserted\"><gem-icon _ngcontent-ng-c2305901243=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-s lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"canvas\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"canvas\"></mat-icon><!----><!----><!----></gem-icon><!----><span _ngcontent-ng-c2305901243=\"\" class=\"gds-body-s\">Canvas</span><gem-icon _ngcontent-ng-c2305901243=\"\" class=\"on-focus-secondary-icon ng-star-inserted\" _nghost-ng-c206654976=\"\"><mat-icon"
+        },
+        {
+          "tag": "SHARE-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "consolidated-share-button",
+          "text": "",
+          "className": "ng-star-inserted",
+          "outerHTML": "<share-button _ngcontent-ng-c777040646=\"\" gemmenutrigger=\"\" cdkoverlayorigin=\"\" data-test-id=\"consolidated-share-button\" _nghost-ng-c2149246061=\"\" tabindex=\"0\" aria-disabled=\"false\" aria-haspopup=\"true\" aria-expanded=\"true\" aria-controls=\"ng-menu-a86264-4\" class=\"ng-star-inserted\"><!----><!----><gem-icon-button _ngcontent-ng-c2149246061=\"\" theme=\"lm\" type=\"onSurface\" size=\"xsmall\" gemtooltipposition=\"below\" data-test-id=\"share-button\" class=\"mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c890751806=\"\" aria-expanded=\"false\" aria-describedby=\"cdk-describedby-message-ng-1-34\" cdk-describedby-host=\"ng-1\"><!----><button _ngcontent-ng-c890751806=\"\" maticonbutton=\"\" matbadgeposition=\"after\" class=\"mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted cdk-focused cdk-mouse-focused\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-centered=\"\" aria-label=\"Share and export canvas\" jslog=\"250628;track:generic_click,impressio"
+        },
+        {
+          "tag": "GEM-ICON-BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "share-button",
+          "text": "",
+          "className": "mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted",
+          "outerHTML": "<gem-icon-button _ngcontent-ng-c2149246061=\"\" theme=\"lm\" type=\"onSurface\" size=\"xsmall\" gemtooltipposition=\"below\" data-test-id=\"share-button\" class=\"mat-mdc-tooltip-trigger mat-mdc-menu-trigger gem-button gem-button-badge-size-small gem-button-size-xsmall gem-button-type-on-surface lm-enabled ng-star-inserted\" _nghost-ng-c890751806=\"\" aria-expanded=\"false\" aria-describedby=\"cdk-describedby-message-ng-1-34\" cdk-describedby-host=\"ng-1\"><!----><button _ngcontent-ng-c890751806=\"\" maticonbutton=\"\" matbadgeposition=\"after\" class=\"mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted cdk-focused cdk-mouse-focused\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-centered=\"\" aria-label=\"Share and export canvas\" jslog=\"250628;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,null,&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": "Share and export canvas",
+          "dataTestId": null,
+          "text": "",
+          "className": "mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted cdk-focused cdk-mouse-focused",
+          "outerHTML": "<button _ngcontent-ng-c890751806=\"\" maticonbutton=\"\" matbadgeposition=\"after\" class=\"mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted cdk-focused cdk-mouse-focused\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-centered=\"\" aria-label=\"Share and export canvas\" jslog=\"250628;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,null,&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\"><span class=\"mat-mdc-button-persistent-ripple mdc-icon-button__ripple\"></span><gem-icon _ngcontent-ng-c890751806=\"\" _nghost-ng-c206654976=\"\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-s google-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"share\" data-mat-icon-namespace=\"\" fonticon=\"share\" style=\"font-family: "
+        },
+        {
+          "tag": "SHARE-BUTTON",
+          "role": null,
+          "ariaLabel": "Share Canvas",
+          "dataTestId": "share-button",
+          "text": "Share",
+          "className": "ng-star-inserted",
+          "outerHTML": "<share-button _ngcontent-ng-c777040646=\"\" data-test-id=\"share-button\" aria-label=\"Share Canvas\" _nghost-ng-c2149246061=\"\" class=\"ng-star-inserted\"><!----><!----><!----><!----><gem-menu-item _ngcontent-ng-c2149246061=\"\" value=\"share\" data-test-id=\"share-button\" _nghost-ng-c3773659512=\"\" aria-label=\"Share Canvas\" jslog=\"272994;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,[1779808120,458184000],&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\" role=\"menuitem\" tabindex=\"-1\" data-active=\"false\" aria-haspopup=\"false\" aria-disabled=\"false\" class=\"ng-star-inserted\"><gem-menu-item-content _ngcontent-ng-c3773659512=\"\" _nghost-ng-c2285067759=\"\"><div _ngcontent-ng-c2285067759=\"\" class=\"leading-container\"><!----><gem-icon _ngcontent-ng-c2285067759=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-m lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidde"
+        },
+        {
+          "tag": "GEM-MENU-ITEM",
+          "role": "menuitem",
+          "ariaLabel": "Share Canvas",
+          "dataTestId": "share-button",
+          "text": "Share",
+          "className": "ng-star-inserted",
+          "outerHTML": "<gem-menu-item _ngcontent-ng-c2149246061=\"\" value=\"share\" data-test-id=\"share-button\" _nghost-ng-c3773659512=\"\" aria-label=\"Share Canvas\" jslog=\"272994;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,[1779808120,458184000],&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\" role=\"menuitem\" tabindex=\"-1\" data-active=\"false\" aria-haspopup=\"false\" aria-disabled=\"false\" class=\"ng-star-inserted\"><gem-menu-item-content _ngcontent-ng-c3773659512=\"\" _nghost-ng-c2285067759=\"\"><div _ngcontent-ng-c2285067759=\"\" class=\"leading-container\"><!----><gem-icon _ngcontent-ng-c2285067759=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-m lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"share_1\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"share_1\"></mat-icon><!----><!----><!----></gem-icon><!----><!-"
+        },
+        {
+          "tag": "EXPORT-TO-DOCS-BUTTON",
+          "role": null,
+          "ariaLabel": "Export to Docs",
+          "dataTestId": "export-to-docs-button",
+          "text": "Export to Docs",
+          "className": "ng-star-inserted",
+          "outerHTML": "<export-to-docs-button _ngcontent-ng-c777040646=\"\" data-test-id=\"export-to-docs-button\" aria-label=\"Export to Docs\" _nghost-ng-c1358457927=\"\" class=\"ng-star-inserted\"><!----><!----><gem-menu-item _ngcontent-ng-c1358457927=\"\" value=\"export-docs\" data-test-id=\"export-to-docs-button\" leadingicon=\"docs\" _nghost-ng-c3773659512=\"\" jslog=\"246886;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,&quot;rc_601b75d41dc80a0f&quot;,null,null,&quot;en&quot;,null,1,null,null,1,0]];mutable:true\" role=\"menuitem\" tabindex=\"-1\" data-active=\"false\" aria-haspopup=\"false\" aria-disabled=\"false\" class=\"ng-star-inserted\"><gem-menu-item-content _ngcontent-ng-c3773659512=\"\" _nghost-ng-c2285067759=\"\"><div _ngcontent-ng-c2285067759=\"\" class=\"leading-container\"><!----><gem-icon _ngcontent-ng-c2285067759=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-m lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"docs\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"docs\"></mat-icon><!-"
+        },
+        {
+          "tag": "GEM-MENU-ITEM",
+          "role": "menuitem",
+          "ariaLabel": null,
+          "dataTestId": "export-to-docs-button",
+          "text": "Export to Docs",
+          "className": "ng-star-inserted",
+          "outerHTML": "<gem-menu-item _ngcontent-ng-c1358457927=\"\" value=\"export-docs\" data-test-id=\"export-to-docs-button\" leadingicon=\"docs\" _nghost-ng-c3773659512=\"\" jslog=\"246886;track:generic_click,impression;BardVeMetadataKey:[[&quot;r_6879e019069d4a81&quot;,&quot;c_2dbeada0ec521739&quot;,null,&quot;rc_601b75d41dc80a0f&quot;,null,null,&quot;en&quot;,null,1,null,null,1,0]];mutable:true\" role=\"menuitem\" tabindex=\"-1\" data-active=\"false\" aria-haspopup=\"false\" aria-disabled=\"false\" class=\"ng-star-inserted\"><gem-menu-item-content _ngcontent-ng-c3773659512=\"\" _nghost-ng-c2285067759=\"\"><div _ngcontent-ng-c2285067759=\"\" class=\"leading-container\"><!----><gem-icon _ngcontent-ng-c2285067759=\"\" _nghost-ng-c206654976=\"\" class=\"ng-star-inserted\"><mat-icon _ngcontent-ng-c206654976=\"\" role=\"img\" class=\"mat-icon notranslate lm-icon-m lumi-symbols mat-ligature-font mat-icon-no-color ng-star-inserted\" aria-hidden=\"true\" data-mat-icon-type=\"font\" data-mat-icon-name=\"docs\" data-mat-icon-namespace=\"lumi-symbols\" fonticon=\"docs\"></mat-icon><!----><!----><!----></gem-icon><!----><!----></div><div _ngcontent-ng-c2285067759=\"\" class=\"label-container\"><span _ngcontent-ng-c2285067759=\"\" class=\"label\"> Export to Docs </span><!"
+        },
+        {
+          "tag": "BUTTON",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "canvas-create-task-menu",
+          "text": "Create",
+          "className": "mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-mdc-menu-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary",
+          "outerHTML": "<button _ngcontent-ng-c3003748861=\"\" mat-flat-button=\"\" color=\"primary\" data-test-id=\"canvas-create-task-menu\" class=\"mdc-button mat-mdc-button-base mat-mdc-tooltip-trigger mat-mdc-menu-trigger create-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary\" mat-ripple-loader-uninitialized=\"\" mat-ripple-loader-class-name=\"mat-mdc-button-ripple\" mat-ripple-loader-disabled=\"\" jslog=\"252206;track:generic_click,impression;BardVeMetadataKey:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[&quot;c_2dbeada0ec521739_wave_12_export_probe.md&quot;,null,&quot;c_2dbeada0ec521739&quot;,&quot;r_6879e019069d4a81&quot;,&quot;rc_601b75d41dc80a0f&quot;]]\" aria-haspopup=\"menu\" aria-expanded=\"false\" aria-describedby=\"cdk-describedby-message-ng-1-33\" cdk-describedby-host=\"ng-1\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\"><span _ngcontent-ng-c3003748861=\"\">Create</span><!----></span><mat-icon _ngcontent-ng-c3003748861=\"\" role=\"img\" iconpositionend=\"\" fonticon=\"keyboard_arrow_down\" class=\"mat-icon notranslate google-symbols mat-ligature-font mat-icon-n"
+        },
+        {
+          "tag": "DIV",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "scroll-container",
+          "text": "Wave 12 Export Probe: Offshore Wind Transmission The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewab",
+          "className": "container ng-star-inserted",
+          "outerHTML": "<div _ngcontent-ng-c2351576655=\"\" cdkscrollable=\"\" data-test-id=\"scroll-container\" class=\"container ng-star-inserted\" jslog=\"275419;track:impression,attention\" data-lhcontainer=\"1\" data-hveid=\"12\"><response-container _ngcontent-ng-c2351576655=\"\" class=\"response-container ng-tns-c1904847269-15 reduced-bottom-padding enable-2026q1-formatting-improvements enable-lr26-response-chrome-updates enable-luminous-sources ng-star-inserted\" _nghost-ng-c1904847269=\"\"><div _ngcontent-ng-c1904847269=\"\" class=\"response-container response-container-with-gpi ng-tns-c1904847269-15\" jslog=\"173900;track:impression,attention\" data-hveid=\"13\"><!----><!----><!----><div _ngcontent-ng-c1904847269=\"\" class=\"presented-response-container ng-tns-c1904847269-15\" jslog=\"283401;track:impression,attention\" data-hveid=\"14\"><!----><div _ngcontent-ng-c1904847269=\"\" class=\"response-container-content ng-tns-c1904847269-15\"><!----><!----><!----><!----><!----><!----><!----><immersive-editor _ngcontent-ng-c2351576655=\"\" data-test-id=\"immersive-editor\" class=\"immersive-editor ng-star-inserted\" _nghost-ng-c2378680081=\"\" id=\"extended-response-message-content\" style=\"\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor-"
+        },
+        {
+          "tag": "IMMERSIVE-EDITOR",
+          "role": null,
+          "ariaLabel": null,
+          "dataTestId": "immersive-editor",
+          "text": "Wave 12 Export Probe: Offshore Wind Transmission The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewab",
+          "className": "immersive-editor ng-star-inserted",
+          "outerHTML": "<immersive-editor _ngcontent-ng-c2351576655=\"\" data-test-id=\"immersive-editor\" class=\"immersive-editor ng-star-inserted\" _nghost-ng-c2378680081=\"\" id=\"extended-response-message-content\" style=\"\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor-container\"><div _ngcontent-ng-c2378680081=\"\" class=\"immersive-editor markdown stronger\" id=\"extended-response-markdown-content\"><div contenteditable=\"true\" translate=\"no\" class=\"ProseMirror\" aria-label=\"Canvas editor\" aria-busy=\"false\" data-disable-editing=\"false\"><h1>Wave 12 Export Probe: Offshore Wind Transmission</h1><p>The Wave 12 Export Probe assesses the feasibility of offshore wind energy transmission in coastal regions. As global demand for clean energy intensifies, harvesting deep-water wind currents via floating turbines represents the next frontier in renewable infrastructure.</p><p>The probe specifically evaluates high-voltage direct current (HVDC) submarine cables, designed to export massive multi-gigawatt loads back to the mainland grid with minimal power loss. Preliminary data indicates that while extreme marine environments present deployment challenges, the consistent velocity of offshore winds yields up to 40% highe"
+        }
+      ]
+    },
+    {
+      "frameUrl": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+      "count": 0,
+      "items": []
+    },
+    {
+      "frameUrl": "https://gemini.google.com/_/bscframe",
+      "count": 0,
+      "items": []
+    }
+  ],
+  "openedUrl": "https://docs.google.com/document/d/18eNdLlKNcHs1YW94evY-8WBwwL_Dk_bmRLhl93-yyKE/edit?tab=t.0",
+  "docsDocId": "18eNdLlKNcHs1YW94evY-8WBwwL_Dk_bmRLhl93-yyKE",
+  "exportOutcome": "new-docs-tab",
+  "finalUrl": "https://gemini.google.com/app/2dbeada0ec521739"
+}

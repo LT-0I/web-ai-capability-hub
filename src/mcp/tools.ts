@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const zlib = require("node:zlib");
 const childProcess = require("node:child_process");
 import { BrowserSessionManager } from "../browser/sessionManager";
 import { ManagedBrowserLauncher } from "../browser/managedLauncher";
@@ -716,7 +717,7 @@ const GEMINI_IMAGE_RENDERED_SELECTOR = 'button[aria-label="Download full size im
 //      NEW browser page at https://docs.google.com/document/d/<id>/edit.
 const GEMINI_CANVAS_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Canvas")';
 const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]';
-const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = 'button[data-test-id="share-button"], button[aria-label="Share and export canvas"]';
+const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = '[data-test-id="share-button"] button, [data-testid="share-button"] button, button[data-test-id="share-button"], button[data-testid="share-button"], button[aria-label="Share and export canvas"]';
 const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = '[data-test-id="export-to-docs-button"], [data-testid="export-to-docs-button"], export-to-docs-button, gem-menu-item[data-test-id="export-to-docs-button"]';
 const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
 // Veo video generation flow (same composer): Upload & tools → Create video
@@ -1840,7 +1841,29 @@ export async function activateGeminiToolMode(page: any, opts: { menuItemSelector
 }
 
 async function activateGeminiCanvasMode(page: any): Promise<void> {
-  await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CANVAS_MENUITEM_SELECTOR, activeSelector: GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, toolName: "Canvas" });
+  try {
+    await activateGeminiToolMode(page, { menuItemSelector: GEMINI_CANVAS_MENUITEM_SELECTOR, activeSelector: GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, toolName: "Canvas" });
+    return;
+  } catch (firstError: any) {
+    await page.keyboard?.press?.("Escape").catch(() => undefined);
+    try {
+      await page.waitForSelector?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+      const opener = page.locator?.(GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR).first?.();
+      if (!opener || !(await opener.count?.().catch(() => 0))) throw firstError;
+      await opener.click?.({ force: true, timeout: 5000 }).catch(async () => {
+        await robustClickLocator(page, opener, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, { timeout: 5000 });
+      });
+      await page.waitForSelector?.(GEMINI_CANVAS_MENUITEM_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+      await requireAndClick(page, GEMINI_CANVAS_MENUITEM_SELECTOR, "Gemini Canvas menuitemcheckbox was not found", { dismissInterceptors: false });
+      await page.waitForSelector?.(GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: GEMINI_TOOL_MODE_HYDRATION_TIMEOUT_MS });
+      return;
+    } catch (fallbackError: any) {
+      throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas tool did not activate from the live-probed Upload & tools menu path", {
+        selector: `${GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR} -> ${GEMINI_CANVAS_MENUITEM_SELECTOR} -> ${GEMINI_CANVAS_MODE_ACTIVE_SELECTOR}`,
+        cause: errorMessageFromUnknown(fallbackError, errorMessageFromUnknown(firstError, ""))
+      });
+    }
+  }
 }
 
 export async function activateGeminiVideoMode(page: any): Promise<void> {
@@ -2463,6 +2486,142 @@ async function waitForExtensionSelector(page: any, selector: string, timeoutMs: 
 
 function normalizedExpectedExtension(value: unknown): string {
   return String(value || "").trim().toLowerCase().replace(/^\.+/, "");
+}
+
+const CHATGPT_PPTX_ZIP_BUNDLE_INSTRUCTION = [
+  "Create the requested PowerPoint presentation as a real .pptx file.",
+  "Also create a supporting summary.md file.",
+  "Bundle the .pptx and summary.md together into one .zip archive.",
+  "Return exactly one inline download link/file-delivery button for the .zip archive."
+].join(" ");
+
+function chatgptPptxZipBundlePrompt(prompt: string): string {
+  const base = String(prompt || "").trim();
+  return `${base}\n\nDriver requirement: ${CHATGPT_PPTX_ZIP_BUNDLE_INSTRUCTION}`;
+}
+
+interface ZipCentralDirectoryEntry {
+  name: string;
+  flags: number;
+  method: number;
+  compressedSize: number;
+  uncompressedSize: number;
+  localHeaderOffset: number;
+}
+
+function zipVerificationError(message: string, extra: Record<string, unknown> = {}): WebAiToolError {
+  return new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, message, extra);
+}
+
+function findZipEndOfCentralDirectory(buffer: any): number {
+  const minOffset = Math.max(0, buffer.length - 65557);
+  for (let offset = buffer.length - 22; offset >= minOffset; offset -= 1) {
+    if (buffer.readUInt32LE(offset) === 0x06054b50) return offset;
+  }
+  return -1;
+}
+
+function readZipCentralDirectoryEntries(buffer: any): ZipCentralDirectoryEntry[] {
+  const eocdOffset = findZipEndOfCentralDirectory(buffer);
+  if (eocdOffset < 0) throw zipVerificationError("Downloaded ZIP archive is missing an end-of-central-directory record");
+  const totalEntries = buffer.readUInt16LE(eocdOffset + 10);
+  const centralDirectorySize = buffer.readUInt32LE(eocdOffset + 12);
+  const centralDirectoryOffset = buffer.readUInt32LE(eocdOffset + 16);
+  if (totalEntries === 0xffff || centralDirectorySize === 0xffffffff || centralDirectoryOffset === 0xffffffff) {
+    throw zipVerificationError("ZIP64 archives are not supported for PPTX bundle extraction");
+  }
+  const centralDirectoryEnd = centralDirectoryOffset + centralDirectorySize;
+  if (centralDirectoryOffset < 0 || centralDirectoryEnd > buffer.length) {
+    throw zipVerificationError("ZIP central directory points outside the downloaded archive", { centralDirectoryOffset, centralDirectorySize, byteSize: buffer.length });
+  }
+  const entries: ZipCentralDirectoryEntry[] = [];
+  let offset = centralDirectoryOffset;
+  while (offset < centralDirectoryEnd) {
+    if (offset + 46 > buffer.length || buffer.readUInt32LE(offset) !== 0x02014b50) {
+      throw zipVerificationError("ZIP central directory entry is malformed", { offset });
+    }
+    const flags = buffer.readUInt16LE(offset + 8);
+    const method = buffer.readUInt16LE(offset + 10);
+    const compressedSize = buffer.readUInt32LE(offset + 20);
+    const uncompressedSize = buffer.readUInt32LE(offset + 24);
+    const nameLength = buffer.readUInt16LE(offset + 28);
+    const extraLength = buffer.readUInt16LE(offset + 30);
+    const commentLength = buffer.readUInt16LE(offset + 32);
+    const localHeaderOffset = buffer.readUInt32LE(offset + 42);
+    const nameStart = offset + 46;
+    const nameEnd = nameStart + nameLength;
+    if (nameEnd > buffer.length) throw zipVerificationError("ZIP entry name points outside the downloaded archive", { offset });
+    entries.push({
+      name: buffer.toString("utf8", nameStart, nameEnd),
+      flags,
+      method,
+      compressedSize,
+      uncompressedSize,
+      localHeaderOffset
+    });
+    offset = nameEnd + extraLength + commentLength;
+  }
+  return entries;
+}
+
+function extractZipEntryBytes(buffer: any, entry: ZipCentralDirectoryEntry): any {
+  if ((entry.flags & 0x1) !== 0) throw zipVerificationError("ZIP entry is encrypted and cannot be extracted", { entry: entry.name });
+  const localOffset = entry.localHeaderOffset;
+  if (localOffset + 30 > buffer.length || buffer.readUInt32LE(localOffset) !== 0x04034b50) {
+    throw zipVerificationError("ZIP local file header is malformed", { entry: entry.name, localHeaderOffset: localOffset });
+  }
+  const nameLength = buffer.readUInt16LE(localOffset + 26);
+  const extraLength = buffer.readUInt16LE(localOffset + 28);
+  const dataStart = localOffset + 30 + nameLength + extraLength;
+  const dataEnd = dataStart + entry.compressedSize;
+  if (dataStart < 0 || dataEnd > buffer.length) {
+    throw zipVerificationError("ZIP entry payload points outside the downloaded archive", { entry: entry.name, dataStart, compressedSize: entry.compressedSize, byteSize: buffer.length });
+  }
+  const payload = buffer.subarray(dataStart, dataEnd);
+  if (entry.method === 0) return Buffer.from(payload);
+  if (entry.method === 8) {
+    try {
+      return zlib.inflateRawSync(payload);
+    } catch (error: any) {
+      throw zipVerificationError("ZIP entry deflate payload could not be decompressed", { entry: entry.name, cause: errorMessageFromUnknown(error, "") });
+    }
+  }
+  throw zipVerificationError("ZIP entry uses an unsupported compression method", { entry: entry.name, method: entry.method });
+}
+
+function isValidPptxArchiveBytes(buffer: any): boolean {
+  try {
+    const names = new Set(readZipCentralDirectoryEntries(buffer).map((entry) => entry.name.replace(/\\/g, "/").toLowerCase()));
+    return names.has("[content_types].xml") && names.has("ppt/presentation.xml");
+  } catch {
+    return false;
+  }
+}
+
+function extractPptxFromZipBundle(zipPath: string, downloadDir: string): { path: string; entryName: string; byteSize: number; sha256: string } {
+  const archive = fs.readFileSync(zipPath);
+  const entries = readZipCentralDirectoryEntries(archive);
+  const pptxEntries = entries
+    .filter((entry) => {
+      const normalized = entry.name.replace(/\\/g, "/");
+      return /\.pptx$/i.test(normalized) && !normalized.endsWith("/") && !normalized.includes("__MACOSX/");
+    })
+    .sort((a, b) => b.uncompressedSize - a.uncompressedSize);
+  if (!pptxEntries.length) {
+    throw zipVerificationError("Downloaded ZIP bundle did not contain a .pptx entry", { zipPath, entries: entries.map((entry) => entry.name).slice(0, 50) });
+  }
+  const entry = pptxEntries[0];
+  const bytes = extractZipEntryBytes(archive, entry);
+  if (!bytes.length || !isValidPptxArchiveBytes(bytes)) {
+    throw zipVerificationError("Extracted .pptx entry failed OOXML presentation validation", { zipPath, entry: entry.name, byteSize: bytes.length });
+  }
+  const rawBase = entry.name.replace(/\\/g, "/").split("/").filter(Boolean).pop() || "chatgpt-generated.pptx";
+  const safeBase = safeDownloadedBasename(rawBase, "chatgpt-generated.pptx");
+  const outputBase = /\.pptx$/i.test(safeBase) ? safeBase : `${safeBase}.pptx`;
+  const outputPath = path.join(path.resolve(downloadDir), outputBase);
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, bytes);
+  return { path: outputPath, entryName: entry.name, byteSize: bytes.length, sha256: crypto.createHash("sha256").update(bytes).digest("hex") };
 }
 
 interface ChatgptGeneratedFileDownloadShape {
@@ -3628,13 +3787,22 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
     });
     await backend.ping();
     const page = await openChatgptExtensionPage(backend, effective);
-    const locateTimeoutMs = generateFileLocateTimeoutMs(effective.expected_extension);
-    const promptArgs = { ...effective, response_timeout_ms: Math.max(responseTimeoutMs(effective), locateTimeoutMs) };
+    const requestedExtension = normalizedExpectedExtension(effective.expected_extension);
+    const usePptxZipBundle = requestedExtension === "pptx";
+    const downloadExtension = usePptxZipBundle ? "zip" : requestedExtension;
+    const locateTimeoutMs = usePptxZipBundle
+      ? Math.max(generateFileLocateTimeoutMs("pptx"), 300000)
+      : generateFileLocateTimeoutMs(downloadExtension);
+    const promptArgs = {
+      ...effective,
+      ...(usePptxZipBundle ? { prompt: chatgptPptxZipBundlePrompt(effective.prompt), expected_extension: "zip" } : {}),
+      response_timeout_ms: Math.max(responseTimeoutMs(effective), locateTimeoutMs)
+    };
     const promptResult = await sendPromptInExtensionPage("chatgpt", promptArgs, page, started);
     if (promptResult.errorCode) {
       return fileErrorOutput(promptResult.errorCode as ConsumerErrorCode, promptResult.error_code ? String(promptResult.error_code) : "ChatGPT generate-file prompt failed before download");
     }
-    const downloadShape = await waitForChatgptGeneratedFileDownloadShapeWithExtension(page, effective.expected_extension, locateTimeoutMs);
+    const downloadShape = await waitForChatgptGeneratedFileDownloadShapeWithExtension(page, downloadExtension, locateTimeoutMs);
     const snapshot = await extensionTextSnapshot(page, "main").catch(() => ({ url: promptResult.chat_url || targetUrlFor("chatgpt", effective), text: "" }));
     await page.assetsList().catch(() => []);
     const bundle = await page.assetsBundle().catch(() => ({ assets: [], capturedAt: new Date().toISOString() }));
@@ -3645,7 +3813,7 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
       buttonSelector: downloadShape.buttonSelector,
       ...(downloadShape.buttonAncestorText ? { buttonAncestorText: downloadShape.buttonAncestorText } : {}),
       downloadDir: effective.download_dir,
-      filenamePattern: `\\.${effective.expected_extension}$`,
+      filenamePattern: `\\.${downloadExtension}$`,
       timeoutMs: chatgptArtifactTimeoutMs,
       locateTimeoutMs,
       useJsClickFallback: true,
@@ -3658,6 +3826,25 @@ async function generateChatgptFileWithExtensionBackend(args: any, runtime: Requi
       if (isArtifactDownloadControlMissing(error)) throw generatedFileDownloadTimeoutError("ChatGPT", error, downloadShape.buttonSelector, locateTimeoutMs);
       throw error;
     });
+    if (usePptxZipBundle) {
+      const zipPath = result.path || (result as any).savedPath || "";
+      if (!zipPath || !fs.existsSync(zipPath)) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ChatGPT ZIP bundle download did not produce a readable archive", { zipPath });
+      }
+      const extracted = extractPptxFromZipBundle(zipPath, effective.download_dir);
+      return artifactClickResultToSafeOutput(
+        { path: extracted.path, sha256: extracted.sha256, size_bytes: extracted.byteSize, downloadFilename: path.basename(extracted.path) },
+        {
+          artifact_name: path.basename(extracted.path),
+          suggested_filename: path.basename(extracted.path),
+          zip_path: zipPath,
+          zip_sha256: sha256File(zipPath),
+          zip_download_filename: result.suggestedFilename || result.downloadFilename || path.basename(zipPath),
+          zip_entry_name: extracted.entryName,
+          extracted_from_zip: true
+        }
+      );
+    }
     return artifactClickResultToSafeOutput(result, { suggested_filename: result.suggestedFilename || result.downloadFilename || path.basename(result.path || "") });
   } catch (error: any) {
     const errorCode = webAiExtensionErrorCode(error);
@@ -5796,6 +5983,27 @@ async function readGeminiCanvasMarkupFromCdpPage(page: any, timeoutMs = 30000): 
     const monacoText = await page.locator(".monaco-editor .view-lines").first().innerText({ timeout: 1000 }).catch(() => "");
     const normalized = String(monacoText || "").replace(/\u00a0/g, " ");
     if (isRealGeminiCanvasMarkup(normalized)) return normalized;
+    const editableMarkup = await page.evaluate?.(() => {
+      const clean = (value: unknown) => String(value || "").replace(/\s+/g, " ").trim();
+      return Array.from(document.querySelectorAll('[contenteditable="true"]')).map((node: Element) => {
+        const el = node as HTMLElement;
+        const text = clean(el.innerText || el.textContent || "");
+        const html = String(el.innerHTML || el.textContent || "");
+        const rect = el.getBoundingClientRect();
+        const chrome = [
+          el.getAttribute("aria-label"),
+          el.getAttribute("data-placeholder"),
+          el.getAttribute("placeholder"),
+          el.getAttribute("role")
+        ].join(" ");
+        return { text, html, chrome, area: Math.max(0, rect.width) * Math.max(0, rect.height) };
+      }).filter((candidate) => {
+        if (candidate.text.length < 20) return false;
+        if (/ask gemini|enter a prompt|describe your|message/i.test(candidate.chrome)) return false;
+        return true;
+      }).sort((a, b) => b.text.length - a.text.length || b.area - a.area)[0]?.html || "";
+    }).catch(() => "");
+    if (typeof editableMarkup === "string" && editableMarkup.trim()) return editableMarkup;
     if (typeof page.waitForTimeout === "function") await page.waitForTimeout(500).catch(() => undefined);
     else await extensionSleep(500);
   }
@@ -5854,6 +6062,21 @@ async function submitGeminiCanvasInstructionWithExtension(page: any, instruction
   await page.waitForSelector(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeoutMs });
 }
 
+async function submitGeminiCanvasPromptWithExtensionSelectors(page: any, effective: any, prompt: string, activateCanvas: boolean): Promise<void> {
+  if (activateCanvas) {
+    await clickExtensionSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
+    await waitForExtensionSelector(page, GEMINI_CANVAS_MENUITEM_SELECTOR, 8000, "Gemini Canvas menuitemcheckbox was not found");
+    await clickExtensionSelector(page, GEMINI_CANVAS_MENUITEM_SELECTOR, 8000, "Gemini Canvas menuitemcheckbox was not found");
+  }
+  await waitForExtensionSelector(page, GEMINI_IMAGE_PROMPT_SELECTOR, Math.min(effective.timeout_ms || 60000, 15000), "Gemini prompt composer was not found");
+  await page.fill({ selector: GEMINI_IMAGE_PROMPT_SELECTOR }, prompt, { timeoutMs: Math.min(effective.timeout_ms || 60000, 15000) });
+  await extensionSleep(GEMINI_SEND_BUTTON_HYDRATION_WAIT_MS);
+  const sendSelector = sendButtonSelector("gemini");
+  await waitForExtensionSelector(page, sendSelector, 5000, "Gemini Send message button was not found");
+  await clickExtensionSelectorWithJavascript(page, sendSelector, 8000, "Gemini Send message button was not found");
+  await waitForExtensionSelector(page, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, effective.response_timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS, "Gemini Canvas share/export button was not found");
+}
+
 async function awaitSpawnedDocsTabWithExtension(backend: any, timeoutMs: number): Promise<string | null> {
   const deadline = Date.now() + Math.max(1, timeoutMs);
   while (Date.now() <= deadline) {
@@ -5882,6 +6105,26 @@ function geminiCanvasToDocsErrorOutput(args: any, error: any, extra: Record<stri
   });
 }
 
+async function canvasToDocsWithExtensionPageBackend(effective: any, backend: any): Promise<Record<string, unknown>> {
+  const title = effective.title || null;
+  const page = await extensionGeminiPage({ ...effective, __forceFreshComposer: true }, backend, GEMINI_FRESH_COMPOSER_URL);
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+  if (loginRequiredForService("gemini", snapshot.url || "")) {
+    return safeOutput({ docs_url: null, docs_doc_id: null, title, ok: false, errorCode: ConsumerErrorCodes.LOGIN_REQUIRED, error_code: ConsumerErrorCodes.LOGIN_REQUIRED });
+  }
+  const docsPrompt = geminiCanvasToDocsDocumentPrompt(effective.prompt);
+  await submitGeminiCanvasPromptWithExtensionSelectors(page, effective, docsPrompt, true);
+  await clickExtensionSelector(page, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, 8000, "Gemini Canvas share/export button was not found");
+  await waitForExtensionSelector(page, GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, 8000, "Gemini Canvas export-to-Docs menuitem was not found");
+  await clickExtensionSelector(page, GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, 8000, "Gemini Canvas export-to-Docs menuitem was not found");
+  const docsUrl = await awaitSpawnedDocsTabWithExtension(backend, effective.timeout_ms || 45000);
+  const docId = docsUrl ? GOOGLE_DOCS_URL_RE.exec(docsUrl)?.[1] || null : null;
+  if (!docId || !docsUrl) {
+    return geminiCanvasToDocsErrorOutput(effective, new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini Canvas export did not spawn a docs.google.com document"));
+  }
+  return safeOutput({ docs_url: `https://docs.google.com/document/d/${docId}/edit`, docs_doc_id: docId, title, errorCode: null });
+}
+
 async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = geminiToolArgs(args || {});
   assertPromptAllowed(effective.prompt);
@@ -5894,11 +6137,15 @@ async function canvasToDocsWithExtensionBackend(args: any, runtime: Required<Bro
   const lease = acquireProfileLease(effective.profile);
   let backend: any;
   try {
-    backend = getBackend("extension-assisted-cdp", {
-      transport: "http",
-      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
-    });
-    await backend.ping();
+    const hasProfileCdp = typeof runtime.launcher?.status === "function" && typeof runtime.launcher?.connectOverCdp === "function";
+    if (!hasProfileCdp) {
+      backend = getBackend("extension-assisted-cdp", {
+        transport: "http",
+        httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+      });
+      await backend.ping();
+      return await canvasToDocsWithExtensionPageBackend(effective, backend);
+    }
     return await withProfileCdpPage(runtime, effective.profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
       await prepareGeminiCanvasCdpPage(page, effective, true);
       const docsPrompt = geminiCanvasToDocsDocumentPrompt(effective.prompt);
@@ -5978,6 +6225,54 @@ function geminiCanvasEditErrorOutput(error: any): Record<string, unknown> {
   });
 }
 
+async function editGeminiCanvasWithExtensionPageBackend(effective: any, backend: any): Promise<Record<string, unknown>> {
+  const page = await extensionGeminiPage({ ...effective, __forceFreshComposer: Boolean(effective.prompt) }, backend, GEMINI_FRESH_COMPOSER_URL);
+  const snapshot = await extensionTextSnapshot(page).catch(() => ({ url: targetUrlFor("gemini", effective), text: "" }));
+  if (loginRequiredForService("gemini", snapshot.url || "")) {
+    return safeOutput({ canvas_opened: false, edit_applied: false, ai_action_applied: false, canvas_html_before: "", canvas_html_after: "", ok: false, errorCode: ConsumerErrorCodes.LOGIN_REQUIRED, error_code: ConsumerErrorCodes.LOGIN_REQUIRED });
+  }
+  let canvas_opened = false;
+  let edit_applied = false;
+  let ai_action_applied = false;
+  let canvas_html_before = "";
+  let canvas_html_after = "";
+  const readCanvasMarkup = async () => extensionReadGeminiCanvasMarkup(page).catch(() => "");
+
+  if (effective.prompt) {
+    await submitGeminiCanvasPromptWithExtensionSelectors(page, effective, effective.prompt, true);
+    canvas_opened = true;
+    canvas_html_before = await readCanvasMarkup();
+  }
+
+  if (effective.edit_text) {
+    if (!canvas_html_before) canvas_html_before = await readCanvasMarkup();
+    await submitGeminiCanvasInstructionWithExtension(
+      page,
+      `Update the current Canvas by applying this edit exactly: ${String(effective.edit_text)}`,
+      effective.response_timeout_ms || effective.timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS
+    );
+    edit_applied = true;
+    canvas_opened = true;
+    canvas_html_after = await readCanvasMarkup();
+  }
+
+  if (effective.ai_action) {
+    if (!canvas_html_before) canvas_html_before = await readCanvasMarkup();
+    const instruction = effective.ai_action === "length"
+      ? "Make the current Canvas longer while preserving its subject."
+      : effective.ai_action === "tone"
+        ? "Improve the tone of the current Canvas while preserving its meaning."
+        : "Apply one concise improvement suggestion to the current Canvas.";
+    await submitGeminiCanvasInstructionWithExtension(page, instruction, effective.response_timeout_ms || effective.timeout_ms || DEFAULT_RESPONSE_TIMEOUT_MS);
+    ai_action_applied = true;
+    canvas_opened = true;
+    canvas_html_after = await readCanvasMarkup();
+  }
+
+  if (!canvas_html_after && canvas_html_before) canvas_html_after = canvas_html_before;
+  return safeOutput({ canvas_opened, edit_applied, ai_action_applied, canvas_html_before, canvas_html_after });
+}
+
 async function editGeminiCanvasWithExtensionBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
   const effective = geminiToolArgs(args || {});
   if (effective.prompt) assertPromptAllowed(effective.prompt);
@@ -5988,11 +6283,15 @@ async function editGeminiCanvasWithExtensionBackend(args: any, runtime: Required
   const lease = acquireProfileLease(effective.profile);
   let backend: any;
   try {
-    backend = getBackend("extension-assisted-cdp", {
-      transport: "http",
-      httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
-    });
-    await backend.ping();
+    const hasProfileCdp = typeof runtime.launcher?.status === "function" && typeof runtime.launcher?.connectOverCdp === "function";
+    if (!hasProfileCdp) {
+      backend = getBackend("extension-assisted-cdp", {
+        transport: "http",
+        httpBridgeUrl: extensionHttpBridgeUrlForArgs(effective)
+      });
+      await backend.ping();
+      return await editGeminiCanvasWithExtensionPageBackend(effective, backend);
+    }
     return await withProfileCdpPage(runtime, effective.profile, (url) => /gemini\.google\.com\/app/i.test(url), async (page) => {
       await prepareGeminiCanvasCdpPage(page, effective, Boolean(effective.prompt));
 
