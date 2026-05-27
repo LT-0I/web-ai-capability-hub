@@ -70,6 +70,21 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+function getProcessUid(): number | null {
+  return typeof process.getuid === "function" ? process.getuid() : null;
+}
+
+function buildChromeLaunchEnv(): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...process.env };
+  const uid = getProcessUid();
+  const userRuntimeDir = uid === null ? null : `/run/user/${uid}`;
+  if (!env.XDG_RUNTIME_DIR && userRuntimeDir) env.XDG_RUNTIME_DIR = userRuntimeDir;
+  if (!env.XAUTHORITY && userRuntimeDir) env.XAUTHORITY = `${userRuntimeDir}/gdm/Xauthority`;
+  if (!env.DISPLAY && process.platform !== "win32") env.DISPLAY = ":0";
+  if (!env.DISPLAY) process.stderr.write("Chrome launching without DISPLAY; anti-bot detection may trigger\n");
+  return env;
+}
+
 function isCdpEndpointReadinessError(error: unknown): boolean {
   return /CDP endpoint did not become ready|ECONNREFUSED|ECONNRESET|ECONNABORTED|socket hang up/i.test(errorMessage(error));
 }
@@ -208,7 +223,7 @@ export class ManagedBrowserLauncher {
       extensionAssisted: options.extensionAssisted === true,
       extensionPath: options.extensionPath
     });
-    this.launchedProcess = childProcess.spawn(discovered.path, args, { detached: true, stdio: "ignore", windowsHide: true });
+    this.launchedProcess = childProcess.spawn(discovered.path, args, { detached: true, env: buildChromeLaunchEnv(), stdio: "ignore", windowsHide: true });
     detachLaunchedProcess(this.launchedProcess);
     this.launchedProcess.once?.("error", (error: Error) => { this.lastStatus = { ...(this.lastStatus as any), connected: false, lastError: error.message }; });
     const version = await waitForCdpVersion(cdpHost, cdpPort);

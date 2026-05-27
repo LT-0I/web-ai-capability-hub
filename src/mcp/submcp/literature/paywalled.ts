@@ -66,6 +66,9 @@ function emptyOutput(overrides: Partial<LiteratureDownloadPdfOutput>): Literatur
 
 function now(): number { return Date.now(); }
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
+function jitter(min: number, max: number): number {
+  return Math.floor(min + Math.random() * (max - min + 1));
+}
 
 function requireDocId(doc_id: unknown): string {
   const value = String(doc_id || "").trim();
@@ -324,6 +327,12 @@ async function dispatchCdpClick(pageCdp: any, box: { x: number; y: number; width
   await pageCdp.send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", buttons: 0, clickCount: 1 });
 }
 
+async function humanizeBeforePdfClick(page: any): Promise<void> {
+  await page.waitForTimeout(jitter(400, 900));
+  await page.mouse.move(jitter(100, 400), jitter(100, 400), { steps: 6 });
+  await page.evaluate(() => window.scrollBy(0, Math.floor(Math.random() * 300)));
+}
+
 async function navigateForDownload(page: any, url: string): Promise<any | null> {
   try {
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
@@ -493,10 +502,16 @@ export async function downloadPaywalledLiteraturePdfToDisk(
   const before = listStableFiles(outputDir);
   const launcher = createManagedBrowserLauncher();
   let browser: any;
+  let page: any;
+  const pagesToClose: any[] = [];
   try {
     browser = await connectResearchBrowser(launcher, selectedProfile, cdp_port);
     const context = await firstBrowserContext(browser);
-    const page = await context.newPage();
+    page = await context.newPage();
+    pagesToClose.push(page);
+    const rememberPage = (entry: any) => {
+      if (entry && !pagesToClose.includes(entry)) pagesToClose.push(entry);
+    };
     const { pageCdp, events } = await armDownloadBehavior(browser, page, outputDir);
     const started = now();
 
@@ -521,12 +536,14 @@ export async function downloadPaywalledLiteraturePdfToDisk(
         const articleClickable = await findClickableHandle(page, config.selectors);
         if (!articleClickable) continue;
         const articlePagesBeforeClick = new Set((context.pages?.() || []).map((entry: any) => entry));
+        await humanizeBeforePdfClick(page);
         await dispatchCdpClick(pageCdp, articleClickable.box);
         await sleep(1500);
         const articleDownload = await waitForDownload(outputDir, before, events, Math.max(1, 60000 - (now() - started)));
         const finalizedArticleDownload = tryFinalizeDownloadedPdf(articleDownload, outputDir, docId, articleDownload?.url || articleUrl, before);
         if (finalizedArticleDownload) return finalizedArticleDownload;
         for (const openedPage of (context.pages?.() || []).filter((entry: any) => !articlePagesBeforeClick.has(entry))) {
+          rememberPage(openedPage);
           const openedUrl = asOptionalUrl(openedPage.url?.());
           if (!openedUrl) continue;
           const fetchedOpened = await fetchPdfCandidate(openedPage, outputDir, docId, openedUrl, config);
@@ -571,6 +588,7 @@ export async function downloadPaywalledLiteraturePdfToDisk(
     const clickable = await findClickableHandle(page, config.selectors);
     if (clickable) {
       const pagesBeforeClick = new Set((context.pages?.() || []).map((entry: any) => entry));
+      await humanizeBeforePdfClick(page);
       await dispatchCdpClick(pageCdp, clickable.box);
       await sleep(1500);
       const remaining = Math.max(1, 60000 - (now() - started));
@@ -578,6 +596,7 @@ export async function downloadPaywalledLiteraturePdfToDisk(
       const finalizedClicked = tryFinalizeDownloadedPdf(clickedDownload, outputDir, docId, clickedDownload?.url || resolvedUrl, before);
       if (finalizedClicked) return finalizedClicked;
       for (const openedPage of (context.pages?.() || []).filter((entry: any) => !pagesBeforeClick.has(entry))) {
+        rememberPage(openedPage);
         const openedUrl = asOptionalUrl(openedPage.url?.());
         if (!openedUrl) continue;
         const fetchedOpened = await fetchPdfCandidate(openedPage, outputDir, docId, openedUrl, config);
@@ -618,6 +637,9 @@ export async function downloadPaywalledLiteraturePdfToDisk(
       { db_slug: config.db_slug, doc_id: docId, pdf_url: resolvedUrl }
     );
   } finally {
+    for (const entry of [...pagesToClose].reverse()) {
+      await entry?.close?.({ runBeforeUnload: false }).catch(() => undefined);
+    }
     await browser?.close?.().catch(() => undefined);
   }
 }
