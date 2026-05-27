@@ -1,0 +1,62 @@
+{
+  "operation_id": "webai_gemini_music_download_track--mp3",
+  "tool": "webai_gemini_music_download_track",
+  "variant": "mp3",
+  "endpoint": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=GPRiHf&source-path=%2Fapp&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=4015991531058318868&hl=en&_reqid=204704&rt=c",
+  "endpoint_kind": "batchexecute",
+  "rpc_id": "GPRiHf",
+  "headers_template": {
+    ":authority": "gemini.google.com",
+    ":method": "POST",
+    ":path": "/_/BardChatUi/data/batchexecute?rpcids=GPRiHf&source-path=%2Fapp&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=4015991531058318868&hl=en&_reqid=204704&rt=c",
+    ":scheme": "https",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "zh-CN,zh;q=0.9",
+    "content-length": "123",
+    "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "cookie": "[REDACTED length=3053]",
+    "origin": "https://gemini.google.com",
+    "priority": "u=1, i",
+    "referer": "https://gemini.google.com/",
+    "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+    "sec-ch-ua-arch": "\"x86\"",
+    "sec-ch-ua-bitness": "\"64\"",
+    "sec-ch-ua-form-factors": "\"Desktop\"",
+    "sec-ch-ua-full-version": "\"148.0.7778.167\"",
+    "sec-ch-ua-full-version-list": "\"Chromium\";v=\"148.0.7778.167\", \"Google Chrome\";v=\"148.0.7778.167\", \"Not/A)Brand\";v=\"99.0.0.0\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-model": "\"\"",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-ch-ua-platform-version": "\"\"",
+    "sec-ch-ua-wow64": "?0",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "x-browser-channel": "stable",
+    "x-browser-copyright": "Copyright 2026 Google LLC. All Rights Reserved.",
+    "x-browser-validation": "eJd5Tw+MWpGUJD0D/pwqH9jwh9w=",
+    "x-browser-year": "2026",
+    "x-client-data": "[REDACTED length=8]",
+    "x-goog-ext-525001261-jspb": "[1,null,null,null,null,null,null,null,[4,5,6,8],null,null,null,null,null,null,null,\"0180C2BF-1E70-4897-A8DA-96670AF7B6C7\"]",
+    "x-goog-ext-73010989-jspb": "[]",
+    "x-same-domain": "1"
+  },
+  "form_template": {
+    "f.req": "[[[\"GPRiHf\",\"[]\",null,\"generic\"]]]",
+    "at": "AOOh0PEhX3XUIMZB9AdSC-KXIOJQ:1779869902093"
+  },
+  "f_req_template": [
+    [
+      [
+        "GPRiHf",
+        "[]",
+        null,
+        "generic"
+      ]
+    ]
+  ],
+  "decoded_body_template_preview": "f.req=[[[\"GPRiHf\",\"[]\",null,\"generic\"]]]&at=AOOh0PEhX3XUIMZB9AdSC-KXIOJQ:1779869902093&",
+  "placeholders": {}
+}

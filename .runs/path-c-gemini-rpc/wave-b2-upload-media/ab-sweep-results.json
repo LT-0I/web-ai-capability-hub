@@ -1,0 +1,325 @@
+{
+  "ok": true,
+  "stopReason": null,
+  "profile": "gemini-9225",
+  "pace_ms": 30000,
+  "started_at": "2026-05-27T19:25:14.504Z",
+  "finished_at": "2026-05-27T19:38:28.062Z",
+  "results": [
+    {
+      "variant": "upload_single",
+      "backend": "managed-cdp",
+      "elapsed_ms": 31768,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 25,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "errorCode",
+        "files_in_chip",
+        "response_text",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "upload_single",
+      "backend": "rpc",
+      "elapsed_ms": 8072,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 25,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "elapsed_ms",
+        "errorCode",
+        "files_in_chip",
+        "model_used",
+        "ok",
+        "response_text",
+        "service",
+        "uploaded_files",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "upload_multi",
+      "backend": "managed-cdp",
+      "elapsed_ms": 40396,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 24,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "errorCode",
+        "files_in_chip",
+        "response_text",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "upload_multi",
+      "backend": "rpc",
+      "elapsed_ms": 13014,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 24,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "elapsed_ms",
+        "errorCode",
+        "files_in_chip",
+        "model_used",
+        "ok",
+        "response_text",
+        "service",
+        "uploaded_files",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "upload_and_query",
+      "backend": "managed-cdp",
+      "elapsed_ms": 39363,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 49,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "errorCode",
+        "files_in_chip",
+        "response_text",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "upload_and_query",
+      "backend": "rpc",
+      "elapsed_ms": 11412,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 69,
+      "completion_detected": true,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "chat_url",
+        "completion_detected",
+        "elapsed_ms",
+        "errorCode",
+        "files_in_chip",
+        "model_used",
+        "ok",
+        "response_text",
+        "service",
+        "uploaded_files",
+        "wait_ms"
+      ]
+    },
+    {
+      "variant": "generate_image_basic",
+      "backend": "extension-assisted-cdp",
+      "elapsed_ms": 37297,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 0,
+      "completion_detected": false,
+      "artifact": {
+        "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-gemini-rpc/wave-b2-upload-media/downloads/Gemini_Generated_Image_1vof5v1vof5v1vof.png",
+        "exists": true,
+        "size_bytes": 5112240,
+        "sha256_present": true
+      },
+      "raw_shape": [
+        "dimensions",
+        "download_filename",
+        "errorCode",
+        "path",
+        "sha256",
+        "size_bytes"
+      ]
+    },
+    {
+      "variant": "generate_image_basic",
+      "backend": "rpc",
+      "elapsed_ms": 31626,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 28,
+      "completion_detected": false,
+      "artifact": {
+        "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-gemini-rpc/wave-b2-upload-media/downloads/watermarked_img_14181625856341809088.png",
+        "exists": true,
+        "size_bytes": 14157,
+        "sha256_present": true
+      },
+      "raw_shape": [
+        "conversation_url",
+        "dimensions",
+        "download_filename",
+        "errorCode",
+        "media_url",
+        "path",
+        "response_text",
+        "sha256",
+        "size_bytes"
+      ]
+    },
+    {
+      "variant": "generate_video_duration_2s",
+      "backend": "extension-assisted-cdp",
+      "elapsed_ms": 315369,
+      "ok": false,
+      "errorCode": "COMMAND_TIMEOUT",
+      "message": "COMMAND_TIMEOUT: Gemini video did not finish generating before timeout",
+      "response_text_length": 70,
+      "completion_detected": false,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "download_filename",
+        "errorCode",
+        "error_code",
+        "evidence",
+        "message",
+        "path",
+        "sha256",
+        "size_bytes"
+      ]
+    },
+    {
+      "variant": "generate_video_duration_2s",
+      "backend": "rpc",
+      "elapsed_ms": 16410,
+      "ok": false,
+      "errorCode": "ARTIFACT_DOWNLOAD_TIMEOUT",
+      "message": "ARTIFACT_DOWNLOAD_TIMEOUT: Gemini video RPC response media URLs were present but none downloaded successfully",
+      "response_text_length": 109,
+      "completion_detected": false,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "download_filename",
+        "errorCode",
+        "error_code",
+        "evidence",
+        "message",
+        "path",
+        "sha256",
+        "size_bytes"
+      ]
+    },
+    {
+      "variant": "music_generate_instrumental",
+      "backend": "extension-assisted-cdp",
+      "elapsed_ms": 127796,
+      "ok": false,
+      "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+      "message": "Error calling tool: Request timed out after 120000ms",
+      "response_text_length": 52,
+      "completion_detected": false,
+      "artifact": {
+        "path": "",
+        "exists": false,
+        "size_bytes": 0,
+        "sha256_present": false
+      },
+      "raw_shape": [
+        "conversation_url",
+        "errorCode",
+        "error_code",
+        "message",
+        "ok",
+        "status",
+        "task_id"
+      ]
+    },
+    {
+      "variant": "music_generate_instrumental",
+      "backend": "rpc",
+      "elapsed_ms": 49919,
+      "ok": true,
+      "errorCode": null,
+      "message": "",
+      "response_text_length": 157,
+      "completion_detected": false,
+      "artifact": {
+        "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-gemini-rpc/wave-b2-upload-media/downloads/copper_sky.mp3",
+        "exists": true,
+        "size_bytes": 744608,
+        "sha256_present": true
+      },
+      "raw_shape": [
+        "conversation_url",
+        "download_filename",
+        "errorCode",
+        "media_url",
+        "path",
+        "response_text",
+        "sha256",
+        "size_bytes",
+        "status",
+        "task_id"
+      ]
+    }
+  ]
+}

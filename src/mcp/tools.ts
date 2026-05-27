@@ -7743,10 +7743,22 @@ export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserTool
   return webAiClaudeUploadAndQueryRpc(args, runtime);
 }
 export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return uploadAndQueryWithExtensionBackend("gemini", args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime));
-  return uploadExtensionErrorOutput("gemini", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+  // Path C Gemini Wave B2: RPC is the production default; DOM is an explicit operator override, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_UPLOAD_BACKEND || args?.backend || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_upload_and_query] backend=dom-extension");
+    return uploadAndQueryWithExtensionBackend("gemini", args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_upload_and_query] backend=dom-managed");
+    return uploadAndQueryOnPage("gemini", args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    return uploadExtensionErrorOutput("gemini", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_UPLOAD_BACKEND/backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_UPLOAD_BACKEND || args?.backend)}`));
+  }
+  console.error("[webai_gemini_upload_and_query] backend=rpc");
+  const { webAiGeminiUploadAndQueryRpc } = require("./gemini_upload_rpc");
+  return webAiGeminiUploadAndQueryRpc(args, runtime);
 }
 export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -7777,10 +7789,20 @@ export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserTool
   return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "managed-cdp") return generateImageOnPage("gemini", args, runtimeOrDefault(runtime));
-  if (backend === "extension-assisted-cdp") return generateGeminiImageWithExtensionBackend(args, runtimeOrDefault(runtime));
-  return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_image backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+  // Path C Gemini Wave B2: RPC is the production default; DOM overrides are explicit and never a post-RPC fallback.
+  const override = String(process.env.WEBAI_GEMINI_GENERATE_IMAGE_BACKEND || args?.backend || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_generate_image] backend=dom-extension");
+    return generateGeminiImageWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_generate_image] backend=dom-managed");
+    return generateImageOnPage("gemini", args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") return imageErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_GENERATE_IMAGE_BACKEND/backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_GENERATE_IMAGE_BACKEND || args?.backend)}`);
+  console.error("[webai_gemini_generate_image] backend=rpc");
+  const { webAiGeminiGenerateImageRpc } = require("./gemini_media_rpc");
+  return webAiGeminiGenerateImageRpc(args, runtime);
 }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -7789,10 +7811,20 @@ export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRu
   return webAiBackendInvalidOutput("webai_gemini_canvas_to_docs", backend);
 }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "managed-cdp") return startGeminiVideoTask(args, runtimeOrDefault(runtime));
-  if (backend === "extension-assisted-cdp") return generateGeminiVideoWithExtensionBackend(args, runtimeOrDefault(runtime));
-  return videoErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_generate_video backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+  // Path C Gemini Wave B2: shortest-duration video RPC is the production default; DOM overrides are explicit only.
+  const override = String(process.env.WEBAI_GEMINI_GENERATE_VIDEO_BACKEND || args?.backend || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_generate_video] backend=dom-extension");
+    return generateGeminiVideoWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_generate_video] backend=dom-managed");
+    return startGeminiVideoTask(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") return videoErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_GENERATE_VIDEO_BACKEND/backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_GENERATE_VIDEO_BACKEND || args?.backend)}`);
+  console.error("[webai_gemini_generate_video] backend=rpc");
+  const { webAiGeminiGenerateVideoRpc } = require("./gemini_media_rpc");
+  return webAiGeminiGenerateVideoRpc(args, runtime);
 }
 export async function webAiChatgptCanvasExport(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -8059,14 +8091,38 @@ async function webAiGeminiMusicTaskStatusWithExtensionBackend(args: any, runtime
 }
 
 export async function webAiGeminiMusicGenerate(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  return webAiGeminiMusicGenerateManaged(args, runtimeOrDefault(runtime));
+  // Path C Gemini Wave B2: verified instrumental music generation now defaults to RPC; DOM is an explicit operator override, never a runtime fallback.
+  const override = String(process.env.WEBAI_GEMINI_MUSIC_GENERATE_BACKEND || args?.backend || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_music_generate] backend=dom-extension");
+    return webAiGeminiMusicGenerateManaged({ ...(args || {}), backend: "extension-assisted-cdp" }, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_music_generate] backend=dom-managed");
+    return webAiGeminiMusicGenerateManaged({ ...(args || {}), backend: "managed-cdp" }, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    return safeOutput({ task_id: "", status: "error", conversation_url: "", ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_MUSIC_GENERATE_BACKEND/backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_MUSIC_GENERATE_BACKEND || args?.backend)}` });
+  }
+  console.error("[webai_gemini_music_generate] backend=rpc");
+  const { webAiGeminiMusicGenerateRpc } = require("./gemini_media_rpc");
+  return webAiGeminiMusicGenerateRpc(args, runtime);
 }
 
 export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_music_download_track", backend);
+  // Path C Gemini Wave B2: mp3/video download-track captures were RPC_NOT_AVAILABLE
+  // (no ready-track/no matching download RPC). This tool remains DOM-only by
+  // write-time decision; this is not a runtime fallback after an RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND || args?.backend || "extension-assisted-cdp").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_music_download_track] backend=dom-extension");
+    return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_music_download_track] backend=dom-managed");
+    return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
+  }
+  return safeOutput({ ok: false, savedPath: "", sha256: "", byteSize: 0, format: String(args?.format || "mp3"), errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND/backend must be "dom", "managed-cdp", or "extension-assisted-cdp" because mp3/video are RPC_NOT_AVAILABLE, got ${String(process.env.WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND || args?.backend)}` });
 }
 
 export async function webAiGeminiMusicTaskStatus(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
