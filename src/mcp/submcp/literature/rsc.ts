@@ -15,7 +15,8 @@ export const rscPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/articlepdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiRscDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

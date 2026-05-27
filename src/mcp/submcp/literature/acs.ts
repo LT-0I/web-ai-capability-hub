@@ -16,7 +16,8 @@ export const acsPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/doi/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiAcsDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

@@ -25,9 +25,9 @@ test("p2 contract: error_codes.length is exactly 40 after Phase 8 Bucket A", () 
   assert.equal((CONSUMER_ERROR_CODES as readonly string[]).length, 40);
 });
 
-test("p2/W1/extension contract: contract_version is consumer-contract-2.1.0; package_version is 2.1.0", () => {
-  assert.equal(CONTRACT.contract_version, "consumer-contract-2.1.0");
-  assert.equal(CONTRACT.package_version, "2.1.0");
+test("p2/W1/extension contract: contract_version is consumer-contract-2.2.0; package_version is 2.2.0", () => {
+  assert.equal(CONTRACT.contract_version, "consumer-contract-2.2.0");
+  assert.equal(CONTRACT.package_version, "2.2.0");
 });
 
 test("p2 contract: TS error code export and JSON error_codes array are in lockstep order", () => {

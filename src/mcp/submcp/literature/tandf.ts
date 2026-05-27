@@ -15,7 +15,8 @@ export const tandfPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/doi/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiTandfDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

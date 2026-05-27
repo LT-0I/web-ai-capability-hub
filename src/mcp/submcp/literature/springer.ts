@@ -15,7 +15,8 @@ export const springerPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/content/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiSpringerDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

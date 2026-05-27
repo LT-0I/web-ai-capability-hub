@@ -71,8 +71,9 @@ function incopatQueuedOutputIfQuotaReached(args: Partial<PaywalledLiteratureDown
     size: null,
     downloaded_at: null,
     errorCode: ConsumerErrorCodes.LITERATURE_QUEUED,
-    message: `${incopatPaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`
-  };
+    message: `${incopatPaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`,
+    oa_source: "none"
+  } as LiteratureDownloadPdfOutput & { oa_source: "none" };
 }
 
 async function ensureIncopatDownloadAuthenticated(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<void> {
@@ -88,7 +89,7 @@ export async function webAiIncopatDownloadPdf(args: Partial<PaywalledLiteratureD
   try {
     await ensureIncopatDownloadAuthenticated(prepared);
   } catch (error) {
-    return literatureErrorOutput(error);
+    return { ...literatureErrorOutput(error), oa_source: "none" } as LiteratureDownloadPdfOutput & { oa_source: "none" };
   }
   return runPaywalledLiteratureDownloadPdfTool(incopatPaywalledLiteratureConfig, prepared);
 }

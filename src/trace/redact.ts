@@ -6,7 +6,7 @@ export interface RedactionOptions {
 }
 
 const PROFILE_KEY_RE = /^(profileId|profile_id|profile)$/i;
-const SENSITIVE_KEY_RE = /(cf-chl-|csrf|session|bearer|cookie|token|authorization|password|secret)/i;
+const SENSITIVE_KEY_RE = /(cf-chl-|csrf|session|bearer|cookie|token|authorization|password|secret|unpaywall[-_]?email|unpaywallEmail)/i;
 const COOKIE_VALUE_RE = /(?:^|;\s*)[A-Za-z0-9_.-]+=[^;]+(?:;\s*[A-Za-z0-9_.-]+=[^;]+)+/;
 // Conversation ids in contracted chat_url fields are handles, not credentials; redact them only in non-chat_url strings.
 const CONVERSATION_URL_RE = /\/c\/[a-f0-9-]{20,}/ig;

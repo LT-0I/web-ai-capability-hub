@@ -1,12 +1,13 @@
 # Consumer Contract
 
-Package: `web-ai-research-automation-hub` v2.1.0
-Contract: `consumer-contract-2.1.0`
+Package: `web-ai-research-automation-hub` v2.2.0
+Contract: `consumer-contract-2.2.0`
 
 This document is generated from `configs/consumer-contract.json`, the authoritative public integration contract for packages that consume the hub as a dependency. It does not change the existing safety policy, manual-login boundary, confirmation policy, or CLI/MCP tool behavior.
 
 ## Release notes
 
+- consumer-contract-2.2.0 (2026-05-27 Path C): paywalled DOI-based `webai_<db>_download_pdf` drivers accept optional `unpaywall_email` and return `oa_source` (`publisher`, `unpaywall`, or `none`). If publisher access is gated and the caller supplies an email for Unpaywall API terms, supported drivers actively try the legal OA PDF before returning `LOGIN_REQUIRED`. No commands or error codes were added; 8-lock counts remain commands 232, `webai_` 81, `research_` 121, `wah_` 8, errors 40.
 - consumer-contract-2.1.0 (2026-05-25 Phase 8 literature downloads): adds `webai_literature_task_status`, the 40-tool `webai_<db>_download_pdf` family, and `LITERATURE_QUEUED` as an info/non-fatal queued-download code (`ok=true`). Literature downloads use a per-DB 20/24h ledger and local-only artifact storage under `data/literature-downloads/<db>/`. No package or contract-version bump beyond the existing 2.1.0 cut; 8-lock counts remain commands 232, `webai_` 81, `research_` 121, `wah_` 8, errors 40.
 - consumer-contract-2.0.0 (2026-05-25 Chrome Extension #15 Phase 7 Bucket 9): breaking default-backend flip for all 40 `webai_*` tools from `managed-cdp` to `extension-assisted-cdp`. The managed CDP implementation remains present and reachable by passing `backend: "managed-cdp"` explicitly. Default operation now requires the native messaging host installed by `src/runtime/extension/installHost.ts`. No commands or error codes were added; 8-lock counts remain commands 191, `webai_` 40, `research_` 121, `wah_` 8, errors 39.
 - consumer-contract-1.10.0 (2026-05-24 Chrome Extension #15 Phase 6 Gemini + Claude lanes): no new commands or error codes; adds the opt-in `backend` optional argument (`managed-cdp` | `extension-assisted-cdp`) to six tools so Gemini image/video/music and Claude send/upload/generate-file can opt into the extension-assisted CDP path:
@@ -355,9 +356,14 @@ Phase 8 v2.1 adds a separate literature PDF download lane documented in
 `docs/MIGRATION_v2.1.md`. The 40 database-specific MCP tools use the
 `webai_<db>_download_pdf` naming pattern and accept at least `doc_id`;
 paywalled/session drivers may also accept `pdf_url`, `profile`, `output_dir`,
-and `cdp_port`. Successful direct responses return a local PDF `path`, `size`,
-`sha256`, `task_id: null`, and `errorCode: null`. Artifacts are stored only on
-the local operator filesystem under `data/literature-downloads/<db>/`.
+and `cdp_port`. In v2.2, paywalled DOI-based drivers also accept optional
+`unpaywall_email`; when present, a publisher-gated download can be actively
+routed to a legal Unpaywall OA PDF copy. Successful direct responses return a
+local PDF `path`, `size`, `sha256`, `task_id: null`, and `errorCode: null`.
+Paywalled download outputs include `oa_source`: `"publisher"` for verified
+publisher PDFs, `"unpaywall"` for verified OA copies, and `"none"` for queued
+or failed/no-PDF outcomes. Artifacts are stored only on the local operator
+filesystem under `data/literature-downloads/<db>/`.
 
 The database slugs are:
 
@@ -429,6 +435,7 @@ Command rows define `required_args`, `output_keys.always_present`, and `output_k
 | `canvas_export.path` | Local filesystem path to exported ChatGPT Canvas artifact; treat as sensitive local metadata. |
 | `claude_design.savedPath` | Local filesystem path to saved Design artifact; treat as sensitive local metadata. |
 | `gemini_music.savedPath` | Local filesystem path to saved Gemini music artifact; treat as sensitive local metadata. |
+| `unpaywall_email` | Consumer-provided email address sent to Unpaywall for DOI OA lookup; redact in logs and traces. |
 | `pulse.digest_text` | Plain ChatGPT Pulse visible page text; safe for contract output but classify because it can contain user-curated topics. |
 | `pulse.status` / `pulse.final_status` | Pulse readiness state; safe account feature state. |
 | `pulse.route` / `pulse.generated_hint` | Pulse route and generated timing hint; safe route/page metadata. |

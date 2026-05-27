@@ -186,8 +186,9 @@ function wanfangQueuedOutputIfQuotaReached(args: Partial<PaywalledLiteratureDown
     size: null,
     downloaded_at: null,
     errorCode: ConsumerErrorCodes.LITERATURE_QUEUED,
-    message: `${wanfangPaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`
-  };
+    message: `${wanfangPaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`,
+    oa_source: "none"
+  } as LiteratureDownloadPdfOutput & { oa_source: "none" };
 }
 
 export const wanfangPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
@@ -222,7 +223,7 @@ export async function webAiWanfangDownloadPdf(args: Partial<PaywalledLiteratureD
   try {
     await ensureWanfangProfileAuthenticated(prepared);
   } catch (error) {
-    return literatureErrorOutput(error);
+    return { ...literatureErrorOutput(error), oa_source: "none" } as LiteratureDownloadPdfOutput & { oa_source: "none" };
   }
   return runPaywalledLiteratureDownloadPdfTool(wanfangPaywalledLiteratureConfig, prepared);
 }

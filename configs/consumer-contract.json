@@ -1,6 +1,6 @@
 {
-  "package_version": "2.1.0",
-  "contract_version": "consumer-contract-2.1.0",
+  "package_version": "2.2.0",
+  "contract_version": "consumer-contract-2.2.0",
   "commands": [
     {
       "cli_name": "consumer:health",
@@ -4526,7 +4526,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4535,7 +4536,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4556,7 +4558,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4565,7 +4568,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4586,7 +4590,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4595,7 +4600,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4616,7 +4622,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4625,7 +4632,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4646,7 +4654,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4655,7 +4664,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4676,7 +4686,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4685,7 +4696,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4706,7 +4718,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4715,7 +4728,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4736,7 +4750,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4745,7 +4760,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4766,7 +4782,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4775,7 +4792,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4796,7 +4814,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4805,7 +4824,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4826,7 +4846,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4835,7 +4856,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4856,7 +4878,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4865,7 +4888,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4886,7 +4910,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4895,7 +4920,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4916,7 +4942,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4925,7 +4952,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4946,7 +4974,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4955,7 +4984,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -4976,7 +5006,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -4985,7 +5016,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5006,7 +5038,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5015,7 +5048,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5036,7 +5070,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5045,7 +5080,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5066,7 +5102,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5075,7 +5112,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5096,7 +5134,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5105,7 +5144,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5126,7 +5166,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5135,7 +5176,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5156,7 +5198,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5165,7 +5208,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5186,7 +5230,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5195,7 +5240,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5216,7 +5262,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5225,7 +5272,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5246,7 +5294,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5255,7 +5304,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5276,7 +5326,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5285,7 +5336,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5306,7 +5358,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5315,7 +5368,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5360,7 +5414,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5369,7 +5424,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5390,7 +5446,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5399,7 +5456,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5420,7 +5478,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5429,7 +5488,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -5450,7 +5510,8 @@
           "size",
           "downloaded_at",
           "errorCode",
-          "message"
+          "message",
+          "oa_source"
         ],
         "optional": []
       },
@@ -5459,7 +5520,8 @@
         "pdf_url",
         "profile",
         "output_dir",
-        "cdp_port"
+        "cdp_port",
+        "unpaywall_email"
       ]
     },
     {
@@ -6431,9 +6493,11 @@
     "wanfang.artifact_path": "Wanfang Data local TXT citation artifact path written by the export workflow.",
     "wanfang.bytes": "Wanfang Data local TXT citation artifact byte count.",
     "wanfang.sha256": "Wanfang Data local TXT citation artifact SHA-256 digest.",
-    "wanfang.format": "Wanfang Data export format selected for the research database workflow."
+    "wanfang.format": "Wanfang Data export format selected for the research database workflow.",
+    "unpaywall_email": "Consumer-provided email address sent to Unpaywall for DOI OA lookup; redact in logs and traces."
   },
   "release_notes": [
+    "consumer-contract-2.2.0 (2026-05-27 Path C): adds optional unpaywall_email to paywalled DOI-based webai_<db>_download_pdf drivers and an always-present oa_source field (publisher | unpaywall | none) on paywalled download outputs. When a publisher download is gated and a consumer supplies unpaywall_email, supported DOI drivers actively route to legal Unpaywall OA PDF copies before returning LOGIN_REQUIRED. No commands or error codes added; 8-lock counts remain commands 232, webai_ 81, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket E (same contract version consumer-contract-2.1.0): adds eight webai_<db>_download_pdf literature drivers for acm, crc, dblp, incopat, proquest, wanfang, worldsci, and wos. Paywalled/session-authenticated drivers use existing pdf_url/profile/output_dir/cdp_port shape where appropriate; acm/worldsci direct DOI PDF URLs and incopat patent PDF URLs are resolved into authenticated browser downloads. dblp and wos are bibliographic-only and honestly return INVALID_ARGS pointing callers to research_<db>_get_metadata and the appropriate publisher driver. No package or contract_version bump; no new error codes; 8-lock counts commands 232, webai_ 81, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket D (same contract version consumer-contract-2.1.0): adds twelve paywalled browser-session webai_<db>_download_pdf literature drivers for acs, cellpress, nature, rsc, royalsoc, cambridge, degruyter, emerald, sciencedirect, springer, tandf, and wiley. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 224, webai_ 73, research_ 121, wah_ 8, errors 40.",
     "Phase 8 Bucket C (same contract version consumer-contract-2.1.0): adds thirteen paywalled browser-session webai_<db>_download_pdf literature drivers for aip, aps, iop, optica, opticsjournal, siam, aiaa, asce, asme, ieee, iest, iet, and sae. Requires authenticated research browser profiles plus pdf_url fallback when research_<db>_get_metadata is unavailable; no package or contract_version bump; no new error codes; 8-lock counts commands 212, webai_ 61, research_ 121, wah_ 8, errors 40.",

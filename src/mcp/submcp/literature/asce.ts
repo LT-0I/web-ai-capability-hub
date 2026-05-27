@@ -242,8 +242,9 @@ function asceQueuedOutputIfQuotaReached(args: Partial<PaywalledLiteratureDownloa
     size: null,
     downloaded_at: null,
     errorCode: ConsumerErrorCodes.LITERATURE_QUEUED,
-    message: `${ascePaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`
-  };
+    message: `${ascePaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`,
+    oa_source: "none"
+  } as LiteratureDownloadPdfOutput;
 }
 
 export const ascePaywalledLiteratureConfig: PaywalledLiteratureConfig = {
@@ -266,6 +267,7 @@ export const ascePaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   article_url_resolver: (docId: string) => asceArticleCandidates(docId),
   candidate_url_filter: (url: string, docId: string) => {
     const doi = asceDoiFromDocId(docId);
@@ -284,7 +286,8 @@ export async function webAiAsceDownloadPdf(args: Partial<PaywalledLiteratureDown
   try {
     await ensureAsceProfileCanAccessPdf(prepared);
   } catch (error) {
-    return literatureErrorOutput(error);
+    if (prepared.unpaywall_email) return runPaywalledLiteratureDownloadPdfTool(ascePaywalledLiteratureConfig, prepared);
+    return { ...literatureErrorOutput(error), oa_source: "none" } as LiteratureDownloadPdfOutput & { oa_source: "none" };
   }
   return runPaywalledLiteratureDownloadPdfTool(ascePaywalledLiteratureConfig, prepared);
 }

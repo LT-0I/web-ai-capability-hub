@@ -20,6 +20,7 @@ export const sciencedirectPaywalledLiteratureConfig: PaywalledLiteratureConfig =
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   article_url_resolver: (docId: string, pdfUrl: string) => {
     if (/^S\d+/i.test(docId)) return `https://www.sciencedirect.com/science/article/pii/${docId}`;
     if (/\/pdfft/i.test(pdfUrl)) return pdfUrl.replace(/\/pdfft(?:[?#].*)?$/i, "");

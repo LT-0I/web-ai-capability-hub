@@ -44,10 +44,12 @@ interface ProquestPdfCapture {
   url: string;
 }
 
+type ProquestDownloadPdfOutput = LiteratureDownloadPdfOutput & { oa_source: "publisher" | "none" };
+
 function now(): number { return Date.now(); }
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 
-function emptyOutput(overrides: Partial<LiteratureDownloadPdfOutput>): LiteratureDownloadPdfOutput {
+function emptyOutput(overrides: Partial<ProquestDownloadPdfOutput>): ProquestDownloadPdfOutput {
   return {
     ok: false,
     task_id: null,
@@ -57,8 +59,13 @@ function emptyOutput(overrides: Partial<LiteratureDownloadPdfOutput>): Literatur
     downloaded_at: null,
     errorCode: null,
     message: null,
+    oa_source: "none",
     ...overrides
   };
+}
+
+function errorOutput(error: unknown): ProquestDownloadPdfOutput {
+  return { ...literatureErrorOutput(error), oa_source: "none" };
 }
 
 function requireDocId(doc_id: unknown): string {
@@ -447,7 +454,7 @@ export async function webAiProquestDownloadPdf(args: Partial<PaywalledLiterature
   try {
     docId = requireDocId(args?.doc_id);
   } catch (error) {
-    return literatureErrorOutput(error);
+    return errorOutput(error);
   }
 
   const nowMs = now();
@@ -474,10 +481,11 @@ export async function webAiProquestDownloadPdf(args: Partial<PaywalledLiterature
       sha256: result.sha256,
       size: result.size,
       downloaded_at: result.downloaded_at,
+      oa_source: "publisher",
       message: "Literature PDF downloaded"
     });
   } catch (error) {
-    return literatureErrorOutput(error);
+    return errorOutput(error);
   }
 }
 

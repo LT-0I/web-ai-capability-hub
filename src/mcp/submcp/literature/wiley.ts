@@ -15,7 +15,8 @@ export const wileyPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/doi/pdfdirect\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiWileyDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

@@ -19,6 +19,7 @@ export const emeraldPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   article_url_resolver: (docId: string) => /^10\./.test(docId) ? `https://www.emerald.com/insight/content/doi/${docId}/full/html` : null
 };
 

@@ -193,6 +193,7 @@ function webAiArgsFromCli(command: string, options: Record<string, CliOptionValu
     download_dir: asString(options["download-dir"] || options.downloadDir),
     output_dir: asString(options["output-dir"] || options.outputDir),
     pdf_url: asString(options["pdf-url"] || options.pdfUrl || options.pdf_url),
+    unpaywall_email: asString(options["unpaywall-email"] || options.unpaywallEmail || options.unpaywall_email),
     cdp_port: asNumber(options["cdp-port"] || options.cdpPort || options.cdp_port),
     doc_id: asString(options["doc-id"] || options.docId || options.doc_id),
     expected_extension: asString(options["expected-extension"] || options.expectedExtension),
@@ -940,7 +941,7 @@ MCP and compatibility commands:
   webai:task-status --task-id <id> [--output-json]
   webai:literature-task-status --task-id <id> [--output-json]
   webai:arxiv|scoap3|mdpi|frontiers|pubscholar|scielo|inspirehep:download-pdf --doc-id <id> [--output-dir <dir>] [--profile <name>] [--output-json]
-  webai:aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae|acs|cellpress|nature|rsc|royalsoc|cambridge|degruyter|emerald|sciencedirect|springer|tandf|wiley|acm|crc|incopat|proquest|wanfang|worldsci:download-pdf --doc-id <id> [--pdf-url <url>] [--profile research-<db>] [--cdp-port <port>] [--output-dir <dir>] [--output-json]
+  webai:aip|aps|iop|optica|opticsjournal|siam|aiaa|asce|asme|ieee|iest|iet|sae|acs|cellpress|nature|rsc|royalsoc|cambridge|degruyter|emerald|sciencedirect|springer|tandf|wiley|acm|crc|incopat|proquest|wanfang|worldsci:download-pdf --doc-id <id> [--pdf-url <url>] [--unpaywall-email <email>] [--profile research-<db>] [--cdp-port <port>] [--output-dir <dir>] [--output-json]
   webai:dblp|wos:download-pdf --doc-id <id> [--output-json]
   mcp
   mcp:tools [--json]

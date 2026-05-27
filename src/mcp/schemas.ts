@@ -426,12 +426,13 @@ export const webAiLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; pr
   output_dir: scalar.string("Optional output directory; defaults to data/literature-downloads/<db>/")
 }, ["doc_id"]);
 
-export const webAiPaywalledLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; pdf_url?: string; profile?: string; output_dir?: string; cdp_port?: number }>({
+export const webAiPaywalledLiteratureDownloadPdfInput = objectSchema<{ doc_id: string; pdf_url?: string; profile?: string; output_dir?: string; cdp_port?: number; unpaywall_email?: string }>({
   doc_id: scalar.string("DOI, URL, or database-native article identifier; if existing metadata resolution is unavailable, pass pdf_url"),
   pdf_url: scalar.string("Publisher PDF or article URL to open in the authenticated research browser profile; direct-URL drivers may derive this from doc_id"),
   profile: scalar.string("Authenticated managed browser profile; defaults to research-<db> and must already have institutional access when required"),
   output_dir: scalar.string("Optional output directory; defaults to data/literature-downloads/<db>/"),
-  cdp_port: scalar.number("Optional CDP port override for the authenticated research browser profile")
+  cdp_port: scalar.number("Optional CDP port override for the authenticated research browser profile"),
+  unpaywall_email: scalar.string("Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure")
 }, ["doc_id"]);
 
 export const webAiBibliographicOnlyLiteratureDownloadPdfInput = objectSchema<{ doc_id: string }>({

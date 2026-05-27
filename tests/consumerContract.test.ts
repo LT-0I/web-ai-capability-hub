@@ -220,7 +220,7 @@ test("consumer contract manifest is internally consistent", async () => {
   const resourceUris = new Set(listMcpResources().map((resource) => resource.uri));
 
   assert.equal(manifest.package_version, packageJson.version);
-  assert.equal(manifest.contract_version, "consumer-contract-2.1.0");
+  assert.equal(manifest.contract_version, "consumer-contract-2.2.0");
   assert.equal(manifest.commands.length, 232);
   assert.deepEqual(manifest.error_codes, [...CONSUMER_ERROR_CODES]);
   assert.equal(manifest.error_codes.length, 40);
@@ -730,9 +730,9 @@ test("researchdb Inventory/AIAA/WoS/ACM/IEEE/ACS/ASME/RSC/Wiley/ASCE/IOP/T&F/SAE
   assert.equal(listMcpTools().filter((tool) => tool.name.startsWith("webai_")).length, 81, "webai MCP tools now 81");
   assert.equal(manifest.error_codes.length, 40, "error codes now 40");
   assert.equal(manifest.commands.length, 232, "commands now 232");
-  assert.equal(manifest.contract_version, "consumer-contract-2.1.0");
-  assert.equal(packageJson.version, "2.1.0");
-  assert.equal(manifest.package_version, "2.1.0");
+  assert.equal(manifest.contract_version, "consumer-contract-2.2.0");
+  assert.equal(packageJson.version, "2.2.0");
+  assert.equal(manifest.package_version, "2.2.0");
   assert.equal(manifest.sensitive_fields["site_registry.classification.science_engineering"], "Public science/engineering classification flag; safe governance metadata.");
   assert.equal(manifest.sensitive_fields["site_registry.classification.matched_subjects"], "Public matched science/engineering subject labels; safe governance metadata.");
 });

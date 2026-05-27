@@ -1,0 +1,13 @@
+webai: path-c — Unpaywall OA fallback for paywalled drivers (contract 2.2.0)
+
+Route paywalled DOI literature downloads to legal OA copies only when consumers provide an Unpaywall email and the driver explicitly opts in. Keep publisher/paywall failures honest when no OA copy is available.
+
+Constraint: Unpaywall requires a caller-provided email address and DOI lookup only.
+Constraint: Paywalled publisher paths must still report gated failures honestly; OA routing is explicit, not graceful fallback.
+Rejected: Calling Unpaywall without email | violates Unpaywall ToS and user constraints.
+Rejected: Enabling fallback for ProQuest/IncoPat/Wanfang | ProQuest uses institutional SSO, Chinese-only DBs are not indexed by Unpaywall.
+Confidence: high
+Scope-risk: moderate
+Directive: Preserve `oa_source` on every paywalled download output path whenever contract rows declare it always-present.
+Tested: rm -rf dist && npm run build; npm run verify:contract-version; node .runs/path-c-unpaywall/review/claude-validation.mjs; npm test (742/742); live smoke for optica/sae/asce/springer/sciencedirect.
+Not-tested: Institutional subscription publisher PDF success for every opted-in driver; live smoke depends on external OA hosts and Unpaywall index state.

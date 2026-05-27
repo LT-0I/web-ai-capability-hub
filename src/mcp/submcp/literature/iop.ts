@@ -15,7 +15,8 @@ export const iopPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href$=\"/pdf\" i]",
     "a[href*=\"/pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiIopDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

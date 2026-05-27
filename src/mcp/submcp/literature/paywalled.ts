@@ -16,6 +16,10 @@ import {
   LiteratureDownloadedPdf,
   literatureErrorOutput
 } from "./arxiv";
+import { resolveUnpaywallOaPdf } from "./unpaywall";
+
+type PaywalledOaSource = "publisher" | "unpaywall" | "none";
+type PaywalledLiteratureDownloadPdfOutput = LiteratureDownloadPdfOutput & { oa_source: PaywalledOaSource };
 
 export interface PaywalledLiteratureDownloadPdfArgs {
   doc_id: string;
@@ -23,6 +27,7 @@ export interface PaywalledLiteratureDownloadPdfArgs {
   profile?: string;
   output_dir?: string;
   cdp_port?: number;
+  unpaywall_email?: string;
 }
 
 export interface PaywalledLiteratureConfig {
@@ -34,6 +39,7 @@ export interface PaywalledLiteratureConfig {
   article_url_resolver?: (docId: string, pdfUrl: string) => string | string[] | null;
   prefer_article_first?: boolean;
   candidate_url_filter?: (url: string, docId: string, contextUrl: string) => boolean;
+  unpaywall_fallback?: boolean;
 }
 
 interface DownloadEventState {
@@ -50,7 +56,7 @@ interface CompletedDownload {
   url?: string;
 }
 
-function emptyOutput(overrides: Partial<LiteratureDownloadPdfOutput>): LiteratureDownloadPdfOutput {
+function emptyOutput(overrides: Partial<PaywalledLiteratureDownloadPdfOutput>): PaywalledLiteratureDownloadPdfOutput {
   return {
     ok: false,
     task_id: null,
@@ -60,6 +66,7 @@ function emptyOutput(overrides: Partial<LiteratureDownloadPdfOutput>): Literatur
     downloaded_at: null,
     errorCode: null,
     message: null,
+    oa_source: "none",
     ...overrides
   };
 }
@@ -483,6 +490,168 @@ function tryFinalizeDownloadedPdf(downloaded: CompletedDownload | null, outputDi
   }
 }
 
+function doiFromValue(value: unknown): string | null {
+  const raw = String(value || "").trim().replace(/^doi:\s*/i, "");
+  if (!raw) return null;
+  const direct = /^10\.\S+\/\S+$/i.test(raw) ? raw : null;
+  if (direct) return direct.replace(/[),.;]+$/g, "");
+  let haystack = raw;
+  try {
+    const parsed = new URL(raw);
+    if (/^(?:dx\.)?doi\.org$/i.test(parsed.hostname)) {
+      const doiPath = decodeURIComponent(parsed.pathname.replace(/^\/+/, ""));
+      if (/^10\.\S+\/\S+$/i.test(doiPath)) return doiPath.replace(/[),.;]+$/g, "");
+    }
+    haystack = decodeURIComponent(`${parsed.pathname}${parsed.search || ""}`);
+  } catch {
+    // Plain DOI-like strings are handled by the regex below.
+  }
+  const match = /(?:^|[^\w.])(10\.\d{4,9}\/[^\s"'<>?#]+)/i.exec(haystack);
+  return match?.[1]?.replace(/[),.;]+$/g, "") || null;
+}
+
+function unpaywallPdfFetchTimeoutMs(): number {
+  const parsed = Number(process.env.WEBAI_UNPAYWALL_PDF_FETCH_TIMEOUT_MS || "");
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 30000;
+}
+
+async function withAbortableTimeout<T>(promise: Promise<T>, timeoutMs: number, controller: AbortController): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => {
+          controller.abort();
+          reject(new Error(`timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      })
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+async function fetchPdfBufferFollowingHtml(
+  url: string,
+  seen = new Set<string>(),
+  timeoutMs = unpaywallPdfFetchTimeoutMs()
+): Promise<{ buffer: Buffer; resolved_url: string; content_type: string } | null> {
+  const candidateUrl = asOptionalUrl(url);
+  if (!candidateUrl || seen.has(candidateUrl) || seen.size > 8) return null;
+  seen.add(candidateUrl);
+  const controller = new AbortController();
+  const deadline = now() + timeoutMs;
+  let response: Response;
+  let buffer: Buffer;
+  try {
+    response = await withAbortableTimeout(fetch(candidateUrl, {
+      method: "GET",
+      redirect: "follow",
+      signal: controller.signal,
+      headers: {
+        "Accept": "application/pdf,text/html;q=0.9,*/*;q=0.8",
+        "User-Agent": "web-ai-capability-hub-literature-downloader/2.2.0"
+      }
+    }), timeoutMs, controller);
+    if (!response.ok) return null;
+    buffer = Buffer.from(await withAbortableTimeout(response.arrayBuffer(), Math.max(1, deadline - now()), controller));
+  } catch (error) {
+    const message = controller.signal.aborted
+      ? `timed out after ${timeoutMs}ms`
+      : error instanceof Error ? error.message : String(error);
+    throw new LiteratureDownloadError(
+      "NETWORK_ERROR",
+      `Unpaywall OA PDF fetch failed: ${message}`,
+      { url: candidateUrl }
+    );
+  }
+  const contentType = response.headers.get("content-type") || "";
+  if (isPdfBuffer(buffer)) return { buffer, resolved_url: response.url || candidateUrl, content_type: contentType };
+  if (!looksLikeHtml(buffer, contentType)) return null;
+  const html = buffer.toString();
+  for (const nextUrl of pdfCandidateUrlsFromHtml(html, response.url || candidateUrl)) {
+    const result = await fetchPdfBufferFollowingHtml(nextUrl, seen, timeoutMs);
+    if (result && isPdfBuffer(result.buffer)) return result;
+  }
+  return null;
+}
+
+interface UnpaywallFallbackOutcome {
+  result: LiteratureDownloadedPdf | null;
+  hint: string | null;
+  attempted: boolean;
+  forceLoginRequired: boolean;
+}
+
+function noUnpaywallFallback(hint: string | null = null): UnpaywallFallbackOutcome {
+  return { result: null, hint, attempted: false, forceLoginRequired: false };
+}
+
+async function tryUnpaywallFallback(
+  config: PaywalledLiteratureConfig,
+  args: Partial<PaywalledLiteratureDownloadPdfArgs>,
+  docId: string,
+  requestedUrl: string | null,
+  outputDir: string
+): Promise<UnpaywallFallbackOutcome> {
+  if (!config.unpaywall_fallback) return noUnpaywallFallback();
+  const doi = doiFromValue(docId) || doiFromValue(requestedUrl);
+  if (!doi) return noUnpaywallFallback("Unpaywall not attempted — no DOI was available for lookup");
+  const email = String(args?.unpaywall_email || "").trim();
+  if (!email) {
+    return {
+      result: null,
+      hint: "Unpaywall not configured — pass unpaywall_email to check legal OA copies",
+      attempted: false,
+      forceLoginRequired: !!requestedUrl
+    };
+  }
+  try {
+    const resolved = await resolveUnpaywallOaPdf(doi, email);
+    if (!resolved.url) {
+      return { result: null, hint: `Tried Unpaywall — no OA copy found for DOI ${doi}`, attempted: true, forceLoginRequired: true };
+    }
+    const fetched = await fetchPdfBufferFollowingHtml(resolved.url);
+    if (!fetched || !isPdfBuffer(fetched.buffer)) {
+      return { result: null, hint: `Tried Unpaywall — OA URL did not return a verified %PDF artifact for DOI ${doi}`, attempted: true, forceLoginRequired: true };
+    }
+    const downloaded = writeBufferDownload(outputDir, docId, fetched.buffer, fetched.resolved_url);
+    return {
+      result: finalizeDownloadedPdf(downloaded, outputDir, docId, fetched.resolved_url),
+      hint: null,
+      attempted: true,
+      forceLoginRequired: false
+    };
+  } catch (error) {
+    const code = (error as { errorCode?: unknown })?.errorCode;
+    const message = error instanceof Error ? error.message.replace(new RegExp(`^${String(code)}:\\s*`), "") : String(error);
+    const hint = code === "RPC_RATE_LIMITED"
+      ? "Tried Unpaywall — rate limited, retry later"
+      : code === ConsumerErrorCodes.INVALID_ARGS
+        ? `Tried Unpaywall — invalid request (${message})`
+        : `Tried Unpaywall — ${message}`;
+    return { result: null, hint, attempted: true, forceLoginRequired: true };
+  }
+}
+
+function appendUnpaywallHint(output: LiteratureDownloadPdfOutput, fallback: UnpaywallFallbackOutcome): LiteratureDownloadPdfOutput {
+  if (!fallback.hint) return output;
+  const prefix = output.message ? `${output.message} ` : "";
+  return { ...output, message: `${prefix}${fallback.hint}.` };
+}
+
+function errorOutputWithUnpaywallHint(error: unknown, fallback: UnpaywallFallbackOutcome): PaywalledLiteratureDownloadPdfOutput {
+  const output = appendUnpaywallHint(literatureErrorOutput(error), fallback);
+  const shouldPreserveCode = output.errorCode === ConsumerErrorCodes.INVALID_ARGS
+    || output.errorCode === ConsumerErrorCodes.PROFILE_NOT_FOUND
+    || /PDF URL was not resolved|pass pdf_url/i.test(output.message || "");
+  if (fallback.forceLoginRequired && !shouldPreserveCode) {
+    return { ...output, errorCode: ConsumerErrorCodes.LOGIN_REQUIRED, oa_source: "none" };
+  }
+  return { ...output, oa_source: "none" };
+}
+
 export async function downloadPaywalledLiteraturePdfToDisk(
   config: PaywalledLiteratureConfig,
   doc_id: string,
@@ -652,7 +821,7 @@ export async function runPaywalledLiteratureDownloadPdfTool(
   try {
     docId = requireDocId(args?.doc_id);
   } catch (error) {
-    return literatureErrorOutput(error);
+    return { ...literatureErrorOutput(error), oa_source: "none" } as PaywalledLiteratureDownloadPdfOutput;
   }
 
   const nowMs = now();
@@ -678,10 +847,25 @@ export async function runPaywalledLiteratureDownloadPdfTool(
       sha256: result.sha256,
       size: result.size,
       downloaded_at: result.downloaded_at,
+      oa_source: "publisher",
       message: "Literature PDF downloaded"
     });
   } catch (error) {
-    return literatureErrorOutput(error);
+    const outputDir = defaultLiteratureOutputDir(config.db_slug, args?.output_dir);
+    const fallback = await tryUnpaywallFallback(config, args, docId, requestedUrl, outputDir);
+    if (fallback.result) {
+      recordLiteratureDownload(config.db_slug, docId, fallback.result.path, fallback.result.sha256, fallback.result.resolved_url, fallback.result.downloaded_at);
+      return emptyOutput({
+        ok: true,
+        path: fallback.result.path,
+        sha256: fallback.result.sha256,
+        size: fallback.result.size,
+        downloaded_at: fallback.result.downloaded_at,
+        oa_source: "unpaywall",
+        message: "Literature PDF downloaded via Unpaywall OA copy"
+      });
+    }
+    return errorOutputWithUnpaywallHint(error, fallback);
   }
 }
 

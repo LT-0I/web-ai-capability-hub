@@ -175,9 +175,9 @@ test("phase8 contract guard reflects package, contract, and 8-lock counts", () =
   const contract = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "configs/consumer-contract.json"), "utf8"));
   const golden = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), "tests/golden/listMcpTools.236.json"), "utf8"));
 
-  assert.equal(packageJson.version, "2.1.0");
-  assert.equal(contract.package_version, "2.1.0");
-  assert.equal(contract.contract_version, "consumer-contract-2.1.0");
+  assert.equal(packageJson.version, "2.2.0");
+  assert.equal(contract.package_version, "2.2.0");
+  assert.equal(contract.contract_version, "consumer-contract-2.2.0");
   assert.equal(contract.commands.length, 232);
   assert.equal(contract.error_codes.length, 40);
   assert.equal(contract.commands.filter((command: any) => String(command.mcp_name || "").startsWith("webai_")).length, 81);

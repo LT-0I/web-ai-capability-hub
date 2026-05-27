@@ -19,6 +19,7 @@ export const siamPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   article_url_resolver: (docId: string) => /^10\./.test(docId) ? `https://epubs.siam.org/doi/${docId}` : null
 };
 

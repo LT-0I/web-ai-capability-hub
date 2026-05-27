@@ -124,6 +124,7 @@ export const opticaPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   prefer_article_first: true,
   article_url_resolver: opticaArticleUrlCandidates,
   candidate_url_filter: opticaCandidateUrlAllowed

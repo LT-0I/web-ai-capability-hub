@@ -22,6 +22,26 @@ test("redacts csrf/session/bearer keys", () => {
   assert.deepEqual(redactValue({ csrfHeader: "abc", Authorization: "Bearer token" }, { mode: "default" }), { csrfHeader: "<redacted>", Authorization: "<redacted>" });
 });
 
+test("redacts Unpaywall email key variants", () => {
+  assert.deepEqual(
+    redactValue(
+      {
+        unpaywall_email: "unit@example.test",
+        unpaywallEmail: "unit@example.test",
+        "unpaywall-email": "unit@example.test",
+        normal: "unit@example.test"
+      },
+      { mode: "default" }
+    ),
+    {
+      unpaywall_email: "<redacted>",
+      unpaywallEmail: "<redacted>",
+      "unpaywall-email": "<redacted>",
+      normal: "unit@example.test"
+    }
+  );
+});
+
 test("redacts nested objects and arrays", () => {
   const value = { items: [{ profile: "claude", url: "https://chatgpt.com/c/abcdef1234567890abcdef12" }] };
   assert.deepEqual(redactValue(value, { mode: "default" }), { items: [{ profile: "<profile>", url: "https://chatgpt.com/c/<conversation-id>" }] });

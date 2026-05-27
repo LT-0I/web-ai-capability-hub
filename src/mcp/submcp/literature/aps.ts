@@ -39,6 +39,7 @@ export const apsPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,
+  unpaywall_fallback: true,
   article_url_resolver: (docId: string) => apsArticleUrl(docId) || (/^10\./.test(docId) ? `https://doi.org/${docId}` : null),
   prefer_article_first: true
 };

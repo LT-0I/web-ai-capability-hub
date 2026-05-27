@@ -1,6 +1,6 @@
 {
   "count": 236,
-  "captured_at": "2026-05-25T19:02:45.591Z",
+  "captured_at": "2026-05-27T06:40:10.829Z",
   "tools": [
     {
       "name": "browser_capture_site_map",
@@ -8454,6 +8454,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8487,6 +8491,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8520,6 +8528,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8553,6 +8565,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8586,6 +8602,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8644,6 +8664,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8677,6 +8701,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8710,6 +8738,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -8743,6 +8775,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -9958,6 +9994,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10008,6 +10048,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10041,6 +10085,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10725,6 +10773,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10758,6 +10810,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10791,6 +10847,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10824,6 +10884,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10882,6 +10946,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10957,6 +11025,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -10990,6 +11062,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11023,6 +11099,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11056,6 +11136,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11114,6 +11198,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11147,6 +11235,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11180,6 +11272,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11238,6 +11334,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11296,6 +11396,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11329,6 +11433,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11362,6 +11470,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11428,6 +11540,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11461,6 +11577,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [
@@ -11494,6 +11614,10 @@
           "cdp_port": {
             "type": "number",
             "description": "Optional CDP port override for the authenticated research browser profile"
+          },
+          "unpaywall_email": {
+            "type": "string",
+            "description": "Optional consumer-provided email for Unpaywall DOI lookup; when configured for supported DOI-based paywalled drivers, legal OA copies are tried before returning access-gated failure"
           }
         },
         "required": [

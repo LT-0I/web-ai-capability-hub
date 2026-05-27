@@ -15,7 +15,8 @@ export const cambridgePaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"/services/aop-cambridge-core/content\" i][href*=\"/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  unpaywall_fallback: true
 };
 
 export async function webAiCambridgeDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

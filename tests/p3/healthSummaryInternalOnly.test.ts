@@ -20,8 +20,8 @@ test("p3: getHealthSummary() returns a HealthSummary shape with profilePool/tabL
   assert.equal(typeof summary.drift_events.total_rows, "number");
   assert.equal(typeof summary.cancel.total_cancel_requests_last_24h, "number");
   assert.equal(summary.build.list_mcp_tools_count, 236);
-  assert.equal(summary.build.package_version, "2.1.0");
-  assert.equal(summary.build.contract_version, "consumer-contract-2.1.0");
+  assert.equal(summary.build.package_version, "2.2.0");
+  assert.equal(summary.build.contract_version, "consumer-contract-2.2.0");
 });
 
 test("p3: listMcpTools() does NOT include any tool named *health_summary*", () => {
