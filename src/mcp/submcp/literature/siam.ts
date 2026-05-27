@@ -11,11 +11,15 @@ export const siamPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   display_name: "SIAM Publications",
   default_profile: "research-siam",
   selectors: [
+    "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a:has-text(\"PDF\")",
     "a.pdf",
     "a[href*=\"/doi/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  article_url_resolver: (docId: string) => /^10\./.test(docId) ? `https://epubs.siam.org/doi/${docId}` : null
 };
 
 export async function webAiSiamDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

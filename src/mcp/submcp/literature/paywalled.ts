@@ -31,6 +31,9 @@ export interface PaywalledLiteratureConfig {
   default_profile: string;
   selectors: string[];
   metadata_tool: string | null;
+  article_url_resolver?: (docId: string, pdfUrl: string) => string | string[] | null;
+  prefer_article_first?: boolean;
+  candidate_url_filter?: (url: string, docId: string, contextUrl: string) => boolean;
 }
 
 interface DownloadEventState {
@@ -99,6 +102,103 @@ function targetPdfPath(outputDir: string, docId: string): string {
 
 function sha256File(filePath: string): string {
   return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+function isPdfBuffer(buffer: Buffer | null | undefined): boolean {
+  return !!buffer && buffer.length >= 5 && buffer.subarray(0, 5).toString() === "%PDF-";
+}
+
+function htmlDecode(value: string): string {
+  return String(value || "")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&#x27;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function looksLikeHtml(buffer: Buffer, contentType = ""): boolean {
+  if (/text\/html|application\/xhtml/i.test(contentType)) return true;
+  return /^\s*<(?:!doctype\s+html|html|head|body|script|meta)\b/i.test(buffer.subarray(0, 512).toString());
+}
+
+function absoluteUrl(href: string, baseUrl: string): string | null {
+  const raw = htmlDecode(String(href || "").trim());
+  if (!raw || /^javascript:|^mailto:|^#/i.test(raw)) return null;
+  try {
+    return new URL(raw, baseUrl).toString();
+  } catch {
+    return null;
+  }
+}
+
+function uniqueUrls(urls: Array<string | null | undefined>): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const url of urls) {
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+    out.push(url);
+  }
+  return out;
+}
+
+function pdfLikeHrefScore(href: string, text = ""): number {
+  const hay = `${href} ${text}`;
+  let score = 0;
+  if (/\.pdf(?:$|[?#])/i.test(href)) score += 12;
+  if (/(?:\/pdf|pdf\/|pdfft|stamp\.jsp|viewmedia\.cfm|fulltextpdf|full\/pdf)/i.test(href)) score += 10;
+  if (/\bpdf\b|download|full.?text|click here|全文|下载|查看/i.test(text)) score += 6;
+  if (/citation|ris|bibtex|references?|supplement|figure|image|logo|privacy|terms/i.test(hay)) score -= 20;
+  return score;
+}
+
+function pdfCandidateUrlsFromHtml(html: string, baseUrl: string): string[] {
+  const candidates: Array<{ url: string; score: number }> = [];
+  const anchorPattern = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = anchorPattern.exec(html))) {
+    const attrs = match[1] || "";
+    const text = htmlDecode((match[2] || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+    const href = /(?:href|data-pdf-url|data-url)=["']([^"']+)["']/i.exec(attrs)?.[1];
+    const aria = /(?:aria-label|title)=["']([^"']+)["']/i.exec(attrs)?.[1] || "";
+    const url = href ? absoluteUrl(href, baseUrl) : null;
+    if (!url) continue;
+    const score = pdfLikeHrefScore(url, `${text} ${aria}`);
+    if (score > 0) candidates.push({ url, score });
+  }
+
+  for (const pattern of [
+    /(?:src|href)=["']([^"']*(?:\.pdf|\/pdf|pdfft|stamp\.jsp|viewmedia\.cfm|fulltextPDF)[^"']*)["']/gi,
+    /["'](?:pdfUrl|pdf_url|downloadUrl|download_url|url)["']\s*:\s*["']([^"']*(?:\.pdf|\/pdf|pdfft|stamp\.jsp|viewmedia\.cfm|fulltextPDF)[^"']*)["']/gi,
+    /<meta\b[^>]*http-equiv=["']refresh["'][^>]*content=["'][^"']*url=([^"'>\s]+)[^"']*["']/gi
+  ]) {
+    let urlMatch: RegExpExecArray | null;
+    while ((urlMatch = pattern.exec(html))) {
+      const url = absoluteUrl(urlMatch[1], baseUrl);
+      if (!url) continue;
+      const score = pdfLikeHrefScore(url);
+      if (score > 0) candidates.push({ url, score });
+    }
+  }
+
+  return uniqueUrls(candidates.sort((a, b) => b.score - a.score).map((entry) => entry.url));
+}
+
+function candidateUrlAllowed(config: PaywalledLiteratureConfig | undefined, url: string, docId: string, contextUrl: string): boolean {
+  if (!config?.candidate_url_filter) return true;
+  try {
+    return config.candidate_url_filter(url, docId, contextUrl) !== false;
+  } catch {
+    return true;
+  }
+}
+
+function writeBufferDownload(downloadDir: string, docId: string, buffer: Buffer, sourceUrl: string): CompletedDownload {
+  ensureDir(downloadDir);
+  const filePath = path.resolve(downloadDir, `fetched-${Date.now()}-${safePdfBasename(docId)}`);
+  fs.writeFileSync(filePath, buffer);
+  return { filePath, url: sourceUrl };
 }
 
 function directoryHasExistingState(dir: string | undefined): boolean {
@@ -237,6 +337,20 @@ async function navigateForDownload(page: any, url: string): Promise<any | null> 
   }
 }
 
+async function navigateForInspectablePage(page: any, url: string): Promise<any | null> {
+  try {
+    return await navigateForDownload(page, url);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    // PDF viewer pages and Cloudflare/Silverchair challenge redirects sometimes
+    // keep the document in a loading state even after useful DOM/network state is
+    // available. Keep the page inspectable; final verification still requires
+    // a real %PDF artifact.
+    if (/Timeout .*navigating|Navigation timeout|Timeout \d+ms exceeded/i.test(message)) return null;
+    throw error;
+  }
+}
+
 function responseHeader(response: any, name: string): string {
   try {
     return String(response?.headers?.()?.[name.toLowerCase()] || "");
@@ -261,11 +375,77 @@ async function inlinePdfCompletedDownload(page: any, response: any, downloadDir:
     const apiResponse = request?.get ? await request.get(responseUrl, { timeout: 60000 } as any) : null;
     if (apiResponse?.ok?.()) buffer = Buffer.from(await apiResponse.body());
   }
-  if (!buffer?.length) return null;
-  ensureDir(downloadDir);
-  const filePath = path.resolve(downloadDir, `inline-${Date.now()}-${safePdfBasename(docId)}`);
-  fs.writeFileSync(filePath, buffer);
-  return { filePath, url: responseUrl };
+  if (!isPdfBuffer(buffer)) return null;
+  return writeBufferDownload(downloadDir, docId, buffer as Buffer, responseUrl);
+}
+
+async function fetchPdfCandidate(page: any, downloadDir: string, docId: string, url: string, config?: PaywalledLiteratureConfig, seen = new Set<string>()): Promise<CompletedDownload | null> {
+  const candidateUrl = asOptionalUrl(url);
+  if (!candidateUrl || seen.has(candidateUrl) || seen.size > 8) return null;
+  seen.add(candidateUrl);
+  const request = page.context?.()?.request;
+  if (!request?.get) return null;
+  let response: any;
+  try {
+    response = await request.get(candidateUrl, {
+      timeout: 60000,
+      headers: {
+        "Accept": "application/pdf,text/html;q=0.9,*/*;q=0.8"
+      }
+    } as any);
+  } catch {
+    return null;
+  }
+  if (!response?.ok?.()) return null;
+  const responseUrl = String(response.url?.() || candidateUrl);
+  const headers = response.headers?.() || {};
+  const contentType = String(headers["content-type"] || headers["Content-Type"] || "");
+  const buffer = Buffer.from(await response.body());
+  if (isPdfBuffer(buffer)) return writeBufferDownload(downloadDir, docId, buffer, responseUrl);
+  if (!looksLikeHtml(buffer, contentType)) return null;
+  const html = buffer.toString("utf8");
+  for (const nextUrl of pdfCandidateUrlsFromHtml(html, responseUrl)) {
+    if (!candidateUrlAllowed(config, nextUrl, docId, responseUrl)) continue;
+    const downloaded = await fetchPdfCandidate(page, downloadDir, docId, nextUrl, config, seen);
+    if (downloaded) return downloaded;
+  }
+  return null;
+}
+
+async function pagePdfCandidateUrls(page: any): Promise<string[]> {
+  const pageUrl = String(page?.url?.() || "");
+  const urls = await page.evaluate?.(() => {
+    function text(el: Element): string {
+      return ((el as HTMLElement).innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+    }
+    return Array.from(document.querySelectorAll("a,iframe,embed,object,[data-pdf-url],[data-url]")).map((el) => {
+      const attrs = ["href", "src", "data-pdf-url", "data-url", "aria-label", "title", "download"]
+        .map((name) => [name, el.getAttribute(name)] as const)
+        .filter((entry) => !!entry[1]);
+      return { text: text(el), attrs };
+    });
+  }).catch(() => []);
+  const candidates: Array<{ url: string; score: number }> = [];
+  for (const entry of urls || []) {
+    const attrs = new Map<string, string>(entry.attrs || []);
+    const raw = attrs.get("href") || attrs.get("src") || attrs.get("data-pdf-url") || attrs.get("data-url") || "";
+    const url = absoluteUrl(raw, pageUrl);
+    if (!url) continue;
+    const score = pdfLikeHrefScore(url, `${entry.text || ""} ${attrs.get("aria-label") || ""} ${attrs.get("title") || ""} ${attrs.get("download") || ""}`);
+    if (score > 0) candidates.push({ url, score });
+  }
+  return uniqueUrls(candidates.sort((a, b) => b.score - a.score).map((entry) => entry.url));
+}
+
+function articleUrlCandidates(config: PaywalledLiteratureConfig, docId: string, resolvedUrl: string): string[] {
+  const configured = config.article_url_resolver?.(docId, resolvedUrl);
+  const fromConfig = Array.isArray(configured) ? configured : configured ? [configured] : [];
+  const doiUrl = /^10\.\S+\/\S+/.test(docId) ? `https://doi.org/${encodePathForUrlPath(docId)}` : null;
+  return uniqueUrls([...fromConfig, doiUrl].map((url) => asOptionalUrl(url)));
+}
+
+function encodePathForUrlPath(value: string): string {
+  return String(value || "").split("/").map((part) => encodeURIComponent(part)).join("/");
 }
 
 function finalizeDownloadedPdf(downloaded: CompletedDownload, outputDir: string, docId: string, resolvedUrl: string): LiteratureDownloadedPdf {
@@ -320,21 +500,96 @@ export async function downloadPaywalledLiteraturePdfToDisk(
     const { pageCdp, events } = await armDownloadBehavior(browser, page, outputDir);
     const started = now();
 
-    const navigationResponse = await navigateForDownload(page, resolvedUrl);
+    const tryArticleCandidates = async (): Promise<LiteratureDownloadedPdf | null> => {
+      for (const articleUrl of articleUrlCandidates(config, docId, resolvedUrl)) {
+        const articleResponse = await navigateForInspectablePage(page, articleUrl);
+        const inlineArticlePdf = await inlinePdfCompletedDownload(page, articleResponse, outputDir, docId, articleUrl);
+        const finalizedInlineArticlePdf = tryFinalizeDownloadedPdf(inlineArticlePdf, outputDir, docId, inlineArticlePdf?.url || articleUrl, before);
+        if (finalizedInlineArticlePdf) return finalizedInlineArticlePdf;
+        const currentArticleUrl = asOptionalUrl(page.url?.());
+        if (currentArticleUrl) {
+          const fetchedCurrentArticle = await fetchPdfCandidate(page, outputDir, docId, currentArticleUrl, config);
+          const finalizedCurrentArticle = tryFinalizeDownloadedPdf(fetchedCurrentArticle, outputDir, docId, fetchedCurrentArticle?.url || currentArticleUrl, before);
+          if (finalizedCurrentArticle) return finalizedCurrentArticle;
+        }
+        for (const url of await pagePdfCandidateUrls(page)) {
+          if (!candidateUrlAllowed(config, url, docId, page.url?.() || articleUrl)) continue;
+          const fetchedArticleCandidate = await fetchPdfCandidate(page, outputDir, docId, url, config);
+          const finalizedArticleCandidate = tryFinalizeDownloadedPdf(fetchedArticleCandidate, outputDir, docId, fetchedArticleCandidate?.url || url, before);
+          if (finalizedArticleCandidate) return finalizedArticleCandidate;
+        }
+        const articleClickable = await findClickableHandle(page, config.selectors);
+        if (!articleClickable) continue;
+        const articlePagesBeforeClick = new Set((context.pages?.() || []).map((entry: any) => entry));
+        await dispatchCdpClick(pageCdp, articleClickable.box);
+        await sleep(1500);
+        const articleDownload = await waitForDownload(outputDir, before, events, Math.max(1, 60000 - (now() - started)));
+        const finalizedArticleDownload = tryFinalizeDownloadedPdf(articleDownload, outputDir, docId, articleDownload?.url || articleUrl, before);
+        if (finalizedArticleDownload) return finalizedArticleDownload;
+        for (const openedPage of (context.pages?.() || []).filter((entry: any) => !articlePagesBeforeClick.has(entry))) {
+          const openedUrl = asOptionalUrl(openedPage.url?.());
+          if (!openedUrl) continue;
+          const fetchedOpened = await fetchPdfCandidate(openedPage, outputDir, docId, openedUrl, config);
+          const finalizedOpened = tryFinalizeDownloadedPdf(fetchedOpened, outputDir, docId, fetchedOpened?.url || openedUrl, before);
+          if (finalizedOpened) return finalizedOpened;
+        }
+      }
+      return null;
+    };
+
+    if (config.prefer_article_first) {
+      const articleFirst = await tryArticleCandidates();
+      if (articleFirst) return articleFirst;
+    }
+
+    const fetchedDirect = await fetchPdfCandidate(page, outputDir, docId, resolvedUrl, config);
+    const finalizedFetchedDirect = tryFinalizeDownloadedPdf(fetchedDirect, outputDir, docId, fetchedDirect?.url || resolvedUrl, before);
+    if (finalizedFetchedDirect) return finalizedFetchedDirect;
+
+    const navigationResponse = await navigateForInspectablePage(page, resolvedUrl);
     const direct = await waitForDownload(outputDir, before, events, 5000);
-    const finalizedDirect = tryFinalizeDownloadedPdf(direct, outputDir, docId, resolvedUrl, before);
+    const finalizedDirect = tryFinalizeDownloadedPdf(direct, outputDir, docId, direct?.url || resolvedUrl, before);
     if (finalizedDirect) return finalizedDirect;
     const inlinePdf = await inlinePdfCompletedDownload(page, navigationResponse, outputDir, docId, resolvedUrl);
-    const finalizedInline = tryFinalizeDownloadedPdf(inlinePdf, outputDir, docId, resolvedUrl, before);
+    const finalizedInline = tryFinalizeDownloadedPdf(inlinePdf, outputDir, docId, inlinePdf?.url || resolvedUrl, before);
     if (finalizedInline) return finalizedInline;
+
+    const currentPageUrl = asOptionalUrl(page.url?.());
+    if (currentPageUrl) {
+      const fetchedCurrent = await fetchPdfCandidate(page, outputDir, docId, currentPageUrl, config);
+      const finalizedCurrent = tryFinalizeDownloadedPdf(fetchedCurrent, outputDir, docId, fetchedCurrent?.url || currentPageUrl, before);
+      if (finalizedCurrent) return finalizedCurrent;
+    }
+
+    for (const url of await pagePdfCandidateUrls(page)) {
+      if (!candidateUrlAllowed(config, url, docId, page.url?.() || resolvedUrl)) continue;
+      const fetchedFromPage = await fetchPdfCandidate(page, outputDir, docId, url, config);
+      const finalizedFromPage = tryFinalizeDownloadedPdf(fetchedFromPage, outputDir, docId, fetchedFromPage?.url || url, before);
+      if (finalizedFromPage) return finalizedFromPage;
+    }
 
     const clickable = await findClickableHandle(page, config.selectors);
     if (clickable) {
+      const pagesBeforeClick = new Set((context.pages?.() || []).map((entry: any) => entry));
       await dispatchCdpClick(pageCdp, clickable.box);
+      await sleep(1500);
       const remaining = Math.max(1, 60000 - (now() - started));
       const clickedDownload = await waitForDownload(outputDir, before, events, remaining);
-      const finalizedClicked = tryFinalizeDownloadedPdf(clickedDownload, outputDir, docId, resolvedUrl, before);
+      const finalizedClicked = tryFinalizeDownloadedPdf(clickedDownload, outputDir, docId, clickedDownload?.url || resolvedUrl, before);
       if (finalizedClicked) return finalizedClicked;
+      for (const openedPage of (context.pages?.() || []).filter((entry: any) => !pagesBeforeClick.has(entry))) {
+        const openedUrl = asOptionalUrl(openedPage.url?.());
+        if (!openedUrl) continue;
+        const fetchedOpened = await fetchPdfCandidate(openedPage, outputDir, docId, openedUrl, config);
+        const finalizedOpened = tryFinalizeDownloadedPdf(fetchedOpened, outputDir, docId, fetchedOpened?.url || openedUrl, before);
+        if (finalizedOpened) return finalizedOpened;
+      }
+      for (const url of await pagePdfCandidateUrls(page)) {
+        if (!candidateUrlAllowed(config, url, docId, page.url?.() || resolvedUrl)) continue;
+        const fetchedAfterClick = await fetchPdfCandidate(page, outputDir, docId, url, config);
+        const finalizedAfterClick = tryFinalizeDownloadedPdf(fetchedAfterClick, outputDir, docId, fetchedAfterClick?.url || url, before);
+        if (finalizedAfterClick) return finalizedAfterClick;
+      }
       throw new LiteratureDownloadError(
         ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT,
         `${config.display_name} PDF download did not complete within 60s after CDP click`,
@@ -342,8 +597,13 @@ export async function downloadPaywalledLiteraturePdfToDisk(
       );
     }
 
+    if (!config.prefer_article_first) {
+      const articleFallback = await tryArticleCandidates();
+      if (articleFallback) return articleFallback;
+    }
+
     const lateDirect = await waitForDownload(outputDir, before, events, Math.max(1, 60000 - (now() - started)));
-    const finalizedLateDirect = tryFinalizeDownloadedPdf(lateDirect, outputDir, docId, resolvedUrl, before);
+    const finalizedLateDirect = tryFinalizeDownloadedPdf(lateDirect, outputDir, docId, lateDirect?.url || resolvedUrl, before);
     if (finalizedLateDirect) return finalizedLateDirect;
     throw new LiteratureDownloadError(
       ConsumerErrorCodes.ELEMENT_NOT_FOUND,

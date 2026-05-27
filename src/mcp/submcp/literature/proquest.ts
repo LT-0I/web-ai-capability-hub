@@ -12,10 +12,18 @@ export const proquestPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   default_profile: "research-proquest",
   selectors: [
     "a#downloadPDFLink",
+    "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a:has-text(\"PDF\")",
     "a[href*=\"downloadPDF\" i]",
+    "a[href*=\"fulltextPDF\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: "research_proquest_get_metadata"
+  metadata_tool: "research_proquest_get_metadata",
+  article_url_resolver: (docId: string) => {
+    const id = String(docId || "").trim().replace(/^central:/i, "");
+    return /^\d+$/.test(id) ? `https://www.proquest.com/docview/${id}` : null;
+  }
 };
 
 export async function webAiProquestDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

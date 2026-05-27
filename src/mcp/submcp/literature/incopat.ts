@@ -14,9 +14,16 @@ export const incopatPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   default_profile: "research-incopat",
   selectors: [
     "a[href*=\"/pdf\" i]",
+    "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a:has-text(\"PDF\")",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: "research_incopat_get_metadata"
+  metadata_tool: "research_incopat_get_metadata",
+  article_url_resolver: (docId: string) => {
+    const id = String(docId || "").trim().replace(/^incopat:\s*/i, "").replace(/^patent\//i, "").replace(/\/pdf(?:[?#].*)?$/i, "");
+    return id ? `https://www.incopat.com/patent/${encodeURIComponent(id)}` : null;
+  }
 };
 
 function patentIdFromDocId(docId: string): string {

@@ -11,12 +11,16 @@ export const cellpressPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   display_name: "Cell Press",
   default_profile: "research-cellpress",
   selectors: [
-    "a.show-pdf",
     "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a:has-text(\"PDF\")",
+    "a.show-pdf",
     "a[href*=\"/pdf/\" i]",
+    "a[href*=\"/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  article_url_resolver: (docId: string) => /^S\d/i.test(docId) ? `https://www.cell.com/cell-reports/fulltext/${docId}` : null
 };
 
 export async function webAiCellpressDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

@@ -1,6 +1,9 @@
 import { encodePathPreservingSlash, LiteratureDownloadPdfArgs, LiteratureDownloadPdfOutput, runLiteratureDownloadPdfTool, registerPdfLiteratureDriver } from "./arxiv";
 
 const DB_SLUG = "mdpi";
+const MDPI_JOURNAL_SLUG_BY_ISSN: Record<string, string> = {
+  "2076-3417": "applsci"
+};
 
 function htmlDecode(value: string): string {
   return String(value || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'");
@@ -19,6 +22,15 @@ function directMdpiPdfUrl(doc_id: string): string {
   return `https://www.mdpi.com/${encodePathPreservingSlash(id)}/pdf`;
 }
 
+function staticMdpiResourcePdfUrl(doc_id: string): string | null {
+  const id = String(doc_id || "").trim().replace(/^https?:\/\/(?:www\.)?mdpi\.com\//i, "").replace(/^\/+/, "").replace(/\/pdf(?:[?#].*)?$/i, "");
+  const [issn, volume, issue, article] = id.split("/");
+  const journalSlug = MDPI_JOURNAL_SLUG_BY_ISSN[issn];
+  if (!journalSlug || !volume || !article || !/^\d+$/.test(volume) || !/^\d+$/.test(article)) return null;
+  const articleSlug = `${journalSlug}-${volume}-${article.padStart(5, "0")}`;
+  return `https://mdpi-res.com/d_attachment/${journalSlug}/${articleSlug}/article_deploy/${articleSlug}.pdf`;
+}
+
 export async function resolveMdpiPdfUrl(doc_id: string): Promise<string> {
   const directUrl = directMdpiPdfUrl(doc_id);
   const response = await fetch(directUrl, { headers: { "Accept": "application/pdf,text/html;q=0.9,*/*;q=0.8" } });
@@ -26,11 +38,12 @@ export async function resolveMdpiPdfUrl(doc_id: string): Promise<string> {
   if (/application\/pdf/i.test(contentType)) return directUrl;
   const html = await response.text().catch(() => "");
   const href = mdpiPdfHrefFromHtml(html);
-  return href ? new URL(href, directUrl).toString() : directUrl;
+  if (href) return new URL(href, directUrl).toString();
+  return staticMdpiResourcePdfUrl(doc_id) || directUrl;
 }
 
 export async function webAiMdpiDownloadPdf(args: Partial<LiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {
-  return runLiteratureDownloadPdfTool(DB_SLUG, args, resolveMdpiPdfUrl);
+  return runLiteratureDownloadPdfTool(DB_SLUG, args, resolveMdpiPdfUrl, undefined, "research-mdpi");
 }
 
-registerPdfLiteratureDriver(DB_SLUG, resolveMdpiPdfUrl);
+registerPdfLiteratureDriver(DB_SLUG, resolveMdpiPdfUrl, "research-mdpi");

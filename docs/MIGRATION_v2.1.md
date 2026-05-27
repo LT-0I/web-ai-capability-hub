@@ -174,3 +174,33 @@ and `LITERATURE_WORKER_JITTER_MAX_MS`; do not bypass the 20/DB/24h ledger.
   `errorCode === "LITERATURE_QUEUED"` and retain `task_id` for polling.
 - Local files remain under `data/literature-downloads/<db>/`; consumers should
   copy or ingest them explicitly if they need durable storage elsewhere.
+
+## Wave 14 paywalled residual pickup (2026-05-27)
+
+Wave 14 re-smoked the 18 remaining Wave 13 FAIL databases with serial profile-backed browser sessions. Final result: **5/18 additional GREEN**, moving the cumulative paywalled gate from **20/38 to 25/38**. This is below the target `>=10/18` stop gate; the verified passed fixes were shipped and the remaining items are deferred for operator pickup.
+
+Additional GREEN in Wave 14:
+
+- `aip` — AIP article-PDF path now verifies as a real `%PDF-` artifact.
+- `asme` — current ASME semantic PDF selectors and article-PDF path work.
+- `cellpress` — Cell Press PII fulltext/PDF resolver works without redirect-loop failure.
+- `ieee` — current IEEE `xpl-btn-pdf` / `stamp.jsp` path works.
+- `mdpi` — MDPI static `mdpi-res.com` resource resolver works for the smoke DOI.
+
+Permanent-deferred / operator pickup:
+
+- `aps` — article-first resolver exists (`journals.aps.org/<journal>/abstract/<doi>`), but the final serial smoke did not expose a usable PDF link under the current profile/session; likely APS Cloudflare/session drift.
+- `asce` — catalog DOI/PDF path unavailable (404/403); verify DOI or entitlement.
+- `emerald` — catalog DOI/PDF path unavailable (404); verify DOI.
+- `incopat` — catalog patent ID resolves to marketing/home content; visible PDFs are product collateral, not patent artifacts.
+- `optica` — OPG captcha challenge; requires manual/operator session clearance.
+- `opticsjournal` — catalog article ID redirects to an article-missing error.
+- `proquest` — document unavailable for current account/catalog ID.
+- `pubscholar` — smoke input is a search/list page, not a concrete article; provide article URL/ID.
+- `royalsoc` — catalog DOI/PDF path unavailable (404/403); verify DOI or entitlement.
+- `sae` — catalog DOI returns 404 and download path is HTML/non-PDF.
+- `sciencedirect` — current network/profile receives 403 bot/challenge.
+- `siam` — catalog DOI/PDF path unavailable (404/timeout).
+- `wanfang` — catalog record is missing; generic Wanfang product PDFs are now filtered to prevent false-positive PDF success.
+
+Artifacts: `.runs/wave-14/probes/`, `.runs/wave-14/smoke-matrix.md`, and `.omc/codex-out/wave-14-paywalled-fail-cluster-fix.md`.

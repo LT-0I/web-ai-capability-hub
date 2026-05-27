@@ -11,11 +11,15 @@ export const emeraldPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   display_name: "Emerald Insight",
   default_profile: "research-emerald",
   selectors: [
+    "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a:has-text(\"PDF\")",
     "a.intent_pdf_link",
     "a[href*=\"/full/pdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
-  metadata_tool: null
+  metadata_tool: null,
+  article_url_resolver: (docId: string) => /^10\./.test(docId) ? `https://www.emerald.com/insight/content/doi/${docId}/full/html` : null
 };
 
 export async function webAiEmeraldDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {
