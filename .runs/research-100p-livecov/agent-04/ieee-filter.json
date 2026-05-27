@@ -1,0 +1,137 @@
+{
+  "db": "ieee",
+  "op": "filter",
+  "tool": "research_ieee_filter",
+  "profile": "research-ieee",
+  "cdp_port": 9333,
+  "launch": {
+    "command": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-ieee",
+      "--cdp-port",
+      "9333",
+      "--json"
+    ],
+    "attempt": 1,
+    "started_at": "2026-05-27T08:03:54.679Z",
+    "finished_at": "2026-05-27T08:03:54.846Z",
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "{\n  \"profile\": \"research-ieee\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-ieee\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9333\",\n  \"cdpPort\": 9333,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 550401,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9333/devtools/page/34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"id\": \"34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"title\": \"IEEE Xplore\",\n      \"type\": \"page\",\n      \"url\": \"https://ieeexplore.ieee.org/Xplore/home.jsp\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/page/34A69C3E985463A7B6E0D94A294B5A4B\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9333/devtools/page/970ABA35E75BA0F9148C8C2D7DFE25C6\",\n      \"id\": \"970ABA35E75BA0F9148C8C2D7DFE25C6\",\n      \"parentId\": \"34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"title\": \"https://service.seamlessaccess.org/ps/\",\n      \"type\": \"iframe\",\n      \"url\": \"https://service.seamlessaccess.org/ps/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/page/970ABA35E75BA0F9148C8C2D7DFE25C6\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/browser/d8ee30d9-4126-4546-ba47-36e4ee4d1cfa\"\n}\n",
+    "stderr": ""
+  },
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:ieee:filter",
+    "--query",
+    "artificial intelligence",
+    "--field",
+    "All Metadata",
+    "--content-type",
+    "Journals",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-ieee",
+    "--cdp-port",
+    "9333",
+    "--json"
+  ],
+  "attempt": 1,
+  "started_at": "2026-05-27T08:04:08.426Z",
+  "finished_at": "2026-05-27T08:04:18.978Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "stdout": "{\n  \"result_count\": 94859,\n  \"items\": [\n    {\n      \"title\": \"Artificial Intelligence Surpassing Human Intelligence : Factual or Hoax\",\n      \"authors\": [\n        \"Sana Khanam\",\n        \"Safdar Tanweer\",\n        \"Syed Khalid\",\n        \"Domenico Rosaci The Computer\"\n      ],\n      \"publication\": \"\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Short Keynote Paper: Mainstreaming Personalized Healthcare–Transforming Healthcare Through New Era of Artificial Intelligence\",\n      \"authors\": [\n        \"Ketan Paranjape\",\n        \"Michiel Schinkel\",\n        \"Prabath Nanayakkara\"\n      ],\n      \"publication\": \"IEEE Journal of Biomedical and Health Informatics Year: 2020\",\n      \"year\": 2020,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"From Artificial Intelligence to Explainable Artificial Intelligence in Industry 4.0: A Survey on What, How, and Where\",\n      \"authors\": [\n        \"Imran Ahmed\",\n        \"Gwanggil Jeon\",\n        \"Francesco Piccialli\"\n      ],\n      \"publication\": \"IEEE Transactions on Industrial Informatics Year: 2022\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"A Systematic Review of Human–Computer Interaction and Explainable Artificial Intelligence in Healthcare With Artificial Intelligence Techniques\",\n      \"authors\": [\n        \"Mobeen Nazar\",\n        \"Muhammad Mansoor Alam\",\n        \"Eiad Yafi\",\n        \"Mazliham Mohd Su’ud\"\n      ],\n      \"publication\": \"IEEE Access Year: 2021\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Advancing Manufacturing Through Artificial Intelligence : Current Landscape, Perspectives, Best Practices, Challenges, and Future Direction\",\n      \"authors\": [\n        \"Rajnish Rakholia\",\n        \"Andrés L. Suárez-Cetrulo\",\n        \"Manokamna Singh\",\n        \"Ricardo Simón Carbajo\"\n      ],\n      \"publication\": \"IEEE Access Year: 2024\",\n      \"year\": 2024,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Change username/password\",\n      \"authors\": [\n        \"Advancing Manufacturing Through Artificial Intelligence : Current Landscape\",\n        \"Perspectives\",\n        \"Best Practices\",\n        \"Challenges\",\n        \"Future Direction Rajnish Rakholia\",\n        \"Andrés L. Suárez-Cetrulo\",\n        \"Manokamna Singh\",\n        \"Ricardo Simón Carbajo\"\n      ],\n      \"publication\": \"IEEE Access Year: 2024\",\n      \"year\": 2024,\n      \"doi\": \"\"\n    }\n  ],\n  \"refined_url\": \"https://ieeexplore.ieee.org/search/searchresult.jsp?action=search&newsearch=true&matchBoolean=true&queryText=%28%22All+Metadata%22%3Aartificial+intelligence%29&rowsPerPage=5&refinements=ContentType%3AJournals\",\n  \"confirm_title\": \"IEEE Xplore Search Results\"\n}\n",
+  "stderr": "",
+  "parsed_stdout": {
+    "result_count": 94859,
+    "items": [
+      {
+        "title": "Artificial Intelligence Surpassing Human Intelligence : Factual or Hoax",
+        "authors": [
+          "Sana Khanam",
+          "Safdar Tanweer",
+          "Syed Khalid",
+          "Domenico Rosaci The Computer"
+        ],
+        "publication": "",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Short Keynote Paper: Mainstreaming Personalized Healthcare–Transforming Healthcare Through New Era of Artificial Intelligence",
+        "authors": [
+          "Ketan Paranjape",
+          "Michiel Schinkel",
+          "Prabath Nanayakkara"
+        ],
+        "publication": "IEEE Journal of Biomedical and Health Informatics Year: 2020",
+        "year": 2020,
+        "doi": ""
+      },
+      {
+        "title": "From Artificial Intelligence to Explainable Artificial Intelligence in Industry 4.0: A Survey on What, How, and Where",
+        "authors": [
+          "Imran Ahmed",
+          "Gwanggil Jeon",
+          "Francesco Piccialli"
+        ],
+        "publication": "IEEE Transactions on Industrial Informatics Year: 2022",
+        "year": 2022,
+        "doi": ""
+      },
+      {
+        "title": "A Systematic Review of Human–Computer Interaction and Explainable Artificial Intelligence in Healthcare With Artificial Intelligence Techniques",
+        "authors": [
+          "Mobeen Nazar",
+          "Muhammad Mansoor Alam",
+          "Eiad Yafi",
+          "Mazliham Mohd Su’ud"
+        ],
+        "publication": "IEEE Access Year: 2021",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Advancing Manufacturing Through Artificial Intelligence : Current Landscape, Perspectives, Best Practices, Challenges, and Future Direction",
+        "authors": [
+          "Rajnish Rakholia",
+          "Andrés L. Suárez-Cetrulo",
+          "Manokamna Singh",
+          "Ricardo Simón Carbajo"
+        ],
+        "publication": "IEEE Access Year: 2024",
+        "year": 2024,
+        "doi": ""
+      },
+      {
+        "title": "Change username/password",
+        "authors": [
+          "Advancing Manufacturing Through Artificial Intelligence : Current Landscape",
+          "Perspectives",
+          "Best Practices",
+          "Challenges",
+          "Future Direction Rajnish Rakholia",
+          "Andrés L. Suárez-Cetrulo",
+          "Manokamna Singh",
+          "Ricardo Simón Carbajo"
+        ],
+        "publication": "IEEE Access Year: 2024",
+        "year": 2024,
+        "doi": ""
+      }
+    ],
+    "refined_url": "https://ieeexplore.ieee.org/search/searchresult.jsp?action=search&newsearch=true&matchBoolean=true&queryText=%28%22All+Metadata%22%3Aartificial+intelligence%29&rowsPerPage=5&refinements=ContentType%3AJournals",
+    "confirm_title": "IEEE Xplore Search Results"
+  },
+  "classification": "PASS",
+  "pass_reason": "result_count=94859, items=6",
+  "rerun_reason": "after IEEE export endpoint implementation"
+}

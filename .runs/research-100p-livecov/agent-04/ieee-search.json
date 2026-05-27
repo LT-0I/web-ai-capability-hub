@@ -1,0 +1,116 @@
+{
+  "db": "ieee",
+  "op": "search",
+  "tool": "research_ieee_search",
+  "profile": "research-ieee",
+  "cdp_port": 9333,
+  "launch": {
+    "command": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-ieee",
+      "--cdp-port",
+      "9333",
+      "--json"
+    ],
+    "attempt": 1,
+    "started_at": "2026-05-27T08:03:54.679Z",
+    "finished_at": "2026-05-27T08:03:54.846Z",
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "{\n  \"profile\": \"research-ieee\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-ieee\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9333\",\n  \"cdpPort\": 9333,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 550401,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9333/devtools/page/34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"id\": \"34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"title\": \"IEEE Xplore\",\n      \"type\": \"page\",\n      \"url\": \"https://ieeexplore.ieee.org/Xplore/home.jsp\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/page/34A69C3E985463A7B6E0D94A294B5A4B\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9333/devtools/page/970ABA35E75BA0F9148C8C2D7DFE25C6\",\n      \"id\": \"970ABA35E75BA0F9148C8C2D7DFE25C6\",\n      \"parentId\": \"34A69C3E985463A7B6E0D94A294B5A4B\",\n      \"title\": \"https://service.seamlessaccess.org/ps/\",\n      \"type\": \"iframe\",\n      \"url\": \"https://service.seamlessaccess.org/ps/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/page/970ABA35E75BA0F9148C8C2D7DFE25C6\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9333/devtools/browser/d8ee30d9-4126-4546-ba47-36e4ee4d1cfa\"\n}\n",
+    "stderr": ""
+  },
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:ieee:search",
+    "--query",
+    "artificial intelligence",
+    "--field",
+    "All Metadata",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-ieee",
+    "--cdp-port",
+    "9333",
+    "--json"
+  ],
+  "attempt": 1,
+  "started_at": "2026-05-27T08:03:54.846Z",
+  "finished_at": "2026-05-27T08:04:03.424Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "stdout": "{\n  \"result_count\": 373855,\n  \"items\": [\n    {\n      \"title\": \"How do we move towards true artificial intelligence\",\n      \"authors\": [\n        \"Wei Liu\",\n        \"Guangda Zhuang\",\n        \"Xin Liu\",\n        \"Shaobo Hu\",\n        \"Ruilin He\",\n        \"Yuhu Wang 2021\"\n      ],\n      \"publication\": \"IEEE 23rd Int Conf on High Performance Computing & Communications\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Patient Attitude on the Application of Artificial Intelligence in Diabetes Care\",\n      \"authors\": [\n        \"Maslin Masrom\",\n        \"Logeswary Krisnan\",\n        \"Yazriwati Yahya\",\n        \"Manimaran Krishnan Kaundan 2024 5th International\"\n      ],\n      \"publication\": \"Manimaran Krishnan Kaundan 2024 5th International Conference on Artificial Intelligence and Data Sciences\",\n      \"year\": 2024,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Construction of Enterprise Business Management Analysis Framework in the Development of Artificial Intelligence\",\n      \"authors\": [\n        \"Meijing Song\",\n        \"Xinjian Chen 2021 International\"\n      ],\n      \"publication\": \"Xinjian Chen 2021 International Conference on Computer Information Science and Artificial Intelligence\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Application and existing problems of computer network technology in the field of artificial intelligence\",\n      \"authors\": [\n        \"Genjin Chen\",\n        \"Qi Yuan 2021 2nd International\"\n      ],\n      \"publication\": \"Qi Yuan 2021 2nd International Conference on Artificial Intelligence and Computer Engineering\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Risks and Countermeasures of Accounting Artificial Intelligence\",\n      \"authors\": [\n        \"Chunling Zhu\",\n        \"Yutong Guan 2022 3rd International\"\n      ],\n      \"publication\": \"Yutong Guan 2022 3rd International Conference on Electronic Communication and Artificial Intelligence\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    }\n  ],\n  \"query_url\": \"https://ieeexplore.ieee.org/search/searchresult.jsp?action=search&newsearch=true&matchBoolean=true&queryText=%28%22All+Metadata%22%3Aartificial+intelligence%29&rowsPerPage=5\"\n}\n",
+  "stderr": "",
+  "parsed_stdout": {
+    "result_count": 373855,
+    "items": [
+      {
+        "title": "How do we move towards true artificial intelligence",
+        "authors": [
+          "Wei Liu",
+          "Guangda Zhuang",
+          "Xin Liu",
+          "Shaobo Hu",
+          "Ruilin He",
+          "Yuhu Wang 2021"
+        ],
+        "publication": "IEEE 23rd Int Conf on High Performance Computing & Communications",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Patient Attitude on the Application of Artificial Intelligence in Diabetes Care",
+        "authors": [
+          "Maslin Masrom",
+          "Logeswary Krisnan",
+          "Yazriwati Yahya",
+          "Manimaran Krishnan Kaundan 2024 5th International"
+        ],
+        "publication": "Manimaran Krishnan Kaundan 2024 5th International Conference on Artificial Intelligence and Data Sciences",
+        "year": 2024,
+        "doi": ""
+      },
+      {
+        "title": "Construction of Enterprise Business Management Analysis Framework in the Development of Artificial Intelligence",
+        "authors": [
+          "Meijing Song",
+          "Xinjian Chen 2021 International"
+        ],
+        "publication": "Xinjian Chen 2021 International Conference on Computer Information Science and Artificial Intelligence",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Application and existing problems of computer network technology in the field of artificial intelligence",
+        "authors": [
+          "Genjin Chen",
+          "Qi Yuan 2021 2nd International"
+        ],
+        "publication": "Qi Yuan 2021 2nd International Conference on Artificial Intelligence and Computer Engineering",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "The Risks and Countermeasures of Accounting Artificial Intelligence",
+        "authors": [
+          "Chunling Zhu",
+          "Yutong Guan 2022 3rd International"
+        ],
+        "publication": "Yutong Guan 2022 3rd International Conference on Electronic Communication and Artificial Intelligence",
+        "year": 2022,
+        "doi": ""
+      }
+    ],
+    "query_url": "https://ieeexplore.ieee.org/search/searchresult.jsp?action=search&newsearch=true&matchBoolean=true&queryText=%28%22All+Metadata%22%3Aartificial+intelligence%29&rowsPerPage=5"
+  },
+  "classification": "PASS",
+  "pass_reason": "result_count=373855, items=5",
+  "rerun_reason": "after IEEE export endpoint implementation"
+}

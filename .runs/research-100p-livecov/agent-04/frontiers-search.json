@@ -1,0 +1,107 @@
+{
+  "db": "frontiers",
+  "op": "search",
+  "tool": "research_frontiers_search",
+  "profile": "research-frontiers",
+  "cdp_port": 9332,
+  "launch": {
+    "command": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-frontiers",
+      "--cdp-port",
+      "9332",
+      "--json"
+    ],
+    "attempt": 1,
+    "started_at": "2026-05-27T07:55:21.283Z",
+    "finished_at": "2026-05-27T07:55:21.320Z",
+    "exit_code": 1,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "",
+    "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '../utils/paths'\nRequire stack:\n- /home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/downloads.js\n- /home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/sessionManager.js\n- /home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1556:12)\n    at require (node:internal/modules/helpers:152:16)\n    at Object.<anonymous> (/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/downloads.js:7:17)\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\n    at Object..js (node:internal/modules/cjs/loader:1943:10) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [\n    '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/downloads.js',\n    '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/browser/sessionManager.js',\n    '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n  ]\n}\n\nNode.js v24.14.0\n"
+  },
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:frontiers:search",
+    "--query",
+    "robotics artificial intelligence",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-frontiers",
+    "--cdp-port",
+    "9332",
+    "--json"
+  ],
+  "attempt": 1,
+  "started_at": "2026-05-27T07:55:28.321Z",
+  "finished_at": "2026-05-27T07:56:15.088Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "stdout": "{\n  \"result_count\": 14615,\n  \"items\": [\n    {\n      \"title\": \"--> No matches to your query could be found. Showing Results for robotics artificial intelligence. Did you mean ? Top Results Articles Research Topics Journals People News Events 14,615 Articles Domains All domains Engineering Health Humanities and Social Scie\",\n      \"authors\": [\n        \"nces Science Sustainability Young Minds Journals Any journal Advanced Optical Technologies Frontiers for Young Minds\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"Frontiers in Acoustics Frontiers in Aerospace Engineering Frontiers in Aging Frontiers in Aging Neuroscience Frontiers in Agronomy Frontiers in Allergy Frontiers in Analytical Science Frontiers in Anesthesiology Frontiers in Animal Science Frontiers in Antennas and Propagation Frontiers in Antibiotics Frontiers in Applied Mathematics and Statistics Frontiers in Aquaculture Frontiers in Artificial Intelligence Frontiers in Astronomy and Space Sciences Frontiers in Audiology and Otology Frontiers in Bacteriology Frontiers in Batteries and Electrochemistry Frontiers in Behavioral Economics Frontiers in Behavioral Neuroscience Frontiers in Big Data Frontiers in Bioengineering and Biotechnology Frontiers in Bioinformatics Frontiers in Biomaterials Science Frontiers in Blockchain Frontiers in Built Environment Frontiers in Cancer Control and Society Frontiers in Cardiovascular Medicine Frontiers in Cell and Developmental Biology Frontiers in Cellular and Infection Microbiology Frontiers in Cellular Neuroscience Frontiers in Chemical Biology Frontiers in Chemical Engineering Frontiers in Chemistry Frontiers in Child and Adolescent Psychiatry Frontiers in Climate Frontiers in Clinical Diabetes and Healthcare Frontiers in Cognition Frontiers in Communication Frontiers in Communications and Networks Frontiers in Complex Systems Frontiers in Computational Neuroscience Frontiers in Computer Science Frontiers in Conservation Science Frontiers in Control Engineering Frontiers in Dementia Frontiers in Dental Medicine Frontiers in Developmental Psychology Frontiers in Digital Health Frontiers in Digital Humanities Frontiers in Disaster and Emergency Medicine Frontiers in Drug Delivery Frontiers in Drug Discovery Frontiers in Drug Safety and Regulation Frontiers in Earth Science Frontiers in Ecology and Evolution Frontiers in Education Frontiers in Electronic Materials Frontiers in Electronics Frontiers in Endocrinology Frontiers in Energy Efficiency Frontiers in Energy Research Frontiers in Environmental Chemistry Frontiers in Environmental Economics Frontiers in Environmental Engineering Frontiers in Environmental Health Frontiers in Environmental Science Frontiers in Epidemiology Frontiers in Evolutionary Neuroscience Frontiers in Fish Science Frontiers in Food Science and Technology Frontiers in Forests and Global Change Frontiers in Freshwater Science Frontiers in Fungal Biology Frontiers in Future Transportation Frontiers in Gastroenterology Frontiers in Genetics Frontiers in Genome Editing Frontiers in Global Women\",\n      \"year\": null,\n      \"url\": \"\"\n    },\n    {\n      \"title\": \"Atharva P. Karnik Harsita Chhajer Swapna B. Venkatesh Mini\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"Frontiers in Oral Health\",\n      \"year\": 2024,\n      \"url\": \"\"\n    },\n    {\n      \"title\": \"Sonu Bhaskar Sian Bradley Sateesh Sakhamuri Sebastian Moguilner Vijay Kumar Chattu Shawna Pandya Starr Schroeder Daniel Ray Maciej Banach Policy Brief Technological innovations such as artificial intelligence and robotics may be of potential use in telemedicin\",\n      \"authors\": [\n        \"e\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"Frontiers in Public Health\",\n      \"year\": 2020,\n      \"url\": \"\"\n    },\n    {\n      \"title\": \"Anshu S. Arora Amit Arora John R. McIntyre\",\n      \"authors\": [\n        \"Brief Research Report of Explainable Artificial Intelligence (XAI)\",\n        \"Interpretable Artificial Intelligence (IAI). This research\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"Frontiers in Robotics and AI\",\n      \"year\": 2026,\n      \"url\": \"\"\n    },\n    {\n      \"title\": \"Alejandro Granados Raghav Khanna Nikola Fischer Nicholas Raison Margarita Ciabattini Harry Robertshaw Maxence Boels Mohsan Malik Veronica Granados Tom Vercauteren Frontiers in Science Lead Article The integration of advanced artificial intelligence (AI) and ro\",\n      \"authors\": [\n        \"botics ecosystems into the operating\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"Frontiers in Science\",\n      \"year\": 2026,\n      \"url\": \"\"\n    }\n  ],\n  \"query_url\": \"https://www.frontiersin.org/search?query=robotics+artificial+intelligence&tab=articles\"\n}\n",
+  "stderr": "",
+  "parsed_stdout": {
+    "result_count": 14615,
+    "items": [
+      {
+        "title": "--> No matches to your query could be found. Showing Results for robotics artificial intelligence. Did you mean ? Top Results Articles Research Topics Journals People News Events 14,615 Articles Domains All domains Engineering Health Humanities and Social Scie",
+        "authors": [
+          "nces Science Sustainability Young Minds Journals Any journal Advanced Optical Technologies Frontiers for Young Minds"
+        ],
+        "doi": "",
+        "journal": "Frontiers in Acoustics Frontiers in Aerospace Engineering Frontiers in Aging Frontiers in Aging Neuroscience Frontiers in Agronomy Frontiers in Allergy Frontiers in Analytical Science Frontiers in Anesthesiology Frontiers in Animal Science Frontiers in Antennas and Propagation Frontiers in Antibiotics Frontiers in Applied Mathematics and Statistics Frontiers in Aquaculture Frontiers in Artificial Intelligence Frontiers in Astronomy and Space Sciences Frontiers in Audiology and Otology Frontiers in Bacteriology Frontiers in Batteries and Electrochemistry Frontiers in Behavioral Economics Frontiers in Behavioral Neuroscience Frontiers in Big Data Frontiers in Bioengineering and Biotechnology Frontiers in Bioinformatics Frontiers in Biomaterials Science Frontiers in Blockchain Frontiers in Built Environment Frontiers in Cancer Control and Society Frontiers in Cardiovascular Medicine Frontiers in Cell and Developmental Biology Frontiers in Cellular and Infection Microbiology Frontiers in Cellular Neuroscience Frontiers in Chemical Biology Frontiers in Chemical Engineering Frontiers in Chemistry Frontiers in Child and Adolescent Psychiatry Frontiers in Climate Frontiers in Clinical Diabetes and Healthcare Frontiers in Cognition Frontiers in Communication Frontiers in Communications and Networks Frontiers in Complex Systems Frontiers in Computational Neuroscience Frontiers in Computer Science Frontiers in Conservation Science Frontiers in Control Engineering Frontiers in Dementia Frontiers in Dental Medicine Frontiers in Developmental Psychology Frontiers in Digital Health Frontiers in Digital Humanities Frontiers in Disaster and Emergency Medicine Frontiers in Drug Delivery Frontiers in Drug Discovery Frontiers in Drug Safety and Regulation Frontiers in Earth Science Frontiers in Ecology and Evolution Frontiers in Education Frontiers in Electronic Materials Frontiers in Electronics Frontiers in Endocrinology Frontiers in Energy Efficiency Frontiers in Energy Research Frontiers in Environmental Chemistry Frontiers in Environmental Economics Frontiers in Environmental Engineering Frontiers in Environmental Health Frontiers in Environmental Science Frontiers in Epidemiology Frontiers in Evolutionary Neuroscience Frontiers in Fish Science Frontiers in Food Science and Technology Frontiers in Forests and Global Change Frontiers in Freshwater Science Frontiers in Fungal Biology Frontiers in Future Transportation Frontiers in Gastroenterology Frontiers in Genetics Frontiers in Genome Editing Frontiers in Global Women",
+        "year": null,
+        "url": ""
+      },
+      {
+        "title": "Atharva P. Karnik Harsita Chhajer Swapna B. Venkatesh Mini",
+        "authors": [],
+        "doi": "",
+        "journal": "Frontiers in Oral Health",
+        "year": 2024,
+        "url": ""
+      },
+      {
+        "title": "Sonu Bhaskar Sian Bradley Sateesh Sakhamuri Sebastian Moguilner Vijay Kumar Chattu Shawna Pandya Starr Schroeder Daniel Ray Maciej Banach Policy Brief Technological innovations such as artificial intelligence and robotics may be of potential use in telemedicin",
+        "authors": [
+          "e"
+        ],
+        "doi": "",
+        "journal": "Frontiers in Public Health",
+        "year": 2020,
+        "url": ""
+      },
+      {
+        "title": "Anshu S. Arora Amit Arora John R. McIntyre",
+        "authors": [
+          "Brief Research Report of Explainable Artificial Intelligence (XAI)",
+          "Interpretable Artificial Intelligence (IAI). This research"
+        ],
+        "doi": "",
+        "journal": "Frontiers in Robotics and AI",
+        "year": 2026,
+        "url": ""
+      },
+      {
+        "title": "Alejandro Granados Raghav Khanna Nikola Fischer Nicholas Raison Margarita Ciabattini Harry Robertshaw Maxence Boels Mohsan Malik Veronica Granados Tom Vercauteren Frontiers in Science Lead Article The integration of advanced artificial intelligence (AI) and ro",
+        "authors": [
+          "botics ecosystems into the operating"
+        ],
+        "doi": "",
+        "journal": "Frontiers in Science",
+        "year": 2026,
+        "url": ""
+      }
+    ],
+    "query_url": "https://www.frontiersin.org/search?query=robotics+artificial+intelligence&tab=articles"
+  },
+  "classification": "PASS",
+  "pass_reason": "result_count=14615, items=5",
+  "rerun_reason": "previous smoke hit transient dist/src/cli.js MODULE_NOT_FOUND race"
+}

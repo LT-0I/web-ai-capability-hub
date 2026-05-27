@@ -1,0 +1,187 @@
+{
+  "agent": "04",
+  "generated_at": "2026-05-27T08:07:43.804Z",
+  "verification": {
+    "build": "PASS npm run build (2026-05-27)",
+    "protected_file_guard": "PASS no 8-lock/protected file drift detected",
+    "assigned_cdp_ports_closed": true
+  },
+  "dbs": {
+    "degruyter": {
+      "pass": 0,
+      "deferred": 3,
+      "fail": 0,
+      "total": 3,
+      "tools": {
+        "search": {
+          "tool": "research_degruyter_search",
+          "classification": "DEFERRED_HUMAN_VERIFICATION",
+          "exit_code": 1,
+          "evidence": ".runs/research-100p-livecov/agent-04/degruyter-search.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": "DEFERRED_HUMAN_VERIFICATION",
+          "root_cause": "Live De Gruyter Brill pages redirected/rendered a Human Verification security check in headed Chrome; DOM showed no search result count or citation controls. No stealth/bypass permitted."
+        },
+        "filter": {
+          "tool": "research_degruyter_filter",
+          "classification": "DEFERRED_HUMAN_VERIFICATION",
+          "exit_code": 1,
+          "evidence": ".runs/research-100p-livecov/agent-04/degruyter-filter.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": "DEFERRED_HUMAN_VERIFICATION",
+          "root_cause": "Live De Gruyter Brill pages redirected/rendered a Human Verification security check in headed Chrome; DOM showed no search result count or citation controls. No stealth/bypass permitted."
+        },
+        "export": {
+          "tool": "research_degruyter_export",
+          "classification": "DEFERRED_HUMAN_VERIFICATION",
+          "exit_code": 1,
+          "evidence": ".runs/research-100p-livecov/agent-04/degruyter-export.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": "DEFERRED_HUMAN_VERIFICATION",
+          "root_cause": "Live De Gruyter Brill pages redirected/rendered a Human Verification security check in headed Chrome; DOM showed no search result count or citation controls. No stealth/bypass permitted."
+        }
+      }
+    },
+    "emerald": {
+      "pass": 3,
+      "deferred": 0,
+      "fail": 0,
+      "total": 3,
+      "tools": {
+        "search": {
+          "tool": "research_emerald_search",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/emerald-search.json",
+          "result_count": 237817,
+          "item_count": 4,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "filter": {
+          "tool": "research_emerald_filter",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/emerald-filter.json",
+          "result_count": 135522,
+          "item_count": 9,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "export": {
+          "tool": "research_emerald_export",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/emerald-export.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-04/downloads/emerald/emerald-1368070-bibtex.bib",
+          "bytes": 3162,
+          "deferred_reason": null,
+          "root_cause": null
+        }
+      }
+    },
+    "frontiers": {
+      "pass": 3,
+      "deferred": 0,
+      "fail": 0,
+      "total": 3,
+      "tools": {
+        "search": {
+          "tool": "research_frontiers_search",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/frontiers-search.json",
+          "result_count": 14615,
+          "item_count": 5,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "filter": {
+          "tool": "research_frontiers_filter",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/frontiers-filter.json",
+          "result_count": 4137,
+          "item_count": 5,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "export": {
+          "tool": "research_frontiers_export",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/frontiers-export.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-04/downloads/frontiers/frontiers-10-3389-frobt-2019-00042.bib",
+          "bytes": 2660,
+          "deferred_reason": null,
+          "root_cause": null
+        }
+      }
+    },
+    "ieee": {
+      "pass": 3,
+      "deferred": 0,
+      "fail": 0,
+      "total": 3,
+      "tools": {
+        "search": {
+          "tool": "research_ieee_search",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/ieee-search.json",
+          "result_count": 373855,
+          "item_count": 5,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "filter": {
+          "tool": "research_ieee_filter",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/ieee-filter.json",
+          "result_count": 94859,
+          "item_count": 6,
+          "artifact_path": null,
+          "bytes": null,
+          "deferred_reason": null,
+          "root_cause": null
+        },
+        "export": {
+          "tool": "research_ieee_export",
+          "classification": "PASS",
+          "exit_code": 0,
+          "evidence": ".runs/research-100p-livecov/agent-04/ieee-export.json",
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-04/downloads/ieee/ieee-9684789-ris.ris",
+          "bytes": 382,
+          "deferred_reason": null,
+          "root_cause": null
+        }
+      }
+    }
+  }
+}

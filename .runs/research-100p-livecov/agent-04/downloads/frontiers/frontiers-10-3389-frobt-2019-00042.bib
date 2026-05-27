@@ -1,0 +1,19 @@
+@ARTICLE{10.3389/frobt.2019.00042,
+    
+AUTHOR={Dufek, Jan  and Murphy, Robin },
+           
+TITLE={Visual Pose Estimation of Rescue Unmanned Surface Vehicle From Unmanned Aerial System},
+          
+JOURNAL={Frontiers in Robotics and AI},
+          
+VOLUME={Volume 6 - 2019},
+  
+YEAR={2019},
+  
+URL={https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2019.00042},
+  
+DOI={10.3389/frobt.2019.00042},
+  
+ISSN={2296-9144},
+  
+ABSTRACT={This article addresses the problem of how to visually estimate the pose of a rescue unmanned surface vehicle (USV) using an unmanned aerial system (UAS) in marine mass casualty events. A UAS visually navigating the USV can help solve problems with teleoperation and manpower requirements. The solution has to estimate full pose (both position and orientation) and has to work in an outdoor environment from oblique view angle (up to 85° from nadir) at large distances (180 m) in real-time (5 Hz) and assume both moving UAS (up to 22 m/s) and moving object (up to 10 m/s). None of the 58 reviewed studies satisfied all those requirements. This article presents two algorithms for visual position estimation using the object's hue (thresholding and histogramming) and four techniques for visual orientation estimation using the object's shape while satisfying those requirements. Four physical experiments were performed to validate the feasibility and compare the thresholding and histogramming algorithms. The histogramming had statistically significantly lower position estimation error compared to thresholding for all four trials (p-value ranged from ~ 0 to  8.23263 x 10^-29), but it only had statistically significantly lower orientation estimation error for two of the trials (p-values 3.51852 x 10^-39 and 1.32762 x 10^-46). The mean position estimation error ranged from 7 px to 43 px while the mean orientation estimation error ranged from 0.134 rad to 0.480 rad. The histogramming algorithm demonstrated feasibility for variations in environmental conditions and physical settings while requiring fewer parameters than thresholding. However, three problems were identified. The orientation estimation error was quite large for both algorithms, both algorithms required manual tuning before each trial, and both algorithms were not robust enough to recover from significant changes in illumination conditions. To reduce the orientation estimation error, inverse perspective warping will be necessary to reduce the perspective distortion. To eliminate the necessity for tuning and increase the robustness, a machine learning approach to pose estimation might ultimately be a better solution.}}

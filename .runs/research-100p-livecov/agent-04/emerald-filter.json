@@ -1,0 +1,142 @@
+{
+  "db": "emerald",
+  "op": "filter",
+  "tool": "research_emerald_filter",
+  "profile": "research-emerald",
+  "cdp_port": 9331,
+  "launch": {
+    "command": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-emerald",
+      "--cdp-port",
+      "9331",
+      "--json"
+    ],
+    "started_at": "2026-05-27T07:49:15.486Z",
+    "finished_at": "2026-05-27T07:49:15.961Z",
+    "exit_code": 0,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "{\n  \"profile\": \"research-emerald\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-emerald\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9331\",\n  \"cdpPort\": 9331,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 508234,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9331/devtools/page/94546ABF402664C248EA57EDC8E78F66\",\n      \"id\": \"94546ABF402664C248EA57EDC8E78F66\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9331/devtools/page/94546ABF402664C248EA57EDC8E78F66\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9331/devtools/browser/0abb3068-55a6-414b-9776-299f906ada95\"\n}\n",
+    "stderr": ""
+  },
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:emerald:filter",
+    "--query",
+    "artificial intelligence",
+    "--content-type",
+    "Journal Articles",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-emerald",
+    "--cdp-port",
+    "9331",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:49:55.747Z",
+  "finished_at": "2026-05-27T07:50:28.211Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "stdout": "{\n  \"result_count\": 135522,\n  \"items\": [\n    {\n      \"title\": \"Update search\",\n      \"authors\": [\n        \"search navigation Search Results for artificial intelligence Modify Your Advanced Search Update search Querybuilder input 1 Querybuilder input Filter All All Title Author Author Affiliations Full Text\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Querybuilder input Filter All All Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN EISBN\",\n      \"year\": 2073\n    },\n    {\n      \"title\": \"Apply\",\n      \"authors\": [\n        \"Availability Availability Available Open Access Free Available for purchase Update Search Update Search 1-5 of 135522 Search Results for artificial intelligence Journal Articles Close Save search Follow your search Access your saved searches in your account Name your search Follow this search Would you like to receive an alert when new items match your search? No Yes Close Modal 1 2 3 4 5 Next Sort by Sort Order Select Relevancy Date - Newest First Date - Oldest First\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Artificial intelligence in education: mapping research trends, engagement and cognitive disengagement with evidence from global and Asian contexts\",\n      \"authors\": [\n        \"nd Asian contexts Free Abhishek N\",\n        \"Rovin Martis Journal: Responsible Enterprise Pedagogy Responsible Enterprise Pedagogy 1–31.\"\n      ],\n      \"doi\": \"10.1108/RESEP-04-2026-0009\",\n      \"publication\": \"Responsible Enterprise Pedagogy Responsible Enterprise Pedagogy 1–31. https://doi.org/10.1108/RESEP-04-2026-0009\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"10.1108/SAJBS-01-2025-0035\",\n      \"publication\": \"South Asian Journal of Business Studies South Asian Journal of Business Studies 1–34. https://doi.org/10.1108/SAJBS-01-2025-0035\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"10.1108/APJML-10-2025-2185\",\n      \"publication\": \"Asia Pacific Journal of Marketing and Logistics Asia Pacific Journal of Marketing and Logistics 1–22. https://doi.org/10.1108/APJML-10-2025-2185\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"10.1108/JAAR-07-2025-0355\",\n      \"publication\": \"Journal of Applied Accounting Research Journal of Applied Accounting Research 1–16. https://doi.org/10.1108/JAAR-07-2025-0355\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"10.1108/IJPSM-11-2025-0543\",\n      \"publication\": \"International Journal of Public Sector Management International Journal of Public Sector Management 1–21. https://doi.org/10.1108/IJPSM-11-2025-0543\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Email alerts\",\n      \"authors\": [\n        \"Closed Issue Alert Close Modal Bluesky Facebook LinkedIn YouTube Instagram © 2025 Emerald Publishing Limited Authors Editors Librarians Researchers Reviewers Open Access How-to Guides Emerald Publishing Services Contact us Help About Emerald Working for Emerald Cookie Policy Accessibility Site policies Privacy notice Modern Slavery Act © 2025 Emerald Publishing Limited Close Modal Close Modal This Feature Is Available To Subscribers Only Sign In or Create an Account Close Modal Close Modal Privacy Preference Center When you visit any website\",\n        \"it may store or retrieve information on your browser\",\n        \"mostly in the form of cookies. This information might be about you\",\n        \"your preferences or your device\",\n        \"is mostly used to make the site work as you expect it to. The information does not usually directly identify you\",\n        \"but it can give you a more personalized web experience. Because we respect your right to privacy\",\n        \"you can choose not to allow some types of cookies. Click on the different category headings to find out more\",\n        \"change our default settings. However\",\n        \"blocking some types of cookies may impact your experience of the site\",\n        \"the services we are able to offer. Visit our cookie policy page Allow All Manage Consent Preferences Functional cookies Functional cookies These cookies enable the website to provide enhanced functionality\",\n        \"personalisation. They may be set by us or by our vetted third-party providers whose services have been integrated into our sites. These cookies improve the user experience\",\n        \"provide more personalised services. If you do not allow these cookies\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2025\n    }\n  ],\n  \"refined_url\": \"https://www.emerald.com/search-results?q=artificial+intelligence&hd=advancedAny&searchType=advanced&page=1&pageSize=5&f_ContentType=Journal+Articles\",\n  \"confirm_url\": \"https://www.emerald.com/search-results?q=artificial+intelligence&hd=advancedAny&searchType=advanced&page=1&pageSize=5&f_ContentType=Journal+Articles\",\n  \"confirm_title\": \"artificial intelligence | Page 1 | Search Results | Emerald Publishing\"\n}\n",
+  "stderr": "",
+  "parsed_stdout": {
+    "result_count": 135522,
+    "items": [
+      {
+        "title": "Update search",
+        "authors": [
+          "search navigation Search Results for artificial intelligence Modify Your Advanced Search Update search Querybuilder input 1 Querybuilder input Filter All All Title Author Author Affiliations Full Text"
+        ],
+        "doi": "",
+        "publication": "Querybuilder input Filter All All Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN EISBN",
+        "year": 2073
+      },
+      {
+        "title": "Apply",
+        "authors": [
+          "Availability Availability Available Open Access Free Available for purchase Update Search Update Search 1-5 of 135522 Search Results for artificial intelligence Journal Articles Close Save search Follow your search Access your saved searches in your account Name your search Follow this search Would you like to receive an alert when new items match your search? No Yes Close Modal 1 2 3 4 5 Next Sort by Sort Order Select Relevancy Date - Newest First Date - Oldest First"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Artificial intelligence in education: mapping research trends, engagement and cognitive disengagement with evidence from global and Asian contexts",
+        "authors": [
+          "nd Asian contexts Free Abhishek N",
+          "Rovin Martis Journal: Responsible Enterprise Pedagogy Responsible Enterprise Pedagogy 1–31."
+        ],
+        "doi": "10.1108/RESEP-04-2026-0009",
+        "publication": "Responsible Enterprise Pedagogy Responsible Enterprise Pedagogy 1–31. https://doi.org/10.1108/RESEP-04-2026-0009",
+        "year": 2026
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "10.1108/SAJBS-01-2025-0035",
+        "publication": "South Asian Journal of Business Studies South Asian Journal of Business Studies 1–34. https://doi.org/10.1108/SAJBS-01-2025-0035",
+        "year": 2025
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "10.1108/APJML-10-2025-2185",
+        "publication": "Asia Pacific Journal of Marketing and Logistics Asia Pacific Journal of Marketing and Logistics 1–22. https://doi.org/10.1108/APJML-10-2025-2185",
+        "year": 2025
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "10.1108/JAAR-07-2025-0355",
+        "publication": "Journal of Applied Accounting Research Journal of Applied Accounting Research 1–16. https://doi.org/10.1108/JAAR-07-2025-0355",
+        "year": 2025
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "10.1108/IJPSM-11-2025-0543",
+        "publication": "International Journal of Public Sector Management International Journal of Public Sector Management 1–21. https://doi.org/10.1108/IJPSM-11-2025-0543",
+        "year": 2025
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Email alerts",
+        "authors": [
+          "Closed Issue Alert Close Modal Bluesky Facebook LinkedIn YouTube Instagram © 2025 Emerald Publishing Limited Authors Editors Librarians Researchers Reviewers Open Access How-to Guides Emerald Publishing Services Contact us Help About Emerald Working for Emerald Cookie Policy Accessibility Site policies Privacy notice Modern Slavery Act © 2025 Emerald Publishing Limited Close Modal Close Modal This Feature Is Available To Subscribers Only Sign In or Create an Account Close Modal Close Modal Privacy Preference Center When you visit any website",
+          "it may store or retrieve information on your browser",
+          "mostly in the form of cookies. This information might be about you",
+          "your preferences or your device",
+          "is mostly used to make the site work as you expect it to. The information does not usually directly identify you",
+          "but it can give you a more personalized web experience. Because we respect your right to privacy",
+          "you can choose not to allow some types of cookies. Click on the different category headings to find out more",
+          "change our default settings. However",
+          "blocking some types of cookies may impact your experience of the site",
+          "the services we are able to offer. Visit our cookie policy page Allow All Manage Consent Preferences Functional cookies Functional cookies These cookies enable the website to provide enhanced functionality",
+          "personalisation. They may be set by us or by our vetted third-party providers whose services have been integrated into our sites. These cookies improve the user experience",
+          "provide more personalised services. If you do not allow these cookies"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2025
+      }
+    ],
+    "refined_url": "https://www.emerald.com/search-results?q=artificial+intelligence&hd=advancedAny&searchType=advanced&page=1&pageSize=5&f_ContentType=Journal+Articles",
+    "confirm_url": "https://www.emerald.com/search-results?q=artificial+intelligence&hd=advancedAny&searchType=advanced&page=1&pageSize=5&f_ContentType=Journal+Articles",
+    "confirm_title": "artificial intelligence | Page 1 | Search Results | Emerald Publishing"
+  },
+  "classification": "PASS",
+  "pass_reason": "result_count=135522, items=9"
+}

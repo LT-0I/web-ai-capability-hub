@@ -1,0 +1,88 @@
+[
+  {
+    "name": "form-urlencoded URLSearchParams",
+    "status": 415,
+    "headers": {
+      "content-type": "text/html; charset=iso-8859-1",
+      "content-length": "287",
+      "connection": "keep-alive",
+      "date": "Wed, 27 May 2026 08:01:16 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "set-cookie": "AWSALBAPP-0=AAAAAAAAAADdBifn4hnWCt4YMGGFaAvYW3Pg300WU6sdlVX+pw+aqifosqisIBjev+Faww3AtatNVMWyH7H6mz/NN0E7feNGH4VA8KoTcy0sYNdln+DTgS8Go1luHEnrgKDuzvKsq4ZiYIitFyyYilQUrJBTe+xs+AMDGTo0k0QlX+fXH7VemtvAxuKXCGSzkDlpdtRyAKXTh4A31bv9xg==; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-1=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-2=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-3=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nWLSESSION=3221451274.47873.0000; expires=Thu, 28-May-2026 08:01:16 GMT; path=/; Httponly; Secure\nTS016349ac=01f15fc87c057082f6a226703edd99d446d286575c1b77db494896a532976271e20e95da01445056cef973318ce6d217b7fe05c9b6; Path=/; Domain=.ieeexplore.ieee.org\nTSaf720a17029=0807dc117eab2800fd6201209a5005e496cb96d7888151f3b6ea4369c226b7ed09891e32c6eaf67928da623cd697550d; Max-Age=30; Path=/\nTS8b476361027=0807dc117eab200071dccd220a3c80864ea8bdf253d3ee853647847bc6222901a4f3fd012859be49083aec33821130007362532e704e79021fdda50a417d1aa855545a84546fb768fe777d1ffe1de6f9804d304bc8f50a3134f15fd3a9f2884a; Path=/",
+      "content-security-policy": "upgrade-insecure-requests",
+      "x-content-type-options": "text/html; charset=UTF-8; nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-cache": "Error from cloudfront",
+      "via": "1.1 d5fc1cc93cba2e958b2e50cab03d57fc.cloudfront.net (CloudFront)",
+      "x-amz-cf-pop": "SIN3-P4",
+      "x-amz-cf-id": "FhyasfCdJqApNTAMoUq7EbRMyZv1y2tOP_fzS6YQMw1vfdDm9KcWPw=="
+    },
+    "text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>415 Unknown Reason</title>\n</head><body>\n<h1>Unknown Reason</h1>\n<p>The supplied request data is not in a format\nacceptable for processing by this resource.</p>\n</body></html>\n"
+  },
+  {
+    "name": "form-urlencoded brackets",
+    "status": 415,
+    "headers": {
+      "content-type": "text/html; charset=iso-8859-1",
+      "content-length": "287",
+      "connection": "keep-alive",
+      "date": "Wed, 27 May 2026 08:01:16 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "set-cookie": "AWSALBAPP-0=AAAAAAAAAABpPaxLCGqx7HHqpQqoehIhhRo4vEM41+20Yqk5ivwNdCiQWumtNtzuDpvYy48M3YwPnxfVY5TIeC6rE05pEYEl7x2anaJMLlyokx6sUj2NT7Y+ZB6iOwoAWhJr3b2vFleEvwZJ+XOO7txZSHCqEWBcH+koKEZKngBBwXd1ZxQFb1pEvuFzkam0ZQp3mjG4ycauXCYKQ+pBEw==; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-1=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-2=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-3=_remove_; Expires=Wed, 03 Jun 2026 08:01:16 GMT; Path=/; SameSite=None; Secure\nWLSESSION=3221451274.47873.0000; expires=Thu, 28-May-2026 08:01:16 GMT; path=/; Httponly; Secure\nTS016349ac=01f15fc87c057082f6a226703edd99d446d286575c1b77db494896a532976271e20e95da01445056cef973318ce6d217b7fe05c9b6; Path=/; Domain=.ieeexplore.ieee.org\nTSaf720a17029=0807dc117eab280084090514d4ededc4df13f73490fdd2061e2777275687f9cfb692aeae053b8af0ae2fa7ed52fd04e9; Max-Age=30; Path=/\nTS8b476361027=0807dc117eab2000d2b3e064b05d9f7deafdc3a6cdb052e33555d486f99b6cd78b6e8f244b434f3a088df24b26113000dcc968cd9bb968d31fdda50a417d1aa855545a84546fb768fe777d1ffe1de6f9804d304bc8f50a3134f15fd3a9f2884a; Path=/",
+      "content-security-policy": "upgrade-insecure-requests",
+      "x-content-type-options": "text/html; charset=UTF-8; nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-cache": "Error from cloudfront",
+      "via": "1.1 d5fc1cc93cba2e958b2e50cab03d57fc.cloudfront.net (CloudFront)",
+      "x-amz-cf-pop": "SIN3-P4",
+      "x-amz-cf-id": "QsCJGrQzw7XByLtj8rZwCxrdq96-m5Z0vyNbfn7l13ObK2aVHTh_7Q=="
+    },
+    "text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>415 Unknown Reason</title>\n</head><body>\n<h1>Unknown Reason</h1>\n<p>The supplied request data is not in a format\nacceptable for processing by this resource.</p>\n</body></html>\n"
+  },
+  {
+    "name": "json",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json;charset=UTF-8",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "date": "Wed, 27 May 2026 08:01:17 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-methods": "GET, OPTIONS, POST, PUT, DELETE",
+      "access-control-allow-headers": "Origin, X-Requested-With, Content-Type, Accept",
+      "access-control-max-age": "3600",
+      "access-control-allow-origin": "ieeexplore.ieee.org",
+      "set-cookie": "seqId=\"\"; Domain=ieeexplore.ieee.org; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/;HttpOnly;Secure\nseqId=\"\"; Domain=.ieee.org; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/;HttpOnly;Secure\nxpluserinfo=\"\"; Domain=ieeexplore.ieee.org; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/;HttpOnly;Secure\nxpluserinfo=\"\"; Domain=.ieee.org; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/;HttpOnly;Secure\nxpluserinfo=eyJpc0luc3QiOiJ0cnVlIiwiaW5zdE5hbWUiOiJOQU5KSU5HIFVOSVZFUlNJVFkgT0YgQUVST05BVVRJQ1MgQU5EIEFTVFJPTkFVVElDUyIsInByb2R1Y3RzIjoiRUJPT0tTOjE4NzI6MjAxM3xJQk06MTg3MjoyMDIwfE1JVFA6MTk0MzoyMDIzfE5PVzoyMDA0OjIwMjN8QVJURUNIOjE5OTk6MjAyM3xSSVZFUjoyMDAxOjIwMjN8UFVQOjE5NDU6MjAyM3xJRUx8VkRFfE5PS0lBIEJFTEwgTEFCU3wifQ==; Domain=.ieee.org; Path=/;HttpOnly;Secure\nseqId=33092; Domain=ieeexplore.ieee.org; Path=/;HttpOnly;Secure\nAWSALBAPP-0=AAAAAAAAAAAzUlEIn53jzBQUAZzZOTNhQHxGyc8MXQxlp5cdhLXQYO1fqz56sAkvG5m1FOTGuSrRfEgrs5YQ63hXBuRwBZAbKB4GAv6oaW8TwbbIoOY4Ws2psr/TJ0BluTU+lY2z44XrXiVY3JztXxq9pfocdkVPvjCksEEW1CH6Go5LwRi27Np3EpHpj4VPERqUcqFbmK7CdyQSndLdFA==; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-1=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-2=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-3=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nWLSESSION=3221451274.47873.0000; expires=Thu, 28-May-2026 08:01:17 GMT; path=/; Httponly; Secure\nTS016349ac=01f15fc87c057082f6a226703edd99d446d286575c1b77db494896a532976271e20e95da01445056cef973318ce6d217b7fe05c9b6; Path=/; Domain=.ieeexplore.ieee.org\nTSaf720a17029=0807dc117eab280087e0830869a37b6fa4002d9c52e6525bd1e41fda384e7e41b4c8e7f5306bed8b1ea719d7595916dc; Max-Age=30; Path=/\nTS8b476361027=0807dc117eab2000546bae38797fc53cbc6daa27eb2c7f5874599887d5677b6daee538f75b0833a008610142ea11300015b0285a99b86645e683c29dd7e396fd6848ce21f3b777d1a7ba0fa4438abd5505e1a64fc802dddb8b7d62396b89e58e; Path=/",
+      "x-xss-protection": "1",
+      "content-security-policy": "upgrade-insecure-requests",
+      "x-content-type-options": "text/html; charset=UTF-8; nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-cache": "Miss from cloudfront",
+      "via": "1.1 d5fc1cc93cba2e958b2e50cab03d57fc.cloudfront.net (CloudFront)",
+      "x-amz-cf-pop": "SIN3-P4",
+      "x-amz-cf-id": "pynDTYDXdZ3t3lOTxl61JeLnPWLg5AfMEP43FW7KlNRWEu7pRlZtIQ=="
+    },
+    "text": "{\"data\":\"TY  - JOUR\\r\\nTI  - Artificial Intelligence Surpassing Human Intelligence: Factual or Hoax\\r\\nT2  - The Computer Journal\\r\\nSP  - 1832\\r\\nEP  - 1839\\r\\nAU  - S. Khanam\\r\\nAU  - S. Tanweer\\r\\nAU  - S. Khalid\\r\\nAU  - D. Rosaci\\r\\nPY  - 2019\\r\\nDO  - 10.1093/comjnl/bxz156\\r\\nJO  - The Computer Journal\\r\\nIS  - 12\\r\\nSN  - 1460-2067\\r\\nVO  - 64\\r\\nVL  - 64\\r\\nJA  - The Computer Journal\\r\\nY1  - Dec. 2019\\r\\nER  - \\r\\n\\n\\r\"}"
+  },
+  {
+    "name": "bibtex form",
+    "status": 415,
+    "headers": {
+      "content-type": "text/html; charset=iso-8859-1",
+      "content-length": "287",
+      "connection": "keep-alive",
+      "date": "Wed, 27 May 2026 08:01:17 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "set-cookie": "AWSALBAPP-0=AAAAAAAAAAD1L6bBmJmipwzcWxDf4dZEhHOQNRJ0hgXazJRXY/y+MX6CIfRWwrZeNweIWZb2gpbYBb4MSVJUdSAJMm0z6quwOMrKI21MIh/EdqOcfyE07Npxqwg6WyYoRGa+Sd43QYJ6dtXRkZyeTEgAMDgyMZDT5ISYfRDLpkMHzMJ4GKWTPY87tbGl/uamGTXPgpL17FGgi6nP/WI0Lw==; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-1=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-2=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nAWSALBAPP-3=_remove_; Expires=Wed, 03 Jun 2026 08:01:17 GMT; Path=/; SameSite=None; Secure\nWLSESSION=3221451274.47873.0000; expires=Thu, 28-May-2026 08:01:17 GMT; path=/; Httponly; Secure\nTS016349ac=01f15fc87c057082f6a226703edd99d446d286575c1b77db494896a532976271e20e95da01445056cef973318ce6d217b7fe05c9b6; Path=/; Domain=.ieeexplore.ieee.org\nTSaf720a17029=0807dc117eab2800fefb383e52ca6a3e7f45d7d2a4161bdf68f76cf6888b47e2701ff2c4ad093216b58d1c84034eebad; Max-Age=30; Path=/\nTS8b476361027=0807dc117eab200071080480acc15fda986d3789e0f373cb1d42ac1dc7419a70fd256dfcee75c62a0872aded671130003339b7784b4da365e683c29dd7e396fd6848ce21f3b777d1a7ba0fa4438abd5505e1a64fc802dddb8b7d62396b89e58e; Path=/",
+      "content-security-policy": "upgrade-insecure-requests",
+      "x-content-type-options": "text/html; charset=UTF-8; nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-cache": "Error from cloudfront",
+      "via": "1.1 d5fc1cc93cba2e958b2e50cab03d57fc.cloudfront.net (CloudFront)",
+      "x-amz-cf-pop": "SIN3-P4",
+      "x-amz-cf-id": "yZP43a88V-NgOuPB4XfY1vhchF5K22CEPkBFXrj9ck2VxNKkXczjjw=="
+    },
+    "text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>415 Unknown Reason</title>\n</head><body>\n<h1>Unknown Reason</h1>\n<p>The supplied request data is not in a format\nacceptable for processing by this resource.</p>\n</body></html>\n"
+  }
+]

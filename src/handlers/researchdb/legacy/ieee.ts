@@ -35,9 +35,22 @@ const VALID_FIELDS = new Set(["All Metadata", "Full Text & Metadata", "Full Text
 const VALID_BOOLEANS = new Set(["AND", "OR", "NOT"]);
 const VALID_CONTENT_TYPES = new Set(["Conferences", "Journals", "Early Access Articles", "Magazines", "Books"]);
 const VALID_FORMATS = new Set(["ris", "bibtex", "csv"]);
+const FORMAT_TO_DOWNLOAD: Record<Exclude<IeeeExportFormat, "csv">, string> = { ris: "download-ris", bibtex: "download-bibtex" };
+const FORMAT_TO_EXTENSION: Record<IeeeExportFormat, string> = { ris: "ris", bibtex: "bib", csv: "csv" };
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeFileToken(value: string): string { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 90) || "ieee"; }
+function uniquePath(dir: string, filename: string): string {
+  const parsed = path.parse(filename);
+  let candidate = path.join(dir, filename);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${parsed.name}(${index})${parsed.ext}`);
+    index += 1;
+  }
+  return candidate;
+}
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -93,16 +106,38 @@ export function buildIeeeSearchUrl(args: IeeeSearchArgs): string {
   return url.toString();
 }
 
-export function buildIeeeFilterUrl(args: IeeeFilterArgs): string {
-  const url = new URL(buildIeeeSearchUrl(args));
+function ieeeRefinements(args: IeeeFilterArgs): string[] {
   const refinements = [...(args.refinements || [])];
   const contentType = normalizeContentType(args.content_type);
   if (contentType) refinements.push(`ContentType:${contentType}`);
   for (const refinement of refinements) {
     if (!refinement || !refinement.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "refinement values must be non-empty", { refinements });
-    url.searchParams.append("refinements", refinement.trim());
   }
+  return refinements.map((refinement) => refinement.trim());
+}
+
+export function buildIeeeFilterUrl(args: IeeeFilterArgs): string {
+  const url = new URL(buildIeeeSearchUrl(args));
+  for (const refinement of ieeeRefinements(args)) url.searchParams.append("refinements", refinement);
   return url.toString();
+}
+
+export function buildIeeeRestSearchPayload(args: IeeeFilterArgs): Record<string, unknown> {
+  const payload: Record<string, unknown> = {
+    action: "search",
+    newsearch: true,
+    matchBoolean: true,
+    queryText: buildQueryText(args),
+    highlight: true,
+    returnFacets: ["ALL"],
+    returnType: "SEARCH",
+    matchPubs: true
+  };
+  const pageSize = asPositiveInt(args.page_size, "page_size");
+  if (pageSize) payload.rowsPerPage = String(pageSize);
+  const refinements = ieeeRefinements(args);
+  if (refinements.length) payload.refinements = refinements;
+  return payload;
 }
 
 export function parseIeeeResultCount(text: string): number {
@@ -228,22 +263,79 @@ export async function researchIeeeFilter(args: IeeeFilterArgs): Promise<{ result
 
 export async function researchIeeeExport(args: IeeeExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IeeeExportFormat }> {
   const format = normalizeFormat(args.format);
+  requireQuery(args.query);
   const downloadDir = path.resolve(args.download_dir || path.join(process.cwd(), "data", "downloads", "ieee"));
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
-  // Keep the verified blockers explicit: the recipe mapped IEEE export controls but
-  // could not verify an artifact because the SERP sign-in promo modal intercepts
-  // the required record-selection chain. Do not synthesize a citation file.
-  throw new WebAiToolError(ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED, "IEEE export is blocked by the SERP sign-in promo modal before record selection/export can be verified", {
-    format,
-    download_dir: downloadDir,
-    query_url: buildIeeeFilterUrl(args),
-    blocker: "ngb-modal-window role=dialog intercepts pointer events; sanctioned CLI cannot select records before CDP artifact-click export",
-    mapped_controls: {
-      close_modal: 'button[aria-label="Close modal"]',
-      select_result: 'input[aria-label="Select search result"]',
-      export_button: 'button.xpl-btn-primary text="Export"'
-    },
-    sha256_helper_available: typeof sha256File === "function"
+  const profile = args.profile || "research-default";
+  const tabId = args.tab_id || `research-ieee-export-${Date.now()}`;
+  return await withAllocatedIeeePage(profile, IEEE_ORIGIN, tabId, args.cdp_port, async (page) => {
+    const query_url = buildIeeeFilterUrl(args);
+    try {
+      const searchResponse = await page.request.post(new URL("/rest/search", IEEE_ORIGIN).toString(), {
+        data: { ...buildIeeeRestSearchPayload({ ...args, page_size: 1 }), rowsPerPage: "1" },
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Referer": query_url
+        },
+        timeout: 60000
+      });
+      if (!searchResponse.ok?.()) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IEEE REST search returned a non-OK status", { status: searchResponse.status?.(), query_url });
+      const searchJson = await searchResponse.json().catch(async () => ({ raw: await searchResponse.text().catch(() => "") }));
+      const record = Array.isArray(searchJson?.records) ? searchJson.records.find((item: any) => item?.articleNumber) : undefined;
+      if (!record?.articleNumber) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "IEEE REST search did not return an articleNumber", { query_url, keys: Object.keys(searchJson || {}) });
+      const articleNumber = String(record.articleNumber);
+      let body: Buffer;
+      let source_url: string;
+      if (format === "csv") {
+        source_url = new URL("/rest/search/export-csv", IEEE_ORIGIN).toString();
+        const csvResponse = await page.request.post(source_url, {
+          data: { ...buildIeeeRestSearchPayload(args), documentIds: [articleNumber] },
+          headers: {
+            "Accept": "text/csv,text/plain,*/*",
+            "Content-Type": "application/json",
+            "Referer": query_url
+          },
+          timeout: 60000
+        });
+        if (!csvResponse.ok?.()) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IEEE CSV export returned a non-OK status", { status: csvResponse.status?.(), source_url, articleNumber });
+        body = Buffer.from(await csvResponse.body());
+      } else {
+        source_url = new URL("/rest/search/citation/format", IEEE_ORIGIN).toString();
+        const citationResponse = await page.request.post(source_url, {
+          data: { recordIds: [articleNumber], "download-format": FORMAT_TO_DOWNLOAD[format], lite: true },
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Referer": query_url
+          },
+          timeout: 60000
+        });
+        if (!citationResponse.ok?.()) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IEEE citation export returned a non-OK status", { status: citationResponse.status?.(), source_url, articleNumber });
+        const citationJson = await citationResponse.json().catch(async () => ({ data: await citationResponse.text().catch(() => "") }));
+        const text = typeof citationJson?.data === "string" ? citationJson.data : "";
+        if (!text) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "IEEE citation export response did not include data", { source_url, articleNumber, keys: Object.keys(citationJson || {}) });
+        body = Buffer.from(text, "utf-8");
+      }
+      const artifact_path = uniquePath(downloadDir, `ieee-${safeFileToken(articleNumber)}-${format}.${FORMAT_TO_EXTENSION[format]}`);
+      fs.writeFileSync(artifact_path, body);
+      const text = fs.readFileSync(artifact_path, "utf-8");
+      const doi = String(record.doi || "");
+      const valid = format === "ris"
+        ? /^TY\s+-/m.test(text) && /^ER\s+-/m.test(text) && (!doi || text.includes(doi))
+        : format === "bibtex"
+          ? /^@/m.test(text) && (!doi || text.includes(doi))
+          : text.length > 0 && (text.includes(articleNumber) || !doi || text.includes(doi));
+      if (!valid) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IEEE citation artifact failed content validation", { artifact_path, format, articleNumber, doi });
+      return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format };
+    } catch (error: any) {
+      if (error instanceof WebAiToolError) throw error;
+      const raw = String(error?.errorCode || error?.message || error);
+      const code = raw.includes("ARTIFACT_VERIFICATION_FAILED") ? ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED
+        : raw.includes("ELEMENT_NOT_FOUND") ? ConsumerErrorCodes.ELEMENT_NOT_FOUND
+        : ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT;
+      throw new WebAiToolError(code, "IEEE export failed", { format, query_url, cause: error?.message || String(error) });
+    }
   });
 }
