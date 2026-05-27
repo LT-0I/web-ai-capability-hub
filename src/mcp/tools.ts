@@ -7818,10 +7818,18 @@ export async function webAiGeminiGenerateImage(args: any, runtime?: BrowserToolR
   return webAiGeminiGenerateImageRpc(args, runtime);
 }
 export async function webAiGeminiCanvasToDocs(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return canvasToDocsWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return canvasToDocs(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_canvas_to_docs", backend);
+  // Path C Gemini Wave B4: export_docs has no safe captured Docs RPC, so the
+  // production path remains DOM by write-time decision; env/arg select DOM backend only.
+  const selected = String(process.env.WEBAI_GEMINI_CANVAS_TO_DOCS_BACKEND || args?.backend || "extension-assisted-cdp").trim().toLowerCase();
+  if (selected === "dom" || selected === "extension-assisted-cdp") {
+    console.error("[webai_gemini_canvas_to_docs] backend=dom-extension rpc_not_available=export_docs");
+    return canvasToDocsWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (selected === "managed-cdp") {
+    console.error("[webai_gemini_canvas_to_docs] backend=dom-managed rpc_not_available=export_docs");
+    return canvasToDocs(args, runtimeOrDefault(runtime));
+  }
+  return webAiBackendInvalidOutput("webai_gemini_canvas_to_docs", process.env.WEBAI_GEMINI_CANVAS_TO_DOCS_BACKEND || args?.backend);
 }
 export async function webAiGeminiGenerateVideo(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   // Path C Gemini Wave B2: shortest-duration video RPC is the production default; DOM overrides are explicit only.
@@ -7930,16 +7938,44 @@ export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRunti
   return webAiClaudeWorkspaceRpc(args, runtime);
 }
 export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return startGeminiDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return startGeminiDeepResearch(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_deep_research", backend);
+  // Path C Gemini Wave B4: RPC is the production default; DOM is an explicit
+  // env/arg override and is never a runtime fallback after RPC failure.
+  const selected = String(process.env.WEBAI_GEMINI_DEEP_RESEARCH_BACKEND || args?.backend || "rpc").trim().toLowerCase();
+  if (selected === "dom" || selected === "extension-assisted-cdp") {
+    console.error("[webai_gemini_deep_research] backend=dom-extension");
+    return startGeminiDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (selected === "managed-cdp") {
+    console.error("[webai_gemini_deep_research] backend=dom-managed");
+    return startGeminiDeepResearch(args, runtimeOrDefault(runtime));
+  }
+  if (selected && selected !== "rpc") return webAiBackendInvalidOutput("webai_gemini_deep_research", process.env.WEBAI_GEMINI_DEEP_RESEARCH_BACKEND || args?.backend);
+  console.error("[webai_gemini_deep_research] backend=rpc");
+  const { webAiGeminiDeepResearchRpc } = require("./gemini_deep_research_rpc");
+  return webAiGeminiDeepResearchRpc(args, runtime);
 }
 export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return editGeminiCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return editGeminiCanvas(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_canvas_edit", backend);
+  // Path C Gemini Wave B4: open_canvas routes through RPC by default. Canvas
+  // sub-surface edits without a captured inner API stay DOM-only by write-time
+  // decision (RPC_NOT_AVAILABLE), not by catching an RPC failure.
+  const selected = String(process.env.WEBAI_GEMINI_CANVAS_BACKEND || args?.backend || "rpc").trim().toLowerCase();
+  if (selected === "dom" || selected === "extension-assisted-cdp") {
+    console.error("[webai_gemini_canvas_edit] backend=dom-extension");
+    return editGeminiCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (selected === "managed-cdp") {
+    console.error("[webai_gemini_canvas_edit] backend=dom-managed");
+    return editGeminiCanvas(args, runtimeOrDefault(runtime));
+  }
+  if (selected && selected !== "rpc") return webAiBackendInvalidOutput("webai_gemini_canvas_edit", process.env.WEBAI_GEMINI_CANVAS_BACKEND || args?.backend);
+  const { geminiCanvasRpcVariantAvailable, resolveGeminiCanvasRpcVariant, webAiGeminiCanvasRpc } = require("./gemini_canvas_rpc");
+  const variant = resolveGeminiCanvasRpcVariant(args || {}, "webai_gemini_canvas_edit");
+  if (!geminiCanvasRpcVariantAvailable(variant)) {
+    console.error(`[webai_gemini_canvas_edit] backend=dom-extension variant=${variant} rpc_not_available`);
+    return editGeminiCanvasWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  console.error(`[webai_gemini_canvas_edit] backend=rpc variant=${variant}`);
+  return webAiGeminiCanvasRpc(args, runtime);
 }
 export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit env override only, never a runtime fallback after RPC failure.

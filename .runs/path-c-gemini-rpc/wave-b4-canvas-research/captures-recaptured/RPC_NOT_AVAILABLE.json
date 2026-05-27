@@ -1,0 +1,10 @@
+{
+  "recapture_started": false,
+  "reason": "Wave A decoded request bodies already show non-verified direct_edit/ai_length/ai_tone as DOM-only/no-op telemetry after an already-open Canvas; canvas_to_docs export would create a real Google Doc and has no safe RPC export payload.",
+  "variants": {
+    "direct_edit": "RPC_NOT_AVAILABLE_DOM_CONTENTEDITABLE",
+    "ai_length": "RPC_NOT_AVAILABLE_DOM_CANVAS_AI_ACTION",
+    "ai_tone": "RPC_NOT_AVAILABLE_DOM_CANVAS_AI_ACTION",
+    "canvas_to_docs--export_docs": "RPC_NOT_AVAILABLE_DESTRUCTIVE_EXPORT_DOCS"
+  }
+}

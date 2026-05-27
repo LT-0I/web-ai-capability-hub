@@ -1,0 +1,173 @@
+{
+  "summary": {
+    "profile": "gemini-9225",
+    "cdp_port": 9225,
+    "dom_backend": "managed-cdp",
+    "pace_ms": 30000,
+    "started_at": "2026-05-27T21:03:59.817Z",
+    "finished_at": "2026-05-27T21:05:58.075Z",
+    "rpc_driver_count": 2,
+    "attempted": 2,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 4,
+    "functional_threshold": 1,
+    "stopReason": null,
+    "close_tabs": {
+      "ok": true,
+      "kept": {
+        "id": "56549399175079ADDF8649F9683A1885",
+        "url": "https://gemini.google.com/app?hl=en"
+      },
+      "closed": []
+    },
+    "verdict": "PASS"
+  },
+  "results": [
+    {
+      "variant": "canvas_direct_edit",
+      "source_variant": "webai_gemini_canvas_edit--direct_edit",
+      "kind": "canvas",
+      "skipped": true,
+      "reason": "RPC_NOT_AVAILABLE_DOM_ONLY",
+      "justification": "Wave A capture was a generic GPRiHf telemetry batchexecute body after the Canvas surface was already mounted; no standalone semantic inner API was captured for direct text mutation."
+    },
+    {
+      "variant": "canvas_ai_length",
+      "source_variant": "webai_gemini_canvas_edit--ai_length",
+      "kind": "canvas",
+      "skipped": true,
+      "reason": "RPC_NOT_AVAILABLE_DOM_ONLY",
+      "justification": "Wave A capture was a generic GPRiHf telemetry batchexecute body; the length action appears to be client-side Canvas sub-surface behavior without a verified semantic RPC."
+    },
+    {
+      "variant": "canvas_ai_tone",
+      "source_variant": "webai_gemini_canvas_edit--ai_tone",
+      "kind": "canvas",
+      "skipped": true,
+      "reason": "RPC_NOT_AVAILABLE_DOM_ONLY",
+      "justification": "Wave A capture was a generic GPRiHf telemetry batchexecute body; the tone action appears to be client-side Canvas sub-surface behavior without a verified semantic RPC."
+    },
+    {
+      "variant": "canvas_to_docs_export_docs",
+      "source_variant": "webai_gemini_canvas_to_docs--export_docs",
+      "kind": "canvas_to_docs",
+      "skipped": true,
+      "reason": "DESTRUCTIVE_RPC_NOT_AVAILABLE",
+      "justification": "Export creates a real Google Doc and Wave A replay generated Canvas content rather than a Docs export/create-doc RPC; no safe dry-run RPC path is available."
+    },
+    {
+      "variant": "canvas_open_canvas",
+      "source_variant": "webai_gemini_canvas_edit--open_canvas",
+      "kind": "canvas",
+      "args": {
+        "prompt": "Path C Wave B4 Canvas RPC_OPEN_CANVAS: create a short canvas note with exactly this token: RPC_OPEN_CANVAS.",
+        "confirmed": true,
+        "response_timeout_ms": 120000,
+        "timeout_ms": 60000
+      },
+      "dom": {
+        "backend": "dom",
+        "env_key": "WEBAI_GEMINI_CANVAS_BACKEND",
+        "env_value": "managed-cdp",
+        "elapsed_ms": 10491,
+        "response_field": {
+          "canvas_opened": true,
+          "canvas_html_after_len": 97
+        },
+        "result": {
+          "canvas_opened": true,
+          "edit_applied": false,
+          "ai_action_applied": false,
+          "canvas_html_before": "<p>This is a short note generated as part of a canvas operation.</p><p>Token: RPC_OPEN_CANVAS</p>",
+          "canvas_html_after": "<p>This is a short note generated as part of a canvas operation.</p><p>Token: RPC_OPEN_CANVAS</p>"
+        },
+        "thrown": null,
+        "errorCode": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_key": "WEBAI_GEMINI_CANVAS_BACKEND",
+        "env_value": "(default)",
+        "elapsed_ms": 13224,
+        "response_field": {
+          "canvas_opened": true,
+          "canvas_html_after_len": 113
+        },
+        "result": {
+          "canvas_opened": true,
+          "edit_applied": false,
+          "ai_action_applied": false,
+          "canvas_html_before": "I have successfully created the note with your exact token. Let me know if you need any other additions or edits!",
+          "canvas_html_after": "I have successfully created the note with your exact token. Let me know if you need any other additions or edits!",
+          "chat_url": "https://gemini.google.com/app/c_8d81e014fd93e362",
+          "wait_ms": 7525,
+          "elapsed_ms": 12376,
+          "backend": "rpc",
+          "rpc_variant": "open_canvas",
+          "artifact_url": "http://googleusercontent.com/immersive_entry_chip/0",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null
+      },
+      "success": true,
+      "verifier": "DOM/RPC canvas_opened plus non-empty RPC canvas_html_after"
+    },
+    {
+      "variant": "deep_research_start",
+      "source_variant": "webai_gemini_deep_research--start",
+      "kind": "deep_research",
+      "args": {
+        "prompt": "Path C Wave B4 Deep Research RPC_DEEP_RESEARCH: create a brief safe research plan for validating an RPC migration. Do not start the research automatically.",
+        "confirmed": true,
+        "response_timeout_ms": 120000,
+        "timeout_ms": 60000
+      },
+      "dom": {
+        "backend": "dom",
+        "env_key": "WEBAI_GEMINI_DEEP_RESEARCH_BACKEND",
+        "env_value": "managed-cdp",
+        "elapsed_ms": 14158,
+        "response_field": {
+          "response_text_len": 0,
+          "chat_url": null
+        },
+        "result": null,
+        "thrown": {
+          "message": "page.waitForSelector: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitemcheckbox\"]:has-text(\"Deep research\")') to be visible\u001b[22m\n",
+          "stack": "page.waitForSelector: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[role=\"menuitemcheckbox\"]:has-text(\"Deep research\")') to be visible\u001b[22m\n\n    at /home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/mcp/tools.js:5246:41\n    at async withManagedPage (/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/mcp/tools.js:384:16)\n    at async startGeminiDeepResearch (/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/mcp/tools.js:5241:16)\n    at async callTool (/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-gemini-rpc/wave-b4-canvas-research/ab-sweep.mjs:209:14)\n    at async main (/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-gemini-rpc/wave-b4-canvas-research/ab-sweep.mjs:243:17)",
+          "errorCode": null
+        },
+        "errorCode": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_key": "WEBAI_GEMINI_DEEP_RESEARCH_BACKEND",
+        "env_value": "(default)",
+        "elapsed_ms": 28104,
+        "response_field": {
+          "status": "failed",
+          "response_text_len": 0,
+          "chat_url": "https://gemini.google.com/app?hl=en"
+        },
+        "result": {
+          "ok": false,
+          "service": "gemini",
+          "task_id": "gemini_research_1779915929945_1548332e19a8",
+          "status": "failed",
+          "chat_url": "https://gemini.google.com/app?hl=en",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini Deep research menuitemcheckbox was not found",
+          "http_status": null,
+          "elapsed_ms": 27138
+        },
+        "thrown": null,
+        "errorCode": "ELEMENT_NOT_FOUND"
+      },
+      "success": false,
+      "verifier": "DOM/RPC queued plus non-empty RPC response_text"
+    }
+  ]
+}
