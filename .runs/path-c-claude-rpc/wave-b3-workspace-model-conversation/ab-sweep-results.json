@@ -1,0 +1,709 @@
+{
+  "started_at": "2026-05-27T16:59:30.863Z",
+  "profile": "claude-9224",
+  "cdpEndpoint": "http://127.0.0.1:9224",
+  "delay_ms": 30000,
+  "cases": [
+    {
+      "family": "workspace",
+      "variant": "surface_projects",
+      "args": {
+        "profile": "claude-9224",
+        "surface": "projects"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 1008,
+        "output": {
+          "surface": "projects",
+          "url": "https://claude.ai/projects",
+          "summary": "Projects surface visible"
+        }
+      },
+      "rpc": {
+        "latency_ms": 948,
+        "output": {
+          "surface": "projects",
+          "url": "https://claude.ai/projects",
+          "summary": "2 project(s) visible",
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 1.06,
+        "noOutputOk": false,
+        "pass": false
+      }
+    },
+    {
+      "family": "workspace",
+      "variant": "surface_integrations",
+      "args": {
+        "profile": "claude-9224",
+        "surface": "integrations"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 4950,
+        "output": {
+          "surface": "integrations",
+          "url": "https://claude.ai/new",
+          "summary": "integrations list opened; 435 item/control(s) visible"
+        }
+      },
+      "rpc": {
+        "latency_ms": 535,
+        "output": {
+          "surface": "integrations",
+          "url": "https://claude.ai/new",
+          "summary": "4 integration setting(s) visible",
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 9.25,
+        "noOutputOk": false,
+        "pass": true
+      }
+    },
+    {
+      "family": "workspace",
+      "variant": "surface_skills",
+      "args": {
+        "profile": "claude-9224",
+        "surface": "skills"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 3309,
+        "output": {
+          "surface": "skills",
+          "url": "https://claude.ai/new",
+          "summary": "skills list opened; 16 item/control(s) visible"
+        }
+      },
+      "rpc": {
+        "latency_ms": 916,
+        "output": {
+          "surface": "skills",
+          "url": "https://claude.ai/new",
+          "summary": "11 skill(s) visible",
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 3.61,
+        "noOutputOk": false,
+        "pass": true
+      }
+    },
+    {
+      "family": "workspace",
+      "variant": "surface_appearance",
+      "args": {
+        "profile": "claude-9224",
+        "surface": "appearance"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 570,
+        "output": {
+          "surface": "appearance",
+          "url": "https://claude.ai/customize",
+          "summary": "Customize route opened"
+        }
+      },
+      "rpc": {
+        "latency_ms": 890,
+        "output": {
+          "surface": "appearance",
+          "url": "https://claude.ai/customize",
+          "summary": "Customize/appearance surface visible",
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 0.64,
+        "noOutputOk": false,
+        "pass": false
+      }
+    },
+    {
+      "family": "workspace",
+      "variant": "surface_style_presets",
+      "args": {
+        "profile": "claude-9224",
+        "surface": "style_presets"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 3052,
+        "output": {
+          "surface": "style_presets",
+          "url": "https://claude.ai/new",
+          "summary": "style_presets list opened; 14 item/control(s) visible"
+        }
+      },
+      "rpc": {
+        "latency_ms": 787,
+        "output": {
+          "surface": "style_presets",
+          "url": "https://claude.ai/new",
+          "summary": "style_presets list opened",
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 3.88,
+        "noOutputOk": false,
+        "pass": true
+      }
+    },
+    {
+      "family": "select_model",
+      "variant": "haiku",
+      "args": {
+        "profile": "claude-9224",
+        "model": "Haiku 4.5"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 9376,
+        "output": {
+          "ok": false,
+          "selected_model": "Model: Sonnet 4.6 Adaptive",
+          "selected_thinking_level": null,
+          "errorCode": "MODEL_SELECTION_DRIFT",
+          "error_code": "MODEL_SELECTION_DRIFT",
+          "expected_model": "Haiku 4.5",
+          "message": "webai_claude_select_model: model selection drift; expected \"Haiku 4.5\", actual \"Model: Sonnet 4.6 Adaptive\""
+        }
+      },
+      "rpc": {
+        "latency_ms": 1103,
+        "output": {
+          "ok": true,
+          "selected_model": "Haiku 4.5",
+          "selected_thinking_level": null,
+          "errorCode": null,
+          "http_status": 202
+        }
+      },
+      "domSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "claude-haiku-4-5-20251001",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSK4UMahC1Y5TdPz2yA\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "rpcSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "claude-haiku-4-5-20251001",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSMMSd4kN9RW8eYVkGd\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "comparison": {
+        "domOk": false,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 8.5,
+        "noOutputOk": false,
+        "pass": false
+      }
+    },
+    {
+      "family": "select_model",
+      "variant": "sonnet",
+      "args": {
+        "profile": "claude-9224",
+        "model": "Sonnet 4.6"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 712,
+        "output": {
+          "ok": true,
+          "selected_model": "Sonnet 4.6",
+          "selected_thinking_level": null,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "latency_ms": 1093,
+        "output": {
+          "ok": true,
+          "selected_model": "Sonnet 4.6",
+          "selected_thinking_level": null,
+          "errorCode": null,
+          "http_status": 202
+        }
+      },
+      "domSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "claude-sonnet-4-6",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSPcqPP8mgWoceZrLwS\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "rpcSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "claude-sonnet-4-6",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSRuejBZDYNsfH64Gbj\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 0.65,
+        "noOutputOk": false,
+        "pass": false
+      }
+    },
+    {
+      "family": "select_model",
+      "variant": "adaptive_on",
+      "args": {
+        "profile": "claude-9224",
+        "thinking_level": "extended"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 113,
+        "output": {
+          "ok": false,
+          "selected_model": null,
+          "selected_thinking_level": "extended",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Claude Adaptive thinking toggle was not found",
+          "evidence": {
+            "selector": "input[aria-label=\"Adaptive thinking\"]"
+          }
+        }
+      },
+      "rpc": {
+        "latency_ms": 841,
+        "output": {
+          "ok": true,
+          "selected_model": null,
+          "selected_thinking_level": "extended",
+          "errorCode": null,
+          "http_status": 202
+        }
+      },
+      "domSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "extended",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSU8hMc1hgodDCsfDFC\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "rpcSetting": {
+        "checked": true,
+        "ok": false,
+        "status": 405,
+        "expected": "extended",
+        "preview": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"},\"request_id\":\"req_011CbTSWQi5WKeSdH6Fq3Eic\"}",
+        "jsonKeys": [
+          "type",
+          "error",
+          "request_id"
+        ]
+      },
+      "comparison": {
+        "domOk": false,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 0.13,
+        "noOutputOk": false,
+        "pass": false
+      }
+    },
+    {
+      "family": "conversation_manage",
+      "variant": "action_list",
+      "args": {
+        "profile": "claude-9224",
+        "action": "list"
+      },
+      "dom_backend": "extension-assisted-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 1121,
+        "output": {
+          "action": "list",
+          "url": "https://claude.ai/new",
+          "items": [
+            {
+              "href": "https://claude.ai/chat/703edfc7-662f-4a00-9f93-ad228335e257",
+              "text": "Minimal HTML artifact with OK text"
+            },
+            {
+              "href": "https://claude.ai/chat/6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "text": "Untitled"
+            },
+            {
+              "href": "https://claude.ai/chat/a7d50e70-0611-4bcb-b06d-10051a73fd28",
+              "text": "Markdown file acknowledgment"
+            },
+            {
+              "href": "https://claude.ai/chat/14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "text": "Untitled"
+            },
+            {
+              "href": "https://claude.ai/chat/d46655f2-1c53-4cbd-add8-1e07336e142d",
+              "text": "Image upload acknowledgment"
+            }
+          ],
+          "results": [
+            {
+              "href": "https://claude.ai/chat/703edfc7-662f-4a00-9f93-ad228335e257",
+              "text": "Minimal HTML artifact with OK text"
+            },
+            {
+              "href": "https://claude.ai/chat/6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "text": "Untitled"
+            },
+            {
+              "href": "https://claude.ai/chat/a7d50e70-0611-4bcb-b06d-10051a73fd28",
+              "text": "Markdown file acknowledgment"
+            },
+            {
+              "href": "https://claude.ai/chat/14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "text": "Untitled"
+            },
+            {
+              "href": "https://claude.ai/chat/d46655f2-1c53-4cbd-add8-1e07336e142d",
+              "text": "Image upload acknowledgment"
+            }
+          ],
+          "results_count": 25,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "latency_ms": 847,
+        "output": {
+          "action": "list",
+          "url": "https://claude.ai/new",
+          "items": [
+            {
+              "text": "Minimal HTML artifact with OK text",
+              "href": "https://claude.ai/chat/703edfc7-662f-4a00-9f93-ad228335e257",
+              "conversationId": "703edfc7-662f-4a00-9f93-ad228335e257"
+            },
+            {
+              "text": "6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "href": "https://claude.ai/chat/6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "conversationId": "6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987"
+            },
+            {
+              "text": "Markdown file acknowledgment",
+              "href": "https://claude.ai/chat/a7d50e70-0611-4bcb-b06d-10051a73fd28",
+              "conversationId": "a7d50e70-0611-4bcb-b06d-10051a73fd28"
+            },
+            {
+              "text": "14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "href": "https://claude.ai/chat/14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "conversationId": "14a65695-d385-43f9-a7e9-ac1cfded5ff1"
+            },
+            {
+              "text": "Image upload acknowledgment",
+              "href": "https://claude.ai/chat/d46655f2-1c53-4cbd-add8-1e07336e142d",
+              "conversationId": "d46655f2-1c53-4cbd-add8-1e07336e142d"
+            }
+          ],
+          "results": [
+            {
+              "text": "Minimal HTML artifact with OK text",
+              "href": "https://claude.ai/chat/703edfc7-662f-4a00-9f93-ad228335e257",
+              "conversationId": "703edfc7-662f-4a00-9f93-ad228335e257"
+            },
+            {
+              "text": "6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "href": "https://claude.ai/chat/6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+              "conversationId": "6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987"
+            },
+            {
+              "text": "Markdown file acknowledgment",
+              "href": "https://claude.ai/chat/a7d50e70-0611-4bcb-b06d-10051a73fd28",
+              "conversationId": "a7d50e70-0611-4bcb-b06d-10051a73fd28"
+            },
+            {
+              "text": "14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "href": "https://claude.ai/chat/14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+              "conversationId": "14a65695-d385-43f9-a7e9-ac1cfded5ff1"
+            },
+            {
+              "text": "Image upload acknowledgment",
+              "href": "https://claude.ai/chat/d46655f2-1c53-4cbd-add8-1e07336e142d",
+              "conversationId": "d46655f2-1c53-4cbd-add8-1e07336e142d"
+            }
+          ],
+          "results_count": 30,
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 1.32,
+        "noOutputOk": false,
+        "pass": true
+      }
+    },
+    {
+      "family": "conversation_manage",
+      "variant": "action_search",
+      "args": {
+        "profile": "claude-9224",
+        "action": "search",
+        "query": "definitely-no-such-wave-b3-token"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 3319,
+        "output": {
+          "results_count": 32,
+          "action": "search"
+        }
+      },
+      "rpc": {
+        "latency_ms": 874,
+        "output": {
+          "action": "search",
+          "url": "https://claude.ai/new",
+          "items": [],
+          "results": [],
+          "results_count": 0,
+          "errorCode": null,
+          "http_status": 200
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": 3.8,
+        "noOutputOk": false,
+        "pass": true
+      }
+    },
+    {
+      "family": "conversation_manage",
+      "variant": "action_share",
+      "args": {
+        "profile": "claude-9224",
+        "action": "share"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": "safe guard path; confirmed:true would open share controls and is not used in A/B",
+      "dom": {
+        "latency_ms": 1,
+        "output": {
+          "ok": false,
+          "errorCode": "SENSITIVE_CONTENT_GUARD",
+          "error_code": "SENSITIVE_CONTENT_GUARD",
+          "message": "Opening Claude conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.",
+          "action": "share",
+          "conversationId": null
+        }
+      },
+      "rpc": {
+        "latency_ms": 0,
+        "output": {
+          "ok": false,
+          "errorCode": "SENSITIVE_CONTENT_GUARD",
+          "error_code": "SENSITIVE_CONTENT_GUARD",
+          "message": "Opening Claude conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.",
+          "action": "share",
+          "conversationId": null
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": null,
+        "noOutputOk": true,
+        "pass": true
+      }
+    },
+    {
+      "family": "conversation_manage",
+      "variant": "action_sidebar_options",
+      "args": {
+        "profile": "claude-9224",
+        "action": "sidebar_options"
+      },
+      "dom_backend": "managed-cdp",
+      "skipReason": null,
+      "dom": {
+        "latency_ms": 1,
+        "output": {
+          "ok": false,
+          "errorCode": "HUMAN_HANDOFF_REQUIRED",
+          "error_code": "HUMAN_HANDOFF_REQUIRED",
+          "reason": "sidebar_kebab_radix_portal_unreliable",
+          "action": "sidebar_options"
+        }
+      },
+      "rpc": {
+        "latency_ms": 0,
+        "output": {
+          "ok": false,
+          "errorCode": "HUMAN_HANDOFF_REQUIRED",
+          "error_code": "HUMAN_HANDOFF_REQUIRED",
+          "reason": "sidebar_kebab_radix_portal_unreliable",
+          "action": "sidebar_options"
+        }
+      },
+      "domSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "rpcSetting": {
+        "checked": false,
+        "ok": true
+      },
+      "comparison": {
+        "domOk": true,
+        "rpcOk": true,
+        "similar": true,
+        "speedup": null,
+        "noOutputOk": true,
+        "pass": true
+      }
+    }
+  ],
+  "pass_count": 7,
+  "total": 12,
+  "verdict": "NEEDS_WORK",
+  "finished_at": "2026-05-27T17:11:37.410Z",
+  "close_tabs": {
+    "ok": true
+  }
+}

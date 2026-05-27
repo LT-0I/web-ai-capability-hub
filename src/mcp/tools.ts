@@ -7575,10 +7575,23 @@ async function selectChatgptModelWithManagedBackend(args: any, runtime: Required
 }
 
 export async function webAiClaudeSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return selectClaudeModelWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return selectClaudeModelWithManagedBackend(args, runtimeOrDefault(runtime));
-  return selectModelBackendInvalid("webai_claude_select_model", backend);
+  // Path C Claude Wave B3: RPC is the production default; WEBAI_CLAUDE_SELECT_MODEL_BACKEND is the only emergency DOM override.
+  const override = String(process.env.WEBAI_CLAUDE_SELECT_MODEL_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_claude_select_model] backend=dom-extension");
+    return selectClaudeModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_claude_select_model] backend=dom-managed");
+    return selectClaudeModelWithManagedBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_claude_select_model] backend=invalid");
+    return selectModelInvalidArgs("webai_claude_select_model", `WEBAI_CLAUDE_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_SELECT_MODEL_BACKEND)}`);
+  }
+  console.error("[webai_claude_select_model] backend=rpc");
+  const { webAiClaudeSelectModelRpc } = require("./claude_select_model_rpc");
+  return webAiClaudeSelectModelRpc(args, runtime);
 }
 
 async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
@@ -7816,10 +7829,23 @@ export async function webAiChatgptConversationManage(args: any, runtime?: Browse
   return webAiBackendInvalidOutput("webai_chatgpt_conversation_manage", backend);
 }
 export async function webAiClaudeConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return manageClaudeConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return manageClaudeConversation(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_claude_conversation_manage", backend);
+  // Path C Claude Wave B3: RPC is the production default; WEBAI_CLAUDE_CONVERSATION_MANAGE_BACKEND is the only emergency DOM override.
+  const override = String(process.env.WEBAI_CLAUDE_CONVERSATION_MANAGE_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_claude_conversation_manage] backend=dom-extension");
+    return manageClaudeConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_claude_conversation_manage] backend=dom-managed");
+    return manageClaudeConversation(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_claude_conversation_manage] backend=invalid");
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_CLAUDE_CONVERSATION_MANAGE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_CONVERSATION_MANAGE_BACKEND)}` });
+  }
+  console.error("[webai_claude_conversation_manage] backend=rpc");
+  const { webAiClaudeConversationManageRpc } = require("./claude_conversation_manage_rpc");
+  return webAiClaudeConversationManageRpc(args, runtime);
 }
 export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -7828,10 +7854,23 @@ export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRunt
   return webAiBackendInvalidOutput("webai_chatgpt_workspace", backend);
 }
 export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return inspectClaudeWorkspace(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_claude_workspace", backend);
+  // Path C Claude Wave B3: RPC is the production default; WEBAI_CLAUDE_WORKSPACE_BACKEND is the only emergency DOM override.
+  const override = String(process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_claude_workspace] backend=dom-extension");
+    return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_claude_workspace] backend=dom-managed");
+    return inspectClaudeWorkspace(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_claude_workspace] backend=invalid");
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_CLAUDE_WORKSPACE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND)}` });
+  }
+  console.error("[webai_claude_workspace] backend=rpc");
+  const { webAiClaudeWorkspaceRpc } = require("./claude_workspace_rpc");
+  return webAiClaudeWorkspaceRpc(args, runtime);
 }
 export async function webAiGeminiDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
