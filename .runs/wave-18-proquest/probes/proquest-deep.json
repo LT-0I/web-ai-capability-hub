@@ -1,0 +1,310 @@
+{
+  "wave": "18-proquest",
+  "redacted": true,
+  "redaction_note": "Transient CSRF, signed media, analytics, Pendo, browser/session query values, and full body text removed before commit.",
+  "started_at": "2026-05-27T05:45:08.766Z",
+  "finished_at": "2026-05-27T05:46:56.307Z",
+  "profile": "research-proquest",
+  "headed_chrome": true,
+  "browser_status": {
+    "connected": true,
+    "cdpPort": 9222,
+    "browser": "Chrome/148.0.7778.167",
+    "launchedByPackage": false
+  },
+  "entrypoints": [
+    {
+      "label": "home",
+      "requested_url": "https://www.proquest.com/",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/",
+      "title": "基本检索 - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "result_header": "",
+      "docview_link_count": 0,
+      "sample_docview_links": [],
+      "sample_result_items": [],
+      "action": null,
+      "error": null
+    },
+    {
+      "label": "databases",
+      "requested_url": "https://www.proquest.com/databases",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/databases",
+      "title": "选择数据库 - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "result_header": "",
+      "docview_link_count": 0,
+      "sample_docview_links": [],
+      "sample_result_items": [],
+      "action": null,
+      "error": null
+    },
+    {
+      "label": "direct-results",
+      "requested_url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable",
+      "title": "检索结果 - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "result_header": "13,961 个检索结果",
+      "docview_link_count": 177,
+      "sample_docview_links": [
+        {
+          "url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+          "text": "",
+          "id": "",
+          "visible": false
+        },
+        {
+          "url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+          "text": "摘要/索引",
+          "id": "addFlashPageParameterformat_abstract_caed2183d",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605",
+          "text": "全文 - PDF 格式 (764 KB)‎",
+          "id": "addFlashPageParameterformat_fulltextPDF_d6be279dd",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605",
+          "text": "",
+          "id": "",
+          "visible": false
+        },
+        {
+          "url": "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605",
+          "text": "摘要/索引",
+          "id": "addFlashPageParameterformat_abstract_72dd12e8e",
+          "visible": true
+        }
+      ],
+      "sample_result_items": [
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results?DBId=ALL&Subjects=renewable#"
+        }
+      ],
+      "action": null,
+      "error": null
+    },
+    {
+      "label": "topic-browse",
+      "requested_url": "https://www.proquest.com/topics/renewable+energy",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/topics/renewable+energy",
+      "title": "基本检索 - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "result_header": "",
+      "docview_link_count": 0,
+      "sample_docview_links": [],
+      "sample_result_items": [],
+      "action": null,
+      "error": null
+    },
+    {
+      "label": "advanced-search-ui",
+      "requested_url": "https://www.proquest.com/advanced?accountid=16605",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605",
+      "title": "检索结果 - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "result_header": "13,961 个检索结果",
+      "docview_link_count": 177,
+      "sample_docview_links": [
+        {
+          "url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+          "text": "",
+          "id": "",
+          "visible": false
+        },
+        {
+          "url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+          "text": "摘要/索引",
+          "id": "addFlashPageParameterformat_abstract_7c03dceb4",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605",
+          "text": "全文 - PDF 格式 (764 KB)‎",
+          "id": "addFlashPageParameterformat_fulltextPDF_92f14981e",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605",
+          "text": "",
+          "id": "",
+          "visible": false
+        },
+        {
+          "url": "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605",
+          "text": "摘要/索引",
+          "id": "addFlashPageParameterformat_abstract_868bf8a98",
+          "visible": true
+        }
+      ],
+      "sample_result_items": [
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605#"
+        },
+        {
+          "title": "关闭",
+          "url": "https://www.proquest.com/results/4CF2031593EB4CE7PQ/1?accountid=16605#"
+        }
+      ],
+      "action": {
+        "filled": true,
+        "clicked": true,
+        "error": null
+      },
+      "error": null
+    }
+  ],
+  "discovered_docview_urls": [
+    "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+    "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+    "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605",
+    "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605",
+    "https://www.proquest.com/docview/3223923548/<search-id>/2?accountid=16605"
+  ],
+  "article_flow": {
+    "candidate_url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605",
+    "article": {
+      "final_url": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605&sourcetype=Scholarly%20Journals",
+      "title": "Preface - ProQuest",
+      "classification": "SESSION_AUTHENTICATED",
+      "sample_pdf_controls": [
+        {
+          "url": "https://www.proquest.com/pagepdf.pdfdocusetools_0.citethis:updatecitationlink/DocView/relevance/citeThisZonecitethis/MSTAR_3280668334/citethis/.gaCitethisLink?<redacted-query>",
+          "text": "引用 引用",
+          "id": "",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/pagepdf.pdfdocusetools_0:printtofit/<encoded-media-url-redacted>",
+          "text": "打印",
+          "id": "",
+          "visible": true
+        },
+        {
+          "url": "https://www.proquest.com/pagepdf.pdfdocusetools_0:allsaveoptions?<redacted-query>",
+          "text": "",
+          "id": "allSaveOptionsHiddenLink",
+          "visible": false
+        },
+        {
+          "url": "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605",
+          "text": "Current view PDF",
+          "id": "addFlashPageParameterformat_fulltextPDF",
+          "visible": true
+        }
+      ]
+    },
+    "candidate_pdf_urls": [
+      "https://www.proquest.com/pagepdf.pdfdocusetools_0.citethis:updatecitationlink/DocView/relevance/citeThisZonecitethis/MSTAR_3280668334/citethis/.gaCitethisLink?<redacted-query>",
+      "https://www.proquest.com/pagepdf.pdfdocusetools_0:printtofit/<encoded-media-url-redacted>",
+      "https://www.proquest.com/pagepdf.pdfdocusetools_0:allsaveoptions?<redacted-query>",
+      "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605",
+      "https://www.proquest.com/docview/3280668334/fulltextPDF",
+      "https://www.proquest.com/docview/3280668334/fulltextPDF?accountid=16605"
+    ],
+    "request_probes": [
+      {
+        "status": 500,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<!DOC",
+        "size": 38267,
+        "final_url": "https://www.proquest.com/pagepdf.pdfdocusetools_0.citethis:updatecitationlink/DocView/relevance/citeThisZonecitethis/MSTAR_3280668334/citethis/.gaCitethisLink?<redacted-query>"
+      },
+      {
+        "status": 200,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<html",
+        "size": 2916,
+        "final_url": "https://www.proquest.com/pdfprintview/<encoded-media-url-redacted>"
+      },
+      {
+        "status": 500,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<!DOC",
+        "size": 38016,
+        "final_url": "https://www.proquest.com/pagepdf.pdfdocusetools_0:allsaveoptions?<redacted-query>"
+      },
+      {
+        "status": 200,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<!DOC",
+        "size": 77568,
+        "final_url": "https://www.proquest.com/docview/3280668334/fulltextPDF/<search-id>/1?accountid=16605"
+      },
+      {
+        "status": 200,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<!DOC",
+        "size": 75676,
+        "final_url": "https://www.proquest.com/docview/3280668334/fulltextPDF"
+      },
+      {
+        "status": 200,
+        "content_type": "text/html;charset=UTF-8",
+        "first5": "<!DOC",
+        "size": 75676,
+        "final_url": "https://www.proquest.com/docview/3280668334/fulltextPDF?accountid=16605"
+      }
+    ],
+    "click_probe": {
+      "selector": "a#downloadPDFLink, a[href*=\"fulltextPDF\" i], a[aria-label*=\"PDF\" i], a[title*=\"PDF\" i], a:has-text(\"PDF\"), a:has-text(\"全文\"), a:has-text(\"下载\")",
+      "count": 1,
+      "page_url_after": "https://www.proquest.com/docview/3280668334/<search-id>/1?accountid=16605&sourcetype=Scholarly%20Journals",
+      "pdf_responses": [
+        {
+          "url": "https://media.proquest.com/media/hms/PFT/1/zg1qe?<signed-pdf-query>",
+          "status": 200,
+          "content_type": "application/pdf"
+        }
+      ],
+      "after_title": "Preface - ProQuest"
+    }
+  },
+  "conclusion": {
+    "gate": "PDF_RESPONSE_VIA_CLICK_FLOW",
+    "message": "Session produced an application/pdf media.proquest.com response after clicking the fulltextPDF control.",
+    "response": {
+      "url": "https://media.proquest.com/media/hms/PFT/1/zg1qe?<signed-pdf-query>",
+      "status": 200,
+      "content_type": "application/pdf"
+    }
+  }
+}

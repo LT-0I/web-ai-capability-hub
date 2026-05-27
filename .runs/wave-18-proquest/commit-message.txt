@@ -1,0 +1,12 @@
+webai: wave 18 proquest — per-DB deep fix (docview discovery + fulltextPDF route)
+
+ProQuest fulltextPDF pages return HTML and deliver the PDF as an authenticated media.proquest.com response after the PDF control is clicked, so the generic paywalled download path could find docview links but not the final artifact. Add a ProQuest-specific authenticated docview/PDF click flow and explicit SSO LOGIN_REQUIRED surfacing while preserving queue and quota behavior.
+
+Constraint: Touch only src/mcp/submcp/literature/proquest.ts, .runs/wave-18-proquest/**, and .omc/codex-out/wave-18-proquest.md.
+Rejected: Change shared paywalled.ts | parallel collision risk and user explicitly forbade it.
+Rejected: Commit live PDF binary | smoke evidence records %PDF-, size, and sha256 without storing paywalled/public-content bytes.
+Confidence: high
+Scope-risk: narrow
+Directive: Keep ProQuest-specific PDF response capture in this driver unless shared paywalled hooks are deliberately added in a coordinated wave.
+Tested: rm -rf dist && npm run build; npm test (731/731); headed Chrome re-smoke webai:proquest:download-pdf --doc-id central:3280668334 verified %PDF-.
+Not-tested: Logged-out SSO wall live path; implemented from observed page/session classifiers and existing LOGIN_REQUIRED contract.
