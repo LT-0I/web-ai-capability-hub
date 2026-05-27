@@ -1,0 +1,19 @@
+{
+  "label": "launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-sciencedirect",
+    "--cdp-port",
+    "9373",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:49:58.495Z",
+  "finished_at": "2026-05-27T07:49:59.006Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"profile\": \"research-sciencedirect\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-sciencedirect\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9373\",\n  \"cdpPort\": 9373,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 512605,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9373/devtools/page/0DFFD4AE3A624D9B9BAB7D4F4E5D039C\",\n      \"id\": \"0DFFD4AE3A624D9B9BAB7D4F4E5D039C\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9373/devtools/page/0DFFD4AE3A624D9B9BAB7D4F4E5D039C\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9373/devtools/browser/4bdfd88d-14b6-4893-bfe1-2db22f6c6c7a\"\n}\n",
+  "stderr": ""
+}

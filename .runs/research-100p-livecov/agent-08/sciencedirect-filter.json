@@ -1,0 +1,314 @@
+{
+  "label": "filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sciencedirect:filter",
+    "--query",
+    "graphene",
+    "--profile",
+    "research-sciencedirect",
+    "--cdp-port",
+    "9373",
+    "--json",
+    "--access-type",
+    "openaccess"
+  ],
+  "started_at": "2026-05-27T07:50:09.467Z",
+  "finished_at": "2026-05-27T07:50:16.505Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 52075,\n  \"items\": [\n    {\n      \"title\": \"Ultra-clean graphene for transmission electron microscopy by direct polymer-free adhesion method\",\n      \"authors\": [\n        \"1 1 Research article Open access  Nano Materials Science Available online 30\"\n      ],\n      \"publication\": \"1 1 Research article Open access  Nano Materials Science Available online\",\n      \"year\": 2026,\n      \"pii\": \"2589965126000474\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of graphene loading on the multifunctionality of additively manufactured polymer-derived ceramics\",\n      \"authors\": [\n        \"2 2 Research article Open access  Composites Part C: Open Access\"\n      ],\n      \"publication\": \"2 2 Research article Open access  Composites Part C: Open Access\",\n      \"year\": 2026,\n      \"pii\": \"2666682026000320\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Electrochemically exfoliated graphene as a functional additive in ethylene-vinyl acetate (EVA) composites: Mechanical performance and preliminary flame-behavior evaluation\",\n      \"authors\": [\n        \"3 3 Research article Open access  Materials Today Communications\"\n      ],\n      \"publication\": \"3 3 Research article Open access  Materials Today Communications\",\n      \"year\": 2026,\n      \"pii\": \"235249282600704X\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Dual-doped graphene -based electrode materials for energy devices\",\n      \"authors\": [\n        \"4 4 Review article Open access  Carbon\"\n      ],\n      \"publication\": \"4 4 Review article Open access  Carbon\",\n      \"year\": 2026,\n      \"pii\": \"0008622326004434\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Wetting transparency of graphene across length scales: Macroscopic transparency but nanoscopic mirror-like behavior\",\n      \"authors\": [\n        \"5 5 Research article Open access  Chem Available online 10\"\n      ],\n      \"publication\": \"5 5 Research article Open access  Chem Available online\",\n      \"year\": 2026,\n      \"pii\": \"2451929426000896\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of high graphene content on the thermal and microstructural properties of Cu- Graphene composites for thermal management\",\n      \"authors\": [\n        \"6 6 Research article Open access  Next Materials\"\n      ],\n      \"publication\": \"6 6 Research article Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826004181\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Graphene and graphite contrast UV-induced aging: A microstructural investigation\",\n      \"authors\": [\n        \"7 7 Short communication Open access  Next Materials\"\n      ],\n      \"publication\": \"7 7 Short communication Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826004259\",\n      \"access\": \"Open access\",\n      \"article_type\": \"\"\n    },\n    {\n      \"title\": \"Graphene goes dental: Unveiling a new era in implants, regeneration, and therapeutics\",\n      \"authors\": [\n        \"8 8 Review article Open access  Next Nanotechnology\"\n      ],\n      \"publication\": \"8 8 Review article Open access  Next Nanotechnology\",\n      \"year\": 2026,\n      \"pii\": \"2949829526001300\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Graphene -based functional materials for monitoring and remediation of phthalate contaminants in soil\",\n      \"authors\": [\n        \"9 9 Review article Open access  Journal of Environmental Chemical Engineering\"\n      ],\n      \"publication\": \"9 9 Review article Open access  Journal of Environmental Chemical Engineering\",\n      \"year\": 2026,\n      \"pii\": \"2213343726020737\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Comprehensive overview of graphene synthesis, properties, and multifaceted applications for a sustainable future\",\n      \"authors\": [\n        \"10 10 Review article Open access  Next Materials\"\n      ],\n      \"publication\": \"10 10 Review article Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826005290\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Interfacial structures of graphene /diamond heterojunctions investigated by scanning transmission electron microscopy\",\n      \"authors\": [\n        \"11 11 Research article Open access  Diamond\",\n        \"Related Materials\"\n      ],\n      \"publication\": \"11 11 Research article Open access  Diamond and Related Materials\",\n      \"year\": 2026,\n      \"pii\": \"0925963526004176\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Effect of spin–orbit coupling on strained T- graphene : A tight-binding model approach\",\n      \"authors\": [\n        \"12 12 Research article Open access  Physica B: Condensed Matter 15\"\n      ],\n      \"publication\": \"12 12 Research article Open access  Physica B: Condensed Matter\",\n      \"year\": 2026,\n      \"pii\": \"0921452626004242\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Research on the influence of rolling deformation on the properties of coated graphene /copper composite flat wire\",\n      \"authors\": [\n        \"13 13 Research article Open access  Journal of Materials Research\",\n        \"Technology\"\n      ],\n      \"publication\": \"13 13 Research article Open access  Journal of Materials Research and Technology\",\n      \"year\": 2026,\n      \"pii\": \"2238785426011361\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Disentangling the roles of temperature and glycine in the reduction and functionalization of graphene oxide\",\n      \"authors\": [\n        \"14 14 Research article Open access  Results in Materials\"\n      ],\n      \"publication\": \"14 14 Research article Open access  Results in Materials\",\n      \"year\": 2026,\n      \"pii\": \"2590048X26000774\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Single-layer biosensor for urinary prostate-cancer biomarkers through transition-metal-doped graphene : a DFT study\",\n      \"authors\": [\n        \"15 15 Research article Open access  RSC Advances 5\"\n      ],\n      \"publication\": \"15 15 Research article Open access  RSC Advances\",\n      \"year\": 2025,\n      \"pii\": \"2046206925031924\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of oxidation degree on the resistive switching properties of graphene derivatives\",\n      \"authors\": [\n        \"16 16 Research article Open access  Diamond\",\n        \"Related Materials\"\n      ],\n      \"publication\": \"16 16 Research article Open access  Diamond and Related Materials\",\n      \"year\": 2026,\n      \"pii\": \"0925963526004140\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Graphene layers on metals: A disruptive approach to durable corrosion resistance\",\n      \"authors\": [\n        \"17 17 Review article Open access  Advances in Colloid\",\n        \"Interface Science\"\n      ],\n      \"publication\": \"17 17 Review article Open access  Advances in Colloid and Interface Science\",\n      \"year\": 2026,\n      \"pii\": \"0001868626001132\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Solid carbon source enables ultrahigh-conductive graphene in copper matrix composite\",\n      \"authors\": [\n        \"18 18 Short communication Open access  Materials Today Communications\"\n      ],\n      \"publication\": \"18 18 Short communication Open access  Materials Today Communications\",\n      \"year\": 2026,\n      \"pii\": \"2352492826004137\",\n      \"access\": \"Open access\",\n      \"article_type\": \"\"\n    },\n    {\n      \"title\": \"Electric field-induced structural transitions of metal ions at graphene interfaces\",\n      \"authors\": [\n        \"19 19 Research article Open access  Carbon Trends\"\n      ],\n      \"publication\": \"19 19 Research article Open access  Carbon Trends\",\n      \"year\": 2026,\n      \"pii\": \"2667056926000507\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Direct synthesis of graphene on 3D-printed arbitrary shaped CoCrMo alloy substrates using double-tube chemical vapor deposition\",\n      \"authors\": [\n        \"20 20 Research article Open access  Materials Today Nano\"\n      ],\n      \"publication\": \"20 20 Research article Open access  Materials Today Nano\",\n      \"year\": 2026,\n      \"pii\": \"2588842026000672\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Experimental investigation on corroded reinforced concrete beams rehabilitated by ICCP -SS system using graphene enhanced FRCM composites\",\n      \"authors\": [\n        \"21 21 Research article Open access  Engineering Structures 15\"\n      ],\n      \"publication\": \"21 21 Research article Open access  Engineering Structures\",\n      \"year\": 2026,\n      \"pii\": \"0141029626007790\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Development of graphene cement composite coating for antifouling protection of offshore steel structures\",\n      \"authors\": [\n        \"22 22 Research article Open access  Construction\",\n        \"Building Materials 13\"\n      ],\n      \"publication\": \"22 22 Research article Open access  Construction and Building Materials\",\n      \"year\": 2026,\n      \"pii\": \"0950061826013760\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"The effect of nano-grooves left on the substrate after ultra-precision machining on the thermal conductivity of graphene\",\n      \"authors\": [\n        \"23 23 Research article Open access  Next Materials\"\n      ],\n      \"publication\": \"23 23 Research article Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826004302\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Microwave-sintered graphene /ZTA biocomposites for artificial joints: Synergistic mechanical reinforcement, tribological enhancement, and biofunctional improvement\",\n      \"authors\": [\n        \"24 24 Research article Open access  Journal of Materials Research\",\n        \"Technology\"\n      ],\n      \"publication\": \"24 24 Research article Open access  Journal of Materials Research and Technology\",\n      \"year\": 2026,\n      \"pii\": \"2238785426009154\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Long-term performance and protective mechanism of graphene oxide-geopolymer anticorrosive coatings: Molecular dynamics simulation and exposure experiment\",\n      \"authors\": [\n        \"25 25 Research article Open access  Case Studies in Construction Materials\"\n      ],\n      \"publication\": \"25 25 Research article Open access  Case Studies in Construction Materials\",\n      \"year\": 2026,\n      \"pii\": \"2214509526002962\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    }\n  ],\n  \"refined_url\": \"https://www.sciencedirect.com/search?qs=graphene&accessTypes=openaccess&lastSelectedFacet=accessTypes\",\n  \"confirm_title\": \"graphene - Search | ScienceDirect.com\",\n  \"facet_input_id\": \"accessTypes-openaccess\",\n  \"facet_checked\": true\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 52075,
+    "items": [
+      {
+        "title": "Ultra-clean graphene for transmission electron microscopy by direct polymer-free adhesion method",
+        "authors": [
+          "1 1 Research article Open access  Nano Materials Science Available online 30"
+        ],
+        "publication": "1 1 Research article Open access  Nano Materials Science Available online",
+        "year": 2026,
+        "pii": "2589965126000474",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of graphene loading on the multifunctionality of additively manufactured polymer-derived ceramics",
+        "authors": [
+          "2 2 Research article Open access  Composites Part C: Open Access"
+        ],
+        "publication": "2 2 Research article Open access  Composites Part C: Open Access",
+        "year": 2026,
+        "pii": "2666682026000320",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Electrochemically exfoliated graphene as a functional additive in ethylene-vinyl acetate (EVA) composites: Mechanical performance and preliminary flame-behavior evaluation",
+        "authors": [
+          "3 3 Research article Open access  Materials Today Communications"
+        ],
+        "publication": "3 3 Research article Open access  Materials Today Communications",
+        "year": 2026,
+        "pii": "235249282600704X",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Dual-doped graphene -based electrode materials for energy devices",
+        "authors": [
+          "4 4 Review article Open access  Carbon"
+        ],
+        "publication": "4 4 Review article Open access  Carbon",
+        "year": 2026,
+        "pii": "0008622326004434",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Wetting transparency of graphene across length scales: Macroscopic transparency but nanoscopic mirror-like behavior",
+        "authors": [
+          "5 5 Research article Open access  Chem Available online 10"
+        ],
+        "publication": "5 5 Research article Open access  Chem Available online",
+        "year": 2026,
+        "pii": "2451929426000896",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of high graphene content on the thermal and microstructural properties of Cu- Graphene composites for thermal management",
+        "authors": [
+          "6 6 Research article Open access  Next Materials"
+        ],
+        "publication": "6 6 Research article Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826004181",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Graphene and graphite contrast UV-induced aging: A microstructural investigation",
+        "authors": [
+          "7 7 Short communication Open access  Next Materials"
+        ],
+        "publication": "7 7 Short communication Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826004259",
+        "access": "Open access",
+        "article_type": ""
+      },
+      {
+        "title": "Graphene goes dental: Unveiling a new era in implants, regeneration, and therapeutics",
+        "authors": [
+          "8 8 Review article Open access  Next Nanotechnology"
+        ],
+        "publication": "8 8 Review article Open access  Next Nanotechnology",
+        "year": 2026,
+        "pii": "2949829526001300",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Graphene -based functional materials for monitoring and remediation of phthalate contaminants in soil",
+        "authors": [
+          "9 9 Review article Open access  Journal of Environmental Chemical Engineering"
+        ],
+        "publication": "9 9 Review article Open access  Journal of Environmental Chemical Engineering",
+        "year": 2026,
+        "pii": "2213343726020737",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Comprehensive overview of graphene synthesis, properties, and multifaceted applications for a sustainable future",
+        "authors": [
+          "10 10 Review article Open access  Next Materials"
+        ],
+        "publication": "10 10 Review article Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826005290",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Interfacial structures of graphene /diamond heterojunctions investigated by scanning transmission electron microscopy",
+        "authors": [
+          "11 11 Research article Open access  Diamond",
+          "Related Materials"
+        ],
+        "publication": "11 11 Research article Open access  Diamond and Related Materials",
+        "year": 2026,
+        "pii": "0925963526004176",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Effect of spin–orbit coupling on strained T- graphene : A tight-binding model approach",
+        "authors": [
+          "12 12 Research article Open access  Physica B: Condensed Matter 15"
+        ],
+        "publication": "12 12 Research article Open access  Physica B: Condensed Matter",
+        "year": 2026,
+        "pii": "0921452626004242",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Research on the influence of rolling deformation on the properties of coated graphene /copper composite flat wire",
+        "authors": [
+          "13 13 Research article Open access  Journal of Materials Research",
+          "Technology"
+        ],
+        "publication": "13 13 Research article Open access  Journal of Materials Research and Technology",
+        "year": 2026,
+        "pii": "2238785426011361",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Disentangling the roles of temperature and glycine in the reduction and functionalization of graphene oxide",
+        "authors": [
+          "14 14 Research article Open access  Results in Materials"
+        ],
+        "publication": "14 14 Research article Open access  Results in Materials",
+        "year": 2026,
+        "pii": "2590048X26000774",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Single-layer biosensor for urinary prostate-cancer biomarkers through transition-metal-doped graphene : a DFT study",
+        "authors": [
+          "15 15 Research article Open access  RSC Advances 5"
+        ],
+        "publication": "15 15 Research article Open access  RSC Advances",
+        "year": 2025,
+        "pii": "2046206925031924",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of oxidation degree on the resistive switching properties of graphene derivatives",
+        "authors": [
+          "16 16 Research article Open access  Diamond",
+          "Related Materials"
+        ],
+        "publication": "16 16 Research article Open access  Diamond and Related Materials",
+        "year": 2026,
+        "pii": "0925963526004140",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Graphene layers on metals: A disruptive approach to durable corrosion resistance",
+        "authors": [
+          "17 17 Review article Open access  Advances in Colloid",
+          "Interface Science"
+        ],
+        "publication": "17 17 Review article Open access  Advances in Colloid and Interface Science",
+        "year": 2026,
+        "pii": "0001868626001132",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Solid carbon source enables ultrahigh-conductive graphene in copper matrix composite",
+        "authors": [
+          "18 18 Short communication Open access  Materials Today Communications"
+        ],
+        "publication": "18 18 Short communication Open access  Materials Today Communications",
+        "year": 2026,
+        "pii": "2352492826004137",
+        "access": "Open access",
+        "article_type": ""
+      },
+      {
+        "title": "Electric field-induced structural transitions of metal ions at graphene interfaces",
+        "authors": [
+          "19 19 Research article Open access  Carbon Trends"
+        ],
+        "publication": "19 19 Research article Open access  Carbon Trends",
+        "year": 2026,
+        "pii": "2667056926000507",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Direct synthesis of graphene on 3D-printed arbitrary shaped CoCrMo alloy substrates using double-tube chemical vapor deposition",
+        "authors": [
+          "20 20 Research article Open access  Materials Today Nano"
+        ],
+        "publication": "20 20 Research article Open access  Materials Today Nano",
+        "year": 2026,
+        "pii": "2588842026000672",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Experimental investigation on corroded reinforced concrete beams rehabilitated by ICCP -SS system using graphene enhanced FRCM composites",
+        "authors": [
+          "21 21 Research article Open access  Engineering Structures 15"
+        ],
+        "publication": "21 21 Research article Open access  Engineering Structures",
+        "year": 2026,
+        "pii": "0141029626007790",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Development of graphene cement composite coating for antifouling protection of offshore steel structures",
+        "authors": [
+          "22 22 Research article Open access  Construction",
+          "Building Materials 13"
+        ],
+        "publication": "22 22 Research article Open access  Construction and Building Materials",
+        "year": 2026,
+        "pii": "0950061826013760",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "The effect of nano-grooves left on the substrate after ultra-precision machining on the thermal conductivity of graphene",
+        "authors": [
+          "23 23 Research article Open access  Next Materials"
+        ],
+        "publication": "23 23 Research article Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826004302",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Microwave-sintered graphene /ZTA biocomposites for artificial joints: Synergistic mechanical reinforcement, tribological enhancement, and biofunctional improvement",
+        "authors": [
+          "24 24 Research article Open access  Journal of Materials Research",
+          "Technology"
+        ],
+        "publication": "24 24 Research article Open access  Journal of Materials Research and Technology",
+        "year": 2026,
+        "pii": "2238785426009154",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Long-term performance and protective mechanism of graphene oxide-geopolymer anticorrosive coatings: Molecular dynamics simulation and exposure experiment",
+        "authors": [
+          "25 25 Research article Open access  Case Studies in Construction Materials"
+        ],
+        "publication": "25 25 Research article Open access  Case Studies in Construction Materials",
+        "year": 2026,
+        "pii": "2214509526002962",
+        "access": "Open access",
+        "article_type": "Research article"
+      }
+    ],
+    "refined_url": "https://www.sciencedirect.com/search?qs=graphene&accessTypes=openaccess&lastSelectedFacet=accessTypes",
+    "confirm_title": "graphene - Search | ScienceDirect.com",
+    "facet_input_id": "accessTypes-openaccess",
+    "facet_checked": true
+  },
+  "classification": "PASS"
+}

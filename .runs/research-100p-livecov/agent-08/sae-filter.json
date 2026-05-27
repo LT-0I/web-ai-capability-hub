@@ -1,0 +1,533 @@
+{
+  "label": "filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sae:filter",
+    "--query",
+    "brake",
+    "--facet",
+    "Technical Paper",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-sae",
+    "--cdp-port",
+    "9371",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:45:55.450Z",
+  "finished_at": "2026-05-27T07:46:13.554Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 31044,\n  \"items\": [\n    {\n      \"title\": \"Brake Linings as Related to Brake Drums and Brake Performance\",\n      \"authors\": [\n        \"Nelson, Robert E.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1967,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"BRAKE MAINTENANCE AND BRAKE DEVELOPMENT\",\n      \"authors\": [\n        \"TAUSS, WILLIAM\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1958,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Fluids and Brake Fluid Specifications in Europe\",\n      \"authors\": [\n        \"Meyer, P. W.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1971,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Squeal – Digital Twinning of a Brake Dynamometer\",\n      \"authors\": [\n        \"Kappagantu, Ramana\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2023,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Simulation Of Vehicle Brake Performance On Brake Dynamometer\",\n      \"authors\": [\n        \"Harada, Hiroshi\",\n        \"Shimizu, Hidetoshi\",\n        \"Sugitani, Tatsuo\",\n        \"Gomi, Miklo\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1984,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Brake Rotor - Friction Partner of Brake Linings\",\n      \"authors\": [\n        \"Metzler, Horst\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1990,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Mechanism of Brake Fade in Organic Brake Linings\",\n      \"authors\": [\n        \"Herring, James M.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1967,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"THE DISC BRAKE\",\n      \"authors\": [\n        \"SHERLOCK, S. E.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1958,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Dynamic Simulation of a Brake Valve in Air Brake System\",\n      \"authors\": [\n        \"Sridhar, S\",\n        \"Narayanan, S\",\n        \"Kumaravel, B\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2009,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Friction Processes in Disc Brake – Brake Pad Couple\",\n      \"authors\": [\n        \"Polak, Adam\",\n        \"Grzybeck, Janusz\",\n        \"Pytko, Stanislaw\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2002,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Reducing Aircraft Brake Squeal with a Damped Brake -Rod\",\n      \"authors\": [\n        \"Enright, John J.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2000,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Wheel Optimized Brake Torque at the VE Mechatronic Brake\",\n      \"authors\": [\n        \"Putz, Michael Herbert\",\n        \"Wunsch, Christian\",\n        \"Morgan, John E.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2011,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Balance\",\n      \"authors\": [\n        \"Almond, J. R.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1961,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Instantor Brake\",\n      \"authors\": [\n        \"Brownyer, N. R.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1965,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Vehicle Brake Balance Using Objective Brake Factors\",\n      \"authors\": [\n        \"Flaim, Thomas A.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1989,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"What the Brake Engineer Wants from Brake Fluid\",\n      \"authors\": [\n        \"Hellmann, R. H.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1969,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"HEAVY DUTY BRAKE MAINTENANCE AND BRAKE BALANCING PROCEDURES\",\n      \"authors\": [\n        \"MOORE, R. H.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1954,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Relating Brake Drum Weight to Brake Drum Life\",\n      \"authors\": [\n        \"Beckwith, J. F.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1962,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Dynamometer Measurement of Airborne Brake Wear Debris\",\n      \"authors\": [\n        \"Sanders, P. G.\",\n        \"Dalka, T. M.\",\n        \"Xu, N.\",\n        \"Maricq, M. M.\",\n        \"Basch, R. H.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2002,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Fade Reduction in a Brake Drum System for Motorcycles\",\n      \"authors\": [\n        \"Routaray, Ramakanta\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2018,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Optimization for Brake Feeling in Vehicle without Brake Noise\",\n      \"authors\": [\n        \"Jeong, ByeongUk\",\n        \"Kwak, Sang Do\",\n        \"Kim, Cheol Ki\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2016,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"BRAKES -and Brake Lining Characteristics\",\n      \"authors\": [\n        \"OETZEL, J.G.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1950,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Hy-Power Brake Booster for FMVSS-105 Brake Requirements\",\n      \"authors\": [\n        \"Miller, J. W.\",\n        \"Horvath, R. A.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1977,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Drum Brake Out of Roundness Reduction to Improve Brake Pulsation\",\n      \"authors\": [\n        \"Im, Kee H.\",\n        \"Skoog, David\",\n        \"Yarger, David\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2008,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Electrohydraulic Brake System - The First Approach to Brake -By-Wire Technology\",\n      \"authors\": [\n        \"Jonner, Wolf-Dieter\",\n        \"Winner, Hermann\",\n        \"Dreilich, Ludwig\",\n        \"Schunck, Eberhardt\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1996,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Innovative Methodology for Brake Torque and Residual Brake Torque Measurement\",\n      \"authors\": [\n        \"Weiblen, Walter\",\n        \"Kirstätter, Klaus\",\n        \"Söns, Andreas\",\n        \"Doerrie, Dieter\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1998,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Correlating Dynamometer and Vehicle Brake Test Results: Brake Squeal\",\n      \"authors\": [\n        \"Abendroth, Harald\",\n        \"Schwarz, Uwe\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2001,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Brake Pads Compensation Control Algorithm for Brake Force Distribution\",\n      \"authors\": [\n        \"Zheng, Hongyu\",\n        \"Wang, Linlin\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2014,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Changing Properties of Brake Pads and Discs during Brake Testing\",\n      \"authors\": [\n        \"Sriwiboon, Meechai\",\n        \"Tiempan, Nipon\",\n        \"Kaewlob, Kritsana\",\n        \"Rhee, Seong Kwan\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2020,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Effects of Brake Pad Boundary Contact Surfaces on Brake Squeal\",\n      \"authors\": [\n        \"Griffen, Christopher Thomas\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2011,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Research on Brake Comfort Based on Brake -by-Wire System Control\",\n      \"authors\": [\n        \"Xiong, Wei\",\n        \"Wang, Weiwei\",\n        \"Jiang, Kaihong\",\n        \"Hou, Liming\",\n        \"Shangguan, Wen-Bin\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Test Procedures and Brake Performance Criteria For Agricultural Equipment\",\n      \"authors\": [\n        \"Langdon, John E.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1974,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Dual Brake Inertia Dynamometer - A New Tool for Brake Testing\",\n      \"authors\": [\n        \"Sinclair, David\",\n        \"Gulick, W. F.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1963,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Development of Regenerative Brake Control Strategy to Remove Brake Rust\",\n      \"authors\": [\n        \"Jang, Sora\",\n        \"Kim, Gwichul\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Influence of Pads and Brake Disc wear on Brake Squeal Noise\",\n      \"authors\": [\n        \"dos Anjos, Marco Túlio Batista\",\n        \"Gutiérrez, Juan Carlos Horta\",\n        \"Ferreto, Cláudio Junior\",\n        \"Silva, Felipe Dornellas\",\n        \"Donadon, Lázaro Valentin\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Vibrations in Trucks\",\n      \"authors\": [\n        \"Helms, Heiko\",\n        \"Thesenvitz, Manfred\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1978,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Disc Brake Squeal\",\n      \"authors\": [\n        \"Tarter, James H.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1983,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Girling ‘Twinstop’ Brake\",\n      \"authors\": [\n        \"Newton, W. R.\",\n        \"England, M. J.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1977,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Disc Brake for Motorcycles\",\n      \"authors\": [\n        \"Itoh, Hiroshi\",\n        \"Aono, Masami\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1991,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Lining at Work\",\n      \"authors\": [\n        \"Blume, W. A.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1941,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Versatile Shoe Brake\",\n      \"authors\": [\n        \"LUPTON, CLARK R.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1950,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"AUTOMOTIVE BRAKE PROBLEMS\",\n      \"authors\": [\n        \"Reese, Paul J.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1949,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Proportioning Valve\",\n      \"authors\": [\n        \"Eaton, William C.\",\n        \"Schreur, Ivan J.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1966,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"BRAKE MAINTENANCE PAYS\",\n      \"authors\": [\n        \"GOEPFRICH, R. A.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1954,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"More than a brake\",\n      \"authors\": [\n        \"Batagini, Emerson\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Empowering the Brake Systems\",\n      \"authors\": [\n        \"Batagini, Emerson\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"“ BRAKES ”\",\n      \"authors\": [\n        \"McDermott, Tom\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1945,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Development of Hydraulic Servo Brake System for Cooperative Control with Regenerative Brake\",\n      \"authors\": [\n        \"Aoki, Yasushi\",\n        \"Suzuki, Kenji\",\n        \"Nakano, Hiroshi\",\n        \"Akamine, Kohei\",\n        \"Shirase, Takaomi\",\n        \"Sakai, Kouji\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2007,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"The Effect of Brake System Evacuation and Fill on Initial Brake Pedal Travel\",\n      \"authors\": [\n        \"Clark, Neil J.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 1991,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"An Explanation for Brake Groan Based on Coupled Brake -Driveline System Analysis\",\n      \"authors\": [\n        \"Crowther, Ashley R.\",\n        \"Yoon, J.\",\n        \"Singh, R.\"\n      ],\n      \"publication\": \"Technical Paper\",\n      \"year\": 2007,\n      \"doi\": \"\"\n    }\n  ],\n  \"refined_url\": \"https://saemobilus.sae.org/search#q=brake&sub_group=Technical%2520Paper\",\n  \"confirm_title\": \"Search 'brake' - SAE Mobilus\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 31044,
+    "items": [
+      {
+        "title": "Brake Linings as Related to Brake Drums and Brake Performance",
+        "authors": [
+          "Nelson, Robert E."
+        ],
+        "publication": "Technical Paper",
+        "year": 1967,
+        "doi": ""
+      },
+      {
+        "title": "BRAKE MAINTENANCE AND BRAKE DEVELOPMENT",
+        "authors": [
+          "TAUSS, WILLIAM"
+        ],
+        "publication": "Technical Paper",
+        "year": 1958,
+        "doi": ""
+      },
+      {
+        "title": "Brake Fluids and Brake Fluid Specifications in Europe",
+        "authors": [
+          "Meyer, P. W."
+        ],
+        "publication": "Technical Paper",
+        "year": 1971,
+        "doi": ""
+      },
+      {
+        "title": "Brake Squeal – Digital Twinning of a Brake Dynamometer",
+        "authors": [
+          "Kappagantu, Ramana"
+        ],
+        "publication": "Technical Paper",
+        "year": 2023,
+        "doi": ""
+      },
+      {
+        "title": "Simulation Of Vehicle Brake Performance On Brake Dynamometer",
+        "authors": [
+          "Harada, Hiroshi",
+          "Shimizu, Hidetoshi",
+          "Sugitani, Tatsuo",
+          "Gomi, Miklo"
+        ],
+        "publication": "Technical Paper",
+        "year": 1984,
+        "doi": ""
+      },
+      {
+        "title": "The Brake Rotor - Friction Partner of Brake Linings",
+        "authors": [
+          "Metzler, Horst"
+        ],
+        "publication": "Technical Paper",
+        "year": 1990,
+        "doi": ""
+      },
+      {
+        "title": "Mechanism of Brake Fade in Organic Brake Linings",
+        "authors": [
+          "Herring, James M."
+        ],
+        "publication": "Technical Paper",
+        "year": 1967,
+        "doi": ""
+      },
+      {
+        "title": "THE DISC BRAKE",
+        "authors": [
+          "SHERLOCK, S. E."
+        ],
+        "publication": "Technical Paper",
+        "year": 1958,
+        "doi": ""
+      },
+      {
+        "title": "Dynamic Simulation of a Brake Valve in Air Brake System",
+        "authors": [
+          "Sridhar, S",
+          "Narayanan, S",
+          "Kumaravel, B"
+        ],
+        "publication": "Technical Paper",
+        "year": 2009,
+        "doi": ""
+      },
+      {
+        "title": "Friction Processes in Disc Brake – Brake Pad Couple",
+        "authors": [
+          "Polak, Adam",
+          "Grzybeck, Janusz",
+          "Pytko, Stanislaw"
+        ],
+        "publication": "Technical Paper",
+        "year": 2002,
+        "doi": ""
+      },
+      {
+        "title": "Reducing Aircraft Brake Squeal with a Damped Brake -Rod",
+        "authors": [
+          "Enright, John J."
+        ],
+        "publication": "Technical Paper",
+        "year": 2000,
+        "doi": ""
+      },
+      {
+        "title": "Wheel Optimized Brake Torque at the VE Mechatronic Brake",
+        "authors": [
+          "Putz, Michael Herbert",
+          "Wunsch, Christian",
+          "Morgan, John E."
+        ],
+        "publication": "Technical Paper",
+        "year": 2011,
+        "doi": ""
+      },
+      {
+        "title": "Brake Balance",
+        "authors": [
+          "Almond, J. R."
+        ],
+        "publication": "Technical Paper",
+        "year": 1961,
+        "doi": ""
+      },
+      {
+        "title": "Instantor Brake",
+        "authors": [
+          "Brownyer, N. R."
+        ],
+        "publication": "Technical Paper",
+        "year": 1965,
+        "doi": ""
+      },
+      {
+        "title": "Vehicle Brake Balance Using Objective Brake Factors",
+        "authors": [
+          "Flaim, Thomas A."
+        ],
+        "publication": "Technical Paper",
+        "year": 1989,
+        "doi": ""
+      },
+      {
+        "title": "What the Brake Engineer Wants from Brake Fluid",
+        "authors": [
+          "Hellmann, R. H."
+        ],
+        "publication": "Technical Paper",
+        "year": 1969,
+        "doi": ""
+      },
+      {
+        "title": "HEAVY DUTY BRAKE MAINTENANCE AND BRAKE BALANCING PROCEDURES",
+        "authors": [
+          "MOORE, R. H."
+        ],
+        "publication": "Technical Paper",
+        "year": 1954,
+        "doi": ""
+      },
+      {
+        "title": "Relating Brake Drum Weight to Brake Drum Life",
+        "authors": [
+          "Beckwith, J. F."
+        ],
+        "publication": "Technical Paper",
+        "year": 1962,
+        "doi": ""
+      },
+      {
+        "title": "Brake Dynamometer Measurement of Airborne Brake Wear Debris",
+        "authors": [
+          "Sanders, P. G.",
+          "Dalka, T. M.",
+          "Xu, N.",
+          "Maricq, M. M.",
+          "Basch, R. H."
+        ],
+        "publication": "Technical Paper",
+        "year": 2002,
+        "doi": ""
+      },
+      {
+        "title": "Brake Fade Reduction in a Brake Drum System for Motorcycles",
+        "authors": [
+          "Routaray, Ramakanta"
+        ],
+        "publication": "Technical Paper",
+        "year": 2018,
+        "doi": ""
+      },
+      {
+        "title": "Optimization for Brake Feeling in Vehicle without Brake Noise",
+        "authors": [
+          "Jeong, ByeongUk",
+          "Kwak, Sang Do",
+          "Kim, Cheol Ki"
+        ],
+        "publication": "Technical Paper",
+        "year": 2016,
+        "doi": ""
+      },
+      {
+        "title": "BRAKES -and Brake Lining Characteristics",
+        "authors": [
+          "OETZEL, J.G."
+        ],
+        "publication": "Technical Paper",
+        "year": 1950,
+        "doi": ""
+      },
+      {
+        "title": "Hy-Power Brake Booster for FMVSS-105 Brake Requirements",
+        "authors": [
+          "Miller, J. W.",
+          "Horvath, R. A."
+        ],
+        "publication": "Technical Paper",
+        "year": 1977,
+        "doi": ""
+      },
+      {
+        "title": "Drum Brake Out of Roundness Reduction to Improve Brake Pulsation",
+        "authors": [
+          "Im, Kee H.",
+          "Skoog, David",
+          "Yarger, David"
+        ],
+        "publication": "Technical Paper",
+        "year": 2008,
+        "doi": ""
+      },
+      {
+        "title": "Electrohydraulic Brake System - The First Approach to Brake -By-Wire Technology",
+        "authors": [
+          "Jonner, Wolf-Dieter",
+          "Winner, Hermann",
+          "Dreilich, Ludwig",
+          "Schunck, Eberhardt"
+        ],
+        "publication": "Technical Paper",
+        "year": 1996,
+        "doi": ""
+      },
+      {
+        "title": "Innovative Methodology for Brake Torque and Residual Brake Torque Measurement",
+        "authors": [
+          "Weiblen, Walter",
+          "Kirstätter, Klaus",
+          "Söns, Andreas",
+          "Doerrie, Dieter"
+        ],
+        "publication": "Technical Paper",
+        "year": 1998,
+        "doi": ""
+      },
+      {
+        "title": "Correlating Dynamometer and Vehicle Brake Test Results: Brake Squeal",
+        "authors": [
+          "Abendroth, Harald",
+          "Schwarz, Uwe"
+        ],
+        "publication": "Technical Paper",
+        "year": 2001,
+        "doi": ""
+      },
+      {
+        "title": "The Brake Pads Compensation Control Algorithm for Brake Force Distribution",
+        "authors": [
+          "Zheng, Hongyu",
+          "Wang, Linlin"
+        ],
+        "publication": "Technical Paper",
+        "year": 2014,
+        "doi": ""
+      },
+      {
+        "title": "Changing Properties of Brake Pads and Discs during Brake Testing",
+        "authors": [
+          "Sriwiboon, Meechai",
+          "Tiempan, Nipon",
+          "Kaewlob, Kritsana",
+          "Rhee, Seong Kwan"
+        ],
+        "publication": "Technical Paper",
+        "year": 2020,
+        "doi": ""
+      },
+      {
+        "title": "Effects of Brake Pad Boundary Contact Surfaces on Brake Squeal",
+        "authors": [
+          "Griffen, Christopher Thomas"
+        ],
+        "publication": "Technical Paper",
+        "year": 2011,
+        "doi": ""
+      },
+      {
+        "title": "Research on Brake Comfort Based on Brake -by-Wire System Control",
+        "authors": [
+          "Xiong, Wei",
+          "Wang, Weiwei",
+          "Jiang, Kaihong",
+          "Hou, Liming",
+          "Shangguan, Wen-Bin"
+        ],
+        "publication": "Technical Paper",
+        "year": 2022,
+        "doi": ""
+      },
+      {
+        "title": "Brake Test Procedures and Brake Performance Criteria For Agricultural Equipment",
+        "authors": [
+          "Langdon, John E."
+        ],
+        "publication": "Technical Paper",
+        "year": 1974,
+        "doi": ""
+      },
+      {
+        "title": "The Dual Brake Inertia Dynamometer - A New Tool for Brake Testing",
+        "authors": [
+          "Sinclair, David",
+          "Gulick, W. F."
+        ],
+        "publication": "Technical Paper",
+        "year": 1963,
+        "doi": ""
+      },
+      {
+        "title": "Development of Regenerative Brake Control Strategy to Remove Brake Rust",
+        "authors": [
+          "Jang, Sora",
+          "Kim, Gwichul"
+        ],
+        "publication": "Technical Paper",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Influence of Pads and Brake Disc wear on Brake Squeal Noise",
+        "authors": [
+          "dos Anjos, Marco Túlio Batista",
+          "Gutiérrez, Juan Carlos Horta",
+          "Ferreto, Cláudio Junior",
+          "Silva, Felipe Dornellas",
+          "Donadon, Lázaro Valentin"
+        ],
+        "publication": "Technical Paper",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Brake Vibrations in Trucks",
+        "authors": [
+          "Helms, Heiko",
+          "Thesenvitz, Manfred"
+        ],
+        "publication": "Technical Paper",
+        "year": 1978,
+        "doi": ""
+      },
+      {
+        "title": "Disc Brake Squeal",
+        "authors": [
+          "Tarter, James H."
+        ],
+        "publication": "Technical Paper",
+        "year": 1983,
+        "doi": ""
+      },
+      {
+        "title": "The Girling ‘Twinstop’ Brake",
+        "authors": [
+          "Newton, W. R.",
+          "England, M. J."
+        ],
+        "publication": "Technical Paper",
+        "year": 1977,
+        "doi": ""
+      },
+      {
+        "title": "Disc Brake for Motorcycles",
+        "authors": [
+          "Itoh, Hiroshi",
+          "Aono, Masami"
+        ],
+        "publication": "Technical Paper",
+        "year": 1991,
+        "doi": ""
+      },
+      {
+        "title": "Brake Lining at Work",
+        "authors": [
+          "Blume, W. A."
+        ],
+        "publication": "Technical Paper",
+        "year": 1941,
+        "doi": ""
+      },
+      {
+        "title": "The Versatile Shoe Brake",
+        "authors": [
+          "LUPTON, CLARK R."
+        ],
+        "publication": "Technical Paper",
+        "year": 1950,
+        "doi": ""
+      },
+      {
+        "title": "AUTOMOTIVE BRAKE PROBLEMS",
+        "authors": [
+          "Reese, Paul J."
+        ],
+        "publication": "Technical Paper",
+        "year": 1949,
+        "doi": ""
+      },
+      {
+        "title": "Brake Proportioning Valve",
+        "authors": [
+          "Eaton, William C.",
+          "Schreur, Ivan J."
+        ],
+        "publication": "Technical Paper",
+        "year": 1966,
+        "doi": ""
+      },
+      {
+        "title": "BRAKE MAINTENANCE PAYS",
+        "authors": [
+          "GOEPFRICH, R. A."
+        ],
+        "publication": "Technical Paper",
+        "year": 1954,
+        "doi": ""
+      },
+      {
+        "title": "More than a brake",
+        "authors": [
+          "Batagini, Emerson"
+        ],
+        "publication": "Technical Paper",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Empowering the Brake Systems",
+        "authors": [
+          "Batagini, Emerson"
+        ],
+        "publication": "Technical Paper",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "“ BRAKES ”",
+        "authors": [
+          "McDermott, Tom"
+        ],
+        "publication": "Technical Paper",
+        "year": 1945,
+        "doi": ""
+      },
+      {
+        "title": "Development of Hydraulic Servo Brake System for Cooperative Control with Regenerative Brake",
+        "authors": [
+          "Aoki, Yasushi",
+          "Suzuki, Kenji",
+          "Nakano, Hiroshi",
+          "Akamine, Kohei",
+          "Shirase, Takaomi",
+          "Sakai, Kouji"
+        ],
+        "publication": "Technical Paper",
+        "year": 2007,
+        "doi": ""
+      },
+      {
+        "title": "The Effect of Brake System Evacuation and Fill on Initial Brake Pedal Travel",
+        "authors": [
+          "Clark, Neil J."
+        ],
+        "publication": "Technical Paper",
+        "year": 1991,
+        "doi": ""
+      },
+      {
+        "title": "An Explanation for Brake Groan Based on Coupled Brake -Driveline System Analysis",
+        "authors": [
+          "Crowther, Ashley R.",
+          "Yoon, J.",
+          "Singh, R."
+        ],
+        "publication": "Technical Paper",
+        "year": 2007,
+        "doi": ""
+      }
+    ],
+    "refined_url": "https://saemobilus.sae.org/search#q=brake&sub_group=Technical%2520Paper",
+    "confirm_title": "Search 'brake' - SAE Mobilus"
+  },
+  "classification": "PASS"
+}

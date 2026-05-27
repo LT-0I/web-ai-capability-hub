@@ -1,0 +1,77 @@
+{
+  "label": "filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:rsc:filter",
+    "--query",
+    "catalysis",
+    "--area",
+    "AllText",
+    "--access",
+    "Open Access",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-rsc",
+    "--cdp-port",
+    "9370",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:43:12.708Z",
+  "finished_at": "2026-05-27T07:43:23.068Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 170942,\n  \"items\": [\n    {\n      \"title\": \"Review Article Catalytic asymmetric synthesis of 1,2-diamines Francisco Foubelo, Carmen Nájera, M a Gracia Retamosa, José M. Sansano and Miguel Yus The asymmetric catalytic synthesis of 1,2-diamines has received considerable interest, due to their presence in biologically active compounds and their applications for the development of synthetic building blocks, chiral ligands and organocatalysts.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D3CS00379E\",\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e\"\n    },\n    {\n      \"title\": \"Paper Corroboration of Zn( II )–Mg( II )-tertiary structure interplays essential for the optimal catalysis of a phosphorothiolate thiolesterase ribozyme Tzu-Pin Wang, Yu-Chih Su, Yi Chen, Scott Severance, Chi-Ching Hwang, Yi-Ming Liou, Chia-Hui Lu, Kun-Liang Lin, Rui Jing Zhu and Eng-Chi Wang Zn( II ) and Mg( II ) and GAGA tetraloop in the ion atmosphere of the TW17 ribozyme is critical to optimal ribozyme catalysis at alkaline pH.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C8RA05083J\",\n      \"journal\": \"RSC Adv.\",\n      \"year\": 2018,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2018/ra/c8ra05083j\"\n    },\n    {\n      \"title\": \"Review Article A comprehensive overview of directing groups applied in metal-catalysed C–H functionalisation chemistry Carlo Sambiagio, David Schönbauer, Remi Blieck, Toan Dao-Huy, Gerit Pototschnig, Patricia Schaaf, Thomas Wiesinger, Muhammad Farooq Zia, Joanna Wencel-Delord, Tatiana Besset, Bert U. W. Maes and Michael Schnürch The present review is devoted to summarizing the recent advances (2015–2017) in the field of metal-catalysed group-directed C–H functionalisation.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C8CS00201K\",\n      \"journal\": \"\",\n      \"year\": 2018,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2018/cs/c8cs00201k\"\n    },\n    {\n      \"title\": \"Perspective Picking the lock of coordination cage catalysis Tomasz K. Piskorz, Vicente Martí-Centelles, Rebecca L. Spicer, Fernanda Duarte and Paul J. Lusby We provide an overview of coordination cage catalysis, highlighting how mechanistic understanding can help address the challenges in this area leading to new opportunities in non-covalent reactivity.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D3SC02586A\",\n      \"journal\": \"Chemical Science\",\n      \"year\": 2023,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02586a\"\n    },\n    {\n      \"title\": \"Review Article Thermo-photo catalysis: a whole greater than the sum of its parts Siyuan Fang and Yun Hang Hu This review provides an up-to-date understanding on emerging thermo-photo catalytic processes with an emphasis on the synergetic effects of thermal and photo energies.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D1CS00782C\",\n      \"journal\": \"RSC Adv.\",\n      \"year\": 2022,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00782c\"\n    }\n  ],\n  \"refined_url\": \"https://pubs.rsc.org/en/results/journals?Category=Journal&AllText=catalysis&IncludeReference=false&SelectJournal=false&DateRange=false&SelectDate=false&Type=Months&PriceCode=False&OpenAccess=false&PageSize=5&Article+Access=Open+Access&SortBy=Relevance&tab=journal&fcategory=journal&filter=journal\",\n  \"confirm_title\": \"Search Results for RSC Publishing\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 170942,
+    "items": [
+      {
+        "title": "Review Article Catalytic asymmetric synthesis of 1,2-diamines Francisco Foubelo, Carmen Nájera, M a Gracia Retamosa, José M. Sansano and Miguel Yus The asymmetric catalytic synthesis of 1,2-diamines has received considerable interest, due to their presence in biologically active compounds and their applications for the development of synthetic building blocks, chiral ligands and organocatalysts.",
+        "authors": [],
+        "doi": "10.1039/D3CS00379E",
+        "journal": "",
+        "year": 2024,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e"
+      },
+      {
+        "title": "Paper Corroboration of Zn( II )–Mg( II )-tertiary structure interplays essential for the optimal catalysis of a phosphorothiolate thiolesterase ribozyme Tzu-Pin Wang, Yu-Chih Su, Yi Chen, Scott Severance, Chi-Ching Hwang, Yi-Ming Liou, Chia-Hui Lu, Kun-Liang Lin, Rui Jing Zhu and Eng-Chi Wang Zn( II ) and Mg( II ) and GAGA tetraloop in the ion atmosphere of the TW17 ribozyme is critical to optimal ribozyme catalysis at alkaline pH.",
+        "authors": [],
+        "doi": "10.1039/C8RA05083J",
+        "journal": "RSC Adv.",
+        "year": 2018,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2018/ra/c8ra05083j"
+      },
+      {
+        "title": "Review Article A comprehensive overview of directing groups applied in metal-catalysed C–H functionalisation chemistry Carlo Sambiagio, David Schönbauer, Remi Blieck, Toan Dao-Huy, Gerit Pototschnig, Patricia Schaaf, Thomas Wiesinger, Muhammad Farooq Zia, Joanna Wencel-Delord, Tatiana Besset, Bert U. W. Maes and Michael Schnürch The present review is devoted to summarizing the recent advances (2015–2017) in the field of metal-catalysed group-directed C–H functionalisation.",
+        "authors": [],
+        "doi": "10.1039/C8CS00201K",
+        "journal": "",
+        "year": 2018,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2018/cs/c8cs00201k"
+      },
+      {
+        "title": "Perspective Picking the lock of coordination cage catalysis Tomasz K. Piskorz, Vicente Martí-Centelles, Rebecca L. Spicer, Fernanda Duarte and Paul J. Lusby We provide an overview of coordination cage catalysis, highlighting how mechanistic understanding can help address the challenges in this area leading to new opportunities in non-covalent reactivity.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D3SC02586A",
+        "journal": "Chemical Science",
+        "year": 2023,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02586a"
+      },
+      {
+        "title": "Review Article Thermo-photo catalysis: a whole greater than the sum of its parts Siyuan Fang and Yun Hang Hu This review provides an up-to-date understanding on emerging thermo-photo catalytic processes with an emphasis on the synergetic effects of thermal and photo energies.",
+        "authors": [],
+        "doi": "10.1039/D1CS00782C",
+        "journal": "RSC Adv.",
+        "year": 2022,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00782c"
+      }
+    ],
+    "refined_url": "https://pubs.rsc.org/en/results/journals?Category=Journal&AllText=catalysis&IncludeReference=false&SelectJournal=false&DateRange=false&SelectDate=false&Type=Months&PriceCode=False&OpenAccess=false&PageSize=5&Article+Access=Open+Access&SortBy=Relevance&tab=journal&fcategory=journal&filter=journal",
+    "confirm_title": "Search Results for RSC Publishing"
+  },
+  "classification": "PASS"
+}

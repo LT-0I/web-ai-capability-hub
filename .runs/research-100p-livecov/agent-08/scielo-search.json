@@ -1,0 +1,82 @@
+{
+  "label": "search",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:scielo:search",
+    "--query",
+    "dengue",
+    "--lang",
+    "pt",
+    "--count",
+    "5",
+    "--profile",
+    "research-scielo",
+    "--cdp-port",
+    "9372",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:49:07.210Z",
+  "finished_at": "2026-05-27T07:49:19.817Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 3033,\n  \"items\": [\n    {\n      \"title\": \"Factores asociados a la infección por dengue en personas adultas de la selva central peruana\",\n      \"authors\": [],\n      \"doi\": \"10.37135/ee.04.25.05\",\n      \"journal\": \"Eugenio Espejo Métricas do periódico Sobre o periódico SciELO Analytics Abr\",\n      \"year\": 2026,\n      \"url\": \"http://scielo.senescyt.gob.ec/scielo.php?script=sci_arttext&pid=S2661-67422026000100069&lang=pt\",\n      \"pid\": \"S2661-67422026000100069\",\n      \"collection\": \"ecu\"\n    },\n    {\n      \"title\": \"Genetic characterization of Aedes aegypti (Diptera: Culicidae) mosquitoes from Rio Grande do Sul, the southernmost state of Brazil, based on the mitochondrial COI gene\",\n      \"authors\": [],\n      \"doi\": \"10.1590/1806-9665-rbent-2025-0056\",\n      \"journal\": \"Brasileira de Entomologia Métricas do periódico Sobre o periódico SciELO Analytics Mar\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0085-56262026000100202&lang=pt\",\n      \"pid\": \"S0085-56262026000100202\",\n      \"collection\": \"scl\"\n    },\n    {\n      \"title\": \"Perfil clínico y de laboratorio del dengue en niños durante el brote 2023-2024 en Buenos Aires, Argentina\",\n      \"authors\": [],\n      \"doi\": \"10.5546/aap.2025-10841\",\n      \"journal\": \"Sobre o periódico SciELO Analytics Mar\",\n      \"year\": 2023,\n      \"url\": \"http://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S0325-00752026000100008&lang=pt\",\n      \"pid\": \"S0325-00752026000100008\",\n      \"collection\": \"arg\"\n    },\n    {\n      \"title\": \"Facebook\",\n      \"authors\": [],\n      \"doi\": \"10.1590/SciELOPreprints.15069\",\n      \"journal\": \"Sobre o periódico SciELO Analytics Data de publicação:\",\n      \"year\": 2026,\n      \"url\": \"https://search.scielo.org/scielo.php?script=sci_arttext&pid=https://preprints.scielo.org/index.php/scielo/preprint/view/15069&lang=pt\",\n      \"pid\": \"preprint_15069\",\n      \"collection\": \"\"\n    },\n    {\n      \"title\": \"Brechas de gobernanza intersectorial en gestión de riesgos epidemiológicos del Aedes aegypti\",\n      \"authors\": [],\n      \"doi\": \"10.33996/revistaalfa.v10i28.425\",\n      \"journal\": \"de Investigación en Ciencias Agronómicas y Veterinaria Métricas do periódico Sobre o periódico SciELO Analytics Jan\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.org.bo/scielo.php?script=sci_arttext&pid=S2664-09022026000100140&lang=pt\",\n      \"pid\": \"S2664-09022026000100140\",\n      \"collection\": \"bol\"\n    }\n  ],\n  \"query_url\": \"https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 3033,
+    "items": [
+      {
+        "title": "Factores asociados a la infección por dengue en personas adultas de la selva central peruana",
+        "authors": [],
+        "doi": "10.37135/ee.04.25.05",
+        "journal": "Eugenio Espejo Métricas do periódico Sobre o periódico SciELO Analytics Abr",
+        "year": 2026,
+        "url": "http://scielo.senescyt.gob.ec/scielo.php?script=sci_arttext&pid=S2661-67422026000100069&lang=pt",
+        "pid": "S2661-67422026000100069",
+        "collection": "ecu"
+      },
+      {
+        "title": "Genetic characterization of Aedes aegypti (Diptera: Culicidae) mosquitoes from Rio Grande do Sul, the southernmost state of Brazil, based on the mitochondrial COI gene",
+        "authors": [],
+        "doi": "10.1590/1806-9665-rbent-2025-0056",
+        "journal": "Brasileira de Entomologia Métricas do periódico Sobre o periódico SciELO Analytics Mar",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0085-56262026000100202&lang=pt",
+        "pid": "S0085-56262026000100202",
+        "collection": "scl"
+      },
+      {
+        "title": "Perfil clínico y de laboratorio del dengue en niños durante el brote 2023-2024 en Buenos Aires, Argentina",
+        "authors": [],
+        "doi": "10.5546/aap.2025-10841",
+        "journal": "Sobre o periódico SciELO Analytics Mar",
+        "year": 2023,
+        "url": "http://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S0325-00752026000100008&lang=pt",
+        "pid": "S0325-00752026000100008",
+        "collection": "arg"
+      },
+      {
+        "title": "Facebook",
+        "authors": [],
+        "doi": "10.1590/SciELOPreprints.15069",
+        "journal": "Sobre o periódico SciELO Analytics Data de publicação:",
+        "year": 2026,
+        "url": "https://search.scielo.org/scielo.php?script=sci_arttext&pid=https://preprints.scielo.org/index.php/scielo/preprint/view/15069&lang=pt",
+        "pid": "preprint_15069",
+        "collection": ""
+      },
+      {
+        "title": "Brechas de gobernanza intersectorial en gestión de riesgos epidemiológicos del Aedes aegypti",
+        "authors": [],
+        "doi": "10.33996/revistaalfa.v10i28.425",
+        "journal": "de Investigación en Ciencias Agronómicas y Veterinaria Métricas do periódico Sobre o periódico SciELO Analytics Jan",
+        "year": 2026,
+        "url": "http://www.scielo.org.bo/scielo.php?script=sci_arttext&pid=S2664-09022026000100140&lang=pt",
+        "pid": "S2664-09022026000100140",
+        "collection": "bol"
+      }
+    ],
+    "query_url": "https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1"
+  },
+  "classification": "PASS"
+}

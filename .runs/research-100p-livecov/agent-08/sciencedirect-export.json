@@ -1,0 +1,42 @@
+{
+  "label": "export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sciencedirect:export",
+    "--query",
+    "graphene",
+    "--profile",
+    "research-sciencedirect",
+    "--cdp-port",
+    "9373",
+    "--json",
+    "--access-type",
+    "openaccess",
+    "--format",
+    "ris",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sciencedirect",
+    "--confirmed"
+  ],
+  "started_at": "2026-05-27T07:50:16.505Z",
+  "finished_at": "2026-05-27T07:50:26.902Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sciencedirect/ScienceDirect_citations_1779868226407.ris\",\n  \"bytes\": 53581,\n  \"sha256\": \"5167f2a0f45503e022e00d7144b410d17175c6799f76ba840e585e5193cbd6fe\",\n  \"format\": \"ris\",\n  \"record_count\": 25,\n  \"query_url\": \"https://www.sciencedirect.com/search?qs=graphene&accessTypes=openaccess&lastSelectedFacet=accessTypes\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sciencedirect/ScienceDirect_citations_1779868226407.ris",
+    "bytes": 53581,
+    "sha256": "5167f2a0f45503e022e00d7144b410d17175c6799f76ba840e585e5193cbd6fe",
+    "format": "ris",
+    "record_count": 25,
+    "query_url": "https://www.sciencedirect.com/search?qs=graphene&accessTypes=openaccess&lastSelectedFacet=accessTypes"
+  },
+  "classification": "PASS",
+  "source_record": {
+    "query": "graphene",
+    "title": "Ultra-clean graphene for transmission electron microscopy by direct polymer-free adhesion method",
+    "pii": "2589965126000474"
+  }
+}

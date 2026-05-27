@@ -1,0 +1,42 @@
+{
+  "label": "export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sae:export",
+    "--query",
+    "brake",
+    "--facet",
+    "Technical Paper",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sae",
+    "--confirmed",
+    "--profile",
+    "research-sae",
+    "--cdp-port",
+    "9371",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:46:13.555Z",
+  "finished_at": "2026-05-27T07:46:35.866Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sae/mobilus-export-1779867993281.bib\",\n  \"bytes\": 56109,\n  \"sha256\": \"8b5f62ed0514fb14feb5736e8b9f27e18f2bd86059b25e91562a261f60c4bd66\",\n  \"format\": \"bibtex\",\n  \"query\": \"brake\",\n  \"result_count\": 31044\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/sae/mobilus-export-1779867993281.bib",
+    "bytes": 56109,
+    "sha256": "8b5f62ed0514fb14feb5736e8b9f27e18f2bd86059b25e91562a261f60c4bd66",
+    "format": "bibtex",
+    "query": "brake",
+    "result_count": 31044
+  },
+  "classification": "PASS",
+  "source_record": {
+    "query": "brake",
+    "title": "Brake Linings as Related to Brake Drums and Brake Performance",
+    "doi": null
+  }
+}

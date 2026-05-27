@@ -1,0 +1,248 @@
+{
+  "label": "search",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:rsc:search",
+    "--query",
+    "catalysis",
+    "--area",
+    "AllText",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-rsc",
+    "--cdp-port",
+    "9370",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:43:00.681Z",
+  "finished_at": "2026-05-27T07:43:12.707Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 170942,\n  \"items\": [\n    {\n      \"title\": \"Review Article Catalytic asymmetric synthesis of 1,2-diamines Francisco Foubelo, Carmen Nájera, M a Gracia Retamosa, José M. Sansano and Miguel Yus The asymmetric catalytic synthesis of 1,2-diamines has received considerable interest, due to their presence in biologically active compounds and their applications for the development of synthetic building blocks, chiral ligands and organocatalysts.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D3CS00379E\",\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e\"\n    },\n    {\n      \"title\": \"Paper Corroboration of Zn( II )–Mg( II )-tertiary structure interplays essential for the optimal catalysis of a phosphorothiolate thiolesterase ribozyme Tzu-Pin Wang, Yu-Chih Su, Yi Chen, Scott Severance, Chi-Ching Hwang, Yi-Ming Liou, Chia-Hui Lu, Kun-Liang Lin, Rui Jing Zhu and Eng-Chi Wang Zn( II ) and Mg( II ) and GAGA tetraloop in the ion atmosphere of the TW17 ribozyme is critical to optimal ribozyme catalysis at alkaline pH.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C8RA05083J\",\n      \"journal\": \"RSC Adv.\",\n      \"year\": 2018,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2018/ra/c8ra05083j\"\n    },\n    {\n      \"title\": \"Review Article A comprehensive overview of directing groups applied in metal-catalysed C–H functionalisation chemistry Carlo Sambiagio, David Schönbauer, Remi Blieck, Toan Dao-Huy, Gerit Pototschnig, Patricia Schaaf, Thomas Wiesinger, Muhammad Farooq Zia, Joanna Wencel-Delord, Tatiana Besset, Bert U. W. Maes and Michael Schnürch The present review is devoted to summarizing the recent advances (2015–2017) in the field of metal-catalysed group-directed C–H functionalisation.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C8CS00201K\",\n      \"journal\": \"\",\n      \"year\": 2018,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2018/cs/c8cs00201k\"\n    },\n    {\n      \"title\": \"Perspective Picking the lock of coordination cage catalysis Tomasz K. Piskorz, Vicente Martí-Centelles, Rebecca L. Spicer, Fernanda Duarte and Paul J. Lusby We provide an overview of coordination cage catalysis, highlighting how mechanistic understanding can help address the challenges in this area leading to new opportunities in non-covalent reactivity.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D3SC02586A\",\n      \"journal\": \"Chemical Science\",\n      \"year\": 2023,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02586a\"\n    },\n    {\n      \"title\": \"Review Article Thermo-photo catalysis: a whole greater than the sum of its parts Siyuan Fang and Yun Hang Hu This review provides an up-to-date understanding on emerging thermo-photo catalytic processes with an emphasis on the synergetic effects of thermal and photo energies.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D1CS00782C\",\n      \"journal\": \"\",\n      \"year\": 2022,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00782c\"\n    },\n    {\n      \"title\": \"Review Article Metal-catalyzed regiodivergent organic reactions Carmen Nájera, Irina P. Beletskaya and Miguel Yus This review discusses metal-catalysed regiodivergent additions, allylic substitutions, CH-activation, cross-couplings and intra- or intermolecular cyclisations.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C8CS00872H\",\n      \"journal\": \"\",\n      \"year\": 2019,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2019/cs/c8cs00872h\"\n    },\n    {\n      \"title\": \"Review Article Activation and catalytic transformation of methane under mild conditions Yu Tang, Yuting Li and Franklin (Feng) Tao In the last few decades, scientists have been motivated by promising production of chemicals from methane under mild conditions for low energy consumption and climate remediation; significant fundamental understanding on this topic has been achieved.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D1CS00783A\",\n      \"journal\": \"\",\n      \"year\": 2021,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00783a\"\n    },\n    {\n      \"title\": \"Review Article Photo and earth-abundant metal dual catalysis in organic synthesis Guannan Li, Tongtong Li, Lifeng Luo, Yan Tan and Zhan Lu This review summarizes the latest research progress on photocatalytic reactions involving typical Sc, Ti, V, Cr, Mn, Fe, Co, Ni, and Cu metal catalysts, mainly focusing on the role of metals and light in the reaction process.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D5QO00102A\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2025/qo/d5qo00102a\"\n    },\n    {\n      \"title\": \"Review Article Advances in N-heterocyclic carbene organocatalysis from 2015 to 2024 Dan Ling, Yusong Ran, Fachang Yang, Xiaoqun Yang, Xingxing Wu, Shi-Chao Ren and Zhichao Jin The key progress in the field of N-heterocyclic carbene (NHC) organocatalysis during the period of 2015 to 2024 is systematically summarized and discussed in this review.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D5CS00600G\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2025/cs/d5cs00600g\"\n    },\n    {\n      \"title\": \"Perspective Plasma catalysis: what is needed to create synergy? Joran Van Turnhout, Kevin Rouwenhorst, Leon Lefferts and Annemie Bogaerts In this paper, we describe the critical limitations towards plasma–catalyst synergy and suggest possible solutions.\",\n      \"authors\": [\n        \"From the themed collection: EES Catalysis\"\n      ],\n      \"doi\": \"10.1039/D5EY00027K\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2025/ey/d5ey00027k\"\n    },\n    {\n      \"title\": \"Review Article Applications of metal–organic frameworks in heterogeneous supramolecular catalysis Jiewei Liu, Lianfen Chen, Hao Cui, Jianyong Zhang, Li Zhang and Cheng-Yong Su The contributions of MOFs to the field of heterogeneous supramolecular catalysis are comprehensively reviewed with regard to active sites, selectivity, as well as host–guest chemistry.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C4CS00094C\",\n      \"journal\": \"\",\n      \"year\": 2014,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2014/cs/c4cs00094c\"\n    },\n    {\n      \"title\": \"Review Article Combining transition metal catalysis and organocatalysis – an update Zhenting Du and Zhihui Shao This review summarizes recent progress (early 2009–mid 2012) in the field of combined transition metal catalysis and organocatalysis.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C2CS35258C\",\n      \"journal\": \"\",\n      \"year\": 2012,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2013/cs/c2cs35258c\"\n    },\n    {\n      \"title\": \"Review Article Asymmetric gold catalysis enabled by specially designed ligands Amol B. Gade, Urvashi and Nitin T. Patil This review is planned to provide a comprehensive overview of the progress made in the design and development of chiral ligands for asymmetric gold catalysis.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D4QO00057A\",\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2024/qo/d4qo00057a\"\n    },\n    {\n      \"title\": \"Tutorial Review Intelligent catalysis: on-demand dynamic self-optimization via responsive feedback Linbo Jiang and Shichun Mu This review investigates intelligent self-optimization effects, responsive mechanisms and multimodal intelligent catalysis, associated challenges and solutions, aiming to promote on-demand applications in complex multi-scenario environments.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D5CS01292A\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2026/cs/d5cs01292a\"\n    },\n    {\n      \"title\": \"Review Article Asymmetric heterogeneous catalysis using crystalline porous materials Teng Li, Yan-Ting Chen, Xiao-Bin Zhang, Rong-Rong Du, Lin-Na Ma and Ya-Qian Lan This review discusses the design and synthesis methods and asymmetric catalytic applications of chiral crystalline porous materials, focusing on asymmetric heterogeneous reactions and chiral control mechanisms.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D4CS00538D\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2025/cs/d4cs00538d\"\n    },\n    {\n      \"title\": \"Perspective Synergistic catalysis: A powerful synthetic strategy for new reaction development Anna E. Allen and David W. C. MacMillan Synergistic catalysis, the simultaneous activation of two reacting partners by discrete catalysts to enable new or elusive chemical transformations, is a valuable synthetic strategy that is growing in popularity. This review seeks to describe the new transformations that highlight the rapid onset of this powerful multi-catalysis concept.\",\n      \"authors\": [\n        \"From the themed collection: Celebrating 15 years of exceptional research in\"\n      ],\n      \"doi\": \"10.1039/C2SC00907B\",\n      \"journal\": \"Chemical Science\",\n      \"year\": 2012,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2012/sc/c2sc00907b\"\n    },\n    {\n      \"title\": \"Paper There is no universal mechanism for the cleavage of RNA model compounds in the presence of metal ion catalysts Heidi Korhonen, Timo Koivusalo, Suvi Toivola and Satu Mikkola Metal ion complexes can be intracomplex general acid and/or base catalysts for the cleavage of RNA model compounds depending on the acidity of the aquo ligand and of the leaving group alcohol.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C3OB41554F\",\n      \"journal\": \"Org. Biomol. Chem.\",\n      \"year\": 2013,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2013/ob/c3ob41554f\"\n    },\n    {\n      \"title\": \"Tutorial Review Cooperative photoredox catalysis Xianjun Lang, Jincai Zhao and Xiaodong Chen Cooperative photoredox catalysis bridges visible-light photoredox catalysis with other types of catalysis like transition-metal catalysis, biocatalysis or electrocatalysis for establishing demanding organic transformations.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/C5CS00659G\",\n      \"journal\": \"\",\n      \"year\": 2016,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2016/cs/c5cs00659g\"\n    },\n    {\n      \"title\": \"Review Article Cooperative triple catalysis for complex molecule construction and late-stage functionalization Vasudevan Dhayalan This review highlights recent advances in the development of triple catalysis methodology, including mechanistic information, catalyst design, green synthesis, and late-stage functionalization, and emphasizes the growing potential of triple catalytic systems in modern organic chemistry.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D5OB01659B\",\n      \"journal\": \"Org. Biomol. Chem.\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2026/ob/d5ob01659b\"\n    },\n    {\n      \"title\": \"Perspective Grand challenges for catalysis in the Science and Technology Roadmap on Catalysis for Europe: moving ahead for a sustainable future P. Lanzafame, S. Perathoner, G. Centi, S. Gross and E. J. M. Hensen This perspective discusses the general concepts that will guide future catalysis and related grand challenges based on the Science and Technology Roadmap on Catalysis for Europe prepared by the European Cluster on Catalysis.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/C7CY01067B\",\n      \"journal\": \"\",\n      \"year\": 2017,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2017/cy/c7cy01067b\"\n    },\n    {\n      \"title\": \"Review Article Enantioselective synthesis enabled by visible light photocatalysis Bor-Cherng Hong This review summarizes recent developments in visible-light enantioselective photocatalysis reactions, which provide convenient and effective tools for asymmetric synthesis.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D0OB00759E\",\n      \"journal\": \"Org. Biomol. Chem.\",\n      \"year\": 2020,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2020/ob/d0ob00759e\"\n    },\n    {\n      \"title\": \"Perspective Toward quantum science- and technology-enabled heterogeneous catalysis Hanggara Sudrajat and Sri Hartuti This perspective discusses how advances in quantum science and technology can be utilized to improve, design, and better understand heterogeneous catalysis.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D5TA08272B\",\n      \"journal\": \"J. Mater. Chem. A\",\n      \"year\": 2026,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2026/ta/d5ta08272b\"\n    },\n    {\n      \"title\": \"Review Article The role of metal–organic porous frameworks in dual catalysis Kayhaneh Berijani and Ali Morsali Metal–organic frameworks (MOFs) are a valuable group of porous crystalline solids with inorganic and organic parts that can be used in dual catalysis.\",\n      \"authors\": [\n        \"From the themed collection:\"\n      ],\n      \"doi\": \"10.1039/D1QI00394A\",\n      \"journal\": \"\",\n      \"year\": 2021,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2021/qi/d1qi00394a\"\n    },\n    {\n      \"title\": \"Paper Integration of catalytic capability and pH-responsive wettability in a V x O y -based dual-mesh system: towards solving the trade-off between the separation flow rate and degradation efficiency Ya'nan Liu, Ruixiang Qu, Xiangyu Li, Huajun Zhai, Shuaiheng Zhao, Yen Wei and Lin Feng A catalysis mesh and pH-responsive wettability mesh composite system has been applied for fast separation of oil/water mixtures and full degradation of water-soluble pollutants in situ .\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D0TA11442A\",\n      \"journal\": \"J. Mater. Chem. A\",\n      \"year\": 2021,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2021/ta/d0ta11442a\"\n    },\n    {\n      \"title\": \"Opinion Photothermal catalysis: a viewpoint from exergy Ruoyu Wang, Dong Liu, Qiang Li, Yimin Xuan, Hongguang Jin and Liejin Guo We shed light, using an exergy balance model, on limiting efficiency, underlying mechanisms, current status and prospective directions for photothermal catalysis, which particularly is not a simple summation of photo- and thermo-catalysis.\",\n      \"authors\": [],\n      \"doi\": \"10.1039/D5EE01854D\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://pubs.rsc.org/en/content/articlelanding/2025/ee/d5ee01854d\"\n    }\n  ],\n  \"query_url\": \"https://pubs.rsc.org/en/results/journals?Category=Journal&AllText=catalysis&IncludeReference=false&SelectJournal=false&DateRange=false&SelectDate=false&Type=Months&PriceCode=False&OpenAccess=false&PageSize=5\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 170942,
+    "items": [
+      {
+        "title": "Review Article Catalytic asymmetric synthesis of 1,2-diamines Francisco Foubelo, Carmen Nájera, M a Gracia Retamosa, José M. Sansano and Miguel Yus The asymmetric catalytic synthesis of 1,2-diamines has received considerable interest, due to their presence in biologically active compounds and their applications for the development of synthetic building blocks, chiral ligands and organocatalysts.",
+        "authors": [],
+        "doi": "10.1039/D3CS00379E",
+        "journal": "",
+        "year": 2024,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e"
+      },
+      {
+        "title": "Paper Corroboration of Zn( II )–Mg( II )-tertiary structure interplays essential for the optimal catalysis of a phosphorothiolate thiolesterase ribozyme Tzu-Pin Wang, Yu-Chih Su, Yi Chen, Scott Severance, Chi-Ching Hwang, Yi-Ming Liou, Chia-Hui Lu, Kun-Liang Lin, Rui Jing Zhu and Eng-Chi Wang Zn( II ) and Mg( II ) and GAGA tetraloop in the ion atmosphere of the TW17 ribozyme is critical to optimal ribozyme catalysis at alkaline pH.",
+        "authors": [],
+        "doi": "10.1039/C8RA05083J",
+        "journal": "RSC Adv.",
+        "year": 2018,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2018/ra/c8ra05083j"
+      },
+      {
+        "title": "Review Article A comprehensive overview of directing groups applied in metal-catalysed C–H functionalisation chemistry Carlo Sambiagio, David Schönbauer, Remi Blieck, Toan Dao-Huy, Gerit Pototschnig, Patricia Schaaf, Thomas Wiesinger, Muhammad Farooq Zia, Joanna Wencel-Delord, Tatiana Besset, Bert U. W. Maes and Michael Schnürch The present review is devoted to summarizing the recent advances (2015–2017) in the field of metal-catalysed group-directed C–H functionalisation.",
+        "authors": [],
+        "doi": "10.1039/C8CS00201K",
+        "journal": "",
+        "year": 2018,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2018/cs/c8cs00201k"
+      },
+      {
+        "title": "Perspective Picking the lock of coordination cage catalysis Tomasz K. Piskorz, Vicente Martí-Centelles, Rebecca L. Spicer, Fernanda Duarte and Paul J. Lusby We provide an overview of coordination cage catalysis, highlighting how mechanistic understanding can help address the challenges in this area leading to new opportunities in non-covalent reactivity.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D3SC02586A",
+        "journal": "Chemical Science",
+        "year": 2023,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02586a"
+      },
+      {
+        "title": "Review Article Thermo-photo catalysis: a whole greater than the sum of its parts Siyuan Fang and Yun Hang Hu This review provides an up-to-date understanding on emerging thermo-photo catalytic processes with an emphasis on the synergetic effects of thermal and photo energies.",
+        "authors": [],
+        "doi": "10.1039/D1CS00782C",
+        "journal": "",
+        "year": 2022,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00782c"
+      },
+      {
+        "title": "Review Article Metal-catalyzed regiodivergent organic reactions Carmen Nájera, Irina P. Beletskaya and Miguel Yus This review discusses metal-catalysed regiodivergent additions, allylic substitutions, CH-activation, cross-couplings and intra- or intermolecular cyclisations.",
+        "authors": [],
+        "doi": "10.1039/C8CS00872H",
+        "journal": "",
+        "year": 2019,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2019/cs/c8cs00872h"
+      },
+      {
+        "title": "Review Article Activation and catalytic transformation of methane under mild conditions Yu Tang, Yuting Li and Franklin (Feng) Tao In the last few decades, scientists have been motivated by promising production of chemicals from methane under mild conditions for low energy consumption and climate remediation; significant fundamental understanding on this topic has been achieved.",
+        "authors": [],
+        "doi": "10.1039/D1CS00783A",
+        "journal": "",
+        "year": 2021,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2022/cs/d1cs00783a"
+      },
+      {
+        "title": "Review Article Photo and earth-abundant metal dual catalysis in organic synthesis Guannan Li, Tongtong Li, Lifeng Luo, Yan Tan and Zhan Lu This review summarizes the latest research progress on photocatalytic reactions involving typical Sc, Ti, V, Cr, Mn, Fe, Co, Ni, and Cu metal catalysts, mainly focusing on the role of metals and light in the reaction process.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D5QO00102A",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2025/qo/d5qo00102a"
+      },
+      {
+        "title": "Review Article Advances in N-heterocyclic carbene organocatalysis from 2015 to 2024 Dan Ling, Yusong Ran, Fachang Yang, Xiaoqun Yang, Xingxing Wu, Shi-Chao Ren and Zhichao Jin The key progress in the field of N-heterocyclic carbene (NHC) organocatalysis during the period of 2015 to 2024 is systematically summarized and discussed in this review.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D5CS00600G",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2025/cs/d5cs00600g"
+      },
+      {
+        "title": "Perspective Plasma catalysis: what is needed to create synergy? Joran Van Turnhout, Kevin Rouwenhorst, Leon Lefferts and Annemie Bogaerts In this paper, we describe the critical limitations towards plasma–catalyst synergy and suggest possible solutions.",
+        "authors": [
+          "From the themed collection: EES Catalysis"
+        ],
+        "doi": "10.1039/D5EY00027K",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2025/ey/d5ey00027k"
+      },
+      {
+        "title": "Review Article Applications of metal–organic frameworks in heterogeneous supramolecular catalysis Jiewei Liu, Lianfen Chen, Hao Cui, Jianyong Zhang, Li Zhang and Cheng-Yong Su The contributions of MOFs to the field of heterogeneous supramolecular catalysis are comprehensively reviewed with regard to active sites, selectivity, as well as host–guest chemistry.",
+        "authors": [],
+        "doi": "10.1039/C4CS00094C",
+        "journal": "",
+        "year": 2014,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2014/cs/c4cs00094c"
+      },
+      {
+        "title": "Review Article Combining transition metal catalysis and organocatalysis – an update Zhenting Du and Zhihui Shao This review summarizes recent progress (early 2009–mid 2012) in the field of combined transition metal catalysis and organocatalysis.",
+        "authors": [],
+        "doi": "10.1039/C2CS35258C",
+        "journal": "",
+        "year": 2012,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2013/cs/c2cs35258c"
+      },
+      {
+        "title": "Review Article Asymmetric gold catalysis enabled by specially designed ligands Amol B. Gade, Urvashi and Nitin T. Patil This review is planned to provide a comprehensive overview of the progress made in the design and development of chiral ligands for asymmetric gold catalysis.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D4QO00057A",
+        "journal": "",
+        "year": 2024,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2024/qo/d4qo00057a"
+      },
+      {
+        "title": "Tutorial Review Intelligent catalysis: on-demand dynamic self-optimization via responsive feedback Linbo Jiang and Shichun Mu This review investigates intelligent self-optimization effects, responsive mechanisms and multimodal intelligent catalysis, associated challenges and solutions, aiming to promote on-demand applications in complex multi-scenario environments.",
+        "authors": [],
+        "doi": "10.1039/D5CS01292A",
+        "journal": "",
+        "year": 2026,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2026/cs/d5cs01292a"
+      },
+      {
+        "title": "Review Article Asymmetric heterogeneous catalysis using crystalline porous materials Teng Li, Yan-Ting Chen, Xiao-Bin Zhang, Rong-Rong Du, Lin-Na Ma and Ya-Qian Lan This review discusses the design and synthesis methods and asymmetric catalytic applications of chiral crystalline porous materials, focusing on asymmetric heterogeneous reactions and chiral control mechanisms.",
+        "authors": [],
+        "doi": "10.1039/D4CS00538D",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2025/cs/d4cs00538d"
+      },
+      {
+        "title": "Perspective Synergistic catalysis: A powerful synthetic strategy for new reaction development Anna E. Allen and David W. C. MacMillan Synergistic catalysis, the simultaneous activation of two reacting partners by discrete catalysts to enable new or elusive chemical transformations, is a valuable synthetic strategy that is growing in popularity. This review seeks to describe the new transformations that highlight the rapid onset of this powerful multi-catalysis concept.",
+        "authors": [
+          "From the themed collection: Celebrating 15 years of exceptional research in"
+        ],
+        "doi": "10.1039/C2SC00907B",
+        "journal": "Chemical Science",
+        "year": 2012,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2012/sc/c2sc00907b"
+      },
+      {
+        "title": "Paper There is no universal mechanism for the cleavage of RNA model compounds in the presence of metal ion catalysts Heidi Korhonen, Timo Koivusalo, Suvi Toivola and Satu Mikkola Metal ion complexes can be intracomplex general acid and/or base catalysts for the cleavage of RNA model compounds depending on the acidity of the aquo ligand and of the leaving group alcohol.",
+        "authors": [],
+        "doi": "10.1039/C3OB41554F",
+        "journal": "Org. Biomol. Chem.",
+        "year": 2013,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2013/ob/c3ob41554f"
+      },
+      {
+        "title": "Tutorial Review Cooperative photoredox catalysis Xianjun Lang, Jincai Zhao and Xiaodong Chen Cooperative photoredox catalysis bridges visible-light photoredox catalysis with other types of catalysis like transition-metal catalysis, biocatalysis or electrocatalysis for establishing demanding organic transformations.",
+        "authors": [],
+        "doi": "10.1039/C5CS00659G",
+        "journal": "",
+        "year": 2016,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2016/cs/c5cs00659g"
+      },
+      {
+        "title": "Review Article Cooperative triple catalysis for complex molecule construction and late-stage functionalization Vasudevan Dhayalan This review highlights recent advances in the development of triple catalysis methodology, including mechanistic information, catalyst design, green synthesis, and late-stage functionalization, and emphasizes the growing potential of triple catalytic systems in modern organic chemistry.",
+        "authors": [],
+        "doi": "10.1039/D5OB01659B",
+        "journal": "Org. Biomol. Chem.",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2026/ob/d5ob01659b"
+      },
+      {
+        "title": "Perspective Grand challenges for catalysis in the Science and Technology Roadmap on Catalysis for Europe: moving ahead for a sustainable future P. Lanzafame, S. Perathoner, G. Centi, S. Gross and E. J. M. Hensen This perspective discusses the general concepts that will guide future catalysis and related grand challenges based on the Science and Technology Roadmap on Catalysis for Europe prepared by the European Cluster on Catalysis.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/C7CY01067B",
+        "journal": "",
+        "year": 2017,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2017/cy/c7cy01067b"
+      },
+      {
+        "title": "Review Article Enantioselective synthesis enabled by visible light photocatalysis Bor-Cherng Hong This review summarizes recent developments in visible-light enantioselective photocatalysis reactions, which provide convenient and effective tools for asymmetric synthesis.",
+        "authors": [],
+        "doi": "10.1039/D0OB00759E",
+        "journal": "Org. Biomol. Chem.",
+        "year": 2020,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2020/ob/d0ob00759e"
+      },
+      {
+        "title": "Perspective Toward quantum science- and technology-enabled heterogeneous catalysis Hanggara Sudrajat and Sri Hartuti This perspective discusses how advances in quantum science and technology can be utilized to improve, design, and better understand heterogeneous catalysis.",
+        "authors": [],
+        "doi": "10.1039/D5TA08272B",
+        "journal": "J. Mater. Chem. A",
+        "year": 2026,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2026/ta/d5ta08272b"
+      },
+      {
+        "title": "Review Article The role of metal–organic porous frameworks in dual catalysis Kayhaneh Berijani and Ali Morsali Metal–organic frameworks (MOFs) are a valuable group of porous crystalline solids with inorganic and organic parts that can be used in dual catalysis.",
+        "authors": [
+          "From the themed collection:"
+        ],
+        "doi": "10.1039/D1QI00394A",
+        "journal": "",
+        "year": 2021,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2021/qi/d1qi00394a"
+      },
+      {
+        "title": "Paper Integration of catalytic capability and pH-responsive wettability in a V x O y -based dual-mesh system: towards solving the trade-off between the separation flow rate and degradation efficiency Ya'nan Liu, Ruixiang Qu, Xiangyu Li, Huajun Zhai, Shuaiheng Zhao, Yen Wei and Lin Feng A catalysis mesh and pH-responsive wettability mesh composite system has been applied for fast separation of oil/water mixtures and full degradation of water-soluble pollutants in situ .",
+        "authors": [],
+        "doi": "10.1039/D0TA11442A",
+        "journal": "J. Mater. Chem. A",
+        "year": 2021,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2021/ta/d0ta11442a"
+      },
+      {
+        "title": "Opinion Photothermal catalysis: a viewpoint from exergy Ruoyu Wang, Dong Liu, Qiang Li, Yimin Xuan, Hongguang Jin and Liejin Guo We shed light, using an exergy balance model, on limiting efficiency, underlying mechanisms, current status and prospective directions for photothermal catalysis, which particularly is not a simple summation of photo- and thermo-catalysis.",
+        "authors": [],
+        "doi": "10.1039/D5EE01854D",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://pubs.rsc.org/en/content/articlelanding/2025/ee/d5ee01854d"
+      }
+    ],
+    "query_url": "https://pubs.rsc.org/en/results/journals?Category=Journal&AllText=catalysis&IncludeReference=false&SelectJournal=false&DateRange=false&SelectDate=false&Type=Months&PriceCode=False&OpenAccess=false&PageSize=5"
+  },
+  "classification": "PASS"
+}

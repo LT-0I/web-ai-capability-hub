@@ -128,9 +128,12 @@ export function buildScieloExportUrl(args: ScieloExportArgs): string {
 }
 
 export function parseScieloResultCount(text: string): number {
-  const raw = /Resultados?\s*:\s*([\d.,]+)/i.exec(text || "")?.[1];
+  const body = String(text || "");
+  const raw =
+    /Resultados?\s*:\s*\d+\s*[-–]\s*\d+\s*(?:de|of)\s*([0-9]{1,3}(?:[ .,\u00a0][0-9]{3})+|[0-9]+)/i.exec(body)?.[1] ||
+    /Resultados?\s*:\s*([0-9]{1,3}(?:[ .,\u00a0][0-9]{3})+|[0-9]+)/i.exec(body)?.[1];
   if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SciELO result count node was not found", { probe: "div.filterTitle Resultados: N" });
-  return Number(raw.replace(/[.,](?=\d{3}\b)/g, "").replace(",", "."));
+  return Number(raw.replace(/[ .,\u00a0](?=\d{3}\b)/g, ""));
 }
 
 export function parseScieloItemsFromHtml(html: string): ScieloItem[] {

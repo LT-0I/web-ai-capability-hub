@@ -1,0 +1,19 @@
+{
+  "label": "launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-scielo",
+    "--cdp-port",
+    "9372",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:49:06.742Z",
+  "finished_at": "2026-05-27T07:49:07.209Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"profile\": \"research-scielo\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-scielo\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9372\",\n  \"cdpPort\": 9372,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 507294,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9372/devtools/page/E5CB6D6B0BB7A3171B9F27BCB12D9F1E\",\n      \"id\": \"E5CB6D6B0BB7A3171B9F27BCB12D9F1E\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9372/devtools/page/E5CB6D6B0BB7A3171B9F27BCB12D9F1E\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9372/devtools/browser/e285a224-0584-491e-ae06-ee22be19b369\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,87 @@
+{
+  "label": "filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:scielo:filter",
+    "--query",
+    "dengue",
+    "--lang",
+    "pt",
+    "--count",
+    "5",
+    "--profile",
+    "research-scielo",
+    "--cdp-port",
+    "9372",
+    "--json",
+    "--collection",
+    "scl"
+  ],
+  "started_at": "2026-05-27T07:49:19.817Z",
+  "finished_at": "2026-05-27T07:49:23.330Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 1136,\n  \"items\": [\n    {\n      \"title\": \"Genetic characterization of Aedes aegypti (Diptera: Culicidae) mosquitoes from Rio Grande do Sul, the southernmost state of Brazil, based on the mitochondrial COI gene\",\n      \"authors\": [],\n      \"doi\": \"10.1590/1806-9665-rbent-2025-0056\",\n      \"journal\": \"Brasileira de Entomologia Métricas do periódico Sobre o periódico SciELO Analytics Mar\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0085-56262026000100202&lang=pt\",\n      \"pid\": \"S0085-56262026000100202\",\n      \"collection\": \"scl\"\n    },\n    {\n      \"title\": \"Co-circulation of Plasmodium vivax and Arboviruses in the Brazil-French Guiana Border\",\n      \"authors\": [],\n      \"doi\": \"10.1590/0037-8682-0226-2025\",\n      \"journal\": \"da Sociedade Brasileira de Medicina Tropical Métricas do periódico Sobre o periódico SciELO Analytics\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0037-86822026000101402&lang=pt\",\n      \"pid\": \"S0037-86822026000101402\",\n      \"collection\": \"scl\"\n    },\n    {\n      \"title\": \"Brazil is already experiencing the brutal impacts of climate change\",\n      \"authors\": [],\n      \"doi\": \"10.11606/s1518-8787.2026060007009\",\n      \"journal\": \"de Saúde Pública Métricas do periódico Sobre o periódico SciELO Analytics\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0034-89102026000101401&lang=pt\",\n      \"pid\": \"S0034-89102026000101401\",\n      \"collection\": \"scl\"\n    },\n    {\n      \"title\": \"Fulminant hepatitis secondary to dengue in pediatric patients: a series of four cases\",\n      \"authors\": [],\n      \"doi\": \"10.1590/s1678-9946202668015\",\n      \"journal\": \"do Instituto de Medicina Tropical de São Paulo Métricas do periódico Sobre o periódico SciELO Analytics\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0036-46652026000100207&lang=pt\",\n      \"pid\": \"S0036-46652026000100207\",\n      \"collection\": \"scl\"\n    },\n    {\n      \"title\": \"The Forefront of Dengue Control\",\n      \"authors\": [],\n      \"doi\": \"10.1016/j.bjid.2026.104611\",\n      \"journal\": \"of Infectious Diseases Métricas do periódico Sobre o periódico SciELO Analytics\",\n      \"year\": 2026,\n      \"url\": \"http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1413-86702026000100201&lang=pt\",\n      \"pid\": \"S1413-86702026000100201\",\n      \"collection\": \"scl\"\n    }\n  ],\n  \"refined_url\": \"https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl\",\n  \"confirm_url\": \"https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl\",\n  \"confirm_title\": \"Pesquisa | SciELO\",\n  \"selected_filters\": true\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 1136,
+    "items": [
+      {
+        "title": "Genetic characterization of Aedes aegypti (Diptera: Culicidae) mosquitoes from Rio Grande do Sul, the southernmost state of Brazil, based on the mitochondrial COI gene",
+        "authors": [],
+        "doi": "10.1590/1806-9665-rbent-2025-0056",
+        "journal": "Brasileira de Entomologia Métricas do periódico Sobre o periódico SciELO Analytics Mar",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0085-56262026000100202&lang=pt",
+        "pid": "S0085-56262026000100202",
+        "collection": "scl"
+      },
+      {
+        "title": "Co-circulation of Plasmodium vivax and Arboviruses in the Brazil-French Guiana Border",
+        "authors": [],
+        "doi": "10.1590/0037-8682-0226-2025",
+        "journal": "da Sociedade Brasileira de Medicina Tropical Métricas do periódico Sobre o periódico SciELO Analytics",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0037-86822026000101402&lang=pt",
+        "pid": "S0037-86822026000101402",
+        "collection": "scl"
+      },
+      {
+        "title": "Brazil is already experiencing the brutal impacts of climate change",
+        "authors": [],
+        "doi": "10.11606/s1518-8787.2026060007009",
+        "journal": "de Saúde Pública Métricas do periódico Sobre o periódico SciELO Analytics",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0034-89102026000101401&lang=pt",
+        "pid": "S0034-89102026000101401",
+        "collection": "scl"
+      },
+      {
+        "title": "Fulminant hepatitis secondary to dengue in pediatric patients: a series of four cases",
+        "authors": [],
+        "doi": "10.1590/s1678-9946202668015",
+        "journal": "do Instituto de Medicina Tropical de São Paulo Métricas do periódico Sobre o periódico SciELO Analytics",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0036-46652026000100207&lang=pt",
+        "pid": "S0036-46652026000100207",
+        "collection": "scl"
+      },
+      {
+        "title": "The Forefront of Dengue Control",
+        "authors": [],
+        "doi": "10.1016/j.bjid.2026.104611",
+        "journal": "of Infectious Diseases Métricas do periódico Sobre o periódico SciELO Analytics",
+        "year": 2026,
+        "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1413-86702026000100201&lang=pt",
+        "pid": "S1413-86702026000100201",
+        "collection": "scl"
+      }
+    ],
+    "refined_url": "https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl",
+    "confirm_url": "https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=site&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl",
+    "confirm_title": "Pesquisa | SciELO",
+    "selected_filters": true
+  },
+  "classification": "PASS"
+}

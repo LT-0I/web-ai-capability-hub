@@ -1,0 +1,41 @@
+{
+  "label": "export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:rsc:export",
+    "--doi",
+    "10.1039/D3CS00379E",
+    "--format",
+    "--article-url",
+    "https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e",
+    "ris",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/rsc",
+    "--confirmed",
+    "--profile",
+    "research-rsc",
+    "--cdp-port",
+    "9370",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:43:23.069Z",
+  "finished_at": "2026-05-27T07:43:32.937Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/rsc/RSC.ris\",\n  \"bytes\": 1526,\n  \"sha256\": \"f09a65bd677d6c41ad931519493c2804ff6090bd5a227f17b51ef47754090fcf\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1039/D3CS00379E\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/rsc/RSC.ris",
+    "bytes": 1526,
+    "sha256": "f09a65bd677d6c41ad931519493c2804ff6090bd5a227f17b51ef47754090fcf",
+    "format": "ris",
+    "doi": "10.1039/D3CS00379E"
+  },
+  "classification": "PASS",
+  "source_record": {
+    "doi": "10.1039/D3CS00379E",
+    "article_url": "https://pubs.rsc.org/en/content/articlelanding/2024/cs/d3cs00379e",
+    "title": "Review Article Catalytic asymmetric synthesis of 1,2-diamines Francisco Foubelo, Carmen Nájera, M a Gracia Retamosa, José M. Sansano and Miguel Yus The asymmetric catalytic synthesis of 1,2-diamines has received considerable interest, due to their presence in biologically active compounds and their applications for the development of synthetic building blocks, chiral ligands and organocatalysts."
+  }
+}

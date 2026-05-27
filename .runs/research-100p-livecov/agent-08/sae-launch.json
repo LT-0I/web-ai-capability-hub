@@ -1,0 +1,19 @@
+{
+  "label": "launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-sae",
+    "--cdp-port",
+    "9371",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:45:28.565Z",
+  "finished_at": "2026-05-27T07:45:28.726Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"profile\": \"research-sae\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-sae\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9371\",\n  \"cdpPort\": 9371,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 479543,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9371/devtools/page/DBC588966CB27CAE81238CD5B659EACC\",\n      \"id\": \"DBC588966CB27CAE81238CD5B659EACC\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9371/devtools/page/DBC588966CB27CAE81238CD5B659EACC\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9371/devtools/page/C38FAC93378EB4B6BFB5E12CC241A7CD\",\n      \"id\": \"C38FAC93378EB4B6BFB5E12CC241A7CD\",\n      \"parentId\": \"DBC588966CB27CAE81238CD5B659EACC\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9371/devtools/page/C38FAC93378EB4B6BFB5E12CC241A7CD\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9371/devtools/browser/83e09a66-79a7-4951-8ca9-7e97616627e5\"\n}\n",
+  "stderr": ""
+}

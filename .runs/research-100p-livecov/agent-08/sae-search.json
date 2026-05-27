@@ -1,0 +1,400 @@
+{
+  "label": "search",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sae:search",
+    "--query",
+    "brake",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-sae",
+    "--cdp-port",
+    "9371",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:45:28.728Z",
+  "finished_at": "2026-05-27T07:45:55.449Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 40378,\n  \"items\": [\n    {\n      \"title\": \"Brake Adjustment Limit for Air Brake Actuators\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Effectiveness Marking for Brake Blocks - Truck and Bus\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Information on Brake -By-Wire (BBW) Brake Control Systems\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2024,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Rivets for Brake Linings and Bolts for Brake Blocks - Truck and Bus\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2013,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Hardness of Brake Lining\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2015,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Block Chamfer\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2011,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Vacuum Brake Hose\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2014,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Aircraft Skin Pressures and Temperatures\",\n      \"authors\": [\n        \"G-12M Methods Committee\"\n      ],\n      \"publication\": \"Information Report\",\n      \"year\": null,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Test Procedures for Shear Strength of Automotive Brake Pads and Brake Lining Assemblies\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2026,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake -Stroke Indicator Design Guideline for Cam or Disc Air- Brake Actuators\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2023,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Parking Brake Control Identification - Vehicles with Hydraulic Brake Systems and Automatic Transmissions\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2020,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Information on Parking Brake Systems\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2025,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Motor Vehicle Brake Fluid\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2025,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Gogan Hardness of Brake Lining\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2017,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Unique Wheel and Brake Designs\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Snowmobile Brake Control Systems\",\n      \"authors\": [\n        \"Snowmobile Technical Committee\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Aircraft Brake Temperature Monitoring\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"AUTOMOTIVE BRAKE DEFINITIONS AND NOMENCLATURE\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 1988,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Antilock Brake System Review\",\n      \"authors\": [\n        \"Vehicle Performance Steering Committee\"\n      ],\n      \"publication\": \"Information Report\",\n      \"year\": 2014,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Carbon Brake Contamination and Oxidation\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2016,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Snowmobile Service Brake System\",\n      \"authors\": [\n        \"Snowmobile Technical Committee\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Desorption of Brake Friction Materials\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2023,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Block Effectiveness Rating\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Determination of Brake Fluid Temperature\",\n      \"authors\": [\n        \"Road Test Procedures Standards Committee\"\n      ],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2013,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"European Brake Fluid Technology\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2006,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"AS2950 Spindle for Brake Lock\",\n      \"authors\": [\n        \"Engine and Airframe Technical Standards Committee (TSC)\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 1952,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"AS6602 Spindle for Brake Lock\",\n      \"authors\": [\n        \"Engine and Airframe Technical Standards Committee (TSC)\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 1956,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Low-preload Deflection Measurement for Brake Pads, Noise Shims, and Brake Pad Assemblies\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2016,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Service Maintenance of SAE J1703 and SAE J1704 Brake Fluids in Motor Vehicle Brake Systems\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Lining Quality Test Procedure\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2026,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Shelf Storage of Hydraulic Brake Components\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2012,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Air Brake Valve - Performance Requirements\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2020,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Displacement of Pneumatic Service Brake Actuators\",\n      \"authors\": [\n        \"MTC4, Forestry and Logging Equipment\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 1988,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Drum Qualification Recommended Practice\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2022,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Test Code--Inertia Dynamometer\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2002,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Nonmetallic Air Brake System Tubing\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2012,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Insulator Damping Measurement Procedure\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2024,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake System Test Procedure - Snowmobiles\",\n      \"authors\": [\n        \"Snowmobile Technical Committee\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Low Water Tolerant Brake Fluids\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2021,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Systems, Wheel, Military Aircraft\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2013,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Automotive Hydraulic Brake Tube Joints\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2011,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Air Brake Valves Test Procedure\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2020,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Disc and Drum Thermocouple Installation\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2009,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Braking System Dynamics\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2016,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Information on Electric Brakes\",\n      \"authors\": [],\n      \"publication\": \"Information Report\",\n      \"year\": 2019,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Automatic Braking Systems\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2016,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Braking Performance - Rollers\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2013,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"BRAKING SYSTEM TEST PROCEDURES AND BRAKING PERFORMANCE CRITERIA FOR AGRICULTURAL TRACTORS\",\n      \"authors\": [\n        \"Agricultural Tractor Standards Committee (ATSC)\"\n      ],\n      \"publication\": \"Technical Standard\",\n      \"year\": 1991,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Brake Dynamometer Squeal Noise Test Procedure for Commercial Vehicles with Air Brakes\",\n      \"authors\": [],\n      \"publication\": \"Recommended Practice\",\n      \"year\": 2023,\n      \"doi\": \"\"\n    },\n    {\n      \"title\": \"Metric Nonmetallic Air Brake System Tubing1\",\n      \"authors\": [],\n      \"publication\": \"Technical Standard\",\n      \"year\": 2013,\n      \"doi\": \"\"\n    }\n  ],\n  \"query_url\": \"https://saemobilus.sae.org/search#q=brake\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 40378,
+    "items": [
+      {
+        "title": "Brake Adjustment Limit for Air Brake Actuators",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2022,
+        "doi": ""
+      },
+      {
+        "title": "Brake Effectiveness Marking for Brake Blocks - Truck and Bus",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Information on Brake -By-Wire (BBW) Brake Control Systems",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2024,
+        "doi": ""
+      },
+      {
+        "title": "Rivets for Brake Linings and Bolts for Brake Blocks - Truck and Bus",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2013,
+        "doi": ""
+      },
+      {
+        "title": "Hardness of Brake Lining",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2015,
+        "doi": ""
+      },
+      {
+        "title": "Brake Block Chamfer",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2011,
+        "doi": ""
+      },
+      {
+        "title": "Vacuum Brake Hose",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2014,
+        "doi": ""
+      },
+      {
+        "title": "Aircraft Skin Pressures and Temperatures",
+        "authors": [
+          "G-12M Methods Committee"
+        ],
+        "publication": "Information Report",
+        "year": null,
+        "doi": ""
+      },
+      {
+        "title": "Test Procedures for Shear Strength of Automotive Brake Pads and Brake Lining Assemblies",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2026,
+        "doi": ""
+      },
+      {
+        "title": "Brake -Stroke Indicator Design Guideline for Cam or Disc Air- Brake Actuators",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2023,
+        "doi": ""
+      },
+      {
+        "title": "Parking Brake Control Identification - Vehicles with Hydraulic Brake Systems and Automatic Transmissions",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2020,
+        "doi": ""
+      },
+      {
+        "title": "Information on Parking Brake Systems",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2025,
+        "doi": ""
+      },
+      {
+        "title": "Motor Vehicle Brake Fluid",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2025,
+        "doi": ""
+      },
+      {
+        "title": "Gogan Hardness of Brake Lining",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2017,
+        "doi": ""
+      },
+      {
+        "title": "Unique Wheel and Brake Designs",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2022,
+        "doi": ""
+      },
+      {
+        "title": "Snowmobile Brake Control Systems",
+        "authors": [
+          "Snowmobile Technical Committee"
+        ],
+        "publication": "Technical Standard",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Aircraft Brake Temperature Monitoring",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "AUTOMOTIVE BRAKE DEFINITIONS AND NOMENCLATURE",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 1988,
+        "doi": ""
+      },
+      {
+        "title": "Antilock Brake System Review",
+        "authors": [
+          "Vehicle Performance Steering Committee"
+        ],
+        "publication": "Information Report",
+        "year": 2014,
+        "doi": ""
+      },
+      {
+        "title": "Carbon Brake Contamination and Oxidation",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2016,
+        "doi": ""
+      },
+      {
+        "title": "Snowmobile Service Brake System",
+        "authors": [
+          "Snowmobile Technical Committee"
+        ],
+        "publication": "Technical Standard",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Desorption of Brake Friction Materials",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2023,
+        "doi": ""
+      },
+      {
+        "title": "Brake Block Effectiveness Rating",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Determination of Brake Fluid Temperature",
+        "authors": [
+          "Road Test Procedures Standards Committee"
+        ],
+        "publication": "Recommended Practice",
+        "year": 2013,
+        "doi": ""
+      },
+      {
+        "title": "European Brake Fluid Technology",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2006,
+        "doi": ""
+      },
+      {
+        "title": "AS2950 Spindle for Brake Lock",
+        "authors": [
+          "Engine and Airframe Technical Standards Committee (TSC)"
+        ],
+        "publication": "Technical Standard",
+        "year": 1952,
+        "doi": ""
+      },
+      {
+        "title": "AS6602 Spindle for Brake Lock",
+        "authors": [
+          "Engine and Airframe Technical Standards Committee (TSC)"
+        ],
+        "publication": "Technical Standard",
+        "year": 1956,
+        "doi": ""
+      },
+      {
+        "title": "Low-preload Deflection Measurement for Brake Pads, Noise Shims, and Brake Pad Assemblies",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2016,
+        "doi": ""
+      },
+      {
+        "title": "Service Maintenance of SAE J1703 and SAE J1704 Brake Fluids in Motor Vehicle Brake Systems",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Brake Lining Quality Test Procedure",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2026,
+        "doi": ""
+      },
+      {
+        "title": "Shelf Storage of Hydraulic Brake Components",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2012,
+        "doi": ""
+      },
+      {
+        "title": "Air Brake Valve - Performance Requirements",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2020,
+        "doi": ""
+      },
+      {
+        "title": "Displacement of Pneumatic Service Brake Actuators",
+        "authors": [
+          "MTC4, Forestry and Logging Equipment"
+        ],
+        "publication": "Technical Standard",
+        "year": 1988,
+        "doi": ""
+      },
+      {
+        "title": "Brake Drum Qualification Recommended Practice",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2022,
+        "doi": ""
+      },
+      {
+        "title": "Brake Test Code--Inertia Dynamometer",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2002,
+        "doi": ""
+      },
+      {
+        "title": "Nonmetallic Air Brake System Tubing",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2012,
+        "doi": ""
+      },
+      {
+        "title": "Brake Insulator Damping Measurement Procedure",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2024,
+        "doi": ""
+      },
+      {
+        "title": "Brake System Test Procedure - Snowmobiles",
+        "authors": [
+          "Snowmobile Technical Committee"
+        ],
+        "publication": "Technical Standard",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Low Water Tolerant Brake Fluids",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2021,
+        "doi": ""
+      },
+      {
+        "title": "Brake Systems, Wheel, Military Aircraft",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2013,
+        "doi": ""
+      },
+      {
+        "title": "Automotive Hydraulic Brake Tube Joints",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2011,
+        "doi": ""
+      },
+      {
+        "title": "Air Brake Valves Test Procedure",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2020,
+        "doi": ""
+      },
+      {
+        "title": "Brake Disc and Drum Thermocouple Installation",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2009,
+        "doi": ""
+      },
+      {
+        "title": "Braking System Dynamics",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2016,
+        "doi": ""
+      },
+      {
+        "title": "Information on Electric Brakes",
+        "authors": [],
+        "publication": "Information Report",
+        "year": 2019,
+        "doi": ""
+      },
+      {
+        "title": "Automatic Braking Systems",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2016,
+        "doi": ""
+      },
+      {
+        "title": "Braking Performance - Rollers",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2013,
+        "doi": ""
+      },
+      {
+        "title": "BRAKING SYSTEM TEST PROCEDURES AND BRAKING PERFORMANCE CRITERIA FOR AGRICULTURAL TRACTORS",
+        "authors": [
+          "Agricultural Tractor Standards Committee (ATSC)"
+        ],
+        "publication": "Technical Standard",
+        "year": 1991,
+        "doi": ""
+      },
+      {
+        "title": "Brake Dynamometer Squeal Noise Test Procedure for Commercial Vehicles with Air Brakes",
+        "authors": [],
+        "publication": "Recommended Practice",
+        "year": 2023,
+        "doi": ""
+      },
+      {
+        "title": "Metric Nonmetallic Air Brake System Tubing1",
+        "authors": [],
+        "publication": "Technical Standard",
+        "year": 2013,
+        "doi": ""
+      }
+    ],
+    "query_url": "https://saemobilus.sae.org/search#q=brake"
+  },
+  "classification": "PASS"
+}

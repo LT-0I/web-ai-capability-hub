@@ -1,0 +1,309 @@
+{
+  "label": "search",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:sciencedirect:search",
+    "--query",
+    "graphene",
+    "--profile",
+    "research-sciencedirect",
+    "--cdp-port",
+    "9373",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:49:59.007Z",
+  "finished_at": "2026-05-27T07:50:09.466Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"result_count\": 376428,\n  \"items\": [\n    {\n      \"title\": \"From classical hindered sedimentation to network compression: Regulating the stability of high-concentration graphene suspensions via zeta potential\",\n      \"authors\": [\n        \"1 1 Research article Full text access  Colloids\",\n        \"Surfaces A: Physicochemical\",\n        \"Engineering Aspects 20\"\n      ],\n      \"publication\": \"1 1 Research article Full text access  Colloids and Surfaces A: Physicochemical and Engineering Aspects\",\n      \"year\": 2026,\n      \"pii\": \"092777572601085X\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Ultra-clean graphene for transmission electron microscopy by direct polymer-free adhesion method\",\n      \"authors\": [\n        \"2 2 Research article Open access  Nano Materials Science Available online 30\"\n      ],\n      \"publication\": \"2 2 Research article Open access  Nano Materials Science Available online\",\n      \"year\": 2026,\n      \"pii\": \"2589965126000474\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of graphene loading on the multifunctionality of additively manufactured polymer-derived ceramics\",\n      \"authors\": [\n        \"3 3 Research article Open access  Composites Part C: Open Access\"\n      ],\n      \"publication\": \"3 3 Research article Open access  Composites Part C: Open Access\",\n      \"year\": 2026,\n      \"pii\": \"2666682026000320\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Applications of graphene in energy storage devices: From fundamental research to engineering practice\",\n      \"authors\": [\n        \"4 4 Research article Full text access  Applied Energy 1\"\n      ],\n      \"publication\": \"4 4 Research article Full text access  Applied Energy\",\n      \"year\": 2026,\n      \"pii\": \"0306261925019737\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Electrochemically exfoliated graphene as a functional additive in ethylene-vinyl acetate (EVA) composites: Mechanical performance and preliminary flame-behavior evaluation\",\n      \"authors\": [\n        \"5 5 Research article Open access  Materials Today Communications\"\n      ],\n      \"publication\": \"5 5 Research article Open access  Materials Today Communications\",\n      \"year\": 2026,\n      \"pii\": \"235249282600704X\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Laser in-situ self-repairing of graphene for long-term protection of metals\",\n      \"authors\": [\n        \"6 6 Research article Full text access  Surfaces\",\n        \"Interfaces Available online 22\"\n      ],\n      \"publication\": \"6 6 Research article Full text access  Surfaces and Interfaces Available online\",\n      \"year\": 2026,\n      \"pii\": \"2468023026012265\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Hybrid synthesis of MoS 2/ graphene heterostructures for high performance supercapacitor electrodes\",\n      \"authors\": [\n        \"7 7 Research article Full text access  Current Applied Physics\"\n      ],\n      \"publication\": \"7 7 Research article Full text access  Current Applied Physics\",\n      \"year\": 2026,\n      \"pii\": \"1567173926000829\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Self-sensing properties of UHPC/UHPFRC including graphene\",\n      \"authors\": [\n        \"8 8 Research article Full text access  Journal of Building Engineering 15\"\n      ],\n      \"publication\": \"8 8 Research article Full text access  Journal of Building Engineering\",\n      \"year\": 2026,\n      \"pii\": \"2352710226010818\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Mechanical behaviors of Cu/ graphene nanolayered composites with coherent and incoherent twin boundaries: A comparative study by molecular dynamics\",\n      \"authors\": [\n        \"9 9 Research article Full text access  Mechanics of Materials Available online 25\"\n      ],\n      \"publication\": \"9 9 Research article Full text access  Mechanics of Materials Available online\",\n      \"year\": 2026,\n      \"pii\": \"0167663626001432\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Metal-free growth of highly oriented bilayer graphene on sapphire\",\n      \"authors\": [\n        \"10 10 Research article Full text access  Thin Solid Films 1\"\n      ],\n      \"publication\": \"10 10 Research article Full text access  Thin Solid Films\",\n      \"year\": 2026,\n      \"pii\": \"0040609026000866\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Effect of process parameters on kinetics and characteristics of graphene produced by electrochemical exfoliation of graphite foil\",\n      \"authors\": [\n        \"11 11 Research article Full text access  Nano-Structures & Nano-Objects\"\n      ],\n      \"publication\": \"11 11 Research article Full text access  Nano-Structures & Nano-Objects\",\n      \"year\": 2026,\n      \"pii\": \"2352507X26000740\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Arc plasma synthesis of sulfur-doped graphene flakes and impact of the doping concentration on oxygen reduction reaction\",\n      \"authors\": [\n        \"12 12 Research article Full text access  Diamond\",\n        \"Related Materials Available online 26\"\n      ],\n      \"publication\": \"12 12 Research article Full text access  Diamond and Related Materials Available online\",\n      \"year\": 2026,\n      \"pii\": \"0925963526004942\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Effects of graphene supported transition metals on dehydrogenation properties of MgH 2: A first-principles study\",\n      \"authors\": [\n        \"13 13 Research article Full text access  International Journal of Hydrogen Energy 15\"\n      ],\n      \"publication\": \"13 13 Research article Full text access  International Journal of Hydrogen Energy\",\n      \"year\": 2026,\n      \"pii\": \"0360319926022883\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Graphene in medicine a multifunctional nanomaterial for biomedical innovation\",\n      \"authors\": [\n        \"14 14 Review article Full text access  Inorganic Chemistry Communications\"\n      ],\n      \"publication\": \"14 14 Review article Full text access  Inorganic Chemistry Communications\",\n      \"year\": 2026,\n      \"pii\": \"1387700326006659\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Dual-doped graphene -based electrode materials for energy devices\",\n      \"authors\": [\n        \"15 15 Review article Open access  Carbon\"\n      ],\n      \"publication\": \"15 15 Review article Open access  Carbon\",\n      \"year\": 2026,\n      \"pii\": \"0008622326004434\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Wetting transparency of graphene across length scales: Macroscopic transparency but nanoscopic mirror-like behavior\",\n      \"authors\": [\n        \"16 16 Research article Open access  Chem Available online 10\"\n      ],\n      \"publication\": \"16 16 Research article Open access  Chem Available online\",\n      \"year\": 2026,\n      \"pii\": \"2451929426000896\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of KOH, NaOH and temperature on annoni grass ash-derived few layer and sponge-like graphene studied by Raman spectroscopy\",\n      \"authors\": [\n        \"17 17 Research article Full text access  Diamond\",\n        \"Related Materials\"\n      ],\n      \"publication\": \"17 17 Research article Full text access  Diamond and Related Materials\",\n      \"year\": 2026,\n      \"pii\": \"0925963526003912\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Influence of high graphene content on the thermal and microstructural properties of Cu- Graphene composites for thermal management\",\n      \"authors\": [\n        \"18 18 Research article Open access  Next Materials\"\n      ],\n      \"publication\": \"18 18 Research article Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826004181\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Fenton-like biotransformation of graphene by Pseudomonas sp. W4: Structural alteration, metabolites and genetic determinants\",\n      \"authors\": [\n        \"19 19 Research article Full text access  Environmental Pollution 15\"\n      ],\n      \"publication\": \"19 19 Research article Full text access  Environmental Pollution\",\n      \"year\": 2026,\n      \"pii\": \"0269749126006809\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Recent Research Progress on Graphene -Based Electromagnetic Shielding Materials\",\n      \"authors\": [\n        \"20 20 Review article Full text access  Carbon Available online 15\"\n      ],\n      \"publication\": \"20 20 Review article Full text access  Carbon Available online\",\n      \"year\": 2026,\n      \"pii\": \"0008622326004562\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Influence of laser-induced white emission on the resistivity of graphene foam\",\n      \"authors\": [\n        \"21 21 Research article Full text access  Chemical Physics Letters\"\n      ],\n      \"publication\": \"21 21 Research article Full text access  Chemical Physics Letters\",\n      \"year\": 2026,\n      \"pii\": \"0009261426002150\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Graphene and graphite contrast UV-induced aging: A microstructural investigation\",\n      \"authors\": [\n        \"22 22 Short communication Open access  Next Materials\"\n      ],\n      \"publication\": \"22 22 Short communication Open access  Next Materials\",\n      \"year\": 2026,\n      \"pii\": \"2949822826004259\",\n      \"access\": \"Open access\",\n      \"article_type\": \"\"\n    },\n    {\n      \"title\": \"Direct heat-free synthesis of graphene on copper for high-ampacity interconnects\",\n      \"authors\": [\n        \"23 23 Research article Full text access  Materials Today Physics\"\n      ],\n      \"publication\": \"23 23 Research article Full text access  Materials Today Physics\",\n      \"year\": 2026,\n      \"pii\": \"2542529326001070\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    },\n    {\n      \"title\": \"Graphene goes dental: Unveiling a new era in implants, regeneration, and therapeutics\",\n      \"authors\": [\n        \"24 24 Review article Open access  Next Nanotechnology\"\n      ],\n      \"publication\": \"24 24 Review article Open access  Next Nanotechnology\",\n      \"year\": 2026,\n      \"pii\": \"2949829526001300\",\n      \"access\": \"Open access\",\n      \"article_type\": \"Review article\"\n    },\n    {\n      \"title\": \"Synergistic Effects of In-Situ Heat Treatment and Graphene Reinforcement on the Thermo-Mechanical Response of AlSi10Mg/ Graphene Composites: Johnson–Cook Modeling and Artificial Neural Network prediction\",\n      \"authors\": [\n        \"25 25 Research article Full text access  Journal of Alloys\",\n        \"Compounds Available online 24\"\n      ],\n      \"publication\": \"25 25 Research article Full text access  Journal of Alloys and Compounds Available online\",\n      \"year\": 2026,\n      \"pii\": \"0925838826028951\",\n      \"access\": \"Full text access\",\n      \"article_type\": \"Research article\"\n    }\n  ],\n  \"query_url\": \"https://www.sciencedirect.com/search?qs=graphene\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 376428,
+    "items": [
+      {
+        "title": "From classical hindered sedimentation to network compression: Regulating the stability of high-concentration graphene suspensions via zeta potential",
+        "authors": [
+          "1 1 Research article Full text access  Colloids",
+          "Surfaces A: Physicochemical",
+          "Engineering Aspects 20"
+        ],
+        "publication": "1 1 Research article Full text access  Colloids and Surfaces A: Physicochemical and Engineering Aspects",
+        "year": 2026,
+        "pii": "092777572601085X",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Ultra-clean graphene for transmission electron microscopy by direct polymer-free adhesion method",
+        "authors": [
+          "2 2 Research article Open access  Nano Materials Science Available online 30"
+        ],
+        "publication": "2 2 Research article Open access  Nano Materials Science Available online",
+        "year": 2026,
+        "pii": "2589965126000474",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of graphene loading on the multifunctionality of additively manufactured polymer-derived ceramics",
+        "authors": [
+          "3 3 Research article Open access  Composites Part C: Open Access"
+        ],
+        "publication": "3 3 Research article Open access  Composites Part C: Open Access",
+        "year": 2026,
+        "pii": "2666682026000320",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Applications of graphene in energy storage devices: From fundamental research to engineering practice",
+        "authors": [
+          "4 4 Research article Full text access  Applied Energy 1"
+        ],
+        "publication": "4 4 Research article Full text access  Applied Energy",
+        "year": 2026,
+        "pii": "0306261925019737",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Electrochemically exfoliated graphene as a functional additive in ethylene-vinyl acetate (EVA) composites: Mechanical performance and preliminary flame-behavior evaluation",
+        "authors": [
+          "5 5 Research article Open access  Materials Today Communications"
+        ],
+        "publication": "5 5 Research article Open access  Materials Today Communications",
+        "year": 2026,
+        "pii": "235249282600704X",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Laser in-situ self-repairing of graphene for long-term protection of metals",
+        "authors": [
+          "6 6 Research article Full text access  Surfaces",
+          "Interfaces Available online 22"
+        ],
+        "publication": "6 6 Research article Full text access  Surfaces and Interfaces Available online",
+        "year": 2026,
+        "pii": "2468023026012265",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Hybrid synthesis of MoS 2/ graphene heterostructures for high performance supercapacitor electrodes",
+        "authors": [
+          "7 7 Research article Full text access  Current Applied Physics"
+        ],
+        "publication": "7 7 Research article Full text access  Current Applied Physics",
+        "year": 2026,
+        "pii": "1567173926000829",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Self-sensing properties of UHPC/UHPFRC including graphene",
+        "authors": [
+          "8 8 Research article Full text access  Journal of Building Engineering 15"
+        ],
+        "publication": "8 8 Research article Full text access  Journal of Building Engineering",
+        "year": 2026,
+        "pii": "2352710226010818",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Mechanical behaviors of Cu/ graphene nanolayered composites with coherent and incoherent twin boundaries: A comparative study by molecular dynamics",
+        "authors": [
+          "9 9 Research article Full text access  Mechanics of Materials Available online 25"
+        ],
+        "publication": "9 9 Research article Full text access  Mechanics of Materials Available online",
+        "year": 2026,
+        "pii": "0167663626001432",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Metal-free growth of highly oriented bilayer graphene on sapphire",
+        "authors": [
+          "10 10 Research article Full text access  Thin Solid Films 1"
+        ],
+        "publication": "10 10 Research article Full text access  Thin Solid Films",
+        "year": 2026,
+        "pii": "0040609026000866",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Effect of process parameters on kinetics and characteristics of graphene produced by electrochemical exfoliation of graphite foil",
+        "authors": [
+          "11 11 Research article Full text access  Nano-Structures & Nano-Objects"
+        ],
+        "publication": "11 11 Research article Full text access  Nano-Structures & Nano-Objects",
+        "year": 2026,
+        "pii": "2352507X26000740",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Arc plasma synthesis of sulfur-doped graphene flakes and impact of the doping concentration on oxygen reduction reaction",
+        "authors": [
+          "12 12 Research article Full text access  Diamond",
+          "Related Materials Available online 26"
+        ],
+        "publication": "12 12 Research article Full text access  Diamond and Related Materials Available online",
+        "year": 2026,
+        "pii": "0925963526004942",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Effects of graphene supported transition metals on dehydrogenation properties of MgH 2: A first-principles study",
+        "authors": [
+          "13 13 Research article Full text access  International Journal of Hydrogen Energy 15"
+        ],
+        "publication": "13 13 Research article Full text access  International Journal of Hydrogen Energy",
+        "year": 2026,
+        "pii": "0360319926022883",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Graphene in medicine a multifunctional nanomaterial for biomedical innovation",
+        "authors": [
+          "14 14 Review article Full text access  Inorganic Chemistry Communications"
+        ],
+        "publication": "14 14 Review article Full text access  Inorganic Chemistry Communications",
+        "year": 2026,
+        "pii": "1387700326006659",
+        "access": "Full text access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Dual-doped graphene -based electrode materials for energy devices",
+        "authors": [
+          "15 15 Review article Open access  Carbon"
+        ],
+        "publication": "15 15 Review article Open access  Carbon",
+        "year": 2026,
+        "pii": "0008622326004434",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Wetting transparency of graphene across length scales: Macroscopic transparency but nanoscopic mirror-like behavior",
+        "authors": [
+          "16 16 Research article Open access  Chem Available online 10"
+        ],
+        "publication": "16 16 Research article Open access  Chem Available online",
+        "year": 2026,
+        "pii": "2451929426000896",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of KOH, NaOH and temperature on annoni grass ash-derived few layer and sponge-like graphene studied by Raman spectroscopy",
+        "authors": [
+          "17 17 Research article Full text access  Diamond",
+          "Related Materials"
+        ],
+        "publication": "17 17 Research article Full text access  Diamond and Related Materials",
+        "year": 2026,
+        "pii": "0925963526003912",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Influence of high graphene content on the thermal and microstructural properties of Cu- Graphene composites for thermal management",
+        "authors": [
+          "18 18 Research article Open access  Next Materials"
+        ],
+        "publication": "18 18 Research article Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826004181",
+        "access": "Open access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Fenton-like biotransformation of graphene by Pseudomonas sp. W4: Structural alteration, metabolites and genetic determinants",
+        "authors": [
+          "19 19 Research article Full text access  Environmental Pollution 15"
+        ],
+        "publication": "19 19 Research article Full text access  Environmental Pollution",
+        "year": 2026,
+        "pii": "0269749126006809",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Recent Research Progress on Graphene -Based Electromagnetic Shielding Materials",
+        "authors": [
+          "20 20 Review article Full text access  Carbon Available online 15"
+        ],
+        "publication": "20 20 Review article Full text access  Carbon Available online",
+        "year": 2026,
+        "pii": "0008622326004562",
+        "access": "Full text access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Influence of laser-induced white emission on the resistivity of graphene foam",
+        "authors": [
+          "21 21 Research article Full text access  Chemical Physics Letters"
+        ],
+        "publication": "21 21 Research article Full text access  Chemical Physics Letters",
+        "year": 2026,
+        "pii": "0009261426002150",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Graphene and graphite contrast UV-induced aging: A microstructural investigation",
+        "authors": [
+          "22 22 Short communication Open access  Next Materials"
+        ],
+        "publication": "22 22 Short communication Open access  Next Materials",
+        "year": 2026,
+        "pii": "2949822826004259",
+        "access": "Open access",
+        "article_type": ""
+      },
+      {
+        "title": "Direct heat-free synthesis of graphene on copper for high-ampacity interconnects",
+        "authors": [
+          "23 23 Research article Full text access  Materials Today Physics"
+        ],
+        "publication": "23 23 Research article Full text access  Materials Today Physics",
+        "year": 2026,
+        "pii": "2542529326001070",
+        "access": "Full text access",
+        "article_type": "Research article"
+      },
+      {
+        "title": "Graphene goes dental: Unveiling a new era in implants, regeneration, and therapeutics",
+        "authors": [
+          "24 24 Review article Open access  Next Nanotechnology"
+        ],
+        "publication": "24 24 Review article Open access  Next Nanotechnology",
+        "year": 2026,
+        "pii": "2949829526001300",
+        "access": "Open access",
+        "article_type": "Review article"
+      },
+      {
+        "title": "Synergistic Effects of In-Situ Heat Treatment and Graphene Reinforcement on the Thermo-Mechanical Response of AlSi10Mg/ Graphene Composites: Johnson–Cook Modeling and Artificial Neural Network prediction",
+        "authors": [
+          "25 25 Research article Full text access  Journal of Alloys",
+          "Compounds Available online 24"
+        ],
+        "publication": "25 25 Research article Full text access  Journal of Alloys and Compounds Available online",
+        "year": 2026,
+        "pii": "0925838826028951",
+        "access": "Full text access",
+        "article_type": "Research article"
+      }
+    ],
+    "query_url": "https://www.sciencedirect.com/search?qs=graphene"
+  },
+  "classification": "PASS"
+}

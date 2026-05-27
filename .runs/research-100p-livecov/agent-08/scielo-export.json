@@ -1,0 +1,49 @@
+{
+  "label": "export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:scielo:export",
+    "--query",
+    "dengue",
+    "--lang",
+    "pt",
+    "--count",
+    "5",
+    "--profile",
+    "research-scielo",
+    "--cdp-port",
+    "9372",
+    "--json",
+    "--collection",
+    "scl",
+    "--export-format",
+    "ris",
+    "--selection",
+    "current_page",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/scielo",
+    "--confirmed"
+  ],
+  "started_at": "2026-05-27T07:49:23.331Z",
+  "finished_at": "2026-05-27T07:49:28.747Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/scielo/export.ris\",\n  \"bytes\": 9292,\n  \"sha256\": \"68904fbad26a24209967ca413f354c7a56689d83bdc27da92bb8149f7ac54b65\",\n  \"format\": \"ris\",\n  \"source_url\": \"https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=ris&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl\",\n  \"result_count\": 1136\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-08/downloads/scielo/export.ris",
+    "bytes": 9292,
+    "sha256": "68904fbad26a24209967ca413f354c7a56689d83bdc27da92bb8149f7ac54b65",
+    "format": "ris",
+    "source_url": "https://search.scielo.org/?q=dengue&lang=pt&count=5&from=0&output=ris&sort=&format=summary&fb=&page=1&filter%5Bin%5D%5B%5D=scl",
+    "result_count": 1136
+  },
+  "classification": "PASS",
+  "source_record": {
+    "query": "dengue",
+    "title": "Genetic characterization of Aedes aegypti (Diptera: Culicidae) mosquitoes from Rio Grande do Sul, the southernmost state of Brazil, based on the mitochondrial COI gene",
+    "doi": "10.1590/1806-9665-rbent-2025-0056",
+    "pid": "S0085-56262026000100202"
+  }
+}

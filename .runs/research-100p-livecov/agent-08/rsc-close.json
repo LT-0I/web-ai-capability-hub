@@ -1,0 +1,19 @@
+{
+  "label": "close",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-rsc",
+    "--mode",
+    "close-process",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:43:32.938Z",
+  "finished_at": "2026-05-27T07:43:33.508Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "{\n  \"profile\": \"research-rsc\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-rsc\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9370\",\n  \"cdpPort\": 9370,\n  \"connected\": false,\n  \"launchedByPackage\": false,\n  \"pages\": [],\n  \"lastError\": \"connect ECONNREFUSED 127.0.0.1:9370\"\n}\n",
+  "stderr": ""
+}
