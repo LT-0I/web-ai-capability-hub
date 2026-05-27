@@ -1,0 +1,43 @@
+{
+  "name": "aiaa-launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-aiaa",
+    "--cdp-port",
+    "9302",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:47:13-0700",
+  "duration_sec": 0.473,
+  "exit_code": 0,
+  "stdout": "{\n  \"profile\": \"research-aiaa\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-aiaa\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9302\",\n  \"cdpPort\": 9302,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 494202,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9302/devtools/page/BAB33E4225967A97197B47359E18315F\",\n      \"id\": \"BAB33E4225967A97197B47359E18315F\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9302/devtools/page/BAB33E4225967A97197B47359E18315F\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9302/devtools/browser/16bde852-4ea6-4927-89ef-b97f1f2d9a1d\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "profile": "research-aiaa",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-aiaa",
+    "cdpEndpoint": "http://127.0.0.1:9302",
+    "cdpPort": 9302,
+    "connected": true,
+    "launchedByPackage": true,
+    "processId": 494202,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9302/devtools/page/BAB33E4225967A97197B47359E18315F",
+        "id": "BAB33E4225967A97197B47359E18315F",
+        "title": "新标签页",
+        "type": "page",
+        "url": "chrome://newtab/",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9302/devtools/page/BAB33E4225967A97197B47359E18315F"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:9302/devtools/browser/16bde852-4ea6-4927-89ef-b97f1f2d9a1d"
+  },
+  "classification": "PASS"
+}

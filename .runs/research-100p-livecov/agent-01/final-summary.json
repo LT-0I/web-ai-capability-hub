@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-05-27T01:05:55-0700",
+  "records": [
+    {
+      "tool": "inventory-import",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/inventory-import.json"
+    },
+    {
+      "tool": "acm-search",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acm-search.json"
+    },
+    {
+      "tool": "acm-filter",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acm-filter.json"
+    },
+    {
+      "tool": "acm-export",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acm-export.json"
+    },
+    {
+      "tool": "acs-search",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acs-search.json"
+    },
+    {
+      "tool": "acs-filter",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acs-filter.json"
+    },
+    {
+      "tool": "acs-export",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/acs-export.json"
+    },
+    {
+      "tool": "aiaa-search",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aiaa-search.json"
+    },
+    {
+      "tool": "aiaa-filter",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aiaa-filter.json"
+    },
+    {
+      "tool": "aiaa-export",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aiaa-export.json"
+    },
+    {
+      "tool": "aip-search",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aip-search.json"
+    },
+    {
+      "tool": "aip-filter",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aip-filter.json"
+    },
+    {
+      "tool": "aip-export",
+      "classification": "PASS",
+      "evidence": ".runs/research-100p-livecov/agent-01/aip-export.json"
+    }
+  ]
+}

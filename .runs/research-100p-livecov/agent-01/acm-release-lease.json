@@ -1,0 +1,21 @@
+{
+  "name": "acm-release-lease",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-acm",
+    "--mode",
+    "disconnect",
+    "--release-lease",
+    "--force",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:46:15-0700",
+  "duration_sec": 0.173,
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-acm\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-acm/SingletonSocket\"\n  ]\n}\n",
+  "stderr": "",
+  "timed_out": false
+}

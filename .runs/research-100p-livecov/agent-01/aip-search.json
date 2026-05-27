@@ -1,0 +1,99 @@
+{
+  "name": "research_aip_search",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:aip:search",
+    "--query",
+    "quantum",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-aip",
+    "--cdp-port",
+    "9303",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:51:16-0700",
+  "duration_sec": 40.628,
+  "exit_code": 0,
+  "stdout": "{\n  \"result_count\": 302462,\n  \"items\": [\n    {\n      \"title\": \"The Quantum Ponte Vecchio: Quantum 1.0, Quantum Bridging, and Quantum 2.0\",\n      \"authors\": [\n        \"Quantum 2.0\"\n      ],\n      \"doi\": \"10.1063/5.0337142\",\n      \"publication\": \"APL Quantum APL Quantum 3, 020401 (2026) https://doi.org/10.1063/5.0337142 Published: May 2026 ...Ortwin Hess a) Author to whom correspondence should be addressed: ortwin.hess@tcd.ie Highlight Image An illustration comparing the historic Ponte Vecchio bridge in Florence, Italy, to the quantum landscape, highlighting the activity and connections on the bridge. Panel...\",\n      \"year\": 2026,\n      \"article_url\": \"https://pubs.aip.org/aip/apq/article/3/2/020401/3389316/The-Quantum-Ponte-Vecchio-Quantum-1-0-Quantum?searchresult=1\",\n      \"resource_id\": \"3389316\"\n    },\n    {\n      \"title\": \"Extract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null,\n      \"article_url\": \"https://pubs.aip.org/aip/apq/article/3/2/020401/3389316/The-Quantum-Ponte-Vecchio-Quantum-1-0-Quantum?searchresult=1\",\n      \"resource_id\": \"3389316\"\n    },\n    {\n      \"title\": \"Erratum: “Reversing quantum dynamics with near-optimal quantum and classical fidelity” [J. Math. Phys. 43, 2097–2106 (2002)]\",\n      \"authors\": [\n        \"2097–2106 (2002)] Available Howard Barnum\",\n        \"Emanuel Knill Journal: Journal of Mathematical Physics J. Math. Phys. 67\",\n        \"059901 (2026)\"\n      ],\n      \"doi\": \"10.1063/5.0325563\",\n      \"publication\": \"Journal of Mathematical Physics J. Math. Phys. 67, 059901 (2026) https://doi.org/10.1063/5.0325563 Published: May 2026 ... the R i by P C R i . This results in a quantum operation R , which is trace-nonincreasing. With this replacement, there exist operators B i such that R i = ρ 1 / 2 B i † A ( ρ...\",\n      \"year\": 2097,\n      \"article_url\": \"https://pubs.aip.org/aip/jmp/article/67/5/059901/3391444/Erratum-Reversing-quantum-dynamics-with-near?searchresult=1\",\n      \"resource_id\": \"3391444\"\n    },\n    {\n      \"title\": \"Extract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2097,\n      \"article_url\": \"https://pubs.aip.org/aip/jmp/article/67/5/059901/3391444/Erratum-Reversing-quantum-dynamics-with-near?searchresult=1\",\n      \"resource_id\": \"3391444\"\n    },\n    {\n      \"title\": \"A simple quantum dot: Numerical and variational solutions\",\n      \"authors\": [\n        \"ational solutions Available Connor M. Walsh\",\n        \"Ian MacPherson\",\n        \"Davidson Noby Joseph\",\n        \"Suyash Kabra\",\n        \"Ripanjeet Singh Toor\",\n        \"Mason Protter\",\n        \"Frank Marsiglio Journal: American Journal of Physics Am. J. Phys. 94\",\n        \"465–475 (2026)\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"American Journal of Physics Am. J. Phys. 94, 465–475 (2026) https://doi.org/10.1119/5.0275290 Published: June 2026 ...Connor M. Walsh; Ian MacPherson; Davidson Noby Joseph; Suyash Kabra; Ripanjeet Singh Toor; Mason Protter; Frank Marsiglio We describe a simple quantum dot that consists of two crossed two-dimensional troughs. As such there is no potential well; nonetheless, this geometry gives rise to a bound state...\",\n      \"year\": 2026,\n      \"article_url\": \"https://pubs.aip.org/aapt/ajp/article/94/6/465/3391416/A-simple-quantum-dot-Numerical-and-variational?searchresult=1\",\n      \"resource_id\": \"3391416\"\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null,\n      \"article_url\": \"https://pubs.aip.org/aapt/ajp/article/94/6/465/3391416/A-simple-quantum-dot-Numerical-and-variational?searchresult=1\",\n      \"resource_id\": \"3391416\"\n    }\n  ],\n  \"query_url\": \"https://pubs.aip.org/search-results?page=1&q=quantum&pageSize=5\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "result_count": 302462,
+    "items": [
+      {
+        "title": "The Quantum Ponte Vecchio: Quantum 1.0, Quantum Bridging, and Quantum 2.0",
+        "authors": [
+          "Quantum 2.0"
+        ],
+        "doi": "10.1063/5.0337142",
+        "publication": "APL Quantum APL Quantum 3, 020401 (2026) https://doi.org/10.1063/5.0337142 Published: May 2026 ...Ortwin Hess a) Author to whom correspondence should be addressed: ortwin.hess@tcd.ie Highlight Image An illustration comparing the historic Ponte Vecchio bridge in Florence, Italy, to the quantum landscape, highlighting the activity and connections on the bridge. Panel...",
+        "year": 2026,
+        "article_url": "https://pubs.aip.org/aip/apq/article/3/2/020401/3389316/The-Quantum-Ponte-Vecchio-Quantum-1-0-Quantum?searchresult=1",
+        "resource_id": "3389316"
+      },
+      {
+        "title": "Extract",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null,
+        "article_url": "https://pubs.aip.org/aip/apq/article/3/2/020401/3389316/The-Quantum-Ponte-Vecchio-Quantum-1-0-Quantum?searchresult=1",
+        "resource_id": "3389316"
+      },
+      {
+        "title": "Erratum: “Reversing quantum dynamics with near-optimal quantum and classical fidelity” [J. Math. Phys. 43, 2097–2106 (2002)]",
+        "authors": [
+          "2097–2106 (2002)] Available Howard Barnum",
+          "Emanuel Knill Journal: Journal of Mathematical Physics J. Math. Phys. 67",
+          "059901 (2026)"
+        ],
+        "doi": "10.1063/5.0325563",
+        "publication": "Journal of Mathematical Physics J. Math. Phys. 67, 059901 (2026) https://doi.org/10.1063/5.0325563 Published: May 2026 ... the R i by P C R i . This results in a quantum operation R , which is trace-nonincreasing. With this replacement, there exist operators B i such that R i = ρ 1 / 2 B i † A ( ρ...",
+        "year": 2097,
+        "article_url": "https://pubs.aip.org/aip/jmp/article/67/5/059901/3391444/Erratum-Reversing-quantum-dynamics-with-near?searchresult=1",
+        "resource_id": "3391444"
+      },
+      {
+        "title": "Extract",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": 2097,
+        "article_url": "https://pubs.aip.org/aip/jmp/article/67/5/059901/3391444/Erratum-Reversing-quantum-dynamics-with-near?searchresult=1",
+        "resource_id": "3391444"
+      },
+      {
+        "title": "A simple quantum dot: Numerical and variational solutions",
+        "authors": [
+          "ational solutions Available Connor M. Walsh",
+          "Ian MacPherson",
+          "Davidson Noby Joseph",
+          "Suyash Kabra",
+          "Ripanjeet Singh Toor",
+          "Mason Protter",
+          "Frank Marsiglio Journal: American Journal of Physics Am. J. Phys. 94",
+          "465–475 (2026)"
+        ],
+        "doi": "",
+        "publication": "American Journal of Physics Am. J. Phys. 94, 465–475 (2026) https://doi.org/10.1119/5.0275290 Published: June 2026 ...Connor M. Walsh; Ian MacPherson; Davidson Noby Joseph; Suyash Kabra; Ripanjeet Singh Toor; Mason Protter; Frank Marsiglio We describe a simple quantum dot that consists of two crossed two-dimensional troughs. As such there is no potential well; nonetheless, this geometry gives rise to a bound state...",
+        "year": 2026,
+        "article_url": "https://pubs.aip.org/aapt/ajp/article/94/6/465/3391416/A-simple-quantum-dot-Numerical-and-variational?searchresult=1",
+        "resource_id": "3391416"
+      },
+      {
+        "title": "Abstract",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null,
+        "article_url": "https://pubs.aip.org/aapt/ajp/article/94/6/465/3391416/A-simple-quantum-dot-Numerical-and-variational?searchresult=1",
+        "resource_id": "3391416"
+      }
+    ],
+    "query_url": "https://pubs.aip.org/search-results?page=1&q=quantum&pageSize=5"
+  },
+  "classification": "PASS"
+}

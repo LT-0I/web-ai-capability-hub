@@ -1,0 +1,21 @@
+{
+  "name": "acs-release-lease",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-acs",
+    "--mode",
+    "disconnect",
+    "--release-lease",
+    "--force",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:47:13-0700",
+  "duration_sec": 0.163,
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-acs\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-acs/SingletonSocket\"\n  ]\n}\n",
+  "stderr": "",
+  "timed_out": false
+}

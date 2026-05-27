@@ -1,0 +1,52 @@
+{
+  "name": "acs-launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-acs",
+    "--cdp-port",
+    "9301",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:46:15-0700",
+  "duration_sec": 0.484,
+  "exit_code": 0,
+  "stdout": "{\n  \"profile\": \"research-acs\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-acs\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9301\",\n  \"cdpPort\": 9301,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 487080,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9301/devtools/page/829C7C85565F7A57924CD77F024B3310\",\n      \"id\": \"829C7C85565F7A57924CD77F024B3310\",\n      \"title\": \"Google Hangouts\",\n      \"type\": \"background_page\",\n      \"url\": \"chrome-extension://nkeimhogjdpnpccoofpliimaahmaaome/background.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9301/devtools/page/829C7C85565F7A57924CD77F024B3310\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9301/devtools/page/03634349578C26E40859994F28C6D868\",\n      \"id\": \"03634349578C26E40859994F28C6D868\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9301/devtools/page/03634349578C26E40859994F28C6D868\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9301/devtools/browser/1199783b-918b-4519-b3ee-168faff6059a\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "profile": "research-acs",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-acs",
+    "cdpEndpoint": "http://127.0.0.1:9301",
+    "cdpPort": 9301,
+    "connected": true,
+    "launchedByPackage": true,
+    "processId": 487080,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9301/devtools/page/829C7C85565F7A57924CD77F024B3310",
+        "id": "829C7C85565F7A57924CD77F024B3310",
+        "title": "Google Hangouts",
+        "type": "background_page",
+        "url": "chrome-extension://nkeimhogjdpnpccoofpliimaahmaaome/background.html",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9301/devtools/page/829C7C85565F7A57924CD77F024B3310"
+      },
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9301/devtools/page/03634349578C26E40859994F28C6D868",
+        "id": "03634349578C26E40859994F28C6D868",
+        "title": "新标签页",
+        "type": "page",
+        "url": "chrome://newtab/",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9301/devtools/page/03634349578C26E40859994F28C6D868"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:9301/devtools/browser/1199783b-918b-4519-b3ee-168faff6059a"
+  },
+  "classification": "PASS"
+}

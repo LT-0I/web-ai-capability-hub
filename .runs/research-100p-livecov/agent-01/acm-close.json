@@ -1,0 +1,19 @@
+{
+  "name": "acm-close",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-acm",
+    "--mode",
+    "close-process",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:46:15-0700",
+  "duration_sec": 0.555,
+  "exit_code": 0,
+  "stdout": "{\n  \"profile\": \"research-acm\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-acm\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9300\",\n  \"cdpPort\": 9300,\n  \"connected\": false,\n  \"launchedByPackage\": false,\n  \"pages\": [],\n  \"lastError\": \"connect ECONNREFUSED 127.0.0.1:9300\"\n}\n",
+  "stderr": "",
+  "timed_out": false
+}

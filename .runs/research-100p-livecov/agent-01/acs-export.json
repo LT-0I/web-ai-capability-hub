@@ -1,0 +1,62 @@
+{
+  "name": "research_acs_export_resmoke",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:acs:export",
+    "--doi",
+    "10.1021/acssuschemeng.9b00811",
+    "--format",
+    "ris",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acs",
+    "--profile",
+    "research-acs",
+    "--cdp-port",
+    "9301",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T01:05:12-0700",
+  "duration_sec": 6.647,
+  "exit_code": 0,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acs/achs_ascecg7_10182.ris\",\n  \"bytes\": 573,\n  \"sha256\": \"ab8b3eb2e7f84ec7db366371c78d19036048bf8474de4016c8e2d6e40081fda2\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1021/acssuschemeng.9b00811\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acs/achs_ascecg7_10182.ris",
+    "bytes": 573,
+    "sha256": "ab8b3eb2e7f84ec7db366371c78d19036048bf8474de4016c8e2d6e40081fda2",
+    "format": "ris",
+    "doi": "10.1021/acssuschemeng.9b00811"
+  },
+  "classification": "PASS",
+  "previous_attempts": [
+    {
+      "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+      "exit_code": 1,
+      "duration_sec": 34.105,
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: ACS export failed\",\"evidence\":{\"doi\":\"10.1021/acssuschemeng.9b00811\",\"format\":\"ris\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n",
+      "parsed_stdout": null,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "research:acs:export",
+        "--doi",
+        "10.1021/acssuschemeng.9b00811",
+        "--format",
+        "ris",
+        "--download-dir",
+        "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acs",
+        "--profile",
+        "research-acs",
+        "--cdp-port",
+        "9301",
+        "--confirmed",
+        "--json"
+      ],
+      "started_at": "2026-05-27T00:46:38-0700"
+    }
+  ]
+}

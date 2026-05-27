@@ -1,0 +1,19 @@
+{
+  "name": "acs-close",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-acs",
+    "--mode",
+    "close-process",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:47:12-0700",
+  "duration_sec": 0.557,
+  "exit_code": 0,
+  "stdout": "{\n  \"profile\": \"research-acs\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-acs\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9301\",\n  \"cdpPort\": 9301,\n  \"connected\": false,\n  \"launchedByPackage\": false,\n  \"pages\": [],\n  \"lastError\": \"connect ECONNREFUSED 127.0.0.1:9301\"\n}\n",
+  "stderr": "",
+  "timed_out": false
+}

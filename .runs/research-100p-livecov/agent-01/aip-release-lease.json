@@ -1,0 +1,21 @@
+{
+  "name": "aip-release-lease",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-aip",
+    "--mode",
+    "disconnect",
+    "--release-lease",
+    "--force",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:52:43-0700",
+  "duration_sec": 0.022,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.14.0\n",
+  "timed_out": false
+}

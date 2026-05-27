@@ -7,7 +7,6 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type AcmArea = "AllField" | "Title" | "PublicationTitle" | "Contrib" | "Abstract" | "Fulltext" | "Affiliation" | "Keyword" | "ConferenceLocation" | "Sponsor" | "ISBN" | "DOI";
@@ -32,9 +31,21 @@ const ACM_ORIGIN = "https://dl.acm.org";
 const VALID_AREAS = new Set(["AllField", "Title", "PublicationTitle", "Contrib", "Abstract", "Fulltext", "Affiliation", "Keyword", "ConferenceLocation", "Sponsor", "ISBN", "DOI"]);
 const VALID_FORMATS = new Set(["bibtex", "endnote", "acm"]);
 const VALID_SORTS = new Set(["downloaded", "cited", "relevance"]);
+const FORMAT_EXTENSIONS: Record<AcmExportFormat, string> = { bibtex: "bib", endnote: "enw", acm: "txt" };
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeFileToken(value: string): string { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "acm"; }
+function uniquePath(dir: string, filename: string): string {
+  const parsed = path.parse(filename);
+  let candidate = path.join(dir, filename);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${parsed.name}(${index})${parsed.ext}`);
+    index += 1;
+  }
+  return candidate;
+}
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -169,6 +180,23 @@ async function readAcmPage(page: any): Promise<{ visibleText: string; title: str
   return stable;
 }
 
+async function dismissAcmBasicEditionModal(page: any): Promise<void> {
+  const close = page.locator("#closeModalBtn");
+  if (await close.count().catch(() => 0)) {
+    await close.click({ timeout: 3000 }).catch(() => undefined);
+    await sleep(500);
+  }
+}
+
+async function readAcmCitationFromModal(page: any, format: AcmExportFormat, doi: string): Promise<string> {
+  for (let i = 0; i < 8; i++) {
+    const citation = await page.locator('#exportCitation input[name="content"]').inputValue({ timeout: 3000 }).catch(() => "");
+    if (citation.trim() && citation.includes(doi)) return citation;
+    await sleep(1500);
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ACM citation modal content was not populated", { doi, format });
+}
+
 async function allocateResearchSession(profile: string, url: string, tabId: string, cdpPort?: number): Promise<void> {
   const registry = new TabRegistry(getStoragePaths().dataDir);
   const existing = await registry.get(tabId);
@@ -235,6 +263,7 @@ export async function researchAcmExport(args: AcmExportArgs): Promise<{ artifact
   return await withAllocatedAcmPage(profile, searchUrl, tabId, args.cdp_port, async (page) => {
     try {
       await readAcmPage(page);
+      await dismissAcmBasicEditionModal(page);
       const button = 'li.search__item:first-of-type button[aria-label="Export Citation"]';
       const count = await page.locator(button).count().catch(() => 0);
       if (!count) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ACM per-result Export Citation button was not found", { selector: button });
@@ -253,16 +282,9 @@ export async function researchAcmExport(args: AcmExportArgs): Promise<{ artifact
           await sleep(2000);
         }
       }
-      const clicked = await runArtifactClick({
-        profile,
-        tabUrlContains: "dl.acm.org",
-        buttonSelector: "#exportCitation a.download__btn",
-        downloadDir,
-        timeoutMs: 60000,
-        locateTimeoutMs: 12000,
-        frameMinCount: 0
-      });
-      const artifact_path = clicked.path;
+      const citation = await readAcmCitationFromModal(page, format, doi);
+      const artifact_path = uniquePath(downloadDir, `acm-${safeFileToken(doi)}-${format}.${FORMAT_EXTENSIONS[format]}`);
+      fs.writeFileSync(artifact_path, citation, "utf-8");
       const text = fs.readFileSync(artifact_path, "utf-8");
       const valid = format === "bibtex" ? /@(inproceedings|article)\{/i.test(text) : text.trim().length > 0;
       if (!valid || !text.includes(doi)) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ACM citation artifact failed content validation", { artifact_path, doi, format });

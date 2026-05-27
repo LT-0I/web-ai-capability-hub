@@ -1,0 +1,62 @@
+{
+  "name": "research_acm_export_resmoke",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:acm:export",
+    "--doi",
+    "10.1145/3777553",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acm",
+    "--profile",
+    "research-acm",
+    "--cdp-port",
+    "9300",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T01:05:04-0700",
+  "duration_sec": 12.08,
+  "exit_code": 0,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acm/acm-10-1145-3777553-bibtex.bib\",\n  \"bytes\": 2145,\n  \"sha256\": \"9206308bbbdbc47e36417a0cdd3fa5c21e3ce4751ddd49a31ef78802c50a0721\",\n  \"format\": \"bibtex\",\n  \"doi\": \"10.1145/3777553\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acm/acm-10-1145-3777553-bibtex.bib",
+    "bytes": 2145,
+    "sha256": "9206308bbbdbc47e36417a0cdd3fa5c21e3ce4751ddd49a31ef78802c50a0721",
+    "format": "bibtex",
+    "doi": "10.1145/3777553"
+  },
+  "classification": "PASS",
+  "previous_attempts": [
+    {
+      "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+      "exit_code": 1,
+      "duration_sec": 37.721,
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: ACM export failed\",\"evidence\":{\"doi\":\"10.1145/3777553\",\"format\":\"bibtex\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n",
+      "parsed_stdout": null,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "research:acm:export",
+        "--doi",
+        "10.1145/3777553",
+        "--format",
+        "bibtex",
+        "--download-dir",
+        "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/acm",
+        "--profile",
+        "research-acm",
+        "--cdp-port",
+        "9300",
+        "--confirmed",
+        "--json"
+      ],
+      "started_at": "2026-05-27T00:45:37-0700"
+    }
+  ]
+}

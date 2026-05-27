@@ -1,0 +1,92 @@
+{
+  "name": "research_aiaa_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:aiaa:filter",
+    "--query",
+    "aerodynamics",
+    "--profile",
+    "research-aiaa",
+    "--cdp-port",
+    "9302",
+    "--json",
+    "--after-year",
+    "2020",
+    "--page-size",
+    "5"
+  ],
+  "started_at": "2026-05-27T00:48:54-0700",
+  "duration_sec": 94.059,
+  "exit_code": 0,
+  "stdout": "{\n  \"result_count\": 34174,\n  \"items\": [\n    {\n      \"title\": \"The\",\n      \"authors\": [\n        \"Path to Mars Runs through the National Full-Scale Aerodynamics Complex Patrick W. Goulding\",\n        \"Christopher M. Nykamp 23-27\"\n      ],\n      \"doi\": \"10.2514/6.2023-0311\",\n      \"journal\": \"Forum\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Development of a Rain Simulation Capability in the National Full-Scale Aerodynamics Complex 40- by 80-foot\",\n      \"authors\": [\n        \"Wind Tunnel Patrick W. Goulding\",\n        \"Christopher M. Nykamp\",\n        \"Kevin Boyce\",\n        \"Kyle Lukacovic\"\n      ],\n      \"doi\": \"10.2514/6.2022-1718\",\n      \"journal\": \"Forum\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"Bouncing and Bumping Aerodynamics\",\n      \"authors\": [],\n      \"doi\": \"10.2514/6.2024-2339\",\n      \"journal\": \"Forum\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"INVITED PAPER Summary of the 6th Propulsion Aerodynamics Workshop: NASA 1507\",\n      \"authors\": [\n        \"Inlet Miguel Moreno\",\n        \"Pavlos K. Zachos\",\n        \"Erick J. Gantt\",\n        \"Luiz Tobaldini Neto\",\n        \"Diego Ferolla de Ambreu\",\n        \"Neal D. Domel\",\n        \"John W. Slater 8-12\"\n      ],\n      \"doi\": \"10.2514/6.2024-0980\",\n      \"journal\": \"Forum\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Summary of the 5thPropulsion Aerodynamics Workshop:\",\n      \"authors\": [\n        \"Inlet Cross-Flow Results Deric A. Babcock\",\n        \"Luiz Tobaldini Neto\",\n        \"Zach Davis\",\n        \"Kristen Karman-Shoemake\",\n        \"Carolyn Woeber\",\n        \"Raul Bajimaya\",\n        \"David MacManus\"\n      ],\n      \"doi\": \"10.2514/6.2022-0814\",\n      \"journal\": \"Forum\",\n      \"year\": 2022\n    }\n  ],\n  \"refined_url\": \"https://arc.aiaa.org/action/doSearch?field1=AllField&text1=aerodynamics&pageSize=5&AfterYear=2020\",\n  \"confirm_title\": \"[All: aerodynamics] AND [Publication Date: (01/01/2020 TO *)] | Search | AIAA Aerospace Research Central\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "result_count": 34174,
+    "items": [
+      {
+        "title": "The",
+        "authors": [
+          "Path to Mars Runs through the National Full-Scale Aerodynamics Complex Patrick W. Goulding",
+          "Christopher M. Nykamp 23-27"
+        ],
+        "doi": "10.2514/6.2023-0311",
+        "journal": "Forum",
+        "year": 2023
+      },
+      {
+        "title": "Development of a Rain Simulation Capability in the National Full-Scale Aerodynamics Complex 40- by 80-foot",
+        "authors": [
+          "Wind Tunnel Patrick W. Goulding",
+          "Christopher M. Nykamp",
+          "Kevin Boyce",
+          "Kyle Lukacovic"
+        ],
+        "doi": "10.2514/6.2022-1718",
+        "journal": "Forum",
+        "year": 2022
+      },
+      {
+        "title": "Bouncing and Bumping Aerodynamics",
+        "authors": [],
+        "doi": "10.2514/6.2024-2339",
+        "journal": "Forum",
+        "year": 2024
+      },
+      {
+        "title": "INVITED PAPER Summary of the 6th Propulsion Aerodynamics Workshop: NASA 1507",
+        "authors": [
+          "Inlet Miguel Moreno",
+          "Pavlos K. Zachos",
+          "Erick J. Gantt",
+          "Luiz Tobaldini Neto",
+          "Diego Ferolla de Ambreu",
+          "Neal D. Domel",
+          "John W. Slater 8-12"
+        ],
+        "doi": "10.2514/6.2024-0980",
+        "journal": "Forum",
+        "year": 2024
+      },
+      {
+        "title": "Summary of the 5thPropulsion Aerodynamics Workshop:",
+        "authors": [
+          "Inlet Cross-Flow Results Deric A. Babcock",
+          "Luiz Tobaldini Neto",
+          "Zach Davis",
+          "Kristen Karman-Shoemake",
+          "Carolyn Woeber",
+          "Raul Bajimaya",
+          "David MacManus"
+        ],
+        "doi": "10.2514/6.2022-0814",
+        "journal": "Forum",
+        "year": 2022
+      }
+    ],
+    "refined_url": "https://arc.aiaa.org/action/doSearch?field1=AllField&text1=aerodynamics&pageSize=5&AfterYear=2020",
+    "confirm_title": "[All: aerodynamics] AND [Publication Date: (01/01/2020 TO *)] | Search | AIAA Aerospace Research Central"
+  },
+  "classification": "PASS"
+}

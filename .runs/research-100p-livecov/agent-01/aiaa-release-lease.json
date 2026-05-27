@@ -1,0 +1,21 @@
+{
+  "name": "aiaa-release-lease",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:close",
+    "--profile",
+    "research-aiaa",
+    "--mode",
+    "disconnect",
+    "--release-lease",
+    "--force",
+    "--json"
+  ],
+  "started_at": "2026-05-27T00:51:15-0700",
+  "duration_sec": 0.157,
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-aiaa\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-aiaa/SingletonSocket\"\n  ]\n}\n",
+  "stderr": "",
+  "timed_out": false
+}

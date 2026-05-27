@@ -1,0 +1,64 @@
+{
+  "name": "research_aip_export_resmoke",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:aip:export",
+    "--doi",
+    "10.1063/5.0337142",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/aip",
+    "--profile",
+    "research-aip",
+    "--cdp-port",
+    "9303",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T01:05:36-0700",
+  "duration_sec": 4.436,
+  "exit_code": 0,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/aip/aip-3389316-bibtex.bib\",\n  \"bytes\": 505,\n  \"sha256\": \"3bf7cbeb63c3f31745eb1565cbec6d4c08a5faeea3011e4e4b415beac505e2d7\",\n  \"format\": \"bibtex\",\n  \"doi\": \"10.1063/5.0337142\",\n  \"resource_id\": \"3389316\",\n  \"source_url\": \"https://pubs.aip.org/Citation/Download?resourceId=3389316&resourceType=3&citationFormat=2\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/aip/aip-3389316-bibtex.bib",
+    "bytes": 505,
+    "sha256": "3bf7cbeb63c3f31745eb1565cbec6d4c08a5faeea3011e4e4b415beac505e2d7",
+    "format": "bibtex",
+    "doi": "10.1063/5.0337142",
+    "resource_id": "3389316",
+    "source_url": "https://pubs.aip.org/Citation/Download?resourceId=3389316&resourceType=3&citationFormat=2"
+  },
+  "classification": "PASS",
+  "previous_attempts": [
+    {
+      "classification": "FAIL_UNKNOWN",
+      "exit_code": 1,
+      "duration_sec": 0.02,
+      "stdout": "",
+      "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.14.0\n",
+      "parsed_stdout": null,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "research:aip:export",
+        "--doi",
+        "10.1063/5.0337142",
+        "--format",
+        "bibtex",
+        "--download-dir",
+        "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-01/downloads/aip",
+        "--profile",
+        "research-aip",
+        "--cdp-port",
+        "9303",
+        "--confirmed",
+        "--json"
+      ],
+      "started_at": "2026-05-27T00:52:43-0700"
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "name": "research_acs_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:acs:filter",
+    "--query",
+    "catalysis",
+    "--profile",
+    "research-acs",
+    "--cdp-port",
+    "9301",
+    "--json",
+    "--pub-type",
+    "journals",
+    "--page-size",
+    "5"
+  ],
+  "started_at": "2026-05-27T00:46:30-0700",
+  "duration_sec": 7.599,
+  "exit_code": 0,
+  "stdout": "{\n  \"result_count\": 373947,\n  \"items\": [\n    {\n      \"title\": \"Article\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Carbonyl Reduction and Biomass: A Case Study of Sustainable Catalysis\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acssuschemeng.9b00811\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Alain You Li and Audrey Moores *\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"ACS Sustainable Chemistry & Engineering\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"2019 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"7 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"12\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \", 10182-10197\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"(Perspective) Your access to this publication has been provided by Learn More\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Publication Date (Web) : May 13, 2019\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"DOI: 10.1021/acssuschemeng.9b00811\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acssuschemeng.9b00811\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"Full text PDF ABSTRACT Catalysis plays a major role at mitigating the environmental impact of the chemical industry\",\n        \"drastically cutting its energy\",\n        \"material consumption. For this Perspective\",\n        \"we have chosen C═O reduction in the context of biomass as a benchmark reaction to introduce\",\n        \"illustrate essential aspects of green catalysis . We first covered the most used C═O hydrogenation substrates made from biomass. Then\",\n        \"we looked at alternative energy sources to convective heating\",\n        \"discussed the use of greener solvents\",\n        \"reductants\",\n        \"listed a few precious metal-free catalytic systems. Finally\",\n        \"we looked at various hydrogen sources\",\n        \"including biosourced ones. In particular\",\n        \"we emphasized the use of metrics in order to quantify the actual impact of these innovations.\"\n      ],\n      \"doi\": \"abs/10.1021/acssuschemeng.9b00811\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Article\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Identifying Opportunities to Promote Systems Thinking in Catalysis Education\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acs.jchemed.1c00005\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Manoj Ravi * , Allen Puente-Urbina , and Jeroen A. van Bokhoven\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Journal of Chemical Education\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"2021 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"98 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"5\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \", 1583-1593\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"(Article) Your access to this publication has been provided by Learn More\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Publication Date (Web) : April 14, 2021\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"DOI: 10.1021/acs.jchemed.1c00005\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acs.jchemed.1c00005\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"Full text PDF ABSTRACT While several engineering\",\n        \"science disciplines\",\n        \"including biology\",\n        \"environmental science\",\n        \"have greatly benefited from adopting a systems thinking approach\",\n        \"its extension to chemistry education is a much more recent advancement. The initial body of literature in this direction has largely surveyed the feasibility for systems thinking in general chemistry courses. Herein\",\n        \"we go a step further to explore the possibilities that systems thinking present for the instruction of more advanced chemistry courses\",\n        \"specifically in the context of catalysis education. Since catalysis has conventionally been taught employing a reductionist perspective\",\n        \"we identify the opportunities\",\n        \"challenges for instructors in transitioning to a systems thinking teaching style. We build our analysis in accordance with the principle of constructive alignment\",\n        \"where we systematically address the implications for systems thinking in writing intended learning outcomes\",\n        \"designing learning activities\"\n      ],\n      \"doi\": \"abs/10.1021/acs.jchemed.1c00005\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Article\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Catalysis\",\n      \"authors\": [],\n      \"doi\": \"10.1021/ed056p743\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Doris Kolb\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Journal of Chemical Education\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"1979 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"56 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"11\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \", 743\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"(Article) Your access to this publication has been provided by Learn More\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Publication Date (Print) : November 1, 1979\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"DOI: 10.1021/ed056p743\",\n      \"authors\": [],\n      \"doi\": \"10.1021/ed056p743\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"PDF ABSTRACT Definitions for\",\n        \"history of catalysts\",\n        \"speeding up chemical reactions\",\n        \"enzymes\",\n        \"industrial catalysis .\"\n      ],\n      \"doi\": \"abs/10.1021/ed056p743\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Article\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Catalytic Transfer Functionalization through Shuttle Catalysis\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acscatal.6b02333\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Benjamin N. Bhawal and Bill Morandi *\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"ACS Catalysis\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"2016 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"6 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"11\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \", 7528-7535\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"(Perspective) Your access to this publication has been provided by Learn More\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Publication Date (Web) : September 26, 2016\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"DOI: 10.1021/acscatal.6b02333\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acscatal.6b02333\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"Full text PDF ABSTRACT In this Perspective\",\n        \"we describe an emerging type of catalysis that enables the catalytic reversible transfer of chemical entities beyond the well-established transfer hydrogenation reactions. Shuttle catalysis facilitates the transfer of small molecules (e.g.\",\n        \"CO\",\n        \"HCN) or reactive intermediates between two substrates in an isodesmic process. In many cases\",\n        \"these often safer processes provide unprecedented synthetic flexibility\",\n        \"complement other catalytic bond-forming\",\n        \"bond-breaking reactions.\"\n      ],\n      \"doi\": \"abs/10.1021/acscatal.6b02333\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Article\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Learning Catalysis through Analyzing Raw Catalytic and Characterization Data\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acs.jchemed.4c00588\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Nikolay Kosinov *\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Journal of Chemical Education\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"2024 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"101 ,\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"10\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \", 4251-4255\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"(Article) This publication is Open Access under the license indicated. Learn More\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Publication Date (Web) : September 24, 2024\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"DOI: 10.1021/acs.jchemed.4c00588\",\n      \"authors\": [],\n      \"doi\": \"10.1021/acs.jchemed.4c00588\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"log in\",\n      \"authors\": [\n        \"Abstract Full text PDF ABSTRACT Catalysis is an important discipline in modern chemistry\",\n        \"chemical engineering curricula. However\",\n        \"the interdisciplinary nature of catalysis poses significant challenges for teaching\",\n        \"particularly in organizing practical education. This article introduces a problem-based group assignment for a master’s course on catalysis . In this open-ended assignment\",\n        \"the student groups receive real data sets of raw kinetic\",\n        \"characterization results. Their task is to analyze\",\n        \"cross-reference the data\",\n        \"describe their findings in a concise report\",\n        \"presentation\",\n        \"provide recommendations for further development of the catalytic system. The assignment helps students practice essential skills of complex data analysis\",\n        \"establishing structure–performance relationships\",\n        \"preparing them to tackle real-world challenges in catalysis . The assessment results indicate that the students have mastered these concepts. Finally\"\n      ],\n      \"doi\": \"abs/10.1021/acs.jchemed.4c00588\",\n      \"publication\": \"\",\n      \"year\": 2026\n    }\n  ],\n  \"refined_url\": \"https://pubs.acs.org/action/doSearch?field1=AllField&text1=catalysis&publication=&accessType=allContent&Earliest=&pageSize=5&PubType=journals\",\n  \"confirm_title\": \"[All: catalysis] AND [PubType: 103] AND [NOT in Journal: News Edition, American Chemical Society OR C&EN Global Enterprise OR Industrial and Engineering Chemistry, News Edition OR Chemical & Engineering News Archive] AND [NOT [PubType: 103] AND [in Journal: SciMeetings]] : Search\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "result_count": 373947,
+    "items": [
+      {
+        "title": "Article",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Carbonyl Reduction and Biomass: A Case Study of Sustainable Catalysis",
+        "authors": [],
+        "doi": "10.1021/acssuschemeng.9b00811",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Alain You Li and Audrey Moores *",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "ACS Sustainable Chemistry & Engineering",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "2019 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "7 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "12",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": ", 10182-10197",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "(Perspective) Your access to this publication has been provided by Learn More",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Publication Date (Web) : May 13, 2019",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "DOI: 10.1021/acssuschemeng.9b00811",
+        "authors": [],
+        "doi": "10.1021/acssuschemeng.9b00811",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Abstract",
+        "authors": [
+          "Full text PDF ABSTRACT Catalysis plays a major role at mitigating the environmental impact of the chemical industry",
+          "drastically cutting its energy",
+          "material consumption. For this Perspective",
+          "we have chosen C═O reduction in the context of biomass as a benchmark reaction to introduce",
+          "illustrate essential aspects of green catalysis . We first covered the most used C═O hydrogenation substrates made from biomass. Then",
+          "we looked at alternative energy sources to convective heating",
+          "discussed the use of greener solvents",
+          "reductants",
+          "listed a few precious metal-free catalytic systems. Finally",
+          "we looked at various hydrogen sources",
+          "including biosourced ones. In particular",
+          "we emphasized the use of metrics in order to quantify the actual impact of these innovations."
+        ],
+        "doi": "abs/10.1021/acssuschemeng.9b00811",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Article",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Identifying Opportunities to Promote Systems Thinking in Catalysis Education",
+        "authors": [],
+        "doi": "10.1021/acs.jchemed.1c00005",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Manoj Ravi * , Allen Puente-Urbina , and Jeroen A. van Bokhoven",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Journal of Chemical Education",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "2021 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "98 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "5",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": ", 1583-1593",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "(Article) Your access to this publication has been provided by Learn More",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Publication Date (Web) : April 14, 2021",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "DOI: 10.1021/acs.jchemed.1c00005",
+        "authors": [],
+        "doi": "10.1021/acs.jchemed.1c00005",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Abstract",
+        "authors": [
+          "Full text PDF ABSTRACT While several engineering",
+          "science disciplines",
+          "including biology",
+          "environmental science",
+          "have greatly benefited from adopting a systems thinking approach",
+          "its extension to chemistry education is a much more recent advancement. The initial body of literature in this direction has largely surveyed the feasibility for systems thinking in general chemistry courses. Herein",
+          "we go a step further to explore the possibilities that systems thinking present for the instruction of more advanced chemistry courses",
+          "specifically in the context of catalysis education. Since catalysis has conventionally been taught employing a reductionist perspective",
+          "we identify the opportunities",
+          "challenges for instructors in transitioning to a systems thinking teaching style. We build our analysis in accordance with the principle of constructive alignment",
+          "where we systematically address the implications for systems thinking in writing intended learning outcomes",
+          "designing learning activities"
+        ],
+        "doi": "abs/10.1021/acs.jchemed.1c00005",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Article",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Catalysis",
+        "authors": [],
+        "doi": "10.1021/ed056p743",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Doris Kolb",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Journal of Chemical Education",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "1979 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "56 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "11",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": ", 743",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "(Article) Your access to this publication has been provided by Learn More",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Publication Date (Print) : November 1, 1979",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "DOI: 10.1021/ed056p743",
+        "authors": [],
+        "doi": "10.1021/ed056p743",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Abstract",
+        "authors": [
+          "PDF ABSTRACT Definitions for",
+          "history of catalysts",
+          "speeding up chemical reactions",
+          "enzymes",
+          "industrial catalysis ."
+        ],
+        "doi": "abs/10.1021/ed056p743",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Article",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Catalytic Transfer Functionalization through Shuttle Catalysis",
+        "authors": [],
+        "doi": "10.1021/acscatal.6b02333",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Benjamin N. Bhawal and Bill Morandi *",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "ACS Catalysis",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "2016 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "6 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "11",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": ", 7528-7535",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "(Perspective) Your access to this publication has been provided by Learn More",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Publication Date (Web) : September 26, 2016",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "DOI: 10.1021/acscatal.6b02333",
+        "authors": [],
+        "doi": "10.1021/acscatal.6b02333",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Abstract",
+        "authors": [
+          "Full text PDF ABSTRACT In this Perspective",
+          "we describe an emerging type of catalysis that enables the catalytic reversible transfer of chemical entities beyond the well-established transfer hydrogenation reactions. Shuttle catalysis facilitates the transfer of small molecules (e.g.",
+          "CO",
+          "HCN) or reactive intermediates between two substrates in an isodesmic process. In many cases",
+          "these often safer processes provide unprecedented synthetic flexibility",
+          "complement other catalytic bond-forming",
+          "bond-breaking reactions."
+        ],
+        "doi": "abs/10.1021/acscatal.6b02333",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Article",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Learning Catalysis through Analyzing Raw Catalytic and Characterization Data",
+        "authors": [],
+        "doi": "10.1021/acs.jchemed.4c00588",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Nikolay Kosinov *",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Journal of Chemical Education",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "2024 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "101 ,",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "10",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": ", 4251-4255",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "(Article) This publication is Open Access under the license indicated. Learn More",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "Publication Date (Web) : September 24, 2024",
+        "authors": [],
+        "doi": "",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "DOI: 10.1021/acs.jchemed.4c00588",
+        "authors": [],
+        "doi": "10.1021/acs.jchemed.4c00588",
+        "publication": "",
+        "year": null
+      },
+      {
+        "title": "log in",
+        "authors": [
+          "Abstract Full text PDF ABSTRACT Catalysis is an important discipline in modern chemistry",
+          "chemical engineering curricula. However",
+          "the interdisciplinary nature of catalysis poses significant challenges for teaching",
+          "particularly in organizing practical education. This article introduces a problem-based group assignment for a master’s course on catalysis . In this open-ended assignment",
+          "the student groups receive real data sets of raw kinetic",
+          "characterization results. Their task is to analyze",
+          "cross-reference the data",
+          "describe their findings in a concise report",
+          "presentation",
+          "provide recommendations for further development of the catalytic system. The assignment helps students practice essential skills of complex data analysis",
+          "establishing structure–performance relationships",
+          "preparing them to tackle real-world challenges in catalysis . The assessment results indicate that the students have mastered these concepts. Finally"
+        ],
+        "doi": "abs/10.1021/acs.jchemed.4c00588",
+        "publication": "",
+        "year": 2026
+      }
+    ],
+    "refined_url": "https://pubs.acs.org/action/doSearch?field1=AllField&text1=catalysis&publication=&accessType=allContent&Earliest=&pageSize=5&PubType=journals",
+    "confirm_title": "[All: catalysis] AND [PubType: 103] AND [NOT in Journal: News Edition, American Chemical Society OR C&EN Global Enterprise OR Industrial and Engineering Chemistry, News Edition OR Chemical & Engineering News Archive] AND [NOT [PubType: 103] AND [in Journal: SciMeetings]] : Search"
+  },
+  "classification": "PASS"
+}

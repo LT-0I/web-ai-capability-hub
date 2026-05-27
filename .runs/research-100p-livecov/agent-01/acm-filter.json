@@ -1,0 +1,80 @@
+{
+  "name": "research_acm_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:acm:filter",
+    "--query",
+    "machine learning",
+    "--profile",
+    "research-acm",
+    "--cdp-port",
+    "9300",
+    "--json",
+    "--after-year",
+    "2020",
+    "--sort-by",
+    "relevance",
+    "--page-size",
+    "5"
+  ],
+  "started_at": "2026-05-27T00:45:30-0700",
+  "duration_sec": 6.419,
+  "exit_code": 0,
+  "stdout": "{\n  \"result_count\": 140021,\n  \"items\": [\n    {\n      \"title\": \"Sustainability of Machine Learning -Enabled Systems: The Machine Learning Practitioner’s Perspective\",\n      \"authors\": [\n        \"research-article November\"\n      ],\n      \"doi\": \"10.1145/3777553\",\n      \"publication\": \"ACM Transactions on Software Engineering and Methodology (TOSEM), Just Accepted https://doi\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"CausalBench+: Causal-Informed Machine Learning Benchmarking\",\n      \"authors\": [\n        \"research-article May\"\n      ],\n      \"doi\": \"10.1145/3779211.3793181\",\n      \"publication\": \"Proceedings of the Nineteenth ACM International Conference on Web Search and Data Mining Pages 120–122 https://doi\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Procedural Fairness in Machine Learning\",\n      \"authors\": [\n        \"article March\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Demystifying Machine Learning in Artificial Intelligence\",\n      \"authors\": [\n        \"opinion February\"\n      ],\n      \"doi\": \"10.1145/3796505\",\n      \"publication\": \"\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Machine Learning -Guided Interactive Constraint Acquisition\",\n      \"authors\": [\n        \"article May\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Cancel Create Footer Categories Journals Magazines Books Proceedings SIGs Conferences Collections People About About ACM Digital Library ACM Digital Library Board Author Guidelines All Holdings within the ACM Digital Library ACM Computing Classification System Accessibility Statement Join Join ACM Join SIGs Subscribe to Publications Institutions and Libraries Connect Contact us via email ACM on Facebook ACM DL on X ACM on Linkedin RSS Send Feedback Submit a Bug Report The ACM Digital Library is published by the Association for Computing Machinery\",\n      \"year\": 2026\n    }\n  ],\n  \"refined_url\": \"https://dl.acm.org/action/doSearch?fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1=machine+learning&pageSize=5&AfterYear=2020&sortBy=relevance\",\n  \"confirm_title\": \"[All: machine learning] AND [E-Publication Date: (01/01/2020 TO *)] : Search\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "result_count": 140021,
+    "items": [
+      {
+        "title": "Sustainability of Machine Learning -Enabled Systems: The Machine Learning Practitioner’s Perspective",
+        "authors": [
+          "research-article November"
+        ],
+        "doi": "10.1145/3777553",
+        "publication": "ACM Transactions on Software Engineering and Methodology (TOSEM), Just Accepted https://doi",
+        "year": 2025
+      },
+      {
+        "title": "CausalBench+: Causal-Informed Machine Learning Benchmarking",
+        "authors": [
+          "research-article May"
+        ],
+        "doi": "10.1145/3779211.3793181",
+        "publication": "Proceedings of the Nineteenth ACM International Conference on Web Search and Data Mining Pages 120–122 https://doi",
+        "year": 2026
+      },
+      {
+        "title": "Procedural Fairness in Machine Learning",
+        "authors": [
+          "article March"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2026
+      },
+      {
+        "title": "Demystifying Machine Learning in Artificial Intelligence",
+        "authors": [
+          "opinion February"
+        ],
+        "doi": "10.1145/3796505",
+        "publication": "",
+        "year": 2026
+      },
+      {
+        "title": "Machine Learning -Guided Interactive Constraint Acquisition",
+        "authors": [
+          "article May"
+        ],
+        "doi": "",
+        "publication": "Cancel Create Footer Categories Journals Magazines Books Proceedings SIGs Conferences Collections People About About ACM Digital Library ACM Digital Library Board Author Guidelines All Holdings within the ACM Digital Library ACM Computing Classification System Accessibility Statement Join Join ACM Join SIGs Subscribe to Publications Institutions and Libraries Connect Contact us via email ACM on Facebook ACM DL on X ACM on Linkedin RSS Send Feedback Submit a Bug Report The ACM Digital Library is published by the Association for Computing Machinery",
+        "year": 2026
+      }
+    ],
+    "refined_url": "https://dl.acm.org/action/doSearch?fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1=machine+learning&pageSize=5&AfterYear=2020&sortBy=relevance",
+    "confirm_title": "[All: machine learning] AND [E-Publication Date: (01/01/2020 TO *)] : Search"
+  },
+  "classification": "PASS"
+}

@@ -1,0 +1,109 @@
+{
+  "name": "research_aiaa_search_resmoke",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:aiaa:search",
+    "--query",
+    "aerodynamics",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-aiaa",
+    "--cdp-port",
+    "9302",
+    "--json"
+  ],
+  "started_at": "2026-05-27T01:05:27-0700",
+  "duration_sec": 14.101,
+  "exit_code": 0,
+  "stdout": "{\n  \"result_count\": 258768,\n  \"items\": [\n    {\n      \"title\": \"Investigation of\",\n      \"authors\": [\n        \"An Effective Approach for Aerodynamics Computaion of Mars Entry Vehicles Huiling Zhan\",\n        \"Zhou Liu\",\n        \"Anlong Gong\",\n        \"Weijiang Zhou 5-9\"\n      ],\n      \"doi\": \"10.2514/6.2017-3962\",\n      \"journal\": \"th AIAA Fluid Dynamics Conference\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Research scientist in China Academy of Aerospace Aerodynamics (CAAA)\",\n      \"authors\": [\n        \"Zhu Hao\",\n        \"Hainan Jiang 6-9\"\n      ],\n      \"doi\": \"10.2514/6.2015-3604\",\n      \"journal\": \"th AIAA International Space Planes and Hypersonic Systems and Technologies Conference\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Aerodynamics and aeroacoustics of helicopter main-rotor/tail-rotor interaction\",\n      \"authors\": [\n        \"J. Yin\",\n        \"S. Ahmed 10\"\n      ],\n      \"doi\": \"10.2514/6.1999-1929\",\n      \"journal\": \"th AIAA/CEAS Aeroacoustics Conference and Exhibit\",\n      \"year\": 1999\n    },\n    {\n      \"title\": \"The\",\n      \"authors\": [\n        \"Path to Mars Runs through the National Full-Scale Aerodynamics Complex Patrick W. Goulding\",\n        \"Christopher M. Nykamp 23-27\"\n      ],\n      \"doi\": \"10.2514/6.2023-0311\",\n      \"journal\": \"Forum\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Development of a Rain Simulation Capability in the National Full-Scale Aerodynamics Complex 40- by 80-foot\",\n      \"authors\": [\n        \"Wind Tunnel Patrick W. Goulding\",\n        \"Christopher M. Nykamp\",\n        \"Kevin Boyce\",\n        \"Kyle Lukacovic\"\n      ],\n      \"doi\": \"10.2514/6.2022-1718\",\n      \"journal\": \"Forum\",\n      \"year\": 2022\n    }\n  ],\n  \"query_url\": \"https://arc.aiaa.org/action/doSearch?field1=AllField&text1=aerodynamics&pageSize=5\"\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "parsed_stdout": {
+    "result_count": 258768,
+    "items": [
+      {
+        "title": "Investigation of",
+        "authors": [
+          "An Effective Approach for Aerodynamics Computaion of Mars Entry Vehicles Huiling Zhan",
+          "Zhou Liu",
+          "Anlong Gong",
+          "Weijiang Zhou 5-9"
+        ],
+        "doi": "10.2514/6.2017-3962",
+        "journal": "th AIAA Fluid Dynamics Conference",
+        "year": null
+      },
+      {
+        "title": "Research scientist in China Academy of Aerospace Aerodynamics (CAAA)",
+        "authors": [
+          "Zhu Hao",
+          "Hainan Jiang 6-9"
+        ],
+        "doi": "10.2514/6.2015-3604",
+        "journal": "th AIAA International Space Planes and Hypersonic Systems and Technologies Conference",
+        "year": null
+      },
+      {
+        "title": "Aerodynamics and aeroacoustics of helicopter main-rotor/tail-rotor interaction",
+        "authors": [
+          "J. Yin",
+          "S. Ahmed 10"
+        ],
+        "doi": "10.2514/6.1999-1929",
+        "journal": "th AIAA/CEAS Aeroacoustics Conference and Exhibit",
+        "year": 1999
+      },
+      {
+        "title": "The",
+        "authors": [
+          "Path to Mars Runs through the National Full-Scale Aerodynamics Complex Patrick W. Goulding",
+          "Christopher M. Nykamp 23-27"
+        ],
+        "doi": "10.2514/6.2023-0311",
+        "journal": "Forum",
+        "year": 2023
+      },
+      {
+        "title": "Development of a Rain Simulation Capability in the National Full-Scale Aerodynamics Complex 40- by 80-foot",
+        "authors": [
+          "Wind Tunnel Patrick W. Goulding",
+          "Christopher M. Nykamp",
+          "Kevin Boyce",
+          "Kyle Lukacovic"
+        ],
+        "doi": "10.2514/6.2022-1718",
+        "journal": "Forum",
+        "year": 2022
+      }
+    ],
+    "query_url": "https://arc.aiaa.org/action/doSearch?field1=AllField&text1=aerodynamics&pageSize=5"
+  },
+  "classification": "PASS",
+  "previous_attempts": [
+    {
+      "classification": "FAIL_ELEMENT_NOT_FOUND",
+      "exit_code": 1,
+      "duration_sec": 100.435,
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: AIAA result count node was not found\",\"evidence\":{\"probe\":\"Search Results (N)\"}}\n",
+      "parsed_stdout": null,
+      "command": [
+        "node",
+        "dist/src/cli.js",
+        "research:aiaa:search",
+        "--query",
+        "aerodynamics",
+        "--page-size",
+        "5",
+        "--profile",
+        "research-aiaa",
+        "--cdp-port",
+        "9302",
+        "--json"
+      ],
+      "started_at": "2026-05-27T00:47:13-0700"
+    }
+  ]
+}
