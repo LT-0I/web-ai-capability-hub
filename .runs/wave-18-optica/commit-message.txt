@@ -1,0 +1,11 @@
+webai: wave 18 optica — per-DB deep fix (abstract-first route / captcha LOGIN_REQUIRED)
+
+Route Optica URI article ids through the verified OPG surfaces while preserving the existing DOI-without-pdf_url contract; when the research-optica session is captcha-state blocked, report actionable LOGIN_REQUIRED instead of selector drift.
+
+Constraint: Touch only optica driver and wave-18 Optica evidence/report paths; do not modify shared paywalled driver, package, contract, golden, or consumer tests.
+Rejected: Treat captcha HTML as selector drift | live headed probe showed abstract, viewmedia, DOI, and direct-pattern candidates all landed on Optica captcha with no PDF candidate.
+Confidence: medium
+Scope-risk: narrow
+Directive: Do not bypass Optica captcha; clear it manually in research-optica so cookies persist, then rerun the same driver path.
+Tested: rm -rf dist && npm run build; targeted paywalled literature test 15/15; npm test 731/731; headed Optica re-smoke returned LOGIN_REQUIRED with actionable manual-clear URL.
+Not-tested: Successful %PDF- download after a human clears the Optica captcha in the research-optica profile.

@@ -1,0 +1,2891 @@
+{
+  "db": "optica",
+  "profile": "research-optica",
+  "profileDir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-optica",
+  "chrome": "/usr/bin/google-chrome",
+  "headed": true,
+  "port": 35118,
+  "started_at": "2026-05-27T05:37:57.010Z",
+  "article_uri": "ol-51-10-2872",
+  "doi": "10.1364/OL.531116",
+  "launch": {
+    "args": [
+      "/usr/bin/google-chrome",
+      "--remote-debugging-port=35118",
+      "--remote-debugging-address=127.0.0.1",
+      "--user-data-dir=/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-optica",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-dev-shm-usage",
+      "--window-size=1400,1000",
+      "about:blank"
+    ],
+    "pid": 21629,
+    "stdoutPath": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-18-optica/probes/optica-chrome.out.log",
+    "stderrPath": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/wave-18-optica/probes/optica-chrome.err.log",
+    "version": {
+      "Browser": "Chrome/148.0.7778.167",
+      "Protocol-Version": "1.3",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "V8-Version": "14.8.178.21",
+      "WebKit-Version": "537.36 (@65db666ac2cf205fcc36db8bb5b9cd87f94808ac)",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:35118/devtools/browser/c8c5973a-d7a2-44d8-b942-cf613057e059"
+    }
+  },
+  "entries": [
+    {
+      "label": "abstract",
+      "requested_url": "https://opg.optica.org/ol/abstract.cfm?uri=ol-51-10-2872",
+      "nav_error": null,
+      "response_status": 202,
+      "response_url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&html=true",
+      "response_headers": {
+        "cache-control": "private",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self' data: 'unsafe-inline' https://*.brightcove.net http://opgdev1901 http://opgtest https://*.google-analytics.com https://*.google.com https://*.brightcove.com *.akamaihd.net *.boltdns.net https://brightcove.hs.llnwd.net https://stats.g.doubleclick.net https://*.classmarker.com https://*.crossref.org https://cm.scholarlyiq.com https://public.tableau.com blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://code.jquery.com https://*.simpli.fi https://cdn.jsdelivr.net https://snap.licdn.com http://opgdev1901 https://opgtest https://tagmanager.google.com https://*.googletagmanager.com https://*.google-analytics.com https://*.google.com https://www.gstatic.com https://*.crossref.org https://cdnjs.cloudflare.com https://vjs.zendcdn.net https://vjs.zencdn.net https://players.brightcove.net https://www.youtube.com https://s.ytimg.com https://*.classmarker.com https://cdn.ckeditor.com https://public.tableau.com https://consent.studio *.perfdrive.com *.doubleclick.net *.stackadapt.com *.facebook.net https://www.redditstatic.com https://files.bettybot.ai https://challenges.cloudflare.com blob:; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net http://opgdev1901 https://opgtest https://tagmanager.google.com https://fonts.googleapis.com https://*.crossref.org https://cdn.ckeditor.com *.stackadapt.com https://files.bettybot.ai players.brightcove.net; img-src 'self' 'unsafe-inline' https://*.linkedin.com http://opgdev1901 https://opgtest https://*.googletagmanager.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://*.crossref.org https://stats.g.doubleclick.net players.brightcove.net *.brightcove.com *.boltdns.net *.akamaihd.net *.brightcovecdn.com https://imagebank.osa.org https://imagebank.optica.org https://account.optica.org https://cdn.ckeditor.com https://public.tableau.com https://www.osapublishing.org https://alb.reddit.com https://www.facebook.com https://www.google.com https://files.bettybot.ai; font-src 'self' data: 'unsafe-inline' 'unsafe-eval' http://opgdev1901 http://opgtest https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com about: players.brightcove.net; connect-src 'self' https://*.brightcovecdn.com *.boltdns.net players.brightcove.net edge.api.brightcove.com *.akamaihd.net https://*.linkedin.com https://*.simpli.fi https://opgtest https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://consent.studio *.jsdelivr.net *.facebook.com *.reddit.com *.redditstatic.com *.googlesyndication.com *.stackadapt.com https://www.google.com *.doubleclick.net https://betty-api.tasio.co https://*.algolia.net https://cas.avalon.perfdrive.com https://demo-1.conversionsapigateway.com https://*.us.central1.run.app https://challenges.cloudflare.com; media-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest https://opg.optica.org https://www.osapublishing.org *.akamaihd.net *.boltdns.net https://*.brightcove.com *.brightcovecdn.com *.cf.brightcove.com blob: data:; object-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest *.akamaihd.net *.boltdns.net; frame-src 'self' https://www.classmarker.com https://www.google.com https://www.googletagmanager.com players.brightcove.net https://challenges.cloudflare.com https://crossmark.crossref.org; worker-src blob:; frame-ancestors 'self' http://cmsdev2001:1337/admin https://opgtest/",
+        "content-type": "text/html;charset=UTF-8",
+        "cross-origin-resource-policy": "cross-origin",
+        "date": "Wed, 27 May 2026 05:37:59 GMT",
+        "server": "xx6_53652",
+        "strict-transport-security": "max-age=31536000; preload",
+        "tdm-policy": "https://opg.optica.org/policies/opg-tdm-policy.json",
+        "tdm-reservation": "1",
+        "transfer-encoding": "chunked",
+        "x-aspnet-version": "4.0.30319",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-ip": "1"
+      },
+      "final_url": "https://opg.optica.org/captcha/(S(rrty3ldajxvysi2hqabs35jw))/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872",
+      "title": "Captcha",
+      "captcha_detected": true,
+      "body_sample": "Optica has implemented a process that requires you to enter the letters and/or numbers below before you can download this article. ÔāßÓÏ ",
+      "pdf_candidates": [],
+      "responses": [
+        {
+          "url": "https://opg.optica.org/ol/abstract.cfm?uri=ol-51-10-2872",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/ol/viewmedia.cfm?uri=ol-51-10-2872&html=true",
+          "resource_type": "document",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&html=true",
+          "status": 202,
+          "content_type": "text/html;charset=UTF-8",
+          "location": null,
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/ol/abstract.cfm?uri=ol-51-10-2872"
+        },
+        {
+          "url": "https://opg.optica.org/checkjs.cfm?s=1779860280104%7CBA4239B75A7682C67BDBE1381BB97B36DA7ACAE8640C4FD87824D14C687A6FC4&x=1",
+          "status": 200,
+          "content_type": "text/html;charset=UTF-8",
+          "location": null,
+          "resource_type": "fetch",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/viewmedia.cfm?r=1&rwjcode=ol&uri=ol-51-10-2872&html=true",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/captcha/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872",
+          "resource_type": "document",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872",
+          "status": 302,
+          "content_type": "text/html; charset=utf-8",
+          "location": "/captcha/(S(rrty3ldajxvysi2hqabs35jw))/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872",
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/viewmedia.cfm?r=1&rwjcode=ol&uri=ol-51-10-2872&html=true"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(rrty3ldajxvysi2hqabs35jw))/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "location": null,
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/captcha/?guid=03C1C84F-AAD7-4074-BF52-AB9844F0A804&uri=ol-51-10-2872"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/bootstrap.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/site.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(rrty3ldajxvysi2hqabs35jw))/fonts/font_a_4b402790848b9196b6771ad6cd44937b.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(rrty3ldajxvysi2hqabs35jw))/fonts/font_b_4b402790848b9196b6771ad6cd44937b.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        }
+      ],
+      "downloads": [],
+      "popups": []
+    },
+    {
+      "label": "viewmedia-journal-seq0",
+      "requested_url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&seq=0",
+      "nav_error": null,
+      "response_status": 200,
+      "response_url": "https://opg.optica.org/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+      "response_headers": {
+        "cache-control": "private",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self' data: 'unsafe-inline' https://*.brightcove.net http://opgdev1901 http://opgtest https://*.google-analytics.com https://*.google.com https://*.brightcove.com *.akamaihd.net *.boltdns.net https://brightcove.hs.llnwd.net https://stats.g.doubleclick.net https://*.classmarker.com https://*.crossref.org https://cm.scholarlyiq.com https://public.tableau.com blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://code.jquery.com https://*.simpli.fi https://cdn.jsdelivr.net https://snap.licdn.com http://opgdev1901 https://opgtest https://tagmanager.google.com https://*.googletagmanager.com https://*.google-analytics.com https://*.google.com https://www.gstatic.com https://*.crossref.org https://cdnjs.cloudflare.com https://vjs.zendcdn.net https://vjs.zencdn.net https://players.brightcove.net https://www.youtube.com https://s.ytimg.com https://*.classmarker.com https://cdn.ckeditor.com https://public.tableau.com https://consent.studio *.perfdrive.com *.doubleclick.net *.stackadapt.com *.facebook.net https://www.redditstatic.com https://files.bettybot.ai https://challenges.cloudflare.com blob:; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net http://opgdev1901 https://opgtest https://tagmanager.google.com https://fonts.googleapis.com https://*.crossref.org https://cdn.ckeditor.com *.stackadapt.com https://files.bettybot.ai players.brightcove.net; img-src 'self' 'unsafe-inline' https://*.linkedin.com http://opgdev1901 https://opgtest https://*.googletagmanager.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://*.crossref.org https://stats.g.doubleclick.net players.brightcove.net *.brightcove.com *.boltdns.net *.akamaihd.net *.brightcovecdn.com https://imagebank.osa.org https://imagebank.optica.org https://account.optica.org https://cdn.ckeditor.com https://public.tableau.com https://www.osapublishing.org https://alb.reddit.com https://www.facebook.com https://www.google.com https://files.bettybot.ai; font-src 'self' data: 'unsafe-inline' 'unsafe-eval' http://opgdev1901 http://opgtest https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com about: players.brightcove.net; connect-src 'self' https://*.brightcovecdn.com *.boltdns.net players.brightcove.net edge.api.brightcove.com *.akamaihd.net https://*.linkedin.com https://*.simpli.fi https://opgtest https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://consent.studio *.jsdelivr.net *.facebook.com *.reddit.com *.redditstatic.com *.googlesyndication.com *.stackadapt.com https://www.google.com *.doubleclick.net https://betty-api.tasio.co https://*.algolia.net https://cas.avalon.perfdrive.com https://demo-1.conversionsapigateway.com https://*.us.central1.run.app https://challenges.cloudflare.com; media-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest https://opg.optica.org https://www.osapublishing.org *.akamaihd.net *.boltdns.net https://*.brightcove.com *.brightcovecdn.com *.cf.brightcove.com blob: data:; object-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest *.akamaihd.net *.boltdns.net; frame-src 'self' https://www.classmarker.com https://www.google.com https://www.googletagmanager.com players.brightcove.net https://challenges.cloudflare.com https://crossmark.crossref.org; worker-src blob:; frame-ancestors 'self' http://cmsdev2001:1337/admin https://opgtest/",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-resource-policy": "cross-origin",
+        "date": "Wed, 27 May 2026 05:38:12 GMT",
+        "server": "xx6_53652",
+        "strict-transport-security": "max-age=31536000; preload",
+        "tdm-policy": "https://opg.optica.org/policies/opg-tdm-policy.json",
+        "tdm-reservation": "1",
+        "transfer-encoding": "chunked",
+        "x-aspnet-version": "4.0.30319",
+        "x-aspnetmvc-version": "5.2",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "final_url": "https://opg.optica.org/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+      "title": "Captcha",
+      "captcha_detected": true,
+      "body_sample": "Optica has implemented a process that requires you to enter the letters and/or numbers below before you can download this article. àøüüà ",
+      "pdf_candidates": [],
+      "responses": [
+        {
+          "url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&seq=0",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/captcha/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+          "resource_type": "document",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+          "status": 302,
+          "content_type": "text/html; charset=utf-8",
+          "location": "/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&seq=0"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "location": null,
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/captcha/?guid=07535AE4-98CE-46D8-A989-9AE90ADD07E1&uri=ol-51-10-2872"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/bootstrap.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/site.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/fonts/font_a_190c4369c6f5646493007bebec046893.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(czo5gt5l2m0k5ayrcn4qdrvq))/fonts/font_b_190c4369c6f5646493007bebec046893.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        }
+      ],
+      "downloads": [],
+      "popups": []
+    },
+    {
+      "label": "doi-redirect",
+      "requested_url": "https://doi.org/10.1364/OL.531116",
+      "nav_error": null,
+      "response_status": 200,
+      "response_url": "https://opg.optica.org/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+      "response_headers": {
+        "cache-control": "private",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self' data: 'unsafe-inline' https://*.brightcove.net http://opgdev1901 http://opgtest https://*.google-analytics.com https://*.google.com https://*.brightcove.com *.akamaihd.net *.boltdns.net https://brightcove.hs.llnwd.net https://stats.g.doubleclick.net https://*.classmarker.com https://*.crossref.org https://cm.scholarlyiq.com https://public.tableau.com blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://code.jquery.com https://*.simpli.fi https://cdn.jsdelivr.net https://snap.licdn.com http://opgdev1901 https://opgtest https://tagmanager.google.com https://*.googletagmanager.com https://*.google-analytics.com https://*.google.com https://www.gstatic.com https://*.crossref.org https://cdnjs.cloudflare.com https://vjs.zendcdn.net https://vjs.zencdn.net https://players.brightcove.net https://www.youtube.com https://s.ytimg.com https://*.classmarker.com https://cdn.ckeditor.com https://public.tableau.com https://consent.studio *.perfdrive.com *.doubleclick.net *.stackadapt.com *.facebook.net https://www.redditstatic.com https://files.bettybot.ai https://challenges.cloudflare.com blob:; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net http://opgdev1901 https://opgtest https://tagmanager.google.com https://fonts.googleapis.com https://*.crossref.org https://cdn.ckeditor.com *.stackadapt.com https://files.bettybot.ai players.brightcove.net; img-src 'self' 'unsafe-inline' https://*.linkedin.com http://opgdev1901 https://opgtest https://*.googletagmanager.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://*.crossref.org https://stats.g.doubleclick.net players.brightcove.net *.brightcove.com *.boltdns.net *.akamaihd.net *.brightcovecdn.com https://imagebank.osa.org https://imagebank.optica.org https://account.optica.org https://cdn.ckeditor.com https://public.tableau.com https://www.osapublishing.org https://alb.reddit.com https://www.facebook.com https://www.google.com https://files.bettybot.ai; font-src 'self' data: 'unsafe-inline' 'unsafe-eval' http://opgdev1901 http://opgtest https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com about: players.brightcove.net; connect-src 'self' https://*.brightcovecdn.com *.boltdns.net players.brightcove.net edge.api.brightcove.com *.akamaihd.net https://*.linkedin.com https://*.simpli.fi https://opgtest https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com https://consent.studio *.jsdelivr.net *.facebook.com *.reddit.com *.redditstatic.com *.googlesyndication.com *.stackadapt.com https://www.google.com *.doubleclick.net https://betty-api.tasio.co https://*.algolia.net https://cas.avalon.perfdrive.com https://demo-1.conversionsapigateway.com https://*.us.central1.run.app https://challenges.cloudflare.com; media-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest https://opg.optica.org https://www.osapublishing.org *.akamaihd.net *.boltdns.net https://*.brightcove.com *.brightcovecdn.com *.cf.brightcove.com blob: data:; object-src 'self' 'unsafe-inline' http://opgdev1901 http://opgtest *.akamaihd.net *.boltdns.net; frame-src 'self' https://www.classmarker.com https://www.google.com https://www.googletagmanager.com players.brightcove.net https://challenges.cloudflare.com https://crossmark.crossref.org; worker-src blob:; frame-ancestors 'self' http://cmsdev2001:1337/admin https://opgtest/",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-resource-policy": "cross-origin",
+        "date": "Wed, 27 May 2026 05:38:24 GMT",
+        "server": "xx6_53652",
+        "strict-transport-security": "max-age=31536000; preload",
+        "tdm-policy": "https://opg.optica.org/policies/opg-tdm-policy.json",
+        "tdm-reservation": "1",
+        "transfer-encoding": "chunked",
+        "x-aspnet-version": "4.0.30319",
+        "x-aspnetmvc-version": "5.2",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "final_url": "https://opg.optica.org/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+      "title": "Captcha",
+      "captcha_detected": true,
+      "body_sample": "Optica has implemented a process that requires you to enter the letters and/or numbers below before you can download this article. ìçúÝç ",
+      "pdf_candidates": [],
+      "responses": [
+        {
+          "url": "https://doi.org/10.1364/OL.531116",
+          "status": 302,
+          "content_type": "text/html;charset=utf-8",
+          "location": "https://opg.optica.org/abstract.cfm?URI=ol-49-16-4630",
+          "resource_type": "document",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/abstract.cfm?URI=ol-49-16-4630",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/ol/abstract.cfm?uri=ol-49-16-4630",
+          "resource_type": "document",
+          "redirected_from": "https://doi.org/10.1364/OL.531116"
+        },
+        {
+          "url": "https://opg.optica.org/ol/abstract.cfm?uri=ol-49-16-4630",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/ol/viewmedia.cfm?uri=ol-49-16-4630&html=true",
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/abstract.cfm?URI=ol-49-16-4630"
+        },
+        {
+          "url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-49-16-4630&html=true",
+          "status": 302,
+          "content_type": "text/html;charset=UTF-8",
+          "location": "/captcha/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/ol/abstract.cfm?uri=ol-49-16-4630"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+          "status": 302,
+          "content_type": "text/html; charset=utf-8",
+          "location": "/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-49-16-4630&html=true"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "location": null,
+          "resource_type": "document",
+          "redirected_from": "https://opg.optica.org/captcha/?guid=BC897639-5713-45F6-9F44-5A38703F9742&uri=ol-49-16-4630"
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/bootstrap.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/Content/site.css",
+          "status": 200,
+          "content_type": "text/css",
+          "location": null,
+          "resource_type": "stylesheet",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/fonts/font_a_590a49a8503dab60bac5a9be7ef8a7c7.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        },
+        {
+          "url": "https://opg.optica.org/captcha/(S(mpbjrulvncx1kpmvedlkerlg))/fonts/font_b_590a49a8503dab60bac5a9be7ef8a7c7.woff",
+          "status": 200,
+          "content_type": "font/x-woff",
+          "location": null,
+          "resource_type": "font",
+          "redirected_from": null
+        }
+      ],
+      "downloads": [],
+      "popups": []
+    }
+  ],
+  "cookie_snapshots": [
+    {
+      "label": "initial",
+      "at": "2026-05-27T05:37:57.545Z",
+      "count": 22,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795582473,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795582473,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-abstract",
+      "at": "2026-05-27T05:38:09.477Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585082.597068,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585082.597149,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-viewmedia-journal-seq0",
+      "at": "2026-05-27T05:38:19.219Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585092.374455,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585092.374527,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-doi-redirect",
+      "at": "2026-05-27T05:38:32.068Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585105.157494,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585105.157576,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-viewmedia-root-seq0",
+      "at": "2026-05-27T05:38:36.449Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585115,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585115,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-abstract-root",
+      "at": "2026-05-27T05:38:42.514Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585121,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585121,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-fulltext",
+      "at": "2026-05-27T05:38:47.137Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585126,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585126,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-viewmedia-html",
+      "at": "2026-05-27T05:38:50.410Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585129,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585129,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-upcoming-pdf",
+      "at": "2026-05-27T05:38:52.622Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585131,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585131,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    },
+    {
+      "label": "after-request-cd-pattern-guess",
+      "at": "2026-05-27T05:38:53.171Z",
+      "count": 24,
+      "cookies": [
+        {
+          "name": "__uzma",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324309,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmb",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324324,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmc",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585132,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzmd",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795585132,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "__uzme",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1795538571.324369,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_fbp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633583,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417583.469356,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_ga_EGFN5DM8HB",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1814417599.543264,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_gid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1779943983,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_pn",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633599,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "_rdt_uuid",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1787633582,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Strict",
+          "value_redacted": true
+        },
+        {
+          "name": "cfid",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.32416,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "cftoken",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1814373771.324273,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_CHECKJS",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862081.743851,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "CFX_SESSION",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779862077.906258,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-id",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__consent-timestamp",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449574,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__seen",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449565,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "consent-studio__storage",
+          "domain": ".opg.optica.org",
+          "path": "/",
+          "expires": 1782449572,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        },
+        {
+          "name": "SL_ClassKey",
+          "domain": "opg.optica.org",
+          "path": "/",
+          "expires": 1779943371.324381,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax",
+          "value_redacted": true
+        }
+      ]
+    }
+  ],
+  "alternative_request_probes": [
+    {
+      "label": "viewmedia-root-seq0",
+      "url": "https://opg.optica.org/viewmedia.cfm?uri=ol-51-10-2872&seq=0",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://opg.optica.org/captcha/(S(ldc40cr0odiipp0m0cpwqohb))/?guid=CD5616D7-DFED-4150-9180-A3C43CC59108&uri=ol-51-10-2872",
+      "content_type": "text/html; charset=utf-8",
+      "magic": "<!DOC",
+      "size": 70027,
+      "captcha_detected": true,
+      "body_prefix": "<!DOCTYPE html> <html> <head> <meta charset=\"utf-8\" /><script> var __uzdbm_1 = \"3d049c48-b616-c55e-d5b6-b19aa529da82\";var __uzdbm_2 =\"OGM2NDQ2OWMtZDNoeS1lYTVlLWRmNDItNDBmMTVmMTkzZjVmJDIxMC4yNDUuMTUyLjE0NA==\"; (function(w, d, e, u, c, g, a, b){ w[\"SSJSConnectorObj\"] = w[\"SSJSConnectorObj\"] || {ss_cid : c, domain_info: \"auto\"}; w[g] = function(i, j){w[\"SSJSConnectorObj\"][i] = j}; a = d.createElement(e); a.async = true; if(navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){ u = u.replace(\"/advanced/\", \"/advanced/ie/\"); ",
+      "duration_ms": 4372
+    },
+    {
+      "label": "abstract-root",
+      "url": "https://opg.optica.org/abstract.cfm?URI=ol-51-10-2872",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://opg.optica.org/captcha/(S(tmsythajsm04qliifwhekafk))/?guid=81DAFAB3-D3AD-40BB-9266-D29B031710E1&uri=ol-51-10-2872",
+      "content_type": "text/html; charset=utf-8",
+      "magic": "<!DOC",
+      "size": 70027,
+      "captcha_detected": true,
+      "body_prefix": "<!DOCTYPE html> <html> <head> <meta charset=\"utf-8\" /><script> var __uzdbm_1 = \"3d049c48-b616-c55e-d5b6-b19aa529da82\";var __uzdbm_2 =\"NzU0Yzk3MTMtZDNoeS1hNjE2LTFiZDMtMTI3OTUzYmI2ZDNjJDIxMC4yNDUuMTUyLjE0NA==\"; (function(w, d, e, u, c, g, a, b){ w[\"SSJSConnectorObj\"] = w[\"SSJSConnectorObj\"] || {ss_cid : c, domain_info: \"auto\"}; w[g] = function(i, j){w[\"SSJSConnectorObj\"][i] = j}; a = d.createElement(e); a.async = true; if(navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){ u = u.replace(\"/advanced/\", \"/advanced/ie/\"); ",
+      "duration_ms": 6064
+    },
+    {
+      "label": "fulltext",
+      "url": "https://opg.optica.org/ol/fulltext.cfm?uri=ol-51-10-2872",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://opg.optica.org/captcha/(S(ondkkyd4swdhhqdwwepyz4ev))/?guid=994AB4C4-4901-4A46-A000-34380F702F5C&uri=ol-51-10-2872",
+      "content_type": "text/html; charset=utf-8",
+      "magic": "<!DOC",
+      "size": 70027,
+      "captcha_detected": true,
+      "body_prefix": "<!DOCTYPE html> <html> <head> <meta charset=\"utf-8\" /><script> var __uzdbm_1 = \"3d049c48-b616-c55e-d5b6-b19aa529da82\";var __uzdbm_2 =\"NGJjNDBiYzItZDNoeS0zNzMyLTgyNjEtNGFkNzZhZTgzMWE2JDIxMC4yNDUuMTUyLjE0NA==\"; (function(w, d, e, u, c, g, a, b){ w[\"SSJSConnectorObj\"] = w[\"SSJSConnectorObj\"] || {ss_cid : c, domain_info: \"auto\"}; w[g] = function(i, j){w[\"SSJSConnectorObj\"][i] = j}; a = d.createElement(e); a.async = true; if(navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){ u = u.replace(\"/advanced/\", \"/advanced/ie/\"); ",
+      "duration_ms": 4620
+    },
+    {
+      "label": "viewmedia-html",
+      "url": "https://opg.optica.org/ol/viewmedia.cfm?uri=ol-51-10-2872&html=true",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://opg.optica.org/captcha/(S(dzvi3fichujpefvn340ieqid))/?guid=AC33A32B-4A3C-43E3-B560-815B0BFDC348&uri=ol-51-10-2872",
+      "content_type": "text/html; charset=utf-8",
+      "magic": "<!DOC",
+      "size": 70027,
+      "captcha_detected": true,
+      "body_prefix": "<!DOCTYPE html> <html> <head> <meta charset=\"utf-8\" /><script> var __uzdbm_1 = \"3d049c48-b616-c55e-d5b6-b19aa529da82\";var __uzdbm_2 =\"Zjc4NDQzZGEtZDNoeS05MzlhLTkzNjAtYzI4NmEyNGJmYmQ5JDIxMC4yNDUuMTUyLjE0NA==\"; (function(w, d, e, u, c, g, a, b){ w[\"SSJSConnectorObj\"] = w[\"SSJSConnectorObj\"] || {ss_cid : c, domain_info: \"auto\"}; w[g] = function(i, j){w[\"SSJSConnectorObj\"][i] = j}; a = d.createElement(e); a.async = true; if(navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){ u = u.replace(\"/advanced/\", \"/advanced/ie/\"); ",
+      "duration_ms": 3271
+    },
+    {
+      "label": "upcoming-pdf",
+      "url": "https://opg.optica.org/ol/upcoming_pdf.cfm?uri=ol-51-10-2872",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://opg.optica.org/",
+      "content_type": "text/html;charset=UTF-8",
+      "magic": "<!DOC",
+      "size": 81060,
+      "captcha_detected": false,
+      "body_prefix": "<!DOCTYPE html> <!--[if IE 8]> <html class=\"no-js lt-ie9\" lang=\"en\" > <![endif]--> <!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en\"> <!--<![endif]--> <head> <meta charset=\"utf-8\"> <meta name=\"tdm-reservation\" content=\"1\"/> <meta name=\"tdm-policy\" content=\"https://opg.optica.org/policies/opg-tdm-policy.json\"/> <meta name=\"viewport\" content=\"width=device-width\" initial-scale=\"1\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><script> var __uzdbm_1 = \"3d049c48-b616-c55e-d5b6-b19aa529da82\";var __uzdbm_2 =\"MDU1M2U1NWMtZDNoeS0zYzFkLWRlZTQtODg2YmM0NzRiNjg1JDIxMC4yNDUuMTUyLjE0NA==\"; (fun",
+      "duration_ms": 2209
+    },
+    {
+      "label": "cd-pattern-guess",
+      "url": "https://opg.optica.org/ol/cd-51-10-2872.pdf",
+      "ok": false,
+      "status": 404,
+      "final_url": "https://opg.optica.org/ol/cd-51-10-2872.pdf",
+      "content_type": "text/html",
+      "magic": "<!DOC",
+      "size": 3895,
+      "captcha_detected": false,
+      "body_prefix": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Noto+Sans:700&amp;subset=latin,greek-ext' rel='stylesheet' type='text/css'> <title>OPG | Page Not Found</title> <style> * { margin: 0; padding: 0; box-sizing: border-box; } html { font-family: 'Open Sans', sans-serif; font-size: 100%; line-height: 1.5; ",
+      "duration_ms": 548
+    }
+  ],
+  "conclusions": [
+    "headed research-optica captcha labels: abstract, viewmedia-journal-seq0, doi-redirect",
+    "abstract-page PDF candidates before captcha: none observed",
+    "PDF responses observed during navigation: 0",
+    "alternative direct-PDF request probes with %PDF-: none"
+  ],
+  "ended_at": "2026-05-27T05:38:53.172Z"
+}
