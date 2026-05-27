@@ -7407,10 +7407,22 @@ export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRun
   return sendPromptExtensionErrorOutput("chatgpt", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "managed-cdp") return sendPromptOnPage("claude", args, runtimeOrDefault(runtime));
-  if (backend === "extension-assisted-cdp") return sendClaudePromptWithExtensionBackend(args, runtimeOrDefault(runtime));
-  return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+  // Path C Claude Wave B1: RPC is the production default; WEBAI_CLAUDE_SEND_BACKEND=dom is the emergency DOM override, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_CLAUDE_SEND_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_claude_send_prompt] backend=dom-extension");
+    return sendClaudePromptWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_claude_send_prompt] backend=dom-managed");
+    return sendPromptOnPage("claude", args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_CLAUDE_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_SEND_BACKEND)}`));
+  }
+  console.error("[webai_claude_send_prompt] backend=rpc");
+  const { webAiClaudeSendPromptRpc } = require("./claude_send_prompt_rpc");
+  return webAiClaudeSendPromptRpc(args, runtime);
 }
 
 export async function webAiChatgptCodexSubmitTask(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {

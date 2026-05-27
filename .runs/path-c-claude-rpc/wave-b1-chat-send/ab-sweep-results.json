@@ -1,0 +1,513 @@
+{
+  "started_at": "2026-05-27T16:00:16.812Z",
+  "profile": "claude-9224",
+  "cdp_port": 9224,
+  "min_gap_ms": 30000,
+  "dist_tools_mtime_ms": 1779897562401.2153,
+  "variants": [
+    {
+      "variant": "basic",
+      "prompt": "what is 2+2? Reply with only the number.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 5136,
+        "response_text": "Claude responded: 44",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/ca3ce3f6-16aa-4aa3-9883-460605a0976f",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: 44",
+          "elapsed_ms": 5130,
+          "wait_ms": 3042,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/ca3ce3f6-16aa-4aa3-9883-460605a0976f"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 2837,
+        "response_text": " 4",
+        "errorCode": null,
+        "conversation_id": "cd178e22-7734-4889-bbca-40f23d4b878a",
+        "chat_url": "https://claude.ai/chat/cd178e22-7734-4889-bbca-40f23d4b878a",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " 4",
+          "conversation_id": "cd178e22-7734-4889-bbca-40f23d4b878a",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 2832,
+          "wait_ms": 1807,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/cd178e22-7734-4889-bbca-40f23d4b878a"
+        }
+      },
+      "text_similarity": 0,
+      "latency_ratio_dom_over_rpc": 1.8103630595699682,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "thinking",
+      "prompt": "show your reasoning briefly for 17×23, then end with ANSWER: 391.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 7826,
+        "response_text": "Claude responded: To multiply 17 × 23, it helps to decompose one of the numbers.Verified arithmetic calculation and confirmed answerVerified arithmetic calculation and confirmed answerTo multiply 17 × 23, it helps to decompose one of the numbers. I'll break 23 into 20 + 3, then distribute:\n17 × 20 = 340, and 17 × 3 = 51. Adding those together gives 340 + 51 = 391.\nANSWER: 391.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/80b56386-5ca5-410c-92ba-93ef534950f3",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: To multiply 17 × 23, it helps to decompose one of the numbers.Verified arithmetic calculation and confirmed answerVerified arithmetic calculation and confirmed answerTo multiply 17 × 23, it helps to decompose one of the numbers. I'll break 23 into 20 + 3, then distribute:\n17 × 20 = 340, and 17 × 3 = 51. Adding those together gives 340 + 51 = 391.\nANSWER: 391.",
+          "elapsed_ms": 7822,
+          "wait_ms": 5944,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/80b56386-5ca5-410c-92ba-93ef534950f3"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 3907,
+        "response_text": " 17 × 23: break it up as 17 × 20 + 17 × 3 = 340 + 51 = 391.\n\nANSWER: 391.",
+        "errorCode": null,
+        "conversation_id": "78f3b6a8-661d-432e-99bd-db92b798fb9d",
+        "chat_url": "https://claude.ai/chat/78f3b6a8-661d-432e-99bd-db92b798fb9d",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " 17 × 23: break it up as 17 × 20 + 17 × 3 = 340 + 51 = 391.\n\nANSWER: 391.",
+          "conversation_id": "78f3b6a8-661d-432e-99bd-db92b798fb9d",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 3905,
+          "wait_ms": 2946,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/78f3b6a8-661d-432e-99bd-db92b798fb9d"
+        }
+      },
+      "text_similarity": 0.2631578947368421,
+      "latency_ratio_dom_over_rpc": 2.0030714102892246,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "web_search",
+      "prompt": "what's the weather in Beijing today? Reply in one short sentence.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 11039,
+        "response_text": "Claude responded: Unfortunately, I'm unable to retrieve the current weather data for Beijing right now due to a service error.Thinking about current weather conditions in BeijingThinking about current weather conditions in BeijingUnfortunately, I'm unable to retrieve the current weather data for Beijing right now due to a service error. For up-to-date conditions, you can check a site like weather.com or search \"Beijing weather\" directly in your browser.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/64cca43c-500f-4d0e-bae9-97def3e01cf7",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: Unfortunately, I'm unable to retrieve the current weather data for Beijing right now due to a service error.Thinking about current weather conditions in BeijingThinking about current weather conditions in BeijingUnfortunately, I'm unable to retrieve the current weather data for Beijing right now due to a service error. For up-to-date conditions, you can check a site like weather.com or search \"Beijing weather\" directly in your browser.",
+          "elapsed_ms": 11038,
+          "wait_ms": 8403,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/64cca43c-500f-4d0e-bae9-97def3e01cf7"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 5702,
+        "response_text": " Sorry, I wasn't able to retrieve the current weather for Beijing — you can check [weather.com](https://weather.com) or a quick web search for up-to-date conditions.",
+        "errorCode": null,
+        "conversation_id": "59a19503-bf6e-41fb-acf5-2574b0f5d816",
+        "chat_url": "https://claude.ai/chat/59a19503-bf6e-41fb-acf5-2574b0f5d816",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " Sorry, I wasn't able to retrieve the current weather for Beijing — you can check [weather.com](https://weather.com) or a quick web search for up-to-date conditions.",
+          "conversation_id": "59a19503-bf6e-41fb-acf5-2574b0f5d816",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 5700,
+          "wait_ms": 4788,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/59a19503-bf6e-41fb-acf5-2574b0f5d816"
+        }
+      },
+      "text_similarity": 0.391304347826087,
+      "latency_ratio_dom_over_rpc": 1.935987372851631,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "style_concise",
+      "prompt": "Define photosynthesis in one short sentence.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 7197,
+        "response_text": "Claude responded: Photosynthesis is the process by which plants (and some other organisms) convert light energy, water, and carbon dioxide into glucose and oxygen.Photosynthesis is the process by which plants (and some other organisms) convert light energy, water, and carbon dioxide into glucose and oxygen.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/8fbe4122-cb3b-4fd6-a31d-1ac1c1601af8",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: Photosynthesis is the process by which plants (and some other organisms) convert light energy, water, and carbon dioxide into glucose and oxygen.Photosynthesis is the process by which plants (and some other organisms) convert light energy, water, and carbon dioxide into glucose and oxygen.",
+          "elapsed_ms": 7196,
+          "wait_ms": 5375,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/8fbe4122-cb3b-4fd6-a31d-1ac1c1601af8"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 3062,
+        "response_text": " Photosynthesis is the process by which plants and other organisms convert light, water, and carbon dioxide into glucose and oxygen.",
+        "errorCode": null,
+        "conversation_id": "559d295e-bf63-4178-8935-a72cac0992a0",
+        "chat_url": "https://claude.ai/chat/559d295e-bf63-4178-8935-a72cac0992a0",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " Photosynthesis is the process by which plants and other organisms convert light, water, and carbon dioxide into glucose and oxygen.",
+          "conversation_id": "559d295e-bf63-4178-8935-a72cac0992a0",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 3059,
+          "wait_ms": 2121,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/559d295e-bf63-4178-8935-a72cac0992a0"
+        }
+      },
+      "text_similarity": 0.8181818181818182,
+      "latency_ratio_dom_over_rpc": 2.350424559111692,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "style_explanatory",
+      "prompt": "Explain photosynthesis in one short sentence for a student.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 6953,
+        "response_text": "Claude responded: Plants use sunlight, water, and carbon dioxide to make their own food (sugar) and release oxygen as a byproduct.Plants use sunlight, water, and carbon dioxide to make their own food (sugar) and release oxygen as a byproduct.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/b8c90c3c-4d78-42a4-8abc-8261e540d936",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: Plants use sunlight, water, and carbon dioxide to make their own food (sugar) and release oxygen as a byproduct.Plants use sunlight, water, and carbon dioxide to make their own food (sugar) and release oxygen as a byproduct.",
+          "elapsed_ms": 6950,
+          "wait_ms": 5133,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/b8c90c3c-4d78-42a4-8abc-8261e540d936"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 4193,
+        "response_text": " Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to produce their own food (sugar) and release oxygen as a byproduct.",
+        "errorCode": null,
+        "conversation_id": "5bf655a9-845e-4995-9f9b-b48183139643",
+        "chat_url": "https://claude.ai/chat/5bf655a9-845e-4995-9f9b-b48183139643",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to produce their own food (sugar) and release oxygen as a byproduct.",
+          "conversation_id": "5bf655a9-845e-4995-9f9b-b48183139643",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 4190,
+          "wait_ms": 3211,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/5bf655a9-845e-4995-9f9b-b48183139643"
+        }
+      },
+      "text_similarity": 0.6296296296296297,
+      "latency_ratio_dom_over_rpc": 1.6582399236823278,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "incognito",
+      "prompt": "Reply with only OK_INCOGNITO.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 6985,
+        "response_text": "Claude responded: OK_INCOGNITOThinking about concerns with this requestThinking about concerns with this requestOK_INCOGNITO",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/new?incognito=",
+        "model_used": "Opus 4.7",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: OK_INCOGNITOThinking about concerns with this requestThinking about concerns with this requestOK_INCOGNITO",
+          "elapsed_ms": 6983,
+          "wait_ms": 4554,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Opus 4.7",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/new?incognito="
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 3691,
+        "response_text": " OK_INCOGNITO.",
+        "errorCode": null,
+        "conversation_id": "94b41f1b-8bd5-4696-a4c4-93af42439d70",
+        "chat_url": "https://claude.ai/chat/94b41f1b-8bd5-4696-a4c4-93af42439d70",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " OK_INCOGNITO.",
+          "conversation_id": "94b41f1b-8bd5-4696-a4c4-93af42439d70",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 3688,
+          "wait_ms": 2671,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/94b41f1b-8bd5-4696-a4c4-93af42439d70"
+        }
+      },
+      "text_similarity": 0.18181818181818182,
+      "latency_ratio_dom_over_rpc": 1.8924410728799783,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "model_haiku",
+      "prompt": "Reply with only OK_HAIKU.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 7097,
+        "response_text": "Claude responded: OK_HAIKUWeighing explicit user command against style guidelinesWeighing explicit user command against style guidelinesOK_HAIKU",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/new?incognito=",
+        "model_used": "Haiku 4.5 Extended",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: OK_HAIKUWeighing explicit user command against style guidelinesWeighing explicit user command against style guidelinesOK_HAIKU",
+          "elapsed_ms": 7095,
+          "wait_ms": 4885,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Haiku 4.5 Extended",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/new?incognito="
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 2375,
+        "response_text": "OK_HAIKU",
+        "errorCode": null,
+        "conversation_id": "0ddc0a8b-c2d4-408b-9819-9ce6c492c4c7",
+        "chat_url": "https://claude.ai/chat/0ddc0a8b-c2d4-408b-9819-9ce6c492c4c7",
+        "model_used": "claude-haiku-4-5-20251001",
+        "http_status": 200,
+        "raw": {
+          "response_text": "OK_HAIKU",
+          "conversation_id": "0ddc0a8b-c2d4-408b-9819-9ce6c492c4c7",
+          "model_used": "claude-haiku-4-5-20251001",
+          "http_status": 200,
+          "elapsed_ms": 2371,
+          "wait_ms": 1446,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/0ddc0a8b-c2d4-408b-9819-9ce6c492c4c7"
+        }
+      },
+      "text_similarity": 0.16666666666666666,
+      "latency_ratio_dom_over_rpc": 2.9882105263157897,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "model_sonnet",
+      "prompt": "Reply with only OK_SONNET.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 5262,
+        "response_text": "Claude responded: OK_SONNET.OK_SONNET.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/b5692206-de44-4af6-977a-111006764647",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: OK_SONNET.OK_SONNET.",
+          "elapsed_ms": 5261,
+          "wait_ms": 2766,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/b5692206-de44-4af6-977a-111006764647"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 2627,
+        "response_text": " OK_SONNET.",
+        "errorCode": null,
+        "conversation_id": "2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " OK_SONNET.",
+          "conversation_id": "2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 2623,
+          "wait_ms": 1706,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185"
+        }
+      },
+      "text_similarity": 0.5,
+      "latency_ratio_dom_over_rpc": 2.0030452988199468,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "reuse_conversation",
+      "prompt": "Continue this conversation and reply with only OK_REUSE.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 6169,
+        "response_text": "Claude responded: OK_REUSE.OK_REUSE.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "model_used": "Opus 4.7",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: OK_REUSE.OK_REUSE.",
+          "elapsed_ms": 6166,
+          "wait_ms": 3366,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Opus 4.7",
+          "reuse_conversation": true,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 2165,
+        "response_text": " OK_REUSE.",
+        "errorCode": null,
+        "conversation_id": "2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " OK_REUSE.",
+          "conversation_id": "2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 2164,
+          "wait_ms": 1708,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185"
+        }
+      },
+      "text_similarity": 0.5,
+      "latency_ratio_dom_over_rpc": 2.8494226327944574,
+      "rpc_correct": true,
+      "pass": true
+    },
+    {
+      "variant": "attachment_mode_none",
+      "prompt": "Reply with only OK_NO_ATTACH.",
+      "dom": {
+        "ok": true,
+        "latency_ms": 4730,
+        "response_text": "Claude responded: OKNOATTACH.OK_NO_ATTACH.",
+        "errorCode": null,
+        "conversation_id": null,
+        "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185",
+        "model_used": "Sonnet 4.6 Adaptive",
+        "http_status": null,
+        "raw": {
+          "response_text": "Claude responded: OKNOATTACH.OK_NO_ATTACH.",
+          "elapsed_ms": 4727,
+          "wait_ms": 3143,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": "Sonnet 4.6 Adaptive",
+          "reuse_conversation": false,
+          "conversation_id": null,
+          "chat_url": "https://claude.ai/chat/2cb451a5-9d6a-4a69-abbb-9e8d226f2185"
+        }
+      },
+      "rpc": {
+        "ok": true,
+        "latency_ms": 2915,
+        "response_text": " OK_NO_ATTACH",
+        "errorCode": null,
+        "conversation_id": "6179d1ed-ce9e-4604-a7e6-605afde94e51",
+        "chat_url": "https://claude.ai/chat/6179d1ed-ce9e-4604-a7e6-605afde94e51",
+        "model_used": "claude-sonnet-4-6",
+        "http_status": 200,
+        "raw": {
+          "response_text": " OK_NO_ATTACH",
+          "conversation_id": "6179d1ed-ce9e-4604-a7e6-605afde94e51",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 2914,
+          "wait_ms": 1846,
+          "completion_detected": true,
+          "errorCode": null,
+          "chat_url": "https://claude.ai/chat/6179d1ed-ce9e-4604-a7e6-605afde94e51"
+        }
+      },
+      "text_similarity": 0.5,
+      "latency_ratio_dom_over_rpc": 1.6226415094339623,
+      "rpc_correct": true,
+      "pass": true
+    }
+  ],
+  "pass_count": 10,
+  "blocked_account_risk": false,
+  "verdict": "PASS",
+  "completed_at": "2026-05-27T16:09:49.765Z"
+}

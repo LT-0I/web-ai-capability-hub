@@ -22,6 +22,7 @@ const DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-6";
 const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const CAPTURED_TEMPLATE_PATH = path.join(process.cwd(), ".runs/claude-rpc-spike/captures/send/request-body.txt");
+const CLAUDE_WEB_SEARCH_TOOL = { type: "web_search_v0", name: "web_search" };
 
 export interface ClaudeRpcRequest {
   url: string;
@@ -66,8 +67,12 @@ function responseTimeoutMs(args: any): number {
 }
 
 function sendPromptBase(chatUrl: string, started: number, overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const conversationId = conversationIdFromUrl(chatUrl);
   return {
     response_text: "",
+    conversation_id: conversationId || null,
+    model_used: null,
+    http_status: null,
     elapsed_ms: Date.now() - started,
     wait_ms: 0,
     completion_detected: false,
@@ -92,7 +97,9 @@ function claudeRpcErrorCode(error: any): ConsumerErrorCode {
 
 function claudeRpcErrorOutput(args: any, started: number, error: any, extra: Record<string, unknown> = {}): Record<string, unknown> {
   const errorCode = claudeRpcErrorCode(error);
-  return safeOutput(sendPromptBase(targetUrlForClaude(args || {}), started, {
+  const chatUrl = typeof extra.chat_url === "string" ? extra.chat_url : targetUrlForClaude(args || {});
+  const { chat_url: _chatUrl, ...rest } = extra;
+  return safeOutput(sendPromptBase(chatUrl, started, {
     ok: false,
     service: "claude",
     response_text: "",
@@ -101,7 +108,7 @@ function claudeRpcErrorOutput(args: any, started: number, error: any, extra: Rec
     errorCode,
     error_code: errorCode,
     message: errorMessageFromUnknown(error, errorCode),
-    ...extra
+    ...rest
   }));
 }
 
@@ -114,9 +121,21 @@ function httpStatusErrorCode(status: number, body: string): ConsumerErrorCode {
 }
 
 export function decodeClaudeRpcSse(streamText: string): string {
+  return decodeClaudeRpcSseEnvelope(streamText).responseText;
+}
+
+export interface ClaudeRpcDecodedStream {
+  responseText: string;
+  modelUsed: string | null;
+  messageUuid: string | null;
+}
+
+export function decodeClaudeRpcSseEnvelope(streamText: string): ClaudeRpcDecodedStream {
   let assistantText = "";
   let sawData = false;
   let sawStop = false;
+  let modelUsed: string | null = null;
+  let messageUuid: string | null = null;
   for (const block of String(streamText || "").split(/\r?\n\r?\n+/)) {
     const dataLines: string[] = [];
     for (const line of block.split(/\r?\n/)) {
@@ -136,12 +155,16 @@ export function decodeClaudeRpcSse(streamText: string): string {
       const message = parsed?.error?.message || parsed?.message || "Claude RPC stream returned an error event";
       throw new WebAiToolError(claudeRpcErrorCode(message), message);
     }
+    if (parsed?.type === "message_start" && parsed?.message) {
+      if (typeof parsed.message.model === "string" && parsed.message.model.trim()) modelUsed = parsed.message.model;
+      if (typeof parsed.message.uuid === "string" && UUID_RE.test(parsed.message.uuid)) messageUuid = parsed.message.uuid;
+    }
     if (parsed?.delta?.type === "text_delta" && typeof parsed.delta.text === "string") assistantText += parsed.delta.text;
     if (parsed?.type === "message_stop") sawStop = true;
   }
   if (!sawData) throw new WebAiToolError(ConsumerErrorCodes.INVALID_JSON, "Claude RPC response was not an SSE stream");
   if (!sawStop && !assistantText) throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Claude RPC stream ended before assistant text was emitted");
-  return assistantText;
+  return { responseText: assistantText, modelUsed, messageUuid };
 }
 
 let cachedTemplate: any | undefined;
@@ -163,7 +186,8 @@ function fallbackPayloadTemplate(): any {
     locale: "en-US",
     model: DEFAULT_CLAUDE_MODEL,
     tools: [
-      { type: "web_search_v0", name: "web_search" },
+      { name: "show_widget" },
+      { name: "read_me" },
       { type: "artifacts_v0", name: "artifacts" },
       { type: "repl_v0", name: "repl" },
       { type: "widget", name: "weather_fetch" },
@@ -215,17 +239,108 @@ function normalizeClaudeModel(model: unknown): string {
   if (/^claude-/i.test(value)) return value;
   const normalized = value.toLowerCase().replace(/\s+/g, " ");
   const known: Record<string, string> = {
+    "sonnet": "claude-sonnet-4-6",
+    "claude sonnet": "claude-sonnet-4-6",
+    "sonnet 4": "claude-sonnet-4-6",
     "sonnet 4.6": "claude-sonnet-4-6",
     "claude sonnet 4.6": "claude-sonnet-4-6",
+    "haiku": "claude-haiku-4-5-20251001",
+    "claude haiku": "claude-haiku-4-5-20251001",
     "haiku 4.5": "claude-haiku-4-5-20251001",
     "claude haiku 4.5": "claude-haiku-4-5-20251001"
   };
   return known[normalized] || value;
 }
 
+function defaultClaudeStyle(): Record<string, unknown> {
+  return {
+    type: "default",
+    key: "Default",
+    name: "Normal",
+    nameKey: "normal_style_name",
+    prompt: "Normal\n",
+    summary: "Default responses from Claude",
+    summaryKey: "normal_style_summary",
+    isDefault: true
+  };
+}
+
+function conciseClaudeStyle(): Record<string, unknown> {
+  return {
+    type: "default",
+    key: "Concise",
+    name: "Concise",
+    nameKey: "concise_style_name",
+    prompt: [
+      "Claude is operating in Concise Mode. In this mode, Claude aims to reduce its output tokens while maintaining its helpfulness, quality, completeness, and accuracy.",
+      "Claude provides answers to questions without much unneeded preamble or postamble. It focuses on addressing the specific query or task at hand, avoiding tangential information unless helpful for understanding or completing the request. If it decides to create a list, Claude focuses on key information instead of comprehensive enumeration.",
+      "Claude maintains a helpful tone while avoiding excessive pleasantries or redundant offers of assistance.",
+      "Claude provides relevant evidence and supporting details when substantiation is helpful for factuality and understanding of its response. For numerical data, Claude includes specific figures when important to the answer's accuracy.",
+      "For code, artifacts, written content, or other generated outputs, Claude maintains the exact same level of quality, completeness, and functionality as when NOT in Concise Mode. There should be no impact to these output types.",
+      "Claude does not compromise on completeness, correctness, appropriateness, or helpfulness for the sake of brevity.",
+      "If the human requests a long or detailed response, Claude will set aside Concise Mode constraints and provide a more comprehensive answer.",
+      "If the human appears frustrated with Claude's conciseness, repeatedly requests longer or more detailed responses, or directly asks about changes in Claude's response style, Claude informs them that it's currently in Concise Mode and explains that Concise Mode can be turned off via Claude's UI if desired. Besides these scenarios, Claude does not mention Concise Mode."
+    ].join("\n"),
+    summary: "Shorter responses & more messages",
+    summaryKey: "concise_style_summary",
+    isDefault: false
+  };
+}
+
+function explanatoryClaudeStyle(): Record<string, unknown> {
+  return {
+    type: "default",
+    key: "Explanatory",
+    name: "Explanatory",
+    nameKey: "explanatory_style_name",
+    prompt: [
+      "Claude aims to give clear, thorough explanations that help the human deeply understand complex topics.",
+      "Claude approaches questions like a teacher would, breaking down ideas into easier parts and building up to harder concepts. It uses comparisons, examples, and step-by-step explanations to improve understanding.",
+      "Claude keeps a patient and encouraging tone, trying to spot and address possible points of confusion before they arise. Claude may ask thinking questions or suggest mental exercises to get the human more involved in learning.",
+      "Claude gives background info when it helps create a fuller picture of the topic. It might sometimes branch into related topics if they help build a complete understanding of the subject.",
+      "When writing code or other technical content, Claude adds helpful comments to explain the thinking behind important steps.",
+      "Claude always writes prose and in full sentences, especially for reports, documents, explanations, and question answering. Claude can use bullets only if the user asks specifically for a list."
+    ].join("\n"),
+    summary: "Educational responses for learning",
+    summaryKey: "explanatory_style_summary",
+    isDefault: false
+  };
+}
+
+function claudeStyleForArgs(style: unknown): Record<string, unknown> | undefined {
+  const normalized = String(style || "").trim().toLowerCase().replace(/^style[_\s-]*/, "").replace(/[_\s-]+/g, "_");
+  if (!normalized) return undefined;
+  if (normalized === "concise") return conciseClaudeStyle();
+  if (normalized === "explanatory" || normalized === "explain") return explanatoryClaudeStyle();
+  return {
+    type: "custom",
+    key: String(style),
+    name: String(style),
+    prompt: `${String(style)}\n`,
+    summary: `Claude style: ${String(style)}`,
+    isDefault: false
+  };
+}
+
+function applyClaudeWebSearchTool(payload: Record<string, any>, enabled: boolean): void {
+  const tools = Array.isArray(payload.tools) ? payload.tools : [];
+  const withoutWebSearch = tools.filter((tool: any) => tool?.name !== "web_search" && tool?.type !== "web_search_v0");
+  if (!enabled) {
+    payload.tools = withoutWebSearch;
+    return;
+  }
+  const readMeIndex = withoutWebSearch.findIndex((tool: any) => tool?.name === "read_me");
+  const insertAt = readMeIndex >= 0 ? readMeIndex + 1 : 0;
+  payload.tools = [
+    ...withoutWebSearch.slice(0, insertAt),
+    { ...CLAUDE_WEB_SEARCH_TOOL },
+    ...withoutWebSearch.slice(insertAt)
+  ];
+}
+
 export function buildClaudeRpcPayload(args: any): Record<string, unknown> {
   const model = normalizeClaudeModel(args?.model);
-  const payload = cloneJson(capturedPayloadTemplate());
+  const payload: Record<string, any> = cloneJson(capturedPayloadTemplate());
   payload.prompt = String(args?.prompt || "");
   payload.timezone = payload.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   payload.locale = payload.locale || "en-US";
@@ -238,25 +353,24 @@ export function buildClaudeRpcPayload(args: any): Record<string, unknown> {
   payload.files = [];
   payload.sync_sources = [];
   payload.rendering_mode = "messages";
-  payload.create_conversation_params = {
-    ...(payload.create_conversation_params || {}),
-    name: "",
-    model,
-    include_conversation_preferences: true,
-    paprika_mode: args?.thinking ? "extended" : ((payload.create_conversation_params || {}).paprika_mode ?? null),
-    compass_mode: (payload.create_conversation_params || {}).compass_mode ?? null,
-    is_temporary: Boolean(args?.incognito),
-    enabled_imagine: (payload.create_conversation_params || {}).enabled_imagine ?? true
-  };
-  if (args?.style) {
-    payload.personalized_styles = [{
-      type: "custom",
-      key: String(args.style),
-      name: String(args.style),
-      prompt: `${String(args.style)}\n`,
-      summary: `Claude style: ${String(args.style)}`,
-      isDefault: false
-    }];
+  payload.personalized_styles = [claudeStyleForArgs(args?.style) || defaultClaudeStyle()];
+  applyClaudeWebSearchTool(payload, Boolean(args?.web_search));
+  if (args?.reuse_conversation) {
+    delete payload.create_conversation_params;
+    const parentMessageUuid = String(args?.parent_message_uuid || args?.parentMessageUuid || "").trim();
+    if (UUID_RE.test(parentMessageUuid)) payload.parent_message_uuid = parentMessageUuid;
+  } else {
+    delete payload.parent_message_uuid;
+    payload.create_conversation_params = {
+      ...(payload.create_conversation_params || {}),
+      name: "",
+      model,
+      include_conversation_preferences: true,
+      paprika_mode: args?.thinking ? "extended" : null,
+      compass_mode: null,
+      is_temporary: false,
+      enabled_imagine: (payload.create_conversation_params || {}).enabled_imagine ?? true
+    };
   }
   return payload;
 }
@@ -283,6 +397,15 @@ function completionUrl(orgId: string, conversationId: string): string {
 
 function chatUrl(conversationId: string): string {
   return `https://claude.ai/chat/${conversationId}`;
+}
+
+function conversationDetailsUrl(orgId: string, conversationId: string): string {
+  return `/api/organizations/${encodeURIComponent(orgId)}/chat_conversations/${encodeURIComponent(conversationId)}?tree=True&rendering_mode=messages&render_all_tools=true&consistency=eventual`;
+}
+
+function parentMessageUuidFromArgs(args: any): string | undefined {
+  const value = String(args?.parent_message_uuid || args?.parentMessageUuid || "").trim();
+  return UUID_RE.test(value) ? value : undefined;
 }
 
 async function fetchClaudeCompletionInPage(page: any, request: ClaudeRpcRequest): Promise<ClaudeRpcFetchResult> {
@@ -341,7 +464,14 @@ async function claudeOriginPage(browser: any, args: any): Promise<any> {
   let page = pages.find((candidate: any) => isClaude(String(candidate.url?.() || "")));
   if (!page) page = await context.newPage();
   const target = targetUrlForClaude(args);
-  if (!isClaude(String(page.url?.() || ""))) {
+  const currentUrl = String(page.url?.() || "");
+  const requestedRaw = args?.url || args?.tab_url_contains;
+  const requestedUrl = normalizeUrlLikeTarget(requestedRaw);
+  const needsRequestedNavigation = requestedUrl && (!currentUrl || !currentUrl.includes(String(requestedRaw)) && currentUrl !== requestedUrl);
+  const needsIncognitoNavigation = Boolean(args?.incognito && !args?.reuse_conversation && !requestedRaw);
+  const freshTarget = args?.incognito ? CLAUDE_INCOGNITO_FRESH_URL : CLAUDE_FRESH_URL;
+  const needsFreshNavigation = Boolean(!args?.reuse_conversation && !requestedRaw && currentUrl !== freshTarget);
+  if (!isClaude(currentUrl) || needsRequestedNavigation || needsIncognitoNavigation || needsFreshNavigation) {
     await page.goto?.(target, { waitUntil: "domcontentloaded", timeout: Math.min(args?.timeout_ms || 60000, 30000) });
     await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
   }
@@ -390,13 +520,51 @@ async function activeClaudeOrgId(page: any, args: any): Promise<string> {
   throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude active organization could not be resolved from the logged-in browser context");
 }
 
+async function activeClaudeParentMessageUuid(page: any, orgId: string, conversationId: string, args: any): Promise<string> {
+  const explicit = parentMessageUuidFromArgs(args);
+  if (explicit) return explicit;
+  const timeoutMs = Math.min(responseTimeoutMs(args), 30000);
+  const result = await page.evaluate(async ({ url, timeoutMs }: { url: string; timeoutMs: number }) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), Math.max(1, timeoutMs));
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: { accept: "application/json" },
+        signal: controller.signal
+      });
+      const text = await response.text();
+      let json: any = null;
+      try { json = text ? JSON.parse(text) : null; } catch {}
+      return {
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        text,
+        current_leaf_message_uuid: json?.current_leaf_message_uuid || null
+      };
+    } finally {
+      clearTimeout(timer);
+    }
+  }, { url: conversationDetailsUrl(orgId, conversationId), timeoutMs });
+  if (!result?.ok) {
+    throw new WebAiToolError(httpStatusErrorCode(Number(result?.status || 0), String(result?.text || "")), `Claude RPC reuse_conversation lookup returned HTTP ${result?.status || "unknown"}`);
+  }
+  if (typeof result.current_leaf_message_uuid === "string" && UUID_RE.test(result.current_leaf_message_uuid)) return result.current_leaf_message_uuid;
+  throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "Claude RPC reuse_conversation could not resolve current_leaf_message_uuid");
+}
+
 export async function webAiClaudeSendPromptRpcWithFetch(
   args: any,
   fetchCompletion: ClaudeRpcFetch,
-  options: { orgId?: string; conversationId?: string; started?: number } = {}
+  options: { orgId?: string; conversationId?: string; parentMessageUuid?: string; started?: number } = {}
 ): Promise<Record<string, unknown>> {
   const effective = { ...(args || {}), profile: args?.profile || DEFAULT_CLAUDE_PROFILE };
   const started = options.started || Date.now();
+  let conversationId: string | undefined;
+  let modelUsed: string | null = normalizeClaudeModel(effective.model);
+  let httpStatus: number | null = null;
   try {
     if (!effective.prompt || typeof effective.prompt !== "string") {
       throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_claude_send_prompt requires a string prompt");
@@ -404,21 +572,33 @@ export async function webAiClaudeSendPromptRpcWithFetch(
     assertPromptAllowed(effective.prompt);
     const orgId = options.orgId || effective.organization_id || effective.organizationId || effective.org_id || effective.orgId;
     if (!orgId || !UUID_RE.test(String(orgId))) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude active organization is required for RPC send_prompt");
-    const conversationId = effectiveConversationId(effective, options.conversationId);
+    conversationId = effectiveConversationId(effective, options.conversationId);
+    const parentMessageUuid = options.parentMessageUuid || parentMessageUuidFromArgs(effective);
+    if (effective.reuse_conversation && !parentMessageUuid) {
+      throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "Claude RPC reuse_conversation requires parent_message_uuid");
+    }
     const request: ClaudeRpcRequest = {
       url: completionUrl(String(orgId), conversationId),
-      body: JSON.stringify(buildClaudeRpcPayload(effective)),
+      body: JSON.stringify(buildClaudeRpcPayload({ ...effective, parent_message_uuid: parentMessageUuid })),
       profile: String(effective.profile),
       timeoutMs: responseTimeoutMs(effective)
     };
     const fetchStarted = Date.now();
     const response = await fetchCompletion(request);
+    httpStatus = response.status;
     const waitMs = response.elapsedMs ?? (Date.now() - fetchStarted);
     if (response.status !== 200) {
       const code = httpStatusErrorCode(response.status, response.text || "");
-      throw new WebAiToolError(code, `Claude RPC completion returned HTTP ${response.status}`);
+      return claudeRpcErrorOutput(effective, started, new WebAiToolError(code, `Claude RPC completion returned HTTP ${response.status}`), {
+        chat_url: chatUrl(conversationId),
+        conversation_id: conversationId,
+        model_used: modelUsed,
+        http_status: response.status
+      });
     }
-    const responseText = decodeClaudeRpcSse(response.text);
+    const decoded = decodeClaudeRpcSseEnvelope(response.text);
+    const responseText = decoded.responseText;
+    modelUsed = decoded.modelUsed || modelUsed;
     if (!responseText.trim()) {
       throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Claude RPC completion finished without assistant text");
     }
@@ -426,10 +606,16 @@ export async function webAiClaudeSendPromptRpcWithFetch(
       response_text: responseText,
       wait_ms: waitMs,
       completion_detected: true,
-      errorCode: null
+      errorCode: null,
+      model_used: modelUsed,
+      http_status: response.status
     }));
   } catch (error: any) {
-    return claudeRpcErrorOutput(effective, started, error);
+    return claudeRpcErrorOutput(effective, started, error, {
+      ...(conversationId ? { chat_url: chatUrl(conversationId), conversation_id: conversationId } : {}),
+      model_used: modelUsed,
+      http_status: httpStatus
+    });
   }
 }
 
@@ -455,10 +641,20 @@ export async function webAiClaudeSendPromptRpc(args: any, runtime?: BrowserToolR
       }));
     }
     const orgId = await activeClaudeOrgId(page, effective);
+    let conversationId: string | undefined;
+    let parentMessageUuid: string | undefined;
+    if (effective.reuse_conversation) {
+      const pageConversationId = conversationIdFromUrl(String(page.url?.() || ""));
+      conversationId = effectiveConversationId({ ...effective, url: effective.url || effective.tab_url_contains || String(page.url?.() || "") }, pageConversationId);
+      if (!conversationId || !UUID_RE.test(conversationId) || (!pageConversationId && !effective.conversation_id && !effective.conversationId)) {
+        throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "Claude RPC reuse_conversation requires an existing Claude conversation URL or conversation_id");
+      }
+      parentMessageUuid = await activeClaudeParentMessageUuid(page, orgId, conversationId, effective);
+    }
     return await webAiClaudeSendPromptRpcWithFetch(
-      { ...effective, organization_id: orgId },
+      { ...effective, organization_id: orgId, ...(conversationId ? { conversation_id: conversationId } : {}), ...(parentMessageUuid ? { parent_message_uuid: parentMessageUuid } : {}) },
       (request) => fetchClaudeCompletionInPage(page, request),
-      { orgId, started }
+      { orgId, conversationId, parentMessageUuid, started }
     );
   } catch (error: any) {
     return claudeRpcErrorOutput(effective, started, error);
