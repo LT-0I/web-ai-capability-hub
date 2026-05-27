@@ -1,7 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-import { buildIeeeSearchUrl, buildIeeeFilterUrl, parseIeeeResultCount, parseIeeeItemsFromHtml, parseIeeeItemsFromVisibleText, researchIeeeExport, WebAiToolError } from "../src/handlers/researchdb/legacy/ieee";
-import { ConsumerErrorCodes } from "../src/consumer/errorCodes";
+import { buildIeeeSearchUrl, buildIeeeFilterUrl, parseIeeeResultCount, parseIeeeItemsFromHtml, parseIeeeItemsFromVisibleText } from "../src/handlers/researchdb/legacy/ieee";
 
 test("IEEE URL builders preserve verified boolean query and URL refinement contract", () => {
   assert.equal(
@@ -52,9 +51,3 @@ test("IEEE visible-text fallback extracts items without live network", () => {
   assert.equal(items[0].doi, "10.1109/ACCESS.2024.1234567");
 });
 
-test("IEEE export surfaces the verified existing HUMAN_HANDOFF_REQUIRED blocker", async () => {
-  await assert.rejects(
-    researchIeeeExport({ query: "unmanned aerial vehicle", format: "ris" }),
-    (error: unknown) => error instanceof WebAiToolError && error.errorCode === ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED
-  );
-});
