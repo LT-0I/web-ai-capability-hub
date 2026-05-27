@@ -7700,10 +7700,22 @@ export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToo
   return uploadExtensionErrorOutput("chatgpt", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "managed-cdp") return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime));
-  if (backend === "extension-assisted-cdp") return uploadAndQueryClaudeWithExtensionBackend(args, runtimeOrDefault(runtime));
-  return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+  // Path C Claude Wave B2: RPC is the production default; WEBAI_CLAUDE_UPLOAD_BACKEND=dom is the emergency DOM override, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_CLAUDE_UPLOAD_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_claude_upload_and_query] backend=dom-extension");
+    return uploadAndQueryClaudeWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_claude_upload_and_query] backend=dom-managed");
+    return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_CLAUDE_UPLOAD_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_UPLOAD_BACKEND)}`));
+  }
+  console.error("[webai_claude_upload_and_query] backend=rpc");
+  const { webAiClaudeUploadAndQueryRpc } = require("./claude_upload_rpc");
+  return webAiClaudeUploadAndQueryRpc(args, runtime);
 }
 export async function webAiGeminiUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";

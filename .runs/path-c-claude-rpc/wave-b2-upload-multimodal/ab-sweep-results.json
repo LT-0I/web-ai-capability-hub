@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-05-27T16:35:48.583Z",
+  "profile": "claude-9224",
+  "pace_ms": 30000,
+  "rows": [
+    {
+      "variant": "upload_single",
+      "expected": "/OK\\s+SINGLE/i",
+      "dom": {
+        "backend": "dom",
+        "latency_ms": 10845,
+        "result": {
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-single.txt"
+          ],
+          "chat_url": "https://claude.ai/chat/8a263048-ee77-4a09-ba01-78c45c4a1b7b",
+          "response_text": "Claude responded: OK SINGLE.\n\nOK SINGLE.",
+          "wait_ms": 5423,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 4077,
+        "result": {
+          "response_text": " OK SINGLE.",
+          "conversation_id": "1060c713-1b24-49fc-9859-7351b245f703",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 4071,
+          "wait_ms": 1735,
+          "completion_detected": true,
+          "errorCode": null,
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-single.txt"
+          ],
+          "chat_url": "https://claude.ai/chat/1060c713-1b24-49fc-9859-7351b245f703"
+        }
+      },
+      "pass": true,
+      "speedup": 2.6600441501103753,
+      "domOk": true,
+      "rpcOk": true,
+      "textOk": true
+    },
+    {
+      "variant": "upload_multi",
+      "expected": "/OK\\s+MULTI/i",
+      "dom": {
+        "backend": "dom",
+        "latency_ms": 10478,
+        "result": {
+          "files_uploaded_count": 3,
+          "attachment_names": [
+            "b2-upload-multi-a.txt",
+            "b2-upload-multi-b.txt",
+            "b2-upload-multi-c.txt"
+          ],
+          "chat_url": "https://claude.ai/chat/9ce55b58-fbcb-4aff-925f-29f9107b89d1",
+          "response_text": "Claude responded: OK MULTI\n\nOK MULTI",
+          "wait_ms": 5459,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 34563,
+        "result": {
+          "response_text": " OK MULTI.",
+          "conversation_id": "e226db16-30a3-43eb-b4bd-982949a3480f",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 34559,
+          "wait_ms": 1763,
+          "completion_detected": true,
+          "errorCode": null,
+          "files_uploaded_count": 3,
+          "attachment_names": [
+            "b2-upload-multi-a.txt",
+            "b2-upload-multi-b.txt",
+            "b2-upload-multi-c.txt"
+          ],
+          "chat_url": "https://claude.ai/chat/e226db16-30a3-43eb-b4bd-982949a3480f"
+        }
+      },
+      "pass": false,
+      "speedup": 0.3031565546972196,
+      "domOk": true,
+      "rpcOk": true,
+      "textOk": true
+    },
+    {
+      "variant": "upload_and_query",
+      "expected": "/OK\\s+QUERY/i",
+      "dom": {
+        "backend": "dom",
+        "latency_ms": 10266,
+        "result": {
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-query.md"
+          ],
+          "chat_url": "https://claude.ai/chat/ad78df85-7fc7-42dc-b98e-52b0b68dd6f9",
+          "response_text": "Claude responded: OK QUERY\n\nOK QUERY",
+          "wait_ms": 5397,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 3955,
+        "result": {
+          "response_text": " OK QUERY",
+          "conversation_id": "c86bcb1a-cb42-4ce8-9d23-8b689ad13bc9",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 3952,
+          "wait_ms": 1709,
+          "completion_detected": true,
+          "errorCode": null,
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-query.md"
+          ],
+          "chat_url": "https://claude.ai/chat/c86bcb1a-cb42-4ce8-9d23-8b689ad13bc9"
+        }
+      },
+      "pass": true,
+      "speedup": 2.595701643489254,
+      "domOk": true,
+      "rpcOk": true,
+      "textOk": true
+    },
+    {
+      "variant": "upload_image",
+      "expected": "/OK\\s+IMAGE|OK/i",
+      "dom": {
+        "backend": "dom",
+        "latency_ms": 10436,
+        "result": {
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-image.png"
+          ],
+          "chat_url": "https://claude.ai/chat/d46655f2-1c53-4cbd-add8-1e07336e142d",
+          "response_text": "Claude responded: OK IMAGE.\n\nOK IMAGE.",
+          "wait_ms": 5517,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 4337,
+        "result": {
+          "response_text": " OK IMAGE",
+          "conversation_id": "14a65695-d385-43f9-a7e9-ac1cfded5ff1",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 4335,
+          "wait_ms": 1810,
+          "completion_detected": true,
+          "errorCode": null,
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-image.png"
+          ],
+          "chat_url": "https://claude.ai/chat/14a65695-d385-43f9-a7e9-ac1cfded5ff1"
+        }
+      },
+      "pass": true,
+      "speedup": 2.4062716163246485,
+      "domOk": true,
+      "rpcOk": true,
+      "textOk": true
+    },
+    {
+      "variant": "upload_markdown",
+      "expected": "/OK\\s+MARKDOWN/i",
+      "dom": {
+        "backend": "dom",
+        "latency_ms": 10949,
+        "result": {
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-markdown.md"
+          ],
+          "chat_url": "https://claude.ai/chat/a7d50e70-0611-4bcb-b06d-10051a73fd28",
+          "response_text": "Claude responded: OK MARKDOWN\n\nOK MARKDOWN",
+          "wait_ms": 6405,
+          "completion_detected": true,
+          "errorCode": null
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 5112,
+        "result": {
+          "response_text": " OK MARKDOWN",
+          "conversation_id": "6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987",
+          "model_used": "claude-sonnet-4-6",
+          "http_status": 200,
+          "elapsed_ms": 5109,
+          "wait_ms": 2905,
+          "completion_detected": true,
+          "errorCode": null,
+          "files_uploaded_count": 1,
+          "attachment_names": [
+            "b2-upload-markdown.md"
+          ],
+          "chat_url": "https://claude.ai/chat/6bb92c3d-5d9d-4cc5-862b-2c81d7ffb987"
+        }
+      },
+      "pass": true,
+      "speedup": 2.1418231611893583,
+      "domOk": true,
+      "rpcOk": true,
+      "textOk": true
+    }
+  ],
+  "pass_count": 4,
+  "median_speedup": 2.4062716163246485,
+  "verdict": "SHIPPED_CANDIDATE",
+  "fixture_dir_deleted": true,
+  "close_tabs": {
+    "ok": true
+  }
+}
