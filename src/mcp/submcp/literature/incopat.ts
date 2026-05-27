@@ -1,6 +1,9 @@
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 import { registerLiteratureDriver } from "../../../runtime/literature/drivers";
-import { LiteratureDownloadError, LiteratureDownloadPdfOutput, defaultLiteratureOutputDir, encodePathPreservingSlash } from "./arxiv";
+import { enqueueLiteratureDownload } from "../../../runtime/literature/queue";
+import { assertLiteratureQuota } from "../../../runtime/literature/quota";
+import { LiteratureDownloadError, LiteratureDownloadPdfOutput, defaultLiteratureOutputDir, encodePathPreservingSlash, literatureErrorOutput } from "./arxiv";
+import { ensureIncopatIpLoginForProfile } from "./incopat-auth";
 import {
   PaywalledLiteratureConfig,
   PaywalledLiteratureDownloadPdfArgs,
@@ -20,6 +23,7 @@ export const incopatPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: "research_incopat_get_metadata",
+  prefer_article_first: true,
   article_url_resolver: (docId: string) => {
     const id = String(docId || "").trim().replace(/^incopat:\s*/i, "").replace(/^patent\//i, "").replace(/\/pdf(?:[?#].*)?$/i, "");
     return id ? `https://www.incopat.com/patent/${encodeURIComponent(id)}` : null;
@@ -49,12 +53,49 @@ function withResolvedIncopatPdfUrl(args: Partial<PaywalledLiteratureDownloadPdfA
   return { ...args, pdf_url: resolveIncopatPdfUrl(docId) };
 }
 
+function incopatQueuedOutputIfQuotaReached(args: Partial<PaywalledLiteratureDownloadPdfArgs>): LiteratureDownloadPdfOutput | null {
+  const docId = String(args?.doc_id || "").trim();
+  if (!docId) return null;
+  const nowMs = Date.now();
+  const quota = assertLiteratureQuota(incopatPaywalledLiteratureConfig.db_slug, nowMs);
+  if (quota.allowed) return null;
+  const requestedUrl = /^https?:\/\//i.test(String(args?.pdf_url || "")) ? String(args?.pdf_url)
+    : /^https?:\/\//i.test(docId) ? docId
+    : null;
+  const queued = enqueueLiteratureDownload(incopatPaywalledLiteratureConfig.db_slug, docId, requestedUrl, nowMs);
+  return {
+    ok: true,
+    task_id: queued.task_id,
+    path: null,
+    sha256: null,
+    size: null,
+    downloaded_at: null,
+    errorCode: ConsumerErrorCodes.LITERATURE_QUEUED,
+    message: `${incopatPaywalledLiteratureConfig.db_slug} literature download quota reached; queued for worker retry after ${quota.retryAfterMs || 1}ms`
+  };
+}
+
+async function ensureIncopatDownloadAuthenticated(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<void> {
+  const profile = String(args?.profile || incopatPaywalledLiteratureConfig.default_profile).trim();
+  if (!profile) throw new LiteratureDownloadError(ConsumerErrorCodes.INVALID_ARGS, "profile is required for IncoPat downloads");
+  await ensureIncopatIpLoginForProfile(profile, args?.cdp_port);
+}
+
 export async function webAiIncopatDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {
-  return runPaywalledLiteratureDownloadPdfTool(incopatPaywalledLiteratureConfig, withResolvedIncopatPdfUrl(args));
+  const prepared = withResolvedIncopatPdfUrl(args);
+  const queued = incopatQueuedOutputIfQuotaReached(prepared);
+  if (queued) return queued;
+  try {
+    await ensureIncopatDownloadAuthenticated(prepared);
+  } catch (error) {
+    return literatureErrorOutput(error);
+  }
+  return runPaywalledLiteratureDownloadPdfTool(incopatPaywalledLiteratureConfig, prepared);
 }
 
 registerLiteratureDriver(incopatPaywalledLiteratureConfig.db_slug, async ({ doc_id, requested_url }) => {
   const outputDir = defaultLiteratureOutputDir(incopatPaywalledLiteratureConfig.db_slug);
+  await ensureIncopatIpLoginForProfile(incopatPaywalledLiteratureConfig.default_profile);
   const result = await downloadPaywalledLiteraturePdfToDisk(
     incopatPaywalledLiteratureConfig,
     doc_id,
