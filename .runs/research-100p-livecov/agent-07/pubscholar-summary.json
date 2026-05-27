@@ -1,0 +1,65 @@
+{
+  "db": "pubscholar",
+  "profile": "research-pubscholar",
+  "cdp_port": 9362,
+  "started_at": "2026-05-27T07:50:56.807399+00:00",
+  "tools": {
+    "search": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/pubscholar-search.json",
+      "exit_code": 0
+    },
+    "filter": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/pubscholar-filter.json",
+      "exit_code": 0
+    },
+    "export": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/pubscholar-export.json",
+      "exit_code": 0
+    }
+  },
+  "launch": {
+    "exit_code": 0,
+    "parsed": {
+      "profile": "research-pubscholar",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "data/browser-profiles/research-pubscholar",
+      "cdpEndpoint": "http://127.0.0.1:9362",
+      "cdpPort": 9362,
+      "connected": true,
+      "launchedByPackage": false,
+      "processId": 488434,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9362/devtools/page/F422652DB952014E4B653A6CDB4E74EC",
+          "id": "F422652DB952014E4B653A6CDB4E74EC",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9362/devtools/page/F422652DB952014E4B653A6CDB4E74EC"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9362/devtools/page/D61F6DBF86EC4296AA2062C50098D5FD",
+          "id": "D61F6DBF86EC4296AA2062C50098D5FD",
+          "parentId": "F422652DB952014E4B653A6CDB4E74EC",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9362/devtools/page/D61F6DBF86EC4296AA2062C50098D5FD"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9362/devtools/browser/3391dfd2-aa22-4baf-b547-e4f787894db8"
+    },
+    "stderr": ""
+  },
+  "close": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "finished_at": "2026-05-27T07:51:41.800841+00:00"
+}

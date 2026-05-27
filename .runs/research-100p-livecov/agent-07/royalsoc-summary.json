@@ -1,0 +1,65 @@
+{
+  "db": "royalsoc",
+  "profile": "research-royalsoc",
+  "cdp_port": 9363,
+  "started_at": "2026-05-27T07:49:43.204755+00:00",
+  "tools": {
+    "search": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/royalsoc-search.json",
+      "exit_code": 0
+    },
+    "filter": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/royalsoc-filter.json",
+      "exit_code": 0
+    },
+    "export": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/royalsoc-export.json",
+      "exit_code": 0
+    }
+  },
+  "launch": {
+    "exit_code": 0,
+    "parsed": {
+      "profile": "research-royalsoc",
+      "executablePath": "/usr/bin/google-chrome",
+      "profileDir": "data/browser-profiles/research-royalsoc",
+      "cdpEndpoint": "http://127.0.0.1:9363",
+      "cdpPort": 9363,
+      "connected": true,
+      "launchedByPackage": false,
+      "processId": 492698,
+      "pages": [
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064",
+          "id": "348AC3386E17F9C7F08D01D89B83C064",
+          "title": "新标签页",
+          "type": "page",
+          "url": "chrome://newtab/",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064"
+        },
+        {
+          "description": "",
+          "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF",
+          "id": "CBB1151011BD6A081A5A391A435765CF",
+          "parentId": "348AC3386E17F9C7F08D01D89B83C064",
+          "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "type": "iframe",
+          "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+          "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF"
+        }
+      ],
+      "browser": "Chrome/148.0.7778.167",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/browser/28b11eb5-9b10-4501-93d9-b3c2d6b8c088"
+    },
+    "stderr": ""
+  },
+  "close": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "finished_at": "2026-05-27T07:50:28.443869+00:00"
+}

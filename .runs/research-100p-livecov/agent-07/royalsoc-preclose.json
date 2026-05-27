@@ -1,0 +1,30 @@
+{
+  "db": "royalsoc",
+  "phase": "preclose",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:close --profile research-royalsoc --mode close-process --release-lease --force --json",
+    "started_at": "2026-05-27T07:49:49.205903+00:00",
+    "elapsed_seconds": 0.165,
+    "exit_code": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-royalsoc\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:close --profile research-royalsoc --mode close-process --release-lease --force --json",
+        "started_at": "2026-05-27T07:49:49.205903+00:00",
+        "elapsed_seconds": 0.165,
+        "exit_code": 0,
+        "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-royalsoc\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "ok": true,
+    "profileId": "research-royalsoc",
+    "released": false,
+    "cleanedLockFiles": []
+  }
+}

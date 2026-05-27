@@ -1,0 +1,57 @@
+{
+  "db": "royalsoc",
+  "phase": "launch",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:launch --profile research-royalsoc --cdp-port 9363 --json",
+    "started_at": "2026-05-27T07:49:49.371346+00:00",
+    "elapsed_seconds": 0.165,
+    "exit_code": 0,
+    "stdout": "{\n  \"profile\": \"research-royalsoc\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-royalsoc\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9363\",\n  \"cdpPort\": 9363,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 492698,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064\",\n      \"id\": \"348AC3386E17F9C7F08D01D89B83C064\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF\",\n      \"id\": \"CBB1151011BD6A081A5A391A435765CF\",\n      \"parentId\": \"348AC3386E17F9C7F08D01D89B83C064\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/browser/28b11eb5-9b10-4501-93d9-b3c2d6b8c088\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:launch --profile research-royalsoc --cdp-port 9363 --json",
+        "started_at": "2026-05-27T07:49:49.371346+00:00",
+        "elapsed_seconds": 0.165,
+        "exit_code": 0,
+        "stdout": "{\n  \"profile\": \"research-royalsoc\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-royalsoc\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9363\",\n  \"cdpPort\": 9363,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 492698,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064\",\n      \"id\": \"348AC3386E17F9C7F08D01D89B83C064\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF\",\n      \"id\": \"CBB1151011BD6A081A5A391A435765CF\",\n      \"parentId\": \"348AC3386E17F9C7F08D01D89B83C064\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9363/devtools/browser/28b11eb5-9b10-4501-93d9-b3c2d6b8c088\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "profile": "research-royalsoc",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-royalsoc",
+    "cdpEndpoint": "http://127.0.0.1:9363",
+    "cdpPort": 9363,
+    "connected": true,
+    "launchedByPackage": false,
+    "processId": 492698,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064",
+        "id": "348AC3386E17F9C7F08D01D89B83C064",
+        "title": "新标签页",
+        "type": "page",
+        "url": "chrome://newtab/",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/page/348AC3386E17F9C7F08D01D89B83C064"
+      },
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF",
+        "id": "CBB1151011BD6A081A5A391A435765CF",
+        "parentId": "348AC3386E17F9C7F08D01D89B83C064",
+        "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+        "type": "iframe",
+        "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/page/CBB1151011BD6A081A5A391A435765CF"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:9363/devtools/browser/28b11eb5-9b10-4501-93d9-b3c2d6b8c088"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "db": "opticsjournal",
+  "phase": "launch",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:launch --profile research-opticsjournal --cdp-port 9360 --json",
+    "started_at": "2026-05-27T07:44:23.573557+00:00",
+    "elapsed_seconds": 12.17,
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9360/json/version): connect ECONNREFUSED 127.0.0.1:9360\"}\n",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:launch --profile research-opticsjournal --cdp-port 9360 --json",
+        "started_at": "2026-05-27T07:44:23.573557+00:00",
+        "elapsed_seconds": 12.17,
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9360/json/version): connect ECONNREFUSED 127.0.0.1:9360\"}\n"
+      }
+    ]
+  },
+  "parsed": null
+}

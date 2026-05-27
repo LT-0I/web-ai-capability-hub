@@ -1,0 +1,389 @@
+{
+  "db": "proquest",
+  "tool": "research_proquest_search",
+  "op": "search",
+  "profile": "research-proquest",
+  "cdp_port": 9361,
+  "query": "machine learning",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:proquest:search 'machine learning' --page-size 5 --profile research-proquest --cdp-port 9361 --json",
+    "started_at": "2026-05-27T07:45:09.045640+00:00",
+    "elapsed_seconds": 27.716,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 452647,\n  \"items\": [\n    {\n      \"title\": \"Quantum Adversarial Machine Learning: From Classical Adaptations to Quantum-Native Methods\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Моделі та методи інформаційної технології машинного навчання системи розпізнавання електроміографічних біосигналів у протезуванні\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Model Aggregation Methods for Distributed Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Physics Vs Machine Learning : Topological Classification with Machine Learning & Enhanced Machine Learning with Quantum Properties\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Ingredients for Responsible Machine Learning: A Commented Review of The Hitchhiker’s Guide to Responsible Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A Machine Learning Tutorial for Operational Meteorology, Part I: Traditional Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"When Machine Learning Meets Privacy: A Survey and Outlook\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Improved machine learning-aided linear cryptanalysis: application to DES\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"The acceleration of machine learning and deep learning algorithms with parallel architectures\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2016,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Automated Graph Machine Learning: Approaches, Libraries, Benchmarks and Directions\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Domain Knowledge in Artificial Intelligence: Using Conceptual Modeling to Increase Machine Learning Accuracy and Explainability\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An Empirical Analysis of AutoMl Tools and Techniques with Automated Feature Engineering\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Efficient Machine Learning Software Stack from Algorithms to Compilation\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Low-Code Machine Learning Platforms: A Fastlane to Digitalization\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"FairTrace : An Automated Unsupervised Fairness Machine Learning Model - the Case of Huanglongbing Citrus Disease\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Trends in real-time artificial intelligence methods in sports: a systematic review\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Resilient Machine Learning for Networked Cyber Physical Systems: A Survey for Machine Learning Security to Securing Machine Learning for CPS\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Deep Learning and Traditional Machine Learning for Medical Diagnostics\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine learning: technologies and potential application at mining companies\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Towards Modular Machine Learning Solution Development: Benefits and Trade-offs\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"From Experimentation To Enterprise Reality: Why Mlops Is The Backbone Of Production AI\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An Adaptive Deep Learning for Causal Inference Based on Support Points With High-Dimensional Data\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Debugging Learning Algorithms Understanding and Correcting Machine Learning Models\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An improved teaching-learning-based optimization for extreme learning machine in floating photovoltaic power forecasting\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Securing Machine Learning Models through Feasible Guidelines and Metric-Based Boundaries\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Simulation? Machine Learning ? Simulation X Machine Learning ?: A Decision System for Research Integrating Building Physic Simulation and Machine Learning Methods in the Early Design Stage\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Survey on Lie Group Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Construction and application of machine learning models for predicting intradialytic hypotension\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning for Multi-Access Edge Computing and Autonomous Driving\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning Approach to Decision Making for Insulin Initiation in Japanese Patients With Type 2 Diabetes (JDDM 58): Model Development and Validation Study\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Systems and Algorithms for Efficient, Secure and Private Machine Learning Inference\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Techniques and applications of Machine Learning and Artificial Intelligence in education: a systematic review\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Differentiation of Bone Metastasis in Elderly Patients With Lung Adenocarcinoma Using Multiple Machine Learning Algorithms\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Data Pricing in Machine Learning Pipelines\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Genomic Selection for Cashmere Traits in Inner Mongolian Cashmere Goats Using Random Forest, Gradient Boosting Decision Tree, Extreme Gradient Boosting and Light Gradient Boosting Machine Methods\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Algorithmic Fairness in Graph Machine Learning: Explanation, Optimization, and Certification\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Effectiveness of Machine Learning in Detecting Vessels Encapsulating Tumor Clusters in Hepatocellular Carcinoma: Systematic Review and Meta-Analysis\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Data preparation for machine learning in rock engineering\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Potential benefits and limitations of machine learning in the field of eating disorders: current research and future directions\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner's Perspective\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Τεχνικές μαθηματικής βελτιστοποίησης και μέθοδοι μηχανικής μάθησης\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Towards Efficient Deep Learning Systems with Learning-Based Optimizations\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A Novel Improvement of Feature Selection for Dynamic Hand Gesture Identification Based on Double Machine Learning †\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"MLBench: How Good Are Machine Learning Clouds for Binary Classification Tasks on Structured Data?\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2017,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning Assisted Convective Wall Heat Transfer Models For Fire Modeling Along Vertical Walls, Ceilings and Floors\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning in Baseball Analytics: Sabermetrics and Beyond\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"One RNG to Rule Them All: How Randomness Becomes an Attack Vector in Machine Learning\",\n      \"authors\": [],\n      \"source\": \"of\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A systematic review of fuzzing based on machine learning techniques\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning in Data-Driven Research: Opportunities and Challenges\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Investigation of Machine Learning Algorithms for Network Intrusion Detection\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    }\n  ],\n  \"query_url\": \"https://www.proquest.com/advanced?accountid=16605\",\n  \"results_url\": \"https://www.proquest.com/results/5BCA1AEDF10C4F08PQ/1?accountid=16605\",\n  \"title\": \"检索结果 - ProQuest\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:proquest:search 'machine learning' --page-size 5 --profile research-proquest --cdp-port 9361 --json",
+        "started_at": "2026-05-27T07:45:09.045640+00:00",
+        "elapsed_seconds": 27.716,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 452647,\n  \"items\": [\n    {\n      \"title\": \"Quantum Adversarial Machine Learning: From Classical Adaptations to Quantum-Native Methods\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Моделі та методи інформаційної технології машинного навчання системи розпізнавання електроміографічних біосигналів у протезуванні\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Model Aggregation Methods for Distributed Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Physics Vs Machine Learning : Topological Classification with Machine Learning & Enhanced Machine Learning with Quantum Properties\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Ingredients for Responsible Machine Learning: A Commented Review of The Hitchhiker’s Guide to Responsible Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A Machine Learning Tutorial for Operational Meteorology, Part I: Traditional Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"When Machine Learning Meets Privacy: A Survey and Outlook\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Improved machine learning-aided linear cryptanalysis: application to DES\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"The acceleration of machine learning and deep learning algorithms with parallel architectures\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2016,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Automated Graph Machine Learning: Approaches, Libraries, Benchmarks and Directions\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Domain Knowledge in Artificial Intelligence: Using Conceptual Modeling to Increase Machine Learning Accuracy and Explainability\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An Empirical Analysis of AutoMl Tools and Techniques with Automated Feature Engineering\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Efficient Machine Learning Software Stack from Algorithms to Compilation\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Low-Code Machine Learning Platforms: A Fastlane to Digitalization\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"FairTrace : An Automated Unsupervised Fairness Machine Learning Model - the Case of Huanglongbing Citrus Disease\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Trends in real-time artificial intelligence methods in sports: a systematic review\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Resilient Machine Learning for Networked Cyber Physical Systems: A Survey for Machine Learning Security to Securing Machine Learning for CPS\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Deep Learning and Traditional Machine Learning for Medical Diagnostics\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine learning: technologies and potential application at mining companies\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Towards Modular Machine Learning Solution Development: Benefits and Trade-offs\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"From Experimentation To Enterprise Reality: Why Mlops Is The Backbone Of Production AI\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An Adaptive Deep Learning for Causal Inference Based on Support Points With High-Dimensional Data\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Debugging Learning Algorithms Understanding and Correcting Machine Learning Models\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"An improved teaching-learning-based optimization for extreme learning machine in floating photovoltaic power forecasting\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Securing Machine Learning Models through Feasible Guidelines and Metric-Based Boundaries\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Simulation? Machine Learning ? Simulation X Machine Learning ?: A Decision System for Research Integrating Building Physic Simulation and Machine Learning Methods in the Early Design Stage\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Survey on Lie Group Machine Learning\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Construction and application of machine learning models for predicting intradialytic hypotension\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning for Multi-Access Edge Computing and Autonomous Driving\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning Approach to Decision Making for Insulin Initiation in Japanese Patients With Type 2 Diabetes (JDDM 58): Model Development and Validation Study\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Systems and Algorithms for Efficient, Secure and Private Machine Learning Inference\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Techniques and applications of Machine Learning and Artificial Intelligence in education: a systematic review\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Differentiation of Bone Metastasis in Elderly Patients With Lung Adenocarcinoma Using Multiple Machine Learning Algorithms\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Data Pricing in Machine Learning Pipelines\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2021,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Genomic Selection for Cashmere Traits in Inner Mongolian Cashmere Goats Using Random Forest, Gradient Boosting Decision Tree, Extreme Gradient Boosting and Light Gradient Boosting Machine Methods\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Algorithmic Fairness in Graph Machine Learning: Explanation, Optimization, and Certification\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Effectiveness of Machine Learning in Detecting Vessels Encapsulating Tumor Clusters in Hepatocellular Carcinoma: Systematic Review and Meta-Analysis\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Data preparation for machine learning in rock engineering\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Potential benefits and limitations of machine learning in the field of eating disorders: current research and future directions\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner's Perspective\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Τεχνικές μαθηματικής βελτιστοποίησης και μέθοδοι μηχανικής μάθησης\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Towards Efficient Deep Learning Systems with Learning-Based Optimizations\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A Novel Improvement of Feature Selection for Dynamic Hand Gesture Identification Based on Double Machine Learning †\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"MLBench: How Good Are Machine Learning Clouds for Binary Classification Tasks on Structured Data?\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2017,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning Assisted Convective Wall Heat Transfer Models For Fire Modeling Along Vertical Walls, Ceilings and Floors\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2024,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning in Baseball Analytics: Sabermetrics and Beyond\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2025,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"One RNG to Rule Them All: How Randomness Becomes an Attack Vector in Machine Learning\",\n      \"authors\": [],\n      \"source\": \"of\",\n      \"year\": 2026,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"A systematic review of fuzzing based on machine learning techniques\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2020,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Machine Learning in Data-Driven Research: Opportunities and Challenges\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2023,\n      \"accession_number\": \"\"\n    },\n    {\n      \"title\": \"Investigation of Machine Learning Algorithms for Network Intrusion Detection\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2022,\n      \"accession_number\": \"\"\n    }\n  ],\n  \"query_url\": \"https://www.proquest.com/advanced?accountid=16605\",\n  \"results_url\": \"https://www.proquest.com/results/5BCA1AEDF10C4F08PQ/1?accountid=16605\",\n  \"title\": \"检索结果 - ProQuest\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 452647,
+    "items": [
+      {
+        "title": "Quantum Adversarial Machine Learning: From Classical Adaptations to Quantum-Native Methods",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "accession_number": ""
+      },
+      {
+        "title": "Моделі та методи інформаційної технології машинного навчання системи розпізнавання електроміографічних біосигналів у протезуванні",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Model Aggregation Methods for Distributed Machine Learning",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Physics Vs Machine Learning : Topological Classification with Machine Learning & Enhanced Machine Learning with Quantum Properties",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Ingredients for Responsible Machine Learning: A Commented Review of The Hitchhiker’s Guide to Responsible Machine Learning",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "A Machine Learning Tutorial for Operational Meteorology, Part I: Traditional Machine Learning",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "When Machine Learning Meets Privacy: A Survey and Outlook",
+        "authors": [],
+        "source": "",
+        "year": 2020,
+        "accession_number": ""
+      },
+      {
+        "title": "Improved machine learning-aided linear cryptanalysis: application to DES",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "The acceleration of machine learning and deep learning algorithms with parallel architectures",
+        "authors": [],
+        "source": "",
+        "year": 2016,
+        "accession_number": ""
+      },
+      {
+        "title": "Automated Graph Machine Learning: Approaches, Libraries, Benchmarks and Directions",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Domain Knowledge in Artificial Intelligence: Using Conceptual Modeling to Increase Machine Learning Accuracy and Explainability",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "An Empirical Analysis of AutoMl Tools and Techniques with Automated Feature Engineering",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "Efficient Machine Learning Software Stack from Algorithms to Compilation",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Low-Code Machine Learning Platforms: A Fastlane to Digitalization",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "FairTrace : An Automated Unsupervised Fairness Machine Learning Model - the Case of Huanglongbing Citrus Disease",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Trends in real-time artificial intelligence methods in sports: a systematic review",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Resilient Machine Learning for Networked Cyber Physical Systems: A Survey for Machine Learning Security to Securing Machine Learning for CPS",
+        "authors": [],
+        "source": "",
+        "year": 2021,
+        "accession_number": ""
+      },
+      {
+        "title": "Deep Learning and Traditional Machine Learning for Medical Diagnostics",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine learning: technologies and potential application at mining companies",
+        "authors": [],
+        "source": "",
+        "year": 2020,
+        "accession_number": ""
+      },
+      {
+        "title": "Towards Modular Machine Learning Solution Development: Benefits and Trade-offs",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "From Experimentation To Enterprise Reality: Why Mlops Is The Backbone Of Production AI",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "accession_number": ""
+      },
+      {
+        "title": "An Adaptive Deep Learning for Causal Inference Based on Support Points With High-Dimensional Data",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Debugging Learning Algorithms Understanding and Correcting Machine Learning Models",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "An improved teaching-learning-based optimization for extreme learning machine in floating photovoltaic power forecasting",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Securing Machine Learning Models through Feasible Guidelines and Metric-Based Boundaries",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "Simulation? Machine Learning ? Simulation X Machine Learning ?: A Decision System for Research Integrating Building Physic Simulation and Machine Learning Methods in the Early Design Stage",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "Survey on Lie Group Machine Learning",
+        "authors": [],
+        "source": "",
+        "year": 2020,
+        "accession_number": ""
+      },
+      {
+        "title": "Construction and application of machine learning models for predicting intradialytic hypotension",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine Learning for Multi-Access Edge Computing and Autonomous Driving",
+        "authors": [],
+        "source": "",
+        "year": 2021,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine Learning Approach to Decision Making for Insulin Initiation in Japanese Patients With Type 2 Diabetes (JDDM 58): Model Development and Validation Study",
+        "authors": [],
+        "source": "",
+        "year": 2021,
+        "accession_number": ""
+      },
+      {
+        "title": "Systems and Algorithms for Efficient, Secure and Private Machine Learning Inference",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Techniques and applications of Machine Learning and Artificial Intelligence in education: a systematic review",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Differentiation of Bone Metastasis in Elderly Patients With Lung Adenocarcinoma Using Multiple Machine Learning Algorithms",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Data Pricing in Machine Learning Pipelines",
+        "authors": [],
+        "source": "",
+        "year": 2021,
+        "accession_number": ""
+      },
+      {
+        "title": "Genomic Selection for Cashmere Traits in Inner Mongolian Cashmere Goats Using Random Forest, Gradient Boosting Decision Tree, Extreme Gradient Boosting and Light Gradient Boosting Machine Methods",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Algorithmic Fairness in Graph Machine Learning: Explanation, Optimization, and Certification",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Effectiveness of Machine Learning in Detecting Vessels Encapsulating Tumor Clusters in Hepatocellular Carcinoma: Systematic Review and Meta-Analysis",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "accession_number": ""
+      },
+      {
+        "title": "Data preparation for machine learning in rock engineering",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Potential benefits and limitations of machine learning in the field of eating disorders: current research and future directions",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      },
+      {
+        "title": "Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner's Perspective",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "Τεχνικές μαθηματικής βελτιστοποίησης και μέθοδοι μηχανικής μάθησης",
+        "authors": [],
+        "source": "",
+        "year": 2020,
+        "accession_number": ""
+      },
+      {
+        "title": "Towards Efficient Deep Learning Systems with Learning-Based Optimizations",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "A Novel Improvement of Feature Selection for Dynamic Hand Gesture Identification Based on Double Machine Learning †",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "MLBench: How Good Are Machine Learning Clouds for Binary Classification Tasks on Structured Data?",
+        "authors": [],
+        "source": "",
+        "year": 2017,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine Learning Assisted Convective Wall Heat Transfer Models For Fire Modeling Along Vertical Walls, Ceilings and Floors",
+        "authors": [],
+        "source": "",
+        "year": 2024,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine Learning in Baseball Analytics: Sabermetrics and Beyond",
+        "authors": [],
+        "source": "",
+        "year": 2025,
+        "accession_number": ""
+      },
+      {
+        "title": "One RNG to Rule Them All: How Randomness Becomes an Attack Vector in Machine Learning",
+        "authors": [],
+        "source": "of",
+        "year": 2026,
+        "accession_number": ""
+      },
+      {
+        "title": "A systematic review of fuzzing based on machine learning techniques",
+        "authors": [],
+        "source": "",
+        "year": 2020,
+        "accession_number": ""
+      },
+      {
+        "title": "Machine Learning in Data-Driven Research: Opportunities and Challenges",
+        "authors": [],
+        "source": "",
+        "year": 2023,
+        "accession_number": ""
+      },
+      {
+        "title": "Investigation of Machine Learning Algorithms for Network Intrusion Detection",
+        "authors": [],
+        "source": "",
+        "year": 2022,
+        "accession_number": ""
+      }
+    ],
+    "query_url": "https://www.proquest.com/advanced?accountid=16605",
+    "results_url": "https://www.proquest.com/results/5BCA1AEDF10C4F08PQ/1?accountid=16605",
+    "title": "检索结果 - ProQuest"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:45:36.761655+00:00"
+}

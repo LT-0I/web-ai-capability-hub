@@ -1,0 +1,898 @@
+{
+  "db": "opticsjournal",
+  "tool": "research_opticsjournal_search",
+  "op": "search",
+  "profile": "research-opticsjournal",
+  "cdp_port": 9360,
+  "query": "激光",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:opticsjournal:search '激光' --page-size 5 --profile research-opticsjournal --cdp-port 9360 --json",
+    "started_at": "2026-05-27T07:44:35.744639+00:00",
+    "elapsed_seconds": 15.438,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 5271,\n  \"item_count\": 55,\n  \"items\": [\n    {\n      \"title\": \"激光 测距\",\n      \"authors\": [\n        \"激光测距是激光雷达的核心部分\",\n        \"常见的激光测距原理有脉冲法和相位法等。脉冲法激光测距的原理是测量发射脉冲和接收脉冲之间的时间间隔\",\n        \"从而计算出系统与目标物的间距。与相位法相比\",\n        \"脉冲法具有测量范围大、不需要合作目标、实时性好等优点\",\n        \"被广泛应用于各种领域\",\n        \"如航空航天、工业测量、大地测绘和智能驾驶等。 下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000112tQwSy.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 气体传感器\",\n      \"authors\": [\n        \"激光气体传感器主要应用于污染气体监测领域\",\n        \"其技术原理涉及直接吸收光谱技术和间接吸收光谱技术两大类。其与传统气体传感器相比\",\n        \"具有灵敏度高、响应速度快、寿命长、抗干扰能力强等优点\",\n        \"能够显著减少对测量的误判。目前\",\n        \"激光的电流驱动板、温度控制板和信号处理电路越发趋近小体积和高精度\",\n        \"进-步推动了污染气体激光监\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000109sPvSx.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"碱金属蒸气 激光 器\",\n      \"authors\": [\n        \"碱金属蒸气激光器以碱金属原子饱和蒸气作为激光增益介质\",\n        \"其量子效率理论上可达90%以上\",\n        \"极大地减少了废热的产生\",\n        \"与一般固体激光介质相比\",\n        \"废热可减少80%以上\",\n        \"同时\",\n        \"碱金属蒸气是流体\",\n        \"易于进行高效冷却\",\n        \"快速带走废热。此外\",\n        \"碱金属激光波长与大气传输窗口匹配\",\n        \"并且位于近红外电荷耦合元件(CCD)的敏感波段\",\n        \"在**上具\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000106hEkHn.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 超声\",\n      \"authors\": [\n        \"激光超声由于其具有非接触、灵敏度高和适用于恶劣环境等优势\",\n        \"被广泛应用于材料检测领域。激光超声系统是一个集光、机、电、算的复杂检测系统\",\n        \"主要由超声波的产生与接收部分组成。系统的脉冲激光发射器普遍使用的是Nd:YAG脉冲激光器。激光超声无损检测经常被用于非接触、极端环境(如高温、低温等)、无需耦合剂、快速扫描等条\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2023,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT231228000031fBhEk.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 诱导击穿光谱(LIBS)\",\n      \"authors\": [\n        \"激光诱导击穿光谱技术 (laser-induced breakdown spectroscopy\",\n        \"LIBS) 是-种常用的物质元素成分分析技术\",\n        \"其通过将高功率的脉冲激光聚焦在样品表面\",\n        \"使表面物质化学键断裂、化学元素被电离\",\n        \"形成一团由原子、自由电子和离子组成的高温等离子体\",\n        \"其内部处于高能态的原子和离子在向低能态跃迁时发出特征波长的光\",\n        \"通过对比分\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2023,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT231228000022a7dAg.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"基于FPGA的脉冲相关 激光 测距系统\",\n      \"authors\": [\n        \"李雪文 1 李永红 1\",\n        \"* 岳凤英 2 曾嘉鑫 2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJaede03aaf8365c3d/Abstract\",\n      \"article_id\": \"OJaede03aaf8365c3d\"\n    },\n    {\n      \"title\": \"调频连续波 激光 雷达水下测距仿真分析\",\n      \"authors\": [\n        \"阳琴 1 徐诗月 1\",\n        \"2 马睿 1 郭孟林 1\",\n        \"2 [ ... ] 杨俊敏 1\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe0b45ed7ef1ea8be/Abstract\",\n      \"article_id\": \"OJe0b45ed7ef1ea8be\"\n    },\n    {\n      \"title\": \"基于贝叶斯优化VMD的 激光 回波去噪方法\",\n      \"authors\": [\n        \"覃则昆 1 郭甲崇 2 兀伟 2\",\n        \"* 张珂 2 刘星 1\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ803fc7e9b350f42f/Abstract\",\n      \"article_id\": \"OJ803fc7e9b350f42f\"\n    },\n    {\n      \"title\": \"高功率光纤 激光 器散热系统设计及热仿真分析\",\n      \"authors\": [\n        \"胡传舟 1\",\n        \"2 赵鸿 1\",\n        \"2 张利明 1\",\n        \"2 张雪霞 1\",\n        \"2 [ ... ] 朱辰 1\",\n        \"2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ9c7e0fc4a92755ac/Abstract\",\n      \"article_id\": \"OJ9c7e0fc4a92755ac\"\n    },\n    {\n      \"title\": \"改进PSO算法下半导体 激光 器温度模糊PID控制\",\n      \"authors\": [\n        \"李丹 1 付国帅 2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf18bc41735e3bed6/Abstract\",\n      \"article_id\": \"OJf18bc41735e3bed6\"\n    },\n    {\n      \"title\": \"卫星 激光 通信技术研究现状与发展趋势\",\n      \"authors\": [\n        \"赵思骁\",\n        \"宋豪壮\",\n        \"林玉洁 *\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe4e6aa5fa6117ee2/Abstract\",\n      \"article_id\": \"OJe4e6aa5fa6117ee2\"\n    },\n    {\n      \"title\": \"激光 与红外2026年第56卷第3期 目录\",\n      \"authors\": [],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf6cb3dca14e004e2/Abstract\",\n      \"article_id\": \"OJf6cb3dca14e004e2\"\n    },\n    {\n      \"title\": \"激光 表面改性对Yb 2 Si 2 O 7 涂层耐腐蚀性能的影响\",\n      \"authors\": [\n        \"苏景新 1 张凌浩 1 程涛涛 1\",\n        \"* 张涛 1 [ ... ] 王志平 1\"\n      ],\n      \"journal\": \"硅酸盐学报\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJae23b77661dc5f98/Abstract\",\n      \"article_id\": \"OJae23b77661dc5f98\"\n    },\n    {\n      \"title\": \"图像辅助 激光 诱导击穿光谱校正的水中U定量分析\",\n      \"authors\": [\n        \"廖瑞 1 史晋芳 1\",\n        \"* 邱荣 2 周强 2 [ ... ] 辜周宇 2\"\n      ],\n      \"journal\": \"光电子·激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ328bab91799669e4/Abstract\",\n      \"article_id\": \"OJ328bab91799669e4\"\n    },\n    {\n      \"title\": \"光电子· 激光 2026年第37卷第4期 目录\",\n      \"authors\": [],\n      \"journal\": \"光电子·激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5eab2bbb2c638611/Abstract\",\n      \"article_id\": \"OJ5eab2bbb2c638611\"\n    },\n    {\n      \"title\": \"硅基集成外腔 激光 器的最新进展（特邀）\",\n      \"authors\": [\n        \"吴懿霖 1\",\n        \"2 杨四刚 1\",\n        \"2 陈宏伟 1\",\n        \"2 陈明华 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJc9a096420786142d/Abstract\",\n      \"article_id\": \"OJc9a096420786142d\"\n    },\n    {\n      \"title\": \"超快 激光 诱导无机透明电介质缺陷研究进展（特邀）\",\n      \"authors\": [\n        \"马榕泽\",\n        \"王卓\",\n        \"邱建荣\",\n        \"张博 *\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJcc460db0b229c932/Abstract\",\n      \"article_id\": \"OJcc460db0b229c932\"\n    },\n    {\n      \"title\": \"自由空间布里渊 激光 器研究进展与发展趋势（特邀）\",\n      \"authors\": [\n        \"白振旭 1\",\n        \"2\",\n        \"3\",\n        \"* 张龙杰 1\",\n        \"2\",\n        \"3 陈晖 1\",\n        \"2\",\n        \"3 范文强 1\",\n        \"2\",\n        \"3 [ ... ] 吕志伟 1\",\n        \"2\",\n        \"3\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJa1418aae2daab4fe/Abstract\",\n      \"article_id\": \"OJa1418aae2daab4fe\"\n    },\n    {\n      \"title\": \"“单频 激光 技术”专题前言\",\n      \"authors\": [\n        \"彭堃墀\",\n        \"冯衍\",\n        \"柳强\",\n        \"史伟 [ ... ] 周朴\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJb7e98e8f276c5718/Abstract\",\n      \"article_id\": \"OJb7e98e8f276c5718\"\n    },\n    {\n      \"title\": \"环形腔单频自扫光纤 激光 器的研究\",\n      \"authors\": [\n        \"路程程 1\",\n        \"2 孟令康 1\",\n        \"2 陈浩伟 1\",\n        \"2 陆宝乐 1\",\n        \"2 白晋涛 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ208ffca3bf046f54/Abstract\",\n      \"article_id\": \"OJ208ffca3bf046f54\"\n    },\n    {\n      \"title\": \"基于受激拉曼散射的高重复频率559 nm全固态 激光 器\",\n      \"authors\": [\n        \"武宝玉 1 于广礼 2 丁建永 2 周军 2 胡芳仁 1\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ3e428b4b6180fec9/Abstract\",\n      \"article_id\": \"OJ3e428b4b6180fec9\"\n    },\n    {\n      \"title\": \"6061铝合金箔板 激光 冲击温热微弯曲成形试验研究\",\n      \"authors\": [\n        \"严长\",\n        \"贺晓\",\n        \"刘会霞 * 王霄\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ620304d97fb981e0/Abstract\",\n      \"article_id\": \"OJ620304d97fb981e0\"\n    },\n    {\n      \"title\": \"化学辅助飞秒 激光 抛光氮化铝陶瓷试验与数值模拟\",\n      \"authors\": [\n        \"石睿康 1 周后明 1\",\n        \"* 赵振宇 1 宋铁军 1 何金 2\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ78bda3deca98b7a6/Abstract\",\n      \"article_id\": \"OJ78bda3deca98b7a6\"\n    },\n    {\n      \"title\": \"激光 选区熔化制备异型三周期极小曲面多孔支架性能研究\",\n      \"authors\": [\n        \"邵延镇 1 乌日开西·艾依提 1\",\n        \"* 张宇涛 1\",\n        \"2\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ14849c3e239212c6/Abstract\",\n      \"article_id\": \"OJ14849c3e239212c6\"\n    },\n    {\n      \"title\": \"单频 激光 器在相干 激光 雷达领域的应用（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"武壮 1\",\n        \"2 吴文堂 3\",\n        \"* 默迪 1 王然 1\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ1bf53a06cbc67f4a/Abstract\",\n      \"article_id\": \"OJ1bf53a06cbc67f4a\"\n    },\n    {\n      \"title\": \"单频拉曼 激光 技术研究进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李牧野\",\n        \"杨学宗 * 孙玉祥\",\n        \"吴达坤 [ ... ] 冯衍 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ7785c4997acc9890/Abstract\",\n      \"article_id\": \"OJ7785c4997acc9890\"\n    },\n    {\n      \"title\": \"自注入锁定的单纵模射频激励波导CO 2 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"刘明昆 1\",\n        \"2 李志永 1\",\n        \"2\",\n        \"* 刘建勋 3 肖保军 4 [ ... ] 谭荣清 1\",\n        \"2\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf85a1fee0df5d736/Abstract\",\n      \"article_id\": \"OJf85a1fee0df5d736\"\n    },\n    {\n      \"title\": \"基于卷积神经网络的 激光 自混合干涉微位移重构\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李鑫涛\",\n        \"刘晖 * 乔硕\",\n        \"杨一帆 [ ... ] 熊玲玲\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ11d2013037323567/Abstract\",\n      \"article_id\": \"OJ11d2013037323567\"\n    },\n    {\n      \"title\": \"星光-Ⅲ 激光 装置X射线在线瞄准针孔相机研制\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"杨雷\",\n        \"黄征\",\n        \"孙立\",\n        \"卢峰 * [ ... ] 周凯南\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJc5c17f3043afc648/Abstract\",\n      \"article_id\": \"OJc5c17f3043afc648\"\n    },\n    {\n      \"title\": \"用于 激光 等离子体的同轴结构脉冲强磁场设备\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王志 1 王金灿 1 李天贻 1 熊超 1 [ ... ] 胡广月 1\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ1692ea3fef2d7bd0/Abstract\",\n      \"article_id\": \"OJ1692ea3fef2d7bd0\"\n    },\n    {\n      \"title\": \"学科发展视角下的单频光纤 激光 技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"陶悦\",\n        \"张烊源\",\n        \"赵可\",\n        \"康芃睿 [ ... ] 周朴 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ2a7bdb681f6744a7/Abstract\",\n      \"article_id\": \"OJ2a7bdb681f6744a7\"\n    },\n    {\n      \"title\": \"可调谐超窄线宽 激光 技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"徐敏志\",\n        \"李雨佳\",\n        \"张朝泽\",\n        \"韦达 [ ... ] 朱涛 *\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ44d564a1c608ceaa/Abstract\",\n      \"article_id\": \"OJ44d564a1c608ceaa\"\n    },\n    {\n      \"title\": \"连续单频 激光 噪声特性测试技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"张霄 1\",\n        \"3 蔡海文 2 杨飞 1\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4b0695c0bc7b0b8d/Abstract\",\n      \"article_id\": \"OJ4b0695c0bc7b0b8d\"\n    },\n    {\n      \"title\": \"915 nm掺钕全保偏单频光纤 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"邓立文 1 蒋葵 1 何永成 1 王世凯 2 [ ... ] 李文松 1\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5bd88e7292c46617/Abstract\",\n      \"article_id\": \"OJ5bd88e7292c46617\"\n    },\n    {\n      \"title\": \"亚赫兹线宽稳频 激光 与光学分频（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"蒋燕义 * 师浩森\",\n        \"姚远\",\n        \"马龙生\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe03d2261bfa545e3/Abstract\",\n      \"article_id\": \"OJe03d2261bfa545e3\"\n    },\n    {\n      \"title\": \"高功率高效率低噪声单频Er∶YAG非平面环形腔 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"焦雨凇 1\",\n        \"2 余洋 1\",\n        \"2 臧贤清 1\",\n        \"2 吴伟冲 1\",\n        \"2 高春清 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ8de0386fab63f0ef/Abstract\",\n      \"article_id\": \"OJ8de0386fab63f0ef\"\n    },\n    {\n      \"title\": \"从经典噪声到量子关联： 激光 器噪声在量子态制备中的角色与相互达成（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李瑞鑫 1 王雅君 1\",\n        \"2 田龙 1\",\n        \"2 史少平 1\",\n        \"2 [ ... ] 郑耀辉 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ92535afb23312f5c/Abstract\",\n      \"article_id\": \"OJ92535afb23312f5c\"\n    },\n    {\n      \"title\": \"水导 激光 长焦深均匀化聚焦光束生成与耦合特性分析\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"樊小淙\",\n        \"黄宇星 * 韦耀东\",\n        \"张光辉 [ ... ] 龙芋宏 **\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ77db94da357e3695/Abstract\",\n      \"article_id\": \"OJ77db94da357e3695\"\n    },\n    {\n      \"title\": \"地面自由空间脉冲 激光 时间传递实验研究\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"孟晋凰 1\",\n        \"2 张海峰 2\",\n        \"3\",\n        \"** 丁洁 1\",\n        \"* 王宇谱 4 [ ... ] 白振旭 1\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJd74918cb095f4778/Abstract\",\n      \"article_id\": \"OJd74918cb095f4778\"\n    },\n    {\n      \"title\": \"硅基集成外腔 激光 器精准相频调控技术及应用（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"苏庆帅 1 魏芳 1\",\n        \"* 陈晨 1 李象岳 1\",\n        \"3 [ ... ] 蔡海文 1\",\n        \"2\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJd5178b64dbc99691/Abstract\",\n      \"article_id\": \"OJd5178b64dbc99691\"\n    },\n    {\n      \"title\": \"基于动态蒙特卡罗方法的532 nm 激光 在雾霾中的传输特性仿真\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"桂甸 1 陈修辉 1\",\n        \"* 岳建堡 1 吴昊 1 [ ... ] 胡友友 3\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5806cf70becf5902/Abstract\",\n      \"article_id\": \"OJ5806cf70becf5902\"\n    },\n    {\n      \"title\": \"星间单向 激光 测距信号识别方法\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"马佳欣 1\",\n        \"2 吴志波 2\",\n        \"3\",\n        \"5\",\n        \"* 秦思 2\",\n        \"3 耿仁方 2\",\n        \"4 张忠萍 2\",\n        \"3\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4f74a88f42e27bc0/Abstract\",\n      \"article_id\": \"OJ4f74a88f42e27bc0\"\n    },\n    {\n      \"title\": \"基于微腔的窄线宽 激光 研究进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王京京 1 刘静敏 2 陈旭 3 余霞 1\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ16d6ba3bea499302/Abstract\",\n      \"article_id\": \"OJ16d6ba3bea499302\"\n    },\n    {\n      \"title\": \"全固态Nd∶YLF 激光 器强度噪声的分析与抑制（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"周许 1 王晨曦 1 孔佳铭 1 蔡明皓 1\",\n        \"2 [ ... ] 郭永瑞 1\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ3286909068e40d66/Abstract\",\n      \"article_id\": \"OJ3286909068e40d66\"\n    },\n    {\n      \"title\": \"全固态小型化窄线宽高稳定性355 nm紫外 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"叶宏顺 1\",\n        \"3 薛冬冬 1\",\n        \"3 冯盼 1\",\n        \"2 王明建 1\",\n        \"2\",\n        \"3 [ ... ] 陈卫标 1\",\n        \"2\",\n        \"3\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ8cc5e5744dc894ca/Abstract\",\n      \"article_id\": \"OJ8cc5e5744dc894ca\"\n    },\n    {\n      \"title\": \"分布反馈光纤 激光 器热致啁啾效应影响及抑制\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"翟鑫豪 1 宋志强 1\",\n        \"2\",\n        \"* 姚波 3 陈铎 1\",\n        \"2 [ ... ] 彭纲定 1\",\n        \"4\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJdb06f91c77cee877/Abstract\",\n      \"article_id\": \"OJdb06f91c77cee877\"\n    },\n    {\n      \"title\": \"全自动可调谐单频连续波钛宝石 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王天阳 1 王永东 1 靳丕铦 1\",\n        \"2\",\n        \"* 苏静 1\",\n        \"2 卢华东 1\",\n        \"2\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ89e2fa3b3b305c40/Abstract\",\n      \"article_id\": \"OJ89e2fa3b3b305c40\"\n    },\n    {\n      \"title\": \"基于片上集成微腔的可调谐窄线宽光纤 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王梦宇 1\",\n        \"2 龚雯 1 柴明钢 1\",\n        \"* 王伟强 3\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4adef24c069e3fe1/Abstract\",\n      \"article_id\": \"OJ4adef24c069e3fe1\"\n    },\n    {\n      \"title\": \"高亮度毫焦1550 nm单频脉冲光纤 激光 研究\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"林治全 1 董贺贺 2 王孟 2 张磊 2 [ ... ] 胡丽丽 2\",\n        \"***\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe95b22617cb9167e/Abstract\",\n      \"article_id\": \"OJe95b22617cb9167e\"\n    },\n    {\n      \"title\": \"基于空间光场调控的单频光纤 激光 研究新动向（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李灿\",\n        \"赵可\",\n        \"张烊源\",\n        \"康芃睿 [ ... ] 周朴 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJafc8a48437a82f2/Abstract\",\n      \"article_id\": \"OJafc8a48437a82f2\"\n    },\n    {\n      \"title\": \"基于中空FP微腔的连续调频超窄线宽外腔半导体 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"邓力华 1\",\n        \"2 陈菲菲 2 阎柏屹 1\",\n        \"2 季静茹 2 [ ... ] 梁伟 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf5bc57a36e259323/Abstract\",\n      \"article_id\": \"OJf5bc57a36e259323\"\n    },\n    {\n      \"title\": \"基于体布拉格光栅外腔的532 nm空间应用单频 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王睿昕 1\",\n        \"2\",\n        \"4 李志超 1\",\n        \"2\",\n        \"3\",\n        \"4 李方欣 1\",\n        \"2\",\n        \"4 杨振营 1\",\n        \"2\",\n        \"4\",\n        \"** [ ... ] 孟令强 1\",\n        \"2\",\n        \"4\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ76f73fce268a69a0/Abstract\",\n      \"article_id\": \"OJ76f73fce268a69a0\"\n    },\n    {\n      \"title\": \"镁合金 激光 表面改性技术进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"郭骐豪 1 臧宏鑫 1 管迎春 1\",\n        \"2\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJda0abfe9446defbc/Abstract\",\n      \"article_id\": \"OJda0abfe9446defbc\"\n    },\n    {\n      \"title\": \"融合三维NDT特征的 激光 雷达回环检测方法\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"韩桂芳 1 熊涛 1\",\n        \"* 齐淑林 2 李自成 1\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ11736b57ca3239ec/Abstract\",\n      \"article_id\": \"OJ11736b57ca3239ec\"\n    },\n    {\n      \"title\": \"基于注入锁定技术的高能量线偏振主动调 Q单纵模光纤 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"潘浩 1\",\n        \"2\",\n        \"3 潘勇剑 2\",\n        \"3 张东 1\",\n        \"2\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ501ce5cc10af0018/Abstract\",\n      \"article_id\": \"OJ501ce5cc10af0018\"\n    }\n  ],\n  \"query_url\": \"https://www.opticsjournal.net/Search\",\n  \"results_url\": \"https://www.opticsjournal.net/Search/Article\",\n  \"title\": \"论文查询结果 -- 中国光学期刊网\",\n  \"note\": \"When no year range is set, opticsjournal.net applies an implicit latest ~4-year publication window.\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:opticsjournal:search '激光' --page-size 5 --profile research-opticsjournal --cdp-port 9360 --json",
+        "started_at": "2026-05-27T07:44:35.744639+00:00",
+        "elapsed_seconds": 15.438,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 5271,\n  \"item_count\": 55,\n  \"items\": [\n    {\n      \"title\": \"激光 测距\",\n      \"authors\": [\n        \"激光测距是激光雷达的核心部分\",\n        \"常见的激光测距原理有脉冲法和相位法等。脉冲法激光测距的原理是测量发射脉冲和接收脉冲之间的时间间隔\",\n        \"从而计算出系统与目标物的间距。与相位法相比\",\n        \"脉冲法具有测量范围大、不需要合作目标、实时性好等优点\",\n        \"被广泛应用于各种领域\",\n        \"如航空航天、工业测量、大地测绘和智能驾驶等。 下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000112tQwSy.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 气体传感器\",\n      \"authors\": [\n        \"激光气体传感器主要应用于污染气体监测领域\",\n        \"其技术原理涉及直接吸收光谱技术和间接吸收光谱技术两大类。其与传统气体传感器相比\",\n        \"具有灵敏度高、响应速度快、寿命长、抗干扰能力强等优点\",\n        \"能够显著减少对测量的误判。目前\",\n        \"激光的电流驱动板、温度控制板和信号处理电路越发趋近小体积和高精度\",\n        \"进-步推动了污染气体激光监\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000109sPvSx.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"碱金属蒸气 激光 器\",\n      \"authors\": [\n        \"碱金属蒸气激光器以碱金属原子饱和蒸气作为激光增益介质\",\n        \"其量子效率理论上可达90%以上\",\n        \"极大地减少了废热的产生\",\n        \"与一般固体激光介质相比\",\n        \"废热可减少80%以上\",\n        \"同时\",\n        \"碱金属蒸气是流体\",\n        \"易于进行高效冷却\",\n        \"快速带走废热。此外\",\n        \"碱金属激光波长与大气传输窗口匹配\",\n        \"并且位于近红外电荷耦合元件(CCD)的敏感波段\",\n        \"在**上具\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT240110000106hEkHn.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 超声\",\n      \"authors\": [\n        \"激光超声由于其具有非接触、灵敏度高和适用于恶劣环境等优势\",\n        \"被广泛应用于材料检测领域。激光超声系统是一个集光、机、电、算的复杂检测系统\",\n        \"主要由超声波的产生与接收部分组成。系统的脉冲激光发射器普遍使用的是Nd:YAG脉冲激光器。激光超声无损检测经常被用于非接触、极端环境(如高温、低温等)、无需耦合剂、快速扫描等条\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2023,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT231228000031fBhEk.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"激光 诱导击穿光谱(LIBS)\",\n      \"authors\": [\n        \"激光诱导击穿光谱技术 (laser-induced breakdown spectroscopy\",\n        \"LIBS) 是-种常用的物质元素成分分析技术\",\n        \"其通过将高功率的脉冲激光聚焦在样品表面\",\n        \"使表面物质化学键断裂、化学元素被电离\",\n        \"形成一团由原子、自由电子和离子组成的高温等离子体\",\n        \"其内部处于高能态的原子和离子在向低能态跃迁时发出特征波长的光\",\n        \"通过对比分\",\n        \"下载卡片\",\n        \"新光学\"\n      ],\n      \"journal\": \"\",\n      \"year\": 2023,\n      \"doi\": \"\",\n      \"article_path\": \"/J/NewOptics/news/PT231228000022a7dAg.html\",\n      \"article_id\": \"\"\n    },\n    {\n      \"title\": \"基于FPGA的脉冲相关 激光 测距系统\",\n      \"authors\": [\n        \"李雪文 1 李永红 1\",\n        \"* 岳凤英 2 曾嘉鑫 2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJaede03aaf8365c3d/Abstract\",\n      \"article_id\": \"OJaede03aaf8365c3d\"\n    },\n    {\n      \"title\": \"调频连续波 激光 雷达水下测距仿真分析\",\n      \"authors\": [\n        \"阳琴 1 徐诗月 1\",\n        \"2 马睿 1 郭孟林 1\",\n        \"2 [ ... ] 杨俊敏 1\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe0b45ed7ef1ea8be/Abstract\",\n      \"article_id\": \"OJe0b45ed7ef1ea8be\"\n    },\n    {\n      \"title\": \"基于贝叶斯优化VMD的 激光 回波去噪方法\",\n      \"authors\": [\n        \"覃则昆 1 郭甲崇 2 兀伟 2\",\n        \"* 张珂 2 刘星 1\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ803fc7e9b350f42f/Abstract\",\n      \"article_id\": \"OJ803fc7e9b350f42f\"\n    },\n    {\n      \"title\": \"高功率光纤 激光 器散热系统设计及热仿真分析\",\n      \"authors\": [\n        \"胡传舟 1\",\n        \"2 赵鸿 1\",\n        \"2 张利明 1\",\n        \"2 张雪霞 1\",\n        \"2 [ ... ] 朱辰 1\",\n        \"2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ9c7e0fc4a92755ac/Abstract\",\n      \"article_id\": \"OJ9c7e0fc4a92755ac\"\n    },\n    {\n      \"title\": \"改进PSO算法下半导体 激光 器温度模糊PID控制\",\n      \"authors\": [\n        \"李丹 1 付国帅 2\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf18bc41735e3bed6/Abstract\",\n      \"article_id\": \"OJf18bc41735e3bed6\"\n    },\n    {\n      \"title\": \"卫星 激光 通信技术研究现状与发展趋势\",\n      \"authors\": [\n        \"赵思骁\",\n        \"宋豪壮\",\n        \"林玉洁 *\"\n      ],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe4e6aa5fa6117ee2/Abstract\",\n      \"article_id\": \"OJe4e6aa5fa6117ee2\"\n    },\n    {\n      \"title\": \"激光 与红外2026年第56卷第3期 目录\",\n      \"authors\": [],\n      \"journal\": \"激光与红外\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf6cb3dca14e004e2/Abstract\",\n      \"article_id\": \"OJf6cb3dca14e004e2\"\n    },\n    {\n      \"title\": \"激光 表面改性对Yb 2 Si 2 O 7 涂层耐腐蚀性能的影响\",\n      \"authors\": [\n        \"苏景新 1 张凌浩 1 程涛涛 1\",\n        \"* 张涛 1 [ ... ] 王志平 1\"\n      ],\n      \"journal\": \"硅酸盐学报\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJae23b77661dc5f98/Abstract\",\n      \"article_id\": \"OJae23b77661dc5f98\"\n    },\n    {\n      \"title\": \"图像辅助 激光 诱导击穿光谱校正的水中U定量分析\",\n      \"authors\": [\n        \"廖瑞 1 史晋芳 1\",\n        \"* 邱荣 2 周强 2 [ ... ] 辜周宇 2\"\n      ],\n      \"journal\": \"光电子·激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ328bab91799669e4/Abstract\",\n      \"article_id\": \"OJ328bab91799669e4\"\n    },\n    {\n      \"title\": \"光电子· 激光 2026年第37卷第4期 目录\",\n      \"authors\": [],\n      \"journal\": \"光电子·激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5eab2bbb2c638611/Abstract\",\n      \"article_id\": \"OJ5eab2bbb2c638611\"\n    },\n    {\n      \"title\": \"硅基集成外腔 激光 器的最新进展（特邀）\",\n      \"authors\": [\n        \"吴懿霖 1\",\n        \"2 杨四刚 1\",\n        \"2 陈宏伟 1\",\n        \"2 陈明华 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJc9a096420786142d/Abstract\",\n      \"article_id\": \"OJc9a096420786142d\"\n    },\n    {\n      \"title\": \"超快 激光 诱导无机透明电介质缺陷研究进展（特邀）\",\n      \"authors\": [\n        \"马榕泽\",\n        \"王卓\",\n        \"邱建荣\",\n        \"张博 *\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJcc460db0b229c932/Abstract\",\n      \"article_id\": \"OJcc460db0b229c932\"\n    },\n    {\n      \"title\": \"自由空间布里渊 激光 器研究进展与发展趋势（特邀）\",\n      \"authors\": [\n        \"白振旭 1\",\n        \"2\",\n        \"3\",\n        \"* 张龙杰 1\",\n        \"2\",\n        \"3 陈晖 1\",\n        \"2\",\n        \"3 范文强 1\",\n        \"2\",\n        \"3 [ ... ] 吕志伟 1\",\n        \"2\",\n        \"3\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJa1418aae2daab4fe/Abstract\",\n      \"article_id\": \"OJa1418aae2daab4fe\"\n    },\n    {\n      \"title\": \"“单频 激光 技术”专题前言\",\n      \"authors\": [\n        \"彭堃墀\",\n        \"冯衍\",\n        \"柳强\",\n        \"史伟 [ ... ] 周朴\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJb7e98e8f276c5718/Abstract\",\n      \"article_id\": \"OJb7e98e8f276c5718\"\n    },\n    {\n      \"title\": \"环形腔单频自扫光纤 激光 器的研究\",\n      \"authors\": [\n        \"路程程 1\",\n        \"2 孟令康 1\",\n        \"2 陈浩伟 1\",\n        \"2 陆宝乐 1\",\n        \"2 白晋涛 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ208ffca3bf046f54/Abstract\",\n      \"article_id\": \"OJ208ffca3bf046f54\"\n    },\n    {\n      \"title\": \"基于受激拉曼散射的高重复频率559 nm全固态 激光 器\",\n      \"authors\": [\n        \"武宝玉 1 于广礼 2 丁建永 2 周军 2 胡芳仁 1\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ3e428b4b6180fec9/Abstract\",\n      \"article_id\": \"OJ3e428b4b6180fec9\"\n    },\n    {\n      \"title\": \"6061铝合金箔板 激光 冲击温热微弯曲成形试验研究\",\n      \"authors\": [\n        \"严长\",\n        \"贺晓\",\n        \"刘会霞 * 王霄\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ620304d97fb981e0/Abstract\",\n      \"article_id\": \"OJ620304d97fb981e0\"\n    },\n    {\n      \"title\": \"化学辅助飞秒 激光 抛光氮化铝陶瓷试验与数值模拟\",\n      \"authors\": [\n        \"石睿康 1 周后明 1\",\n        \"* 赵振宇 1 宋铁军 1 何金 2\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ78bda3deca98b7a6/Abstract\",\n      \"article_id\": \"OJ78bda3deca98b7a6\"\n    },\n    {\n      \"title\": \"激光 选区熔化制备异型三周期极小曲面多孔支架性能研究\",\n      \"authors\": [\n        \"邵延镇 1 乌日开西·艾依提 1\",\n        \"* 张宇涛 1\",\n        \"2\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ14849c3e239212c6/Abstract\",\n      \"article_id\": \"OJ14849c3e239212c6\"\n    },\n    {\n      \"title\": \"单频 激光 器在相干 激光 雷达领域的应用（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"武壮 1\",\n        \"2 吴文堂 3\",\n        \"* 默迪 1 王然 1\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ1bf53a06cbc67f4a/Abstract\",\n      \"article_id\": \"OJ1bf53a06cbc67f4a\"\n    },\n    {\n      \"title\": \"单频拉曼 激光 技术研究进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李牧野\",\n        \"杨学宗 * 孙玉祥\",\n        \"吴达坤 [ ... ] 冯衍 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ7785c4997acc9890/Abstract\",\n      \"article_id\": \"OJ7785c4997acc9890\"\n    },\n    {\n      \"title\": \"自注入锁定的单纵模射频激励波导CO 2 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"刘明昆 1\",\n        \"2 李志永 1\",\n        \"2\",\n        \"* 刘建勋 3 肖保军 4 [ ... ] 谭荣清 1\",\n        \"2\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf85a1fee0df5d736/Abstract\",\n      \"article_id\": \"OJf85a1fee0df5d736\"\n    },\n    {\n      \"title\": \"基于卷积神经网络的 激光 自混合干涉微位移重构\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李鑫涛\",\n        \"刘晖 * 乔硕\",\n        \"杨一帆 [ ... ] 熊玲玲\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ11d2013037323567/Abstract\",\n      \"article_id\": \"OJ11d2013037323567\"\n    },\n    {\n      \"title\": \"星光-Ⅲ 激光 装置X射线在线瞄准针孔相机研制\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"杨雷\",\n        \"黄征\",\n        \"孙立\",\n        \"卢峰 * [ ... ] 周凯南\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJc5c17f3043afc648/Abstract\",\n      \"article_id\": \"OJc5c17f3043afc648\"\n    },\n    {\n      \"title\": \"用于 激光 等离子体的同轴结构脉冲强磁场设备\",\n      \"authors\": [\n        \"AI高清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王志 1 王金灿 1 李天贻 1 熊超 1 [ ... ] 胡广月 1\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"强激光与粒子束\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ1692ea3fef2d7bd0/Abstract\",\n      \"article_id\": \"OJ1692ea3fef2d7bd0\"\n    },\n    {\n      \"title\": \"学科发展视角下的单频光纤 激光 技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"陶悦\",\n        \"张烊源\",\n        \"赵可\",\n        \"康芃睿 [ ... ] 周朴 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ2a7bdb681f6744a7/Abstract\",\n      \"article_id\": \"OJ2a7bdb681f6744a7\"\n    },\n    {\n      \"title\": \"可调谐超窄线宽 激光 技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"徐敏志\",\n        \"李雨佳\",\n        \"张朝泽\",\n        \"韦达 [ ... ] 朱涛 *\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ44d564a1c608ceaa/Abstract\",\n      \"article_id\": \"OJ44d564a1c608ceaa\"\n    },\n    {\n      \"title\": \"连续单频 激光 噪声特性测试技术（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"张霄 1\",\n        \"3 蔡海文 2 杨飞 1\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4b0695c0bc7b0b8d/Abstract\",\n      \"article_id\": \"OJ4b0695c0bc7b0b8d\"\n    },\n    {\n      \"title\": \"915 nm掺钕全保偏单频光纤 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"邓立文 1 蒋葵 1 何永成 1 王世凯 2 [ ... ] 李文松 1\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5bd88e7292c46617/Abstract\",\n      \"article_id\": \"OJ5bd88e7292c46617\"\n    },\n    {\n      \"title\": \"亚赫兹线宽稳频 激光 与光学分频（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"蒋燕义 * 师浩森\",\n        \"姚远\",\n        \"马龙生\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe03d2261bfa545e3/Abstract\",\n      \"article_id\": \"OJe03d2261bfa545e3\"\n    },\n    {\n      \"title\": \"高功率高效率低噪声单频Er∶YAG非平面环形腔 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"焦雨凇 1\",\n        \"2 余洋 1\",\n        \"2 臧贤清 1\",\n        \"2 吴伟冲 1\",\n        \"2 高春清 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ8de0386fab63f0ef/Abstract\",\n      \"article_id\": \"OJ8de0386fab63f0ef\"\n    },\n    {\n      \"title\": \"从经典噪声到量子关联： 激光 器噪声在量子态制备中的角色与相互达成（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李瑞鑫 1 王雅君 1\",\n        \"2 田龙 1\",\n        \"2 史少平 1\",\n        \"2 [ ... ] 郑耀辉 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ92535afb23312f5c/Abstract\",\n      \"article_id\": \"OJ92535afb23312f5c\"\n    },\n    {\n      \"title\": \"水导 激光 长焦深均匀化聚焦光束生成与耦合特性分析\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"樊小淙\",\n        \"黄宇星 * 韦耀东\",\n        \"张光辉 [ ... ] 龙芋宏 **\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ77db94da357e3695/Abstract\",\n      \"article_id\": \"OJ77db94da357e3695\"\n    },\n    {\n      \"title\": \"地面自由空间脉冲 激光 时间传递实验研究\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"孟晋凰 1\",\n        \"2 张海峰 2\",\n        \"3\",\n        \"** 丁洁 1\",\n        \"* 王宇谱 4 [ ... ] 白振旭 1\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJd74918cb095f4778/Abstract\",\n      \"article_id\": \"OJd74918cb095f4778\"\n    },\n    {\n      \"title\": \"硅基集成外腔 激光 器精准相频调控技术及应用（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"苏庆帅 1 魏芳 1\",\n        \"* 陈晨 1 李象岳 1\",\n        \"3 [ ... ] 蔡海文 1\",\n        \"2\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJd5178b64dbc99691/Abstract\",\n      \"article_id\": \"OJd5178b64dbc99691\"\n    },\n    {\n      \"title\": \"基于动态蒙特卡罗方法的532 nm 激光 在雾霾中的传输特性仿真\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"桂甸 1 陈修辉 1\",\n        \"* 岳建堡 1 吴昊 1 [ ... ] 胡友友 3\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ5806cf70becf5902/Abstract\",\n      \"article_id\": \"OJ5806cf70becf5902\"\n    },\n    {\n      \"title\": \"星间单向 激光 测距信号识别方法\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"马佳欣 1\",\n        \"2 吴志波 2\",\n        \"3\",\n        \"5\",\n        \"* 秦思 2\",\n        \"3 耿仁方 2\",\n        \"4 张忠萍 2\",\n        \"3\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4f74a88f42e27bc0/Abstract\",\n      \"article_id\": \"OJ4f74a88f42e27bc0\"\n    },\n    {\n      \"title\": \"基于微腔的窄线宽 激光 研究进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王京京 1 刘静敏 2 陈旭 3 余霞 1\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ16d6ba3bea499302/Abstract\",\n      \"article_id\": \"OJ16d6ba3bea499302\"\n    },\n    {\n      \"title\": \"全固态Nd∶YLF 激光 器强度噪声的分析与抑制（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"周许 1 王晨曦 1 孔佳铭 1 蔡明皓 1\",\n        \"2 [ ... ] 郭永瑞 1\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ3286909068e40d66/Abstract\",\n      \"article_id\": \"OJ3286909068e40d66\"\n    },\n    {\n      \"title\": \"全固态小型化窄线宽高稳定性355 nm紫外 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"叶宏顺 1\",\n        \"3 薛冬冬 1\",\n        \"3 冯盼 1\",\n        \"2 王明建 1\",\n        \"2\",\n        \"3 [ ... ] 陈卫标 1\",\n        \"2\",\n        \"3\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ8cc5e5744dc894ca/Abstract\",\n      \"article_id\": \"OJ8cc5e5744dc894ca\"\n    },\n    {\n      \"title\": \"分布反馈光纤 激光 器热致啁啾效应影响及抑制\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"翟鑫豪 1 宋志强 1\",\n        \"2\",\n        \"* 姚波 3 陈铎 1\",\n        \"2 [ ... ] 彭纲定 1\",\n        \"4\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJdb06f91c77cee877/Abstract\",\n      \"article_id\": \"OJdb06f91c77cee877\"\n    },\n    {\n      \"title\": \"全自动可调谐单频连续波钛宝石 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王天阳 1 王永东 1 靳丕铦 1\",\n        \"2\",\n        \"* 苏静 1\",\n        \"2 卢华东 1\",\n        \"2\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ89e2fa3b3b305c40/Abstract\",\n      \"article_id\": \"OJ89e2fa3b3b305c40\"\n    },\n    {\n      \"title\": \"基于片上集成微腔的可调谐窄线宽光纤 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王梦宇 1\",\n        \"2 龚雯 1 柴明钢 1\",\n        \"* 王伟强 3\",\n        \"**\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ4adef24c069e3fe1/Abstract\",\n      \"article_id\": \"OJ4adef24c069e3fe1\"\n    },\n    {\n      \"title\": \"高亮度毫焦1550 nm单频脉冲光纤 激光 研究\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"林治全 1 董贺贺 2 王孟 2 张磊 2 [ ... ] 胡丽丽 2\",\n        \"***\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJe95b22617cb9167e/Abstract\",\n      \"article_id\": \"OJe95b22617cb9167e\"\n    },\n    {\n      \"title\": \"基于空间光场调控的单频光纤 激光 研究新动向（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"李灿\",\n        \"赵可\",\n        \"张烊源\",\n        \"康芃睿 [ ... ] 周朴 **\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJafc8a48437a82f2/Abstract\",\n      \"article_id\": \"OJafc8a48437a82f2\"\n    },\n    {\n      \"title\": \"基于中空FP微腔的连续调频超窄线宽外腔半导体 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"邓力华 1\",\n        \"2 陈菲菲 2 阎柏屹 1\",\n        \"2 季静茹 2 [ ... ] 梁伟 1\",\n        \"2\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJf5bc57a36e259323/Abstract\",\n      \"article_id\": \"OJf5bc57a36e259323\"\n    },\n    {\n      \"title\": \"基于体布拉格光栅外腔的532 nm空间应用单频 激光 器（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"王睿昕 1\",\n        \"2\",\n        \"4 李志超 1\",\n        \"2\",\n        \"3\",\n        \"4 李方欣 1\",\n        \"2\",\n        \"4 杨振营 1\",\n        \"2\",\n        \"4\",\n        \"** [ ... ] 孟令强 1\",\n        \"2\",\n        \"4\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ76f73fce268a69a0/Abstract\",\n      \"article_id\": \"OJ76f73fce268a69a0\"\n    },\n    {\n      \"title\": \"镁合金 激光 表面改性技术进展（特邀）\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"郭骐豪 1 臧宏鑫 1 管迎春 1\",\n        \"2\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJda0abfe9446defbc/Abstract\",\n      \"article_id\": \"OJda0abfe9446defbc\"\n    },\n    {\n      \"title\": \"融合三维NDT特征的 激光 雷达回环检测方法\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"韩桂芳 1 熊涛 1\",\n        \"* 齐淑林 2 李自成 1\"\n      ],\n      \"journal\": \"激光与光电子学进展\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ11736b57ca3239ec/Abstract\",\n      \"article_id\": \"OJ11736b57ca3239ec\"\n    },\n    {\n      \"title\": \"基于注入锁定技术的高能量线偏振主动调 Q单纵模光纤 激光 器\",\n      \"authors\": [\n        \"AI超清视频导读\",\n        \"您的浏览器不支持 audio 元素。 AI语音播报\",\n        \"潘浩 1\",\n        \"2\",\n        \"3 潘勇剑 2\",\n        \"3 张东 1\",\n        \"2\",\n        \"3\",\n        \"*\"\n      ],\n      \"journal\": \"中国激光\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"article_path\": \"/Articles/OJ501ce5cc10af0018/Abstract\",\n      \"article_id\": \"OJ501ce5cc10af0018\"\n    }\n  ],\n  \"query_url\": \"https://www.opticsjournal.net/Search\",\n  \"results_url\": \"https://www.opticsjournal.net/Search/Article\",\n  \"title\": \"论文查询结果 -- 中国光学期刊网\",\n  \"note\": \"When no year range is set, opticsjournal.net applies an implicit latest ~4-year publication window.\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 5271,
+    "item_count": 55,
+    "items": [
+      {
+        "title": "激光 测距",
+        "authors": [
+          "激光测距是激光雷达的核心部分",
+          "常见的激光测距原理有脉冲法和相位法等。脉冲法激光测距的原理是测量发射脉冲和接收脉冲之间的时间间隔",
+          "从而计算出系统与目标物的间距。与相位法相比",
+          "脉冲法具有测量范围大、不需要合作目标、实时性好等优点",
+          "被广泛应用于各种领域",
+          "如航空航天、工业测量、大地测绘和智能驾驶等。 下载卡片",
+          "新光学"
+        ],
+        "journal": "",
+        "year": 2024,
+        "doi": "",
+        "article_path": "/J/NewOptics/news/PT240110000112tQwSy.html",
+        "article_id": ""
+      },
+      {
+        "title": "激光 气体传感器",
+        "authors": [
+          "激光气体传感器主要应用于污染气体监测领域",
+          "其技术原理涉及直接吸收光谱技术和间接吸收光谱技术两大类。其与传统气体传感器相比",
+          "具有灵敏度高、响应速度快、寿命长、抗干扰能力强等优点",
+          "能够显著减少对测量的误判。目前",
+          "激光的电流驱动板、温度控制板和信号处理电路越发趋近小体积和高精度",
+          "进-步推动了污染气体激光监",
+          "下载卡片",
+          "新光学"
+        ],
+        "journal": "",
+        "year": 2024,
+        "doi": "",
+        "article_path": "/J/NewOptics/news/PT240110000109sPvSx.html",
+        "article_id": ""
+      },
+      {
+        "title": "碱金属蒸气 激光 器",
+        "authors": [
+          "碱金属蒸气激光器以碱金属原子饱和蒸气作为激光增益介质",
+          "其量子效率理论上可达90%以上",
+          "极大地减少了废热的产生",
+          "与一般固体激光介质相比",
+          "废热可减少80%以上",
+          "同时",
+          "碱金属蒸气是流体",
+          "易于进行高效冷却",
+          "快速带走废热。此外",
+          "碱金属激光波长与大气传输窗口匹配",
+          "并且位于近红外电荷耦合元件(CCD)的敏感波段",
+          "在**上具",
+          "下载卡片",
+          "新光学"
+        ],
+        "journal": "",
+        "year": 2024,
+        "doi": "",
+        "article_path": "/J/NewOptics/news/PT240110000106hEkHn.html",
+        "article_id": ""
+      },
+      {
+        "title": "激光 超声",
+        "authors": [
+          "激光超声由于其具有非接触、灵敏度高和适用于恶劣环境等优势",
+          "被广泛应用于材料检测领域。激光超声系统是一个集光、机、电、算的复杂检测系统",
+          "主要由超声波的产生与接收部分组成。系统的脉冲激光发射器普遍使用的是Nd:YAG脉冲激光器。激光超声无损检测经常被用于非接触、极端环境(如高温、低温等)、无需耦合剂、快速扫描等条",
+          "下载卡片",
+          "新光学"
+        ],
+        "journal": "",
+        "year": 2023,
+        "doi": "",
+        "article_path": "/J/NewOptics/news/PT231228000031fBhEk.html",
+        "article_id": ""
+      },
+      {
+        "title": "激光 诱导击穿光谱(LIBS)",
+        "authors": [
+          "激光诱导击穿光谱技术 (laser-induced breakdown spectroscopy",
+          "LIBS) 是-种常用的物质元素成分分析技术",
+          "其通过将高功率的脉冲激光聚焦在样品表面",
+          "使表面物质化学键断裂、化学元素被电离",
+          "形成一团由原子、自由电子和离子组成的高温等离子体",
+          "其内部处于高能态的原子和离子在向低能态跃迁时发出特征波长的光",
+          "通过对比分",
+          "下载卡片",
+          "新光学"
+        ],
+        "journal": "",
+        "year": 2023,
+        "doi": "",
+        "article_path": "/J/NewOptics/news/PT231228000022a7dAg.html",
+        "article_id": ""
+      },
+      {
+        "title": "基于FPGA的脉冲相关 激光 测距系统",
+        "authors": [
+          "李雪文 1 李永红 1",
+          "* 岳凤英 2 曾嘉鑫 2"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJaede03aaf8365c3d/Abstract",
+        "article_id": "OJaede03aaf8365c3d"
+      },
+      {
+        "title": "调频连续波 激光 雷达水下测距仿真分析",
+        "authors": [
+          "阳琴 1 徐诗月 1",
+          "2 马睿 1 郭孟林 1",
+          "2 [ ... ] 杨俊敏 1"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJe0b45ed7ef1ea8be/Abstract",
+        "article_id": "OJe0b45ed7ef1ea8be"
+      },
+      {
+        "title": "基于贝叶斯优化VMD的 激光 回波去噪方法",
+        "authors": [
+          "覃则昆 1 郭甲崇 2 兀伟 2",
+          "* 张珂 2 刘星 1"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ803fc7e9b350f42f/Abstract",
+        "article_id": "OJ803fc7e9b350f42f"
+      },
+      {
+        "title": "高功率光纤 激光 器散热系统设计及热仿真分析",
+        "authors": [
+          "胡传舟 1",
+          "2 赵鸿 1",
+          "2 张利明 1",
+          "2 张雪霞 1",
+          "2 [ ... ] 朱辰 1",
+          "2"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ9c7e0fc4a92755ac/Abstract",
+        "article_id": "OJ9c7e0fc4a92755ac"
+      },
+      {
+        "title": "改进PSO算法下半导体 激光 器温度模糊PID控制",
+        "authors": [
+          "李丹 1 付国帅 2"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJf18bc41735e3bed6/Abstract",
+        "article_id": "OJf18bc41735e3bed6"
+      },
+      {
+        "title": "卫星 激光 通信技术研究现状与发展趋势",
+        "authors": [
+          "赵思骁",
+          "宋豪壮",
+          "林玉洁 *"
+        ],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJe4e6aa5fa6117ee2/Abstract",
+        "article_id": "OJe4e6aa5fa6117ee2"
+      },
+      {
+        "title": "激光 与红外2026年第56卷第3期 目录",
+        "authors": [],
+        "journal": "激光与红外",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJf6cb3dca14e004e2/Abstract",
+        "article_id": "OJf6cb3dca14e004e2"
+      },
+      {
+        "title": "激光 表面改性对Yb 2 Si 2 O 7 涂层耐腐蚀性能的影响",
+        "authors": [
+          "苏景新 1 张凌浩 1 程涛涛 1",
+          "* 张涛 1 [ ... ] 王志平 1"
+        ],
+        "journal": "硅酸盐学报",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJae23b77661dc5f98/Abstract",
+        "article_id": "OJae23b77661dc5f98"
+      },
+      {
+        "title": "图像辅助 激光 诱导击穿光谱校正的水中U定量分析",
+        "authors": [
+          "廖瑞 1 史晋芳 1",
+          "* 邱荣 2 周强 2 [ ... ] 辜周宇 2"
+        ],
+        "journal": "光电子·激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ328bab91799669e4/Abstract",
+        "article_id": "OJ328bab91799669e4"
+      },
+      {
+        "title": "光电子· 激光 2026年第37卷第4期 目录",
+        "authors": [],
+        "journal": "光电子·激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ5eab2bbb2c638611/Abstract",
+        "article_id": "OJ5eab2bbb2c638611"
+      },
+      {
+        "title": "硅基集成外腔 激光 器的最新进展（特邀）",
+        "authors": [
+          "吴懿霖 1",
+          "2 杨四刚 1",
+          "2 陈宏伟 1",
+          "2 陈明华 1",
+          "2",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJc9a096420786142d/Abstract",
+        "article_id": "OJc9a096420786142d"
+      },
+      {
+        "title": "超快 激光 诱导无机透明电介质缺陷研究进展（特邀）",
+        "authors": [
+          "马榕泽",
+          "王卓",
+          "邱建荣",
+          "张博 *"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJcc460db0b229c932/Abstract",
+        "article_id": "OJcc460db0b229c932"
+      },
+      {
+        "title": "自由空间布里渊 激光 器研究进展与发展趋势（特邀）",
+        "authors": [
+          "白振旭 1",
+          "2",
+          "3",
+          "* 张龙杰 1",
+          "2",
+          "3 陈晖 1",
+          "2",
+          "3 范文强 1",
+          "2",
+          "3 [ ... ] 吕志伟 1",
+          "2",
+          "3"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJa1418aae2daab4fe/Abstract",
+        "article_id": "OJa1418aae2daab4fe"
+      },
+      {
+        "title": "“单频 激光 技术”专题前言",
+        "authors": [
+          "彭堃墀",
+          "冯衍",
+          "柳强",
+          "史伟 [ ... ] 周朴"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJb7e98e8f276c5718/Abstract",
+        "article_id": "OJb7e98e8f276c5718"
+      },
+      {
+        "title": "环形腔单频自扫光纤 激光 器的研究",
+        "authors": [
+          "路程程 1",
+          "2 孟令康 1",
+          "2 陈浩伟 1",
+          "2 陆宝乐 1",
+          "2 白晋涛 1",
+          "2",
+          "*"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ208ffca3bf046f54/Abstract",
+        "article_id": "OJ208ffca3bf046f54"
+      },
+      {
+        "title": "基于受激拉曼散射的高重复频率559 nm全固态 激光 器",
+        "authors": [
+          "武宝玉 1 于广礼 2 丁建永 2 周军 2 胡芳仁 1",
+          "*"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ3e428b4b6180fec9/Abstract",
+        "article_id": "OJ3e428b4b6180fec9"
+      },
+      {
+        "title": "6061铝合金箔板 激光 冲击温热微弯曲成形试验研究",
+        "authors": [
+          "严长",
+          "贺晓",
+          "刘会霞 * 王霄"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ620304d97fb981e0/Abstract",
+        "article_id": "OJ620304d97fb981e0"
+      },
+      {
+        "title": "化学辅助飞秒 激光 抛光氮化铝陶瓷试验与数值模拟",
+        "authors": [
+          "石睿康 1 周后明 1",
+          "* 赵振宇 1 宋铁军 1 何金 2"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ78bda3deca98b7a6/Abstract",
+        "article_id": "OJ78bda3deca98b7a6"
+      },
+      {
+        "title": "激光 选区熔化制备异型三周期极小曲面多孔支架性能研究",
+        "authors": [
+          "邵延镇 1 乌日开西·艾依提 1",
+          "* 张宇涛 1",
+          "2"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ14849c3e239212c6/Abstract",
+        "article_id": "OJ14849c3e239212c6"
+      },
+      {
+        "title": "单频 激光 器在相干 激光 雷达领域的应用（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "武壮 1",
+          "2 吴文堂 3",
+          "* 默迪 1 王然 1"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ1bf53a06cbc67f4a/Abstract",
+        "article_id": "OJ1bf53a06cbc67f4a"
+      },
+      {
+        "title": "单频拉曼 激光 技术研究进展（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "李牧野",
+          "杨学宗 * 孙玉祥",
+          "吴达坤 [ ... ] 冯衍 **"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ7785c4997acc9890/Abstract",
+        "article_id": "OJ7785c4997acc9890"
+      },
+      {
+        "title": "自注入锁定的单纵模射频激励波导CO 2 激光 器（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "刘明昆 1",
+          "2 李志永 1",
+          "2",
+          "* 刘建勋 3 肖保军 4 [ ... ] 谭荣清 1",
+          "2",
+          "**"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJf85a1fee0df5d736/Abstract",
+        "article_id": "OJf85a1fee0df5d736"
+      },
+      {
+        "title": "基于卷积神经网络的 激光 自混合干涉微位移重构",
+        "authors": [
+          "AI高清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "李鑫涛",
+          "刘晖 * 乔硕",
+          "杨一帆 [ ... ] 熊玲玲"
+        ],
+        "journal": "强激光与粒子束",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ11d2013037323567/Abstract",
+        "article_id": "OJ11d2013037323567"
+      },
+      {
+        "title": "星光-Ⅲ 激光 装置X射线在线瞄准针孔相机研制",
+        "authors": [
+          "AI高清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "杨雷",
+          "黄征",
+          "孙立",
+          "卢峰 * [ ... ] 周凯南"
+        ],
+        "journal": "强激光与粒子束",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJc5c17f3043afc648/Abstract",
+        "article_id": "OJc5c17f3043afc648"
+      },
+      {
+        "title": "用于 激光 等离子体的同轴结构脉冲强磁场设备",
+        "authors": [
+          "AI高清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "王志 1 王金灿 1 李天贻 1 熊超 1 [ ... ] 胡广月 1",
+          "3",
+          "*"
+        ],
+        "journal": "强激光与粒子束",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ1692ea3fef2d7bd0/Abstract",
+        "article_id": "OJ1692ea3fef2d7bd0"
+      },
+      {
+        "title": "学科发展视角下的单频光纤 激光 技术（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "陶悦",
+          "张烊源",
+          "赵可",
+          "康芃睿 [ ... ] 周朴 **"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ2a7bdb681f6744a7/Abstract",
+        "article_id": "OJ2a7bdb681f6744a7"
+      },
+      {
+        "title": "可调谐超窄线宽 激光 技术（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "徐敏志",
+          "李雨佳",
+          "张朝泽",
+          "韦达 [ ... ] 朱涛 *"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ44d564a1c608ceaa/Abstract",
+        "article_id": "OJ44d564a1c608ceaa"
+      },
+      {
+        "title": "连续单频 激光 噪声特性测试技术（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "张霄 1",
+          "3 蔡海文 2 杨飞 1",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ4b0695c0bc7b0b8d/Abstract",
+        "article_id": "OJ4b0695c0bc7b0b8d"
+      },
+      {
+        "title": "915 nm掺钕全保偏单频光纤 激光 器（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "邓立文 1 蒋葵 1 何永成 1 王世凯 2 [ ... ] 李文松 1",
+          "**"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ5bd88e7292c46617/Abstract",
+        "article_id": "OJ5bd88e7292c46617"
+      },
+      {
+        "title": "亚赫兹线宽稳频 激光 与光学分频（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "蒋燕义 * 师浩森",
+          "姚远",
+          "马龙生"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJe03d2261bfa545e3/Abstract",
+        "article_id": "OJe03d2261bfa545e3"
+      },
+      {
+        "title": "高功率高效率低噪声单频Er∶YAG非平面环形腔 激光 器（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "焦雨凇 1",
+          "2 余洋 1",
+          "2 臧贤清 1",
+          "2 吴伟冲 1",
+          "2 高春清 1",
+          "2",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ8de0386fab63f0ef/Abstract",
+        "article_id": "OJ8de0386fab63f0ef"
+      },
+      {
+        "title": "从经典噪声到量子关联： 激光 器噪声在量子态制备中的角色与相互达成（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "李瑞鑫 1 王雅君 1",
+          "2 田龙 1",
+          "2 史少平 1",
+          "2 [ ... ] 郑耀辉 1",
+          "2",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ92535afb23312f5c/Abstract",
+        "article_id": "OJ92535afb23312f5c"
+      },
+      {
+        "title": "水导 激光 长焦深均匀化聚焦光束生成与耦合特性分析",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "樊小淙",
+          "黄宇星 * 韦耀东",
+          "张光辉 [ ... ] 龙芋宏 **"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ77db94da357e3695/Abstract",
+        "article_id": "OJ77db94da357e3695"
+      },
+      {
+        "title": "地面自由空间脉冲 激光 时间传递实验研究",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "孟晋凰 1",
+          "2 张海峰 2",
+          "3",
+          "** 丁洁 1",
+          "* 王宇谱 4 [ ... ] 白振旭 1"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJd74918cb095f4778/Abstract",
+        "article_id": "OJd74918cb095f4778"
+      },
+      {
+        "title": "硅基集成外腔 激光 器精准相频调控技术及应用（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "苏庆帅 1 魏芳 1",
+          "* 陈晨 1 李象岳 1",
+          "3 [ ... ] 蔡海文 1",
+          "2",
+          "**"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJd5178b64dbc99691/Abstract",
+        "article_id": "OJd5178b64dbc99691"
+      },
+      {
+        "title": "基于动态蒙特卡罗方法的532 nm 激光 在雾霾中的传输特性仿真",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "桂甸 1 陈修辉 1",
+          "* 岳建堡 1 吴昊 1 [ ... ] 胡友友 3"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ5806cf70becf5902/Abstract",
+        "article_id": "OJ5806cf70becf5902"
+      },
+      {
+        "title": "星间单向 激光 测距信号识别方法",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "马佳欣 1",
+          "2 吴志波 2",
+          "3",
+          "5",
+          "* 秦思 2",
+          "3 耿仁方 2",
+          "4 张忠萍 2",
+          "3"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ4f74a88f42e27bc0/Abstract",
+        "article_id": "OJ4f74a88f42e27bc0"
+      },
+      {
+        "title": "基于微腔的窄线宽 激光 研究进展（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "王京京 1 刘静敏 2 陈旭 3 余霞 1",
+          "3",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ16d6ba3bea499302/Abstract",
+        "article_id": "OJ16d6ba3bea499302"
+      },
+      {
+        "title": "全固态Nd∶YLF 激光 器强度噪声的分析与抑制（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "周许 1 王晨曦 1 孔佳铭 1 蔡明皓 1",
+          "2 [ ... ] 郭永瑞 1",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ3286909068e40d66/Abstract",
+        "article_id": "OJ3286909068e40d66"
+      },
+      {
+        "title": "全固态小型化窄线宽高稳定性355 nm紫外 激光 器",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "叶宏顺 1",
+          "3 薛冬冬 1",
+          "3 冯盼 1",
+          "2 王明建 1",
+          "2",
+          "3 [ ... ] 陈卫标 1",
+          "2",
+          "3"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ8cc5e5744dc894ca/Abstract",
+        "article_id": "OJ8cc5e5744dc894ca"
+      },
+      {
+        "title": "分布反馈光纤 激光 器热致啁啾效应影响及抑制",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "翟鑫豪 1 宋志强 1",
+          "2",
+          "* 姚波 3 陈铎 1",
+          "2 [ ... ] 彭纲定 1",
+          "4"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJdb06f91c77cee877/Abstract",
+        "article_id": "OJdb06f91c77cee877"
+      },
+      {
+        "title": "全自动可调谐单频连续波钛宝石 激光 器",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "王天阳 1 王永东 1 靳丕铦 1",
+          "2",
+          "* 苏静 1",
+          "2 卢华东 1",
+          "2"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ89e2fa3b3b305c40/Abstract",
+        "article_id": "OJ89e2fa3b3b305c40"
+      },
+      {
+        "title": "基于片上集成微腔的可调谐窄线宽光纤 激光 器",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "王梦宇 1",
+          "2 龚雯 1 柴明钢 1",
+          "* 王伟强 3",
+          "**"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ4adef24c069e3fe1/Abstract",
+        "article_id": "OJ4adef24c069e3fe1"
+      },
+      {
+        "title": "高亮度毫焦1550 nm单频脉冲光纤 激光 研究",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "林治全 1 董贺贺 2 王孟 2 张磊 2 [ ... ] 胡丽丽 2",
+          "***"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJe95b22617cb9167e/Abstract",
+        "article_id": "OJe95b22617cb9167e"
+      },
+      {
+        "title": "基于空间光场调控的单频光纤 激光 研究新动向（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "李灿",
+          "赵可",
+          "张烊源",
+          "康芃睿 [ ... ] 周朴 **"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJafc8a48437a82f2/Abstract",
+        "article_id": "OJafc8a48437a82f2"
+      },
+      {
+        "title": "基于中空FP微腔的连续调频超窄线宽外腔半导体 激光 器（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "邓力华 1",
+          "2 陈菲菲 2 阎柏屹 1",
+          "2 季静茹 2 [ ... ] 梁伟 1",
+          "2",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJf5bc57a36e259323/Abstract",
+        "article_id": "OJf5bc57a36e259323"
+      },
+      {
+        "title": "基于体布拉格光栅外腔的532 nm空间应用单频 激光 器（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "王睿昕 1",
+          "2",
+          "4 李志超 1",
+          "2",
+          "3",
+          "4 李方欣 1",
+          "2",
+          "4 杨振营 1",
+          "2",
+          "4",
+          "** [ ... ] 孟令强 1",
+          "2",
+          "4",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ76f73fce268a69a0/Abstract",
+        "article_id": "OJ76f73fce268a69a0"
+      },
+      {
+        "title": "镁合金 激光 表面改性技术进展（特邀）",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "郭骐豪 1 臧宏鑫 1 管迎春 1",
+          "2",
+          "3",
+          "*"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJda0abfe9446defbc/Abstract",
+        "article_id": "OJda0abfe9446defbc"
+      },
+      {
+        "title": "融合三维NDT特征的 激光 雷达回环检测方法",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "韩桂芳 1 熊涛 1",
+          "* 齐淑林 2 李自成 1"
+        ],
+        "journal": "激光与光电子学进展",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ11736b57ca3239ec/Abstract",
+        "article_id": "OJ11736b57ca3239ec"
+      },
+      {
+        "title": "基于注入锁定技术的高能量线偏振主动调 Q单纵模光纤 激光 器",
+        "authors": [
+          "AI超清视频导读",
+          "您的浏览器不支持 audio 元素。 AI语音播报",
+          "潘浩 1",
+          "2",
+          "3 潘勇剑 2",
+          "3 张东 1",
+          "2",
+          "3",
+          "*"
+        ],
+        "journal": "中国激光",
+        "year": 2026,
+        "doi": "",
+        "article_path": "/Articles/OJ501ce5cc10af0018/Abstract",
+        "article_id": "OJ501ce5cc10af0018"
+      }
+    ],
+    "query_url": "https://www.opticsjournal.net/Search",
+    "results_url": "https://www.opticsjournal.net/Search/Article",
+    "title": "论文查询结果 -- 中国光学期刊网",
+    "note": "When no year range is set, opticsjournal.net applies an implicit latest ~4-year publication window."
+  },
+  "launch_exit_code": 1,
+  "captured_at": "2026-05-27T07:44:51.182647+00:00"
+}

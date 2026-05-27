@@ -1,0 +1,266 @@
+{
+  "db": "royalsoc",
+  "tool": "research_royalsoc_filter",
+  "op": "filter",
+  "profile": "research-royalsoc",
+  "cdp_port": 9363,
+  "query": "evolution",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:royalsoc:filter evolution --journal 'Royal Society Open Science' --page 1 --profile research-royalsoc --cdp-port 9363 --json",
+    "started_at": "2026-05-27T07:49:53.865366+00:00",
+    "elapsed_seconds": 2.416,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 100,\n  \"items\": [\n    {\n      \"title\": \"RL evolution : unravelling the history of genomic instability through deep reinforcement learning\",\n      \"authors\": [\n        \"orcement learning\"\n      ],\n      \"doi\": \"10.1098/rsos.251811\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill\",\n      \"authors\": [\n        \"’ Kocher\",\n        \"Dill\"\n      ],\n      \"doi\": \"10.1098/rsos.260430\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1\",\n      \"resource_id\": \"481271\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images The temporal evolution of the EWSs is presented together with an assessment...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115354\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Crab spider vision improves their prey capture despite low visual system investment\",\n      \"authors\": [\n        \"system investment\"\n      ],\n      \"doi\": \"10.1098/rsos.260045\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260045/481808/Crab-spider-vision-improves-their-prey-capture?searchresult=1\",\n      \"resource_id\": \"481808\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Modelling copy number evolution . (A) Cartoon illustration of a sequence of ...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068175\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"The evolution of proboscis length and feeding behaviour in hawkmoths (Lepidoptera: Sphingidae)\",\n      \"authors\": [\n        \"tera: Sphingidae)\"\n      ],\n      \"doi\": \"10.1098/rsos.251697\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/3/251697/480661/The-evolution-of-proboscis-length-and-feeding?searchresult=1\",\n      \"resource_id\": \"480661\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Showing how: adults across cultures use similar representational gestural strategies in demonstrations for children\",\n      \"authors\": [\n        \"ions for children\"\n      ],\n      \"doi\": \"10.1098/rsos.251813\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251813/481936/Showing-how-adults-across-cultures-use-similar?searchresult=1\",\n      \"resource_id\": \"481936\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Coordination challenges shape signal complexity in chimpanzees ( Pan troglodytes verus ), but not in mangabeys ( Cercocebus atys atys )\",\n      \"authors\": [\n        \"cebus atys atys )\"\n      ],\n      \"doi\": \"10.1098/rsos.260401\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260401/481670/Coordination-challenges-shape-signal-complexity-in?searchresult=1\",\n      \"resource_id\": \"481670\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images A simplified phylogeny to show the relationship of known galliform birds fr...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481809?searchresult=1#20109909\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Brain size reduction in dogs was already established at least by the Late Neolithic of Western Europe, 5000 years ago\",\n      \"authors\": [\n        \"e\",\n        \"5000 years ago\"\n      ],\n      \"doi\": \"10.1098/rsos.252453\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252453/481514/Brain-size-reduction-in-dogs-was-already?searchresult=1\",\n      \"resource_id\": \"481514\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Rethinking artiopod evolution : insights from the anatomy of Acanthomeridion from the early Cambrian of China\",\n      \"authors\": [\n        \"Cambrian of China\"\n      ],\n      \"doi\": \"10.1098/rsos.250956\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/2/250956/480428/Rethinking-artiopod-evolution-insights-from-the?searchresult=1\",\n      \"resource_id\": \"480428\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Parasitic infection is associated with reduced latency to socially learn a novel foraging task\",\n      \"authors\": [\n        \"vel foraging task\"\n      ],\n      \"doi\": \"10.1098/rsos.252220\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252220/481414/Parasitic-infection-is-associated-with-reduced?searchresult=1\",\n      \"resource_id\": \"481414\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Synthetic experiments. (A) A simulated copy number profile consisting of mu...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068240\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Diversity-dependent effects probably influenced the diversification of species-rich crown ant subfamilies during the Cenozoic\",\n      \"authors\": [\n        \"ring the Cenozoic\"\n      ],\n      \"doi\": \"10.1098/rsos.252318\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/252318/481906/Diversity-dependent-effects-probably-influenced?searchresult=1\",\n      \"resource_id\": \"481906\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"The role of reproductive dynamics and time of injury for female fitness\",\n      \"authors\": [\n        \"or female fitness\"\n      ],\n      \"doi\": \"10.1098/rsos.252317\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252317/481527/The-role-of-reproductive-dynamics-and-time-of?searchresult=1\",\n      \"resource_id\": \"481527\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Do multivariate measures anticipate traffic congestion?\",\n      \"authors\": [\n        \"affic congestion?\"\n      ],\n      \"doi\": \"10.1098/rsos.252185\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Kuramochi cell line analysis. Heatmaps showing the similarity between CNP s...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068254\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"A generalist microbial predator shows innate attraction to more profitable prey, but does not learn from experience\",\n      \"authors\": [\n        \"n from experience\"\n      ],\n      \"doi\": \"10.1098/rsos.260783\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260783/481806/A-generalist-microbial-predator-shows-innate?searchresult=1\",\n      \"resource_id\": \"481806\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Liquid-assisted grinding (LAG) as sustainable high yielding method for s-triazine hybrids synthesis: their docking, in vitro antimicrobial and anti-biofilm studies\",\n      \"authors\": [\n        \"i-biofilm studies\"\n      ],\n      \"doi\": \"10.1098/rsos.251786\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251786/481908/Liquid-assisted-grinding-LAG-as-sustainable-high?searchresult=1\",\n      \"resource_id\": \"481908\",\n      \"journal_prefix\": \"rsos\"\n    }\n  ],\n  \"refined_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science\",\n  \"confirm_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science\",\n  \"confirm_title\": \"evolution | Page 1 | Search Results | The Royal Society\",\n  \"filter_confirmed\": true\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:royalsoc:filter evolution --journal 'Royal Society Open Science' --page 1 --profile research-royalsoc --cdp-port 9363 --json",
+        "started_at": "2026-05-27T07:49:53.865366+00:00",
+        "elapsed_seconds": 2.416,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 100,\n  \"items\": [\n    {\n      \"title\": \"RL evolution : unravelling the history of genomic instability through deep reinforcement learning\",\n      \"authors\": [\n        \"orcement learning\"\n      ],\n      \"doi\": \"10.1098/rsos.251811\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill\",\n      \"authors\": [\n        \"’ Kocher\",\n        \"Dill\"\n      ],\n      \"doi\": \"10.1098/rsos.260430\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1\",\n      \"resource_id\": \"481271\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images The temporal evolution of the EWSs is presented together with an assessment...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115354\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Crab spider vision improves their prey capture despite low visual system investment\",\n      \"authors\": [\n        \"system investment\"\n      ],\n      \"doi\": \"10.1098/rsos.260045\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260045/481808/Crab-spider-vision-improves-their-prey-capture?searchresult=1\",\n      \"resource_id\": \"481808\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Modelling copy number evolution . (A) Cartoon illustration of a sequence of ...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068175\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"The evolution of proboscis length and feeding behaviour in hawkmoths (Lepidoptera: Sphingidae)\",\n      \"authors\": [\n        \"tera: Sphingidae)\"\n      ],\n      \"doi\": \"10.1098/rsos.251697\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/3/251697/480661/The-evolution-of-proboscis-length-and-feeding?searchresult=1\",\n      \"resource_id\": \"480661\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Showing how: adults across cultures use similar representational gestural strategies in demonstrations for children\",\n      \"authors\": [\n        \"ions for children\"\n      ],\n      \"doi\": \"10.1098/rsos.251813\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251813/481936/Showing-how-adults-across-cultures-use-similar?searchresult=1\",\n      \"resource_id\": \"481936\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Coordination challenges shape signal complexity in chimpanzees ( Pan troglodytes verus ), but not in mangabeys ( Cercocebus atys atys )\",\n      \"authors\": [\n        \"cebus atys atys )\"\n      ],\n      \"doi\": \"10.1098/rsos.260401\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260401/481670/Coordination-challenges-shape-signal-complexity-in?searchresult=1\",\n      \"resource_id\": \"481670\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images A simplified phylogeny to show the relationship of known galliform birds fr...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481809?searchresult=1#20109909\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Brain size reduction in dogs was already established at least by the Late Neolithic of Western Europe, 5000 years ago\",\n      \"authors\": [\n        \"e\",\n        \"5000 years ago\"\n      ],\n      \"doi\": \"10.1098/rsos.252453\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252453/481514/Brain-size-reduction-in-dogs-was-already?searchresult=1\",\n      \"resource_id\": \"481514\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Rethinking artiopod evolution : insights from the anatomy of Acanthomeridion from the early Cambrian of China\",\n      \"authors\": [\n        \"Cambrian of China\"\n      ],\n      \"doi\": \"10.1098/rsos.250956\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/2/250956/480428/Rethinking-artiopod-evolution-insights-from-the?searchresult=1\",\n      \"resource_id\": \"480428\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Parasitic infection is associated with reduced latency to socially learn a novel foraging task\",\n      \"authors\": [\n        \"vel foraging task\"\n      ],\n      \"doi\": \"10.1098/rsos.252220\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252220/481414/Parasitic-infection-is-associated-with-reduced?searchresult=1\",\n      \"resource_id\": \"481414\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Synthetic experiments. (A) A simulated copy number profile consisting of mu...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068240\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Diversity-dependent effects probably influenced the diversification of species-rich crown ant subfamilies during the Cenozoic\",\n      \"authors\": [\n        \"ring the Cenozoic\"\n      ],\n      \"doi\": \"10.1098/rsos.252318\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/252318/481906/Diversity-dependent-effects-probably-influenced?searchresult=1\",\n      \"resource_id\": \"481906\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"The role of reproductive dynamics and time of injury for female fitness\",\n      \"authors\": [\n        \"or female fitness\"\n      ],\n      \"doi\": \"10.1098/rsos.252317\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/252317/481527/The-role-of-reproductive-dynamics-and-time-of?searchresult=1\",\n      \"resource_id\": \"481527\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Do multivariate measures anticipate traffic congestion?\",\n      \"authors\": [\n        \"affic congestion?\"\n      ],\n      \"doi\": \"10.1098/rsos.252185\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Images Kuramochi cell line analysis. Heatmaps showing the similarity between CNP s...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068254\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"A generalist microbial predator shows innate attraction to more profitable prey, but does not learn from experience\",\n      \"authors\": [\n        \"n from experience\"\n      ],\n      \"doi\": \"10.1098/rsos.260783\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/260783/481806/A-generalist-microbial-predator-shows-innate?searchresult=1\",\n      \"resource_id\": \"481806\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Liquid-assisted grinding (LAG) as sustainable high yielding method for s-triazine hybrids synthesis: their docking, in vitro antimicrobial and anti-biofilm studies\",\n      \"authors\": [\n        \"i-biofilm studies\"\n      ],\n      \"doi\": \"10.1098/rsos.251786\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251786/481908/Liquid-assisted-grinding-LAG-as-sustainable-high?searchresult=1\",\n      \"resource_id\": \"481908\",\n      \"journal_prefix\": \"rsos\"\n    }\n  ],\n  \"refined_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science\",\n  \"confirm_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science\",\n  \"confirm_title\": \"evolution | Page 1 | Search Results | The Royal Society\",\n  \"filter_confirmed\": true\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 100,
+    "items": [
+      {
+        "title": "RL evolution : unravelling the history of genomic instability through deep reinforcement learning",
+        "authors": [
+          "orcement learning"
+        ],
+        "doi": "10.1098/rsos.251811",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1",
+        "resource_id": "481598",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill",
+        "authors": [
+          "’ Kocher",
+          "Dill"
+        ],
+        "doi": "10.1098/rsos.260430",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1",
+        "resource_id": "481271",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images The temporal evolution of the EWSs is presented together with an assessment...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115354",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Crab spider vision improves their prey capture despite low visual system investment",
+        "authors": [
+          "system investment"
+        ],
+        "doi": "10.1098/rsos.260045",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/260045/481808/Crab-spider-vision-improves-their-prey-capture?searchresult=1",
+        "resource_id": "481808",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images Modelling copy number evolution . (A) Cartoon illustration of a sequence of ...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068175",
+        "resource_id": "481598",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "The evolution of proboscis length and feeding behaviour in hawkmoths (Lepidoptera: Sphingidae)",
+        "authors": [
+          "tera: Sphingidae)"
+        ],
+        "doi": "10.1098/rsos.251697",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/3/251697/480661/The-evolution-of-proboscis-length-and-feeding?searchresult=1",
+        "resource_id": "480661",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Showing how: adults across cultures use similar representational gestural strategies in demonstrations for children",
+        "authors": [
+          "ions for children"
+        ],
+        "doi": "10.1098/rsos.251813",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251813/481936/Showing-how-adults-across-cultures-use-similar?searchresult=1",
+        "resource_id": "481936",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Coordination challenges shape signal complexity in chimpanzees ( Pan troglodytes verus ), but not in mangabeys ( Cercocebus atys atys )",
+        "authors": [
+          "cebus atys atys )"
+        ],
+        "doi": "10.1098/rsos.260401",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/260401/481670/Coordination-challenges-shape-signal-complexity-in?searchresult=1",
+        "resource_id": "481670",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images A simplified phylogeny to show the relationship of known galliform birds fr...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/481809?searchresult=1#20109909",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Brain size reduction in dogs was already established at least by the Late Neolithic of Western Europe, 5000 years ago",
+        "authors": [
+          "e",
+          "5000 years ago"
+        ],
+        "doi": "10.1098/rsos.252453",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/4/252453/481514/Brain-size-reduction-in-dogs-was-already?searchresult=1",
+        "resource_id": "481514",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Rethinking artiopod evolution : insights from the anatomy of Acanthomeridion from the early Cambrian of China",
+        "authors": [
+          "Cambrian of China"
+        ],
+        "doi": "10.1098/rsos.250956",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/2/250956/480428/Rethinking-artiopod-evolution-insights-from-the?searchresult=1",
+        "resource_id": "480428",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Parasitic infection is associated with reduced latency to socially learn a novel foraging task",
+        "authors": [
+          "vel foraging task"
+        ],
+        "doi": "10.1098/rsos.252220",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/4/252220/481414/Parasitic-infection-is-associated-with-reduced?searchresult=1",
+        "resource_id": "481414",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images Synthetic experiments. (A) A simulated copy number profile consisting of mu...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068240",
+        "resource_id": "481598",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Diversity-dependent effects probably influenced the diversification of species-rich crown ant subfamilies during the Cenozoic",
+        "authors": [
+          "ring the Cenozoic"
+        ],
+        "doi": "10.1098/rsos.252318",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/252318/481906/Diversity-dependent-effects-probably-influenced?searchresult=1",
+        "resource_id": "481906",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "The role of reproductive dynamics and time of injury for female fitness",
+        "authors": [
+          "or female fitness"
+        ],
+        "doi": "10.1098/rsos.252317",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/4/252317/481527/The-role-of-reproductive-dynamics-and-time-of?searchresult=1",
+        "resource_id": "481527",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Do multivariate measures anticipate traffic congestion?",
+        "authors": [
+          "affic congestion?"
+        ],
+        "doi": "10.1098/rsos.252185",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/481910?searchresult=1",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Images Kuramochi cell line analysis. Heatmaps showing the similarity between CNP s...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1#20068254",
+        "resource_id": "481598",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "A generalist microbial predator shows innate attraction to more profitable prey, but does not learn from experience",
+        "authors": [
+          "n from experience"
+        ],
+        "doi": "10.1098/rsos.260783",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/260783/481806/A-generalist-microbial-predator-shows-innate?searchresult=1",
+        "resource_id": "481806",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Liquid-assisted grinding (LAG) as sustainable high yielding method for s-triazine hybrids synthesis: their docking, in vitro antimicrobial and anti-biofilm studies",
+        "authors": [
+          "i-biofilm studies"
+        ],
+        "doi": "10.1098/rsos.251786",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251786/481908/Liquid-assisted-grinding-LAG-as-sustainable-high?searchresult=1",
+        "resource_id": "481908",
+        "journal_prefix": "rsos"
+      }
+    ],
+    "refined_url": "https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science",
+    "confirm_url": "https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&page=1&fl_SiteID=1&f_JournalDisplayName=Royal+Society+Open+Science",
+    "confirm_title": "evolution | Page 1 | Search Results | The Royal Society",
+    "filter_confirmed": true
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:49:56.281747+00:00"
+}

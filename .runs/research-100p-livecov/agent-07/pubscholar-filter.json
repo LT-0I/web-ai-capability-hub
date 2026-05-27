@@ -1,0 +1,130 @@
+{
+  "db": "pubscholar",
+  "tool": "research_pubscholar_filter",
+  "op": "filter",
+  "profile": "research-pubscholar",
+  "cdp_port": 9362,
+  "query": "机器学习",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:pubscholar:filter '机器学习' --field '标题' --full-text --profile research-pubscholar --cdp-port 9362 --json",
+    "started_at": "2026-05-27T07:51:03.623454+00:00",
+    "elapsed_seconds": 8.631,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 940,\n  \"selected_count\": 0,\n  \"items\": [\n    {\n      \"title\": \"基于机器学习的低轨卫星光度模型研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-10\"\n    },\n    {\n      \"title\": \"基于机器学习的热亚矮星光谱分类\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-08\"\n    },\n    {\n      \"title\": \"融合机器学习与地理探测器的绿洲盐渍化垂直特征解析\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-03-24\"\n    },\n    {\n      \"title\": \"基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-02-03\"\n    },\n    {\n      \"title\": \"基于机器学习的离子阱量子调控与信息处理\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国科学: 物理学 力学 天文学》  2026 年第 2 期   页码 1\"\n    },\n    {\n      \"title\": \"基于光响应模31型与机器学习的番茄光合速率预测\",\n      \"authors\": [],\n      \"source\": \"中国农机化学报》\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国农机化学报》  2026 年第 1 期   页码 223\"\n    },\n    {\n      \"title\": \"基于机器学习的磁场强化型人工湿地水质的预测   「Open Access」\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《净水技术》  2026 年第 1 期  157 - 163  , 共 7 页\"\n    },\n    {\n      \"title\": \"基于机器学习的大坝变形预测接口服务设计与实现\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《人民珠江》  2026 年第 4 期  34 - 42  , 共 9 页\"\n    },\n    {\n      \"title\": \"可解释机器学习及其生态学应用\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《生物多样性》  2026 年第 1 期\"\n    },\n    {\n      \"title\": \"基于机器学习的微塑料吸附重金属行为及机理研究\",\n      \"authors\": [],\n      \"source\": \"环境科学学报》\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《环境科学学报》  2026 年第 4 期  228 - 238  , 共 11 页\"\n    },\n    {\n      \"title\": \"新建对话 刚刚 0 条问答\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": null,\n      \"doi\": \"\",\n      \"meta\": \"新建对话 刚刚 0 条问答\"\n    }\n  ],\n  \"refined_url\": \"https://pubscholar.cn/explore\",\n  \"confirm_title\": \"PubScholar公益学术平台\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\",\n  \"unfiltered_count\": 12906,\n  \"unfiltered_url\": \"https://pubscholar.cn/explore\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:pubscholar:filter '机器学习' --field '标题' --full-text --profile research-pubscholar --cdp-port 9362 --json",
+        "started_at": "2026-05-27T07:51:03.623454+00:00",
+        "elapsed_seconds": 8.631,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 940,\n  \"selected_count\": 0,\n  \"items\": [\n    {\n      \"title\": \"基于机器学习的低轨卫星光度模型研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-10\"\n    },\n    {\n      \"title\": \"基于机器学习的热亚矮星光谱分类\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-08\"\n    },\n    {\n      \"title\": \"融合机器学习与地理探测器的绿洲盐渍化垂直特征解析\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-03-24\"\n    },\n    {\n      \"title\": \"基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-02-03\"\n    },\n    {\n      \"title\": \"基于机器学习的离子阱量子调控与信息处理\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国科学: 物理学 力学 天文学》  2026 年第 2 期   页码 1\"\n    },\n    {\n      \"title\": \"基于光响应模31型与机器学习的番茄光合速率预测\",\n      \"authors\": [],\n      \"source\": \"中国农机化学报》\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国农机化学报》  2026 年第 1 期   页码 223\"\n    },\n    {\n      \"title\": \"基于机器学习的磁场强化型人工湿地水质的预测   「Open Access」\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《净水技术》  2026 年第 1 期  157 - 163  , 共 7 页\"\n    },\n    {\n      \"title\": \"基于机器学习的大坝变形预测接口服务设计与实现\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《人民珠江》  2026 年第 4 期  34 - 42  , 共 9 页\"\n    },\n    {\n      \"title\": \"可解释机器学习及其生态学应用\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《生物多样性》  2026 年第 1 期\"\n    },\n    {\n      \"title\": \"基于机器学习的微塑料吸附重金属行为及机理研究\",\n      \"authors\": [],\n      \"source\": \"环境科学学报》\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《环境科学学报》  2026 年第 4 期  228 - 238  , 共 11 页\"\n    },\n    {\n      \"title\": \"新建对话 刚刚 0 条问答\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": null,\n      \"doi\": \"\",\n      \"meta\": \"新建对话 刚刚 0 条问答\"\n    }\n  ],\n  \"refined_url\": \"https://pubscholar.cn/explore\",\n  \"confirm_title\": \"PubScholar公益学术平台\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\",\n  \"unfiltered_count\": 12906,\n  \"unfiltered_url\": \"https://pubscholar.cn/explore\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 940,
+    "selected_count": 0,
+    "items": [
+      {
+        "title": "基于机器学习的低轨卫星光度模型研究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-04-10"
+      },
+      {
+        "title": "基于机器学习的热亚矮星光谱分类",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-04-08"
+      },
+      {
+        "title": "融合机器学习与地理探测器的绿洲盐渍化垂直特征解析",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-03-24"
+      },
+      {
+        "title": "基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-02-03"
+      },
+      {
+        "title": "基于机器学习的离子阱量子调控与信息处理",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《中国科学: 物理学 力学 天文学》  2026 年第 2 期   页码 1"
+      },
+      {
+        "title": "基于光响应模31型与机器学习的番茄光合速率预测",
+        "authors": [],
+        "source": "中国农机化学报》",
+        "year": 2026,
+        "doi": "",
+        "meta": "《中国农机化学报》  2026 年第 1 期   页码 223"
+      },
+      {
+        "title": "基于机器学习的磁场强化型人工湿地水质的预测   「Open Access」",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《净水技术》  2026 年第 1 期  157 - 163  , 共 7 页"
+      },
+      {
+        "title": "基于机器学习的大坝变形预测接口服务设计与实现",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《人民珠江》  2026 年第 4 期  34 - 42  , 共 9 页"
+      },
+      {
+        "title": "可解释机器学习及其生态学应用",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《生物多样性》  2026 年第 1 期"
+      },
+      {
+        "title": "基于机器学习的微塑料吸附重金属行为及机理研究",
+        "authors": [],
+        "source": "环境科学学报》",
+        "year": 2026,
+        "doi": "",
+        "meta": "《环境科学学报》  2026 年第 4 期  228 - 238  , 共 11 页"
+      },
+      {
+        "title": "新建对话 刚刚 0 条问答",
+        "authors": [],
+        "source": "",
+        "year": null,
+        "doi": "",
+        "meta": "新建对话 刚刚 0 条问答"
+      }
+    ],
+    "refined_url": "https://pubscholar.cn/explore",
+    "confirm_title": "PubScholar公益学术平台",
+    "breadcrumb": "筛选条件\n高级检索: 标题=机器学习\n全部清除",
+    "unfiltered_count": 12906,
+    "unfiltered_url": "https://pubscholar.cn/explore"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:51:12.255023+00:00"
+}

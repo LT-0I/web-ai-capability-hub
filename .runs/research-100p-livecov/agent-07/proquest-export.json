@@ -1,0 +1,39 @@
+{
+  "db": "proquest",
+  "tool": "research_proquest_export",
+  "op": "export",
+  "profile": "research-proquest",
+  "cdp_port": 9361,
+  "query": "machine learning",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:proquest:export 'machine learning' --full-text --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest --confirmed --profile research-proquest --cdp-port 9361 --json",
+    "started_at": "2026-05-27T07:45:50.510191+00:00",
+    "elapsed_seconds": 32.217,
+    "exit_code": 0,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest/ProQuestDocuments-2026-05-27.ris\",\n  \"bytes\": 2260,\n  \"sha256\": \"844a84ef3f59bb0c37f994aa164e7ace486c2c936f2d694387df25e12e5feed9\",\n  \"format\": \"ris\",\n  \"result_count\": 418847,\n  \"results_url\": \"https://www.proquest.com/results/51FE63081AA34C78PQ/1?accountid=16605\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:proquest:export 'machine learning' --full-text --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest --confirmed --profile research-proquest --cdp-port 9361 --json",
+        "started_at": "2026-05-27T07:45:50.510191+00:00",
+        "elapsed_seconds": 32.217,
+        "exit_code": 0,
+        "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest/ProQuestDocuments-2026-05-27.ris\",\n  \"bytes\": 2260,\n  \"sha256\": \"844a84ef3f59bb0c37f994aa164e7ace486c2c936f2d694387df25e12e5feed9\",\n  \"format\": \"ris\",\n  \"result_count\": 418847,\n  \"results_url\": \"https://www.proquest.com/results/51FE63081AA34C78PQ/1?accountid=16605\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest/ProQuestDocuments-2026-05-27.ris",
+    "bytes": 2260,
+    "sha256": "844a84ef3f59bb0c37f994aa164e7ace486c2c936f2d694387df25e12e5feed9",
+    "format": "ris",
+    "result_count": 418847,
+    "results_url": "https://www.proquest.com/results/51FE63081AA34C78PQ/1?accountid=16605"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:46:22.726827+00:00"
+}

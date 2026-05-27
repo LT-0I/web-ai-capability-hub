@@ -1,0 +1,41 @@
+{
+  "db": "pubscholar",
+  "tool": "research_pubscholar_export",
+  "op": "export",
+  "profile": "research-pubscholar",
+  "cdp_port": 9362,
+  "query": "机器学习",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:pubscholar:export '机器学习' --field '标题' --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar --confirmed --profile research-pubscholar --cdp-port 9362 --json",
+    "started_at": "2026-05-27T07:51:12.255468+00:00",
+    "elapsed_seconds": 24.386,
+    "exit_code": 0,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar/论文数据导出.ris\",\n  \"bytes\": 1185,\n  \"sha256\": \"20f34affcb88391606d71b565281b637da8fd6b1c65c825f36adf9ca33230449\",\n  \"format\": \"ris\",\n  \"result_count\": 12906,\n  \"results_url\": \"https://pubscholar.cn/explore\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\",\n  \"structural_tags\": 18\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:pubscholar:export '机器学习' --field '标题' --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar --confirmed --profile research-pubscholar --cdp-port 9362 --json",
+        "started_at": "2026-05-27T07:51:12.255468+00:00",
+        "elapsed_seconds": 24.386,
+        "exit_code": 0,
+        "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar/论文数据导出.ris\",\n  \"bytes\": 1185,\n  \"sha256\": \"20f34affcb88391606d71b565281b637da8fd6b1c65c825f36adf9ca33230449\",\n  \"format\": \"ris\",\n  \"result_count\": 12906,\n  \"results_url\": \"https://pubscholar.cn/explore\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\",\n  \"structural_tags\": 18\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar/论文数据导出.ris",
+    "bytes": 1185,
+    "sha256": "20f34affcb88391606d71b565281b637da8fd6b1c65c825f36adf9ca33230449",
+    "format": "ris",
+    "result_count": 12906,
+    "results_url": "https://pubscholar.cn/explore",
+    "breadcrumb": "筛选条件\n高级检索: 标题=机器学习\n全部清除",
+    "structural_tags": 18
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:51:36.641151+00:00"
+}

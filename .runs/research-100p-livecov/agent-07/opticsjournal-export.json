@@ -1,0 +1,40 @@
+{
+  "db": "opticsjournal",
+  "tool": "research_opticsjournal_export",
+  "op": "export",
+  "profile": "research-opticsjournal",
+  "cdp_port": 9360,
+  "query": "激光",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:opticsjournal:export '激光' --format enw --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal --confirmed --profile research-opticsjournal --cdp-port 9360 --json",
+    "started_at": "2026-05-27T07:45:01.411261+00:00",
+    "elapsed_seconds": 6.86,
+    "exit_code": 0,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal/202605270345077801.enw\",\n  \"bytes\": 12888,\n  \"sha256\": \"2c494ee9fba6e0e6ba303c21b9d3ff0b843169aabe7021308e36cb750030a9fe\",\n  \"format\": \"enw\",\n  \"result_count\": 5271,\n  \"results_url\": \"https://www.opticsjournal.net/Search/Article\",\n  \"records\": 10\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:opticsjournal:export '激光' --format enw --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal --confirmed --profile research-opticsjournal --cdp-port 9360 --json",
+        "started_at": "2026-05-27T07:45:01.411261+00:00",
+        "elapsed_seconds": 6.86,
+        "exit_code": 0,
+        "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal/202605270345077801.enw\",\n  \"bytes\": 12888,\n  \"sha256\": \"2c494ee9fba6e0e6ba303c21b9d3ff0b843169aabe7021308e36cb750030a9fe\",\n  \"format\": \"enw\",\n  \"result_count\": 5271,\n  \"results_url\": \"https://www.opticsjournal.net/Search/Article\",\n  \"records\": 10\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal/202605270345077801.enw",
+    "bytes": 12888,
+    "sha256": "2c494ee9fba6e0e6ba303c21b9d3ff0b843169aabe7021308e36cb750030a9fe",
+    "format": "enw",
+    "result_count": 5271,
+    "results_url": "https://www.opticsjournal.net/Search/Article",
+    "records": 10
+  },
+  "launch_exit_code": 1,
+  "captured_at": "2026-05-27T07:45:08.270953+00:00"
+}

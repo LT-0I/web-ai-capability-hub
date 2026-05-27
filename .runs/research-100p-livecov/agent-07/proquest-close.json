@@ -1,0 +1,33 @@
+{
+  "db": "proquest",
+  "phase": "close",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:close --profile research-proquest --mode close-process --release-lease --force --json",
+    "started_at": "2026-05-27T07:46:22.727230+00:00",
+    "elapsed_seconds": 0.174,
+    "exit_code": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-proquest\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-proquest/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:close --profile research-proquest --mode close-process --release-lease --force --json",
+        "started_at": "2026-05-27T07:46:22.727230+00:00",
+        "elapsed_seconds": 0.174,
+        "exit_code": 0,
+        "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-proquest\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-proquest/SingletonSocket\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "ok": true,
+    "profileId": "research-proquest",
+    "released": false,
+    "cleanedLockFiles": [
+      "data/browser-profiles/research-proquest/SingletonSocket"
+    ]
+  },
+  "captured_at": "2026-05-27T07:46:22.901203+00:00"
+}

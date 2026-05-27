@@ -1,0 +1,276 @@
+{
+  "db": "royalsoc",
+  "tool": "research_royalsoc_search",
+  "op": "search",
+  "profile": "research-royalsoc",
+  "cdp_port": 9363,
+  "query": "evolution",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:royalsoc:search evolution --page 1 --profile research-royalsoc --cdp-port 9363 --json",
+    "started_at": "2026-05-27T07:49:49.537282+00:00",
+    "elapsed_seconds": 4.327,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 100,\n  \"items\": [\n    {\n      \"title\": \"What is driving the differential loss of skull bones throughout tetrapod evolution ? Evidence from Temnospondyli\",\n      \"authors\": [\n        \"rom Temnospondyli\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.3276\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1\",\n      \"resource_id\": \"481898\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Stability evolution in triangular fractals: an algebraic dynamical system approach\",\n      \"authors\": [\n        \"l system approach\"\n      ],\n      \"doi\": \"10.1098/rspa.2025.1061\",\n      \"publication\": \"Proceedings of the Royal Society A\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspa/article/482/2338/20251061/481832/Stability-evolution-in-triangular-fractals-an?searchresult=1\",\n      \"resource_id\": \"481832\",\n      \"journal_prefix\": \"rspa\"\n    },\n    {\n      \"title\": \"Integration and evolution of the cichlid pharyngeal skeleton: seeking the causes and consequences of trait covariation\",\n      \"authors\": [\n        \"trait covariation\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2736\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20252736/481618/Integration-and-evolution-of-the-cichlid?searchresult=1\",\n      \"resource_id\": \"481618\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Analysis of multi-trait evolution across independently evolved cavefish populations reveals shared and independent evolution of suites of traits\",\n      \"authors\": [\n        \"suites of traits\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2719\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20252719/481412/Analysis-of-multi-trait-evolution-across?searchresult=1\",\n      \"resource_id\": \"481412\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"RL evolution : unravelling the history of genomic instability through deep reinforcement learning\",\n      \"authors\": [\n        \"orcement learning\"\n      ],\n      \"doi\": \"10.1098/rsos.251811\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Dispersal evolution in a population infected with a male-killing endosymbiont\",\n      \"authors\": [\n        \"ling endosymbiont\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0004\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20260004/481574/Dispersal-evolution-in-a-population-infected-with?searchresult=1\",\n      \"resource_id\": \"481574\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"A true Luciolinae fossil from the mid-Cretaceous Burmese amber provides new insights into the early evolution of fireflies (Coleoptera: Lampyridae)\",\n      \"authors\": [\n        \"tera: Lampyridae)\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.3316\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20253316/481575/A-true-Luciolinae-fossil-from-the-mid-Cretaceous?searchresult=1\",\n      \"resource_id\": \"481575\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Scaling and foraging behaviour drive the evolution of humeral shape in hummingbirds\",\n      \"authors\": [\n        \"e in hummingbirds\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0275\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260275/481505/Scaling-and-foraging-behaviour-drive-the-evolution?searchresult=1\",\n      \"resource_id\": \"481505\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"A shoot at the root? Unique development and evolution of the stigmarian apical meristem\",\n      \"authors\": [\n        \"n apical meristem\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2863\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20252863/481506/A-shoot-at-the-root-Unique-development-and?searchresult=1\",\n      \"resource_id\": \"481506\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"An early burst of skeletal evolution at the origin of dinosaurs\",\n      \"authors\": [\n        \"igin of dinosaurs\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0102\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260102/481427/An-early-burst-of-skeletal-evolution-at-the-origin?searchresult=1\",\n      \"resource_id\": \"481427\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Modelling the emergence of open-ended cultural evolution\",\n      \"authors\": [\n        \"ultural evolution\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0255\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1948/20250255/481368/Modelling-the-emergence-of-open-ended-cultural?searchresult=1\",\n      \"resource_id\": \"481368\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"A short-snouted ‘sphenosuchian’ with unusual feeding anatomy demonstrates that ecological specialization occurred early in crocodylomorph evolution\",\n      \"authors\": [\n        \"lomorph evolution\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0130\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260130/481353/A-short-snouted-sphenosuchian-with-unusual-feeding?searchresult=1\",\n      \"resource_id\": \"481353\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill\",\n      \"authors\": [\n        \"’ Kocher\",\n        \"Dill\"\n      ],\n      \"doi\": \"10.1098/rsos.260430\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1\",\n      \"resource_id\": \"481271\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Pre-cheliceral region patterning in a spider provides new insights into the development and evolution of arthropod neurosecretory centres\",\n      \"authors\": [\n        \"secretory centres\"\n      ],\n      \"doi\": \"10.1098/rsob.250428\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsob/article/16/4/250428/481244/Pre-cheliceral-region-patterning-in-a-spider?searchresult=1\",\n      \"resource_id\": \"481244\",\n      \"journal_prefix\": \"rsob\"\n    },\n    {\n      \"title\": \"Statistical structure and the evolution of languages\",\n      \"authors\": [\n        \"tion of languages\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2374\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2068/20252374/481270/Statistical-structure-and-the-evolution-of?searchresult=1\",\n      \"resource_id\": \"481270\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Why selection for mitochondrial quality drives the evolution of sexes\",\n      \"authors\": [\n        \"volution of sexes\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0076\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250076/481184/Why-selection-for-mitochondrial-quality-drives-the?searchresult=1\",\n      \"resource_id\": \"481184\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"The influence of size, longevity and environmental temperature on mitochondrial DNA evolution in fishes\",\n      \"authors\": [\n        \"olution in fishes\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0085\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250085/481189/The-influence-of-size-longevity-and-environmental?searchresult=1\",\n      \"resource_id\": \"481189\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"The risk of sexual reproduction promotes the evolution of regulation between host and symbionts\",\n      \"authors\": [\n        \"ost\",\n        \"symbionts\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0077\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250077/481219/The-risk-of-sexual-reproduction-promotes-the?searchresult=1\",\n      \"resource_id\": \"481219\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"Images Interspecific analysis of morphological disparity and rate of evolution acr...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1#20113897\",\n      \"resource_id\": \"481898\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337\",\n      \"journal_prefix\": \"rsos\"\n    }\n  ],\n  \"query_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1\",\n  \"confirm_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1\",\n  \"confirm_title\": \"evolution | Page 1 | Search Results | The Royal Society\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:royalsoc:search evolution --page 1 --profile research-royalsoc --cdp-port 9363 --json",
+        "started_at": "2026-05-27T07:49:49.537282+00:00",
+        "elapsed_seconds": 4.327,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 100,\n  \"items\": [\n    {\n      \"title\": \"What is driving the differential loss of skull bones throughout tetrapod evolution ? Evidence from Temnospondyli\",\n      \"authors\": [\n        \"rom Temnospondyli\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.3276\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1\",\n      \"resource_id\": \"481898\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Stability evolution in triangular fractals: an algebraic dynamical system approach\",\n      \"authors\": [\n        \"l system approach\"\n      ],\n      \"doi\": \"10.1098/rspa.2025.1061\",\n      \"publication\": \"Proceedings of the Royal Society A\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspa/article/482/2338/20251061/481832/Stability-evolution-in-triangular-fractals-an?searchresult=1\",\n      \"resource_id\": \"481832\",\n      \"journal_prefix\": \"rspa\"\n    },\n    {\n      \"title\": \"Integration and evolution of the cichlid pharyngeal skeleton: seeking the causes and consequences of trait covariation\",\n      \"authors\": [\n        \"trait covariation\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2736\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20252736/481618/Integration-and-evolution-of-the-cichlid?searchresult=1\",\n      \"resource_id\": \"481618\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Analysis of multi-trait evolution across independently evolved cavefish populations reveals shared and independent evolution of suites of traits\",\n      \"authors\": [\n        \"suites of traits\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2719\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20252719/481412/Analysis-of-multi-trait-evolution-across?searchresult=1\",\n      \"resource_id\": \"481412\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"RL evolution : unravelling the history of genomic instability through deep reinforcement learning\",\n      \"authors\": [\n        \"orcement learning\"\n      ],\n      \"doi\": \"10.1098/rsos.251811\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1\",\n      \"resource_id\": \"481598\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Dispersal evolution in a population infected with a male-killing endosymbiont\",\n      \"authors\": [\n        \"ling endosymbiont\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0004\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20260004/481574/Dispersal-evolution-in-a-population-infected-with?searchresult=1\",\n      \"resource_id\": \"481574\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"A true Luciolinae fossil from the mid-Cretaceous Burmese amber provides new insights into the early evolution of fireflies (Coleoptera: Lampyridae)\",\n      \"authors\": [\n        \"tera: Lampyridae)\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.3316\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2070/20253316/481575/A-true-Luciolinae-fossil-from-the-mid-Cretaceous?searchresult=1\",\n      \"resource_id\": \"481575\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Scaling and foraging behaviour drive the evolution of humeral shape in hummingbirds\",\n      \"authors\": [\n        \"e in hummingbirds\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0275\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260275/481505/Scaling-and-foraging-behaviour-drive-the-evolution?searchresult=1\",\n      \"resource_id\": \"481505\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"A shoot at the root? Unique development and evolution of the stigmarian apical meristem\",\n      \"authors\": [\n        \"n apical meristem\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2863\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20252863/481506/A-shoot-at-the-root-Unique-development-and?searchresult=1\",\n      \"resource_id\": \"481506\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"An early burst of skeletal evolution at the origin of dinosaurs\",\n      \"authors\": [\n        \"igin of dinosaurs\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0102\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260102/481427/An-early-burst-of-skeletal-evolution-at-the-origin?searchresult=1\",\n      \"resource_id\": \"481427\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Modelling the emergence of open-ended cultural evolution\",\n      \"authors\": [\n        \"ultural evolution\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0255\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1948/20250255/481368/Modelling-the-emergence-of-open-ended-cultural?searchresult=1\",\n      \"resource_id\": \"481368\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"A short-snouted ‘sphenosuchian’ with unusual feeding anatomy demonstrates that ecological specialization occurred early in crocodylomorph evolution\",\n      \"authors\": [\n        \"lomorph evolution\"\n      ],\n      \"doi\": \"10.1098/rspb.2026.0130\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2069/20260130/481353/A-short-snouted-sphenosuchian-with-unusual-feeding?searchresult=1\",\n      \"resource_id\": \"481353\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill\",\n      \"authors\": [\n        \"’ Kocher\",\n        \"Dill\"\n      ],\n      \"doi\": \"10.1098/rsos.260430\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1\",\n      \"resource_id\": \"481271\",\n      \"journal_prefix\": \"rsos\"\n    },\n    {\n      \"title\": \"Pre-cheliceral region patterning in a spider provides new insights into the development and evolution of arthropod neurosecretory centres\",\n      \"authors\": [\n        \"secretory centres\"\n      ],\n      \"doi\": \"10.1098/rsob.250428\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsob/article/16/4/250428/481244/Pre-cheliceral-region-patterning-in-a-spider?searchresult=1\",\n      \"resource_id\": \"481244\",\n      \"journal_prefix\": \"rsob\"\n    },\n    {\n      \"title\": \"Statistical structure and the evolution of languages\",\n      \"authors\": [\n        \"tion of languages\"\n      ],\n      \"doi\": \"10.1098/rspb.2025.2374\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2068/20252374/481270/Statistical-structure-and-the-evolution-of?searchresult=1\",\n      \"resource_id\": \"481270\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Why selection for mitochondrial quality drives the evolution of sexes\",\n      \"authors\": [\n        \"volution of sexes\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0076\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250076/481184/Why-selection-for-mitochondrial-quality-drives-the?searchresult=1\",\n      \"resource_id\": \"481184\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"The influence of size, longevity and environmental temperature on mitochondrial DNA evolution in fishes\",\n      \"authors\": [\n        \"olution in fishes\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0085\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250085/481189/The-influence-of-size-longevity-and-environmental?searchresult=1\",\n      \"resource_id\": \"481189\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"The risk of sexual reproduction promotes the evolution of regulation between host and symbionts\",\n      \"authors\": [\n        \"ost\",\n        \"symbionts\"\n      ],\n      \"doi\": \"10.1098/rstb.2025.0077\",\n      \"publication\": \"Philosophical Transactions of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rstb/article/381/1947/20250077/481219/The-risk-of-sexual-reproduction-promotes-the?searchresult=1\",\n      \"resource_id\": \"481219\",\n      \"journal_prefix\": \"rstb\"\n    },\n    {\n      \"title\": \"Images Interspecific analysis of morphological disparity and rate of evolution acr...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Proceedings of the Royal Society B\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1#20113897\",\n      \"resource_id\": \"481898\",\n      \"journal_prefix\": \"rspb\"\n    },\n    {\n      \"title\": \"Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"Royal Society Open Science\",\n      \"year\": 2026,\n      \"article_url\": \"https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337\",\n      \"journal_prefix\": \"rsos\"\n    }\n  ],\n  \"query_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1\",\n  \"confirm_url\": \"https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1\",\n  \"confirm_title\": \"evolution | Page 1 | Search Results | The Royal Society\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 100,
+    "items": [
+      {
+        "title": "What is driving the differential loss of skull bones throughout tetrapod evolution ? Evidence from Temnospondyli",
+        "authors": [
+          "rom Temnospondyli"
+        ],
+        "doi": "10.1098/rspb.2025.3276",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1",
+        "resource_id": "481898",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Stability evolution in triangular fractals: an algebraic dynamical system approach",
+        "authors": [
+          "l system approach"
+        ],
+        "doi": "10.1098/rspa.2025.1061",
+        "publication": "Proceedings of the Royal Society A",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspa/article/482/2338/20251061/481832/Stability-evolution-in-triangular-fractals-an?searchresult=1",
+        "resource_id": "481832",
+        "journal_prefix": "rspa"
+      },
+      {
+        "title": "Integration and evolution of the cichlid pharyngeal skeleton: seeking the causes and consequences of trait covariation",
+        "authors": [
+          "trait covariation"
+        ],
+        "doi": "10.1098/rspb.2025.2736",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2070/20252736/481618/Integration-and-evolution-of-the-cichlid?searchresult=1",
+        "resource_id": "481618",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Analysis of multi-trait evolution across independently evolved cavefish populations reveals shared and independent evolution of suites of traits",
+        "authors": [
+          "suites of traits"
+        ],
+        "doi": "10.1098/rspb.2025.2719",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2069/20252719/481412/Analysis-of-multi-trait-evolution-across?searchresult=1",
+        "resource_id": "481412",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "RL evolution : unravelling the history of genomic instability through deep reinforcement learning",
+        "authors": [
+          "orcement learning"
+        ],
+        "doi": "10.1098/rsos.251811",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/5/251811/481598/RLevolution-unravelling-the-history-of-genomic?searchresult=1",
+        "resource_id": "481598",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Dispersal evolution in a population infected with a male-killing endosymbiont",
+        "authors": [
+          "ling endosymbiont"
+        ],
+        "doi": "10.1098/rspb.2026.0004",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2070/20260004/481574/Dispersal-evolution-in-a-population-infected-with?searchresult=1",
+        "resource_id": "481574",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "A true Luciolinae fossil from the mid-Cretaceous Burmese amber provides new insights into the early evolution of fireflies (Coleoptera: Lampyridae)",
+        "authors": [
+          "tera: Lampyridae)"
+        ],
+        "doi": "10.1098/rspb.2025.3316",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2070/20253316/481575/A-true-Luciolinae-fossil-from-the-mid-Cretaceous?searchresult=1",
+        "resource_id": "481575",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Scaling and foraging behaviour drive the evolution of humeral shape in hummingbirds",
+        "authors": [
+          "e in hummingbirds"
+        ],
+        "doi": "10.1098/rspb.2026.0275",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2069/20260275/481505/Scaling-and-foraging-behaviour-drive-the-evolution?searchresult=1",
+        "resource_id": "481505",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "A shoot at the root? Unique development and evolution of the stigmarian apical meristem",
+        "authors": [
+          "n apical meristem"
+        ],
+        "doi": "10.1098/rspb.2025.2863",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2069/20252863/481506/A-shoot-at-the-root-Unique-development-and?searchresult=1",
+        "resource_id": "481506",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "An early burst of skeletal evolution at the origin of dinosaurs",
+        "authors": [
+          "igin of dinosaurs"
+        ],
+        "doi": "10.1098/rspb.2026.0102",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2069/20260102/481427/An-early-burst-of-skeletal-evolution-at-the-origin?searchresult=1",
+        "resource_id": "481427",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Modelling the emergence of open-ended cultural evolution",
+        "authors": [
+          "ultural evolution"
+        ],
+        "doi": "10.1098/rstb.2025.0255",
+        "publication": "Philosophical Transactions of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rstb/article/381/1948/20250255/481368/Modelling-the-emergence-of-open-ended-cultural?searchresult=1",
+        "resource_id": "481368",
+        "journal_prefix": "rstb"
+      },
+      {
+        "title": "A short-snouted ‘sphenosuchian’ with unusual feeding anatomy demonstrates that ecological specialization occurred early in crocodylomorph evolution",
+        "authors": [
+          "lomorph evolution"
+        ],
+        "doi": "10.1098/rspb.2026.0130",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2069/20260130/481353/A-short-snouted-sphenosuchian-with-unusual-feeding?searchresult=1",
+        "resource_id": "481353",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Correction to: ‘The prebiotic emergence of biological evolution ’ Kocher and Dill",
+        "authors": [
+          "’ Kocher",
+          "Dill"
+        ],
+        "doi": "10.1098/rsos.260430",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/13/4/260430/481271/Correction-to-The-prebiotic-emergence-of?searchresult=1",
+        "resource_id": "481271",
+        "journal_prefix": "rsos"
+      },
+      {
+        "title": "Pre-cheliceral region patterning in a spider provides new insights into the development and evolution of arthropod neurosecretory centres",
+        "authors": [
+          "secretory centres"
+        ],
+        "doi": "10.1098/rsob.250428",
+        "publication": "",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsob/article/16/4/250428/481244/Pre-cheliceral-region-patterning-in-a-spider?searchresult=1",
+        "resource_id": "481244",
+        "journal_prefix": "rsob"
+      },
+      {
+        "title": "Statistical structure and the evolution of languages",
+        "authors": [
+          "tion of languages"
+        ],
+        "doi": "10.1098/rspb.2025.2374",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2068/20252374/481270/Statistical-structure-and-the-evolution-of?searchresult=1",
+        "resource_id": "481270",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Why selection for mitochondrial quality drives the evolution of sexes",
+        "authors": [
+          "volution of sexes"
+        ],
+        "doi": "10.1098/rstb.2025.0076",
+        "publication": "Philosophical Transactions of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rstb/article/381/1947/20250076/481184/Why-selection-for-mitochondrial-quality-drives-the?searchresult=1",
+        "resource_id": "481184",
+        "journal_prefix": "rstb"
+      },
+      {
+        "title": "The influence of size, longevity and environmental temperature on mitochondrial DNA evolution in fishes",
+        "authors": [
+          "olution in fishes"
+        ],
+        "doi": "10.1098/rstb.2025.0085",
+        "publication": "Philosophical Transactions of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rstb/article/381/1947/20250085/481189/The-influence-of-size-longevity-and-environmental?searchresult=1",
+        "resource_id": "481189",
+        "journal_prefix": "rstb"
+      },
+      {
+        "title": "The risk of sexual reproduction promotes the evolution of regulation between host and symbionts",
+        "authors": [
+          "ost",
+          "symbionts"
+        ],
+        "doi": "10.1098/rstb.2025.0077",
+        "publication": "Philosophical Transactions of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rstb/article/381/1947/20250077/481219/The-risk-of-sexual-reproduction-promotes-the?searchresult=1",
+        "resource_id": "481219",
+        "journal_prefix": "rstb"
+      },
+      {
+        "title": "Images Interspecific analysis of morphological disparity and rate of evolution acr...",
+        "authors": [],
+        "doi": "",
+        "publication": "Proceedings of the Royal Society B",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rspb/article/293/2071/20253276/481898/What-is-driving-the-differential-loss-of-skull?searchresult=1#20113897",
+        "resource_id": "481898",
+        "journal_prefix": "rspb"
+      },
+      {
+        "title": "Images (a) The left-hand panel shows the spatiotemporal evolution of the three mac...",
+        "authors": [],
+        "doi": "",
+        "publication": "Royal Society Open Science",
+        "year": 2026,
+        "article_url": "https://royalsocietypublishing.org/rsos/article/481910?searchresult=1#20115337",
+        "journal_prefix": "rsos"
+      }
+    ],
+    "query_url": "https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1",
+    "confirm_url": "https://royalsocietypublishing.org/search-results?q=evolution&hd=advancedAny&searchType=advanced&page=1",
+    "confirm_title": "evolution | Page 1 | Search Results | The Royal Society"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:49:53.864611+00:00"
+}

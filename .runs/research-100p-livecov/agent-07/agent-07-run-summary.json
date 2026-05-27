@@ -1,0 +1,138 @@
+{
+  "updated_at": "2026-05-27T07:52:32.894439+00:00",
+  "agent": "agent-07",
+  "results": [
+    {
+      "db": "opticsjournal",
+      "tools": {
+        "search": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/opticsjournal-search.json",
+          "exit_code": 0,
+          "result_count": 5271,
+          "item_count": 55,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "filter": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/opticsjournal-filter.json",
+          "exit_code": 0,
+          "result_count": 1655,
+          "item_count": 15,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "export": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/opticsjournal-export.json",
+          "exit_code": 0,
+          "result_count": 5271,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/opticsjournal/202605270345077801.enw",
+          "bytes": 12888
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "db": "proquest",
+      "tools": {
+        "search": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/proquest-search.json",
+          "exit_code": 0,
+          "result_count": 452647,
+          "item_count": 50,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "filter": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/proquest-filter.json",
+          "exit_code": 0,
+          "result_count": 418847,
+          "item_count": 50,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "export": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/proquest-export.json",
+          "exit_code": 0,
+          "result_count": 418847,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/proquest/ProQuestDocuments-2026-05-27.ris",
+          "bytes": 2260
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "db": "pubscholar",
+      "tools": {
+        "search": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/pubscholar-search.json",
+          "exit_code": 0,
+          "result_count": 12906,
+          "item_count": 11,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "filter": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/pubscholar-filter.json",
+          "exit_code": 0,
+          "result_count": 940,
+          "item_count": 11,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "export": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/pubscholar-export.json",
+          "exit_code": 0,
+          "result_count": 12906,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/pubscholar/论文数据导出.ris",
+          "bytes": 1185
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "db": "royalsoc",
+      "tools": {
+        "search": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/royalsoc-search.json",
+          "exit_code": 0,
+          "result_count": 100,
+          "item_count": 20,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "filter": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/royalsoc-filter.json",
+          "exit_code": 0,
+          "result_count": 100,
+          "item_count": 20,
+          "artifact_path": null,
+          "bytes": null
+        },
+        "export": {
+          "classification": "PASS",
+          "evidence": ".runs/research-100p-livecov/agent-07/royalsoc-export.json",
+          "exit_code": 0,
+          "result_count": null,
+          "item_count": null,
+          "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc/royalsoc-481898.ris",
+          "bytes": 2038
+        }
+      },
+      "all_pass": true
+    }
+  ]
+}

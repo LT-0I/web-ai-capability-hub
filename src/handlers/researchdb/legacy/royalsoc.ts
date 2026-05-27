@@ -98,7 +98,7 @@ function resourceIdFromArticleUrl(url: string): string {
 function journalPrefixFromArticleUrl(url: string): string | undefined { return /^https?:\/\/[^/]+\/([^/]+)\//i.exec(url || "")?.[1] || /^\/([^/]+)\//.exec(url || "")?.[1]; }
 function isCloudflareInterstitial(title: string, html: string, visibleText = ""): boolean {
   const haystack = `${title || ""}\n${visibleText || ""}\n${html || ""}`;
-  return /(?:Just a moment|Attention Required|cf-challenge|cf-browser-verification|cf-turnstile|challenge-platform|cloudflare)/i.test(haystack);
+  return /(?:Just a moment|Attention Required|cf-challenge|cf-browser-verification|cf-turnstile|challenge-platform|Checking if the site connection is secure|Verify (?:you are|that you are) human|review the security of your connection)/i.test(haystack);
 }
 
 export function buildRoyalSocSearchUrl(args: RoyalSocSearchArgs): string {

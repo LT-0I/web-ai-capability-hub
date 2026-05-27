@@ -1,0 +1,39 @@
+{
+  "db": "royalsoc",
+  "tool": "research_royalsoc_export",
+  "op": "export",
+  "profile": "research-royalsoc",
+  "cdp_port": 9363,
+  "query": "evolution",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:royalsoc:export --resource-id 481898 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc --confirmed --profile research-royalsoc --cdp-port 9363 --json",
+    "started_at": "2026-05-27T07:49:56.282538+00:00",
+    "elapsed_seconds": 31.993,
+    "exit_code": 0,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc/royalsoc-481898.ris\",\n  \"bytes\": 2038,\n  \"sha256\": \"ea536273b4a1963252caedebe14bebf2a1dc116bcd127057a1923b52087aefab\",\n  \"format\": \"ris\",\n  \"resource_id\": \"481898\",\n  \"source_url\": \"https://royalsocietypublishing.org/Citation/Download?resourceId=481898&resourceType=3&citationFormat=0\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:royalsoc:export --resource-id 481898 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc --confirmed --profile research-royalsoc --cdp-port 9363 --json",
+        "started_at": "2026-05-27T07:49:56.282538+00:00",
+        "elapsed_seconds": 31.993,
+        "exit_code": 0,
+        "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc/royalsoc-481898.ris\",\n  \"bytes\": 2038,\n  \"sha256\": \"ea536273b4a1963252caedebe14bebf2a1dc116bcd127057a1923b52087aefab\",\n  \"format\": \"ris\",\n  \"resource_id\": \"481898\",\n  \"source_url\": \"https://royalsocietypublishing.org/Citation/Download?resourceId=481898&resourceType=3&citationFormat=0\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/downloads/royalsoc/royalsoc-481898.ris",
+    "bytes": 2038,
+    "sha256": "ea536273b4a1963252caedebe14bebf2a1dc116bcd127057a1923b52087aefab",
+    "format": "ris",
+    "resource_id": "481898",
+    "source_url": "https://royalsocietypublishing.org/Citation/Download?resourceId=481898&resourceType=3&citationFormat=0"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:50:28.275392+00:00"
+}

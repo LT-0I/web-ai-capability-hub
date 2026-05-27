@@ -1,0 +1,33 @@
+{
+  "db": "opticsjournal",
+  "phase": "close",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:close --profile research-opticsjournal --mode close-process --release-lease --force --json",
+    "started_at": "2026-05-27T07:45:08.271329+00:00",
+    "elapsed_seconds": 0.161,
+    "exit_code": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-opticsjournal\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-opticsjournal/SingletonSocket\"\n  ]\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:close --profile research-opticsjournal --mode close-process --release-lease --force --json",
+        "started_at": "2026-05-27T07:45:08.271329+00:00",
+        "elapsed_seconds": 0.161,
+        "exit_code": 0,
+        "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-opticsjournal\",\n  \"released\": false,\n  \"cleanedLockFiles\": [\n    \"data/browser-profiles/research-opticsjournal/SingletonSocket\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "ok": true,
+    "profileId": "research-opticsjournal",
+    "released": false,
+    "cleanedLockFiles": [
+      "data/browser-profiles/research-opticsjournal/SingletonSocket"
+    ]
+  },
+  "captured_at": "2026-05-27T07:45:08.432537+00:00"
+}

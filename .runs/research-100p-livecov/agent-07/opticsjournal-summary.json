@@ -1,0 +1,34 @@
+{
+  "db": "opticsjournal",
+  "profile": "research-opticsjournal",
+  "cdp_port": 9360,
+  "started_at": "2026-05-27T07:44:23.412382+00:00",
+  "tools": {
+    "search": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/opticsjournal-search.json",
+      "exit_code": 0
+    },
+    "filter": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/opticsjournal-filter.json",
+      "exit_code": 0
+    },
+    "export": {
+      "classification": "PASS",
+      "evidence": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-07/opticsjournal-export.json",
+      "exit_code": 0
+    }
+  },
+  "launch": {
+    "exit_code": 1,
+    "parsed": null,
+    "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9360/json/version): connect ECONNREFUSED 127.0.0.1:9360\"}\n"
+  },
+  "launch_classification": "FAIL_UNKNOWN",
+  "close": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "finished_at": "2026-05-27T07:45:08.432749+00:00"
+}

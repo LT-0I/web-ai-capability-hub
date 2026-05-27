@@ -1,0 +1,201 @@
+%0 Journal Article
+%T 基于FPGA的脉冲相关激光测距系统
+%O FPGA-based pulse correlation laser ranging system
+%A 李雪文
+%A 李永红
+%A 岳凤英
+%A 曾嘉鑫
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 395
+%K 激光测距; 小型化; 多脉冲累加算法; 互相关检测; 
+%X 针对激光测距系统的测量对回波信号的接收依赖高、噪声干扰大、环境抗干扰性较差、不能满足高精度测量等问题，提出一种以FPGA为核心处理单元，结合多脉冲相关累加与互相关检测技术的高精度激光测距方案。系统选用1535 nm人眼安全的铒玻璃激光器作为发射光源，采用1 GHz高速AD芯片实现回波信号全数字化采集，通过FPGA并行处理架构完成多脉冲累加、互相关运算及激光飞行时间解算。硬件设计采用模块化架构，集成综合控制、驱动电源、探测接收及信号处理四大功能电路，配合非球面镜+窄带滤光片的光路设计，实现系统小型化与低功耗。实验结果表明：系统测程范围为50~5691 m，平均误差范围为0.025~0.300 m；整机尺寸为70 mm×58 mm×45 mm，重150 g，功耗2.5 W，可满足军用光电平台、手持式测距仪等场景的高精度、微型化需求。
+%R 10.3969/j.issn.1001-5078.2026.03.010
+%U https://www.opticsjournal.net/Articles/OJaede03aaf8365c3d/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 调频连续波激光雷达水下测距仿真分析
+%O Simulation analysis of underwater ranging using frequency modulated continuous wave LiDAR
+%A 阳琴
+%A 徐诗月
+%A 马睿
+%A 郭孟林
+%A 张志坚
+%A 杨峰
+%A 杨俊敏
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 387
+%K 激光雷达; 水下测距; 调频连续波; 
+%X 调频连续波激光探测体制有利于实现水下成像系统的低功耗和小型化。在仿真环境中搭建基于532 nm波长的调频连续波激光雷达水下测距模型，研究了不同水体条件、激光器线宽和调制线性度对系统测距性能的影响。结果表明，对于90 m距离处的水下目标，激光雷达在典型的清洁海区中接收的回波光功率相比晴朗大气环境降低约2 dB，采用约100 kHz线宽的激光器并保持99%以内的调制线性度，可获得较高精度的测距结果。此研究结果对调频连续波激光雷达的水下探测工程应用具有一定的参考意义。
+%R 10.3969/j.issn.1001-5078.2026.03.009
+%U https://www.opticsjournal.net/Articles/OJe0b45ed7ef1ea8be/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 基于贝叶斯优化VMD的激光回波去噪方法
+%O Laser echo denoising method based on Bayesian-optimized variational mode decomposition
+%A 覃则昆
+%A 郭甲崇
+%A 兀伟
+%A 张珂
+%A 刘星
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 366
+%K 激光雷达; 贝叶斯优化; 变分模态分解; DFA算法; 小波去噪; 
+%X 针对激光雷达远距离探测时易受到噪声干扰的问题，提出了一种基于贝叶斯优化（BO）的变分模态分解（VMD）激光回波信号去噪方法。该方法基于贝叶斯优化获得VMD参数组合，针对以最小包络熵（MEE）作为适应度函数导致VMD易过分解的问题，引入最大互信息系数（MIC）构建适应度函数，并采用趋势波动分析算法（DFA）筛选分解出的本征模态函数（IMF）中的信号主导分量，最后基于稀疏性选择适当小波分解层数对信号主导分量进行小波去噪（WT）。通过不同输入信噪比的激光雷达噪声信号进行模拟，将该方法与GWO-VMD、WT-VMD、VMD方法进行去噪比较，当信号2输入信噪比为0 dB时，该方法的输出信噪比分别提高了2.3321 dB、2.3299 dB和1.2625 dB，均方根误差分别降低了96.14%、96.84%和96.12%，结果表明，该方法具有较好的去噪性能和自适应性。
+%R 10.3969/j.issn.1001-5078.2026.03.006
+%U https://www.opticsjournal.net/Articles/OJ803fc7e9b350f42f/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 高功率光纤激光器散热系统设计及热仿真分析
+%O Thermal design and simulation of a cooling system for high-power fiber lasers
+%A 胡传舟
+%A 赵鸿
+%A 张利明
+%A 张雪霞
+%A 张昆
+%A 解子俨
+%A 高平
+%A 朱辰
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 359
+%K 光纤激光器; 数值分析; 热仿真; 翅片; 
+%X 为解决轻量化高功率光纤激光器在高功率输出情况下所面临的热管理问题，本文设计了一种集成风冷与热管的轻量化一体式散热系统。该系统集成多根铜质热管与高密度翅片阵列，将气液相变传热与强迫对流相结合，显著提升了激光器整体散热性能。并且基于计算流体力学（CFD）平台构建了一个三维流-固耦合热传导模型，通过仿真实现翅片参数优化，并为了使得器件温度分布均匀以及进一步提高散热效率，使用石墨烯铝基复合材料进行填充。最终搭建的全光纤激光器原型系统验证了所提出散热方案的有效性，其实验结果与仿真结果一致，且与同等规格商用激光器相比，系统体积减小了47.02%，重量减少高达74%。
+%R 10.3969/j.issn.1001-5078.2026.03.005
+%U https://www.opticsjournal.net/Articles/OJ9c7e0fc4a92755ac/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 改进PSO算法下半导体激光器温度模糊PID控制
+%O Fuzzy PID control of semiconductor laser temperature under improved PSO algorithm
+%A 李丹
+%A 付国帅
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 351
+%K 半导体激光器; 温度控制; 改进粒子群算法; 模糊PID控制; 
+%X 由于在控制过程中难以精确描述半导体激光器的热传递特性，导致参数整定存在较大盲目性，而半导体激光器的热动态具有强非线性和时变特性，PID控制在处理这种非线性和时变特性系统时，难以适应这些变化，导致温度控制效果不佳。因此，为提高半导体激光器温度控制效果，提出融入改进PSO算法的半导体激光器温度模糊PID控制研究。采用复频域分析法构建半导体激光器热传递函数，减少参数整定盲目性；然后根据热传递函数对应的增益来确定初始PID参数，并通过模糊算法来获得PID参数调整量，以动态调整PID参数，从而更好地适应半导体激光器的非线性特性，实现半导体激光器温度模糊PID控制；为进一步提升半导体激光器温度控制的精度，将改进粒子群优化算法加入到模糊PID控制中，对模糊输入输出增益参数展开进一步优化，以使模糊PID适应不同工况变化。由此经优化后的模糊PID控制，获得控制量，以输入半导体激光器的温度控制装置中，实现对温度的控制。实验结果表明：该方法确定的PID参数有效提高了控制响应性能，稳态误差趋近于0，最大超调量不超过9%，平均上升时间为1.19 s，验证了所提方法具有较高的控制精度和稳定性。
+%R 10.3969/j.issn.1001-5078.2026.03.004
+%U https://www.opticsjournal.net/Articles/OJf18bc41735e3bed6/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 卫星激光通信技术研究现状与发展趋势
+%O Current status and development trend of satellite laser communication
+%A 赵思骁
+%A 宋豪壮
+%A 林玉洁
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 333
+%K 卫星通信; 星间链路; 星地链路; 激光通信; 
+%X 激光通信具有速率高、安全性高、功耗低、抗干扰能力强等特点，是构建空天地一体化骨干网络、实现全球高速无缝互联的基石。通过对卫星激光通信技术的发展现状进行深入分析，梳理美国、欧洲、日本和中国在卫星激光通信领域的研究进展和应用，总结微波与激光融合组网技术、高效多体制柔性调制、光学相控阵可靠通信和自适应光学湍流校准关键技术，归纳卫星激光通信在覆盖无缝化、传输高速化、星座网络化、终端轻量化方向的发展趋势，为空天地协同一体化信息网络建设提供参考。
+%R 10.3969/j.issn.1001-5078.2026.03.002
+%U https://www.opticsjournal.net/Articles/OJe4e6aa5fa6117ee2/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 激光与红外2026年第56卷第3期 目录
+%O 激光与红外2026年第56卷第3期 目录
+%J 激光与红外
+%@ 
+%V 56
+%N 3
+%D 2026
+%P 1
+%K 
+%X 
+%R 
+%U https://www.opticsjournal.net/Articles/OJf6cb3dca14e004e2/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 激光表面改性对Yb<sub>2</sub>Si<sub>2</sub>O<sub>7</sub>涂层耐腐蚀性能的影响
+%O Effect of Laser Surface Modification on the Corrosion Resistance of Yb<sub>2</sub>Si<sub>2</sub>O<sub>7</sub> Coatings
+%A 苏景新
+%A 张凌浩
+%A 程涛涛
+%A 张涛
+%A 王远航
+%A 王志平
+%J 硅酸盐学报
+%@ 
+%V 54
+%N 4
+%D 2026
+%P 1381
+%K 环境障涂层; 熔盐腐蚀; 激光表面处理; 釉化层; 接触角; 
+%X 采用大气等离子喷涂(APS)技术制备了Yb<sub>2</sub>Si<sub>2</sub>O<sub>7</sub>(YbDS)/Si环境障涂层(EBCs)，引入紫外皮秒超短脉冲激光对YbDS涂层进行表面处理釉化，并通过氧化钙-氧化镁-氧化铝-硅酸盐(CMAS)腐蚀实验研究了涂层的耐腐蚀性能和腐蚀损伤机理。通过调控激光功率与扫描速率，设置4组不同参数，分别得到了L1、L2、L3和L4四种改性釉化层。对改性前后涂层的物相组成与微观结构进行表征，结果表明，改性层转变为一层均匀致密的釉化层，显著减少了涂层表面的缺陷，同时釉化层中的Yb<sub>2</sub>Si<sub>2</sub>O<sub>7</sub>相完全转变为Yb<sub>2</sub>SiO<sub>5</sub>相。对比不同处理参数后发现，L2涂层在结构致密性与缺陷控制方面表现最优，其粗糙度仅有1.82 &#956;m，孔隙率约为4.42%，具有最佳的耐CMAS腐蚀潜力。经过120 h的CMAS腐蚀实验后，L2涂层的腐蚀深度仅为YbDS的50%。进一步研究发现：激光表面处理形成的致密釉化层在高温腐蚀过程中起到了有效的物理隔绝作用；釉化层中Yb<sub>2</sub>SiO<sub>5</sub>相与CMAS反应生成致密的Ca<sub>2</sub>Yb<sub>8</sub>(SiO<sub>4</sub>)<sub>6</sub>O<sub>2</sub>(磷灰石相)反应层，进一步阻碍CMAS的渗透；激光釉化后显著提高了涂层的接触角，使得CMAS熔盐有利于被高速气流冲刷带走，降低了涂层被CMAS腐蚀的风险。
+%R 10.14062/j.issn.0454-5648.20250647
+%U https://www.opticsjournal.net/Articles/OJae23b77661dc5f98/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 图像辅助激光诱导击穿光谱校正的水中U定量分析
+%O Image-assisted laser-induced breakdown spectroscopy correction for quantitative analysis of uranium in water
+%A 廖瑞
+%A 史晋芳
+%A 邱荣
+%A 周强
+%A 杨怡
+%A 辜周宇
+%J 光电子·激光
+%@ 
+%V 37
+%N 4
+%D 2026
+%P 408
+%K 激光诱导击穿光谱(LIBS); 水中铀元素; 等离子体图像; 定量分析; 
+%X 激光诱导击穿光谱（laser-induced breakdown spectroscopy，LIBS）技术在水中低浓度重金属元素的定量分析中面临特征谱线强度波动大和检测结果不稳定的问题，限制了其实际应用。本文研究了等离子体图像特征与铀元素特征谱线强度之间的相关性，建立了等离子体图像多特征参数融合的谱线强度校正模型，并对U II 367.007 nm和U II 409.013 nm谱线强度进行了校正。结果表明，校正后U II 367.007 nm、U II 409.013 nm谱线强度的平均相对标准偏差（relative standard deviation，RSD）分别由13.21%、13.13%降低至6.58%、7.36%，特征谱线强度稳定性得到了提升。在此基础上，对水中铀元素进行定量分析，校正后U II 367.007 nm、U II 409.013 nm的定标曲线线性拟合度R<sup>2</sup>分别由0.989、0.976提高至0.995、0.993，检出限（limit of detection，LOD）分别由17.66 &#956;g/L、16.95 &#956;g/L降低至11.03 &#956;g/L、7.55 &#956;g/L，有效降低了水中低浓度铀元素的检测下限，提高了定量分析精度。
+%R 10.16136/j.joel.2026.04.0555
+%U https://www.opticsjournal.net/Articles/OJ328bab91799669e4/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+
+%0 Journal Article
+%T 光电子·激光2026年第37卷第4期 目录
+%O 光电子·激光2026年第37卷第4期 目录
+%J 光电子·激光
+%@ 
+%V 37
+%N 4
+%D 2026
+%P 1
+%K 
+%X 
+%R 
+%U https://www.opticsjournal.net/Articles/OJ5eab2bbb2c638611/Abstract
+%W 中国光学期刊网
+%1 JIS Version 11.0.0 
+

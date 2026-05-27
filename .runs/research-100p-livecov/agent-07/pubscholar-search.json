@@ -1,0 +1,129 @@
+{
+  "db": "pubscholar",
+  "tool": "research_pubscholar_search",
+  "op": "search",
+  "profile": "research-pubscholar",
+  "cdp_port": 9362,
+  "query": "机器学习",
+  "classification": "PASS",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js research:pubscholar:search '机器学习' --field '标题' --page-size 5 --profile research-pubscholar --cdp-port 9362 --json",
+    "started_at": "2026-05-27T07:50:57.135000+00:00",
+    "elapsed_seconds": 6.488,
+    "exit_code": 0,
+    "stdout": "{\n  \"result_count\": 12906,\n  \"selected_count\": 0,\n  \"items\": [\n    {\n      \"title\": \"机器学习辅助纳米材料设计与制备\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《化学进展》  2026 年第 2 期  181 - 193  , 共 13 页\"\n    },\n    {\n      \"title\": \"机器学习在中药活性物质筛选中的应用\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国生物工程杂志》  2026 年第 4 期  129 - 141  , 共 13 页\"\n    },\n    {\n      \"title\": \"基于机器学习的低轨卫星光度模型研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-10\"\n    },\n    {\n      \"title\": \"基于机器学习的热亚矮星光谱分类\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-08\"\n    },\n    {\n      \"title\": \"基于机器学习的地下温度预测方法研究现状\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《物探化探计算技术》  2026 年第 1 期  67 - 77  , 共 11 页\"\n    },\n    {\n      \"title\": \"基于机器学习的线谱特征提取方法\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《船舶力学》  2026 年第 1 期  159 - 167  , 共 9 页\"\n    },\n    {\n      \"title\": \"融合机器学习与地理探测器的绿洲盐渍化垂直特征解析\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-03-24\"\n    },\n    {\n      \"title\": \"基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-02-03\"\n    },\n    {\n      \"title\": \"机器学习驱动的烟草物流安全配送优化研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国物流与采购》  2026 年第 1 期  174 - 175  , 共 2 页\"\n    },\n    {\n      \"title\": \"基于机器学习技术的水文预测模型比较分析方法研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国信息化》  2026 年第 1 期  124 - 125  , 共 2 页\"\n    },\n    {\n      \"title\": \"新建对话 刚刚 0 条问答\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": null,\n      \"doi\": \"\",\n      \"meta\": \"新建对话 刚刚 0 条问答\"\n    }\n  ],\n  \"query_url\": \"高级检索: 标题=机器学习\",\n  \"results_url\": \"https://pubscholar.cn/explore\",\n  \"title\": \"PubScholar公益学术平台\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\"\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js research:pubscholar:search '机器学习' --field '标题' --page-size 5 --profile research-pubscholar --cdp-port 9362 --json",
+        "started_at": "2026-05-27T07:50:57.135000+00:00",
+        "elapsed_seconds": 6.488,
+        "exit_code": 0,
+        "stdout": "{\n  \"result_count\": 12906,\n  \"selected_count\": 0,\n  \"items\": [\n    {\n      \"title\": \"机器学习辅助纳米材料设计与制备\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《化学进展》  2026 年第 2 期  181 - 193  , 共 13 页\"\n    },\n    {\n      \"title\": \"机器学习在中药活性物质筛选中的应用\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国生物工程杂志》  2026 年第 4 期  129 - 141  , 共 13 页\"\n    },\n    {\n      \"title\": \"基于机器学习的低轨卫星光度模型研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-10\"\n    },\n    {\n      \"title\": \"基于机器学习的热亚矮星光谱分类\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-04-08\"\n    },\n    {\n      \"title\": \"基于机器学习的地下温度预测方法研究现状\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《物探化探计算技术》  2026 年第 1 期  67 - 77  , 共 11 页\"\n    },\n    {\n      \"title\": \"基于机器学习的线谱特征提取方法\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《船舶力学》  2026 年第 1 期  159 - 167  , 共 9 页\"\n    },\n    {\n      \"title\": \"融合机器学习与地理探测器的绿洲盐渍化垂直特征解析\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-03-24\"\n    },\n    {\n      \"title\": \"基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"来源预印本平台: chinaxiv , 提交时间:\\n         2026-02-03\"\n    },\n    {\n      \"title\": \"机器学习驱动的烟草物流安全配送优化研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国物流与采购》  2026 年第 1 期  174 - 175  , 共 2 页\"\n    },\n    {\n      \"title\": \"基于机器学习技术的水文预测模型比较分析方法研究\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": 2026,\n      \"doi\": \"\",\n      \"meta\": \"《中国信息化》  2026 年第 1 期  124 - 125  , 共 2 页\"\n    },\n    {\n      \"title\": \"新建对话 刚刚 0 条问答\",\n      \"authors\": [],\n      \"source\": \"\",\n      \"year\": null,\n      \"doi\": \"\",\n      \"meta\": \"新建对话 刚刚 0 条问答\"\n    }\n  ],\n  \"query_url\": \"高级检索: 标题=机器学习\",\n  \"results_url\": \"https://pubscholar.cn/explore\",\n  \"title\": \"PubScholar公益学术平台\",\n  \"breadcrumb\": \"筛选条件\\n高级检索: 标题=机器学习\\n全部清除\"\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "result_count": 12906,
+    "selected_count": 0,
+    "items": [
+      {
+        "title": "机器学习辅助纳米材料设计与制备",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《化学进展》  2026 年第 2 期  181 - 193  , 共 13 页"
+      },
+      {
+        "title": "机器学习在中药活性物质筛选中的应用",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《中国生物工程杂志》  2026 年第 4 期  129 - 141  , 共 13 页"
+      },
+      {
+        "title": "基于机器学习的低轨卫星光度模型研究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-04-10"
+      },
+      {
+        "title": "基于机器学习的热亚矮星光谱分类",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-04-08"
+      },
+      {
+        "title": "基于机器学习的地下温度预测方法研究现状",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《物探化探计算技术》  2026 年第 1 期  67 - 77  , 共 11 页"
+      },
+      {
+        "title": "基于机器学习的线谱特征提取方法",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《船舶力学》  2026 年第 1 期  159 - 167  , 共 9 页"
+      },
+      {
+        "title": "融合机器学习与地理探测器的绿洲盐渍化垂直特征解析",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-03-24"
+      },
+      {
+        "title": "基于抗PLA2R抗体与SNP的机器学习模型在IMN诊断中的效能探究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "来源预印本平台: chinaxiv , 提交时间:\n         2026-02-03"
+      },
+      {
+        "title": "机器学习驱动的烟草物流安全配送优化研究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《中国物流与采购》  2026 年第 1 期  174 - 175  , 共 2 页"
+      },
+      {
+        "title": "基于机器学习技术的水文预测模型比较分析方法研究",
+        "authors": [],
+        "source": "",
+        "year": 2026,
+        "doi": "",
+        "meta": "《中国信息化》  2026 年第 1 期  124 - 125  , 共 2 页"
+      },
+      {
+        "title": "新建对话 刚刚 0 条问答",
+        "authors": [],
+        "source": "",
+        "year": null,
+        "doi": "",
+        "meta": "新建对话 刚刚 0 条问答"
+      }
+    ],
+    "query_url": "高级检索: 标题=机器学习",
+    "results_url": "https://pubscholar.cn/explore",
+    "title": "PubScholar公益学术平台",
+    "breadcrumb": "筛选条件\n高级检索: 标题=机器学习\n全部清除"
+  },
+  "launch_exit_code": 0,
+  "captured_at": "2026-05-27T07:51:03.622979+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "db": "pubscholar",
+  "phase": "close",
+  "result": {
+    "attempt": 1,
+    "command": "node dist/src/cli.js browser:close --profile research-pubscholar --mode close-process --release-lease --force --json",
+    "started_at": "2026-05-27T07:51:41.642480+00:00",
+    "elapsed_seconds": 0.158,
+    "exit_code": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-pubscholar\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+    "stderr": "",
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": "node dist/src/cli.js browser:close --profile research-pubscholar --mode close-process --release-lease --force --json",
+        "started_at": "2026-05-27T07:51:41.642480+00:00",
+        "elapsed_seconds": 0.158,
+        "exit_code": 0,
+        "stdout": "{\n  \"ok\": true,\n  \"profileId\": \"research-pubscholar\",\n  \"released\": false,\n  \"cleanedLockFiles\": []\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed": {
+    "ok": true,
+    "profileId": "research-pubscholar",
+    "released": false,
+    "cleanedLockFiles": []
+  },
+  "captured_at": "2026-05-27T07:51:41.800448+00:00"
+}
