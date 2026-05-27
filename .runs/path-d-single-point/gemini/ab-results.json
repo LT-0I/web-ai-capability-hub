@@ -1,0 +1,118 @@
+{
+  "service": "gemini",
+  "profile": "gemini-9225",
+  "cdpPort": 9225,
+  "started_at": "2026-05-27T13:16:57.730Z",
+  "finished_at": "2026-05-27T13:18:02.428Z",
+  "prompts": [
+    "what is 2+2?",
+    "list three programming languages",
+    "summarize the SR-71 in one sentence"
+  ],
+  "summary": {
+    "dom_success_rate": 1,
+    "rpc_success_rate": 1,
+    "dom_latency_median_ms": 16382,
+    "dom_latency_p95_ms": 17504,
+    "rpc_latency_median_ms": 6602,
+    "rpc_latency_p95_ms": 7017,
+    "median_latency_ratio_rpc_over_dom": 0.403,
+    "min_similarity": 0.406
+  },
+  "results": [
+    {
+      "prompt": "what is 2+2?",
+      "dom": {
+        "label": "dom",
+        "ok": true,
+        "latency_ms": 12266,
+        "driver_elapsed_ms": 12261,
+        "response_text": "2+2=4",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/006734b1599c935e?hl=en",
+        "model_used": null,
+        "message": ""
+      },
+      "rpc": {
+        "label": "rpc",
+        "ok": true,
+        "latency_ms": 7017,
+        "driver_elapsed_ms": 7017,
+        "response_text": "$2 + 2 = 4$",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/006734b1599c935e?hl=en",
+        "model_used": null,
+        "message": ""
+      },
+      "similarity": 1,
+      "latency_ratio_rpc_over_dom": 0.572
+    },
+    {
+      "prompt": "list three programming languages",
+      "dom": {
+        "label": "dom",
+        "ok": true,
+        "latency_ms": 16382,
+        "driver_elapsed_ms": 16380,
+        "response_text": "Here are three popular programming languages:Python: Highly popular for data science, artificial intelligence, and web development due to its clean, readable syntax.JavaScript: The essential language for web development, used to create interactive and dynamic content on the front-end and back-end (via Node.js).Java: A versatile, object-oriented language widely used for building enterprise-scale applications, Android apps, and large system backends.",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/101f281b93a6c503",
+        "model_used": null,
+        "message": ""
+      },
+      "rpc": {
+        "label": "rpc",
+        "ok": true,
+        "latency_ms": 6602,
+        "driver_elapsed_ms": 6602,
+        "response_text": "Here are three prominent programming languages, each serving a different primary purpose:\n\n* **Python:** Widely celebrated for its clean, readable syntax. It is the go-to language for data science, machine learning, and rapid application development.\n* **JavaScript:** The backbone of modern web development. It runs natively in browsers, allowing you to create interactive and dynamic user experiences on the web.\n* **Rust:** A systems programming language focused on safety, speed, and concurrency. It prevents common programming bugs related to memory usage, making it highly popular for performance-critical software.",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/101f281b93a6c503",
+        "model_used": null,
+        "message": ""
+      },
+      "similarity": 0.406,
+      "latency_ratio_rpc_over_dom": 0.403
+    },
+    {
+      "prompt": "summarize the SR-71 in one sentence",
+      "dom": {
+        "label": "dom",
+        "ok": true,
+        "latency_ms": 17504,
+        "driver_elapsed_ms": 17502,
+        "response_text": "The SR-71 \"Blackbird\" was a Cold War-era strategic reconnaissance aircraft engineered by Lockheed's Skunk Works that flew at the edge of space at speeds exceeding Mach 3, outrunning surface-to-air missiles through sheer speed and altitude rather than stealth.",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/f7490578d95fe31d",
+        "model_used": null,
+        "message": ""
+      },
+      "rpc": {
+        "label": "rpc",
+        "ok": true,
+        "latency_ms": 4926,
+        "driver_elapsed_ms": 4926,
+        "response_text": "The SR-71 \"Blackbird\" was a Cold War-era strategic reconnaissance aircraft designed by Lockheed's Skunk Works that operated at speeds exceeding Mach 3 and altitudes above 85,000 feet, allowing it to safely outrun surface-to-air missiles rather than hiding from them.",
+        "completion_detected": true,
+        "errorCode": null,
+        "error_code": null,
+        "chat_url": "https://gemini.google.com/app/f7490578d95fe31d",
+        "model_used": null,
+        "message": ""
+      },
+      "similarity": 0.682,
+      "latency_ratio_rpc_over_dom": 0.281
+    }
+  ],
+  "closed_tabs": []
+}
