@@ -1,0 +1,82 @@
+{
+  "db": "asce",
+  "op": "export",
+  "profile": "research-asce",
+  "cdp_port": 9312,
+  "source_record": {
+    "title": "Nano-Modified Coatings for Concrete Protection against Magnesium Sulfate",
+    "authors": [
+      "L. M. Ariyadasa",
+      "M. T. Bassuoni",
+      "J. Carroll",
+      "A. Ghazy"
+    ],
+    "doi": "10.1061/JMCEE7.MTENG-21818",
+    "journal": "Journal of Materials in Civil Engineering Volume",
+    "year": 2025
+  },
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 1,
+    "signal": null,
+    "stdout": "",
+    "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9312/json/version): connect ECONNREFUSED 127.0.0.1:9312\"}\n",
+    "timed_out": false
+  },
+  "final_classification": "PASS",
+  "attempts": [
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:export --doi 10.1061/9780784412435.088 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asce --confirmed --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: ASCE export failed\",\"evidence\":{\"doi\":\"10.1061/9780784412435.088\",\"format\":\"ris\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n",
+      "timed_out": false,
+      "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+      "parsed": null
+    },
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:export --doi 10.1061/JMCEE7.MTENG-21818 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asce --confirmed --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "",
+      "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: ASCE export failed\",\"evidence\":{\"doi\":\"10.1061/JMCEE7.MTENG-21818\",\"format\":\"ris\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n",
+      "timed_out": false,
+      "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+      "parsed": null
+    },
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:export --doi 10.1061/JMCEE7.MTENG-21818 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asce --confirmed --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asce/Citation.ris\",\n  \"bytes\": 4932,\n  \"sha256\": \"055ac049ebb329a0a19e644cfc518aedd0c6356ff26c46d544f92043877ae637\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1061/JMCEE7.MTENG-21818\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asce/Citation.ris",
+        "bytes": 4932,
+        "sha256": "055ac049ebb329a0a19e644cfc518aedd0c6356ff26c46d544f92043877ae637",
+        "format": "ris",
+        "doi": "10.1061/JMCEE7.MTENG-21818"
+      }
+    }
+  ],
+  "launched_with_retry": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asce\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asce\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9312\",\n  \"cdpPort\": 9312,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 530541,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/10AF65244D25C51B378D34BEF555919B\",\n      \"id\": \"10AF65244D25C51B378D34BEF555919B\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/10AF65244D25C51B378D34BEF555919B\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/FFABFAE817EC2E591B94E1EBA90E4FC4\",\n      \"id\": \"FFABFAE817EC2E591B94E1EBA90E4FC4\",\n      \"parentId\": \"10AF65244D25C51B378D34BEF555919B\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/FFABFAE817EC2E591B94E1EBA90E4FC4\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/F418D7A06A4BCF8C863A0E0353F33C74\",\n      \"id\": \"F418D7A06A4BCF8C863A0E0353F33C74\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/F418D7A06A4BCF8C863A0E0353F33C74\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/7A34A55412F62EBE9407E3A28785ECCD\",\n      \"id\": \"7A34A55412F62EBE9407E3A28785ECCD\",\n      \"parentId\": \"F418D7A06A4BCF8C863A0E0353F33C74\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/7A34A55412F62EBE9407E3A28785ECCD\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/browser/582e7c54-e23d-4fe5-9aea-c925022a5a35\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "note": "Fixed ASCE export by posting the live citation form via the CDP page request context when the browser download event is not emitted.",
+  "launched_with_resmoke": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asce\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asce\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9312\",\n  \"cdpPort\": 9312,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 548907,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"faviconUrl\": \"https://ascelibrary.org/products/asce/releasedAssets/images/favicon/favicon-58698b9cc7159929cce7c081f877d6a5.ico\",\n      \"id\": \"179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"title\": \"Download Citations | ASCE Library\",\n      \"type\": \"page\",\n      \"url\": \"https://ascelibrary.org/action/showCitFormats?doi=10.1061%2FJMCEE7.MTENG-21818\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/browser/46f47c5d-f954-4b5e-a2dc-acd4f4bb5c6e\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  }
+}

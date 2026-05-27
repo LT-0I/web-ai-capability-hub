@@ -1,0 +1,40 @@
+{
+  "db": "aps",
+  "op": "export",
+  "profile": "research-aps",
+  "cdp_port": 9310,
+  "source_record": {
+    "title": "Estimates of Loss Function Concentration in Noisy Parametrized Quantum Circuits",
+    "authors": [],
+    "doi": "10.1103/dw2h-ll6r",
+    "journal": "prxquantum",
+    "year": 2026,
+    "article_url": "https://journals.aps.org/prxquantum/abstract/10.1103/dw2h-ll6r"
+  },
+  "launched_with": {
+    "cmd": "node dist/src/cli.js browser:launch --profile research-aps --cdp-port 9310 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-aps\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-aps\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9310\",\n  \"cdpPort\": 9310,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 468655,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9310/devtools/page/541591143306F15851C1E9A7CF2B191B\",\n      \"id\": \"541591143306F15851C1E9A7CF2B191B\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9310/devtools/page/541591143306F15851C1E9A7CF2B191B\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9310/devtools/browser/c59affda-e2b6-451e-b585-66ca46070391\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "attempts": [
+    {
+      "cmd": "node dist/src/cli.js research:aps:export --doi 10.1103/dw2h-ll6r --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/aps --confirmed --article-url https://journals.aps.org/prxquantum/abstract/10.1103/dw2h-ll6r --profile research-aps --cdp-port 9310 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/aps/dw2h-ll6r.ris\",\n  \"bytes\": 407,\n  \"sha256\": \"3310d60d4b7681a6d79dce7a54545ca909fe88204018f32d6ec3cb4141d12a68\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1103/dw2h-ll6r\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/aps/dw2h-ll6r.ris",
+        "bytes": 407,
+        "sha256": "3310d60d4b7681a6d79dce7a54545ca909fe88204018f32d6ec3cb4141d12a68",
+        "format": "ris",
+        "doi": "10.1103/dw2h-ll6r"
+      }
+    }
+  ]
+}

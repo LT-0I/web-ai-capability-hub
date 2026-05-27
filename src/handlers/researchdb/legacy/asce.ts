@@ -7,7 +7,6 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type AsceArea = "AllField" | "Title" | "Contrib" | "Keyword" | "AbstractText" | "Affiliation";
@@ -34,6 +33,7 @@ const VALID_FORMATS = new Set(["ris", "bibtex", "endnote", "medlars"]);
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+const ASCE_FORMAT_EXTENSION: Record<AsceExportFormat, string> = { ris: "ris", bibtex: "bib", endnote: "enw", medlars: "txt" };
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -57,6 +57,22 @@ function requireQuery(query: string): string {
 function requireDoi(doi: string): string {
   if (!doi || !doi.trim()) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "doi is required");
   return doi.trim();
+}
+function safeFileToken(value: string): string { return value.toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^-|-$/g, "").slice(0, 90) || "asce"; }
+function uniquePath(dir: string, filename: string): string {
+  const parsed = path.parse(filename);
+  let candidate = path.join(dir, filename);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${parsed.name}(${index})${parsed.ext}`);
+    index += 1;
+  }
+  return candidate;
+}
+function filenameFromContentDisposition(value: string | undefined, fallback: string): string {
+  const raw = /filename\*?=(?:UTF-8''|")?([^";]+)/i.exec(value || "")?.[1];
+  const decoded = raw ? decodeURIComponent(raw.replace(/^"|"$/g, "")) : "";
+  return path.basename(decoded || fallback).replace(/[^\w .()[\]-]+/g, "-") || fallback;
 }
 
 export function buildAsceSearchUrl(args: AsceSearchArgs): string {
@@ -256,20 +272,26 @@ export async function researchAsceExport(args: AsceExportArgs): Promise<{ artifa
         const checked = await direct.isChecked().catch(() => false);
         if (!checked) await direct.click({ timeout: 3000 }).catch(() => undefined);
       }
-      const clicked = await runArtifactClick({
-        profile,
-        tabUrlContains: encodeURIComponent(doi),
-        buttonSelector: 'input[name="submit"]',
-        downloadDir,
-        timeoutMs: 60000,
-        locateTimeoutMs: 10000,
-        frameMinCount: 0,
-        filenamePattern: format === "ris" ? "*.ris" : undefined
+      const downloadFileName = await page.locator('input[name="downloadFileName"]').first().inputValue({ timeout: 5000 }).catch(() => `asce-${safeFileToken(doi)}`);
+      const response = await page.request.post(new URL("/action/downloadCitation", ASCE_ORIGIN).toString(), {
+        form: { doi, downloadFileName, include: "abs", format, direct: "", submit: "Download" },
+        timeout: 60000
       });
-      const artifact_path = clicked.path;
+      if (!response.ok?.()) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "ASCE citation download returned a non-OK status", { status: response.status?.(), doi, format });
+      }
+      const fallbackName = `${safeFileToken(downloadFileName || doi)}.${ASCE_FORMAT_EXTENSION[format]}`;
+      const artifact_path = uniquePath(downloadDir, filenameFromContentDisposition(response.headers?.()["content-disposition"], fallbackName));
+      fs.writeFileSync(artifact_path, Buffer.from(await response.body()));
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ASCE RIS artifact failed content validation", { artifact_path, doi });
+      }
+      if (format === "bibtex" && (!/^@\w+\{/m.test(text) || !text.includes(doi))) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ASCE BibTeX artifact failed content validation", { artifact_path, doi });
+      }
+      if ((format === "endnote" || format === "medlars") && !text.includes(doi)) {
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ASCE citation artifact failed content validation", { artifact_path, doi, format });
       }
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi };
     } catch (error: any) {

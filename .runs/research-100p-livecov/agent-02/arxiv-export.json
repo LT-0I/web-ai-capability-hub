@@ -1,0 +1,91 @@
+{
+  "db": "arxiv",
+  "op": "export",
+  "profile": "research-arxiv",
+  "cdp_port": 9311,
+  "source_record": {
+    "id": "2605.27372",
+    "title": "G3T Up! Gravity Aligned Coordinate Frames Simplify Pointmap Processing",
+    "authors": [
+      "Bharath Raj Nagoor Kani",
+      "Noah Snavely Abstract : …axis across viewpoints",
+      "reducing the rotational degrees of freedom needed to relate pointmaps to one another. To this end",
+      "we introduce the Gravity Grounded Geometry Transformer (G3T)",
+      "fine-tuned from existing models on gravity-aligned 3D data. G3T produces highly accurate gravity-aware predictions",
+      "including upright pointmaps",
+      "camera-to-gravity poses. We… ▽ More Modern feed-forward 3D reconstruction methods like VGGT predict pixel-aligned pointmaps in camera-centric coordinate frames. However",
+      "this choice of coordinate frame is not always optimal. We propose instead to predict pointmaps in upright",
+      "gravity-aligned frames that exploit strong structural cues present in many real-world scenes. Unlike camera-centric frames",
+      "gravity-aligned frames share a common vertical axis across viewpoints",
+      "reducing the rotational degrees of freedom needed to relate pointmaps to one another. To this end",
+      "we introduce the Gravity Grounded Geometry Transformer (G3T)",
+      "fine-tuned from existing models on gravity-aligned 3D data. G3T produces highly accurate gravity-aware predictions",
+      "including upright pointmaps",
+      "camera-to-gravity poses. We further introduce G3T-Long",
+      "a submap-based incremental 3D reconstruction pipeline that leverages the reduced rotational degrees of freedom afforded by upright frames to achieve significantly improved reconstruction accuracy. △ Less"
+    ],
+    "abstract": "",
+    "categories": [
+      "cs.CV"
+    ],
+    "year": 2026,
+    "abs_url": "https://arxiv.org/abs/2605.27372",
+    "pdf_url": "https://arxiv.org/pdf/2605.27372",
+    "doi": ""
+  },
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-arxiv --cdp-port 9311 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-arxiv\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-arxiv\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9311\",\n  \"cdpPort\": 9311,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 490286,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9311/devtools/page/54F5776C1470E2AC65A3BD6DC9670302\",\n      \"faviconUrl\": \"https://static.arxiv.org/static/base/1.0.0a5/images/icons/favicon.ico\",\n      \"id\": \"54F5776C1470E2AC65A3BD6DC9670302\",\n      \"title\": \"400 Bad Request | arXiv e-print repository\",\n      \"type\": \"page\",\n      \"url\": \"https://arxiv.org/search/advanced?advanced=1&terms-0-operator=AND&terms-0-term=transformer&terms-0-field=all&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&date-year=&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=show&size=5&order=-announced_date_first\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9311/devtools/page/54F5776C1470E2AC65A3BD6DC9670302\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9311/devtools/browser/a8b2e9f1-f1da-4ab9-8284-edeff2118cb7\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "attempts": [
+    {
+      "cmd": "node dist/src/cli.js research:arxiv:export --id 1706.03762 --format bibtex --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv --confirmed --profile research-arxiv --cdp-port 9311 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv/arxiv-1706.03762.bib\",\n  \"bytes\": 383,\n  \"sha256\": \"aca1dacd15160b302a6ef776d3331357a4f2c93b5a93a8ead1e4a5c28ed40fc1\",\n  \"format\": \"bibtex\",\n  \"id\": \"1706.03762\",\n  \"source_url\": \"https://arxiv.org/bibtex/1706.03762\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv/arxiv-1706.03762.bib",
+        "bytes": 383,
+        "sha256": "aca1dacd15160b302a6ef776d3331357a4f2c93b5a93a8ead1e4a5c28ed40fc1",
+        "format": "bibtex",
+        "id": "1706.03762",
+        "source_url": "https://arxiv.org/bibtex/1706.03762"
+      }
+    },
+    {
+      "cmd": "node dist/src/cli.js research:arxiv:export --id 1706.03762 --format bibtex --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv --confirmed --profile research-arxiv --cdp-port 9311 --json",
+      "exit_code": 1,
+      "signal": null,
+      "stdout": "",
+      "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.14.0\n",
+      "timed_out": false,
+      "classification": "FAIL_MODULE_NOT_FOUND",
+      "parsed": null
+    },
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:arxiv:export --id 2605.27372 --format bibtex --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv --confirmed --profile research-arxiv --cdp-port 9311 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv/arxiv-2605.27372.bib\",\n  \"bytes\": 330,\n  \"sha256\": \"89813079ce5bfad472d8caca07dd351237ee1e3020bb87d13b01edfb00507bc9\",\n  \"format\": \"bibtex\",\n  \"id\": \"2605.27372\",\n  \"source_url\": \"https://arxiv.org/bibtex/2605.27372\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/arxiv/arxiv-2605.27372.bib",
+        "bytes": 330,
+        "sha256": "89813079ce5bfad472d8caca07dd351237ee1e3020bb87d13b01edfb00507bc9",
+        "format": "bibtex",
+        "id": "2605.27372",
+        "source_url": "https://arxiv.org/bibtex/2605.27372"
+      }
+    }
+  ],
+  "final_classification": "PASS"
+}

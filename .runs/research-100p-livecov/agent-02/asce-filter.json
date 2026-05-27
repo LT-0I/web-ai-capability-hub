@@ -1,0 +1,315 @@
+{
+  "db": "asce",
+  "op": "filter",
+  "profile": "research-asce",
+  "cdp_port": 9312,
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 1,
+    "signal": null,
+    "stdout": "",
+    "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9312/json/version): connect ECONNREFUSED 127.0.0.1:9312\"}\n",
+    "timed_out": false
+  },
+  "final_classification": "PASS",
+  "attempts": [
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:filter --query concrete --after-year 2020 --before-year 2026 --page-size 10 --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 16034,\n  \"items\": [\n    {\n      \"title\": \"Nano-Modified Coatings for Concrete Protection against Magnesium Sulfate\",\n      \"authors\": [\n        \"L. M. Ariyadasa\",\n        \"M. T. Bassuoni\",\n        \"J. Carroll\",\n        \"A. Ghazy\"\n      ],\n      \"doi\": \"10.1061/JMCEE7.MTENG-21818\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Effect of Water-to-Cement Ratios on Performance of Concrete with Prewetted Lightweight Aggregates\",\n      \"authors\": [\n        \"Zhizhuo Feng\",\n        \"Dejian Shen\",\n        \"Chuyuan Wen\",\n        \"Xiaojian Tang\",\n        \"Guoqing Jiang\"\n      ],\n      \"doi\": \"10.1061/JMCEE7.MTENG-14923\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Quantitative Model of Uniaxial Strength and Microstructure of Iron Ore Tailings Concrete\",\n      \"authors\": [\n        \"Wei Li\",\n        \"Minghui Fan\",\n        \"Yuhao Jiao\",\n        \"Puxin Yang\",\n        \"Wenyuan Ren\",\n        \"Tao Luo\"\n      ],\n      \"doi\": \"10.1061/JAEIED.AEENG-1956\",\n      \"journal\": \"Journal of Architectural Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Making Connections to Concrete Pressure Pipe\",\n      \"authors\": [\n        \"especially when the existing pipe is old\",\n        \"the original pipe manufacturer is long out of business\",\n        \"the owner has no records. Common connections made to existing concrete pressure pipes include taps for outlets\",\n        \"removal\",\n        \"replacement of select pipe segments for outlets\",\n        \"in situ modification of pipe for outlets\",\n        \"in-line or end connections for pipeline relocations. This paper addresses some of the more commonly encountered but unique challenges for in-service or pressurized (“hot” or “wet”) taps of concrete pressure pipelines\",\n        \"“dry” connections (where the connecting pipeline can be depressurized\",\n        \"dewatered for a short time). Changing the thrust restraint regime for the existing pipeline\",\n        \"maintenance of or restoration of bedding\"\n      ],\n      \"doi\": \"10.1061/9780784483619.040\",\n      \"journal\": \"\",\n      \"year\": 2021\n    },\n    {\n      \"title\": \"Effect of GFRP Reinforcement Ratio on the Strength and Effective Stiffness of High-Strength Concrete Columns: Experimental and Analytical Study\",\n      \"authors\": [\n        \"Ashraf Salah-Eldin\",\n        \"Hamdy M. Mohamed\",\n        \"Brahim Benmokrane\"\n      ],\n      \"doi\": \"10.1061/(ASCE)CC.1943-5614.0001068\",\n      \"journal\": \"Journal of Composites for Construction Volume\",\n      \"year\": 2020\n    },\n    {\n      \"title\": \"Performance of Unbonded Local Prestressed Concrete Beam–Column Substructures against Progressive Collapse\",\n      \"authors\": [\n        \"Tao Qu\",\n        \"Bin Zeng\",\n        \"Chang Wu\",\n        \"Linjie Huang\",\n        \"Jing Wu\",\n        \"Zhen Zhou\"\n      ],\n      \"doi\": \"10.1061/JSENDH.STENG-14665\",\n      \"journal\": \"Journal of Structural Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Estimating Stress Relaxation and Cracking Potential of High-Strength Concrete Reinforced with Polyvinyl Alcohol Fiber at Early Age\",\n      \"authors\": [\n        \"Dejian Shen\",\n        \"Zhizhuo Feng\",\n        \"Tingting Zhang\",\n        \"Xiaojian Tang\",\n        \"Guoqing Jiang\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0004374\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"Experiments and Stress-Strain Model of Concrete Confined by UHPC Materials\",\n      \"authors\": [\n        \"Teng Tong\",\n        \"Siqi Yuan\",\n        \"Zhao Liu\",\n        \"Zhiqi He\",\n        \"Jingquan Wang\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0004671\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Effects of Modern Concrete Materials on Thermal Conductivity\",\n      \"authors\": [\n        \"Yogiraj Sargam\",\n        \"Kejin Wang\",\n        \"James E. Alleman\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0003026\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2020\n    },\n    {\n      \"title\": \"Le T. Pham\",\n      \"authors\": [\n        \"Effects of Air-Entraining Admixtures on Stability of Air Bubbles in Concrete\",\n        \"Steven M. Cramer\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0003628\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2021\n    }\n  ],\n  \"refined_url\": \"https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10&AfterYear=2020&BeforeYear=2026\",\n  \"confirm_title\": \"Search Result | ASCE Library\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 16034,
+        "items": [
+          {
+            "title": "Nano-Modified Coatings for Concrete Protection against Magnesium Sulfate",
+            "authors": [
+              "L. M. Ariyadasa",
+              "M. T. Bassuoni",
+              "J. Carroll",
+              "A. Ghazy"
+            ],
+            "doi": "10.1061/JMCEE7.MTENG-21818",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Effect of Water-to-Cement Ratios on Performance of Concrete with Prewetted Lightweight Aggregates",
+            "authors": [
+              "Zhizhuo Feng",
+              "Dejian Shen",
+              "Chuyuan Wen",
+              "Xiaojian Tang",
+              "Guoqing Jiang"
+            ],
+            "doi": "10.1061/JMCEE7.MTENG-14923",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2023
+          },
+          {
+            "title": "Quantitative Model of Uniaxial Strength and Microstructure of Iron Ore Tailings Concrete",
+            "authors": [
+              "Wei Li",
+              "Minghui Fan",
+              "Yuhao Jiao",
+              "Puxin Yang",
+              "Wenyuan Ren",
+              "Tao Luo"
+            ],
+            "doi": "10.1061/JAEIED.AEENG-1956",
+            "journal": "Journal of Architectural Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Making Connections to Concrete Pressure Pipe",
+            "authors": [
+              "especially when the existing pipe is old",
+              "the original pipe manufacturer is long out of business",
+              "the owner has no records. Common connections made to existing concrete pressure pipes include taps for outlets",
+              "removal",
+              "replacement of select pipe segments for outlets",
+              "in situ modification of pipe for outlets",
+              "in-line or end connections for pipeline relocations. This paper addresses some of the more commonly encountered but unique challenges for in-service or pressurized (“hot” or “wet”) taps of concrete pressure pipelines",
+              "“dry” connections (where the connecting pipeline can be depressurized",
+              "dewatered for a short time). Changing the thrust restraint regime for the existing pipeline",
+              "maintenance of or restoration of bedding"
+            ],
+            "doi": "10.1061/9780784483619.040",
+            "journal": "",
+            "year": 2021
+          },
+          {
+            "title": "Effect of GFRP Reinforcement Ratio on the Strength and Effective Stiffness of High-Strength Concrete Columns: Experimental and Analytical Study",
+            "authors": [
+              "Ashraf Salah-Eldin",
+              "Hamdy M. Mohamed",
+              "Brahim Benmokrane"
+            ],
+            "doi": "10.1061/(ASCE)CC.1943-5614.0001068",
+            "journal": "Journal of Composites for Construction Volume",
+            "year": 2020
+          },
+          {
+            "title": "Performance of Unbonded Local Prestressed Concrete Beam–Column Substructures against Progressive Collapse",
+            "authors": [
+              "Tao Qu",
+              "Bin Zeng",
+              "Chang Wu",
+              "Linjie Huang",
+              "Jing Wu",
+              "Zhen Zhou"
+            ],
+            "doi": "10.1061/JSENDH.STENG-14665",
+            "journal": "Journal of Structural Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Estimating Stress Relaxation and Cracking Potential of High-Strength Concrete Reinforced with Polyvinyl Alcohol Fiber at Early Age",
+            "authors": [
+              "Dejian Shen",
+              "Zhizhuo Feng",
+              "Tingting Zhang",
+              "Xiaojian Tang",
+              "Guoqing Jiang"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0004374",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2022
+          },
+          {
+            "title": "Experiments and Stress-Strain Model of Concrete Confined by UHPC Materials",
+            "authors": [
+              "Teng Tong",
+              "Siqi Yuan",
+              "Zhao Liu",
+              "Zhiqi He",
+              "Jingquan Wang"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0004671",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2023
+          },
+          {
+            "title": "Effects of Modern Concrete Materials on Thermal Conductivity",
+            "authors": [
+              "Yogiraj Sargam",
+              "Kejin Wang",
+              "James E. Alleman"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0003026",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2020
+          },
+          {
+            "title": "Le T. Pham",
+            "authors": [
+              "Effects of Air-Entraining Admixtures on Stability of Air Bubbles in Concrete",
+              "Steven M. Cramer"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0003628",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2021
+          }
+        ],
+        "refined_url": "https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10&AfterYear=2020&BeforeYear=2026",
+        "confirm_title": "Search Result | ASCE Library"
+      }
+    },
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:filter --query concrete --after-year 2020 --before-year 2026 --page-size 10 --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 16034,\n  \"items\": [\n    {\n      \"title\": \"Nano-Modified Coatings for Concrete Protection against Magnesium Sulfate\",\n      \"authors\": [\n        \"L. M. Ariyadasa\",\n        \"M. T. Bassuoni\",\n        \"J. Carroll\",\n        \"A. Ghazy\"\n      ],\n      \"doi\": \"10.1061/JMCEE7.MTENG-21818\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Effect of Water-to-Cement Ratios on Performance of Concrete with Prewetted Lightweight Aggregates\",\n      \"authors\": [\n        \"Zhizhuo Feng\",\n        \"Dejian Shen\",\n        \"Chuyuan Wen\",\n        \"Xiaojian Tang\",\n        \"Guoqing Jiang\"\n      ],\n      \"doi\": \"10.1061/JMCEE7.MTENG-14923\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Quantitative Model of Uniaxial Strength and Microstructure of Iron Ore Tailings Concrete\",\n      \"authors\": [\n        \"Wei Li\",\n        \"Minghui Fan\",\n        \"Yuhao Jiao\",\n        \"Puxin Yang\",\n        \"Wenyuan Ren\",\n        \"Tao Luo\"\n      ],\n      \"doi\": \"10.1061/JAEIED.AEENG-1956\",\n      \"journal\": \"Journal of Architectural Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Making Connections to Concrete Pressure Pipe\",\n      \"authors\": [\n        \"especially when the existing pipe is old\",\n        \"the original pipe manufacturer is long out of business\",\n        \"the owner has no records. Common connections made to existing concrete pressure pipes include taps for outlets\",\n        \"removal\",\n        \"replacement of select pipe segments for outlets\",\n        \"in situ modification of pipe for outlets\",\n        \"in-line or end connections for pipeline relocations. This paper addresses some of the more commonly encountered but unique challenges for in-service or pressurized (“hot” or “wet”) taps of concrete pressure pipelines\",\n        \"“dry” connections (where the connecting pipeline can be depressurized\",\n        \"dewatered for a short time). Changing the thrust restraint regime for the existing pipeline\",\n        \"maintenance of or restoration of bedding\"\n      ],\n      \"doi\": \"10.1061/9780784483619.040\",\n      \"journal\": \"\",\n      \"year\": 2021\n    },\n    {\n      \"title\": \"Effect of GFRP Reinforcement Ratio on the Strength and Effective Stiffness of High-Strength Concrete Columns: Experimental and Analytical Study\",\n      \"authors\": [\n        \"Ashraf Salah-Eldin\",\n        \"Hamdy M. Mohamed\",\n        \"Brahim Benmokrane\"\n      ],\n      \"doi\": \"10.1061/(ASCE)CC.1943-5614.0001068\",\n      \"journal\": \"Journal of Composites for Construction Volume\",\n      \"year\": 2020\n    },\n    {\n      \"title\": \"Performance of Unbonded Local Prestressed Concrete Beam–Column Substructures against Progressive Collapse\",\n      \"authors\": [\n        \"Tao Qu\",\n        \"Bin Zeng\",\n        \"Chang Wu\",\n        \"Linjie Huang\",\n        \"Jing Wu\",\n        \"Zhen Zhou\"\n      ],\n      \"doi\": \"10.1061/JSENDH.STENG-14665\",\n      \"journal\": \"Journal of Structural Engineering Volume\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Estimating Stress Relaxation and Cracking Potential of High-Strength Concrete Reinforced with Polyvinyl Alcohol Fiber at Early Age\",\n      \"authors\": [\n        \"Dejian Shen\",\n        \"Zhizhuo Feng\",\n        \"Tingting Zhang\",\n        \"Xiaojian Tang\",\n        \"Guoqing Jiang\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0004374\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"Experiments and Stress-Strain Model of Concrete Confined by UHPC Materials\",\n      \"authors\": [\n        \"Teng Tong\",\n        \"Siqi Yuan\",\n        \"Zhao Liu\",\n        \"Zhiqi He\",\n        \"Jingquan Wang\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0004671\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"Effects of Modern Concrete Materials on Thermal Conductivity\",\n      \"authors\": [\n        \"Yogiraj Sargam\",\n        \"Kejin Wang\",\n        \"James E. Alleman\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0003026\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2020\n    },\n    {\n      \"title\": \"Le T. Pham\",\n      \"authors\": [\n        \"Effects of Air-Entraining Admixtures on Stability of Air Bubbles in Concrete\",\n        \"Steven M. Cramer\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0003628\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2021\n    }\n  ],\n  \"refined_url\": \"https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10&AfterYear=2020&BeforeYear=2026\",\n  \"confirm_title\": \"Search Result | ASCE Library\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 16034,
+        "items": [
+          {
+            "title": "Nano-Modified Coatings for Concrete Protection against Magnesium Sulfate",
+            "authors": [
+              "L. M. Ariyadasa",
+              "M. T. Bassuoni",
+              "J. Carroll",
+              "A. Ghazy"
+            ],
+            "doi": "10.1061/JMCEE7.MTENG-21818",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Effect of Water-to-Cement Ratios on Performance of Concrete with Prewetted Lightweight Aggregates",
+            "authors": [
+              "Zhizhuo Feng",
+              "Dejian Shen",
+              "Chuyuan Wen",
+              "Xiaojian Tang",
+              "Guoqing Jiang"
+            ],
+            "doi": "10.1061/JMCEE7.MTENG-14923",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2023
+          },
+          {
+            "title": "Quantitative Model of Uniaxial Strength and Microstructure of Iron Ore Tailings Concrete",
+            "authors": [
+              "Wei Li",
+              "Minghui Fan",
+              "Yuhao Jiao",
+              "Puxin Yang",
+              "Wenyuan Ren",
+              "Tao Luo"
+            ],
+            "doi": "10.1061/JAEIED.AEENG-1956",
+            "journal": "Journal of Architectural Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Making Connections to Concrete Pressure Pipe",
+            "authors": [
+              "especially when the existing pipe is old",
+              "the original pipe manufacturer is long out of business",
+              "the owner has no records. Common connections made to existing concrete pressure pipes include taps for outlets",
+              "removal",
+              "replacement of select pipe segments for outlets",
+              "in situ modification of pipe for outlets",
+              "in-line or end connections for pipeline relocations. This paper addresses some of the more commonly encountered but unique challenges for in-service or pressurized (“hot” or “wet”) taps of concrete pressure pipelines",
+              "“dry” connections (where the connecting pipeline can be depressurized",
+              "dewatered for a short time). Changing the thrust restraint regime for the existing pipeline",
+              "maintenance of or restoration of bedding"
+            ],
+            "doi": "10.1061/9780784483619.040",
+            "journal": "",
+            "year": 2021
+          },
+          {
+            "title": "Effect of GFRP Reinforcement Ratio on the Strength and Effective Stiffness of High-Strength Concrete Columns: Experimental and Analytical Study",
+            "authors": [
+              "Ashraf Salah-Eldin",
+              "Hamdy M. Mohamed",
+              "Brahim Benmokrane"
+            ],
+            "doi": "10.1061/(ASCE)CC.1943-5614.0001068",
+            "journal": "Journal of Composites for Construction Volume",
+            "year": 2020
+          },
+          {
+            "title": "Performance of Unbonded Local Prestressed Concrete Beam–Column Substructures against Progressive Collapse",
+            "authors": [
+              "Tao Qu",
+              "Bin Zeng",
+              "Chang Wu",
+              "Linjie Huang",
+              "Jing Wu",
+              "Zhen Zhou"
+            ],
+            "doi": "10.1061/JSENDH.STENG-14665",
+            "journal": "Journal of Structural Engineering Volume",
+            "year": 2025
+          },
+          {
+            "title": "Estimating Stress Relaxation and Cracking Potential of High-Strength Concrete Reinforced with Polyvinyl Alcohol Fiber at Early Age",
+            "authors": [
+              "Dejian Shen",
+              "Zhizhuo Feng",
+              "Tingting Zhang",
+              "Xiaojian Tang",
+              "Guoqing Jiang"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0004374",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2022
+          },
+          {
+            "title": "Experiments and Stress-Strain Model of Concrete Confined by UHPC Materials",
+            "authors": [
+              "Teng Tong",
+              "Siqi Yuan",
+              "Zhao Liu",
+              "Zhiqi He",
+              "Jingquan Wang"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0004671",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2023
+          },
+          {
+            "title": "Effects of Modern Concrete Materials on Thermal Conductivity",
+            "authors": [
+              "Yogiraj Sargam",
+              "Kejin Wang",
+              "James E. Alleman"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0003026",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2020
+          },
+          {
+            "title": "Le T. Pham",
+            "authors": [
+              "Effects of Air-Entraining Admixtures on Stability of Air Bubbles in Concrete",
+              "Steven M. Cramer"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0003628",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2021
+          }
+        ],
+        "refined_url": "https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10&AfterYear=2020&BeforeYear=2026",
+        "confirm_title": "Search Result | ASCE Library"
+      }
+    }
+  ],
+  "launched_with_resmoke": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asce\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asce\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9312\",\n  \"cdpPort\": 9312,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 548907,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"faviconUrl\": \"https://ascelibrary.org/products/asce/releasedAssets/images/favicon/favicon-58698b9cc7159929cce7c081f877d6a5.ico\",\n      \"id\": \"179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"title\": \"Download Citations | ASCE Library\",\n      \"type\": \"page\",\n      \"url\": \"https://ascelibrary.org/action/showCitFormats?doi=10.1061%2FJMCEE7.MTENG-21818\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/browser/46f47c5d-f954-4b5e-a2dc-acd4f4bb5c6e\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  }
+}

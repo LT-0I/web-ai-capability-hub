@@ -1,0 +1,331 @@
+{
+  "db": "asce",
+  "op": "search",
+  "profile": "research-asce",
+  "cdp_port": 9312,
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 1,
+    "signal": null,
+    "stdout": "",
+    "stderr": "{\"ok\":false,\"error\":\"CDP endpoint did not become ready within 12000ms (http://127.0.0.1:9312/json/version): connect ECONNREFUSED 127.0.0.1:9312\"}\n",
+    "timed_out": false
+  },
+  "final_classification": "PASS",
+  "attempts": [
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:search --query concrete --page-size 10 --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 73092,\n  \"items\": [\n    {\n      \"title\": \"Research of Recycled Bearing Concrete Hollow Block\",\n      \"authors\": [\n        \"the paper studies the effect of the replacement level of recycled aggregates\",\n        \"w/c on the compressible properties of recycled concrete hollow blocks\",\n        \"then find out the linear relationship between the ratio of R K / R L (R K : the compressive strength of recycled concrete hollow block; R L :the compressive strength of recycled concrete cube)\",\n        \"X (the replacement level of recycled aggregate)\",\n        \"provide the theoretical basis to popularization\"\n      ],\n      \"doi\": \"10.1061/9780784412435.088\",\n      \"journal\": \"\",\n      \"year\": 2012\n    },\n    {\n      \"title\": \"Effect of Concrete Composition on FRP/ Concrete Bond Capacity\",\n      \"authors\": [\n        \"Jinlong Pan\",\n        \"Christopher K. Leung\"\n      ],\n      \"doi\": \"10.1061/(ASCE)1090-0268(2007)11:6(611)\",\n      \"journal\": \"Journal of Composites for Construction Volume\",\n      \"year\": 2007\n    },\n    {\n      \"title\": \"Short-and Long-Term Tests of the Strengthening of Concrete Floor Panels with External Bonded Reinforcement\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"long-term experiments are dealt with. The short-term experiments serve as a base for design of strengthening. The long-term experiment investigates the influence of time on the strengthened elements\",\n        \"on the changes in their behaviour. The short-term experiment presents series of the tests of concrete specimens\",\n        \"on which distinct lengths of CFRP glued reinforcement were applied. These specimens demonstrate the behaviour of the reinforcing element under tension\",\n        \"the adhesion between individual layers in the reinforcement area. Strains of the reinforcement are recorded together with the mode of failure of the specimens. For the long-term experiments failed RC floor panels were used. The panels were subsequently strengthened with several different types of reinforcement (CFRP strips\",\n        \"carbon\",\n        \"glass fabric). Already reinforced floor panels were stored\",\n        \"exposed to the long-term loading at different levels. Another factor affecting the behaviour of these panels was climatic conditions. The results of the experiments have shown that the deformations\"\n      ],\n      \"doi\": \"10.1061/40826(186)15\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Concrete ‐to‐ Concrete Friction\",\n      \"authors\": [\n        \"Theodossius P. Tassios\",\n        \"Elisabeth N. Vintzēleou\"\n      ],\n      \"doi\": \"10.1061/(ASCE)0733-9445(1987)113:4(832)\",\n      \"journal\": \"Journal of Structural Engineering Volume\",\n      \"year\": 1987\n    },\n    {\n      \"title\": \"Compressive Strength of Self-Compacting Concrete during High-Temperature Exposure\",\n      \"authors\": [\n        \"Jin Tao\",\n        \"Yong Yuan\",\n        \"Luc Taerwe\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0000102\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2010\n    },\n    {\n      \"title\": \"Structural Behavior of Partially Concrete Encased Composite Sections with High Strength Concrete\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"concrete maximize the advantages of the two components. Using high strength materials\",\n        \"partially concrete encased steel profiles is becoming more\",\n        \"more popular\",\n        \"thus also more interesting for composite construction. Therefore\",\n        \"the \\\"German Research Foundation\\\" DFG has supported the research project \\\"Load Bearing Behavior of Concrete Encased Composite Beams using High Strength Steel\",\n        \"Concrete \\\". The main aspect was to evaluate the load carrying behavior of concrete encased steel profiles with\",\n        \"without longitudinal shear connection. The most remarkable results regarding the load bearing behavior of high strength encased composite beams are presented in the following. Furthermore\",\n        \"the results of three-dimensional finite element analysis describing the interaction between concrete encasement (web encasement)\",\n        \"steel profile are introduced\"\n      ],\n      \"doi\": \"10.1061/40826(186)33\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Improvement of Crack Resistance of Slag Concrete by Utilizing High Alite Cement\",\n      \"authors\": [\n        \"Mechanics\",\n        \"Physics of Creep\",\n        \"Shrinkage\",\n        \"microcracks in slag concretes with water-to-binder ratio (w/b) of 0.5\",\n        \"0.3 were subjected to temperature regime-simulated steam curing in early ages\",\n        \"were characterized by the combination of acoustic emission (AE) technique\",\n        \"mechanical tests. By using a new-shaped wave-guide\",\n        \"which reduced the distance from cracking points to wave-guide\",\n        \"effect of attenuation in detecting AE signals was significantly mitigated. Due to analysis of AE parameters\",\n        \"crack mode in slag concretes was clarified. The result showed that they were very different in each stage of temperature history\",\n        \"in each type of concrete . This research also revealed the capacity of high alite cement (HAC) in improving resistance against microcracking of slag concrete . However\"\n      ],\n      \"doi\": \"10.1061/9780784413111.042\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Fatigue Behavior of Shear Connectors in High Performance Concrete\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"continuous shear connectors in high strength concrete . For both types of shear connectors cyclic push-out tests as well as large-scale beam tests under cyclic loading were carried out. The headed studs failed after a mean lifetime of 2.3-10 6 applying 40% to 50% of the static resistance as a maximum amplitude\",\n        \"R = 0.45\",\n        \"0.65\",\n        \"respectively. The residual strength after 1.0-10 6 load cycles was reduced by about 25% in comparison to the static push-out strength. The continuous shear connector\",\n        \"which is called \\\"puzzle strip\\\"\",\n        \"did not fail in the fatigue tests with up to 2.0-10 6 load cycles\",\n        \"there was no reduction in residual strength at all. The cyclic beam tests with headed studs show that the prediction of the fatigue failure according to the current standards is not satisfactory. A good prediction of the crack propagation (thus fatigue) can rather be accomplished by using an approach based on the crack-slip relationship. For the continuous puzzle strip the fatigue behavior depends on the state of the cutting-induced heat treatment of the surface material\"\n      ],\n      \"doi\": \"10.1061/41142(396)4\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Numerical Model for Chloride Penetration into Saturated Concrete\",\n      \"authors\": [\n        \"Qiang Yuan\",\n        \"Caijun Shi\",\n        \"Geert De Schutter\",\n        \"Dehua Deng\",\n        \"Fuqiang He\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0000168\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2010\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"American Society of Civil Engineers. All rights reserved\",\n        \"including rights for text\",\n        \"data mining\",\n        \"training of artificial technologies or similar technologies.\"\n      ],\n      \"doi\": \"10.1061/40798(190)45\",\n      \"journal\": \"\",\n      \"year\": 1996\n    }\n  ],\n  \"query_url\": \"https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 73092,
+        "items": [
+          {
+            "title": "Research of Recycled Bearing Concrete Hollow Block",
+            "authors": [
+              "the paper studies the effect of the replacement level of recycled aggregates",
+              "w/c on the compressible properties of recycled concrete hollow blocks",
+              "then find out the linear relationship between the ratio of R K / R L (R K : the compressive strength of recycled concrete hollow block; R L :the compressive strength of recycled concrete cube)",
+              "X (the replacement level of recycled aggregate)",
+              "provide the theoretical basis to popularization"
+            ],
+            "doi": "10.1061/9780784412435.088",
+            "journal": "",
+            "year": 2012
+          },
+          {
+            "title": "Effect of Concrete Composition on FRP/ Concrete Bond Capacity",
+            "authors": [
+              "Jinlong Pan",
+              "Christopher K. Leung"
+            ],
+            "doi": "10.1061/(ASCE)1090-0268(2007)11:6(611)",
+            "journal": "Journal of Composites for Construction Volume",
+            "year": 2007
+          },
+          {
+            "title": "Short-and Long-Term Tests of the Strengthening of Concrete Floor Panels with External Bonded Reinforcement",
+            "authors": [
+              "Composite Construction in Steel",
+              "long-term experiments are dealt with. The short-term experiments serve as a base for design of strengthening. The long-term experiment investigates the influence of time on the strengthened elements",
+              "on the changes in their behaviour. The short-term experiment presents series of the tests of concrete specimens",
+              "on which distinct lengths of CFRP glued reinforcement were applied. These specimens demonstrate the behaviour of the reinforcing element under tension",
+              "the adhesion between individual layers in the reinforcement area. Strains of the reinforcement are recorded together with the mode of failure of the specimens. For the long-term experiments failed RC floor panels were used. The panels were subsequently strengthened with several different types of reinforcement (CFRP strips",
+              "carbon",
+              "glass fabric). Already reinforced floor panels were stored",
+              "exposed to the long-term loading at different levels. Another factor affecting the behaviour of these panels was climatic conditions. The results of the experiments have shown that the deformations"
+            ],
+            "doi": "10.1061/40826(186)15",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Concrete ‐to‐ Concrete Friction",
+            "authors": [
+              "Theodossius P. Tassios",
+              "Elisabeth N. Vintzēleou"
+            ],
+            "doi": "10.1061/(ASCE)0733-9445(1987)113:4(832)",
+            "journal": "Journal of Structural Engineering Volume",
+            "year": 1987
+          },
+          {
+            "title": "Compressive Strength of Self-Compacting Concrete during High-Temperature Exposure",
+            "authors": [
+              "Jin Tao",
+              "Yong Yuan",
+              "Luc Taerwe"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0000102",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2010
+          },
+          {
+            "title": "Structural Behavior of Partially Concrete Encased Composite Sections with High Strength Concrete",
+            "authors": [
+              "Composite Construction in Steel",
+              "concrete maximize the advantages of the two components. Using high strength materials",
+              "partially concrete encased steel profiles is becoming more",
+              "more popular",
+              "thus also more interesting for composite construction. Therefore",
+              "the \"German Research Foundation\" DFG has supported the research project \"Load Bearing Behavior of Concrete Encased Composite Beams using High Strength Steel",
+              "Concrete \". The main aspect was to evaluate the load carrying behavior of concrete encased steel profiles with",
+              "without longitudinal shear connection. The most remarkable results regarding the load bearing behavior of high strength encased composite beams are presented in the following. Furthermore",
+              "the results of three-dimensional finite element analysis describing the interaction between concrete encasement (web encasement)",
+              "steel profile are introduced"
+            ],
+            "doi": "10.1061/40826(186)33",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Improvement of Crack Resistance of Slag Concrete by Utilizing High Alite Cement",
+            "authors": [
+              "Mechanics",
+              "Physics of Creep",
+              "Shrinkage",
+              "microcracks in slag concretes with water-to-binder ratio (w/b) of 0.5",
+              "0.3 were subjected to temperature regime-simulated steam curing in early ages",
+              "were characterized by the combination of acoustic emission (AE) technique",
+              "mechanical tests. By using a new-shaped wave-guide",
+              "which reduced the distance from cracking points to wave-guide",
+              "effect of attenuation in detecting AE signals was significantly mitigated. Due to analysis of AE parameters",
+              "crack mode in slag concretes was clarified. The result showed that they were very different in each stage of temperature history",
+              "in each type of concrete . This research also revealed the capacity of high alite cement (HAC) in improving resistance against microcracking of slag concrete . However"
+            ],
+            "doi": "10.1061/9780784413111.042",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Fatigue Behavior of Shear Connectors in High Performance Concrete",
+            "authors": [
+              "Composite Construction in Steel",
+              "continuous shear connectors in high strength concrete . For both types of shear connectors cyclic push-out tests as well as large-scale beam tests under cyclic loading were carried out. The headed studs failed after a mean lifetime of 2.3-10 6 applying 40% to 50% of the static resistance as a maximum amplitude",
+              "R = 0.45",
+              "0.65",
+              "respectively. The residual strength after 1.0-10 6 load cycles was reduced by about 25% in comparison to the static push-out strength. The continuous shear connector",
+              "which is called \"puzzle strip\"",
+              "did not fail in the fatigue tests with up to 2.0-10 6 load cycles",
+              "there was no reduction in residual strength at all. The cyclic beam tests with headed studs show that the prediction of the fatigue failure according to the current standards is not satisfactory. A good prediction of the crack propagation (thus fatigue) can rather be accomplished by using an approach based on the crack-slip relationship. For the continuous puzzle strip the fatigue behavior depends on the state of the cutting-induced heat treatment of the surface material"
+            ],
+            "doi": "10.1061/41142(396)4",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Numerical Model for Chloride Penetration into Saturated Concrete",
+            "authors": [
+              "Qiang Yuan",
+              "Caijun Shi",
+              "Geert De Schutter",
+              "Dehua Deng",
+              "Fuqiang He"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0000168",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2010
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "American Society of Civil Engineers. All rights reserved",
+              "including rights for text",
+              "data mining",
+              "training of artificial technologies or similar technologies."
+            ],
+            "doi": "10.1061/40798(190)45",
+            "journal": "",
+            "year": 1996
+          }
+        ],
+        "query_url": "https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10"
+      }
+    },
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asce:search --query concrete --page-size 10 --profile research-asce --cdp-port 9312 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 73092,\n  \"items\": [\n    {\n      \"title\": \"Research of Recycled Bearing Concrete Hollow Block\",\n      \"authors\": [\n        \"the paper studies the effect of the replacement level of recycled aggregates\",\n        \"w/c on the compressible properties of recycled concrete hollow blocks\",\n        \"then find out the linear relationship between the ratio of R K / R L (R K : the compressive strength of recycled concrete hollow block; R L :the compressive strength of recycled concrete cube)\",\n        \"X (the replacement level of recycled aggregate)\",\n        \"provide the theoretical basis to popularization\"\n      ],\n      \"doi\": \"10.1061/9780784412435.088\",\n      \"journal\": \"\",\n      \"year\": 2012\n    },\n    {\n      \"title\": \"Effect of Concrete Composition on FRP/ Concrete Bond Capacity\",\n      \"authors\": [\n        \"Jinlong Pan\",\n        \"Christopher K. Leung\"\n      ],\n      \"doi\": \"10.1061/(ASCE)1090-0268(2007)11:6(611)\",\n      \"journal\": \"Journal of Composites for Construction Volume\",\n      \"year\": 2007\n    },\n    {\n      \"title\": \"Short-and Long-Term Tests of the Strengthening of Concrete Floor Panels with External Bonded Reinforcement\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"long-term experiments are dealt with. The short-term experiments serve as a base for design of strengthening. The long-term experiment investigates the influence of time on the strengthened elements\",\n        \"on the changes in their behaviour. The short-term experiment presents series of the tests of concrete specimens\",\n        \"on which distinct lengths of CFRP glued reinforcement were applied. These specimens demonstrate the behaviour of the reinforcing element under tension\",\n        \"the adhesion between individual layers in the reinforcement area. Strains of the reinforcement are recorded together with the mode of failure of the specimens. For the long-term experiments failed RC floor panels were used. The panels were subsequently strengthened with several different types of reinforcement (CFRP strips\",\n        \"carbon\",\n        \"glass fabric). Already reinforced floor panels were stored\",\n        \"exposed to the long-term loading at different levels. Another factor affecting the behaviour of these panels was climatic conditions. The results of the experiments have shown that the deformations\"\n      ],\n      \"doi\": \"10.1061/40826(186)15\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Concrete ‐to‐ Concrete Friction\",\n      \"authors\": [\n        \"Theodossius P. Tassios\",\n        \"Elisabeth N. Vintzēleou\"\n      ],\n      \"doi\": \"10.1061/(ASCE)0733-9445(1987)113:4(832)\",\n      \"journal\": \"Journal of Structural Engineering Volume\",\n      \"year\": 1987\n    },\n    {\n      \"title\": \"Compressive Strength of Self-Compacting Concrete during High-Temperature Exposure\",\n      \"authors\": [\n        \"Jin Tao\",\n        \"Yong Yuan\",\n        \"Luc Taerwe\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0000102\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2010\n    },\n    {\n      \"title\": \"Structural Behavior of Partially Concrete Encased Composite Sections with High Strength Concrete\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"concrete maximize the advantages of the two components. Using high strength materials\",\n        \"partially concrete encased steel profiles is becoming more\",\n        \"more popular\",\n        \"thus also more interesting for composite construction. Therefore\",\n        \"the \\\"German Research Foundation\\\" DFG has supported the research project \\\"Load Bearing Behavior of Concrete Encased Composite Beams using High Strength Steel\",\n        \"Concrete \\\". The main aspect was to evaluate the load carrying behavior of concrete encased steel profiles with\",\n        \"without longitudinal shear connection. The most remarkable results regarding the load bearing behavior of high strength encased composite beams are presented in the following. Furthermore\",\n        \"the results of three-dimensional finite element analysis describing the interaction between concrete encasement (web encasement)\",\n        \"steel profile are introduced\"\n      ],\n      \"doi\": \"10.1061/40826(186)33\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Improvement of Crack Resistance of Slag Concrete by Utilizing High Alite Cement\",\n      \"authors\": [\n        \"Mechanics\",\n        \"Physics of Creep\",\n        \"Shrinkage\",\n        \"microcracks in slag concretes with water-to-binder ratio (w/b) of 0.5\",\n        \"0.3 were subjected to temperature regime-simulated steam curing in early ages\",\n        \"were characterized by the combination of acoustic emission (AE) technique\",\n        \"mechanical tests. By using a new-shaped wave-guide\",\n        \"which reduced the distance from cracking points to wave-guide\",\n        \"effect of attenuation in detecting AE signals was significantly mitigated. Due to analysis of AE parameters\",\n        \"crack mode in slag concretes was clarified. The result showed that they were very different in each stage of temperature history\",\n        \"in each type of concrete . This research also revealed the capacity of high alite cement (HAC) in improving resistance against microcracking of slag concrete . However\"\n      ],\n      \"doi\": \"10.1061/9780784413111.042\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Fatigue Behavior of Shear Connectors in High Performance Concrete\",\n      \"authors\": [\n        \"Composite Construction in Steel\",\n        \"continuous shear connectors in high strength concrete . For both types of shear connectors cyclic push-out tests as well as large-scale beam tests under cyclic loading were carried out. The headed studs failed after a mean lifetime of 2.3-10 6 applying 40% to 50% of the static resistance as a maximum amplitude\",\n        \"R = 0.45\",\n        \"0.65\",\n        \"respectively. The residual strength after 1.0-10 6 load cycles was reduced by about 25% in comparison to the static push-out strength. The continuous shear connector\",\n        \"which is called \\\"puzzle strip\\\"\",\n        \"did not fail in the fatigue tests with up to 2.0-10 6 load cycles\",\n        \"there was no reduction in residual strength at all. The cyclic beam tests with headed studs show that the prediction of the fatigue failure according to the current standards is not satisfactory. A good prediction of the crack propagation (thus fatigue) can rather be accomplished by using an approach based on the crack-slip relationship. For the continuous puzzle strip the fatigue behavior depends on the state of the cutting-induced heat treatment of the surface material\"\n      ],\n      \"doi\": \"10.1061/41142(396)4\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Numerical Model for Chloride Penetration into Saturated Concrete\",\n      \"authors\": [\n        \"Qiang Yuan\",\n        \"Caijun Shi\",\n        \"Geert De Schutter\",\n        \"Dehua Deng\",\n        \"Fuqiang He\"\n      ],\n      \"doi\": \"10.1061/(ASCE)MT.1943-5533.0000168\",\n      \"journal\": \"Journal of Materials in Civil Engineering Volume\",\n      \"year\": 2010\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"American Society of Civil Engineers. All rights reserved\",\n        \"including rights for text\",\n        \"data mining\",\n        \"training of artificial technologies or similar technologies.\"\n      ],\n      \"doi\": \"10.1061/40798(190)45\",\n      \"journal\": \"\",\n      \"year\": 1996\n    }\n  ],\n  \"query_url\": \"https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 73092,
+        "items": [
+          {
+            "title": "Research of Recycled Bearing Concrete Hollow Block",
+            "authors": [
+              "the paper studies the effect of the replacement level of recycled aggregates",
+              "w/c on the compressible properties of recycled concrete hollow blocks",
+              "then find out the linear relationship between the ratio of R K / R L (R K : the compressive strength of recycled concrete hollow block; R L :the compressive strength of recycled concrete cube)",
+              "X (the replacement level of recycled aggregate)",
+              "provide the theoretical basis to popularization"
+            ],
+            "doi": "10.1061/9780784412435.088",
+            "journal": "",
+            "year": 2012
+          },
+          {
+            "title": "Effect of Concrete Composition on FRP/ Concrete Bond Capacity",
+            "authors": [
+              "Jinlong Pan",
+              "Christopher K. Leung"
+            ],
+            "doi": "10.1061/(ASCE)1090-0268(2007)11:6(611)",
+            "journal": "Journal of Composites for Construction Volume",
+            "year": 2007
+          },
+          {
+            "title": "Short-and Long-Term Tests of the Strengthening of Concrete Floor Panels with External Bonded Reinforcement",
+            "authors": [
+              "Composite Construction in Steel",
+              "long-term experiments are dealt with. The short-term experiments serve as a base for design of strengthening. The long-term experiment investigates the influence of time on the strengthened elements",
+              "on the changes in their behaviour. The short-term experiment presents series of the tests of concrete specimens",
+              "on which distinct lengths of CFRP glued reinforcement were applied. These specimens demonstrate the behaviour of the reinforcing element under tension",
+              "the adhesion between individual layers in the reinforcement area. Strains of the reinforcement are recorded together with the mode of failure of the specimens. For the long-term experiments failed RC floor panels were used. The panels were subsequently strengthened with several different types of reinforcement (CFRP strips",
+              "carbon",
+              "glass fabric). Already reinforced floor panels were stored",
+              "exposed to the long-term loading at different levels. Another factor affecting the behaviour of these panels was climatic conditions. The results of the experiments have shown that the deformations"
+            ],
+            "doi": "10.1061/40826(186)15",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Concrete ‐to‐ Concrete Friction",
+            "authors": [
+              "Theodossius P. Tassios",
+              "Elisabeth N. Vintzēleou"
+            ],
+            "doi": "10.1061/(ASCE)0733-9445(1987)113:4(832)",
+            "journal": "Journal of Structural Engineering Volume",
+            "year": 1987
+          },
+          {
+            "title": "Compressive Strength of Self-Compacting Concrete during High-Temperature Exposure",
+            "authors": [
+              "Jin Tao",
+              "Yong Yuan",
+              "Luc Taerwe"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0000102",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2010
+          },
+          {
+            "title": "Structural Behavior of Partially Concrete Encased Composite Sections with High Strength Concrete",
+            "authors": [
+              "Composite Construction in Steel",
+              "concrete maximize the advantages of the two components. Using high strength materials",
+              "partially concrete encased steel profiles is becoming more",
+              "more popular",
+              "thus also more interesting for composite construction. Therefore",
+              "the \"German Research Foundation\" DFG has supported the research project \"Load Bearing Behavior of Concrete Encased Composite Beams using High Strength Steel",
+              "Concrete \". The main aspect was to evaluate the load carrying behavior of concrete encased steel profiles with",
+              "without longitudinal shear connection. The most remarkable results regarding the load bearing behavior of high strength encased composite beams are presented in the following. Furthermore",
+              "the results of three-dimensional finite element analysis describing the interaction between concrete encasement (web encasement)",
+              "steel profile are introduced"
+            ],
+            "doi": "10.1061/40826(186)33",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Improvement of Crack Resistance of Slag Concrete by Utilizing High Alite Cement",
+            "authors": [
+              "Mechanics",
+              "Physics of Creep",
+              "Shrinkage",
+              "microcracks in slag concretes with water-to-binder ratio (w/b) of 0.5",
+              "0.3 were subjected to temperature regime-simulated steam curing in early ages",
+              "were characterized by the combination of acoustic emission (AE) technique",
+              "mechanical tests. By using a new-shaped wave-guide",
+              "which reduced the distance from cracking points to wave-guide",
+              "effect of attenuation in detecting AE signals was significantly mitigated. Due to analysis of AE parameters",
+              "crack mode in slag concretes was clarified. The result showed that they were very different in each stage of temperature history",
+              "in each type of concrete . This research also revealed the capacity of high alite cement (HAC) in improving resistance against microcracking of slag concrete . However"
+            ],
+            "doi": "10.1061/9780784413111.042",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Fatigue Behavior of Shear Connectors in High Performance Concrete",
+            "authors": [
+              "Composite Construction in Steel",
+              "continuous shear connectors in high strength concrete . For both types of shear connectors cyclic push-out tests as well as large-scale beam tests under cyclic loading were carried out. The headed studs failed after a mean lifetime of 2.3-10 6 applying 40% to 50% of the static resistance as a maximum amplitude",
+              "R = 0.45",
+              "0.65",
+              "respectively. The residual strength after 1.0-10 6 load cycles was reduced by about 25% in comparison to the static push-out strength. The continuous shear connector",
+              "which is called \"puzzle strip\"",
+              "did not fail in the fatigue tests with up to 2.0-10 6 load cycles",
+              "there was no reduction in residual strength at all. The cyclic beam tests with headed studs show that the prediction of the fatigue failure according to the current standards is not satisfactory. A good prediction of the crack propagation (thus fatigue) can rather be accomplished by using an approach based on the crack-slip relationship. For the continuous puzzle strip the fatigue behavior depends on the state of the cutting-induced heat treatment of the surface material"
+            ],
+            "doi": "10.1061/41142(396)4",
+            "journal": "",
+            "year": null
+          },
+          {
+            "title": "Numerical Model for Chloride Penetration into Saturated Concrete",
+            "authors": [
+              "Qiang Yuan",
+              "Caijun Shi",
+              "Geert De Schutter",
+              "Dehua Deng",
+              "Fuqiang He"
+            ],
+            "doi": "10.1061/(ASCE)MT.1943-5533.0000168",
+            "journal": "Journal of Materials in Civil Engineering Volume",
+            "year": 2010
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "American Society of Civil Engineers. All rights reserved",
+              "including rights for text",
+              "data mining",
+              "training of artificial technologies or similar technologies."
+            ],
+            "doi": "10.1061/40798(190)45",
+            "journal": "",
+            "year": 1996
+          }
+        ],
+        "query_url": "https://ascelibrary.org/action/doSearch?field1=AllField&text1=concrete&ConceptID=&publication=&Ppub=&pageSize=10"
+      }
+    }
+  ],
+  "launched_with_resmoke": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asce --cdp-port 9312 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asce\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asce\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9312\",\n  \"cdpPort\": 9312,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 548907,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"faviconUrl\": \"https://ascelibrary.org/products/asce/releasedAssets/images/favicon/favicon-58698b9cc7159929cce7c081f877d6a5.ico\",\n      \"id\": \"179C787E09C33C2CAB9A7F45767E2CE8\",\n      \"title\": \"Download Citations | ASCE Library\",\n      \"type\": \"page\",\n      \"url\": \"https://ascelibrary.org/action/showCitFormats?doi=10.1061%2FJMCEE7.MTENG-21818\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/page/179C787E09C33C2CAB9A7F45767E2CE8\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9312/devtools/browser/46f47c5d-f954-4b5e-a2dc-acd4f4bb5c6e\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  }
+}

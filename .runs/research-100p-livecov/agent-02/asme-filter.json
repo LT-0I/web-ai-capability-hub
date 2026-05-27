@@ -1,0 +1,282 @@
+{
+  "db": "asme",
+  "op": "filter",
+  "profile": "research-asme",
+  "cdp_port": 9313,
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asme --cdp-port 9313 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asme\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asme\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9313\",\n  \"cdpPort\": 9313,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 560769,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9313/devtools/page/F2E0D09609FD36C0BA4FA1D03B0F63DF\",\n      \"id\": \"F2E0D09609FD36C0BA4FA1D03B0F63DF\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9313/devtools/page/F2E0D09609FD36C0BA4FA1D03B0F63DF\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9313/devtools/browser/edd052da-0596-4566-b479-2aaeec7f1c01\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "final_classification": "PASS",
+  "attempts": [
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asme:filter --query turbine --from-date 01/01/2020 --to-date 12/31/2026 --page-size 10 --profile research-asme --cdp-port 9313 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 172869,\n  \"items\": [\n    {\n      \"title\": \"Update search\",\n      \"authors\": [\n        \"search navigation Search Results for turbine Modify Your Advanced Search Update search Querybuilder input 1 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 2 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 3 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 4 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 5 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 6 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Expand Journal citation Citation Journal Select journal Applied Mechanics Reviews Applied Mechanics Reviews ASCE-ASME J Risk\",\n        \"Uncert in Engrg Sys Part B Mech Engrg ASCE-ASME J Risk\",\n        \"Uncert in Engrg Sys Part B Mech Engrg ASCE-ASME Journal of Risk\",\n        \"Uncertainty in Engineering Systems\",\n        \"Part A: Civil Engineering ASME Journal of Engineering for Sustainable Buildings\",\n        \"Cities ASME Journal of Engineering for Sustainable Buildings\",\n        \"Cities ASME Journal of Heat\",\n        \"Mass Transfer ASME Journal of Heat\",\n        \"Mass Transfer ASME Letters in Dynamic Systems\",\n        \"Control ASME Letters in Dynamic Systems\",\n        \"Control ASME Letters in Translational Robotics ASME Letters in Translational Robotics ASME Open Journal of Engineering ASME Open Journal of Engineering Journal of Applied Mechanics Journal of Applied Mechanics Journal of Autonomous Vehicles\",\n        \"Systems Journal of Autonomous Vehicles\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Apply\",\n      \"authors\": [\n        \"Availability Availability Available\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Journal of Engineering for Gas Turbines and Power\",\n      \"authors\": [\n        \"nd Power Publishes archival-quality papers in the areas of gas\",\n        \"steam turbine technology\",\n        \"nuclear engineering\",\n        \"internal combustion engines\",\n        \"fossil power generation. It covers a broad spectrum of practical topics of interest to industry.\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Journal of Turbomachinery\",\n      \"authors\": [\n        \"achinery Publishes archival-quality\",\n        \"peer-reviewed technical papers that advance the state-of-the-art of the broad scope of turbomachinery technology related to gas turbine engines.\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Impact of Turbine -Strut Clocking and Turbine Outlet Swirl on the Heat Transfer and Film Cooling in an Aggressive Turbine Center Frame\",\n      \"authors\": [\n        \"bine Center Frame Available Patrick R. Jagerhofer\",\n        \"Tobias Glasenapp\",\n        \"Bastian Patzer\",\n        \"Emil Göttlich Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . February 2025\",\n        \"147(2): 021006. Paper No: TURBO-24-1202\"\n      ],\n      \"doi\": \"10.1115/1.4066408\",\n      \"publication\": \"Journal of Turbomachinery\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Impact of Turbine -Strut Clocking and Turbine Outlet Swirl on the Heat Transfer and Film Cooling in an Aggressive Turbine Center Frame\",\n      \"authors\": [\n        \"urbine Center Frame Available Patrick R. Jagerhofer\",\n        \"Tobias Glasenapp\",\n        \"Bastian Patzer\",\n        \"Emil Göttlich Proc. ASME . GT2024\",\n        \"Volume 13: Heat Transfer: General Interest / Additive Manufacturing Impacts on Heat Transfer\",\n        \"Wind Energy\",\n        \"V013T13A020\",\n        \"June 24–28\",\n        \"2024 Publisher: American Society of Mechanical Engineers Paper No: GT2024-125644\"\n      ],\n      \"doi\": \"10.1115/GT2024-125644\",\n      \"publication\": \"\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"View Paper titled\",\n        \"Impact of Turbine-Strut Clocking\",\n        \"Turbine Outlet Swirl on the Heat Transfer\",\n        \"Film Cooling in an Aggressive Turbine Center Frame\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Evaluating the Performance of an H-Type Wind Turbine : How Stalling Stages and Blade–Vortex Interactions Affect the Turbine ?\",\n      \"authors\": [\n        \"ect the Turbine ? Available Dishant Sharma\",\n        \"Rahul Goyal Journal: Journal of Fluids Engineering Publisher: ASME Article Type: Research-Article J. Fluids Eng . March 2026\",\n        \"148(3): 031201. Paper No: FE-25-1227\"\n      ],\n      \"doi\": \"10.1115/1.4070163\",\n      \"publication\": \"Journal of Fluids Engineering\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine\",\n      \"authors\": [\n        \"Cycle Gas Turbine Available Abhishek Dubey\",\n        \"Antoine Verhaeghe\",\n        \"Ward De Paepe\",\n        \"Alessandro Sorce Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . February 2026\",\n        \"148(2): 021010. Paper No: TURBO-25-1121\"\n      ],\n      \"doi\": \"10.1115/1.4069489\",\n      \"publication\": \"Journal of Turbomachinery\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine\",\n      \"authors\": [\n        \"d Cycle Gas Turbine Available Abhishek Dubey\",\n        \"Antoine Verhaeghe\",\n        \"Ward De Paepe\",\n        \"Alessandro Sorce Proc. ASME . GT2025\",\n        \"Volume 4: Controls\",\n        \"Diagnostics & Instrumentation\",\n        \"Cycle Innovations\",\n        \"Education\",\n        \"Electric Power\",\n        \"V004T06A027\",\n        \"June 16–20\",\n        \"2025 Publisher: American Society of Mechanical Engineers Paper No: GT2025-153625\"\n      ],\n      \"doi\": \"10.1115/GT2025-153625\",\n      \"publication\": \"\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"View Paper titled\",\n        \"Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"High-Speed Rotating High-Pressure Turbine Blade Thermal Imaging of a Full-Scale Cooled 1 + 1/2 Stage Turbine in a Short Duration Transient Test Facility\",\n      \"authors\": [\n        \"ent Test Facility Available Richard J. Anthony\",\n        \"Neil Vanasse\",\n        \"Scott McLaren Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . October 2025\",\n        \"147(10): 101011. Paper No: TURBO-24-1326\"\n      ],\n      \"doi\": \"10.1115/1.4068203\",\n      \"publication\": \"Journal of Turbomachinery\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Digitalization of Test-Rigs for Development of Hydraulic Machines: Predictive Model For Detection of Characteristics of Turbine and Pump- Turbine Models for Hydraulic Test-Rig Automation\",\n      \"authors\": [\n        \"Test-Rig Automation Available Stefan H. Reiterer\",\n        \"Michael C. Stolz\",\n        \"Berin Dikic\",\n        \"Daniel R. Reiterer\",\n        \"Bernhard Rossmann\",\n        \"Gerhard Schaffernak\",\n        \"Mark Guggenberger Proc. ASME . FEDSM2024\",\n        \"Volume 1: Fluid Applications\",\n        \"Systems (FASTC)\",\n        \"Fluid Measurement\",\n        \"Instrumentation (FMITC)\",\n        \"Fluid Mechanics (FMTC)\"\n      ],\n      \"doi\": \"10.1115/FEDSM2024-130641\",\n      \"publication\": \"\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"View Paper titled\",\n        \"Digitalization of Test-Rigs for Development of Hydraulic Machines: Predictive Model For Detection of Characteristics of Turbine\",\n        \"Pump-Turbine Models for Hydraulic Test-Rig Automation\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Rotor-Stator Interaction and Vortex Rope in the Reversible Pump- Turbine at Off-Design Conditions in Turbine Mode\",\n      \"authors\": [\n        \"ons in Turbine Mode Available Bhushan R. Rode\",\n        \"Arun Kumar Proc. ASME . FEDSM2024\",\n        \"Volume 1: Fluid Applications\",\n        \"Systems (FASTC)\",\n        \"Fluid Measurement\",\n        \"Instrumentation (FMITC)\",\n        \"Fluid Mechanics (FMTC)\",\n        \"Multiphase Flow (MFTC)\",\n        \"V001T03A008\",\n        \"July 15–17\",\n        \"2024 Publisher: American Society of Mechanical Engineers Paper No: FEDSM2024-130493\"\n      ],\n      \"doi\": \"10.1115/FEDSM2024-130493\",\n      \"publication\": \"\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Abstract\",\n      \"authors\": [\n        \"View Paper titled\",\n        \"Rotor-Stator Interaction\",\n        \"Vortex Rope in the Reversible Pump-Turbine at Off-Design Conditions in Turbine Mode\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2026\n    }\n  ],\n  \"refined_url\": \"https://asmedigitalcollection.asme.org/search-results?page=1&q=turbine&pageSize=10&fromDate=01%2F01%2F2020&ToDate=12%2F31%2F2026\",\n  \"confirm_title\": \"turbine | Page 1 | Search Results | ASME Digital Collection\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 172869,
+        "items": [
+          {
+            "title": "Update search",
+            "authors": [
+              "search navigation Search Results for turbine Modify Your Advanced Search Update search Querybuilder input 1 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 2 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 3 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 4 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 5 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Querybuilder input 6 Querybuilder input Filter Title Author Author Affiliations Full Text Abstract Keyword DOI ISBN ISBN-10 ISSN EISSN Issue Journal Volume Number References Conference Volume Title Paper No Expand Journal citation Citation Journal Select journal Applied Mechanics Reviews Applied Mechanics Reviews ASCE-ASME J Risk",
+              "Uncert in Engrg Sys Part B Mech Engrg ASCE-ASME J Risk",
+              "Uncert in Engrg Sys Part B Mech Engrg ASCE-ASME Journal of Risk",
+              "Uncertainty in Engineering Systems",
+              "Part A: Civil Engineering ASME Journal of Engineering for Sustainable Buildings",
+              "Cities ASME Journal of Engineering for Sustainable Buildings",
+              "Cities ASME Journal of Heat",
+              "Mass Transfer ASME Journal of Heat",
+              "Mass Transfer ASME Letters in Dynamic Systems",
+              "Control ASME Letters in Dynamic Systems",
+              "Control ASME Letters in Translational Robotics ASME Letters in Translational Robotics ASME Open Journal of Engineering ASME Open Journal of Engineering Journal of Applied Mechanics Journal of Applied Mechanics Journal of Autonomous Vehicles",
+              "Systems Journal of Autonomous Vehicles"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Apply",
+            "authors": [
+              "Availability Availability Available"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Journal of Engineering for Gas Turbines and Power",
+            "authors": [
+              "nd Power Publishes archival-quality papers in the areas of gas",
+              "steam turbine technology",
+              "nuclear engineering",
+              "internal combustion engines",
+              "fossil power generation. It covers a broad spectrum of practical topics of interest to industry."
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Journal of Turbomachinery",
+            "authors": [
+              "achinery Publishes archival-quality",
+              "peer-reviewed technical papers that advance the state-of-the-art of the broad scope of turbomachinery technology related to gas turbine engines."
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Impact of Turbine -Strut Clocking and Turbine Outlet Swirl on the Heat Transfer and Film Cooling in an Aggressive Turbine Center Frame",
+            "authors": [
+              "bine Center Frame Available Patrick R. Jagerhofer",
+              "Tobias Glasenapp",
+              "Bastian Patzer",
+              "Emil Göttlich Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . February 2025",
+              "147(2): 021006. Paper No: TURBO-24-1202"
+            ],
+            "doi": "10.1115/1.4066408",
+            "publication": "Journal of Turbomachinery",
+            "year": 2025
+          },
+          {
+            "title": "Abstract",
+            "authors": [],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Impact of Turbine -Strut Clocking and Turbine Outlet Swirl on the Heat Transfer and Film Cooling in an Aggressive Turbine Center Frame",
+            "authors": [
+              "urbine Center Frame Available Patrick R. Jagerhofer",
+              "Tobias Glasenapp",
+              "Bastian Patzer",
+              "Emil Göttlich Proc. ASME . GT2024",
+              "Volume 13: Heat Transfer: General Interest / Additive Manufacturing Impacts on Heat Transfer",
+              "Wind Energy",
+              "V013T13A020",
+              "June 24–28",
+              "2024 Publisher: American Society of Mechanical Engineers Paper No: GT2024-125644"
+            ],
+            "doi": "10.1115/GT2024-125644",
+            "publication": "",
+            "year": 2024
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "View Paper titled",
+              "Impact of Turbine-Strut Clocking",
+              "Turbine Outlet Swirl on the Heat Transfer",
+              "Film Cooling in an Aggressive Turbine Center Frame"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Evaluating the Performance of an H-Type Wind Turbine : How Stalling Stages and Blade–Vortex Interactions Affect the Turbine ?",
+            "authors": [
+              "ect the Turbine ? Available Dishant Sharma",
+              "Rahul Goyal Journal: Journal of Fluids Engineering Publisher: ASME Article Type: Research-Article J. Fluids Eng . March 2026",
+              "148(3): 031201. Paper No: FE-25-1227"
+            ],
+            "doi": "10.1115/1.4070163",
+            "publication": "Journal of Fluids Engineering",
+            "year": 2026
+          },
+          {
+            "title": "Abstract",
+            "authors": [],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine",
+            "authors": [
+              "Cycle Gas Turbine Available Abhishek Dubey",
+              "Antoine Verhaeghe",
+              "Ward De Paepe",
+              "Alessandro Sorce Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . February 2026",
+              "148(2): 021010. Paper No: TURBO-25-1121"
+            ],
+            "doi": "10.1115/1.4069489",
+            "publication": "Journal of Turbomachinery",
+            "year": 2026
+          },
+          {
+            "title": "Abstract",
+            "authors": [],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine",
+            "authors": [
+              "d Cycle Gas Turbine Available Abhishek Dubey",
+              "Antoine Verhaeghe",
+              "Ward De Paepe",
+              "Alessandro Sorce Proc. ASME . GT2025",
+              "Volume 4: Controls",
+              "Diagnostics & Instrumentation",
+              "Cycle Innovations",
+              "Education",
+              "Electric Power",
+              "V004T06A027",
+              "June 16–20",
+              "2025 Publisher: American Society of Mechanical Engineers Paper No: GT2025-153625"
+            ],
+            "doi": "10.1115/GT2025-153625",
+            "publication": "",
+            "year": 2025
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "View Paper titled",
+              "Integrating Turbine Blade Cooling With Exhaust Gas Recirculation for Enhanced Carbon Capture in Combined Cycle Gas Turbine"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "High-Speed Rotating High-Pressure Turbine Blade Thermal Imaging of a Full-Scale Cooled 1 + 1/2 Stage Turbine in a Short Duration Transient Test Facility",
+            "authors": [
+              "ent Test Facility Available Richard J. Anthony",
+              "Neil Vanasse",
+              "Scott McLaren Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . October 2025",
+              "147(10): 101011. Paper No: TURBO-24-1326"
+            ],
+            "doi": "10.1115/1.4068203",
+            "publication": "Journal of Turbomachinery",
+            "year": 2025
+          },
+          {
+            "title": "Abstract",
+            "authors": [],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Digitalization of Test-Rigs for Development of Hydraulic Machines: Predictive Model For Detection of Characteristics of Turbine and Pump- Turbine Models for Hydraulic Test-Rig Automation",
+            "authors": [
+              "Test-Rig Automation Available Stefan H. Reiterer",
+              "Michael C. Stolz",
+              "Berin Dikic",
+              "Daniel R. Reiterer",
+              "Bernhard Rossmann",
+              "Gerhard Schaffernak",
+              "Mark Guggenberger Proc. ASME . FEDSM2024",
+              "Volume 1: Fluid Applications",
+              "Systems (FASTC)",
+              "Fluid Measurement",
+              "Instrumentation (FMITC)",
+              "Fluid Mechanics (FMTC)"
+            ],
+            "doi": "10.1115/FEDSM2024-130641",
+            "publication": "",
+            "year": 2024
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "View Paper titled",
+              "Digitalization of Test-Rigs for Development of Hydraulic Machines: Predictive Model For Detection of Characteristics of Turbine",
+              "Pump-Turbine Models for Hydraulic Test-Rig Automation"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": null
+          },
+          {
+            "title": "Rotor-Stator Interaction and Vortex Rope in the Reversible Pump- Turbine at Off-Design Conditions in Turbine Mode",
+            "authors": [
+              "ons in Turbine Mode Available Bhushan R. Rode",
+              "Arun Kumar Proc. ASME . FEDSM2024",
+              "Volume 1: Fluid Applications",
+              "Systems (FASTC)",
+              "Fluid Measurement",
+              "Instrumentation (FMITC)",
+              "Fluid Mechanics (FMTC)",
+              "Multiphase Flow (MFTC)",
+              "V001T03A008",
+              "July 15–17",
+              "2024 Publisher: American Society of Mechanical Engineers Paper No: FEDSM2024-130493"
+            ],
+            "doi": "10.1115/FEDSM2024-130493",
+            "publication": "",
+            "year": 2024
+          },
+          {
+            "title": "Abstract",
+            "authors": [
+              "View Paper titled",
+              "Rotor-Stator Interaction",
+              "Vortex Rope in the Reversible Pump-Turbine at Off-Design Conditions in Turbine Mode"
+            ],
+            "doi": "",
+            "publication": "",
+            "year": 2026
+          }
+        ],
+        "refined_url": "https://asmedigitalcollection.asme.org/search-results?page=1&q=turbine&pageSize=10&fromDate=01%2F01%2F2020&ToDate=12%2F31%2F2026",
+        "confirm_title": "turbine | Page 1 | Search Results | ASME Digital Collection"
+      }
+    }
+  ]
+}

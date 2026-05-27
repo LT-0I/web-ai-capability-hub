@@ -1,0 +1,71 @@
+{
+  "db": "aps",
+  "op": "search",
+  "profile": "research-aps",
+  "cdp_port": 9310,
+  "launched_with": {
+    "cmd": "node dist/src/cli.js browser:launch --profile research-aps --cdp-port 9310 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-aps\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-aps\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9310\",\n  \"cdpPort\": 9310,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 468655,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9310/devtools/page/541591143306F15851C1E9A7CF2B191B\",\n      \"id\": \"541591143306F15851C1E9A7CF2B191B\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9310/devtools/page/541591143306F15851C1E9A7CF2B191B\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9310/devtools/browser/c59affda-e2b6-451e-b585-66ca46070391\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "attempts": [
+    {
+      "cmd": "node dist/src/cli.js research:aps:search --query quantum --page-size 5 --profile research-aps --cdp-port 9310 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"result_count\": 363667,\n  \"items\": [\n    {\n      \"title\": \"Estimates of Loss Function Concentration in Noisy Parametrized Quantum Circuits\",\n      \"authors\": [],\n      \"doi\": \"10.1103/dw2h-ll6r\",\n      \"journal\": \"prxquantum\",\n      \"year\": 2026,\n      \"article_url\": \"https://journals.aps.org/prxquantum/abstract/10.1103/dw2h-ll6r\"\n    },\n    {\n      \"title\": \"Abelian State Hidden Subgroup Problem: Learning Stabilizer Groups and Beyond\",\n      \"authors\": [],\n      \"doi\": \"10.1103/6frk-891j\",\n      \"journal\": \"prxquantum\",\n      \"year\": 2026,\n      \"article_url\": \"https://journals.aps.org/prxquantum/abstract/10.1103/6frk-891j\"\n    },\n    {\n      \"title\": \"Three-Dimensional XY Universality and Nonlinear Magnetic Susceptibility in a Kagome Ice Compound\",\n      \"authors\": [],\n      \"doi\": \"10.1103/xl5f-zj9p\",\n      \"journal\": \"prx\",\n      \"year\": 2026,\n      \"article_url\": \"https://journals.aps.org/prx/abstract/10.1103/xl5f-zj9p\"\n    },\n    {\n      \"title\": \"Generalized Li-Haldane correspondence in critical free-fermion systems\",\n      \"authors\": [],\n      \"doi\": \"10.1103/96gp-fq3j\",\n      \"journal\": \"prresearch\",\n      \"year\": 2026,\n      \"article_url\": \"https://journals.aps.org/prresearch/abstract/10.1103/96gp-fq3j\"\n    },\n    {\n      \"title\": \"Impurity-controlled vortex mobility and pair breaking in fermionic superfluid rings\",\n      \"authors\": [],\n      \"doi\": \"10.1103/6nhm-x2p9\",\n      \"journal\": \"prresearch\",\n      \"year\": 2026,\n      \"article_url\": \"https://journals.aps.org/prresearch/abstract/10.1103/6nhm-x2p9\"\n    }\n  ],\n  \"query_url\": \"https://journals.aps.org/search/results?clauses=%5B%7B%22field%22%3A%22all%22%2C%22value%22%3A%22quantum%22%2C%22operator%22%3A%22AND%22%7D%5D&sort=recent&per_page=5\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "result_count": 363667,
+        "items": [
+          {
+            "title": "Estimates of Loss Function Concentration in Noisy Parametrized Quantum Circuits",
+            "authors": [],
+            "doi": "10.1103/dw2h-ll6r",
+            "journal": "prxquantum",
+            "year": 2026,
+            "article_url": "https://journals.aps.org/prxquantum/abstract/10.1103/dw2h-ll6r"
+          },
+          {
+            "title": "Abelian State Hidden Subgroup Problem: Learning Stabilizer Groups and Beyond",
+            "authors": [],
+            "doi": "10.1103/6frk-891j",
+            "journal": "prxquantum",
+            "year": 2026,
+            "article_url": "https://journals.aps.org/prxquantum/abstract/10.1103/6frk-891j"
+          },
+          {
+            "title": "Three-Dimensional XY Universality and Nonlinear Magnetic Susceptibility in a Kagome Ice Compound",
+            "authors": [],
+            "doi": "10.1103/xl5f-zj9p",
+            "journal": "prx",
+            "year": 2026,
+            "article_url": "https://journals.aps.org/prx/abstract/10.1103/xl5f-zj9p"
+          },
+          {
+            "title": "Generalized Li-Haldane correspondence in critical free-fermion systems",
+            "authors": [],
+            "doi": "10.1103/96gp-fq3j",
+            "journal": "prresearch",
+            "year": 2026,
+            "article_url": "https://journals.aps.org/prresearch/abstract/10.1103/96gp-fq3j"
+          },
+          {
+            "title": "Impurity-controlled vortex mobility and pair breaking in fermionic superfluid rings",
+            "authors": [],
+            "doi": "10.1103/6nhm-x2p9",
+            "journal": "prresearch",
+            "year": 2026,
+            "article_url": "https://journals.aps.org/prresearch/abstract/10.1103/6nhm-x2p9"
+          }
+        ],
+        "query_url": "https://journals.aps.org/search/results?clauses=%5B%7B%22field%22%3A%22all%22%2C%22value%22%3A%22quantum%22%2C%22operator%22%3A%22AND%22%7D%5D&sort=recent&per_page=5"
+      }
+    }
+  ]
+}

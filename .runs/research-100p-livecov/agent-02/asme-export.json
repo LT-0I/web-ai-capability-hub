@@ -1,0 +1,47 @@
+{
+  "db": "asme",
+  "op": "export",
+  "profile": "research-asme",
+  "cdp_port": 9313,
+  "source_record": {
+    "title": "Impact of Turbine -Strut Clocking and Turbine Outlet Swirl on the Heat Transfer and Film Cooling in an Aggressive Turbine Center Frame",
+    "authors": [
+      "bine Center Frame Available Patrick R. Jagerhofer",
+      "Tobias Glasenapp",
+      "Bastian Patzer",
+      "Emil Göttlich Journal: Journal of Turbomachinery Publisher: ASME Article Type: Research Papers J. Turbomach . February 2025",
+      "147(2): 021006. Paper No: TURBO-24-1202"
+    ],
+    "doi": "10.1115/1.4066408",
+    "publication": "Journal of Turbomachinery",
+    "year": 2025
+  },
+  "launched_with": {
+    "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js browser:launch --profile research-asme --cdp-port 9313 --json",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-asme\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-asme\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9313\",\n  \"cdpPort\": 9313,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 560769,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9313/devtools/page/F2E0D09609FD36C0BA4FA1D03B0F63DF\",\n      \"id\": \"F2E0D09609FD36C0BA4FA1D03B0F63DF\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9313/devtools/page/F2E0D09609FD36C0BA4FA1D03B0F63DF\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9313/devtools/browser/edd052da-0596-4566-b479-2aaeec7f1c01\"\n}\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "final_classification": "PASS",
+  "attempts": [
+    {
+      "cmd": "node .runs/research-100p-livecov/agent-02/.dist-snapshot/src/cli.js research:asme:export --doi 10.1115/1.4066408 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asme --confirmed --profile research-asme --cdp-port 9313 --json",
+      "exit_code": 0,
+      "signal": null,
+      "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asme/citations-20260527T075950.ris\",\n  \"bytes\": 2227,\n  \"sha256\": \"57038bd3e03b3617df09f895b1a9875eef2a4c0dd2ca150fbe007d931d8a12df\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1115/1.4066408\",\n  \"resource_id\": \"1205026\"\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "classification": "PASS",
+      "parsed": {
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-02/downloads/asme/citations-20260527T075950.ris",
+        "bytes": 2227,
+        "sha256": "57038bd3e03b3617df09f895b1a9875eef2a4c0dd2ca150fbe007d931d8a12df",
+        "format": "ris",
+        "doi": "10.1115/1.4066408",
+        "resource_id": "1205026"
+      }
+    }
+  ]
+}
