@@ -1,0 +1,29 @@
+{
+  "db": "iest",
+  "operation": "search",
+  "classification": "PASS",
+  "query": "contamination",
+  "evidence": {
+    "label": "search",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iest:search",
+      "--query",
+      "contamination",
+      "--page-size",
+      "10",
+      "--profile",
+      "research-iest",
+      "--cdp-port",
+      "9340",
+      "--json"
+    ],
+    "started": "2026-05-27T07:42:59.610Z",
+    "ended": "2026-05-27T07:43:13.808Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"result_count\": 178,\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"title\": \"Lessons Learned from the Hubble Space Telescope (HST) Contamination Control Program\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.1.c7835r3280617256\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/1/article-p44.xml\"\n    },\n    {\n      \"title\": \"Overview of the HST Contamination Engineering Program at 15 Years: A Cleanliness Metric for Success with Optical Satellites\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.51.1.3r4m756413461114\",\n      \"journal\": \"\",\n      \"year\": 2008,\n      \"article_path\": \"/view/journals/jiet/51/1/article-p18.xml\"\n    },\n    {\n      \"title\": \"Contamination of Ultra-High-Purity (UHP) Gas Distribution Systems by Back Diffusion of Impurities\",\n      \"authors\": [\n        \"Back Diffusion of Impurities Contamination of Ultra-High-Purity (UHP) Gas Distribution Systems by Back Diffusion of Impurities Contamination of Ultra-High-Purity (UHP) Gas Distribution Systems by Back Diffusion of Impurities Restricted access Contamination of Ultra-High-Purity (UHP) Gas Distribution Systems by Back Diffusion of Impurities Restricted access Roy Dittler\",\n        \"Jivaan Kishore\",\n        \"Carl Geisert\",\n        \"Farhang Shadman Article Category: Research Article\"\n      ],\n      \"doi\": \"10.17764/jiet.57.1.lj5x82412j018246\",\n      \"journal\": \"\",\n      \"year\": 2014,\n      \"article_path\": \"/view/journals/jiet/57/1/article-p63.xml\"\n    },\n    {\n      \"title\": \"An In-Depth Assessment of Internal Contamination in the Wide Field/Planetary Camera: Republished from the Journal of the IES May-June 1990 issue, pages 29-35\",\n      \"authors\": [\n        \"the Jet Propulsion Laboratory for the Goddard Space Flight Center\",\n        \"August (1980). DOWNLOAD PDF An In-Depth Assessment of Internal Contamination in the Wide Field/Planetary Camera: Republished from the Journal of the IES May-June\"\n      ],\n      \"doi\": \"10.17764/jiet.51.1.466h74n885171337\",\n      \"journal\": \"\",\n      \"year\": 1990,\n      \"article_path\": \"/view/journals/jiet/51/1/article-p10.xml\"\n    },\n    {\n      \"title\": \"Download PDF\",\n      \"authors\": [\n        \"the Jet Propulsion Laboratory for the Goddard Space Flight Center\",\n        \"August (1980). DOWNLOAD PDF An In-Depth Assessment of Internal Contamination in the Wide Field/Planetary Camera: Republished from the Journal of the IES May-June\"\n      ],\n      \"doi\": \"10.17764/jiet.51.1.466h74n885171337\",\n      \"journal\": \"\",\n      \"year\": 2008,\n      \"article_path\": \"/downloadpdf/view/journals/jiet/51/1/article-p10.pdf\"\n    },\n    {\n      \"title\": \"Theoretical Study of Molecular Contamination on Silicon Wafers: Kinetics\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.41.5.y28564q840587783\",\n      \"journal\": \"Journal of the IEST\",\n      \"year\": 2005,\n      \"article_path\": \"/view/journals/jiet/41/5/article-p36.xml\"\n    }\n  ],\n  \"query_url\": \"https://jiest.kglmeridian.com/search?q%5B0%5D=contamination\",\n  \"results_url\": \"https://jiest.kglmeridian.com/search?q[0]=contamination\",\n  \"title\": \"Search Results for contamination | Journal of the IEST\"\n}\n",
+    "stderr": ""
+  }
+}

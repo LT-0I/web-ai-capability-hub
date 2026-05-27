@@ -1,0 +1,32 @@
+{
+  "db": "iest",
+  "operation": "export",
+  "classification": "PASS",
+  "article_path": "/view/journals/jiet/50/1/article-p44.xml",
+  "evidence": {
+    "label": "export",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iest:export",
+      "--article-path",
+      "/view/journals/jiet/50/1/article-p44.xml",
+      "--format",
+      "ris",
+      "--download-dir",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iest",
+      "--profile",
+      "research-iest",
+      "--cdp-port",
+      "9340",
+      "--confirmed",
+      "--json"
+    ],
+    "started": "2026-05-27T07:43:33.898Z",
+    "ended": "2026-05-27T07:43:38.042Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iest/citationExport-article-p44.ris\",\n  \"bytes\": 1174,\n  \"sha256\": \"b2f65b948cb93179d192616ce56428f462639decf14c14981e202fc24605e7e6\",\n  \"format\": \"ris\",\n  \"article_url\": \"https://jiest.kglmeridian.com/view/journals/jiet/50/1/article-p44.xml\"\n}\n",
+    "stderr": ""
+  }
+}

@@ -223,8 +223,30 @@ async function trustedClick(page: any, selector: string, absentCode = ConsumerEr
   await cdp.send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", buttons: 0, clickCount: 1 });
 }
 
+async function dismissIncopatCookieBanner(page: any): Promise<void> {
+  const accepted = await page.evaluate(() => {
+    const button = document.querySelector("#onetrust-accept-btn-handler") as HTMLElement | null;
+    if (!button) return false;
+    const rect = button.getBoundingClientRect();
+    if (!rect.width || !rect.height || button.offsetParent === null) return false;
+    button.click();
+    return true;
+  }).catch(() => false);
+  if (accepted) await sleep(500);
+}
+
+async function acceptIncopatTerms(page: any): Promise<void> {
+  await page.evaluate(() => {
+    const checkbox = document.querySelector("#clauseCheckBox") as HTMLInputElement | null;
+    if (!checkbox || checkbox.checked) return;
+    checkbox.click();
+  }).catch(() => undefined);
+}
+
 async function ensureLoggedIn(page: any): Promise<void> {
+  await dismissIncopatCookieBanner(page);
   for (let i = 0; i < 12; i++) {
+    await dismissIncopatCookieBanner(page);
     const state = await page.evaluate(() => ({
       url: location.href,
       hasLogin: (() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; })(),
@@ -235,6 +257,8 @@ async function ensureLoggedIn(page: any): Promise<void> {
     if (state.hasLogin) break;
     await sleep(1000);
   }
+  await dismissIncopatCookieBanner(page);
+  await acceptIncopatTerms(page);
   const hasLogin = await page.evaluate(() => { const e = document.querySelector("#ipLoginBtn") as HTMLElement | null; if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !!e.offsetParent; }).catch(() => false);
   if (!hasLogin) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "IncoPat IP-login button was absent", { selector: "#ipLoginBtn", url: page.url?.() || "" });
   await trustedClick(page, "#ipLoginBtn", ConsumerErrorCodes.ELEMENT_NOT_FOUND);
@@ -400,7 +424,7 @@ export async function researchIncopatExport(args: IncopatExportArgs): Promise<{ 
         timeoutMs: 60000,
         locateTimeoutMs: 20000,
         frameMinCount: 0,
-        filenamePattern: "*.pdf"
+        verifyMinBytes: 100
       });
       const artifact_path = clicked.path;
       const head = fs.readFileSync(artifact_path).subarray(0, 8).toString("utf-8");

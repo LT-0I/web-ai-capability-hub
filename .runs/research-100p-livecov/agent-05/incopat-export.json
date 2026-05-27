@@ -1,0 +1,141 @@
+{
+  "db": "incopat",
+  "operation": "export",
+  "classification": "PASS",
+  "query": "battery",
+  "country": "CN",
+  "evidence": {
+    "label": "export",
+    "args": [
+      "node",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+      "research:incopat:export",
+      "--query",
+      "battery",
+      "--country",
+      "CN",
+      "--format",
+      "pdf",
+      "--download-dir",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat",
+      "--page-size",
+      "20",
+      "--profile",
+      "research-incopat",
+      "--cdp-port",
+      "9342",
+      "--confirmed",
+      "--json"
+    ],
+    "started": "2026-05-27T08:05:15.495Z",
+    "ended": "2026-05-27T08:05:24.409Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat/CN109565180B.PDF\",\n  \"bytes\": 3370004,\n  \"sha256\": \"90c3e26d40a6d64a8d9ba38c1ae736f607becfde25fa0f38737ab378b0e60bf3\",\n  \"format\": \"pdf\",\n  \"result_count\": 2782470,\n  \"results_url\": \"https://www.incopat.com/advancedSearch/simpleInit\",\n  \"country\": \"CN\"\n}\n",
+    "stderr": "",
+    "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+  },
+  "attempts": [
+    {
+      "classification": "FAIL_LOGIN_REQUIRED",
+      "evidence": {
+        "label": "export",
+        "args": [
+          "node",
+          "dist/src/cli.js",
+          "research:incopat:export",
+          "--query",
+          "battery",
+          "--country",
+          "CN",
+          "--format",
+          "pdf",
+          "--download-dir",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat",
+          "--page-size",
+          "20",
+          "--profile",
+          "research-incopat",
+          "--cdp-port",
+          "9342",
+          "--confirmed",
+          "--json"
+        ],
+        "started": "2026-05-27T07:50:26.224Z",
+        "ended": "2026-05-27T07:50:58.964Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"LOGIN_REQUIRED\",\"error\":\"LOGIN_REQUIRED: IncoPat trusted IP-login did not reach the authenticated app\",\"evidence\":{\"url\":\"https://www.incopat.com/newLogin\",\"hasSearch\":false,\"userText\":\"中文简体\\n用户名\\n密码\\n忘记密码\\n自动登录\\n免费试用\\n已阅读并同意\\n服务条款\\n隐私条款\\n网站首页\\n当前IP地址 : 58.216.176.199\\n北京合享智慧科技有限公司\\n我们使用 Cookie 以允许我们网站的正常工作、个性化设计内容和广告、提供社交媒体功能并分析流量。我们还同社交媒体、广告和分析合作伙伴分享有关您使用我们网站的信息。\\n管理 cookie 首选项 接受所有 Cookie\",\"cookies\":\"<redacted>\"}}\n"
+      }
+    },
+    {
+      "classification": "FAIL_LOGIN_REQUIRED",
+      "evidence": {
+        "label": "export",
+        "args": [
+          "node",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+          "research:incopat:export",
+          "--query",
+          "battery",
+          "--country",
+          "CN",
+          "--format",
+          "pdf",
+          "--download-dir",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat",
+          "--page-size",
+          "20",
+          "--profile",
+          "research-incopat",
+          "--cdp-port",
+          "9342",
+          "--confirmed",
+          "--json"
+        ],
+        "started": "2026-05-27T07:56:51.811Z",
+        "ended": "2026-05-27T07:58:52.935Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"LOGIN_REQUIRED\",\"error\":\"LOGIN_REQUIRED: IncoPat trusted IP-login did not reach the authenticated app\",\"evidence\":{\"url\":\"https://www.incopat.com/newLogin\",\"hasSearch\":false,\"userText\":\"中文简体\\n用户名\\n密码\\n忘记密码\\n自动登录\\n免费试用\\n已阅读并同意\\n服务条款\\n隐私条款\\n网站首页\\n当前IP地址 : 58.216.176.199\\n北京合享智慧科技有限公司\",\"cookies\":\"<redacted>\"}}\n",
+        "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+      }
+    },
+    {
+      "classification": "FAIL_PLAN_OR_QUOTA_REQUIRED",
+      "evidence": {
+        "label": "export",
+        "args": [
+          "node",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+          "research:incopat:export",
+          "--query",
+          "battery",
+          "--country",
+          "CN",
+          "--format",
+          "pdf",
+          "--download-dir",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat",
+          "--page-size",
+          "20",
+          "--profile",
+          "research-incopat",
+          "--cdp-port",
+          "9342",
+          "--confirmed",
+          "--json"
+        ],
+        "started": "2026-05-27T08:02:16.301Z",
+        "ended": "2026-05-27T08:02:25.728Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"PLAN_OR_QUOTA_REQUIRED\",\"error\":\"PLAN_OR_QUOTA_REQUIRED: IncoPat export quota wall was displayed\",\"evidence\":{\"quotaText\":\"×\\n                您下载的数量超过20条，稍后请到本周下载历史查看\"}}\n",
+        "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+      }
+    }
+  ]
+}

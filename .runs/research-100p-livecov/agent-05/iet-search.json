@@ -1,0 +1,57 @@
+{
+  "db": "iet",
+  "operation": "search",
+  "classification": "PASS",
+  "query": "machine learning",
+  "evidence": {
+    "label": "search",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iet:search",
+      "--query",
+      "machine learning",
+      "--page-size",
+      "10",
+      "--profile",
+      "research-iet",
+      "--cdp-port",
+      "9341",
+      "--json"
+    ],
+    "started": "2026-05-27T07:47:30.672Z",
+    "ended": "2026-05-27T07:47:37.766Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"result_count\": 25374,\n  \"items\": [\n    {\n      \"title\": \"Machine learning\",\n      \"authors\": [\n        \"Deepa Chinnasamy\",\n        \"Saraswathi Devarajan\"\n      ],\n      \"doi\": \"10.1049/PBHE029E_ch5\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Introduction of machine learning\",\n      \"authors\": [\n        \"Yangli-ao Geng\",\n        \"Ming Liu\",\n        \"Qingyong Li\",\n        \"Ruisi He\"\n      ],\n      \"doi\": \"10.1049/PBTE081E_ch1\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine - learning -enabled channel modeling\",\n      \"authors\": [\n        \"Chen Huang\",\n        \"Ruisi He\",\n        \"Andreas F. Molisch\",\n        \"Andreas F. Zhangdui Zhong\",\n        \"Andreas F. Bo Ai\"\n      ],\n      \"doi\": \"10.1049/PBTE081E_ch2\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"The background of machine learning algorithms\",\n      \"authors\": [],\n      \"doi\": \"10.1049/PBPC039E_ch4\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning in healthcare diagnosis\",\n      \"authors\": [\n        \"Sugumaran Muthukumarasamy\",\n        \"Ananth Kumar Tamilarasan\",\n        \"John Kumar Ayeelyan\",\n        \"M. Kumar Adimoolam\"\n      ],\n      \"doi\": \"10.1049/PBHE029E_ch14\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning in blockchain\",\n      \"authors\": [\n        \"Kolla Bhanu Prakash\",\n        \"Vadla Pradeep Kumar\",\n        \"Venkata Raghavendra Pawan\"\n      ],\n      \"doi\": \"10.1049/PBHE029E_ch6\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning for healthcare technologies - an introduction\",\n      \"authors\": [\n        \"David A. Clifton\"\n      ],\n      \"doi\": \"10.1049/PBHE002E_ch1\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning\",\n      \"authors\": [\n        \"Olcay Taner Yildiz\"\n      ],\n      \"doi\": \"10.1049/PBCS051E_ch3\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"The mapping of machine learning algorithms on XIMA\",\n      \"authors\": [],\n      \"doi\": \"10.1049/PBPC039E_ch6\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning for health care\",\n      \"authors\": [\n        \"B. K. Kumar Raju Alluri\"\n      ],\n      \"doi\": \"10.1049/PBHE029E_ch13\",\n      \"journal\": \"\",\n      \"year\": null\n    }\n  ],\n  \"query_url\": \"https://digital-library.theiet.org/action/doSearch?field1=AllField&text1=machine+learning&field2=AllField&pageSize=10\"\n}\n",
+    "stderr": ""
+  },
+  "attempts": [
+    {
+      "classification": "FAIL_ELEMENT_NOT_FOUND",
+      "evidence": {
+        "label": "search",
+        "args": [
+          "node",
+          "dist/src/cli.js",
+          "research:iet:search",
+          "--query",
+          "machine learning",
+          "--page-size",
+          "10",
+          "--profile",
+          "research-iet",
+          "--cdp-port",
+          "9341",
+          "--json"
+        ],
+        "started": "2026-05-27T07:44:04.449Z",
+        "ended": "2026-05-27T07:45:59.414Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: IET results page did not hydrate\",\"evidence\":{\"cause\":\"Cloudflare still active: 请稍候…\"}}\n"
+      }
+    }
+  ]
+}

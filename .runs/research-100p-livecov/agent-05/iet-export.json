@@ -1,0 +1,92 @@
+{
+  "db": "iet",
+  "operation": "export",
+  "classification": "PASS",
+  "doi": "10.1049/cit2.12216",
+  "evidence": {
+    "label": "export",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iet:export",
+      "--doi",
+      "10.1049/cit2.12216",
+      "--format",
+      "ris",
+      "--download-dir",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet",
+      "--profile",
+      "research-iet",
+      "--cdp-port",
+      "9341",
+      "--confirmed",
+      "--json"
+    ],
+    "started": "2026-05-27T07:48:44.490Z",
+    "ended": "2026-05-27T07:48:44.490Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet/Citation.ris\",\n  \"bytes\": 565,\n  \"sha256\": \"1501d236c9d3b47b0b76f51bab3445de62dce8619a97426bbaeabfe6f51af720\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1049/cit2.12216\"\n}\n",
+    "stderr": ""
+  },
+  "attempts": [
+    {
+      "classification": "FAIL_ELEMENT_NOT_FOUND",
+      "evidence": {
+        "label": "export",
+        "args": [
+          "node",
+          "dist/src/cli.js",
+          "research:iet:export",
+          "--doi",
+          "10.1049/iet-cvi.2018.5502",
+          "--format",
+          "ris",
+          "--download-dir",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet",
+          "--profile",
+          "research-iet",
+          "--cdp-port",
+          "9341",
+          "--confirmed",
+          "--json"
+        ],
+        "started": "2026-05-27T07:46:15.674Z",
+        "ended": "2026-05-27T07:46:43.091Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: IET Metrics and Citations control was not found\",\"evidence\":{\"selector\":\"a[aria-controls=\\\"core-collateral-metrics\\\"]\"}}\n"
+      }
+    },
+    {
+      "classification": "FAIL_ARTIFACT_VERIFICATION_FAILED",
+      "evidence": {
+        "label": "export",
+        "args": [
+          "node",
+          "dist/src/cli.js",
+          "research:iet:export",
+          "--doi",
+          "10.1049/PBHE029E_ch5",
+          "--format",
+          "ris",
+          "--download-dir",
+          "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet",
+          "--profile",
+          "research-iet",
+          "--cdp-port",
+          "9341",
+          "--confirmed",
+          "--json"
+        ],
+        "started": "2026-05-27T07:47:37.767Z",
+        "ended": "2026-05-27T07:47:44.732Z",
+        "exit_code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_VERIFICATION_FAILED\",\"error\":\"ARTIFACT_VERIFICATION_FAILED: IET RIS artifact failed content validation\",\"evidence\":{\"artifact_path\":\"<home>/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet/Citation.ris\",\"doi\":\"10.1049/PBHE029E_ch5\"}}\n"
+      }
+    }
+  ]
+}

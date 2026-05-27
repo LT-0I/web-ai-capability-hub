@@ -1,0 +1,23 @@
+{
+  "db": "incopat",
+  "operation": "launch",
+  "evidence": {
+    "label": "launch",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-incopat",
+      "--cdp-port",
+      "9342",
+      "--json"
+    ],
+    "started": "2026-05-27T07:49:19.945Z",
+    "ended": "2026-05-27T07:49:20.412Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-incopat\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-incopat\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9342\",\n  \"cdpPort\": 9342,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 509033,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9342/devtools/page/912120485DD6292FFA40FEC66DC742FB\",\n      \"id\": \"912120485DD6292FFA40FEC66DC742FB\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9342/devtools/page/912120485DD6292FFA40FEC66DC742FB\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9342/devtools/browser/38c9e84e-f7f2-4cfe-8c51-13904b1d360b\"\n}\n",
+    "stderr": ""
+  }
+}

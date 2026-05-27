@@ -1,0 +1,23 @@
+{
+  "db": "iet",
+  "operation": "launch-retry",
+  "evidence": {
+    "label": "launch",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-iet",
+      "--cdp-port",
+      "9341",
+      "--json"
+    ],
+    "started": "2026-05-27T07:47:30.202Z",
+    "ended": "2026-05-27T07:47:30.671Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-iet\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-iet\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9341\",\n  \"cdpPort\": 9341,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 496163,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9341/devtools/page/046C4506F3FCF9FE1EA4769229E57A66\",\n      \"id\": \"046C4506F3FCF9FE1EA4769229E57A66\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9341/devtools/page/046C4506F3FCF9FE1EA4769229E57A66\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9341/devtools/browser/8d0c0258-d971-4cec-b8f3-177d8ee89f8e\"\n}\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "db": "inspirehep",
+  "operation": "launch",
+  "evidence": {
+    "label": "launch",
+    "args": [
+      "node",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-inspirehep",
+      "--cdp-port",
+      "9343",
+      "--json"
+    ],
+    "started": "2026-05-27T08:03:15.215Z",
+    "ended": "2026-05-27T08:03:15.707Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-inspirehep\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-inspirehep\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9343\",\n  \"cdpPort\": 9343,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 575027,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9343/devtools/page/A3B2CEE6F8C1678F8CF9AE3671C408EA\",\n      \"id\": \"A3B2CEE6F8C1678F8CF9AE3671C408EA\",\n      \"title\": \"Google Hangouts\",\n      \"type\": \"background_page\",\n      \"url\": \"chrome-extension://nkeimhogjdpnpccoofpliimaahmaaome/background.html\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9343/devtools/page/A3B2CEE6F8C1678F8CF9AE3671C408EA\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9343/devtools/page/4C61A8EABDEB654DDDF22B73B444009E\",\n      \"id\": \"4C61A8EABDEB654DDDF22B73B444009E\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9343/devtools/page/4C61A8EABDEB654DDDF22B73B444009E\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9343/devtools/browser/9eb09097-4062-46f3-8f36-60132f835751\"\n}\n",
+    "stderr": "",
+    "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+  }
+}

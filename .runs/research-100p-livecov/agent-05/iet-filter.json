@@ -1,0 +1,35 @@
+{
+  "db": "iet",
+  "operation": "filter",
+  "classification": "PASS",
+  "query": "machine learning",
+  "after_year": 2023,
+  "before_year": 2023,
+  "evidence": {
+    "label": "filter",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iet:filter",
+      "--query",
+      "machine learning",
+      "--after-year",
+      "2023",
+      "--before-year",
+      "2023",
+      "--page-size",
+      "10",
+      "--profile",
+      "research-iet",
+      "--cdp-port",
+      "9341",
+      "--json"
+    ],
+    "started": "2026-05-27T07:45:59.415Z",
+    "ended": "2026-05-27T07:46:15.673Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"result_count\": 993,\n  \"items\": [\n    {\n      \"title\": \"Weakly supervised machine learning\",\n      \"authors\": [\n        \"Zeyu Ren\",\n        \"Shuihua Wang\",\n        \"Yudong Zhang\"\n      ],\n      \"doi\": \"10.1049/cit2.12216\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Synthetic data generation for machine learning model training for energy theft scenarios using cosimulation\",\n      \"authors\": [\n        \"Anantha Narayanan\",\n        \"Trevor Hardy\"\n      ],\n      \"doi\": \"10.1049/gtd2.12619\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Diabetes prediction using machine learning and explainable AI techniques\",\n      \"authors\": [\n        \"Isfafuzzaman Tasin\",\n        \"Tansin Ullah Nabil\",\n        \"Sanjida Islam\",\n        \"Riasat Khan\"\n      ],\n      \"doi\": \"10.1049/htl2.12039\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning to set hyperparameters for overlapping community detection algorithms\",\n      \"authors\": [\n        \"Chenglong Xiao\",\n        \"Yajie Wang\",\n        \"Shanshan Wang\"\n      ],\n      \"doi\": \"10.1049/tje2.12292\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"A systematic mapping study on machine learning methodologies for requirements management\",\n      \"authors\": [\n        \"Chi Xu\",\n        \"Yuanbang Li\",\n        \"Bangchao Wang\",\n        \"Shi Dong\"\n      ],\n      \"doi\": \"10.1049/sfw2.12082\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Machine learning ‐based LoRa localisation using multiple received signal features\",\n      \"authors\": [\n        \"Khondoker Ziaul Islam\",\n        \"David Murray\",\n        \"Dean Diepeveen\",\n        \"Michael G. K. Jones\",\n        \"Ferdous Sohel\"\n      ],\n      \"doi\": \"10.1049/wss2.12063\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Cardiac disease risk prediction using machine learning algorithms\",\n      \"authors\": [\n        \"Albert Alexander Stonier\",\n        \"Rakesh Krishna Gorantla\",\n        \"K Manoj\"\n      ],\n      \"doi\": \"10.1049/htl2.12053\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Evaluation of 4H‐SiC MOSFET transfer characteristics using machine ‐ learning techniques\",\n      \"authors\": [\n        \"Johannes A. F. Lehmeyer\",\n        \"Timon Citak\",\n        \"Heiko B. Weber\",\n        \"Michael Krieger\"\n      ],\n      \"doi\": \"10.1049/ell2.12752\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"HLS‐based swarm intelligence driven optimized hardware IP core for linear regression‐based machine learning\",\n      \"authors\": [\n        \"Anirban Sengupta\",\n        \"Rahul Chaurasia\",\n        \"Mahendra Rathor\"\n      ],\n      \"doi\": \"10.1049/tje2.12299\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Thermoelectric energy harvesting for internet of things devices using machine learning : A review\",\n      \"authors\": [\n        \"Tereza Kucova\",\n        \"Michal Prauzek\",\n        \"Jaromir Konecny\",\n        \"Darius Andriukaitis\",\n        \"Mindaugas Zilys\",\n        \"Radek Martinek\"\n      ],\n      \"doi\": \"10.1049/cit2.12259\",\n      \"journal\": \"\",\n      \"year\": null\n    }\n  ],\n  \"refined_url\": \"https://digital-library.theiet.org/action/doSearch?field1=AllField&text1=machine+learning&field2=AllField&pageSize=10&AfterYear=2023&BeforeYear=2023\",\n  \"confirm_title\": \"Search Result | IET Digital Library\"\n}\n",
+    "stderr": ""
+  }
+}

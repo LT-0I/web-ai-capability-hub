@@ -1,0 +1,33 @@
+{
+  "db": "inspirehep",
+  "operation": "export",
+  "classification": "PASS",
+  "control_number": "3159343",
+  "evidence": {
+    "label": "export",
+    "args": [
+      "node",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+      "research:inspirehep:export",
+      "--control-number",
+      "3159343",
+      "--format",
+      "bibtex",
+      "--download-dir",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/inspirehep",
+      "--profile",
+      "research-inspirehep",
+      "--cdp-port",
+      "9343",
+      "--confirmed",
+      "--json"
+    ],
+    "started": "2026-05-27T08:03:46.113Z",
+    "ended": "2026-05-27T08:03:48.818Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/inspirehep/inspirehep-3159343.bib\",\n  \"bytes\": 347,\n  \"sha256\": \"a489b4c872b6d1ed6f8c305ae9aadf1b9edc2c7f61794b961abe7da754f1950b\",\n  \"format\": \"bibtex\",\n  \"source_url\": \"https://inspirehep.net/api/literature/3159343?format=bibtex\"\n}\n",
+    "stderr": "",
+    "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+  }
+}

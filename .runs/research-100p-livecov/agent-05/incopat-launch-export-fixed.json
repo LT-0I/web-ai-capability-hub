@@ -1,0 +1,24 @@
+{
+  "db": "incopat",
+  "operation": "launch-export-fixed",
+  "evidence": {
+    "label": "launch",
+    "args": [
+      "node",
+      "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/dist-stable/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-incopat",
+      "--cdp-port",
+      "9342",
+      "--json"
+    ],
+    "started": "2026-05-27T08:05:15.038Z",
+    "ended": "2026-05-27T08:05:15.494Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-incopat\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-incopat\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9342\",\n  \"cdpPort\": 9342,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 583237,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9342/devtools/page/572586038D9C558255E9C4438E3275C1\",\n      \"id\": \"572586038D9C558255E9C4438E3275C1\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9342/devtools/page/572586038D9C558255E9C4438E3275C1\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9342/devtools/browser/e51091c8-8d3e-4df0-b08c-734486395346\"\n}\n",
+    "stderr": "",
+    "note": "agent-05 stable build path used because shared dist/ is being concurrently cleaned by parallel agents"
+  }
+}

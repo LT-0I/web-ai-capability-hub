@@ -1,0 +1,23 @@
+{
+  "db": "iest",
+  "operation": "launch",
+  "evidence": {
+    "label": "launch",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "browser:launch",
+      "--profile",
+      "research-iest",
+      "--cdp-port",
+      "9340",
+      "--json"
+    ],
+    "started": "2026-05-27T07:42:59.155Z",
+    "ended": "2026-05-27T07:42:59.609Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"profile\": \"research-iest\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-iest\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9340\",\n  \"cdpPort\": 9340,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 466365,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9340/devtools/page/838699D1B7856E2950F989AFA507A1D5\",\n      \"id\": \"838699D1B7856E2950F989AFA507A1D5\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9340/devtools/page/838699D1B7856E2950F989AFA507A1D5\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9340/devtools/browser/c5b9f49f-4e58-4d52-bb08-78c9c2ba43e4\"\n}\n",
+    "stderr": ""
+  }
+}

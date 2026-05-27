@@ -1,0 +1,130 @@
+{
+  "agent": "05",
+  "dbs": {
+    "iest": {
+      "search": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iest-search.json",
+        "attempts": 0,
+        "result_count": 178,
+        "item_count": 6,
+        "query_url": "https://jiest.kglmeridian.com/search?q%5B0%5D=contamination",
+        "errorCode": null,
+        "error": null
+      },
+      "filter": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iest-filter.json",
+        "attempts": 0,
+        "result_count": 5,
+        "item_count": 6,
+        "refined_url": "https://jiest.kglmeridian.com/search?q[0]=contamination&fromDate[0]=2007&toDate[0]=2007",
+        "errorCode": null,
+        "error": null
+      },
+      "export": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iest-export.json",
+        "attempts": 0,
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iest/citationExport-article-p44.ris",
+        "bytes": 1174,
+        "sha256": "b2f65b948cb93179d192616ce56428f462639decf14c14981e202fc24605e7e6",
+        "errorCode": null,
+        "error": null
+      }
+    },
+    "iet": {
+      "search": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iet-search.json",
+        "attempts": 1,
+        "result_count": 25374,
+        "query_url": "https://digital-library.theiet.org/action/doSearch?field1=AllField&text1=machine+learning&field2=AllField&pageSize=10",
+        "errorCode": null,
+        "error": null
+      },
+      "filter": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iet-filter.json",
+        "attempts": 0,
+        "result_count": 993,
+        "refined_url": "https://digital-library.theiet.org/action/doSearch?field1=AllField&text1=machine+learning&field2=AllField&pageSize=10&AfterYear=2023&BeforeYear=2023",
+        "errorCode": null,
+        "error": null
+      },
+      "export": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/iet-export.json",
+        "attempts": 2,
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/iet/Citation.ris",
+        "bytes": 565,
+        "sha256": "1501d236c9d3b47b0b76f51bab3445de62dce8619a97426bbaeabfe6f51af720",
+        "errorCode": null,
+        "error": null
+      }
+    },
+    "incopat": {
+      "search": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/incopat-search.json",
+        "attempts": 2,
+        "result_count": 5764883,
+        "query_url": "https://www.incopat.com/advancedSearch/simpleInit",
+        "errorCode": null,
+        "error": null
+      },
+      "filter": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/incopat-filter.json",
+        "attempts": 2,
+        "result_count": 2782470,
+        "refined_url": "https://www.incopat.com/advancedSearch/simpleInit",
+        "errorCode": null,
+        "error": null
+      },
+      "export": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/incopat-export.json",
+        "attempts": 3,
+        "result_count": 2782470,
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/incopat/CN109565180B.PDF",
+        "bytes": 3370004,
+        "sha256": "90c3e26d40a6d64a8d9ba38c1ae736f607becfde25fa0f38737ab378b0e60bf3",
+        "errorCode": null,
+        "error": null
+      }
+    },
+    "inspirehep": {
+      "search": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/inspirehep-search.json",
+        "attempts": 0,
+        "result_count": 2193,
+        "query_url": "https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=t+neutrino+and+t+oscillation",
+        "errorCode": null,
+        "error": null
+      },
+      "filter": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/inspirehep-filter.json",
+        "attempts": 0,
+        "result_count": 986,
+        "refined_url": "https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=t+neutrino+and+t+oscillation&doc_type=article",
+        "errorCode": null,
+        "error": null
+      },
+      "export": {
+        "classification": "PASS",
+        "evidence_file": ".runs/research-100p-livecov/agent-05/inspirehep-export.json",
+        "attempts": 0,
+        "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-05/downloads/inspirehep/inspirehep-3159343.bib",
+        "bytes": 347,
+        "sha256": "a489b4c872b6d1ed6f8c305ae9aadf1b9edc2c7f61794b961abe7da754f1950b",
+        "source_url": "https://inspirehep.net/api/literature/3159343?format=bibtex",
+        "errorCode": null,
+        "error": null
+      }
+    }
+  },
+  "generated_at": "2026-05-27T01:06:00-07:00"
+}

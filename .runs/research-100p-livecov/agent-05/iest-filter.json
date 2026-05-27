@@ -1,0 +1,33 @@
+{
+  "db": "iest",
+  "operation": "filter",
+  "classification": "PASS",
+  "query": "contamination",
+  "from_year": 2007,
+  "to_year": 2007,
+  "evidence": {
+    "label": "filter",
+    "args": [
+      "node",
+      "dist/src/cli.js",
+      "research:iest:filter",
+      "--query",
+      "contamination",
+      "--from-year",
+      "2007",
+      "--to-year",
+      "2007",
+      "--profile",
+      "research-iest",
+      "--cdp-port",
+      "9340",
+      "--json"
+    ],
+    "started": "2026-05-27T07:43:13.809Z",
+    "ended": "2026-05-27T07:43:33.898Z",
+    "exit_code": 0,
+    "signal": null,
+    "stdout": "{\n  \"result_count\": 5,\n  \"item_count\": 6,\n  \"items\": [\n    {\n      \"title\": \"Lessons Learned from the Hubble Space Telescope (HST) Contamination Control Program\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.1.c7835r3280617256\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/1/article-p44.xml\"\n    },\n    {\n      \"title\": \"Comparison of Chemical Filters for the Control of Airborne Molecular Contamination\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.2.n0256152322m4410\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/2/article-p52.xml\"\n    },\n    {\n      \"title\": \"Surface Corrosion of HDD Media and Subsidiary Particle Formation Due to SO2 Gas Adsorption\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.2.wh12q7h78l005042\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/2/article-p38.xml\"\n    },\n    {\n      \"title\": \"New ISO Draft Standard Classifies Surface Particle Cleanliness\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.2.d622juj1548x2485\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/2/article-p1.xml\"\n    },\n    {\n      \"title\": \"Download PDF\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.2.d622juj1548x2485\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/downloadpdf/view/journals/jiet/50/2/article-p1.pdf\"\n    },\n    {\n      \"title\": \"A Test Method for Measuring Surface Cleanliness with Respect to Nonviable Liquid Contaminants\",\n      \"authors\": [],\n      \"doi\": \"10.17764/jiet.50.1.t765827v4477g628\",\n      \"journal\": \"\",\n      \"year\": 2007,\n      \"article_path\": \"/view/journals/jiet/50/1/article-p61.xml\"\n    }\n  ],\n  \"refined_url\": \"https://jiest.kglmeridian.com/search?q[0]=contamination&fromDate[0]=2007&toDate[0]=2007\",\n  \"confirm_title\": \"Search Results for contamination | Journal of the IEST\",\n  \"unfiltered_count\": 178,\n  \"unfiltered_url\": \"https://jiest.kglmeridian.com/search?q[0]=contamination\"\n}\n",
+    "stderr": ""
+  }
+}
