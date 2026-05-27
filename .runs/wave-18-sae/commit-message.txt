@@ -1,0 +1,11 @@
+webai: wave 18 sae — per-DB deep fix (technical-papers content route)
+
+SAE Technical Papers exposes abstracts and subscriber-only download controls in the research-sae profile, so the driver now resolves real SAE paper ids to the verified content /download route and reports LOGIN_REQUIRED when that route returns HTML instead of a %PDF artifact.
+
+Constraint: Touch only src/mcp/submcp/literature/sae.ts, .runs/wave-18-sae/**, and .omc/codex-out/wave-18-sae.md.
+Rejected: Generic paywalled.ts fallback changes | prohibited by the wave scope and unnecessary for SAE-specific gating.
+Confidence: high
+Scope-risk: narrow
+Directive: Keep SAE subscription failures as LOGIN_REQUIRED unless a headed probe proves research-sae returns a real %PDF response.
+Tested: rm -rf dist && npm run build; npm test (731/731); headed SAE probe; raw-id and DOI SAE re-smokes returned LOGIN_REQUIRED with setup hint.
+Not-tested: Successful SAE PDF download behind an active institutional/subscriber entitlement; research-sae did not have one during the probe.

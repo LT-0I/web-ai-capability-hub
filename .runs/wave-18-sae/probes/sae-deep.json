@@ -1,0 +1,3761 @@
+{
+  "db": "sae",
+  "profile": "research-sae",
+  "created_at": "2026-05-27T05:43:39.795Z",
+  "headed_chrome_only": true,
+  "entrypoints": [
+    "https://www.sae.org/publications/technical-papers/",
+    "https://www.sae.org/publications/technical-papers/recent/",
+    "https://www.sae.org/search/?qt=&sort=relevance",
+    "https://www.sae.org/publications/technical-papers/content/2024-01-1000/"
+  ],
+  "extra_searches": [
+    "https://www.sae.org/search?qt=2024-01-1000&sort=relevance#all=sub_group:Technical%20Paper",
+    "https://www.sae.org/search?qt=cybersecurity&sort=relevance#all=sub_group:Technical%20Paper"
+  ],
+  "launch": {
+    "profile": "research-sae",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-sae",
+    "cdpEndpoint": "http://127.0.0.1:36397",
+    "cdpPort": 36397,
+    "connected": true,
+    "launchedByPackage": true,
+    "processId": 18568,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:36397/devtools/page/EB0DDBA12A849341D1B725D9A5675541",
+        "faviconUrl": "https://saemobilus.sae.org/favicon.ico",
+        "id": "EB0DDBA12A849341D1B725D9A5675541",
+        "title": "2026-26-0608: Post-EOL Cybersecurity Validation for Automotive Production Units - Technical Paper",
+        "type": "page",
+        "url": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:36397/devtools/page/EB0DDBA12A849341D1B725D9A5675541"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:36397/devtools/browser/2fb8445d-b6f1-47f6-b83b-6629db07443d"
+  },
+  "pages": [
+    {
+      "label": "entry-1",
+      "requested_url": "https://www.sae.org/publications/technical-papers/",
+      "started_at": "2026-05-27T05:43:39.995Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/publications/technical-papers",
+      "title": "Search Technical Papers - SAE International",
+      "text_probe": "shopping_cart person_outlined menu SAE Technical Papers Supporting the automotive, aerospace, and commercial vehicle sectors, SAE Technical Papers provide professionals and students with the latest advances in mobility research. Cutting-Edge and Historical Research for Industry and Academic Use SAE Technical Papers help guide engineers through their project challenges and establish leadership in a competitive landscape. Find current and historical research to define best practices and strategies. From combustion processes to simulation and modeling to test procedures, Technical Papers contain in-depth test results, comparative studies, and methodologies on a variety of topics. SAE's Technical Papers are all peer reviewed by leading industry and academic experts to ensure high quality and dependable information. Here's What People Are Saying \"Most of the current autonomous vehicles being developed today continue to change how collision investigations and reconstruction are done - as well as data analysis - this is the biggest area of continual change. Without my connection to SAE International - I would lack a major source of information/standards for these new vehicles.\" -Tony Andr",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": true,
+      "has_locked_text": true,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | \"Most of the current autonomous vehicles being developed today continue to change how collision investigations and reconstruction are done - as well as data analysis - this is the biggest area of continual change. Without my connection to SAE International - I would lack a major source of information/standards for these new vehicles.\" -Tony Andreoni, A\u00b2 Consulting Engineers, LLC | \"SAE is a great organization with a lot of world class researchers in the engine field. I believe by being part of the SAE International helped me to learn latest developments and contribute to the engine research fraternity.\" -Sudheesh Kandappadi, Technical Specialist, Cummins Inc., USA | \u201cSAE International is a centenary institution with a global reputatio",
+      "article_link_count": 40,
+      "article_links": [
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAKRABORTY, SUCHETA",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BORGWARNER POWER DRIVE SYSTEM",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KULANTHAISAMY, NAGARAJAN",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BORGWARNER POWER DRIVE SYSTEMS",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MISHRA, ABHIGYAN",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HERO MOTOCORP, LTD.",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAUDHARY LNG, VIKASH",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HACKERSERA, PVT., LTD.",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "DIGIKAR, ASHISH",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "TATA MOTORS, LTD.",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "VENUGOPAL, VAISAKH",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "TATA MOTORS PASSENGER VEHICLES, LTD.",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "PATIL, KAMALESH",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "AUTOMOTIVE RESEARCH ASSOCIATION OF INDIA; MIT WORLD PEACE UN",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KUMAR, OM",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SWITCH MOBILITY",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAUDHARY LNG, VIKASH",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HACKERSERA, PVT., LTD.",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2025-11-05",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KOTAL, AMIT",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "JOHN DEERE",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "pdf_download_links": [
+        {
+          "tag": "A",
+          "text": "TechSelect Access Type: Preview access of Technical Paper Database Content: Download only what you need from SAE's Technical Paper Database Subscription Option: Choose between 10, 20, 35 or 50 downloads a year SAE Mobilu",
+          "href": "https://legacy.sae.org/publications/collections/content/techselect/?_gl=1*rxxkzt*_gcl_au*NDk2NTQzNDk1LjE3NjI4ODc3MDA.*_ga*MzE5MDIzMjQ5LjE3NjI4ODc3MDE.*_ga_JXVRVCS6ZH*czE3NjM0ODQxNzEkbzIwJGcxJHQxNzYzNDg0MzY1JGo2MCRsMCRoMA..",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "arrow_forward_ios Purchasing/Subscription Options",
+          "href": "https://brx-content.fullsight.org/site/binaries/content/assets/sae-org/content/publications/technical-papers/tech_papers_collateral_fp.pdf",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "arrow_forward_ios Technical Papers Archive",
+          "href": "https://brx-content.fullsight.org/site/binaries/content/assets/sae-org/content/publications/technical-papers/gpm_tech_paper_archive.pdf",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "arrow_forward_ios SAE MOBILUS Techselect",
+          "href": "https://brx-content.fullsight.org/site/binaries/content/assets/sae-org/content/publications/technical-papers/mobilus-techselect_2023.pdf",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "arrow_forward_ios Cutting-Edge Articles from AEROTECH",
+          "href": "https://brx-content.fullsight.org/site/binaries/content/assets/sae-org/content/publications/technical-papers/aerotech-2023-technical-papers.pdf",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "person_outlined",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers&state=a04ef746-95ba-40c5-8dd0-4489404e3a52&response_mode=fragment&response_type=code&scope=openid&nonce=912fffbe-e3c8-4495-a016-a0dde8f9a5c2&code_challenge=tH-Q1USW1fS3RMM6HiL2NWavJW4qyHzzGNtUZkipkP4&code_challenge_method=S256",
+          "aria": "",
+          "title": "Log In"
+        },
+        {
+          "tag": "A",
+          "text": "Log In",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers&state=a04ef746-95ba-40c5-8dd0-4489404e3a52&response_mode=fragment&response_type=code&scope=openid&nonce=912fffbe-e3c8-4495-a016-a0dde8f9a5c2&code_challenge=tH-Q1USW1fS3RMM6HiL2NWavJW4qyHzzGNtUZkipkP4&code_challenge_method=S256",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "menu",
+          "href": "https://www.sae.org/publications/technical-papers#menu=open",
+          "aria": "Open Menu",
+          "title": "Open Menu"
+        },
+        {
+          "tag": "A",
+          "text": "close",
+          "href": "https://www.sae.org/publications/technical-papers#menu=closed",
+          "aria": "Close Menu",
+          "title": "Close Menu"
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAKRABORTY, SUCHETA",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BORGWARNER POWER DRIVE SYSTEM",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KULANTHAISAMY, NAGARAJAN",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BORGWARNER POWER DRIVE SYSTEMS",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MISHRA, ABHIGYAN",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HERO MOTOCORP, LTD.",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAUDHARY LNG, VIKASH",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HACKERSERA, PVT., LTD.",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "DIGIKAR, ASHISH",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "TATA MOTORS, LTD.",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "VENUGOPAL, VAISAKH",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "TATA MOTORS PASSENGER VEHICLES, LTD.",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "PATIL, KAMALESH",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "AUTOMOTIVE RESEARCH ASSOCIATION OF INDIA; MIT WORLD PEACE UN",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KUMAR, OM",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SWITCH MOBILITY",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2026-01-15",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "CHAUDHARY LNG, VIKASH",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HACKERSERA, PVT., LTD.",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2025-11-05",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "KOTAL, AMIT",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "JOHN DEERE",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MBSE Framework for Developing Data-Driven Passenger Services in Aircraft Cabins",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2025-05-01",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLECKEN, MARVIN",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "HAMBURG UNIVERSITY OF TECHNOLOGY",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FPGA Implementation of HLS Crypto Accelerators for Embedded Security in Autonomous Vehicles",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2025-02-06",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "DEEPAN KUMAR, SADHASIVAM",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BANNARI AMMAN INSTITUTE OF TECHNOLOGY",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLOCKCHAIN INTEGRITY CHECKS FORSOFTWARE (BICS)",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2022-08-09",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FORTNEY, GEORGE G",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAIC, STERLING HEIGHTS, MI",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Zero Trust Architecture for Automotive Networks",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2024-04-08",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SHIPMAN, MAGGIE E.",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SOUTHWEST RESEARCH INSTITUTE",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Mechanism to Identify Legitimate Vehicle User in Remote Keyless Entry System",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2022-03-28",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ANSARI, ASADULLAH",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SRM INSTITUTE OF SCIENCE AND TECHNOLOGY",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "UDS Security Access for Constrained ECUs",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "2022-03-28",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "THOMPSON, MARTIN",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ZF AUTOMOTIVE UK LTD",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "entry-2",
+      "requested_url": "https://www.sae.org/publications/technical-papers/recent/",
+      "started_at": "2026-05-27T05:43:54.485Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/publications/technical-papers/recent",
+      "title": "SAE International | Advancing mobility knowledge and solutions",
+      "text_probe": "shopping_cart person_outlined menu Home/Page Not Found Page Not Found We cannot find the page you are looking for, but you can search for it below. Search search Search Or Return to home page STANDARDS expand_less PUBLICATIONS expand_less EVENTS expand_less STEM EDUCATION expand_less PROFESSIONAL DEVELOPMENT expand_less EXPLORE BY TOPIC expand_less NEWS & MEDIA expand_less MEMBERSHIP & ENGAGEMENT expand_less WAYS TO GET INVOLVED expand_less ABOUT SAE expand_less GLOBAL AFFILIATES expand_less \u00a9 2026 SAE INTERNATIONAL",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": false,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | Home/Page Not Found | Page Not Found",
+      "article_link_count": 0,
+      "article_links": [],
+      "pdf_download_links": [],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "person_outlined",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers%2Frecent&state=c07984ba-0327-4e32-ac5b-a18283811cd1&response_mode=fragment&response_type=code&scope=openid&nonce=affeaa08-6ad2-400d-814e-bc17fac2f9a3&code_challenge=WhiHXROmwK64voIWzm20oqD1c5VjVnb9gfb6Ng7Cdhs&code_challenge_method=S256",
+          "aria": "",
+          "title": "Log In"
+        },
+        {
+          "tag": "A",
+          "text": "Log In",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers%2Frecent&state=c07984ba-0327-4e32-ac5b-a18283811cd1&response_mode=fragment&response_type=code&scope=openid&nonce=affeaa08-6ad2-400d-814e-bc17fac2f9a3&code_challenge=WhiHXROmwK64voIWzm20oqD1c5VjVnb9gfb6Ng7Cdhs&code_challenge_method=S256",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "menu",
+          "href": "https://www.sae.org/publications/technical-papers/recent#menu=open",
+          "aria": "Open Menu",
+          "title": "Open Menu"
+        },
+        {
+          "tag": "A",
+          "text": "close",
+          "href": "https://www.sae.org/publications/technical-papers/recent#menu=closed",
+          "aria": "Close Menu",
+          "title": "Close Menu"
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "entry-3",
+      "requested_url": "https://www.sae.org/search/?qt=&sort=relevance",
+      "started_at": "2026-05-27T05:44:04.746Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/search?qt=&sort=relevance",
+      "title": "Search - SAE International",
+      "text_probe": "shopping_cart person_outlined menu Filter by CATEGORY expand_less Papers Standards Articles Periodicals Media Collections Services Books Courses Reports Events SUB-CATEGORY expand_less eLearning White Paper Webpage Textbook Technical Standard Technical Paper Supplement Subscriptions Subscription Specification Research Report Reference Recommended Practice Proceedings Podcast Picture Book News Article Narrative Meeting Material Specification Magazine Issue Magazine Article Magazine Journal Volume Journal Article Journal Instructor Led Information Report Image Handbook Elearning Conference Competition Color Chip Collection Certification Bundle Blog Articles Best Practice Award SESSION TYPE expand_less Virtual Instructor Led eLearning In Person Instructor Led TOPICS expand_less Vehicle Systems and Performance Sustainability Quality, Testing and Safety Power and Propulsion Military and Defense Materials and Manufacturing Electrical Systems and Electronics Digital Transformation Connectivity and Software Automated and Autonomous Systems search Search 157579 Results Aerospace\u00b7Standards AS48900-4 AS48900-999 BOLT, DOUBLE HEXAGON EXTENDED WASHER HEAD, PD SHANK, .3125-24 UNJF-3A Scope is un",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": true,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | search Search 157579 Results",
+      "article_link_count": 0,
+      "article_links": [],
+      "pdf_download_links": [],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "entry-4",
+      "requested_url": "https://www.sae.org/publications/technical-papers/content/2024-01-1000/",
+      "started_at": "2026-05-27T05:44:16.370Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/publications/technical-papers/content/2024-01-1000",
+      "title": "SAE International | Advancing mobility knowledge and solutions",
+      "text_probe": "shopping_cart person_outlined menu Home/Page Not Found Page Not Found We cannot find the page you are looking for, but you can search for it below. Search search Search Or Return to home page STANDARDS expand_less PUBLICATIONS expand_less EVENTS expand_less STEM EDUCATION expand_less PROFESSIONAL DEVELOPMENT expand_less EXPLORE BY TOPIC expand_less NEWS & MEDIA expand_less MEMBERSHIP & ENGAGEMENT expand_less WAYS TO GET INVOLVED expand_less ABOUT SAE expand_less GLOBAL AFFILIATES expand_less \u00a9 2026 SAE INTERNATIONAL",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": false,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | Home/Page Not Found | Page Not Found",
+      "article_link_count": 0,
+      "article_links": [],
+      "pdf_download_links": [],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "person_outlined",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers%2Fcontent%2F2024-01-1000&state=962dbe2a-d6e0-4b12-8265-a8d577c84ce2&response_mode=fragment&response_type=code&scope=openid&nonce=8c594802-e548-4851-a0fa-49e3501d7d76&code_challenge=aky7yO3ZW2VgvFGA-qTmKDhNfLRc_hwdEJFIjk3tDyg&code_challenge_method=S256",
+          "aria": "",
+          "title": "Log In"
+        },
+        {
+          "tag": "A",
+          "text": "Log In",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpublications%2Ftechnical-papers%2Fcontent%2F2024-01-1000&state=962dbe2a-d6e0-4b12-8265-a8d577c84ce2&response_mode=fragment&response_type=code&scope=openid&nonce=8c594802-e548-4851-a0fa-49e3501d7d76&code_challenge=aky7yO3ZW2VgvFGA-qTmKDhNfLRc_hwdEJFIjk3tDyg&code_challenge_method=S256",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "menu",
+          "href": "https://www.sae.org/publications/technical-papers/content/2024-01-1000#menu=open",
+          "aria": "Open Menu",
+          "title": "Open Menu"
+        },
+        {
+          "tag": "A",
+          "text": "close",
+          "href": "https://www.sae.org/publications/technical-papers/content/2024-01-1000#menu=closed",
+          "aria": "Close Menu",
+          "title": "Close Menu"
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    }
+  ],
+  "extra_pages": [
+    {
+      "label": "extra-search-1",
+      "requested_url": "https://www.sae.org/search?qt=2024-01-1000&sort=relevance#all=sub_group:Technical%20Paper",
+      "started_at": "2026-05-27T05:44:26.584Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/search?qt=2024-01-1000&sort=relevance#all=sub_group:Technical%20Paper",
+      "title": "Search - SAE International",
+      "text_probe": "shopping_cart person_outlined menu Filter by CATEGORY expand_less Papers Standards Articles Periodicals Media Collections Services Books Courses Reports Events SUB-CATEGORY expand_less eLearning White Paper Webpage Textbook Technical Standard Technical Paper Supplement Subscriptions Subscription Specification Research Report Reference Recommended Practice Proceedings Podcast Picture Book News Article Narrative Meeting Material Specification Magazine Issue Magazine Article Magazine Journal Volume Journal Article Journal Instructor Led Information Report Image Handbook Elearning Conference Competition Color Chip Collection Certification Bundle Blog Articles Best Practice Award SESSION TYPE expand_less Virtual Instructor Led eLearning In Person Instructor Led TOPICS expand_less Vehicle Systems and Performance Sustainability Quality, Testing and Safety Power and Propulsion Military and Defense Materials and Manufacturing Electrical Systems and Electronics Digital Transformation Connectivity and Software Automated and Autonomous Systems search Search 118643 Results Automotive\u00b7Connectivity and Software\u00b7Electrical, Electronics, and Avionics\u00b7Papers Post-EOL Cybersecurity Validation for Aut",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": true,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | search Search 118643 Results",
+      "article_link_count": 40,
+      "article_links": [
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MBSE Framework for Developing Data-Driven Passenger Services in Aircraft Cabins",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FPGA Implementation of HLS Crypto Accelerators for Embedded Security in Autonomous Vehicles",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLOCKCHAIN INTEGRITY CHECKS FORSOFTWARE (BICS)",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Zero Trust Architecture for Automotive Networks",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Mechanism to Identify Legitimate Vehicle User in Remote Keyless Entry System",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "UDS Security Access for Constrained ECUs",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Verification Method for an Emergency Vehicle to Non-Emergency Vehicle Communication",
+          "href": "https://www.sae.org/papers/cryptographic-verification-method-emergency-vehicle-non-emergency-vehicle-communication-2022-01-0118",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Deep Learning Based Automotive Requirements Analysis",
+          "href": "https://www.sae.org/papers/deep-learning-based-automotive-requirements-analysis-2023-01-0864",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Using Ethernet or a Wireless Harness and Named Data Networking in Autonomous Tractor-Trailer",
+          "href": "https://www.sae.org/papers/using-ethernet-a-wireless-harness-named-data-networking-autonomous-tractor-trailer-communication-2023-01-0924",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Fed-BNGC: A Federated Clustering Algorithm to Solve the Problem of User Heterogeneity",
+          "href": "https://www.sae.org/papers/fed-bngc-a-federated-clustering-algorithm-solve-problem-user-heterogeneity-2025-99-0110",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Security Monitoring for High Performance Vehicle Computers",
+          "href": "https://www.sae.org/papers/security-monitoring-high-performance-vehicle-computers-2026-26-0627",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ELECTRIC VEHICLE CHARGING CYBERSECURITY",
+          "href": "https://www.sae.org/papers/electric-vehicle-charging-cybersecurity-2024-01-3979",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Software-Defined Vehicles: Architecting the Future of Intelligent and Connected Mobility",
+          "href": "https://www.sae.org/papers/software-defined-vehicles-architecting-future-intelligent-connected-mobility-2026-26-0691",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Hardware-Based Cyber Security for Connected Vehicles",
+          "href": "https://www.sae.org/papers/hardware-based-cyber-security-connected-vehicles-2023-01-0038",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Collection for Incident Response for Vehicles with Autonomous Systems",
+          "href": "https://www.sae.org/papers/data-collection-incident-response-vehicles-autonomous-systems-2023-01-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Proactive AI-Enhanced Cybersecurity for Next-Gen Automotive Infotainment ECU",
+          "href": "https://www.sae.org/papers/proactive-ai-enhanced-cybersecurity-next-gen-automotive-infotainment-ecu-2026-26-0619",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "To Study and Compare Communication Protocol for Fast Charging in Electric Two-Wheeler with Respect",
+          "href": "https://www.sae.org/papers/study-compare-communication-protocol-fast-charging-electric-two-wheeler-respect-ccs-20-indian-perspective-2026-26-0198",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Identification and Verification of Attack-Tree Threat Models in Connected",
+          "href": "https://www.sae.org/papers/identification-verification-attack-tree-threat-models-in-connected-vehicles-2022-01-7087",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Attacking Ground Vehicles with Ransomware: Watch the Horizon",
+          "href": "https://www.sae.org/papers/attacking-ground-vehicles-ransomware-watch-horizon-2022-01-0358",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Authentication of Battery Pack for Electric Vehicles",
+          "href": "https://www.sae.org/papers/cryptographic-authentication-battery-pack-electric-vehicles-2022-01-0168",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Infoscraps: Enforcing Information Security by Mechanism",
+          "href": "https://www.sae.org/papers/infoscraps-enforcing-information-security-by-mechanism-2025-01-0495",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Influence of MPC Based Driver Types on the Energy Consumption of Battery Electric Vehicles",
+          "href": "https://www.sae.org/papers/influence-mpc-based-driver-types-energy-consumption-battery-electric-vehicles-2025-24-0113",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Medical Cargo Delivery using Blockchain Enabled Unmanned Aircraft Systems",
+          "href": "https://www.sae.org/papers/medical-cargo-delivery-using-blockchain-enabled-unmanned-aircraft-systems-2022-26-0003",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Common Vulnerability Considerations as an Integral Part of the Automotive Cybersecurity Engineering",
+          "href": "https://www.sae.org/papers/common-vulnerability-considerations-integral-part-automotive-cybersecurity-engineering-process-2022-28-0304",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Resilient Design Strategies for Wireless Charger ECUs: A Proactive Threat Analysis and Risk",
+          "href": "https://www.sae.org/papers/resilient-design-strategies-wireless-charger-ecus-a-proactive-threat-analysis-risk-assessment-framework-ensuring-cybersecurity-ev-charging-ecosystems-2026-26-0173",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SECURE UPDATE PROCESS FOR ROBOTIC AND AUTONOMOUS SYSTEMS",
+          "href": "https://www.sae.org/papers/secure-update-process-robotic-autonomous-systems-2024-01-4034",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Managing Trust Along the CAN Bus",
+          "href": "https://www.sae.org/papers/managing-trust-along-bus-2022-01-0119",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Vehicle Diagnostics Adapter Cybersecurity Concerns with Wireless Connectivity",
+          "href": "https://www.sae.org/papers/vehicle-diagnostics-adapter-cybersecurity-concerns-wireless-connectivity-2023-01-0034",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-Domain Control Architecture - Single Master Controller for Propulsion and Chassis Automotive",
+          "href": "https://www.sae.org/papers/cross-domain-control-architecture-single-master-controller-propulsion-chassis-automotive-domains-2022-01-0746",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "pdf_download_links": [],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MBSE Framework for Developing Data-Driven Passenger Services in Aircraft Cabins",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FPGA Implementation of HLS Crypto Accelerators for Embedded Security in Autonomous Vehicles",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLOCKCHAIN INTEGRITY CHECKS FORSOFTWARE (BICS)",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Zero Trust Architecture for Automotive Networks",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Mechanism to Identify Legitimate Vehicle User in Remote Keyless Entry System",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "UDS Security Access for Constrained ECUs",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Verification Method for an Emergency Vehicle to Non-Emergency Vehicle Communication",
+          "href": "https://www.sae.org/papers/cryptographic-verification-method-emergency-vehicle-non-emergency-vehicle-communication-2022-01-0118",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Deep Learning Based Automotive Requirements Analysis",
+          "href": "https://www.sae.org/papers/deep-learning-based-automotive-requirements-analysis-2023-01-0864",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Using Ethernet or a Wireless Harness and Named Data Networking in Autonomous Tractor-Trailer",
+          "href": "https://www.sae.org/papers/using-ethernet-a-wireless-harness-named-data-networking-autonomous-tractor-trailer-communication-2023-01-0924",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Fed-BNGC: A Federated Clustering Algorithm to Solve the Problem of User Heterogeneity",
+          "href": "https://www.sae.org/papers/fed-bngc-a-federated-clustering-algorithm-solve-problem-user-heterogeneity-2025-99-0110",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Security Monitoring for High Performance Vehicle Computers",
+          "href": "https://www.sae.org/papers/security-monitoring-high-performance-vehicle-computers-2026-26-0627",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ELECTRIC VEHICLE CHARGING CYBERSECURITY",
+          "href": "https://www.sae.org/papers/electric-vehicle-charging-cybersecurity-2024-01-3979",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Software-Defined Vehicles: Architecting the Future of Intelligent and Connected Mobility",
+          "href": "https://www.sae.org/papers/software-defined-vehicles-architecting-future-intelligent-connected-mobility-2026-26-0691",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Hardware-Based Cyber Security for Connected Vehicles",
+          "href": "https://www.sae.org/papers/hardware-based-cyber-security-connected-vehicles-2023-01-0038",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Collection for Incident Response for Vehicles with Autonomous Systems",
+          "href": "https://www.sae.org/papers/data-collection-incident-response-vehicles-autonomous-systems-2023-01-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Proactive AI-Enhanced Cybersecurity for Next-Gen Automotive Infotainment ECU",
+          "href": "https://www.sae.org/papers/proactive-ai-enhanced-cybersecurity-next-gen-automotive-infotainment-ecu-2026-26-0619",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "To Study and Compare Communication Protocol for Fast Charging in Electric Two-Wheeler with Respect",
+          "href": "https://www.sae.org/papers/study-compare-communication-protocol-fast-charging-electric-two-wheeler-respect-ccs-20-indian-perspective-2026-26-0198",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Identification and Verification of Attack-Tree Threat Models in Connected",
+          "href": "https://www.sae.org/papers/identification-verification-attack-tree-threat-models-in-connected-vehicles-2022-01-7087",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Attacking Ground Vehicles with Ransomware: Watch the Horizon",
+          "href": "https://www.sae.org/papers/attacking-ground-vehicles-ransomware-watch-horizon-2022-01-0358",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Authentication of Battery Pack for Electric Vehicles",
+          "href": "https://www.sae.org/papers/cryptographic-authentication-battery-pack-electric-vehicles-2022-01-0168",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Infoscraps: Enforcing Information Security by Mechanism",
+          "href": "https://www.sae.org/papers/infoscraps-enforcing-information-security-by-mechanism-2025-01-0495",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Influence of MPC Based Driver Types on the Energy Consumption of Battery Electric Vehicles",
+          "href": "https://www.sae.org/papers/influence-mpc-based-driver-types-energy-consumption-battery-electric-vehicles-2025-24-0113",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Medical Cargo Delivery using Blockchain Enabled Unmanned Aircraft Systems",
+          "href": "https://www.sae.org/papers/medical-cargo-delivery-using-blockchain-enabled-unmanned-aircraft-systems-2022-26-0003",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Common Vulnerability Considerations as an Integral Part of the Automotive Cybersecurity Engineering",
+          "href": "https://www.sae.org/papers/common-vulnerability-considerations-integral-part-automotive-cybersecurity-engineering-process-2022-28-0304",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "extra-search-2",
+      "requested_url": "https://www.sae.org/search?qt=cybersecurity&sort=relevance#all=sub_group:Technical%20Paper",
+      "started_at": "2026-05-27T05:44:37.495Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/search?qt=cybersecurity&sort=relevance#all=sub_group:Technical%20Paper",
+      "title": "Search - SAE International",
+      "text_probe": "shopping_cart person_outlined menu Filter by GROUP expand_less Papers Standards Articles Periodicals Media Collections Services Books Courses Reports Events SUBGROUP expand_less eLearning White Paper Webpage Textbook Technical Standard Technical Paper Supplement Subscriptions Subscription Specification Research Report Reference Recommended Practice Proceedings Podcast Picture Book News Article Narrative Meeting Material Specification Magazine Issue Magazine Article Magazine Journal Volume Journal Article Journal Instructor Led Information Report Image Handbook Elearning Conference Competition Color Chip Collection Certification Bundle Blog Articles Best Practice Award DELIVERYTYPE expand_less Virtual Instructor Led eLearning In Person Instructor Led TOPICS expand_less Vehicle Systems and Performance Sustainability Quality, Testing and Safety Power and Propulsion Military and Defense Materials and Manufacturing Electrical Systems and Electronics Digital Transformation Connectivity and Software Automated and Autonomous Systems search Search 118643 Results Automotive\u00b7Connectivity and Software\u00b7Electrical, Electronics, and Avionics\u00b7Papers Post-EOL Cybersecurity Validation for Automotive",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": true,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | search Search 118643 Results",
+      "article_link_count": 40,
+      "article_links": [
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MBSE Framework for Developing Data-Driven Passenger Services in Aircraft Cabins",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FPGA Implementation of HLS Crypto Accelerators for Embedded Security in Autonomous Vehicles",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLOCKCHAIN INTEGRITY CHECKS FORSOFTWARE (BICS)",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Zero Trust Architecture for Automotive Networks",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Mechanism to Identify Legitimate Vehicle User in Remote Keyless Entry System",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "UDS Security Access for Constrained ECUs",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Verification Method for an Emergency Vehicle to Non-Emergency Vehicle Communication",
+          "href": "https://www.sae.org/papers/cryptographic-verification-method-emergency-vehicle-non-emergency-vehicle-communication-2022-01-0118",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Deep Learning Based Automotive Requirements Analysis",
+          "href": "https://www.sae.org/papers/deep-learning-based-automotive-requirements-analysis-2023-01-0864",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Using Ethernet or a Wireless Harness and Named Data Networking in Autonomous Tractor-Trailer",
+          "href": "https://www.sae.org/papers/using-ethernet-a-wireless-harness-named-data-networking-autonomous-tractor-trailer-communication-2023-01-0924",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Fed-BNGC: A Federated Clustering Algorithm to Solve the Problem of User Heterogeneity",
+          "href": "https://www.sae.org/papers/fed-bngc-a-federated-clustering-algorithm-solve-problem-user-heterogeneity-2025-99-0110",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Security Monitoring for High Performance Vehicle Computers",
+          "href": "https://www.sae.org/papers/security-monitoring-high-performance-vehicle-computers-2026-26-0627",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ELECTRIC VEHICLE CHARGING CYBERSECURITY",
+          "href": "https://www.sae.org/papers/electric-vehicle-charging-cybersecurity-2024-01-3979",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Software-Defined Vehicles: Architecting the Future of Intelligent and Connected Mobility",
+          "href": "https://www.sae.org/papers/software-defined-vehicles-architecting-future-intelligent-connected-mobility-2026-26-0691",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Hardware-Based Cyber Security for Connected Vehicles",
+          "href": "https://www.sae.org/papers/hardware-based-cyber-security-connected-vehicles-2023-01-0038",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Collection for Incident Response for Vehicles with Autonomous Systems",
+          "href": "https://www.sae.org/papers/data-collection-incident-response-vehicles-autonomous-systems-2023-01-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Proactive AI-Enhanced Cybersecurity for Next-Gen Automotive Infotainment ECU",
+          "href": "https://www.sae.org/papers/proactive-ai-enhanced-cybersecurity-next-gen-automotive-infotainment-ecu-2026-26-0619",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "To Study and Compare Communication Protocol for Fast Charging in Electric Two-Wheeler with Respect",
+          "href": "https://www.sae.org/papers/study-compare-communication-protocol-fast-charging-electric-two-wheeler-respect-ccs-20-indian-perspective-2026-26-0198",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Identification and Verification of Attack-Tree Threat Models in Connected",
+          "href": "https://www.sae.org/papers/identification-verification-attack-tree-threat-models-in-connected-vehicles-2022-01-7087",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Attacking Ground Vehicles with Ransomware: Watch the Horizon",
+          "href": "https://www.sae.org/papers/attacking-ground-vehicles-ransomware-watch-horizon-2022-01-0358",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Authentication of Battery Pack for Electric Vehicles",
+          "href": "https://www.sae.org/papers/cryptographic-authentication-battery-pack-electric-vehicles-2022-01-0168",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Infoscraps: Enforcing Information Security by Mechanism",
+          "href": "https://www.sae.org/papers/infoscraps-enforcing-information-security-by-mechanism-2025-01-0495",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Influence of MPC Based Driver Types on the Energy Consumption of Battery Electric Vehicles",
+          "href": "https://www.sae.org/papers/influence-mpc-based-driver-types-energy-consumption-battery-electric-vehicles-2025-24-0113",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Medical Cargo Delivery using Blockchain Enabled Unmanned Aircraft Systems",
+          "href": "https://www.sae.org/papers/medical-cargo-delivery-using-blockchain-enabled-unmanned-aircraft-systems-2022-26-0003",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Common Vulnerability Considerations as an Integral Part of the Automotive Cybersecurity Engineering",
+          "href": "https://www.sae.org/papers/common-vulnerability-considerations-integral-part-automotive-cybersecurity-engineering-process-2022-28-0304",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Resilient Design Strategies for Wireless Charger ECUs: A Proactive Threat Analysis and Risk",
+          "href": "https://www.sae.org/papers/resilient-design-strategies-wireless-charger-ecus-a-proactive-threat-analysis-risk-assessment-framework-ensuring-cybersecurity-ev-charging-ecosystems-2026-26-0173",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SECURE UPDATE PROCESS FOR ROBOTIC AND AUTONOMOUS SYSTEMS",
+          "href": "https://www.sae.org/papers/secure-update-process-robotic-autonomous-systems-2024-01-4034",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Managing Trust Along the CAN Bus",
+          "href": "https://www.sae.org/papers/managing-trust-along-bus-2022-01-0119",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Vehicle Diagnostics Adapter Cybersecurity Concerns with Wireless Connectivity",
+          "href": "https://www.sae.org/papers/vehicle-diagnostics-adapter-cybersecurity-concerns-wireless-connectivity-2023-01-0034",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-Domain Control Architecture - Single Master Controller for Propulsion and Chassis Automotive",
+          "href": "https://www.sae.org/papers/cross-domain-control-architecture-single-master-controller-propulsion-chassis-automotive-domains-2022-01-0746",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "pdf_download_links": [],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Post-EOL Cybersecurity Validation for Automotive Production Units",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Measures in ECU Production",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-measures-ecu-production-2026-26-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Feasibility and Performance of Post-Quantum Cryptography on Embedded Systems for Two-Wheeler",
+          "href": "https://www.sae.org/papers/feasibility-performance-post-quantum-cryptography-embedded-systems-two-wheeler-security-2026-26-0622",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity Incident Response (CSIR) Framework and Its Integration into OEM Processes",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-incident-response-csir-framework-integration-oem-processes-2026-26-0613",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Quality-Driven Approach to Engineering Sign-Off for Software and Robust Product Development",
+          "href": "https://www.sae.org/papers/a-quality-driven-approach-engineering-sign-off-software-robust-product-development-2026-26-0581",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cross-ICA Trust Mechanism in Automotive Cybersecurity",
+          "href": "https://www.sae.org/papers/cross-ica-trust-mechanism-automotive-cybersecurity-2026-26-0615",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "GTSRB Shield: A Novel Machine Learning Approach to Anomaly Detection in German Traffic Signs",
+          "href": "https://www.sae.org/papers/gtsrb-shield-a-novel-machine-learning-approach-anomaly-detection-german-traffic-signs-recognition-benchmark-gtsrb-dataset-2026-26-0611",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Automotive Cybersecurity: Safeguarding Connected and Autonomous Mobility",
+          "href": "https://www.sae.org/papers/automotive-cybersecurity-safeguarding-connected-autonomous-mobility-2026-26-0629",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Real-Time Intrusion Detection System (IDS) for Vehicle Networks Using Machine Learning",
+          "href": "https://www.sae.org/papers/real-time-intrusion-detection-system-ids-vehicle-networks-using-machine-learning-predictive-threat-analysis-2026-26-0617",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity: Applying Threat Modeling to Sensor-Control Architectures in Autonomous Off-Highway",
+          "href": "https://www.sae.org/papers/cybersecurity-applying-threat-modeling-sensor-control-architectures-autonomous-off-highway-vehicles-2025-28-0316",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "MBSE Framework for Developing Data-Driven Passenger Services in Aircraft Cabins",
+          "href": "https://www.sae.org/papers/mbse-framework-developing-data-driven-passenger-services-aircraft-cabins-2025-01-0171",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "FPGA Implementation of HLS Crypto Accelerators for Embedded Security in Autonomous Vehicles",
+          "href": "https://www.sae.org/papers/fpga-implementation-hls-crypto-accelerators-embedded-security-autonomous-vehicles-2025-28-0205",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "BLOCKCHAIN INTEGRITY CHECKS FORSOFTWARE (BICS)",
+          "href": "https://www.sae.org/papers/blockchain-integrity-checks-forsoftware-bics-2024-01-3983",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A Zero Trust Architecture for Automotive Networks",
+          "href": "https://www.sae.org/papers/a-zero-trust-architecture-automotive-networks-2024-01-2793",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Mechanism to Identify Legitimate Vehicle User in Remote Keyless Entry System",
+          "href": "https://www.sae.org/papers/mechanism-identify-legitimate-vehicle-user-remote-keyless-entry-system-2022-01-0125",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "UDS Security Access for Constrained ECUs",
+          "href": "https://www.sae.org/papers/uds-security-access-constrained-ecus-2022-01-0132",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Verification Method for an Emergency Vehicle to Non-Emergency Vehicle Communication",
+          "href": "https://www.sae.org/papers/cryptographic-verification-method-emergency-vehicle-non-emergency-vehicle-communication-2022-01-0118",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Deep Learning Based Automotive Requirements Analysis",
+          "href": "https://www.sae.org/papers/deep-learning-based-automotive-requirements-analysis-2023-01-0864",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Using Ethernet or a Wireless Harness and Named Data Networking in Autonomous Tractor-Trailer",
+          "href": "https://www.sae.org/papers/using-ethernet-a-wireless-harness-named-data-networking-autonomous-tractor-trailer-communication-2023-01-0924",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Fed-BNGC: A Federated Clustering Algorithm to Solve the Problem of User Heterogeneity",
+          "href": "https://www.sae.org/papers/fed-bngc-a-federated-clustering-algorithm-solve-problem-user-heterogeneity-2025-99-0110",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Security Monitoring for High Performance Vehicle Computers",
+          "href": "https://www.sae.org/papers/security-monitoring-high-performance-vehicle-computers-2026-26-0627",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "ELECTRIC VEHICLE CHARGING CYBERSECURITY",
+          "href": "https://www.sae.org/papers/electric-vehicle-charging-cybersecurity-2024-01-3979",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Software-Defined Vehicles: Architecting the Future of Intelligent and Connected Mobility",
+          "href": "https://www.sae.org/papers/software-defined-vehicles-architecting-future-intelligent-connected-mobility-2026-26-0691",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Hardware-Based Cyber Security for Connected Vehicles",
+          "href": "https://www.sae.org/papers/hardware-based-cyber-security-connected-vehicles-2023-01-0038",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Collection for Incident Response for Vehicles with Autonomous Systems",
+          "href": "https://www.sae.org/papers/data-collection-incident-response-vehicles-autonomous-systems-2023-01-0628",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Proactive AI-Enhanced Cybersecurity for Next-Gen Automotive Infotainment ECU",
+          "href": "https://www.sae.org/papers/proactive-ai-enhanced-cybersecurity-next-gen-automotive-infotainment-ecu-2026-26-0619",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "To Study and Compare Communication Protocol for Fast Charging in Electric Two-Wheeler with Respect",
+          "href": "https://www.sae.org/papers/study-compare-communication-protocol-fast-charging-electric-two-wheeler-respect-ccs-20-indian-perspective-2026-26-0198",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Identification and Verification of Attack-Tree Threat Models in Connected",
+          "href": "https://www.sae.org/papers/identification-verification-attack-tree-threat-models-in-connected-vehicles-2022-01-7087",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Attacking Ground Vehicles with Ransomware: Watch the Horizon",
+          "href": "https://www.sae.org/papers/attacking-ground-vehicles-ransomware-watch-horizon-2022-01-0358",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Cryptographic Authentication of Battery Pack for Electric Vehicles",
+          "href": "https://www.sae.org/papers/cryptographic-authentication-battery-pack-electric-vehicles-2022-01-0168",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Infoscraps: Enforcing Information Security by Mechanism",
+          "href": "https://www.sae.org/papers/infoscraps-enforcing-information-security-by-mechanism-2025-01-0495",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Influence of MPC Based Driver Types on the Energy Consumption of Battery Electric Vehicles",
+          "href": "https://www.sae.org/papers/influence-mpc-based-driver-types-energy-consumption-battery-electric-vehicles-2025-24-0113",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Medical Cargo Delivery using Blockchain Enabled Unmanned Aircraft Systems",
+          "href": "https://www.sae.org/papers/medical-cargo-delivery-using-blockchain-enabled-unmanned-aircraft-systems-2022-26-0003",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Common Vulnerability Considerations as an Integral Part of the Automotive Cybersecurity Engineering",
+          "href": "https://www.sae.org/papers/common-vulnerability-considerations-integral-part-automotive-cybersecurity-engineering-process-2022-28-0304",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "candidate-www-paper",
+      "requested_url": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+      "started_at": "2026-05-27T05:44:48.453Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+      "title": "2026-26-0608 : Post-EOL Cybersecurity Validation for Automotive Production Units - SAE International",
+      "text_probe": "shopping_cart person_outlined menu Home/ Papers/ Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 Connectivity and SoftwareMaterials and Manufacturing 2026-01-15 For subscribers: Access on SAE Mobilusopen_in_new radio_button_checked Single Purchase Format expand_more Qty 1 expand_more $ -- ADD TO CART Previewchevron_right radio_button_unchecked Subscription Purchase Members Save! Add Your Membership BY BUYING OUR PRODUCTS YOU AGREE TO OUR TERMS & CONDITIONS. Content ISO/SAE 21434 emphasizes comprehensive cybersecurity risk management throughout the automotive lifecycle. However, specific guidance on validating cybersecurity measures at the production level remains limited. This paper addresses the gap in production-stage validation, particularly after End-of-Line (EOL) flashing, which includes configurations of security hardware and software protection (e.g., hardware register configuration, Debug and P-flash password settings etc.) Current automotive cybersecurity validation methods, despite adherence to ISO/SAE 21434, lack specific procedures for the production stage. The ",
+      "has_login_link": true,
+      "has_purchase_text": true,
+      "has_subscription_text": true,
+      "has_locked_text": false,
+      "has_access_granted_text": false,
+      "header_probe": "shopping_cart person_outlined menu | Menusearch close | Home/ Papers/ Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 Connectivity and SoftwareMaterials and Manufacturing 2026-01-15 | Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software | Multi-Agent LLM Architecture for Systems Engineering Automation | Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximize ICE Efficiency | Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software | Multi-Agent LLM Architecture for Systems Engineering Automation | Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximi",
+      "article_link_count": 10,
+      "article_links": [
+        {
+          "tag": "A",
+          "text": "Access on SAE Mobilusopen_in_new",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": "Subscribers can view, annotate, and download all of SAE's content."
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM Architecture for Systems Engineering Automation",
+          "href": "https://www.sae.org/papers/multi-agent-llm-architecture-systems-engineering-automation-2026-01-0777",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximize ICE Efficiency",
+          "href": "https://www.sae.org/papers/synergistic-integration-advanced-combustion-air-path-technologies-maximize-ice-efficiency-hybrid-applications-2026-01-0733",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM Architecture for Systems Engineering Automation",
+          "href": "https://www.sae.org/papers/multi-agent-llm-architecture-systems-engineering-automation-2026-01-0777",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximize ICE Efficiency",
+          "href": "https://www.sae.org/papers/synergistic-integration-advanced-combustion-air-path-technologies-maximize-ice-efficiency-hybrid-applications-2026-01-0733",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A graph classification approach to secure the compatibility of software and hardware configurations",
+          "href": "https://www.sae.org/papers/a-graph-classification-approach-secure-compatibility-software-hardware-configurations-distributed-automotive-systems-2026-01-0783",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Passive Thermal Management of Battery Disconnect Units for Fast-Charging Electric Vehicles",
+          "href": "https://www.sae.org/papers/passive-thermal-management-battery-disconnect-units-fast-charging-electric-vehicles-a-comparative-study-phase-change-material-heat-transfer-configurations-2026-01-0759",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Production-Ready Automated ECU Calibration using Residual Reinforcement Learning",
+          "href": "https://www.sae.org/papers/production-ready-automated-ecu-calibration-using-residual-reinforcement-learning-2026-01-0780",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "pdf_download_links": [
+        {
+          "tag": "A",
+          "text": "Access on SAE Mobilusopen_in_new",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": "Subscribers can view, annotate, and download all of SAE's content."
+        }
+      ],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "person_outlined",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpapers%2Fpost-eol-cybersecurity-validation-automotive-production-units-2026-26-0608&state=f00be228-c175-40ce-8f55-b7544de24b52&response_mode=fragment&response_type=code&scope=openid&nonce=95d54296-fdef-49e1-8620-c5cba1ebf886&code_challenge=NbymKyEYLGJp7AsSgnp1EbijvejZo65IBoG5dV4Sniw&code_challenge_method=S256",
+          "aria": "",
+          "title": "Log In"
+        },
+        {
+          "tag": "A",
+          "text": "Log In",
+          "href": "https://identity.sae.org/auth/realms/SAE/protocol/openid-connect/auth?client_id=app_sae_org_2&redirect_uri=https%3A%2F%2Fwww.sae.org%2Fpapers%2Fpost-eol-cybersecurity-validation-automotive-production-units-2026-26-0608&state=f00be228-c175-40ce-8f55-b7544de24b52&response_mode=fragment&response_type=code&scope=openid&nonce=95d54296-fdef-49e1-8620-c5cba1ebf886&code_challenge=NbymKyEYLGJp7AsSgnp1EbijvejZo65IBoG5dV4Sniw&code_challenge_method=S256",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "menu",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#menu=open",
+          "aria": "Open Menu",
+          "title": "Open Menu"
+        },
+        {
+          "tag": "A",
+          "text": "close",
+          "href": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#menu=closed",
+          "aria": "Close Menu",
+          "title": "Close Menu"
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Journals Call for Papers",
+          "href": "https://www.sae.org/publications/journals/calls-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Defining What\u2019s Next WCX 2026 Technical Papers",
+          "href": "https://www.sae.org/events/2026/wcx/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Event Call for Papers Submit your abstract and get published!",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus open_in_new",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Papers",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Access on SAE Mobilusopen_in_new",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": "Subscribers can view, annotate, and download all of SAE's content."
+        },
+        {
+          "tag": "A",
+          "text": "https://doi.org/10.4271/2026-26-0608",
+          "href": "https://doi.org/10.4271/2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "PAPERS",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "PAPERS",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM Architecture for Systems Engineering Automation",
+          "href": "https://www.sae.org/papers/multi-agent-llm-architecture-systems-engineering-automation-2026-01-0777",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "PAPERS",
+          "href": "https://www.sae.org/papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximize ICE Efficiency",
+          "href": "https://www.sae.org/papers/synergistic-integration-advanced-combustion-air-path-technologies-maximize-ice-efficiency-hybrid-applications-2026-01-0733",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM workflow for Regulatory-Driven Requirement Generation in Automotive Software",
+          "href": "https://www.sae.org/papers/multi-agent-llm-workflow-regulatory-driven-requirement-generation-automotive-software-development-2026-01-0787",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Multi-Agent LLM Architecture for Systems Engineering Automation",
+          "href": "https://www.sae.org/papers/multi-agent-llm-architecture-systems-engineering-automation-2026-01-0777",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Synergistic Integration of Advanced Combustion and Air-Path Technologies to Maximize ICE Efficiency",
+          "href": "https://www.sae.org/papers/synergistic-integration-advanced-combustion-air-path-technologies-maximize-ice-efficiency-hybrid-applications-2026-01-0733",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "A graph classification approach to secure the compatibility of software and hardware configurations",
+          "href": "https://www.sae.org/papers/a-graph-classification-approach-secure-compatibility-software-hardware-configurations-distributed-automotive-systems-2026-01-0783",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Passive Thermal Management of Battery Disconnect Units for Fast-Charging Electric Vehicles",
+          "href": "https://www.sae.org/papers/passive-thermal-management-battery-disconnect-units-fast-charging-electric-vehicles-a-comparative-study-phase-change-material-heat-transfer-configurations-2026-01-0759",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Production-Ready Automated ECU Calibration using Residual Reinforcement Learning",
+          "href": "https://www.sae.org/papers/production-ready-automated-ecu-calibration-using-residual-reinforcement-learning-2026-01-0780",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Papers",
+          "href": "https://www.sae.org/publications/technical-papers",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE Mobilus",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Call for Papers",
+          "href": "https://www.sae.org/events/callsforpapers",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "eval_error": null
+    },
+    {
+      "label": "candidate-mobilus-paper",
+      "requested_url": "https://saemobilus.sae.org/content/2026-26-0608",
+      "started_at": "2026-05-27T05:45:27.805Z",
+      "status": 200,
+      "nav_error": null,
+      "final_url": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+      "title": "2026-26-0608: Post-EOL Cybersecurity Validation for Automotive Production Units - Technical Paper",
+      "text_probe": "Skip to Main Content expand_more Login home search layers Browse library_books My Library auto_awesome SAE AI Chat campaign help arrow_backBrowse lock Automotive Technical Paper file_download library_add share more_vert Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 2026/1/16 Description View Data Sets References Citation Features equalizer Data Sets Event Symposium on International Automotive Technology (2026) Authors Sucheta Chakraborty BorgWarner Power Drive System Nagarajan Kulanthaisamy BorgWarner Power Drive System Ganesh Sankar BorgWarner Power Drive System Abstract Content ISO/SAE 21434 emphasizes comprehensive cybersecurity risk management throughout the automotive lifecycle. However, specific guidance on validating cybersecurity measures at the production level remains limited. This paper addresses the gap in production-stage validation, particularly after End-of-Line (EOL) flashing, which includes configurations of security hardware and software protection (e.g., hardware register configuration, Debug and P-flash password settings etc.) Current automotive cybersecurity validation methods, despite adherence to ISO/SAE 21434, lack specific p",
+      "has_login_link": true,
+      "has_purchase_text": false,
+      "has_subscription_text": false,
+      "has_locked_text": true,
+      "has_access_granted_text": false,
+      "header_probe": "arrow_backBrowse | lock Automotive Technical Paper file_download library_add share more_vert Post-EOL Cybersecurity Validation for Automotive Production Units 2026-26-0608 2026/1/16",
+      "article_link_count": 5,
+      "article_links": [
+        {
+          "tag": "A",
+          "text": "Description",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "View",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#view",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Sets",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#data-sets",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "References",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#references",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Citation",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#citation",
+          "aria": "",
+          "title": ""
+        }
+      ],
+      "pdf_download_links": [
+        {
+          "tag": "BUTTON",
+          "text": "file_download",
+          "href": null,
+          "aria": "Download",
+          "title": ""
+        }
+      ],
+      "all_links_matching_paper_or_download": [
+        {
+          "tag": "A",
+          "text": "home",
+          "href": "https://saemobilus.sae.org/",
+          "aria": "Home",
+          "title": "Home"
+        },
+        {
+          "tag": "A",
+          "text": "search",
+          "href": "https://saemobilus.sae.org/search",
+          "aria": "Search",
+          "title": "Search"
+        },
+        {
+          "tag": "A",
+          "text": "layers Browse",
+          "href": "https://saemobilus.sae.org/browse",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "library_books My Library",
+          "href": "https://saemobilus.sae.org/mylibrary",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "auto_awesome SAE AI Chat",
+          "href": "https://saemobilus.sae.org/ai",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "campaign",
+          "href": "https://saemobilus.sae.org/announcements",
+          "aria": "Announcement",
+          "title": "Announcement"
+        },
+        {
+          "tag": "A",
+          "text": "help",
+          "href": "https://saemobilus.sae.org/help",
+          "aria": "Help",
+          "title": "Help"
+        },
+        {
+          "tag": "A",
+          "text": "Automotive",
+          "href": "https://saemobilus.sae.org/search#industrysectors_name=Automotive",
+          "aria": "Browse Automotive Content",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Technical Paper",
+          "href": "https://saemobilus.sae.org/search#sub_group=Technical%20Paper",
+          "aria": "Browse Technical Paper Content",
+          "title": ""
+        },
+        {
+          "tag": "BUTTON",
+          "text": "file_download",
+          "href": null,
+          "aria": "Download",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Description",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "View",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#view",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Data Sets",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#data-sets",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "References",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#references",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Citation",
+          "href": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608#citation",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "Symposium on International Automotive Technology (2026)",
+          "href": "https://saemobilus.sae.org/search#conference_name=Symposium%20on%20International%20Automotive%20Technology%20(2026)",
+          "aria": "",
+          "title": "Browse Symposium on International Automotive Technology (2026) Content"
+        },
+        {
+          "tag": "A",
+          "text": "Cybersecurity",
+          "href": "https://saemobilus.sae.org/search#topics=Cybersecurity",
+          "aria": "",
+          "title": "Browse Cybersecurity Content"
+        },
+        {
+          "tag": "A",
+          "text": "Performance tests",
+          "href": "https://saemobilus.sae.org/search#topics=Performance%20tests",
+          "aria": "",
+          "title": "Browse Performance tests Content"
+        },
+        {
+          "tag": "A",
+          "text": "Computer software and hardware",
+          "href": "https://saemobilus.sae.org/search#topics=Computer%20software%20and%20hardware",
+          "aria": "",
+          "title": "Browse Computer software and hardware Content"
+        },
+        {
+          "tag": "A",
+          "text": "Risk management",
+          "href": "https://saemobilus.sae.org/search#topics=Risk%20management",
+          "aria": "",
+          "title": "Browse Risk management Content"
+        },
+        {
+          "tag": "A",
+          "text": "Production",
+          "href": "https://saemobilus.sae.org/search#topics=Production",
+          "aria": "",
+          "title": "Browse Production Content"
+        },
+        {
+          "tag": "A",
+          "text": "BorgWarner Power Drive System",
+          "href": "https://saemobilus.sae.org/search#affiliations=BorgWarner%20Power%20Drive%20System",
+          "aria": "",
+          "title": "Browse BorgWarner Power Drive System Content"
+        },
+        {
+          "tag": "A",
+          "text": "https://doi.org/10.4271/2026-26-0608",
+          "href": "https://doi.org/10.4271/2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "https://doi.org/10.4271/2026-26-0608",
+          "href": "https://doi.org/10.4271/2026-26-0608",
+          "aria": "",
+          "title": ""
+        },
+        {
+          "tag": "A",
+          "text": "SAE International",
+          "href": "https://saemobilus.sae.org/search#publisher=SAE%20International",
+          "aria": "",
+          "title": "Browse SAE International Content"
+        }
+      ],
+      "eval_error": null
+    }
+  ],
+  "candidate_paper": {
+    "id": "2026-26-0608",
+    "doi": "10.4271/2026-26-0608",
+    "article_url": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608",
+    "content_route": "https://www.sae.org/publications/technical-papers/content/2026-26-0608",
+    "download_route": "https://www.sae.org/publications/technical-papers/content/2026-26-0608/download",
+    "mobilus_content_route": "https://saemobilus.sae.org/content/2026-26-0608"
+  },
+  "download_tests": [
+    {
+      "label": "www-content-download-pattern",
+      "requested_url": "https://www.sae.org/publications/technical-papers/content/2026-26-0608/download",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.sae.org/publications/technical-papers/content/2026-26-0608/download",
+      "content_type": "text/html",
+      "content_length_header": "",
+      "bytes": 15025,
+      "first_bytes_latin1": "<!doctype html>\n<html lang=\"en\" data-critters-container>\n  <head><link rel=\"prec",
+      "is_pdf": false,
+      "is_html": true,
+      "html_text_probe": "<!doctype html> <html lang=\"en\" data-critters-container> <head><link rel=\"preconnect\" href=\"https://use.typekit.net\" crossorigin> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>SAE International | Advancing mobility knowledge and solutions</title> <base href=\"/\"> <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\"> <link rel=\"dns-prefetch\" href=\"https://gpfb.sae.org/fonts\"> <link rel=\"preload\" href=\"https://gpfb.sae.org/fonts/css?family=Roboto:300,400,400i,500,500i,700&amp;display=swap\" as=\"style\"> <link rel=\"preload\" href=\"https://gpfb.sae.org/fonts/icon?family=Material+Icons\" as=\"style\"> <link rel=\"stylesheet\" href=\"https://gpfb.sae.org/fonts/css?family=Roboto:300,400,400i,500,500i,700&amp;display=swap\"> <link rel=\"stylesheet\" href=\"https://gpfb.sae.org/fonts/icon?family=Material+Icons\"> <style>@import url(\"https://p.typekit.net/p.css?s=1&k=kcp7slq&ht=tk&f=39755.39757.39758&a=114129128&app=typekit&e=css\");@font-face {font-family"
+    },
+    {
+      "label": "www-paper-download-pattern",
+      "requested_url": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608/download",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608/download",
+      "content_type": "text/html",
+      "content_length_header": "",
+      "bytes": 15025,
+      "first_bytes_latin1": "<!doctype html>\n<html lang=\"en\" data-critters-container>\n  <head><link rel=\"prec",
+      "is_pdf": false,
+      "is_html": true,
+      "html_text_probe": "<!doctype html> <html lang=\"en\" data-critters-container> <head><link rel=\"preconnect\" href=\"https://use.typekit.net\" crossorigin> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>SAE International | Advancing mobility knowledge and solutions</title> <base href=\"/\"> <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\"> <link rel=\"dns-prefetch\" href=\"https://gpfb.sae.org/fonts\"> <link rel=\"preload\" href=\"https://gpfb.sae.org/fonts/css?family=Roboto:300,400,400i,500,500i,700&amp;display=swap\" as=\"style\"> <link rel=\"preload\" href=\"https://gpfb.sae.org/fonts/icon?family=Material+Icons\" as=\"style\"> <link rel=\"stylesheet\" href=\"https://gpfb.sae.org/fonts/css?family=Roboto:300,400,400i,500,500i,700&amp;display=swap\"> <link rel=\"stylesheet\" href=\"https://gpfb.sae.org/fonts/icon?family=Material+Icons\"> <style>@import url(\"https://p.typekit.net/p.css?s=1&k=kcp7slq&ht=tk&f=39755.39757.39758&a=114129128&app=typekit&e=css\");@font-face {font-family"
+    },
+    {
+      "label": "mobilus-content-download-pattern",
+      "requested_url": "https://saemobilus.sae.org/content/2026-26-0608/download",
+      "ok": true,
+      "status": 202,
+      "final_url": "https://saemobilus.sae.org/content/2026-26-0608/download",
+      "content_type": "text/html; charset=UTF-8",
+      "content_length_header": "2188",
+      "bytes": 2188,
+      "first_bytes_latin1": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta nam",
+      "is_pdf": false,
+      "is_html": true,
+      "html_text_probe": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title></title> <style> body { font-family: \"Arial\"; } </style> <script type=\"text/javascript\"> window.awsWafCookieDomainList = []; window.gokuProps = { \"key\":\"AQIDAHjcYu/GjX+QlghicBgQ/7bFaQZ+m5FKCMDnO+vTbNg96AFDQM+eC6yBzCMRADZwswqOAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM1qrj4LJYDPUgjAdRAgEQgDs+H6UqcPGaIi0BkjvF0/qSpwzScaeUk2ihiswepBHO2xCoEYhxE58WgkYJ6ol3ap06cQ0ziDpuSCm/yA==\", \"iv\":\"NC42cAAzDQAAsptQ\", \"context\":\"sGAT9flIVoTbO3UrWGyg3ar7whN54NEMGrwX6wZBe4SXAAZgzegLwuK0mOpOLXgbRkcI4UQoPXP4WqqzruxtDlvmOiSzjYaXNzT1UNEb/jiwjpZynirOcLdEkYSIn6gBvkWJoKZKeSwbcDaloq7cEMMo+7kEqK0fzxPeCVG3TSX3IvMZ49tCSIs4BIwT/FWE78HfCeKrYZA1rJVXCqMNNy53LsknD+7a/8VbJt68CmCpZ19Prk/HFXikkyu6gjLlixmAtfHw5/XVgcTQ2OMlfuoVwBOimOzPO1bnSO3vQJFnuPg8HBs0MOCvg9/c4HzxhD7prilAogZU5S9JU8NJPFO3CAyaED0Uh4GLKiWbJLPEKwskHLkxS598PH7Gsibg/Xyg98n62OeaR0MI3MHFueHex+662wv0W2wZH"
+    },
+    {
+      "label": "mobilus-paper-download-pattern",
+      "requested_url": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608/download",
+      "ok": true,
+      "status": 202,
+      "final_url": "https://saemobilus.sae.org/papers/post-eol-cybersecurity-validation-automotive-production-units-2026-26-0608/download",
+      "content_type": "text/html; charset=UTF-8",
+      "content_length_header": "2188",
+      "bytes": 2188,
+      "first_bytes_latin1": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta nam",
+      "is_pdf": false,
+      "is_html": true,
+      "html_text_probe": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title></title> <style> body { font-family: \"Arial\"; } </style> <script type=\"text/javascript\"> window.awsWafCookieDomainList = []; window.gokuProps = { \"key\":\"AQIDAHjcYu/GjX+QlghicBgQ/7bFaQZ+m5FKCMDnO+vTbNg96AFDQM+eC6yBzCMRADZwswqOAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM1qrj4LJYDPUgjAdRAgEQgDs+H6UqcPGaIi0BkjvF0/qSpwzScaeUk2ihiswepBHO2xCoEYhxE58WgkYJ6ol3ap06cQ0ziDpuSCm/yA==\", \"iv\":\"NC42aAA2gwAAxRPD\", \"context\":\"nWVSEjetb05FUlDxA3AvxhEIk6RqMp0z1h0tAnju/XLzZ0jV72O6HRQBFG2fRog240hO+ubZjqWUuedSCDYU3qzw8g54m4SC/HJI/hiZddfVc465kVR+pikDZixiwrXo4ZNzH+R6sw4CaDN8vGBsxxgCZtvOUmSsm0RvnDfM/Gjpt09SuGwMPvHLgTzleW1C2NqyVJLTW8bp8d+N6WCiXYKI22Dh9+YjJMBMUZ5ei6YNqAwyneLrhChl0nt7mhJQYrjPCEfLymb+SV1/1GHvE1D+FayJiFPfgB2FNgcf/C4ZS8scZLhTdf2JBuNPiKKSiATny3NOs7jl9Sb6nVuPHkRLQe4Iubw9P5RkH95Oa+ZhGpv8WyNfASh2aAyccsG9efxRgVi4EokDHoDbowgFkdQjYyTMem6T4ed4l"
+    }
+  ],
+  "conclusion": {
+    "article_links_found": true,
+    "candidate_id": "2026-26-0608",
+    "institution_recognized": false,
+    "subscription_wall_signals": true,
+    "direct_download_pattern_yields_pdf": false,
+    "gate": "LOGIN_REQUIRED",
+    "note": "SAE pages expose abstracts/metadata and subscriber download controls, but all tested download routes returned HTML rather than %PDF- in research-sae."
+  }
+}
