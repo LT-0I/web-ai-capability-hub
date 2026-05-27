@@ -1,0 +1,30 @@
+{
+  "db": "crc",
+  "op": "export",
+  "tool": "research_crc_export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:crc:export",
+    "--query",
+    "machine learning",
+    "--format",
+    "csv",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/crc",
+    "--profile",
+    "research-crc",
+    "--cdp-port",
+    "9322",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:46:42Z",
+  "ended_at": "2026-05-27T07:47:36Z",
+  "exit_code": 1,
+  "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+  "stdout": "",
+  "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: CRC/T&F eBooks export failed\",\"evidence\":{\"format\":\"csv\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n",
+  "parsed": null,
+  "notes": []
+}

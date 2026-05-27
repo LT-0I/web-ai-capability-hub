@@ -1,0 +1,41 @@
+{
+  "db": "cellpress",
+  "op": "launch",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "browser:launch",
+    "--profile",
+    "research-cellpress",
+    "--cdp-port",
+    "9321",
+    "--json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"profile\": \"research-cellpress\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-cellpress\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9321\",\n  \"cdpPort\": 9321,\n  \"connected\": true,\n  \"launchedByPackage\": true,\n  \"processId\": 474628,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9321/devtools/page/240B4A746CD5C8E5514EE966E9D5B070\",\n      \"id\": \"240B4A746CD5C8E5514EE966E9D5B070\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9321/devtools/page/240B4A746CD5C8E5514EE966E9D5B070\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9321/devtools/browser/4ae7c504-dfce-4812-95b9-bbabba93fbb4\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "profile": "research-cellpress",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-cellpress",
+    "cdpEndpoint": "http://127.0.0.1:9321",
+    "cdpPort": 9321,
+    "connected": true,
+    "launchedByPackage": true,
+    "processId": 474628,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9321/devtools/page/240B4A746CD5C8E5514EE966E9D5B070",
+        "id": "240B4A746CD5C8E5514EE966E9D5B070",
+        "title": "新标签页",
+        "type": "page",
+        "url": "chrome://newtab/",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9321/devtools/page/240B4A746CD5C8E5514EE966E9D5B070"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:9321/devtools/browser/4ae7c504-dfce-4812-95b9-bbabba93fbb4"
+  },
+  "ts": "2026-05-27T07:44:16.093Z"
+}

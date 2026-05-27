@@ -1,0 +1,38 @@
+{
+  "db": "dblp",
+  "op": "export",
+  "tool": "research_dblp_export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:dblp:export",
+    "--key",
+    "phd/dnb/ThieeN26",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/dblp",
+    "--profile",
+    "research-dblp",
+    "--cdp-port",
+    "9323",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:54:17Z",
+  "ended_at": "2026-05-27T07:54:26Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/dblp/dblp-phd-dnb-ThieeN26.bib\",\n  \"bytes\": 641,\n  \"sha256\": \"fd5a08d74aed26ea36981577cef1425822c63854e0c754085742d1c793a10aa8\",\n  \"format\": \"bibtex\",\n  \"source_url\": \"https://dblp.org/rec/phd/dnb/ThieeN26.bib\",\n  \"key\": \"phd/dnb/ThieeN26\",\n  \"mime_type\": \"application/x-bibtex; charset=utf-8\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/dblp/dblp-phd-dnb-ThieeN26.bib",
+    "bytes": 641,
+    "sha256": "fd5a08d74aed26ea36981577cef1425822c63854e0c754085742d1c793a10aa8",
+    "format": "bibtex",
+    "source_url": "https://dblp.org/rec/phd/dnb/ThieeN26.bib",
+    "key": "phd/dnb/ThieeN26",
+    "mime_type": "application/x-bibtex; charset=utf-8"
+  },
+  "notes": []
+}

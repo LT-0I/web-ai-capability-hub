@@ -1,0 +1,23 @@
+{
+  "profile": "research-cambridge",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "data/browser-profiles/research-cambridge",
+  "cdpEndpoint": "http://127.0.0.1:9320",
+  "cdpPort": 9320,
+  "connected": true,
+  "launchedByPackage": true,
+  "processId": 464416,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9320/devtools/page/C57AD5EAB82E2CB53D2AFBA029EB1657",
+      "id": "C57AD5EAB82E2CB53D2AFBA029EB1657",
+      "title": "新标签页",
+      "type": "page",
+      "url": "chrome://newtab/",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9320/devtools/page/C57AD5EAB82E2CB53D2AFBA029EB1657"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9320/devtools/browser/01dc782b-d7a7-4429-997e-28a273ee3d39"
+}

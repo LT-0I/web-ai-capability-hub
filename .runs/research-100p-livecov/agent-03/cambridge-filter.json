@@ -1,0 +1,184 @@
+{
+  "db": "cambridge",
+  "op": "filter",
+  "tool": "research_cambridge_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:cambridge:filter",
+    "--query",
+    "machine learning",
+    "--product-type",
+    "JOURNAL_ARTICLE",
+    "--start-year",
+    "2024",
+    "--end-year",
+    "2026",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-cambridge",
+    "--cdp-port",
+    "9320",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:43:18Z",
+  "ended_at": "2026-05-27T07:43:26Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"result_count\": 38033,\n  \"items\": [\n    {\n      \"title\": \"\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"9C74F5743FEC275A4B9C2590661321A2\"\n    },\n    {\n      \"title\": \"The Knowledge Engineering Review\",\n      \"authors\": [\n        \"/ Volume 12 /\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"787C1DAF5061FC871A3A11D997634787\"\n    },\n    {\n      \"title\": \"Issue 4\",\n      \"authors\": [\n        \"/ December 1997 Published online by Cambridge University Press: 01 December 1997\",\n        \"pp. 341-367 Article Get access Check if you have access via personal or institutional login Log in Register\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": 1997,\n      \"product_id\": \"EA43DEA4696C9079707C2F79066585AB\"\n    },\n    {\n      \"title\": \"\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"B694D6B9FB47D977B80FEC3D01708701\"\n    },\n    {\n      \"title\": \"Canadian Journal of Philosophy\",\n      \"authors\": [\n        \"/ Volume 20 /\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"Canadian Journal\",\n      \"year\": null,\n      \"product_id\": \"F8B3B46B1A237A95DD4EFCBB206904F7\"\n    },\n    {\n      \"title\": \"Issue 2\",\n      \"authors\": [\n        \"/ June 1990 Published online by Cambridge University Press: 01 January 2020\",\n        \"pp. 261-276 Article Get access Check if you have access via personal or institutional login Log in Register\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": 1990,\n      \"product_id\": \"4A46F5C3E30294ED6E955911B30DEC99\"\n    },\n    {\n      \"title\": \"\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"F54F60AC0048291BA47E0B671733ED15\"\n    },\n    {\n      \"title\": \"MRS Communications\",\n      \"authors\": [\n        \"/ Volume 9 /\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"8F3E008559365F220ECC093F993CE372\"\n    },\n    {\n      \"title\": \"Issue 2\",\n      \"authors\": [\n        \"/ June 2019 Published online by Cambridge University Press: 27 March 2019\",\n        \"pp. 556-566 Print publication: June 2019 Article You have access Access PDF HTML\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": 2019,\n      \"product_id\": \"58395F6B4D2C9DB34CCCEA36E4907BEA\"\n    },\n    {\n      \"title\": \"\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"E936469C93ADB623398D2E656D60E72F\"\n    },\n    {\n      \"title\": \"Bulletin of Symbolic Logic\",\n      \"authors\": [\n        \"/ Volume 25 /\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"F7268973893D3981F1B17A2E10347229\"\n    },\n    {\n      \"title\": \"Issue 3\",\n      \"authors\": [\n        \"/ September 2019 Published online by Cambridge University Press: 15 February 2019\",\n        \"pp. 319-332 Print publication: September 2019 Article You have access Access PDF\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": 2019,\n      \"product_id\": \"F086662663A4EF696F1428C668322308\"\n    },\n    {\n      \"title\": \"\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"F5B4FCAF15069C5586974BB756AB0F3C\"\n    },\n    {\n      \"title\": \"Robotica\",\n      \"authors\": [\n        \"/ Volume 9 /\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": null,\n      \"product_id\": \"9D09B9EC51F7B2908BE018873570F515\"\n    },\n    {\n      \"title\": \"Issue 2\",\n      \"authors\": [\n        \"/ April 1991 Published online by Cambridge University Press: 09 March 2009\",\n        \"pp. 165-170 Article You have access Access PDF\"\n      ],\n      \"doi\": \"\",\n      \"journal\": \"\",\n      \"year\": 1991,\n      \"product_id\": \"412D493BDC7D15063DF4029CFE951C4B\"\n    }\n  ],\n  \"refined_url\": \"https://www.cambridge.org/core/search?q=machine+learning&pageSize=5&aggs%5BproductTypes%5D%5Bfilters%5D=JOURNAL_ARTICLE&dateRange.from=2024&dateRange.to=2026\",\n  \"confirm_title\": \"Search\",\n  \"applied_filter\": \"JOURNAL_ARTICLE\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 38033,
+    "items": [
+      {
+        "title": "",
+        "authors": [],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "9C74F5743FEC275A4B9C2590661321A2"
+      },
+      {
+        "title": "The Knowledge Engineering Review",
+        "authors": [
+          "/ Volume 12 /"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "787C1DAF5061FC871A3A11D997634787"
+      },
+      {
+        "title": "Issue 4",
+        "authors": [
+          "/ December 1997 Published online by Cambridge University Press: 01 December 1997",
+          "pp. 341-367 Article Get access Check if you have access via personal or institutional login Log in Register"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": 1997,
+        "product_id": "EA43DEA4696C9079707C2F79066585AB"
+      },
+      {
+        "title": "",
+        "authors": [],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "B694D6B9FB47D977B80FEC3D01708701"
+      },
+      {
+        "title": "Canadian Journal of Philosophy",
+        "authors": [
+          "/ Volume 20 /"
+        ],
+        "doi": "",
+        "journal": "Canadian Journal",
+        "year": null,
+        "product_id": "F8B3B46B1A237A95DD4EFCBB206904F7"
+      },
+      {
+        "title": "Issue 2",
+        "authors": [
+          "/ June 1990 Published online by Cambridge University Press: 01 January 2020",
+          "pp. 261-276 Article Get access Check if you have access via personal or institutional login Log in Register"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": 1990,
+        "product_id": "4A46F5C3E30294ED6E955911B30DEC99"
+      },
+      {
+        "title": "",
+        "authors": [],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "F54F60AC0048291BA47E0B671733ED15"
+      },
+      {
+        "title": "MRS Communications",
+        "authors": [
+          "/ Volume 9 /"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "8F3E008559365F220ECC093F993CE372"
+      },
+      {
+        "title": "Issue 2",
+        "authors": [
+          "/ June 2019 Published online by Cambridge University Press: 27 March 2019",
+          "pp. 556-566 Print publication: June 2019 Article You have access Access PDF HTML"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": 2019,
+        "product_id": "58395F6B4D2C9DB34CCCEA36E4907BEA"
+      },
+      {
+        "title": "",
+        "authors": [],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "E936469C93ADB623398D2E656D60E72F"
+      },
+      {
+        "title": "Bulletin of Symbolic Logic",
+        "authors": [
+          "/ Volume 25 /"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "F7268973893D3981F1B17A2E10347229"
+      },
+      {
+        "title": "Issue 3",
+        "authors": [
+          "/ September 2019 Published online by Cambridge University Press: 15 February 2019",
+          "pp. 319-332 Print publication: September 2019 Article You have access Access PDF"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": 2019,
+        "product_id": "F086662663A4EF696F1428C668322308"
+      },
+      {
+        "title": "",
+        "authors": [],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "F5B4FCAF15069C5586974BB756AB0F3C"
+      },
+      {
+        "title": "Robotica",
+        "authors": [
+          "/ Volume 9 /"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": null,
+        "product_id": "9D09B9EC51F7B2908BE018873570F515"
+      },
+      {
+        "title": "Issue 2",
+        "authors": [
+          "/ April 1991 Published online by Cambridge University Press: 09 March 2009",
+          "pp. 165-170 Article You have access Access PDF"
+        ],
+        "doi": "",
+        "journal": "",
+        "year": 1991,
+        "product_id": "412D493BDC7D15063DF4029CFE951C4B"
+      }
+    ],
+    "refined_url": "https://www.cambridge.org/core/search?q=machine+learning&pageSize=5&aggs%5BproductTypes%5D%5Bfilters%5D=JOURNAL_ARTICLE&dateRange.from=2024&dateRange.to=2026",
+    "confirm_title": "Search",
+    "applied_filter": "JOURNAL_ARTICLE"
+  }
+}

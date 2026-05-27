@@ -1,0 +1,32 @@
+{
+  "db": "crc",
+  "op": "export",
+  "tool": "research_crc_export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:crc:export",
+    "--query",
+    "machine learning",
+    "--format",
+    "csv",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/crc",
+    "--profile",
+    "research-crc",
+    "--cdp-port",
+    "9322",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:50:19Z",
+  "ended_at": "2026-05-27T07:50:58Z",
+  "exit_code": 1,
+  "classification": "FAIL_ELEMENT_NOT_FOUND",
+  "stdout": "",
+  "stderr": "{\"ok\":false,\"errorCode\":\"ELEMENT_NOT_FOUND\",\"error\":\"ELEMENT_NOT_FOUND: CRC/T&F eBooks export failed\",\"evidence\":{\"format\":\"csv\",\"cause\":\"No element matched --button-selector\"}}\n",
+  "parsed": null,
+  "notes": [
+    "resmoke after CRC JS-click fallback patch"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "db": "crc",
+  "op": "filter",
+  "tool": "research_crc_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:crc:filter",
+    "--query",
+    "machine learning",
+    "--open-access",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-crc",
+    "--cdp-port",
+    "9322",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:46:30Z",
+  "ended_at": "2026-05-27T07:46:42Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"result_count\": 349,\n  \"items\": [\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Ally S. Nyamawe\",\n        \"Mohamedi M. Mjahidi\",\n        \"Noe E. Nnko\",\n        \"Salim A. Diwani\",\n        \"Godbless G. Minja\",\n        \"Kulwa Malyango 1st Edition 06 February 2025 Chapman\",\n        \"Hall/CRC 226 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2025,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-mono/10.1201/9781003486817/practical-machine-learning-ally-nyamawe-mohamedi-mjahidi-noe-nnko-salim-diwani-godbless-minja-kulwa-malyango?context=ubx&amp;refId=32ef48c9-278a-43c5-9693-110954c4fe47\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Irena Y. Maureen\",\n        \"Binar K. Prahani\",\n        \"Cicilia D. M. Putri\",\n        \"Ima Widiyanah 1st Edition 13 May 2026 Routledge 216 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2026,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003634683/navigating-post-pandemic-challenges-irena-maureen-binar-prahani-cicilia-putri-ima-widiyanah?context=ubx&amp;refId=cfe1e689-ec52-4779-bd41-69550e3cfcbd\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Jaiteg Singh\",\n        \"SB Goyal\",\n        \"Rajesh Kumar Kaushal\",\n        \"Naveen Kumar\",\n        \"Sukhjit Singh Sehra 1st Edition 21 July 2024 CRC Press 632 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2024,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003471059/applied-data-science-smart-systems-jaiteg-singh-sb-goyal-rajesh-kumar-kaushal-naveen-kumar-sukhjit-singh-sehra?context=ubx&amp;refId=3e0097b4-a481-43cf-88cf-a080e23c2e64\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Ovidiu Vermesan\",\n        \"Alain Pagani\",\n        \"Paolo Meloni 1st Edition 26 January 2026 River Publishers 448 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2026,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9788743808862/charting-intelligence-frontiers-edge-ai-systems-nexus-ovidiu-vermesan-alain-pagani-paolo-meloni?context=ubx&amp;refId=0189ddeb-ca22-48b0-8ec6-80115ce96209\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"V. Sharmila\",\n        \"S. Kannadhasan\",\n        \"A. Rajiv Kannan\",\n        \"P. Sivakumar\",\n        \"V. Vennila 1st Edition 09 December 2024 CRC Press 892 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2024,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003559085/challenges-information-communication-computing-technology-rajiv-kannan-kannadhasan-sivakumar-sharmila-vennila?context=ubx&amp;refId=b35554eb-bce6-4b80-a72f-21c0e4b287eb\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Rute C. Sofia\",\n        \"John Soldatos 1st Edition 07 January 2024 River Publishers 460 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2024,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781032632407/shaping-future-iot-edge-intelligence-rute-sofia-john-soldatos?context=ubx&amp;refId=483c5aa0-10ed-480f-9300-ea464c68dc7a\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Michael Klipphahn-Karge\",\n        \"Ann-Kathrin Koster\",\n        \"Sara Morais dos Santos Bruss 1st Edition 16 July 2023 Routledge 204 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2023,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.4324/9781003357957/queer-reflections-ai-sara-morais-dos-santos-bruss-ann-kathrin-koster-michael-klipphahn-karge?context=ubx&amp;refId=64b5adc5-f1e1-4bfa-af7b-2c5f58c59387\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Juliane Jarke\",\n        \"Bianca Prietl\",\n        \"Simon Egbert\",\n        \"Yana Boeva\",\n        \"Hendrik Heuer 1st Edition 30 September 2025 Routledge 346 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2025,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.4324/9781003690672/algorithmic-regimes-simon-egbert-yana-boeva-juliane-jarke-hendrik-heuer-bianca-prietl?context=ubx&amp;refId=6fb7926b-9e4e-451d-8d73-3a35b31e0e4a\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Ashish Juneja\",\n        \"Anil Joseph\",\n        \"Dasaka S. Murty 1st Edition 15 September 2025 CRC Press 698 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2025,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003645931/geovadis-ashish-juneja-dasaka-murty-anil-joseph?context=ubx&amp;refId=acace20a-bc38-4fdb-9c36-6fdf80bc0f1c\"\n    },\n    {\n      \"title\": \"book\",\n      \"authors\": [\n        \"Ashish Juneja\",\n        \"Anil Joseph\",\n        \"Dasaka S. Murty 1st Edition 15 September 2025 CRC Press 738 pages Abstract\"\n      ],\n      \"doi\": \"\",\n      \"content_type\": \"book\",\n      \"year\": 2025,\n      \"href\": \"https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003645917/geovadis-ashish-juneja-anil-joseph-dasaka-murty?context=ubx&amp;refId=7c117f7b-c69b-471f-85ab-332f1eed4981\"\n    }\n  ],\n  \"refined_url\": \"https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning&sortBy=relevance&key=&openAccess=true&fullyOABook=true&OAChapter=true\",\n  \"confirm_title\": \"Search Results | Taylor & Francis eBooks, Reference Works and Collecti\",\n  \"unfiltered_count\": 15203,\n  \"unfiltered_url\": \"https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 349,
+    "items": [
+      {
+        "title": "book",
+        "authors": [
+          "Ally S. Nyamawe",
+          "Mohamedi M. Mjahidi",
+          "Noe E. Nnko",
+          "Salim A. Diwani",
+          "Godbless G. Minja",
+          "Kulwa Malyango 1st Edition 06 February 2025 Chapman",
+          "Hall/CRC 226 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2025,
+        "href": "https://www.taylorfrancis.com/books/oa-mono/10.1201/9781003486817/practical-machine-learning-ally-nyamawe-mohamedi-mjahidi-noe-nnko-salim-diwani-godbless-minja-kulwa-malyango?context=ubx&amp;refId=32ef48c9-278a-43c5-9693-110954c4fe47"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Irena Y. Maureen",
+          "Binar K. Prahani",
+          "Cicilia D. M. Putri",
+          "Ima Widiyanah 1st Edition 13 May 2026 Routledge 216 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2026,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003634683/navigating-post-pandemic-challenges-irena-maureen-binar-prahani-cicilia-putri-ima-widiyanah?context=ubx&amp;refId=cfe1e689-ec52-4779-bd41-69550e3cfcbd"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Jaiteg Singh",
+          "SB Goyal",
+          "Rajesh Kumar Kaushal",
+          "Naveen Kumar",
+          "Sukhjit Singh Sehra 1st Edition 21 July 2024 CRC Press 632 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2024,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003471059/applied-data-science-smart-systems-jaiteg-singh-sb-goyal-rajesh-kumar-kaushal-naveen-kumar-sukhjit-singh-sehra?context=ubx&amp;refId=3e0097b4-a481-43cf-88cf-a080e23c2e64"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Ovidiu Vermesan",
+          "Alain Pagani",
+          "Paolo Meloni 1st Edition 26 January 2026 River Publishers 448 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2026,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9788743808862/charting-intelligence-frontiers-edge-ai-systems-nexus-ovidiu-vermesan-alain-pagani-paolo-meloni?context=ubx&amp;refId=0189ddeb-ca22-48b0-8ec6-80115ce96209"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "V. Sharmila",
+          "S. Kannadhasan",
+          "A. Rajiv Kannan",
+          "P. Sivakumar",
+          "V. Vennila 1st Edition 09 December 2024 CRC Press 892 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2024,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003559085/challenges-information-communication-computing-technology-rajiv-kannan-kannadhasan-sivakumar-sharmila-vennila?context=ubx&amp;refId=b35554eb-bce6-4b80-a72f-21c0e4b287eb"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Rute C. Sofia",
+          "John Soldatos 1st Edition 07 January 2024 River Publishers 460 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2024,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781032632407/shaping-future-iot-edge-intelligence-rute-sofia-john-soldatos?context=ubx&amp;refId=483c5aa0-10ed-480f-9300-ea464c68dc7a"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Michael Klipphahn-Karge",
+          "Ann-Kathrin Koster",
+          "Sara Morais dos Santos Bruss 1st Edition 16 July 2023 Routledge 204 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2023,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.4324/9781003357957/queer-reflections-ai-sara-morais-dos-santos-bruss-ann-kathrin-koster-michael-klipphahn-karge?context=ubx&amp;refId=64b5adc5-f1e1-4bfa-af7b-2c5f58c59387"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Juliane Jarke",
+          "Bianca Prietl",
+          "Simon Egbert",
+          "Yana Boeva",
+          "Hendrik Heuer 1st Edition 30 September 2025 Routledge 346 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2025,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.4324/9781003690672/algorithmic-regimes-simon-egbert-yana-boeva-juliane-jarke-hendrik-heuer-bianca-prietl?context=ubx&amp;refId=6fb7926b-9e4e-451d-8d73-3a35b31e0e4a"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Ashish Juneja",
+          "Anil Joseph",
+          "Dasaka S. Murty 1st Edition 15 September 2025 CRC Press 698 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2025,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003645931/geovadis-ashish-juneja-dasaka-murty-anil-joseph?context=ubx&amp;refId=acace20a-bc38-4fdb-9c36-6fdf80bc0f1c"
+      },
+      {
+        "title": "book",
+        "authors": [
+          "Ashish Juneja",
+          "Anil Joseph",
+          "Dasaka S. Murty 1st Edition 15 September 2025 CRC Press 738 pages Abstract"
+        ],
+        "doi": "",
+        "content_type": "book",
+        "year": 2025,
+        "href": "https://www.taylorfrancis.com/books/oa-edit/10.1201/9781003645917/geovadis-ashish-juneja-anil-joseph-dasaka-murty?context=ubx&amp;refId=7c117f7b-c69b-471f-85ab-332f1eed4981"
+      }
+    ],
+    "refined_url": "https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning&sortBy=relevance&key=&openAccess=true&fullyOABook=true&OAChapter=true",
+    "confirm_title": "Search Results | Taylor & Francis eBooks, Reference Works and Collecti",
+    "unfiltered_count": 15203,
+    "unfiltered_url": "https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning"
+  },
+  "notes": []
+}

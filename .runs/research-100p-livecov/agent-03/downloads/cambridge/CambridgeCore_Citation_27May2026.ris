@@ -1,0 +1,16 @@
+TY  - CHAP
+A2  - Stevens, Tim J.
+A2  - Boucher, Wayne
+AB  - A guide to machine learningWhen using computers to solve scientific problems there can be situations where you have some measured data and a related property of the data, but there is no known or fixed formula to link the two. Sometimes the link between the two sets of data may be easy for a human to see, but otherwise difficult to encode in a computer algorithm. A simple example of this would be in the reading of handwriting; humans do not write in a fixed typeface, every letter of a given kind will be written slightly differently, and yet we can read most other people’s handwriting without much effort. When we look at writing we attempt to recognise the letters and words, and where there is ambiguity we can use our intelligence to infer what was intended by using the context of what the writing means, or any other clues that we can glean. Writing a computer program to read handwriting is difficult, and not nearly as reliable as a person would be. Nevertheless it can be done, and is put to good use in the mechanised sorting of mail by postal (zip) code. The common trick to getting a computer to perform tasks like this is not to program it with a designed and elaborate rule, but rather to bestow a computer program with a degree of artificial intelligence so that it can come up with its own rules and learn. The exercise whereby a program comes up with its own rules to solve a problem is often referred to as machine learning. It should be noted, however, that we usually don’t expect a computer to learn a task perfectly; if perfection were possible we generally wouldn’t have to resort to such means. Instead it is best to think of machine learning algorithms as making predictions, and as such the predictive power should be tested before we make reliance upon it. There are two kinds of machine learning which are commonly discussed, supervised learning and unsupervised learning, and we will give examples of both in this chapter.
+CY  - Cambridge
+DB  - Cambridge Core
+DO  - DOI: 10.1017/CBO9780511843556.025
+DP  - Cambridge University Press
+PB  - Cambridge University Press
+PY  - 2015
+SN  - 9780521895835
+SP  - 511-544
+T2  - Python Programming for Biology: Bioinformatics and Beyond
+TI  - Machine learning
+UR  - https://www.cambridge.org/core/product/570B575C26034A8CB9A7AF7E17A795AB
+ER  - 

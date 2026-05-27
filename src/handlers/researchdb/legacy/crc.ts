@@ -7,7 +7,7 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
+import { artifactClickOnPage } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type CrcExportFormat = "csv";
@@ -164,7 +164,7 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
     await browser.close?.().catch(() => undefined);
   }
 }
-async function withAllocatedCrcPage<T>(profile: string, url: string, tabId: string, cdpPort: number | undefined, fn: (page: any) => Promise<T>, keepTab = false): Promise<T> {
+async function withAllocatedCrcPage<T>(profile: string, url: string, tabId: string, cdpPort: number | undefined, fn: (page: any, browser: any) => Promise<T>, keepTab = false): Promise<T> {
   await freeSession(tabId).catch(() => undefined);
   try { await allocateResearchSession(profile, url, tabId, cdpPort); }
   catch (error) { throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "CRC/T&F eBooks tab allocation/navigation failed", { url, cause: error instanceof Error ? error.message : String(error) }); }
@@ -173,7 +173,7 @@ async function withAllocatedCrcPage<T>(profile: string, url: string, tabId: stri
   const browser = await launcher.connectOverCdp(status);
   try {
     const page = await activeManagedPage(browser, undefined, tabId);
-    return await fn(page);
+    return await fn(page, browser);
   } finally {
     await browser.close?.().catch(() => undefined);
     if (!keepTab) await freeSession(tabId).catch(() => undefined);
@@ -344,7 +344,7 @@ export async function researchCrcExport(args: CrcExportArgs): Promise<{ artifact
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
   const tabId = args.tab_id || `research-crc-export-${Date.now()}`;
-  return await withAllocatedCrcPage(profile, query_url, tabId, args.cdp_port, async (page) => {
+  return await withAllocatedCrcPage(profile, query_url, tabId, args.cdp_port, async (page, browser) => {
     try {
       let results = await readCrcResults(page);
       if (args.access_facet || args.open_access || args.free_to_view || args.access_content || args.licensed_content || args.include_forthcoming || args.fully_oa_books || args.books_with_oa_chapters || args.year_from || args.year_to) {
@@ -355,7 +355,7 @@ export async function researchCrcExport(args: CrcExportArgs): Promise<{ artifact
       if (!(await exportButton.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks export-search button was not found", { selector: "button.export-search-button" });
       await exportButton.click({ timeout: 10000 });
       await page.locator('div[role="dialog"][aria-labelledby="modalName"]').first().waitFor({ state: "visible", timeout: 30000 }).catch((error: any) => { throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "CRC/T&F eBooks export modal was not found", { selector: 'div[role="dialog"][aria-labelledby="modalName"]', cause: error?.message || String(error) }); });
-      const clicked = await runArtifactClick({ profile, tabUrlContains: "taylorfrancis.com/search", buttonSelector: 'div[role="dialog"] button.btn-primary.btn', downloadDir, filenamePattern: "*.csv", timeoutMs: 90000, locateTimeoutMs: 30000, frameMinCount: 0 });
+      const clicked = await artifactClickOnPage(browser, page, { profile, buttonSelector: 'div[role="dialog"] button.btn-primary.btn', downloadDir, filenamePattern: "*.csv", timeoutMs: 90000, locateTimeoutMs: 30000, frameMinCount: 0, useJsClickFallback: true });
       const artifact_path = clicked.path;
       const validation = validateCrcCsv(artifact_path);
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, result_count: results.resultCount, results_url: results.url, columns: validation.columns, rows: validation.rows };

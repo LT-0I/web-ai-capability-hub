@@ -1,0 +1,346 @@
+{
+  "db": "dblp",
+  "op": "filter",
+  "tool": "research_dblp_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:dblp:filter",
+    "--query",
+    "graph neural networks",
+    "--mode",
+    "publ",
+    "--type",
+    "Journal_Articles",
+    "--year",
+    "2024",
+    "--profile",
+    "research-dblp",
+    "--cdp-port",
+    "9323",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:54:14Z",
+  "ended_at": "2026-05-27T07:54:17Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"result_count\": 857,\n  \"items\": [\n    {\n      \"key\": \"journals/aai/ZhangSHSMX24\",\n      \"title\": \"view electronic edition via DOI unpaywalled version details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/aai/ZhangSHSMX24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/aai/ZhangSHSMX24.bib\"\n    },\n    {\n      \"key\": \"journals/access/AlamS24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/AlamS24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/AlamS24.bib\"\n    },\n    {\n      \"key\": \"journals/access/Ansari24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/Ansari24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/Ansari24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ChandraumakanthamSP24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ChandraumakanthamSP24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ChandraumakanthamSP24.bib\"\n    },\n    {\n      \"key\": \"journals/access/GkarmpounisVVD24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/GkarmpounisVVD24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/GkarmpounisVVD24.bib\"\n    },\n    {\n      \"key\": \"journals/access/GuoLR24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/GuoLR24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/GuoLR24.bib\"\n    },\n    {\n      \"key\": \"journals/access/HanMW24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/HanMW24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/HanMW24.bib\"\n    },\n    {\n      \"key\": \"journals/access/IslamAI24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/IslamAI24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/IslamAI24.bib\"\n    },\n    {\n      \"key\": \"journals/access/KimCK24c\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/KimCK24c\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/KimCK24c.bib\"\n    },\n    {\n      \"key\": \"journals/access/KovalenkoPM24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/KovalenkoPM24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/KovalenkoPM24.bib\"\n    },\n    {\n      \"key\": \"journals/access/LiWD24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/LiWD24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/LiWD24.bib\"\n    },\n    {\n      \"key\": \"journals/access/Maya24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/Maya24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/Maya24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ReddyV24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ReddyV24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ReddyV24.bib\"\n    },\n    {\n      \"key\": \"journals/access/SharifbaevMZM24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/SharifbaevMZM24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/SharifbaevMZM24.bib\"\n    },\n    {\n      \"key\": \"journals/access/SharmaDSHE24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/SharmaDSHE24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/SharmaDSHE24.bib\"\n    },\n    {\n      \"key\": \"journals/access/SirazitdinovBHH24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/SirazitdinovBHH24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/SirazitdinovBHH24.bib\"\n    },\n    {\n      \"key\": \"journals/access/SkardingHGM24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/SkardingHGM24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/SkardingHGM24.bib\"\n    },\n    {\n      \"key\": \"journals/access/SolheimHK24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/SolheimHK24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/SolheimHK24.bib\"\n    },\n    {\n      \"key\": \"journals/access/TiukhovaPOBSB24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/TiukhovaPOBSB24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/TiukhovaPOBSB24.bib\"\n    },\n    {\n      \"key\": \"journals/access/WuWSL24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/WuWSL24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/WuWSL24.bib\"\n    },\n    {\n      \"key\": \"journals/access/YamakajiSF24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/YamakajiSF24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/YamakajiSF24.bib\"\n    },\n    {\n      \"key\": \"journals/access/YangCA24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/YangCA24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/YangCA24.bib\"\n    },\n    {\n      \"key\": \"journals/access/YangFR24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/YangFR24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/YangFR24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ZhangZZYZG24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ZhangZZYZG24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ZhangZZYZG24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ZhaoLD24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ZhaoLD24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ZhaoLD24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ZhaoMALL24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ZhaoMALL24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ZhaoMALL24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ZhuangJXL24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ZhuangJXL24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ZhuangJXL24.bib\"\n    },\n    {\n      \"key\": \"journals/access/ZoghlamiBMGK24\",\n      \"title\": \"view electronic edition via DOI (open access) details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/access/ZoghlamiBMGK24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/access/ZoghlamiBMGK24.bib\"\n    },\n    {\n      \"key\": \"journals/accs/IzotovaL24\",\n      \"title\": \"view electronic edition via DOI unpaywalled version details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/accs/IzotovaL24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/accs/IzotovaL24.bib\"\n    },\n    {\n      \"key\": \"journals/adhoc/SaadatiMKC24\",\n      \"title\": \"view electronic edition via DOI unpaywalled version details & citations\",\n      \"authors\": [],\n      \"venue\": \"\",\n      \"year\": null,\n      \"type\": \"article\",\n      \"url\": \"https://dblp.org/rec/journals/adhoc/SaadatiMKC24\",\n      \"bibtex_url\": \"https://dblp.org/rec/journals/adhoc/SaadatiMKC24.bib\"\n    }\n  ],\n  \"refined_url\": \"https://dblp.org/search/publ?q=graph+neural+networks+type%3AJournal_Articles%3A+year%3A2024%3A\",\n  \"confirm_url\": \"https://dblp.org/search/publ?q=graph+neural+networks+type%3AJournal_Articles%3A+year%3A2024%3A\",\n  \"confirm_title\": \"dblp: Publ search for \\\"graph neural networks type:Journal_Articles: year:2024:\\\"\",\n  \"facets\": [\n    \"refine-by.hist-yt\",\n    \"refine-by.author\",\n    \"refine-by.stream\",\n    \"refine-by.type\",\n    \"refine-by.access\",\n    \"refine-by.year\"\n  ]\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 857,
+    "items": [
+      {
+        "key": "journals/aai/ZhangSHSMX24",
+        "title": "view electronic edition via DOI unpaywalled version details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/aai/ZhangSHSMX24",
+        "bibtex_url": "https://dblp.org/rec/journals/aai/ZhangSHSMX24.bib"
+      },
+      {
+        "key": "journals/access/AlamS24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/AlamS24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/AlamS24.bib"
+      },
+      {
+        "key": "journals/access/Ansari24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/Ansari24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/Ansari24.bib"
+      },
+      {
+        "key": "journals/access/ChandraumakanthamSP24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ChandraumakanthamSP24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ChandraumakanthamSP24.bib"
+      },
+      {
+        "key": "journals/access/GkarmpounisVVD24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/GkarmpounisVVD24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/GkarmpounisVVD24.bib"
+      },
+      {
+        "key": "journals/access/GuoLR24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/GuoLR24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/GuoLR24.bib"
+      },
+      {
+        "key": "journals/access/HanMW24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/HanMW24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/HanMW24.bib"
+      },
+      {
+        "key": "journals/access/IslamAI24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/IslamAI24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/IslamAI24.bib"
+      },
+      {
+        "key": "journals/access/KimCK24c",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/KimCK24c",
+        "bibtex_url": "https://dblp.org/rec/journals/access/KimCK24c.bib"
+      },
+      {
+        "key": "journals/access/KovalenkoPM24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/KovalenkoPM24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/KovalenkoPM24.bib"
+      },
+      {
+        "key": "journals/access/LiWD24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/LiWD24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/LiWD24.bib"
+      },
+      {
+        "key": "journals/access/Maya24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/Maya24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/Maya24.bib"
+      },
+      {
+        "key": "journals/access/ReddyV24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ReddyV24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ReddyV24.bib"
+      },
+      {
+        "key": "journals/access/SharifbaevMZM24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/SharifbaevMZM24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/SharifbaevMZM24.bib"
+      },
+      {
+        "key": "journals/access/SharmaDSHE24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/SharmaDSHE24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/SharmaDSHE24.bib"
+      },
+      {
+        "key": "journals/access/SirazitdinovBHH24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/SirazitdinovBHH24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/SirazitdinovBHH24.bib"
+      },
+      {
+        "key": "journals/access/SkardingHGM24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/SkardingHGM24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/SkardingHGM24.bib"
+      },
+      {
+        "key": "journals/access/SolheimHK24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/SolheimHK24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/SolheimHK24.bib"
+      },
+      {
+        "key": "journals/access/TiukhovaPOBSB24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/TiukhovaPOBSB24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/TiukhovaPOBSB24.bib"
+      },
+      {
+        "key": "journals/access/WuWSL24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/WuWSL24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/WuWSL24.bib"
+      },
+      {
+        "key": "journals/access/YamakajiSF24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/YamakajiSF24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/YamakajiSF24.bib"
+      },
+      {
+        "key": "journals/access/YangCA24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/YangCA24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/YangCA24.bib"
+      },
+      {
+        "key": "journals/access/YangFR24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/YangFR24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/YangFR24.bib"
+      },
+      {
+        "key": "journals/access/ZhangZZYZG24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ZhangZZYZG24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ZhangZZYZG24.bib"
+      },
+      {
+        "key": "journals/access/ZhaoLD24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ZhaoLD24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ZhaoLD24.bib"
+      },
+      {
+        "key": "journals/access/ZhaoMALL24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ZhaoMALL24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ZhaoMALL24.bib"
+      },
+      {
+        "key": "journals/access/ZhuangJXL24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ZhuangJXL24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ZhuangJXL24.bib"
+      },
+      {
+        "key": "journals/access/ZoghlamiBMGK24",
+        "title": "view electronic edition via DOI (open access) details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/access/ZoghlamiBMGK24",
+        "bibtex_url": "https://dblp.org/rec/journals/access/ZoghlamiBMGK24.bib"
+      },
+      {
+        "key": "journals/accs/IzotovaL24",
+        "title": "view electronic edition via DOI unpaywalled version details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/accs/IzotovaL24",
+        "bibtex_url": "https://dblp.org/rec/journals/accs/IzotovaL24.bib"
+      },
+      {
+        "key": "journals/adhoc/SaadatiMKC24",
+        "title": "view electronic edition via DOI unpaywalled version details & citations",
+        "authors": [],
+        "venue": "",
+        "year": null,
+        "type": "article",
+        "url": "https://dblp.org/rec/journals/adhoc/SaadatiMKC24",
+        "bibtex_url": "https://dblp.org/rec/journals/adhoc/SaadatiMKC24.bib"
+      }
+    ],
+    "refined_url": "https://dblp.org/search/publ?q=graph+neural+networks+type%3AJournal_Articles%3A+year%3A2024%3A",
+    "confirm_url": "https://dblp.org/search/publ?q=graph+neural+networks+type%3AJournal_Articles%3A+year%3A2024%3A",
+    "confirm_title": "dblp: Publ search for \"graph neural networks type:Journal_Articles: year:2024:\"",
+    "facets": [
+      "refine-by.hist-yt",
+      "refine-by.author",
+      "refine-by.stream",
+      "refine-by.type",
+      "refine-by.access",
+      "refine-by.year"
+    ]
+  },
+  "notes": []
+}

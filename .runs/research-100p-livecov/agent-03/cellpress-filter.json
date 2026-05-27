@@ -1,0 +1,78 @@
+{
+  "db": "cellpress",
+  "op": "filter",
+  "tool": "research_cellpress_filter",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:cellpress:filter",
+    "--query",
+    "cancer",
+    "--after-year",
+    "2024",
+    "--before-year",
+    "2026",
+    "--page-size",
+    "5",
+    "--profile",
+    "research-cellpress",
+    "--cdp-port",
+    "9321",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:44:26Z",
+  "ended_at": "2026-05-27T07:44:43Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"result_count\": 26431,\n  \"base_result_count\": 133198,\n  \"items\": [\n    {\n      \"title\": \"Multiparameter imaging reveals clinically relevant cancer\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"pii\": \"\",\n      \"journal\": \"\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"DACIT device for axon cancer\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"pii\": \"\",\n      \"journal\": \"iScience\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"RNA vaccines for cancer\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"pii\": \"\",\n      \"journal\": \"Cancer Cell\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Reprogramming of fibroblasts into cancer\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"pii\": \"\",\n      \"journal\": \"iScience\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Cell competition promotes metastatic intestinal cancer\",\n      \"authors\": [],\n      \"doi\": \"\",\n      \"pii\": \"\",\n      \"journal\": \"iScience\",\n      \"year\": 2024\n    }\n  ],\n  \"refined_url\": \"https://www.cell.com/action/doSearch?text1=cancer&field1=AllField&pageSize=5&AfterYear=2024&BeforeYear=2026\",\n  \"confirm_title\": \"Cell Press - Search Results: Cell Press\",\n  \"refine_mode\": \"refined_count_delta\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 26431,
+    "base_result_count": 133198,
+    "items": [
+      {
+        "title": "Multiparameter imaging reveals clinically relevant cancer",
+        "authors": [],
+        "doi": "",
+        "pii": "",
+        "journal": "",
+        "year": 2024
+      },
+      {
+        "title": "DACIT device for axon cancer",
+        "authors": [],
+        "doi": "",
+        "pii": "",
+        "journal": "iScience",
+        "year": 2025
+      },
+      {
+        "title": "RNA vaccines for cancer",
+        "authors": [],
+        "doi": "",
+        "pii": "",
+        "journal": "Cancer Cell",
+        "year": 2024
+      },
+      {
+        "title": "Reprogramming of fibroblasts into cancer",
+        "authors": [],
+        "doi": "",
+        "pii": "",
+        "journal": "iScience",
+        "year": 2024
+      },
+      {
+        "title": "Cell competition promotes metastatic intestinal cancer",
+        "authors": [],
+        "doi": "",
+        "pii": "",
+        "journal": "iScience",
+        "year": 2024
+      }
+    ],
+    "refined_url": "https://www.cell.com/action/doSearch?text1=cancer&field1=AllField&pageSize=5&AfterYear=2024&BeforeYear=2026",
+    "confirm_title": "Cell Press - Search Results: Cell Press",
+    "refine_mode": "refined_count_delta"
+  }
+}

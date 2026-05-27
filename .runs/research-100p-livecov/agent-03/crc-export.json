@@ -1,0 +1,41 @@
+{
+  "db": "crc",
+  "op": "export",
+  "tool": "research_crc_export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:crc:export",
+    "--query",
+    "machine learning",
+    "--format",
+    "csv",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/crc",
+    "--profile",
+    "research-crc",
+    "--cdp-port",
+    "9322",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:52:49Z",
+  "ended_at": "2026-05-27T07:53:04Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/crc/T&F_eBooks_search_results_2026_05_27_00_53_00.csv\",\n  \"bytes\": 836293,\n  \"sha256\": \"2aa44a34196b57c84a0e98e4be9f969bfd9cc68ed8a330afe146f9480ec4b098\",\n  \"format\": \"csv\",\n  \"result_count\": 15203,\n  \"results_url\": \"https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning\",\n  \"columns\": 23,\n  \"rows\": 1500\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/crc/T&F_eBooks_search_results_2026_05_27_00_53_00.csv",
+    "bytes": 836293,
+    "sha256": "2aa44a34196b57c84a0e98e4be9f969bfd9cc68ed8a330afe146f9480ec4b098",
+    "format": "csv",
+    "result_count": 15203,
+    "results_url": "https://www.taylorfrancis.com/search?advanceKeywords=machine%20learning",
+    "columns": 23,
+    "rows": 1500
+  },
+  "notes": [
+    "resmoke after CRC exact-page artifact click + JS-click fallback patch"
+  ]
+}

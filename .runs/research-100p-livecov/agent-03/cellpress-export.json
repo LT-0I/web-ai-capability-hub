@@ -1,0 +1,41 @@
+{
+  "db": "cellpress",
+  "op": "export",
+  "tool": "research_cellpress_export",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:cellpress:export",
+    "--pii",
+    "S2589-0042(22)01284-6",
+    "--format",
+    "ris",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/cellpress",
+    "--profile",
+    "research-cellpress",
+    "--cdp-port",
+    "9321",
+    "--confirmed",
+    "--json"
+  ],
+  "started_at": "2026-05-27T07:45:31Z",
+  "ended_at": "2026-05-27T07:45:37Z",
+  "exit_code": 0,
+  "classification": "PASS",
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/cellpress/cellpress-S2589004222012846.ris\",\n  \"bytes\": 2495,\n  \"sha256\": \"78271353d80cd52bafebead651d7dd612b5f6b910a1af553a512b57192f935ae\",\n  \"format\": \"ris\",\n  \"pii\": \"S2589-0042(22)01284-6\",\n  \"doi\": \"10.1016/j.isci.2022.105012\",\n  \"source_url\": \"https://www.cell.com/action/downloadCitationSecure?objectUri=pii%3AS2589004222012846&downloadFileName=marlin_isci25&direct=true\",\n  \"mime_type\": \"application/x-research-info-systems;charset=UTF-8\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-03/downloads/cellpress/cellpress-S2589004222012846.ris",
+    "bytes": 2495,
+    "sha256": "78271353d80cd52bafebead651d7dd612b5f6b910a1af553a512b57192f935ae",
+    "format": "ris",
+    "pii": "S2589-0042(22)01284-6",
+    "doi": "10.1016/j.isci.2022.105012",
+    "source_url": "https://www.cell.com/action/downloadCitationSecure?objectUri=pii%3AS2589004222012846&downloadFileName=marlin_isci25&direct=true",
+    "mime_type": "application/x-research-info-systems;charset=UTF-8"
+  },
+  "notes": [
+    "retry after shared dist/src/cli.js was temporarily absent during parallel build race"
+  ]
+}
