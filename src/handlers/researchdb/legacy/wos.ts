@@ -7,7 +7,7 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
+import { artifactClickOnPage } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type WosSearchMode = "advanced";
@@ -95,11 +95,76 @@ function cleanText(value: string): string { return (value || "").replace(/<scrip
 function yearFromText(text: string): number | null { const match = /\b(19\d{2}|20\d{2})\b/.exec(text); return match ? Number(match[1]) : null; }
 function doiFromText(text: string): string { return (/10\.\d{4,9}\/[^\s<]+/i.exec(text)?.[0] || "").replace(/[),.;]+$/, ""); }
 function authorsFromText(text: string): string[] { return text.split(/;|,\s+(?=[A-Z][A-Za-z-]+,)| and /).map((s) => s.trim()).filter((s) => s && !/^(By:|Authors?:|Source:|Published:|Document Type:)/i.test(s)).slice(0, 20); }
+function firstLocalizedTitle(value: unknown): string {
+  if (!value || typeof value !== "object") return "";
+  const record = value as Record<string, unknown>;
+  const langs = Object.values(record).find(Array.isArray) as Array<Record<string, unknown>> | undefined;
+  const first = langs?.find((entry) => entry && typeof entry === "object");
+  return String(first?.title || first?.display_name || "").trim();
+}
+function parseWosRecordPayload(payload: unknown): WosItem[] {
+  if (!payload || typeof payload !== "object") return [];
+  return Object.entries(payload as Record<string, any>)
+    .sort(([a], [b]) => Number(a) - Number(b))
+    .map(([, record]) => {
+      const authorEntries = record?.names?.author?.en || [];
+      const authors = Array.isArray(authorEntries)
+        ? authorEntries
+            .filter((entry) => entry && typeof entry === "object")
+            .map((entry) => String(entry.wos_standard || [entry.last_name, entry.first_name].filter(Boolean).join(", ")).trim())
+            .filter(Boolean)
+            .slice(0, 20)
+        : [];
+      const source = firstLocalizedTitle(record?.titles?.source);
+      const title = firstLocalizedTitle(record?.titles?.item);
+      const doi = String(record?.doi || record?.identifiers?.find?.((entry: any) => entry?.type === "doi")?.value || "");
+      const year = Number(record?.pub_info?.pubyear || record?.pub_info?.pubdate || 0) || null;
+      return { title, authors, source, year, doi };
+    });
+}
+export function parseWosItemsFromRecordStream(text: string): WosItem[] {
+  const items: WosItem[] = [];
+  for (const line of String(text || "").split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    try {
+      const event = JSON.parse(trimmed);
+      if (event?.key === "records") items.push(...parseWosRecordPayload(event.payload));
+    } catch {
+      // Ignore partial/non-JSON event-stream fragments.
+    }
+  }
+  return filterUsefulWosItems(items);
+}
+function isUsefulWosItem(item: WosItem): boolean {
+  const title = String(item.title || "").trim();
+  if (!title) return false;
+  if (/^(?:\d+\/[\d,]+\s+)?Add To Marked List\b/i.test(title)) return false;
+  if (/^©\s*\d{4}\s+Clarivate/i.test(title)) return false;
+  if (/^(?:Search results|Previous|Next|Page size|Refine results)\b/i.test(title)) return false;
+  return Boolean(item.doi || item.authors.length || item.source || item.year);
+}
+function filterUsefulWosItems(items: WosItem[]): WosItem[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (!isUsefulWosItem(item)) return false;
+    const key = `${item.title}\n${item.doi}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+async function waitForWosRecordStreamItems(page: any, timeoutMs = 15000): Promise<WosItem[]> {
+  const response = await page.waitForResponse((resp: any) => resp.url().includes("/api/wosnx/core/runQueryGetRecordsStream") && resp.status() === 200, { timeout: timeoutMs }).catch(() => undefined);
+  if (!response) return [];
+  const text = await response.text().catch(() => "");
+  return parseWosItemsFromRecordStream(text);
+}
 
 export function parseWosItemsFromHtml(html: string): WosItem[] {
   const blocks = [...String(html || "").matchAll(/<app-summary-record[\s\S]*?<\/app-summary-record>|<div[^>]+class=["'][^"']*(?:summary-record|search-results-item|record)[^"']*["'][^>]*>[\s\S]*?(?=<div[^>]+class=["'][^"']*(?:summary-record|search-results-item|record)|<app-summary-record|$)/gi)].map((m) => m[0]);
   const candidates = blocks.length ? blocks : [...String(html || "").matchAll(/<h3[\s\S]*?<\/h3>[\s\S]{0,1800}?(?=<h3|$)/gi)].map((m) => m[0]);
-  return candidates.map((block) => {
+  return filterUsefulWosItems(candidates.map((block) => {
     const title = cleanText(/<(?:h3|a)[^>]*(?:data-ta=["']summary-record-title["'][^>]*)?>([\s\S]*?)<\/(?:h3|a)>/i.exec(block)?.[1] || /<a[^>]+href=["'][^"']*\/wos\/woscc\/full-record[^"']*["'][^>]*>([\s\S]*?)<\/a>/i.exec(block)?.[1] || "");
     const text = cleanText(block);
     const doi = doiFromText(text);
@@ -107,20 +172,20 @@ export function parseWosItemsFromHtml(html: string): WosItem[] {
     const source = cleanText(/(?:Source|Published in):?\s*([^.;|]{3,160})/i.exec(text)?.[1] || /<span[^>]+class=["'][^"']*source[^"']*["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "");
     const authorPart = (/By:\s*([\s\S]*?)(?:Source|Published|Document Type|DOI|\b(?:19\d{2}|20\d{2})\b)/i.exec(text)?.[1] || "").trim();
     return { title: title || text.slice(0, 160), authors: authorsFromText(authorPart), source, year, doi };
-  }).filter((item) => item.title || item.doi).slice(0, 100);
+  }).filter((item) => item.title || item.doi)).slice(0, 100);
 }
 
 export function parseWosItemsFromVisibleText(text: string): WosItem[] {
   const normalized = String(text || "").replace(/\s+/g, " ");
   const tail = normalized.split(/Sort by:/i).pop() || normalized;
   const pieces = tail.split(/\s+(?=\d+\.\s+)/).filter((piece) => /^\d+\./.test(piece)).slice(0, 100);
-  return pieces.map((piece) => {
+  return filterUsefulWosItems(pieces.map((piece) => {
     const body = piece.replace(/^\d+\.\s*/, "");
     const title = body.split(/\s+By:\s+|\s+Authors?:\s+/i)[0].trim();
     const authorPart = (/\b(?:By|Authors?):\s*([\s\S]*?)(?:\s+Source:|\s+Published:|\s+Document Type:|\s+DOI:|\s+\b(?:19\d{2}|20\d{2})\b)/i.exec(body)?.[1] || "").trim();
     const source = (/\bSource:\s*([\s\S]*?)(?:\s+Published:|\s+Document Type:|\s+DOI:|$)/i.exec(body)?.[1] || "").trim();
     return { title, authors: authorsFromText(authorPart), source, year: yearFromText(body), doi: doiFromText(body) };
-  }).filter((item) => item.title || item.doi);
+  }).filter((item) => item.title || item.doi));
 }
 
 async function readWosConsentEvidence(page: any): Promise<Record<string, unknown>> {
@@ -179,6 +244,54 @@ async function clickWosControl(page: any, selector: string, description: string,
   }
 }
 
+async function clickVisibleWosControl(page: any, selector: string, description: string, options: Record<string, unknown> = {}): Promise<void> {
+  let consentDismissed = await dismissWosConsentIfPresent(page);
+  const locator = page.locator(selector);
+  const deadline = Date.now() + 10000;
+  let count = 0;
+  while (Date.now() < deadline) {
+    count = await locator.count().catch(() => 0);
+    for (let i = 0; i < count; i++) {
+      const target = locator.nth(i);
+      if (!(await target.isVisible().catch(() => false))) continue;
+      try {
+        await target.click({ timeout: 10000, ...options });
+        return;
+      } catch (error: any) {
+        consentDismissed = (await dismissWosConsentIfPresent(page)) || consentDismissed;
+        try {
+          await target.click({ timeout: 10000, ...options });
+          return;
+        } catch (retryError: any) {
+          await throwWosClickFailure(page, selector, description, retryError || error, consentDismissed);
+        }
+      }
+    }
+    await sleep(250);
+  }
+  const consent = await readWosConsentEvidence(page);
+  const code = count ? ConsumerErrorCodes.COMMAND_TIMEOUT : ConsumerErrorCodes.ELEMENT_NOT_FOUND;
+  throw new WebAiToolError(code, `${description} was not visible`, { selector, targetCount: count, consentDismissed, ...consent });
+}
+
+async function openWosExportDialog(page: any, format: WosExportFormat): Promise<void> {
+  await page.bringToFront?.().catch(() => undefined);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt) {
+      await page.keyboard?.press?.("Escape").catch(() => undefined);
+      await sleep(1000);
+    }
+    await clickVisibleWosControl(page, "#export-trigger-btn", "Web of Science export menu button", { force: true });
+    await clickVisibleWosControl(page, FORMAT_SELECTORS[format], `Web of Science ${format} export menu item`);
+    for (let i = 0; i < 15; i++) {
+      if (await page.locator("#exportButton").first().isVisible({ timeout: 500 }).catch(() => false)) return;
+      await sleep(1000);
+    }
+  }
+  const text = await page.locator("body").innerText({ timeout: 5000 }).catch(() => "");
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Web of Science export dialog did not open", { format, url: page.url?.() || "", visibleText: text.slice(0, 1000) });
+}
+
 async function waitForWosAdvancedPage(page: any): Promise<void> {
   let lastText = "";
   for (let i = 0; i < 8; i++) {
@@ -194,6 +307,7 @@ async function readWosResultsPage(page: any): Promise<{ visibleText: string; tit
   let stable: any;
   let lastCount = -1;
   let lastError: unknown;
+  const streamItemsPromise = waitForWosRecordStreamItems(page);
   for (let i = 0; i < 10; i++) {
     try {
       const url = page.url?.() || "";
@@ -202,12 +316,31 @@ async function readWosResultsPage(page: any): Promise<{ visibleText: string; tit
       const html = await page.content().catch(() => "");
       if (/login|captcha/i.test(title + " " + visibleText)) throw new WebAiToolError(ConsumerErrorCodes.HUMAN_HANDOFF_REQUIRED, "Web of Science requires human access intervention", { title, url });
       const resultCount = parseWosResultCount(`${title} ${visibleText}`);
-      const items = parseWosItemsFromHtml(html);
-      stable = { visibleText, title, html, resultCount, items: items.length ? items : parseWosItemsFromVisibleText(visibleText), url };
-      if (/\/wos\/woscc\/summary\//.test(url) && resultCount === lastCount) break;
+      const domItems = parseWosItemsFromHtml(html);
+      const textItems = domItems.length ? [] : parseWosItemsFromVisibleText(visibleText);
+      const streamItems = domItems.length || textItems.length ? [] : await Promise.race([streamItemsPromise, sleep(1500).then(() => [] as WosItem[])]);
+      const items = domItems.length ? domItems : textItems.length ? textItems : streamItems;
+      stable = { visibleText, title, html, resultCount, items, url };
+      if (/\/wos\/woscc\/summary\//.test(url) && resultCount === lastCount && items.length) break;
       lastCount = resultCount;
     } catch (error) { lastError = error; }
     await sleep(4000);
+  }
+  if (stable && !stable.items.length && /\/wos\/woscc\/summary\//.test(stable.url || "")) {
+    const streamItems = await Promise.race([streamItemsPromise, sleep(5000).then(() => [] as WosItem[])]);
+    if (streamItems.length) stable = { ...stable, items: streamItems };
+    else {
+      const reloadStreamItemsPromise = waitForWosRecordStreamItems(page, 20000);
+      await page.reload({ waitUntil: "domcontentloaded", timeout: 30000 }).catch(() => undefined);
+      const reloadStreamItems = await Promise.race([reloadStreamItemsPromise, sleep(22000).then(() => [] as WosItem[])]);
+      if (reloadStreamItems.length) {
+        const url = page.url?.() || stable.url || "";
+        const visibleText = await page.locator("body").innerText({ timeout: 10000 }).catch(() => stable.visibleText || "");
+        const title = await page.title().catch(() => stable.title || "");
+        const html = await page.content().catch(() => stable.html || "");
+        stable = { visibleText, title, html, resultCount: stable.resultCount, items: reloadStreamItems, url };
+      }
+    }
   }
   if (!stable) {
     if (lastError instanceof WebAiToolError) throw lastError;
@@ -235,7 +368,7 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
   }
 }
 
-async function withAllocatedWosPage<T>(profile: string, url: string, tabId: string, cdpPort: number | undefined, fn: (page: any) => Promise<T>, keepTab = false): Promise<T> {
+async function withAllocatedWosPage<T>(profile: string, url: string, tabId: string, cdpPort: number | undefined, fn: (page: any, browser: any) => Promise<T>, keepTab = false): Promise<T> {
   await freeSession(tabId).catch(() => undefined);
   try {
     await allocateResearchSession(profile, url, tabId, cdpPort);
@@ -247,7 +380,7 @@ async function withAllocatedWosPage<T>(profile: string, url: string, tabId: stri
   const browser = await launcher.connectOverCdp(status);
   try {
     const page = await activeManagedPage(browser, undefined, tabId);
-    return await fn(page);
+    return await fn(page, browser);
   } finally {
     await browser.close?.().catch(() => undefined);
     if (!keepTab) await freeSession(tabId).catch(() => undefined);
@@ -329,18 +462,12 @@ export async function researchWosExport(args: WosExportArgs): Promise<{ artifact
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
   const tabId = args.tab_id || `research-wos-export-${Date.now()}`;
-  return await withAllocatedWosPage(profile, buildWosAdvancedSearchUrl(), tabId, args.cdp_port, async (page) => {
+  return await withAllocatedWosPage(profile, buildWosAdvancedSearchUrl(), tabId, args.cdp_port, async (page, browser) => {
     try {
       await runWosSearch(page, query);
       const refined = await applyWosArticleFilter(page);
-      await page.locator("#export-trigger-btn").click({ timeout: 10000, force: true });
-      await page.locator(FORMAT_SELECTORS[format]).click({ timeout: 10000, force: true });
-      for (let i = 0; i < 6; i++) {
-        const text = await page.locator("body").innerText({ timeout: 10000 }).catch(() => "");
-        if (/Export Records to/i.test(text) && /Export/i.test(text)) break;
-        await sleep(2000);
-      }
-      const clicked = await runArtifactClick({ profile, tabUrlContains: "webofscience.com", buttonSelector: "#exportButton", downloadDir, timeoutMs: 60000, locateTimeoutMs: 30000, frameMinCount: 0, filenamePattern: FORMAT_PATTERNS[format] });
+      await openWosExportDialog(page, format);
+      const clicked = await artifactClickOnPage(browser, page, { profile, buttonSelector: "#exportButton", downloadDir, timeoutMs: 60000, locateTimeoutMs: 30000, filenamePattern: FORMAT_PATTERNS[format] });
       const artifact_path = clicked.path;
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "bibtex" && (!/@(?:article|inproceedings|book|misc)\{/i.test(text) || !/title\s*=\s*[{\"]/i.test(text))) {
