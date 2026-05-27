@@ -7,7 +7,6 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type AcsArea = "AllField" | "Title" | "Contrib" | "Abstract" | "Figure/Table Caption";
@@ -31,9 +30,25 @@ export class WebAiToolError extends Error {
 const ACS_ORIGIN = "https://pubs.acs.org";
 const VALID_AREAS = new Set(["AllField", "Title", "Contrib", "Abstract", "Figure/Table Caption"]);
 const VALID_FORMATS = new Set(["ris", "bibtex"]);
+const FORMAT_EXTENSIONS: Record<AcsExportFormat, string> = { ris: "ris", bibtex: "bib" };
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeFileToken(value: string): string { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "acs"; }
+function uniquePath(dir: string, filename: string): string {
+  const parsed = path.parse(filename);
+  let candidate = path.join(dir, filename);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${parsed.name}(${index})${parsed.ext}`);
+    index += 1;
+  }
+  return candidate;
+}
+function filenameFromContentDisposition(value: string | undefined, fallback: string): string {
+  const raw = /filename\*?=(?:UTF-8''|")?([^";]+)/i.exec(value || "")?.[1];
+  return path.basename(decodeURIComponent((raw || fallback).replace(/^"|"$/g, ""))).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_");
+}
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -224,6 +239,43 @@ async function withAllocatedAcsPage<T>(profile: string, url: string, tabId: stri
   }
 }
 
+async function fetchAcsCitationViaForm(page: any, format: AcsExportFormat): Promise<{ body: Buffer; filename?: string }> {
+  const result = await page.evaluate(async (requestedFormat: string) => {
+    const form = document.forms.namedItem("frmCitmgr") || document.querySelector('form[action*="downloadCitation"]') as HTMLFormElement | null;
+    if (!form) return { ok: false, status: 0, statusText: "form not found", body: [], headers: {} as Record<string, string> };
+    const params = new URLSearchParams();
+    for (const el of Array.from((form as HTMLFormElement).elements) as any[]) {
+      if (!el?.name) continue;
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) continue;
+      params.append(el.name, el.value || "");
+    }
+    params.set("format", requestedFormat);
+    if (!params.has("include")) params.set("include", "cit");
+    params.set("submit", (form.querySelector('input[name="submit"]') as HTMLInputElement | null)?.value || "Download Citation(s)");
+    const response = await fetch((form as HTMLFormElement).action, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString()
+    });
+    const buffer = Array.from(new Uint8Array(await response.arrayBuffer()));
+    return {
+      ok: response.ok,
+      status: response.status,
+      statusText: response.statusText,
+      body: buffer,
+      headers: {
+        "content-disposition": response.headers.get("content-disposition") || "",
+        "content-type": response.headers.get("content-type") || ""
+      }
+    };
+  }, format);
+  if (!result?.ok) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "ACS citation download returned a non-OK status", { status: result?.status, statusText: result?.statusText });
+  }
+  return { body: Buffer.from(result.body || []), filename: result.headers?.["content-disposition"] };
+}
+
 export async function researchAcsSearch(args: AcsSearchArgs): Promise<{ result_count: number; items: AcsItem[]; query_url: string }> {
   const query_url = buildAcsSearchUrl(args);
   const profile = args.profile || "research-acs";
@@ -256,17 +308,10 @@ export async function researchAcsExport(args: AcsExportArgs): Promise<{ artifact
       const count = await page.locator(radio).count().catch(() => 0);
       if (!count) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "ACS citation format radio was not found", { selector: radio });
       await page.locator(radio).click({ timeout: 10000 });
-      const clicked = await runArtifactClick({
-        profile,
-        tabUrlContains: "showCitFormats",
-        buttonSelector: 'input[name="submit"]',
-        downloadDir,
-        timeoutMs: 60000,
-        locateTimeoutMs: 20000,
-        frameMinCount: 0,
-        filenamePattern: format === "ris" ? "*.ris" : undefined
-      });
-      const artifact_path = clicked.path;
+      const fetched = await fetchAcsCitationViaForm(page, format);
+      const suggested = filenameFromContentDisposition(fetched.filename, `acs-${safeFileToken(doi)}-${format}.${FORMAT_EXTENSIONS[format]}`);
+      const artifact_path = uniquePath(downloadDir, suggested || `acs-${safeFileToken(doi)}-${format}.${FORMAT_EXTENSIONS[format]}`);
+      fs.writeFileSync(artifact_path, fetched.body);
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "ACS RIS artifact failed content validation", { artifact_path, doi });
