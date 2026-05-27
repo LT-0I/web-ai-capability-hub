@@ -1,0 +1,98 @@
+{
+  "summary": {
+    "started_at": "2026-05-27T13:19:45.137Z",
+    "finished_at": "2026-05-27T13:20:18.028Z",
+    "profile": "claude-9224",
+    "cdp_port": 9224,
+    "setup_error": null,
+    "dom": {
+      "success_rate": 1,
+      "median_latency_ms": 4966,
+      "p95_latency_ms": 6332
+    },
+    "rpc": {
+      "success_rate": 1,
+      "median_latency_ms": 2943,
+      "p95_latency_ms": 3837
+    },
+    "min_similarity": 0.6956521739130435,
+    "verdict": "GREENLIGHT_FOR_PATH_C"
+  },
+  "results": [
+    {
+      "prompt": "what is 2+2?",
+      "dom": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 4788,
+        "measured_latency_ms": 4794,
+        "response_text": "Claude responded: 44",
+        "chat_url": "https://claude.ai/chat/36b61eaf-b857-40dc-bff2-2e5566a6c171",
+        "completion_detected": true,
+        "message": null
+      },
+      "rpc": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 2044,
+        "measured_latency_ms": 2048,
+        "response_text": " 4",
+        "chat_url": "https://claude.ai/chat/03a8cee9-155e-4668-934e-8b63ca779727",
+        "completion_detected": true,
+        "message": null
+      },
+      "similarity": 1,
+      "latency_ratio_rpc_over_dom": 0.4269005847953216
+    },
+    {
+      "prompt": "list three programming languages",
+      "dom": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 4966,
+        "measured_latency_ms": 4968,
+        "response_text": "Claude responded: Python, JavaScript, and Rust.Python, JavaScript, and Rust.",
+        "chat_url": "https://claude.ai/chat/36b61eaf-b857-40dc-bff2-2e5566a6c171",
+        "completion_detected": true,
+        "message": null
+      },
+      "rpc": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 2943,
+        "measured_latency_ms": 2946,
+        "response_text": " Here are three programming languages:\n\n1. **Python** — known for its readable syntax, widely used in data science, AI, and web development.\n2. **JavaScript** — the language of the web, running in browsers and on servers via Node.js.\n3. **Rust** — a systems language focused on memory safety and high performance.",
+        "chat_url": "https://claude.ai/chat/9b37481c-9256-41d8-bf3a-7a1c897fac80",
+        "completion_detected": true,
+        "message": null
+      },
+      "similarity": 1,
+      "latency_ratio_rpc_over_dom": 0.5926298832057995
+    },
+    {
+      "prompt": "summarize the SR-71 in one sentence",
+      "dom": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 6332,
+        "measured_latency_ms": 6334,
+        "response_text": "Claude responded: The SR-71 Blackbird was a long-range, high-altitude American reconnaissance aircraft capable of flying at over Mach 3, making it the fastest air-breathing crew…The SR-71 Blackbird was a long-range, high-altitude American reconnaissance aircraft capable of flying at over Mach 3, making it the fastest air-breathing crewed aircraft ever built.",
+        "chat_url": "https://claude.ai/chat/36b61eaf-b857-40dc-bff2-2e5566a6c171",
+        "completion_detected": true,
+        "message": null
+      },
+      "rpc": {
+        "ok": true,
+        "errorCode": null,
+        "latency_ms": 3837,
+        "measured_latency_ms": 3838,
+        "response_text": " The SR-71 Blackbird was a long-range, high-altitude American reconnaissance aircraft capable of flying at over Mach 3 and altitudes above 85,000 feet, making it effectively untouchable by any missile or interceptor during its Cold War operational life from 1966 to 1999.",
+        "chat_url": "https://claude.ai/chat/1f7e586f-f5c7-4659-ae38-c27863be0890",
+        "completion_detected": true,
+        "message": null
+      },
+      "similarity": 0.6956521739130435,
+      "latency_ratio_rpc_over_dom": 0.6059696778269109
+    }
+  ]
+}
