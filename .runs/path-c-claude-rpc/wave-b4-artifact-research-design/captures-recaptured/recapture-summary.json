@@ -1,0 +1,11 @@
+{
+  "finished_at": "2026-05-27T17:11:51.258Z",
+  "notes": "Summary artifact for Wave B4 DOM-nav-then-RPC recapture/probe. Mutating design write operations remain known-DOM-only; design get_html uses captured Omelette GetFile RPC.",
+  "variants": {
+    "webai_claude_generate_file--html_artifact": "CAPTURED_FROM_WAVE_A_WITH_SURFACE_PROBE",
+    "webai_claude_design_get_html--existing_project": "CAPTURED",
+    "webai_claude_design_create_project--basic": "RPC_NOT_AVAILABLE",
+    "webai_claude_design_generate--html": "RPC_NOT_AVAILABLE",
+    "webai_claude_design_present--existing_project": "RPC_NOT_AVAILABLE"
+  }
+}

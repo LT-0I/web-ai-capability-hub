@@ -7730,10 +7730,20 @@ export async function webAiChatgptGenerateFile(args: any, runtime?: BrowserToolR
   return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_generate_file backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
 }
 export async function webAiClaudeGenerateFile(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "managed-cdp") return generateFileOnPage("claude", args, runtimeOrDefault(runtime));
-  if (backend === "extension-assisted-cdp") return generateClaudeFileWithExtensionBackend(args, runtimeOrDefault(runtime));
-  return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_generate_file backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`);
+  // Path C Claude Wave B4: RPC is the production default for generated artifacts; DOM remains an explicit operator override, never a runtime fallback after RPC failure.
+  const selected = String(process.env.WEBAI_CLAUDE_GENERATE_FILE_BACKEND || args?.backend || "rpc").trim().toLowerCase();
+  if (selected === "dom" || selected === "extension-assisted-cdp") {
+    console.error("[webai_claude_generate_file] backend=dom-extension");
+    return generateClaudeFileWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (selected === "managed-cdp") {
+    console.error("[webai_claude_generate_file] backend=dom-managed");
+    return generateFileOnPage("claude", args, runtimeOrDefault(runtime));
+  }
+  if (selected && selected !== "rpc") return fileErrorOutput(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_CLAUDE_GENERATE_FILE_BACKEND/backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_GENERATE_FILE_BACKEND || args?.backend)}`);
+  console.error("[webai_claude_generate_file] backend=rpc");
+  const { webAiClaudeGenerateFileRpc } = require("./claude_generate_file_rpc");
+  return webAiClaudeGenerateFileRpc(args, runtime);
 }
 export async function webAiChatgptGenerateImage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -7784,10 +7794,20 @@ export async function webAiChatgptDeepResearch(args: any, runtime?: BrowserToolR
   return webAiBackendInvalidOutput("webai_chatgpt_deep_research", backend);
 }
 export async function webAiClaudeDeepResearch(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return startClaudeDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return startClaudeDeepResearch(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_claude_deep_research", backend);
+  // Path C Claude Wave B4: RPC is the production default; DOM is explicit via env/arg and is not a fallback after RPC failure.
+  const selected = String(process.env.WEBAI_CLAUDE_DEEP_RESEARCH_BACKEND || args?.backend || "rpc").trim().toLowerCase();
+  if (selected === "dom" || selected === "extension-assisted-cdp") {
+    console.error("[webai_claude_deep_research] backend=dom-extension");
+    return startClaudeDeepResearchWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (selected === "managed-cdp") {
+    console.error("[webai_claude_deep_research] backend=dom-managed");
+    return startClaudeDeepResearch(args, runtimeOrDefault(runtime));
+  }
+  if (selected && selected !== "rpc") return webAiBackendInvalidOutput("webai_claude_deep_research", process.env.WEBAI_CLAUDE_DEEP_RESEARCH_BACKEND || args?.backend);
+  console.error("[webai_claude_deep_research] backend=rpc");
+  const { webAiClaudeDeepResearchRpc } = require("./claude_deep_research_rpc");
+  return webAiClaudeDeepResearchRpc(args, runtime);
 }
 export async function webAiChatgptConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";
@@ -8081,28 +8101,49 @@ export async function webAiLiteratureTaskStatus(args: any): Promise<unknown> {
 }
 
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
+  // Path C Claude Wave B4 recapture marked Design create_project RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "dom") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_create_project", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignCreateProjectManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_create_project", backend);
 }
 
 export async function webAiClaudeDesignGenerate(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
+  // Path C Claude Wave B4 recapture marked Design generate RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "dom") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_generate", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignGenerateManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_generate", backend);
 }
 
 export async function webAiClaudeDesignGetHtml(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return webAiClaudeDesignGetHtmlWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return webAiClaudeDesignGetHtmlManaged(args, runtimeOrDefault(runtime));
+  // Path C Claude Wave B4: get_html uses DOM-navigate-then-RPC against Claude Design's mounted Omelette GetFile endpoint; DOM is explicit only, not a fallback after RPC failure.
+  const backend = String(process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "rpc").trim().toLowerCase();
+  if (backend === "dom" || backend === "extension-assisted-cdp") {
+    console.error("[webai_claude_design_get_html] backend=dom-extension");
+    return webAiClaudeDesignGetHtmlWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (backend === "managed-cdp") {
+    console.error("[webai_claude_design_get_html] backend=dom-managed");
+    return webAiClaudeDesignGetHtmlManaged(args, runtimeOrDefault(runtime));
+  }
+  if (backend === "rpc") {
+    console.error("[webai_claude_design_get_html] backend=rpc");
+    const { webAiClaudeDesignGetHtmlRpc } = require("./claude_design_rpc");
+    return webAiClaudeDesignGetHtmlRpc(args, runtime);
+  }
   return webAiBackendInvalidOutput("webai_claude_design_get_html", backend);
 }
 
 export async function webAiClaudeDesignPresent(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
+  // Path C Claude Wave B4 recapture marked Design present RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "dom") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
+  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_present", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignPresentManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_present", backend);

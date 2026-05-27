@@ -1,0 +1,9 @@
+{
+  "operation_id": "webai_claude_design_create_project--basic",
+  "category": "design",
+  "capture_status": "RPC_NOT_AVAILABLE",
+  "verification_method": "mounted-surface-probe",
+  "surface_url_pattern": "https://claude.ai/design/p/<project_id>",
+  "blocker": "No stable replayable production RPC captured for this Wave B4 variant; route remains known-DOM-only by write-time decision, not runtime fallback.",
+  "evidence_files": ["../../surface-design-project.json", "../../surface-design-viewer.json"]
+}

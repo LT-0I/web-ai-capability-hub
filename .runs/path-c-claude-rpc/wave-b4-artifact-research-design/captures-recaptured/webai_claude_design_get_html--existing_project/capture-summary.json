@@ -1,0 +1,15 @@
+{
+  "operation_id": "webai_claude_design_get_html--existing_project",
+  "tool": "webai_claude_design_get_html",
+  "variant": "existing_project",
+  "category": "design",
+  "capture_status": "CAPTURED",
+  "verification_method": "dom-nav-then-same-origin-fetch",
+  "surface_url": "https://claude.ai/design/p/6b373bb0-fe5f-4558-8040-ea03c3becb4a?file=index.html",
+  "mount_selectors": ["iframe[data-testid=\"html-viewer-iframe\"]", "iframe[src*=\"claudeusercontent.com\"]"],
+  "primary_endpoint": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+  "primary_api_path": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+  "request_body_shape": { "projectId": "<project_id>", "path": "<file.html>", "raw": true },
+  "response_shape": { "content": "<base64 html>", "contentType": "text/html", "version": "<version>" },
+  "evidence_file": "../../probe-design-fetch.json"
+}

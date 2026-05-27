@@ -1,0 +1,465 @@
+{
+  "pageUrl": "https://claude.ai/design/p/6b373bb0-fe5f-4558-8040-ea03c3becb4a?file=index.html",
+  "attempts": [
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+T0s8L3RpdGxlPgo8L2hlYWQ+Cjxib2R5Pgo8cD5PSzwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==\", \"contentType\":\"text/html\", \"version\":\"3\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html",
+        "raw": true
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "projectId": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 200,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"content\":\"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxzdHlsZSBkYXRhLW9tZWxldHRlLWluamVjdGVkPmh0bWwsYm9keXtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50fTwvc3R5bGU+PHNjcmlwdCBkYXRhLW9tZWxldHRlLWluamVjdGVkPigoKT0+e3ZhciBqPVtdO3ZhciB4PWZhbHNlO3ZhciBTPTMwMDAwO3ZhciBmPTMwMDA7ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigiRE9NQ29udGVudExvYWRlZCIsKCk9Pntjb25zdCBIPXdpbmRvdy5CYWJlbDtjb25zdCBHPSJvbS1zcmMtaWQiO2lmKEgmJkgucmVnaXN0ZXJQbHVnaW4mJiEoSC5hdmFpbGFibGVQbHVnaW5zJiZILmF2YWlsYWJsZVBsdWdpbnNbR10pKXtILnJlZ2lzdGVyUGx1Z2luKEcsKHt0eXBlczpZfSk9Pih7dmlzaXRvcjp7SlNYT3BlbmluZ0VsZW1lbnQoVSxRKXtjb25zdCBKPVUubm9kZTtpZihKLm5hbWUmJkoubmFtZS50eXBlPT09IkpTWE1lbWJlckV4cHJlc3Npb24iKXJldHVybjtmb3IobGV0IFY9MDtWPEouYXR0cmlidXRlcy5sZW5ndGg7VisrKXtjb25zdCBMPUouYXR0cmlidXRlc1tWXTtpZihMLnR5cGU9PT0iSlNYQXR0cmlidXRlIiYmTC5uYW1lJiZMLm5hbWUubmFtZT09PSJkYXRhLW9tLWlkIilyZXR1cm59Y29uc3QgVz1RLmZpbGUmJlEuZmlsZS5vcHRzJiZRLmZpbGUub3B0cy5maWxlbmFtZXx8Ij8iO2NvbnN0IFo9Si5sb2MmJkoubG9jLnN0YXJ0O2NvbnN0IHo9YGpzeDoke1d9OiR7Si5zdGFydD8/MH06JHtaP1ou"
+      }
+    },
+    {
+      "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+      "body": {
+        "project_id": "6b373bb0-fe5f-4558-8040-ea03c3becb4a",
+        "path": "index.html"
+      },
+      "headers": {
+        "content-type": "application/proto",
+        "accept": "application/json",
+        "connect-protocol-version": "1"
+      },
+      "res": {
+        "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+        "status": 400,
+        "statusText": "",
+        "contentType": "application/json",
+        "text": "{\"code\":\"invalid_argument\",\"message\":\"unmarshal message: unmarshal into *apiv1alpha.GetFileRequest: proto: cannot parse invalid wire-format data\"}"
+      }
+    }
+  ]
+}

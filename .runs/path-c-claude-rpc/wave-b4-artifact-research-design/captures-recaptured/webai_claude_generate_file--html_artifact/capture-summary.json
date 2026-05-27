@@ -1,0 +1,11 @@
+{
+  "operation_id": "webai_claude_generate_file--html_artifact",
+  "tool": "webai_claude_generate_file",
+  "variant": "html_artifact",
+  "category": "artifact",
+  "capture_status": "CAPTURED_FROM_WAVE_A_WITH_SURFACE_PROBE",
+  "surface_url": "https://claude.ai/chat/703edfc7-662f-4a00-9f93-ad228335e257",
+  "mount_selectors": ["main", "iframe", "button[aria-label*=Download i]"],
+  "primary_endpoint": "https://claude.ai/api/organizations/<org>/chat_conversations/<conversation_id>/completion",
+  "blocker_resolution": "Wave A Failed to fetch was wrong-origin page.evaluate; Wave B4 driver performs the same-origin fetch from a mounted claude.ai chat surface."
+}

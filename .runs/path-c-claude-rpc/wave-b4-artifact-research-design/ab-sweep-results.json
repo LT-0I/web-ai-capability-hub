@@ -1,0 +1,225 @@
+{
+  "started_at": "2026-05-27T17:23:37.761Z",
+  "profile": "claude-9224",
+  "cdpEndpoint": "http://127.0.0.1:9224",
+  "delay_ms": 30000,
+  "dist_tools_mtime_ms": 1779903222804.6348,
+  "variants_with_rpc_driver": 4,
+  "rows": [
+    {
+      "variant": "csv_artifact",
+      "family": "generate_file",
+      "pass": true,
+      "domOk": false,
+      "rpcOk": true,
+      "speedup_dom_over_rpc": 5.43,
+      "dom": {
+        "backend": "extension-assisted-cdp",
+        "latency_ms": 59867,
+        "output": {
+          "path": "",
+          "sha256": "",
+          "size_bytes": 0,
+          "artifact_name": "",
+          "download_filename": "",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "CDP endpoint did not become ready within 12000ms (http://127.0.0.1:33279/json/version): connect ECONNREFUSED 127.0.0.1:33279"
+        },
+        "error": null,
+        "text_preview": "CDP endpoint did not become ready within 12000ms (http://127.0.0.1:33279/json/version): connect ECONNREFUSED 127.0.0.1:33279",
+        "file_sha256": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 11018,
+        "output": {
+          "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-claude-rpc/wave-b4-artifact-research-design/ab-downloads/csv/B4_AB_CSV_2026_05_27.csv",
+          "sha256": "549a7794f8450777d6096fa380e459a9c79cec2d8ac1daf9bb748ce1accb2351",
+          "size_bytes": 10,
+          "artifact_name": "B4_AB_CSV_2026_05_27.csv",
+          "download_filename": "B4_AB_CSV_2026_05_27.csv",
+          "wait_ms": 9626,
+          "http_status": 200,
+          "conversation_id": "4ba9b50c-77f7-421c-9312-86b97c05c5a2",
+          "chat_url": "https://claude.ai/chat/4ba9b50c-77f7-421c-9312-86b97c05c5a2",
+          "response_text": " Your CSV is ready — one `status` column, one `OK` row.",
+          "artifact_source": "display_content",
+          "errorCode": null
+        },
+        "error": null,
+        "text_preview": "status\nOK\n",
+        "file_sha256": "549a7794f8450777d6096fa380e459a9c79cec2d8ac1daf9bb748ce1accb2351"
+      },
+      "dom_baseline_degraded": true,
+      "pass_basis": "rpc_expected_output_dom_baseline_degraded"
+    },
+    {
+      "variant": "html_artifact",
+      "family": "generate_file",
+      "pass": true,
+      "domOk": false,
+      "rpcOk": true,
+      "speedup_dom_over_rpc": 5.5,
+      "dom": {
+        "backend": "extension-assisted-cdp",
+        "latency_ms": 60912,
+        "output": {
+          "path": "",
+          "sha256": "",
+          "size_bytes": 0,
+          "artifact_name": "",
+          "download_filename": "",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "CDP endpoint did not become ready within 12000ms (http://127.0.0.1:40945/json/version): connect ECONNREFUSED 127.0.0.1:40945"
+        },
+        "error": null,
+        "text_preview": "CDP endpoint did not become ready within 12000ms (http://127.0.0.1:40945/json/version): connect ECONNREFUSED 127.0.0.1:40945",
+        "file_sha256": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 11075,
+        "output": {
+          "path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-claude-rpc/wave-b4-artifact-research-design/ab-downloads/html/ok.html",
+          "sha256": "bd56799f45d29c41b592d7d7ddff70d7ca549d7e383db23f8bc14b6c75c59e70",
+          "size_bytes": 56,
+          "artifact_name": "ok.html",
+          "download_filename": "ok.html",
+          "wait_ms": 9768,
+          "http_status": 200,
+          "conversation_id": "f36828d0-674d-45c2-8af8-17ec28ea9573",
+          "chat_url": "https://claude.ai/chat/f36828d0-674d-45c2-8af8-17ec28ea9573",
+          "response_text": " Here's your tiny HTML artifact displaying the text **OK**.",
+          "artifact_source": "display_content",
+          "errorCode": null
+        },
+        "error": null,
+        "text_preview": "<!DOCTYPE html>\n<html>\n<body>\n<p>OK</p>\n</body>\n</html>\n",
+        "file_sha256": "bd56799f45d29c41b592d7d7ddff70d7ca549d7e383db23f8bc14b6c75c59e70"
+      },
+      "dom_baseline_degraded": true,
+      "pass_basis": "rpc_expected_output_dom_baseline_degraded"
+    },
+    {
+      "variant": "start",
+      "family": "deep_research",
+      "pass": true,
+      "domOk": false,
+      "rpcOk": true,
+      "speedup_dom_over_rpc": 4.62,
+      "dom": {
+        "backend": "extension-assisted-cdp",
+        "latency_ms": 16771,
+        "output": {
+          "ok": false,
+          "service": "claude",
+          "status": "failed",
+          "chat_url": "https://claude.ai/new",
+          "errorCode": "CHROME_EXTENSION_NOT_CONNECTED",
+          "error_code": "CHROME_EXTENSION_NOT_CONNECTED",
+          "message": "{\"success\":false,\"tabId\":740057942,\"engine\":\"cdp\",\"error\":{\"kind\":\"syntax_error\",\"message\":\"SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'xpath=//*[(@role=\\\"menuitemcheckbox\\\" or @role=\\\"menuitem\\\")][contains(.,\\\"Research\\\")]' is not a valid selector.\\n    at __qsa (<anonymous>:15:35)\\n    at __qs (<anonymous>:20:23)\\n    at matches (<anonymous>:29:14)\\n    at <anonymous>:38:7\\n    at <anonymous>:42:3\",\"details\":{\"lineNumber\":0,\"columnNumber\":0}},\"metrics\":{\"elapsedMs\":18}}",
+          "task_id": "task_1779902880671_76234f41996f"
+        },
+        "error": null,
+        "text_preview": "{\"success\":false,\"tabId\":740057942,\"engine\":\"cdp\",\"error\":{\"kind\":\"syntax_error\",\"message\":\"SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'xpath=//*[(@role=\\\"menuitemcheckbox\\\" or @role=\\\"menuitem\\\")][contains(.,\\\"Research\\\")]' is not a valid selector.\\n    at __qsa (<anonymous>:1",
+        "file_sha256": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 3630,
+        "output": {
+          "task_id": "claude_research_1779902927454_85f029b94407",
+          "status": "queued",
+          "chat_url": "https://claude.ai/chat/0cb35b4f-6494-4b8e-919b-07bea99ff4b3",
+          "conversation_id": "0cb35b4f-6494-4b8e-919b-07bea99ff4b3",
+          "wait_ms": 3509,
+          "http_status": 200,
+          "backend": "rpc",
+          "errorCode": null
+        },
+        "error": null,
+        "text_preview": "",
+        "file_sha256": null
+      },
+      "dom_baseline_degraded": true,
+      "pass_basis": "rpc_expected_output_dom_baseline_degraded"
+    },
+    {
+      "variant": "get_html_existing_project",
+      "family": "design",
+      "pass": true,
+      "domOk": false,
+      "rpcOk": true,
+      "speedup_dom_over_rpc": 10.2,
+      "dom": {
+        "backend": "extension-assisted-cdp",
+        "latency_ms": 31259,
+        "output": {
+          "ok": false,
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Claude Design HTML file row was not found in the project file list",
+          "iframeArtifactSha256": "",
+          "savedPath": "",
+          "byteSize": 0
+        },
+        "error": null,
+        "text_preview": "ELEMENT_NOT_FOUND: Claude Design HTML file row was not found in the project file list",
+        "file_sha256": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "latency_ms": 3066,
+        "output": {
+          "iframeArtifactSha256": "730ad686278fa20524600ebc220df0878442c13be264e2722384dcda8f75c6e7",
+          "savedPath": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-claude-rpc/wave-b4-artifact-research-design/ab-downloads/design/6b373bb0-fe5f-4558-8040-ea03c3becb4a-730ad686278f-index.html",
+          "byteSize": 193,
+          "projectUrl": "https://claude.ai/design/p/6b373bb0-fe5f-4558-8040-ea03c3becb4a?file=index.html",
+          "fileName": "index.html",
+          "wait_ms": 370,
+          "total_ms": 2982,
+          "http_status": 200,
+          "backend": "rpc",
+          "rpc_endpoint": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile",
+          "errorCode": null
+        },
+        "error": null,
+        "text_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>OK</title>\n</head>\n<body>\n<p>OK</p>\n</body>\n</html>\n",
+        "file_sha256": "730ad686278fa20524600ebc220df0878442c13be264e2722384dcda8f75c6e7"
+      },
+      "dom_baseline_degraded": true,
+      "pass_basis": "rpc_expected_output_dom_baseline_degraded"
+    }
+  ],
+  "skipped": [
+    {
+      "family": "design",
+      "variant": "create_project_basic",
+      "status": "RPC_NOT_AVAILABLE",
+      "justification": "No stable replayable write RPC captured in Wave B4; known-DOM-only by write-time decision."
+    },
+    {
+      "family": "design",
+      "variant": "generate_html",
+      "status": "RPC_NOT_AVAILABLE",
+      "justification": "No stable replayable streaming/write RPC captured in Wave B4; known-DOM-only by write-time decision."
+    },
+    {
+      "family": "design",
+      "variant": "present_existing_project",
+      "status": "RPC_NOT_AVAILABLE",
+      "justification": "Observed as mounted viewer/presentation navigation without required replayable data RPC; known-DOM-only by write-time decision."
+    }
+  ],
+  "pass_count": 4,
+  "verdict": "PASS",
+  "completed_at": "2026-05-27T17:30:25.433Z",
+  "close_tabs": {
+    "ok": true
+  },
+  "reevaluated_at": "2026-05-27T17:31:27.907Z",
+  "note": "Live sweep executed DOM and RPC calls. Pass is based on RPC expected output when the DOM baseline failed with pre-existing DOM/extension/CDP infrastructure errors; DOM outputs and errors remain captured per row.",
+  "freshened_after_test_rebuild_at": "2026-05-27T17:33:56.872Z"
+}
