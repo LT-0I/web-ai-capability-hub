@@ -1,0 +1,42 @@
+{
+  "db": "optica",
+  "profile": "research-optica",
+  "port": 35031,
+  "hunt_url": "https://opg.optica.org/ol/issue.cfm",
+  "trail": [
+    {
+      "requested_url": "https://opg.optica.org/ol/issue.cfm",
+      "label": "hunt-url",
+      "response_status": 200,
+      "final_url": "https://opg.optica.org/ol/issue.cfm",
+      "error": null
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://opg.optica.org/ol/abstract.cfm?uri=ol-51-10-2872",
+      "href": "/ol/abstract.cfm?uri=ol-51-10-2872",
+      "text": "Field-induced multimode liquid crystal switchable grating based on patterned alignment",
+      "title": "",
+      "aria": "",
+      "index": 139,
+      "visible": true,
+      "kind": "optica-fulltext",
+      "order": 2
+    },
+    {
+      "url": "https://opg.optica.org/ol/fulltext.cfm?uri=ol-51-9-2544",
+      "href": "https://opg.optica.org/ol/fulltext.cfm?uri=ol-51-9-2544",
+      "text": "Jácome-Silva et al., pp. 2760–2763",
+      "title": "",
+      "aria": "",
+      "index": 354,
+      "visible": true,
+      "kind": "optica-fulltext",
+      "order": 2
+    }
+  ],
+  "captured_at": "2026-05-27T04:52:55.178Z",
+  "page_url": "https://opg.optica.org/ol/issue.cfm",
+  "page_title": "OL Vol. 51 Iss. 10"
+}

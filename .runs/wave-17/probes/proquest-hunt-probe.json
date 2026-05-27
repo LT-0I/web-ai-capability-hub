@@ -1,0 +1,23 @@
+{
+  "db": "proquest",
+  "profile": "research-proquest",
+  "port": 33743,
+  "hunt_url": "https://www.proquest.com/search?query=renewable%20energy%202024",
+  "trail": [
+    {
+      "requested_url": "https://www.proquest.com/search?query=renewable%20energy%202024",
+      "label": "hunt-url",
+      "response_status": 200,
+      "final_url": "https://www.proquest.com/?accountid=16605&query=renewable%20energy%202024",
+      "error": null
+    },
+    {
+      "label": "proquest-search-ui",
+      "final_url": "https://www.proquest.com/empty/false?accountid=16605"
+    }
+  ],
+  "candidates": [],
+  "captured_at": "2026-05-27T04:57:02.403Z",
+  "page_url": "https://www.proquest.com/empty/false?accountid=16605",
+  "page_title": "基本检索: 您的检索未返回结果 - ProQuest"
+}

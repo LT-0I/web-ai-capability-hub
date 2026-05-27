@@ -1,0 +1,33 @@
+{
+  "db": "sae",
+  "profile": "research-sae",
+  "port": 39709,
+  "hunt_url": "https://www.sae.org/publications/technical-papers",
+  "trail": [
+    {
+      "requested_url": "https://www.sae.org/publications/technical-papers",
+      "label": "hunt-url",
+      "response_status": 200,
+      "final_url": "https://www.sae.org/publications/technical-papers",
+      "error": null
+    },
+    {
+      "requested_url": "https://www.sae.org/publications/technical-papers/content",
+      "label": "sae-fallback",
+      "response_status": 200,
+      "final_url": "https://www.sae.org/publications/technical-papers/content",
+      "error": null
+    },
+    {
+      "requested_url": "https://www.sae.org/search/?qt=2024&sector=(%22AUTOC%22)&sort=relevance",
+      "label": "sae-fallback",
+      "response_status": 202,
+      "final_url": "https://www.sae.org/search?qt=2024&sector=(%22AUTOC%22)&sort=relevance",
+      "error": null
+    }
+  ],
+  "candidates": [],
+  "captured_at": "2026-05-27T04:58:45.787Z",
+  "page_url": "https://www.sae.org/search?qt=2024&sector=(%22AUTOC%22)&sort=relevance",
+  "page_title": "Search - SAE International"
+}

@@ -1,0 +1,254 @@
+[
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/search?q=2024",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap",
+    "post": null
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/search?q=2024",
+    "text": "<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content=\"width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui\"><meta name=screen-orientation content=portrait><meta name=apple-mobile-web-app-capable content=yes><meta name=format-detection content=\"telephone=no\"><meta name=full-screen content=yes><meta name=x5-fullscreen content=true><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compat"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap",
+    "text": "/* devanagari */\n@font-face {\n  font-family: 'Poppins';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');\n  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Poppins';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://fonts.g"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/static/app-banner-search-input-icon.png",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/user/getUserJournal?userId=<redacted-user-id>",
+    "post": null
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/static/app-banner-search-input-icon.png",
+    "text": "�PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0000\u0019\u0000\u0000\u0000\u0019\b\u0006\u0000\u0000\u0000��c\u0000\u0000\u00023IDATH���_h�Q\u0018�??�RS��\b\u0013�R�R.~7��L���j)�X��f3w�R�v!7��Fm�l\u0011� �q��P�I�Sʖi�������y�ߏ���s���>����{�����t[\u000b۸����9�\u0002/\u0005��$���&i����.I�\u0002�cIM��<sⰤ�U��?\u0010k�F��=�\u001cA�-�f���Q>�lRw�\u0002�or��\"��&�+(P��\u0018a���F�!׹�\u0012\u0019�d]B��`\u00017�/��\t��D2{X��[��\u0015-b��ʈ���\u0010_�_��|[\u0001\u001c\u0005^\u0002%�=`L;*�\u001au�\f�\\�uB�\f�\u0001��\t�;��m\n�\u0001��D>&\u0012N\u0002��\u001b\u0002\u000eV!��g`mJ�>A�\u0002F<��ױ���\u001a`&%�\u001c\u0011�\u001c;}�/��Q�Hvē)�JD�s�\u0005.\u0000��\u0007����\u0005be�\u0007sPI���E���\u0010���Y�t���<2�*�'�=q>��S� ˎ�%��\u001a]�~Q�zn¶�]��r�uE\"\r�~J���Q�@�\u0001*\u000bu��w\u0005oÑ*�7��̭w1��wHz�7��K�\u0010qV�q�\u0006��%��xp1"
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/co-journals",
+    "post": "{\"page\":1,\"size\":8,\"order_field\":\"default\",\"order_direction\":\"asc\"}"
+  },
+  {
+    "type": "response",
+    "status": 403,
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "text": "{\"cause\":\"第三方应用独立请求时，无此操作权限\",\"failure\":true}\n"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/user/getUserJournal?userId=<redacted-user-id>",
+    "text": "{\"code\":-1,\"msg\":\"用户不存在\",\"time\":0}"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/api/v4/modules/top-news",
+    "post": "{\"offset\":0,\"count\":3,\"topicId\":\"d3d464996716c175826042c94154e627\"}"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/hky/open/api/v1/subscriptions?subscriber=<redacted-user-id>&resourceType=headline&appId=3236e8942bb847d799c26a19eb50cf95",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/resources/api/v2/counting",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/co-journals",
+    "post": "{\"page\":1,\"size\":8,\"order_field\":\"default\",\"order_direction\":\"asc\"}"
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/sciencedata",
+    "post": "{\"page\":1,\"size\":4,\"order_field\":\"date\",\"order_direction\":\"desc\",\"user_id\":\"<redacted-user-id>\",\"lang\":\"zh\"}"
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/largeScientificFacilitys",
+    "post": "{\"page\":1,\"size\":6,\"order_field\":\"date\",\"order_direction\":\"desc\",\"user_id\":\"<redacted-user-id>\",\"lang\":\"zh\"}"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/domainIns/getOpenIns?page=1&pageSize=100",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/toolsApi/log/saveLog",
+    "post": "{\"event_key\":\"operation\",\"url\":\"https://pubscholar.cn/?q=2024\",\"user\":{\"id\":\"<redacted-user-id>\",\"uid\":\"<redacted-user-id>\",\"affiliation\":[\"机构_2kdtfsochs\"],\"name\":\"用户_qth1ps1mtq\",\"anonymous\":true},\"application\":{\"id\":\"3236e8942bb847d799c26a19eb50cf95\",\"name\":\"公益性学术资源平台\",\"topic\":\"公益性学术资源平台\",\"topic_id\":\"d42efacfe0e7a12cc86297581a705ef1\",\"module\":\"页面浏览\"},\"event_desc\":\"访问菜单「首页」「0000107」\"}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "text": "[]"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/api/v4/modules/top-news",
+    "text": "[{\"abstracts\":\"《世界科技研究与发展》是由中国科学院主管，中国科学院成都文献情报中心主办，在国内外公开发行的综合性科技双月刊。创刊于1979年10月，1993年经国家科委批准向国内外公开发行，曾用名《科技拾零》《世界研究与发展》，1995年...\",\"article_date\":\"2026-01-13\",\"attachment_id\":[],\"author\":[],\"cn_type\":\"资讯\",\"competitors\":[],\"cover\":\"https://file.scholarin.cn/files?fastdfspath=group1/M03/B0/53/CgMLDmll7f-AGisyAABHOA0t1Xc5749994\",\"date\":\"2026-01-13\",\"extend_entity\":{\"server-name\":[],\"is_use_headline\":[],\"wx-subject-id\":[],\"source-channel-type\":[],\"source-channel-name\":[],\"platform\":[],\"server-id\":["
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/co-journals",
+    "text": "{\"total\":1343,\"is_last\":false,\"total_pages\":168,\"content\":[{\"abstracts\":\"《临床肝胆病杂志》于1985年创刊，是中华人民共和国教育部主管，吉林大学主办，中华医学会肝病学分会学术支持的医学专业期刊，是我国首个肝胆病专业杂志。ISSN 1001-5256，CN 22-1108/R。 中国科学技术信息研究所2016年最新统计分析结果显示：《临床肝胆病杂志》在《中国科技期刊引证报告（核心版）》中的影响因子为1.127；在《中国科技期刊引证报告（扩展版）》中的影响因子为1.428。在15种消化病学类核心期刊中，影响因子和综合评价总分均位列第三。 据中国科学文献计量评价研究中心2016年发布的《中国学术期刊影响因子年报》显示：《临床肝胆病杂志》复合影响因子、期刊综合影响因子和技术研究类影响因子分别为1.187、1.019、1.019，比99种内科学类期刊综合影响因子学科平均值0.664高出53%。 杂志以推进肝胆胰疾病临床诊疗工作和基础研究向临床转化为方向，以服务广大临床医生和科研工作者为己任，普及与提高相结合，国内外肝胆胰疾"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=f186913eb04e34bc24ce23f8400fdc28",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=02681ba9502c8d12299546a31b6b634d",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=8ca2d64627b80c8638dc29e841cd3f55",
+    "post": null
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=6391d9981bf77f7412a981d704e1b0ef",
+    "post": null
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/domainIns/getOpenIns?page=1&pageSize=100",
+    "text": "{\"code\":0,\"data\":{\"total\":44,\"data\":[{\"createtime\":\"2018-11-16 17:06:48\",\"description\":\"中国科学院生态环境研究中心（简称“生态环境中心”）始建于1975年，前身为经国务院批准成立的中国科学院环境化学研究所。经国家科委和中国科学院批准，1986年与中国科学院生态学研究中心(筹)合并，改为现名。生态环境中心以“国家生态环境安全与可持续发展”为战略主题，充分发挥环境科学、环境工程、生态学三大学科的综合优势，实现多学科的相互渗透，研究和解决地区性、全国性以及全球性的重大生态环境问题，不断突破关系到国家生态安全、环境健康和可持续发展的重大科学理论和关键技术，为我国生态文明建设、实现人与自然的协调发展做出基础性、战略性、前瞻性贡献。生态环境中心现设有9个研究室（机构）：环境化学与生态毒理学国家重点实验室、环境水质学国家重点实验室、城市与区域生态国家重点实验室、中国科学院环境生物技术重点研究室、大气环境研究室、水污染控制技术研究室、土壤环境科学研究室、环境纳米材料研究室、大气污染控制中心。组建有“持久性有毒污染物"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/toolsApi/log/saveLog",
+    "text": "{\"code\":0,\"data\":\"1041680c-90d7-44ff-8b48-793bc7d3f7b3\",\"msg\":\"执行成功\"}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=f186913eb04e34bc24ce23f8400fdc28",
+    "text": "{\"code\":0,\"data\":{\"project_count\":1779,\"book_count\":13,\"patent_count\":3205,\"scienceData_count\":0,\"report\":{\"report_total\":70,\"speech_report_total\":0,\"research_report_total\":0},\"scholar_count\":759,\"software_count\":21,\"article\":{\"article_total\":43630},\"award_count\":0},\"msg\":\"执行成功\",\"time\":0}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=02681ba9502c8d12299546a31b6b634d",
+    "text": "{\"code\":0,\"data\":{\"project_count\":315,\"book_count\":7,\"patent_count\":5436,\"scienceData_count\":0,\"report\":{\"report_total\":101,\"speech_report_total\":0,\"research_report_total\":0},\"scholar_count\":1199,\"software_count\":15,\"article\":{\"article_total\":19531},\"award_count\":0},\"msg\":\"执行成功\",\"time\":0}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=8ca2d64627b80c8638dc29e841cd3f55",
+    "text": "{\"code\":0,\"data\":{\"project_count\":2445,\"book_count\":0,\"patent_count\":1801,\"scienceData_count\":0,\"report\":{\"report_total\":0,\"speech_report_total\":0,\"research_report_total\":0},\"scholar_count\":23571,\"software_count\":0,\"article\":{\"article_total\":135514},\"award_count\":0},\"msg\":\"执行成功\",\"time\":0}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/largeScientificFacilitys",
+    "text": "{\"total\":26,\"code\":0,\"is_last\":false,\"content\":[{\"application_guide\":\"https://lssf.cas.cn/sszs/ggsy/xsxzydzjg/sssqsm/202503/t20250314_5050269.html\",\"contact_information\":\"Contact: UserOffice\\nPhone: +86 021-20684615\\nsxfel-user@sari.ac.cn\",\"created_time\":\"2026-03-16 17:12:56\",\"cstr\":\"31115.02.SXFEL\",\"description_information\":\"The Shanghai Soft X-ray Free Electron Laser Facility (SXFEL) is supported by three projects: Soft X-ray Free Electron Laser Test Facility (SXFEL-TF), Shanghai Soft X-ray Fr"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/insKnowApi/insKnowledgeBase/open/getTotal?uuid=6391d9981bf77f7412a981d704e1b0ef",
+    "text": "{\"code\":0,\"data\":{\"project_count\":12,\"book_count\":0,\"patent_count\":27,\"scienceData_count\":0,\"report\":{\"report_total\":0,\"speech_report_total\":0,\"research_report_total\":0},\"scholar_count\":266,\"software_count\":0,\"article\":{\"article_total\":1440},\"award_count\":0},\"msg\":\"执行成功\",\"time\":0}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/co-journals",
+    "text": "{\"total\":1343,\"is_last\":false,\"total_pages\":168,\"content\":[{\"abstracts\":\"《临床肝胆病杂志》于1985年创刊，是中华人民共和国教育部主管，吉林大学主办，中华医学会肝病学分会学术支持的医学专业期刊，是我国首个肝胆病专业杂志。ISSN 1001-5256，CN 22-1108/R。 中国科学技术信息研究所2016年最新统计分析结果显示：《临床肝胆病杂志》在《中国科技期刊引证报告（核心版）》中的影响因子为1.127；在《中国科技期刊引证报告（扩展版）》中的影响因子为1.428。在15种消化病学类核心期刊中，影响因子和综合评价总分均位列第三。 据中国科学文献计量评价研究中心2016年发布的《中国学术期刊影响因子年报》显示：《临床肝胆病杂志》复合影响因子、期刊综合影响因子和技术研究类影响因子分别为1.187、1.019、1.019，比99种内科学类期刊综合影响因子学科平均值0.664高出53%。 杂志以推进肝胆胰疾病临床诊疗工作和基础研究向临床转化为方向，以服务广大临床医生和科研工作者为己任，普及与提高相结合，国内外肝胆胰疾"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/resources/api/v2/counting",
+    "text": "{\"os10_software\":1076328,\"patent\":106756088,\"large_research_facilities\":26,\"book\":123763,\"article\":107546123,\"science_data\":596611}"
+  },
+  {
+    "type": "request",
+    "method": "POST",
+    "url": "https://pubscholar.cn/hky/open/api/v1/tech_pulse",
+    "post": "{\"page\":1,\"size\":4}"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/api/v1/subscriptions?subscriber=<redacted-user-id>&resourceType=headline&appId=3236e8942bb847d799c26a19eb50cf95",
+    "text": "[]"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/resources/api/v1/sciencedata",
+    "text": "{\"total\":596611,\"is_last\":false,\"total_pages\":149153,\"content\":[{\"abstracts\":\"The characteristics of interface structures and the interaction mechanisms between components are the key core for regulating the overall performance of composite systems. Their electronic structures and thermodynamic stability directly determine the bonding strength between different components, thereby affecting the structural integrity and functional realizability of materials. This holds significant theoretical and"
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/open/api/v1/tech_pulse",
+    "text": "{\"total\":37011,\"content\":[{\"audit_users\":[{\"uid\":\"0c19c856cf804bfca98fb067809b25a1\",\"name\":\"涂琼\"}],\"template\":2,\"cn_type\":\"科技头条\",\"content_json_v2\":\"{\\\"hotList\\\":[{\\\"year\\\":\\\"2026\\\",\\\"author\\\":[\\\"Aida Fazli\\\",\\\"Pavel Pozka\\\",\\\"Maximilian Podsednik\\\",\\\"David Prochazka\\\",\\\"David Ken Gibbs\\\",\\\"Andreas Limbeck\\\",\\\"Jozef Kaiser\\\"],\\\"link\\\":\\\"https://www.sciencedirect.com/science/article/pii/S0584854726001187\\\",\\\"source\\\":\\\"Optimization of LIBS technique for efficient chlorine detection in polymeric mat"
+  },
+  {
+    "type": "request",
+    "method": "GET",
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "post": null
+  },
+  {
+    "type": "response",
+    "status": 200,
+    "url": "https://pubscholar.cn/hky/api/v2/scholars/<redacted-user-id>/search-keywords?topicId=d42efacfe0e7a12cc86297581a705ef1",
+    "text": "[]"
+  }
+]

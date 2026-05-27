@@ -1,0 +1,22 @@
+const fs=require('fs'), path=require('path'), net=require('net'); const {spawn,spawnSync}=require('child_process'); const {chromium}=require('playwright');
+const root=process.cwd(), runDir=path.join(root,'.runs/wave-17'), probes=path.join(runDir,'probes'); fs.mkdirSync(probes,{recursive:true});
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function port(){return new Promise((res,rej)=>{const s=net.createServer();s.on('error',rej);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>res(p));});});}
+function kill(){for(const pat of [path.resolve(root,'data/browser-profiles/research-pubscholar'),path.join('data','browser-profiles','research-pubscholar')]){const pg=spawnSync('pgrep',['-f',pat],{encoding:'utf8'}); for(const raw of String(pg.stdout||'').split(/\s+/).filter(Boolean)){const pid=Number(raw); if(pid&&pid!==process.pid){try{process.kill(pid,'SIGTERM')}catch{}}}}}
+async function waitCdp(p){const end=Date.now()+60000; while(Date.now()<end){try{const r=await fetch(`http://127.0.0.1:${p}/json/version`); if(r.ok)return;}catch{} await sleep(500)} throw new Error('cdp')}
+(async()=>{kill(); const p=await port(); const profile=path.resolve(root,'data/browser-profiles/research-pubscholar'); fs.mkdirSync(profile,{recursive:true}); const child=spawn('/opt/google/chrome/chrome',[`--remote-debugging-address=127.0.0.1`,`--remote-debugging-port=${p}`,`--user-data-dir=${profile}`,'--no-first-run','--no-default-browser-check','https://pubscholar.cn/'],{cwd:root,env:{...process.env,DISPLAY:process.env.DISPLAY||':0'},detached:true,stdio:['ignore',fs.openSync(path.join(runDir,'pubscholar-search-chrome.out.log'),'a'),fs.openSync(path.join(runDir,'pubscholar-search-chrome.err.log'),'a')]}); child.unref(); await waitCdp(p); const browser=await chromium.connectOverCDP(`http://127.0.0.1:${p}`); const page=browser.contexts()[0].pages()[0]; const events=[];
+ page.on('request', req=>{const u=req.url(); if(/pubscholar|scholarin|resources|articles|files|search|api/i.test(u)) events.push({kind:'request',url:u,method:req.method(),postData:req.postData()});});
+ page.on('response', async res=>{const u=res.url(); if(/pubscholar|scholarin|resources|articles|files|search|api/i.test(u)){let body=''; try{const ct=res.headers()['content-type']||''; if(/json|text|html/.test(ct)) body=(await res.text()).slice(0,5000);}catch(e){body='ERR:'+e.message} events.push({kind:'response',url:u,status:res.status(),type:res.headers()['content-type']||'',body});}});
+ async function snap(label){await page.waitForLoadState('networkidle',{timeout:25000}).catch(()=>{}); await page.waitForTimeout(3000); const data=await page.evaluate(()=>({url:location.href,title:document.title,text:(document.body.innerText||'').replace(/\s+/g,' ').slice(0,5000),inputs:Array.from(document.querySelectorAll('input,textarea')).map((e,i)=>({i,type:e.type,placeholder:e.getAttribute('placeholder'),value:e.value,cls:e.className,disabled:e.disabled,readonly:e.readOnly,visible:!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)})),buttons:Array.from(document.querySelectorAll('button,[role=button],.Button')).map((e,i)=>({i,text:(e.innerText||e.textContent||'').replace(/\s+/g,' ').trim().slice(0,80),cls:e.className,visible:!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)})).slice(0,80),anchors:Array.from(document.querySelectorAll('a[href]')).map((a,i)=>{let url='';try{url=new URL(a.getAttribute('href'),location.href).href}catch{}return {i,url,text:(a.innerText||a.textContent||a.title||'').replace(/\s+/g,' ').trim().slice(0,180),cls:a.className}}).slice(0,500)})); fs.writeFileSync(path.join(probes,`pubscholar-search-${label}.json`),JSON.stringify({...data,events:events.slice(-150)},null,2)); console.log('\nSNAP',label,data.url,'inputs',data.inputs.length,'articleAnchors',data.anchors.filter(a=>/\/articles\//.test(a.url)).length); console.log(data.inputs); console.log(data.text.slice(0,600)); return data;}
+ await snap('home');
+ await page.locator('input[placeholder="发现你感兴趣的内容..."]').fill('renewable energy 2024',{timeout:10000});
+ await snap('filled');
+ await page.keyboard.press('Enter');
+ await snap('entered');
+ const res=await page.evaluate(async()=>{
+  const btns=Array.from(document.querySelectorAll('button,[role=button],.Button'));
+  const b=btns.find(e=>/检索|搜索/.test(e.innerText||e.textContent||'')); if(b){b.click(); return (b.innerText||b.textContent||'').trim();} return null;
+ }); console.log('clicked',res);
+ await snap('clicked');
+ await browser.close().catch(()=>{}); kill();
+})();

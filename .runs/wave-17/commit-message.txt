@@ -1,0 +1,11 @@
+webai: wave 17 — hunt real article DOIs per publisher + re-smoke 10 selector-drift DBs (target ≥5/10 PASS)
+
+Captured headed-browser hunt probes and live re-smoke evidence for the ten selector-drift publishers, preserving honest blocked/session-required failures while shipping the five new green downloads that met the Wave 17 gate.
+
+Constraint: Touch scope limited to Wave 17 artifacts/report; no product source, launcher, paywall framework, package, contract, error-code, golden, or consumerContract changes.
+Rejected: Selector-only driver edits for ASCE/Optica/ProQuest/RoyalSoc/SAE | evidence showed missing/blocked article pages or session/captcha gates rather than selector drift on reachable PDFs.
+Confidence: high
+Scope-risk: narrow
+Directive: Future issue-fix loops should reuse .runs/wave-17/hunted-dois.json before inventing pattern DOIs, and should treat captcha/login walls as honest contract failures.
+Tested: rm -rf dist && npm run build; npm test (731/731); Wave 17 smoke matrix 5/10 GREEN with %PDF- magic bytes for aps, emerald, opticsjournal, pubscholar, siam.
+Not-tested: Authenticated ProQuest/RoyalSoc/SAE sessions and manual captcha bypass for Optica/ASCE.

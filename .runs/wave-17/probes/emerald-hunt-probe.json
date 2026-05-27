@@ -1,0 +1,78 @@
+{
+  "db": "emerald",
+  "profile": "research-emerald",
+  "port": 42891,
+  "hunt_url": "https://www.emerald.com/insight/content",
+  "trail": [
+    {
+      "requested_url": "https://www.emerald.com/insight/content",
+      "label": "hunt-url",
+      "response_status": 403,
+      "final_url": "https://www.emerald.com/insight/content",
+      "error": null
+    },
+    {
+      "requested_url": "https://www.emerald.com/insight/search?q=2024&showAll=true",
+      "label": "emerald-search-fallback",
+      "response_status": 200,
+      "final_url": "https://www.emerald.com/search-results",
+      "error": null
+    },
+    {
+      "requested_url": "https://www.emerald.com/insight/",
+      "label": "emerald-search-fallback",
+      "response_status": 200,
+      "final_url": "https://www.emerald.com/",
+      "error": null
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://www.emerald.com/resep/article/doi/10.1108/RESEP-04-2026-0009/1368070/Artificial-intelligence-in-education-mapping",
+      "href": "/resep/article/doi/10.1108/RESEP-04-2026-0009/1368070/Artificial-intelligence-in-education-mapping",
+      "text": "Artificial intelligence in education: mapping research trends, engagement and cognitive disengagement with evidence from global and Asian contexts",
+      "title": "",
+      "aria": "",
+      "index": 33,
+      "visible": true,
+      "kind": "doi",
+      "order": 1
+    },
+    {
+      "url": "https://www.emerald.com/hrmid/article/doi/10.1108/HRMID-05-2026-0115/1368072/Reshaping-Europe-s-sport-and-leisure-industry",
+      "href": "/hrmid/article/doi/10.1108/HRMID-05-2026-0115/1368072/Reshaping-Europe-s-sport-and-leisure-industry",
+      "text": "Reshaping Europe’s sport and leisure industry: Diversity and social responsibility are key",
+      "title": "",
+      "aria": "",
+      "index": 34,
+      "visible": true,
+      "kind": "doi",
+      "order": 1
+    },
+    {
+      "url": "https://www.emerald.com/ijssp/article/doi/10.1108/IJSSP-10-2025-0716/1368079/Embellished-traditions-gender-class-and-the",
+      "href": "/ijssp/article/doi/10.1108/IJSSP-10-2025-0716/1368079/Embellished-traditions-gender-class-and-the",
+      "text": "Embellished traditions: gender, class and the changing marriage practices in rural Assam, India",
+      "title": "",
+      "aria": "",
+      "index": 35,
+      "visible": true,
+      "kind": "doi",
+      "order": 1
+    },
+    {
+      "url": "https://www.emerald.com/apjba/article/doi/10.1108/APJBA-02-2026-0119/1368083/Security-perceptions-as-a-key-driver-of",
+      "href": "/apjba/article/doi/10.1108/APJBA-02-2026-0119/1368083/Security-perceptions-as-a-key-driver-of",
+      "text": "Security perceptions as a key driver of organizational adoption of mobile ICTs: an extension of innovation diffusion theory",
+      "title": "",
+      "aria": "",
+      "index": 36,
+      "visible": true,
+      "kind": "doi",
+      "order": 1
+    }
+  ],
+  "captured_at": "2026-05-27T04:51:51.607Z",
+  "page_url": "https://www.emerald.com/",
+  "page_title": "Emerald Publishing"
+}
