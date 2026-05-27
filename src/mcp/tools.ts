@@ -7627,10 +7627,23 @@ async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return selectGeminiModelWithManagedBackend(args, runtimeOrDefault(runtime));
-  return selectModelBackendInvalid("webai_gemini_select_model", backend);
+  // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit env override only, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_select_model] backend=dom-extension");
+    return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_select_model] backend=dom-managed");
+    return selectGeminiModelWithManagedBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_gemini_select_model] backend=invalid");
+    return selectModelInvalidArgs("webai_gemini_select_model", `WEBAI_GEMINI_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND)}`);
+  }
+  console.error("[webai_gemini_select_model] backend=rpc");
+  const { webAiGeminiSelectModelRpc } = require("./gemini_select_model_rpc");
+  return webAiGeminiSelectModelRpc(args, runtime);
 }
 
 async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<BrowserToolRuntime>): Promise<Record<string, unknown>> {
@@ -7929,16 +7942,42 @@ export async function webAiGeminiCanvasEdit(args: any, runtime?: BrowserToolRunt
   return webAiBackendInvalidOutput("webai_gemini_canvas_edit", backend);
 }
 export async function webAiGeminiConversationManage(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return manageGeminiConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return manageGeminiConversation(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_conversation_manage", backend);
+  // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit env override only, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_CONVERSATION_MANAGE_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_conversation_manage] backend=dom-extension");
+    return manageGeminiConversationWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_conversation_manage] backend=dom-managed");
+    return manageGeminiConversation(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_gemini_conversation_manage] backend=invalid");
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_CONVERSATION_MANAGE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_CONVERSATION_MANAGE_BACKEND)}` });
+  }
+  console.error("[webai_gemini_conversation_manage] backend=rpc");
+  const { webAiGeminiConversationManageRpc } = require("./gemini_conversation_manage_rpc");
+  return webAiGeminiConversationManageRpc(args, runtime);
 }
 export async function webAiGeminiWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return inspectGeminiWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return inspectGeminiWorkspace(args, runtimeOrDefault(runtime));
-  return webAiBackendInvalidOutput("webai_gemini_workspace", backend);
+  // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit env override only, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_WORKSPACE_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_workspace] backend=dom-extension");
+    return inspectGeminiWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_workspace] backend=dom-managed");
+    return inspectGeminiWorkspace(args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    console.error("[webai_gemini_workspace] backend=invalid");
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_WORKSPACE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_WORKSPACE_BACKEND)}` });
+  }
+  console.error("[webai_gemini_workspace] backend=rpc");
+  const { webAiGeminiWorkspaceRpc } = require("./gemini_workspace_rpc");
+  return webAiGeminiWorkspaceRpc(args, runtime);
 }
 
 const DEFAULT_GEMINI_MUSIC_PROFILE = "gemini-9225";

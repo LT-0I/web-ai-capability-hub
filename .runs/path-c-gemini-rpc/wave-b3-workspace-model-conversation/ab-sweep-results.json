@@ -1,0 +1,787 @@
+{
+  "summary": {
+    "profile": "gemini-9225",
+    "cdp_port": 9225,
+    "dom_backend": "extension-assisted-cdp",
+    "pace_ms": 30000,
+    "started_at": "2026-05-27T20:23:24.256Z",
+    "finished_at": "2026-05-27T20:38:54.657Z",
+    "verified_count": 16,
+    "attempted": 16,
+    "passed": 15,
+    "failed": 1,
+    "skipped": 0,
+    "functional_threshold": 14,
+    "stopReason": null,
+    "close_tabs": {
+      "ok": true,
+      "kept": {
+        "id": "56549399175079ADDF8649F9683A1885",
+        "url": "https://gemini.google.com/app"
+      },
+      "closed": [
+        {
+          "id": "8E4676F14FFC36E9ECAE99FDA24C734A",
+          "url": "https://gemini.google.com/app?hl=en"
+        },
+        {
+          "id": "FD2941C4858432301E81DD725EDA3569",
+          "url": "https://gemini.google.com/personalization-settings"
+        },
+        {
+          "id": "1DF1DC91A5AB72D120637663A72233EE",
+          "url": "https://gemini.google.com/apps"
+        },
+        {
+          "id": "79B2EBCDE70FF1886A5985A0602BE026",
+          "url": "https://gemini.google.com/scheduled"
+        },
+        {
+          "id": "8AB8695051D0794BAEA1B4FAADDBA7FE",
+          "url": "https://gemini.google.com/gems/view"
+        }
+      ]
+    },
+    "verdict": "PASS"
+  },
+  "results": [
+    {
+      "variant": "workspace_gems",
+      "kind": "workspace",
+      "args": {
+        "surface": "gems"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 680,
+        "result": {
+          "surface": "gems",
+          "url": "https://gemini.google.com/gems/view",
+          "summary": "gems route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1537,
+        "result": {
+          "surface": "gems",
+          "url": "https://gemini.google.com/gems/view",
+          "summary": "Gem manager route opened (RPC verified)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1518,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "workspace_scheduled",
+      "kind": "workspace",
+      "args": {
+        "surface": "scheduled"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 624,
+        "result": {
+          "surface": "scheduled",
+          "url": "https://gemini.google.com/scheduled",
+          "summary": "scheduled route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1430,
+        "result": {
+          "surface": "scheduled",
+          "url": "https://gemini.google.com/scheduled",
+          "summary": "Scheduled actions manager route opened (RPC verified)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1414,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "workspace_study",
+      "kind": "workspace",
+      "args": {
+        "surface": "study"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 389,
+        "result": {
+          "surface": "study",
+          "url": "https://gemini.google.com/app",
+          "summary": "study route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 833,
+        "result": {
+          "surface": "study",
+          "url": "https://gemini.google.com/app",
+          "summary": "Guided learning tool is visible (observe-only)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 817,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "workspace_workspace_integration",
+      "kind": "workspace",
+      "args": {
+        "surface": "workspace_integration"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 603,
+        "result": {
+          "surface": "workspace_integration",
+          "url": "https://gemini.google.com/apps",
+          "summary": "workspace_integration route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1413,
+        "result": {
+          "surface": "workspace_integration",
+          "url": "https://gemini.google.com/apps",
+          "summary": "Google Workspace integration route opened (observe-only)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1395,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "workspace_connected_apps",
+      "kind": "workspace",
+      "args": {
+        "surface": "connected_apps"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 468,
+        "result": {
+          "surface": "connected_apps",
+          "url": "https://gemini.google.com/apps",
+          "summary": "connected_apps route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1346,
+        "result": {
+          "surface": "connected_apps",
+          "url": "https://gemini.google.com/apps",
+          "summary": "Connected apps route opened (observe-only)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1331,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "workspace_personalization",
+      "kind": "workspace",
+      "args": {
+        "surface": "personalization"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 420,
+        "result": {
+          "surface": "personalization",
+          "url": "https://gemini.google.com/personalization-settings",
+          "summary": "personalization route opened",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1254,
+        "result": {
+          "surface": "personalization",
+          "url": "https://gemini.google.com/personalization-settings",
+          "summary": "Personalization settings route opened (observe-only; memory toggle mutations require POLICY_APPROVAL_REQUIRED)",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1240,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "select_flash",
+      "kind": "select_model",
+      "args": {
+        "model": "3.5-flash"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 2609,
+        "result": {
+          "ok": true,
+          "selected_model": "3.5-flash",
+          "selected_thinking_level": null,
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash",
+          "aria": "Open mode picker, currently Flash"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1138,
+        "result": {
+          "ok": true,
+          "selected_model": "3.5-flash",
+          "selected_thinking_level": null,
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1118,
+          "rpc_id": "L5adhe",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash",
+          "aria": "Open mode picker, currently Flash"
+        }
+      },
+      "success": true,
+      "verifier": "selected field equality + RPC ack + read-only picker readback evidence"
+    },
+    {
+      "variant": "select_flash_lite",
+      "kind": "select_model",
+      "args": {
+        "model": "3.1-flash-lite"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 2736,
+        "result": {
+          "ok": true,
+          "selected_model": "3.1-flash-lite",
+          "selected_thinking_level": null,
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash-Lite",
+          "aria": "Open mode picker, currently Flash-Lite"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 675,
+        "result": {
+          "ok": true,
+          "selected_model": "3.1-flash-lite",
+          "selected_thinking_level": null,
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 661,
+          "rpc_id": "L5adhe",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash-Lite",
+          "aria": "Open mode picker, currently Flash-Lite"
+        }
+      },
+      "success": true,
+      "verifier": "selected field equality + RPC ack + read-only picker readback evidence"
+    },
+    {
+      "variant": "thinking_standard",
+      "kind": "select_model",
+      "args": {
+        "thinking_level": "standard"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 7556,
+        "result": {
+          "ok": true,
+          "selected_model": null,
+          "selected_thinking_level": "standard",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash-Lite",
+          "aria": "Open mode picker, currently Flash-Lite"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1317,
+        "result": {
+          "ok": true,
+          "selected_model": null,
+          "selected_thinking_level": "standard",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1304,
+          "rpc_id": "L5adhe",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash-Lite",
+          "aria": "Open mode picker, currently Flash-Lite"
+        }
+      },
+      "success": true,
+      "verifier": "selected field equality + RPC ack + read-only picker readback evidence"
+    },
+    {
+      "variant": "thinking_extended",
+      "kind": "select_model",
+      "args": {
+        "thinking_level": "extended"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 7703,
+        "result": {
+          "ok": true,
+          "selected_model": null,
+          "selected_thinking_level": "extended",
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash",
+          "aria": "Open mode picker, currently Flash"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 861,
+        "result": {
+          "ok": true,
+          "selected_model": null,
+          "selected_thinking_level": "extended",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 842,
+          "rpc_id": "L5adhe",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": {
+          "ok": true,
+          "href": "https://gemini.google.com/app?hl=en",
+          "text": "Flash",
+          "aria": "Open mode picker, currently Flash"
+        }
+      },
+      "success": true,
+      "verifier": "selected field equality + RPC ack + read-only picker readback evidence"
+    },
+    {
+      "variant": "conversation_list",
+      "kind": "conversation",
+      "args": {
+        "action": "list"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 414,
+        "result": {
+          "action": "list",
+          "url": "https://gemini.google.com/app",
+          "items": [],
+          "results": [],
+          "results_count": 0,
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 1701,
+        "result": {
+          "action": "list",
+          "url": "https://gemini.google.com/app",
+          "items": [],
+          "results": [],
+          "results_count": 0,
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 1682,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "conversation_search",
+      "kind": "conversation",
+      "args": {
+        "action": "search",
+        "query": "Path C"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 326,
+        "result": {
+          "action": "search",
+          "url": "https://gemini.google.com/app",
+          "items": [],
+          "results": [],
+          "results_count": 0,
+          "errorCode": null
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 879,
+        "result": {
+          "action": "search",
+          "url": "https://gemini.google.com/app",
+          "items": [],
+          "results": [],
+          "results_count": 0,
+          "query": "Path C",
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 864,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": true,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "conversation_menu_enumerate",
+      "kind": "conversation",
+      "args": {
+        "action": "menu_enumerate"
+      },
+      "expectedErrorCode": null,
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 10401,
+        "result": {
+          "ok": false,
+          "service": "gemini",
+          "errorCode": "ELEMENT_NOT_FOUND",
+          "error_code": "ELEMENT_NOT_FOUND",
+          "message": "ELEMENT_NOT_FOUND: Gemini conversation options button was not found",
+          "action": "menu_enumerate",
+          "url": "https://gemini.google.com/app",
+          "items": [],
+          "results": []
+        },
+        "thrown": null,
+        "errorCode": "ELEMENT_NOT_FOUND",
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 993,
+        "result": {
+          "action": "menu_enumerate",
+          "url": "https://gemini.google.com/app",
+          "items": [
+            {
+              "text": "Share conversation"
+            },
+            {
+              "text": "Pin"
+            },
+            {
+              "text": "Rename"
+            },
+            {
+              "text": "Add to notebook"
+            },
+            {
+              "text": "Delete"
+            }
+          ],
+          "errorCode": null,
+          "http_status": 200,
+          "elapsed_ms": 978,
+          "rpc_id": "MaZiqc",
+          "rpc_ack": true
+        },
+        "thrown": null,
+        "errorCode": null,
+        "readback": null
+      },
+      "success": false,
+      "verifier": "DOM-compatible success shape + RPC ack"
+    },
+    {
+      "variant": "conversation_share_guard",
+      "kind": "conversation",
+      "args": {
+        "action": "share"
+      },
+      "expectedErrorCode": "SENSITIVE_CONTENT_GUARD",
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 0,
+        "result": {
+          "ok": false,
+          "errorCode": "SENSITIVE_CONTENT_GUARD",
+          "error_code": "SENSITIVE_CONTENT_GUARD",
+          "message": "Opening Gemini conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.",
+          "action": "share"
+        },
+        "thrown": null,
+        "errorCode": "SENSITIVE_CONTENT_GUARD",
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 0,
+        "result": {
+          "ok": false,
+          "errorCode": "SENSITIVE_CONTENT_GUARD",
+          "error_code": "SENSITIVE_CONTENT_GUARD",
+          "message": "Opening Gemini conversation sharing requires explicit human confirmation: pass confirmed: true / --confirmed true.",
+          "action": "share",
+          "conversationId": null
+        },
+        "thrown": null,
+        "errorCode": "SENSITIVE_CONTENT_GUARD",
+        "readback": null
+      },
+      "success": true,
+      "verifier": "expected canonical guard code from both drivers"
+    },
+    {
+      "variant": "conversation_rename_guard",
+      "kind": "conversation",
+      "args": {
+        "action": "rename"
+      },
+      "expectedErrorCode": "POLICY_APPROVAL_REQUIRED",
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 2,
+        "result": {
+          "ok": false,
+          "errorCode": "POLICY_APPROVAL_REQUIRED",
+          "error_code": "POLICY_APPROVAL_REQUIRED",
+          "reason": "Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.",
+          "action": "rename"
+        },
+        "thrown": null,
+        "errorCode": "POLICY_APPROVAL_REQUIRED",
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 0,
+        "result": {
+          "ok": false,
+          "errorCode": "POLICY_APPROVAL_REQUIRED",
+          "error_code": "POLICY_APPROVAL_REQUIRED",
+          "reason": "Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.",
+          "action": "rename"
+        },
+        "thrown": null,
+        "errorCode": "POLICY_APPROVAL_REQUIRED",
+        "readback": null
+      },
+      "success": true,
+      "verifier": "expected canonical guard code from both drivers"
+    },
+    {
+      "variant": "conversation_delete_guard",
+      "kind": "conversation",
+      "args": {
+        "action": "delete"
+      },
+      "expectedErrorCode": "POLICY_APPROVAL_REQUIRED",
+      "dom": {
+        "backend": "dom",
+        "env_value": "extension-assisted-cdp",
+        "elapsed_ms": 1,
+        "result": {
+          "ok": false,
+          "errorCode": "POLICY_APPROVAL_REQUIRED",
+          "error_code": "POLICY_APPROVAL_REQUIRED",
+          "reason": "Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.",
+          "action": "delete"
+        },
+        "thrown": null,
+        "errorCode": "POLICY_APPROVAL_REQUIRED",
+        "readback": null
+      },
+      "rpc": {
+        "backend": "rpc",
+        "env_value": "(default)",
+        "elapsed_ms": 0,
+        "result": {
+          "ok": false,
+          "errorCode": "POLICY_APPROVAL_REQUIRED",
+          "error_code": "POLICY_APPROVAL_REQUIRED",
+          "reason": "Gemini conversation rename/delete are data-mutating and require explicit human approval; this tool does not execute them.",
+          "action": "delete"
+        },
+        "thrown": null,
+        "errorCode": "POLICY_APPROVAL_REQUIRED",
+        "readback": null
+      },
+      "success": true,
+      "verifier": "expected canonical guard code from both drivers"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "operation_id": "webai_gemini_conversation_manage--action_delete",
+  "tool": "webai_gemini_conversation_manage",
+  "variant": "action_delete",
+  "endpoint": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=MaZiqc&source-path=%2Fapp&bl=boq_assistant-bard-web-server_fixture_p0&f.sid=0&hl=en&_reqid=1&rt=c",
+  "endpoint_kind": "batchexecute",
+  "rpc_id": "MaZiqc",
+  "headers_template": {
+    "accept": "*/*",
+    "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "origin": "https://gemini.google.com",
+    "referer": "https://gemini.google.com/",
+    "user-agent": "Mozilla/5.0 Fixture",
+    "x-browser-channel": "stable",
+    "x-browser-year": "2026",
+    "x-goog-ext-525001261-jspb": "[1,null,null,null,null,null,null,null,[4,5,6,8],null,null,null,null,null,null,null,\"984176C5-4FC8-4CD9-B72E-CDA80DB2FBF0\"]",
+    "x-goog-ext-73010989-jspb": "[0]",
+    "x-same-domain": "1"
+  },
+  "form_template": {
+    "f.req": "[[[\"MaZiqc\",\"[13,null,[1,null,1]]\",null,\"generic\"]]]",
+    "at": "[RUNTIME_AT_TOKEN]"
+  },
+  "f_req_template": [
+    [
+      [
+        "MaZiqc",
+        "[13,null,[1,null,1]]",
+        null,
+        "generic"
+      ]
+    ]
+  ],
+  "placeholders": {}
+}
