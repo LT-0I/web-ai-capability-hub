@@ -32,6 +32,7 @@ export interface GeminiRpcCdpSnapshot {
   cookieHeader: string;
   userAgent: string;
   pageUrl: string;
+  conversationTuple?: unknown[];
 }
 
 interface GeminiRpcRequest {
@@ -120,15 +121,59 @@ function randomHex32(): string {
   return crypto.randomBytes(16).toString("hex");
 }
 
+export type GeminiSendPromptVariant =
+  | "basic"
+  | "model_flash"
+  | "model_flash_lite"
+  | "reuse_conversation"
+  | "thinking_extended"
+  | "thinking_web_search"
+  | "web_search";
+
+function normalizedGeminiModel(value: unknown): string {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[–—]/g, "-")
+    .replace(/[_\s]+/g, "-");
+}
+
+function geminiModelVariant(args: any): GeminiSendPromptVariant | null {
+  const model = normalizedGeminiModel(args?.model);
+  if (!model) return null;
+  if (/flash-?lite/.test(model) || model === "3.1-flash-lite") return "model_flash_lite";
+  if (/^(?:3\.5-)?flash$/.test(model) || model === "3.5-flash" || model === "3.1-pro" || model === "pro") return "model_flash";
+  return null;
+}
+
+function wantsExtendedThinking(args: any): boolean {
+  return Boolean(args?.thinking || String(args?.thinking_level || "").toLowerCase() === "extended");
+}
+
+function explicitGeminiConversationTarget(args: any): boolean {
+  const value = String(args?.url || args?.tab_url_contains || "").trim();
+  if (!value) return false;
+  if (/^https?:\/\/gemini\.google\.com\/app\/[^/?#]+/i.test(value)) return true;
+  return /^[A-Za-z0-9_-]{6,}$/.test(value);
+}
+
+function wantsReuseConversation(args: any): boolean {
+  return Boolean(args?.reuse_conversation || explicitGeminiConversationTarget(args));
+}
+
+export function resolveGeminiSendPromptVariant(args: any = {}): GeminiSendPromptVariant {
+  if (args?.web_search && wantsExtendedThinking(args)) return "thinking_web_search";
+  if (args?.web_search) return "web_search";
+  if (wantsReuseConversation(args)) return "reuse_conversation";
+  const modelVariant = geminiModelVariant(args);
+  if (modelVariant) return modelVariant;
+  if (wantsExtendedThinking(args)) return "thinking_extended";
+  return "basic";
+}
+
 function payloadTemplateCandidates(args: any): string[] {
   const root = process.cwd();
-  const variant = args?.model === "3.1-flash-lite"
-    ? "model_flash_lite"
-    : args?.model === "3.5-flash" || args?.model === "3.1-pro"
-      ? "model_flash"
-      : args?.thinking || args?.thinking_level === "extended"
-        ? "thinking_extended"
-        : "basic";
+  const variant = resolveGeminiSendPromptVariant(args);
   const base = path.join(root, ".runs", "path-c-gemini-rpc", "wave-a-captures");
   return [
     args?.__payloadTemplatePath,
@@ -163,12 +208,60 @@ function normalizeFReqInner(template: GeminiRpcPayloadTemplate): unknown[] {
   throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "Gemini RPC f_req_template has an unsupported shape");
 }
 
-export function buildGeminiRpcFReq(prompt: string, template: GeminiRpcPayloadTemplate): string {
+function normalizeConversationTuple(value: unknown): unknown[] | null {
+  if (Array.isArray(value) && typeof value[0] === "string" && typeof value[1] === "string" && typeof value[2] === "string") {
+    const tuple = value.slice(0, 10);
+    while (tuple.length < 10) tuple.push(null);
+    if (tuple[9] === null || tuple[9] === undefined) tuple[9] = "";
+    return tuple;
+  }
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    return normalizeConversationTuple([
+      record.conversation_id ?? record.conversationId,
+      record.response_id ?? record.responseId,
+      record.response_candidate_id ?? record.responseCandidateId ?? record.candidate_id ?? record.candidateId,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      record.context_token ?? record.contextToken ?? ""
+    ]);
+  }
+  return null;
+}
+
+function isEmptyConversationTuple(value: unknown): boolean {
+  return Array.isArray(value) && String(value[0] || "") === "" && String(value[1] || "") === "" && String(value[2] || "") === "";
+}
+
+function conversationTupleForRequest(args: any): unknown[] | null {
+  return normalizeConversationTuple(args?.__conversationTuple || args?.conversation_tuple || args?.conversationTuple || args?.__cdpSnapshot?.conversationTuple);
+}
+
+function applyGeminiRpcVariantDeltas(inner: unknown[], args: any = {}): void {
+  if (normalizedGeminiModel(args?.model).includes("flash-lite")) inner[79] = 6;
+  if (wantsExtendedThinking(args)) inner[80] = 2;
+  if (wantsReuseConversation(args)) {
+    inner[17] = [[1]];
+    const tuple = conversationTupleForRequest(args);
+    if (tuple) {
+      inner[2] = tuple;
+    } else if (!Array.isArray(inner[2]) || isEmptyConversationTuple(inner[2])) {
+      inner[2] = ["", "", "", null, null, null, null, null, null, ""];
+    }
+  }
+}
+
+export function buildGeminiRpcFReq(prompt: string, template: GeminiRpcPayloadTemplate, args: any = {}): string {
   const inner = normalizeFReqInner(template);
   if (!Array.isArray(inner[0])) {
     throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "Gemini RPC f_req_template prompt slot is missing");
   }
   (inner[0] as unknown[])[0] = prompt;
+  applyGeminiRpcVariantDeltas(inner, args);
   if (typeof inner[4] === "string") inner[4] = randomHex32();
   if (typeof inner[59] === "string") inner[59] = uuidUpper();
   return JSON.stringify([null, JSON.stringify(inner)]);
@@ -187,14 +280,17 @@ function buildEndpoint(snapshot: GeminiRpcCdpSnapshot, args: any): string {
   return url.toString();
 }
 
-export function buildGeminiRpcRequest(args: any, snapshot: GeminiRpcCdpSnapshot, template = loadGeminiRpcPayloadTemplate(args)): GeminiRpcRequest {
+export function buildGeminiRpcRequest(args: any, snapshot: GeminiRpcCdpSnapshot, template?: GeminiRpcPayloadTemplate): GeminiRpcRequest {
   const prompt = String(args?.prompt || "");
   if (!prompt.trim()) throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_gemini_send_prompt_rpc requires prompt");
   if (args?.web_search) {
-    throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "Gemini RPC send_prompt Path D adapter has no validated web_search template");
+    const variant = resolveGeminiSendPromptVariant(args);
+    throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, `Gemini RPC send_prompt variant ${variant} is RPC_NOT_AVAILABLE from Wave A captures`);
   }
+  const effectiveTemplate = template || loadGeminiRpcPayloadTemplate(args);
+  const requestArgs = { ...args, __cdpSnapshot: snapshot };
   const form = new URLSearchParams();
-  form.set("f.req", buildGeminiRpcFReq(prompt, template));
+  form.set("f.req", buildGeminiRpcFReq(prompt, effectiveTemplate, requestArgs));
   form.set("at", snapshot.at);
   return {
     url: buildEndpoint(snapshot, args),
@@ -341,7 +437,7 @@ async function captureGeminiCdpSnapshot(args: any, runtime?: BrowserToolRuntime)
     {
       method: "Runtime.evaluate",
       params: {
-        expression: `(() => ({ at: window.WIZ_global_data?.SNlM0e || document.documentElement.innerHTML.match(/AOOh0P[^\\"&<\\s]+/)?.[0] || "", bl: window.WIZ_global_data?.cfb2h || document.documentElement.innerHTML.match(/boq_assistant-bard-web-server_[^\\"'&<\\\\]+/)?.[0] || "", fsid: String(window.WIZ_global_data?.FdrFJe || ""), href: location.href, ua: navigator.userAgent }))()`,
+        expression: `(() => { const html = String(document.documentElement?.innerHTML || ""); const pick = (re) => (html.match(re) || [])[0] || ""; const c = pick(/c_[a-f0-9]{8,}/i); const r = pick(/r_[a-f0-9]{8,}/i); const rc = pick(/rc_[a-f0-9]{8,}/i); const context = pick(/Aw[A-Za-z0-9_-]{20,}/); return { at: window.WIZ_global_data?.SNlM0e || html.match(/AOOh0P[^\\"&<\\s]+/)?.[0] || "", bl: window.WIZ_global_data?.cfb2h || html.match(/boq_assistant-bard-web-server_[^\\"'&<\\\\]+/)?.[0] || "", fsid: String(window.WIZ_global_data?.FdrFJe || ""), href: location.href, ua: navigator.userAgent, conversationTuple: c && r && rc ? [c, r, rc, null, null, null, null, null, null, context] : null }; })()`,
         returnByValue: true,
         awaitPromise: true
       }
@@ -365,7 +461,8 @@ async function captureGeminiCdpSnapshot(args: any, runtime?: BrowserToolRuntime)
     fsid,
     cookieHeader,
     userAgent: String(value.ua || "Mozilla/5.0"),
-    pageUrl
+    pageUrl,
+    conversationTuple: normalizeConversationTuple(value.conversationTuple) || undefined
   };
 }
 
@@ -404,6 +501,9 @@ function isBoilerplateText(value: string): boolean {
   if (/^SWML_/i.test(text)) return true;
   if (/^https?:\/\//i.test(text)) return true;
   if (/^\/\/www\.google\.com\//i.test(text)) return true;
+  if (/^type\.googleapis\.com\/assistant\./i.test(text)) return true;
+  if (/^BardErrorInfo$/i.test(text)) return true;
+  if (/^-?\d{10,}$/.test(text)) return true;
   if (/^(c|r|rc)_[a-f0-9]+$/i.test(text)) return true;
   if (/^[A-Za-z0-9_-]{20,}$/.test(text) && !/\s/.test(text)) return true;
   return false;

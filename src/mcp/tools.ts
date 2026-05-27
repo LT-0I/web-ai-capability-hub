@@ -7701,10 +7701,22 @@ async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const backend = args?.backend || "extension-assisted-cdp";
-  if (backend === "extension-assisted-cdp") return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "managed-cdp") return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
-  return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
+  // Path C Gemini Wave B1: RPC is the production default; WEBAI_GEMINI_SEND_BACKEND is the only emergency DOM override, never a runtime fallback after RPC failure.
+  const override = String(process.env.WEBAI_GEMINI_SEND_BACKEND || "").trim().toLowerCase();
+  if (override === "dom" || override === "extension-assisted-cdp") {
+    console.error("[webai_gemini_send_prompt] backend=dom-extension");
+    return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
+  if (override === "managed-cdp") {
+    console.error("[webai_gemini_send_prompt] backend=dom-managed");
+    return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
+  }
+  if (override && override !== "rpc") {
+    return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SEND_BACKEND)}`));
+  }
+  console.error("[webai_gemini_send_prompt] backend=rpc");
+  const { webAiGeminiSendPromptRpc } = require("./gemini_send_prompt_rpc");
+  return webAiGeminiSendPromptRpc(args, runtime);
 }
 export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
   const backend = args?.backend || "extension-assisted-cdp";

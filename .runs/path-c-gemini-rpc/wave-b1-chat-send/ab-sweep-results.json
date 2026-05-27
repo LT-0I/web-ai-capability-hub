@@ -1,0 +1,221 @@
+{
+  "summary": {
+    "started_at": "2026-05-27T18:21:55.431Z",
+    "finished_at": "2026-05-27T18:27:47.983Z",
+    "profile": "gemini-9225",
+    "cdp_port": 9225,
+    "pacing_ms": 30000,
+    "verified_count": 5,
+    "attempted": 5,
+    "passed": 4,
+    "failed": 1,
+    "functional_threshold": 4,
+    "verdict": "PASS",
+    "close_tabs": {
+      "ok": true,
+      "kept": {
+        "id": "F29A41605D116B24D2C72FD6E76DD1C7",
+        "url": "https://gemini.google.com/app/f7490578d95fe31d"
+      },
+      "closed": [
+        {
+          "id": "057EC95D39068C08721399E929913368",
+          "url": "https://gemini.google.com/app/136f292086252e37?hl=en"
+        },
+        {
+          "id": "A7F6C1B4560DFA87BC12F9DA5C4520E7",
+          "url": "https://gemini.google.com/app/fa35ae9b4d83b1fc?hl=en"
+        },
+        {
+          "id": "40A180301E6E9D02BC2A6B475C7A0286",
+          "url": "https://gemini.google.com/app/30f2db27ae59d796?hl=en"
+        },
+        {
+          "id": "AF82290513913FF07101FE70E5597180",
+          "url": "https://gemini.google.com/app/8eaef7132719fbc7?hl=en"
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "variant": "basic",
+      "prompt": "Path C Wave B1 basic check: what is 2+2? Answer with only the number.",
+      "dom": {
+        "backend": "dom",
+        "wall_ms": 10800,
+        "result": {
+          "response_text": "4",
+          "elapsed_ms": 10796,
+          "wait_ms": 6089,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/8eaef7132719fbc7?hl=en"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "wall_ms": 6907,
+        "result": {
+          "response_text": "4",
+          "elapsed_ms": 6904,
+          "wait_ms": 6904,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app/8eaef7132719fbc7?hl=en",
+          "reuse_conversation": false
+        }
+      },
+      "similarity": 1,
+      "speedup": 0.8819524913093859,
+      "success": true
+    },
+    {
+      "variant": "thinking_extended",
+      "prompt": "Path C Wave B1 thinking check: compute 17 times 23, show one short reasoning line and the final answer.",
+      "dom": {
+        "backend": "dom",
+        "wall_ms": 15734,
+        "result": {
+          "response_text": "To find the product, we can use the difference of squares formula: (20−3)×(20+3)=202−32=400−9.Final Answer: 391",
+          "elapsed_ms": 15732,
+          "wait_ms": 6635,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/30f2db27ae59d796?hl=en"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "wall_ms": 7950,
+        "result": {
+          "response_text": "```python?code_reference&code_event_index=2\nprint(17 * 23)\n\n```\n```text?code_stdout&code_event_index=2\n391\n\n```\nTo find the product, we can use the difference of squares: $17 \\times 23 = (20 - 3)(20 + 3) = 400 - 9 = 391$.\n\n**Final Answer:** 391",
+          "elapsed_ms": 7950,
+          "wait_ms": 7950,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app/30f2db27ae59d796?hl=en",
+          "reuse_conversation": false
+        }
+      },
+      "similarity": 0.5862068965517241,
+      "speedup": 0.8345911949685535,
+      "success": true
+    },
+    {
+      "variant": "model_flash",
+      "prompt": "Path C Wave B1 Flash check: what is 5+5? Answer with only the number.",
+      "dom": {
+        "backend": "dom",
+        "wall_ms": 11144,
+        "result": {
+          "response_text": "10",
+          "elapsed_ms": 11142,
+          "wait_ms": 7611,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/fa35ae9b4d83b1fc?hl=en"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "wall_ms": 6780,
+        "result": {
+          "response_text": "10",
+          "elapsed_ms": 6780,
+          "wait_ms": 6779,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app/fa35ae9b4d83b1fc?hl=en",
+          "reuse_conversation": false
+        }
+      },
+      "similarity": 1,
+      "speedup": 1.1227319663667208,
+      "success": true
+    },
+    {
+      "variant": "model_flash_lite",
+      "prompt": "Path C Wave B1 Flash-Lite check: what is 4+4? Answer with only the number.",
+      "dom": {
+        "backend": "dom",
+        "wall_ms": 12334,
+        "result": {
+          "response_text": "8",
+          "elapsed_ms": 12333,
+          "wait_ms": 7612,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": false,
+          "chat_url": "https://gemini.google.com/app/136f292086252e37?hl=en"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "wall_ms": 6237,
+        "result": {
+          "response_text": "8",
+          "elapsed_ms": 6237,
+          "wait_ms": 6237,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app/136f292086252e37?hl=en",
+          "reuse_conversation": false
+        }
+      },
+      "similarity": 1,
+      "speedup": 1.220458553791887,
+      "success": true
+    },
+    {
+      "variant": "reuse_conversation",
+      "prompt": "Path C Wave B1 reuse check: what is 6+6? Answer with only the number.",
+      "dom": {
+        "backend": "dom",
+        "wall_ms": 3125,
+        "result": {
+          "response_text": "The SR-71 \"Blackbird\" was a Cold War-era strategic reconnaissance aircraft engineered by Lockheed's Skunk Works that flew at the edge of space at speeds exceeding Mach 3, outrunning surface-to-air missiles through sheer speed and altitude rather than stealth.",
+          "elapsed_ms": 3124,
+          "wait_ms": 522,
+          "completion_detected": true,
+          "errorCode": null,
+          "model_used": null,
+          "reuse_conversation": true,
+          "chat_url": "https://gemini.google.com/app/f7490578d95fe31d"
+        }
+      },
+      "rpc": {
+        "backend": "rpc",
+        "wall_ms": 1413,
+        "result": {
+          "response_text": "",
+          "elapsed_ms": 1413,
+          "wait_ms": 0,
+          "completion_detected": false,
+          "errorCode": "COMMAND_TIMEOUT",
+          "model_used": null,
+          "chat_url": "https://gemini.google.com/app",
+          "reuse_conversation": true,
+          "ok": false,
+          "service": "gemini",
+          "error_code": "COMMAND_TIMEOUT",
+          "message": "COMMAND_TIMEOUT: Gemini RPC StreamGenerate completed without decoded assistant text"
+        }
+      },
+      "similarity": 0,
+      "speedup": 0.36942675159235666,
+      "success": false
+    }
+  ]
+}
