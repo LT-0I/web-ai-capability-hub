@@ -7,7 +7,6 @@ import { freeSession } from "../../../browser/sessionPool";
 import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
-import { runArtifactClick } from "../../../browser/artifactClick";
 import { ConsumerErrorCodes } from "../../../consumer/errorCodes";
 
 export type AiaaArea = "AllField" | "Title" | "Contrib" | "Keyword" | "AbstractText" | "Affiliation";
@@ -31,9 +30,25 @@ export class WebAiToolError extends Error {
 const AIAA_ORIGIN = "https://arc.aiaa.org";
 const VALID_AREAS = new Set(["AllField", "Title", "Contrib", "Keyword", "AbstractText", "Affiliation"]);
 const VALID_FORMATS = new Set(["ris", "bibtex", "endnote", "medlars"]);
+const FORMAT_EXTENSIONS: Record<AiaaExportFormat, string> = { ris: "ris", bibtex: "bib", endnote: "enw", medlars: "txt" };
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeFileToken(value: string): string { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "aiaa"; }
+function uniquePath(dir: string, filename: string): string {
+  const parsed = path.parse(filename);
+  let candidate = path.join(dir, filename);
+  let index = 1;
+  while (fs.existsSync(candidate)) {
+    candidate = path.join(dir, `${parsed.name}(${index})${parsed.ext}`);
+    index += 1;
+  }
+  return candidate;
+}
+function filenameFromContentDisposition(value: string | undefined, fallback: string): string {
+  const raw = /filename\*?=(?:UTF-8''|")?([^";]+)/i.exec(value || "")?.[1];
+  return path.basename(decodeURIComponent((raw || fallback).replace(/^"|"$/g, ""))).replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_");
+}
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -88,7 +103,7 @@ export function buildAiaaCitationUrl(doi: string): string {
 }
 
 export function parseAiaaResultCount(text: string): number {
-  const direct = /Search Results\s*\(([\d,]+)\)/i.exec(text || "");
+  const direct = /Search Results?\s*\(([\d,]+)\)/i.exec(text || "");
   const fallback = /Results:\s*\d+\s*-\s*\d+\s*of\s*([\d,]+)/i.exec(text || "");
   const raw = direct?.[1] || fallback?.[1];
   if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "AIAA result count node was not found", { probe: "Search Results (N)" });
@@ -134,7 +149,7 @@ async function readAiaaPage(page: any): Promise<{ visibleText: string; title: st
   let lastCount = -1;
   let stable: any;
   let lastError: unknown;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 6; i++) {
     try {
       const visibleText = await page.locator("body").innerText({ timeout: 10000 });
       const title = await page.title().catch(() => "");
@@ -145,7 +160,7 @@ async function readAiaaPage(page: any): Promise<{ visibleText: string; title: st
       if (resultCount === lastCount) break;
       lastCount = resultCount;
     } catch (error) { lastError = error; }
-    await sleep(3000);
+    await sleep(4000);
   }
   if (!stable) {
     if (lastError instanceof WebAiToolError) throw lastError;
@@ -193,6 +208,42 @@ async function withAllocatedAiaaPage<T>(profile: string, url: string, tabId: str
   }
 }
 
+async function fetchAiaaCitationViaForm(page: any, format: AiaaExportFormat): Promise<{ body: Buffer; filename?: string }> {
+  const result = await page.evaluate(async (requestedFormat: string) => {
+    const form = document.forms.namedItem("frmCitmgr") || document.querySelector('form[action*="downloadCitation"]') as HTMLFormElement | null;
+    if (!form) return { ok: false, status: 0, statusText: "form not found", body: [], headers: {} as Record<string, string> };
+    const params = new URLSearchParams();
+    for (const el of Array.from((form as HTMLFormElement).elements) as any[]) {
+      if (!el?.name) continue;
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) continue;
+      params.append(el.name, el.value || "");
+    }
+    params.set("format", requestedFormat);
+    params.set("submit", (form.querySelector('input[name="submit"]') as HTMLInputElement | null)?.value || "Download article citation data");
+    const response = await fetch((form as HTMLFormElement).action, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString()
+    });
+    const buffer = Array.from(new Uint8Array(await response.arrayBuffer()));
+    return {
+      ok: response.ok,
+      status: response.status,
+      statusText: response.statusText,
+      body: buffer,
+      headers: {
+        "content-disposition": response.headers.get("content-disposition") || "",
+        "content-type": response.headers.get("content-type") || ""
+      }
+    };
+  }, format);
+  if (!result?.ok) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "AIAA citation download returned a non-OK status", { status: result?.status, statusText: result?.statusText });
+  }
+  return { body: Buffer.from(result.body || []), filename: result.headers?.["content-disposition"] };
+}
+
 export async function researchAiaaSearch(args: AiaaSearchArgs): Promise<{ result_count: number; items: AiaaItem[]; query_url: string }> {
   const query_url = buildAiaaSearchUrl(args);
   const profile = args.profile || "research-aiaa";
@@ -231,17 +282,10 @@ export async function researchAiaaExport(args: AiaaExportArgs): Promise<{ artifa
       const directChecked = await page.locator("#direct").isChecked().catch(() => false);
       if (directChecked) await page.locator("#direct").click({ timeout: 3000 }).catch(() => undefined);
       await page.locator(radio).click({ timeout: 10000 });
-      const clicked = await runArtifactClick({
-        profile,
-        tabUrlContains: encodeURIComponent(doi),
-        buttonSelector: 'input[name="submit"]',
-        downloadDir,
-        timeoutMs: 60000,
-        locateTimeoutMs: 10000,
-        frameMinCount: 0,
-        filenamePattern: format === "ris" ? "*.ris" : undefined
-      });
-      const artifact_path = clicked.path;
+      const fetched = await fetchAiaaCitationViaForm(page, format);
+      const suggested = filenameFromContentDisposition(fetched.filename, `aiaa-${safeFileToken(doi)}-${format}.${FORMAT_EXTENSIONS[format]}`);
+      const artifact_path = uniquePath(downloadDir, suggested || `aiaa-${safeFileToken(doi)}-${format}.${FORMAT_EXTENSIONS[format]}`);
+      fs.writeFileSync(artifact_path, fetched.body);
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "AIAA RIS artifact failed content validation", { artifact_path, doi });
