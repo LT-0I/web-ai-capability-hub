@@ -1,0 +1,230 @@
+{
+  "label": "tandf-search",
+  "started_at": "2026-05-27T07:53:56.244Z",
+  "ended_at": "2026-05-27T07:54:24.245Z",
+  "command": "node dist/src/cli.js research:tandf:search --query \"climate change\" --page-size 10 --profile research-tandf --cdp-port 9383 --json",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 702892,\n  \"items\": [\n    {\n      \"title\": \"Impacts du changement climatique sur les pluies intenses et les crues en Méditerranée\",\n      \"authors\": [\n        \"Open Access Yves Tramblay\",\n        \"Aurélien Ribes\",\n        \"Samuel Somot\",\n        \"Luc Neppel\",\n        \"Philippe Lucas-Picher\",\n        \"Freddy Vinet\",\n        \"Eric Sauquet\"\n      ],\n      \"doi\": \"10.1080/00186368.2021.1912971\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"LHB\"\n      ],\n      \"doi\": \"10.1080/00186368.2021.1912971\",\n      \"journal\": \"\",\n      \"year\": 2021\n    },\n    {\n      \"title\": \"Simulación hidrológica de los impactos potenciales del cambio climático en la cuenca hidrográfica del río Aipe, en Huila, Colombia\",\n      \"authors\": [\n        \"Open Access Jonathan Romero-Cuéllar\",\n        \"Andres Buitrago-Vargas\",\n        \"Tatiana Quintero-Ruiz\",\n        \"Félix Francés\"\n      ],\n      \"doi\": \"10.1080/23863781.2018.1454574\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Ribagua\"\n      ],\n      \"doi\": \"10.1080/23863781.2018.1454574\",\n      \"journal\": \"\",\n      \"year\": 2018\n    },\n    {\n      \"title\": \"Impact of climate change on Gironde estuary\",\n      \"authors\": [\n        \"Free Access Vanessya Laborie\",\n        \"François Hissel\",\n        \"Philippe Sergent\"\n      ],\n      \"doi\": \"10.1051/lhb/2014060\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"La Houille Blanche\"\n      ],\n      \"doi\": \"10.1051/lhb/2014060\",\n      \"journal\": \"\",\n      \"year\": 2014\n    },\n    {\n      \"title\": \"What is climate change education in Trump Country?\",\n      \"authors\": [\n        \"David Long\",\n        \"Joseph Henderson\",\n        \"Kevin Meuwissen\"\n      ],\n      \"doi\": \"10.1080/20590776.2021.2013713\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Educational\",\n        \"Developmental Psychologist\"\n      ],\n      \"doi\": \"10.1080/20590776.2021.2013713\",\n      \"journal\": \"\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"Youth’s knowledge and awareness of human contribution to climate change : the influence of social and cultural contexts within a developing country\",\n      \"authors\": [\n        \"Lungile Nongqayi\",\n        \"Ida Risenga\",\n        \"Shalini Dukhan\"\n      ],\n      \"doi\": \"10.1080/20590776.2022.2050461\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Educational\",\n        \"Developmental Psychologist\"\n      ],\n      \"doi\": \"10.1080/20590776.2022.2050461\",\n      \"journal\": \"\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"The moral side of the climate crisis: the effect of moral conviction on learning about climate change\",\n      \"authors\": [\n        \"Benjamin C. Heddy\",\n        \"Doug Lombardi\",\n        \"Robert W. Danielson\"\n      ],\n      \"doi\": \"10.1080/20590776.2021.2011203\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Educational\",\n        \"Developmental Psychologist\"\n      ],\n      \"doi\": \"10.1080/20590776.2021.2011203\",\n      \"journal\": \"\",\n      \"year\": 2022\n    },\n    {\n      \"title\": \"Estimating costs of adaptation to climate change\",\n      \"authors\": [\n        \"Urvashi Narain\",\n        \"Sergio Margulis\",\n        \"Timothy Essam\"\n      ],\n      \"doi\": \"10.1080/14693062.2011.582387\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Climate Policy\"\n      ],\n      \"doi\": \"10.1080/14693062.2011.582387\",\n      \"journal\": \"\",\n      \"year\": 2011\n    },\n    {\n      \"title\": \"Incorporating ‘catastrophic’ climate change into policy analysis\",\n      \"authors\": [\n        \"Elizabeth Kopits\",\n        \"Alex Marten\",\n        \"Ann Wolverton\"\n      ],\n      \"doi\": \"10.1080/14693062.2014.864947\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Climate Policy\"\n      ],\n      \"doi\": \"10.1080/14693062.2014.864947\",\n      \"journal\": \"\",\n      \"year\": 2014\n    },\n    {\n      \"title\": \"Another Climate Change Story: Looking Upstream\",\n      \"authors\": [\n        \"Merrill Singer\",\n        \"Hans A. Baer\"\n      ],\n      \"doi\": \"10.17730/0888-4552.42.2.4\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Practicing Anthropology\"\n      ],\n      \"doi\": \"10.17730/0888-4552.42.2.4\",\n      \"journal\": \"\",\n      \"year\": 2020\n    },\n    {\n      \"title\": \"Climate Change : New Dimensions of Environmental Security\",\n      \"authors\": [\n        \"Free Access Simon Dalby\"\n      ],\n      \"doi\": \"10.1080/03071847.2013.807583\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Download citations\",\n      \"authors\": [\n        \"The RUSI Journal\"\n      ],\n      \"doi\": \"10.1080/03071847.2013.807583\",\n      \"journal\": \"\",\n      \"year\": 2013\n    }\n  ],\n  \"query_url\": \"https://www.tandfonline.com/action/doSearch?AllField=climate+change&pageSize=10\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 702892,
+    "items": [
+      {
+        "title": "Impacts du changement climatique sur les pluies intenses et les crues en Méditerranée",
+        "authors": [
+          "Open Access Yves Tramblay",
+          "Aurélien Ribes",
+          "Samuel Somot",
+          "Luc Neppel",
+          "Philippe Lucas-Picher",
+          "Freddy Vinet",
+          "Eric Sauquet"
+        ],
+        "doi": "10.1080/00186368.2021.1912971",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "LHB"
+        ],
+        "doi": "10.1080/00186368.2021.1912971",
+        "journal": "",
+        "year": 2021
+      },
+      {
+        "title": "Simulación hidrológica de los impactos potenciales del cambio climático en la cuenca hidrográfica del río Aipe, en Huila, Colombia",
+        "authors": [
+          "Open Access Jonathan Romero-Cuéllar",
+          "Andres Buitrago-Vargas",
+          "Tatiana Quintero-Ruiz",
+          "Félix Francés"
+        ],
+        "doi": "10.1080/23863781.2018.1454574",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Ribagua"
+        ],
+        "doi": "10.1080/23863781.2018.1454574",
+        "journal": "",
+        "year": 2018
+      },
+      {
+        "title": "Impact of climate change on Gironde estuary",
+        "authors": [
+          "Free Access Vanessya Laborie",
+          "François Hissel",
+          "Philippe Sergent"
+        ],
+        "doi": "10.1051/lhb/2014060",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "La Houille Blanche"
+        ],
+        "doi": "10.1051/lhb/2014060",
+        "journal": "",
+        "year": 2014
+      },
+      {
+        "title": "What is climate change education in Trump Country?",
+        "authors": [
+          "David Long",
+          "Joseph Henderson",
+          "Kevin Meuwissen"
+        ],
+        "doi": "10.1080/20590776.2021.2013713",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Educational",
+          "Developmental Psychologist"
+        ],
+        "doi": "10.1080/20590776.2021.2013713",
+        "journal": "",
+        "year": 2022
+      },
+      {
+        "title": "Youth’s knowledge and awareness of human contribution to climate change : the influence of social and cultural contexts within a developing country",
+        "authors": [
+          "Lungile Nongqayi",
+          "Ida Risenga",
+          "Shalini Dukhan"
+        ],
+        "doi": "10.1080/20590776.2022.2050461",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Educational",
+          "Developmental Psychologist"
+        ],
+        "doi": "10.1080/20590776.2022.2050461",
+        "journal": "",
+        "year": 2022
+      },
+      {
+        "title": "The moral side of the climate crisis: the effect of moral conviction on learning about climate change",
+        "authors": [
+          "Benjamin C. Heddy",
+          "Doug Lombardi",
+          "Robert W. Danielson"
+        ],
+        "doi": "10.1080/20590776.2021.2011203",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Educational",
+          "Developmental Psychologist"
+        ],
+        "doi": "10.1080/20590776.2021.2011203",
+        "journal": "",
+        "year": 2022
+      },
+      {
+        "title": "Estimating costs of adaptation to climate change",
+        "authors": [
+          "Urvashi Narain",
+          "Sergio Margulis",
+          "Timothy Essam"
+        ],
+        "doi": "10.1080/14693062.2011.582387",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Climate Policy"
+        ],
+        "doi": "10.1080/14693062.2011.582387",
+        "journal": "",
+        "year": 2011
+      },
+      {
+        "title": "Incorporating ‘catastrophic’ climate change into policy analysis",
+        "authors": [
+          "Elizabeth Kopits",
+          "Alex Marten",
+          "Ann Wolverton"
+        ],
+        "doi": "10.1080/14693062.2014.864947",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Climate Policy"
+        ],
+        "doi": "10.1080/14693062.2014.864947",
+        "journal": "",
+        "year": 2014
+      },
+      {
+        "title": "Another Climate Change Story: Looking Upstream",
+        "authors": [
+          "Merrill Singer",
+          "Hans A. Baer"
+        ],
+        "doi": "10.17730/0888-4552.42.2.4",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Practicing Anthropology"
+        ],
+        "doi": "10.17730/0888-4552.42.2.4",
+        "journal": "",
+        "year": 2020
+      },
+      {
+        "title": "Climate Change : New Dimensions of Environmental Security",
+        "authors": [
+          "Free Access Simon Dalby"
+        ],
+        "doi": "10.1080/03071847.2013.807583",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Download citations",
+        "authors": [
+          "The RUSI Journal"
+        ],
+        "doi": "10.1080/03071847.2013.807583",
+        "journal": "",
+        "year": 2013
+      }
+    ],
+    "query_url": "https://www.tandfonline.com/action/doSearch?AllField=climate+change&pageSize=10"
+  },
+  "classification": "PASS"
+}

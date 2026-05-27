@@ -1,0 +1,52 @@
+{
+  "label": "springer-launch",
+  "attempt": "resmoke-after-infra-race",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "started_at": "2026-05-27T07:52:32.445Z",
+  "ended_at": "2026-05-27T07:52:32.614Z",
+  "command": "node dist/src/cli.js browser:launch --profile research-springer --cdp-port 9382 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"profile\": \"research-springer\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"data/browser-profiles/research-springer\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9382\",\n  \"cdpPort\": 9382,\n  \"connected\": true,\n  \"launchedByPackage\": false,\n  \"processId\": 518811,\n  \"pages\": [\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9382/devtools/page/3DD46C04736EE44A5F8B6B0D2706F393\",\n      \"id\": \"3DD46C04736EE44A5F8B6B0D2706F393\",\n      \"title\": \"新标签页\",\n      \"type\": \"page\",\n      \"url\": \"chrome://newtab/\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9382/devtools/page/3DD46C04736EE44A5F8B6B0D2706F393\"\n    },\n    {\n      \"description\": \"\",\n      \"devtoolsFrontendUrl\": \"https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9382/devtools/page/6960BA0CAAC2B48555F3B9391A3965D5\",\n      \"id\": \"6960BA0CAAC2B48555F3B9391A3965D5\",\n      \"parentId\": \"3DD46C04736EE44A5F8B6B0D2706F393\",\n      \"title\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"type\": \"iframe\",\n      \"url\": \"chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=\",\n      \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9382/devtools/page/6960BA0CAAC2B48555F3B9391A3965D5\"\n    }\n  ],\n  \"browser\": \"Chrome/148.0.7778.167\",\n  \"webSocketDebuggerUrl\": \"ws://127.0.0.1:9382/devtools/browser/873bcec5-de21-4c3a-af14-d83e46241a49\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "profile": "research-springer",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "data/browser-profiles/research-springer",
+    "cdpEndpoint": "http://127.0.0.1:9382",
+    "cdpPort": 9382,
+    "connected": true,
+    "launchedByPackage": false,
+    "processId": 518811,
+    "pages": [
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9382/devtools/page/3DD46C04736EE44A5F8B6B0D2706F393",
+        "id": "3DD46C04736EE44A5F8B6B0D2706F393",
+        "title": "新标签页",
+        "type": "page",
+        "url": "chrome://newtab/",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9382/devtools/page/3DD46C04736EE44A5F8B6B0D2706F393"
+      },
+      {
+        "description": "",
+        "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9382/devtools/page/6960BA0CAAC2B48555F3B9391A3965D5",
+        "id": "6960BA0CAAC2B48555F3B9391A3965D5",
+        "parentId": "3DD46C04736EE44A5F8B6B0D2706F393",
+        "title": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+        "type": "iframe",
+        "url": "chrome-untrusted://new-tab-page/one-google-bar?paramsencoded=",
+        "webSocketDebuggerUrl": "ws://127.0.0.1:9382/devtools/page/6960BA0CAAC2B48555F3B9391A3965D5"
+      }
+    ],
+    "browser": "Chrome/148.0.7778.167",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:9382/devtools/browser/873bcec5-de21-4c3a-af14-d83e46241a49"
+  }
+}

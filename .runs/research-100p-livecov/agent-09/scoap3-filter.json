@@ -1,0 +1,56 @@
+{
+  "label": "scoap3-filter",
+  "started_at": "2026-05-27T07:44:31.218Z",
+  "ended_at": "2026-05-27T07:45:02.921Z",
+  "command": "node dist/src/cli.js research:scoap3:filter --query Higgs --publication-year-gte 2012 --publication-year-lte 2014 --size 10 --profile research-scoap3 --cdp-port 9380 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 313,\n  \"items\": [\n    {\n      \"id\": \"12908\",\n      \"title\": \"J. Cosm. and Astroparticle P. 654 J. High Energy Phys.\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/12908\"\n    },\n    {\n      \"id\": \"29541\",\n      \"title\": \"New Journal of Physics 25 Nuclear Physics B 4155 Physical Review C 774 Physical Review D\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/29541\"\n    },\n    {\n      \"id\": \"19293\",\n      \"title\": \"Physical Review Letters 2500 Physics Letters B\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/19293\"\n    },\n    {\n      \"id\": \"10360\",\n      \"title\": \"Prog. of Theor. and Exp. Phys. 1083 pub year < 2014-12-31 pub year > 2012-01-01 Reset search Found 313 results. 1 2 3 4 5 ••• 32 Sort by Most recent 1 2 3 4 5 ••• 32 SCOAP3 website | About the repository | Search help Articles in the SCOAP3 repository are rele\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"2014-12-31\",\n      \"url\": \"https://repo.scoap3.org/records/10360\"\n    }\n  ],\n  \"refined_url\": \"https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10&publication_year__gte=2012-01-01&publication_year__lte=2014-12-31\",\n  \"confirm_url\": \"https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10&publication_year__gte=2012-01-01&publication_year__lte=2014-12-31\",\n  \"export_href\": \"\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 313,
+    "items": [
+      {
+        "id": "12908",
+        "title": "J. Cosm. and Astroparticle P. 654 J. High Energy Phys.",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/12908"
+      },
+      {
+        "id": "29541",
+        "title": "New Journal of Physics 25 Nuclear Physics B 4155 Physical Review C 774 Physical Review D",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/29541"
+      },
+      {
+        "id": "19293",
+        "title": "Physical Review Letters 2500 Physics Letters B",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/19293"
+      },
+      {
+        "id": "10360",
+        "title": "Prog. of Theor. and Exp. Phys. 1083 pub year < 2014-12-31 pub year > 2012-01-01 Reset search Found 313 results. 1 2 3 4 5 ••• 32 Sort by Most recent 1 2 3 4 5 ••• 32 SCOAP3 website | About the repository | Search help Articles in the SCOAP3 repository are rele",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "2014-12-31",
+        "url": "https://repo.scoap3.org/records/10360"
+      }
+    ],
+    "refined_url": "https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10&publication_year__gte=2012-01-01&publication_year__lte=2014-12-31",
+    "confirm_url": "https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10&publication_year__gte=2012-01-01&publication_year__lte=2014-12-31",
+    "export_href": ""
+  },
+  "classification": "PASS"
+}

@@ -1,0 +1,109 @@
+{
+  "label": "siam-search",
+  "attempt": "after-fix-2",
+  "started_at": "2026-05-27T07:50:16.162Z",
+  "ended_at": "2026-05-27T07:50:30.855Z",
+  "command": "node dist/src/cli.js research:siam:search --query matrix --page-size 10 --profile research-siam --cdp-port 9381 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 46769,\n  \"items\": [\n    {\n      \"title\": \"Matrix Methods in Data Mining and Pattern Recognition\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9780898718867\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Desingularization of Bounded-Rank Matrix Sets\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/16M1108194\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Chapter 2: Matrix Decompositions\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976632.ch2\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Implementing High-Performance Complex Matrix Multiplication via the 1M Method\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/19M1282040\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Analysis of Projection Methods for Rational Function Approximation to the Matrix Exponential\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/05062590\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Rational Krylov: A Practical Algorithm for Large Sparse Nonsymmetric Matrix Pencils\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/S1064827595285597\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Matrix Algorithms\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9780898718058\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Nineteen Dubious Ways to Compute the Exponential of a Matrix , Twenty-Five Years Later\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/S00361445024180\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Part I Monic Matrix Polynomials\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9780898719024.pt1\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"4. Matrix Decompositions\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9780898718164.ch4\",\n      \"journal\": \"\",\n      \"year\": null\n    }\n  ],\n  \"query_url\": \"https://epubs.siam.org/action/doSearch?field1=AllField&text1=matrix&pageSize=10\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 46769,
+    "items": [
+      {
+        "title": "Matrix Methods in Data Mining and Pattern Recognition",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9780898718867",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Desingularization of Bounded-Rank Matrix Sets",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/16M1108194",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Chapter 2: Matrix Decompositions",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976632.ch2",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Implementing High-Performance Complex Matrix Multiplication via the 1M Method",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/19M1282040",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Analysis of Projection Methods for Rational Function Approximation to the Matrix Exponential",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/05062590",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Rational Krylov: A Practical Algorithm for Large Sparse Nonsymmetric Matrix Pencils",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/S1064827595285597",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Matrix Algorithms",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9780898718058",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Nineteen Dubious Ways to Compute the Exponential of a Matrix , Twenty-Five Years Later",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/S00361445024180",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Part I Monic Matrix Polynomials",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9780898719024.pt1",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "4. Matrix Decompositions",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9780898718164.ch4",
+        "journal": "",
+        "year": null
+      }
+    ],
+    "query_url": "https://epubs.siam.org/action/doSearch?field1=AllField&text1=matrix&pageSize=10"
+  },
+  "classification": "PASS"
+}

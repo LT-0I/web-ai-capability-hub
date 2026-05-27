@@ -1,0 +1,308 @@
+{
+  "label": "springer-filter",
+  "attempt": "resmoke-after-infra-race",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "started_at": "2026-05-27T07:52:51.137Z",
+  "ended_at": "2026-05-27T07:52:54.975Z",
+  "command": "node dist/src/cli.js research:springer:filter --query \"machine learning\" --content-type Article --open-access true --language En --page 1 --profile research-springer --cdp-port 9382 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 145429,\n  \"items\": [\n    {\n      \"title\": \"When physics meets machine learning: a survey of physics-informed machine learning\",\n      \"authors\": [\n        \"med machine learning Physics-informed machine learning (PIML)\",\n        \"the combination of prior physics knowledge with data-driven machine learning models\",\n        \"has emerged as an... Chuizheng Meng\",\n        \"Sam Griesemer\",\n        \"... Yan Liu in Machine Learning for Computational Science\",\n        \"Engineering 07 May 2025\"\n      ],\n      \"doi\": \"10.1007/s44379-025-00016-0\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s44379-025-00016-0\"\n    },\n    {\n      \"title\": \"Scientific machine learning\",\n      \"authors\": [\n        \"fic machine learning Scientific Machine Learning (SciML) is an emerging interdisciplinary field that integrates the strengths of scientific computing\",\n        \"machine learning... Felix Dietrich\",\n        \"Wil Schilders in Mathematische Semesterberichte 05 September 2025\"\n      ],\n      \"doi\": \"10.1007/s00591-025-00399-4\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s00591-025-00399-4\"\n    },\n    {\n      \"title\": \"Minimal learning machine for multi-label learning\",\n      \"authors\": [\n        \"multi-label learning Distance-based supervised method\",\n        \"the minimal learning machine\",\n        \"constructs a predictive model from data by learning a mapping between input and... Joonas Hämäläinen\",\n        \"Antoine Hubermont\",\n        \"... Tommi Kärkkäinen in Machine Learning 25 November 2025\"\n      ],\n      \"doi\": \"10.1007/s10994-025-06923-w\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s10994-025-06923-w\"\n    },\n    {\n      \"title\": \"Automated machine learning for positive-unlabelled learning\",\n      \"authors\": [\n        \"-unlabelled learning Positive-Unlabelled (PU) learning is a field of machine learning that aims to learn classifiers from data consisting of labelled positive and... Jack D. Saunders\",\n        \"Alex A. Freitas in Applied Intelligence 16 July 2025\"\n      ],\n      \"doi\": \"10.1007/s10489-025-06706-9\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s10489-025-06706-9\"\n    },\n    {\n      \"title\": \"Encrypted network traffic analysis using quantum machine learning\",\n      \"authors\": [\n        \"tum machine learning There is an exponential growth in the encrypted network traffic due to the increased privacy concerns\",\n        \"secure communication needs. This growth has... Gokul Sunil Sodar\",\n        \"Akshay Murthy\",\n        \"... Aswani Kumar Cherukuri in EPJ Quantum Technology 20 January 2026\"\n      ],\n      \"doi\": \"10.1140/epjqt/s40507-025-00459-7\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1140/epjqt/s40507-025-00459-7\"\n    },\n    {\n      \"title\": \"Enhancing breast cancer detection accuracy through machine learning, deep learning and transfer learning techniques for clinical practice\",\n      \"authors\": [\n        \"or clinical practice Breast cancer is a pervasive global health concern\",\n        \"impacting millions of women worldwide. Timely detection\",\n        \"precise diagnosis are pivotal factors... Jothi Ganesan\",\n        \"Vaanpriya Krishnan\",\n        \"... Kalandar Ameer in Discover Artificial Intelligence 11 December 2025\"\n      ],\n      \"doi\": \"10.1007/s44163-025-00649-3\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s44163-025-00649-3\"\n    },\n    {\n      \"title\": \"Hybrid ensemble framework for cancer classification: integrating machine learning and deep learning with explainable AI insights\",\n      \"authors\": [\n        \"lainable AI insights Cancer classification is one of the important fields of study that plays a critical role in determining accurate diagnosis\",\n        \"effective treatment... Merve Ceyhan\",\n        \"Uğur Gürel in Neural Computing\",\n        \"Applications 10 April 2026\"\n      ],\n      \"doi\": \"10.1007/s00521-026-12023-0\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1007/s00521-026-12023-0\"\n    },\n    {\n      \"title\": \"Applications of machine learning and deep learning in hydrology from a bibliometric perspective: a comprehensive review\",\n      \"authors\": [\n        \"comprehensive review Hydrology faces significant challenges\",\n        \"including water resource prediction\",\n        \"natural disaster mitigation. Consequently\",\n        \"integrating machine... Ying Nie\",\n        \"Kok Hwa Yu\",\n        \"... PeiSen Liu in Discover Artificial Intelligence 29 September 2025\"\n      ],\n      \"doi\": \"10.1007/s44163-025-00471-x\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s44163-025-00471-x\"\n    },\n    {\n      \"title\": \"Machine learning based learning user behavior classification and recognition algorithm under multimodal data\",\n      \"authors\": [\n        \"nder multimodal data In multimodal learning\",\n        \"user behavior data has heterogeneity\",\n        \"semantic gaps in semantic representation\",\n        \"which makes it difficult to accurately... Lei Ma\",\n        \"Wei Han\",\n        \"Jingyu Li in Discover Artificial Intelligence 26 November 2025\"\n      ],\n      \"doi\": \"10.1007/s44163-025-00644-8\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1007/s44163-025-00644-8\"\n    },\n    {\n      \"title\": \"Causal Machine Learning: A Deductive–Inductive Framework for Sociological Research\",\n      \"authors\": [\n        \"ociological Research Causal explanation is central to sociological research\",\n        \"shaping both theoretical development\",\n        \"empirical inquiry. This paper argues that causal... Nanum Jeon\",\n        \"Jennie E. Brand in KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 19 February 2026\"\n      ],\n      \"doi\": \"10.1007/s11577-026-01053-0\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1007/s11577-026-01053-0\"\n    },\n    {\n      \"title\": \"Comparing non-machine learning vs. machine learning methods for Ki67 scoring in gastrointestinal neuroendocrine tumors\",\n      \"authors\": [\n        \"euroendocrine tumors The Ki67 score is a crucial prognostic biomarker for neuroendocrine tumors\",\n        \"but its manual assessment is labor-intensive\",\n        \"requiring the counting of... Nazanin Mola\",\n        \"Hrafn Weishaupt\",\n        \"... Sabine Leh in Scientific Reports 29 July 2025\"\n      ],\n      \"doi\": \"10.1038/s41598-025-08778-6\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1038/s41598-025-08778-6\"\n    },\n    {\n      \"title\": \"Automated Machine Learning for Unsupervised Tabular Tasks\",\n      \"authors\": [\n        \"rvised Tabular Tasks In this work\",\n        \"we present Learning to Learn with Optimal Transport for Unsupervised Scenarios (LOTUS)\",\n        \"a simple yet effective method to perform model... Prabhant Singh\",\n        \"Pieter Gijsbers\",\n        \"... Joaquin Vanschoren in Machine Learning 24 February 2026\"\n      ],\n      \"doi\": \"10.1007/s10994-025-06984-x\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1007/s10994-025-06984-x\"\n    },\n    {\n      \"title\": \"Rewiring climate modeling with machine learning emulators\",\n      \"authors\": [\n        \"e learning emulators Earth system models\",\n        \"or simulators\",\n        \"are foundational for projecting climate change impacts\",\n        \"but their computational expense limits the number and... Peter Van Katwyk\",\n        \"Baylor Fox-Kemper\",\n        \"... Karianne J. Bergen in Communications Earth & Environment 30 January 2026\"\n      ],\n      \"doi\": \"10.1038/s43247-026-03238-z\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1038/s43247-026-03238-z\"\n    },\n    {\n      \"title\": \"Applications of machine learning and deep learning in musculoskeletal medicine: a narrative review\",\n      \"authors\": [\n        \": a narrative review Artificial intelligence (AI)\",\n        \"with its technologies such as machine perception\",\n        \"robotics\",\n        \"natural language processing\",\n        \"expert systems\",\n        \"machine... Martina Feierabend\",\n        \"Julius Michael Wolfgart\",\n        \"... Ulf Krister Hofmann in European\"\n      ],\n      \"doi\": \"10.1186/s40001-025-02511-9\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1186/s40001-025-02511-9\"\n    },\n    {\n      \"title\": \"Sepsis mortality prediction using machine learning and deep learning - a systematic review\",\n      \"authors\": [\n        \"a systematic review Sepsis\",\n        \"a critical infection-induced inflammatory condition\",\n        \"poses substantial global health challenges\",\n        \"demanding timely detection for effective... Mohannad N. AbuHaweeleh\",\n        \"Adiba Tabassum Chowdhury\",\n        \"... Shona Pedersen in BMC Medical Informatics\",\n        \"Decision Making 10 December 2025\"\n      ],\n      \"doi\": \"10.1186/s12911-025-03286-z\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1186/s12911-025-03286-z\"\n    },\n    {\n      \"title\": \"MLOmics: Cancer Multi-Omics Database for Machine Learning\",\n      \"authors\": [\n        \"for Machine Learning Framing the investigation of diverse cancers as a machine learning problem has recently shown significant potential in multi-omics analysis and... Ziwei Yang\",\n        \"Rikuto Kotoge\",\n        \"... Jimeng Sun in Scientific Data 30 May 2025\"\n      ],\n      \"doi\": \"10.1038/s41597-025-05235-x\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1038/s41597-025-05235-x\"\n    },\n    {\n      \"title\": \"Machine learning in thermal spraying: applications, challenges, and future perspectives\",\n      \"authors\": [\n        \"future perspectives Thermal spraying is a mature surface treatment technology with broad applications in aerospace\",\n        \"energy equipment\",\n        \"related fields. The thermal... Han Gao\",\n        \"Xudong Nie\",\n        \"... Chao Zhang in Surface Science\",\n        \"Technology 26 March 2026\"\n      ],\n      \"doi\": \"10.1007/s44251-025-00113-5\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1007/s44251-025-00113-5\"\n    },\n    {\n      \"title\": \"Characterizing privacy in quantum machine learning\",\n      \"authors\": [\n        \"tum machine learning Ensuring data privacy in machine learning models is critical\",\n        \"especially in distributed settings where model gradients are shared among multiple... Jamie Heredge\",\n        \"Niraj Kumar\",\n        \"... Marco Pistoia in npj Quantum Information 19 May 2025\"\n      ],\n      \"doi\": \"10.1038/s41534-025-01022-z\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1038/s41534-025-01022-z\"\n    },\n    {\n      \"title\": \"Machine learning-driven advancements in next-generation cognitive radar systems\",\n      \"authors\": [\n        \"nitive radar systems Cognitive radar systems are an important tool in defense systems\",\n        \"autonomous vehicles because they are able to adapt to changing conditions and... Venkataramana Guntreddi\",\n        \"Dileep Kumar Murala\",\n        \"... Vasupalli Manoj in Discover Applied Sciences 05 March 2026\"\n      ],\n      \"doi\": \"10.1007/s42452-026-08505-4\",\n      \"publication\": \"\",\n      \"year\": 2026,\n      \"url\": \"https://link.springer.com/article/10.1007/s42452-026-08505-4\"\n    },\n    {\n      \"title\": \"A review of machine learning applications in heart health\",\n      \"authors\": [\n        \"ions in heart health The application of machine learning in healthcare continues to gain attention as researchers attempt to prove its potential for the enhancement of... Ava Perrone\",\n        \"Taghi M. Khoshgoftaar in BioMedical Engineering OnLine 11 August 2025\"\n      ],\n      \"doi\": \"10.1186/s12938-025-01430-4\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"url\": \"https://link.springer.com/article/10.1186/s12938-025-01430-4\"\n    }\n  ],\n  \"refined_url\": \"https://link.springer.com/search?query=machine+learning&page=1&content-type=Article&openAccess=true&language=En\",\n  \"confirm_url\": \"https://link.springer.com/search?query=machine+learning&page=1&content-type=Article&openAccess=true&language=En\",\n  \"confirm_title\": \"Search research articles and books | Springer Nature Link\",\n  \"applied_filters\": [\n    \"Remove filter\\nArticle\",\n    \"Remove filter\\nEnglish\",\n    \"Remove filter\\nOpen access\"\n  ]\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 145429,
+    "items": [
+      {
+        "title": "When physics meets machine learning: a survey of physics-informed machine learning",
+        "authors": [
+          "med machine learning Physics-informed machine learning (PIML)",
+          "the combination of prior physics knowledge with data-driven machine learning models",
+          "has emerged as an... Chuizheng Meng",
+          "Sam Griesemer",
+          "... Yan Liu in Machine Learning for Computational Science",
+          "Engineering 07 May 2025"
+        ],
+        "doi": "10.1007/s44379-025-00016-0",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s44379-025-00016-0"
+      },
+      {
+        "title": "Scientific machine learning",
+        "authors": [
+          "fic machine learning Scientific Machine Learning (SciML) is an emerging interdisciplinary field that integrates the strengths of scientific computing",
+          "machine learning... Felix Dietrich",
+          "Wil Schilders in Mathematische Semesterberichte 05 September 2025"
+        ],
+        "doi": "10.1007/s00591-025-00399-4",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s00591-025-00399-4"
+      },
+      {
+        "title": "Minimal learning machine for multi-label learning",
+        "authors": [
+          "multi-label learning Distance-based supervised method",
+          "the minimal learning machine",
+          "constructs a predictive model from data by learning a mapping between input and... Joonas Hämäläinen",
+          "Antoine Hubermont",
+          "... Tommi Kärkkäinen in Machine Learning 25 November 2025"
+        ],
+        "doi": "10.1007/s10994-025-06923-w",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s10994-025-06923-w"
+      },
+      {
+        "title": "Automated machine learning for positive-unlabelled learning",
+        "authors": [
+          "-unlabelled learning Positive-Unlabelled (PU) learning is a field of machine learning that aims to learn classifiers from data consisting of labelled positive and... Jack D. Saunders",
+          "Alex A. Freitas in Applied Intelligence 16 July 2025"
+        ],
+        "doi": "10.1007/s10489-025-06706-9",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s10489-025-06706-9"
+      },
+      {
+        "title": "Encrypted network traffic analysis using quantum machine learning",
+        "authors": [
+          "tum machine learning There is an exponential growth in the encrypted network traffic due to the increased privacy concerns",
+          "secure communication needs. This growth has... Gokul Sunil Sodar",
+          "Akshay Murthy",
+          "... Aswani Kumar Cherukuri in EPJ Quantum Technology 20 January 2026"
+        ],
+        "doi": "10.1140/epjqt/s40507-025-00459-7",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1140/epjqt/s40507-025-00459-7"
+      },
+      {
+        "title": "Enhancing breast cancer detection accuracy through machine learning, deep learning and transfer learning techniques for clinical practice",
+        "authors": [
+          "or clinical practice Breast cancer is a pervasive global health concern",
+          "impacting millions of women worldwide. Timely detection",
+          "precise diagnosis are pivotal factors... Jothi Ganesan",
+          "Vaanpriya Krishnan",
+          "... Kalandar Ameer in Discover Artificial Intelligence 11 December 2025"
+        ],
+        "doi": "10.1007/s44163-025-00649-3",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s44163-025-00649-3"
+      },
+      {
+        "title": "Hybrid ensemble framework for cancer classification: integrating machine learning and deep learning with explainable AI insights",
+        "authors": [
+          "lainable AI insights Cancer classification is one of the important fields of study that plays a critical role in determining accurate diagnosis",
+          "effective treatment... Merve Ceyhan",
+          "Uğur Gürel in Neural Computing",
+          "Applications 10 April 2026"
+        ],
+        "doi": "10.1007/s00521-026-12023-0",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1007/s00521-026-12023-0"
+      },
+      {
+        "title": "Applications of machine learning and deep learning in hydrology from a bibliometric perspective: a comprehensive review",
+        "authors": [
+          "comprehensive review Hydrology faces significant challenges",
+          "including water resource prediction",
+          "natural disaster mitigation. Consequently",
+          "integrating machine... Ying Nie",
+          "Kok Hwa Yu",
+          "... PeiSen Liu in Discover Artificial Intelligence 29 September 2025"
+        ],
+        "doi": "10.1007/s44163-025-00471-x",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s44163-025-00471-x"
+      },
+      {
+        "title": "Machine learning based learning user behavior classification and recognition algorithm under multimodal data",
+        "authors": [
+          "nder multimodal data In multimodal learning",
+          "user behavior data has heterogeneity",
+          "semantic gaps in semantic representation",
+          "which makes it difficult to accurately... Lei Ma",
+          "Wei Han",
+          "Jingyu Li in Discover Artificial Intelligence 26 November 2025"
+        ],
+        "doi": "10.1007/s44163-025-00644-8",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1007/s44163-025-00644-8"
+      },
+      {
+        "title": "Causal Machine Learning: A Deductive–Inductive Framework for Sociological Research",
+        "authors": [
+          "ociological Research Causal explanation is central to sociological research",
+          "shaping both theoretical development",
+          "empirical inquiry. This paper argues that causal... Nanum Jeon",
+          "Jennie E. Brand in KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 19 February 2026"
+        ],
+        "doi": "10.1007/s11577-026-01053-0",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1007/s11577-026-01053-0"
+      },
+      {
+        "title": "Comparing non-machine learning vs. machine learning methods for Ki67 scoring in gastrointestinal neuroendocrine tumors",
+        "authors": [
+          "euroendocrine tumors The Ki67 score is a crucial prognostic biomarker for neuroendocrine tumors",
+          "but its manual assessment is labor-intensive",
+          "requiring the counting of... Nazanin Mola",
+          "Hrafn Weishaupt",
+          "... Sabine Leh in Scientific Reports 29 July 2025"
+        ],
+        "doi": "10.1038/s41598-025-08778-6",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1038/s41598-025-08778-6"
+      },
+      {
+        "title": "Automated Machine Learning for Unsupervised Tabular Tasks",
+        "authors": [
+          "rvised Tabular Tasks In this work",
+          "we present Learning to Learn with Optimal Transport for Unsupervised Scenarios (LOTUS)",
+          "a simple yet effective method to perform model... Prabhant Singh",
+          "Pieter Gijsbers",
+          "... Joaquin Vanschoren in Machine Learning 24 February 2026"
+        ],
+        "doi": "10.1007/s10994-025-06984-x",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1007/s10994-025-06984-x"
+      },
+      {
+        "title": "Rewiring climate modeling with machine learning emulators",
+        "authors": [
+          "e learning emulators Earth system models",
+          "or simulators",
+          "are foundational for projecting climate change impacts",
+          "but their computational expense limits the number and... Peter Van Katwyk",
+          "Baylor Fox-Kemper",
+          "... Karianne J. Bergen in Communications Earth & Environment 30 January 2026"
+        ],
+        "doi": "10.1038/s43247-026-03238-z",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1038/s43247-026-03238-z"
+      },
+      {
+        "title": "Applications of machine learning and deep learning in musculoskeletal medicine: a narrative review",
+        "authors": [
+          ": a narrative review Artificial intelligence (AI)",
+          "with its technologies such as machine perception",
+          "robotics",
+          "natural language processing",
+          "expert systems",
+          "machine... Martina Feierabend",
+          "Julius Michael Wolfgart",
+          "... Ulf Krister Hofmann in European"
+        ],
+        "doi": "10.1186/s40001-025-02511-9",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1186/s40001-025-02511-9"
+      },
+      {
+        "title": "Sepsis mortality prediction using machine learning and deep learning - a systematic review",
+        "authors": [
+          "a systematic review Sepsis",
+          "a critical infection-induced inflammatory condition",
+          "poses substantial global health challenges",
+          "demanding timely detection for effective... Mohannad N. AbuHaweeleh",
+          "Adiba Tabassum Chowdhury",
+          "... Shona Pedersen in BMC Medical Informatics",
+          "Decision Making 10 December 2025"
+        ],
+        "doi": "10.1186/s12911-025-03286-z",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1186/s12911-025-03286-z"
+      },
+      {
+        "title": "MLOmics: Cancer Multi-Omics Database for Machine Learning",
+        "authors": [
+          "for Machine Learning Framing the investigation of diverse cancers as a machine learning problem has recently shown significant potential in multi-omics analysis and... Ziwei Yang",
+          "Rikuto Kotoge",
+          "... Jimeng Sun in Scientific Data 30 May 2025"
+        ],
+        "doi": "10.1038/s41597-025-05235-x",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1038/s41597-025-05235-x"
+      },
+      {
+        "title": "Machine learning in thermal spraying: applications, challenges, and future perspectives",
+        "authors": [
+          "future perspectives Thermal spraying is a mature surface treatment technology with broad applications in aerospace",
+          "energy equipment",
+          "related fields. The thermal... Han Gao",
+          "Xudong Nie",
+          "... Chao Zhang in Surface Science",
+          "Technology 26 March 2026"
+        ],
+        "doi": "10.1007/s44251-025-00113-5",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1007/s44251-025-00113-5"
+      },
+      {
+        "title": "Characterizing privacy in quantum machine learning",
+        "authors": [
+          "tum machine learning Ensuring data privacy in machine learning models is critical",
+          "especially in distributed settings where model gradients are shared among multiple... Jamie Heredge",
+          "Niraj Kumar",
+          "... Marco Pistoia in npj Quantum Information 19 May 2025"
+        ],
+        "doi": "10.1038/s41534-025-01022-z",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1038/s41534-025-01022-z"
+      },
+      {
+        "title": "Machine learning-driven advancements in next-generation cognitive radar systems",
+        "authors": [
+          "nitive radar systems Cognitive radar systems are an important tool in defense systems",
+          "autonomous vehicles because they are able to adapt to changing conditions and... Venkataramana Guntreddi",
+          "Dileep Kumar Murala",
+          "... Vasupalli Manoj in Discover Applied Sciences 05 March 2026"
+        ],
+        "doi": "10.1007/s42452-026-08505-4",
+        "publication": "",
+        "year": 2026,
+        "url": "https://link.springer.com/article/10.1007/s42452-026-08505-4"
+      },
+      {
+        "title": "A review of machine learning applications in heart health",
+        "authors": [
+          "ions in heart health The application of machine learning in healthcare continues to gain attention as researchers attempt to prove its potential for the enhancement of... Ava Perrone",
+          "Taghi M. Khoshgoftaar in BioMedical Engineering OnLine 11 August 2025"
+        ],
+        "doi": "10.1186/s12938-025-01430-4",
+        "publication": "",
+        "year": 2025,
+        "url": "https://link.springer.com/article/10.1186/s12938-025-01430-4"
+      }
+    ],
+    "refined_url": "https://link.springer.com/search?query=machine+learning&page=1&content-type=Article&openAccess=true&language=En",
+    "confirm_url": "https://link.springer.com/search?query=machine+learning&page=1&content-type=Article&openAccess=true&language=En",
+    "confirm_title": "Search research articles and books | Springer Nature Link",
+    "applied_filters": [
+      "Remove filter\nArticle",
+      "Remove filter\nEnglish",
+      "Remove filter\nOpen access"
+    ]
+  },
+  "classification": "PASS"
+}

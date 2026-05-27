@@ -1,0 +1,110 @@
+{
+  "label": "siam-filter",
+  "attempt": "after-fix-2",
+  "started_at": "2026-05-27T07:50:30.855Z",
+  "ended_at": "2026-05-27T07:50:38.259Z",
+  "command": "node dist/src/cli.js research:siam:filter --query matrix --after-year 2020 --before-year 2025 --page-size 10 --profile research-siam --cdp-port 9381 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 9702,\n  \"items\": [\n    {\n      \"title\": \"Chapter 2: Matrix Decompositions\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976632.ch2\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Implementing High-Performance Complex Matrix Multiplication via the 1M Method\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/19M1282040\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Chapter 5: Matrix Splitting Iteration Methods\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976632.ch5\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Matrix Analysis and Computations\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976632\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Nonnegative Matrix Factorization\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976410\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Appendix A: Software for Matrix Computations\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611976632.appa\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Coseparable Nonnegative Matrix Factorization\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/22M1510509\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"3: MATRIX COMPUTATIONS\",\n      \"authors\": [\n        \"select item Full Access\"\n      ],\n      \"doi\": \"10.1137/1.9781611977523.ch3\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Chapter 7: Matrix Norms\",\n      \"authors\": [\n        \"select item\"\n      ],\n      \"doi\": \"10.1137/1.9781611977400.ch7\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Near-optimal hierarchical matrix approximation from matrix -vector products\",\n      \"authors\": [\n        \"select item\"\n      ],\n      \"doi\": \"10.1137/1.9781611978322.87\",\n      \"journal\": \"\",\n      \"year\": null\n    }\n  ],\n  \"refined_url\": \"https://epubs.siam.org/action/doSearch?field1=AllField&text1=matrix&pageSize=10&AfterYear=2020&BeforeYear=2025\",\n  \"confirm_title\": \"Search Result | The Society for Industrial and Applied Mathematics\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 9702,
+    "items": [
+      {
+        "title": "Chapter 2: Matrix Decompositions",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976632.ch2",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Implementing High-Performance Complex Matrix Multiplication via the 1M Method",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/19M1282040",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Chapter 5: Matrix Splitting Iteration Methods",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976632.ch5",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Matrix Analysis and Computations",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976632",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Nonnegative Matrix Factorization",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976410",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Appendix A: Software for Matrix Computations",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611976632.appa",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Coseparable Nonnegative Matrix Factorization",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/22M1510509",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "3: MATRIX COMPUTATIONS",
+        "authors": [
+          "select item Full Access"
+        ],
+        "doi": "10.1137/1.9781611977523.ch3",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Chapter 7: Matrix Norms",
+        "authors": [
+          "select item"
+        ],
+        "doi": "10.1137/1.9781611977400.ch7",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Near-optimal hierarchical matrix approximation from matrix -vector products",
+        "authors": [
+          "select item"
+        ],
+        "doi": "10.1137/1.9781611978322.87",
+        "journal": "",
+        "year": null
+      }
+    ],
+    "refined_url": "https://epubs.siam.org/action/doSearch?field1=AllField&text1=matrix&pageSize=10&AfterYear=2020&BeforeYear=2025",
+    "confirm_title": "Search Result | The Society for Industrial and Applied Mathematics"
+  },
+  "classification": "PASS"
+}

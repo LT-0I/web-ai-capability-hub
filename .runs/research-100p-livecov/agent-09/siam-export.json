@@ -1,0 +1,22 @@
+{
+  "label": "siam-export",
+  "attempt": "after-fix-2",
+  "started_at": "2026-05-27T07:50:38.259Z",
+  "ended_at": "2026-05-27T07:50:42.749Z",
+  "command": "node dist/src/cli.js research:siam:export --doi 10.1137/1.9780898718867 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/siam --profile research-siam --cdp-port 9381 --confirmed --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/siam/siam_1.9780898718867.ris\",\n  \"bytes\": 410,\n  \"sha256\": \"0bd570537c430b9dd94b750c928df60c80b82590e7ec47d3478e9f54f6bc3805\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1137/1.9780898718867\",\n  \"content_type\": \"text/plain;charset=UTF-8\",\n  \"content_disposition\": null\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/siam/siam_1.9780898718867.ris",
+    "bytes": 410,
+    "sha256": "0bd570537c430b9dd94b750c928df60c80b82590e7ec47d3478e9f54f6bc3805",
+    "format": "ris",
+    "doi": "10.1137/1.9780898718867",
+    "content_type": "text/plain;charset=UTF-8",
+    "content_disposition": null
+  },
+  "classification": "PASS"
+}

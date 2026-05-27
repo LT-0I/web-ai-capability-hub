@@ -1,0 +1,28 @@
+{
+  "label": "springer-export",
+  "attempt": "resmoke-after-infra-race",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "started_at": "2026-05-27T07:52:54.976Z",
+  "ended_at": "2026-05-27T07:52:59.548Z",
+  "command": "node dist/src/cli.js research:springer:export --doi 10.1007/s44379-025-00016-0 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/springer --profile research-springer --cdp-port 9382 --confirmed --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/springer/springer-10-1007-s44379-025-00016-0.ris\",\n  \"bytes\": 1035,\n  \"sha256\": \"9ed3534dd9368a350ba469572f1aa04c8e30645950e4cb1680ac0590ef7577d8\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1007/s44379-025-00016-0\",\n  \"source_url\": \"https://citation-needed.springer.com/v2/references/10.1007/s44379-025-00016-0?format=refman&flavour=citation\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/springer/springer-10-1007-s44379-025-00016-0.ris",
+    "bytes": 1035,
+    "sha256": "9ed3534dd9368a350ba469572f1aa04c8e30645950e4cb1680ac0590ef7577d8",
+    "format": "ris",
+    "doi": "10.1007/s44379-025-00016-0",
+    "source_url": "https://citation-needed.springer.com/v2/references/10.1007/s44379-025-00016-0?format=refman&flavour=citation"
+  },
+  "classification": "PASS"
+}

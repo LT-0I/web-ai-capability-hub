@@ -1,0 +1,26 @@
+{
+  "label": "tandf-export",
+  "started_at": "2026-05-27T07:54:44.346Z",
+  "ended_at": "2026-05-27T07:54:49.078Z",
+  "command": "node dist/src/cli.js research:tandf:export --doi 10.1080/00186368.2021.1912971 --format ris --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/tandf --profile research-tandf --cdp-port 9383 --confirmed --json",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/tandf/tandf_tlhb21107_1.ris\",\n  \"bytes\": 615,\n  \"sha256\": \"6ad5fd2202e996a37b8687ed536d0e48a22bc91b9365b2ead2eac4dc106f46dc\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1080/00186368.2021.1912971\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/tandf/tandf_tlhb21107_1.ris",
+    "bytes": 615,
+    "sha256": "6ad5fd2202e996a37b8687ed536d0e48a22bc91b9365b2ead2eac4dc106f46dc",
+    "format": "ris",
+    "doi": "10.1080/00186368.2021.1912971"
+  },
+  "classification": "PASS"
+}

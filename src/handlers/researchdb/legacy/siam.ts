@@ -242,24 +242,30 @@ export async function researchSiamExport(args: SiamExportArgs): Promise<{ artifa
       }
       const formReady = await page.evaluate(() => Boolean(document.querySelector("form[name='frmCitmgr']") && document.querySelector("#ris") && document.querySelector("#direct"))).catch(() => false);
       if (!formReady) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SIAM citation export form was not found", { selectors: ["form[name='frmCitmgr']", "#ris", "#direct"] });
-      const captured = await page.evaluate(async ({ d, fmt }) => {
-        const body = new URLSearchParams({ doi: d, format: fmt, direct: "false", include: "cit", submit: "Export citation data" });
-        const resp = await fetch("/action/downloadCitation", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString(), credentials: "include" });
-        const text = await resp.text();
-        const headers: Record<string, string> = {};
-        resp.headers.forEach((v, k) => { headers[k] = v; });
-        return { status: resp.status, url: resp.url, headers, text };
-      }, { d: doi, fmt: format });
-      const contentType = captured.headers["content-type"] || null;
-      const contentDisposition = captured.headers["content-disposition"] || null;
-      if (captured.status !== 200 || !/attachment/i.test(contentDisposition || "")) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "SIAM export did not return an attachment response", { status: captured.status, content_type: contentType, content_disposition: contentDisposition });
+      const formatRadio = page.locator(`#${format}`);
+      if (!(await formatRadio.count().catch(() => 0))) {
+        throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "SIAM citation format radio was not found", { selector: `#${format}` });
       }
-      if (format === "ris" && !/application\/x-research-info-systems/i.test(contentType || "")) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "SIAM RIS export returned an unexpected content type", { content_type: contentType });
-      }
+      await formatRadio.click({ timeout: 10000 });
+      const direct = page.locator("#direct");
+      if (await direct.isChecked().catch(() => false)) await direct.click({ timeout: 5000 });
+      const responsePromise = page.waitForResponse((response: any) => /\/action\/downloadCitation(?:$|[?#])/.test(response.url?.() || ""), { timeout: 60000 }).catch(() => null);
+      const navigationPromise = page.waitForNavigation({ timeout: 60000 }).catch(() => null);
+      await page.locator('form[name="frmCitmgr"] input[type="submit"]').click({ timeout: 10000 });
+      const response = await responsePromise;
+      await navigationPromise;
+      await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+      const headers = response?.headers?.() || {};
+      const contentType = headers["content-type"] || null;
+      const contentDisposition = headers["content-disposition"] || null;
       const artifact_path = path.join(downloadDir, artifactNameFor(doi, format));
-      fs.writeFileSync(artifact_path, captured.text, "utf-8");
+      let capturedText = "";
+      for (let i = 0; i < 12; i++) {
+        capturedText = (await page.locator("body").innerText({ timeout: 10000 })).trimStart();
+        if (format !== "ris" || (/^TY  - /m.test(capturedText) && /^ER  -/m.test(capturedText) && capturedText.includes(doi))) break;
+        await sleep(5000);
+      }
+      fs.writeFileSync(artifact_path, capturedText, "utf-8");
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "SIAM RIS artifact failed content validation", { artifact_path, doi });

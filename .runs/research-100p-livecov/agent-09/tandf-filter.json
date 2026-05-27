@@ -1,0 +1,219 @@
+{
+  "label": "tandf-filter",
+  "started_at": "2026-05-27T07:54:24.245Z",
+  "ended_at": "2026-05-27T07:54:44.346Z",
+  "command": "node dist/src/cli.js research:tandf:filter --query \"climate change\" --after-year 2020 --before-year 2025 --access open --page-size 10 --profile research-tandf --cdp-port 9383 --json",
+  "attempts": [
+    {
+      "exit_code": 0,
+      "signal": null,
+      "stderr": ""
+    }
+  ],
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 55106,\n  \"items\": [\n    {\n      \"title\": \"Impacts du changement climatique sur les pluies intenses et les crues en Méditerranée\",\n      \"authors\": [\n        \"Open Access Yves Tramblay\",\n        \"Aurélien Ribes\",\n        \"Samuel Somot\",\n        \"Luc Neppel\",\n        \"Philippe Lucas-Picher\",\n        \"Freddy Vinet\",\n        \"Eric Sauquet\"\n      ],\n      \"doi\": \"10.1080/00186368.2021.1912971\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"LHB\"\n      ],\n      \"doi\": \"10.1080/00186368.2021.1912971\",\n      \"journal\": \"\",\n      \"year\": 2021\n    },\n    {\n      \"title\": \"Climate change and insurance\",\n      \"authors\": [\n        \"Open Access Stephen J. Collier\",\n        \"Rebecca Elliott\",\n        \"Turo-Kimmo Lehtonen\"\n      ],\n      \"doi\": \"10.1080/03085147.2021.1903771\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Economy\",\n        \"Society\"\n      ],\n      \"doi\": \"10.1080/03085147.2021.1903771\",\n      \"journal\": \"\",\n      \"year\": 2021\n    },\n    {\n      \"title\": \"The People and Climate Change : How Experts and Communities Disagree on Climate Change Impact in South Africa and Botswana\",\n      \"authors\": [\n        \"Open Access Jörn Ahrens\"\n      ],\n      \"doi\": \"10.1080/03057070.2026.2620242\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [],\n      \"doi\": \"10.1080/03057070.2026.2620242\",\n      \"journal\": \"Journal of Southern African Studies\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Climate change governance\",\n      \"authors\": [\n        \"Open Access Claudia Carter\"\n      ],\n      \"doi\": \"10.1080/29966876.2025.2488613\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Climate Interactions\"\n      ],\n      \"doi\": \"10.1080/29966876.2025.2488613\",\n      \"journal\": \"\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Dynamic networks of negotiation for international climate change cooperation\",\n      \"authors\": [\n        \"Open Access Zack W. Almquist\",\n        \"Benjamin E. Bagozzi\",\n        \"Daria Blinova\",\n        \"Zach Brown\"\n      ],\n      \"doi\": \"10.1080/23251042.2025.2507287\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Environmental Sociology\"\n      ],\n      \"doi\": \"10.1080/23251042.2025.2507287\",\n      \"journal\": \"\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Beekeeping under climate change\",\n      \"authors\": [\n        \"Open Access Peter Neumann\",\n        \"Lars Straub\"\n      ],\n      \"doi\": \"10.1080/00218839.2023.2247115\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [],\n      \"doi\": \"10.1080/00218839.2023.2247115\",\n      \"journal\": \"Journal of Apicultural Research\",\n      \"year\": 2023\n    },\n    {\n      \"title\": \"‘Owning’ climate change for moral education\",\n      \"authors\": [\n        \"Open Access Janet Orchard\",\n        \"Michael J. Reiss\"\n      ],\n      \"doi\": \"10.1080/03057240.2024.2418142\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [],\n      \"doi\": \"10.1080/03057240.2024.2418142\",\n      \"journal\": \"Journal of Moral Education\",\n      \"year\": 2025\n    },\n    {\n      \"title\": \"Climate change and water resources: Munro Oration, Hydrology and Water Resources Symposium Sydney, 13 November 2023\",\n      \"authors\": [\n        \"Open Access Francis H.S. Chiew\"\n      ],\n      \"doi\": \"10.1080/13241583.2024.2341920\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [\n        \"Australasian\"\n      ],\n      \"doi\": \"10.1080/13241583.2024.2341920\",\n      \"journal\": \"Journal of Water Resources\",\n      \"year\": 2024\n    },\n    {\n      \"title\": \"Climate Change , Families, and Human Development: Review of the Evidence\",\n      \"authors\": [\n        \"Open Access Jorge Cuartas\",\n        \"Lucero Ramírez-Varela\",\n        \"Jenna Spitzer\",\n        \"Alexis Brieant\",\n        \"Ayesha Ghazanfar\",\n        \"Jennifer E. Lansford\",\n        \"Ann Sanson\"\n      ],\n      \"doi\": \"10.1080/15248372.2025.2468187\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Full Text\",\n      \"authors\": [],\n      \"doi\": \"10.1080/15248372.2025.2468187\",\n      \"journal\": \"Journal of Cognition and Development\",\n      \"year\": 2026\n    },\n    {\n      \"title\": \"Meta-analysis of the climate change -tourism demand relationship\",\n      \"authors\": [\n        \"Open Access Wanru Zhou\",\n        \"Futu Faturay\",\n        \"Sally Driml\",\n        \"Ya-Yen Sun\"\n      ],\n      \"doi\": \"10.1080/09669582.2024.2354882\",\n      \"journal\": \"\",\n      \"year\": null\n    },\n    {\n      \"title\": \"Download citations\",\n      \"authors\": [],\n      \"doi\": \"10.1080/09669582.2024.2354882\",\n      \"journal\": \"Journal of Sustainable Tourism\",\n      \"year\": 2024\n    }\n  ],\n  \"refined_url\": \"https://www.tandfonline.com/action/doSearch?AllField=climate+change&pageSize=10&AfterYear=2020&BeforeYear=2025&openAccess=true\",\n  \"confirm_title\": \"Search results | Taylor & Francis Online\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 55106,
+    "items": [
+      {
+        "title": "Impacts du changement climatique sur les pluies intenses et les crues en Méditerranée",
+        "authors": [
+          "Open Access Yves Tramblay",
+          "Aurélien Ribes",
+          "Samuel Somot",
+          "Luc Neppel",
+          "Philippe Lucas-Picher",
+          "Freddy Vinet",
+          "Eric Sauquet"
+        ],
+        "doi": "10.1080/00186368.2021.1912971",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "LHB"
+        ],
+        "doi": "10.1080/00186368.2021.1912971",
+        "journal": "",
+        "year": 2021
+      },
+      {
+        "title": "Climate change and insurance",
+        "authors": [
+          "Open Access Stephen J. Collier",
+          "Rebecca Elliott",
+          "Turo-Kimmo Lehtonen"
+        ],
+        "doi": "10.1080/03085147.2021.1903771",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Economy",
+          "Society"
+        ],
+        "doi": "10.1080/03085147.2021.1903771",
+        "journal": "",
+        "year": 2021
+      },
+      {
+        "title": "The People and Climate Change : How Experts and Communities Disagree on Climate Change Impact in South Africa and Botswana",
+        "authors": [
+          "Open Access Jörn Ahrens"
+        ],
+        "doi": "10.1080/03057070.2026.2620242",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [],
+        "doi": "10.1080/03057070.2026.2620242",
+        "journal": "Journal of Southern African Studies",
+        "year": 2025
+      },
+      {
+        "title": "Climate change governance",
+        "authors": [
+          "Open Access Claudia Carter"
+        ],
+        "doi": "10.1080/29966876.2025.2488613",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Climate Interactions"
+        ],
+        "doi": "10.1080/29966876.2025.2488613",
+        "journal": "",
+        "year": 2025
+      },
+      {
+        "title": "Dynamic networks of negotiation for international climate change cooperation",
+        "authors": [
+          "Open Access Zack W. Almquist",
+          "Benjamin E. Bagozzi",
+          "Daria Blinova",
+          "Zach Brown"
+        ],
+        "doi": "10.1080/23251042.2025.2507287",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Environmental Sociology"
+        ],
+        "doi": "10.1080/23251042.2025.2507287",
+        "journal": "",
+        "year": 2026
+      },
+      {
+        "title": "Beekeeping under climate change",
+        "authors": [
+          "Open Access Peter Neumann",
+          "Lars Straub"
+        ],
+        "doi": "10.1080/00218839.2023.2247115",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [],
+        "doi": "10.1080/00218839.2023.2247115",
+        "journal": "Journal of Apicultural Research",
+        "year": 2023
+      },
+      {
+        "title": "‘Owning’ climate change for moral education",
+        "authors": [
+          "Open Access Janet Orchard",
+          "Michael J. Reiss"
+        ],
+        "doi": "10.1080/03057240.2024.2418142",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [],
+        "doi": "10.1080/03057240.2024.2418142",
+        "journal": "Journal of Moral Education",
+        "year": 2025
+      },
+      {
+        "title": "Climate change and water resources: Munro Oration, Hydrology and Water Resources Symposium Sydney, 13 November 2023",
+        "authors": [
+          "Open Access Francis H.S. Chiew"
+        ],
+        "doi": "10.1080/13241583.2024.2341920",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [
+          "Australasian"
+        ],
+        "doi": "10.1080/13241583.2024.2341920",
+        "journal": "Journal of Water Resources",
+        "year": 2024
+      },
+      {
+        "title": "Climate Change , Families, and Human Development: Review of the Evidence",
+        "authors": [
+          "Open Access Jorge Cuartas",
+          "Lucero Ramírez-Varela",
+          "Jenna Spitzer",
+          "Alexis Brieant",
+          "Ayesha Ghazanfar",
+          "Jennifer E. Lansford",
+          "Ann Sanson"
+        ],
+        "doi": "10.1080/15248372.2025.2468187",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Full Text",
+        "authors": [],
+        "doi": "10.1080/15248372.2025.2468187",
+        "journal": "Journal of Cognition and Development",
+        "year": 2026
+      },
+      {
+        "title": "Meta-analysis of the climate change -tourism demand relationship",
+        "authors": [
+          "Open Access Wanru Zhou",
+          "Futu Faturay",
+          "Sally Driml",
+          "Ya-Yen Sun"
+        ],
+        "doi": "10.1080/09669582.2024.2354882",
+        "journal": "",
+        "year": null
+      },
+      {
+        "title": "Download citations",
+        "authors": [],
+        "doi": "10.1080/09669582.2024.2354882",
+        "journal": "Journal of Sustainable Tourism",
+        "year": 2024
+      }
+    ],
+    "refined_url": "https://www.tandfonline.com/action/doSearch?AllField=climate+change&pageSize=10&AfterYear=2020&BeforeYear=2025&openAccess=true",
+    "confirm_title": "Search results | Taylor & Francis Online"
+  },
+  "classification": "PASS"
+}

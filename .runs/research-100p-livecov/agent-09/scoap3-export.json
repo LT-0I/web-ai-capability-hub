@@ -1,0 +1,19 @@
+{
+  "label": "scoap3-export",
+  "started_at": "2026-05-27T07:45:02.921Z",
+  "ended_at": "2026-05-27T07:45:07.587Z",
+  "command": "node dist/src/cli.js research:scoap3:export --record-id 12908 --format json --download-dir /home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/scoap3 --profile research-scoap3 --cdp-port 9380 --confirmed --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/scoap3/scoap3-record-12908.json\",\n  \"bytes\": 2347,\n  \"sha256\": \"692f57ba15c7b2a246eb6e2609528861779db9bde86e6c9023003a686ca473b3\",\n  \"format\": \"record-json\",\n  \"source_url\": \"https://repo.scoap3.org/api/records/12908/\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-09/downloads/scoap3/scoap3-record-12908.json",
+    "bytes": 2347,
+    "sha256": "692f57ba15c7b2a246eb6e2609528861779db9bde86e6c9023003a686ca473b3",
+    "format": "record-json",
+    "source_url": "https://repo.scoap3.org/api/records/12908/"
+  },
+  "classification": "PASS"
+}

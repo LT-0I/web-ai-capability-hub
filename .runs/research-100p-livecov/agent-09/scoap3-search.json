@@ -1,0 +1,56 @@
+{
+  "label": "scoap3-search",
+  "started_at": "2026-05-27T07:43:56.968Z",
+  "ended_at": "2026-05-27T07:44:31.218Z",
+  "command": "node dist/src/cli.js research:scoap3:search --query Higgs --size 10 --profile research-scoap3 --cdp-port 9380 --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"result_count\": 3743,\n  \"items\": [\n    {\n      \"id\": \"12908\",\n      \"title\": \"J. Cosm. and Astroparticle P. 654 J. High Energy Phys.\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/12908\"\n    },\n    {\n      \"id\": \"29541\",\n      \"title\": \"New Journal of Physics 25 Nuclear Physics B 4155 Physical Review C 774 Physical Review D\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/29541\"\n    },\n    {\n      \"id\": \"19293\",\n      \"title\": \"Physical Review Letters 2500 Physics Letters B\",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/19293\"\n    },\n    {\n      \"id\": \"10360\",\n      \"title\": \"Prog. of Theor. and Exp. Phys. 1083 Reset search Found 3743 results. 1 2 3 4 5 ••• 375 Sort by Most recent 1 2 3 4 5 ••• 375 SCOAP3 website | About the repository | Search help Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are \",\n      \"doi\": \"\",\n      \"arxiv_id\": \"\",\n      \"journal\": \"\",\n      \"publication_date\": \"\",\n      \"url\": \"https://repo.scoap3.org/records/10360\"\n    }\n  ],\n  \"query_url\": \"https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10\",\n  \"confirm_url\": \"https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10\",\n  \"export_href\": \"\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 3743,
+    "items": [
+      {
+        "id": "12908",
+        "title": "J. Cosm. and Astroparticle P. 654 J. High Energy Phys.",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/12908"
+      },
+      {
+        "id": "29541",
+        "title": "New Journal of Physics 25 Nuclear Physics B 4155 Physical Review C 774 Physical Review D",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/29541"
+      },
+      {
+        "id": "19293",
+        "title": "Physical Review Letters 2500 Physics Letters B",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/19293"
+      },
+      {
+        "id": "10360",
+        "title": "Prog. of Theor. and Exp. Phys. 1083 Reset search Found 3743 results. 1 2 3 4 5 ••• 375 Sort by Most recent 1 2 3 4 5 ••• 375 SCOAP3 website | About the repository | Search help Articles in the SCOAP3 repository are released under a CC-BY license. Metadata are ",
+        "doi": "",
+        "arxiv_id": "",
+        "journal": "",
+        "publication_date": "",
+        "url": "https://repo.scoap3.org/records/10360"
+      }
+    ],
+    "query_url": "https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10",
+    "confirm_url": "https://repo.scoap3.org/search?search_simple_query_string=Higgs&size=10",
+    "export_href": ""
+  },
+  "classification": "PASS"
+}

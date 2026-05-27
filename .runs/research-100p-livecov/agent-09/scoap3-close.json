@@ -1,0 +1,22 @@
+{
+  "label": "scoap3-close",
+  "started_at": "2026-05-27T07:45:07.587Z",
+  "ended_at": "2026-05-27T07:45:08.145Z",
+  "command": "node dist/src/cli.js browser:close --profile research-scoap3 --mode close-process --force --json",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\n  \"profile\": \"research-scoap3\",\n  \"executablePath\": \"/usr/bin/google-chrome\",\n  \"profileDir\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-scoap3\",\n  \"cdpEndpoint\": \"http://127.0.0.1:9380\",\n  \"cdpPort\": 9380,\n  \"connected\": false,\n  \"launchedByPackage\": false,\n  \"pages\": [],\n  \"lastError\": \"connect ECONNREFUSED 127.0.0.1:9380\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "profile": "research-scoap3",
+    "executablePath": "/usr/bin/google-chrome",
+    "profileDir": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/data/browser-profiles/research-scoap3",
+    "cdpEndpoint": "http://127.0.0.1:9380",
+    "cdpPort": 9380,
+    "connected": false,
+    "launchedByPackage": false,
+    "pages": [],
+    "lastError": "connect ECONNREFUSED 127.0.0.1:9380"
+  }
+}
