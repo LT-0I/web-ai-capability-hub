@@ -1,0 +1,23 @@
+{
+  "profile": "research-optica",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "data/browser-profiles/research-optica",
+  "cdpEndpoint": "http://127.0.0.1:9353",
+  "cdpPort": 9353,
+  "connected": true,
+  "launchedByPackage": true,
+  "processId": 534044,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9353/devtools/page/CB73653E700C0C18927B71C06D5D3472",
+      "id": "CB73653E700C0C18927B71C06D5D3472",
+      "title": "新标签页",
+      "type": "page",
+      "url": "chrome://newtab/",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9353/devtools/page/CB73653E700C0C18927B71C06D5D3472"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9353/devtools/browser/e11a9ff4-0f01-424f-afa1-e5bd7bfa78a9"
+}

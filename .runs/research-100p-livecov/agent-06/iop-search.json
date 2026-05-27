@@ -1,0 +1,117 @@
+{
+  "tool": "iop_search",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:42:04-07:00",
+  "ended_at": "2026-05-27T00:42:20-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:iop:search",
+    "--query",
+    "quantum dots",
+    "--profile",
+    "research-iop",
+    "--cdp-port",
+    "9350",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 500,\n  \"items\": [\n    {\n      \"title\": \"Coherent manipulation of charge qubits in double quantum dots\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/13/4/043015\",\n      \"journal\": \"Email alert RSS search Sort by: Most recent Oldest Relevance Update Journal\",\n      \"year\": 2000,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/13/4/043015\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/13/4/043015/pdf\"\n    },\n    {\n      \"title\": \"Adaptive tuning of Majorana fermions in a quantum dot chain\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/15/4/045020\",\n      \"journal\": \"RSS search Sort by: Most recent Oldest Relevance Update Journal\",\n      \"year\": 2011,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/15/4/045020\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/15/4/045020/pdf\"\n    },\n    {\n      \"title\": \"On demand entanglement in double quantum dots via coherent carrier scattering\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/13/1/013023\",\n      \"journal\": \"\",\n      \"year\": 2013,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/13/1/013023\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/13/1/013023/pdf\"\n    },\n    {\n      \"title\": \"Angular resolved phonon emission from excited quantum dots\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/14/1/013035\",\n      \"journal\": \"\",\n      \"year\": 2011,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/14/1/013035\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/14/1/013035/pdf\"\n    },\n    {\n      \"title\": \"Fractional Josephson effect in a quadruple quantum dot\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/15/8/085018\",\n      \"journal\": \"\",\n      \"year\": 2012,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/15/8/085018\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/15/8/085018/pdf\"\n    },\n    {\n      \"title\": \"(Invited) Facile Formation of Luminescent Colloidal Silicon Quantum Dots from Porous Silicon\",\n      \"authors\": [],\n      \"doi\": \"10.1149/MA2021-0123906mtgabs\",\n      \"journal\": \"\",\n      \"year\": 2013,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1149/MA2021-0123906mtgabs\"\n    },\n    {\n      \"title\": \"Quantum Coherence in Triangular Triple Quantum Dots and Its Application to Quantum Circuits\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1674-1056/ae5c72\",\n      \"journal\": \"\",\n      \"year\": 2000,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72/pdf\"\n    },\n    {\n      \"title\": \"Lineshape of the thermopower of quantum dots\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1367-2630/14/3/033041\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/14/3/033041\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1367-2630/14/3/033041/pdf\"\n    },\n    {\n      \"title\": \"Estimation of the lateral dimensions of epitaxial submonolayer CdSe/ZnSe quantum dots\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1361-6528/ab83b5\",\n      \"journal\": \"\",\n      \"year\": 2012,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1361-6528/ab83b5\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1361-6528/ab83b5/pdf\"\n    },\n    {\n      \"title\": \"System of ideal quantum dots with Coulomb interaction\",\n      \"authors\": [],\n      \"doi\": \"10.1070/QEL16823\",\n      \"journal\": \"\",\n      \"year\": 2020,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1070/QEL16823\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1070/QEL16823/pdf\"\n    }\n  ],\n  \"query_url\": \"https://iopscience.iop.org/nsearch?terms=quantum+dots&fromPage=results\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 500,
+    "items": [
+      {
+        "title": "Coherent manipulation of charge qubits in double quantum dots",
+        "authors": [],
+        "doi": "10.1088/1367-2630/13/4/043015",
+        "journal": "Email alert RSS search Sort by: Most recent Oldest Relevance Update Journal",
+        "year": 2000,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/13/4/043015",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/13/4/043015/pdf"
+      },
+      {
+        "title": "Adaptive tuning of Majorana fermions in a quantum dot chain",
+        "authors": [],
+        "doi": "10.1088/1367-2630/15/4/045020",
+        "journal": "RSS search Sort by: Most recent Oldest Relevance Update Journal",
+        "year": 2011,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/15/4/045020",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/15/4/045020/pdf"
+      },
+      {
+        "title": "On demand entanglement in double quantum dots via coherent carrier scattering",
+        "authors": [],
+        "doi": "10.1088/1367-2630/13/1/013023",
+        "journal": "",
+        "year": 2013,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/13/1/013023",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/13/1/013023/pdf"
+      },
+      {
+        "title": "Angular resolved phonon emission from excited quantum dots",
+        "authors": [],
+        "doi": "10.1088/1367-2630/14/1/013035",
+        "journal": "",
+        "year": 2011,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/14/1/013035",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/14/1/013035/pdf"
+      },
+      {
+        "title": "Fractional Josephson effect in a quadruple quantum dot",
+        "authors": [],
+        "doi": "10.1088/1367-2630/15/8/085018",
+        "journal": "",
+        "year": 2012,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/15/8/085018",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/15/8/085018/pdf"
+      },
+      {
+        "title": "(Invited) Facile Formation of Luminescent Colloidal Silicon Quantum Dots from Porous Silicon",
+        "authors": [],
+        "doi": "10.1149/MA2021-0123906mtgabs",
+        "journal": "",
+        "year": 2013,
+        "article_url": "https://iopscience.iop.org/article/10.1149/MA2021-0123906mtgabs"
+      },
+      {
+        "title": "Quantum Coherence in Triangular Triple Quantum Dots and Its Application to Quantum Circuits",
+        "authors": [],
+        "doi": "10.1088/1674-1056/ae5c72",
+        "journal": "",
+        "year": 2000,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72/pdf"
+      },
+      {
+        "title": "Lineshape of the thermopower of quantum dots",
+        "authors": [],
+        "doi": "10.1088/1367-2630/14/3/033041",
+        "journal": "",
+        "year": 2026,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1367-2630/14/3/033041",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1367-2630/14/3/033041/pdf"
+      },
+      {
+        "title": "Estimation of the lateral dimensions of epitaxial submonolayer CdSe/ZnSe quantum dots",
+        "authors": [],
+        "doi": "10.1088/1361-6528/ab83b5",
+        "journal": "",
+        "year": 2012,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1361-6528/ab83b5",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1361-6528/ab83b5/pdf"
+      },
+      {
+        "title": "System of ideal quantum dots with Coulomb interaction",
+        "authors": [],
+        "doi": "10.1070/QEL16823",
+        "journal": "",
+        "year": 2020,
+        "article_url": "https://iopscience.iop.org/article/10.1070/QEL16823",
+        "pdf_url": "https://iopscience.iop.org/article/10.1070/QEL16823/pdf"
+      }
+    ],
+    "query_url": "https://iopscience.iop.org/nsearch?terms=quantum+dots&fromPage=results"
+  },
+  "parse_error": null
+}

@@ -1,0 +1,41 @@
+{
+  "tool": "mdpi_export",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:50:07-07:00",
+  "ended_at": "2026-05-27T00:50:43-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:mdpi:export",
+    "--article-path",
+    "/2504-446X/10/6/412",
+    "--doi",
+    "10.3390/drones10060412",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/mdpi",
+    "--profile",
+    "research-mdpi",
+    "--cdp-port",
+    "9351",
+    "--confirmed",
+    "--json"
+  ],
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/mdpi/drones-v10-i06_20260527.bib\",\n  \"bytes\": 1806,\n  \"sha256\": \"950f634efebe3e39c62e59517f170b96f47a2e3a9248ee660c63f0cb10521c69\",\n  \"format\": \"bibtex\",\n  \"article_url\": \"https://www.mdpi.com/2504-446X/10/6/412\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/mdpi/drones-v10-i06_20260527.bib",
+    "bytes": 1806,
+    "sha256": "950f634efebe3e39c62e59517f170b96f47a2e3a9248ee660c63f0cb10521c69",
+    "format": "bibtex",
+    "article_url": "https://www.mdpi.com/2504-446X/10/6/412"
+  },
+  "parse_error": null,
+  "rerun_of": {
+    "classification": "FAIL_EXIT_1",
+    "exit_code": 1,
+    "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.14.0\n"
+  }
+}

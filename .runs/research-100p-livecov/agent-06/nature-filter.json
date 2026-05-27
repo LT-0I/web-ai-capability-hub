@@ -1,0 +1,602 @@
+{
+  "tool": "nature_filter",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:52:44-07:00",
+  "ended_at": "2026-05-27T00:52:53-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:nature:filter",
+    "--query",
+    "machine learning",
+    "--article-type",
+    "research",
+    "--date-range",
+    "2024-2026",
+    "--profile",
+    "research-nature",
+    "--cdp-port",
+    "9352",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 55404,\n  \"items\": [\n    {\n      \"title\": \"Machine learning model-guided selective use of temporary diverting ileostomy in rectal cancer surgery: a randomized controlled trial\",\n      \"authors\": [\n        \"Showing 1–50 of 55404 results  Currently\",\n        \"there are no reliable strategies to identify patients undergoing rectal cancer surgery who would derive the most benefit from temporary diverting ileostomy (TDI). Here\",\n        \"the authors report a randomised controlled trial investigating the use the RTID system\",\n        \"a machine learning-based anastomotic leakage prediction model\",\n        \"to improve rectal cancer patient selection for TDI. Shengli Shao Yanqi Li Jichao Qin Research Open Access 25 May\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73565-4\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73565-4\",\n      \"journal\": \"Nature\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Explainable machine learning-guided integrated multiomics analysis reveals macrophage-driven immune suppression in breast cancer\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73617-9\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73617-9\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Multiscale machine learning molecular mechanics for mechanism and stereoselectivity of Diels-Alderase catalysis\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72904-9\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72904-9\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Interpretable machine learning and signal processing for automated reading and quality control of lateral flow tests for schistosomiasis\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73094-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73094-0\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"A properties prediction strategy of aluminum anode foils through machine learning based on feature selection and stacking learning models\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-52156-9\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-52156-9\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Assessing the onset of spring water-level rise in snowmelt-dominated rivers of northeastern Russia using machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54492-2\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54492-2\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Explainable machine learning-driven identification of heart failure biomarkers: a multi-model feature selection approach with SHAP-based interpretability\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54867-5\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54867-5\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"High-risk pregnancy prediction using Taguchi-optimized machine learning methods and TOPSIS-based model selection\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-55011-z\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-55011-z\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Uncertainty-aware machine learning for core-loss background subtraction in EELS\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41524-026-02145-3\",\n      \"article_url\": \"https://www.nature.com/articles/s41524-026-02145-3\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Machine-learning guided engineering of Mo 4+ activated halide near-infrared phosphors for AI-augmented medical imaging\",\n      \"authors\": [\n        \"-test=\\\"journal-title-and-link\\\">npj Computational Materials P: 1-10  Creating stable\",\n        \"efficient near-infrared phosphors without lead is still difficult. Huang et al. use a machine-learning-guided co-doping approach to develop a highly efficient Mo4+ based emitter\",\n        \"demonstrate its performance in lighting devices\",\n        \"medical imaging. Tao Huang Bingzhen Wang Bingsuo Zou Research Open Access 15 May\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73105-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73105-0\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Cuffless hemodynamic monitoring with physics-informed machine learning models\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72693-1\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72693-1\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Band gap engineering in Al, Cu, N and Al/Cu Co-doped ZnO thin films: experimental study and quantum machine learning prediction\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-55151-2\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-55151-2\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Development of a model for design radiation shielding composite aprons using machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-50473-7\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-50473-7\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Uncovering subgroup heterogeneity in dyslexia intervention outcomes using explainable machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41539-026-00429-3\",\n      \"article_url\": \"https://www.nature.com/articles/s41539-026-00429-3\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Enabling geometry and toolpath generalization for machine learning based thermal modeling in laser powder bed fusion\",\n      \"authors\": [\n        \"data-test=\\\"journal-title-and-link\\\">npj Science of Learning P: 1-10  Kahraman G. Demir Tarek Zohdi Grace X. Gu Research Open Access 24 May\"\n      ],\n      \"doi\": \"10.1038/s44387-026-00088-0\",\n      \"article_url\": \"https://www.nature.com/articles/s44387-026-00088-0\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Predicting the future of urban ecological resilience in China’s Yellow River Basin: a machine learning approach\",\n      \"authors\": [\n        \"-test=\\\"journal-title-and-link\\\">npj Artificial Intelligence P: 1-12  Ting Fan Xiaoyong Li Guan Huang Research Open Access 24 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54737-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54737-0\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Personalized machine learning-guided radiation dose escalation in newly diagnosed glioblastoma: prospective pilot study\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72545-y\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72545-y\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Clinically-applicable prediction of hospital stay and patient similarity retrieval in paediatric cardiology using machine learning\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73021-3\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73021-3\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Learning from sanctioned government suppliers: a machine learning and network science approach to detecting fraud and corruption in Mexico\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-48873-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-48873-w\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"EcoImpact : energy conservation using data-driven model predictive control and interpretable machine learning in the buildings sector\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53373-y\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53373-y\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Estimating temporal treatment-effect patterns of radiotherapy and chemotherapy in lower-grade gliomas using causal machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54656-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54656-0\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Machine learning-driven optimization of performance and emissions in a butanol/diesel CI engine\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54687-7\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54687-7\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Direct carbapenemase typing from disc diffusion antibiograms with MALCA (MAchine Learning CArbapenemase)\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72713-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72713-0\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Explainable machine learning-based investigation for influential parameters towards interfacial capacity of spliced glass fiber reinforced polymer bars\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-54289-3\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-54289-3\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"SDG driven carbon aware machine learning model recommendation framework\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53309-6\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53309-6\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Machine learning in automatic detection of chordoma signature, postoperative residuals, and prognosis of skull base chordomas\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41698-026-01459-1\",\n      \"article_url\": \"https://www.nature.com/articles/s41698-026-01459-1\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"In silico augmentation strategies for enhanced machine learning performance in fracture recognition\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">npj Precision Oncology P: 1-9  Ming Xu Zhiqiang Wang Xiangqi Meng Research Open Access 21 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53126-x\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53126-x\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Classification of endogenous cell-free DNAs from colorectal cancer samples using 3 nm nanopores and time-resolved machine learning model\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s44328-026-00097-8\",\n      \"article_url\": \"https://www.nature.com/articles/s44328-026-00097-8\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Skill-biased technological change, industrial diversification and urban income inequality: empirical evidence from machine learning\",\n      \"authors\": [\n        \"xt-bold\\\" data-test=\\\"journal-title-and-link\\\">npj Biosensing P: 1-12  Zuge Xing Weilong Kong Yuxin Pan Research Open Access 20 May\"\n      ],\n      \"doi\": \"10.1038/s41599-026-07381-y\",\n      \"article_url\": \"https://www.nature.com/articles/s41599-026-07381-y\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Carbon halogen bond dissociation energy predictions through automated machine learning pipeline\",\n      \"authors\": [\n        \"le-and-link\\\">Humanities\",\n        \"Social Sciences Communications P: 1-15  Mahnoor Tajammal Danish Ilyas Khurshid Ayub Research Open Access 20 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-48010-7\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-48010-7\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Exploring lithium diffusion in LiF with machine learning potentials: from point defects to collective ring diffusion\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41524-026-02132-8\",\n      \"article_url\": \"https://www.nature.com/articles/s41524-026-02132-8\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Hybrid machine learning for SCC strength prediction using metaheuristic optimization\",\n      \"authors\": [\n        \"-test=\\\"journal-title-and-link\\\">npj Computational Materials P: 1-12  Akhilendra Sharma Rahul Biswas Nadia Razali Research Open Access 20 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-51974-1\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-51974-1\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Probabilistic cancer risk assessment from heavy metal exposure in iranian rice and pasta: a novel hybrid framework integrating INAA, ICP-AES, and ensemble machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53858-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53858-w\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Experimental and predictive analysis of pile raft foundation in clayey soils using machine learning and MATLAB tools\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53172-5\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53172-5\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Piezochromic hydrogels for physically unclonable optical anti-counterfeiting with machine-learning assisted automatic identification\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-73060-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-73060-w\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Reactive machine learning potential for accelerating transition state search in organic synthesis\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72945-0\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72945-0\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Performance and generalization analysis of machine learning, deep learning, and transformer models for histopathology image classification\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-52306-z\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-52306-z\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Integrated experimental design and machine learning framework for predicting UV influenced mechanical properties in polyurethane nanodiamond nanocomposites\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-49606-9\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-49606-9\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"An explainable AI framework integrating machine and deep learning models for multi-species DNA functional group classification\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53075-5\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53075-5\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Unlocking stable iodine capture in 2D COFs: insights from DFT combined with multiscale−descriptors−driven machine learning\",\n      \"authors\": [\n        \"rnature.com/w165h90/springer-static/image/art%3A10.1038%2Fs41524-026-02121-x/MediaObjects/41524_2026_2121_Figa_HTML.png?as=webp 160w\",\n        \"https://media.springernature.com/w290h158/springer-static/image/art%3A10.1038%2Fs41524-026-02121-x/MediaObjects/41524_2026_2121_Figa_HTML.png?as=webp 290w\\\" sizes=\\\" (max-width: 640px) 160px\",\n        \"(max-width: 1200px) 290px\",\n        \"290px\\\">  Mingyang Shi Jinde Liu Jiguang Du Research Open Access 18 May\"\n      ],\n      \"doi\": \"10.1038/s41524-026-02121-x\",\n      \"article_url\": \"https://www.nature.com/articles/s41524-026-02121-x\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Predicting online motor learning after stroke in lower limb task using machine learning\",\n      \"authors\": [\n        \"-test=\\\"journal-title-and-link\\\">npj Computational Materials P: 1-13  Anjali Tiwari Hunter Paxton Neha Lodha Research Open Access 06 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-50638-4\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-50638-4\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Corrosion potential prediction of marine engineering steel based on machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41529-026-00809-5\",\n      \"article_url\": \"https://www.nature.com/articles/s41529-026-00809-5\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Comprehensive benchmarking and explainable machine learning analysis of EEG imagery activity recognition\",\n      \"authors\": [\n        \"ta-test=\\\"journal-title-and-link\\\">npj Materials Degradation P: 1-12  Md. Julkar Nain Siam Tanvir Ahsan Showrov ASM Ashraf Mahmud Research Open Access 16 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-50997-y\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-50997-y\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Design and implementation of a hybrid machine learning framework for predicting heart rate status\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53054-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53054-w\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Identification and diagnosis of flow instability in parallel channel systems using machine learning\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s44172-026-00690-9\",\n      \"article_url\": \"https://www.nature.com/articles/s44172-026-00690-9\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Prediction of the axial capacity of various polygon-type section concrete-filled steel (CFST) columns utilising deep neural network and machine learning regressor\",\n      \"authors\": [\n        \"a-test=\\\"journal-title-and-link\\\">Communications Engineering P: 1-15  Yue Chen Haytham F. Isleem Mohammad Khishe Research Open Access 15 May\"\n      ],\n      \"doi\": \"10.1038/s41598-026-49985-z\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-49985-z\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Performance Studies on machine learning based channel modelling for vehicular visible light communication\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-53143-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-53143-w\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Machine learning-enabled implantable plant biomarker sensor for early detection and classification of acid and salt stress\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41467-026-72344-5\",\n      \"article_url\": \"https://www.nature.com/articles/s41467-026-72344-5\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"An intelligent IoT–machine learning framework for wildfire detection and prediction using a hybrid RF–XGB model\",\n      \"authors\": [\n        \"\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-52395-w\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-52395-w\",\n      \"journal\": \"Nature Communications\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    },\n    {\n      \"title\": \"Sustainable biodiesel from Mesua ferrea seed oil using explainable machine learning for engine performance evaluation and emission profiling\",\n      \"authors\": [\n        \"old\\\" data-test=\\\"journal-title-and-link\\\">\"\n      ],\n      \"doi\": \"10.1038/s41598-026-52567-8\",\n      \"article_url\": \"https://www.nature.com/articles/s41598-026-52567-8\",\n      \"journal\": \"Scientific Reports\",\n      \"year\": 2026,\n      \"article_type\": \"Research\"\n    }\n  ],\n  \"refined_url\": \"https://www.nature.com/search?q=machine+learning&order=relevance&article_type=research\",\n  \"confirm_title\": \"machine learning | Nature Search Results\",\n  \"facet_param\": \"article_type\",\n  \"facet_value\": \"research\",\n  \"facet_checked\": true\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 55404,
+    "items": [
+      {
+        "title": "Machine learning model-guided selective use of temporary diverting ileostomy in rectal cancer surgery: a randomized controlled trial",
+        "authors": [
+          "Showing 1–50 of 55404 results  Currently",
+          "there are no reliable strategies to identify patients undergoing rectal cancer surgery who would derive the most benefit from temporary diverting ileostomy (TDI). Here",
+          "the authors report a randomised controlled trial investigating the use the RTID system",
+          "a machine learning-based anastomotic leakage prediction model",
+          "to improve rectal cancer patient selection for TDI. Shengli Shao Yanqi Li Jichao Qin Research Open Access 25 May"
+        ],
+        "doi": "10.1038/s41467-026-73565-4",
+        "article_url": "https://www.nature.com/articles/s41467-026-73565-4",
+        "journal": "Nature",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Explainable machine learning-guided integrated multiomics analysis reveals macrophage-driven immune suppression in breast cancer",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-73617-9",
+        "article_url": "https://www.nature.com/articles/s41467-026-73617-9",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Multiscale machine learning molecular mechanics for mechanism and stereoselectivity of Diels-Alderase catalysis",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72904-9",
+        "article_url": "https://www.nature.com/articles/s41467-026-72904-9",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Interpretable machine learning and signal processing for automated reading and quality control of lateral flow tests for schistosomiasis",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-73094-0",
+        "article_url": "https://www.nature.com/articles/s41467-026-73094-0",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "A properties prediction strategy of aluminum anode foils through machine learning based on feature selection and stacking learning models",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-52156-9",
+        "article_url": "https://www.nature.com/articles/s41598-026-52156-9",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Assessing the onset of spring water-level rise in snowmelt-dominated rivers of northeastern Russia using machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-54492-2",
+        "article_url": "https://www.nature.com/articles/s41598-026-54492-2",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Explainable machine learning-driven identification of heart failure biomarkers: a multi-model feature selection approach with SHAP-based interpretability",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-54867-5",
+        "article_url": "https://www.nature.com/articles/s41598-026-54867-5",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "High-risk pregnancy prediction using Taguchi-optimized machine learning methods and TOPSIS-based model selection",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-55011-z",
+        "article_url": "https://www.nature.com/articles/s41598-026-55011-z",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Uncertainty-aware machine learning for core-loss background subtraction in EELS",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41524-026-02145-3",
+        "article_url": "https://www.nature.com/articles/s41524-026-02145-3",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Machine-learning guided engineering of Mo 4+ activated halide near-infrared phosphors for AI-augmented medical imaging",
+        "authors": [
+          "-test=\"journal-title-and-link\">npj Computational Materials P: 1-10  Creating stable",
+          "efficient near-infrared phosphors without lead is still difficult. Huang et al. use a machine-learning-guided co-doping approach to develop a highly efficient Mo4+ based emitter",
+          "demonstrate its performance in lighting devices",
+          "medical imaging. Tao Huang Bingzhen Wang Bingsuo Zou Research Open Access 15 May"
+        ],
+        "doi": "10.1038/s41467-026-73105-0",
+        "article_url": "https://www.nature.com/articles/s41467-026-73105-0",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Cuffless hemodynamic monitoring with physics-informed machine learning models",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72693-1",
+        "article_url": "https://www.nature.com/articles/s41467-026-72693-1",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Band gap engineering in Al, Cu, N and Al/Cu Co-doped ZnO thin films: experimental study and quantum machine learning prediction",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-55151-2",
+        "article_url": "https://www.nature.com/articles/s41598-026-55151-2",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Development of a model for design radiation shielding composite aprons using machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-50473-7",
+        "article_url": "https://www.nature.com/articles/s41598-026-50473-7",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Uncovering subgroup heterogeneity in dyslexia intervention outcomes using explainable machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41539-026-00429-3",
+        "article_url": "https://www.nature.com/articles/s41539-026-00429-3",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Enabling geometry and toolpath generalization for machine learning based thermal modeling in laser powder bed fusion",
+        "authors": [
+          "data-test=\"journal-title-and-link\">npj Science of Learning P: 1-10  Kahraman G. Demir Tarek Zohdi Grace X. Gu Research Open Access 24 May"
+        ],
+        "doi": "10.1038/s44387-026-00088-0",
+        "article_url": "https://www.nature.com/articles/s44387-026-00088-0",
+        "journal": "",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Predicting the future of urban ecological resilience in China’s Yellow River Basin: a machine learning approach",
+        "authors": [
+          "-test=\"journal-title-and-link\">npj Artificial Intelligence P: 1-12  Ting Fan Xiaoyong Li Guan Huang Research Open Access 24 May"
+        ],
+        "doi": "10.1038/s41598-026-54737-0",
+        "article_url": "https://www.nature.com/articles/s41598-026-54737-0",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Personalized machine learning-guided radiation dose escalation in newly diagnosed glioblastoma: prospective pilot study",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72545-y",
+        "article_url": "https://www.nature.com/articles/s41467-026-72545-y",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Clinically-applicable prediction of hospital stay and patient similarity retrieval in paediatric cardiology using machine learning",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-73021-3",
+        "article_url": "https://www.nature.com/articles/s41467-026-73021-3",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Learning from sanctioned government suppliers: a machine learning and network science approach to detecting fraud and corruption in Mexico",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-48873-w",
+        "article_url": "https://www.nature.com/articles/s41598-026-48873-w",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "EcoImpact : energy conservation using data-driven model predictive control and interpretable machine learning in the buildings sector",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53373-y",
+        "article_url": "https://www.nature.com/articles/s41598-026-53373-y",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Estimating temporal treatment-effect patterns of radiotherapy and chemotherapy in lower-grade gliomas using causal machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-54656-0",
+        "article_url": "https://www.nature.com/articles/s41598-026-54656-0",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Machine learning-driven optimization of performance and emissions in a butanol/diesel CI engine",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-54687-7",
+        "article_url": "https://www.nature.com/articles/s41598-026-54687-7",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Direct carbapenemase typing from disc diffusion antibiograms with MALCA (MAchine Learning CArbapenemase)",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72713-0",
+        "article_url": "https://www.nature.com/articles/s41467-026-72713-0",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Explainable machine learning-based investigation for influential parameters towards interfacial capacity of spliced glass fiber reinforced polymer bars",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-54289-3",
+        "article_url": "https://www.nature.com/articles/s41598-026-54289-3",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "SDG driven carbon aware machine learning model recommendation framework",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53309-6",
+        "article_url": "https://www.nature.com/articles/s41598-026-53309-6",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Machine learning in automatic detection of chordoma signature, postoperative residuals, and prognosis of skull base chordomas",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41698-026-01459-1",
+        "article_url": "https://www.nature.com/articles/s41698-026-01459-1",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "In silico augmentation strategies for enhanced machine learning performance in fracture recognition",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">npj Precision Oncology P: 1-9  Ming Xu Zhiqiang Wang Xiangqi Meng Research Open Access 21 May"
+        ],
+        "doi": "10.1038/s41598-026-53126-x",
+        "article_url": "https://www.nature.com/articles/s41598-026-53126-x",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Classification of endogenous cell-free DNAs from colorectal cancer samples using 3 nm nanopores and time-resolved machine learning model",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s44328-026-00097-8",
+        "article_url": "https://www.nature.com/articles/s44328-026-00097-8",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Skill-biased technological change, industrial diversification and urban income inequality: empirical evidence from machine learning",
+        "authors": [
+          "xt-bold\" data-test=\"journal-title-and-link\">npj Biosensing P: 1-12  Zuge Xing Weilong Kong Yuxin Pan Research Open Access 20 May"
+        ],
+        "doi": "10.1038/s41599-026-07381-y",
+        "article_url": "https://www.nature.com/articles/s41599-026-07381-y",
+        "journal": "",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Carbon halogen bond dissociation energy predictions through automated machine learning pipeline",
+        "authors": [
+          "le-and-link\">Humanities",
+          "Social Sciences Communications P: 1-15  Mahnoor Tajammal Danish Ilyas Khurshid Ayub Research Open Access 20 May"
+        ],
+        "doi": "10.1038/s41598-026-48010-7",
+        "article_url": "https://www.nature.com/articles/s41598-026-48010-7",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Exploring lithium diffusion in LiF with machine learning potentials: from point defects to collective ring diffusion",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41524-026-02132-8",
+        "article_url": "https://www.nature.com/articles/s41524-026-02132-8",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Hybrid machine learning for SCC strength prediction using metaheuristic optimization",
+        "authors": [
+          "-test=\"journal-title-and-link\">npj Computational Materials P: 1-12  Akhilendra Sharma Rahul Biswas Nadia Razali Research Open Access 20 May"
+        ],
+        "doi": "10.1038/s41598-026-51974-1",
+        "article_url": "https://www.nature.com/articles/s41598-026-51974-1",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Probabilistic cancer risk assessment from heavy metal exposure in iranian rice and pasta: a novel hybrid framework integrating INAA, ICP-AES, and ensemble machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53858-w",
+        "article_url": "https://www.nature.com/articles/s41598-026-53858-w",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Experimental and predictive analysis of pile raft foundation in clayey soils using machine learning and MATLAB tools",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53172-5",
+        "article_url": "https://www.nature.com/articles/s41598-026-53172-5",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Piezochromic hydrogels for physically unclonable optical anti-counterfeiting with machine-learning assisted automatic identification",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-73060-w",
+        "article_url": "https://www.nature.com/articles/s41467-026-73060-w",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Reactive machine learning potential for accelerating transition state search in organic synthesis",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72945-0",
+        "article_url": "https://www.nature.com/articles/s41467-026-72945-0",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Performance and generalization analysis of machine learning, deep learning, and transformer models for histopathology image classification",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-52306-z",
+        "article_url": "https://www.nature.com/articles/s41598-026-52306-z",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Integrated experimental design and machine learning framework for predicting UV influenced mechanical properties in polyurethane nanodiamond nanocomposites",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-49606-9",
+        "article_url": "https://www.nature.com/articles/s41598-026-49606-9",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "An explainable AI framework integrating machine and deep learning models for multi-species DNA functional group classification",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53075-5",
+        "article_url": "https://www.nature.com/articles/s41598-026-53075-5",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Unlocking stable iodine capture in 2D COFs: insights from DFT combined with multiscale−descriptors−driven machine learning",
+        "authors": [
+          "rnature.com/w165h90/springer-static/image/art%3A10.1038%2Fs41524-026-02121-x/MediaObjects/41524_2026_2121_Figa_HTML.png?as=webp 160w",
+          "https://media.springernature.com/w290h158/springer-static/image/art%3A10.1038%2Fs41524-026-02121-x/MediaObjects/41524_2026_2121_Figa_HTML.png?as=webp 290w\" sizes=\" (max-width: 640px) 160px",
+          "(max-width: 1200px) 290px",
+          "290px\">  Mingyang Shi Jinde Liu Jiguang Du Research Open Access 18 May"
+        ],
+        "doi": "10.1038/s41524-026-02121-x",
+        "article_url": "https://www.nature.com/articles/s41524-026-02121-x",
+        "journal": "",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Predicting online motor learning after stroke in lower limb task using machine learning",
+        "authors": [
+          "-test=\"journal-title-and-link\">npj Computational Materials P: 1-13  Anjali Tiwari Hunter Paxton Neha Lodha Research Open Access 06 May"
+        ],
+        "doi": "10.1038/s41598-026-50638-4",
+        "article_url": "https://www.nature.com/articles/s41598-026-50638-4",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Corrosion potential prediction of marine engineering steel based on machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41529-026-00809-5",
+        "article_url": "https://www.nature.com/articles/s41529-026-00809-5",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Comprehensive benchmarking and explainable machine learning analysis of EEG imagery activity recognition",
+        "authors": [
+          "ta-test=\"journal-title-and-link\">npj Materials Degradation P: 1-12  Md. Julkar Nain Siam Tanvir Ahsan Showrov ASM Ashraf Mahmud Research Open Access 16 May"
+        ],
+        "doi": "10.1038/s41598-026-50997-y",
+        "article_url": "https://www.nature.com/articles/s41598-026-50997-y",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Design and implementation of a hybrid machine learning framework for predicting heart rate status",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53054-w",
+        "article_url": "https://www.nature.com/articles/s41598-026-53054-w",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Identification and diagnosis of flow instability in parallel channel systems using machine learning",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s44172-026-00690-9",
+        "article_url": "https://www.nature.com/articles/s44172-026-00690-9",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Prediction of the axial capacity of various polygon-type section concrete-filled steel (CFST) columns utilising deep neural network and machine learning regressor",
+        "authors": [
+          "a-test=\"journal-title-and-link\">Communications Engineering P: 1-15  Yue Chen Haytham F. Isleem Mohammad Khishe Research Open Access 15 May"
+        ],
+        "doi": "10.1038/s41598-026-49985-z",
+        "article_url": "https://www.nature.com/articles/s41598-026-49985-z",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Performance Studies on machine learning based channel modelling for vehicular visible light communication",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-53143-w",
+        "article_url": "https://www.nature.com/articles/s41598-026-53143-w",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Machine learning-enabled implantable plant biomarker sensor for early detection and classification of acid and salt stress",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41467-026-72344-5",
+        "article_url": "https://www.nature.com/articles/s41467-026-72344-5",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "An intelligent IoT–machine learning framework for wildfire detection and prediction using a hybrid RF–XGB model",
+        "authors": [
+          "\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-52395-w",
+        "article_url": "https://www.nature.com/articles/s41598-026-52395-w",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "article_type": "Research"
+      },
+      {
+        "title": "Sustainable biodiesel from Mesua ferrea seed oil using explainable machine learning for engine performance evaluation and emission profiling",
+        "authors": [
+          "old\" data-test=\"journal-title-and-link\">"
+        ],
+        "doi": "10.1038/s41598-026-52567-8",
+        "article_url": "https://www.nature.com/articles/s41598-026-52567-8",
+        "journal": "Scientific Reports",
+        "year": 2026,
+        "article_type": "Research"
+      }
+    ],
+    "refined_url": "https://www.nature.com/search?q=machine+learning&order=relevance&article_type=research",
+    "confirm_title": "machine learning | Nature Search Results",
+    "facet_param": "article_type",
+    "facet_value": "research",
+    "facet_checked": true
+  },
+  "parse_error": null,
+  "rerun_of": {
+    "classification": "FAIL_MODULE_NOT_FOUND",
+    "exit_code": 1,
+    "stderr": "node:internal/modules/cjs/loader:1459\n  throw err;\n  ^\n\nError: Cannot find module '/home/l1u/workspace/noeticmind/web-ai-capability-hub/dist/src/cli.js'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)\n    at Module._load (node:internal/modules/cjs/loader:1242:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.14.0\n"
+  }
+}

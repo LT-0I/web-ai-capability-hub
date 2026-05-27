@@ -1,0 +1,139 @@
+{
+  "tool": "iop_filter",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:42:39-07:00",
+  "ended_at": "2026-05-27T00:42:47-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:iop:filter",
+    "--query",
+    "quantum dots",
+    "--search-date-period",
+    "lastFiveYears",
+    "--pub-type",
+    "article",
+    "--order-by",
+    "relevance",
+    "--profile",
+    "research-iop",
+    "--cdp-port",
+    "9350",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 500,\n  \"items\": [\n    {\n      \"title\": \"(Invited) Facile Formation of Luminescent Colloidal Silicon Quantum Dots from Porous Silicon\",\n      \"authors\": [],\n      \"doi\": \"10.1149/MA2021-0123906mtgabs\",\n      \"journal\": \"Email alert RSS search Sort by: Most recent Oldest Relevance Update Journal\",\n      \"year\": 2021,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1149/MA2021-0123906mtgabs\"\n    },\n    {\n      \"title\": \"Quantum Coherence in Triangular Triple Quantum Dots and Its Application to Quantum Circuits\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1674-1056/ae5c72\",\n      \"journal\": \"\",\n      \"year\": 2000,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72/pdf\"\n    },\n    {\n      \"title\": \"Enhancing performance of inverted quantum-dot light-emitting diodes based on a solution-processed hole transport layer via ligand treatment\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1674-4926/44/9/092603\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1674-4926/44/9/092603\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1674-4926/44/9/092603/pdf\"\n    },\n    {\n      \"title\": \"(Keynote) Electrochemistry Insights into the Development of Colloidal Quantum Dot Infrared Photodetectors\",\n      \"authors\": [\n        \"Mi Gu\",\n        \"Jiahao Wei\",\n        \"Pai Liu\",\n        \"Kai Wang\"\n      ],\n      \"doi\": \"10.1149/MA2021-0123899mtgabs\",\n      \"journal\": \"\",\n      \"year\": 2023,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1149/MA2021-0123899mtgabs\"\n    },\n    {\n      \"title\": \"(Invited) Surface State Modulation of Colloidal Quantum Dots and Construction of Quantum Dot Based Infrared Detectors\",\n      \"authors\": [],\n      \"doi\": \"10.1149/MA2024-01231392mtgabs\",\n      \"journal\": \"\",\n      \"year\": 2021,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1149/MA2024-01231392mtgabs\"\n    },\n    {\n      \"title\": \"Principle of measuring the electron population of a quantum dot using a single-photon transistor based on an array of quantum dots\",\n      \"authors\": [],\n      \"doi\": \"10.1070/QEL17573\",\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1070/QEL17573\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1070/QEL17573/pdf\"\n    },\n    {\n      \"title\": \"Improved blue quantum dot light-emitting diodes via chlorine passivated ZnO nanoparticle layer\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1674-1056/ac22a3\",\n      \"journal\": \"\",\n      \"year\": 2021,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ac22a3\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ac22a3/pdf\"\n    },\n    {\n      \"title\": \"Ray-based automatic tuning of a single quantum dot in a GaAs/AlGaAs quadruple dot array\",\n      \"authors\": [\n        \"Siqi Jia\",\n        \"Zhenghui Wu\",\n        \"Pai Liu\",\n        \"Kai Wang\",\n        \"Xiao-Wei Sun\",\n        \"Improved blue quantum dot light-emitting diodes via chlorine passivated ZnO nanoparticle layer\"\n      ],\n      \"doi\": \"10.35848/1347-4065/adafb3\",\n      \"journal\": \"\",\n      \"year\": 2021,\n      \"article_url\": \"https://iopscience.iop.org/article/10.35848/1347-4065/adafb3\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.35848/1347-4065/adafb3/pdf\"\n    },\n    {\n      \"title\": \"Coupling and characterization of a Si/SiGe triple quantum dot array with a microwave resonator\",\n      \"authors\": [],\n      \"doi\": \"10.1088/1674-1056/ad711d\",\n      \"journal\": \"\",\n      \"year\": 2025,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ad711d\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1674-1056/ad711d/pdf\"\n    },\n    {\n      \"title\": \"Anomalous photoluminescence of InAs surface quantum dots: intensity enhancement and strain control by underlying quantum dots\",\n      \"authors\": [\n        \"Bao-Chuan Wang\",\n        \"Hai-Ou Li\",\n        \"Gang Cao\",\n        \"Guo-Ping Guo\"\n      ],\n      \"doi\": \"10.1088/1361-6528/ac7ece\",\n      \"journal\": \"\",\n      \"year\": 2024,\n      \"article_url\": \"https://iopscience.iop.org/article/10.1088/1361-6528/ac7ece\",\n      \"pdf_url\": \"https://iopscience.iop.org/article/10.1088/1361-6528/ac7ece/pdf\"\n    }\n  ],\n  \"refined_url\": \"https://iopscience.iop.org/nsearch?terms=quantum+dots&fromPage=results&searchDatePeriod=lastFiveYears&pubType=article&orderBy=relevance\",\n  \"confirm_title\": \"quantum dots - Search - Page 1 - IOPscience\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 500,
+    "items": [
+      {
+        "title": "(Invited) Facile Formation of Luminescent Colloidal Silicon Quantum Dots from Porous Silicon",
+        "authors": [],
+        "doi": "10.1149/MA2021-0123906mtgabs",
+        "journal": "Email alert RSS search Sort by: Most recent Oldest Relevance Update Journal",
+        "year": 2021,
+        "article_url": "https://iopscience.iop.org/article/10.1149/MA2021-0123906mtgabs"
+      },
+      {
+        "title": "Quantum Coherence in Triangular Triple Quantum Dots and Its Application to Quantum Circuits",
+        "authors": [],
+        "doi": "10.1088/1674-1056/ae5c72",
+        "journal": "",
+        "year": 2000,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ae5c72/pdf"
+      },
+      {
+        "title": "Enhancing performance of inverted quantum-dot light-emitting diodes based on a solution-processed hole transport layer via ligand treatment",
+        "authors": [],
+        "doi": "10.1088/1674-4926/44/9/092603",
+        "journal": "",
+        "year": 2026,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1674-4926/44/9/092603",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1674-4926/44/9/092603/pdf"
+      },
+      {
+        "title": "(Keynote) Electrochemistry Insights into the Development of Colloidal Quantum Dot Infrared Photodetectors",
+        "authors": [
+          "Mi Gu",
+          "Jiahao Wei",
+          "Pai Liu",
+          "Kai Wang"
+        ],
+        "doi": "10.1149/MA2021-0123899mtgabs",
+        "journal": "",
+        "year": 2023,
+        "article_url": "https://iopscience.iop.org/article/10.1149/MA2021-0123899mtgabs"
+      },
+      {
+        "title": "(Invited) Surface State Modulation of Colloidal Quantum Dots and Construction of Quantum Dot Based Infrared Detectors",
+        "authors": [],
+        "doi": "10.1149/MA2024-01231392mtgabs",
+        "journal": "",
+        "year": 2021,
+        "article_url": "https://iopscience.iop.org/article/10.1149/MA2024-01231392mtgabs"
+      },
+      {
+        "title": "Principle of measuring the electron population of a quantum dot using a single-photon transistor based on an array of quantum dots",
+        "authors": [],
+        "doi": "10.1070/QEL17573",
+        "journal": "",
+        "year": 2024,
+        "article_url": "https://iopscience.iop.org/article/10.1070/QEL17573",
+        "pdf_url": "https://iopscience.iop.org/article/10.1070/QEL17573/pdf"
+      },
+      {
+        "title": "Improved blue quantum dot light-emitting diodes via chlorine passivated ZnO nanoparticle layer",
+        "authors": [],
+        "doi": "10.1088/1674-1056/ac22a3",
+        "journal": "",
+        "year": 2021,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ac22a3",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ac22a3/pdf"
+      },
+      {
+        "title": "Ray-based automatic tuning of a single quantum dot in a GaAs/AlGaAs quadruple dot array",
+        "authors": [
+          "Siqi Jia",
+          "Zhenghui Wu",
+          "Pai Liu",
+          "Kai Wang",
+          "Xiao-Wei Sun",
+          "Improved blue quantum dot light-emitting diodes via chlorine passivated ZnO nanoparticle layer"
+        ],
+        "doi": "10.35848/1347-4065/adafb3",
+        "journal": "",
+        "year": 2021,
+        "article_url": "https://iopscience.iop.org/article/10.35848/1347-4065/adafb3",
+        "pdf_url": "https://iopscience.iop.org/article/10.35848/1347-4065/adafb3/pdf"
+      },
+      {
+        "title": "Coupling and characterization of a Si/SiGe triple quantum dot array with a microwave resonator",
+        "authors": [],
+        "doi": "10.1088/1674-1056/ad711d",
+        "journal": "",
+        "year": 2025,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ad711d",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1674-1056/ad711d/pdf"
+      },
+      {
+        "title": "Anomalous photoluminescence of InAs surface quantum dots: intensity enhancement and strain control by underlying quantum dots",
+        "authors": [
+          "Bao-Chuan Wang",
+          "Hai-Ou Li",
+          "Gang Cao",
+          "Guo-Ping Guo"
+        ],
+        "doi": "10.1088/1361-6528/ac7ece",
+        "journal": "",
+        "year": 2024,
+        "article_url": "https://iopscience.iop.org/article/10.1088/1361-6528/ac7ece",
+        "pdf_url": "https://iopscience.iop.org/article/10.1088/1361-6528/ac7ece/pdf"
+      }
+    ],
+    "refined_url": "https://iopscience.iop.org/nsearch?terms=quantum+dots&fromPage=results&searchDatePeriod=lastFiveYears&pubType=article&orderBy=relevance",
+    "confirm_title": "quantum dots - Search - Page 1 - IOPscience"
+  },
+  "parse_error": null
+}

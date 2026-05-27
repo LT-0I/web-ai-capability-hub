@@ -300,7 +300,7 @@ export async function researchIopFilter(args: IopFilterArgs): Promise<{ result_c
   return { result_count: page.resultCount, items: page.items, refined_url, confirm_title: page.title };
 }
 
-async function downloadIopBookExport(exportUrl: string, downloadDir: string, format: IopExportFormat, identifier: string): Promise<string> {
+async function downloadIopExportArtifact(exportUrl: string, downloadDir: string, format: IopExportFormat, identifier: string): Promise<string> {
   const ext = format === "ris" ? "ris" : "bib";
   const artifactPath = path.join(downloadDir, `iop-${identifier.replace(/[^A-Za-z0-9]+/g, "-")}.${ext}`);
   const data: Buffer = await new Promise((resolve, reject) => {
@@ -311,15 +311,32 @@ async function downloadIopBookExport(exportUrl: string, downloadDir: string, for
       res.on("end", () => {
         const body = Buffer.concat(chunks);
         if (status < 200 || status >= 300) {
-          reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience eBook export endpoint did not return an artifact", { export_url: exportUrl, status }));
+          reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience export endpoint did not return an artifact", { export_url: exportUrl, status }));
           return;
         }
         resolve(body);
       });
-    }).on("error", (error: Error) => reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience eBook export download failed", { export_url: exportUrl, cause: error.message })));
+    }).on("error", (error: Error) => reject(new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience export download failed", { export_url: exportUrl, cause: error.message })));
   });
   fs.writeFileSync(artifactPath, data);
   return artifactPath;
+}
+
+function writeIopExportArtifact(downloadDir: string, format: IopExportFormat, identifier: string, text: string): string {
+  const ext = format === "ris" ? "ris" : "bib";
+  const artifactPath = path.join(downloadDir, `iop-${identifier.replace(/[^A-Za-z0-9]+/g, "-")}.${ext}`);
+  fs.writeFileSync(artifactPath, text);
+  return artifactPath;
+}
+
+function validateIopExportArtifact(artifactPath: string, format: IopExportFormat, identifier: string): void {
+  const text = fs.readFileSync(artifactPath, "utf-8");
+  if (format === "ris" && !isValidIopRisArtifact(text, identifier)) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience RIS artifact failed content validation", { artifact_path: artifactPath, doi: identifier });
+  }
+  if (format === "bibtex" && !isValidIopBibtexArtifact(text, identifier)) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience BibTeX artifact failed content validation", { artifact_path: artifactPath, doi: identifier });
+  }
 }
 
 export async function researchIopExport(args: IopExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: IopExportFormat; doi: string; export_url: string }> {
@@ -332,14 +349,8 @@ export async function researchIopExport(args: IopExportArgs): Promise<{ artifact
   const exportUrl = buildIopExportUrl(doi, format);
   if (isIopIsbnIdentifier(doi)) {
     try {
-      const artifact_path = await downloadIopBookExport(exportUrl, downloadDir, format, doi);
-      const text = fs.readFileSync(artifact_path, "utf-8");
-      if (format === "ris" && !isValidIopRisArtifact(text, doi)) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience eBook RIS artifact failed content validation", { artifact_path, doi });
-      }
-      if (format === "bibtex" && !isValidIopBibtexArtifact(text, doi)) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience eBook BibTeX artifact failed content validation", { artifact_path, doi });
-      }
+      const artifact_path = await downloadIopExportArtifact(exportUrl, downloadDir, format, doi);
+      validateIopExportArtifact(artifact_path, format, doi);
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: exportUrl };
     } catch (error: any) {
       if (error instanceof WebAiToolError) throw error;
@@ -356,6 +367,30 @@ export async function researchIopExport(args: IopExportArgs): Promise<{ artifact
         if (/Citations|BibTeX|RIS/i.test(text)) break;
         await sleep(3000);
       }
+      try {
+        const browserFetch = await page.evaluate(async ({ url }: { url: string }) => {
+          const response = await fetch(url, {
+            credentials: "include",
+            redirect: "follow",
+            headers: { "Accept": "text/plain,application/x-bibtex,application/x-research-info-systems,*/*" }
+          });
+          return {
+            ok: response.ok,
+            status: response.status,
+            contentType: response.headers.get("content-type") || "",
+            text: await response.text()
+          };
+        }, { url: exportUrl });
+        if (!browserFetch.ok) {
+          throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "IOPscience browser export fetch did not return an artifact", { export_url: exportUrl, status: browserFetch.status, content_type: browserFetch.contentType });
+        }
+        const artifact_path = writeIopExportArtifact(downloadDir, format, doi, browserFetch.text);
+        validateIopExportArtifact(artifact_path, format, doi);
+        return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: exportUrl };
+      } catch (_) {
+        // Fall back to the older click/download path below for accounts or edge cases where
+        // browser-context fetch cannot read the attachment body.
+      }
       const buttonSelector = format === "ris" ? 'a[aria-label="RIS of citation and abstract"]' : 'a[aria-label="BibTeX of citation and abstract"]';
       const clicked = await runArtifactClick({
         profile,
@@ -368,13 +403,7 @@ export async function researchIopExport(args: IopExportArgs): Promise<{ artifact
         filenamePattern: format === "ris" ? "*.ris" : "*.bib"
       });
       const artifact_path = clicked.path;
-      const text = fs.readFileSync(artifact_path, "utf-8");
-      if (format === "ris" && !isValidIopRisArtifact(text, doi)) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience RIS artifact failed content validation", { artifact_path, doi });
-      }
-      if (format === "bibtex" && !isValidIopBibtexArtifact(text, doi)) {
-        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "IOPscience BibTeX artifact failed content validation", { artifact_path, doi });
-      }
+      validateIopExportArtifact(artifact_path, format, doi);
       return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi, export_url: exportUrl };
     } catch (error: any) {
       if (error instanceof WebAiToolError) throw error;

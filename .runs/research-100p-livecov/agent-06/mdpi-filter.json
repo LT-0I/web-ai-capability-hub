@@ -1,0 +1,160 @@
+{
+  "tool": "mdpi_filter",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:49:27-07:00",
+  "ended_at": "2026-05-27T00:49:35-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:mdpi:filter",
+    "--query",
+    "drones",
+    "--journal",
+    "drones",
+    "--year-from",
+    "2026",
+    "--year-to",
+    "2026",
+    "--page-count",
+    "10",
+    "--profile",
+    "research-mdpi",
+    "--cdp-port",
+    "9351",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 93,\n  \"item_count\": 10,\n  \"items\": [\n    {\n      \"title\": \"Vision–Language–Action (VLA) Models for Unmanned Aerial Robotics and Bimanual Manipulation: A Review\",\n      \"authors\": [\n        \"Inkyu Sa\",\n        \"Chanoh Park\",\n        \"Hea-Min Lee\"\n      ],\n      \"doi\": \"10.3390/drones10060412\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/412\",\n      \"article_id\": \"1952147\"\n    },\n    {\n      \"title\": \"Data Acquisition with Optical and Force Sensors for an Eagle-Shaped Ornithopter\",\n      \"authors\": [\n        \"Alejandro Ramos\",\n        \"Ahmad Hammad\",\n        \"Sophie F.\"\n      ],\n      \"doi\": \"10.3390/drones10060411\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/411\",\n      \"article_id\": \"1952124\"\n    },\n    {\n      \"title\": \"Probabilistic Evaluation of Measurement Uncertainty and Decision Risk in UAV-Based Dimensional Inspection\",\n      \"authors\": [\n        \"Dmytro Malakhov\",\n        \"Tatiana Kelemenová\"\n      ],\n      \"doi\": \"10.3390/drones10060405\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/405\",\n      \"article_id\": \"1950554\"\n    },\n    {\n      \"title\": \"A UAV–3DGS–VR Workflow for Scenario-Comparable Immersive Review in Heritage Landscapes\",\n      \"authors\": [\n        \"Xintong Li\",\n        \"Wenqi Sheng\",\n        \"Yixuan Tang\"\n      ],\n      \"doi\": \"10.3390/drones10060404\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/404\",\n      \"article_id\": \"1950260\"\n    },\n    {\n      \"title\": \"Preliminary Findings of a Novel Thermal Drone-Based and AI Approach to Sampling Mesopredator Behaviour and Habitat Use\",\n      \"authors\": [\n        \"Katrine Møller-Lassesen\",\n        \"Esther Magdalene Ellersgaard Enevoldsen\"\n      ],\n      \"doi\": \"10.3390/drones10060401\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/401\",\n      \"article_id\": \"1949700\"\n    },\n    {\n      \"title\": \"Designing C2 Links for BVLOS UAS Operations\",\n      \"authors\": [\n        \"Barry Tee Wei Cong\"\n      ],\n      \"doi\": \"10.3390/drones10060397\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/6/397\",\n      \"article_id\": \"1949072\"\n    },\n    {\n      \"title\": \"RSMamDet: Efficient UAV Remote Sensing Vehicle Detection via Linear State Space Models and Adaptive Multi-Level Feature Fusion\",\n      \"authors\": [\n        \"Man Wu\",\n        \"Xiaozhang Liu\"\n      ],\n      \"doi\": \"10.3390/drones10050396\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/5/396\",\n      \"article_id\": \"1948639\"\n    },\n    {\n      \"title\": \"Drone-Assisted Lightweight Authentication Protocol for Unmanned eVTOL Emergency Rescue\",\n      \"authors\": [\n        \"Qi\"\n      ],\n      \"doi\": \"10.3390/drones10050391\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/5/391\",\n      \"article_id\": \"1947520\"\n    },\n    {\n      \"title\": \"Human-Drone Interaction in Older Adults: A Systematic Review\",\n      \"authors\": [\n        \"Agustín Gómez-López\",\n        \"Yuxa Maya-López\"\n      ],\n      \"doi\": \"10.3390/drones10050389\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/5/389\",\n      \"article_id\": \"1946838\"\n    },\n    {\n      \"title\": \"Neural-Network Surrogate Framework for Rapid LCA Impact Screening of Potato Production: Manual Management vs. Drone-Assisted Technification\",\n      \"authors\": [\n        \"Juan Carlos Almachi\",\n        \"Jessica Montenegro\",\n        \"Edwin Amaguaña\"\n      ],\n      \"doi\": \"10.3390/drones10050382\",\n      \"journal\": \"\",\n      \"year\": 2026,\n      \"article_path\": \"/2504-446X/10/5/382\",\n      \"article_id\": \"1944831\"\n    }\n  ],\n  \"refined_url\": \"https://www.mdpi.com/search?q=drones&journal=drones&year_from=2026&year_to=2026&view=default&page_count=10\",\n  \"confirm_title\": \"MDPI - Publisher of Open Access Journals\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 93,
+    "item_count": 10,
+    "items": [
+      {
+        "title": "Vision–Language–Action (VLA) Models for Unmanned Aerial Robotics and Bimanual Manipulation: A Review",
+        "authors": [
+          "Inkyu Sa",
+          "Chanoh Park",
+          "Hea-Min Lee"
+        ],
+        "doi": "10.3390/drones10060412",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/412",
+        "article_id": "1952147"
+      },
+      {
+        "title": "Data Acquisition with Optical and Force Sensors for an Eagle-Shaped Ornithopter",
+        "authors": [
+          "Alejandro Ramos",
+          "Ahmad Hammad",
+          "Sophie F."
+        ],
+        "doi": "10.3390/drones10060411",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/411",
+        "article_id": "1952124"
+      },
+      {
+        "title": "Probabilistic Evaluation of Measurement Uncertainty and Decision Risk in UAV-Based Dimensional Inspection",
+        "authors": [
+          "Dmytro Malakhov",
+          "Tatiana Kelemenová"
+        ],
+        "doi": "10.3390/drones10060405",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/405",
+        "article_id": "1950554"
+      },
+      {
+        "title": "A UAV–3DGS–VR Workflow for Scenario-Comparable Immersive Review in Heritage Landscapes",
+        "authors": [
+          "Xintong Li",
+          "Wenqi Sheng",
+          "Yixuan Tang"
+        ],
+        "doi": "10.3390/drones10060404",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/404",
+        "article_id": "1950260"
+      },
+      {
+        "title": "Preliminary Findings of a Novel Thermal Drone-Based and AI Approach to Sampling Mesopredator Behaviour and Habitat Use",
+        "authors": [
+          "Katrine Møller-Lassesen",
+          "Esther Magdalene Ellersgaard Enevoldsen"
+        ],
+        "doi": "10.3390/drones10060401",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/401",
+        "article_id": "1949700"
+      },
+      {
+        "title": "Designing C2 Links for BVLOS UAS Operations",
+        "authors": [
+          "Barry Tee Wei Cong"
+        ],
+        "doi": "10.3390/drones10060397",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/6/397",
+        "article_id": "1949072"
+      },
+      {
+        "title": "RSMamDet: Efficient UAV Remote Sensing Vehicle Detection via Linear State Space Models and Adaptive Multi-Level Feature Fusion",
+        "authors": [
+          "Man Wu",
+          "Xiaozhang Liu"
+        ],
+        "doi": "10.3390/drones10050396",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/5/396",
+        "article_id": "1948639"
+      },
+      {
+        "title": "Drone-Assisted Lightweight Authentication Protocol for Unmanned eVTOL Emergency Rescue",
+        "authors": [
+          "Qi"
+        ],
+        "doi": "10.3390/drones10050391",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/5/391",
+        "article_id": "1947520"
+      },
+      {
+        "title": "Human-Drone Interaction in Older Adults: A Systematic Review",
+        "authors": [
+          "Agustín Gómez-López",
+          "Yuxa Maya-López"
+        ],
+        "doi": "10.3390/drones10050389",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/5/389",
+        "article_id": "1946838"
+      },
+      {
+        "title": "Neural-Network Surrogate Framework for Rapid LCA Impact Screening of Potato Production: Manual Management vs. Drone-Assisted Technification",
+        "authors": [
+          "Juan Carlos Almachi",
+          "Jessica Montenegro",
+          "Edwin Amaguaña"
+        ],
+        "doi": "10.3390/drones10050382",
+        "journal": "",
+        "year": 2026,
+        "article_path": "/2504-446X/10/5/382",
+        "article_id": "1944831"
+      }
+    ],
+    "refined_url": "https://www.mdpi.com/search?q=drones&journal=drones&year_from=2026&year_to=2026&view=default&page_count=10",
+    "confirm_title": "MDPI - Publisher of Open Access Journals"
+  },
+  "parse_error": null
+}

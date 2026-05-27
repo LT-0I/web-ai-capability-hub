@@ -1,0 +1,225 @@
+{
+  "tool": "optica_search",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:54:00-07:00",
+  "ended_at": "2026-05-27T00:54:11-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:optica:search",
+    "--query",
+    "soliton",
+    "--page-size",
+    "10",
+    "--profile",
+    "research-optica",
+    "--cdp-port",
+    "9353",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 15909,\n  \"total_count\": 15909,\n  \"items\": [\n    {\n      \"title\": \"Gain Depletion and Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser\",\n      \"authors\": [\n        \"Korobko\",\n        \"Dmitry A.; Ribenek\",\n        \"Valeria A.; Fotiadi\",\n        \"Andrei A. 2024 Journal of Lightwave Technology 42 (17) 6049-6056 View: PDF Soliton interaction through gain depletion\",\n        \"recovery (GDR) is one of the known mechanisms of long-range pulse interactions in soliton fiber lasers. It has been commonly assumed that the GDR mechani... …Gain Depletion\",\n        \"Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser Soliton interaction through gain depletion\",\n        \"recovery (GDR) is one of the known mechanisms of...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-42-17-6049\"\n    },\n    {\n      \"title\": \"Steady-state multiple dark spatial solitons in closed-circuit photovoltaic media\",\n      \"authors\": [\n        \"Zhang\",\n        \"Y. H.; Hu\",\n        \"X. H.; Lu\",\n        \"K. Q.; Liu\",\n        \"B. Y.; Liu\",\n        \"W. Y.; Guo\",\n        \"R. L. 2013 Journal of Optical Technology 80 (3) 135-141 View: PDF We theoretically study the formation of the steady state multiple dark photovoltaic solitons in the closed-circuit photovoltaic photorefractive crystal. The results indicate th... …...theoretically study the formation of the steady state multiple dark photovoltaic solitons in the closed-circuit photovoltaic photorefractive crystal. The results indicate that the formation...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Optica\",\n      \"year\": 2013,\n      \"article_id\": \"jot-80-3-135\"\n    },\n    {\n      \"title\": \"Scalar and Vector Solitons in a Bidirectional Mode-Locked Fibre Laser\",\n      \"authors\": [\n        \"Xiang\",\n        \"Yang; Luo\",\n        \"Yiyang; Liu\",\n        \"Bowen; Xia\",\n        \"Ran; Shum\",\n        \"Perry Ping; Tang\",\n        \"Xiahui; Liu\",\n        \"Deming; Sun\",\n        \"Qizhen 2019 Journal of Lightwave Technology 37 (19) 5108-5114 View: PDF Recent discovery on scalar–vector features of ultrashort pulses sheds new light on the polarization dynamics of ultrafast fibre lasers. Here\",\n        \"we report on the generation of scalar\",\n        \"vector solitons ... …...of ultrafast fibre lasers. Here\",\n        \"we report on the generation of scalar\",\n        \"vector solitons in a bidirectional fibre laser based on nonlinear polarization rotation (NPR). Through introducing...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2019,\n      \"article_id\": \"jlt-37-19-5108\"\n    },\n    {\n      \"title\": \"Program-Controlled Single Soliton Generation Driven by the Thermal-Compensated Avoided Mode Crossing\",\n      \"authors\": [\n        \"Zhang\",\n        \"Hongyi; Lu\",\n        \"Liangjun; Chen\",\n        \"Jianping; Zhou\",\n        \"Linjie 2022 Journal of Lightwave Technology 41 (6) 1801-1810 View: PDF Single soliton microcombs enable the chip-scaled comb source with an extremely high repetition rate suitable for many applications. However\",\n        \"it is challenging to deterministically generate a single so... …Single soliton microcombs enable the chip-scaled comb source with an extremely high repetition rate suitable for...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2022,\n      \"article_id\": \"jlt-41-6-1801\"\n    },\n    {\n      \"title\": \"Flat-Top Soliton Frequency Comb Generation Through Intra-Cavity Dispersion Engineering in a Brillouin Laser Cavity\",\n      \"authors\": [\n        \"Zhang\",\n        \"Xucheng; Jia\",\n        \"Zhixu; Huang\",\n        \"Yali; Wu\",\n        \"Jiliang; Wang\",\n        \"Ting; Chen\",\n        \"Yuxian; Yu\",\n        \"Yongsen; Yang\",\n        \"Yuede; Xiao\",\n        \"Jinlong; Qin\",\n        \"Weiping; Huang\",\n        \"Yongzhen; Qin\",\n        \"Guanshi 2022 Journal of Lightwave Technology 41 (6) 1820-1833 View: PDF Dissipative Kerr cavity soliton\",\n        \"optical frequency comb (OFC) can be generated in fiber cavities or microresonators with anomalous group velocity dispersion (GVD)\",\n        \"which has achieved great breakthr... …Dissipative Kerr cavity soliton\",\n        \"optical frequency comb (OFC) can be generated in fiber cavities or microresonators with...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"optica\",\n      \"year\": 2022,\n      \"article_id\": \"jlt-41-6-1820\"\n    },\n    {\n      \"title\": \"Broadband Multi-State Soliton Molecule Generation and Regulation in a Polarization-Dependent Long-Period Grating-Based Ultrafast Fiber Laser\",\n      \"authors\": [\n        \"Wan\",\n        \"Ying; Zhang\",\n        \"Sheng; Jiang\",\n        \"Chen; Xu\",\n        \"Jingkun; Liu\",\n        \"Yunqi; Wen\",\n        \"Jianxiang; Zhang\",\n        \"Zuxing; Liu\",\n        \"Bo 2025 Journal of Lightwave Technology 43 (15) 7380-7387 View: PDF Polarization-dependent fiber grating-based polarizers have garnered significant attention in ultrafast lasers due to their simple fabrication\",\n        \"excellent polarization properties\",\n        \"cost-effectiveness... …...polarization-dependent long-period fiber grating (PDLPFG). This laser demonstrated the generation of various soliton molecule states\",\n        \"all exhibiting a 3 dB spectral bandwidth of ...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2025,\n      \"article_id\": \"jlt-43-15-7380\"\n    },\n    {\n      \"title\": \"Dynamical diversity of pulsating solitons in a fiber laser\",\n      \"authors\": [\n        \"Chen\",\n        \"Hong-Jie; Tan\",\n        \"Yan-Jie; Long\",\n        \"Jin-Gan; Chen\",\n        \"Wei-Cheng; Hong\",\n        \"Wei-Yi; Cui\",\n        \"Hu; Luo\",\n        \"Ai-Ping; Luo\",\n        \"Zhi-Chao; Xu\",\n        \"Wen-Cheng 2019\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Optics Express\",\n      \"year\": 2019,\n      \"article_id\": \"oe-27-20-28507\"\n    },\n    {\n      \"title\": \"Interactions of the second-order solitons with an external probe pulse in the optical event horizon\",\n      \"authors\": [\n        \"Rong\",\n        \"Jifang; Ma\",\n        \"Yiwu; Xu\",\n        \"Meng; Yang\",\n        \"Hua 2022\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Chinese Optics Letters\",\n      \"year\": 2022,\n      \"article_id\": \"col-20-11-111901\"\n    },\n    {\n      \"title\": \"Study of quasi-elastic Bragg soliton collisions in uniform fiber Bragg gratings by using the solution of the massive Thirring model\",\n      \"authors\": [\n        \"Toroker\",\n        \"Zeev; Horowitz\",\n        \"Moshe 2010 Journal of the Optical Society of America B 27 (6) 1195-1203 View: HTML | PDF Bragg soliton is a solution of the nonlinear coupled mode equations (NLCMEs) that are a non-integrable system. Nevertheless\",\n        \"we show that for a broad region of soliton parameters the interaction betwe... …Bragg soliton is a solution of the nonlinear coupled mode equations (NLCMEs) that are a non... ...are a non-integrable system. Nevertheless\",\n        \"we show that for a broad region of soliton …\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Journal of the Optical Society of America B\",\n      \"year\": 2010,\n      \"article_id\": \"josab-27-6-1195\"\n    },\n    {\n      \"title\": \"Field Error\",\n      \"authors\": [\n        \"Reverse Saturable Absorption Mechanism Induced Regime Transition of Pure Quartic Solitons in Fiber Lasers: A Numerical Study Fan\",\n        \"Xiulin; Wang\",\n        \"Kaile; Yang\",\n        \"Song; Cui\",\n        \"Xiaodan; Gao\",\n        \"Yuanmei; Wei\",\n        \"Tao; Meng\",\n        \"Yun; Cai\",\n        \"Yanjian; Wen\",\n        \"Zengrun 2025 Journal of Lightwave Technology 43 (8) 3939-3946 View: PDF Pure quartic solitons (PQSs) demonstrate distinct pulse dynamics\",\n        \"enhanced energy scalability compared to traditional solitons. In fiber lasers operating in anomalous fourth-order dispersion\",\n        \"recen... …Pure quartic solitons (PQSs) demonstrate distinct pulse dynamics\",\n        \"enhanced energy scalability compared to traditional solitons … Actions Export citation as BibTex Endnote (RIS) HTML Plain Text Save to my favorites Choose folder... Sort by: Relevance Newest First Oldest First Title A - Z Title Z - A Citation Count View: Results per page: 10 20 30 Page: Page Number of 1591 Filter the Results List Publications All Journals (23) Conferences (144) Industry Reports (1) Journals sort Article Count Alphabetical A&gt;Z Alphabetical Z&gt;A All\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Optics Letters\",\n      \"year\": 2025,\n      \"article_id\": \"jlt-43-8-3939\"\n    },\n    {\n      \"title\": \"\\\" target=\\\"_blank\\\">\",\n      \"authors\": [\n        \"\\\" aria-label=\\\" checkbox\\\"/> abstract.cfm?uri= &origin=search View: \\\" class=\\\"sri-image\\\" height=\\\"100\\\" width=\\\"100\\\" alt=\\\"\\\" loading=\\\"lazy\\\" style=\\\"max-width: 150px; height: auto;\\\" onerror=\\\"this.parentNode.removeChild(this);\\\" /> \\\" type=\\\"checkb\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null,\n      \"article_id\": \"<%= documentUri %>\"\n    }\n  ],\n  \"query_url\": \"https://opg.optica.org/search.cfm?q=soliton&ibsearch=false&pageSize=10\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 15909,
+    "total_count": 15909,
+    "items": [
+      {
+        "title": "Gain Depletion and Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser",
+        "authors": [
+          "Korobko",
+          "Dmitry A.; Ribenek",
+          "Valeria A.; Fotiadi",
+          "Andrei A. 2024 Journal of Lightwave Technology 42 (17) 6049-6056 View: PDF Soliton interaction through gain depletion",
+          "recovery (GDR) is one of the known mechanisms of long-range pulse interactions in soliton fiber lasers. It has been commonly assumed that the GDR mechani... …Gain Depletion",
+          "Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser Soliton interaction through gain depletion",
+          "recovery (GDR) is one of the known mechanisms of...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-42-17-6049"
+      },
+      {
+        "title": "Steady-state multiple dark spatial solitons in closed-circuit photovoltaic media",
+        "authors": [
+          "Zhang",
+          "Y. H.; Hu",
+          "X. H.; Lu",
+          "K. Q.; Liu",
+          "B. Y.; Liu",
+          "W. Y.; Guo",
+          "R. L. 2013 Journal of Optical Technology 80 (3) 135-141 View: PDF We theoretically study the formation of the steady state multiple dark photovoltaic solitons in the closed-circuit photovoltaic photorefractive crystal. The results indicate th... …...theoretically study the formation of the steady state multiple dark photovoltaic solitons in the closed-circuit photovoltaic photorefractive crystal. The results indicate that the formation...…"
+        ],
+        "doi": "",
+        "publication": "Optica",
+        "year": 2013,
+        "article_id": "jot-80-3-135"
+      },
+      {
+        "title": "Scalar and Vector Solitons in a Bidirectional Mode-Locked Fibre Laser",
+        "authors": [
+          "Xiang",
+          "Yang; Luo",
+          "Yiyang; Liu",
+          "Bowen; Xia",
+          "Ran; Shum",
+          "Perry Ping; Tang",
+          "Xiahui; Liu",
+          "Deming; Sun",
+          "Qizhen 2019 Journal of Lightwave Technology 37 (19) 5108-5114 View: PDF Recent discovery on scalar–vector features of ultrashort pulses sheds new light on the polarization dynamics of ultrafast fibre lasers. Here",
+          "we report on the generation of scalar",
+          "vector solitons ... …...of ultrafast fibre lasers. Here",
+          "we report on the generation of scalar",
+          "vector solitons in a bidirectional fibre laser based on nonlinear polarization rotation (NPR). Through introducing...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2019,
+        "article_id": "jlt-37-19-5108"
+      },
+      {
+        "title": "Program-Controlled Single Soliton Generation Driven by the Thermal-Compensated Avoided Mode Crossing",
+        "authors": [
+          "Zhang",
+          "Hongyi; Lu",
+          "Liangjun; Chen",
+          "Jianping; Zhou",
+          "Linjie 2022 Journal of Lightwave Technology 41 (6) 1801-1810 View: PDF Single soliton microcombs enable the chip-scaled comb source with an extremely high repetition rate suitable for many applications. However",
+          "it is challenging to deterministically generate a single so... …Single soliton microcombs enable the chip-scaled comb source with an extremely high repetition rate suitable for...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2022,
+        "article_id": "jlt-41-6-1801"
+      },
+      {
+        "title": "Flat-Top Soliton Frequency Comb Generation Through Intra-Cavity Dispersion Engineering in a Brillouin Laser Cavity",
+        "authors": [
+          "Zhang",
+          "Xucheng; Jia",
+          "Zhixu; Huang",
+          "Yali; Wu",
+          "Jiliang; Wang",
+          "Ting; Chen",
+          "Yuxian; Yu",
+          "Yongsen; Yang",
+          "Yuede; Xiao",
+          "Jinlong; Qin",
+          "Weiping; Huang",
+          "Yongzhen; Qin",
+          "Guanshi 2022 Journal of Lightwave Technology 41 (6) 1820-1833 View: PDF Dissipative Kerr cavity soliton",
+          "optical frequency comb (OFC) can be generated in fiber cavities or microresonators with anomalous group velocity dispersion (GVD)",
+          "which has achieved great breakthr... …Dissipative Kerr cavity soliton",
+          "optical frequency comb (OFC) can be generated in fiber cavities or microresonators with...…"
+        ],
+        "doi": "",
+        "publication": "optica",
+        "year": 2022,
+        "article_id": "jlt-41-6-1820"
+      },
+      {
+        "title": "Broadband Multi-State Soliton Molecule Generation and Regulation in a Polarization-Dependent Long-Period Grating-Based Ultrafast Fiber Laser",
+        "authors": [
+          "Wan",
+          "Ying; Zhang",
+          "Sheng; Jiang",
+          "Chen; Xu",
+          "Jingkun; Liu",
+          "Yunqi; Wen",
+          "Jianxiang; Zhang",
+          "Zuxing; Liu",
+          "Bo 2025 Journal of Lightwave Technology 43 (15) 7380-7387 View: PDF Polarization-dependent fiber grating-based polarizers have garnered significant attention in ultrafast lasers due to their simple fabrication",
+          "excellent polarization properties",
+          "cost-effectiveness... …...polarization-dependent long-period fiber grating (PDLPFG). This laser demonstrated the generation of various soliton molecule states",
+          "all exhibiting a 3 dB spectral bandwidth of ...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2025,
+        "article_id": "jlt-43-15-7380"
+      },
+      {
+        "title": "Dynamical diversity of pulsating solitons in a fiber laser",
+        "authors": [
+          "Chen",
+          "Hong-Jie; Tan",
+          "Yan-Jie; Long",
+          "Jin-Gan; Chen",
+          "Wei-Cheng; Hong",
+          "Wei-Yi; Cui",
+          "Hu; Luo",
+          "Ai-Ping; Luo",
+          "Zhi-Chao; Xu",
+          "Wen-Cheng 2019"
+        ],
+        "doi": "",
+        "publication": "Optics Express",
+        "year": 2019,
+        "article_id": "oe-27-20-28507"
+      },
+      {
+        "title": "Interactions of the second-order solitons with an external probe pulse in the optical event horizon",
+        "authors": [
+          "Rong",
+          "Jifang; Ma",
+          "Yiwu; Xu",
+          "Meng; Yang",
+          "Hua 2022"
+        ],
+        "doi": "",
+        "publication": "Chinese Optics Letters",
+        "year": 2022,
+        "article_id": "col-20-11-111901"
+      },
+      {
+        "title": "Study of quasi-elastic Bragg soliton collisions in uniform fiber Bragg gratings by using the solution of the massive Thirring model",
+        "authors": [
+          "Toroker",
+          "Zeev; Horowitz",
+          "Moshe 2010 Journal of the Optical Society of America B 27 (6) 1195-1203 View: HTML | PDF Bragg soliton is a solution of the nonlinear coupled mode equations (NLCMEs) that are a non-integrable system. Nevertheless",
+          "we show that for a broad region of soliton parameters the interaction betwe... …Bragg soliton is a solution of the nonlinear coupled mode equations (NLCMEs) that are a non... ...are a non-integrable system. Nevertheless",
+          "we show that for a broad region of soliton …"
+        ],
+        "doi": "",
+        "publication": "Journal of the Optical Society of America B",
+        "year": 2010,
+        "article_id": "josab-27-6-1195"
+      },
+      {
+        "title": "Field Error",
+        "authors": [
+          "Reverse Saturable Absorption Mechanism Induced Regime Transition of Pure Quartic Solitons in Fiber Lasers: A Numerical Study Fan",
+          "Xiulin; Wang",
+          "Kaile; Yang",
+          "Song; Cui",
+          "Xiaodan; Gao",
+          "Yuanmei; Wei",
+          "Tao; Meng",
+          "Yun; Cai",
+          "Yanjian; Wen",
+          "Zengrun 2025 Journal of Lightwave Technology 43 (8) 3939-3946 View: PDF Pure quartic solitons (PQSs) demonstrate distinct pulse dynamics",
+          "enhanced energy scalability compared to traditional solitons. In fiber lasers operating in anomalous fourth-order dispersion",
+          "recen... …Pure quartic solitons (PQSs) demonstrate distinct pulse dynamics",
+          "enhanced energy scalability compared to traditional solitons … Actions Export citation as BibTex Endnote (RIS) HTML Plain Text Save to my favorites Choose folder... Sort by: Relevance Newest First Oldest First Title A - Z Title Z - A Citation Count View: Results per page: 10 20 30 Page: Page Number of 1591 Filter the Results List Publications All Journals (23) Conferences (144) Industry Reports (1) Journals sort Article Count Alphabetical A&gt;Z Alphabetical Z&gt;A All"
+        ],
+        "doi": "",
+        "publication": "Optics Letters",
+        "year": 2025,
+        "article_id": "jlt-43-8-3939"
+      },
+      {
+        "title": "\" target=\"_blank\">",
+        "authors": [
+          "\" aria-label=\" checkbox\"/> abstract.cfm?uri= &origin=search View: \" class=\"sri-image\" height=\"100\" width=\"100\" alt=\"\" loading=\"lazy\" style=\"max-width: 150px; height: auto;\" onerror=\"this.parentNode.removeChild(this);\" /> \" type=\"checkb"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": null,
+        "article_id": "<%= documentUri %>"
+      }
+    ],
+    "query_url": "https://opg.optica.org/search.cfm?q=soliton&ibsearch=false&pageSize=10"
+  },
+  "parse_error": null
+}

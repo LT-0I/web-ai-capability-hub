@@ -1,0 +1,235 @@
+{
+  "tool": "optica_filter",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:54:34-07:00",
+  "ended_at": "2026-05-27T00:54:50-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:optica:filter",
+    "--query",
+    "soliton",
+    "--year",
+    "2024",
+    "--page-size",
+    "10",
+    "--profile",
+    "research-optica",
+    "--cdp-port",
+    "9353",
+    "--json"
+  ],
+  "stdout": "{\n  \"result_count\": 643,\n  \"total_count\": 15909,\n  \"items\": [\n    {\n      \"title\": \"Gain Depletion and Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser\",\n      \"authors\": [\n        \"Korobko\",\n        \"Dmitry A.; Ribenek\",\n        \"Valeria A.; Fotiadi\",\n        \"Andrei A. 2024 Journal of Lightwave Technology 42 (17) 6049-6056 View: PDF Soliton interaction through gain depletion\",\n        \"recovery (GDR) is one of the known mechanisms of long-range pulse interactions in soliton fiber lasers. It has been commonly assumed that the GDR mechani... …Gain Depletion\",\n        \"Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser Soliton interaction through gain depletion\",\n        \"recovery (GDR) is one of the known mechanisms of...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-42-17-6049\"\n    },\n    {\n      \"title\": \"Multimode solitons in optical fibers: a review\",\n      \"authors\": [\n        \"Sun\",\n        \"Yifan; Parra-Rivas\",\n        \"Pedro; Agrawal\",\n        \"Govind P.; Hansson\",\n        \"Tobias; Antonelli\",\n        \"Cristian; Mecozzi\",\n        \"Antonio; Mangini\",\n        \"Fabio; Wabnitz\",\n        \"Stefan 2024\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Photonics Research\",\n      \"year\": 2024,\n      \"article_id\": \"prj-12-11-2581\"\n    },\n    {\n      \"title\": \"Symmetric Oscillating Soliton Molecules in Mode-Locked Fiber Lasers\",\n      \"authors\": [\n        \"Ming\",\n        \"Yu; Qian\",\n        \"Kai; Wu\",\n        \"Wei; Shao\",\n        \"Tianyu; Zhang\",\n        \"Nan; Chen\",\n        \"Yun; Huang\",\n        \"Yong; Qiu\",\n        \"Da; Zhang\",\n        \"Chunyan; Zhan\",\n        \"Li 2024 Journal of Lightwave Technology 43 (7) 3479-3484 View: PDF The real-time dynamics of soliton molecules (bound solitons) have been extensively studied in mode-locked lasers by virtue of the emergence of fast detection techniques. Here\",\n        \"a new type of symmetric ... …The real-time dynamics of soliton molecules (bound solitons ) have been extensively studied in mode-locked lasers by virtue of the emergence of...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-43-7-3479\"\n    },\n    {\n      \"title\": \"Reversible generation of dissipative Kerr solitons in a microresonator by the backward tuning method\",\n      \"authors\": [\n        \"Zheng\",\n        \"Jihui; Ni\",\n        \"Lingman; Gu\",\n        \"Wanghang; Jia\",\n        \"Linhua; Zhai\",\n        \"Yurun; Niu\",\n        \"Qiong; Zhang\",\n        \"Fumin; Qu\",\n        \"Xinghua 2024\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Chinese Optics Letters\",\n      \"year\": 2024,\n      \"article_id\": \"col-22-7-071403\"\n    },\n    {\n      \"title\": \"Dual-comb soliton rains based on polarization multiplexing in a single-walled carbon nanotube mode-locked Er-doped fiber laser\",\n      \"authors\": [\n        \"Zhao\",\n        \"Yue; Qin\",\n        \"Ying; Jia\",\n        \"Kailin; Chen\",\n        \"Li; Chen\",\n        \"Guangwei; Hu\",\n        \"Guoqing; Wu\",\n        \"Tengfei; Li\",\n        \"Huiyu; He\",\n        \"Jingwen; Zhou\",\n        \"Zhehai 2024\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Chinese Optics Letters\",\n      \"year\": 2024,\n      \"article_id\": \"col-22-5-051402\"\n    },\n    {\n      \"title\": \"Intrinsic Discrepancy of Multi-Soliton Interferogram in Dispersive Fourier Transform Measurements Due to Impulsive Response of Fast Electronics\",\n      \"authors\": [\n        \"Wang\",\n        \"Benhai; Li\",\n        \"Zeqing; He\",\n        \"Wenbin; Wang\",\n        \"Xiaocong; Zhang\",\n        \"Xintong; Huang\",\n        \"Qi; Jiang\",\n        \"Xin; Zhang\",\n        \"Long; Pang\",\n        \"Meng 2024 Journal of Lightwave Technology 42 (16) 5698-5703 View: PDF Time-stretched dispersive Fourier transform (TS-DFT) technique has been widely used for studying transient soliton dynamics due to its unique capability of direct time-frequency mapping of ultrafast p... …...dispersive Fourier transform (TS-DFT) technique has been widely used for studying transient soliton dynamics due to its unique capability of direct time-frequency mapping of ultrafast pulses...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-42-16-5698\"\n    },\n    {\n      \"title\": \"Efficient Fabrication of Low-Loss Micro-Tapered Long-Period Gratings for Dissipative Soliton Fiber Laser\",\n      \"authors\": [\n        \"Wan\",\n        \"Ying; Jiang\",\n        \"Chen; Liu\",\n        \"Yunqi; Wen\",\n        \"Jianxiang; Kuang\",\n        \"Wenjian; Wang\",\n        \"Zhiqiang; Zhang\",\n        \"Zuxing; Liu\",\n        \"Bo 2024 Journal of Lightwave Technology 43 (7) 3485-3491 View: PDF A polarization-selective element based on a polarization-maintaining fiber micro-tapered long-period fiber grating (PMF-MT-LPFG) has been efficiently fabricated\",\n        \"used in a dissipative soliton mode-... …...fiber grating (PMF-MT-LPFG) has been efficiently fabricated\",\n        \"used in a dissipative soliton mode-locked fiber laser. The PMF-MT-LPFG was fabricated using a double-side......…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-43-7-3485\"\n    },\n    {\n      \"title\": \"Revealing the Ultrafast Soliton Dynamics in an All-Fiber Self-Starting Er Mamyshev Oscillator\",\n      \"authors\": [\n        \"Xu\",\n        \"Qiaoqiao; Wang\",\n        \"Pan; Wang\",\n        \"Qingbo; He\",\n        \"Jiangyong; Liang\",\n        \"Hu; Yan\",\n        \"Miao; Wang\",\n        \"Zhi; Liu\",\n        \"Yan-ge 2024 Journal of Lightwave Technology 43 (5) 2304-2311 View: PDF The fiber Mamyshev oscillator (MO)\",\n        \"as a high-performance fiber oscillator that delivers high-peak-power pulse\",\n        \"has been intensively investigated. However\",\n        \"one major difficulty in the MO is the self-s... …...the self-starting capability\",\n        \"rare efforts have been dedicated to unveil the real-time soliton dynamics of the all-fiber self-starting MO. Herein\",\n        \"we construct an all-fiber...…\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-43-5-2304\"\n    },\n    {\n      \"title\": \"Real-time birth-to-annihilation dynamics of dissipative Kerr cavity soliton\",\n      \"authors\": [\n        \"Xu\",\n        \"Haijiao; Lin\",\n        \"Wei; Hu\",\n        \"Xu; Yang\",\n        \"Yang; Li\",\n        \"Zongda; Xu\",\n        \"Yiqing; Guo\",\n        \"Yuankai; Chen\",\n        \"Dongdan; Wei\",\n        \"Xiaoming; Yang\",\n        \"Zhongmin 2024\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"Chinese Optics Letters\",\n      \"year\": 2024,\n      \"article_id\": \"col-22-11-111903\"\n    },\n    {\n      \"title\": \"Field Error\",\n      \"authors\": [\n        \"Pre-Distortion of Soliton Collision in Dual-Polarization Interaction-Tolerant Soliton Transmission Zhou\",\n        \"Gai; Xiang\",\n        \"Meng; Lau\",\n        \"Alan Pak Tao; Fu\",\n        \"Songnian; Qin\",\n        \"Yuwen 2024 Journal of Lightwave Technology 43 (3) 1051-1060 View: PDF Nonlinear frequency division multiplexing (NFDM) is an innovative strategy for communication over the nonlinear optical fiber channel. Utilizing the Nonlinear Fourier Transform (NFT) coupled with cohe... …...the nonlinear spectrum of signal. For discrete-spectrum modulation\",\n        \"interaction-tolerant (IT) soliton signal has been proposed to enhance the transmission capacity by inducing a group velocity...… Actions Export citation as BibTex Endnote (RIS) HTML Plain Text Save to my favorites Choose folder... Sort by: Relevance Newest First Oldest First Title A - Z Title Z - A Citation Count View: Results per page: 10 20 30 Page: Page Number of 65 Filter the Results List Publications All Journals (23) Conferences (144) Industry Reports (1) Journals sort Article Count Alphabetical A&gt;Z Alphabetical Z&gt;A All\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"optica\",\n      \"year\": 2024,\n      \"article_id\": \"jlt-43-3-1051\"\n    },\n    {\n      \"title\": \"\\\" target=\\\"_blank\\\">\",\n      \"authors\": [\n        \"\\\" aria-label=\\\" checkbox\\\"/> abstract.cfm?uri= &origin=search View: \\\" class=\\\"sri-image\\\" height=\\\"100\\\" width=\\\"100\\\" alt=\\\"\\\" loading=\\\"lazy\\\" style=\\\"max-width: 150px; height: auto;\\\" onerror=\\\"this.parentNode.removeChild(this);\\\" /> \\\" type=\\\"checkb\"\n      ],\n      \"doi\": \"\",\n      \"publication\": \"\",\n      \"year\": null,\n      \"article_id\": \"<%= documentUri %>\"\n    }\n  ],\n  \"refined_url\": \"https://opg.optica.org/search.cfm?q=soliton&ibsearch=false&pageSize=10\",\n  \"confirm_title\": \"Search Results\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "result_count": 643,
+    "total_count": 15909,
+    "items": [
+      {
+        "title": "Gain Depletion and Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser",
+        "authors": [
+          "Korobko",
+          "Dmitry A.; Ribenek",
+          "Valeria A.; Fotiadi",
+          "Andrei A. 2024 Journal of Lightwave Technology 42 (17) 6049-6056 View: PDF Soliton interaction through gain depletion",
+          "recovery (GDR) is one of the known mechanisms of long-range pulse interactions in soliton fiber lasers. It has been commonly assumed that the GDR mechani... …Gain Depletion",
+          "Recovery as a Key Mechanism of Long-Range Pulse Interactions in Soliton Fiber Laser Soliton interaction through gain depletion",
+          "recovery (GDR) is one of the known mechanisms of...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-42-17-6049"
+      },
+      {
+        "title": "Multimode solitons in optical fibers: a review",
+        "authors": [
+          "Sun",
+          "Yifan; Parra-Rivas",
+          "Pedro; Agrawal",
+          "Govind P.; Hansson",
+          "Tobias; Antonelli",
+          "Cristian; Mecozzi",
+          "Antonio; Mangini",
+          "Fabio; Wabnitz",
+          "Stefan 2024"
+        ],
+        "doi": "",
+        "publication": "Photonics Research",
+        "year": 2024,
+        "article_id": "prj-12-11-2581"
+      },
+      {
+        "title": "Symmetric Oscillating Soliton Molecules in Mode-Locked Fiber Lasers",
+        "authors": [
+          "Ming",
+          "Yu; Qian",
+          "Kai; Wu",
+          "Wei; Shao",
+          "Tianyu; Zhang",
+          "Nan; Chen",
+          "Yun; Huang",
+          "Yong; Qiu",
+          "Da; Zhang",
+          "Chunyan; Zhan",
+          "Li 2024 Journal of Lightwave Technology 43 (7) 3479-3484 View: PDF The real-time dynamics of soliton molecules (bound solitons) have been extensively studied in mode-locked lasers by virtue of the emergence of fast detection techniques. Here",
+          "a new type of symmetric ... …The real-time dynamics of soliton molecules (bound solitons ) have been extensively studied in mode-locked lasers by virtue of the emergence of...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-43-7-3479"
+      },
+      {
+        "title": "Reversible generation of dissipative Kerr solitons in a microresonator by the backward tuning method",
+        "authors": [
+          "Zheng",
+          "Jihui; Ni",
+          "Lingman; Gu",
+          "Wanghang; Jia",
+          "Linhua; Zhai",
+          "Yurun; Niu",
+          "Qiong; Zhang",
+          "Fumin; Qu",
+          "Xinghua 2024"
+        ],
+        "doi": "",
+        "publication": "Chinese Optics Letters",
+        "year": 2024,
+        "article_id": "col-22-7-071403"
+      },
+      {
+        "title": "Dual-comb soliton rains based on polarization multiplexing in a single-walled carbon nanotube mode-locked Er-doped fiber laser",
+        "authors": [
+          "Zhao",
+          "Yue; Qin",
+          "Ying; Jia",
+          "Kailin; Chen",
+          "Li; Chen",
+          "Guangwei; Hu",
+          "Guoqing; Wu",
+          "Tengfei; Li",
+          "Huiyu; He",
+          "Jingwen; Zhou",
+          "Zhehai 2024"
+        ],
+        "doi": "",
+        "publication": "Chinese Optics Letters",
+        "year": 2024,
+        "article_id": "col-22-5-051402"
+      },
+      {
+        "title": "Intrinsic Discrepancy of Multi-Soliton Interferogram in Dispersive Fourier Transform Measurements Due to Impulsive Response of Fast Electronics",
+        "authors": [
+          "Wang",
+          "Benhai; Li",
+          "Zeqing; He",
+          "Wenbin; Wang",
+          "Xiaocong; Zhang",
+          "Xintong; Huang",
+          "Qi; Jiang",
+          "Xin; Zhang",
+          "Long; Pang",
+          "Meng 2024 Journal of Lightwave Technology 42 (16) 5698-5703 View: PDF Time-stretched dispersive Fourier transform (TS-DFT) technique has been widely used for studying transient soliton dynamics due to its unique capability of direct time-frequency mapping of ultrafast p... …...dispersive Fourier transform (TS-DFT) technique has been widely used for studying transient soliton dynamics due to its unique capability of direct time-frequency mapping of ultrafast pulses...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-42-16-5698"
+      },
+      {
+        "title": "Efficient Fabrication of Low-Loss Micro-Tapered Long-Period Gratings for Dissipative Soliton Fiber Laser",
+        "authors": [
+          "Wan",
+          "Ying; Jiang",
+          "Chen; Liu",
+          "Yunqi; Wen",
+          "Jianxiang; Kuang",
+          "Wenjian; Wang",
+          "Zhiqiang; Zhang",
+          "Zuxing; Liu",
+          "Bo 2024 Journal of Lightwave Technology 43 (7) 3485-3491 View: PDF A polarization-selective element based on a polarization-maintaining fiber micro-tapered long-period fiber grating (PMF-MT-LPFG) has been efficiently fabricated",
+          "used in a dissipative soliton mode-... …...fiber grating (PMF-MT-LPFG) has been efficiently fabricated",
+          "used in a dissipative soliton mode-locked fiber laser. The PMF-MT-LPFG was fabricated using a double-side......…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-43-7-3485"
+      },
+      {
+        "title": "Revealing the Ultrafast Soliton Dynamics in an All-Fiber Self-Starting Er Mamyshev Oscillator",
+        "authors": [
+          "Xu",
+          "Qiaoqiao; Wang",
+          "Pan; Wang",
+          "Qingbo; He",
+          "Jiangyong; Liang",
+          "Hu; Yan",
+          "Miao; Wang",
+          "Zhi; Liu",
+          "Yan-ge 2024 Journal of Lightwave Technology 43 (5) 2304-2311 View: PDF The fiber Mamyshev oscillator (MO)",
+          "as a high-performance fiber oscillator that delivers high-peak-power pulse",
+          "has been intensively investigated. However",
+          "one major difficulty in the MO is the self-s... …...the self-starting capability",
+          "rare efforts have been dedicated to unveil the real-time soliton dynamics of the all-fiber self-starting MO. Herein",
+          "we construct an all-fiber...…"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": 2024,
+        "article_id": "jlt-43-5-2304"
+      },
+      {
+        "title": "Real-time birth-to-annihilation dynamics of dissipative Kerr cavity soliton",
+        "authors": [
+          "Xu",
+          "Haijiao; Lin",
+          "Wei; Hu",
+          "Xu; Yang",
+          "Yang; Li",
+          "Zongda; Xu",
+          "Yiqing; Guo",
+          "Yuankai; Chen",
+          "Dongdan; Wei",
+          "Xiaoming; Yang",
+          "Zhongmin 2024"
+        ],
+        "doi": "",
+        "publication": "Chinese Optics Letters",
+        "year": 2024,
+        "article_id": "col-22-11-111903"
+      },
+      {
+        "title": "Field Error",
+        "authors": [
+          "Pre-Distortion of Soliton Collision in Dual-Polarization Interaction-Tolerant Soliton Transmission Zhou",
+          "Gai; Xiang",
+          "Meng; Lau",
+          "Alan Pak Tao; Fu",
+          "Songnian; Qin",
+          "Yuwen 2024 Journal of Lightwave Technology 43 (3) 1051-1060 View: PDF Nonlinear frequency division multiplexing (NFDM) is an innovative strategy for communication over the nonlinear optical fiber channel. Utilizing the Nonlinear Fourier Transform (NFT) coupled with cohe... …...the nonlinear spectrum of signal. For discrete-spectrum modulation",
+          "interaction-tolerant (IT) soliton signal has been proposed to enhance the transmission capacity by inducing a group velocity...… Actions Export citation as BibTex Endnote (RIS) HTML Plain Text Save to my favorites Choose folder... Sort by: Relevance Newest First Oldest First Title A - Z Title Z - A Citation Count View: Results per page: 10 20 30 Page: Page Number of 65 Filter the Results List Publications All Journals (23) Conferences (144) Industry Reports (1) Journals sort Article Count Alphabetical A&gt;Z Alphabetical Z&gt;A All"
+        ],
+        "doi": "",
+        "publication": "optica",
+        "year": 2024,
+        "article_id": "jlt-43-3-1051"
+      },
+      {
+        "title": "\" target=\"_blank\">",
+        "authors": [
+          "\" aria-label=\" checkbox\"/> abstract.cfm?uri= &origin=search View: \" class=\"sri-image\" height=\"100\" width=\"100\" alt=\"\" loading=\"lazy\" style=\"max-width: 150px; height: auto;\" onerror=\"this.parentNode.removeChild(this);\" /> \" type=\"checkb"
+        ],
+        "doi": "",
+        "publication": "",
+        "year": null,
+        "article_id": "<%= documentUri %>"
+      }
+    ],
+    "refined_url": "https://opg.optica.org/search.cfm?q=soliton&ibsearch=false&pageSize=10",
+    "confirm_title": "Search Results"
+  },
+  "parse_error": null
+}

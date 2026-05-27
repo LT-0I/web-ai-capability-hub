@@ -1,0 +1,40 @@
+{
+  "tool": "iop_export",
+  "classification": "PASS",
+  "exit_code": 0,
+  "started_at": "2026-05-27T00:48:07-07:00",
+  "ended_at": "2026-05-27T00:48:15-07:00",
+  "command": [
+    "node",
+    "dist/src/cli.js",
+    "research:iop:export",
+    "--doi",
+    "10.1088/1367-2630/13/4/043015",
+    "--format",
+    "bibtex",
+    "--download-dir",
+    "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/iop",
+    "--profile",
+    "research-iop",
+    "--cdp-port",
+    "9350",
+    "--confirmed",
+    "--json"
+  ],
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/iop/iop-10-1088-1367-2630-13-4-043015.bib\",\n  \"bytes\": 1277,\n  \"sha256\": \"b1d65c1a519460aa19afc6eaf7e1c445cccdd67ff4f3ef3da0d9559268e6e95b\",\n  \"format\": \"bibtex\",\n  \"doi\": \"10.1088/1367-2630/13/4/043015\",\n  \"export_url\": \"https://iopscience.iop.org/export?type=article&doi=10.1088%2F1367-2630%2F13%2F4%2F043015&exportFormat=iopexport_bib&exportType=abs&navsubmit=Export+abstract\"\n}\n",
+  "stderr": "",
+  "parsed": {
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-06/downloads/iop/iop-10-1088-1367-2630-13-4-043015.bib",
+    "bytes": 1277,
+    "sha256": "b1d65c1a519460aa19afc6eaf7e1c445cccdd67ff4f3ef3da0d9559268e6e95b",
+    "format": "bibtex",
+    "doi": "10.1088/1367-2630/13/4/043015",
+    "export_url": "https://iopscience.iop.org/export?type=article&doi=10.1088%2F1367-2630%2F13%2F4%2F043015&exportFormat=iopexport_bib&exportType=abs&navsubmit=Export+abstract"
+  },
+  "parse_error": null,
+  "rerun_of": {
+    "classification": "FAIL_ARTIFACT_DOWNLOAD_TIMEOUT",
+    "exit_code": 1,
+    "stderr": "{\"ok\":false,\"errorCode\":\"ARTIFACT_DOWNLOAD_TIMEOUT\",\"error\":\"ARTIFACT_DOWNLOAD_TIMEOUT: IOPscience export failed\",\"evidence\":{\"doi\":\"10.1088/1367-2630/13/4/043015\",\"format\":\"bibtex\",\"cause\":\"No Browser.downloadWillBegin event was observed\"}}\n"
+  }
+}

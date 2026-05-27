@@ -1,0 +1,23 @@
+{
+  "profile": "research-mdpi",
+  "executablePath": "/usr/bin/google-chrome",
+  "profileDir": "data/browser-profiles/research-mdpi",
+  "cdpEndpoint": "http://127.0.0.1:9351",
+  "cdpPort": 9351,
+  "connected": true,
+  "launchedByPackage": true,
+  "processId": 503815,
+  "pages": [
+    {
+      "description": "",
+      "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@65db666ac2cf205fcc36db8bb5b9cd87f94808ac/inspector.html?ws=127.0.0.1:9351/devtools/page/C155158B43608433CA6E9D22549F9816",
+      "id": "C155158B43608433CA6E9D22549F9816",
+      "title": "新标签页",
+      "type": "page",
+      "url": "chrome://newtab/",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9351/devtools/page/C155158B43608433CA6E9D22549F9816"
+    }
+  ],
+  "browser": "Chrome/148.0.7778.167",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9351/devtools/browser/46ba1542-c517-4faa-9ae6-9c01916bb3e4"
+}
