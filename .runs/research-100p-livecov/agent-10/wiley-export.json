@@ -1,0 +1,25 @@
+{
+  "db": "wiley",
+  "op": "export",
+  "tool": "research_wiley_export",
+  "command": "DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority node dist/src/cli.js research:wiley:export --doi '10.1002/hyp.13954' --format ris --download-dir '/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-10/downloads/wiley' --confirmed --profile research-wiley --cdp-port 9391 --json",
+  "started_at": "2026-05-27T00:54:11-07:00",
+  "ended_at": "2026-05-27T00:54:16-07:00",
+  "exit_code": 0,
+  "classification": "PASS",
+  "error_code": null,
+  "summary": {
+    "ok": null,
+    "result_count": null,
+    "items": 0,
+    "first_title": null,
+    "first_doi": "10.1002/hyp.13954",
+    "artifact_path": "/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-10/downloads/wiley/pericles_1099108534.ris",
+    "bytes": 510,
+    "error": null,
+    "sha256": "67a1af25eeae6b086e44d3b623f89bcc0f591d9181195f50a14b5706010fd6be",
+    "format": "ris"
+  },
+  "stdout": "{\n  \"artifact_path\": \"/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/research-100p-livecov/agent-10/downloads/wiley/pericles_1099108534.ris\",\n  \"bytes\": 510,\n  \"sha256\": \"67a1af25eeae6b086e44d3b623f89bcc0f591d9181195f50a14b5706010fd6be\",\n  \"format\": \"ris\",\n  \"doi\": \"10.1002/hyp.13954\"\n}\n",
+  "stderr": ""
+}

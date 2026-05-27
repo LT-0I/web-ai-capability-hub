@@ -248,16 +248,23 @@ export async function researchWileyExport(args: WileyExportArgs): Promise<{ arti
         if (text.includes(`https://doi.org/${doi}`) && /Download/i.test(text)) break;
         await sleep(3000);
       }
-      const selector = `input[name="format"][value="${format}"]`;
+      const selector = `form.citation-form input[name="format"][value="${format}"]`;
       const count = await page.locator(selector).count().catch(() => 0);
       if (!count) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Wiley citation format radio was not found", { selector });
-      const directChecked = await page.locator("#direct").isChecked().catch(() => false);
-      if (directChecked && !args.include_abstract) await page.locator('label[for="direct"]').click({ timeout: 3000 }).catch(() => undefined);
-      if (format !== "ris") await page.locator(`label[for="${format}"]`).click({ timeout: 10000 });
+      await page.locator(selector).first().evaluate((node: HTMLInputElement) => {
+        node.checked = true;
+        node.dispatchEvent(new Event("input", { bubbles: true }));
+        node.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      await page.locator("form.citation-form #direct").first().evaluate((node: HTMLInputElement) => {
+        node.checked = true;
+        node.dispatchEvent(new Event("input", { bubbles: true }));
+        node.dispatchEvent(new Event("change", { bubbles: true }));
+      }).catch(() => undefined);
       const clicked = await runArtifactClick({
         profile,
         tabUrlContains: "showCitFormats",
-        buttonSelector: 'input[name="submit"]',
+        buttonSelector: 'form.citation-form input[type="submit"][value="Download"]',
         downloadDir,
         timeoutMs: 60000,
         locateTimeoutMs: 15000,
