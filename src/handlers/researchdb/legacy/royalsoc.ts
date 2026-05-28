@@ -97,8 +97,10 @@ function resourceIdFromArticleUrl(url: string): string {
 }
 function journalPrefixFromArticleUrl(url: string): string | undefined { return /^https?:\/\/[^/]+\/([^/]+)\//i.exec(url || "")?.[1] || /^\/([^/]+)\//.exec(url || "")?.[1]; }
 function isCloudflareInterstitial(title: string, html: string, visibleText = ""): boolean {
-  const haystack = `${title || ""}\n${visibleText || ""}\n${html || ""}`;
-  return /(?:Just a moment|Attention Required|cf-challenge|cf-browser-verification|cf-turnstile|challenge-platform|Checking if the site connection is secure|Verify (?:you are|that you are) human|review the security of your connection)/i.test(haystack);
+  const visibleHaystack = `${title || ""}\n${visibleText || ""}`;
+  if (/(?:Just a moment|请稍候|Attention Required|Checking if the site connection is secure|正在进行安全验证|Verify (?:you are|that you are) human|review the security of your connection|由 Cloudflare 提供)/i.test(visibleHaystack)) return true;
+  if (!visibleText && /(?:cf-challenge|cf-browser-verification|cf-turnstile|challenge-platform)/i.test(html || "")) return true;
+  return false;
 }
 
 export function buildRoyalSocSearchUrl(args: RoyalSocSearchArgs): string {
@@ -135,6 +137,9 @@ export function buildRoyalSocCitationDownloadUrl(resourceId: string | number, fo
 
 export function parseRoyalSocDerivedResultCount(html: string): number {
   const body = String(html || "");
+  const explicitCount = /data-total-item-count=["']([\d,]+)["']/i.exec(body)?.[1]
+    || /\b\d[\d,]*\s*[–-]\s*\d[\d,]*\s+of\s+([\d,]+)/i.exec(cleanText(body))?.[1];
+  if (explicitCount) return Number(explicitCount.replace(/,/g, ""));
   const itemCount = (body.match(/class=["'][^"']*sr-list[^"']*al-article-box[^"']*["']/gi) || []).length;
   const pageNumbers = [...body.matchAll(/class=["'][^"']*al-pageNumber[^"']*["'][^>]*data-url=["'][^"']*page=(\d+)/gi)].map((m) => Number(m[1])).filter(Boolean);
   const maxPage = pageNumbers.length ? Math.max(...pageNumbers) : 1;
@@ -152,8 +157,10 @@ export function parseRoyalSocItemsFromHtml(html: string): RoyalSocItem[] {
     const doi = doiFromText(text) || doiFromText(decodeURIComponent(article_url));
     const title = cleanText(/<a[^>]+(?:id=["']aria[^"']*["'][^>]*)?[^>]*>([\s\S]*?)<\/a>/i.exec(block)?.[1] || "")
       || text.split(/\s+(?:Open Access|Published|https:\/\/doi\.org\/10\.1098\/)/i)[0].trim().slice(0, 260);
-    const publication = (/\b(Philosophical Transactions of the Royal Society [AB]|Proceedings of the Royal Society [AB]|Journal of The Royal Society Interface|Royal Society Open Science|Biology Letters|Interface Focus|Notes and Records)\b/i.exec(text)?.[1] || "").trim();
-    const authorPart = text.slice(title.length).split(/\b(?:Published|Article Type|https:\/\/doi\.org|Philosophical Transactions|Proceedings of the Royal Society|Journal of The Royal Society Interface|Royal Society Open Science|Biology Letters|Interface Focus|Notes and Records)\b/i)[0] || "";
+    const publication = cleanText(/<span\b[^>]*class=["'][^"']*\bsri-label\b[^"']*["'][^>]*>\s*Journal:\s*<\/span>\s*<a\b[^>]*>([\s\S]*?)<\/a>/i.exec(block)?.[1] || "")
+      || (/\b(Philosophical Transactions of the Royal Society [AB]|Proceedings of the Royal Society [AB]|Journal of The Royal Society Interface|Royal Society Open Science|Biology Letters|Interface Focus|Notes and Records)\b/i.exec(text)?.[1] || "").trim();
+    const authorsHtml = /<div\b[^>]*class=["'][^"']*\bsri-authors\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i.exec(block)?.[1] || "";
+    const authorPart = authorsHtml ? cleanText(authorsHtml) : (text.slice(title.length).split(/\b(?:Published|Article Type|https:\/\/doi\.org|Philosophical Transactions|Proceedings of the Royal Society|Journal of The Royal Society Interface|Royal Society Open Science|Biology Letters|Interface Focus|Notes and Records)\b/i)[0] || "");
     let resource_id: string | undefined;
     if (article_url) { try { resource_id = resourceIdFromArticleUrl(article_url); } catch { resource_id = undefined; } }
     return { title, authors: authorsFromText(authorPart), doi, publication, year: yearFromText(text), article_url, resource_id, journal_prefix: journalPrefixFromArticleUrl(article_url) };
@@ -186,7 +193,8 @@ async function readRoyalSocResultsPage(page: any): Promise<{ title: string; html
       });
       if (isCloudflareInterstitial(observed.title, observed.html, observed.visibleText)) {
         lastError = new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Royal Society returned a Cloudflare managed challenge instead of article results", { url: observed.url, title: observed.title });
-        break;
+        await sleep(2000);
+        continue;
       }
       const items = parseRoyalSocItemsFromHtml(observed.html);
       const resultCount = parseRoyalSocDerivedResultCount(observed.html) || items.length;

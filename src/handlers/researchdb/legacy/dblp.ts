@@ -134,21 +134,26 @@ export function buildDblpBulkApiUrl(args: { query: string; format?: "xml" | "jso
 }
 
 export function parseDblpResultCount(text: string): number {
-  const raw = /found\s+([\d,]+)\s+matches/i.exec(text || "")?.[1];
-  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "DBLP result count node was not found", { probe: "p#completesearch-info-matches" });
+  const raw = /data-matches=["']([\d,]+)["']/i.exec(text || "")?.[1]
+    || /^\s*([\d,]+)\s*$/.exec(text || "")?.[1]
+    || /found\s+([\d,]+)\s+matches/i.exec(text || "")?.[1];
+  if (!raw && /\bno\s+matches\b/i.test(text || "")) return 0;
+  if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "DBLP result count node was not found", { probe: "#completesearch-publs .metadata[data-matches]" });
   return Number(raw.replace(/,/g, ""));
 }
 
 export function parseDblpItemsFromHtml(html: string): DblpItem[] {
-  const blocks = [...String(html || "").matchAll(/<li\b[^>]*class=["'][^"']*\bentry\b[^"']*["'][^>]*>([\s\S]*?)(?=<li\b[^>]*class=["'][^"']*\bentry\b|<\/ul>|$)/gi)].map((m) => m[0]);
+  const blocks = [...String(html || "").matchAll(/<li\b[^>]*class=["'][^"']*\bentry\b[^"']*["'][^>]*>[\s\S]*?(?=<li\b[^>]*class=["'][^"']*\bentry\b|<div\b[^>]*class=["'][^"']*\bmetadata\b|$)/gi)].map((m) => m[0]);
   return blocks.map((block) => {
     const key = /<li\b[^>]*\bid=["']([^"']+)["']/i.exec(block)?.[1] || "";
     const classText = /<li\b[^>]*\bclass=["']([^"']+)["']/i.exec(block)?.[1] || "";
     const title = cleanText(/<span\b[^>]*class=["'][^"']*\btitle\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "") || cleanText(block).slice(0, 260);
     const authorsBlock = /<span\b[^>]*class=["'][^"']*\bauthors\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "";
-    const venue = cleanText(/<span\b[^>]*class=["'][^"']*\b(?:venue|publisher)\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "");
+    const itempropAuthors = [...block.matchAll(/<span\b[^>]*itemprop=["']author["'][^>]*>[\s\S]*?<span\b[^>]*itemprop=["']name["'][^>]*>([\s\S]*?)<\/span>[\s\S]*?<\/span>/gi)].map((m) => cleanText(m[1] || ""));
+    const venue = cleanText(/<span\b[^>]*class=["'][^"']*\b(?:venue|publisher)\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "")
+      || cleanText(/<span\b[^>]*itemprop=["']isPartOf["'][^>]*itemtype=["']http:\/\/schema\.org\/Periodical["'][^>]*>[\s\S]*?<span\b[^>]*itemprop=["']name["'][^>]*>([\s\S]*?)<\/span>/i.exec(block)?.[1] || "");
     const text = cleanText(block);
-    return { key, title, authors: authorsFromText(cleanText(authorsBlock)), venue, year: yearFromText(text), type: classText.split(/\s+/).find((c) => /^(article|inproceedings|book|phdthesis|mastersthesis|data)$/i.test(c)) || "", url: key ? new URL(`/rec/${key}`, DBLP_ORIGIN).toString() : "", bibtex_url: key ? buildDblpBibtexUrl(key) : "" };
+    return { key, title, authors: itempropAuthors.length ? itempropAuthors.slice(0, 20) : authorsFromText(cleanText(authorsBlock)), venue, year: yearFromText(text), type: classText.split(/\s+/).find((c) => /^(article|inproceedings|book|phdthesis|mastersthesis|data|informal)$/i.test(c)) || "", url: key ? new URL(`/rec/${key}`, DBLP_ORIGIN).toString() : "", bibtex_url: key ? buildDblpBibtexUrl(key) : "" };
   }).filter((item) => item.key || item.title).slice(0, 100);
 }
 
@@ -172,14 +177,21 @@ async function readDblpPage(page: any): Promise<{ visibleText: string; title: st
         title: document.title || "",
         html: document.documentElement?.outerHTML || "",
         url: location.href,
-        countText: document.querySelector("p#completesearch-info-matches")?.textContent || "",
-        itemCount: document.querySelectorAll("ul.publ-list li.entry").length,
-        facets: Array.from(document.querySelectorAll("#completesearch-facets div.refine-by")).map((el) => Array.from(el.classList).join("."))
+        countText: (document.querySelector("#completesearch-publs .metadata[data-matches]") as HTMLElement | null)?.getAttribute("data-matches")
+          || document.querySelector("p#completesearch-info-matches")?.textContent
+          || "",
+        itemCount: document.querySelectorAll("#completesearch-publs ul.publ-list li.entry, #completesearch-publs li.entry").length,
+        facets: Array.from(document.querySelectorAll("#completesearch-facets div.refine-by")).map((el) => Array.from(el.classList).join(".")),
+        serviceUnavailable: /temporarily\s+not\s+available/i.test(document.querySelector("#completesearch-publs")?.textContent || "")
       }));
+      if (observed.serviceUnavailable && observed.itemCount === 0) {
+        lastError = new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "DBLP publication search service is temporarily unavailable", { url: observed.url });
+        break;
+      }
       const resultCount = parseDblpResultCount(observed.countText || observed.visibleText);
       const items = parseDblpItemsFromHtml(observed.html);
       stable = { visibleText: observed.visibleText, title: observed.title, html: observed.html, url: observed.url, resultCount, items: items.length ? items : parseDblpItemsFromVisibleText(observed.visibleText), facets: observed.facets };
-      if (observed.itemCount > 0 && resultCount > 0) break;
+      if ((observed.itemCount > 0 && resultCount > 0) || resultCount === 0) break;
     } catch (error) { lastError = error; }
     await sleep(500);
   }

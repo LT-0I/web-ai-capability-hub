@@ -38,6 +38,7 @@ const VALID_OPERATORS = new Set(["AND", "OR", "NOT"]);
 const VALID_DATE_FILTERS = new Set(["all_dates", "past_12", "specific_year", "date_range"]);
 const VALID_DATE_TYPES = new Set(["submitted_date", "submitted_date_first", "announced_date_first"]);
 const VALID_ORDERS = new Set(["-announced_date_first", "announced_date_first", "-submitted_date", "submitted_date", ""]);
+const ARXIV_SUPPORTED_PAGE_SIZES = [25, 50, 100, 200];
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
@@ -59,6 +60,13 @@ function asPositiveInt(value: unknown, name: string): number | undefined {
   const n = Number(value);
   if (!Number.isInteger(n) || n <= 0) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `${name} must be a positive integer`, { [name]: value });
   return n;
+}
+function normalizeArxivServerPageSize(value: unknown): number {
+  const requested = asPositiveInt(value, "page_size") || 50;
+  return ARXIV_SUPPORTED_PAGE_SIZES.find((size) => requested <= size) || ARXIV_SUPPORTED_PAGE_SIZES[ARXIV_SUPPORTED_PAGE_SIZES.length - 1];
+}
+function requestedItemLimit(value: unknown): number | undefined {
+  return asPositiveInt(value, "page_size");
 }
 function addOptional(url: URL, key: string, value: unknown): void {
   if (value !== undefined && value !== null && String(value).trim() !== "") url.searchParams.set(key, String(value));
@@ -131,7 +139,7 @@ export function buildArxivSearchUrl(args: ArxivSearchArgs): string {
   url.searchParams.set("date-to_date", "");
   url.searchParams.set("date-date_type", "submitted_date");
   url.searchParams.set("abstracts", "show");
-  url.searchParams.set("size", String(asPositiveInt(args.page_size, "page_size") || 50));
+  url.searchParams.set("size", String(normalizeArxivServerPageSize(args.page_size)));
   url.searchParams.set("order", normalizeOrder(args.order));
   return url.toString();
 }
@@ -157,6 +165,7 @@ export function buildArxivBibtexUrl(id: string): string {
 }
 
 export function parseArxivResultCount(text: string): number {
+  if (/Sorry,\s+your\s+query\s+returned\s+no\s+results/i.test(text || "")) return 0;
   const raw = /Showing\s+\d+\s*[–-]\s*\d+\s+of\s+([\d,]+)\s+results/i.exec(text || "")?.[1]
     || /of\s+([\d,]+)\s+results/i.exec(text || "")?.[1];
   if (!raw) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "arXiv result count node was not found", { probe: "h1.title.is-clearfix" });
@@ -216,7 +225,7 @@ async function readArxivResultsPage(page: any): Promise<{ visibleText: string; t
       const itemCount = await page.locator("li.arxiv-result").count().catch(() => 0);
       const items = parseArxivItemsFromHtml(html);
       stable = { visibleText, title, html, url, resultCount, items: items.length ? items : parseArxivItemsFromVisibleText(visibleText) };
-      if (itemCount > 0 && resultCount > 0) break;
+      if ((itemCount > 0 && resultCount > 0) || resultCount === 0) break;
     } catch (error) { lastError = error; }
     await sleep(500);
   }
@@ -270,7 +279,8 @@ export async function researchArxivSearch(args: ArxivSearchArgs): Promise<{ resu
   const profile = args.profile || "research-arxiv";
   const tabId = args.tab_id || `research-arxiv-search-${Date.now()}`;
   const page = await withAllocatedArxivPage(profile, query_url, tabId, (args.cdp_port || 9257), (p) => readArxivResultsPage(p));
-  return { result_count: page.resultCount, items: page.items, query_url };
+  const itemLimit = requestedItemLimit(args.page_size);
+  return { result_count: page.resultCount, items: itemLimit ? page.items.slice(0, itemLimit) : page.items, query_url };
 }
 
 export async function researchArxivFilter(args: ArxivFilterArgs): Promise<{ result_count: number; items: ArxivItem[]; refined_url: string; confirm_url: string; confirm_title: string }> {
@@ -278,7 +288,8 @@ export async function researchArxivFilter(args: ArxivFilterArgs): Promise<{ resu
   const profile = args.profile || "research-arxiv";
   const tabId = args.tab_id || `research-arxiv-filter-${Date.now()}`;
   const page = await withAllocatedArxivPage(profile, refined_url, tabId, (args.cdp_port || 9257), (p) => readArxivResultsPage(p));
-  return { result_count: page.resultCount, items: page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
+  const itemLimit = requestedItemLimit(args.page_size);
+  return { result_count: page.resultCount, items: itemLimit ? page.items.slice(0, itemLimit) : page.items, refined_url, confirm_url: page.url, confirm_title: page.title };
 }
 
 export async function researchArxivExport(args: ArxivExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: "bibtex"; id: string; source_url: string }> {
