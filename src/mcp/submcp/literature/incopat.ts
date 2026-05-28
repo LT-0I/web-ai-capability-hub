@@ -79,7 +79,18 @@ function incopatQueuedOutputIfQuotaReached(args: Partial<PaywalledLiteratureDown
 async function ensureIncopatDownloadAuthenticated(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<void> {
   const profile = String(args?.profile || incopatPaywalledLiteratureConfig.default_profile).trim();
   if (!profile) throw new LiteratureDownloadError(ConsumerErrorCodes.INVALID_ARGS, "profile is required for IncoPat downloads");
-  await ensureIncopatIpLoginForProfile(profile, args?.cdp_port);
+  try {
+    await ensureIncopatIpLoginForProfile(profile, args?.cdp_port);
+  } catch (error) {
+    if (error instanceof LiteratureDownloadError && error.errorCode === ConsumerErrorCodes.ELEMENT_NOT_FOUND) {
+      throw new LiteratureDownloadError(
+        ConsumerErrorCodes.LOGIN_REQUIRED,
+        `IncoPat authenticated campus-IP session is required for PDF delivery; profile "${profile}" did not expose a usable IP-login control`,
+        { profile, db_slug: incopatPaywalledLiteratureConfig.db_slug, cause: error.message }
+      );
+    }
+    throw error;
+  }
 }
 
 export async function webAiIncopatDownloadPdf(args: Partial<PaywalledLiteratureDownloadPdfArgs>): Promise<LiteratureDownloadPdfOutput> {

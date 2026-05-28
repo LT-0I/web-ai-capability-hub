@@ -27,6 +27,9 @@ export const proquestPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   default_profile: "research-proquest",
   selectors: [
     "a#downloadPDFLink",
+    "a[id^=\"downloadPDFLink\"]",
+    "a.pdf-download",
+    "a[href*=\"media.proquest.com/media/\" i]",
     "a[aria-label*=\"PDF\" i]",
     "a[title*=\"PDF\" i]",
     "a:has-text(\"PDF\")",
@@ -254,8 +257,8 @@ function throwIfProquestAccessBlocked(evidence: { title: string; url: string; bo
   }
   if (hasUnavailableDocument(evidence)) {
     throw new LiteratureDownloadError(
-      ConsumerErrorCodes.ELEMENT_NOT_FOUND,
-      `ProQuest document "${docId}" is unavailable to the authenticated institution/session; use an accessible /docview/<id> result or complete ProQuest SSO for an entitled institution before retrying`,
+      ConsumerErrorCodes.LOGIN_REQUIRED,
+      `ProQuest document "${docId}" is unavailable to the current institution/session; complete ProQuest SSO with an entitled institution or use an accessible /docview/<id> result before retrying`,
       { db_slug: "proquest", doc_id: docId, url: evidence.url, title: evidence.title }
     );
   }
@@ -326,6 +329,10 @@ async function proquestPdfHrefCandidates(page: any, docId: string, resolvedUrl: 
 async function clickProquestPdfControl(page: any, capture: { wait: (timeoutMs: number) => Promise<ProquestPdfCapture | null> }): Promise<ProquestPdfCapture | null> {
   for (const selector of [
     "a#downloadPDFLink",
+    "a[id^=\"downloadPDFLink\"]",
+    "a.pdf-download",
+    "a[class*=\"pdf-download\" i]",
+    "a[href*=\"media.proquest.com/media/\" i]",
     "a#addFlashPageParameterformat_fulltextPDF",
     "a[href*=\"/fulltextPDF/\" i]",
     "a[href*=\"/fulltextPDF\" i]",
