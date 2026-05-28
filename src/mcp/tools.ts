@@ -7641,6 +7641,15 @@ export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRun
     console.error("[webai_gemini_select_model] backend=invalid");
     return selectModelInvalidArgs("webai_gemini_select_model", `WEBAI_GEMINI_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND)}`);
   }
+  // Path C cross-model review N1: model 3.1-pro is RPC_NOT_AVAILABLE
+  // (gemini_select_model_rpc.ts:83 throws INVALID_ARGS for this model).
+  // Route to DOM at write-time rather than letting RPC throw — mirrors
+  // webAiGeminiCanvasEdit pattern.
+  const requestedModel = typeof args?.model === "string" ? args.model.trim().toLowerCase() : "";
+  if (requestedModel === "3.1-pro" || requestedModel === "pro" || requestedModel === "gemini-3.1-pro") {
+    console.error("[webai_gemini_select_model] backend=dom-extension (RPC_NOT_AVAILABLE for model=3.1-pro)");
+    return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
   console.error("[webai_gemini_select_model] backend=rpc");
   const { webAiGeminiSelectModelRpc } = require("./gemini_select_model_rpc");
   return webAiGeminiSelectModelRpc(args, runtime);
@@ -7726,6 +7735,14 @@ export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRunt
   }
   if (override && override !== "rpc") {
     return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SEND_BACKEND)}`));
+  }
+  // Path C cross-model review N1: web_search and thinking_web_search variants
+  // are RPC_NOT_AVAILABLE (gemini_send_prompt_rpc.ts:286-288 throws
+  // INVALID_ARGS for any args.web_search request). Route to DOM at write-time
+  // rather than letting RPC throw — mirrors webAiGeminiCanvasEdit pattern.
+  if (args?.web_search) {
+    console.error("[webai_gemini_send_prompt] backend=dom-extension (RPC_NOT_AVAILABLE for web_search variant)");
+    return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
   }
   console.error("[webai_gemini_send_prompt] backend=rpc");
   const { webAiGeminiSendPromptRpc } = require("./gemini_send_prompt_rpc");
@@ -7932,6 +7949,15 @@ export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRunti
   if (override && override !== "rpc") {
     console.error("[webai_claude_workspace] backend=invalid");
     return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_CLAUDE_WORKSPACE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND)}` });
+  }
+  // Path C cross-model review I2: surface=appearance RPC is 0.64x DOM
+  // (.runs/path-c-claude-rpc/wave-b3-workspace-model-conversation/ab-sweep-results.json:178
+  // confirms RPC reaches the endpoint with http_status:200 but the
+  // experiences/claude_web upstream is just slower than the DOM read).
+  // Route appearance to DOM at write-time; other surfaces stay on RPC.
+  if (args?.surface === "appearance") {
+    console.error("[webai_claude_workspace] backend=dom-extension (surface=appearance is faster on DOM)");
+    return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
   }
   console.error("[webai_claude_workspace] backend=rpc");
   const { webAiClaudeWorkspaceRpc } = require("./claude_workspace_rpc");
@@ -8197,6 +8223,14 @@ export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: Browser
     console.error("[webai_gemini_music_download_track] backend=dom-managed");
     return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
   }
+  // Path C cross-model review N1: mp3/video download-track is RPC_NOT_AVAILABLE
+  // (gemini_media_rpc.ts:755 returns INVALID_ARGS for any download-track call).
+  // Route explicit backend=rpc requests to DOM at write-time rather than
+  // returning INVALID_ARGS — mirrors webAiGeminiCanvasEdit pattern.
+  if (override === "rpc") {
+    console.error("[webai_gemini_music_download_track] backend=dom-extension (RPC_NOT_AVAILABLE for mp3/video download-track)");
+    return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
   return safeOutput({ ok: false, savedPath: "", sha256: "", byteSize: 0, format: String(args?.format || "mp3"), errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND/backend must be "dom", "managed-cdp", or "extension-assisted-cdp" because mp3/video are RPC_NOT_AVAILABLE, got ${String(process.env.WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND || args?.backend)}` });
 }
 
@@ -8283,20 +8317,34 @@ export async function webAiLiteratureTaskStatus(args: any): Promise<unknown> {
 }
 
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B4 recapture marked Design create_project RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  // Path C cross-model review I3: design create_project has no replayable RPC
+  // (CLAUDE_DESIGN_RPC_AVAILABILITY.create_project.rpcAvailable === false).
+  // Route to the existing DOM driver at write-time rather than returning
+  // INVALID_ARGS when callers ask for "rpc" — mirrors the gold-standard
+  // Gemini canvas dispatcher pattern (webAiGeminiCanvasEdit).
   const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "rpc") {
+    console.error("[webai_claude_design_create_project] backend=dom-extension (RPC_NOT_AVAILABLE for op=create_project)");
+    return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
   if (backend === "dom") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_create_project", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignCreateProjectManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_create_project", backend);
 }
 
 export async function webAiClaudeDesignGenerate(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B4 recapture marked Design generate RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  // Path C cross-model review I3: design generate has no replayable RPC
+  // (CLAUDE_DESIGN_RPC_AVAILABILITY.generate.rpcAvailable === false).
+  // Route to the existing DOM driver at write-time rather than returning
+  // INVALID_ARGS when callers ask for "rpc" — mirrors the gold-standard
+  // Gemini canvas dispatcher pattern (webAiGeminiCanvasEdit).
   const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "rpc") {
+    console.error("[webai_claude_design_generate] backend=dom-extension (RPC_NOT_AVAILABLE for op=generate)");
+    return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
   if (backend === "dom") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_generate", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignGenerateWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignGenerateManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_generate", backend);
@@ -8322,10 +8370,17 @@ export async function webAiClaudeDesignGetHtml(args: any, runtime?: BrowserToolR
 }
 
 export async function webAiClaudeDesignPresent(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B4 recapture marked Design present RPC_NOT_AVAILABLE; default remains the known-DOM-only path by write-time decision, not runtime fallback.
+  // Path C cross-model review I3: design present has no replayable RPC
+  // (CLAUDE_DESIGN_RPC_AVAILABILITY.present.rpcAvailable === false).
+  // Route to the existing DOM driver at write-time rather than returning
+  // INVALID_ARGS when callers ask for "rpc" — mirrors the gold-standard
+  // Gemini canvas dispatcher pattern (webAiGeminiCanvasEdit).
   const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  if (backend === "rpc") {
+    console.error("[webai_claude_design_present] backend=dom-extension (RPC_NOT_AVAILABLE for op=present)");
+    return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
+  }
   if (backend === "dom") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
-  if (backend === "rpc") return webAiBackendInvalidOutput("webai_claude_design_present", "rpc (RPC_NOT_AVAILABLE)");
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignPresentWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "managed-cdp") return webAiClaudeDesignPresentManaged(args, runtimeOrDefault(runtime));
   return webAiBackendInvalidOutput("webai_claude_design_present", backend);
