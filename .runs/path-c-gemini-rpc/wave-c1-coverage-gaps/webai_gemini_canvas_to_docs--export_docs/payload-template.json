@@ -1,0 +1,38 @@
+{
+  "operation_id": "webai_gemini_canvas_to_docs--export_docs",
+  "tool": "webai_gemini_canvas_to_docs",
+  "variant": "export_docs",
+  "endpoint": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ukz1Fe&source-path=%2Fapp&bl=boq_assistant-bard-web-server_fixture_p0&f.sid=0&hl=en&_reqid=1&rt=c",
+  "endpoint_kind": "batchexecute",
+  "rpc_id": "ukz1Fe",
+  "headers_template": {
+    "accept": "*/*",
+    "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "origin": "https://gemini.google.com",
+    "referer": "https://gemini.google.com/",
+    "user-agent": "Mozilla/5.0 Fixture",
+    "x-browser-channel": "stable",
+    "x-browser-year": "2026",
+    "x-goog-ext-525001261-jspb": "[1,null,null,null,null,null,null,null,[4,5,6,8],null,null,null,null,null,3,1,\"23D03E74-2EDE-4F54-9686-ECB6664511B9\"]",
+    "x-goog-ext-73010989-jspb": "[0]",
+    "x-same-domain": "1"
+  },
+  "form_template": {
+    "f.req": "[[[\"ukz1Fe\",\"[null,[[\\\"{{conversation_id}}\\\",\\\"{{response_id}}\\\"]]]\",null,\"generic\"]]]",
+    "at": "[RUNTIME_AT_TOKEN]"
+  },
+  "f_req_template": [
+    [
+      [
+        "ukz1Fe",
+        "[null,[[\"{{conversation_id}}\",\"{{response_id}}\"]]]",
+        null,
+        "generic"
+      ]
+    ]
+  ],
+  "placeholders": {
+    "conversation_id": "c_1741cb481b996fb0",
+    "response_id": "r_13f16ed708479973"
+  }
+}

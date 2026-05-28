@@ -15,6 +15,7 @@ import {
 } from "../src/mcp/gemini_select_model_rpc";
 
 const FIXTURE_ROOT = path.join(process.cwd(), ".runs/path-c-gemini-rpc/wave-b3-workspace-model-conversation/fixtures");
+const WAVE_C1_FIXTURE_ROOT = path.join(process.cwd(), ".runs/path-c-gemini-rpc/wave-c1-coverage-gaps");
 const cdpSnapshot = {
   at: "AT-select-fixture",
   bl: "boq_assistant-bard-web-server_select_fixture_p0",
@@ -24,8 +25,8 @@ const cdpSnapshot = {
   pageUrl: "https://gemini.google.com/app?hl=en"
 };
 
-function fixture(operation: string): { template: any; responseText: string } {
-  const dir = path.join(FIXTURE_ROOT, operation);
+function fixture(operation: string, root: string = FIXTURE_ROOT): { template: any; responseText: string } {
+  const dir = path.join(root, operation);
   const template = JSON.parse(fs.readFileSync(path.join(dir, "payload-template.json"), "utf8"));
   const responseJson = JSON.parse(fs.readFileSync(path.join(dir, "response-stream.json"), "utf8"));
   return { template, responseText: String(responseJson.text) };
@@ -43,8 +44,8 @@ function selectedModeIdFromBody(body: string): string | null {
   return nested[0][99] || null;
 }
 
-function fetchFor(operation: string, expectedModeId: string | null, calls: GeminiBatchRpcRequest[] = []): GeminiBatchRpcFetch {
-  const fx = fixture(operation);
+function fetchFor(operation: string, expectedModeId: string | null, calls: GeminiBatchRpcRequest[] = [], root: string = FIXTURE_ROOT): GeminiBatchRpcFetch {
+  const fx = fixture(operation, root);
   return async (request) => {
     calls.push(request);
     assert.equal(request.method, "POST");
@@ -57,10 +58,11 @@ function fetchFor(operation: string, expectedModeId: string | null, calls: Gemin
 }
 
 const SELECT_CASES = [
-  { name: "select_flash", args: { model: "3.5-flash" }, selectedModel: "3.5-flash", selectedThinkingLevel: null, modeId: "8c46e95b1a07cecc" },
-  { name: "select_flash_lite", args: { model: "3.1-flash-lite" }, selectedModel: "3.1-flash-lite", selectedThinkingLevel: null, modeId: "56fdd199312815e2" },
-  { name: "thinking_standard", args: { thinking_level: "standard" }, selectedModel: null, selectedThinkingLevel: "standard", modeId: "56fdd199312815e2" },
-  { name: "thinking_extended", args: { thinking_level: "extended" }, selectedModel: null, selectedThinkingLevel: "extended", modeId: "56fdd199312815e2" }
+  { name: "select_flash", args: { model: "3.5-flash" }, selectedModel: "3.5-flash", selectedThinkingLevel: null, modeId: "8c46e95b1a07cecc", root: FIXTURE_ROOT },
+  { name: "select_flash_lite", args: { model: "3.1-flash-lite" }, selectedModel: "3.1-flash-lite", selectedThinkingLevel: null, modeId: "56fdd199312815e2", root: FIXTURE_ROOT },
+  { name: "select_pro", args: { model: "3.1-pro" }, selectedModel: "3.1-pro", selectedThinkingLevel: null, modeId: "e6fa609c3fa255c0", root: WAVE_C1_FIXTURE_ROOT },
+  { name: "thinking_standard", args: { thinking_level: "standard" }, selectedModel: null, selectedThinkingLevel: "standard", modeId: "56fdd199312815e2", root: FIXTURE_ROOT },
+  { name: "thinking_extended", args: { thinking_level: "extended" }, selectedModel: null, selectedThinkingLevel: "extended", modeId: "56fdd199312815e2", root: FIXTURE_ROOT }
 ];
 
 for (const variantCase of SELECT_CASES) {
@@ -73,7 +75,7 @@ for (const variantCase of SELECT_CASES) {
       ...variantCase.args,
       __cdpSnapshot: cdpSnapshot,
       __now: () => 1000
-    }, fetchFor(`webai_gemini_select_model--${variantCase.name}`, variantCase.modeId, calls));
+    }, fetchFor(`webai_gemini_select_model--${variantCase.name}`, variantCase.modeId, calls, variantCase.root));
 
     assert.equal(result.errorCode, null);
     assert.equal(result.ok, true);
@@ -87,12 +89,32 @@ for (const variantCase of SELECT_CASES) {
 
 test("Gemini select_model RPC decodeGeminiBatchRpcResponse extracts L5adhe rpc ack across all captured select fixtures", () => {
   for (const variantCase of SELECT_CASES) {
-    const fx = fixture(`webai_gemini_select_model--${variantCase.name}`);
+    const fx = fixture(`webai_gemini_select_model--${variantCase.name}`, variantCase.root);
     const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
     assert.equal(decoded.ok, true, `decoded.ok for ${variantCase.name}`);
     assert.deepEqual(decoded.rpcIds, ["L5adhe"], `rpcIds for ${variantCase.name}`);
     assert.ok(decoded.eventTypes.includes("wrb.fr"), `wrb.fr event for ${variantCase.name}`);
   }
+});
+
+test("Gemini select_model RPC resolves 3.1-pro / pro / gemini-3.1-pro aliases to select_pro (Wave C1 RPC_AVAILABLE)", () => {
+  for (const alias of ["3.1-pro", "pro", "gemini-3.1-pro", "3.1-PRO"]) {
+    const resolved = resolveGeminiSelectModelRpcVariant({ model: alias });
+    assert.equal(resolved.variant, "select_pro", `variant for ${alias}`);
+    assert.equal(resolved.selectedModel, "3.1-pro", `selectedModel for ${alias}`);
+    assert.equal(resolved.selectedThinkingLevel, null, `thinkingLevel for ${alias}`);
+  }
+});
+
+test("Gemini select_model RPC select_pro captured mode id e6fa609c3fa255c0 matches resolved variant payload", () => {
+  const fx = fixture("webai_gemini_select_model--select_pro", WAVE_C1_FIXTURE_ROOT);
+  const top = fx.template.f_req_template;
+  const nested = JSON.parse(top[0][0][1]);
+  assert.equal(nested[0][99], "e6fa609c3fa255c0");
+  const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+  assert.equal(decoded.ok, true);
+  assert.deepEqual(decoded.rpcIds, ["L5adhe"]);
+  assert.ok(decoded.eventTypes.includes("wrb.fr"));
 });
 
 test("Gemini select_model RPC select_flash captured mode id matches resolved variant payload", () => {

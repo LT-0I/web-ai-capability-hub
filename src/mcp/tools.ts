@@ -7641,15 +7641,13 @@ export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRun
     console.error("[webai_gemini_select_model] backend=invalid");
     return selectModelInvalidArgs("webai_gemini_select_model", `WEBAI_GEMINI_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND)}`);
   }
-  // Path C cross-model review N1: model 3.1-pro is RPC_NOT_AVAILABLE
-  // (gemini_select_model_rpc.ts:83 throws INVALID_ARGS for this model).
-  // Route to DOM at write-time rather than letting RPC throw — mirrors
-  // webAiGeminiCanvasEdit pattern.
-  const requestedModel = typeof args?.model === "string" ? args.model.trim().toLowerCase() : "";
-  if (requestedModel === "3.1-pro" || requestedModel === "pro" || requestedModel === "gemini-3.1-pro") {
-    console.error("[webai_gemini_select_model] backend=dom-extension (RPC_NOT_AVAILABLE for model=3.1-pro)");
-    return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
-  }
+  // Path C Gemini Wave C1 (2026-05-27): model 3.1-pro is now RPC_AVAILABLE via
+  // the same L5adhe settings template family as flash / flash_lite (capture at
+  // .runs/path-c-gemini-rpc/wave-c1-coverage-gaps/webai_gemini_select_model--select_pro).
+  // The earlier write-time DOM re-route for 3.1-pro is removed; it flows through
+  // the RPC default below alongside the other supported models. DOM stays an
+  // explicit env override only (WEBAI_GEMINI_SELECT_MODEL_BACKEND), never a
+  // silent runtime fallback.
   console.error("[webai_gemini_select_model] backend=rpc");
   const { webAiGeminiSelectModelRpc } = require("./gemini_select_model_rpc");
   return webAiGeminiSelectModelRpc(args, runtime);

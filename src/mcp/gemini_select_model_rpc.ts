@@ -22,7 +22,7 @@ import {
 const GEMINI_PROFILE = "gemini-9225";
 const GEMINI_CHAT_URL = "https://gemini.google.com/app";
 
-type GeminiSelectModelRpcVariant = "select_flash" | "select_flash_lite" | "thinking_standard" | "thinking_extended";
+type GeminiSelectModelRpcVariant = "select_flash" | "select_flash_lite" | "select_pro" | "thinking_standard" | "thinking_extended";
 
 type GeminiSelectModelResolution = {
   variant: GeminiSelectModelRpcVariant;
@@ -80,7 +80,11 @@ export function resolveGeminiSelectModelRpcVariant(args: any = {}): GeminiSelect
       return { variant: "select_flash_lite", selectedModel: "3.1-flash-lite", selectedThinkingLevel: null };
     }
     if (model === "3.1-pro" || model === "pro" || model === "gemini-3.1-pro") {
-      throw new GeminiBatchRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_gemini_select_model model 3.1-pro is RPC_NOT_AVAILABLE from Wave A captures");
+      // Wave C1 capture (2026-05-27): same L5adhe settings POST as flash/flash_lite,
+      // mode_id "e6fa609c3fa255c0" verified live on gemini-9225 (driver toggled
+      // Open mode picker, currently Flash-Lite -> Pro). Template at
+      // .runs/path-c-gemini-rpc/wave-c1-coverage-gaps/webai_gemini_select_model--select_pro.
+      return { variant: "select_pro", selectedModel: "3.1-pro", selectedThinkingLevel: null };
     }
     throw new GeminiBatchRpcToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_select_model unsupported model: ${String(args.model)}`);
   }

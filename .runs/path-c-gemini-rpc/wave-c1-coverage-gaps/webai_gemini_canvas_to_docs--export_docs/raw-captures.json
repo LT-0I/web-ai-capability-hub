@@ -1,0 +1,22 @@
+{
+  "driverResult": {
+    "ok": true
+  },
+  "count": 2,
+  "summaries": [
+    {
+      "url": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ESY5D&source-path=%2Fapp%2F1741cb481b996fb0&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=-675745521322760175&hl=en&_reqid=8767811&rt=c",
+      "method": "POST",
+      "status": 200,
+      "bytes": 166,
+      "postDataLen": 167
+    },
+    {
+      "url": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ukz1Fe&source-path=%2Fapp%2F1741cb481b996fb0&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=-675745521322760175&hl=en&_reqid=8867811&rt=c",
+      "method": "POST",
+      "status": 200,
+      "bytes": 145,
+      "postDataLen": 205
+    }
+  ]
+}

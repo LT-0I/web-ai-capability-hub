@@ -1,0 +1,24 @@
+{
+  "startedAt": "2026-05-28T02:16:58.679Z",
+  "profile": "gemini-9225",
+  "page": "https://gemini.google.com/app/1741cb481b996fb0?hl=en",
+  "mode_id": "e6fa609c3fa255c0",
+  "dom": {
+    "ok": true,
+    "beforeLabel": "Open mode picker, currently Pro",
+    "afterLabel": "Open mode picker, currently Pro",
+    "elapsed_ms": 4651
+  },
+  "rpc": {
+    "ok": true,
+    "status": 200,
+    "ack": true,
+    "elapsed_ms": 590,
+    "snippet": ")]}'\n\n104\n[[\"wrb.fr\",\"L5adhe\",\"[1]\",null,null,null,\"generic\"],[\"di\",367],[\"af.httprm\",366,\"7299262266165246\",1]]\n25\n[[\"e\",4,null,null,140]]\n",
+    "fetch_elapsed_ms": 591
+  },
+  "dom_ok": true,
+  "rpc_ok": true,
+  "verdict": "PASS",
+  "note": "select_pro RPC was UNAVAILABLE pre-Wave-C1; functional RPC ack is a strict gain regardless of DOM/speedup."
+}

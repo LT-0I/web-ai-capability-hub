@@ -77,6 +77,8 @@ const GEMINI_CDP_PORT = 9225;
 const GEMINI_HOST = "gemini.google.com";
 const GEMINI_CHAT_URL = "https://gemini.google.com/app";
 const CAPTURE_ROOTS = [
+  // Wave C1 (2026-05-27) added select_pro on the same L5adhe template family.
+  path.join(process.cwd(), ".runs", "path-c-gemini-rpc", "wave-c1-coverage-gaps"),
   path.join(process.cwd(), ".runs", "path-c-gemini-rpc", "wave-b3-workspace-model-conversation", "fixtures"),
   path.join(process.cwd(), ".runs", "path-c-gemini-rpc", "wave-a-captures")
 ];
