@@ -113,3 +113,33 @@ vendor/mcp-chrome/**/*.zip
 # are intentional with skill exceptions; these nested instances are scratch).
 .runs/**/.omc/
 vendor/**/.omc/
+
+# Bulky binary evidence under .runs/ and the ip-lit subproject — keep text
+# reports (json/md/py/txt) tracked for doc references, ignore binaries (2026-05-28 prune)
+.runs/**/*.png
+.runs/**/*.jpg
+.runs/**/*.jpeg
+.runs/**/*.gif
+.runs/**/*.webp
+.runs/**/*.pdf
+.runs/**/*.mp3
+.runs/**/*.mp4
+.runs/**/*.wav
+.runs/**/*.m4a
+.runs/**/*.mov
+.runs/**/*.webm
+.runs/**/*.zip
+.runs/**/*.docx
+.runs/**/*.pptx
+.runs/**/*.xlsx
+ip-literature-patent-research/**/*.png
+ip-literature-patent-research/**/*.jpg
+ip-literature-patent-research/**/*.jpeg
+ip-literature-patent-research/**/*.pdf
+ip-literature-patent-research/**/*.docx
+ip-literature-patent-research/**/*.pptx
+ip-literature-patent-research/**/*.xlsx
+ip-literature-patent-research/**/*.mp3
+ip-literature-patent-research/**/*.mp4
+ip-literature-patent-research/.venv/
+ip-literature-patent-research/.omx/
