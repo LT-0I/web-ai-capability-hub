@@ -1,0 +1,38 @@
+{
+  "page_media_urls_before_click": {
+    "audios": [],
+    "sources": [],
+    "hrefs": []
+  },
+  "download_phase_request_count": 2,
+  "download_phase_requests": [
+    {
+      "url": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ESY5D&source-path=%2Fapp%2F3d9b5f53bbfd8cdf&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=-4436862680723404508&hl=en&_reqid=5578014&rt=c",
+      "method": "POST",
+      "type": "XHR",
+      "hasPost": true,
+      "postData": "f.req=%5B%5B%5B%22ESY5D%22%2C%22%5B%5B%5B%5C%22bard_activity_enabled%5C%22%5D%5D%5D%22%2Cnull%2C%22generic%22%5D%5D%5D&at=[REDACTED_AT_TOKEN]&",
+      "status": 200,
+      "mime": "application/json"
+    },
+    {
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-WC57KJ50ZZ&gtm=45je65q2v9134258191z89113054662za20gzb9113054662zd9113054662&_p=1779943213679&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=EAAAAAQ&are=1&cid=1912190326.1778751564&frm=0&ir=1&pscdl=noapi&rcb=14&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.167%7CGoogle%2520Chrome%3B148.0.7778.167%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-cn&tag_exp=0~115616986~115938466~115938469&dl=https%3A%2F%2Fgemini.google-b197145817.com%2Fapp%2F3d9b5f53bbfd8cdf%2F&sid=1779942780&sct=80&seg=1&dt=Music%20Generation%20Issue%20-%20Google%20Gemini&_s=5&tfd=502850",
+      "method": "POST",
+      "type": "Fetch",
+      "hasPost": true,
+      "postData": "en=307996&ep.page_locale=default&ep.user_agent=Mozilla%2F5.0%20(X11%3B%20Linux%20x86_64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F148.0.0.0%20Safari%2F537.36&ep.is_eea=false&ep.us",
+      "status": 204,
+      "mime": "text/plain"
+    }
+  ],
+  "media_get_requests": [],
+  "batchexecute_posts": [
+    {
+      "url": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ESY5D&source-path=%2Fapp%2F3d9b5f53bbfd8cdf&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=0&hl=en&_reqid=1&rt=c",
+      "post": "f.req=%5B%5B%5B%22ESY5D%22%2C%22%5B%5B%5B%5C%22bard_activity_enabled%5C%22%5D%5D%5D%22%2Cnull%2C%22generic%22%5D%5D%5D&at=[REDACTED_AT_TOKEN]&"
+    }
+  ],
+  "browser_downloads": [],
+  "blob_downloads": [],
+  "verdict": "INCONCLUSIVE: no media GET, no blob, no browser download captured"
+}

@@ -752,7 +752,16 @@ export async function webAiGeminiMusicGenerateRpc(args: any, runtime?: BrowserTo
 
 export async function webAiGeminiMusicDownloadTrackRpc(args: any): Promise<Record<string, unknown>> {
   const format = String(args?.format || "mp3");
-  return musicDownloadErrorOutput(format, ConsumerErrorCodes.INVALID_ARGS, "RPC_NOT_AVAILABLE: Wave A/B2 found no matching Gemini Music download-track RPC for mp3/video; dispatcher keeps these variants DOM-only by write-time decision.");
+  // Path C Gemini Wave C2: TRUE_RPC_NOT_AVAILABLE confirmed with a live ready track.
+  // The signed audio URL (contribution.usercontent.google.com/download?c=<token>) is
+  // embedded in the conversation page, but it can only be fetched inside the browser's
+  // credentialed context: an in-page fetch returns audio/mpeg, while a reconstructed
+  // headless fetch with the full snapshot cookie jar redirects to accounts.google.com/
+  // signin. The endpoint needs host-bound browser credentials that a CDP snapshot's
+  // at-token + Network.getAllCookies cannot reconstruct (same class as Claude generate/
+  // present). The dispatcher keeps these variants DOM-only by write-time decision.
+  // Evidence: .runs/path-c-gemini-rpc/wave-c2-coverage-gaps/webai_gemini_music_download_track/.
+  return musicDownloadErrorOutput(format, ConsumerErrorCodes.INVALID_ARGS, "RPC_NOT_AVAILABLE: Gemini Music download-track audio fetch (contribution.usercontent.google.com) is browser-credential-bound and cannot be replayed as a pure RPC; dispatcher keeps mp3/video DOM-only by write-time decision (Wave C2).");
 }
 
 export const generateGeminiImageRpc = webAiGeminiGenerateImageRpc;

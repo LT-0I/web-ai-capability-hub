@@ -175,9 +175,17 @@ function payloadTemplateCandidates(args: any): string[] {
   const root = process.cwd();
   const variant = resolveGeminiSendPromptVariant(args);
   const base = path.join(root, ".runs", "path-c-gemini-rpc", "wave-a-captures");
+  // Path C Gemini Wave C2: web_search / thinking_web_search were captured live in
+  // wave-c2-coverage-gaps (wave-a captures were blocked at the now-removed Google Search
+  // toggle). Prefer the wave-c2 capture for those variants; otherwise fall back to the
+  // wave-a basic template (web_search maps to the same StreamGenerate shape as basic).
+  const c2Base = path.join(root, ".runs", "path-c-gemini-rpc", "wave-c2-coverage-gaps");
   return [
     args?.__payloadTemplatePath,
     path.join(base, `webai_gemini_send_prompt--${variant}`, "payload-template.json"),
+    (variant === "web_search" || variant === "thinking_web_search")
+      ? path.join(c2Base, "webai_gemini_send_prompt--web_search", "payload-template.json")
+      : null,
     path.join(base, "webai_gemini_send_prompt--basic", "payload-template.json")
   ].filter(Boolean);
 }
@@ -283,10 +291,15 @@ function buildEndpoint(snapshot: GeminiRpcCdpSnapshot, args: any): string {
 export function buildGeminiRpcRequest(args: any, snapshot: GeminiRpcCdpSnapshot, template?: GeminiRpcPayloadTemplate): GeminiRpcRequest {
   const prompt = String(args?.prompt || "");
   if (!prompt.trim()) throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_gemini_send_prompt_rpc requires prompt");
-  if (args?.web_search) {
-    const variant = resolveGeminiSendPromptVariant(args);
-    throw new GeminiRpcToolError(ConsumerErrorCodes.INVALID_ARGS, `Gemini RPC send_prompt variant ${variant} is RPC_NOT_AVAILABLE from Wave A captures`);
-  }
+  // Path C Gemini Wave C2: the web_search / thinking_web_search variants are now
+  // RPC-available. The current Gemini build has NO "Google Search" tool toggle —
+  // web grounding is automatic, driven by the server from prompt semantics, with no
+  // client-controllable payload flag (the only inner-f.req delta a live capture showed
+  // vs the basic template was inner[79], which encodes the model, not web search).
+  // So web_search maps to the SAME StreamGenerate request as a basic send. It is
+  // genuinely replayable via the existing StreamGenerate machinery: the captured
+  // grounded response decoded cleanly (real source URLs) through decodeGeminiStream.
+  // Evidence: .runs/path-c-gemini-rpc/wave-c2-coverage-gaps/webai_gemini_send_prompt--web_search/.
   const effectiveTemplate = template || loadGeminiRpcPayloadTemplate(args);
   const requestArgs = { ...args, __cdpSnapshot: snapshot };
   const form = new URLSearchParams();

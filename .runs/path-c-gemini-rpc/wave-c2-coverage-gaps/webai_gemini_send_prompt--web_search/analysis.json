@@ -1,0 +1,23 @@
+{
+  "variant": "web_search",
+  "verdict": "RPC_AVAILABLE",
+  "rationale": "web_search maps to the SAME StreamGenerate request as a basic send; web grounding is automatic (no client-controllable payload flag). Replayable via the existing Gemini RPC StreamGenerate machinery + basic template.",
+  "prior_wave_block_root_cause": "Current Gemini build (boq_assistant-bard-web-server_20260525.09_p0) has NO 'Google Search' tool toggle. Upload&tools menu only exposes: Create image, Create video, Canvas, Deep research, Create music, Guided learning, Personal Intelligence. The DOM selector GEMINI_WEB_SEARCH_MENUITEM_SELECTOR ([role=menuitemcheckbox]:has-text('Google Search')) is dead against this build, which is why wave-a + wave-c1 captures were BLOCKED at the toggle step.",
+  "live_capture": {
+    "prompt": "Use Google Search to answer: who is the current Prime Minister of the United Kingdom as of today, and cite the source URL.",
+    "endpoint_kind": "stream_generate",
+    "http_status": 200,
+    "response_bytes": 11991,
+    "decoded_text_sample": "The current Prime Minister of the United Kingdom is **Sir Keir Starmer**. He assumed office on July 5, 2024. Source: gov.uk/government/ministers/prime-minister",
+    "model_used": "3.1 Pro",
+    "grounded_urls_present": true,
+    "sample_grounded_urls": ["https://www.gov.uk/government/ministers/prime-minister", "https://en.wikipedia.org/wiki/Keir_Starmer"]
+  },
+  "control_capture": {
+    "prompt": "Write a haiku about a quiet mountain lake. Do not search the web.",
+    "inner_79": 3,
+    "note": "Plain non-search prompt on the SAME model also has inner[79]==3 with NO grounding URLs, proving inner[79] encodes the model (3.1 Pro), not a web-search flag."
+  },
+  "only_payload_delta_vs_wave_a_basic": { "slot": 79, "wave_a_basic": 1, "this_capture": 3, "meaning": "model encoding (3.1 Pro), not web search" },
+  "code_change": "Remove RPC-unavailable branch at gemini_send_prompt_rpc.ts:286-288; route web_search/thinking_web_search to RPC in webAiGeminiSendPrompt dispatcher; no new payload slot. Existing decoder cleanly extracts the grounded response."
+}

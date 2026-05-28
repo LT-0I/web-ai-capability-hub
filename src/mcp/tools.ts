@@ -7734,14 +7734,14 @@ export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRunt
   if (override && override !== "rpc") {
     return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SEND_BACKEND)}`));
   }
-  // Path C cross-model review N1: web_search and thinking_web_search variants
-  // are RPC_NOT_AVAILABLE (gemini_send_prompt_rpc.ts:286-288 throws
-  // INVALID_ARGS for any args.web_search request). Route to DOM at write-time
-  // rather than letting RPC throw — mirrors webAiGeminiCanvasEdit pattern.
-  if (args?.web_search) {
-    console.error("[webai_gemini_send_prompt] backend=dom-extension (RPC_NOT_AVAILABLE for web_search variant)");
-    return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
-  }
+  // Path C Gemini Wave C2: web_search / thinking_web_search are now RPC-available.
+  // The current Gemini build has NO "Google Search" tool toggle — grounding is
+  // automatic (server-decided from prompt semantics, no client payload flag), so the
+  // variant maps to the same StreamGenerate request as a basic send and replays via
+  // the existing RPC machinery. A live capture decoded a real grounded response with
+  // source URLs. Evidence: .runs/path-c-gemini-rpc/wave-c2-coverage-gaps/
+  // webai_gemini_send_prompt--web_search/. The RPC path now handles web_search
+  // directly; no separate DOM route is needed.
   console.error("[webai_gemini_send_prompt] backend=rpc");
   const { webAiGeminiSendPromptRpc } = require("./gemini_send_prompt_rpc");
   return webAiGeminiSendPromptRpc(args, runtime);
@@ -8209,9 +8209,13 @@ export async function webAiGeminiMusicGenerate(args: any, runtime?: BrowserToolR
 }
 
 export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  // Path C Gemini Wave B2: mp3/video download-track captures were RPC_NOT_AVAILABLE
-  // (no ready-track/no matching download RPC). This tool remains DOM-only by
-  // write-time decision; this is not a runtime fallback after an RPC failure.
+  // Path C Gemini Wave C2: mp3/video download-track is TRUE_RPC_NOT_AVAILABLE, now
+  // confirmed against a live ready track. The signed audio URL
+  // (contribution.usercontent.google.com/download?c=<token>) is embedded in the page
+  // but only fetchable inside the browser's credentialed context — a reconstructed
+  // headless fetch with the full snapshot cookie jar redirects to accounts.google.com/
+  // signin (host-bound credentials a CDP snapshot cannot reconstruct). This tool remains
+  // DOM-only by write-time decision; it is not a runtime fallback after an RPC failure.
   const override = String(process.env.WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND || args?.backend || "extension-assisted-cdp").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_gemini_music_download_track] backend=dom-extension");
@@ -8221,12 +8225,12 @@ export async function webAiGeminiMusicDownloadTrack(args: any, runtime?: Browser
     console.error("[webai_gemini_music_download_track] backend=dom-managed");
     return webAiGeminiMusicDownloadTrackManaged(args, runtimeOrDefault(runtime));
   }
-  // Path C cross-model review N1: mp3/video download-track is RPC_NOT_AVAILABLE
-  // (gemini_media_rpc.ts:755 returns INVALID_ARGS for any download-track call).
-  // Route explicit backend=rpc requests to DOM at write-time rather than
-  // returning INVALID_ARGS — mirrors webAiGeminiCanvasEdit pattern.
+  // Path C Gemini Wave C2: mp3/video download-track is TRUE_RPC_NOT_AVAILABLE
+  // (gemini_media_rpc.ts musicDownloadErrorOutput returns INVALID_ARGS for any
+  // download-track call). Route explicit backend=rpc requests to DOM at write-time
+  // rather than returning INVALID_ARGS — mirrors the webAiClaudeDesignGenerate pattern.
   if (override === "rpc") {
-    console.error("[webai_gemini_music_download_track] backend=dom-extension (RPC_NOT_AVAILABLE for mp3/video download-track)");
+    console.error("[webai_gemini_music_download_track] backend=dom-extension (TRUE_RPC_NOT_AVAILABLE for mp3/video download-track, Wave C2)");
     return webAiGeminiMusicDownloadTrackWithExtensionBackend(args, runtimeOrDefault(runtime));
   }
   return safeOutput({ ok: false, savedPath: "", sha256: "", byteSize: 0, format: String(args?.format || "mp3"), errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND/backend must be "dom", "managed-cdp", or "extension-assisted-cdp" because mp3/video are RPC_NOT_AVAILABLE, got ${String(process.env.WEBAI_GEMINI_MUSIC_DOWNLOAD_TRACK_BACKEND || args?.backend)}` });

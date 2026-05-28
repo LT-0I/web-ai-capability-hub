@@ -1,0 +1,47 @@
+{
+  "click_result": {
+    "ok": true,
+    "chose": "mp3"
+  },
+  "download_events": [
+    {
+      "phase": "begin",
+      "url": "blob:null/b5460e53-f935-4890-b1ea-4ec9a089a285",
+      "fn": "Apricot_Afternoon.mp3",
+      "guid": "2cc9ca1c-ff4b-43b5-9596-b2c91d66047d"
+    },
+    {
+      "phase": "completed",
+      "guid": "2cc9ca1c-ff4b-43b5-9596-b2c91d66047d",
+      "total": 744608,
+      "received": 744608
+    }
+  ],
+  "download_phase_request_count": 2,
+  "new_requests": [
+    {
+      "url": "https://gemini.google.com/_/BardChatUi/data/batchexecute?rpcids=ESY5D&source-path=%2Fapp%2F3d9b5f53bbfd8cdf&bl=boq_assistant-bard-web-server_20260525.09_p0&f.sid=-4436862680723404508&hl=en&_reqid=5778014&rt=c",
+      "method": "POST",
+      "type": "XHR",
+      "status": 200,
+      "mime": "application/json"
+    },
+    {
+      "url": "https://contribution.usercontent.google.com/download?c=CgxiYXJkX3N0b3JhZ2USTBIJdGVtcF9kYXRhGj8KMGI2Nzg0YzY1ZWNjN2UxZWMwMDA2NTJkOTZlNmY4OWZiMDg0NDEyNDNlMzNkOWE0ZBILEgcQq4vMk5kaGAE&filename=apricot_afternoon.mp3&opi=103135050",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mime": "audio/mpeg"
+    }
+  ],
+  "media_get_requests": [
+    {
+      "url": "https://contribution.usercontent.google.com/download?c=CgxiYXJkX3N0b3JhZ2USTBIJdGVtcF9kYXRhGj8KMGI2Nzg0YzY1ZWNjN2UxZWMwMDA2NTJkOTZlNmY4OWZiMDg0NDEyNDNlMzNkOWE0ZBILEgcQq4vMk5kaGAE&filename=apricot_afternoon.mp3&opi=103135050",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mime": "audio/mpeg"
+    }
+  ],
+  "verdict": "TRUE_RPC_NOT_AVAILABLE: download began from a client-side blob: URL (no replayable network roundtrip)"
+}

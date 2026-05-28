@@ -1,0 +1,25 @@
+{
+  "startedAt": "2026-05-28T04:59:41.052Z",
+  "profile": "gemini-9225",
+  "variants": [
+    {
+      "variant": "webai_gemini_send_prompt--web_search",
+      "rpc": {
+        "ok": true,
+        "errorCode": null,
+        "elapsed_ms": 8991,
+        "model_used": null,
+        "response_chars": 1319,
+        "response_snippet": "The capital city of Australia is **Canberra**. \n\nIt was formally established as the nation's capital territory in 1911 following an international design competition to build a purpose-built seat of government midway betw",
+        "grounded_answer_correct": true
+      },
+      "dom": {
+        "available": false,
+        "note": "Current Gemini build has no 'Google Search' tool toggle; the DOM driver selector ([role=menuitemcheckbox]:has-text('Google Search')) is dead. RPC is the strict gain."
+      },
+      "verdict": "PASS",
+      "note": "web_search was RPC_NOT_AVAILABLE pre-Wave-C2; a functional grounded RPC answer is a strict gain regardless of DOM/speedup."
+    }
+  ],
+  "finishedAt": "2026-05-28T04:59:50.043Z"
+}

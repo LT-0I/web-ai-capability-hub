@@ -165,9 +165,17 @@ test("Gemini music RPC submits captured instrumental body and saves the generate
   assert.equal(result.size_bytes, bytes.length);
 });
 
-test("Gemini music download-track RPC remains explicitly RPC_NOT_AVAILABLE for mp3/video", async () => {
-  const result = await webAiGeminiMusicDownloadTrackRpc({ format: "mp3" });
-  assert.equal(result.errorCode, "INVALID_ARGS");
-  assert.equal(result.error_code, "INVALID_ARGS");
-  assert.match(String(result.message), /RPC_NOT_AVAILABLE/);
+test("Gemini music download-track RPC remains explicitly RPC_NOT_AVAILABLE for mp3/video (Wave C2: browser-credential-bound)", async () => {
+  // Path C Gemini Wave C2 confirmed against a live ready track: the signed audio URL
+  // (contribution.usercontent.google.com/download?c=...) is only fetchable inside the
+  // browser's credentialed context; a reconstructed headless fetch redirects to the
+  // Google sign-in page. There is no replayable pure-RPC shape, so both formats stay
+  // TRUE_RPC_NOT_AVAILABLE and the dispatcher keeps them DOM-only.
+  for (const format of ["mp3", "video"]) {
+    const result = await webAiGeminiMusicDownloadTrackRpc({ format });
+    assert.equal(result.errorCode, "INVALID_ARGS");
+    assert.equal(result.error_code, "INVALID_ARGS");
+    assert.equal(result.format, format);
+    assert.match(String(result.message), /RPC_NOT_AVAILABLE/);
+  }
 });

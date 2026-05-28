@@ -1,0 +1,23 @@
+{
+  "send_enabled": true,
+  "count": 1,
+  "status": 200,
+  "response_bytes": 11991,
+  "inner_length": 81,
+  "slot_diff_vs_basic": [
+    {
+      "slot": 79,
+      "basic": "1",
+      "websearch": "3"
+    }
+  ],
+  "grounding_signals_in_response": false,
+  "sample_urls_in_response": [
+    "https://www.gov.uk/government/ministers/prime-minister)",
+    "https://www.gov.uk/government/ministers/prime-minister",
+    "https://www.gov.uk/government/ministers/prime-minister)",
+    "https://en.wikipedia.org/wiki/Keir_Starmer#:~:text",
+    "https://www.gov.uk/government/ministers/prime-minister"
+  ],
+  "decision_hint": "payload differs -> web_search needs a distinct slot delta; inspect slot_diff_vs_basic."
+}

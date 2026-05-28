@@ -217,19 +217,63 @@ test("Gemini RPC request builder applies combined model + thinking deltas", () =
   assert.equal(inner[80], 2);
 });
 
-test("Gemini RPC send_prompt marks non-verified Web Search variants RPC_NOT_AVAILABLE without DOM fallback", async () => {
+test("Gemini RPC send_prompt resolves web_search/thinking_web_search variants", () => {
+  // Path C Gemini Wave C2: web_search is now RPC-available (auto-grounding, same
+  // StreamGenerate shape as basic). Variant resolution still distinguishes the two.
+  assert.equal(resolveGeminiSendPromptVariant({ web_search: true }), "web_search");
+  assert.equal(resolveGeminiSendPromptVariant({ web_search: true, thinking: true }), "thinking_web_search");
+});
+
+test("Gemini RPC send_prompt sends web_search over StreamGenerate (Wave C2 RPC-available, no longer RPC_NOT_AVAILABLE)", async () => {
+  // Wave C2 live capture proved web_search maps to the same StreamGenerate request as
+  // a basic send (the only payload delta vs the wave-a basic template was inner[79],
+  // which encodes the model, not web search) and the grounded response decodes through
+  // the existing decoder. So the RPC path must now actually fire StreamGenerate.
+  const calls: any[] = [];
   const result = await webAiGeminiSendPromptRpc({
     profile: "gemini-9225",
-    prompt: "search this",
+    prompt: "who is the current UK Prime Minister, cite the source",
     web_search: true,
     __cdpSnapshot: cdpSnapshot,
     __payloadTemplate: fixtureTemplate(),
-    __fetch: async () => { throw new Error("fetch should not run for RPC_NOT_AVAILABLE web_search"); }
+    __fetch: async (url: string, init: any) => {
+      calls.push({ url, init });
+      return { ok: true, status: 200, text: async () => minimalGeminiStream("Sir Keir Starmer") };
+    }
   });
 
-  assert.equal(result.errorCode, "INVALID_ARGS");
-  assert.equal(result.error_code, "INVALID_ARGS");
-  assert.match(String(result.message), /RPC_NOT_AVAILABLE/);
+  assert.equal(result.errorCode, null);
+  assert.equal(result.error_code ?? null, null);
+  assert.equal(result.completion_detected, true);
+  assert.equal(result.response_text, "Sir Keir Starmer");
+  assert.equal(calls.length, 1);
+  assert.match(calls[0].url, /StreamGenerate/);
+  assert.equal(calls[0].init.method, "POST");
+  // web grounding is automatic — the prompt slot is rewritten, no DOM fallback occurs.
+  const inner = innerFromRequestBody(calls[0].init.body);
+  assert.equal(inner[0][0], "who is the current UK Prime Minister, cite the source");
+});
+
+test("Gemini RPC send_prompt thinking_web_search keeps the extended-thinking delta", async () => {
+  const calls: any[] = [];
+  const result = await webAiGeminiSendPromptRpc({
+    profile: "gemini-9225",
+    prompt: "deep search the web for recent fusion energy milestones",
+    web_search: true,
+    thinking: true,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate(),
+    __fetch: async (url: string, init: any) => {
+      calls.push({ url, init });
+      return { ok: true, status: 200, text: async () => minimalGeminiStream("grounded answer") };
+    }
+  });
+
+  assert.equal(result.errorCode, null);
+  assert.equal(result.response_text, "grounded answer");
+  assert.equal(resolveGeminiSendPromptVariant({ web_search: true, thinking: true }), "thinking_web_search");
+  const inner = innerFromRequestBody(calls[0].init.body);
+  assert.equal(inner[80], 2); // extended thinking delta preserved alongside web_search
 });
 
 test("Gemini RPC send_prompt maps non-200 HTTP responses to existing consumer error codes", async () => {
