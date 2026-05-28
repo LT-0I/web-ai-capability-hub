@@ -1,0 +1,74 @@
+name: UI drift report
+description: Structured report for selector/UI drift detected by the local maintenance sweep.
+title: "[drift] <target> <tool> UI drift"
+labels: ["drift", "auto-detected"]
+body:
+  - type: input
+    id: target
+    attributes:
+      label: target
+      description: Service target, integration feature id, or database slug.
+      placeholder: chatgpt
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: tool
+      description: MCP/CLI tool or surface affected.
+      placeholder: webai_chatgpt_send_prompt
+    validations:
+      required: true
+  - type: dropdown
+    id: error_code
+    attributes:
+      label: errorCode
+      options:
+        - ELEMENT_NOT_FOUND
+        - MODEL_SELECTION_DRIFT
+        - IFRAME_NOT_FOUND
+        - UI_DRIFT_DETECTED
+        - HEAL_CONFIDENCE_LOW
+        - HEALTH_CHECK_SELECTOR_DRIFT
+        - COMMAND_TIMEOUT
+        - UNKNOWN
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: evidence
+      description: Local evidence JSON path under .runs/maintenance-sweep/.
+      placeholder: .runs/maintenance-sweep/2026-05-28T03-00-00Z/chatgpt/evidence.json
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: health-check summary
+      description: Include missing/ambiguous selector counts and the positive-smoke result.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: reproduce
+      description: Commands that reproduce the drift locally.
+      render: bash
+      value: |
+        export DISPLAY=:0
+        export XAUTHORITY=/run/user/1000/gdm/Xauthority
+        rm -rf dist && npm run build
+        scripts/maintenance-sweep.sh --target <target> --dry-run
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: safety notes
+      value: |
+        The sweep classified login/paywall/CAPTCHA/access-denied states as WALL and did not file those as drift.
+        The sweep did not edit code, push commits, record credentials, or bypass access controls.
+    validations:
+      required: true

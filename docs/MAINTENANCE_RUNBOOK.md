@@ -1,5 +1,9 @@
 # Maintenance Runbook — periodic tool refresh
 
+## Automated sweep entry point
+
+Local scheduled detection is now documented in [`AUTOMATED_MAINTENANCE.md`](AUTOMATED_MAINTENANCE.md). Use `scripts/maintenance-sweep.sh` for the read-only detect → GitHub issue path, and `scripts/issuefix-trigger.sh` for the optional dry-run-by-default issue-fix trigger. The automation keeps §2.3 honest failures: selector drift can open issues; login/paywall/CAPTCHA/access walls are recorded but not filed as driver bugs.
+
 When a web-AI front-end (ChatGPT / Claude / Gemini) ships a UI change, or a
 research database changes its layout/flow, our tools drift. This runbook is the
 **standardized process** to detect, fix, and re-certify them. Run it on a cadence
