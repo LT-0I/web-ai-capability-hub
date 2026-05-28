@@ -13,7 +13,7 @@ import {
   safeOutput,
   WebAiToolError
 } from "./tools";
-import { dismissGeminiOverlay, toggleGeminiTool } from "./geminiExtensionHelpers";
+import { dismissGeminiOverlay, ensureGeminiToolsAvailable, toggleGeminiTool } from "./geminiExtensionHelpers";
 import {
   buildGeminiCanvasRpcFReq,
   captureGeminiCanvasRpcSnapshotFromPage,
@@ -184,6 +184,34 @@ export async function prepareGeminiDeepResearchRpcPage(page: any, args: any): Pr
   await page.bringToFront?.().catch?.(() => undefined);
   const pageUrl = String(page.url?.() || target);
   if (loginRequiredForService("gemini", pageUrl)) throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Deep research RPC", { url: pageUrl });
+  const canProbeLiveDom = typeof page?.evaluate === "function" || typeof page?.evaluateReadOnly === "function";
+  if (canProbeLiveDom) {
+    await dismissGeminiOverlay(page).catch(() => undefined);
+    await ensureGeminiToolsAvailable(page);
+    await dismissGeminiOverlay(page).catch(() => undefined);
+    try {
+      await toggleGeminiTool(page, "Deep research", 1, 15000);
+      return;
+    } catch (primaryError: any) {
+      if (primaryError?.errorCode && primaryError.errorCode !== ConsumerErrorCodes.ELEMENT_NOT_FOUND) throw primaryError;
+      await dismissGeminiOverlay(page).catch(() => undefined);
+      try {
+        await toggleGeminiTool(page, "Deep research", 2, 15000);
+        return;
+      } catch (fallbackError: any) {
+        if (fallbackError?.errorCode && fallbackError.errorCode !== ConsumerErrorCodes.ELEMENT_NOT_FOUND) throw fallbackError;
+        throw new GeminiCanvasRpcToolError(
+          ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+          "Gemini Deep research menuitemcheckbox was not found",
+          {
+            selector: GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR,
+            primary_cause: primaryError?.message || String(primaryError),
+            fallback_cause: fallbackError?.message || String(fallbackError)
+          }
+        );
+      }
+    }
+  }
   try {
     await clickSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
     await clickSelector(page, GEMINI_DEEP_RESEARCH_MENUITEM_SELECTOR, 15000, "Gemini Deep research menuitemcheckbox was not found");

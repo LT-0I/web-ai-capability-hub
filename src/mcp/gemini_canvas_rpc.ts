@@ -14,6 +14,7 @@ import {
   safeOutput,
   WebAiToolError
 } from "./tools";
+import { dismissGeminiOverlay, ensureGeminiToolsAvailable, toggleGeminiTool } from "./geminiExtensionHelpers";
 
 const GEMINI_PROFILE = "gemini-9225";
 const GEMINI_CDP_PORT = 9225;
@@ -22,6 +23,11 @@ const DEFAULT_RESPONSE_TIMEOUT_MS = 120000;
 const GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR = 'button[aria-label="Upload & tools"]';
 const GEMINI_CANVAS_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Canvas")';
 const GEMINI_CANVAS_MODE_ACTIVE_SELECTOR = 'button[aria-label="Deselect Canvas"]';
+const GEMINI_CANVAS_PROMPT_SELECTOR = 'rich-textarea .ql-editor[contenteditable="true"]';
+const GEMINI_SEND_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
+const GEMINI_CANVAS_SHARE_BUTTON_SELECTOR = '[data-test-id="share-button"] button, [data-testid="share-button"] button, button[data-test-id="share-button"], button[data-testid="share-button"], button[aria-label="Share and export canvas"], button[aria-label*="share" i][aria-label*="Canvas" i]';
+const GEMINI_CANVAS_EXPORT_DOCS_SELECTOR = '[data-test-id="export-to-docs-button"], [data-testid="export-to-docs-button"], export-to-docs-button, gem-menu-item[data-test-id="export-to-docs-button"], button[data-test-id="export-to-docs-button"], button[data-testid="export-to-docs-button"]';
+const GOOGLE_DOCS_URL_RE = /^https:\/\/docs\.google\.com\/document\/d\/([^/?#]+)/;
 
 const CAPTURE_ROOTS = [
   path.join(process.cwd(), ".runs", "path-c-gemini-rpc", "wave-b4-canvas-research", "fixtures"),
@@ -288,6 +294,38 @@ export async function prepareGeminiCanvasRpcPage(page: any, args: any): Promise<
   await page.bringToFront?.().catch?.(() => undefined);
   const pageUrl = String(page.url?.() || target);
   if (loginRequiredForService("gemini", pageUrl)) throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini login is required before Canvas RPC", { url: pageUrl });
+  const canProbeLiveDom = typeof page?.evaluate === "function" || typeof page?.evaluateReadOnly === "function";
+  if (canProbeLiveDom) {
+    await dismissGeminiOverlay(page).catch(() => undefined);
+    await ensureGeminiToolsAvailable(page);
+    await dismissGeminiOverlay(page).catch(() => undefined);
+    try {
+      await toggleGeminiTool(page, "Canvas", 1, 15000);
+    } catch (primaryError: any) {
+      if (primaryError?.errorCode && primaryError.errorCode !== ConsumerErrorCodes.ELEMENT_NOT_FOUND) throw primaryError;
+      await dismissGeminiOverlay(page).catch(() => undefined);
+      try {
+        await toggleGeminiTool(page, "Canvas", 2, 15000);
+      } catch (fallbackError: any) {
+        if (fallbackError?.errorCode && fallbackError.errorCode !== ConsumerErrorCodes.ELEMENT_NOT_FOUND) throw fallbackError;
+        throw new GeminiCanvasRpcToolError(
+          ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+          "Gemini Canvas menuitemcheckbox was not found",
+          {
+            selector: GEMINI_CANVAS_MENUITEM_SELECTOR,
+            primary_cause: primaryError?.message || String(primaryError),
+            fallback_cause: fallbackError?.message || String(fallbackError)
+          }
+        );
+      }
+    }
+    try {
+      await page.waitForSelector?.(GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, { state: "visible", timeout: 15000, timeoutMs: 15000 });
+      return;
+    } catch (error: any) {
+      throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas mode did not expose its active pill", { selector: GEMINI_CANVAS_MODE_ACTIVE_SELECTOR, cause: error?.message || String(error) });
+    }
+  }
   await clickSelector(page, GEMINI_UPLOAD_TOOLS_TRIGGER_SELECTOR, 15000, "Gemini Upload & tools button was not found");
   await clickSelector(page, GEMINI_CANVAS_MENUITEM_SELECTOR, 15000, "Gemini Canvas menuitemcheckbox was not found");
   try {
@@ -538,14 +576,275 @@ function docsErrorOutput(args: any, error: any, extra: Record<string, unknown> =
   });
 }
 
-export async function webAiGeminiCanvasToDocsRpc(args: any): Promise<Record<string, unknown>> {
-  const effective = effectiveGeminiArgs({ ...(args || {}), __tool: "webai_gemini_canvas_to_docs" });
+function geminiCanvasToDocsDocumentPrompt(prompt: string): string {
+  const raw = String(prompt || "").trim();
+  const stripped = raw
+    .replace(/,?\s*then\s+export\s+to\s+Google\s+Docs\.?/ig, "")
+    .replace(/\bexport\s+(?:it\s+)?to\s+Google\s+Docs\b\.?/ig, "")
+    .trim();
+  const base = stripped || raw || "a short editable document";
+  if (/editable document/i.test(raw) && /not code|not an app/i.test(raw)) return raw;
+  return `Use Canvas to draft an editable document for this request: ${base}. Make it a document, not code or an app. Do not open external apps.`;
+}
+
+function geminiCanvasToDocsReadyTimeoutMs(args: any): number {
+  const configured = responseTimeoutMs(args);
+  return Math.min(configured, 150000);
+}
+
+function sleepMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, Math.max(1, ms)));
+}
+
+async function waitForTimeoutCompat(page: any, ms: number): Promise<void> {
+  if (typeof page?.waitForTimeout === "function") {
+    await page.waitForTimeout(ms).catch(() => undefined);
+    return;
+  }
+  await sleepMs(ms);
+}
+
+async function readGeminiCanvasShareButtonState(page: any): Promise<{ found: boolean; disabled: boolean; aria: string; text: string }> {
+  const read = (node: Element | null) => {
+    const button = node as HTMLButtonElement | null;
+    return {
+      found: Boolean(node),
+      disabled: Boolean(button?.disabled || node?.getAttribute("aria-disabled") === "true"),
+      aria: String(node?.getAttribute("aria-label") || ""),
+      text: String(node?.textContent || "").replace(/\s+/g, " ").trim()
+    };
+  };
+  if (typeof page?.locator === "function") {
+    const locator = page.locator(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR).first();
+    return await locator.evaluate(read).catch(() => ({ found: false, disabled: true, aria: "", text: "" }));
+  }
+  if (typeof page?.evaluate === "function") {
+    return await page.evaluate((selector: string) => {
+      const node = document.querySelector(selector);
+      const button = node as HTMLButtonElement | null;
+      return {
+        found: Boolean(node),
+        disabled: Boolean(button?.disabled || node?.getAttribute("aria-disabled") === "true"),
+        aria: String(node?.getAttribute("aria-label") || ""),
+        text: String(node?.textContent || "").replace(/\s+/g, " ").trim()
+      };
+    }, GEMINI_CANVAS_SHARE_BUTTON_SELECTOR);
+  }
+  return { found: false, disabled: true, aria: "", text: "" };
+}
+
+async function waitForGeminiCanvasShareButton(page: any, timeoutMs: number): Promise<{ reloaded: boolean; aria: string }> {
   try {
+    await page.waitForSelector?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: timeoutMs, timeoutMs });
+  } catch (error: any) {
+    throw new GeminiCanvasRpcToolError(
+      ConsumerErrorCodes.COMMAND_TIMEOUT,
+      "Gemini Canvas did not finish rendering before timeout",
+      { selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, cause: error?.message || String(error) }
+    );
+  }
+
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  let reloaded = false;
+  let last = await readGeminiCanvasShareButtonState(page);
+  while (Date.now() <= deadline) {
+    last = await readGeminiCanvasShareButtonState(page).catch(() => last);
+    if (last.found && !last.disabled) return { reloaded, aria: last.aria };
+    if (!reloaded && /skipped responses?.*reload/i.test(last.aria)) {
+      reloaded = true;
+      await page.reload?.({ waitUntil: "domcontentloaded", timeout: Math.min(timeoutMs, 30000) }).catch(() => undefined);
+      await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+      await page.waitForSelector?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { state: "visible", timeout: Math.min(timeoutMs, 60000), timeoutMs: Math.min(timeoutMs, 60000) }).catch(() => undefined);
+      continue;
+    }
+    await waitForTimeoutCompat(page, 1000);
+  }
+  throw new GeminiCanvasRpcToolError(
+    ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED,
+    "Gemini Canvas share/export button remained disabled before Docs export",
+    { selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, aria_label: last.aria, reloaded }
+  );
+}
+
+async function fillGeminiCanvasPrompt(page: any, prompt: string, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector?.(GEMINI_CANVAS_PROMPT_SELECTOR, { state: "visible", timeout: timeoutMs, timeoutMs });
+    const locator = page.locator?.(GEMINI_CANVAS_PROMPT_SELECTOR).first?.();
+    if (locator && typeof locator.fill === "function") {
+      await locator.fill(prompt, { timeout: timeoutMs });
+      return;
+    }
+    if (typeof page.fill === "function") {
+      await page.fill(GEMINI_CANVAS_PROMPT_SELECTOR, prompt, { timeout: timeoutMs });
+      return;
+    }
+  } catch {
+    // Fall through to keyboard/evaluate path below.
+  }
+
+  try {
+    const locator = page.locator?.(GEMINI_CANVAS_PROMPT_SELECTOR).first?.();
+    await locator?.click?.({ timeout: timeoutMs });
+    await page.keyboard?.press?.(process.platform === "darwin" ? "Meta+A" : "Control+A").catch(() => undefined);
+    await page.keyboard?.type?.(prompt, { delay: 1 });
+    return;
+  } catch (error: any) {
+    throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas prompt composer was not found", { selector: GEMINI_CANVAS_PROMPT_SELECTOR, cause: error?.message || String(error) });
+  }
+}
+
+async function clickGeminiSendButton(page: any, timeoutMs: number): Promise<void> {
+  await waitForTimeoutCompat(page, 700);
+  try {
+    await page.waitForSelector?.(GEMINI_SEND_BUTTON_SELECTOR, { state: "visible", timeout: timeoutMs, timeoutMs });
+    const locator = page.locator?.(GEMINI_SEND_BUTTON_SELECTOR).first?.();
+    if (locator && typeof locator.click === "function") {
+      await locator.click({ timeout: timeoutMs });
+      return;
+    }
+    if (typeof page.click === "function") {
+      await page.click(GEMINI_SEND_BUTTON_SELECTOR, { timeout: timeoutMs });
+      return;
+    }
+  } catch (error: any) {
+    throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Send message button was not found", { selector: GEMINI_SEND_BUTTON_SELECTOR, cause: error?.message || String(error) });
+  }
+  throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Send message button was not found", { selector: GEMINI_SEND_BUTTON_SELECTOR });
+}
+
+async function overlayTextSnapshot(page: any): Promise<Record<string, unknown>> {
+  if (typeof page?.evaluate !== "function") return {};
+  return await page.evaluate(() => {
+    const clean = (value: unknown) => String(value || "").replace(/\s+/g, " ").trim();
+    const panes = Array.from(document.querySelectorAll(".cdk-overlay-pane"));
+    return {
+      pane_count: panes.length,
+      panes: panes.map((pane, index) => ({ index, text: clean(pane.textContent).slice(0, 1000) }))
+    };
+  }).catch(() => ({}));
+}
+
+async function clickGeminiExportDocsMenuItem(page: any, timeoutMs: number): Promise<void> {
+  try {
+    await page.waitForSelector?.(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, { state: "visible", timeout: timeoutMs, timeoutMs });
+    const locator = page.locator?.(GEMINI_CANVAS_EXPORT_DOCS_SELECTOR);
+    const count = Number(await locator?.count?.().catch(() => 0) || 0);
+    for (let index = 0; index < Math.max(count, 1); index += 1) {
+      const item = count ? locator.nth(index) : locator?.first?.();
+      if (!item || typeof item.click !== "function") continue;
+      const visible = typeof item.isVisible === "function" ? await item.isVisible().catch(() => false) : true;
+      if (!visible && count) continue;
+      await item.click({ timeout: timeoutMs });
+      return;
+    }
+  } catch {
+    // Try the live-probed overlay text path below before surfacing drift.
+  }
+
+  if (typeof page?.evaluate === "function") {
+    const clicked = await page.evaluate(() => {
+      const clean = (value: unknown) => String(value || "").replace(/\s+/g, " ").trim();
+      const panes = Array.from(document.querySelectorAll(".cdk-overlay-pane"));
+      const roots = [...panes.slice().reverse(), document];
+      for (const root of roots) {
+        const item = Array.from(root.querySelectorAll("button,[role='menuitem'],gem-menu-item,export-to-docs-button"))
+          .find((node) => /Export\s*(to)?\s*(Google\s*)?Docs|Google Docs/i.test(clean(node.textContent) || String(node.getAttribute("aria-label") || ""))) as HTMLElement | undefined;
+        if (item) {
+          item.click();
+          return { text: clean(item.textContent), aria: item.getAttribute("aria-label"), test_id: item.getAttribute("data-test-id") || item.getAttribute("data-testid"), tag: item.tagName };
+        }
+      }
+      return null;
+    }).catch(() => null);
+    if (clicked) return;
+  }
+
+  throw new GeminiCanvasRpcToolError(
+    ConsumerErrorCodes.ELEMENT_NOT_FOUND,
+    "Gemini Canvas export-to-Docs menuitem was not found",
+    { selector: GEMINI_CANVAS_EXPORT_DOCS_SELECTOR, ...(await overlayTextSnapshot(page)) }
+  );
+}
+
+async function awaitSpawnedDocsPage(page: any, timeoutMs: number): Promise<{ url: string; docPage: any } | null> {
+  const context = typeof page?.context === "function" ? page.context() : undefined;
+  if (!context || typeof context.pages !== "function") return null;
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  while (Date.now() < deadline) {
+    for (const candidate of context.pages() || []) {
+      const url = typeof candidate?.url === "function" ? String(candidate.url() || "") : "";
+      if (GOOGLE_DOCS_URL_RE.test(url)) return { url, docPage: candidate };
+    }
+    await waitForTimeoutCompat(page, 1000);
+  }
+  return null;
+}
+
+export async function webAiGeminiCanvasToDocsRpcWithPage(args: any, page: any): Promise<Record<string, unknown>> {
+  const effective = effectiveGeminiArgs({ ...(args || {}), __tool: "webai_gemini_canvas_to_docs" });
+  const started = nowMs(effective);
+  const title = effective.title || null;
+  try {
+    if (!effective.prompt || typeof effective.prompt !== "string") throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_gemini_canvas_to_docs requires a string prompt");
     assertPromptAllowed(effective.prompt);
     assertNotPublishDeniedLabel("Export to Docs", { tool: "webai.gemini.canvas_to_docs" });
-    throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.INVALID_ARGS, "Gemini Canvas export_docs is RPC_NOT_AVAILABLE: Wave A replay generated Canvas content but did not capture a Google Docs export/create-doc RPC");
+    await prepareGeminiCanvasRpcPage(page, { ...effective, __forceFreshComposer: true });
+    const prompt = geminiCanvasToDocsDocumentPrompt(effective.prompt);
+    await fillGeminiCanvasPrompt(page, prompt, Math.min(responseTimeoutMs(effective), 15000));
+    await clickGeminiSendButton(page, 10000);
+    const share = await waitForGeminiCanvasShareButton(page, geminiCanvasToDocsReadyTimeoutMs(effective));
+    await dismissGeminiOverlay(page).catch(() => undefined);
+    const shareLocator = page.locator?.(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR).first?.();
+    if (shareLocator && typeof shareLocator.click === "function") {
+      await shareLocator.click({ timeout: 10000 });
+    } else if (typeof page.click === "function") {
+      await page.click(GEMINI_CANVAS_SHARE_BUTTON_SELECTOR, { timeout: 10000 });
+    } else {
+      throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Gemini Canvas share/export button was not found", { selector: GEMINI_CANVAS_SHARE_BUTTON_SELECTOR });
+    }
+    await clickGeminiExportDocsMenuItem(page, 10000);
+    const spawned = await awaitSpawnedDocsPage(page, Number(effective.timeout_ms || effective.timeoutMs || 90000));
+    const docsUrl = spawned?.url || null;
+    const docId = docsUrl ? GOOGLE_DOCS_URL_RE.exec(docsUrl)?.[1] || null : null;
+    if (spawned?.docPage && typeof spawned.docPage.waitForLoadState === "function") {
+      await spawned.docPage.waitForLoadState("domcontentloaded", { timeout: 30000 }).catch(() => undefined);
+    }
+    if (spawned?.docPage && spawned.docPage !== page && typeof spawned.docPage.close === "function") {
+      await spawned.docPage.close().catch(() => undefined);
+    }
+    if (!docId || !docsUrl) {
+      throw new GeminiCanvasRpcToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "Gemini Canvas export did not spawn a docs.google.com document");
+    }
+    return safeOutput({
+      docs_url: `https://docs.google.com/document/d/${docId}/edit`,
+      docs_doc_id: docId,
+      title,
+      ok: true,
+      chat_url: String(page.url?.() || targetUrlForGemini(effective)),
+      wait_ms: nowMs(effective) - started,
+      elapsed_ms: nowMs(effective) - started,
+      backend: "rpc-dom-export",
+      share_reloaded: share.reloaded,
+      errorCode: null
+    });
+  } catch (error: any) {
+    return docsErrorOutput(effective, error, { elapsed_ms: nowMs(effective) - started });
+  }
+}
+
+export async function webAiGeminiCanvasToDocsRpc(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
+  const effective = effectiveGeminiArgs({ ...(args || {}), __tool: "webai_gemini_canvas_to_docs" });
+  const lease = acquireProfileLease(effective.profile);
+  let browser: any;
+  try {
+    browser = await connectBrowserForGeminiProfile(effective, runtime);
+    const page = await geminiOriginPage(browser, { ...effective, __forceFreshComposer: true });
+    return await webAiGeminiCanvasToDocsRpcWithPage(effective, page);
   } catch (error: any) {
     return docsErrorOutput(effective, error);
+  } finally {
+    await browser?.close?.().catch?.(() => undefined);
+    releaseProfileLease(effective.profile, lease);
   }
 }
 
