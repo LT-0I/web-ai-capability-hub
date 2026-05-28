@@ -4,7 +4,7 @@ const crypto = require("node:crypto");
 import { ManagedBrowserLauncher } from "../../../browser/managedLauncher";
 import { createManagedBrowserLauncher } from "../../../runtime/pool/profilePool";
 import { freeSession } from "../../../browser/sessionPool";
-import { activeManagedPage, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
+import { findPageByCdpPageId, firstBrowserContext, requireCdpPageId } from "../../../browser/managedPageRouting";
 import { TabRegistry } from "../../../browser/tabRegistry";
 import { getStoragePaths } from "../../../utils/paths";
 import { artifactClickOnPage } from "../../../browser/artifactClick";
@@ -34,9 +34,15 @@ const VALID_AREAS = new Set(["AllField", "Title", "Contrib", "Keyword", "Abstrac
 const VALID_FORMATS = new Set(["ris", "bibtex"]);
 const DEFAULT_PROFILE = "research-worldsci";
 const DEFAULT_CDP_PORT = 9259;
+const WORLDSCI_READY_TIMEOUT_MS = 60000;
+const WORLDSCI_POLL_INTERVAL_MS = 1000;
 
 function sleep(ms: number): Promise<void> { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function sha256File(filePath: string): string { return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex"); }
+function safeArtifactBasename(value: string, fallback: string): string {
+  const cleaned = String(value || "").trim().replace(/[\x00-\x1f<>:"/\\|?*]+/g, "_").replace(/\s+/g, "_").replace(/^_+|_+$/g, "");
+  return cleaned || fallback;
+}
 function asPositiveInt(value: unknown, name: string): number | undefined {
   if (value === undefined || value === null) return undefined;
   const n = Number(value);
@@ -123,6 +129,10 @@ function publicationFromText(text: string): string {
   return (text.match(/(?:Unmanned Systems|International Journal of [A-Za-z &-]+|Journal of [A-Za-z &-]+|[A-Z][A-Za-z &-]+(?:Systems|Science|Engineering|Mathematics|Physics))/)?.[0] || "").trim();
 }
 
+function isWorldsciIpBlocked(text: string): boolean {
+  return /IP ADDRESS BLOCKED|Your IP address has been blocked|excessive site usage/i.test(text || "");
+}
+
 export function parseWorldsciItemsFromHtml(html: string): WorldsciItem[] {
   const source = String(html || "");
   const blocks = [...source.matchAll(/<li[^>]+class=["'][^"']*search__item[^"']*["'][^>]*>([\s\S]*?)(?=<li[^>]+class=["'][^"']*search__item|<\/ul>|$)/gi)].map((m) => m[0]);
@@ -150,7 +160,7 @@ export function parseWorldsciItemsFromVisibleText(text: string): WorldsciItem[] 
   }).filter((item) => item.title || item.doi).slice(0, 100);
 }
 
-async function observeWorldsciPage(page: any): Promise<{ href: string; title: string; resultCountText: string | null; visibleText: string; html: string; items: WorldsciItem[]; cfInterstitial: boolean }> {
+async function observeWorldsciPage(page: any): Promise<{ href: string; title: string; resultCountText: string | null; visibleText: string; html: string; items: WorldsciItem[]; cfInterstitial: boolean; ipBlocked: boolean }> {
   return await page.evaluate(() => {
     const text = (el: Element | null) => (el?.textContent || "").replace(/\s+/g, " ").trim();
     const items = Array.from(document.querySelectorAll("li.search__item")).slice(0, 100).map((el: any) => {
@@ -168,7 +178,8 @@ async function observeWorldsciPage(page: any): Promise<{ href: string; title: st
       visibleText: bodyText,
       html: document.documentElement?.outerHTML || "",
       items,
-      cfInterstitial: /请稍候|Just a moment|__cf_chl_/i.test(`${title} ${location.href} ${bodyText.slice(0, 500)}`)
+      cfInterstitial: /请稍候|Just a moment|__cf_chl_/i.test(`${title} ${location.href} ${bodyText.slice(0, 500)}`),
+      ipBlocked: /IP ADDRESS BLOCKED|Your IP address has been blocked|excessive site usage/i.test(bodyText)
     };
   });
 }
@@ -178,10 +189,14 @@ async function readWorldsciPage(page: any): Promise<{ visibleText: string; title
   let lastCount = -1;
   let lastError: unknown;
   let cfInterstitialObserved = false;
-  for (let i = 0; i < 90; i++) {
+  const deadline = Date.now() + WORLDSCI_READY_TIMEOUT_MS;
+  while (Date.now() < deadline) {
     try {
       const observed = await observeWorldsciPage(page);
       cfInterstitialObserved = cfInterstitialObserved || observed.cfInterstitial;
+      if (observed.ipBlocked || isWorldsciIpBlocked(observed.visibleText)) {
+        throw new WebAiToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "World Scientific blocked this browser/IP for excessive site usage", { url: observed.href, title: observed.title });
+      }
       if (observed.href.includes("/action/doSearch") && observed.resultCountText) {
         const resultCount = parseWorldsciResultCount(observed.resultCountText);
         const htmlItems = parseWorldsciItemsFromHtml(observed.html);
@@ -190,11 +205,17 @@ async function readWorldsciPage(page: any): Promise<{ visibleText: string; title
         if (resultCount === lastCount) break;
         lastCount = resultCount;
       }
-    } catch (error) { lastError = error; }
-    await sleep(2000);
+    } catch (error) {
+      if (error instanceof WebAiToolError) throw error;
+      lastError = error;
+    }
+    await sleep(Math.min(WORLDSCI_POLL_INTERVAL_MS, Math.max(1, deadline - Date.now())));
   }
   if (!stable) {
     if (lastError instanceof WebAiToolError) throw lastError;
+    if (cfInterstitialObserved) {
+      throw new WebAiToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "World Scientific results page remained behind its browser verification interstitial", { cause: lastError instanceof Error ? lastError.message : String(lastError), cfInterstitialObserved });
+    }
     throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "World Scientific results page did not hydrate", { cause: lastError instanceof Error ? lastError.message : String(lastError), cfInterstitialObserved });
   }
   return stable;
@@ -230,12 +251,24 @@ async function withAllocatedWorldsciPage<T>(profile: string, url: string, tabId:
   const status = await launcher.launch({ profile, cdpPort });
   const browser = await launcher.connectOverCdp(status);
   try {
-    const page = await activeManagedPage(browser, undefined, tabId);
+    const page = await activeWorldsciPage(browser, tabId);
     return await fn(page, browser);
   } finally {
     await browser.close?.().catch(() => undefined);
     if (!keepTab) await freeSession(tabId).catch(() => undefined);
   }
+}
+
+async function activeWorldsciPage(browser: any, tabId: string): Promise<any> {
+  const registry = new TabRegistry(getStoragePaths().dataDir);
+  const entry = await registry.get(tabId);
+  if (!entry) throw new Error(`Tab ID "${tabId}" not found in registry`);
+  if (entry.status !== "active") throw new Error(`Tab ID "${tabId}" is not active`);
+  const page = await findPageByCdpPageId(browser, entry.pageId);
+  if (!page) throw new Error(`Tab ID "${tabId}" registered but page not found in browser`);
+  await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
+  await registry.register({ ...entry, url: page.url?.() || entry.url, status: "active" });
+  return page;
 }
 
 export async function researchWorldsciSearch(args: WorldsciSearchArgs): Promise<{ result_count: number; items: WorldsciItem[]; query_url: string; cf_interstitial_observed: boolean }> {
@@ -257,7 +290,8 @@ export async function researchWorldsciFilter(args: WorldsciFilterArgs): Promise<
 async function waitForCitationForm(page: any): Promise<{ hasForm: boolean; hasButton: boolean; hasRisRadio: boolean; hasBibtexRadio: boolean; cfInterstitialObserved: boolean }> {
   let last: any = {};
   let cfInterstitialObserved = false;
-  for (let i = 0; i < 90; i++) {
+  const deadline = Date.now() + WORLDSCI_READY_TIMEOUT_MS;
+  while (Date.now() < deadline) {
     last = await page.evaluate(() => {
       const text = (document.body?.textContent || "").replace(/\s+/g, " ").trim();
       const title = document.title || "";
@@ -266,14 +300,57 @@ async function waitForCitationForm(page: any): Promise<{ hasForm: boolean; hasBu
         hasButton: document.querySelectorAll('input.btn[value="Download"]').length === 1,
         hasRisRadio: !!document.querySelector('input[name="format"][value="ris"]'),
         hasBibtexRadio: !!document.querySelector('input[name="format"][value="bibtex"], #bibtex'),
-        cfInterstitial: /请稍候|Just a moment|__cf_chl_/i.test(`${title} ${location.href} ${text.slice(0, 500)}`)
+        cfInterstitial: /请稍候|Just a moment|__cf_chl_/i.test(`${title} ${location.href} ${text.slice(0, 500)}`),
+        ipBlocked: /IP ADDRESS BLOCKED|Your IP address has been blocked|excessive site usage/i.test(text)
       };
     }).catch((error: unknown) => ({ error: error instanceof Error ? error.message : String(error) }));
     cfInterstitialObserved = cfInterstitialObserved || !!last.cfInterstitial;
+    if (last.ipBlocked) throw new WebAiToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "World Scientific blocked this browser/IP for excessive site usage", { url: page.url?.() });
     if (last.hasForm && last.hasButton) return { ...last, cfInterstitialObserved };
-    await sleep(2000);
+    await sleep(Math.min(WORLDSCI_POLL_INTERVAL_MS, Math.max(1, deadline - Date.now())));
   }
   return { ...last, cfInterstitialObserved };
+}
+
+async function buildCitationPostSpec(page: any, format: WorldsciExportFormat): Promise<{ action: string; body: string; filename: string }> {
+  const spec = await page.evaluate((selectedFormat: string) => {
+    const form = document.querySelector('form[name="frmCitmgr"]') as HTMLFormElement | null;
+    if (!form) return null;
+    const data = new URLSearchParams();
+    new FormData(form).forEach((value, key) => data.append(key, String(value)));
+    data.set("format", selectedFormat);
+    data.set("direct", "direct");
+    data.set("download", "true");
+    const filename = data.get("downloadFileName") || "";
+    const action = new URL(form.getAttribute("action") || "/action/downloadCitation", location.href).toString();
+    return { action, body: data.toString(), filename };
+  }, format);
+  if (!spec) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "World Scientific citation form was not found", { selector: 'form[name="frmCitmgr"]' });
+  return spec;
+}
+
+async function postWorldsciCitationArtifact(page: any, spec: { action: string; body: string; filename: string }, doi: string, format: WorldsciExportFormat, downloadDir: string): Promise<{ artifact_path: string; bytes: number; sha256: string; format: WorldsciExportFormat; doi: string }> {
+  const request = page.context?.()?.request;
+  if (!request?.post) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "World Scientific citation export requires a browser-context request client");
+  const response = await request.post(spec.action, {
+    timeout: 60000,
+    headers: {
+      "Accept": "text/plain,application/x-research-info-systems,text/x-bibtex,*/*;q=0.8",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Origin": WORLDSCI_ORIGIN,
+      "Referer": page.url?.() || buildWorldsciCitationUrl(doi)
+    },
+    data: spec.body
+  } as any);
+  if (!response?.ok?.()) {
+    throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "World Scientific citation POST did not return a downloadable artifact", { status: response?.status?.(), url: spec.action });
+  }
+  const text = await response.text();
+  const ext = format === "ris" ? ".ris" : ".bib";
+  const base = safeArtifactBasename(spec.filename, `worldsci-${doi.replace(/[\\/]+/g, "_")}`);
+  const artifact_path = path.resolve(downloadDir, base.toLowerCase().endsWith(ext) ? base : `${base}${ext}`);
+  fs.writeFileSync(artifact_path, text);
+  return { artifact_path, bytes: fs.statSync(artifact_path).size, sha256: sha256File(artifact_path), format, doi };
 }
 
 export async function researchWorldsciExport(args: WorldsciExportArgs): Promise<{ artifact_path: string; bytes: number; sha256: string; format: WorldsciExportFormat; doi: string; cf_interstitial_observed: boolean }> {
@@ -313,7 +390,10 @@ export async function researchWorldsciExport(args: WorldsciExportArgs): Promise<
         return radio.checked && !!form.querySelector('input[name="download"][value="true"]');
       }, radioSelector).catch(() => false);
       if (!selected) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "World Scientific citation format radio was not found", { selector: radioSelector });
-      const clicked = await artifactClickOnPage(browser, page, {
+      const postSpec = await buildCitationPostSpec(page, format);
+      let artifact_path: string;
+      try {
+        const clicked = await artifactClickOnPage(browser, page, {
         profile,
         buttonSelector: 'input.btn[value="Download"]',
         downloadDir,
@@ -321,8 +401,13 @@ export async function researchWorldsciExport(args: WorldsciExportArgs): Promise<
         locateTimeoutMs: 60000,
         frameMinCount: 0,
         filenamePattern: format === "ris" ? "*.ris" : undefined
-      });
-      const artifact_path = clicked.path;
+        });
+        artifact_path = clicked.path;
+      } catch (error: any) {
+        const raw = String(error?.errorCode || error?.message || error);
+        if (!/ARTIFACT_DOWNLOAD_TIMEOUT|ELEMENT_NOT_FOUND|ELEMENT_OUT_OF_VIEWPORT|timeout/i.test(raw)) throw error;
+        artifact_path = (await postWorldsciCitationArtifact(page, postSpec, doi, format, downloadDir)).artifact_path;
+      }
       const text = fs.readFileSync(artifact_path, "utf-8");
       if (format === "ris" && (!/^TY  - /m.test(text) || !/^ER  -/m.test(text) || !text.includes(doi))) {
         throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, "World Scientific RIS artifact failed content validation", { artifact_path, doi });

@@ -133,6 +133,31 @@ function authorsFromText(text: string, title: string): string[] {
   return unique(stripped.split(/,| and /).map((s) => s.trim()).filter((s) => /^[A-Z][A-Za-z.' -]+(?:\s+[A-Z][A-Za-z.' -]+)+$/.test(s))).slice(0, 12);
 }
 
+function apsArticleMatch(url: string): { journal: string; doi: string } | null {
+  const match = /\/(\w[\w-]*)\/abstract\/(10\.1103\/[^?#]+)/i.exec(String(url || ""));
+  return match ? { journal: match[1].toLowerCase(), doi: normalizeDoi(match[2]) } : null;
+}
+
+function cleanApsArticleTitle(title: string, html: string, visibleText: string): string {
+  const fromTitle = String(title || "").split(/\s+\|\s+/)[0]?.trim();
+  if (fromTitle && !/^APS Journals|Just a moment/i.test(fromTitle)) return fromTitle;
+  const fromHtml = cleanText(
+    /<h1[^>]+class=["'][^"']*(?:article|title)[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1]
+    || /<meta[^>]+(?:name|property)=["'](?:citation_title|og:title)["'][^>]+content=["']([^"']+)["']/i.exec(html)?.[1]
+    || ""
+  );
+  if (fromHtml) return fromHtml.split(/\s+\|\s+/)[0].trim();
+  return visibleText.split(/\b(?:Authors?|Abstract|Published|DOI)\b/i)[0]?.trim().slice(0, 180) || "";
+}
+
+function apsArticleAuthors(html: string, visibleText: string, title: string): string[] {
+  const metaAuthors = [...String(html || "").matchAll(/<meta[^>]+name=["']citation_author["'][^>]+content=["']([^"']+)["'][^>]*>/gi)]
+    .map((match) => cleanText(match[1]))
+    .filter(Boolean);
+  if (metaAuthors.length) return unique(metaAuthors).slice(0, 12);
+  return authorsFromText(visibleText, title).filter((author) => !/^Skip to Main Content|All Journals$/i.test(author));
+}
+
 export function parseApsItemsFromHtml(html: string): ApsItem[] {
   const source = String(html || "");
   const matches = [...source.matchAll(/href=["']\/(\w[\w-]*)\/abstract\/(10\.1103\/[^"'?#]+)[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi)];
@@ -172,6 +197,18 @@ async function readApsPage(page: any): Promise<{ visibleText: string; title: str
       const visibleText = await page.locator("body").innerText({ timeout: 10000 });
       const title = await page.title().catch(() => "");
       const html = await page.content().catch(() => "");
+      const article = apsArticleMatch(page.url?.() || "");
+      if (article) {
+        const item = {
+          title: cleanApsArticleTitle(title, html, visibleText),
+          authors: apsArticleAuthors(html, visibleText, title),
+          doi: article.doi,
+          journal: article.journal,
+          year: yearFromText(visibleText),
+          article_url: buildApsArticleUrl(article.journal, article.doi)
+        };
+        return { visibleText, title, html, resultCount: 1, items: [item] };
+      }
       const resultCount = parseApsResultCount(visibleText);
       const htmlItems = parseApsItemsFromHtml(html);
       const items = htmlItems.length ? htmlItems : parseApsItemsFromVisibleText(visibleText);
@@ -199,7 +236,14 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
   try {
     const context = await firstBrowserContext(browser);
     const page = await context.newPage();
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    try {
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (!/Timeout .*navigating|Navigation timeout|Timeout \d+ms exceeded/i.test(message)) throw error;
+      const currentUrl = String(page.url?.() || "");
+      if (!currentUrl.startsWith(APS_ORIGIN)) throw error;
+    }
     await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
     const pageId = await requireCdpPageId(page);
     await registry.register({ tabId, pageId, url: page.url?.() || url, profile, allocatedAt: new Date().toISOString(), status: "active" });

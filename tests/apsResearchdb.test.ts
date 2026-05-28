@@ -54,3 +54,30 @@ test("APS visible-text fallback extracts DOI and year without live network", () 
   assert.equal(items[0].doi, "10.1103/hr5f-lvy7");
   assert.equal(items[0].year, 2026);
 });
+
+test("APS abstract-page href shape (single-article direct jump) yields one item with journal+doi", () => {
+  // Mirrors the regex the article direct-jump path reuses: /(<journal>)/abstract/(10.1103/<doi>)
+  const html = `
+    <html><head><title>Quantum Error Correction | Phys. Rev. Lett.</title>
+      <meta name="citation_title" content="Quantum Error Correction with Superpositions of Squeezed Fock States">
+      <meta name="citation_author" content="J. Hastrup">
+      <meta name="citation_author" content="M. V. Larsen">
+    </head><body>
+      <h1 class="article-title">Quantum Error Correction with Superpositions of Squeezed Fock States</h1>
+      <a href="/prl/abstract/10.1103/hr5f-lvy7">View abstract</a>
+      <span>Published 2026</span>
+    </body></html>`;
+  const items = parseApsItemsFromHtml(html);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].journal, "prl");
+  assert.equal(items[0].doi, "10.1103/hr5f-lvy7");
+  assert.equal(items[0].article_url, "https://journals.aps.org/prl/abstract/10.1103/hr5f-lvy7");
+});
+
+test("APS abstract-page href ignores query/fragment suffix when extracting DOI", () => {
+  const html = `<a href="/prd/abstract/10.1103/PhysRevD.110.012345?utm=x#abstract">Read</a>`;
+  const items = parseApsItemsFromHtml(html);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].doi, "10.1103/PhysRevD.110.012345");
+  assert.equal(items[0].journal, "prd");
+});

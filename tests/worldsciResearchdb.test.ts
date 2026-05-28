@@ -45,3 +45,16 @@ test("World Scientific visible-text fallback extracts DOI records without live n
   assert.equal(items[0].doi, "10.1142/S2301385018500115");
   assert.equal(items[0].year, 2018);
 });
+
+test("World Scientific IP-block page yields no spurious result items (honest-error precondition)", () => {
+  const blockedHtml = `<html><body><h1>IP ADDRESS BLOCKED</h1><p>Your IP address has been blocked due to excessive site usage.</p></body></html>`;
+  assert.equal(parseWorldsciItemsFromHtml(blockedHtml).length, 0);
+  assert.equal(parseWorldsciItemsFromVisibleText("IP ADDRESS BLOCKED Your IP address has been blocked due to excessive site usage").length, 0);
+});
+
+test("World Scientific citation URL builder encodes the DOI slash for the export entry point", () => {
+  assert.equal(
+    buildWorldsciCitationUrl("10.1142/S2301385024500012"),
+    "https://www.worldscientific.com/action/showCitFormats?doi=10.1142%2FS2301385024500012"
+  );
+});

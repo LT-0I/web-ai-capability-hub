@@ -15,9 +15,23 @@ export const worldsciPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
   selectors: [
     "a[data-track*=\"pdf\" i]",
     "a[href*=\"/doi/pdf\" i]",
-    "a[href*=\"pdf\" i]"
+    "a[aria-label*=\"PDF\" i]",
+    "a[title*=\"PDF\" i]",
+    "a[href*=\"/doi/epdf\" i]",
+    "a[href*=\"pdf\" i]",
+    "button[aria-label*=\"PDF\" i]",
+    "button[title*=\"PDF\" i]"
   ],
-  metadata_tool: "research_worldsci_get_metadata"
+  metadata_tool: "research_worldsci_get_metadata",
+  article_url_resolver: (docId: string) => {
+    const doi = doiFromDocId(docId);
+    if (!/^10\.\S+\/\S+$/i.test(doi)) return null;
+    const encoded = encodePathPreservingSlash(doi);
+    return [
+      `https://www.worldscientific.com/doi/abs/${encoded}`,
+      `https://www.worldscientific.com/doi/${encoded}`
+    ];
+  }
 };
 
 function doiFromDocId(docId: string): string {
