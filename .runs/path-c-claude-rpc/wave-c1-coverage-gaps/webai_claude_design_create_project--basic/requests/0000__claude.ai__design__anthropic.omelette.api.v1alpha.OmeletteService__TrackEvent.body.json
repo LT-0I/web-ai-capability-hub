@@ -1,0 +1,26 @@
+{
+  "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+  "method": "POST",
+  "headers": {
+    "Accept": "*/*",
+    "Cookie": "_fbp=fb.1.1778765263889.24935593006705400; anthropic-device-id=7b505af8-0bd8-4ba8-b93a-aa6f3dd22055; user-sidebar-visible-on-load=true; CH-prefers-color-scheme=light; _gcl_au=1.1.378058578.1778765273; ajs_anonymous_id=claudeai.v1.820e5db7-2b24-4865-a84f-17106fb3b614; __ssid=3e01a0bb-8202-4146-8285-0ea223117edd; sessionKey=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; sessionKeyLC=1778765503785; routingHint=sk-ant-rh-eyJ0eXAiOiAiSldUIiwgImFsZyI6ICJFUzI1NiIsICJraWQiOiAiN0MxcWFPRnhqdWxaUjRFQnNuNk1UeUZGNWdDV2JHbFpNVDR2RklrRFFpbyJ9.eyJzdWIiOiAiMDRkM2FlZWQtYWY3Mi00ZTk1LTk5MTktMmUwNmY0NDZmM2MzIiwgImlhdCI6IDE3Nzg3NjU1MDMsICJpc3MiOiAiY2xhdWRlLWFpLXJvdXRpbmciLCAib25ib2FyZGluZ19jb21wbGV0ZSI6IHRydWUsICJwaG9uZV92ZXJpZmllZCI6IHRydWUsICJhZ2VfdmVyaWZpZWQiOiB0cnVlLCAibmFtZSI6ICJCYiJ9.DuEnWVffSjCt239L1mnKL-Z-7wAawoiy99YTwMEg124YLIvDmgfh8Y9rCqzxgqo61zlevKUlY8oHd0N18BIhRQ; lastActiveOrg=9a23efa1-be5a-4da2-8039-74492ab9877e; intercom-device-id-lupk8zyo=c69f365b-492b-4786-975e-da3c6d9e2b99; __stripe_mid=14c6a154-a55a-401d-86a2-a866b57bd25bd95547; intercom-session-lupk8zyo=a2lNM1hxVldNU2hCNGdrZldyTU04a25sRkN2U0hXSXpHcFdYTzQyWHpvRk9pcEovMVhiV3h6Y1FDaUlNTVFkbVZMem02NHNGK3gwSFBIWVFJeGNjVkxHc1RzN0V1bmVlaTdLNmhDckZmNHN0WmFMU1ZOcFJ6R3FtcE13WnlXYWl2dmQySG1zOHlOaU9mbnB4RTFsLzMrYWp6MGNZZ3pmbkZ0MDQyNkUzQ0JIbGJldVNUTVRGK0xCMTlkd0tXdCtKSkthWlJxdEJFQUdxdXBuYkFxV0p5dnM3R1pEU2dpQkIzcTdVWHo3Y3JmM0IzWUdHWmdhNWJORWFabURmdFowSzlDSldtb1RxbmFyc2x5TmpNb3ZGM2M1T3J2ZVRESE9pS0hKVUhrVHFQWm89LS1uOXcxZlBINHNCRzI5NzdZSlFXWXFBPT0=--630eb5016b2ab973e99dc695c5090d0dc39437a5; activitySessionId=15cf8b01-22a7-4a1c-9397-95ef5f079c02; user-sidebar-pinned=false; _cfuvid=kUv6uJi8c10afuLD.5VYpFghI.Qz6QDZy9d.86WIY04-1779902527.83109-1.0.1.1-HSn.pQgVqsHSGls77XWblmu6AZPbNqy0TFuvpw.H5Co; _dd_s=isExpired=1&aid=eaa59b33-bfbf-4646-9367-5c2367e349ca; __cf_bm=t9DgaT2DAYCUvtpEx3fXoAAFRo.PVQPzKMnhMfDmxC0-1779933047.0372999-1.0.1.1-nc0nnArYEChlOkUdf2H2LYhBPwv1Xm_9k8SAjS_f6a.bvd3NzTh8_KPCPkGp3IPgtD_hGIWN0.T8lV5ShUeoi2mPcaWiNbZ63.I_rQf_uUTAmnapQkGYPDZTMfNVzqaB",
+    "Origin": "https://claude.ai",
+    "Referer": "https://claude.ai/design",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "connect-protocol-version": "1",
+    "content-type": "application/proto",
+    "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+    "sec-ch-ua-arch": "\"x86\"",
+    "sec-ch-ua-bitness": "\"64\"",
+    "sec-ch-ua-full-version": "\"148.0.7778.167\"",
+    "sec-ch-ua-full-version-list": "\"Chromium\";v=\"148.0.7778.167\", \"Google Chrome\";v=\"148.0.7778.167\", \"Not/A)Brand\";v=\"99.0.0.0\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-model": "\"\"",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-ch-ua-platform-version": "\"\"",
+    "x-client-version": "10341a94a0a2bee687d2b4063be7091809bd4e47",
+    "x-omelette-tab-id": "113b46f4-4784-4d98-8bbf-2647b5a82e75",
+    "x-organization-uuid": "9a23efa1-be5a-4da2-8039-74492ab9877e"
+  },
+  "body": "\n\rsession_start\u00122\n\nsession_id\u0012$da87f78f-26a2-482c-82b1-9ecc7fe2da40"
+}

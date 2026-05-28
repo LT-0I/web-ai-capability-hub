@@ -1,0 +1,140 @@
+[
+  {
+    "ts": "2026-05-28T01:55:00.714Z",
+    "source": "playwright",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/UpdateProjectData",
+    "method": "POST",
+    "resourceType": "fetch",
+    "hasPost": true,
+    "bodyLength": 4002
+  },
+  {
+    "ts": "2026-05-28T01:55:00.715Z",
+    "source": "cdp",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/UpdateProjectData",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-full-version-list": "\"Chromium\";v=\"148.0.7778.167\", \"Google Chrome\";v=\"148.0.7778.167\", \"Not/A)Brand\";v=\"99.0.0.0\"",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+      "sec-ch-ua-bitness": "\"64\"",
+      "sec-ch-ua-model": "\"\"",
+      "sec-ch-ua-mobile": "?0",
+      "connect-protocol-version": "1",
+      "sec-ch-ua-arch": "\"x86\"",
+      "sec-ch-ua-full-version": "\"148.0.7778.167\"",
+      "content-type": "application/proto",
+      "Referer": "https://claude.ai/design/p/f8f89aef-684b-4a8e-b84b-e989183390b6?file=index.html",
+      "x-omelette-tab-id": "fb174d43-0aac-41c6-9a0e-631d06f0cc7f",
+      "x-organization-uuid": "9a23efa1-be5a-4da2-8039-74492ab9877e",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "x-client-version": "10341a94a0a2bee687d2b4063be7091809bd4e47",
+      "sec-ch-ua-platform-version": "\"\""
+    },
+    "hasPostData": true,
+    "postData": "\n$f8f89aef-684b-4a8e-b84b-e989183390b6\u0012\u001f{\"activeSkills\":[],\"chats\":{\"968f7e7b-ae43-4d57-b3d0-7e22101fa5cb\":{\"id\":\"968f7e7b-ae43-4d57-b3d0-7e22101fa5cb\",\"title\":\"Dark Mode Toggle\",\"titleIsGenerated\":true,\"created\":\"2026-05-28T01:52:20.324511Z\",\"lastOpened\":\"2026-05-28T01:52:20.324511Z\",\"messages\":[{\"attachments\":[{\"content\":\"Create a high-fidelity, polished design.\\n\\nFollow this general design process (use the todo list to remember):\\n(1) ask questions, (2) find existing UI kits and collect design context â copy ALL relevant components and read ALL relevant examples; ask the user if you can't find them, (3) start your file with assumptions + context + design reasoning (as if you are a junior designer and the user is your manager), with placeholders for the designs, and show it to the user early, (4) build out the designs and show the user again ASAP; append some next steps, (5) use your tools to check, verify and iterate on the design.\\n\\nGood hi-fi designs do not start from scratch â they are rooted in existing design context. Ask the user to Import their codebase, or find a suitable UI kit / design resources, or ask for screenshots of existing UI. You MUST spend time trying to acquire design context, including components. If you cannot find them, ask the user for them. In the Import menu, they can link a local codebase, provide screenshots or Figma links; they can also link another project. Mocking a full product from scratch is a LAST RESORT and will lead to poor design. If stuck, try listing design assets and ls'ing design system files â be proactive! Some designs may need multiple design systems â get them all. Use the starter components (device frames, design canvas) to get high-quality scaffolding for free.\\n\\nWhen designing, asking many good questions is ESSENTIAL.\\n\\nGive options: try to give 3+ variations across several dimensions. Mix by-the-book designs that match existing patterns with new and novel interactions, including interesting layouts, metaphors, and visual styles. Have some options that use color or advanced CSS; some with iconography and some without. Start your variations basic and get more advanced and creative as you go! Try remixing the brand assets and visual DNA in interesting ways â play with scale, fills, texture, visual rhythm, layering, novel layouts, type treatments. The goal is not the perfect option; it's exploring atomic variations the user can mix and match.\\n\\nCSS, HTML, JS and SVG are amazing. Users often don't know what they can do. Surprise the user.\\n\\nIf you do not have an icon, asset or component, draw a placeholder: in hi-fi design, a placeholder is better than a bad attempt at the real thing.\",\"id\":\"63a6dee5-dc0a-4299-ad0a-c200c78a4e52\",\"name\":\"Hi-fi design\",\"type\":\"skill\"},{\"content\":\"Create a fully interactive prototype with realistic state management and transitions. Use React useState/useEffect for dynamic behavior. Include hover states, click interactions, form validation, animated transitions, and multi-step navigation flows. It should feel like a real working app, not a static mockup.\",\"id\":\"bd3f1d05-11c0-497c-a7d8-38836a53986d\",\"name\":\"Interactive prototype\",\"type\":\"skill\"}],\"authorAccountUuid\":\"04d3aeed-af72-4e95-9919-2e06f446f3c3\",\"authorName\":\"Bb\",\"content\":\"RPC_CLAUDE_DESIGN_GENERATE_2026-05-27: Add a tiny dark-mode toggle to the existing page.\",\"id\":\"37c2a774-3950-4b0e-81a0-8fe6d5050f00\",\"role\":\"user\",\"timestamp\":\"2026-05-28T01:53:36.296857211Z\"}],\"composer\":{\"text\":\"\",\"attachments\":[],\"activeSkills\":[],\"askQuestions\":true,\"autoVerify\":true},\"todos\":[{\"id\":\"1\",\"text\":\"Create base page with content\",\"completed\":false},{\"id\":\"2\",\"text\":\"Add tiny dark-mode toggle with smooth transitions\",\"completed\":false},{\"id\":\"3\",\"text\":\"Persist preference in localStorage\",\"completed\":false}]}},\"viewState\":{\"activeProjectTab\":0,\"activeChatId\":\"968f7e7b-ae43-4d57-b3d0-7e22101fa5cb\",\"activeFileTab\":1,\"openFiles\":[\"index.html\"],\"folderPath\":\"\",\"folderHistory\":[\"\"],\"folderHistoryIndex\":0}}",
+    "requestId": "1547376.545",
+    "initiator": "script",
+    "resourceType": "Fetch"
+  },
+  {
+    "ts": "2026-05-28T01:55:01.139Z",
+    "source": "cdp-response",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/UpdateProjectData",
+    "status": 200,
+    "mimeType": "application/proto",
+    "requestId": "1547376.545"
+  },
+  {
+    "ts": "2026-05-28T01:55:04.895Z",
+    "source": "playwright",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "method": "POST",
+    "resourceType": "fetch",
+    "hasPost": true,
+    "bodyLength": 67
+  },
+  {
+    "ts": "2026-05-28T01:55:04.896Z",
+    "source": "playwright",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "method": "POST",
+    "resourceType": "fetch",
+    "hasPost": true,
+    "bodyLength": 170
+  },
+  {
+    "ts": "2026-05-28T01:55:04.896Z",
+    "source": "cdp",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-full-version-list": "\"Chromium\";v=\"148.0.7778.167\", \"Google Chrome\";v=\"148.0.7778.167\", \"Not/A)Brand\";v=\"99.0.0.0\"",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+      "sec-ch-ua-bitness": "\"64\"",
+      "sec-ch-ua-model": "\"\"",
+      "sec-ch-ua-mobile": "?0",
+      "connect-protocol-version": "1",
+      "sec-ch-ua-arch": "\"x86\"",
+      "sec-ch-ua-full-version": "\"148.0.7778.167\"",
+      "content-type": "application/proto",
+      "Referer": "https://claude.ai/design/p/f8f89aef-684b-4a8e-b84b-e989183390b6?file=index.html",
+      "x-omelette-tab-id": "fb174d43-0aac-41c6-9a0e-631d06f0cc7f",
+      "x-organization-uuid": "9a23efa1-be5a-4da2-8039-74492ab9877e",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "x-client-version": "10341a94a0a2bee687d2b4063be7091809bd4e47",
+      "sec-ch-ua-platform-version": "\"\""
+    },
+    "hasPostData": true,
+    "postData": "\n\rsession_start\u00122\n\nsession_id\u0012$06519740-b667-4de1-ba5d-3ceceddf657b",
+    "requestId": "1547376.546",
+    "initiator": "script",
+    "resourceType": "Fetch"
+  },
+  {
+    "ts": "2026-05-28T01:55:04.896Z",
+    "source": "cdp",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-full-version-list": "\"Chromium\";v=\"148.0.7778.167\", \"Google Chrome\";v=\"148.0.7778.167\", \"Not/A)Brand\";v=\"99.0.0.0\"",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+      "sec-ch-ua-bitness": "\"64\"",
+      "sec-ch-ua-model": "\"\"",
+      "sec-ch-ua-mobile": "?0",
+      "connect-protocol-version": "1",
+      "sec-ch-ua-arch": "\"x86\"",
+      "sec-ch-ua-full-version": "\"148.0.7778.167\"",
+      "content-type": "application/proto",
+      "Referer": "https://claude.ai/design/p/f8f89aef-684b-4a8e-b84b-e989183390b6?file=index.html",
+      "x-omelette-tab-id": "fb174d43-0aac-41c6-9a0e-631d06f0cc7f",
+      "x-organization-uuid": "9a23efa1-be5a-4da2-8039-74492ab9877e",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "x-client-version": "10341a94a0a2bee687d2b4063be7091809bd4e47",
+      "sec-ch-ua-platform-version": "\"\""
+    },
+    "hasPostData": true,
+    "postData": "\n\fproject_open\u0012\u0011\n\tin_editor\u0012\u0004true\u0012\u0010\n\bis_owner\u0012\u0004true\u0012\u001b\n\u000fproject_id_hash\u0012\bb3dbda0f\u00122\n\nsession_id\u0012$06519740-b667-4de1-ba5d-3ceceddf657b\u001a$f8f89aef-684b-4a8e-b84b-e989183390b6",
+    "requestId": "1547376.547",
+    "initiator": "script",
+    "resourceType": "Fetch"
+  },
+  {
+    "ts": "2026-05-28T01:55:05.266Z",
+    "source": "cdp-response",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "status": 200,
+    "mimeType": "application/proto",
+    "requestId": "1547376.546"
+  },
+  {
+    "ts": "2026-05-28T01:55:05.268Z",
+    "source": "cdp-response",
+    "url": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/TrackEvent",
+    "status": 200,
+    "mimeType": "application/proto",
+    "requestId": "1547376.547"
+  }
+]

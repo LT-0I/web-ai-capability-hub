@@ -25,7 +25,7 @@ export interface ClaudeDesignRpcAvailabilityRecord {
 }
 
 export interface ClaudeDesignRpcRequest {
-  operation: "get_html";
+  operation: "get_html" | "create_project";
   url: string;
   profile: string;
   timeoutMs: number;
@@ -46,21 +46,29 @@ export type ClaudeDesignRpcFetch = (request: ClaudeDesignRpcRequest) => Promise<
 
 const DESIGN_ROOT_URL = "https://claude.ai/design";
 const DESIGN_GET_FILE_URL = "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/GetFile";
+const DESIGN_CREATE_PROJECT_URL = "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/CreateProject";
 const DEFAULT_CLAUDE_DESIGN_PROFILE = "claude-9224";
 const DEFAULT_CLAUDE_DESIGN_CDP_PORT = 9224;
 const DEFAULT_TIMEOUT_MS = 90000;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const QUOTA_TEXT_RE = /quota|limit reached|usage limit|try again later|too many requests|rate limit/i;
+// Narrowed in Wave C1: original regex matched the informational design banner
+// ("Claude Design now shares usage limits with Claude.ai and Claude Code.") as
+// a false positive, fail-closing every create_project with SUBMCP_QUOTA_EXHAUSTED.
+// True quota exhaustion shows an explicit exhaustion phrase; informational banners
+// do not. Patterns kept here are the exhaustion phrases observed in actual
+// over-quota panels, not menu/banner text containing the word "limits".
+const QUOTA_TEXT_RE = /(?:quota|usage)\s+(?:exhausted|exceeded|limit\s+reached)|limit\s+reached|try\s+again\s+later|too\s+many\s+requests|rate\s+limit\s+exceeded|you\s+(?:have\s+)?reached\s+your\s+(?:usage|message|request)\s+limit/i;
 
-const DESIGN_UNAVAILABLE_REASON = "Path C Claude Wave B4 DOM-nav recapture did not capture a stable replayable write RPC for this Claude Design operation; it remains known-DOM-only by write-time decision rather than runtime fallback.";
+const DESIGN_UNAVAILABLE_REASON = "Path C Claude Wave C1 confirmed this Claude Design operation has no replayable JSON write RPC: it is either purely client-side (route nav / React state) or requires a protobuf schema the hub does not have. It remains known-DOM-only by write-time decision rather than runtime fallback.";
 
 export const CLAUDE_DESIGN_RPC_AVAILABILITY: Record<ClaudeDesignRpcOperation, ClaudeDesignRpcAvailabilityRecord> = {
   create_project: {
     operation: "create_project",
-    rpcAvailable: false,
-    reason: DESIGN_UNAVAILABLE_REASON,
+    rpcAvailable: true,
+    reason: "Path C Claude Wave C1 DOM-nav recapture found Claude Design's same-origin Omelette CreateProject RPC accepts application/json (Connect-unary, connect-protocol-version: 1) with body {name} and returns {projectId}.",
     surfaceUrlPattern: "https://claude.ai/design",
-    mountSelectors: ['input[placeholder="Project name"]', '[data-testid="create-project-button"]']
+    mountSelectors: ['input[placeholder="Project name"]', '[data-testid="create-project-button"]'],
+    endpoint: DESIGN_CREATE_PROJECT_URL
   },
   generate: {
     operation: "generate",
@@ -224,6 +232,81 @@ export function buildClaudeDesignGetHtmlPayload(args: any): Record<string, unkno
   return { projectId, path: fileNameFromProjectUrl(String(args?.project_url || args?.projectUrl || "")), raw: true };
 }
 
+export function buildClaudeDesignCreateProjectPayload(args: any): Record<string, unknown> {
+  const name = String(args?.name || "").trim();
+  if (!name) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_claude_design --op=create_project requires a non-empty name");
+  return { name };
+}
+
+function decodeCreateProjectResponse(text: string): string {
+  let parsed: any;
+  try { parsed = JSON.parse(text); } catch (error) { throw new WebAiToolError(ConsumerErrorCodes.INVALID_JSON, `Claude Design CreateProject returned invalid JSON: ${errorMessageFromUnknown(error, "parse failed")}`); }
+  const projectId = typeof parsed?.projectId === "string" ? parsed.projectId : (typeof parsed?.project_id === "string" ? parsed.project_id : "");
+  if (!projectId || !UUID_RE.test(projectId)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_JSON, "Claude Design CreateProject response did not include a projectId UUID");
+  return projectId;
+}
+
+export async function webAiClaudeDesignCreateProjectRpcWithFetch(
+  args: any,
+  fetchRpc: ClaudeDesignRpcFetch,
+  options: { navigate?: (url: string, mountSelectors: string[], timeoutMs: number) => Promise<void>; started?: number } = {}
+): Promise<Record<string, unknown>> {
+  const effective = { ...(args || {}), profile: args?.profile || DEFAULT_CLAUDE_DESIGN_PROFILE };
+  const started = options.started || Date.now();
+  const mountSelectors = claudeDesignRpcAvailability("create_project").mountSelectors;
+  let httpStatus: number | null = null;
+  try {
+    const payload = buildClaudeDesignCreateProjectPayload(effective);
+    if (options.navigate) await options.navigate(DESIGN_ROOT_URL, mountSelectors, responseTimeoutMs(effective));
+    const fetchStarted = Date.now();
+    const response = await fetchRpc({
+      operation: "create_project",
+      url: DESIGN_CREATE_PROJECT_URL,
+      profile: String(effective.profile),
+      timeoutMs: responseTimeoutMs(effective),
+      body: JSON.stringify(payload)
+    });
+    httpStatus = response.status;
+    if (response.status !== 200) {
+      const code = httpStatusErrorCode(response.status, response.text || "");
+      return safeOutput({
+        ok: false,
+        errorCode: code,
+        error_code: code,
+        message: `Claude Design CreateProject returned HTTP ${response.status}`,
+        projectUrl: "",
+        projectId: null,
+        backend: "rpc",
+        http_status: response.status
+      });
+    }
+    const projectId = decodeCreateProjectResponse(response.text);
+    const projectUrl = `${DESIGN_ROOT_URL}/p/${projectId}`;
+    return safeOutput({
+      projectUrl,
+      projectId,
+      wait_ms: response.elapsedMs ?? (Date.now() - fetchStarted),
+      total_ms: Date.now() - started,
+      http_status: response.status,
+      backend: "rpc",
+      rpc_endpoint: DESIGN_CREATE_PROJECT_URL,
+      errorCode: null
+    });
+  } catch (error: any) {
+    const code = claudeDesignRpcErrorCode(error);
+    return safeOutput({
+      ok: false,
+      errorCode: code,
+      error_code: code,
+      message: errorMessageFromUnknown(error, code),
+      projectUrl: "",
+      projectId: null,
+      backend: "rpc",
+      http_status: httpStatus
+    });
+  }
+}
+
 export async function webAiClaudeDesignGetHtmlRpcWithFetch(
   args: any,
   fetchRpc: ClaudeDesignRpcFetch,
@@ -328,8 +411,33 @@ async function fetchDesignRpcInPage(page: any, request: ClaudeDesignRpcRequest):
 }
 
 export async function webAiClaudeDesignCreateProjectRpc(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  void args; void runtime;
-  return rpcUnavailable("create_project");
+  const effective = { ...(args || {}), profile: args?.profile || DEFAULT_CLAUDE_DESIGN_PROFILE };
+  let lease: string | undefined;
+  let browser: any;
+  try {
+    lease = acquireProfileLease(String(effective.profile));
+    browser = await connectBrowserForProfile(effective, runtime);
+    const page = await designPage(browser, effective);
+    return await webAiClaudeDesignCreateProjectRpcWithFetch(
+      effective,
+      (request) => fetchDesignRpcInPage(page, request),
+      { navigate: (surfaceUrl, mountSelectors, timeoutMs) => navigateDesignSurface(page, surfaceUrl, mountSelectors, timeoutMs) }
+    );
+  } catch (error: any) {
+    const code = claudeDesignRpcErrorCode(error);
+    return safeOutput({
+      ok: false,
+      errorCode: code,
+      error_code: code,
+      message: errorMessageFromUnknown(error, code),
+      projectUrl: "",
+      projectId: null,
+      backend: "rpc"
+    });
+  } finally {
+    await browser?.close?.().catch?.(() => undefined);
+    if (lease) releaseProfileLease(String(effective.profile), lease);
+  }
 }
 
 export async function webAiClaudeDesignGenerateRpc(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {

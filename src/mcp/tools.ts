@@ -8317,15 +8317,16 @@ export async function webAiLiteratureTaskStatus(args: any): Promise<unknown> {
 }
 
 export async function webAiClaudeDesignCreateProject(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C cross-model review I3: design create_project has no replayable RPC
-  // (CLAUDE_DESIGN_RPC_AVAILABILITY.create_project.rpcAvailable === false).
-  // Route to the existing DOM driver at write-time rather than returning
-  // INVALID_ARGS when callers ask for "rpc" — mirrors the gold-standard
-  // Gemini canvas dispatcher pattern (webAiGeminiCanvasEdit).
-  const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "extension-assisted-cdp";
+  // Path C Claude Wave C1: create_project now has RPC; generate + present remain
+  // TRUE_RPC_NOT_AVAILABLE per .runs/path-c-claude-rpc/wave-c1-coverage-gaps/INVENTORY.md
+  // (generate needs Connect+proto streaming; present is client-side route nav).
+  // Wave C1 re-capture via DOM-nav surfaced Omelette CreateProject accepting
+  // application/json Connect-unary with body {name} → {projectId}.
+  const backend = process.env.WEBAI_CLAUDE_DESIGN_BACKEND || args?.backend || "rpc";
   if (backend === "rpc") {
-    console.error("[webai_claude_design_create_project] backend=dom-extension (RPC_NOT_AVAILABLE for op=create_project)");
-    return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
+    console.error("[webai_claude_design_create_project] backend=rpc");
+    const { webAiClaudeDesignCreateProjectRpc } = require("./claude_design_rpc");
+    return webAiClaudeDesignCreateProjectRpc(args, runtime);
   }
   if (backend === "dom") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));
   if (backend === "extension-assisted-cdp") return webAiClaudeDesignCreateProjectWithExtensionBackend(args, runtimeOrDefault(runtime));

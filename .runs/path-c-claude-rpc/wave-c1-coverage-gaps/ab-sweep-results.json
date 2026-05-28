@@ -1,0 +1,63 @@
+{
+  "started_at": "2026-05-28T02:09:01.136Z",
+  "profile": "claude-9224",
+  "spacing_ms": 30000,
+  "note": "A=direct Playwright DOM action (bypasses extension/managed quota false-positive). B=RPC dispatcher default.",
+  "a": {
+    "variant": "dom-direct",
+    "args": {
+      "profile": "claude-9224",
+      "name": "Claude Wave C1 throwaway 1779934141136 A"
+    },
+    "elapsedMs": 1149,
+    "projectId": "4c417f2d-e379-405e-90c5-e4aa5b3528c0",
+    "projectUrl": "https://claude.ai/design/p/4c417f2d-e379-405e-90c5-e4aa5b3528c0",
+    "httpStatus": null,
+    "errorCode": null,
+    "error": null,
+    "backend": "dom-direct",
+    "rpcEndpoint": null,
+    "ts": "2026-05-28T02:09:02.285Z"
+  },
+  "b": {
+    "variant": "rpc",
+    "args": {
+      "profile": "claude-9224",
+      "name": "Claude Wave C1 throwaway 1779934141136 B"
+    },
+    "elapsedMs": 3049,
+    "projectId": "f449c209-df50-463b-b3e6-f172859ee492",
+    "projectUrl": "https://claude.ai/design/p/f449c209-df50-463b-b3e6-f172859ee492",
+    "httpStatus": 200,
+    "errorCode": null,
+    "error": null,
+    "backend": "rpc",
+    "rpcEndpoint": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/CreateProject",
+    "raw": {
+      "projectUrl": "https://claude.ai/design/p/f449c209-df50-463b-b3e6-f172859ee492",
+      "projectId": "f449c209-df50-463b-b3e6-f172859ee492",
+      "wait_ms": 884,
+      "total_ms": 2988,
+      "http_status": 200,
+      "backend": "rpc",
+      "rpc_endpoint": "https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/CreateProject",
+      "errorCode": null
+    },
+    "ts": "2026-05-28T02:09:35.340Z"
+  },
+  "cleanup": [
+    {
+      "projectId": "4c417f2d-e379-405e-90c5-e4aa5b3528c0",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "projectId": "f449c209-df50-463b-b3e6-f172859ee492",
+      "status": 200,
+      "text": "{}"
+    }
+  ],
+  "finished_at": "2026-05-28T02:09:42.914Z",
+  "verdict": "PASS",
+  "notes": []
+}

@@ -1,0 +1,10 @@
+locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('textarea[data-testid="chat-composer-input"], textarea').first() to be visible[22m
+
+locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('textarea[data-testid="chat-composer-input"], textarea').first() to be visible[22m
+
+    at captureCreateProject (/home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-claude-rpc/wave-c1-coverage-gaps/capture-design.mjs:181:20)
+    at async file:///home/l1u/workspace/noeticmind/web-ai-capability-hub/.runs/path-c-claude-rpc/wave-c1-coverage-gaps/capture-design.mjs:274:7
