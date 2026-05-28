@@ -419,7 +419,8 @@ Codex (`omx exec`) and independently verified. Any new CLI/MCP/TS surface must
 round-trip through `configs/consumer-contract.json` +
 `docs/CONSUMER_CONTRACT.md` + `tests/consumerContract.test.ts` in the same
 change. See `CLAUDE.md`. Every commit must keep: clean build = 0, `npm test`
-green, all locks held, minimal `git diff --stat` scope.
+offline-green (844/871; the other 27 are live-CDP, need an active browser), all
+locks held, minimal `git diff --stat` scope.
 
 ## License
 

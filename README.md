@@ -290,7 +290,7 @@ node dist/src/cli.js mcp:tools --json
 
 ## 贡献
 
-本项目采用**编排者派发**模型:仓内会话负责规划、写派发 prompt、把关证据、保持文档/合约同步;`src/`、`tests/`、`configs/` 的重型实现经 Codex(`omx exec`)派发并独立验收。任何新 CLI/MCP/TS 表面必须在同一派发中经 `configs/consumer-contract.json` + `docs/CONSUMER_CONTRACT.md` + `tests/consumerContract.test.ts` 三方回环。详见 `CLAUDE.md`。提交务必:清洁构建=0、`npm test` 全过、锁守恒、`git diff --stat` 范围最小。
+本项目采用**编排者派发**模型:仓内会话负责规划、写派发 prompt、把关证据、保持文档/合约同步;`src/`、`tests/`、`configs/` 的重型实现经 Codex(`omx exec`)派发并独立验收。任何新 CLI/MCP/TS 表面必须在同一派发中经 `configs/consumer-contract.json` + `docs/CONSUMER_CONTRACT.md` + `tests/consumerContract.test.ts` 三方回环。详见 `CLAUDE.md`。提交务必:清洁构建=0、`npm test` 离线部分全过(844/871,其余 27 个 live-CDP 需活跃浏览器)、锁守恒、`git diff --stat` 范围最小。
 
 ## 许可证
 
