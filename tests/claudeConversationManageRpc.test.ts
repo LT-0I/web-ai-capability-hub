@@ -23,6 +23,43 @@ const CONVERSATIONS = [
   { uuid: "d0ebcece-d3c8-4bbb-9f57-44b5e961b773", name: "Share fixture" }
 ];
 
+test("Claude conversation_manage RPC decodes captured action_share request body and refuses sharing without confirmation", async () => {
+  const sharePromptPath = path.join(CAPTURE_ROOT, "webai_claude_conversation_manage--action_share/requests/request-24.body.txt");
+  const sharePrompt = JSON.parse(fs.readFileSync(sharePromptPath, "utf8"));
+  assert.equal(typeof sharePrompt.prompt, "string");
+  assert.match(sharePrompt.prompt, /RPC_CLAUDE_CONV_SHARE/);
+  assert.equal(sharePrompt.attachments?.length ?? 0, 0);
+
+  let calls = 0;
+  const result: any = await webAiClaudeConversationManageRpcWithFetch(
+    { profile: "claude-9224", action: "share", tab_url_contains: `https://claude.ai/chat/${CONVERSATION_UUID}` },
+    async () => { calls += 1; throw new Error("captured share must not fetch when confirmation absent"); },
+    { orgId: ORG_UUID }
+  );
+  assert.equal(calls, 0);
+  assert.equal(result.errorCode, ConsumerErrorCodes.SENSITIVE_CONTENT_GUARD);
+  assert.equal(result.action, "share");
+  assert.equal((result as any).conversationId, null);
+});
+
+test("Claude conversation_manage RPC builds list+details requests from captured payload templates", () => {
+  const listTemplate = capturedTemplate("action_list");
+  assert.equal(listTemplate.method, "GET");
+  assert.equal(listTemplate.body_template, null);
+  const listReqs = buildClaudeConversationManageRpcRequests({ profile: "claude-9224", action: "list" }, ORG_UUID);
+  assert.equal(listReqs.length, 2);
+  assert.deepEqual(listReqs.map((r) => r.purpose), ["capture_probe", "conversation_list"]);
+  assert.match(listReqs[1].url, /chat_conversations_v2\?limit=30&starred=false&consistency=eventual$/);
+
+  const shareReqs = buildClaudeConversationManageRpcRequests(
+    { profile: "claude-9224", action: "share", tab_url_contains: `https://claude.ai/chat/${CONVERSATION_UUID}` },
+    ORG_UUID
+  );
+  assert.equal(shareReqs.length, 1);
+  assert.equal(shareReqs[0].purpose, "conversation_details");
+  assert.match(shareReqs[0].url, new RegExp(`/chat_conversations/${CONVERSATION_UUID}\\?tree=True&rendering_mode=messages&render_all_tools=true&consistency=eventual$`));
+});
+
 test("Claude conversation_manage RPC action_list reads captured probe then conversation list", async () => {
   const template = capturedTemplate("action_list");
   const requests = buildClaudeConversationManageRpcRequests({ profile: "claude-9224", action: "list" }, ORG_UUID);

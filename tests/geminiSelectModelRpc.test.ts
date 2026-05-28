@@ -4,7 +4,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 import { ConsumerErrorCodes } from "../src/consumer/errorCodes";
-import { GeminiBatchRpcFetch, GeminiBatchRpcRequest } from "../src/mcp/gemini_workspace_rpc";
+import {
+  decodeGeminiBatchRpcResponse,
+  GeminiBatchRpcFetch,
+  GeminiBatchRpcRequest
+} from "../src/mcp/gemini_workspace_rpc";
 import {
   resolveGeminiSelectModelRpcVariant,
   webAiGeminiSelectModelRpcWithFetch
@@ -80,6 +84,26 @@ for (const variantCase of SELECT_CASES) {
     assert.equal(calls.length, 1);
   });
 }
+
+test("Gemini select_model RPC decodeGeminiBatchRpcResponse extracts L5adhe rpc ack across all captured select fixtures", () => {
+  for (const variantCase of SELECT_CASES) {
+    const fx = fixture(`webai_gemini_select_model--${variantCase.name}`);
+    const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+    assert.equal(decoded.ok, true, `decoded.ok for ${variantCase.name}`);
+    assert.deepEqual(decoded.rpcIds, ["L5adhe"], `rpcIds for ${variantCase.name}`);
+    assert.ok(decoded.eventTypes.includes("wrb.fr"), `wrb.fr event for ${variantCase.name}`);
+  }
+});
+
+test("Gemini select_model RPC select_flash captured mode id matches resolved variant payload", () => {
+  const fx = fixture("webai_gemini_select_model--select_flash");
+  const top = fx.template.f_req_template;
+  const nested = JSON.parse(top[0][0][1]);
+  assert.equal(nested[0][99], "8c46e95b1a07cecc");
+  const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+  assert.equal(decoded.ok, true);
+  assert.deepEqual(decoded.rpcIds, ["L5adhe"]);
+});
 
 test("Gemini select_model RPC marks unverified combined model+thinking as RPC_NOT_AVAILABLE without HTTP", async () => {
   let calls = 0;

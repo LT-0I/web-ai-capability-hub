@@ -81,6 +81,25 @@ for (const [surface, variant] of WORKSPACE_CASES) {
   });
 }
 
+test("Gemini workspace RPC decodeGeminiBatchRpcResponse extracts rpc_id and event types from captured surface_gems fixture", () => {
+  const fx = fixture("webai_gemini_workspace--surface_gems");
+  const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+  assert.equal(decoded.ok, true);
+  assert.deepEqual(decoded.rpcIds, ["MaZiqc"]);
+  assert.ok(decoded.eventTypes.includes("wrb.fr"));
+  assert.ok(decoded.eventTypes.includes("e"));
+  assert.ok(decoded.chunks.length >= 2);
+});
+
+test("Gemini workspace RPC decodeGeminiBatchRpcResponse extracts MaZiqc rpc ack across all captured surface fixtures", () => {
+  for (const [, variant] of WORKSPACE_CASES) {
+    const fx = fixture(`webai_gemini_workspace--${variant}`);
+    const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+    assert.equal(decoded.ok, true, `decoded.ok for ${variant}`);
+    assert.deepEqual(decoded.rpcIds, ["MaZiqc"], `rpcIds for ${variant}`);
+  }
+});
+
 test("Gemini workspace RPC marks unverified audio_overview as RPC_NOT_AVAILABLE without HTTP", async () => {
   let calls = 0;
   const result = await webAiGeminiWorkspaceRpcWithFetch({

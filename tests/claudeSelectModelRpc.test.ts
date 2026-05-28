@@ -98,6 +98,35 @@ for (const variantCase of VARIANTS) {
   });
 }
 
+test("Claude select_model RPC decodes captured haiku model_config response to api_model id", async () => {
+  const fixturePath = path.join(CAPTURE_ROOT, "webai_claude_select_model--haiku/response-stream.json");
+  const fixture = JSON.parse(fs.readFileSync(fixturePath, "utf8"));
+  assert.equal(fixture.json.api_model, "claude-haiku-4-5-20251001");
+  assert.equal(fixture.json.image_in, true);
+  assert.equal(fixture.json.pdf_in, true);
+  assert.equal(fixture.json.max_tokens_cap, 64000);
+
+  const seenUrls: string[] = [];
+  const fetchRpc: ClaudeSelectModelRpcFetch = async (request) => {
+    seenUrls.push(`${request.method} ${request.purpose}`);
+    if (request.purpose === "model_config") {
+      assert.match(request.url, /\/model_configs\/claude-haiku-4-5-20251001$/);
+      return { status: 200, contentType: "application/json", text: fixture.text_preview, elapsedMs: 4 };
+    }
+    return { status: 202, contentType: "application/json", text: "null", elapsedMs: 5 };
+  };
+
+  const result: any = await webAiClaudeSelectModelRpcWithFetch(
+    { profile: "claude-9224", model: "Haiku 4.5" },
+    fetchRpc,
+    { orgId: ORG_UUID }
+  );
+  assert.equal(result.errorCode, null);
+  assert.equal(result.selected_model, "Haiku 4.5");
+  assert.equal(result.http_status, 202);
+  assert.deepEqual(seenUrls, ["GET model_config", "PATCH set_paprika", "PATCH set_default_model"]);
+});
+
 test("Claude select_model RPC normalizes captured UI labels to account setting ids", () => {
   assert.equal(normalizeClaudeRpcModel("Haiku 4.5"), "claude-haiku-4-5-20251001");
   assert.equal(normalizeClaudeRpcModel("Sonnet 4.6"), "claude-sonnet-4-6");

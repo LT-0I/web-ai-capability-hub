@@ -9,6 +9,9 @@ import {
   extractClaudeGeneratedFileArtifacts,
   webAiClaudeGenerateFileRpcWithFetch
 } from "../src/mcp/claude_generate_file_rpc";
+import { decodeClaudeRpcSseEnvelope } from "../src/mcp/claude_send_prompt_rpc";
+
+const CAPTURE_ROOT = path.join(process.cwd(), ".runs/path-c-claude-rpc/wave-a-captures");
 
 const ORG_UUID = "9a23efa1-be5a-4da2-8039-74492ab9877e";
 const CONVERSATION_UUID = "703edfc7-662f-4a00-9f93-ad228335e257";
@@ -32,6 +35,20 @@ const HTML_STREAM = [
 function tempDir(name: string): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), `${name}-`));
 }
+
+test("Claude generate_file RPC extractClaudeGeneratedFileArtifacts decodes widget tool_use from captured html_artifact SSE fixture", () => {
+  const fixturePath = path.join(CAPTURE_ROOT, "webai_claude_generate_file--html_artifact/response-stream.txt");
+  const stream = fs.readFileSync(fixturePath, "utf8");
+  const artifacts = extractClaudeGeneratedFileArtifacts(stream);
+  const widget = artifacts.find((artifact) => artifact.source === "widget");
+  assert.ok(widget, "expected widget artifact from captured fixture");
+  assert.equal(widget?.content, "OK");
+  assert.equal(widget?.fileName, "ok.html");
+  const decoded = decodeClaudeRpcSseEnvelope(stream);
+  assert.equal(decoded.modelUsed, "claude-sonnet-4-6");
+  assert.equal(decoded.messageUuid, "019e69ea-d422-78e0-93b2-4854c9dc9e64");
+  assert.match(decoded.responseText, /There it is/);
+});
 
 test("Claude generate_file RPC csv_artifact sends captured completion shape then downloads streamed remote file", async () => {
   const dir = tempDir("claude-genfile-rpc-csv");

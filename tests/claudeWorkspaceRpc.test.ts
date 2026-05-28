@@ -66,6 +66,48 @@ function capturedTemplate(variant: string): any {
   return JSON.parse(fs.readFileSync(path.join(CAPTURE_ROOT, `webai_claude_workspace--${variant}`, "payload-template.json"), "utf8"));
 }
 
+test("Claude workspace RPC integrations counts surfaces from captured response-stream fixture", async () => {
+  const fixturePath = path.join(CAPTURE_ROOT, "webai_claude_workspace--surface_integrations/response-stream.json");
+  const fixture = JSON.parse(fs.readFileSync(fixturePath, "utf8"));
+  const integrations = fixture.json as Array<{ type: string }>;
+  assert.equal(integrations.length, 4);
+  assert.deepEqual(integrations.map((item) => item.type).sort(), ["gcal", "gdrive", "github", "gmail"]);
+
+  const fetchRpc: ClaudeWorkspaceRpcFetch = async (request) => {
+    assert.equal(request.method, "GET");
+    assert.equal(request.purpose, "capture_probe");
+    return { status: 200, contentType: "application/json", text: fixture.text_preview, elapsedMs: 5 };
+  };
+  const result: any = await webAiClaudeWorkspaceRpcWithFetch(
+    { profile: "claude-9224", surface: "integrations" },
+    fetchRpc,
+    { orgId: ORG_UUID }
+  );
+  assert.equal(result.errorCode, null);
+  assert.equal(result.summary, "4 integration setting(s) visible");
+});
+
+test("Claude workspace RPC projects counts surface_read response from captured projects payload-template", async () => {
+  const fixturePath = path.join(CAPTURE_ROOT, "webai_claude_workspace--surface_projects/payload-template.json");
+  const template = JSON.parse(fs.readFileSync(fixturePath, "utf8"));
+  assert.equal(template.method, "GET");
+  assert.equal(template.body_template, null);
+  assert.deepEqual(template.placeholders, ["{{org_id}}"]);
+
+  const surfaceProjects = { projects: [{ uuid: "p-real-1", name: "Captured Project A" }, { uuid: "p-real-2", name: "Captured Project B" }, { uuid: "p-real-3", name: "Captured Project C" }] };
+  const fetchRpc: ClaudeWorkspaceRpcFetch = async (request) => {
+    if (request.purpose === "capture_probe") return { status: 200, contentType: "application/json", text: "[]", elapsedMs: 3 };
+    return { status: 200, contentType: "application/json", text: JSON.stringify(surfaceProjects), elapsedMs: 4 };
+  };
+  const result: any = await webAiClaudeWorkspaceRpcWithFetch(
+    { profile: "claude-9224", surface: "projects" },
+    fetchRpc,
+    { orgId: ORG_UUID }
+  );
+  assert.equal(result.errorCode, null);
+  assert.equal(result.summary, "3 project(s) visible");
+});
+
 for (const variantCase of VARIANTS) {
   test(`Claude workspace RPC ${variantCase.variant} sends captured probe and returns DOM-shaped summary`, async () => {
     const template = capturedTemplate(variantCase.variant);

@@ -4,7 +4,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 import { ConsumerErrorCodes } from "../src/consumer/errorCodes";
-import { GeminiBatchRpcFetch, GeminiBatchRpcRequest } from "../src/mcp/gemini_workspace_rpc";
+import {
+  decodeGeminiBatchRpcResponse,
+  GeminiBatchRpcFetch,
+  GeminiBatchRpcRequest
+} from "../src/mcp/gemini_workspace_rpc";
 import { webAiGeminiConversationManageRpcWithFetch } from "../src/mcp/gemini_conversation_manage_rpc";
 
 const FIXTURE_ROOT = path.join(process.cwd(), ".runs/path-c-gemini-rpc/wave-b3-workspace-model-conversation/fixtures");
@@ -74,6 +78,21 @@ for (const variantCase of RPC_CASES) {
     if (variantCase.action === "share") assert.equal(result.dialog_opened, true);
   });
 }
+
+test("Gemini conversation_manage RPC decodeGeminiBatchRpcResponse extracts MaZiqc rpc ack across captured action fixtures", () => {
+  for (const variantCase of RPC_CASES) {
+    const fx = fixture(`webai_gemini_conversation_manage--${variantCase.variant}`);
+    const decoded = decodeGeminiBatchRpcResponse(fx.responseText);
+    assert.equal(decoded.ok, true, `decoded.ok for ${variantCase.variant}`);
+    assert.deepEqual(decoded.rpcIds, ["MaZiqc"], `rpcIds for ${variantCase.variant}`);
+    assert.ok(decoded.eventTypes.includes("wrb.fr"), `wrb.fr event for ${variantCase.variant}`);
+  }
+});
+
+test("Gemini conversation_manage RPC decodeGeminiBatchRpcResponse rejects empty stream as INVALID_JSON", () => {
+  assert.throws(() => decodeGeminiBatchRpcResponse(""), /INVALID_JSON|did not contain length-prefixed/);
+  assert.throws(() => decodeGeminiBatchRpcResponse("noise without brackets"), /INVALID_JSON|did not contain length-prefixed/);
+});
 
 test("Gemini conversation_manage RPC keeps share unconfirmed on SENSITIVE_CONTENT_GUARD safe path", async () => {
   let calls = 0;
