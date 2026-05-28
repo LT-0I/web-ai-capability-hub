@@ -464,6 +464,7 @@ Safe consumers must strip these fields defensively even when using consumer-safe
 - `executable_path`
 - `cookies`
 - `cookie`
+- `cookieHeader`
 - `tokens`
 - `token`
 - `Authorization`
@@ -477,6 +478,11 @@ Safe consumers must strip these fields defensively even when using consumer-safe
 - `screenshotPath`
 - `rawSnapshot`
 - `snapshot`
+- `at`
+- `bl`
+- `fsid`
+
+`cookieHeader`, `at`, `bl`, and `fsid` are the in-memory CDP-snapshot keys returned by the Gemini batch-RPC capture helper (`captureGeminiBatchRpcSnapshot` in `src/mcp/gemini_workspace_rpc.ts`) and consumed in-process to mint outbound `Cookie:` / SAPISID / `at` / `bl` / `f.sid` headers for `/batchexecute` calls. They never legitimately appear in tool output today; they are listed here so that any future refactor that accidentally returns the raw snapshot in a tool result is centrally rejected with `SAFE_OUTPUT_REDACTION_REQUIRED` (defence-in-depth against credential leakage).
 
 The safe `consumer:health` surface is designed not to emit those fields, but downstream re-sanitization is still recommended for defense in depth. The MCP tool boundary centrally rejects any final tool result containing forbidden keys with `SAFE_OUTPUT_REDACTION_REQUIRED`; the MCP resource boundary centrally projects forbidden keys out of database-backed resources and then asserts the sanitized payload is clean before returning it.
 

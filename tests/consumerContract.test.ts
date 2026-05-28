@@ -748,6 +748,24 @@ test("no webai command row exposes forbidden output fields", () => {
   }
 });
 
+test("Gemini batch-RPC snapshot keys are listed as forbidden output fields (I1)", () => {
+  const manifest = contract();
+  const forbidden: string[] = manifest.forbidden_output_fields;
+  // Fields returned by captureGeminiBatchRpcSnapshot in
+  // src/mcp/gemini_workspace_rpc.ts. They are consumed in-process to mint
+  // outbound batchexecute headers and MUST NEVER reach tool output.
+  for (const key of ["cookieHeader", "at", "bl", "fsid"]) {
+    assert.ok(
+      forbidden.includes(key),
+      `forbidden_output_fields missing Gemini snapshot key '${key}' (I1 cross-model review)`
+    );
+  }
+  // Also re-assert the pre-existing CDP keys remain in the list.
+  for (const key of ["cdpEndpoint", "webSocketDebuggerUrl"]) {
+    assert.ok(forbidden.includes(key), `forbidden_output_fields missing '${key}'`);
+  }
+});
+
 
 test("submcp/chatgpt-codex has no import-time side effects", async () => {
   const { chatgptCodexToolSpecs } = await import("../src/mcp/submcp/chatgpt-codex/tools");

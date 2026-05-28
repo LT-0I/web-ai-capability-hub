@@ -5938,6 +5938,7 @@
     "executable_path",
     "cookies",
     "cookie",
+    "cookieHeader",
     "tokens",
     "token",
     "Authorization",
@@ -5950,7 +5951,10 @@
     "screenshot",
     "screenshotPath",
     "rawSnapshot",
-    "snapshot"
+    "snapshot",
+    "at",
+    "bl",
+    "fsid"
   ],
   "error_codes": [
     "HUB_NOT_BUILT",
