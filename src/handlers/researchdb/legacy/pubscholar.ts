@@ -138,7 +138,7 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
   try {
     const context = await firstBrowserContext(browser);
     const page = await context.newPage();
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 }).catch(() => undefined);
     await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
     const pageId = await requireCdpPageId(page);
     await registry.register({ tabId, pageId, url: page.url?.() || url, profile, allocatedAt: new Date().toISOString(), status: "active" });
@@ -191,7 +191,9 @@ async function waitForAdvancedDialog(page: any): Promise<void> {
 
 async function fillAdvancedSearch(page: any, args: PubscholarSearchArgs): Promise<void> {
   const adv = page.locator("button.AdvancedSearchButton, button:has-text('高级检索')").first();
-  if (!(await adv.count().catch(() => 0))) throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "PubScholar advanced-search button was not found", { selector: "button.AdvancedSearchButton" });
+  await adv.waitFor({ state: "visible", timeout: 45000 }).catch((error: any) => {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "PubScholar advanced-search button was not found", { selector: "button.AdvancedSearchButton", url: page.url?.(), cause: error?.message || String(error) });
+  });
   await adv.click({ timeout: 10000 });
   await waitForAdvancedDialog(page);
 

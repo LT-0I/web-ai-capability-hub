@@ -686,6 +686,9 @@ export async function downloadPaywalledLiteraturePdfToDisk(
 
     const tryArticleCandidates = async (): Promise<LiteratureDownloadedPdf | null> => {
       for (const articleUrl of articleUrlCandidates(config, docId, resolvedUrl)) {
+        const fetchedArticleUrl = await fetchPdfCandidate(page, outputDir, docId, articleUrl, config);
+        const finalizedFetchedArticleUrl = tryFinalizeDownloadedPdf(fetchedArticleUrl, outputDir, docId, fetchedArticleUrl?.url || articleUrl, before);
+        if (finalizedFetchedArticleUrl) return finalizedFetchedArticleUrl;
         const articleResponse = await navigateForInspectablePage(page, articleUrl);
         const inlineArticlePdf = await inlinePdfCompletedDownload(page, articleResponse, outputDir, docId, articleUrl);
         const finalizedInlineArticlePdf = tryFinalizeDownloadedPdf(inlineArticlePdf, outputDir, docId, inlineArticlePdf?.url || articleUrl, before);

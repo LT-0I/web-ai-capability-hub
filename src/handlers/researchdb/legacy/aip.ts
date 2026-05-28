@@ -93,6 +93,38 @@ function uniquePath(dir: string, filename: string): string {
   return candidate;
 }
 function absoluteAipUrl(href: string): string { return new URL(href, AIP_ORIGIN).toString(); }
+function encodePathPreservingSlash(value: string): string {
+  return String(value || "").split("/").map((part) => encodeURIComponent(part)).join("/");
+}
+function articleFromAipUrl(url: string, title = ""): { title: string; url: string; resourceId: string } | null {
+  try {
+    const absolute = absoluteAipUrl(url);
+    return { title, url: absolute, resourceId: resourceIdFromArticleUrl(absolute) };
+  } catch {
+    return null;
+  }
+}
+async function resolveAipArticleFromDoiRedirect(doi: string): Promise<{ title: string; url: string; resourceId: string } | null> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(`https://doi.org/${encodePathPreservingSlash(doi)}`, {
+      method: "GET",
+      redirect: "manual",
+      signal: controller.signal,
+      headers: {
+        "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
+        "User-Agent": "Mozilla/5.0 web-ai-capability-hub/2.2.0"
+      }
+    });
+    const location = response.headers.get("location") || "";
+    return location ? articleFromAipUrl(location) : null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 export function buildAipSearchUrl(args: AipSearchArgs): string {
   const url = new URL("/search-results", AIP_ORIGIN);
@@ -224,7 +256,7 @@ async function allocateResearchSession(profile: string, url: string, tabId: stri
   try {
     const context = await firstBrowserContext(browser);
     const page = await context.newPage();
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 }).catch(() => undefined);
     await page.waitForLoadState?.("domcontentloaded", { timeout: 15000 }).catch(() => undefined);
     const pageId = await requireCdpPageId(page);
     await registry.register({ tabId, pageId, url: page.url?.() || url, profile, allocatedAt: new Date().toISOString(), status: "active" });
@@ -286,9 +318,11 @@ export async function researchAipExport(args: AipExportArgs): Promise<{ artifact
   if (!path.isAbsolute(downloadDir)) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "download_dir must resolve to an absolute path");
   fs.mkdirSync(downloadDir, { recursive: true });
   const tabId = args.tab_id || `research-aip-export-${Date.now()}`;
-  return await withAllocatedAipPage(profile, buildAipSearchUrl({ query: doi }), tabId, args.cdp_port, async (page) => {
+  const preResolvedArticle = await resolveAipArticleFromDoiRedirect(doi);
+  const startUrl = preResolvedArticle?.url || buildAipSearchUrl({ query: doi });
+  return await withAllocatedAipPage(profile, startUrl, tabId, args.cdp_port, async (page) => {
     try {
-      const article = await readAipArticleFromDoiSearch(page, doi);
+      const article = preResolvedArticle || await readAipArticleFromDoiSearch(page, doi);
       const source_url = buildAipCitationDownloadUrl(article.resourceId, format);
       const body = await fetchAipCitationViaManagedPage(page, source_url);
       const artifact_path = uniquePath(downloadDir, `aip-${safeFileToken(article.resourceId)}-${format}.${FORMAT_TO_EXTENSION[format]}`);
