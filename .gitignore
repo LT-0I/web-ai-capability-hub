@@ -137,6 +137,8 @@ ip-literature-patent-research/**/*.jpg
 ip-literature-patent-research/**/*.jpeg
 ip-literature-patent-research/**/*.pdf
 ip-literature-patent-research/**/*.docx
+# keep the one DOCX that tests/verifyDocxMin.test.ts hardcodes as its real fixture
+!ip-literature-patent-research/.runs/literature-review-rl-antiuav-2026-05-13/phase1-resmoke4-downloads/phase1-resmoke4-export.docx
 ip-literature-patent-research/**/*.pptx
 ip-literature-patent-research/**/*.xlsx
 ip-literature-patent-research/**/*.mp3
