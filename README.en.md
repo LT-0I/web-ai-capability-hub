@@ -48,6 +48,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - [Capability catalogs](#capability-catalogs)
 - [Setup](#setup)
 - [Development](#development)
+- [Automated maintenance](#automated-maintenance)
 - [Safety & data handling](#safety--data-handling)
 - [Contributing](#contributing)
 - [License](#license)
@@ -396,6 +397,50 @@ sweeps) is dispatched to Codex via `omx exec` with an auditable prompt file
 under `.omc/codex-prompts/`; the in-repo session orchestrates, gates, and
 keeps docs/contract in sync. See `CLAUDE.md` and
 `docs/WORKFLOW_OMC_OMX_INTEGRATION.md`.
+
+## Automated maintenance
+
+The web UIs this project drives drift constantly, so it ships a **local-first**
+maintenance loop (GitHub-hosted runners can't provide the visible Chrome +
+`DISPLAY` + logged-in profiles these checks need). Full design in
+[`docs/AUTOMATED_MAINTENANCE.md`](docs/AUTOMATED_MAINTENANCE.md).
+
+**Sweep → file issue (read-only, safe)**
+
+```bash
+# local scheduled sweep: read GREEN targets from integration_registry → health-check → drift vs wall → dedup → file issue
+scripts/maintenance-sweep.sh --service chatgpt,claude,gemini            # real run (files a GitHub issue on drift)
+scripts/maintenance-sweep.sh --service chatgpt,claude,gemini --dry-run  # detect only, never file
+```
+
+- Files an issue only for **genuine selector drift** (`ELEMENT_NOT_FOUND` /
+  `MODEL_SELECTION_DRIFT` / health-check `missing` / `ambiguous`).
+- **Walls** (`LOGIN_REQUIRED` / `PLAN_OR_QUOTA_REQUIRED` / blocked) are recorded
+  but never filed — §2.3 honest boundary; an environment wall is not a driver bug.
+- Dedups before filing (skips if an open `drift` issue already matches the
+  target), closes browsers when done, and writes via the fixer account's
+  per-command token (never `gh auth switch`).
+- Run daily via cron or a systemd timer (examples in the doc); keep IP-blocked
+  databases like World Scientific at low frequency.
+
+**Gated self-heal (optional, dry-run by default)**
+
+```bash
+scripts/issuefix-trigger.sh                    # dry-run: list open drift issues + write fix prompts
+scripts/issuefix-trigger.sh --apply --limit 3  # real: dispatch Codex → mandatory gate → push
+```
+
+- Only `--apply` mutates anything. The mandatory gate requires `rm -rf dist &&
+  npm run build` + `npm test` + 8-lock (`verify:contract-version` /
+  `verify:golden` / `verify:generated-clean`) **all green** before it commits +
+  pushes; `npm test` includes the live-CDP suites, so self-heal must run on the
+  local machine with active browsers + login, otherwise those 27 live-CDP tests
+  fail and trip needs-human (fail-safe — it never pushes a broken tree).
+- Any gate failure adds a `needs-human` label + comment and **never** pushes; a
+  dirty workspace outside `.runs/.omc` is refused outright.
+- Commits use `git commit -F`, carry no auto-close keywords, and never
+  force-push; the consumer (LT-0I) still validates and closes issues. See the doc
+  for the unattended-push risk and its mitigations.
 
 ## Safety & data handling
 

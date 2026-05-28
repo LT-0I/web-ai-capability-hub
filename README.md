@@ -37,6 +37,7 @@
 - [能力目录](#能力目录)
 - [安装与配置](#安装与配置)
 - [开发](#开发)
+- [自动化维护](#自动化维护)
 - [安全与数据处理](#安全与数据处理)
 - [贡献](#贡献)
 - [许可证](#许可证)
@@ -280,6 +281,34 @@ node dist/src/cli.js mcp:tools --json
 ```
 
 重型实现(科研库模块、深度重构、验证扫描)经 `omx exec` 派发给 Codex,prompt 文件留痕于 `.omc/codex-prompts/`;仓内会话负责编排、把关、保持文档/合约同步。详见 `CLAUDE.md` 与 `docs/WORKFLOW_OMC_OMX_INTEGRATION.md`。
+
+## 自动化维护
+
+网站自动化的 UI/DOM 会频繁漂移,因此本项目内置一套**本地优先**的维护闭环(GitHub 托管 runner 无法提供所需的可见 Chrome + DISPLAY + 登录态 profile)。完整设计见 [`docs/AUTOMATED_MAINTENANCE.md`](docs/AUTOMATED_MAINTENANCE.md)。
+
+**巡检 → 开 issue(只读,安全)**
+
+```bash
+# 本地定时巡检:读 integration_registry 的 GREEN 目标 → health-check → 区分漂移 vs 墙 → 去重后自动开 issue
+scripts/maintenance-sweep.sh --service chatgpt,claude,gemini            # 真跑(检测到漂移会开 GitHub issue)
+scripts/maintenance-sweep.sh --service chatgpt,claude,gemini --dry-run  # 只检测不开 issue
+```
+
+- 仅对**真实选择器漂移**(`ELEMENT_NOT_FOUND` / `MODEL_SELECTION_DRIFT` / health-check `missing`、`ambiguous`)开 issue。
+- **墙**(`LOGIN_REQUIRED` / `PLAN_OR_QUOTA_REQUIRED` / blocked)只记录不开 issue —— §2.3 诚实边界,环境墙不是 driver bug。
+- 开 issue 前查重(同 target 已有 open `drift` issue 则跳过);用完即关浏览器;开 issue 用 fixer 账号的 per-command token,不切全局 gh 态。
+- 建议用 cron 或 systemd timer 每日跑(示例见文档);World Scientific 等已封 IP 的库降频。
+
+**受控自愈(可选,默认 dry-run)**
+
+```bash
+scripts/issuefix-trigger.sh                    # 默认 dry-run:只列 open drift issue + 生成修复 prompt
+scripts/issuefix-trigger.sh --apply --limit 3  # 真改:派 Codex 修复 → 强制闸 → push
+```
+
+- 仅 `--apply` 才会真改。强制闸要求 `rm -rf dist && npm run build` + `npm test` + 8-lock(`verify:contract-version` / `verify:golden` / `verify:generated-clean`)**全绿**才 commit+push;`npm test` 含 live-CDP 套件,故自愈需在有活跃浏览器+登录态的本地环境跑,否则那 27 个 live-CDP 测试失败即触发 needs-human(安全失败,不带病 push)。
+- 任一闸失败 → 打 `needs-human` label + 评论,**绝不** push;脏工作树(.runs/.omc 之外)直接拒绝启动。
+- commit 用 `git commit -F`、无 auto-close 关键词、禁 force-push;consumer(LT-0I)验收/关 issue 仍人工。无人值守自动改 main 的风险与缓解见文档。
 
 ## 安全与数据处理
 
