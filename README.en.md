@@ -9,7 +9,7 @@ research-database automation through visible, user-authorized browser sessions.
 
 [![version](https://img.shields.io/badge/version-2.2.0-blue)](#)
 [![contract](https://img.shields.io/badge/consumer--contract-2.2.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-742%2F742%20passing-success)](#)
+[![tests](https://img.shields.io/badge/tests-844%2F871%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -21,7 +21,9 @@ research-database automation through visible, user-authorized browser sessions.
 
 > **Status — `v2.2.0` (Path C Unpaywall OA fallback release).**
 > Public surface `consumer-contract-2.2.0`, package `2.2.0`. Clean build green,
-> full test suite **742/742 passing**. Apache-2.0, Node ≥ 20.
+> tests **844/871 passing** (the other 27 are live-CDP integration tests that
+> need an active browser session + login, not counted offline). Apache-2.0,
+> Node ≥ 20.
 
 For personal/local development and authorized research workflows. It does
 **not** bypass logins, paywalls, CAPTCHAs, bot checks, rate limits, license
@@ -63,7 +65,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - Supports parallel named-tab orchestration for multi-task automation.
 - Exposes a versioned, contract-locked public surface split into two
   independent tool families:
-  - **40 `webai_` tools** — ChatGPT / Claude / Gemini automation.
+  - **81 `webai_` tools** — ChatGPT / Claude / Gemini automation, plus 40 `webai_<db>_download_pdf` literature PDF download drivers.
   - **120 per-DB `research_*` tools** — a separate research-database sub-MCP
     over 40 academic research databases.
 
@@ -75,7 +77,7 @@ code** — never a silent fallback, never a synthesized artifact.
 - 🔒 **Contract-locked public surface** — the entire CLI/MCP/TS surface is
   versioned and round-tripped via `configs/consumer-contract.json`; a contract
   bump is a deliberate act.
-- 🧱 **Safe-consumer redaction** — 23 forbidden fields (`cdpEndpoint`,
+- 🧱 **Safe-consumer redaction** — 27 forbidden fields (`cdpEndpoint`,
   `cookies`, `profileDir`, …) are never delivered; trace redaction on by
   default.
 - 🖱️ **Trusted-gesture automation** — anti-automation SPAs are driven with a
@@ -84,7 +86,8 @@ code** — never a silent fallback, never a synthesized artifact.
 - 🗂️ **40-database research coverage** — AIAA, IEEE, ACM, Web of Science,
   Springer, ScienceDirect, IncoPat, Wanfang, and more — search/filter/export
   each.
-- ✅ **Reproducible** — clean build + 677/677 tests + zero orphan contract
+- ✅ **Reproducible** — clean build + 844/871 tests passing (27 live-CDP
+  integration tests need an active browser session) + zero orphan contract
   rows + all locks held.
 
 ## Public surface (consumer contract)
@@ -94,20 +97,20 @@ The full CLI / MCP / TS surface is versioned and round-tripped through
 `tests/consumerContract.test.ts`. Additive per-DB expansion within the same
 minor does **not** bump the version.
 
-Current locks (`consumer-contract-2.2.0`, `package 2.2.0`; Phase 8 Bucket B: 48 webai_ tools, 121 research_ tools, 8 wah_ tools, 40 error codes):
+Current locks (`consumer-contract-2.2.0`, `package 2.2.0`): **81** webai_ tools, **121** research_ tools, **8** wah_ tools, **40** error codes, **232** commands, golden tool snapshot `tests/golden/listMcpTools.236.json`.
 
 | Surface | Count |
 | --- | --- |
-| `webai_` tools (ChatGPT / Claude / Gemini) | **40** |
+| `webai_` tools (ChatGPT / Claude / Gemini + 40-DB PDF download + literature tasks) | **81** |
 | per-DB `research_*` tools (40 DBs × search/filter/export) | **120** |
 | `research_inventory_import` (seed importer) | 1 (→ 121 `research_`-prefixed rows) |
 | sub-MCP tools | **11** |
-| stable error codes | **39** |
-| `forbidden_output_fields` redacted for safe consumers | **23** |
+| stable error codes | **40** |
+| `forbidden_output_fields` redacted for safe consumers | **27** |
 
-Phase 3 only advances the extension-assisted CDP infrastructure contract: commands stay 191, `webai_` stays 40, `research_` stays 121, and `wah_` stays 8. The new error codes cover bridge-not-connected, permission-denied, and debugger-unavailable failures.
+The public surface grew across phases (Chrome-extension-assisted CDP and Phase 8 literature downloads) to the current lock: **232** commands, `webai_` **81**, `research_` **121**, `wah_` **8**, **40** error codes (covering bridge-not-connected, permission-denied, and debugger-unavailable failures).
 
-### Web-AI tools (40)
+### Web-AI tools (81)
 
 - **ChatGPT (15)** — send prompt, standalone model/thinking-depth selection,
   upload & query, deep research, Canvas export, image/file generation, Pulse
@@ -120,7 +123,7 @@ Phase 3 only advances the extension-assisted CDP infrastructure contract: comman
   upload & query, deep research, image/video generation, Canvas (edit / to
   Docs), music (generate / status / download), conversation & workspace
   management.
-- Plus `webai_task_status`.
+- Plus `webai_task_status`, `webai_literature_task_status`, and **40 `webai_<db>_download_pdf`** literature PDF download drivers (one per database, `%PDF-` enforced, honest `LOGIN_REQUIRED` on a login/paywall). 39 core service tools + 42 literature download/task tools = 81 `webai_` tools.
 
 Services run in independent managed profiles on separate CDP ports (ChatGPT
 `9223`, Claude `claude-9224` on `9224`, Gemini `9225`). Browser launches are
@@ -158,7 +161,7 @@ cd web-ai-capability-hub
 npm install
 npx playwright install chromium
 npm run build
-npm test                       # 677/677 passing
+npm test                       # 844/871 passing (27 live-CDP tests need an active browser)
 
 # launch a visible profile and complete login manually
 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
@@ -245,7 +248,7 @@ screenshot/accessibility). Tabs tracked through a registry for parallel work.
 (~76% fewer bytes on typical landing pages, no loss of interactive labels).
 
 **MCP server** — stdio (`node dist/src/cli.js mcp` / `npm run mcp`), exposing
-browser, capability, workflow, site-registry, maintenance, the 38 `webai_`
+browser, capability, workflow, site-registry, maintenance, the 81 `webai_`
 and 120 per-DB `research_*` tools (plus `research_inventory_import`, 121 `research_`-prefixed rows), plus JSON resources.
 
 **Workflow compiler & executor** — compiles YAML/JSON definitions into
@@ -328,7 +331,7 @@ an explicit `--tab-url-contains` or `--url`; the tools refuse to silently pick
 Representative tools: `browser_launch`, `browser_status`, `browser_pages`,
 `browser_open`, `browser_read`, `browser_screenshot`, the browser-action
 tools, `capability_update`, `capability_query`, `capability_export`,
-`workflow_compile`, `workflow_run`, `consumer_health`, plus the 38 `webai_*`
+`workflow_compile`, `workflow_run`, `consumer_health`, plus the 81 `webai_*`
 and 120 `research_*_{search,filter,export}` tools.
 
 Resources: `capabilities://targets`, `capabilities://target/{targetId}`,

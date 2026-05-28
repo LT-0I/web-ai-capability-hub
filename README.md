@@ -8,7 +8,7 @@
 
 [![version](https://img.shields.io/badge/version-2.2.0-blue)](#)
 [![contract](https://img.shields.io/badge/consumer--contract-2.2.0-blueviolet)](docs/CONSUMER_CONTRACT.md)
-[![tests](https://img.shields.io/badge/tests-742%2F742%20passing-success)](#)
+[![tests](https://img.shields.io/badge/tests-844%2F871%20passing-success)](#)
 [![node](https://img.shields.io/badge/node-%E2%89%A520-339933)](#)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
@@ -18,7 +18,7 @@
 
 ---
 
-> **状态 — `v2.2.0`(Path C Unpaywall OA fallback release)。** 公共面 `consumer-contract-2.2.0`,包版本 `2.2.0`。清洁构建通过,完整测试套件 **742/742 全过**。Apache-2.0,Node ≥ 20。
+> **状态 — `v2.2.0`(Path C Unpaywall OA fallback release)。** 公共面 `consumer-contract-2.2.0`,包版本 `2.2.0`。清洁构建通过,测试 **844/871 通过**(其余 27 个为 live-CDP 集成测试,需活跃浏览器会话+登录态,离线环境不计)。Apache-2.0,Node ≥ 20。
 
 本项目面向个人/本地开发与受权科研工作流。它**不**绕过登录、付费墙、CAPTCHA、机器人检测、速率限制、许可限制或服务条款。用户在正常可见浏览器 profile 中**手动登录**,本项目经 Chrome DevTools Protocol(CDP)复用该会话,**不导出 cookie 或凭据**。当 UI/访问路径漂移或遇墙时,返回**稳定合约错误码**——绝无静默兜底,绝无合成工件。
 
@@ -50,41 +50,41 @@
 - 提供 **MCP 服务器**(stdio),供 AI 智能体查询能力并驱动浏览器工作流。
 - 支持并行命名标签编排,实现多任务自动化。
 - 暴露一个版本化、受合约锁定的公共面,分为两个相互独立的工具族:
-  - **40 个 `webai_` 工具** —— ChatGPT / Claude / Gemini 自动化。
+  - **81 个 `webai_` 工具** —— ChatGPT / Claude / Gemini 自动化,外加 40 个 `webai_<db>_download_pdf` 文献 PDF 下载驱动。
   - **120 个 per-DB `research_*` 工具** —— 跨 40 个学术研究数据库的**独立科研数据库子 MCP**。
 
 ## 核心特性
 
 - 🧭 **观察优先,绝不合成** —— 每个数据库均经交互式 observe-first 映射,遇墙以诚实错误码失败,不伪造结果。
 - 🔒 **契约化公共面** —— 全部 CLI/MCP/TS 表面经 `configs/consumer-contract.json` 版本化并回环测试;合约升级是审慎行为。
-- 🧱 **安全消费者脱敏** —— 23 个禁止字段(`cdpEndpoint`、`cookies`、`profileDir`…)永不下发;默认开启 trace 脱敏。
+- 🧱 **安全消费者脱敏** —— 27 个禁止字段(`cdpEndpoint`、`cookies`、`profileDir`…)永不下发;默认开启 trace 脱敏。
 - 🖱️ **可信手势自动化** —— 对反自动化 SPA 用 CDP `Input.dispatchMouseEvent` 真实手势 + 只读 `connectOverCDP` 观察器,合成点击失效处自动改用。
 - 🗂️ **40 库科研覆盖** —— AIAA、IEEE、ACM、Web of Science、Springer、ScienceDirect、IncoPat、万方等,每库提供 检索/筛选/导出。
-- ✅ **可复现** —— 清洁构建 + 677/677 测试 + 合约零孤儿 + 锁全守恒。
+- ✅ **可复现** —— 清洁构建 + 844/871 测试通过(27 个 live-CDP 集成测试需活跃浏览器会话) + 合约零孤儿 + 锁全守恒。
 
 ## 公共面(消费者合约)
 
 完整 CLI / MCP / TS 公共面经 `configs/consumer-contract.json`、`docs/CONSUMER_CONTRACT.md`、`tests/consumerContract.test.ts` 版本化并三方回环。合约升级是审慎行为;同一 minor 内的增量式 per-DB 扩张**不**升版。
 
-当前锁(`consumer-contract-2.2.0`,`package 2.2.0`; Phase 8 Bucket B：48 个 webai_ 工具,121 个 research_ 工具,8 个 wah_ 工具,40 个错误码):
+当前锁(`consumer-contract-2.2.0`,`package 2.2.0`):**81** 个 webai_ 工具,**121** 个 research_ 工具,**8** 个 wah_ 工具,**40** 个错误码,**232** 个命令,golden 工具快照 `tests/golden/listMcpTools.236.json`。
 
 | 表面 | 数量 |
 | --- | --- |
-| `webai_` 工具(ChatGPT / Claude / Gemini) | **40** |
+| `webai_` 工具(ChatGPT / Claude / Gemini + 40 库 PDF 下载 + 文献任务) | **81** |
 | per-DB `research_*` 工具(40 库 × 检索/筛选/导出) | **120** |
 | `research_inventory_import`(种子导入器) | 1(合计 121 个 `research_` 前缀行) |
 | 子 MCP 工具 | **11** |
-| 稳定错误码 | **39** |
-| 对安全消费者脱敏的 `forbidden_output_fields` | **23** |
+| 稳定错误码 | **40** |
+| 对安全消费者脱敏的 `forbidden_output_fields` | **27** |
 
-Phase 3 仅提升扩展辅助 CDP 的基础设施合约：命令数保持 191,`webai_` 保持 40,`research_` 保持 121,`wah_` 保持 8；新增错误码用于桥未连接、权限不足和 debugger 不可用。
+公共面经多阶段(含 Chrome 扩展辅助 CDP 与 Phase 8 文献下载)扩张至当前锁:**232** 个命令,`webai_` **81**,`research_` **121**,`wah_` **8**,**40** 个错误码(含扩展桥未连接、权限不足、debugger 不可用等)。
 
-### Web-AI 工具(40)
+### Web-AI 工具(81)
 
 - **ChatGPT(15)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、Canvas 导出、图像/文件生成、Pulse(获取/onboard)、会话与工作区管理、Codex 集成(提交任务/状态/diff/列环境)。
 - **Claude(11)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、文件生成、会话与工作区管理、Design(建项目/生成/取 HTML/演示)。
 - **Gemini(13)** —— 发送提示、独立模型/思考深度选择、上传问答、深度研究、图像/视频生成、Canvas(编辑/转 Docs)、音乐(生成/状态/下载)、会话与工作区管理。
-- 外加 `webai_task_status`。
+- 外加 `webai_task_status`、`webai_literature_task_status`,以及 **40 个 `webai_<db>_download_pdf`** 文献 PDF 下载驱动(每库一个,强制 `%PDF-` 校验,遇登录/付费墙诚实返回 `LOGIN_REQUIRED`)。三服务核心交互 39 + 文献下载/任务 42 = 81 个 `webai_` 工具。
 
 三个服务运行于独立受管 profile 与独立 CDP 端口(ChatGPT `9223`、Claude `claude-9224` 于 `9224`、Gemini `9225`)。浏览器启动串行化(共享 singleton-lock),宿主机需 `DISPLAY` + `XAUTHORITY`。
 
@@ -110,7 +110,7 @@ cd web-ai-capability-hub
 npm install
 npx playwright install chromium
 npm run build
-npm test                       # 677/677 通过
+npm test                       # 844/871 通过(27 个 live-CDP 测试需活跃浏览器)
 
 # 启动可见 profile 并手动完成登录
 DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority \
@@ -176,7 +176,7 @@ npx -y --package ./web-ai-research-automation-hub-2.2.0.tgz web-ai-research-auto
 
 **Lite 快照模式** —— `browser:read`、`browser:screenshot`、`capability:update` 与快照路径接受可选 `--mode lite`,丢弃非交互文本、无障碍树、空字段与截图负载(典型落地页减约 76% 字节,不丢交互元素标签)。默认模式不变。
 
-**MCP 服务器** —— stdio 运行(`node dist/src/cli.js mcp` / `npm run mcp`),暴露浏览器、能力、工作流、站点注册、维护工具,以及 38 个 `webai_` 与 120 个 per-DB `research_*` 工具（另有 `research_inventory_import`，共 121 个 `research_` 前缀行）,外加 JSON 资源。
+**MCP 服务器** —— stdio 运行(`node dist/src/cli.js mcp` / `npm run mcp`),暴露浏览器、能力、工作流、站点注册、维护工具,以及 81 个 `webai_` 与 120 个 per-DB `research_*` 工具（另有 `research_inventory_import`，共 121 个 `research_` 前缀行）,外加 JSON 资源。
 
 **工作流编译器与执行器** —— 将 YAML/JSON 工作流定义编译为具体浏览器动作计划,将抽象能力引用解析为能力库中的选择器。支持 dry-run、工作流测试与审批门;高危动作(发送、下载/导出、删除、发布/分享、购买、账户变更、批量)需显式审批。
 
@@ -232,7 +232,7 @@ node dist/src/cli.js --help
 
 ## MCP 工具与资源
 
-代表性工具:`browser_launch`、`browser_status`、`browser_pages`、`browser_open`、`browser_read`、`browser_screenshot`、各浏览器动作工具、`capability_update`、`capability_query`、`capability_export`、`workflow_compile`、`workflow_run`、`consumer_health`,以及 38 个 `webai_*` 与 120 个 `research_*_{search,filter,export}` 工具。
+代表性工具:`browser_launch`、`browser_status`、`browser_pages`、`browser_open`、`browser_read`、`browser_screenshot`、各浏览器动作工具、`capability_update`、`capability_query`、`capability_export`、`workflow_compile`、`workflow_run`、`consumer_health`,以及 81 个 `webai_*` 与 120 个 `research_*_{search,filter,export}` 工具。
 
 资源:`capabilities://targets`、`capabilities://target/{targetId}`、`capabilities://target/{targetId}/latest`、`workflows://definitions`、`workflows://runs`、`browser-profiles://list`、`site-registry://sites`。
 
