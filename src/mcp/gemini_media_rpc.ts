@@ -216,36 +216,91 @@ function pageLooksLogin(url: string): boolean {
   return /accounts\.google\.com|signin/i.test(url || "");
 }
 
+function pageLooksGeminiHost(url: string): boolean {
+  const value = String(url || "");
+  return value.toLowerCase().includes(GEMINI_HOST) && !pageLooksLogin(value);
+}
+
+function pageLooksGeminiApp(url: string): boolean {
+  return /gemini\.google\.com\/app(?:[/?#]|$)/i.test(String(url || "")) && !pageLooksLogin(url);
+}
+
+function findGeminiHostPage(pages: any[]): any | undefined {
+  return pages.find((candidate) => candidate.type === "page" && pageLooksGeminiHost(String(candidate.url || "")));
+}
+
+function findGeminiAppPage(pages: any[]): any | undefined {
+  return pages.find((candidate) => candidate.type === "page" && pageLooksGeminiApp(String(candidate.url || "")));
+}
+
 async function ensureGeminiPage(endpoint: string, args: any): Promise<any> {
-  const listUrl = `${endpointOrigin(endpoint)}/json/list`;
+  const origin = endpointOrigin(endpoint);
+  const listUrl = `${origin}/json/list`;
   let pages = await fetchJson<any[]>(listUrl);
-  let page = pages.find((candidate) => candidate.type === "page" && String(candidate.url || "").includes(GEMINI_HOST) && !pageLooksLogin(String(candidate.url || "")));
+  let page = findGeminiHostPage(pages);
   if (page) return page;
-  await fetch(`${endpointOrigin(endpoint)}/json/new?${encodeURIComponent(targetUrlForGeminiRpc(args))}`, { method: "PUT" }).catch(() => undefined);
+  let lastNavigateError: any = null;
+  const targetUrl = targetUrlForGeminiRpc(args);
+  const created = await fetch(`${origin}/json/new?${encodeURIComponent(targetUrl)}`, { method: "PUT" })
+    .then((response) => response.ok ? response.json() : null)
+    .catch(() => null);
+  if (created?.webSocketDebuggerUrl) {
+    try {
+      await navigateCdpPage(created.webSocketDebuggerUrl, targetUrl);
+    } catch (error) {
+      lastNavigateError = error;
+    }
+  }
   const deadline = Date.now() + 5000;
   while (Date.now() < deadline) {
     pages = await fetchJson<any[]>(listUrl).catch(() => []);
-    page = pages.find((candidate) => candidate.type === "page" && String(candidate.url || "").includes(GEMINI_HOST) && !pageLooksLogin(String(candidate.url || "")));
+    page = findGeminiHostPage(pages);
     if (page) return page;
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
-  throw new GeminiMediaRpcToolError(ConsumerErrorCodes.TARGET_PAGE_MISSING, "No Gemini CDP page was available for RPC token capture");
+  throw new GeminiMediaRpcToolError(
+    ConsumerErrorCodes.TARGET_PAGE_MISSING,
+    "No Gemini CDP page was available for RPC token capture",
+    lastNavigateError ? { cause: errorMessageFromUnknown(lastNavigateError, "") } : undefined
+  );
 }
 
 async function openFreshGeminiMediaPage(endpoint: string): Promise<any> {
   const origin = endpointOrigin(endpoint);
-  const created = await fetch(`${origin}/json/new?${encodeURIComponent(`${GEMINI_CHAT_URL}?hl=en`)}`, { method: "PUT" })
+  const targetUrl = `${GEMINI_CHAT_URL}?hl=en`;
+  let lastNavigateError: any = null;
+  const reusable = findGeminiAppPage(await fetchJson<any[]>(`${origin}/json/list`).catch(() => []));
+  if (reusable?.webSocketDebuggerUrl) {
+    try {
+      await navigateCdpPage(reusable.webSocketDebuggerUrl, targetUrl);
+    } catch (error) {
+      lastNavigateError = error;
+    }
+    return { ...reusable, url: targetUrl };
+  }
+  const created = await fetch(`${origin}/json/new?${encodeURIComponent(targetUrl)}`, { method: "PUT" })
     .then((response) => response.ok ? response.json() : null)
     .catch(() => null);
-  if (created?.webSocketDebuggerUrl) return created;
+  if (created?.webSocketDebuggerUrl) {
+    try {
+      await navigateCdpPage(created.webSocketDebuggerUrl, targetUrl);
+    } catch (error) {
+      lastNavigateError = error;
+    }
+    return { ...created, url: targetUrl };
+  }
   const deadline = Date.now() + 5000;
   while (Date.now() < deadline) {
     const pages = await fetchJson<any[]>(`${origin}/json/list`).catch(() => []);
-    const page = pages.find((candidate) => candidate.type === "page" && String(candidate.url || "").includes(GEMINI_HOST) && !pageLooksLogin(String(candidate.url || "")));
+    const page = findGeminiAppPage(pages);
     if (page?.webSocketDebuggerUrl) return page;
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
-  throw new GeminiMediaRpcToolError(ConsumerErrorCodes.TARGET_PAGE_MISSING, "No fresh Gemini media page was available for RPC prelude");
+  throw new GeminiMediaRpcToolError(
+    ConsumerErrorCodes.TARGET_PAGE_MISSING,
+    "No fresh Gemini media page was available for RPC prelude",
+    lastNavigateError ? { cause: errorMessageFromUnknown(lastNavigateError, "") } : undefined
+  );
 }
 
 async function cdpBatch(wsUrl: string, commands: Array<{ method: string; params?: Record<string, unknown> }>): Promise<any[]> {
@@ -300,6 +355,17 @@ async function cdpEvaluateValue(wsUrl: string, expression: string, timeoutMs = 1
   ]);
   if (result?.exceptionDetails) throw new GeminiMediaRpcToolError(ConsumerErrorCodes.UNKNOWN, `Gemini media CDP prelude failed: ${JSON.stringify(result.exceptionDetails).slice(0, 300)}`);
   return result?.result?.value;
+}
+
+async function navigateCdpPage(wsUrl: string, url: string): Promise<void> {
+  try {
+    await cdpBatch(wsUrl, [{ method: "Page.enable" }]);
+  } catch {
+    // The target can be mid-load or stuck behind a timed-out Runtime.evaluate.
+    // Page.navigate is the required corrective action and can still succeed.
+  }
+  const [result] = await cdpBatch(wsUrl, [{ method: "Page.navigate", params: { url } }]);
+  if (result?.errorText) throw new Error(`CDP Page.navigate failed: ${result.errorText}`);
 }
 
 function mediaPreludeSpec(mediaKind: GeminiMediaKind): { label: string; activeLabel: string; timeoutMs: number } {
@@ -370,16 +436,37 @@ async function activateGeminiMediaModeWithCdp(wsUrl: string, mediaKind: GeminiMe
 async function waitForGeminiCdpDocument(wsUrl: string): Promise<void> {
   const deadline = Date.now() + 15000;
   let lastError: any = null;
+  let navigationError: any = null;
+  let navigationAttempted = false;
   while (Date.now() < deadline) {
     try {
       const state = await cdpEvaluateValue(wsUrl, `(() => ({ readyState: document.readyState, href: location.href, body: Boolean(document.body) }))()`, 3000);
-      if (state?.body && /gemini\.google\.com\/app/i.test(String(state.href || ""))) return;
+      const href = String(state?.href || "");
+      if (state?.body && pageLooksGeminiApp(href)) return;
+      if (state?.body && href && !navigationAttempted) {
+        navigationAttempted = true;
+        try {
+          await navigateCdpPage(wsUrl, `${GEMINI_CHAT_URL}?hl=en`);
+        } catch (error) {
+          navigationError = error;
+          throw error;
+        }
+      }
     } catch (error) {
       lastError = error;
+      if (!navigationAttempted) {
+        try {
+          navigationAttempted = true;
+          await navigateCdpPage(wsUrl, `${GEMINI_CHAT_URL}?hl=en`);
+        } catch (navigateError) {
+          navigationError = navigateError;
+          lastError = navigateError;
+        }
+      }
     }
     await new Promise((resolve) => setTimeout(resolve, 300));
   }
-  throw new GeminiMediaRpcToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini media page did not hydrate before RPC prelude", { cause: errorMessageFromUnknown(lastError, "") });
+  throw new GeminiMediaRpcToolError(ConsumerErrorCodes.COMMAND_TIMEOUT, "Gemini media page did not hydrate before RPC prelude", { cause: errorMessageFromUnknown(navigationError || lastError, "") });
 }
 
 function cookieDomainMatches(host: string, domain: string): boolean {
