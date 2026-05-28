@@ -16,6 +16,7 @@ export const siamPaywalledLiteratureConfig: PaywalledLiteratureConfig = {
     "a:has-text(\"PDF\")",
     "a.pdf",
     "a[href*=\"/doi/pdf\" i]",
+    "a[href*=\"/doi/epdf\" i]",
     "a[href*=\"pdf\" i]"
   ],
   metadata_tool: null,

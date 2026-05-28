@@ -2,7 +2,8 @@ import { encodePathPreservingSlash, LiteratureDownloadPdfArgs, LiteratureDownloa
 
 const DB_SLUG = "mdpi";
 const MDPI_JOURNAL_SLUG_BY_ISSN: Record<string, string> = {
-  "2076-3417": "applsci"
+  "2076-3417": "applsci",
+  "2504-446X": "drones"
 };
 
 function htmlDecode(value: string): string {
@@ -10,8 +11,10 @@ function htmlDecode(value: string): string {
 }
 
 function mdpiPdfHrefFromHtml(html: string): string | null {
-  const anchor = /<a\b(?=[^>]*class=["'][^"']*download-link[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+  const anchor = /<a\b(?=[^>]*id=["']js-button-download["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+    || /<a\b(?=[^>]*class=["'][^"']*(?:download-link|UD_ArticlePDF)[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
     || /<a\b(?=[^>]*(?:data-cy|title|aria-label)=["'][^"']*pdf[^"']*["'])(?=[^>]*href=["']([^"']+)["'])[^>]*>/i.exec(html)?.[1]
+    || /<a\b(?=[^>]*href=["']([^"']+)["'])[^>]*>[\s\S]{0,120}?\bDownload\s+PDF\b[\s\S]{0,120}?<\/a>/i.exec(html)?.[1]
     || /<a\b(?=[^>]*href=["']([^"']*\/pdf(?:\?[^"']*)?)["'])[^>]*>/i.exec(html)?.[1];
   return anchor ? htmlDecode(anchor) : null;
 }
