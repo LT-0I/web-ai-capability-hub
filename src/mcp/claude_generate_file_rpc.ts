@@ -15,6 +15,7 @@ import {
   WebAiToolError
 } from "./tools";
 import { buildClaudeRpcPayload, decodeClaudeRpcSseEnvelope } from "./claude_send_prompt_rpc";
+import { verifyOoxmlPackage } from "../verifiers/docxMin";
 
 const CLAUDE_FRESH_URL = "https://claude.ai/new";
 const DEFAULT_CLAUDE_PROFILE = "claude-9224";
@@ -49,7 +50,17 @@ interface ExtractedArtifact {
   content: string;
   remotePath?: string;
   fileName?: string;
-  source: "create_file" | "widget" | "display_content";
+  source: "create_file" | "widget" | "display_content" | "present_files";
+}
+
+// Container/binary expected extensions whose saved file MUST be a real downloaded
+// binary artifact that passes a magic-byte/structure check. Inline text rendered by
+// Claude is NEVER a valid artifact for these — fail honestly (CLAUDE.md §2.3 bans
+// local-synthesized DOCX). xlsx is rejected up-front (UNSUPPORTED_GENERATE_FILE_EXTS).
+const BINARY_GENERATE_FILE_EXTS = new Set(["docx", "pptx", "pdf", "xlsx"]);
+
+function isBinaryExtension(extension: string): boolean {
+  return BINARY_GENERATE_FILE_EXTS.has(extension);
 }
 
 function errorMessageFromUnknown(error: any, fallback: string): string {
@@ -225,7 +236,15 @@ export function extractClaudeGeneratedFileArtifacts(streamText: string): Extract
       for (const artifact of block.artifacts) artifacts.push(artifact);
       const parsed = block.partial ? parseJsonMaybe(block.partial) : null;
       if (parsed && typeof parsed === "object") {
-        if (typeof parsed.file_text === "string" || typeof parsed.code === "string") {
+        if (Array.isArray(parsed.filepaths)) {
+          // present_files announces the REAL downloadable artifacts Claude produced in
+          // its code-execution sandbox (e.g. a binary .docx written to /mnt/user-data/outputs).
+          // The content lives remotely and is fetched via wiggle/download-file.
+          for (const candidate of parsed.filepaths) {
+            if (typeof candidate !== "string" || !candidate.trim()) continue;
+            artifacts.push({ content: "", remotePath: candidate, fileName: path.basename(candidate), source: "present_files" });
+          }
+        } else if (typeof parsed.file_text === "string" || typeof parsed.code === "string") {
           const content = String(parsed.file_text ?? parsed.code ?? "");
           const remotePath = typeof parsed.path === "string" ? parsed.path : undefined;
           const fileName = remotePath ? path.basename(remotePath) : (typeof parsed.filename === "string" ? path.basename(parsed.filename) : undefined);
@@ -245,11 +264,31 @@ export function buildClaudeGenerateFilePayload(args: any): Record<string, unknow
   return buildClaudeRpcPayload(args);
 }
 
+function matchesExpectedExtension(artifact: ExtractedArtifact, expectedExtension: string): boolean {
+  const name = (artifact.fileName || path.basename(String(artifact.remotePath || ""))).toLowerCase();
+  return Boolean(name) && name.endsWith(`.${expectedExtension}`);
+}
+
 function chooseArtifact(artifacts: ExtractedArtifact[], expectedExtension: string): ExtractedArtifact | null {
-  const matching = artifacts.find((artifact) => artifact.fileName && artifact.fileName.toLowerCase().endsWith(`.${expectedExtension}`));
+  if (isBinaryExtension(expectedExtension)) {
+    // Binary/container formats MUST come from a real downloadable artifact (a remotePath
+    // Claude produced in its sandbox, surfaced via present_files / create_file). Inline
+    // text (display_content / widget) is NEVER a valid binary artifact — returning null
+    // here makes the handler fail honestly instead of writing text with a binary extension.
+    const downloadable = artifacts.filter((artifact) => Boolean(artifact.remotePath));
+    return (
+      downloadable.find((artifact) => matchesExpectedExtension(artifact, expectedExtension)) ||
+      downloadable.find((artifact) => artifact.source === "present_files") ||
+      downloadable[0] ||
+      null
+    );
+  }
+  const matching = artifacts.find((artifact) => matchesExpectedExtension(artifact, expectedExtension));
   if (matching) return matching;
   if (expectedExtension === "html") return artifacts.find((artifact) => artifact.source === "widget") || artifacts[0] || null;
-  return artifacts[0] || null;
+  // For text formats, prefer an artifact that actually carries inline content over a
+  // bare present_files pointer (whose content is empty until downloaded).
+  return artifacts.find((artifact) => artifact.content.length > 0) || artifacts[0] || null;
 }
 
 function writeStreamedArtifact(artifact: ExtractedArtifact, downloadDir: string, expectedExtension: string): string {
@@ -257,6 +296,23 @@ function writeStreamedArtifact(artifact: ExtractedArtifact, downloadDir: string,
   const filePath = path.join(downloadDir, fileName);
   fs.writeFileSync(filePath, artifact.content, "utf8");
   return filePath;
+}
+
+// Validate that a downloaded binary artifact really is the expected container format.
+// Returns a failure reason string when invalid, or null when it passes / is not a
+// binary extension. Honest fail (CLAUDE.md §2.3): never accept text disguised as a binary.
+function binaryArtifactFailure(filePath: string, expectedExtension: string): string | null {
+  if (expectedExtension === "docx" || expectedExtension === "pptx" || expectedExtension === "xlsx") {
+    const result = verifyOoxmlPackage(filePath, expectedExtension);
+    return result.ok ? null : result.reason;
+  }
+  if (expectedExtension === "pdf") {
+    const bytes = fs.readFileSync(filePath);
+    // %PDF- magic = 0x25 0x50 0x44 0x46 0x2d
+    const ok = bytes.length >= 5 && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46 && bytes[4] === 0x2d;
+    return ok ? null : "PDF_MAGIC_MISMATCH";
+  }
+  return null;
 }
 
 function writeDownloadedArtifact(response: ClaudeGenerateFileRpcFetchResult, artifact: ExtractedArtifact, downloadDir: string, expectedExtension: string): string {
@@ -304,8 +360,21 @@ export async function webAiClaudeGenerateFileRpcWithFetch(
     }
     const decoded = decodeClaudeRpcSseEnvelope(completion.text);
     const artifacts = extractClaudeGeneratedFileArtifacts(completion.text);
-    const artifact = chooseArtifact(artifacts, expectedExtension);
-    if (!artifact) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Claude RPC completion did not stream a downloadable or inline artifact payload");
+    let artifact = chooseArtifact(artifacts, expectedExtension);
+    if (!artifact) {
+      if (isBinaryExtension(expectedExtension)) {
+        // Binary/container format requested but Claude produced no real downloadable
+        // binary artifact (only inline text/markdown, e.g. the code that BUILDS the file).
+        // CLAUDE.md §2.3 bans local-synthesized binaries — fail honestly, never write text.
+        throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, `Claude RPC completion did not produce a downloadable .${expectedExtension} binary artifact (only inline text was returned); refusing to write non-binary content with a .${expectedExtension} extension`);
+      }
+      // Text format: inline assistant text is a legitimate artifact. Capture decoded
+      // responseText so a markdown/txt answer rendered inline (no create_file tool_use)
+      // does not spuriously fail with ARTIFACT_DOWNLOAD_TIMEOUT (as csv vs md drifted).
+      const inlineText = String(decoded.responseText || "").trim();
+      if (inlineText.length > 0) artifact = { content: decoded.responseText, source: "display_content" };
+      else throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Claude RPC completion did not stream a downloadable or inline artifact payload");
+    }
     let savedPath: string;
     if (artifact.remotePath) {
       const download = await fetchRpc({
@@ -316,12 +385,22 @@ export async function webAiClaudeGenerateFileRpcWithFetch(
         remotePath: artifact.remotePath
       });
       httpStatus = download.status;
-      if (download.status >= 200 && download.status < 300) savedPath = writeDownloadedArtifact(download, artifact, effective.download_dir, expectedExtension);
-      else {
+      if (download.status >= 200 && download.status < 300) {
+        savedPath = writeDownloadedArtifact(download, artifact, effective.download_dir, expectedExtension);
+        const failure = binaryArtifactFailure(savedPath, expectedExtension);
+        if (failure) {
+          try { fs.unlinkSync(savedPath); } catch { /* best-effort cleanup of the invalid artifact */ }
+          throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, `Claude RPC downloaded artifact failed .${expectedExtension} structure validation (${failure})`);
+        }
+      } else {
         const code = httpStatusErrorCode(download.status, download.text || "");
         return fileErrorOutput(code, `Claude RPC artifact download returned HTTP ${download.status}`, { http_status: download.status, conversation_id: conversationId, chat_url: `https://claude.ai/chat/${conversationId}` });
       }
     } else {
+      // Reachable only for text extensions (binary exts without a remotePath already
+      // failed honestly above). Defensive §2.3 guard: never write inline text with a
+      // binary/container extension even if selection logic regresses.
+      if (isBinaryExtension(expectedExtension)) throw new WebAiToolError(ConsumerErrorCodes.ARTIFACT_VERIFICATION_FAILED, `Refusing to write inline text content with a .${expectedExtension} extension; a real downloadable binary artifact is required`);
       savedPath = writeStreamedArtifact(artifact, effective.download_dir, expectedExtension);
     }
     return successOutput(savedPath, path.basename(savedPath), {
