@@ -74,6 +74,22 @@ function isTransientBridgeDisconnect(error: any): boolean {
   return /message channel closed|Receiving end does not exist|Extension context invalidated|context invalidated|port closed/i.test(text);
 }
 
+/**
+ * Detects the class of bridge errors raised when an in-flight navigation/redirect
+ * destroys the page's JavaScript execution context mid-evaluation. ChatGPT's
+ * newTab → CHATGPT_FRESH_URL client-redirect can tear down the context while an
+ * in-page waitForSelector poll loop is running, which the vendor surfaces with a
+ * CDP-class message ("Execution context was destroyed", "Cannot find context with
+ * specified id", "Inspected target navigated or closed", "Target closed", etc.).
+ * This is distinct from isTransientBridgeDisconnect (port/channel teardown): the
+ * native-messaging port stays up, only the per-frame JS context is gone, so
+ * re-issuing chrome_javascript re-acquires a fresh context.
+ */
+function isExecutionContextDestroyed(error: any): boolean {
+  const text = `${error?.message || ""}\n${JSON.stringify(error?.details || error?.payload || error?.data || "")}`;
+  return /execution context was destroyed|context was destroyed|cannot find context(?: with specified id)?|no (?:execution )?context (?:with|found)|inspected target (?:navigated|closed)|target (?:closed|crashed)|frame (?:was )?detached|execution context is not available|(?:execution context|frame|target|node|document) (?:no longer exists|no longer available)|navigating and changing the document/i.test(text);
+}
+
 function isSafeVendorRetry(method: string): boolean {
   return method === VENDOR_BROWSER_TOOL_NAMES.JAVASCRIPT
     || method === VENDOR_BROWSER_TOOL_NAMES.WEB_FETCHER
@@ -337,8 +353,47 @@ export class ExtensionAssistedPagePort implements BrowserPagePort {
   }
 
   async waitForSelector(selector: string, options: BrowserWaitForSelectorOptions = {}): Promise<void> {
-    const payload = await this.javascript(waitForSelectorScript(selector, options), options.timeoutMs);
-    assertVendorSuccess(payload, VENDOR_BROWSER_TOOL_NAMES.JAVASCRIPT);
+    // Use nullish defaulting so an explicit timeoutMs:0 keeps a zero (already-elapsed)
+    // budget instead of being widened to the 30s default. Only an undefined/missing
+    // timeout defaults to 30_000. No Math.max(1, ...) floor — that would re-introduce
+    // a 1ms budget for an explicit 0 and dispatch the in-page JS once.
+    const totalTimeoutMs = Math.max(0, Math.floor(options.timeoutMs ?? 30_000));
+    const deadline = Date.now() + totalTimeoutMs;
+    let lastContextError: any;
+    // Bounded retry: an in-flight navigation/redirect (e.g. ChatGPT's newTab →
+    // CHATGPT_FRESH_URL client-redirect) can destroy the JS execution context
+    // mid-wait. When that happens AND time remains in the caller's budget,
+    // re-acquire the context and retry the poll with the REMAINING time instead
+    // of fast-rejecting to ELEMENT_NOT_FOUND. A genuinely missing selector still
+    // throws the in-page "waitForSelector timeout" (not a context-destroyed
+    // error) after the full budget elapses, preserving the honest not-found path.
+    for (;;) {
+      const remainingMs = deadline - Date.now();
+      if (remainingMs <= 0) {
+        if (lastContextError) throw lastContextError;
+        throw new Error(`waitForSelector timeout for ${selector} state=${options.state || "attached"}`);
+      }
+      try {
+        const payload = await this.javascript(
+          waitForSelectorScript(selector, { ...options, timeoutMs: remainingMs }),
+          remainingMs
+        );
+        assertVendorSuccess(payload, VENDOR_BROWSER_TOOL_NAMES.JAVASCRIPT);
+        return;
+      } catch (error: any) {
+        // Only swallow-and-retry execution-context destruction while budget remains.
+        // All other errors (including the in-page timeout = genuine not-found) propagate.
+        if (isExecutionContextDestroyed(error) && Date.now() < deadline) {
+          lastContextError = error;
+          // Brief settle so the redirect can land before we re-acquire the context,
+          // but never sleep past the caller's deadline (clamp to remaining budget).
+          const settleMs = Math.min(50, Math.max(0, deadline - Date.now()));
+          if (settleMs > 0) await new Promise((resolve) => setTimeout(resolve, settleMs));
+          continue;
+        }
+        throw error;
+      }
+    }
   }
 
   async queryElements(selector: string, options: { limit?: number } = {}): Promise<BrowserElementSummary[]> {

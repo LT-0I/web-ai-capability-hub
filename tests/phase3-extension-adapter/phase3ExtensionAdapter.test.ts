@@ -40,6 +40,33 @@ import {
   CONSUMER_ERROR_CODES,
   ConsumerErrorCodes
 } from "../../src/consumer/errorCodes";
+import { BridgeClient } from "../../src/runtime/extension/bridgeClient";
+import { WebAiToolError } from "../../src/mcp/tools";
+
+// Mirrors src/mcp/tools.ts waitForExtensionSelector (which is module-private) so
+// the test exercises the SAME consumer-facing wait→ELEMENT_NOT_FOUND mapping that
+// production callers (e.g. the ChatGPT extension send pipeline) rely on, without
+// widening the tools.ts public surface.
+async function waitForExtensionSelectorLikeProduction(
+  page: any,
+  selector: string,
+  timeoutMs: number,
+  message: string
+): Promise<void> {
+  let lastError: any;
+  for (const candidate of selector.split(/\s*,\s*/).map((s) => s.trim()).filter(Boolean)) {
+    try {
+      await page.waitForSelector(candidate, { state: "visible", timeoutMs });
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, message, {
+    selector,
+    cause: lastError?.message || String(lastError || "")
+  });
+}
 
 // -----------------------------------------------------------------------------
 // 1) Backend interface conformance: kind constants + method surface
@@ -348,6 +375,126 @@ test("phase3 transport lock: src/browser/backends and src/runtime/extension cont
 // -----------------------------------------------------------------------------
 // Bonus: scope verification — Phase 3 does NOT touch tools.ts / vendor / package.json
 // -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// 9) waitForSelector survives a mid-wait execution-context destruction
+//    (ChatGPT newTab → CHATGPT_FRESH_URL client-redirect tears down the JS
+//    context while the in-page poll is running). It must re-acquire and retry
+//    with the REMAINING budget — NOT fast-reject to a spurious not-found.
+// -----------------------------------------------------------------------------
+
+class ContextDestroyMockClient implements BridgeClient {
+  jsCalls = 0;
+  constructor(
+    private readonly behavior: (call: number) => any
+  ) {}
+  async ping(): Promise<unknown> { return { ok: true }; }
+  async dispose(): Promise<void> {}
+  async request(method: any, _params?: any): Promise<any> {
+    if (method === VENDOR_BROWSER_TOOL_NAMES.JAVASCRIPT) {
+      this.jsCalls += 1;
+      const outcome = this.behavior(this.jsCalls);
+      if (outcome instanceof Error) throw outcome;
+      return outcome;
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ success: true }) }] };
+  }
+}
+
+function jsSuccess(): any {
+  return { content: [{ type: "text", text: JSON.stringify({ success: true, selector: "#ready", state: "visible" }) }] };
+}
+
+test("phase3 robustness: waitForSelector re-acquires the execution context after a mid-wait context-destroyed error and resolves while budget remains", async () => {
+  // First JS call simulates the redirect destroying the context; second succeeds.
+  const client = new ContextDestroyMockClient((call) =>
+    call === 1
+      ? new NativeMessagingBridgeError(ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED, "Execution context was destroyed.")
+      : jsSuccess()
+  );
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  const started = Date.now();
+  // Must resolve (not throw ELEMENT_NOT_FOUND / context error) because time remained.
+  await port.waitForSelector("#ready", { state: "visible", timeoutMs: 5000 });
+  assert.equal(client.jsCalls, 2, "must retry the in-page wait exactly once after the context-destroyed error");
+  assert.ok(Date.now() - started < 5000, "must resolve well within the caller's timeout budget");
+});
+
+test("phase3 robustness: waitForSelector retries through MULTIPLE consecutive context-destroyed errors while budget remains, then resolves", async () => {
+  const client = new ContextDestroyMockClient((call) =>
+    call <= 3
+      ? new NativeMessagingBridgeError(ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED, "Cannot find context with specified id")
+      : jsSuccess()
+  );
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  await port.waitForSelector("#ready", { state: "visible", timeoutMs: 5000 });
+  assert.equal(client.jsCalls, 4, "must retry through each transient context-destroyed error until the context is stable");
+});
+
+test("phase3 robustness: a genuinely-missing selector still surfaces ELEMENT_NOT_FOUND after the FULL timeout (no silent success, no infinite retry)", async () => {
+  // The in-page script runs the real poll loop for the remaining budget and then
+  // throws its own "waitForSelector timeout" — which is NOT a context-destroyed
+  // error, so it must propagate immediately and become ELEMENT_NOT_FOUND upstream.
+  const client = new ContextDestroyMockClient(() =>
+    new NativeMessagingBridgeError(ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED, "waitForSelector timeout for #never state=visible")
+  );
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  // Route through the same helper that production callers use so we assert the
+  // consumer-facing ELEMENT_NOT_FOUND mapping end-to-end is preserved.
+  await assert.rejects(
+    () => waitForExtensionSelectorLikeProduction(port, "#never", 400, "selector never appeared"),
+    (error: any) => {
+      assert.equal(error.errorCode, ConsumerErrorCodes.ELEMENT_NOT_FOUND, "genuine not-found must still be ELEMENT_NOT_FOUND");
+      return true;
+    }
+  );
+  assert.equal(client.jsCalls, 1, "a non-context-destroyed timeout error must NOT trigger the context re-acquire retry loop");
+});
+
+test("phase3 robustness: persistent context-destroyed churn does NOT hang forever — the full timeout elapses then the last context error propagates", async () => {
+  // Pathological case: every JS call dies to context destruction (page never settles).
+  // The retry loop must be bounded by the caller's timeout and eventually give up,
+  // surfacing the context error (which upstream maps to a non-success code) rather
+  // than looping indefinitely or silently resolving.
+  const client = new ContextDestroyMockClient(() =>
+    new NativeMessagingBridgeError(ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED, "Inspected target navigated or closed")
+  );
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  const started = Date.now();
+  await assert.rejects(
+    () => port.waitForSelector("#ready", { state: "visible", timeoutMs: 300 }),
+    (error: any) => {
+      assert.match(String(error.message), /navigated or closed/i, "the last context error must propagate once the budget is exhausted");
+      return true;
+    }
+  );
+  const elapsed = Date.now() - started;
+  assert.ok(elapsed >= 250, `must honour the full timeout budget before giving up (elapsed=${elapsed}ms)`);
+  assert.ok(elapsed < 3000, `must not run far past the budget (elapsed=${elapsed}ms)`);
+  assert.ok(client.jsCalls > 1, "must have retried at least once during the budget window");
+});
+
+test("phase3 robustness review-red: explicit timeoutMs=0 is not widened into the default 30s budget", async () => {
+  const client = new ContextDestroyMockClient(() => jsSuccess());
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  await assert.rejects(
+    () => port.waitForSelector("#ready", { state: "visible", timeoutMs: 0 }),
+    /waitForSelector timeout/i
+  );
+  assert.equal(client.jsCalls, 0, "timeoutMs=0 must exit at the deadline instead of dispatching chrome_javascript with an expanded budget");
+});
+
+test("phase3 robustness review-red: unrelated 'no longer exists' errors are not retried as execution-context destruction", async () => {
+  const client = new ContextDestroyMockClient(() =>
+    new NativeMessagingBridgeError(ConsumerErrorCodes.CHROME_EXTENSION_NOT_CONNECTED, "User profile no longer exists")
+  );
+  const port = new ExtensionAssistedPagePort(client, 7, 1);
+  await assert.rejects(
+    () => port.waitForSelector("#ready", { state: "visible", timeoutMs: 150 }),
+    /User profile no longer exists/i
+  );
+  assert.equal(client.jsCalls, 1, "unrelated fatal errors must propagate immediately instead of being swallowed and retried until the selector deadline");
+});
 
 test("phase3 scope: vendor/mcp-chrome is not touched by the Phase-3 diff", () => {
   // We assert the vendor tree exists; modifications would have been blocked by review.
