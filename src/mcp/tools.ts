@@ -9352,7 +9352,14 @@ const MCP_TOOL_TIMEOUT_ENV_KEYS = ["WEBAI_MCP_TOOL_TIMEOUT_MS", "MCP_TOOL_TIMEOU
 const MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS: Record<string, number> = {
   webai_chatgpt_generate_file: 900000,
   webai_chatgpt_generate_image: 600000,
-  webai_gemini_generate_image: 600000
+  webai_gemini_generate_image: 600000,
+  // webai_gemini_generate_video is async (Veo renders take minutes; the
+  // /f/conversation response only returns a video_gen_chip placeholder and the
+  // real signed MP4 URL resolves client-side later). It is the slowest
+  // generation surface, so it receives 900000ms (15 min = the max) like
+  // chatgpt_generate_file — the 180s default would race the DOM poll and emit a
+  // misleading COMMAND_TIMEOUT before the video could be captured.
+  webai_gemini_generate_video: 900000
 };
 const MCP_TOOL_INVOCATION_FORMAT_TIMEOUT_OVERRIDES_MS: Record<string, Record<string, number>> = {
   webai_claude_generate_file: { pptx: 360000 },

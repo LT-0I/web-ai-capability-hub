@@ -9,6 +9,7 @@ import {
   buildGeminiMediaStreamRequest,
   extractGeminiMediaUrls,
   GeminiMediaRpcFetch,
+  isGeminiVideoGenPlaceholderUrl,
   webAiGeminiGenerateImageRpcWithFetch,
   webAiGeminiGenerateVideoRpcWithFetch,
   webAiGeminiMusicDownloadTrackRpc,
@@ -114,7 +115,8 @@ function mediaFetchFor(kind: "image" | "video" | "music", expectedPrompt: string
 test("Gemini image RPC submits captured image body and saves the generated image response", async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-image-rpc-"));
   const seen: any[] = [];
-  const bytes = Buffer.from("fixture-png-bytes");
+  // Real PNG magic bytes (89 50 4E 47 0D 0A 1A 0A) — content-type alone no longer certifies an image.
+  const bytes = Buffer.from("\x89PNG\r\n\x1a\nfixture-png-bytes", "binary");
   const result = await webAiGeminiGenerateImageRpcWithFetch({
     profile: "gemini-9225",
     prompt: "draw a small blue square",
@@ -126,7 +128,7 @@ test("Gemini image RPC submits captured image body and saves the generated image
   assert.equal(result.errorCode, null);
   assert.equal(result.size_bytes, bytes.length);
   assert.equal(result.sha256, crypto.createHash("sha256").update(bytes).digest("hex"));
-  assert.equal(fs.readFileSync(String(result.path)).toString("utf8"), "fixture-png-bytes");
+  assert.equal(fs.readFileSync(String(result.path)).toString("binary"), bytes.toString("binary"));
   assert.equal(seen.filter((call) => call.kind === "stream-generate").length, 1);
   assert.equal(seen.filter((call) => call.kind === "media-download").length, 1);
 });
@@ -178,4 +180,230 @@ test("Gemini music download-track RPC remains explicitly RPC_NOT_AVAILABLE for m
     assert.equal(result.format, format);
     assert.match(String(result.message), /RPC_NOT_AVAILABLE/);
   }
+});
+
+// ---- Async video (Veo) chip -> signed-media-URL resolution ----------------------------
+// Ground truth (.runs/fix-claude-gemini-defects/gemini/diag): video generation is async
+// (minutes). The StreamGenerate response carries only the placeholder chip
+// `http://googleusercontent.com/video_gen_chip/0`; the real signed media URL
+// (contribution.usercontent.google.com/download?c=...&filename=...mp4) is resolved
+// client-side in the conversation DOM once the video finishes.
+
+const VIDEO_CHIP_URL = "http://googleusercontent.com/video_gen_chip/0";
+const READY_VIDEO_URL = "https://contribution.usercontent.google.com/download?c=READYTOKEN&filename=the_last_page.mp4&opi=1";
+const MP4_BYTES = Buffer.from("\x00\x00\x00\x20ftypisom\x00\x00\x02\x00fixture-mp4", "binary");
+
+test("Gemini video gen chip placeholder is never treated as a downloadable media URL", () => {
+  assert.equal(isGeminiVideoGenPlaceholderUrl(VIDEO_CHIP_URL), true);
+  assert.equal(isGeminiVideoGenPlaceholderUrl("https://googleusercontent.com/video_gen_chip/3"), true);
+  assert.equal(isGeminiVideoGenPlaceholderUrl(READY_VIDEO_URL), false);
+  // A chip-only StreamGenerate stream must yield no downloadable candidates.
+  const stream = minimalGeminiMediaStream("I'm generating your video. Check back in a few minutes.", VIDEO_CHIP_URL);
+  assert.deepEqual(extractGeminiMediaUrls(stream), []);
+});
+
+// Fetch for the async-video path: StreamGenerate returns chip-only; media-download returns
+// the supplied bytes for the ready signed URL.
+function chipOnlyVideoFetch(downloadUrl: string, bytes: any, downloads: any[]): GeminiMediaRpcFetch {
+  return async (request) => {
+    if (request.kind === "stream-generate") {
+      return { status: 200, text: minimalGeminiMediaStream("I'm generating your video. Check back in a few minutes.", VIDEO_CHIP_URL), headers: {} as Record<string, string> };
+    }
+    downloads.push(request.url);
+    assert.equal(request.url, downloadUrl);
+    return { status: 200, text: "", base64: bytes.toString("base64"), contentType: "video/mp4", headers: { "content-disposition": 'attachment; filename="the_last_page.mp4"' } };
+  };
+}
+
+test("Gemini video RPC keeps polling while still-generating, then downloads + magic-byte-validates the ready signed URL", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-poll-ready-"));
+  const downloads: any[] = [];
+  const sleeps: number[] = [];
+  let attempts = 0;
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip of a red paper plane",
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __sleep: async (ms: number) => { sleeps.push(ms); },
+    // (a) still-generating for the first two polls, then (b) ready on the third.
+    __pollVideoDom: async () => {
+      attempts += 1;
+      if (attempts < 3) return { url: attempts === 1 ? null : VIDEO_CHIP_URL, status: "generating your video", quota: false };
+      return { url: READY_VIDEO_URL, status: "video is ready", quota: false };
+    }
+  }, chipOnlyVideoFetch(READY_VIDEO_URL, MP4_BYTES, downloads));
+
+  assert.equal(result.errorCode, null);
+  assert.equal(attempts, 3, "polled until the real signed URL appeared");
+  assert.deepEqual(downloads, [READY_VIDEO_URL], "downloaded the ready signed URL, never the chip");
+  assert.equal(result.media_url, READY_VIDEO_URL);
+  assert.equal(result.size_bytes, MP4_BYTES.length);
+  assert.equal(result.download_filename, "the_last_page.mp4");
+  assert.equal(fs.readFileSync(String(result.path)).length, MP4_BYTES.length);
+  assert.ok(sleeps.length >= 2, "slept between polls while generating");
+});
+
+test("Gemini video RPC fails honestly with ARTIFACT_DOWNLOAD_TIMEOUT when the video never resolves within the bounded wait", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-poll-timeout-"));
+  const downloads: any[] = [];
+  let clock = 0;
+  let attempts = 0;
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip that never finishes",
+    download_dir: root,
+    response_timeout_ms: 30000, // below the 5-minute async budget; budget still applies
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __now: () => clock,
+    __sleep: async () => { clock += 60000; }, // advance the controllable clock each interval
+    __pollVideoDom: async () => { attempts += 1; return { url: VIDEO_CHIP_URL, status: "generating your video", quota: false }; }
+  }, chipOnlyVideoFetch(READY_VIDEO_URL, MP4_BYTES, downloads));
+
+  assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT");
+  assert.equal(result.error_code, "ARTIFACT_DOWNLOAD_TIMEOUT");
+  assert.equal(result.path, "");
+  assert.equal(downloads.length, 0, "never downloaded the chip placeholder");
+  assert.ok(attempts >= 1, "polled at least once before timing out");
+});
+
+test("Gemini video RPC surfaces PLAN_OR_QUOTA_REQUIRED when the conversation signals a Veo quota wall", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-poll-quota-"));
+  const downloads: any[] = [];
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip blocked by quota",
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __sleep: async () => {},
+    __pollVideoDom: async () => ({ url: null, status: "video generation limit reached", quota: true })
+  }, chipOnlyVideoFetch(READY_VIDEO_URL, MP4_BYTES, downloads));
+
+  assert.equal(result.errorCode, "PLAN_OR_QUOTA_REQUIRED");
+  assert.equal(downloads.length, 0, "never downloaded anything when quota-walled");
+});
+
+// ---- Content-integrity gate (§2.3): content-type alone must NEVER certify an artifact -----
+// codex REQUEST-CHANGES: a 200 carrying `content-type: video/mp4` over non-video/garbage bytes
+// must fail honestly (ARTIFACT_DOWNLOAD_TIMEOUT, no file saved), never be saved as a real video.
+// Magic bytes are REQUIRED; the content-type header is only a secondary hint.
+
+// Fetch that serves StreamGenerate normally but returns caller-chosen bytes + content-type
+// for the media-download leg (lets us forge a video/mp4 header over garbage).
+function forgedDownloadFetch(kind: "image" | "video" | "music", mediaUrl: string, bytes: any, contentType: string, downloads: any[]): GeminiMediaRpcFetch {
+  return async (request) => {
+    if (request.kind === "stream-generate") {
+      return { status: 200, text: minimalGeminiMediaStream(`${kind} ready`, mediaUrl), headers: {} as Record<string, string> };
+    }
+    downloads.push(request.url);
+    return { status: 200, text: "", base64: bytes.toString("base64"), contentType, headers: { "content-disposition": `attachment; filename="forged.${kind === "image" ? "png" : kind === "video" ? "mp4" : "mp3"}"` } };
+  };
+}
+
+test("Gemini video RPC rejects content-type video/mp4 over non-video bytes (magic-byte required, no file saved)", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-forged-ct-"));
+  const downloads: any[] = [];
+  const garbage = Buffer.from("not a video");
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip of a paper plane",
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __sleep: async () => {},
+    __pollVideoDom: async () => ({ url: READY_VIDEO_URL, status: "video is ready", quota: false })
+  }, forgedDownloadFetch("video", READY_VIDEO_URL, garbage, "video/mp4", downloads));
+
+  assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT", "content-type alone must not certify a video");
+  assert.equal(result.error_code, "ARTIFACT_DOWNLOAD_TIMEOUT");
+  assert.equal(result.path, "", "no artifact path is returned for unverified bytes");
+  assert.deepEqual(downloads, [READY_VIDEO_URL], "did attempt the download, then rejected on magic-byte mismatch");
+  assert.equal(fs.readdirSync(root).length, 0, "zero files saved when bytes are not a real video");
+});
+
+test("Gemini image RPC rejects content-type image/png over non-image bytes (magic-byte required, no file saved)", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-image-forged-ct-"));
+  const downloads: any[] = [];
+  const garbage = Buffer.from("not an image");
+  const result = await webAiGeminiGenerateImageRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "draw a small blue square",
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("image")
+  }, forgedDownloadFetch("image", "https://example.test/generated.png", garbage, "image/png", downloads));
+
+  assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT", "content-type alone must not certify an image");
+  assert.equal(result.path, "");
+  assert.equal(fs.readdirSync(root).length, 0, "zero files saved when bytes are not a real image");
+});
+
+test("Gemini music RPC rejects content-type audio/mpeg over non-audio bytes (magic-byte required, no file saved)", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-music-forged-ct-"));
+  const downloads: any[] = [];
+  const garbage = Buffer.from("not audio at all");
+  const result = await webAiGeminiMusicGenerateRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "instrumental ambient loop",
+    confirmed: true,
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("music")
+  }, forgedDownloadFetch("music", "https://example.test/generated.mp3", garbage, "audio/mpeg", downloads));
+
+  assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT", "content-type alone must not certify audio");
+  assert.equal(result.status, "error", "music failure shape reports status=error, no artifact");
+  assert.equal(fs.readdirSync(root).length, 0, "zero files saved when bytes are not real audio");
+});
+
+test("Gemini video RPC still accepts real ftyp magic bytes (regression guard)", async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-real-ftyp-"));
+  const downloads: any[] = [];
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip of a paper plane",
+    download_dir: root,
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __sleep: async () => {},
+    __pollVideoDom: async () => ({ url: READY_VIDEO_URL, status: "video is ready", quota: false })
+  }, forgedDownloadFetch("video", READY_VIDEO_URL, MP4_BYTES, "video/mp4", downloads));
+
+  assert.equal(result.errorCode, null, "real ftyp bytes are still accepted");
+  assert.equal(result.size_bytes, MP4_BYTES.length);
+  assert.equal(fs.readFileSync(String(result.path)).length, MP4_BYTES.length);
+});
+
+test("Gemini video RPC clamps oversized timeout_ms to VIDEO_POLL_MAX_TIMEOUT_MS and still returns ARTIFACT_DOWNLOAD_TIMEOUT (never hangs past MCP deadline)", async () => {
+  // Reproduces the codex REQUEST-CHANGES blocker: a caller supplying timeout_ms >= 900000
+  // (at or above the MCP invocation deadline) must not make the poll cap exceed 840000ms,
+  // otherwise the poll would outlive the 900000ms MCP deadline and emit generic COMMAND_TIMEOUT
+  // instead of the tool's own honest ARTIFACT_DOWNLOAD_TIMEOUT.
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "gemini-video-poll-clamp-"));
+  const downloads: any[] = [];
+  let clock = 0;
+  let attempts = 0;
+  const result = await webAiGeminiGenerateVideoRpcWithFetch({
+    profile: "gemini-9225",
+    prompt: "2s clip that never finishes with huge timeout",
+    download_dir: root,
+    timeout_ms: 1200000, // 20 min — exceeds the 900000ms MCP deadline; must be clamped to 840000
+    __cdpSnapshot: cdpSnapshot,
+    __payloadTemplate: fixtureTemplate("video"),
+    __now: () => clock,
+    __sleep: async () => { clock += 60000; }, // each interval advances clock by 60s
+    __pollVideoDom: async () => { attempts += 1; return { url: VIDEO_CHIP_URL, status: "generating your video", quota: false }; }
+  }, chipOnlyVideoFetch(READY_VIDEO_URL, MP4_BYTES, downloads));
+
+  assert.equal(result.errorCode, "ARTIFACT_DOWNLOAD_TIMEOUT", "oversized timeout_ms must be clamped; tool returns its own honest error code, not a generic one");
+  assert.equal(result.error_code, "ARTIFACT_DOWNLOAD_TIMEOUT");
+  assert.equal(result.path, "");
+  assert.equal(downloads.length, 0, "never downloaded the chip placeholder");
+  assert.ok(attempts >= 1, "polled at least once before timing out");
+  // The effective cap is 840000ms; with 60000ms-per-sleep the loop exits at or before
+  // clock = 840000, well within the 900000ms MCP deadline.
+  assert.ok(clock <= 900000, `poll clock ${clock}ms must stay under the 900000ms MCP invocation deadline`);
 });

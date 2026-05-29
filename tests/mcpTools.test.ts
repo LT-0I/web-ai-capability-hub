@@ -135,6 +135,11 @@ test("heavy-generation tools widen the MCP invocation deadline so 3-5min model l
   // 180s default. Hard ceiling MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS is widened to
   // 900000 to admit the chatgpt_generate_file override.
   assert.match(source, /MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS:\s*Record<string,\s*number>\s*=\s*\{[\s\S]+?webai_chatgpt_generate_file:\s*900000,[\s\S]+?webai_chatgpt_generate_image:\s*600000,[\s\S]+?webai_gemini_generate_image:\s*600000[\s\S]+?\}/);
+  // webai_gemini_generate_video is async (Veo, minutes) — like
+  // chatgpt_generate_file it receives 900000ms (15 min) so the 180s default
+  // does not race the gemini_media_rpc video DOM poll and emit a misleading
+  // COMMAND_TIMEOUT before the MP4 can be captured (live smoke 2026-05-29).
+  assert.match(source, /MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS:\s*Record<string,\s*number>\s*=\s*\{[\s\S]+?webai_gemini_generate_video:\s*900000[\s\S]*?\}/);
   assert.match(source, /const MAX_MCP_TOOL_INVOCATION_TIMEOUT_MS\s*=\s*900000;/);
   // withMcpToolDeadline + mcpToolInvocationTimeoutMs accept the tool name so
   // the per-tool override actually engages.

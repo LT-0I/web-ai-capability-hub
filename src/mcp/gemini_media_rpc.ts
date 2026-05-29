@@ -36,6 +36,20 @@ const GEMINI_CDP_PORT = 9225;
 const GEMINI_CHAT_URL = "https://gemini.google.com/app";
 const GEMINI_HOST = "gemini.google.com";
 const DEFAULT_RESPONSE_TIMEOUT_MS = 180000;
+// Async video resolution budget. Veo generation runs for minutes; the StreamGenerate
+// response returns only the `video_gen_chip/N` placeholder, and the real signed media URL
+// (contribution.usercontent.google.com/download?c=...&filename=...mp4) is resolved
+// client-side in the conversation page once the video finishes. We poll that page's DOM
+// for the ready signal within a bounded cap, then fail honestly with
+// ARTIFACT_DOWNLOAD_TIMEOUT if it never resolves.
+const VIDEO_POLL_DEFAULT_TIMEOUT_MS = 600000; // 10 minutes — captures most Veo renders while staying under the 900000ms (15 min) webai_gemini_generate_video MCP invocation deadline (leaves margin for download + magic-byte validation)
+// Hard ceiling: the poll must finish AND download+magic-validate the result BEFORE the
+// MCP invocation deadline (MCP_TOOL_INVOCATION_TIMEOUT_OVERRIDES_MS.webai_gemini_generate_video
+// = 900000ms in tools.ts). Leave ~60s margin so a never-ready render returns the tool's own
+// honest ARTIFACT_DOWNLOAD_TIMEOUT rather than the generic COMMAND_TIMEOUT, even when a caller
+// passes a larger timeout_ms.
+const VIDEO_POLL_MAX_TIMEOUT_MS = 840000;
+const VIDEO_POLL_INTERVAL_MS = 5000;
 const CAPTURE_VARIANTS = {
   image: "webai_gemini_generate_image--basic",
   video: "webai_gemini_generate_video--duration_2s",
@@ -512,7 +526,9 @@ async function captureGeminiMediaSnapshot(args: any, runtime?: BrowserToolRuntim
   if (!at || !bl || !fsid) throw new GeminiMediaRpcToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini RPC token capture did not find at/bl/f.sid on the logged-in page");
   const cookieHeader = cookieHeaderForHost(cookieResult?.cookies || [], GEMINI_HOST);
   if (!cookieHeader) throw new GeminiMediaRpcToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Gemini RPC cookie jar was empty");
-  return { at, bl, fsid, cookieHeader, cookies: cookieResult?.cookies || [], userAgent: String(value.ua || "Mozilla/5.0"), pageUrl };
+  // __mediaPageWsUrl is consumed only by the async video poll (resolveReadyVideoUrlViaDom);
+  // it is never surfaced to consumers and is stripped by safeOutput on any returned shape.
+  return { at, bl, fsid, cookieHeader, cookies: cookieResult?.cookies || [], userAgent: String(value.ua || "Mozilla/5.0"), pageUrl, __mediaPageWsUrl: wsUrl } as GeminiRpcCdpSnapshot;
 }
 
 export function buildGeminiMediaFReq(prompt: string, template: GeminiRpcPayloadTemplate): string {
@@ -585,6 +601,16 @@ function normalizedUrl(value: string): string | null {
   try { return new URL(url).toString(); } catch { return null; }
 }
 
+// Async-video placeholder. While Veo generation is in flight (minutes) the StreamGenerate
+// response carries only `(http://)googleusercontent.com/video_gen_chip/N` — a chip token,
+// NOT a downloadable media URL (it 404s). The real signed URL
+// (contribution.usercontent.google.com/download?c=...&filename=...mp4) is only resolved
+// client-side once the video finishes. We must never treat the chip as the artifact.
+// Evidence: .runs/fix-claude-gemini-defects/gemini/diag/ (timeline + fetchability + headless-fetch).
+export function isGeminiVideoGenPlaceholderUrl(url: string): boolean {
+  return /googleusercontent\.com\/video_gen_chip\/\d+/i.test(String(url || ""));
+}
+
 export function extractGeminiMediaUrls(streamText: string): string[] {
   const strings: string[] = [];
   for (const chunk of parseGeminiPayloadLines(streamText)) collectStrings(chunk, strings);
@@ -597,7 +623,7 @@ export function extractGeminiMediaUrls(streamText: string): string[] {
       if (normalized) urls.add(normalized);
     }
   }
-  return [...urls].filter((url) => !/fonts\.gstatic\.com|www\.gstatic\.com\/images\/branding|\/productlogos\/gemini|maps\/vt\/data|google\.com\/maps/i.test(url));
+  return [...urls].filter((url) => !/fonts\.gstatic\.com|www\.gstatic\.com\/images\/branding|\/productlogos\/gemini|maps\/vt\/data|google\.com\/maps/i.test(url) && !isGeminiVideoGenPlaceholderUrl(url));
 }
 
 function chooseMediaUrl(urls: string[], mediaKind: GeminiMediaKind): string | null {
@@ -690,29 +716,99 @@ async function downloadMediaUrl(url: string, args: any, snapshot: GeminiRpcCdpSn
   return { path: filePath, sha256: sha256Buffer(bytes), size_bytes: bytes.length, download_filename: path.basename(filePath), content_type: response.contentType || null };
 }
 
+// Content-integrity gate (§2.3): a downloaded body is only accepted as a real artifact
+// when its container MAGIC BYTES match the requested media kind. The Content-Type header
+// is a SECONDARY hint, never sufficient on its own — a 200 carrying `content-type: video/mp4`
+// over garbage bytes must NOT be passed off as a video. (codex REQUEST-CHANGES: the prior
+// `ct.startsWith("video/") || head.includes("ftyp")` OR let content-type alone certify.)
 function mediaBytesMatchKind(bytes: Buffer, contentType: string | null | undefined, mediaKind: GeminiMediaKind): boolean {
   const ct = String(contentType || "").toLowerCase();
   const headBytes = bytes.subarray(0, 16);
   const head = Array.from(headBytes).map((value) => String.fromCharCode(value)).join("");
   const hasPrefix = (prefix: number[]) => prefix.every((value, index) => bytes[index] === value);
   const asciiAt = (start: number, value: string) => Array.from(bytes.subarray(start, start + value.length)).map((byte) => String.fromCharCode(byte)).join("") === value;
+  // ISO-BMFF / MP4: the `ftyp` box marker sits at bytes 4..8 (after the 4-byte box size).
+  const hasFtypBox = asciiAt(4, "ftyp");
   if (mediaKind === "image") {
-    return ct.startsWith("image/") && !ct.includes("svg")
-      || hasPrefix([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])
-      || hasPrefix([0xff, 0xd8, 0xff])
-      || head.startsWith("GIF8")
-      || head.startsWith("RIFF") && asciiAt(8, "WEBP");
+    // Magic bytes REQUIRED; content-type alone is not sufficient.
+    const magic = hasPrefix([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]) // PNG
+      || hasPrefix([0xff, 0xd8, 0xff]) // JPEG
+      || head.startsWith("GIF8") // GIF
+      || (head.startsWith("RIFF") && asciiAt(8, "WEBP")); // WebP
+    return magic && !ct.includes("svg");
   }
   if (mediaKind === "video") {
-    return ct.startsWith("video/")
-      || head.includes("ftyp")
-      || hasPrefix([0x1a, 0x45, 0xdf, 0xa3]);
+    // Magic bytes REQUIRED; `video/*` content-type alone must NOT certify a video.
+    return hasFtypBox // MP4 / ISO-BMFF (ftyp box)
+      || hasPrefix([0x1a, 0x45, 0xdf, 0xa3]); // WebM / Matroska (EBML)
   }
-  return ct.startsWith("audio/")
-    || head.startsWith("ID3")
-    || hasPrefix([0xff, 0xfb])
-    || head.startsWith("RIFF") && asciiAt(8, "WAVE")
-    || head.includes("ftyp");
+  // audio: magic bytes REQUIRED; `audio/*` content-type alone must NOT certify.
+  return head.startsWith("ID3") // MP3 (ID3 tag)
+    || hasPrefix([0xff, 0xfb]) // MP3 (frame sync)
+    || hasPrefix([0xff, 0xf3]) // MP3 (frame sync, MPEG-2)
+    || hasPrefix([0xff, 0xf2]) // MP3 (frame sync, MPEG-2.5)
+    || (head.startsWith("RIFF") && asciiAt(8, "WAVE")) // WAV
+    || hasFtypBox; // M4A / AAC in ISO-BMFF
+}
+
+function videoPollTimeoutMs(args: any): number {
+  // Honor the caller's response_timeout_ms when it is generous (videos take minutes),
+  // otherwise fall back to the async-video budget. Never below one interval.
+  const requested = Number(args?.response_timeout_ms ?? args?.responseTimeoutMs ?? args?.timeout_ms ?? args?.timeoutMs);
+  const cap = Number.isFinite(requested) && requested > VIDEO_POLL_DEFAULT_TIMEOUT_MS ? requested : VIDEO_POLL_DEFAULT_TIMEOUT_MS;
+  return Math.max(Math.min(cap, VIDEO_POLL_MAX_TIMEOUT_MS), VIDEO_POLL_INTERVAL_MS);
+}
+
+// Reads the conversation page DOM via CDP and returns the ready signed video URL once the
+// async Veo generation finishes (a <video> src on contribution.usercontent.google.com/
+// download or lh3.../gg-dl/, with the chip placeholder gone), or a coarse status otherwise.
+async function readVideoDomState(wsUrl: string): Promise<{ url: string | null; status: string | null; quota: boolean }> {
+  const value = await cdpEvaluateValue(wsUrl, `(() => {
+    const html = String(document.documentElement?.outerHTML || "");
+    const real = [...document.querySelectorAll("video")]
+      .map((v) => String(v.src || v.currentSrc || ""))
+      .find((s) => /contribution\\.usercontent\\.google\\.com\\/download|lh3\\.googleusercontent\\.com\\/gg-dl/i.test(s) && !/video_gen_chip/i.test(s));
+    const bodyText = String(document.body?.innerText || "");
+    const status = (bodyText.match(/video is ready|generating your video|check back|couldn.t create your video|something went wrong|video generation limit|limit reached/i) || [])[0] || null;
+    const quota = /video generation limit|limit reached|quota/i.test(bodyText);
+    return { url: real || null, status, quota, hasChip: /video_gen_chip\\/\\d+/i.test(html) };
+  })()`, 10000).catch(() => null);
+  return { url: value?.url || null, status: value?.status || null, quota: Boolean(value?.quota) };
+}
+
+// Bounded poll for the async video to finish. Injectable via args.__pollVideoDom for tests.
+async function resolveReadyVideoUrlViaDom(args: any, snapshot: GeminiRpcCdpSnapshot, conversation_url: string): Promise<string> {
+  const poll: (attempt: number) => Promise<{ url: string | null; status: string | null; quota: boolean }> =
+    typeof args?.__pollVideoDom === "function"
+      ? args.__pollVideoDom
+      : (() => {
+          const wsUrl = (snapshot as any)?.__mediaPageWsUrl as string | undefined;
+          if (!wsUrl) {
+            return async () => { throw new GeminiMediaRpcToolError(ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT, "Gemini video poll has no CDP page to observe async generation", { conversation_url }); };
+          }
+          return () => readVideoDomState(wsUrl);
+        })();
+  const now = () => nowMs(args);
+  const deadline = now() + videoPollTimeoutMs(args);
+  const intervalMs = Number(args?.__videoPollIntervalMs) > 0 ? Number(args.__videoPollIntervalMs) : VIDEO_POLL_INTERVAL_MS;
+  const sleep = typeof args?.__sleep === "function" ? args.__sleep : (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  let lastStatus: string | null = null;
+  for (let attempt = 0; ; attempt++) {
+    const state = await poll(attempt);
+    lastStatus = state?.status ?? lastStatus;
+    if (state?.url && !isGeminiVideoGenPlaceholderUrl(state.url)) return state.url;
+    if (state?.quota) {
+      throw new GeminiMediaRpcToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "Gemini Veo video-generation quota exhausted", { conversation_url, status: lastStatus });
+    }
+    if (now() >= deadline) {
+      throw new GeminiMediaRpcToolError(
+        ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT,
+        `Gemini video did not finish generating within ${Math.round(videoPollTimeoutMs(args) / 1000)}s`,
+        { conversation_url, status: lastStatus, waited_ms: videoPollTimeoutMs(args) }
+      );
+    }
+    await sleep(intervalMs);
+  }
 }
 
 async function submitMediaAndDownload(args: any, mediaKind: GeminiMediaKind, fetchRpc: GeminiMediaRpcFetch): Promise<Record<string, unknown>> {
@@ -723,7 +819,17 @@ async function submitMediaAndDownload(args: any, mediaKind: GeminiMediaKind, fet
   const decoded = decodeGeminiStream(stream.text);
   const conversation_url = conversationUrlFromStream(stream.text, snapshot);
   const urls = extractGeminiMediaUrls(stream.text);
-  const candidates = candidateMediaUrls(urls, mediaKind);
+  let candidates = candidateMediaUrls(urls, mediaKind);
+  if (!candidates.length && mediaKind === "video") {
+    // Async Veo: the StreamGenerate response only carried the video_gen_chip placeholder
+    // (filtered out by extractGeminiMediaUrls). Poll the conversation DOM until the real
+    // signed media URL resolves, then download it like any ready artifact.
+    if (/quota|limit reached|too many requests|try again later/i.test(stream.text)) {
+      throw new GeminiMediaRpcToolError(ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED, "Gemini video RPC response signalled a quota/limit", { conversation_url, response_text: decoded.text });
+    }
+    const readyUrl = await resolveReadyVideoUrlViaDom(args, snapshot, conversation_url);
+    candidates = [readyUrl];
+  }
   if (!candidates.length) {
     const code = /quota|limit reached|too many requests|try again later/i.test(stream.text) ? ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED : ConsumerErrorCodes.ARTIFACT_DOWNLOAD_TIMEOUT;
     throw new GeminiMediaRpcToolError(code, `Gemini ${mediaKind} RPC response did not include a downloadable media URL`, { conversation_url, response_text: decoded.text, url_count: urls.length });
