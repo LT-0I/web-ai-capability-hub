@@ -2667,6 +2667,8 @@ const GEMINI_THINKING_STANDARD_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("
 const GEMINI_THINKING_EXTENDED_SELECTOR_FOR_TEST = '[role="menuitem"]:has-text("Complex problem solving")';
 const CLAUDE_MODEL_SELECTOR_FOR_TEST = '[data-testid="model-selector-dropdown"]';
 const CLAUDE_ADAPTIVE_THINKING_SELECTOR_FOR_TEST = 'input[aria-label="Adaptive thinking"]';
+const CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR_FOR_TEST = '[data-testid="effort-menu-trigger"]';
+const CLAUDE_EFFORT_MAX_SELECTOR_FOR_TEST = '[data-testid="effort-option-max"]';
 
 function mockChatgptSelectModelPage(): any {
   const page = mockSendPromptPage("https://chatgpt.com/");
@@ -2706,6 +2708,8 @@ function mockClaudeSelectModelPage(): any {
         if (selector === CLAUDE_MODEL_SELECTOR_FOR_TEST) return 1;
         if (selector.includes('role="menuitemradio"') && selector.includes("Claude Sonnet 4.6")) return 1;
         if (selector === CLAUDE_ADAPTIVE_THINKING_SELECTOR_FOR_TEST) return 1;
+        if (selector === CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR_FOR_TEST) return 1;
+        if (selector === CLAUDE_EFFORT_MAX_SELECTOR_FOR_TEST) return 1;
         return 0;
       },
       click: async () => { page.calls.click.push(selector); },
@@ -2796,6 +2800,14 @@ test("webai_chatgpt_select_model and webai_claude_select_model validate args and
   assert.equal(claudeResult.selected_model, "Claude Sonnet 4.6");
   assert.equal(claudeResult.selected_thinking_level, "extended");
   assert.ok(claudePage.calls.click.includes(CLAUDE_ADAPTIVE_THINKING_SELECTOR_FOR_TEST));
+
+  const claudeEffortPage = mockClaudeSelectModelPage();
+  const claudeEffortResult: any = await webAiClaudeSelectModel({ backend: "managed-cdp", profile: "claude-9224", thinking_level: "max" }, mockWebAiRuntime(claudeEffortPage));
+  assert.equal(claudeEffortResult.ok, true);
+  assert.equal(claudeEffortResult.selected_model, null);
+  assert.equal(claudeEffortResult.selected_thinking_level, "max");
+  assert.ok(claudeEffortPage.calls.click.includes(CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR_FOR_TEST));
+  assert.ok(claudeEffortPage.calls.click.includes(CLAUDE_EFFORT_MAX_SELECTOR_FOR_TEST));
 });
 
 test("webai_gemini_select_model returns INVALID_ARGS when neither model nor thinking_level provided", async () => {

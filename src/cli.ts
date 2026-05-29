@@ -910,7 +910,8 @@ Core commands:
 
 MCP and compatibility commands:
   webai:chatgpt:send-prompt|webai:claude:send-prompt|webai:gemini:send-prompt --profile <name> --prompt <text> [--response-timeout-ms <ms>] [--reuse-conversation] [--output-json]
-  webai:chatgpt:select-model|webai:claude:select-model --profile <name> [--model <picker label>] [--thinking-level <auto|extended>] [--output-json]
+  webai:chatgpt:select-model --profile <name> [--model <picker label>] [--thinking-level <auto|extended>] [--output-json]
+  webai:claude:select-model --profile <name> [--model <picker label>] [--thinking-level <auto|extended|off|low|medium|high|xhigh|max>] [--output-json]
   webai:gemini:select-model --profile <name> [--model <3.1-flash-lite|3.5-flash|3.1-pro>] [--thinking-level <standard|extended>] [--output-json]
   webai:chatgpt:upload-and-query|webai:claude:upload-and-query|webai:gemini:upload-and-query --profile <name> --file <path> --prompt <text> [--output-json]
   webai:chatgpt:generate-file|webai:claude:generate-file --profile <name> --prompt <text> --expected-extension <ext> --download-dir <abs> [--output-json]

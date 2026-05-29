@@ -53,6 +53,7 @@ for (const c of CASES) {
     assert.equal(result.ok, false);
     assert.equal(result.errorCode, "INVALID_ARGS");
     assert.match(String(result.message), /unsupported thinking_level/);
+    assert.match(String(result.message), /auto, extended, off, low, medium, high, xhigh, max/);
   });
 
   test(`W1: ${c.name} INVALID_ARGS when profile missing`, async () => {
@@ -77,3 +78,15 @@ for (const c of CASES) {
       `${c.name} must accept thinking_level=auto without INVALID_ARGS`);
   });
 }
+
+test(`W1: webai_claude_select_model accepts new effort thinking_level values for effort-capable models`, async () => {
+  const result: any = await webAiClaudeSelectModel({ profile: "x", model: "Opus 4.8", thinking_level: "max" }, runtimeStub());
+  assert.notEqual(result.errorCode, "INVALID_ARGS");
+});
+
+test(`W1: webai_claude_select_model rejects effort thinking_level for Haiku mode-only models`, async () => {
+  const result: any = await webAiClaudeSelectModel({ profile: "x", model: "Haiku 4.5", thinking_level: "max" }, runtimeStub());
+  assert.equal(result.ok, false);
+  assert.equal(result.errorCode, "INVALID_ARGS");
+  assert.match(String(result.message), /does not support effort levels/);
+});

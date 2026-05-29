@@ -14,11 +14,14 @@ const DEFAULT_CLAUDE_PROFILE = "claude-9224";
 const DEFAULT_CLAUDE_CDP_PORT = 9224;
 const CLAUDE_FRESH_URL = "https://claude.ai/new";
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const THINKING_LEVELS = new Set(["auto", "extended"]);
+const CLAUDE_EFFORT_LEVELS = new Set(["low", "medium", "high", "xhigh", "max"]);
+const CLAUDE_MODE_LEVELS = new Set(["auto", "extended", "off"]);
+const THINKING_LEVELS = new Set([...CLAUDE_MODE_LEVELS, ...CLAUDE_EFFORT_LEVELS]);
+const THINKING_LEVELS_LABEL = "auto, extended, off, low, medium, high, xhigh, max";
 
 export interface ClaudeSelectModelRpcRequest {
-  purpose: "capture_probe" | "model_config" | "set_paprika" | "set_default_model" | "read_account_settings";
-  method: "GET" | "PATCH";
+  purpose: "set_model_selector_state";
+  method: "PATCH";
   url: string;
   profile: string;
   body?: string;
@@ -48,6 +51,7 @@ function claudeSelectModelRpcErrorCode(error: any): ConsumerErrorCode {
   if (isConsumerErrorCode(error?.errorCode)) return error.errorCode;
   if (isConsumerErrorCode(error?.code)) return error.code;
   const message = errorMessageFromUnknown(error, "");
+  if (/thinking_not_available|thinking mode .*not available|model selection drift|model_selector_state/i.test(message)) return ConsumerErrorCodes.MODEL_SELECTION_DRIFT;
   if (/invalid json|decode|parse/i.test(message)) return ConsumerErrorCodes.INVALID_JSON;
   if (/timeout|timed out|aborted|aborterror/i.test(message)) return ConsumerErrorCodes.COMMAND_TIMEOUT;
   if (/429|rate.?limit|quota|overage|lockout/i.test(message)) return ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED;
@@ -60,6 +64,7 @@ function httpStatusErrorCode(status: number, body: string): ConsumerErrorCode {
   if (status === 401 || status === 403) return ConsumerErrorCodes.LOGIN_REQUIRED;
   if (status === 408 || status === 504) return ConsumerErrorCodes.COMMAND_TIMEOUT;
   if (status === 429 || /rate.?limit|quota|overage/i.test(body)) return ConsumerErrorCodes.PLAN_OR_QUOTA_REQUIRED;
+  if (status === 400 && /thinking_not_available|thinking mode .*not available|model_selector_state/i.test(body)) return ConsumerErrorCodes.MODEL_SELECTION_DRIFT;
   if (status >= 400 && status < 500) return ConsumerErrorCodes.INVALID_ARGS;
   return ConsumerErrorCodes.UNKNOWN;
 }
@@ -88,6 +93,14 @@ export function normalizeClaudeRpcModel(model: unknown): string {
   if (/^claude-/i.test(value)) return value;
   const normalized = value.toLowerCase().replace(/\s+/g, " ");
   const known: Record<string, string> = {
+    "opus": "claude-opus-4-8",
+    "opus 4.8": "claude-opus-4-8",
+    "claude opus": "claude-opus-4-8",
+    "claude opus 4.8": "claude-opus-4-8",
+    "opus 4.7": "claude-opus-4-7",
+    "claude opus 4.7": "claude-opus-4-7",
+    "opus 4.6": "claude-opus-4-6",
+    "claude opus 4.6": "claude-opus-4-6",
     "sonnet": "claude-sonnet-4-6",
     "sonnet 4": "claude-sonnet-4-6",
     "sonnet 4.6": "claude-sonnet-4-6",
@@ -101,24 +114,38 @@ export function normalizeClaudeRpcModel(model: unknown): string {
   return known[normalized] || value;
 }
 
-function syncSettingsPath(orgId: string): string {
-  return `/api/organizations/${encodeURIComponent(orgId)}/sync/settings`;
-}
-
-function modelConfigPath(orgId: string, modelId: string): string {
-  return `/api/organizations/${encodeURIComponent(orgId)}/model_configs/${encodeURIComponent(modelId)}`;
-}
-
-function accountSettingsPath(): string {
-  return "/api/account/settings";
+function modelSelectorStatePath(orgId: string): string {
+  return `/api/organizations/${encodeURIComponent(orgId)}/model_selector_state/chat`;
 }
 
 function validateArgs(args: any): WebAiToolError | null {
   if (!args?.profile || typeof args.profile !== "string") return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_claude_select_model requires profile");
   if (!args.model && !args.thinking_level) return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "webai_claude_select_model requires at least one of: model, thinking_level");
   if (args.model !== undefined && (typeof args.model !== "string" || !args.model.trim())) return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, "model must be a non-empty picker label");
-  if (args.thinking_level !== undefined && !THINKING_LEVELS.has(String(args.thinking_level))) return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `unsupported thinking_level "${args.thinking_level}" (allowed: auto, extended)`);
+  if (args.thinking_level !== undefined && !THINKING_LEVELS.has(String(args.thinking_level))) return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `unsupported thinking_level "${args.thinking_level}" (allowed: ${THINKING_LEVELS_LABEL})`);
+  if (args.model !== undefined && args.thinking_level !== undefined) {
+    const modelId = normalizeClaudeRpcModel(args.model);
+    const thinkingLevel = String(args.thinking_level);
+    if (/haiku/i.test(modelId) && CLAUDE_EFFORT_LEVELS.has(thinkingLevel)) {
+      return new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `model ${modelId} does not support effort levels`);
+    }
+  }
   return null;
+}
+
+type ClaudeSelectorThinking =
+  | { type: "effort_and_mode"; effort: string; mode: string }
+  | { type: "mode"; mode: string };
+
+function buildClaudeSelectorThinking(modelId: string, thinkingLevel: string): ClaudeSelectorThinking {
+  const isEffort = CLAUDE_EFFORT_LEVELS.has(thinkingLevel);
+  const isHaikuModeOnly = /haiku/i.test(modelId);
+  if (isHaikuModeOnly) {
+    if (isEffort) throw new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `model ${modelId} does not support effort levels`);
+    return { type: "mode", mode: thinkingLevel };
+  }
+  if (isEffort) return { type: "effort_and_mode", effort: thinkingLevel, mode: "off" };
+  return { type: "effort_and_mode", effort: "high", mode: thinkingLevel };
 }
 
 export function buildClaudeSelectModelRpcRequests(args: any, orgId: string): ClaudeSelectModelRpcRequest[] {
@@ -126,23 +153,19 @@ export function buildClaudeSelectModelRpcRequests(args: any, orgId: string): Cla
   if (invalid) throw invalid;
   const profile = String(args.profile || DEFAULT_CLAUDE_PROFILE);
   const timeoutMs = responseTimeoutMs(args);
-  const requests: ClaudeSelectModelRpcRequest[] = [];
   const modelId = args.model ? normalizeClaudeRpcModel(args.model) : "";
   const thinkingLevel = args.thinking_level ? String(args.thinking_level) : null;
-  if (modelId && modelId.includes("haiku")) {
-    requests.push({ purpose: "model_config", method: "GET", url: modelConfigPath(orgId, modelId), profile, timeoutMs });
-  } else {
-    requests.push({ purpose: "capture_probe", method: "GET", url: syncSettingsPath(orgId), profile, timeoutMs });
-  }
-  if (thinkingLevel === "extended") {
-    requests.push({ purpose: "set_paprika", method: "PATCH", url: accountSettingsPath(), profile, timeoutMs, body: JSON.stringify({ paprika_mode: "extended" }) });
-  } else if (modelId) {
-    requests.push({ purpose: "set_paprika", method: "PATCH", url: accountSettingsPath(), profile, timeoutMs, body: JSON.stringify({ paprika_mode: null }) });
-  }
-  if (modelId) {
-    requests.push({ purpose: "set_default_model", method: "PATCH", url: accountSettingsPath(), profile, timeoutMs, body: JSON.stringify({ default_model: modelId }) });
-  }
-  return requests;
+  const body: Record<string, unknown> = {};
+  if (modelId) body.model = modelId;
+  if (thinkingLevel) body.thinking = buildClaudeSelectorThinking(modelId, thinkingLevel);
+  return [{
+    purpose: "set_model_selector_state",
+    method: "PATCH",
+    url: modelSelectorStatePath(orgId),
+    profile,
+    timeoutMs,
+    body: JSON.stringify(body)
+  }];
 }
 
 async function fetchClaudeSelectModelInPage(page: any, request: ClaudeSelectModelRpcRequest): Promise<ClaudeSelectModelRpcFetchResult> {
@@ -202,11 +225,15 @@ async function activeClaudeOrgId(page: any, args: any): Promise<string> {
   const explicit = String(args?.organization_id || args?.organizationId || args?.org_id || args?.orgId || "").trim();
   if (UUID_RE.test(explicit)) return explicit;
   const orgId = await page.evaluate(async () => {
+    const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     const cookieMatch = /(?:^|;\s*)lastActiveOrg=([^;]+)/.exec(document.cookie || "");
-    if (cookieMatch?.[1]) return decodeURIComponent(cookieMatch[1]);
+    if (cookieMatch?.[1]) {
+      const cookieOrg = decodeURIComponent(cookieMatch[1]);
+      if (uuidRe.test(cookieOrg)) return cookieOrg;
+    }
     const findUuid = (value: unknown): string | null => {
       if (!value) return null;
-      if (typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value)) return value;
+      if (typeof value === "string" && uuidRe.test(value)) return value;
       if (Array.isArray(value)) { for (const item of value) { const found = findUuid(item); if (found) return found; } return null; }
       if (typeof value === "object") {
         const record = value as Record<string, unknown>;
@@ -215,6 +242,19 @@ async function activeClaudeOrgId(page: any, args: any): Promise<string> {
       }
       return null;
     };
+    try {
+      const response = await fetch("/api/bootstrap", { credentials: "include" });
+      if (response.ok) {
+        const bootstrap = await response.json();
+        const memberships = (bootstrap as any)?.account?.memberships;
+        if (Array.isArray(memberships)) {
+          for (const membership of memberships) {
+            const uuid = (membership as any)?.organization?.uuid;
+            if (typeof uuid === "string" && uuidRe.test(uuid)) return uuid;
+          }
+        }
+      }
+    } catch {}
     try {
       const response = await fetch("/api/organizations/discoverable", { credentials: "include" });
       if (!response.ok) return null;
@@ -227,14 +267,26 @@ async function activeClaudeOrgId(page: any, args: any): Promise<string> {
   throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude active organization could not be resolved from the logged-in browser context");
 }
 
+function parseClaudeSelectorState(text: string): { model?: string; thinkingLevel?: string } {
+  try {
+    const json = JSON.parse(text || "null");
+    const model = typeof json?.model === "string" ? json.model : undefined;
+    const effort = json?.thinking && typeof json.thinking.effort === "string" ? json.thinking.effort : undefined;
+    const mode = json?.thinking && typeof json.thinking.mode === "string" ? json.thinking.mode : undefined;
+    return { model, thinkingLevel: effort ?? mode };
+  } catch {
+    return {};
+  }
+}
+
 export async function webAiClaudeSelectModelRpcWithFetch(
   args: any,
   fetchRpc: ClaudeSelectModelRpcFetch,
   options: { orgId?: string } = {}
 ): Promise<Record<string, unknown>> {
-  const effective = { ...(args || {}), profile: args?.profile || DEFAULT_CLAUDE_PROFILE };
+  const effective = { ...(args || {}) };
   const requestedThinkingLevel = effective.thinking_level ? String(effective.thinking_level) : null;
-  const selectedModel = effective.model ? String(effective.model).trim() : null;
+  const requestedModel = effective.model ? normalizeClaudeRpcModel(effective.model) : null;
   let httpStatus: number | null = null;
   try {
     const invalid = validateArgs(effective);
@@ -242,24 +294,31 @@ export async function webAiClaudeSelectModelRpcWithFetch(
     const orgId = options.orgId || effective.organization_id || effective.organizationId || effective.org_id || effective.orgId;
     if (!orgId || !UUID_RE.test(String(orgId))) throw new WebAiToolError(ConsumerErrorCodes.LOGIN_REQUIRED, "Claude active organization is required for RPC select_model");
     const requests = buildClaudeSelectModelRpcRequests(effective, String(orgId));
+    let selectedModel = requestedModel;
+    let selectedThinkingLevel = requestedThinkingLevel;
     for (const request of requests) {
       const response = await fetchRpc(request);
       httpStatus = response.status;
       if (response.status < 200 || response.status >= 300) {
         throw new WebAiToolError(httpStatusErrorCode(response.status, response.text || ""), `Claude select_model RPC ${request.purpose} returned HTTP ${response.status}`);
       }
+      const state = parseClaudeSelectorState(response.text || "");
+      if (state.model) selectedModel = state.model;
+      if (state.thinkingLevel) selectedThinkingLevel = state.thinkingLevel;
     }
-    return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: requestedThinkingLevel, errorCode: null, http_status: httpStatus });
+    return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: selectedThinkingLevel, errorCode: null, http_status: httpStatus });
   } catch (error: any) {
-    return selectModelErrorOutput(error, selectedModel, requestedThinkingLevel, { http_status: httpStatus });
+    return selectModelErrorOutput(error, requestedModel, requestedThinkingLevel, { http_status: httpStatus });
   }
 }
 
 export async function webAiClaudeSelectModelRpc(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  const effective = { ...(args || {}), profile: args?.profile || DEFAULT_CLAUDE_PROFILE };
+  const effective = { ...(args || {}) };
   let lease: string | undefined;
   let browser: any;
   try {
+    const invalid = validateArgs(effective);
+    if (invalid) throw invalid;
     lease = acquireProfileLease(String(effective.profile));
     browser = await connectBrowserForProfile(effective, runtime);
     const page = await claudeOriginPage(browser, effective);

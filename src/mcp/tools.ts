@@ -739,6 +739,10 @@ const CHATGPT_DEEP_RESEARCH_ACTIVE_SELECTOR = 'button[aria-label*="Deep research
 const CHATGPT_SHARE_BUTTON_SELECTOR = 'button[aria-label="Share"]';
 const CLAUDE_MODEL_SELECTOR = '[data-testid="model-selector-dropdown"]';
 const CLAUDE_ADAPTIVE_THINKING_SELECTOR = 'input[aria-label="Adaptive thinking"]';
+const CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR = '[data-testid="effort-menu-trigger"]';
+const CLAUDE_EFFORT_THINKING_LEVELS = new Set(["low", "medium", "high", "xhigh", "max"]);
+const CLAUDE_MODE_THINKING_LEVELS = new Set(["auto", "extended", "off"]);
+const WEBAI_STANDALONE_THINKING_LEVELS_LABEL = "auto, extended, off, low, medium, high, xhigh, max";
 const CLAUDE_PLUS_MENU_SELECTOR = 'button[aria-label="Add files, connectors, and more"], button[aria-label="Upload files"], button[aria-label*="Add files" i], button[aria-label*="Attach" i], button[data-testid*="upload" i], button[data-testid*="file" i]';
 const CLAUDE_PROMPT_SELECTOR = 'div[aria-label="Write your prompt to Claude"], [data-testid="chat-input"], [contenteditable="true"], #prompt-textarea';
 const CLAUDE_WEB_SEARCH_MENUITEM_SELECTOR = '[role="menuitemcheckbox"]:has-text("Web search")';
@@ -1084,6 +1088,10 @@ function claudeModelMenuItemSelector(label: string): string {
   return `xpath=//*[@role="menuitemradio" or @role="menuitem"][contains(normalize-space(.), ${xpathLiteral(label)})]`;
 }
 
+function claudeEffortOptionSelector(level: string): string {
+  return `[data-testid="effort-option-${level}"]`;
+}
+
 async function findClaudeModelMenuItem(page: any, expected: string): Promise<{ item: any; selector: string } | null> {
   for (const label of claudeModelLabels(expected)) {
     const selector = claudeModelMenuItemSelector(label);
@@ -1136,6 +1144,28 @@ async function selectClaudeModel(page: any, expected: string): Promise<{ ok: boo
   await page.waitForTimeout?.(250).catch(() => undefined);
   const actual = await locatorText(button);
   return { ok: modelLabelMatches(expected, actual), actual, expected };
+}
+
+async function selectClaudeEffort(page: any, level: string): Promise<void> {
+  const button = page.locator?.(CLAUDE_MODEL_SELECTOR).first?.();
+  if (!button || !(await button.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude model selector was not found", { selector: CLAUDE_MODEL_SELECTOR });
+  }
+  await robustClickLocator(page, button, CLAUDE_MODEL_SELECTOR, { timeout: 5000 });
+  try { await page.waitForSelector?.(CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR, { state: "visible", timeout: 8000 }); } catch {}
+  const trigger = page.locator?.(CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR).first?.();
+  if (!trigger || !(await trigger.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, "Claude effort menu trigger was not found", { selector: CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR });
+  }
+  await robustClickLocator(page, trigger, CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR, { timeout: 5000 });
+  const optionSelector = claudeEffortOptionSelector(level);
+  try { await page.waitForSelector?.(optionSelector, { state: "visible", timeout: 8000 }); } catch {}
+  const option = page.locator?.(optionSelector).first?.();
+  if (!option || !(await option.count?.().catch(() => 0))) {
+    throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Claude effort option ${level} was not found`, { selector: optionSelector });
+  }
+  await robustClickLocator(page, option, optionSelector, { timeout: 5000 });
+  await page.waitForTimeout?.(250).catch(() => undefined);
 }
 
 async function selectGeminiModel(page: any, expected: string): Promise<{ ok: boolean; actual: string | null; expected: string }> {
@@ -3112,6 +3142,12 @@ async function selectClaudeModelWithExtension(page: any, expected: string): Prom
   throw new WebAiToolError(ConsumerErrorCodes.ELEMENT_NOT_FOUND, `Claude model option was not found: ${expected}`, { selector: labels.join(" OR "), cause: errorMessageFromUnknown(lastError, "") });
 }
 
+async function selectClaudeEffortWithExtension(page: any, level: string): Promise<void> {
+  await extensionClick(page, CLAUDE_MODEL_SELECTOR, 5000);
+  await extensionClick(page, CLAUDE_EFFORT_MENU_TRIGGER_SELECTOR, 5000);
+  await extensionClick(page, claudeEffortOptionSelector(level), 5000);
+}
+
 async function setClaudeAdaptiveThinkingWithExtension(page: any): Promise<void> {
   const checked = await page.evaluateReadOnly(`(() => {
     const toggle = document.querySelector(${JSON.stringify(CLAUDE_ADAPTIVE_THINKING_SELECTOR)});
@@ -3586,7 +3622,9 @@ async function selectClaudeModelWithExtensionBackend(args: any, runtime: Require
       selectedModel = String(effective.model).trim();
       await selectClaudeModelWithExtension(page, selectedModel);
     }
-    if (requestedThinkingLevel === "extended") {
+    if (requestedThinkingLevel && CLAUDE_EFFORT_THINKING_LEVELS.has(requestedThinkingLevel)) {
+      await selectClaudeEffortWithExtension(page, requestedThinkingLevel);
+    } else if (requestedThinkingLevel === "extended") {
       await setClaudeAdaptiveThinkingWithExtension(page);
     }
     return safeOutput({ ok: true, selected_model: selectedModel, selected_thinking_level: requestedThinkingLevel, errorCode: null });
@@ -7407,8 +7445,9 @@ export async function webAiChatgptSendPrompt(args: any, runtime?: BrowserToolRun
   return sendPromptExtensionErrorOutput("chatgpt", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B1: RPC is the production default; WEBAI_CLAUDE_SEND_BACKEND=dom is the emergency DOM override, never a runtime fallback after RPC failure.
-  const override = String(process.env.WEBAI_CLAUDE_SEND_BACKEND || "").trim().toLowerCase();
+  // Path C Claude Wave B1: RPC is the production default; explicit backend/env overrides are emergency DOM escape hatches, never runtime fallbacks after RPC failure.
+  const backendOverride = args?.backend || process.env.WEBAI_CLAUDE_SEND_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_claude_send_prompt] backend=dom-extension");
     return sendClaudePromptWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7418,7 +7457,7 @@ export async function webAiClaudeSendPrompt(args: any, runtime?: BrowserToolRunt
     return sendPromptOnPage("claude", args, runtimeOrDefault(runtime));
   }
   if (override && override !== "rpc") {
-    return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_CLAUDE_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_SEND_BACKEND)}`));
+    return claudeSendExtensionErrorOutput(args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_claude_send_prompt backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(backendOverride)}`));
   }
   console.error("[webai_claude_send_prompt] backend=rpc");
   const { webAiClaudeSendPromptRpc } = require("./claude_send_prompt_rpc");
@@ -7456,7 +7495,7 @@ export async function webAiChatgptCodexGetDiff(args: any, runtime?: BrowserToolR
 export const webAiChatgptCodexCreateTask = webAiChatgptCodexSubmitTask;
 export const webAiChatgptCodexListTasks = webAiChatgptCodexGetDiff;
 
-const WEBAI_STANDALONE_THINKING_LEVELS = new Set(["auto", "extended"]);
+const WEBAI_STANDALONE_THINKING_LEVELS = new Set([...CLAUDE_MODE_THINKING_LEVELS, ...CLAUDE_EFFORT_THINKING_LEVELS]);
 
 function selectModelInvalidArgs(tool: string, message: string): Record<string, unknown> {
   return safeOutput({
@@ -7530,7 +7569,14 @@ function validateStandaloneSelectModelArgs(tool: string, args: any): Record<stri
     return selectModelInvalidArgs(tool, "model must be a non-empty picker label");
   }
   if (args.thinking_level !== undefined && !WEBAI_STANDALONE_THINKING_LEVELS.has(String(args.thinking_level))) {
-    return selectModelInvalidArgs(tool, `unsupported thinking_level "${args.thinking_level}" (allowed: auto, extended)`);
+    return selectModelInvalidArgs(tool, `unsupported thinking_level "${args.thinking_level}" (allowed: ${WEBAI_STANDALONE_THINKING_LEVELS_LABEL})`);
+  }
+  if (tool === "webai_claude_select_model" && args.model !== undefined && args.thinking_level !== undefined) {
+    const model = String(args.model);
+    const thinkingLevel = String(args.thinking_level);
+    if (/haiku/i.test(model) && CLAUDE_EFFORT_THINKING_LEVELS.has(thinkingLevel)) {
+      return selectModelInvalidArgs(tool, `model ${model.trim()} does not support effort levels`);
+    }
   }
   return null;
 }
@@ -7575,8 +7621,9 @@ async function selectChatgptModelWithManagedBackend(args: any, runtime: Required
 }
 
 export async function webAiClaudeSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  // Path C Claude Wave B3: RPC is the production default; WEBAI_CLAUDE_SELECT_MODEL_BACKEND is the only emergency DOM override.
-  const override = String(process.env.WEBAI_CLAUDE_SELECT_MODEL_BACKEND || "").trim().toLowerCase();
+  // Path C Claude Wave B3: RPC is the production default; explicit backend/env overrides are emergency DOM escape hatches.
+  const backendOverride = args?.backend || process.env.WEBAI_CLAUDE_SELECT_MODEL_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_claude_select_model] backend=dom-extension");
     return selectClaudeModelWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7587,7 +7634,7 @@ export async function webAiClaudeSelectModel(args: any, runtime?: BrowserToolRun
   }
   if (override && override !== "rpc") {
     console.error("[webai_claude_select_model] backend=invalid");
-    return selectModelInvalidArgs("webai_claude_select_model", `WEBAI_CLAUDE_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_SELECT_MODEL_BACKEND)}`);
+    return selectModelInvalidArgs("webai_claude_select_model", `backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(backendOverride)}`);
   }
   console.error("[webai_claude_select_model] backend=rpc");
   const { webAiClaudeSelectModelRpc } = require("./claude_select_model_rpc");
@@ -7609,7 +7656,9 @@ async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<
         selected_model = selection.expected;
       }
 
-      if (requestedThinkingLevel === "extended") {
+      if (requestedThinkingLevel && CLAUDE_EFFORT_THINKING_LEVELS.has(requestedThinkingLevel)) {
+        await selectClaudeEffort(page, requestedThinkingLevel);
+      } else if (requestedThinkingLevel === "extended") {
         await setClaudeAdaptiveThinking(page);
       }
 
@@ -7627,8 +7676,9 @@ async function selectClaudeModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRuntime): Promise<Record<string, unknown>> {
-  // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit env override only, never a runtime fallback after RPC failure.
-  const override = String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND || "").trim().toLowerCase();
+  // Path C Gemini Wave B3: RPC is the production default; DOM is an explicit backend/env override only, never a runtime fallback after RPC failure.
+  const backendOverride = args?.backend || process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_gemini_select_model] backend=dom-extension");
     return selectGeminiModelWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7639,15 +7689,14 @@ export async function webAiGeminiSelectModel(args: any, runtime?: BrowserToolRun
   }
   if (override && override !== "rpc") {
     console.error("[webai_gemini_select_model] backend=invalid");
-    return selectModelInvalidArgs("webai_gemini_select_model", `WEBAI_GEMINI_SELECT_MODEL_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SELECT_MODEL_BACKEND)}`);
+    return selectModelInvalidArgs("webai_gemini_select_model", `backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(backendOverride)}`);
   }
   // Path C Gemini Wave C1 (2026-05-27): model 3.1-pro is now RPC_AVAILABLE via
   // the same L5adhe settings template family as flash / flash_lite (capture at
   // .runs/path-c-gemini-rpc/wave-c1-coverage-gaps/webai_gemini_select_model--select_pro).
   // The earlier write-time DOM re-route for 3.1-pro is removed; it flows through
   // the RPC default below alongside the other supported models. DOM stays an
-  // explicit env override only (WEBAI_GEMINI_SELECT_MODEL_BACKEND), never a
-  // silent runtime fallback.
+  // explicit backend/env override only, never a silent runtime fallback.
   console.error("[webai_gemini_select_model] backend=rpc");
   const { webAiGeminiSelectModelRpc } = require("./gemini_select_model_rpc");
   return webAiGeminiSelectModelRpc(args, runtime);
@@ -7721,8 +7770,9 @@ async function selectGeminiModelWithManagedBackend(args: any, runtime: Required<
 }
 
 export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Gemini Wave B1: RPC is the production default; WEBAI_GEMINI_SEND_BACKEND is the only emergency DOM override, never a runtime fallback after RPC failure.
-  const override = String(process.env.WEBAI_GEMINI_SEND_BACKEND || "").trim().toLowerCase();
+  // Path C Gemini Wave B1: RPC is the production default; explicit backend/env overrides are emergency DOM escape hatches, never runtime fallbacks after RPC failure.
+  const backendOverride = args?.backend || process.env.WEBAI_GEMINI_SEND_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_gemini_send_prompt] backend=dom-extension");
     return sendGeminiPromptWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7732,7 +7782,7 @@ export async function webAiGeminiSendPrompt(args: any, runtime?: BrowserToolRunt
     return sendPromptOnPage("gemini", args, runtimeOrDefault(runtime));
   }
   if (override && override !== "rpc") {
-    return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_GEMINI_SEND_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_GEMINI_SEND_BACKEND)}`));
+    return sendPromptExtensionErrorOutput("gemini", args, Date.now(), new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_gemini_send_prompt backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backendOverride)}`));
   }
   // Path C Gemini Wave C2: web_search / thinking_web_search are now RPC-available.
   // The current Gemini build has NO "Google Search" tool toggle — grounding is
@@ -7753,8 +7803,9 @@ export async function webAiChatgptUploadAndQuery(args: any, runtime?: BrowserToo
   return uploadExtensionErrorOutput("chatgpt", args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `webai_chatgpt_upload_and_query backend must be "managed-cdp" or "extension-assisted-cdp", got ${String(backend)}`));
 }
 export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B2: RPC is the production default; WEBAI_CLAUDE_UPLOAD_BACKEND=dom is the emergency DOM override, never a runtime fallback after RPC failure.
-  const override = String(process.env.WEBAI_CLAUDE_UPLOAD_BACKEND || "").trim().toLowerCase();
+  // Path C Claude Wave B2: RPC is the production default; explicit backend/env overrides are emergency DOM escape hatches, never runtime fallbacks after RPC failure.
+  const backendOverride = args?.backend || process.env.WEBAI_CLAUDE_UPLOAD_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_claude_upload_and_query] backend=dom-extension");
     return uploadAndQueryClaudeWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7764,7 +7815,7 @@ export async function webAiClaudeUploadAndQuery(args: any, runtime?: BrowserTool
     return uploadAndQueryOnPage("claude", args, runtimeOrDefault(runtime));
   }
   if (override && override !== "rpc") {
-    return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `WEBAI_CLAUDE_UPLOAD_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_UPLOAD_BACKEND)}`));
+    return claudeUploadExtensionErrorOutput(args, new WebAiToolError(ConsumerErrorCodes.INVALID_ARGS, `backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(backendOverride)}`));
   }
   console.error("[webai_claude_upload_and_query] backend=rpc");
   const { webAiClaudeUploadAndQueryRpc } = require("./claude_upload_rpc");
@@ -7934,8 +7985,9 @@ export async function webAiChatgptWorkspace(args: any, runtime?: BrowserToolRunt
   return webAiBackendInvalidOutput("webai_chatgpt_workspace", backend);
 }
 export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRuntime): Promise<unknown> {
-  // Path C Claude Wave B3: RPC is the production default; WEBAI_CLAUDE_WORKSPACE_BACKEND is the only emergency DOM override.
-  const override = String(process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND || "").trim().toLowerCase();
+  // Path C Claude Wave B3: RPC is the production default; explicit backend/env overrides are emergency DOM escape hatches.
+  const backendOverride = args?.backend || process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND;
+  const override = String(backendOverride || "").trim().toLowerCase();
   if (override === "dom" || override === "extension-assisted-cdp") {
     console.error("[webai_claude_workspace] backend=dom-extension");
     return inspectClaudeWorkspaceWithExtensionBackend(args, runtimeOrDefault(runtime));
@@ -7946,7 +7998,7 @@ export async function webAiClaudeWorkspace(args: any, runtime?: BrowserToolRunti
   }
   if (override && override !== "rpc") {
     console.error("[webai_claude_workspace] backend=invalid");
-    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `WEBAI_CLAUDE_WORKSPACE_BACKEND must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(process.env.WEBAI_CLAUDE_WORKSPACE_BACKEND)}` });
+    return safeOutput({ ok: false, errorCode: ConsumerErrorCodes.INVALID_ARGS, error_code: ConsumerErrorCodes.INVALID_ARGS, message: `backend must be "rpc", "dom", "managed-cdp", or "extension-assisted-cdp", got ${String(backendOverride)}` });
   }
   // Path C cross-model review I2: surface=appearance RPC is 0.64x DOM
   // (.runs/path-c-claude-rpc/wave-b3-workspace-model-conversation/ab-sweep-results.json:178
