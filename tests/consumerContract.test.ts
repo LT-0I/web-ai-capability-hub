@@ -196,6 +196,66 @@ test("consumer:health aliases legacy claude profile only for claude health probe
   assert.equal(calls.at(-1), "claude");
 });
 
+test("consumer:health aliases legacy gemini profile only for gemini health probes", async () => {
+  const calls: string[] = [];
+  const launcher = {
+    profileStore: { list: () => [{ profileName: "gemini-9225" }] },
+    status: async (profile?: string): Promise<ManagedBrowserStatus> => {
+      calls.push(profile || "");
+      if (profile === "gemini-9225") {
+        return {
+          profile,
+          profileDir: `/tmp/${profile}`,
+          cdpEndpoint: "http://127.0.0.1:9225",
+          cdpPort: 9225,
+          connected: true,
+          launchedByPackage: false,
+          pages: [
+            {
+              id: "gemini-page",
+              type: "page",
+              title: "Gemini",
+              url: "https://gemini.google.com/app"
+            }
+          ]
+        } as ManagedBrowserStatus;
+      }
+      return {
+        profile: profile || "",
+        profileDir: `/tmp/${profile || "unknown"}`,
+        cdpEndpoint: "http://127.0.0.1:0",
+        cdpPort: 0,
+        connected: false,
+        launchedByPackage: false,
+        pages: []
+      } as ManagedBrowserStatus;
+    }
+  };
+
+  const aliased = await consumerHealth({
+    target: "gemini",
+    profile: "gemini",
+    launcher,
+    now: () => new Date(fixtures().checkedAt)
+  });
+
+  assert.equal(aliased.ok, true);
+  assert.equal(aliased.status, "ok");
+  assert.equal(aliased.loginLikeState, "healthy");
+  assert.equal(aliased.profile, "gemini-9225");
+  assert.equal(calls.at(-1), "gemini-9225");
+
+  const scoped = await consumerHealth({
+    target: "chatgpt",
+    profile: "gemini",
+    launcher,
+    now: () => new Date(fixtures().checkedAt)
+  });
+
+  assert.equal(scoped.profile, "gemini");
+  assert.equal(calls.at(-1), "gemini");
+});
+
 test("consumer:health CLI emits the safe contract shape", async (t: any) => {
   const originalStatus = ManagedBrowserLauncher.prototype.status;
   const scenario = fixtures().scenarios.find((item) => item.name === "connected-chatgpt-page")!;

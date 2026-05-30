@@ -40,14 +40,18 @@ const TARGET_HOST_ALIASES: Record<string, string[]> = {
   gemini: ["gemini.google.com"]
 };
 
-// SANCTIONED health-probe-only alias. CLAUDE.md §5 bans `--profile claude`
+// SANCTIONED health-probe-only aliases. CLAUDE.md §5 bans `--profile claude`
 // for real webai:* flows; this map ONLY rewrites the profile for the
 // read-only consumer-health target resolution so an external watchdog
 // probing the legacy `claude` name reaches the canonical logged-in
 // claude-9224 session. It never launches/logs into 9222 and never affects
 // ManagedBrowserLauncher or any tool.
+// Similarly, `--profile gemini` (friendly name) is rewritten to `gemini-9225`
+// (the canonical logged-in Gemini session on CDP port 9225). Read-only;
+// never launches/logs in; never affects ManagedBrowserLauncher or any tool.
 const HEALTH_PROFILE_ALIASES: Record<string, Record<string, string>> = {
-  claude: { claude: "claude-9224" }
+  claude: { claude: "claude-9224" },
+  gemini: { gemini: "gemini-9225" }
 };
 
 export async function consumerHealth(options: ConsumerHealthOptions): Promise<ConsumerHealthResult> {
