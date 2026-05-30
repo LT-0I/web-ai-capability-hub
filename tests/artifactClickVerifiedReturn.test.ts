@@ -323,6 +323,57 @@ test("non-throwing follow-up recovers governed PNG when downloadWillBegin is mis
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 
+// issue #18 (2026-05-30): ChatGPT now delivers the fresh full-size generated
+// image as `&p=fsns&` (was `&p=fs&`). The old exact `p=fs(&|$)` discriminator
+// rejected it, the ambiguity guard fired (freshMatches===0 + >=2 hop2), and the
+// real PNG was dropped (resourceContentRetrieved=2, nothing saved). The fix
+// matches the full-size family by `p=fs` prefix while still rejecting the stale
+// `p=gpp` gizmo badge and progressive `p=igh` frames.
+const ESTUARY_BASE = "https://chatgpt.com/backend-api/estuary/content";
+const FRESH_FSNS_URL = `${ESTUARY_BASE}?id=file_REAL&ts=494479&p=fsns&cid=1&sig=aa&v=0`;
+const BADGE_GPP_URL = `${ESTUARY_BASE}?id=file-BADGE&gizmo_id=g-kZ0eYXlJe&ts=494475&p=gpp&cid=1&sig=bb&v=0`;
+const PROGRESS_IGH_URL = `${ESTUARY_BASE}?id=file_PROG&cp=pri&ma=90000&ts=20603&p=igh&cid=1&sig=cc&v=0`;
+const FRESH_PNG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0xfa, 0xce, 0xfe, 0xed]);
+const STALE_PNG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0xde, 0xad, 0xbe, 0xef]);
+
+// FakeCDP that serves a ChatGPT-shaped resource tree carrying the fresh `p=fsns`
+// image plus the stale `p=gpp` badge and a progressive `p=igh` frame, returning
+// real PNG bytes for each so the discriminator (not magic alone) decides.
+class ResourceTreePageCDP extends FakeCDP {
+  constructor(private clickTarget?: FakeElement) { super(); }
+  async send(method: string, params: any): Promise<any> {
+    await super.send(method, params);
+    if (method === "Input.dispatchMouseEvent" && params.type === "mouseReleased") this.clickTarget?.click();
+    if (method === "Page.getResourceTree") {
+      return { frameTree: { frame: { id: "frame-root", url: "https://chatgpt.com/c/test" }, resources: [
+        { url: BADGE_GPP_URL, mimeType: "image/png" },
+        { url: PROGRESS_IGH_URL, mimeType: "image/png" },
+        { url: FRESH_FSNS_URL, mimeType: "image/png" }
+      ], childFrames: [] } };
+    }
+    if (method === "Page.getResourceContent") {
+      const url = String(params?.url || "");
+      const buf = url === FRESH_FSNS_URL ? FRESH_PNG : STALE_PNG;
+      return { content: buf.toString("base64"), base64Encoded: true };
+    }
+    return undefined;
+  }
+}
+
+test("issue #18: resource-tree recovery saves the fresh p=fsns generated image, not the p=gpp badge", async () => {
+  const dir = tempDir();
+  try {
+    const bcdp = new FakeCDP();
+    const open = new FakeElement({ x: 0, y: 10, width: 20, height: 10 }, "open");
+    const page = new FakePage([new FakeFrame({ "button.open": [open] })], new ResourceTreePageCDP(open));
+    const result = await artifactClickOnPage(fakeBrowser(bcdp), page, { profile: "p", buttonSelector: "button.open", followUpSelector: "button.missing", downloadDir: dir, filenamePattern: "\\.(png|jpg|jpeg|webp)$", timeoutMs: 1000, locateTimeoutMs: 5 });
+    const saved = fs.readFileSync(result.path);
+    assert.equal(saved.subarray(0, 8).equals(PNG_BYTES.subarray(0, 8)), true, "saved file must be a real PNG");
+    assert.equal(saved.equals(FRESH_PNG), true, "must save the fresh p=fsns image bytes, not the p=gpp badge or p=igh frame");
+    assert.equal(result.warn, RECOVERY_WARN);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
 test("non-throwing follow-up rethrows download timeout verbatim when no governed PNG exists", async () => {
   const dir = tempDir();
   try {

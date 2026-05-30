@@ -678,16 +678,27 @@ async function harvestPageResourceTree(page: any, pageCdp: any, capture: Network
     };
     visit(tree.frameTree);
     capture.resourceTreeMatches += matches.length;
-    // R19b: URL-parameter discriminator for current ChatGPT image generation output.
-    // Fresh generated images carry `&p=fs&` (full-size) and lack `gizmo_id=` / `&p=gpp&`.
-    // Stale gizmo persona-badge images carry `gizmo_id=` and/or `&p=gpp&`.
-    // Both signals live in the URL itself — no page.evaluate, preserves offline FakeCDP contract.
+    // R19b (issue #18, live-observed 2026-05-30): URL-parameter discriminator for
+    // current ChatGPT image generation output.
+    //   Fresh full-size generated image carries `p=fs<...>` (full-size family) and
+    //   lacks `gizmo_id=` / `p=gpp`. Live ground truth: the final 1254x1254 image
+    //   arrives as `&p=fsns&` (NOT the older `&p=fs&`); the old exact `p=fs(&|$)`
+    //   test rejected it, so `freshMatches===0` armed the ambiguity guard and the
+    //   real PNG was dropped (issue #18: resourceContentRetrieved=2, nothing saved).
+    //   Stale gizmo persona-badge images carry `gizmo_id=` and/or `p=gpp`.
+    //   In-progress generation frames carry `p=igh` (rejected: not full-size family).
+    // Match the full-size family by `p=fs` PREFIX (covers `fs`, `fsns`, future `fs*`),
+    // still rejecting gizmo/gpp. Both signals live in the URL — no page.evaluate, so
+    // the offline FakeCDP contract is preserved.
     const isFreshHop2Url = (url: string): boolean => {
       if (!url) return false;
       if (!isChatgptPointerHop2(url)) return false;
       if (/[?&]gizmo_id=/.test(url)) return false;
       if (/[?&]p=gpp(&|$)/.test(url)) return false;
-      return /[?&]p=fs(&|$)/.test(url);
+      // Full-size family prefix: p=fs, p=fsns, p=fs<...> (terminated by `&`/EOL or
+      // continuing with non-`&` chars). The badge's `p=gpp` and progressive
+      // `p=igh` frames are excluded because they do not begin with `fs`.
+      return /[?&]p=fs[^&]*(&|$)/.test(url);
     };
     matches.sort((a, b) => {
       const rank = (url: string): number => {
@@ -703,6 +714,12 @@ async function harvestPageResourceTree(page: any, pageCdp: any, capture: Network
       const freshMatches = matches.filter((m) => isFreshHop2Url(m.url)).length;
       return [pointerMatches, hop2Matches, freshMatches === 0 && pointerMatches === 0 && hop2Matches >= 2] as const;
     })();
+    // When a fresh full-size match exists, persist ONLY fresh-discriminated images
+    // so progressive `p=igh` frames and stale `p=gpp` badges never get saved over
+    // the real output. Pointer-confirmed matches stay eligible too. Fall back to the
+    // prior any-magic behavior only when no fresh match was discriminated (e.g. a
+    // service URL-shape change), still gated by the ambiguity guard.
+    const hasFreshMatch = matches.some((m) => isFreshHop2Url(m.url));
     for (const m of matches) {
       const r: any = await harvestCdp.send("Page.getResourceContent", { frameId: m.frameId, url: m.url }).catch(() => undefined);
       if (!r || typeof r.content !== "string" || !r.content) continue;
@@ -711,6 +728,7 @@ async function harvestPageResourceTree(page: any, pageCdp: any, capture: Network
       if (imageMagicExt(buf) === null) continue;
       capture.resourceContentRetrieved += 1;
       if (ambiguousMultiHop2) continue;
+      if (hasFreshMatch && !isFreshHop2Url(m.url) && !matchesKnownPointer(m.url, capture.pointerUrls)) continue;
       const key = `pageres-${capture.bodies.size}`;
       capture.bodies.set(key, { url: m.url, finishedAt: runStartedMs, buf });
       capture.bufferedBytes += buf.length;
